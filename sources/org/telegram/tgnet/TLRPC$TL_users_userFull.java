@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_users_userFull extends TLObject {
     public static int constructor = 997004590;
     public TLRPC$UserFull full_user;

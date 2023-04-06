@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getBotCallbackAnswer extends TLObject {
     public static int constructor = -1824339449;
     public byte[] data;

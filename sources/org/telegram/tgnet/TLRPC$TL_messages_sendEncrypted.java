@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_sendEncrypted extends TLObject {
     public static int constructor = 1157265941;
     public NativeByteBuffer data;

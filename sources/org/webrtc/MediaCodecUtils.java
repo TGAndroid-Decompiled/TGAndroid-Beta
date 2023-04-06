@@ -9,9 +9,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.FileLog;
-
 class MediaCodecUtils {
     static final String EXYNOS_PREFIX = "OMX.Exynos.";
+    static final String EXYNOS_PREFIX_C2 = "c2.exynos.";
     static final String HISI_PREFIX = "OMX.hisi.";
     static final String INTEL_PREFIX = "OMX.Intel.";
     static final String NVIDIA_PREFIX = "OMX.Nvidia.";
@@ -38,12 +38,12 @@ class MediaCodecUtils {
                 try {
                     arrayList.add(MediaCodecList.getCodecInfoAt(i));
                 } catch (IllegalArgumentException e) {
-                    Logging.m7e(TAG, "Cannot retrieve codec info", e);
+                    Logging.e(TAG, "Cannot retrieve codec info", e);
                 }
             }
             Collections.sort(arrayList, MediaCodecUtils$$ExternalSyntheticLambda0.INSTANCE);
         } catch (Exception e2) {
-            FileLog.m32e(e2);
+            FileLog.e(e2);
         }
         return arrayList;
     }
@@ -73,7 +73,7 @@ class MediaCodecUtils {
         return false;
     }
 
-    static class C43181 {
+    static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
 
         static {
@@ -103,7 +103,7 @@ class MediaCodecUtils {
     }
 
     public static Map<String, String> getCodecProperties(VideoCodecMimeType videoCodecMimeType, boolean z) {
-        int i = C43181.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        int i = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1 || i == 2 || i == 3 || i == 4) {
             return new HashMap();
         }

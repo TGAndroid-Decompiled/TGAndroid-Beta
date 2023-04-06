@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.graphics.Matrix;
 import java.nio.ByteBuffer;
-
 public class VideoFrame implements RefCounted {
     private final Buffer buffer;
     private final int rotation;

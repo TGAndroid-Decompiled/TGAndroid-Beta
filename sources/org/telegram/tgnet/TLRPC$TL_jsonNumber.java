@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_jsonNumber extends TLRPC$JSONValue {
     public static int constructor = 736157604;
     public double value;

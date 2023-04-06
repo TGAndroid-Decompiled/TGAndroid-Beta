@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getHistory extends TLObject {
     public static int constructor = 1143203525;
     public int add_offset;

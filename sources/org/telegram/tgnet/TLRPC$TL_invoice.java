@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_invoice extends TLObject {
     public static int constructor = 1048946971;
     public String currency;
@@ -43,8 +43,8 @@ public class TLRPC$TL_invoice extends TLObject {
         this.shipping_address_requested = (readInt32 & 16) != 0;
         this.flexible = (readInt32 & 32) != 0;
         this.phone_to_provider = (readInt32 & 64) != 0;
-        this.email_to_provider = (readInt32 & ConnectionsManager.RequestFlagNeedQuickAck) != 0;
-        this.recurring = (readInt32 & 512) != 0;
+        this.email_to_provider = (readInt32 & 128) != 0;
+        this.recurring = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
         this.currency = abstractSerializedData.readString(z);
         int readInt322 = abstractSerializedData.readInt32(z);
         if (readInt322 != 481674261) {
@@ -61,10 +61,10 @@ public class TLRPC$TL_invoice extends TLObject {
             }
             this.prices.add(TLdeserialize);
         }
-        if ((this.flags & 256) != 0) {
+        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
             this.max_tip_amount = abstractSerializedData.readInt64(z);
         }
-        if ((this.flags & 256) != 0) {
+        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
             int readInt324 = abstractSerializedData.readInt32(z);
             if (readInt324 != 481674261) {
                 if (z) {
@@ -77,7 +77,7 @@ public class TLRPC$TL_invoice extends TLObject {
                 this.suggested_tip_amounts.add(Long.valueOf(abstractSerializedData.readInt64(z)));
             }
         }
-        if ((this.flags & 512) != 0) {
+        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
             this.recurring_terms_url = abstractSerializedData.readString(z);
         }
     }
@@ -99,9 +99,9 @@ public class TLRPC$TL_invoice extends TLObject {
         this.flags = i6;
         int i7 = this.phone_to_provider ? i6 | 64 : i6 & (-65);
         this.flags = i7;
-        int i8 = this.email_to_provider ? i7 | ConnectionsManager.RequestFlagNeedQuickAck : i7 & (-129);
+        int i8 = this.email_to_provider ? i7 | 128 : i7 & (-129);
         this.flags = i8;
-        int i9 = this.recurring ? i8 | 512 : i8 & (-513);
+        int i9 = this.recurring ? i8 | LiteMode.FLAG_CALLS_ANIMATIONS : i8 & (-513);
         this.flags = i9;
         abstractSerializedData.writeInt32(i9);
         abstractSerializedData.writeString(this.currency);
@@ -111,10 +111,10 @@ public class TLRPC$TL_invoice extends TLObject {
         for (int i10 = 0; i10 < size; i10++) {
             this.prices.get(i10).serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & 256) != 0) {
+        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
             abstractSerializedData.writeInt64(this.max_tip_amount);
         }
-        if ((this.flags & 256) != 0) {
+        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.suggested_tip_amounts.size();
             abstractSerializedData.writeInt32(size2);
@@ -122,7 +122,7 @@ public class TLRPC$TL_invoice extends TLObject {
                 abstractSerializedData.writeInt64(this.suggested_tip_amounts.get(i11).longValue());
             }
         }
-        if ((this.flags & 512) != 0) {
+        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
             abstractSerializedData.writeString(this.recurring_terms_url);
         }
     }

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_help_passportConfig extends TLRPC$help_PassportConfig {
     public static int constructor = -1600596305;
     public TLRPC$TL_dataJSON countries_langs;

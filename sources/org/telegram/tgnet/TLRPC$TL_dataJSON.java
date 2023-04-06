@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_dataJSON extends TLObject {
     public static int constructor = 2104790276;
     public String data;

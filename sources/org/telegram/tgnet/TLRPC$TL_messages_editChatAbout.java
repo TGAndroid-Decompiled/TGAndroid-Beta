@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_editChatAbout extends TLObject {
     public static int constructor = -554301545;
     public String about;

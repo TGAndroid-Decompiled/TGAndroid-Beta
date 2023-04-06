@@ -1,5 +1,4 @@
 package org.telegram.messenger;
-
 public final class Emoji$$ExternalSyntheticLambda1 implements Runnable {
     public static final Emoji$$ExternalSyntheticLambda1 INSTANCE = new Emoji$$ExternalSyntheticLambda1();
 

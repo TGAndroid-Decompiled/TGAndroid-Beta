@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_stats_getMessagePublicForwards extends TLObject {
     public static int constructor = 1445996571;
     public TLRPC$InputChannel channel;

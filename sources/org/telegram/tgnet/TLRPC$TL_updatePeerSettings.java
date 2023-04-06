@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updatePeerSettings extends TLRPC$Update {
     public static int constructor = 1786671974;
     public TLRPC$Peer peer;

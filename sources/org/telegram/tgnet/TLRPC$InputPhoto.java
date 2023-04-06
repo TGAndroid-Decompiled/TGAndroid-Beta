@@ -1,9 +1,8 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$InputPhoto extends TLObject {
     public long access_hash;
     public byte[] file_reference;
-    public long f879id;
+    public long id;
 
     public static TLRPC$InputPhoto TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$InputPhoto tLRPC$TL_inputPhotoEmpty;

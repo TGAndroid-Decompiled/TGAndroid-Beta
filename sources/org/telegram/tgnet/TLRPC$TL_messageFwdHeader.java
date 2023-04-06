@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageFwdHeader extends TLRPC$MessageFwdHeader {
     public static int constructor = 1601666510;
 
@@ -7,7 +6,7 @@ public class TLRPC$TL_messageFwdHeader extends TLRPC$MessageFwdHeader {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        this.imported = (readInt32 & ConnectionsManager.RequestFlagNeedQuickAck) != 0;
+        this.imported = (readInt32 & 128) != 0;
         if ((readInt32 & 1) != 0) {
             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
@@ -35,7 +34,7 @@ public class TLRPC$TL_messageFwdHeader extends TLRPC$MessageFwdHeader {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        int i = this.imported ? this.flags | ConnectionsManager.RequestFlagNeedQuickAck : this.flags & (-129);
+        int i = this.imported ? this.flags | 128 : this.flags & (-129);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
         if ((this.flags & 1) != 0) {

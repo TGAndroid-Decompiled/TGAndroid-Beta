@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_readHistory extends TLObject {
     public static int constructor = -871347913;
     public TLRPC$InputChannel channel;

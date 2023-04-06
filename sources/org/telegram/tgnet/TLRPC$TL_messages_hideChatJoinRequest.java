@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_hideChatJoinRequest extends TLObject {
     public static int constructor = 2145904661;
     public boolean approved;

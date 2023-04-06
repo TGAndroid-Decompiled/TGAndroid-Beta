@@ -12,7 +12,6 @@ import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
 import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.HashMap;
-
 @KeepName
 public final class DataHolder extends AbstractSafeParcelable implements Closeable {
     public static final Parcelable.Creator<DataHolder> CREATOR = new zaf();

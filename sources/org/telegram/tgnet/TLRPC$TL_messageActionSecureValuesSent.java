@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messageActionSecureValuesSent extends TLRPC$MessageAction {
     public static int constructor = -648257196;
     public ArrayList<TLRPC$SecureValueType> types = new ArrayList<>();

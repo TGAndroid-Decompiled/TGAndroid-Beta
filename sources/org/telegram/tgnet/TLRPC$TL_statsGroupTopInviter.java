@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_statsGroupTopInviter extends TLObject {
     public static int constructor = 1398765469;
     public int invitations;

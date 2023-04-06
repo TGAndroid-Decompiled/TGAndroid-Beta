@@ -1,5 +1,4 @@
 package org.aspectj.runtime.reflect;
-
 abstract class CodeSignatureImpl extends MemberSignatureImpl {
     Class[] exceptionTypes;
     Class[] parameterTypes;

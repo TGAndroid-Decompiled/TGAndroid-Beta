@@ -1,5 +1,4 @@
 package org.telegram.messenger.camera;
-
 public final class Size {
     public final int mHeight;
     public final int mWidth;

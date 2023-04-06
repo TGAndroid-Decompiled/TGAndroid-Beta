@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_phone_getGroupParticipants extends TLObject {
     public static int constructor = -984033109;
     public TLRPC$TL_inputGroupCall call;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$Reaction extends TLObject {
     public static TLRPC$Reaction TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Reaction tLRPC$TL_reactionCustomEmoji;

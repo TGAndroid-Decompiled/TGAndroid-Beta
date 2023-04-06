@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputReportReasonPersonalDetails extends TLRPC$ReportReason {
     public static int constructor = -1631091139;
 

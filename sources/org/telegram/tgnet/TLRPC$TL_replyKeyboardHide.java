@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_replyKeyboardHide extends TLRPC$ReplyMarkup {
     public static int constructor = -1606526075;
 

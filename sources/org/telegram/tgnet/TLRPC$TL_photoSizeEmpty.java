@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_photoSizeEmpty extends TLRPC$PhotoSize {
     public static int constructor = 236446268;
 

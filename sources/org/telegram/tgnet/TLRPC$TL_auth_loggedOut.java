@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_loggedOut extends TLObject {
     public static int constructor = -1012759713;
     public int flags;

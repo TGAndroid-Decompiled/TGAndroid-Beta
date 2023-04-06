@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$Theme extends TLObject {
     public static TLRPC$TL_theme TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$TL_theme tLRPC$TL_theme;
@@ -18,7 +17,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         this.creator = (readInt32 & 1) != 0;
                         this.isDefault = (readInt32 & 2) != 0;
                         this.for_chat = (readInt32 & 32) != 0;
-                        this.f986id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.slug = abstractSerializedData2.readString(z2);
                         this.title = abstractSerializedData2.readString(z2);
@@ -43,7 +42,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         int i4 = this.for_chat ? i3 | 32 : i3 & (-33);
                         this.flags = i4;
                         abstractSerializedData2.writeInt32(i4);
-                        abstractSerializedData2.writeInt64(this.f986id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.slug);
                         abstractSerializedData2.writeString(this.title);
@@ -69,7 +68,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         this.flags = readInt32;
                         this.creator = (readInt32 & 1) != 0;
                         this.isDefault = (readInt32 & 2) != 0;
-                        this.f986id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.slug = abstractSerializedData2.readString(z2);
                         this.title = abstractSerializedData2.readString(z2);
@@ -87,7 +86,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         int i3 = this.isDefault ? i2 | 2 : i2 & (-3);
                         this.flags = i3;
                         abstractSerializedData2.writeInt32(i3);
-                        abstractSerializedData2.writeInt64(this.f986id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.slug);
                         abstractSerializedData2.writeString(this.title);
@@ -108,7 +107,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         this.flags = readInt32;
                         this.creator = (readInt32 & 1) != 0;
                         this.isDefault = (readInt32 & 2) != 0;
-                        this.f986id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.slug = abstractSerializedData2.readString(z2);
                         this.title = abstractSerializedData2.readString(z2);
@@ -129,7 +128,7 @@ public abstract class TLRPC$Theme extends TLObject {
                         int i3 = this.isDefault ? i2 | 2 : i2 & (-3);
                         this.flags = i3;
                         abstractSerializedData2.writeInt32(i3);
-                        abstractSerializedData2.writeInt64(this.f986id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.slug);
                         abstractSerializedData2.writeString(this.title);

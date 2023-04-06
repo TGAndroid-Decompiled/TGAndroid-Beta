@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_exportedChatInviteReplaced extends TLRPC$messages_ExportedChatInvite {
     public static int constructor = 572915951;
     public TLRPC$ExportedChatInvite new_invite;

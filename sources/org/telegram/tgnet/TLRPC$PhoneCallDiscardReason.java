@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$PhoneCallDiscardReason extends TLObject {
     public static TLRPC$PhoneCallDiscardReason TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$PhoneCallDiscardReason tLRPC$TL_phoneCallDiscardReasonMissed;

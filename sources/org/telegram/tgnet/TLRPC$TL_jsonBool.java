@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_jsonBool extends TLRPC$JSONValue {
     public static int constructor = -952869270;
     public boolean value;

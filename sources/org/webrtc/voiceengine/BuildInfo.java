@@ -1,7 +1,6 @@
 package org.webrtc.voiceengine;
 
 import android.os.Build;
-
 public final class BuildInfo {
     public static String getDevice() {
         return Build.DEVICE;

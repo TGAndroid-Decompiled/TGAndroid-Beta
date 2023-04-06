@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getStickers extends TLObject {
     public static int constructor = -710552671;
     public String emoticon;

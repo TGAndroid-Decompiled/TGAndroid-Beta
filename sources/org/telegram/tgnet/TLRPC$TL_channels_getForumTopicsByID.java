@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_channels_getForumTopicsByID extends TLObject {
     public static int constructor = -1333584199;
     public TLRPC$InputChannel channel;

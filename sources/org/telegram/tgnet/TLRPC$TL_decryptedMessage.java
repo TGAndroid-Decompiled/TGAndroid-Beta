@@ -1,5 +1,7 @@
 package org.telegram.tgnet;
 
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_decryptedMessage extends TLRPC$DecryptedMessage {
     public static int constructor = -1848883596;
 
@@ -11,10 +13,10 @@ public class TLRPC$TL_decryptedMessage extends TLRPC$DecryptedMessage {
         this.random_id = abstractSerializedData.readInt64(z);
         this.ttl = abstractSerializedData.readInt32(z);
         this.message = abstractSerializedData.readString(z);
-        if ((this.flags & 512) != 0) {
-            this.media = TLRPC$DecryptedMessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+            this.media = TLRPC$DecryptedMessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z || BuildVars.DEBUG_PRIVATE_VERSION);
         }
-        if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
+        if ((this.flags & 128) != 0) {
             int readInt322 = abstractSerializedData.readInt32(z);
             if (readInt322 != 481674261) {
                 if (z) {
@@ -24,14 +26,14 @@ public class TLRPC$TL_decryptedMessage extends TLRPC$DecryptedMessage {
             }
             int readInt323 = abstractSerializedData.readInt32(z);
             for (int i = 0; i < readInt323; i++) {
-                TLRPC$MessageEntity TLdeserialize = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TLRPC$MessageEntity TLdeserialize = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z || BuildVars.DEBUG_PRIVATE_VERSION);
                 if (TLdeserialize == null) {
                     return;
                 }
                 this.entities.add(TLdeserialize);
             }
         }
-        if ((this.flags & 2048) != 0) {
+        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
             this.via_bot_name = abstractSerializedData.readString(z);
         }
         if ((this.flags & 8) != 0) {
@@ -51,10 +53,10 @@ public class TLRPC$TL_decryptedMessage extends TLRPC$DecryptedMessage {
         abstractSerializedData.writeInt64(this.random_id);
         abstractSerializedData.writeInt32(this.ttl);
         abstractSerializedData.writeString(this.message);
-        if ((this.flags & 512) != 0) {
+        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
             this.media.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
+        if ((this.flags & 128) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
@@ -62,7 +64,7 @@ public class TLRPC$TL_decryptedMessage extends TLRPC$DecryptedMessage {
                 this.entities.get(i2).serializeToStream(abstractSerializedData);
             }
         }
-        if ((this.flags & 2048) != 0) {
+        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
             abstractSerializedData.writeString(this.via_bot_name);
         }
         if ((this.flags & 8) != 0) {

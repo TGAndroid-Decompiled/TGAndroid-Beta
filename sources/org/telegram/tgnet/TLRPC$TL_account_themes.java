@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_account_themes extends TLRPC$account_Themes {
     public static int constructor = -1707242387;
     public long hash;

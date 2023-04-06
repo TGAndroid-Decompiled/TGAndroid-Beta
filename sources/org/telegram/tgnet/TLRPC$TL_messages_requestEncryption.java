@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_requestEncryption extends TLObject {
     public static int constructor = -162681021;
     public byte[] g_a;

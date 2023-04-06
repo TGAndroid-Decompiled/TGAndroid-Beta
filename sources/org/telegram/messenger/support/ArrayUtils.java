@@ -2,7 +2,6 @@ package org.telegram.messenger.support;
 
 import java.lang.reflect.Array;
 import org.telegram.tgnet.ConnectionsManager;
-
 public class ArrayUtils {
     private static Object[] EMPTY = new Object[0];
     private static final int CACHE_SIZE = 73;

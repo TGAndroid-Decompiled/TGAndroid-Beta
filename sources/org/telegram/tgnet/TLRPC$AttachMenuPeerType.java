@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$AttachMenuPeerType extends TLObject {
     public static TLRPC$AttachMenuPeerType TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$AttachMenuPeerType tLRPC$AttachMenuPeerType;

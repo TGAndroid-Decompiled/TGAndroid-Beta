@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import org.webrtc.MediaStreamTrack;
-
 public class RtpReceiver {
     private MediaStreamTrack cachedTrack;
     private long nativeObserver;
@@ -39,7 +38,7 @@ public class RtpReceiver {
         return nativeGetParameters(this.nativeRtpReceiver);
     }
 
-    public String m1id() {
+    public String id() {
         checkRtpReceiverExists();
         return nativeGetId(this.nativeRtpReceiver);
     }

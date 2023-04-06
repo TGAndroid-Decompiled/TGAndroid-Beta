@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_account_privacyRules extends TLObject {
     public static int constructor = 1352683077;
     public ArrayList<TLRPC$PrivacyRule> rules = new ArrayList<>();

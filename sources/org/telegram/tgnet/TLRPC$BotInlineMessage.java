@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$BotInlineMessage extends TLObject {
     public String address;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_replyInlineMarkup extends TLRPC$ReplyMarkup {
     public static int constructor = 1218642516;
 

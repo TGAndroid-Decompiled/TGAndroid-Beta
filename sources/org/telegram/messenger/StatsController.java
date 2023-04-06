@@ -1,20 +1,23 @@
 package org.telegram.messenger;
 
 import java.io.RandomAccessFile;
-
+import org.telegram.messenger.utils.ImmutableByteArrayOutputStream;
 public class StatsController extends BaseController {
-    private static final int TYPES_COUNT = 7;
+    private static final int OLD_TYPES_COUNT = 7;
+    private static final int TYPES_COUNT = 8;
     public static final int TYPE_AUDIOS = 3;
     public static final int TYPE_CALLS = 0;
     public static final int TYPE_FILES = 5;
     public static final int TYPE_MESSAGES = 1;
     public static final int TYPE_MOBILE = 0;
+    public static final int TYPE_MUSIC = 7;
     public static final int TYPE_PHOTOS = 4;
     public static final int TYPE_ROAMING = 2;
     public static final int TYPE_TOTAL = 6;
     public static final int TYPE_VIDEOS = 2;
     public static final int TYPE_WIFI = 1;
     private byte[] buffer;
+    ImmutableByteArrayOutputStream byteArrayOutputStream;
     private int[] callsTotalTime;
     private long lastInternalStatsSaveTime;
     private long[][] receivedBytes;
@@ -124,7 +127,7 @@ public class StatsController extends BaseController {
     public long getSentBytesCount(int i, int i2) {
         if (i2 == 1) {
             long[][] jArr = this.sentBytes;
-            return (((jArr[i][6] - jArr[i][5]) - jArr[i][3]) - jArr[i][2]) - jArr[i][4];
+            return ((((jArr[i][6] - jArr[i][5]) - jArr[i][3]) - jArr[i][2]) - jArr[i][4]) - jArr[i][7];
         }
         return this.sentBytes[i][i2];
     }
@@ -132,7 +135,7 @@ public class StatsController extends BaseController {
     public long getReceivedBytesCount(int i, int i2) {
         if (i2 == 1) {
             long[][] jArr = this.receivedBytes;
-            return (((jArr[i][6] - jArr[i][5]) - jArr[i][3]) - jArr[i][2]) - jArr[i][4];
+            return ((((jArr[i][6] - jArr[i][5]) - jArr[i][3]) - jArr[i][2]) - jArr[i][4]) - jArr[i][7];
         }
         return this.receivedBytes[i][i2];
     }
@@ -147,7 +150,7 @@ public class StatsController extends BaseController {
 
     public void resetStats(int i) {
         this.resetStatsDate[i] = System.currentTimeMillis();
-        for (int i2 = 0; i2 < 7; i2++) {
+        for (int i2 = 0; i2 < 8; i2++) {
             this.sentBytes[i][i2] = 0;
             this.receivedBytes[i][i2] = 0;
             this.sentItems[i][i2] = 0;
@@ -162,6 +165,7 @@ public class StatsController extends BaseController {
         ThreadLocal<Long> threadLocal = lastStatsSaveTime;
         if (Math.abs(currentTimeMillis - threadLocal.get().longValue()) >= 2000) {
             threadLocal.set(Long.valueOf(currentTimeMillis));
+            statsSaveQueue.cancelRunnable(this.saveRunnable);
             statsSaveQueue.postRunnable(this.saveRunnable);
         }
     }

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$PageBlock extends TLObject {
     public boolean bottom;
     public boolean first;
@@ -58,8 +57,8 @@ public abstract class TLRPC$PageBlock extends TLObject {
                         if ((this.flags & 16) != 0) {
                             this.poster_photo_id = abstractSerializedData2.readInt64(z2);
                         }
-                        this.f970w = abstractSerializedData2.readInt32(z2);
-                        this.f969h = abstractSerializedData2.readInt32(z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
                         TLRPC$TL_pageCaption tLRPC$TL_pageCaption = new TLRPC$TL_pageCaption();
                         this.caption = tLRPC$TL_pageCaption;
                         tLRPC$TL_pageCaption.text = TLRPC$RichText.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -83,8 +82,8 @@ public abstract class TLRPC$PageBlock extends TLObject {
                         if ((this.flags & 16) != 0) {
                             abstractSerializedData2.writeInt64(this.poster_photo_id);
                         }
-                        abstractSerializedData2.writeInt32(this.f970w);
-                        abstractSerializedData2.writeInt32(this.f969h);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
                         this.caption.text.serializeToStream(abstractSerializedData2);
                     }
                 };
@@ -99,10 +98,10 @@ public abstract class TLRPC$PageBlock extends TLObject {
                     public TLRPC$RichText caption;
                     public int flags;
                     public boolean full_width;
-                    public int f971h;
+                    public int h;
                     public String html;
                     public String url;
-                    public int f972w;
+                    public int w;
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
@@ -116,8 +115,8 @@ public abstract class TLRPC$PageBlock extends TLObject {
                         if ((this.flags & 4) != 0) {
                             this.html = abstractSerializedData2.readString(z2);
                         }
-                        this.f972w = abstractSerializedData2.readInt32(z2);
-                        this.f971h = abstractSerializedData2.readInt32(z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
                         this.caption = TLRPC$RichText.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                     }
 
@@ -135,8 +134,8 @@ public abstract class TLRPC$PageBlock extends TLObject {
                         if ((this.flags & 4) != 0) {
                             abstractSerializedData2.writeString(this.html);
                         }
-                        abstractSerializedData2.writeInt32(this.f972w);
-                        abstractSerializedData2.writeInt32(this.f971h);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
                         this.caption.serializeToStream(abstractSerializedData2);
                     }
                 };

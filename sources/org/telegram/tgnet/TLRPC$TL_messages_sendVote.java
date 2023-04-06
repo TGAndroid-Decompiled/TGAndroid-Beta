@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_sendVote extends TLObject {
     public static int constructor = 283795844;
     public int msg_id;

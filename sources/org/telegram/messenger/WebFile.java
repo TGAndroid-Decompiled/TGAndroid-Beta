@@ -13,11 +13,10 @@ import org.telegram.tgnet.TLRPC$TL_inputWebFileGeoPointLocation;
 import org.telegram.tgnet.TLRPC$TL_inputWebFileLocation;
 import org.telegram.tgnet.TLRPC$TL_webDocument;
 import org.telegram.tgnet.TLRPC$WebDocument;
-
 public class WebFile extends TLObject {
     public ArrayList<TLRPC$DocumentAttribute> attributes;
     public TLRPC$InputGeoPoint geo_point;
-    public int f836h;
+    public int h;
     public TLRPC$InputWebFileLocation location;
     public String mime_type;
     public int msg_id;
@@ -25,7 +24,7 @@ public class WebFile extends TLObject {
     public int scale;
     public int size;
     public String url;
-    public int f837w;
+    public int w;
     public int zoom;
 
     public static WebFile createWithGeoPoint(TLRPC$GeoPoint tLRPC$GeoPoint, int i, int i2, int i3, int i4) {
@@ -42,10 +41,10 @@ public class WebFile extends TLObject {
         tLRPC$TL_inputWebFileGeoPointLocation.access_hash = j;
         tLRPC$TL_inputGeoPoint.lat = d;
         tLRPC$TL_inputGeoPoint._long = d2;
-        webFile.f837w = i;
-        tLRPC$TL_inputWebFileGeoPointLocation.f932w = i;
-        webFile.f836h = i2;
-        tLRPC$TL_inputWebFileGeoPointLocation.f931h = i2;
+        webFile.w = i;
+        tLRPC$TL_inputWebFileGeoPointLocation.w = i;
+        webFile.h = i2;
+        tLRPC$TL_inputWebFileGeoPointLocation.h = i2;
         webFile.zoom = i3;
         tLRPC$TL_inputWebFileGeoPointLocation.zoom = i3;
         webFile.scale = i4;

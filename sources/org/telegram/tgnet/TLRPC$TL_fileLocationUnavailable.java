@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_fileLocationUnavailable extends TLRPC$FileLocation {
     public static int constructor = 2086234950;
 

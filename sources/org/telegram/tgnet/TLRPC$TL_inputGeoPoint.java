@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputGeoPoint extends TLRPC$InputGeoPoint {
     public static int constructor = 1210199983;
 

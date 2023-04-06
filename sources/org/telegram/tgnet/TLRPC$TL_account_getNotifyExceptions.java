@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_getNotifyExceptions extends TLObject {
     public static int constructor = 1398240377;
     public boolean compare_sound;

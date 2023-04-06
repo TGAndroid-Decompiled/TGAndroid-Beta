@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import org.telegram.messenger.NotificationBadge;
-import org.telegram.p009ui.ActionBar.EmojiThemes;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.ResultCallback;
@@ -24,7 +23,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_setChatTheme;
 import org.telegram.tgnet.TLRPC$TL_theme;
 import org.telegram.tgnet.TLRPC$Theme;
-
+import org.telegram.ui.ActionBar.EmojiThemes;
 public class ChatThemeController extends BaseController {
     private static List<EmojiThemes> allChatThemes = null;
     private static volatile long lastReloadTimeMs = 0;
@@ -46,7 +45,7 @@ public class ChatThemeController extends BaseController {
             themesHash = sharedPreferences.getLong("hash", 0L);
             lastReloadTimeMs = sharedPreferences.getLong("lastReload", 0L);
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
         allChatThemes = getAllChatThemesFromPrefs();
         preloadSticker("❌");
@@ -128,7 +127,7 @@ public class ChatThemeController extends BaseController {
                     arrayList.add(new EmojiThemes(TLdeserialize, false));
                 }
             } catch (Throwable th) {
-                FileLog.m32e(th);
+                FileLog.e(th);
             }
         }
         return arrayList;
@@ -224,7 +223,7 @@ public class ChatThemeController extends BaseController {
     public static void preloadAllWallpaperImages(boolean z) {
         for (EmojiThemes emojiThemes : allChatThemes) {
             TLRPC$TL_theme tlTheme = emojiThemes.getTlTheme(z ? 1 : 0);
-            if (tlTheme != null && !getPatternFile(tlTheme.f986id).exists()) {
+            if (tlTheme != null && !getPatternFile(tlTheme.id).exists()) {
                 emojiThemes.loadWallpaper(z ? 1 : 0, null);
             }
         }
@@ -234,7 +233,7 @@ public class ChatThemeController extends BaseController {
         for (EmojiThemes emojiThemes : allChatThemes) {
             TLRPC$TL_theme tlTheme = emojiThemes.getTlTheme(z ? 1 : 0);
             if (tlTheme != null) {
-                if (!themeIdWallpaperThumbMap.containsKey(Long.valueOf(tlTheme.f986id))) {
+                if (!themeIdWallpaperThumbMap.containsKey(Long.valueOf(tlTheme.id))) {
                     emojiThemes.loadWallpaperThumb(z ? 1 : 0, ChatThemeController$$ExternalSyntheticLambda7.INSTANCE);
                 }
             }
@@ -272,7 +271,7 @@ public class ChatThemeController extends BaseController {
                 bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
             }
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
         if (resultCallback != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -304,7 +303,7 @@ public class ChatThemeController extends BaseController {
             bitmap.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
             fileOutputStream.close();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 

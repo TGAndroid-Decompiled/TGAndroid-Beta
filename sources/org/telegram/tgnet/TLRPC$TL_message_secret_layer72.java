@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 import android.text.TextUtils;
-
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_message_secret_layer72 extends TLRPC$TL_message {
     public static int constructor = 1431655929;
 
@@ -13,7 +13,7 @@ public class TLRPC$TL_message_secret_layer72 extends TLRPC$TL_message {
         this.out = (readInt32 & 2) != 0;
         this.mentioned = (readInt32 & 16) != 0;
         this.media_unread = (readInt32 & 32) != 0;
-        this.f881id = abstractSerializedData.readInt32(z);
+        this.id = abstractSerializedData.readInt32(z);
         this.ttl = abstractSerializedData.readInt32(z);
         TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
         this.from_id = tLRPC$TL_peerUser;
@@ -41,7 +41,7 @@ public class TLRPC$TL_message_secret_layer72 extends TLRPC$TL_message {
             }
             this.entities.add(TLdeserialize2);
         }
-        if ((this.flags & 2048) != 0) {
+        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
             this.via_bot_name = abstractSerializedData.readString(z);
         }
         if ((this.flags & 8) != 0) {
@@ -63,7 +63,7 @@ public class TLRPC$TL_message_secret_layer72 extends TLRPC$TL_message {
         int i4 = this.media_unread ? i3 | 32 : i3 & (-33);
         this.flags = i4;
         abstractSerializedData.writeInt32(i4);
-        abstractSerializedData.writeInt32(this.f881id);
+        abstractSerializedData.writeInt32(this.id);
         abstractSerializedData.writeInt32(this.ttl);
         abstractSerializedData.writeInt32((int) this.from_id.user_id);
         this.peer_id.serializeToStream(abstractSerializedData);
@@ -76,7 +76,7 @@ public class TLRPC$TL_message_secret_layer72 extends TLRPC$TL_message {
         for (int i5 = 0; i5 < size; i5++) {
             this.entities.get(i5).serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & 2048) != 0) {
+        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
             abstractSerializedData.writeString(this.via_bot_name);
         }
         if ((this.flags & 8) != 0) {

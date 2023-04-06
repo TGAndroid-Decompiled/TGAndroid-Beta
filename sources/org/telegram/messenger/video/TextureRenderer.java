@@ -3,6 +3,10 @@ package org.telegram.messenger.video;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
@@ -15,15 +19,15 @@ import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.p009ui.Components.AnimatedEmojiDrawable;
-import org.telegram.p009ui.Components.AnimatedFileDrawable;
-import org.telegram.p009ui.Components.EditTextEffects;
-import org.telegram.p009ui.Components.FilterShaders;
-import org.telegram.p009ui.Components.Paint.Views.EditTextOutline;
-import org.telegram.p009ui.Components.RLottieDrawable;
-
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
+import org.telegram.ui.Components.AnimatedFileDrawable;
+import org.telegram.ui.Components.EditTextEffects;
+import org.telegram.ui.Components.FilterShaders;
+import org.telegram.ui.Components.Paint.Views.EditTextOutline;
+import org.telegram.ui.Components.RLottieDrawable;
 public class TextureRenderer {
     private static final String FRAGMENT_EXTERNAL_SHADER = "#extension GL_OES_EGL_image_external : require\nprecision highp float;\nvarying vec2 vTextureCoord;\nuniform samplerExternalOES sTexture;\nvoid main() {\n  gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
     private static final String FRAGMENT_SHADER = "precision highp float;\nvarying vec2 vTextureCoord;\nuniform sampler2D sTexture;\nvoid main() {\n  gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n";
@@ -46,6 +50,7 @@ public class TextureRenderer {
     private int originalWidth;
     private String paintPath;
     private int[] paintTexture;
+    Path path;
     private FloatBuffer renderTextureBuffer;
     private int simpleInputTexCoordHandle;
     private int simplePositionHandle;
@@ -59,6 +64,7 @@ public class TextureRenderer {
     private int transformedWidth;
     private FloatBuffer verticesBuffer;
     private float videoFps;
+    Paint xRefPaint;
     float[] bitmapData = {-1.0f, 1.0f, 1.0f, 1.0f, -1.0f, -1.0f, 1.0f, -1.0f};
     private float[] mMVPMatrix = new float[16];
     private float[] mSTMatrix = new float[16];
@@ -73,9 +79,9 @@ public class TextureRenderer {
         this.isPhoto = z;
         float[] fArr = {0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d("start textureRenderer w = " + i7 + " h = " + i8 + " r = " + i5 + " fps = " + f2);
+            FileLog.d("start textureRenderer w = " + i7 + " h = " + i8 + " r = " + i5 + " fps = " + f2);
             if (cropState != null) {
-                FileLog.m35d("cropState px = " + cropState.cropPx + " py = " + cropState.cropPy + " cScale = " + cropState.cropScale + " cropRotate = " + cropState.cropRotate + " pw = " + cropState.cropPw + " ph = " + cropState.cropPh + " tw = " + cropState.transformWidth + " th = " + cropState.transformHeight + " tr = " + cropState.transformRotation + " mirror = " + cropState.mirrored);
+                FileLog.d("cropState px = " + cropState.cropPx + " py = " + cropState.cropPy + " cScale = " + cropState.cropScale + " cropRotate = " + cropState.cropRotate + " pw = " + cropState.cropPw + " ph = " + cropState.cropPh + " tw = " + cropState.transformWidth + " th = " + cropState.transformHeight + " tr = " + cropState.transformRotation + " mirror = " + cropState.mirrored);
             }
         }
         FloatBuffer asFloatBuffer = ByteBuffer.allocateDirect(32).order(ByteOrder.nativeOrder()).asFloatBuffer();
@@ -212,7 +218,7 @@ public class TextureRenderer {
                     sb.append(", ");
                     i3++;
                 }
-                FileLog.m35d("stMatrix = " + ((Object) sb));
+                FileLog.d("stMatrix = " + ((Object) sb));
                 this.firstFrame = false;
             }
             if (this.blendEnabled) {
@@ -280,7 +286,8 @@ public class TextureRenderer {
                 long j = mediaEntity.ptr;
                 if (j != 0) {
                     Bitmap bitmap2 = this.stickerBitmap;
-                    RLottieDrawable.getFrame(j, (int) mediaEntity.currentFrame, bitmap2, 512, 512, bitmap2.getRowBytes(), true);
+                    RLottieDrawable.getFrame(j, (int) mediaEntity.currentFrame, bitmap2, LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS, bitmap2.getRowBytes(), true);
+                    applyRoundRadius(mediaEntity, this.stickerBitmap);
                     GLES20.glBindTexture(3553, this.stickerTexture[0]);
                     GLUtils.texImage2D(3553, 0, this.stickerBitmap, 0);
                     float f = mediaEntity.currentFrame + mediaEntity.framesPerDraw;
@@ -288,7 +295,7 @@ public class TextureRenderer {
                     if (f >= mediaEntity.metadata[0]) {
                         mediaEntity.currentFrame = 0.0f;
                     }
-                    drawTexture(false, this.stickerTexture[0], mediaEntity.f834x, mediaEntity.f835y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                    drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 } else if (mediaEntity.animatedFileDrawable != null) {
                     float f2 = mediaEntity.currentFrame;
                     int i7 = (int) f2;
@@ -298,16 +305,22 @@ public class TextureRenderer {
                         mediaEntity.animatedFileDrawable.getNextFrame();
                     }
                     Bitmap backgroundBitmap = mediaEntity.animatedFileDrawable.getBackgroundBitmap();
-                    if (this.stickerCanvas == null && this.stickerBitmap != null) {
-                        this.stickerCanvas = new Canvas(this.stickerBitmap);
-                    }
-                    Bitmap bitmap3 = this.stickerBitmap;
-                    if (bitmap3 != null && backgroundBitmap != null) {
-                        bitmap3.eraseColor(0);
-                        this.stickerCanvas.drawBitmap(backgroundBitmap, 0.0f, 0.0f, (Paint) null);
-                        GLES20.glBindTexture(3553, this.stickerTexture[0]);
-                        GLUtils.texImage2D(3553, 0, this.stickerBitmap, 0);
-                        drawTexture(false, this.stickerTexture[0], mediaEntity.f834x, mediaEntity.f835y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                    if (backgroundBitmap != null) {
+                        if (this.stickerCanvas == null && this.stickerBitmap != null) {
+                            this.stickerCanvas = new Canvas(this.stickerBitmap);
+                            if (this.stickerBitmap.getHeight() != backgroundBitmap.getHeight() || this.stickerBitmap.getWidth() != backgroundBitmap.getWidth()) {
+                                this.stickerCanvas.scale(this.stickerBitmap.getWidth() / backgroundBitmap.getWidth(), this.stickerBitmap.getHeight() / backgroundBitmap.getHeight());
+                            }
+                        }
+                        Bitmap bitmap3 = this.stickerBitmap;
+                        if (bitmap3 != null) {
+                            bitmap3.eraseColor(0);
+                            this.stickerCanvas.drawBitmap(backgroundBitmap, 0.0f, 0.0f, (Paint) null);
+                            applyRoundRadius(mediaEntity, this.stickerBitmap);
+                            GLES20.glBindTexture(3553, this.stickerTexture[0]);
+                            GLUtils.texImage2D(3553, 0, this.stickerBitmap, 0);
+                            drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                        }
                     }
                 } else if (mediaEntity.view != null && mediaEntity.canvas != null && (bitmap = mediaEntity.bitmap) != null) {
                     bitmap.eraseColor(0);
@@ -317,17 +330,41 @@ public class TextureRenderer {
                     mediaEntity.currentFrame = f5;
                     ((EditTextEffects) mediaEntity.view).incrementFrames(((int) f5) - i9);
                     mediaEntity.view.draw(mediaEntity.canvas);
+                    applyRoundRadius(mediaEntity, mediaEntity.bitmap);
                     GLES20.glBindTexture(3553, this.stickerTexture[0]);
                     GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
-                    drawTexture(false, this.stickerTexture[0], mediaEntity.f834x, mediaEntity.f835y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                    drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 } else if (mediaEntity.bitmap != null) {
                     GLES20.glBindTexture(3553, this.stickerTexture[0]);
                     GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
-                    drawTexture(false, this.stickerTexture[0], mediaEntity.f834x, mediaEntity.f835y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
+                    drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 }
             }
         }
         GLES20.glFinish();
+    }
+
+    private void applyRoundRadius(VideoEditedInfo.MediaEntity mediaEntity, Bitmap bitmap) {
+        if (bitmap == null || mediaEntity == null || mediaEntity.roundRadius == 0.0f) {
+            return;
+        }
+        if (mediaEntity.roundRadiusCanvas == null) {
+            mediaEntity.roundRadiusCanvas = new Canvas(bitmap);
+        }
+        if (this.path == null) {
+            this.path = new Path();
+        }
+        if (this.xRefPaint == null) {
+            Paint paint = new Paint(1);
+            this.xRefPaint = paint;
+            paint.setColor(-16777216);
+            this.xRefPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        }
+        float min = Math.min(bitmap.getWidth(), bitmap.getHeight()) * mediaEntity.roundRadius;
+        this.path.rewind();
+        this.path.addRoundRect(new RectF(0.0f, 0.0f, bitmap.getWidth(), bitmap.getHeight()), min, min, Path.Direction.CCW);
+        this.path.toggleInverseFillType();
+        mediaEntity.roundRadiusCanvas.drawPath(this.path, this.xRefPaint);
     }
 
     private void drawTexture(boolean z, int i) {

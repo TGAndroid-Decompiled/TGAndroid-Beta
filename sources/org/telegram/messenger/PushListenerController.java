@@ -17,7 +17,6 @@ import org.telegram.tgnet.TLRPC$TL_help_saveAppLog;
 import org.telegram.tgnet.TLRPC$TL_inputAppEvent;
 import org.telegram.tgnet.TLRPC$TL_jsonNull;
 import org.telegram.tgnet.TLRPC$TL_updates;
-
 public class PushListenerController {
     public static final int NOTIFICATION_ID = 1;
     public static final int PUSH_TYPE_FIREBASE = 2;
@@ -117,7 +116,7 @@ public class PushListenerController {
     public static void processRemoteMessage(int i, final String str, final long j) {
         final String str2 = i == 2 ? "FCM" : "HCM";
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d(str2 + " PRE START PROCESSING");
+            FileLog.d(str2 + " PRE START PROCESSING");
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -131,17 +130,17 @@ public class PushListenerController {
         } catch (Throwable unused) {
         }
         if (BuildVars.DEBUG_VERSION) {
-            FileLog.m35d("finished " + str2 + " service, time = " + (SystemClock.elapsedRealtime() - elapsedRealtime));
+            FileLog.d("finished " + str2 + " service, time = " + (SystemClock.elapsedRealtime() - elapsedRealtime));
         }
     }
 
     public static void lambda$processRemoteMessage$8(final String str, final String str2, final long j) {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d(str + " PRE INIT APP");
+            FileLog.d(str + " PRE INIT APP");
         }
         ApplicationLoader.postInitApplication();
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d(str + " POST INIT APP");
+            FileLog.d(str + " POST INIT APP");
         }
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
@@ -369,69 +368,69 @@ public class PushListenerController {
         }
         switch (c) {
             case 0:
-                return LocaleController.formatString("PushChatReactContact", C1072R.string.PushChatReactContact, objArr);
+                return LocaleController.formatString("PushChatReactContact", R.string.PushChatReactContact, objArr);
             case 1:
-                return LocaleController.formatString("PushReactGeoLocation", C1072R.string.PushReactGeoLocation, objArr);
+                return LocaleController.formatString("PushReactGeoLocation", R.string.PushReactGeoLocation, objArr);
             case 2:
-                return LocaleController.formatString("PushChatReactNotext", C1072R.string.PushChatReactNotext, objArr);
+                return LocaleController.formatString("PushChatReactNotext", R.string.PushChatReactNotext, objArr);
             case 3:
-                return LocaleController.formatString("PushReactNoText", C1072R.string.PushReactNoText, objArr);
+                return LocaleController.formatString("PushReactNoText", R.string.PushReactNoText, objArr);
             case 4:
-                return LocaleController.formatString("PushChatReactInvoice", C1072R.string.PushChatReactInvoice, objArr);
+                return LocaleController.formatString("PushChatReactInvoice", R.string.PushChatReactInvoice, objArr);
             case 5:
-                return LocaleController.formatString("PushReactContect", C1072R.string.PushReactContect, objArr);
+                return LocaleController.formatString("PushReactContect", R.string.PushReactContect, objArr);
             case 6:
-                return LocaleController.formatString("PushChatReactSticker", C1072R.string.PushChatReactSticker, objArr);
+                return LocaleController.formatString("PushChatReactSticker", R.string.PushChatReactSticker, objArr);
             case 7:
-                return LocaleController.formatString("PushReactGame", C1072R.string.PushReactGame, objArr);
+                return LocaleController.formatString("PushReactGame", R.string.PushReactGame, objArr);
             case '\b':
-                return LocaleController.formatString("PushReactPoll", C1072R.string.PushReactPoll, objArr);
+                return LocaleController.formatString("PushReactPoll", R.string.PushReactPoll, objArr);
             case '\t':
-                return LocaleController.formatString("PushReactQuiz", C1072R.string.PushReactQuiz, objArr);
+                return LocaleController.formatString("PushReactQuiz", R.string.PushReactQuiz, objArr);
             case '\n':
-                return LocaleController.formatString("PushReactText", C1072R.string.PushReactText, objArr);
+                return LocaleController.formatString("PushReactText", R.string.PushReactText, objArr);
             case 11:
-                return LocaleController.formatString("PushReactInvoice", C1072R.string.PushReactInvoice, objArr);
+                return LocaleController.formatString("PushReactInvoice", R.string.PushReactInvoice, objArr);
             case '\f':
-                return LocaleController.formatString("PushChatReactDoc", C1072R.string.PushChatReactDoc, objArr);
+                return LocaleController.formatString("PushChatReactDoc", R.string.PushChatReactDoc, objArr);
             case '\r':
-                return LocaleController.formatString("PushChatReactGeo", C1072R.string.PushChatReactGeo, objArr);
+                return LocaleController.formatString("PushChatReactGeo", R.string.PushChatReactGeo, objArr);
             case 14:
-                return LocaleController.formatString("PushChatReactGif", C1072R.string.PushChatReactGif, objArr);
+                return LocaleController.formatString("PushChatReactGif", R.string.PushChatReactGif, objArr);
             case 15:
-                return LocaleController.formatString("PushReactSticker", C1072R.string.PushReactSticker, objArr);
+                return LocaleController.formatString("PushReactSticker", R.string.PushReactSticker, objArr);
             case 16:
-                return LocaleController.formatString("PushChatReactAudio", C1072R.string.PushChatReactAudio, objArr);
+                return LocaleController.formatString("PushChatReactAudio", R.string.PushChatReactAudio, objArr);
             case 17:
-                return LocaleController.formatString("PushChatReactPhoto", C1072R.string.PushChatReactPhoto, objArr);
+                return LocaleController.formatString("PushChatReactPhoto", R.string.PushChatReactPhoto, objArr);
             case 18:
-                return LocaleController.formatString("PushChatReactRound", C1072R.string.PushChatReactRound, objArr);
+                return LocaleController.formatString("PushChatReactRound", R.string.PushChatReactRound, objArr);
             case 19:
-                return LocaleController.formatString("PushChatReactVideo", C1072R.string.PushChatReactVideo, objArr);
+                return LocaleController.formatString("PushChatReactVideo", R.string.PushChatReactVideo, objArr);
             case 20:
-                return LocaleController.formatString("PushChatReactGeoLive", C1072R.string.PushChatReactGeoLive, objArr);
+                return LocaleController.formatString("PushChatReactGeoLive", R.string.PushChatReactGeoLive, objArr);
             case 21:
-                return LocaleController.formatString("PushReactAudio", C1072R.string.PushReactAudio, objArr);
+                return LocaleController.formatString("PushReactAudio", R.string.PushReactAudio, objArr);
             case 22:
-                return LocaleController.formatString("PushReactPhoto", C1072R.string.PushReactPhoto, objArr);
+                return LocaleController.formatString("PushReactPhoto", R.string.PushReactPhoto, objArr);
             case 23:
-                return LocaleController.formatString("PushReactRound", C1072R.string.PushReactRound, objArr);
+                return LocaleController.formatString("PushReactRound", R.string.PushReactRound, objArr);
             case 24:
-                return LocaleController.formatString("PushReactVideo", C1072R.string.PushReactVideo, objArr);
+                return LocaleController.formatString("PushReactVideo", R.string.PushReactVideo, objArr);
             case 25:
-                return LocaleController.formatString("PushReactDoc", C1072R.string.PushReactDoc, objArr);
+                return LocaleController.formatString("PushReactDoc", R.string.PushReactDoc, objArr);
             case 26:
-                return LocaleController.formatString("PushReactGeo", C1072R.string.PushReactGeo, objArr);
+                return LocaleController.formatString("PushReactGeo", R.string.PushReactGeo, objArr);
             case 27:
-                return LocaleController.formatString("PushReactGif", C1072R.string.PushReactGif, objArr);
+                return LocaleController.formatString("PushReactGif", R.string.PushReactGif, objArr);
             case 28:
-                return LocaleController.formatString("PushChatReactGame", C1072R.string.PushChatReactGame, objArr);
+                return LocaleController.formatString("PushChatReactGame", R.string.PushChatReactGame, objArr);
             case 29:
-                return LocaleController.formatString("PushChatReactPoll", C1072R.string.PushChatReactPoll, objArr);
+                return LocaleController.formatString("PushChatReactPoll", R.string.PushChatReactPoll, objArr);
             case 30:
-                return LocaleController.formatString("PushChatReactQuiz", C1072R.string.PushChatReactQuiz, objArr);
+                return LocaleController.formatString("PushChatReactQuiz", R.string.PushChatReactQuiz, objArr);
             case 31:
-                return LocaleController.formatString("PushChatReactText", C1072R.string.PushChatReactText, objArr);
+                return LocaleController.formatString("PushChatReactText", R.string.PushChatReactText, objArr);
             default:
                 return null;
         }
@@ -469,10 +468,10 @@ public class PushListenerController {
             String str = SharedConfig.pushString;
             if (!TextUtils.isEmpty(str)) {
                 if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {
-                    FileLog.m35d("FCM regId = " + str);
+                    FileLog.d("FCM regId = " + str);
                 }
             } else if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("FCM Registration not found.");
+                FileLog.d("FCM Registration not found.");
             }
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
@@ -492,7 +491,7 @@ public class PushListenerController {
                     }
                 });
             } catch (Throwable th) {
-                FileLog.m32e(th);
+                FileLog.e(th);
             }
         }
 
@@ -500,7 +499,7 @@ public class PushListenerController {
             SharedConfig.pushStringGetTimeEnd = SystemClock.elapsedRealtime();
             if (!task.isSuccessful()) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m35d("Failed to get regid");
+                    FileLog.d("Failed to get regid");
                 }
                 SharedConfig.pushStringStatus = "__FIREBASE_FAILED__";
                 PushListenerController.sendRegistrationToServer(getPushType(), null);
@@ -519,7 +518,7 @@ public class PushListenerController {
                 try {
                     this.hasServices = Boolean.valueOf(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(ApplicationLoader.applicationContext) == 0);
                 } catch (Exception e) {
-                    FileLog.m32e(e);
+                    FileLog.e(e);
                     this.hasServices = Boolean.FALSE;
                 }
             }

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getScheduledHistory extends TLObject {
     public static int constructor = -183077365;
     public long hash;

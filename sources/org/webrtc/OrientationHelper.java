@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.view.OrientationEventListener;
 import org.telegram.messenger.ApplicationLoader;
-
 public class OrientationHelper {
     private static final int ORIENTATION_HYSTERESIS = 5;
     public static volatile int cameraOrientation;

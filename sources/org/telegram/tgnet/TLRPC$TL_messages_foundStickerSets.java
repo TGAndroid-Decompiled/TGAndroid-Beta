@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_foundStickerSets extends TLRPC$messages_FoundStickerSets {
     public static int constructor = -1963942446;
     public long hash;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputPeerUserFromMessage extends TLRPC$InputPeer {
     public static int constructor = -1468331492;
 

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_stats_broadcastStats extends TLObject {
     public static int constructor = -1107852396;
     public TLRPC$TL_statsPercentValue enabled_notifications;

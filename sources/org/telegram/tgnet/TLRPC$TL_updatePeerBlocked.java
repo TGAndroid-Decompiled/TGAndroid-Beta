@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updatePeerBlocked extends TLRPC$Update {
     public static int constructor = 610945826;
     public boolean blocked;

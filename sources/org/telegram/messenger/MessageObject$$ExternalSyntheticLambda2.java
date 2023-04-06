@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import java.util.Comparator;
 import org.telegram.tgnet.TLRPC$MessageEntity;
-
 public final class MessageObject$$ExternalSyntheticLambda2 implements Comparator {
     public static final MessageObject$$ExternalSyntheticLambda2 INSTANCE = new MessageObject$$ExternalSyntheticLambda2();
 

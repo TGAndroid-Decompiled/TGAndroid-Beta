@@ -11,7 +11,6 @@ import java.security.KeyStoreException;
 import java.util.Locale;
 import javax.crypto.Cipher;
 import org.telegram.messenger.support.fingerprint.FingerprintManagerCompat;
-
 public class FingerprintController {
     private static final String KEY_ALIAS = "tmessages_passcode";
     private static Boolean hasChangedFingerprints;
@@ -29,7 +28,7 @@ public class FingerprintController {
             keyStore3.load(null);
             return keyStore;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return null;
         }
     }
@@ -44,7 +43,7 @@ public class FingerprintController {
             keyPairGenerator = keyPairGenerator3;
             return keyPairGenerator3;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return null;
         }
     }
@@ -65,12 +64,12 @@ public class FingerprintController {
                     }
                 });
             } catch (InvalidAlgorithmParameterException e) {
-                FileLog.m32e(e);
+                FileLog.e(e);
             } catch (Exception e2) {
                 if (e2.getClass().getName().equals("android.security.KeyStoreException")) {
                     return;
                 }
-                FileLog.m32e(e2);
+                FileLog.e(e2);
             }
         }
     }
@@ -83,7 +82,7 @@ public class FingerprintController {
         try {
             getKeyStore().deleteEntry(KEY_ALIAS);
         } catch (KeyStoreException e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
         hasChangedFingerprints = null;
         checkKeyReady(false);
@@ -108,7 +107,7 @@ public class FingerprintController {
         try {
             return getKeyStore().containsAlias(KEY_ALIAS);
         } catch (KeyStoreException e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return false;
         }
     }
@@ -126,7 +125,7 @@ public class FingerprintController {
             hasChangedFingerprints = Boolean.TRUE;
             return true;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             hasChangedFingerprints = Boolean.FALSE;
             return false;
         }

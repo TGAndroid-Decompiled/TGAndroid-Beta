@@ -17,8 +17,6 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.telegram.tgnet.ConnectionsManager;
-
 public class Utilities {
     private static final String RANDOM_STRING_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static Pattern pattern = Pattern.compile("[\\-0-9]+");
@@ -39,6 +37,14 @@ public class Utilities {
 
     public interface Callback2<T, T2> {
         void run(T t, T2 t2);
+    }
+
+    public interface Callback3<T, T2, T3> {
+        void run(T t, T2 t2, T3 t3);
+    }
+
+    public interface CallbackReturn<Arg, ReturnType> {
+        ReturnType run(Arg arg);
     }
 
     public static native void aesCbcEncryption(ByteBuffer byteBuffer, byte[] bArr, byte[] bArr2, int i, int i2, int i3);
@@ -87,6 +93,8 @@ public class Utilities {
 
     public static native int saveProgressiveJpeg(Bitmap bitmap, int i, int i2, int i3, int i4, String str);
 
+    public static native void setupNativeCrashesListener(String str);
+
     public static native void stackBlurBitmap(Bitmap bitmap, int i);
 
     public static native void unpinBitmap(Bitmap bitmap);
@@ -94,31 +102,31 @@ public class Utilities {
     static {
         try {
             FileInputStream fileInputStream = new FileInputStream(new File("/dev/urandom"));
-            byte[] bArr = new byte[ConnectionsManager.RequestFlagDoNotWaitFloodWait];
+            byte[] bArr = new byte[1024];
             fileInputStream.read(bArr);
             fileInputStream.close();
             random.setSeed(bArr);
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 
     public static Bitmap stackBlurBitmapMax(Bitmap bitmap) {
-        int m36dp = AndroidUtilities.m36dp(20.0f);
-        int m36dp2 = (int) ((AndroidUtilities.m36dp(20.0f) * bitmap.getHeight()) / bitmap.getWidth());
-        Bitmap createBitmap = Bitmap.createBitmap(m36dp, m36dp2, Bitmap.Config.ARGB_8888);
+        int dp = AndroidUtilities.dp(20.0f);
+        int dp2 = (int) ((AndroidUtilities.dp(20.0f) * bitmap.getHeight()) / bitmap.getWidth());
+        Bitmap createBitmap = Bitmap.createBitmap(dp, dp2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         canvas.save();
         canvas.scale(createBitmap.getWidth() / bitmap.getWidth(), createBitmap.getHeight() / bitmap.getHeight());
         canvas.drawBitmap(bitmap, 0.0f, 0.0f, (Paint) null);
         canvas.restore();
-        stackBlurBitmap(createBitmap, Math.max(10, Math.max(m36dp, m36dp2) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
+        stackBlurBitmap(createBitmap, Math.max(10, Math.max(dp, dp2) / ImageReceiver.DEFAULT_CROSSFADE_DURATION));
         return createBitmap;
     }
 
     public static Bitmap stackBlurBitmapWithScaleFactor(Bitmap bitmap, float f) {
-        int max = (int) Math.max(AndroidUtilities.m36dp(20.0f), bitmap.getWidth() / f);
-        int max2 = (int) Math.max((AndroidUtilities.m36dp(20.0f) * bitmap.getHeight()) / bitmap.getWidth(), bitmap.getHeight() / f);
+        int max = (int) Math.max(AndroidUtilities.dp(20.0f), bitmap.getWidth() / f);
+        int max2 = (int) Math.max((AndroidUtilities.dp(20.0f) * bitmap.getHeight()) / bitmap.getWidth(), bitmap.getHeight() / f);
         Bitmap createBitmap = Bitmap.createBitmap(max, max2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         canvas.save();
@@ -328,7 +336,7 @@ public class Utilities {
             messageDigest.update(bArr, i, i2);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return new byte[20];
         }
     }
@@ -344,7 +352,7 @@ public class Utilities {
                 messageDigest.update(byteBuffer);
                 return messageDigest.digest();
             } catch (Exception e) {
-                FileLog.m32e(e);
+                FileLog.e(e);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
                 return new byte[20];
@@ -373,7 +381,7 @@ public class Utilities {
             messageDigest.update(bArr, i, (int) j);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return new byte[32];
         }
     }
@@ -386,7 +394,7 @@ public class Utilities {
             }
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return new byte[32];
         }
     }
@@ -397,7 +405,7 @@ public class Utilities {
             messageDigest.update(bArr, 0, bArr.length);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -409,7 +417,7 @@ public class Utilities {
             messageDigest.update(bArr2, 0, bArr2.length);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -428,7 +436,7 @@ public class Utilities {
             messageDigest.update(bArr3, 0, bArr3.length);
             return messageDigest.digest();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return new byte[64];
         }
     }
@@ -445,7 +453,7 @@ public class Utilities {
                 messageDigest.update(byteBuffer);
                 return messageDigest.digest();
             } catch (Exception e) {
-                FileLog.m32e(e);
+                FileLog.e(e);
                 byteBuffer.limit(limit);
                 byteBuffer.position(position);
                 return new byte[32];
@@ -472,11 +480,11 @@ public class Utilities {
             byte[] digest = MessageDigest.getInstance("MD5").digest(AndroidUtilities.getStringBytes(str));
             StringBuilder sb = new StringBuilder();
             for (byte b : digest) {
-                sb.append(Integer.toHexString((b & 255) | 256).substring(1, 3));
+                sb.append(Integer.toHexString((b & 255) | LiteMode.FLAG_CHAT_BLUR).substring(1, 3));
             }
             return sb.toString();
         } catch (NoSuchAlgorithmException e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return null;
         }
     }
@@ -513,5 +521,53 @@ public class Utilities {
     public static <Key, Value> Value getOrDefault(HashMap<Key, Value> hashMap, Key key, Value value) {
         Value value2 = hashMap.get(key);
         return value2 == null ? value : value2;
+    }
+
+    public static void doCallbacks(Callback<Runnable>... callbackArr) {
+        doCallbacks(0, callbackArr);
+    }
+
+    private static void doCallbacks(final int i, final Callback<Runnable>... callbackArr) {
+        if (callbackArr == null || callbackArr.length <= i) {
+            return;
+        }
+        callbackArr[i].run(new Runnable() {
+            @Override
+            public final void run() {
+                Utilities.lambda$doCallbacks$0(i, callbackArr);
+            }
+        });
+    }
+
+    public static void lambda$doCallbacks$0(int i, Callback[] callbackArr) {
+        doCallbacks(i + 1, callbackArr);
+    }
+
+    public static void raceCallbacks(final Runnable runnable, final Callback<Runnable>... callbackArr) {
+        if (callbackArr == null || callbackArr.length == 0) {
+            if (runnable != null) {
+                runnable.run();
+                return;
+            }
+            return;
+        }
+        final int[] iArr = {0};
+        Runnable runnable2 = new Runnable() {
+            @Override
+            public final void run() {
+                Utilities.lambda$raceCallbacks$1(iArr, callbackArr, runnable);
+            }
+        };
+        for (Callback<Runnable> callback : callbackArr) {
+            callback.run(runnable2);
+        }
+    }
+
+    public static void lambda$raceCallbacks$1(int[] iArr, Callback[] callbackArr, Runnable runnable) {
+        iArr[0] = iArr[0] + 1;
+        if (iArr[0] != callbackArr.length || runnable == null) {
+            return;
+        }
+        runnable.run();
     }
 }

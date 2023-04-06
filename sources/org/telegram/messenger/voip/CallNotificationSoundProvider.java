@@ -7,7 +7,6 @@ import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import java.io.FileNotFoundException;
 import org.telegram.messenger.ApplicationLoader;
-
 public class CallNotificationSoundProvider extends ContentProvider {
     @Override
     public int delete(Uri uri, String str, String[] strArr) {

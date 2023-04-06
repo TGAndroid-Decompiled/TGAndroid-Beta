@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_setEncryptedTyping extends TLObject {
     public static int constructor = 2031374829;
     public TLRPC$TL_inputEncryptedChat peer;

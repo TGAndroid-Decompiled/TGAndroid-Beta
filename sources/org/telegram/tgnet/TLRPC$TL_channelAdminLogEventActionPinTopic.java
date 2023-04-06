@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionPinTopic extends TLRPC$ChannelAdminLogEventAction {
     public static int constructor = 1569535291;
     public int flags;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_getForumTopics extends TLObject {
     public static int constructor = 233136337;
     public TLRPC$InputChannel channel;
@@ -8,7 +7,7 @@ public class TLRPC$TL_channels_getForumTopics extends TLObject {
     public int offset_date;
     public int offset_id;
     public int offset_topic;
-    public String f898q;
+    public String q;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -21,7 +20,7 @@ public class TLRPC$TL_channels_getForumTopics extends TLObject {
         abstractSerializedData.writeInt32(this.flags);
         this.channel.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {
-            abstractSerializedData.writeString(this.f898q);
+            abstractSerializedData.writeString(this.q);
         }
         abstractSerializedData.writeInt32(this.offset_date);
         abstractSerializedData.writeInt32(this.offset_id);

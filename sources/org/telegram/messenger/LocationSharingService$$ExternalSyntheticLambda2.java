@@ -1,5 +1,4 @@
 package org.telegram.messenger;
-
 public final class LocationSharingService$$ExternalSyntheticLambda2 implements Runnable {
     public static final LocationSharingService$$ExternalSyntheticLambda2 INSTANCE = new LocationSharingService$$ExternalSyntheticLambda2();
 

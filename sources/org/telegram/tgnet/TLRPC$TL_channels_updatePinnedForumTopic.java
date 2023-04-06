@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_updatePinnedForumTopic extends TLObject {
     public static int constructor = 1814925350;
     public TLRPC$InputChannel channel;

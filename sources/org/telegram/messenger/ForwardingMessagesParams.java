@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
 import org.telegram.tgnet.TLRPC$TL_pollAnswerVoters;
-
 public class ForwardingMessagesParams {
     public boolean hasCaption;
     public boolean hasSenders;

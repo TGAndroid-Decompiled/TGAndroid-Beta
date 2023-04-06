@@ -1,5 +1,6 @@
 package org.telegram.messenger.time;
 
+import j$.util.concurrent.ConcurrentHashMap;
 import java.text.DateFormat;
 import java.text.Format;
 import java.text.SimpleDateFormat;
@@ -8,8 +9,6 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.TimeZone;
 import java.util.concurrent.ConcurrentMap;
-import p008j$.util.concurrent.ConcurrentHashMap;
-
 public abstract class FormatCache<F extends Format> {
     static final int NONE = -1;
     private static final ConcurrentMap<MultipartKey, String> cDateTimeInstanceCache = new ConcurrentHashMap(7);

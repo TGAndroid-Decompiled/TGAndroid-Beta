@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_requestUrlAuth extends TLObject {
     public static int constructor = 428848198;
     public int button_id;

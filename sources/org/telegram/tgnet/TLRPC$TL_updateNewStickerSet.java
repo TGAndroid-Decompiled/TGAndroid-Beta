@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateNewStickerSet extends TLRPC$Update {
     public static int constructor = 1753886890;
     public TLRPC$TL_messages_stickerSet stickerset;

@@ -1,10 +1,9 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_maskCoords extends TLObject {
     public static int constructor = -1361650766;
-    public int f933n;
-    public double f934x;
-    public double f935y;
+    public int n;
+    public double x;
+    public double y;
     public double zoom;
 
     public static TLRPC$TL_maskCoords TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -21,18 +20,18 @@ public class TLRPC$TL_maskCoords extends TLObject {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f933n = abstractSerializedData.readInt32(z);
-        this.f934x = abstractSerializedData.readDouble(z);
-        this.f935y = abstractSerializedData.readDouble(z);
+        this.n = abstractSerializedData.readInt32(z);
+        this.x = abstractSerializedData.readDouble(z);
+        this.y = abstractSerializedData.readDouble(z);
         this.zoom = abstractSerializedData.readDouble(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt32(this.f933n);
-        abstractSerializedData.writeDouble(this.f934x);
-        abstractSerializedData.writeDouble(this.f935y);
+        abstractSerializedData.writeInt32(this.n);
+        abstractSerializedData.writeDouble(this.x);
+        abstractSerializedData.writeDouble(this.y);
         abstractSerializedData.writeDouble(this.zoom);
     }
 }

@@ -6,7 +6,6 @@ import android.os.IBinder;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import org.telegram.messenger.NotificationCenter;
-
 public class ImportingService extends Service implements NotificationCenter.NotificationCenterDelegate {
     private NotificationCompat.Builder builder;
 
@@ -35,7 +34,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.stickersImportProgressChanged);
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d("destroy import service");
+            FileLog.d("destroy import service");
         }
     }
 
@@ -72,7 +71,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             return 2;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d("start import service");
+            FileLog.d("start import service");
         }
         if (this.builder == null) {
             NotificationsController.checkOtherNotificationsChannel();
@@ -81,15 +80,15 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             builder.setSmallIcon(17301640);
             this.builder.setWhen(System.currentTimeMillis());
             this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
-            this.builder.setContentTitle(LocaleController.getString("AppName", C1072R.string.AppName));
+            this.builder.setContentTitle(LocaleController.getString("AppName", R.string.AppName));
             if (hasImportingHistory()) {
                 NotificationCompat.Builder builder2 = this.builder;
-                int i3 = C1072R.string.ImporImportingService;
+                int i3 = R.string.ImporImportingService;
                 builder2.setTicker(LocaleController.getString("ImporImportingService", i3));
                 this.builder.setContentText(LocaleController.getString("ImporImportingService", i3));
             } else {
                 NotificationCompat.Builder builder3 = this.builder;
-                int i4 = C1072R.string.ImporImportingStickersService;
+                int i4 = R.string.ImporImportingStickersService;
                 builder3.setTicker(LocaleController.getString("ImporImportingStickersService", i4));
                 this.builder.setContentText(LocaleController.getString("ImporImportingStickersService", i4));
             }

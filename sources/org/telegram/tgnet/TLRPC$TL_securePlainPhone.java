@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_securePlainPhone extends TLRPC$SecurePlainData {
     public static int constructor = 2103482845;
     public String phone;

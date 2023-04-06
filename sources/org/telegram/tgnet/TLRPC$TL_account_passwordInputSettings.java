@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_passwordInputSettings extends TLObject {
     public static int constructor = -1036572727;
     public String email;

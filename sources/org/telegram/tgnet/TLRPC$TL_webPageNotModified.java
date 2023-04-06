@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_webPageNotModified extends TLRPC$WebPage {
     public static int constructor = 1930545681;
     public int cached_page_views;

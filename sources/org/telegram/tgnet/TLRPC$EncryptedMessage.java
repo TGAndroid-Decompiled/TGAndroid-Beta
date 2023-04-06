@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$EncryptedMessage extends TLObject {
     public byte[] bytes;
     public int chat_id;

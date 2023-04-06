@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pageRelatedArticle extends TLObject {
     public static int constructor = -1282352120;
     public String author;

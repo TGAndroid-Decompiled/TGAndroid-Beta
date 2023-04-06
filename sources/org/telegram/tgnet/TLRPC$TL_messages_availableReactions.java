@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_availableReactions extends TLRPC$messages_AvailableReactions {
     public static int constructor = 1989032621;
     public int hash;

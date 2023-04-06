@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_installTheme extends TLObject {
     public static int constructor = 2061776695;
     public boolean dark;

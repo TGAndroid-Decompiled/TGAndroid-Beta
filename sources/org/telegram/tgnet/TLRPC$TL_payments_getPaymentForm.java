@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_payments_getPaymentForm extends TLObject {
     public static int constructor = 924093883;
     public int flags;

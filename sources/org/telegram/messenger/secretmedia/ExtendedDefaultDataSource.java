@@ -20,7 +20,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import org.telegram.messenger.FileStreamLoadOperation;
-
 public final class ExtendedDefaultDataSource implements DataSource {
     private static final String SCHEME_ASSET = "asset";
     private static final String SCHEME_CONTENT = "content";
@@ -44,7 +43,7 @@ public final class ExtendedDefaultDataSource implements DataSource {
     }
 
     public ExtendedDefaultDataSource(Context context, String str, int i, int i2, boolean z) {
-        this(context, new DefaultHttpDataSource(str, null, i, i2, z, null));
+        this(context, new DefaultHttpDataSource(str, i, i2, z, null));
     }
 
     public ExtendedDefaultDataSource(Context context, DataSource dataSource) {
@@ -196,7 +195,7 @@ public final class ExtendedDefaultDataSource implements DataSource {
                 this.rtmpDataSource = dataSource;
                 addListenersToDataSource(dataSource);
             } catch (ClassNotFoundException unused) {
-                Log.m661w(TAG, "Attempting to play RTMP stream without depending on the RTMP extension");
+                Log.w(TAG, "Attempting to play RTMP stream without depending on the RTMP extension");
             } catch (Exception e) {
                 throw new RuntimeException("Error instantiating RTMP extension", e);
             }

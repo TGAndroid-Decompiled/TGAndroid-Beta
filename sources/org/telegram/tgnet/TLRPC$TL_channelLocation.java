@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelLocation extends TLRPC$ChannelLocation {
     public static int constructor = 547062491;
     public String address;

@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.browser.Browser;
@@ -24,12 +25,11 @@ import org.telegram.messenger.support.customtabs.CustomTabsSession;
 import org.telegram.messenger.support.customtabsclient.shared.CustomTabsHelper;
 import org.telegram.messenger.support.customtabsclient.shared.ServiceConnection;
 import org.telegram.messenger.support.customtabsclient.shared.ServiceConnectionCallback;
-import org.telegram.p009ui.ActionBar.AlertDialog;
-import org.telegram.p009ui.LaunchActivity;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_error;
-
+import org.telegram.ui.ActionBar.AlertDialog;
+import org.telegram.ui.LaunchActivity;
 public class Browser {
     private static WeakReference<Activity> currentCustomTabsActivity;
     private static CustomTabsClient customTabsClient;
@@ -81,7 +81,7 @@ public class Browser {
                     try {
                         Browser.customTabsClient.warmup(0L);
                     } catch (Exception e) {
-                        FileLog.m32e(e);
+                        FileLog.e(e);
                     }
                 }
 
@@ -96,7 +96,7 @@ public class Browser {
             }
             customTabsServiceConnection = null;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 
@@ -241,7 +241,7 @@ public class Browser {
         });
     }
 
-    public static void lambda$openUrl$0(org.telegram.messenger.browser.Browser.Progress r2, org.telegram.p009ui.ActionBar.AlertDialog[] r3, org.telegram.tgnet.TLObject r4, int r5, android.net.Uri r6, android.content.Context r7, boolean r8) {
+    public static void lambda$openUrl$0(org.telegram.messenger.browser.Browser.Progress r2, org.telegram.ui.ActionBar.AlertDialog[] r3, org.telegram.tgnet.TLObject r4, int r5, android.net.Uri r6, android.content.Context r7, boolean r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.lambda$openUrl$0(org.telegram.messenger.browser.Browser$Progress, org.telegram.ui.ActionBar.AlertDialog[], org.telegram.tgnet.TLObject, int, android.net.Uri, android.content.Context, boolean):void");
     }
 
@@ -300,8 +300,14 @@ public class Browser {
     public static boolean isInternalUri(Uri uri, boolean z, boolean[] zArr) {
         String str;
         String str2;
-        String host = uri.getHost();
-        String lowerCase = host != null ? host.toLowerCase() : "";
+        String hostAuthority = AndroidUtilities.getHostAuthority(uri);
+        String lowerCase = hostAuthority != null ? hostAuthority.toLowerCase() : "";
+        if (MessagesController.getInstance(UserConfig.selectedAccount).authDomains.contains(lowerCase)) {
+            if (zArr != null) {
+                zArr[0] = true;
+            }
+            return false;
+        }
         Matcher matcher = LaunchActivity.PREFIX_T_ME_PATTERN.matcher(lowerCase);
         if (matcher.find()) {
             StringBuilder sb = new StringBuilder();
@@ -320,8 +326,8 @@ public class Browser {
             }
             sb.append(str2);
             uri = Uri.parse(sb.toString());
-            String host2 = uri.getHost();
-            lowerCase = host2 != null ? host2.toLowerCase() : "";
+            String host = uri.getHost();
+            lowerCase = host != null ? host.toLowerCase() : "";
         }
         if ("ton".equals(uri.getScheme())) {
             try {

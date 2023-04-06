@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public enum VideoCodecStatus {
     REQUEST_SLI(2),
     NO_OUTPUT(1),

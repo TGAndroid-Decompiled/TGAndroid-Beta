@@ -7,7 +7,6 @@ import org.telegram.messenger.FileLog;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.ThreadUtils;
 import org.webrtc.VideoFrame;
-
 public class YuvConverter {
     private static final String FRAGMENT_SHADER = "uniform vec2 xUnit;\nuniform vec4 coeffs;\n\nvoid main() {\n  gl_FragColor.r = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 1.5 * xUnit).rgb);\n  gl_FragColor.g = coeffs.a + dot(coeffs.rgb,\n      sample(tc - 0.5 * xUnit).rgb);\n  gl_FragColor.b = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 0.5 * xUnit).rgb);\n  gl_FragColor.a = coeffs.a + dot(coeffs.rgb,\n      sample(tc + 1.5 * xUnit).rgb);\n}\n";
     private final GlGenericDrawer drawer;
@@ -96,19 +95,24 @@ public class YuvConverter {
             GlUtil.checkNoGLES2Error("glBindFramebuffer");
             this.shaderCallbacks.setPlaneY();
             byteBuffer = nativeAllocateByteBuffer;
+        } catch (Exception e) {
+            e = e;
+            byteBuffer = nativeAllocateByteBuffer;
+        }
+        try {
+            VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, 0, i5, height, false);
+            this.shaderCallbacks.setPlaneU();
+            VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, height, i5 / 2, i3, false);
+            this.shaderCallbacks.setPlaneV();
+            VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, i5 / 2, height, i5 / 2, i3, false);
+            GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
+            GlUtil.checkNoGLES2Error("YuvConverter.convert");
+            i = 0;
             try {
-                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, 0, i5, height, false);
-                this.shaderCallbacks.setPlaneU();
-                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, 0, height, i5 / 2, i3, false);
-                this.shaderCallbacks.setPlaneV();
-                VideoFrameDrawer.drawTexture(this.drawer, textureBuffer2, matrix, width, height, width, height, i5 / 2, height, i5 / 2, i3, false);
-                GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
-                GlUtil.checkNoGLES2Error("YuvConverter.convert");
-                i = 0;
-            } catch (Exception e) {
-                e = e;
-                i = 0;
-                FileLog.m32e(e);
+                GLES20.glBindFramebuffer(36160, 0);
+            } catch (Exception e2) {
+                e = e2;
+                FileLog.e(e);
                 int i6 = (i2 * height) + i;
                 int i7 = i2 / 2;
                 int i8 = i6 + i7;
@@ -131,15 +135,10 @@ public class YuvConverter {
                     }
                 });
             }
-        } catch (Exception e2) {
-            e = e2;
-            byteBuffer = nativeAllocateByteBuffer;
-        }
-        try {
-            GLES20.glBindFramebuffer(36160, 0);
         } catch (Exception e3) {
             e = e3;
-            FileLog.m32e(e);
+            i = 0;
+            FileLog.e(e);
             int i62 = (i2 * height) + i;
             int i72 = i2 / 2;
             int i82 = i62 + i72;

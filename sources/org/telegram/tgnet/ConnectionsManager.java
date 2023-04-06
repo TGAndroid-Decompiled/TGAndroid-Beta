@@ -19,6 +19,7 @@ import java.net.Inet6Address;
 import java.net.InetAddress;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import javax.net.ssl.SSLException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.AccountInstance;
@@ -45,15 +47,16 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.EmuDetector;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.KeepAliveJob;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.StatsController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
-
 public class ConnectionsManager extends BaseController {
     private static final int CORE_POOL_SIZE;
     public static final int CPU_COUNT;
@@ -127,7 +130,7 @@ public class ConnectionsManager extends BaseController {
 
     public static native int native_getTimeDifference(int i);
 
-    public static native void native_init(int i, int i2, int i3, int i4, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, int i5, long j, boolean z, boolean z2, int i6);
+    public static native void native_init(int i, int i2, int i3, int i4, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, int i5, long j, boolean z, boolean z2, int i6, int i7);
 
     public static native int native_isTestBackend(int i);
 
@@ -170,7 +173,7 @@ public class ConnectionsManager extends BaseController {
         CORE_POOL_SIZE = max;
         int i = (availableProcessors * 2) + 1;
         MAXIMUM_POOL_SIZE = i;
-        LinkedBlockingQueue linkedBlockingQueue = new LinkedBlockingQueue((int) RequestFlagNeedQuickAck);
+        LinkedBlockingQueue linkedBlockingQueue = new LinkedBlockingQueue(128);
         sPoolWorkQueue = linkedBlockingQueue;
         ThreadFactory threadFactory = new ThreadFactory() {
             private final AtomicInteger mCount = new AtomicInteger(1);
@@ -282,7 +285,7 @@ public class ConnectionsManager extends BaseController {
             sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig" + this.currentAccount, 0);
         }
         this.forceTryIpV6 = sharedPreferences.getBoolean("forceTryIpV6", false);
-        init(BuildVars.BUILD_VERSION, 151, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), isPushConnectionEnabled);
+        init(BuildVars.BUILD_VERSION, 157, BuildVars.APP_ID, str9, str10, str2, str4, str8, file2, FileLog.getNetworkLogPath(), regId, certificateSHA256Fingerprint, rawOffset, getUserConfig().getClientUserId(), isPushConnectionEnabled);
     }
 
     private String getRegId() {
@@ -349,20 +352,26 @@ public class ConnectionsManager extends BaseController {
         return sendRequest(tLObject, requestDelegate, null, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z);
     }
 
+    public int sendRequestSync(TLObject tLObject, RequestDelegate requestDelegate, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i, int i2, int i3, boolean z) {
+        int andIncrement = this.lastRequestToken.getAndIncrement();
+        lambda$sendRequest$0(tLObject, requestDelegate, null, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, andIncrement);
+        return andIncrement;
+    }
+
     public int sendRequest(final TLObject tLObject, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, final QuickAckDelegate quickAckDelegate, final WriteToSocketDelegate writeToSocketDelegate, final int i, final int i2, final int i3, final boolean z) {
         final int andIncrement = this.lastRequestToken.getAndIncrement();
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.this.lambda$sendRequest$2(tLObject, andIncrement, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z);
+                ConnectionsManager.this.lambda$sendRequest$0(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, andIncrement);
             }
         });
         return andIncrement;
     }
 
-    public void lambda$sendRequest$2(final TLObject tLObject, final int i, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, final QuickAckDelegate quickAckDelegate, final WriteToSocketDelegate writeToSocketDelegate, final int i2, final int i3, final int i4, final boolean z) {
+    public void lambda$sendRequest$0(final TLObject tLObject, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, final QuickAckDelegate quickAckDelegate, final WriteToSocketDelegate writeToSocketDelegate, final int i, final int i2, final int i3, final boolean z, final int i4) {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d("send request " + tLObject + " with token = " + i);
+            FileLog.d("send request " + tLObject + " with token = " + i4);
         }
         try {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLObject.getObjectSize());
@@ -376,15 +385,15 @@ public class ConnectionsManager extends BaseController {
             native_sendRequest(this.currentAccount, nativeByteBuffer.address, new RequestDelegateInternal() {
                 @Override
                 public final void run(long j3, int i5, String str, int i6, long j4, long j5) {
-                    ConnectionsManager.this.lambda$sendRequest$1(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i2, i3, i4, z, j2, i, j3, i5, str, i6, j4, j5);
+                    ConnectionsManager.this.lambda$sendRequestInternal$2(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, j2, i4, j3, i5, str, i6, j4, j5);
                 }
-            }, quickAckDelegate, writeToSocketDelegate, i2, i3, i4, z, i);
+            }, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z, i4);
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 
-    public void lambda$sendRequest$1(TLObject tLObject, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i, int i2, int i3, boolean z, long j, int i4, long j2, int i5, String str, int i6, final long j3, long j4) {
+    public void lambda$sendRequestInternal$2(TLObject tLObject, final RequestDelegate requestDelegate, final RequestDelegateTimestamp requestDelegateTimestamp, QuickAckDelegate quickAckDelegate, WriteToSocketDelegate writeToSocketDelegate, int i, int i2, int i3, boolean z, long j, int i4, long j2, int i5, String str, int i6, final long j3, long j4) {
         TLRPC$TL_error tLRPC$TL_error;
         TLObject tLObject2;
         try {
@@ -406,7 +415,7 @@ public class ConnectionsManager extends BaseController {
                 tLRPC$TL_error2.code = i5;
                 tLRPC$TL_error2.text = str;
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m34e(tLObject + " got error " + tLRPC$TL_error2.code + " " + tLRPC$TL_error2.text);
+                    FileLog.e(tLObject + " got error " + tLRPC$TL_error2.code + " " + tLRPC$TL_error2.text);
                 }
                 tLRPC$TL_error = tLRPC$TL_error2;
                 tLObject2 = null;
@@ -416,7 +425,7 @@ public class ConnectionsManager extends BaseController {
             }
             if (BuildVars.DEBUG_PRIVATE_VERSION && !getUserConfig().isClientActivated() && tLRPC$TL_error != null && tLRPC$TL_error.code == 400 && Objects.equals(tLRPC$TL_error.text, "CONNECTION_NOT_INITED")) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m35d("Cleanup keys for " + this.currentAccount + " because of CONNECTION_NOT_INITED");
+                    FileLog.d("Cleanup keys for " + this.currentAccount + " because of CONNECTION_NOT_INITED");
                 }
                 cleanup(true);
                 sendRequest(tLObject, requestDelegate, requestDelegateTimestamp, quickAckDelegate, writeToSocketDelegate, i, i2, i3, z);
@@ -426,7 +435,7 @@ public class ConnectionsManager extends BaseController {
                 tLObject2.networkType = i6;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("java received " + tLObject2 + " error = " + tLRPC$TL_error);
+                FileLog.d("java received " + tLObject2 + " error = " + tLRPC$TL_error);
             }
             FileLog.dumpResponseAndRequest(tLObject, tLObject2, tLRPC$TL_error, j4, j, i4);
             final TLObject tLObject3 = tLObject2;
@@ -434,15 +443,15 @@ public class ConnectionsManager extends BaseController {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ConnectionsManager.lambda$sendRequest$0(RequestDelegate.this, tLObject3, tLRPC$TL_error3, requestDelegateTimestamp, j3);
+                    ConnectionsManager.lambda$sendRequestInternal$1(RequestDelegate.this, tLObject3, tLRPC$TL_error3, requestDelegateTimestamp, j3);
                 }
             });
         } catch (Exception e2) {
-            FileLog.m32e(e2);
+            FileLog.e(e2);
         }
     }
 
-    public static void lambda$sendRequest$0(RequestDelegate requestDelegate, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) {
+    public static void lambda$sendRequestInternal$1(RequestDelegate requestDelegate, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error, RequestDelegateTimestamp requestDelegateTimestamp, long j) {
         if (requestDelegate != null) {
             requestDelegate.run(tLObject, tLRPC$TL_error);
         } else if (requestDelegateTimestamp != null) {
@@ -453,7 +462,16 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public void cancelRequest(int i, boolean z) {
+    public void cancelRequest(final int i, final boolean z) {
+        Utilities.stageQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                ConnectionsManager.this.lambda$cancelRequest$3(i, z);
+            }
+        });
+    }
+
+    public void lambda$cancelRequest$3(int i, boolean z) {
         native_cancelRequest(this.currentAccount, i, z);
     }
 
@@ -461,7 +479,16 @@ public class ConnectionsManager extends BaseController {
         native_cleanUp(this.currentAccount, z);
     }
 
-    public void cancelRequestsForGuid(int i) {
+    public void cancelRequestsForGuid(final int i) {
+        Utilities.stageQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                ConnectionsManager.this.lambda$cancelRequestsForGuid$4(i);
+            }
+        });
+    }
+
+    public void lambda$cancelRequestsForGuid$4(int i) {
         native_cancelRequestsForGuid(this.currentAccount, i);
     }
 
@@ -486,7 +513,11 @@ public class ConnectionsManager extends BaseController {
     }
 
     public void checkConnection() {
-        native_setIpStrategy(this.currentAccount, getIpStrategy());
+        byte ipStrategy = getIpStrategy();
+        if (BuildVars.LOGS_ENABLED) {
+            FileLog.d("selected ip strategy " + ((int) ipStrategy));
+        }
+        native_setIpStrategy(this.currentAccount, ipStrategy);
         native_setNetworkAvailable(this.currentAccount, ApplicationLoader.isNetworkOnline(), ApplicationLoader.getCurrentNetworkType(), ApplicationLoader.isConnectionSlow());
     }
 
@@ -517,7 +548,7 @@ public class ConnectionsManager extends BaseController {
         } catch (Throwable unused2) {
             str11 = "";
         }
-        native_init(this.currentAccount, i, i2, i3, str, str2, str3, str4, str5, str6, str7, str8, str9, str12, str11 == null ? "" : str11, i4, j, z, ApplicationLoader.isNetworkOnline(), ApplicationLoader.getCurrentNetworkType());
+        native_init(this.currentAccount, i, i2, i3, str, str2, str3, str4, str5, str6, str7, str8, str9, str12, str11 == null ? "" : str11, i4, j, z, ApplicationLoader.isNetworkOnline(), ApplicationLoader.getCurrentNetworkType(), SharedConfig.measureDevicePerformanceClass());
         checkConnection();
     }
 
@@ -583,7 +614,7 @@ public class ConnectionsManager extends BaseController {
         if (!z2) {
             this.appPaused = z;
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("app paused = " + z);
+                FileLog.d("app paused = " + z);
             }
             if (z) {
                 this.appResumeCount--;
@@ -591,7 +622,7 @@ public class ConnectionsManager extends BaseController {
                 this.appResumeCount++;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("app resume count " + this.appResumeCount);
+                FileLog.d("app resume count " + this.appResumeCount);
             }
             if (this.appResumeCount < 0) {
                 this.appResumeCount = 0;
@@ -605,7 +636,7 @@ public class ConnectionsManager extends BaseController {
         } else if (this.appPaused) {
         } else {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("reset app pause time");
+                FileLog.d("reset app pause time");
             }
             if (this.lastPauseTime != 0 && System.currentTimeMillis() - this.lastPauseTime > 5000) {
                 getContactsController().checkContacts();
@@ -624,28 +655,28 @@ public class ConnectionsManager extends BaseController {
             FileLog.dumpUnparsedMessage(TLdeserialize, j2);
             if (TLdeserialize instanceof TLRPC$Updates) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m35d("java received " + TLdeserialize);
+                    FileLog.d("java received " + TLdeserialize);
                 }
                 KeepAliveJob.finishJob();
                 Utilities.stageQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        ConnectionsManager.lambda$onUnparsedMessageReceived$3(i, TLdeserialize);
+                        ConnectionsManager.lambda$onUnparsedMessageReceived$5(i, TLdeserialize);
                     }
                 });
             } else if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d(String.format("java received unknown constructor 0x%x", Integer.valueOf(readInt32)));
+                FileLog.d(String.format("java received unknown constructor 0x%x", Integer.valueOf(readInt32)));
             }
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 
-    public static void lambda$onUnparsedMessageReceived$3(int i, TLObject tLObject) {
+    public static void lambda$onUnparsedMessageReceived$5(int i, TLObject tLObject) {
         AccountInstance.getInstance(i).getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
     }
 
-    public static void lambda$onUpdate$4(int i) {
+    public static void lambda$onUpdate$6(int i) {
         AccountInstance.getInstance(i).getMessagesController().updateTimerProc();
     }
 
@@ -653,12 +684,12 @@ public class ConnectionsManager extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onUpdate$4(i);
+                ConnectionsManager.lambda$onUpdate$6(i);
             }
         });
     }
 
-    public static void lambda$onSessionCreated$5(int i) {
+    public static void lambda$onSessionCreated$7(int i) {
         AccountInstance.getInstance(i).getMessagesController().getDifference();
     }
 
@@ -666,7 +697,7 @@ public class ConnectionsManager extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onSessionCreated$5(i);
+                ConnectionsManager.lambda$onSessionCreated$7(i);
             }
         });
     }
@@ -675,12 +706,12 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onConnectionStateChanged$6(i2, i);
+                ConnectionsManager.lambda$onConnectionStateChanged$8(i2, i);
             }
         });
     }
 
-    public static void lambda$onConnectionStateChanged$6(int i, int i2) {
+    public static void lambda$onConnectionStateChanged$8(int i, int i2) {
         getInstance(i).connectionState = i2;
         AccountInstance.getInstance(i).getNotificationCenter().postNotificationName(NotificationCenter.didUpdateConnectionState, new Object[0]);
     }
@@ -689,12 +720,12 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onLogout$7(i);
+                ConnectionsManager.lambda$onLogout$9(i);
             }
         });
     }
 
-    public static void lambda$onLogout$7(int i) {
+    public static void lambda$onLogout$9(int i) {
         AccountInstance accountInstance = AccountInstance.getInstance(i);
         if (accountInstance.getUserConfig().getClientUserId() != 0) {
             accountInstance.getUserConfig().clearConfig();
@@ -705,9 +736,9 @@ public class ConnectionsManager extends BaseController {
     public static int getInitFlags() {
         if (EmuDetector.with(ApplicationLoader.applicationContext).detect()) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("detected emu");
+                FileLog.d("detected emu");
             }
-            return RequestFlagDoNotWaitFloodWait;
+            return 1024;
         }
         return 0;
     }
@@ -716,7 +747,7 @@ public class ConnectionsManager extends BaseController {
         try {
             AccountInstance.getInstance(i3).getStatsController().incrementSentBytesCount(i2, 6, i);
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 
@@ -724,25 +755,25 @@ public class ConnectionsManager extends BaseController {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onRequestNewServerIpAndPort$9(i, i2);
+                ConnectionsManager.lambda$onRequestNewServerIpAndPort$11(i, i2);
             }
         });
     }
 
-    public static void lambda$onRequestNewServerIpAndPort$9(final int i, final int i2) {
+    public static void lambda$onRequestNewServerIpAndPort$11(final int i, final int i2) {
         final boolean isNetworkOnline = ApplicationLoader.isNetworkOnline();
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$onRequestNewServerIpAndPort$8(i, isNetworkOnline, i2);
+                ConnectionsManager.lambda$onRequestNewServerIpAndPort$10(i, isNetworkOnline, i2);
             }
         });
     }
 
-    public static void lambda$onRequestNewServerIpAndPort$8(int i, boolean z, int i2) {
+    public static void lambda$onRequestNewServerIpAndPort$10(int i, boolean z, int i2) {
         if (currentTask != null || ((i == 0 && Math.abs(lastDnsRequestTime - System.currentTimeMillis()) < 10000) || !z)) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("don't start task, current task = " + currentTask + " next task = " + i + " time diff = " + Math.abs(lastDnsRequestTime - System.currentTimeMillis()) + " network = " + ApplicationLoader.isNetworkOnline());
+                FileLog.d("don't start task, current task = " + currentTask + " next task = " + i + " time diff = " + Math.abs(lastDnsRequestTime - System.currentTimeMillis()) + " network = " + ApplicationLoader.isNetworkOnline());
                 return;
             }
             return;
@@ -750,28 +781,28 @@ public class ConnectionsManager extends BaseController {
         lastDnsRequestTime = System.currentTimeMillis();
         if (i == 3) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("start mozilla txt task");
+                FileLog.d("start mozilla txt task");
             }
             MozillaDnsLoadTask mozillaDnsLoadTask = new MozillaDnsLoadTask(i2);
             mozillaDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
             currentTask = mozillaDnsLoadTask;
         } else if (i == 2) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("start google txt task");
+                FileLog.d("start google txt task");
             }
             GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(i2);
             googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
             currentTask = googleDnsLoadTask;
         } else if (i == 1) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("start dns txt task");
+                FileLog.d("start dns txt task");
             }
             DnsTxtLoadTask dnsTxtLoadTask = new DnsTxtLoadTask(i2);
             dnsTxtLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
             currentTask = dnsTxtLoadTask;
         } else {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("start firebase task");
+                FileLog.d("start firebase task");
             }
             FirebaseTask firebaseTask = new FirebaseTask(i2);
             firebaseTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
@@ -779,24 +810,24 @@ public class ConnectionsManager extends BaseController {
         }
     }
 
-    public static void lambda$onProxyError$10() {
+    public static void lambda$onProxyError$12() {
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needShowAlert, 3);
     }
 
     public static void onProxyError() {
-        AndroidUtilities.runOnUIThread(ConnectionsManager$$ExternalSyntheticLambda12.INSTANCE);
+        AndroidUtilities.runOnUIThread(ConnectionsManager$$ExternalSyntheticLambda14.INSTANCE);
     }
 
     public static void getHostByName(final String str, final long j) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.lambda$getHostByName$11(str, j);
+                ConnectionsManager.lambda$getHostByName$13(str, j);
             }
         });
     }
 
-    public static void lambda$getHostByName$11(String str, long j) {
+    public static void lambda$getHostByName$13(String str, long j) {
         ResolvedDomain resolvedDomain = dnsCache.get(str);
         if (resolvedDomain != null && SystemClock.elapsedRealtime() - resolvedDomain.ttl < 300000) {
             native_onHostNameResolved(str, j, resolvedDomain.getAddress());
@@ -809,7 +840,7 @@ public class ConnectionsManager extends BaseController {
                 resolveHostByNameTask.executeOnExecutor(DNS_THREAD_POOL_EXECUTOR, null, null, null);
                 resolvingHostnameTasks.put(str, resolveHostByNameTask);
             } catch (Throwable th) {
-                FileLog.m32e(th);
+                FileLog.e(th);
                 native_onHostNameResolved(str, j, "");
                 return;
             }
@@ -821,7 +852,7 @@ public class ConnectionsManager extends BaseController {
         try {
             StatsController.getInstance(i3).incrementReceivedBytesCount(i2, 6, i);
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 
@@ -834,16 +865,16 @@ public class ConnectionsManager extends BaseController {
                 Utilities.stageQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        ConnectionsManager.lambda$onUpdateConfig$12(i, TLdeserialize);
+                        ConnectionsManager.lambda$onUpdateConfig$14(i, TLdeserialize);
                     }
                 });
             }
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 
-    public static void lambda$onUpdateConfig$12(int i, TLRPC$TL_config tLRPC$TL_config) {
+    public static void lambda$onUpdateConfig$14(int i, TLRPC$TL_config tLRPC$TL_config) {
         AccountInstance.getInstance(i).getMessagesController().updateConfig(tLRPC$TL_config);
     }
 
@@ -887,12 +918,12 @@ public class ConnectionsManager extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ConnectionsManager.this.lambda$setIsUpdating$13(z);
+                ConnectionsManager.this.lambda$setIsUpdating$15(z);
             }
         });
     }
 
-    public void lambda$setIsUpdating$13(boolean z) {
+    public void lambda$setIsUpdating$15(boolean z) {
         if (this.isUpdating == z) {
             return;
         }
@@ -914,22 +945,22 @@ public class ConnectionsManager extends BaseController {
                     NetworkInterface nextElement = networkInterfaces.nextElement();
                     if (nextElement.isUp() && !nextElement.isLoopback() && !nextElement.getInterfaceAddresses().isEmpty()) {
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m35d("valid interface: " + nextElement);
+                            FileLog.d("valid interface: " + nextElement);
                         }
                         List<InterfaceAddress> interfaceAddresses = nextElement.getInterfaceAddresses();
                         for (int i = 0; i < interfaceAddresses.size(); i++) {
                             InetAddress address = interfaceAddresses.get(i).getAddress();
                             if (BuildVars.LOGS_ENABLED) {
-                                FileLog.m35d("address: " + address.getHostAddress());
+                                FileLog.d("address: " + address.getHostAddress());
                             }
                             if (!address.isLinkLocalAddress() && !address.isLoopbackAddress() && !address.isMulticastAddress() && BuildVars.LOGS_ENABLED) {
-                                FileLog.m35d("address is good");
+                                FileLog.d("address is good");
                             }
                         }
                     }
                 }
             } catch (Throwable th) {
-                FileLog.m32e(th);
+                FileLog.e(th);
             }
         }
         try {
@@ -969,7 +1000,7 @@ public class ConnectionsManager extends BaseController {
                 }
             }
         } catch (Throwable th2) {
-            FileLog.m32e(th2);
+            FileLog.e(th2);
         }
         return (byte) 0;
     }
@@ -1025,16 +1056,15 @@ public class ConnectionsManager extends BaseController {
 
         @Override
         public NativeByteBuffer doInBackground(Void... voidArr) {
-            ByteArrayOutputStream byteArrayOutputStream;
             int read;
-            ByteArrayOutputStream byteArrayOutputStream2 = null;
+            ByteArrayOutputStream byteArrayOutputStream = null;
             InputStream inputStream = null;
             int i = 0;
             while (i < 3) {
                 String str = i == 0 ? "www.google.com" : i == 1 ? "www.google.ru" : "google.com";
                 try {
                     String str2 = ConnectionsManager.native_isTestBackend(this.currentAccount) != 0 ? "tapv3.stel.com" : AccountInstance.getInstance(this.currentAccount).getMessagesController().dcDomainName;
-                    int nextInt = Utilities.random.nextInt(116) + 13;
+                    int nextInt = Utilities.random.nextInt(MessagesStorage.LAST_DB_VERSION) + 13;
                     StringBuilder sb = new StringBuilder(nextInt);
                     for (int i2 = 0; i2 < nextInt; i2++) {
                         sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".charAt(Utilities.random.nextInt(62)));
@@ -1047,71 +1077,71 @@ public class ConnectionsManager extends BaseController {
                     openConnection.connect();
                     inputStream = openConnection.getInputStream();
                     this.responseDate = (int) (openConnection.getDate() / 1000);
-                    byteArrayOutputStream = new ByteArrayOutputStream();
-                } catch (Throwable th) {
-                    th = th;
-                }
-                try {
-                    byte[] bArr = new byte[32768];
-                    while (!isCancelled() && (read = inputStream.read(bArr)) > 0) {
-                        byteArrayOutputStream.write(bArr, 0, read);
-                    }
-                    JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream.toByteArray())).getJSONArray("Answer");
-                    int length = jSONArray.length();
-                    ArrayList arrayList = new ArrayList(length);
-                    for (int i3 = 0; i3 < length; i3++) {
-                        JSONObject jSONObject = jSONArray.getJSONObject(i3);
-                        if (jSONObject.getInt("type") == 16) {
-                            arrayList.add(jSONObject.getString("data"));
-                        }
-                    }
-                    Collections.sort(arrayList, ConnectionsManager$DnsTxtLoadTask$$ExternalSyntheticLambda1.INSTANCE);
-                    StringBuilder sb2 = new StringBuilder();
-                    for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                        sb2.append(((String) arrayList.get(i4)).replace("\"", ""));
-                    }
-                    byte[] decode = Base64.decode(sb2.toString(), 0);
-                    NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);
-                    nativeByteBuffer.writeBytes(decode);
-                    if (inputStream != null) {
-                        try {
-                            inputStream.close();
-                        } catch (Throwable th2) {
-                            FileLog.m31e(th2, false);
-                        }
-                    }
+                    ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
                     try {
-                        byteArrayOutputStream.close();
-                    } catch (Exception unused) {
-                    }
-                    return nativeByteBuffer;
-                } catch (Throwable th3) {
-                    th = th3;
-                    byteArrayOutputStream2 = byteArrayOutputStream;
-                    try {
-                        FileLog.m31e(th, false);
-                        if (byteArrayOutputStream2 != null) {
-                            try {
-                                byteArrayOutputStream2.close();
-                            } catch (Exception unused2) {
+                        byte[] bArr = new byte[LiteMode.FLAG_CHAT_SCALE];
+                        while (!isCancelled() && (read = inputStream.read(bArr)) > 0) {
+                            byteArrayOutputStream2.write(bArr, 0, read);
+                        }
+                        JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream2.toByteArray())).getJSONArray("Answer");
+                        int length = jSONArray.length();
+                        ArrayList arrayList = new ArrayList(length);
+                        for (int i3 = 0; i3 < length; i3++) {
+                            JSONObject jSONObject = jSONArray.getJSONObject(i3);
+                            if (jSONObject.getInt("type") == 16) {
+                                arrayList.add(jSONObject.getString("data"));
                             }
                         }
-                        i++;
-                    } finally {
+                        Collections.sort(arrayList, ConnectionsManager$DnsTxtLoadTask$$ExternalSyntheticLambda1.INSTANCE);
+                        StringBuilder sb2 = new StringBuilder();
+                        for (int i4 = 0; i4 < arrayList.size(); i4++) {
+                            sb2.append(((String) arrayList.get(i4)).replace("\"", ""));
+                        }
+                        byte[] decode = Base64.decode(sb2.toString(), 0);
+                        NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);
+                        nativeByteBuffer.writeBytes(decode);
                         if (inputStream != null) {
                             try {
                                 inputStream.close();
-                            } catch (Throwable th4) {
-                                FileLog.m31e(th4, false);
+                            } catch (Throwable th) {
+                                FileLog.e(th, false);
                             }
                         }
-                        if (byteArrayOutputStream2 != null) {
-                            try {
-                                byteArrayOutputStream2.close();
-                            } catch (Exception unused3) {
+                        try {
+                            byteArrayOutputStream2.close();
+                        } catch (Exception unused) {
+                        }
+                        return nativeByteBuffer;
+                    } catch (Throwable th2) {
+                        th = th2;
+                        byteArrayOutputStream = byteArrayOutputStream2;
+                        try {
+                            FileLog.e(th, false);
+                            if (byteArrayOutputStream != null) {
+                                try {
+                                    byteArrayOutputStream.close();
+                                } catch (Exception unused2) {
+                                }
+                            }
+                            i++;
+                        } finally {
+                            if (inputStream != null) {
+                                try {
+                                    inputStream.close();
+                                } catch (Throwable th3) {
+                                    FileLog.e(th3, false);
+                                }
+                            }
+                            if (byteArrayOutputStream != null) {
+                                try {
+                                    byteArrayOutputStream.close();
+                                } catch (Exception unused3) {
+                                }
                             }
                         }
                     }
+                } catch (Throwable th4) {
+                    th = th4;
                 }
             }
             return null;
@@ -1144,8 +1174,8 @@ public class ConnectionsManager extends BaseController {
                 return;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("failed to get dns txt result");
-                FileLog.m35d("start google task");
+                FileLog.d("failed to get dns txt result");
+                FileLog.d("start google task");
             }
             GoogleDnsLoadTask googleDnsLoadTask = new GoogleDnsLoadTask(this.currentAccount);
             googleDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
@@ -1165,10 +1195,13 @@ public class ConnectionsManager extends BaseController {
         public NativeByteBuffer doInBackground(Void... voidArr) {
             ByteArrayOutputStream byteArrayOutputStream;
             InputStream inputStream;
+            InputStream inputStream2;
+            ByteArrayOutputStream byteArrayOutputStream2;
             int read;
+            boolean z = false;
             try {
                 String str = ConnectionsManager.native_isTestBackend(this.currentAccount) != 0 ? "tapv3.stel.com" : AccountInstance.getInstance(this.currentAccount).getMessagesController().dcDomainName;
-                int nextInt = Utilities.random.nextInt(116) + 13;
+                int nextInt = Utilities.random.nextInt(MessagesStorage.LAST_DB_VERSION) + 13;
                 StringBuilder sb = new StringBuilder(nextInt);
                 for (int i = 0; i < nextInt; i++) {
                     sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".charAt(Utilities.random.nextInt(62)));
@@ -1178,12 +1211,164 @@ public class ConnectionsManager extends BaseController {
                 openConnection.setConnectTimeout(5000);
                 openConnection.setReadTimeout(5000);
                 openConnection.connect();
+                inputStream2 = openConnection.getInputStream();
+                try {
+                    this.responseDate = (int) (openConnection.getDate() / 1000);
+                    byteArrayOutputStream2 = new ByteArrayOutputStream();
+                } catch (Throwable th) {
+                    th = th;
+                    inputStream = inputStream2;
+                    byteArrayOutputStream = null;
+                }
+            } catch (Throwable th2) {
+                th = th2;
+                byteArrayOutputStream = null;
+                inputStream = null;
+            }
+            try {
+                byte[] bArr = new byte[LiteMode.FLAG_CHAT_SCALE];
+                while (!isCancelled() && (read = inputStream2.read(bArr)) > 0) {
+                    byteArrayOutputStream2.write(bArr, 0, read);
+                }
+                JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream2.toByteArray())).getJSONArray("Answer");
+                int length = jSONArray.length();
+                ArrayList arrayList = new ArrayList(length);
+                for (int i2 = 0; i2 < length; i2++) {
+                    JSONObject jSONObject = jSONArray.getJSONObject(i2);
+                    if (jSONObject.getInt("type") == 16) {
+                        arrayList.add(jSONObject.getString("data"));
+                    }
+                }
+                Collections.sort(arrayList, ConnectionsManager$GoogleDnsLoadTask$$ExternalSyntheticLambda1.INSTANCE);
+                StringBuilder sb2 = new StringBuilder();
+                for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                    sb2.append(((String) arrayList.get(i3)).replace("\"", ""));
+                }
+                byte[] decode = Base64.decode(sb2.toString(), 0);
+                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);
+                nativeByteBuffer.writeBytes(decode);
+                if (inputStream2 != null) {
+                    try {
+                        inputStream2.close();
+                    } catch (Throwable th3) {
+                        FileLog.e(th3);
+                    }
+                }
+                try {
+                    byteArrayOutputStream2.close();
+                } catch (Exception unused) {
+                }
+                return nativeByteBuffer;
+            } catch (Throwable th4) {
+                byteArrayOutputStream = byteArrayOutputStream2;
+                th = th4;
+                inputStream = inputStream2;
+                try {
+                    if (!(th instanceof SocketTimeoutException) && !(th instanceof SSLException)) {
+                        z = true;
+                    }
+                    FileLog.e(th, z);
+                    if (inputStream != null) {
+                        try {
+                            inputStream.close();
+                        } catch (Throwable th5) {
+                            FileLog.e(th5);
+                        }
+                    }
+                    if (byteArrayOutputStream != null) {
+                        try {
+                            byteArrayOutputStream.close();
+                        } catch (Exception unused2) {
+                        }
+                    }
+                    return null;
+                } catch (Throwable th6) {
+                    if (inputStream != null) {
+                        try {
+                            inputStream.close();
+                        } catch (Throwable th7) {
+                            FileLog.e(th7);
+                        }
+                    }
+                    if (byteArrayOutputStream != null) {
+                        try {
+                            byteArrayOutputStream.close();
+                        } catch (Exception unused3) {
+                        }
+                    }
+                    throw th6;
+                }
+            }
+        }
+
+        public static int lambda$doInBackground$0(String str, String str2) {
+            int length = str.length();
+            int length2 = str2.length();
+            if (length > length2) {
+                return -1;
+            }
+            return length < length2 ? 1 : 0;
+        }
+
+        @Override
+        public void onPostExecute(final NativeByteBuffer nativeByteBuffer) {
+            Utilities.stageQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    ConnectionsManager.GoogleDnsLoadTask.this.lambda$onPostExecute$1(nativeByteBuffer);
+                }
+            });
+        }
+
+        public void lambda$onPostExecute$1(NativeByteBuffer nativeByteBuffer) {
+            AsyncTask unused = ConnectionsManager.currentTask = null;
+            if (nativeByteBuffer != null) {
+                int i = this.currentAccount;
+                ConnectionsManager.native_applyDnsConfig(i, nativeByteBuffer.address, AccountInstance.getInstance(i).getUserConfig().getClientPhone(), this.responseDate);
+                return;
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("failed to get google result");
+                FileLog.d("start mozilla task");
+            }
+            MozillaDnsLoadTask mozillaDnsLoadTask = new MozillaDnsLoadTask(this.currentAccount);
+            mozillaDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
+            AsyncTask unused2 = ConnectionsManager.currentTask = mozillaDnsLoadTask;
+        }
+    }
+
+    public static class MozillaDnsLoadTask extends AsyncTask<Void, Void, NativeByteBuffer> {
+        private int currentAccount;
+        private int responseDate;
+
+        public MozillaDnsLoadTask(int i) {
+            this.currentAccount = i;
+        }
+
+        @Override
+        public NativeByteBuffer doInBackground(Void... voidArr) {
+            ByteArrayOutputStream byteArrayOutputStream;
+            InputStream inputStream;
+            int read;
+            try {
+                String str = ConnectionsManager.native_isTestBackend(this.currentAccount) != 0 ? "tapv3.stel.com" : AccountInstance.getInstance(this.currentAccount).getMessagesController().dcDomainName;
+                int nextInt = Utilities.random.nextInt(MessagesStorage.LAST_DB_VERSION) + 13;
+                StringBuilder sb = new StringBuilder(nextInt);
+                for (int i = 0; i < nextInt; i++) {
+                    sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".charAt(Utilities.random.nextInt(62)));
+                }
+                URLConnection openConnection = new URL("https://mozilla.cloudflare-dns.com/dns-query?name=" + str + "&type=TXT&random_padding=" + ((Object) sb)).openConnection();
+                openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A5297c Safari/602.1");
+                openConnection.addRequestProperty("accept", "application/dns-json");
+                openConnection.setConnectTimeout(5000);
+                openConnection.setReadTimeout(5000);
+                openConnection.connect();
                 InputStream inputStream2 = openConnection.getInputStream();
                 try {
                     this.responseDate = (int) (openConnection.getDate() / 1000);
                     ByteArrayOutputStream byteArrayOutputStream2 = new ByteArrayOutputStream();
                     try {
-                        byte[] bArr = new byte[32768];
+                        byte[] bArr = new byte[LiteMode.FLAG_CHAT_SCALE];
                         while (!isCancelled() && (read = inputStream2.read(bArr)) > 0) {
                             byteArrayOutputStream2.write(bArr, 0, read);
                         }
@@ -1196,7 +1381,7 @@ public class ConnectionsManager extends BaseController {
                                 arrayList.add(jSONObject.getString("data"));
                             }
                         }
-                        Collections.sort(arrayList, ConnectionsManager$GoogleDnsLoadTask$$ExternalSyntheticLambda1.INSTANCE);
+                        Collections.sort(arrayList, ConnectionsManager$MozillaDnsLoadTask$$ExternalSyntheticLambda1.INSTANCE);
                         StringBuilder sb2 = new StringBuilder();
                         for (int i3 = 0; i3 < arrayList.size(); i3++) {
                             sb2.append(((String) arrayList.get(i3)).replace("\"", ""));
@@ -1208,7 +1393,7 @@ public class ConnectionsManager extends BaseController {
                             try {
                                 inputStream2.close();
                             } catch (Throwable th) {
-                                FileLog.m32e(th);
+                                FileLog.e(th);
                             }
                         }
                         try {
@@ -1221,12 +1406,12 @@ public class ConnectionsManager extends BaseController {
                         th = th2;
                         inputStream = inputStream2;
                         try {
-                            FileLog.m32e(th);
+                            FileLog.e(th, false);
                             if (inputStream != null) {
                                 try {
                                     inputStream.close();
                                 } catch (Throwable th3) {
-                                    FileLog.m32e(th3);
+                                    FileLog.e(th3);
                                 }
                             }
                             if (byteArrayOutputStream != null) {
@@ -1241,7 +1426,7 @@ public class ConnectionsManager extends BaseController {
                                 try {
                                     inputStream.close();
                                 } catch (Throwable th5) {
-                                    FileLog.m32e(th5);
+                                    FileLog.e(th5);
                                 }
                             }
                             if (byteArrayOutputStream != null) {
@@ -1279,157 +1464,6 @@ public class ConnectionsManager extends BaseController {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ConnectionsManager.GoogleDnsLoadTask.this.lambda$onPostExecute$1(nativeByteBuffer);
-                }
-            });
-        }
-
-        public void lambda$onPostExecute$1(NativeByteBuffer nativeByteBuffer) {
-            AsyncTask unused = ConnectionsManager.currentTask = null;
-            if (nativeByteBuffer != null) {
-                int i = this.currentAccount;
-                ConnectionsManager.native_applyDnsConfig(i, nativeByteBuffer.address, AccountInstance.getInstance(i).getUserConfig().getClientPhone(), this.responseDate);
-                return;
-            }
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("failed to get google result");
-                FileLog.m35d("start mozilla task");
-            }
-            MozillaDnsLoadTask mozillaDnsLoadTask = new MozillaDnsLoadTask(this.currentAccount);
-            mozillaDnsLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
-            AsyncTask unused2 = ConnectionsManager.currentTask = mozillaDnsLoadTask;
-        }
-    }
-
-    public static class MozillaDnsLoadTask extends AsyncTask<Void, Void, NativeByteBuffer> {
-        private int currentAccount;
-        private int responseDate;
-
-        public MozillaDnsLoadTask(int i) {
-            this.currentAccount = i;
-        }
-
-        @Override
-        public NativeByteBuffer doInBackground(Void... voidArr) {
-            ByteArrayOutputStream byteArrayOutputStream;
-            InputStream inputStream;
-            InputStream inputStream2;
-            ByteArrayOutputStream byteArrayOutputStream2;
-            int read;
-            try {
-                String str = ConnectionsManager.native_isTestBackend(this.currentAccount) != 0 ? "tapv3.stel.com" : AccountInstance.getInstance(this.currentAccount).getMessagesController().dcDomainName;
-                int nextInt = Utilities.random.nextInt(116) + 13;
-                StringBuilder sb = new StringBuilder(nextInt);
-                for (int i = 0; i < nextInt; i++) {
-                    sb.append("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".charAt(Utilities.random.nextInt(62)));
-                }
-                URLConnection openConnection = new URL("https://mozilla.cloudflare-dns.com/dns-query?name=" + str + "&type=TXT&random_padding=" + ((Object) sb)).openConnection();
-                openConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.38 (KHTML, like Gecko) Version/10.0 Mobile/14A5297c Safari/602.1");
-                openConnection.addRequestProperty("accept", "application/dns-json");
-                openConnection.setConnectTimeout(5000);
-                openConnection.setReadTimeout(5000);
-                openConnection.connect();
-                inputStream2 = openConnection.getInputStream();
-                try {
-                    this.responseDate = (int) (openConnection.getDate() / 1000);
-                    byteArrayOutputStream2 = new ByteArrayOutputStream();
-                } catch (Throwable th) {
-                    th = th;
-                    inputStream = inputStream2;
-                    byteArrayOutputStream = null;
-                }
-            } catch (Throwable th2) {
-                th = th2;
-                byteArrayOutputStream = null;
-                inputStream = null;
-            }
-            try {
-                byte[] bArr = new byte[32768];
-                while (!isCancelled() && (read = inputStream2.read(bArr)) > 0) {
-                    byteArrayOutputStream2.write(bArr, 0, read);
-                }
-                JSONArray jSONArray = new JSONObject(new String(byteArrayOutputStream2.toByteArray())).getJSONArray("Answer");
-                int length = jSONArray.length();
-                ArrayList arrayList = new ArrayList(length);
-                for (int i2 = 0; i2 < length; i2++) {
-                    JSONObject jSONObject = jSONArray.getJSONObject(i2);
-                    if (jSONObject.getInt("type") == 16) {
-                        arrayList.add(jSONObject.getString("data"));
-                    }
-                }
-                Collections.sort(arrayList, ConnectionsManager$MozillaDnsLoadTask$$ExternalSyntheticLambda1.INSTANCE);
-                StringBuilder sb2 = new StringBuilder();
-                for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                    sb2.append(((String) arrayList.get(i3)).replace("\"", ""));
-                }
-                byte[] decode = Base64.decode(sb2.toString(), 0);
-                NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(decode.length);
-                nativeByteBuffer.writeBytes(decode);
-                if (inputStream2 != null) {
-                    try {
-                        inputStream2.close();
-                    } catch (Throwable th3) {
-                        FileLog.m32e(th3);
-                    }
-                }
-                try {
-                    byteArrayOutputStream2.close();
-                } catch (Exception unused) {
-                }
-                return nativeByteBuffer;
-            } catch (Throwable th4) {
-                byteArrayOutputStream = byteArrayOutputStream2;
-                th = th4;
-                inputStream = inputStream2;
-                try {
-                    FileLog.m31e(th, false);
-                    if (inputStream != null) {
-                        try {
-                            inputStream.close();
-                        } catch (Throwable th5) {
-                            FileLog.m32e(th5);
-                        }
-                    }
-                    if (byteArrayOutputStream != null) {
-                        try {
-                            byteArrayOutputStream.close();
-                        } catch (Exception unused2) {
-                        }
-                    }
-                    return null;
-                } catch (Throwable th6) {
-                    if (inputStream != null) {
-                        try {
-                            inputStream.close();
-                        } catch (Throwable th7) {
-                            FileLog.m32e(th7);
-                        }
-                    }
-                    if (byteArrayOutputStream != null) {
-                        try {
-                            byteArrayOutputStream.close();
-                        } catch (Exception unused3) {
-                        }
-                    }
-                    throw th6;
-                }
-            }
-        }
-
-        public static int lambda$doInBackground$0(String str, String str2) {
-            int length = str.length();
-            int length2 = str2.length();
-            if (length > length2) {
-                return -1;
-            }
-            return length < length2 ? 1 : 0;
-        }
-
-        @Override
-        public void onPostExecute(final NativeByteBuffer nativeByteBuffer) {
-            Utilities.stageQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
                     ConnectionsManager.MozillaDnsLoadTask.this.lambda$onPostExecute$1(nativeByteBuffer);
                 }
             });
@@ -1441,7 +1475,7 @@ public class ConnectionsManager extends BaseController {
                 int i = this.currentAccount;
                 ConnectionsManager.native_applyDnsConfig(i, nativeByteBuffer.address, AccountInstance.getInstance(i).getUserConfig().getClientPhone(), this.responseDate);
             } else if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("failed to get mozilla txt result");
+                FileLog.d("failed to get mozilla txt result");
             }
         }
     }
@@ -1468,7 +1502,7 @@ public class ConnectionsManager extends BaseController {
                 this.firebaseRemoteConfig = firebaseRemoteConfig;
                 String string = firebaseRemoteConfig.getString("ipconfigv3");
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m35d("current firebase value = " + string);
+                    FileLog.d("current firebase value = " + string);
                 }
                 this.firebaseRemoteConfig.fetch(0L).addOnCompleteListener(new OnCompleteListener() {
                     @Override
@@ -1484,7 +1518,7 @@ public class ConnectionsManager extends BaseController {
                         ConnectionsManager.FirebaseTask.this.lambda$doInBackground$3();
                     }
                 });
-                FileLog.m31e(th, false);
+                FileLog.e(th, false);
                 return null;
             }
         }
@@ -1523,13 +1557,13 @@ public class ConnectionsManager extends BaseController {
                     ConnectionsManager.native_applyDnsConfig(i, nativeByteBuffer.address, AccountInstance.getInstance(i).getUserConfig().getClientPhone(), fetchTimeMillis);
                     return;
                 } catch (Exception e) {
-                    FileLog.m32e(e);
+                    FileLog.e(e);
                     return;
                 }
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("failed to get firebase result");
-                FileLog.m35d("start dns txt task");
+                FileLog.d("failed to get firebase result");
+                FileLog.d("start dns txt task");
             }
             DnsTxtLoadTask dnsTxtLoadTask = new DnsTxtLoadTask(this.currentAccount);
             dnsTxtLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);
@@ -1538,8 +1572,8 @@ public class ConnectionsManager extends BaseController {
 
         public void lambda$doInBackground$3() {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("failed to get firebase result");
-                FileLog.m35d("start dns txt task");
+                FileLog.d("failed to get firebase result");
+                FileLog.d("start dns txt task");
             }
             DnsTxtLoadTask dnsTxtLoadTask = new DnsTxtLoadTask(this.currentAccount);
             dnsTxtLoadTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, null, null, null);

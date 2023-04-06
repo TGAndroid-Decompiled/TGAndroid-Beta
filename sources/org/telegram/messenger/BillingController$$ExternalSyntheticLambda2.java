@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import com.android.billingclient.api.BillingResult;
 import com.android.billingclient.api.ProductDetailsResponseListener;
 import java.util.List;
-
 public final class BillingController$$ExternalSyntheticLambda2 implements ProductDetailsResponseListener {
     public static final BillingController$$ExternalSyntheticLambda2 INSTANCE = new BillingController$$ExternalSyntheticLambda2();
 

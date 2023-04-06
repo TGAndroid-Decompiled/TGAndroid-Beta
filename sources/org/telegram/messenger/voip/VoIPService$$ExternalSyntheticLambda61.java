@@ -1,5 +1,4 @@
 package org.telegram.messenger.voip;
-
 public final class VoIPService$$ExternalSyntheticLambda61 implements Runnable {
     public static final VoIPService$$ExternalSyntheticLambda61 INSTANCE = new VoIPService$$ExternalSyntheticLambda61();
 

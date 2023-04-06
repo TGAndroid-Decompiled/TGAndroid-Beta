@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.ContactsController;
-
 public final class ContactsController$MyContentObserver$$ExternalSyntheticLambda0 implements Runnable {
     public static final ContactsController$MyContentObserver$$ExternalSyntheticLambda0 INSTANCE = new ContactsController$MyContentObserver$$ExternalSyntheticLambda0();
 

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_togglePreHistoryHidden extends TLObject {
     public static int constructor = -356796084;
     public TLRPC$InputChannel channel;

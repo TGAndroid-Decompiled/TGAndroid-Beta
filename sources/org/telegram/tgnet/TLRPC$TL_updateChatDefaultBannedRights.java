@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateChatDefaultBannedRights extends TLRPC$Update {
     public static int constructor = 1421875280;
     public TLRPC$TL_chatBannedRights default_banned_rights;

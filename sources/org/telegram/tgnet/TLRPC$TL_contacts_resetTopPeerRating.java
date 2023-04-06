@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_contacts_resetTopPeerRating extends TLObject {
     public static int constructor = 451113900;
     public TLRPC$TopPeerCategory category;

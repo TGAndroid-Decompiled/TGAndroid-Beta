@@ -1,14 +1,13 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$Updates extends TLObject {
     public long chat_id;
     public int date;
     public int flags;
     public long from_id;
     public TLRPC$MessageFwdHeader fwd_from;
-    public int f994id;
+    public int id;
     public TLRPC$MessageMedia media;
     public boolean media_unread;
     public boolean mentioned;

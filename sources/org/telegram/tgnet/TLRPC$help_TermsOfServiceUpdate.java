@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$help_TermsOfServiceUpdate extends TLObject {
     public static TLRPC$help_TermsOfServiceUpdate TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$help_TermsOfServiceUpdate tLRPC$TL_help_termsOfServiceUpdateEmpty;

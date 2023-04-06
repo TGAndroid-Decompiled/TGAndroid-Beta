@@ -1,51 +1,29 @@
 package com.google.android.exoplayer2.text.webvtt;
 
-import android.text.Layout;
 import android.text.TextUtils;
-import com.google.android.exoplayer2.util.Util;
+import com.google.common.base.Ascii;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import org.checkerframework.checker.nullness.qual.EnsuresNonNull;
-
+import java.util.HashSet;
+import java.util.Set;
 public final class WebvttCssStyle {
     private int backgroundColor;
-    private int bold;
     private int fontColor;
-    private String fontFamily;
     private float fontSize;
-    private int fontSizeUnit;
-    private boolean hasBackgroundColor;
-    private boolean hasFontColor;
-    private int italic;
-    private int linethrough;
-    private List<String> targetClasses;
-    private String targetId;
-    private String targetTag;
-    private String targetVoice;
-    private Layout.Alignment textAlign;
-    private int underline;
-
-    public WebvttCssStyle() {
-        reset();
-    }
-
-    @EnsuresNonNull({"targetId", "targetTag", "targetClasses", "targetVoice"})
-    public void reset() {
-        this.targetId = "";
-        this.targetTag = "";
-        this.targetClasses = Collections.emptyList();
-        this.targetVoice = "";
-        this.fontFamily = null;
-        this.hasFontColor = false;
-        this.hasBackgroundColor = false;
-        this.linethrough = -1;
-        this.underline = -1;
-        this.bold = -1;
-        this.italic = -1;
-        this.fontSizeUnit = -1;
-        this.textAlign = null;
-    }
+    private String targetId = "";
+    private String targetTag = "";
+    private Set<String> targetClasses = Collections.emptySet();
+    private String targetVoice = "";
+    private String fontFamily = null;
+    private boolean hasFontColor = false;
+    private boolean hasBackgroundColor = false;
+    private int linethrough = -1;
+    private int underline = -1;
+    private int bold = -1;
+    private int italic = -1;
+    private int fontSizeUnit = -1;
+    private int rubyPosition = -1;
+    private boolean combineUpright = false;
 
     public void setTargetId(String str) {
         this.targetId = str;
@@ -56,19 +34,19 @@ public final class WebvttCssStyle {
     }
 
     public void setTargetClasses(String[] strArr) {
-        this.targetClasses = Arrays.asList(strArr);
+        this.targetClasses = new HashSet(Arrays.asList(strArr));
     }
 
     public void setTargetVoice(String str) {
         this.targetVoice = str;
     }
 
-    public int getSpecificityScore(String str, String str2, String[] strArr, String str3) {
+    public int getSpecificityScore(String str, String str2, Set<String> set, String str3) {
         if (this.targetId.isEmpty() && this.targetTag.isEmpty() && this.targetClasses.isEmpty() && this.targetVoice.isEmpty()) {
             return TextUtils.isEmpty(str2) ? 1 : 0;
         }
         int updateScoreForMatch = updateScoreForMatch(updateScoreForMatch(updateScoreForMatch(0, this.targetId, str, 1073741824), this.targetTag, str2, 2), this.targetVoice, str3, 4);
-        if (updateScoreForMatch == -1 || !Arrays.asList(strArr).containsAll(this.targetClasses)) {
+        if (updateScoreForMatch == -1 || !set.containsAll(this.targetClasses)) {
             return 0;
         }
         return updateScoreForMatch + (this.targetClasses.size() * 4);
@@ -110,7 +88,7 @@ public final class WebvttCssStyle {
     }
 
     public WebvttCssStyle setFontFamily(String str) {
-        this.fontFamily = Util.toLowerInvariant(str);
+        this.fontFamily = str == null ? null : Ascii.toLowerCase(str);
         return this;
     }
 
@@ -148,8 +126,14 @@ public final class WebvttCssStyle {
         return this.hasBackgroundColor;
     }
 
-    public Layout.Alignment getTextAlign() {
-        return this.textAlign;
+    public WebvttCssStyle setFontSize(float f) {
+        this.fontSize = f;
+        return this;
+    }
+
+    public WebvttCssStyle setFontSizeUnit(int i) {
+        this.fontSizeUnit = i;
+        return this;
     }
 
     public int getFontSizeUnit() {
@@ -158,6 +142,24 @@ public final class WebvttCssStyle {
 
     public float getFontSize() {
         return this.fontSize;
+    }
+
+    public WebvttCssStyle setRubyPosition(int i) {
+        this.rubyPosition = i;
+        return this;
+    }
+
+    public int getRubyPosition() {
+        return this.rubyPosition;
+    }
+
+    public WebvttCssStyle setCombineUpright(boolean z) {
+        this.combineUpright = z;
+        return this;
+    }
+
+    public boolean getCombineUpright() {
+        return this.combineUpright;
     }
 
     private static int updateScoreForMatch(int i, String str, String str2, int i2) {

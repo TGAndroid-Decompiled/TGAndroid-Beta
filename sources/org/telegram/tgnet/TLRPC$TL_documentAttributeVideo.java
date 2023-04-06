@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
     public static int constructor = 250621158;
 
@@ -10,8 +9,8 @@ public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
         this.round_message = (readInt32 & 1) != 0;
         this.supports_streaming = (readInt32 & 2) != 0;
         this.duration = abstractSerializedData.readInt32(z);
-        this.f868w = abstractSerializedData.readInt32(z);
-        this.f867h = abstractSerializedData.readInt32(z);
+        this.w = abstractSerializedData.readInt32(z);
+        this.h = abstractSerializedData.readInt32(z);
     }
 
     @Override
@@ -23,7 +22,7 @@ public class TLRPC$TL_documentAttributeVideo extends TLRPC$DocumentAttribute {
         this.flags = i2;
         abstractSerializedData.writeInt32(i2);
         abstractSerializedData.writeInt32(this.duration);
-        abstractSerializedData.writeInt32(this.f868w);
-        abstractSerializedData.writeInt32(this.f867h);
+        abstractSerializedData.writeInt32(this.w);
+        abstractSerializedData.writeInt32(this.h);
     }
 }

@@ -1,7 +1,6 @@
 package org.telegram.messenger.camera;
 
 import android.hardware.Camera;
-
 public final class CameraSession$$ExternalSyntheticLambda0 implements Camera.AutoFocusCallback {
     public static final CameraSession$$ExternalSyntheticLambda0 INSTANCE = new CameraSession$$ExternalSyntheticLambda0();
 

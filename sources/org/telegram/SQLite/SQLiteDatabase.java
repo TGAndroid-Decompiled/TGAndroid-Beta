@@ -3,7 +3,6 @@ package org.telegram.SQLite;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
-
 public class SQLiteDatabase {
     private boolean inTransaction;
     private boolean isOpen = true;
@@ -57,7 +56,7 @@ public class SQLiteDatabase {
                 sb.append(query.stringValue(i));
                 sb.append(", ");
             }
-            FileLog.m35d("EXPLAIN QUERY PLAN " + sb.toString());
+            FileLog.d("EXPLAIN QUERY PLAN " + sb.toString());
         }
         query.dispose();
     }
@@ -74,7 +73,7 @@ public class SQLiteDatabase {
                 closedb(this.sqliteHandle);
             } catch (SQLiteException e) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m33e(e.getMessage(), e);
+                    FileLog.e(e.getMessage(), e);
                 }
             }
             this.isOpen = false;
@@ -94,7 +93,10 @@ public class SQLiteDatabase {
 
     public void beginTransaction() throws SQLiteException {
         if (this.inTransaction) {
-            throw new SQLiteException("database already in transaction");
+            if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                throw new SQLiteException("database already in transaction");
+            }
+            commitTransaction();
         }
         this.inTransaction = true;
         beginTransaction(this.sqliteHandle);

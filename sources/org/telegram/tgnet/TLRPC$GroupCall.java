@@ -1,12 +1,11 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$GroupCall extends TLObject {
     public long access_hash;
     public boolean can_change_join_muted;
     public boolean can_start_video;
     public int duration;
     public int flags;
-    public long f872id;
+    public long id;
     public boolean join_date_asc;
     public boolean join_muted;
     public boolean listeners_hidden;

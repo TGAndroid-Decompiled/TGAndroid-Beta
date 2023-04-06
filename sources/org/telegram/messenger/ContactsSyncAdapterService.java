@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.SyncResult;
 import android.os.Bundle;
 import android.os.IBinder;
-
 public class ContactsSyncAdapterService extends Service {
     private static SyncAdapterImpl sSyncAdapter;
 
@@ -27,7 +26,7 @@ public class ContactsSyncAdapterService extends Service {
             try {
                 ContactsSyncAdapterService.performSync(this.mContext, account, bundle, str, contentProviderClient, syncResult);
             } catch (OperationCanceledException e) {
-                FileLog.m32e(e);
+                FileLog.e(e);
             }
         }
     }
@@ -46,7 +45,7 @@ public class ContactsSyncAdapterService extends Service {
 
     public static void performSync(Context context, Account account, Bundle bundle, String str, ContentProviderClient contentProviderClient, SyncResult syncResult) throws OperationCanceledException {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d("performSync: " + account.toString());
+            FileLog.d("performSync: " + account.toString());
         }
     }
 }

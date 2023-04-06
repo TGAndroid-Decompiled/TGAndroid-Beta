@@ -1,17 +1,17 @@
 package org.telegram.tgnet;
 
+import java.util.ArrayList;
 public class TLRPC$TL_messages_translateText extends TLObject {
-    public static int constructor = 617508334;
+    public static int constructor = 1662529584;
     public int flags;
-    public String from_lang;
-    public int msg_id;
     public TLRPC$InputPeer peer;
-    public String text;
     public String to_lang;
+    public ArrayList<Integer> id = new ArrayList<>();
+    public ArrayList<TLRPC$TL_textWithEntities> text = new ArrayList<>();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        return TLRPC$messages_TranslatedText.TLdeserialize(abstractSerializedData, i, z);
+        return TLRPC$TL_messages_translateResult.TLdeserialize(abstractSerializedData, i, z);
     }
 
     @Override
@@ -22,13 +22,20 @@ public class TLRPC$TL_messages_translateText extends TLObject {
             this.peer.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1) != 0) {
-            abstractSerializedData.writeInt32(this.msg_id);
+            abstractSerializedData.writeInt32(481674261);
+            int size = this.id.size();
+            abstractSerializedData.writeInt32(size);
+            for (int i = 0; i < size; i++) {
+                abstractSerializedData.writeInt32(this.id.get(i).intValue());
+            }
         }
         if ((this.flags & 2) != 0) {
-            abstractSerializedData.writeString(this.text);
-        }
-        if ((this.flags & 4) != 0) {
-            abstractSerializedData.writeString(this.from_lang);
+            abstractSerializedData.writeInt32(481674261);
+            int size2 = this.text.size();
+            abstractSerializedData.writeInt32(size2);
+            for (int i2 = 0; i2 < size2; i2++) {
+                this.text.get(i2).serializeToStream(abstractSerializedData);
+            }
         }
         abstractSerializedData.writeString(this.to_lang);
     }

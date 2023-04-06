@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getInlineBotResults extends TLObject {
     public static int constructor = 1364105629;
     public TLRPC$InputUser bot;

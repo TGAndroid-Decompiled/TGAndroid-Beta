@@ -1,5 +1,4 @@
 package com.google.android.gms.internal.mlkit_language_id;
-
 public final class zzhp {
     private static final zzho zza;
 

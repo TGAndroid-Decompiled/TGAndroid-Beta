@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updatePhoneCallSignalingData extends TLRPC$Update {
     public static int constructor = 643940105;
     public byte[] data;

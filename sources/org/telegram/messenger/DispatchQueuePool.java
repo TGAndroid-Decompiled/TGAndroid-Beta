@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import android.os.SystemClock;
 import android.util.SparseIntArray;
 import java.util.LinkedList;
-
 public class DispatchQueuePool {
     private boolean cleanupScheduled;
     private int createdCount;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_toggleSignatures extends TLObject {
     public static int constructor = 527021574;
     public TLRPC$InputChannel channel;

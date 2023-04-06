@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_markDialogUnread extends TLObject {
     public static int constructor = -1031349873;
     public int flags;

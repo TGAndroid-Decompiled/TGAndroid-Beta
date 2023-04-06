@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputInvoiceMessage extends TLRPC$InputInvoice {
     public static int constructor = -977967015;
     public int msg_id;

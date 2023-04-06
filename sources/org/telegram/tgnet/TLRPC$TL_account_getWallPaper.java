@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_getWallPaper extends TLObject {
     public static int constructor = -57811990;
     public TLRPC$InputWallPaper wallpaper;

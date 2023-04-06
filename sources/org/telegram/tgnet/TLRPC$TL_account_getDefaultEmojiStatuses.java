@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_getDefaultEmojiStatuses extends TLObject {
     public static int constructor = -696962170;
     public long hash;

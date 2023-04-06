@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_textConcat extends TLRPC$RichText {
     public static int constructor = 2120376535;
 

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_webPageAttributeTheme extends TLObject {
     public static int constructor = 1421174295;
     public ArrayList<TLRPC$Document> documents = new ArrayList<>();

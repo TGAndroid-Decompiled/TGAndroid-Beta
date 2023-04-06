@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updatePeerHistoryTTL extends TLRPC$Update {
     public static int constructor = -1147422299;
     public int flags;

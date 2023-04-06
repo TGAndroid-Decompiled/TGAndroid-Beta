@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_getGroupCallJoinAs extends TLObject {
     public static int constructor = -277077702;
     public TLRPC$InputPeer peer;

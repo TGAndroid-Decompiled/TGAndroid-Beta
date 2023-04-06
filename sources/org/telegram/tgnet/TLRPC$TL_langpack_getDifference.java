@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_langpack_getDifference extends TLObject {
     public static int constructor = -845657435;
     public int from_version;

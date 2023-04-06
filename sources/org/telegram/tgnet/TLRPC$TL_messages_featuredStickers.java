@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_featuredStickers extends TLRPC$messages_FeaturedStickers {
     public static int constructor = -1103615738;
     public int count;

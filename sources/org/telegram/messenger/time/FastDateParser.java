@@ -1,5 +1,7 @@
 package org.telegram.messenger.time;
 
+import j$.util.DesugarTimeZone;
+import j$.util.concurrent.ConcurrentHashMap;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
@@ -19,9 +21,6 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.FileLoader;
-import p008j$.util.DesugarTimeZone;
-import p008j$.util.concurrent.ConcurrentHashMap;
-
 public class FastDateParser implements DateParser, Serializable {
     private static final long serialVersionUID = 2;
     private final int century;
@@ -505,7 +504,7 @@ public class FastDateParser implements DateParser, Serializable {
     }
 
     public static class TimeZoneStrategy extends Strategy {
-        private static final int f842ID = 0;
+        private static final int ID = 0;
         private static final int LONG_DST = 3;
         private static final int LONG_STD = 1;
         private static final int SHORT_DST = 4;

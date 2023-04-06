@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_password extends TLRPC$account_Password {
     public static int constructor = -1787080453;
 

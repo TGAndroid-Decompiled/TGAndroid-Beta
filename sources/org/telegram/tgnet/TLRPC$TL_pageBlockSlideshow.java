@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_pageBlockSlideshow extends TLRPC$PageBlock {
     public static int constructor = 52401552;
     public TLRPC$TL_pageCaption caption;

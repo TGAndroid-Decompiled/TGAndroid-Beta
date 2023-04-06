@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import org.telegram.tgnet.ConnectionsManager;
-
 @TargetApi(28)
 public class NotificationsDisabledReceiver extends BroadcastReceiver {
     @Override
@@ -29,11 +28,11 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                 return;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("received disabled notification channel event for " + stringExtra + " state = " + booleanExtra);
+                FileLog.d("received disabled notification channel event for " + stringExtra + " state = " + booleanExtra);
             }
             if (SystemClock.elapsedRealtime() - AccountInstance.getInstance(intValue).getNotificationsController().lastNotificationChannelCreateTime <= 1000) {
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m35d("received disable notification event right after creating notification channel, ignoring");
+                    FileLog.d("received disable notification event right after creating notification channel, ignoring");
                     return;
                 }
                 return;
@@ -46,7 +45,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m35d("apply channel " + stringExtra + " state");
+                    FileLog.d("apply channel " + stringExtra + " state");
                 }
                 notificationsSettings.edit().putInt(NotificationsController.getGlobalNotificationsKey(2), booleanExtra ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0).commit();
                 AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(2);
@@ -55,7 +54,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m35d("apply channel " + stringExtra + " state");
+                    FileLog.d("apply channel " + stringExtra + " state");
                 }
                 SharedPreferences.Editor edit = notificationsSettings.edit();
                 String globalNotificationsKey = NotificationsController.getGlobalNotificationsKey(0);
@@ -69,7 +68,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m35d("apply channel " + stringExtra + " state");
+                    FileLog.d("apply channel " + stringExtra + " state");
                 }
                 notificationsSettings.edit().putInt(NotificationsController.getGlobalNotificationsKey(1), booleanExtra ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0).commit();
                 AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(1);
@@ -83,7 +82,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.m35d("apply channel " + stringExtra + " state");
+                    FileLog.d("apply channel " + stringExtra + " state");
                 }
                 SharedPreferences.Editor edit2 = notificationsSettings.edit();
                 edit2.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey, booleanExtra ? 2 : 0);

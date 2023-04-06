@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_channels_adminLogResults extends TLObject {
     public static int constructor = -309659827;
     public ArrayList<TLRPC$TL_channelAdminLogEvent> events = new ArrayList<>();

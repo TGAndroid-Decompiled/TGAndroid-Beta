@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageActionInviteToGroupCall extends TLRPC$MessageAction {
     public static int constructor = 1345295095;
 

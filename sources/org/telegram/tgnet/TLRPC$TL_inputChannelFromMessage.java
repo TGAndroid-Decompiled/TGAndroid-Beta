@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputChannelFromMessage extends TLRPC$InputChannel {
     public static int constructor = 1536380829;
     public int msg_id;

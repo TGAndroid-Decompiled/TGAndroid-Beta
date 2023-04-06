@@ -3,9 +3,8 @@ package org.telegram.messenger;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.common.sdkinternal.MlKitContext;
-import com.google.mlkit.p007nl.languageid.LanguageIdentification;
+import com.google.mlkit.nl.languageid.LanguageIdentification;
 import org.telegram.messenger.LanguageDetector;
-
 public class LanguageDetector {
 
     public interface ExceptionCallback {
@@ -32,23 +31,23 @@ public class LanguageDetector {
                 if (!z) {
                     detectLanguage(str, stringCallback, exceptionCallback, true);
                     return;
-                } else if (exceptionCallback != null) {
-                    exceptionCallback.run(e);
-                    return;
-                } else {
-                    return;
                 }
+                if (exceptionCallback != null) {
+                    exceptionCallback.run(e);
+                }
+                FileLog.e((Throwable) e, false);
+                return;
             } catch (Exception e2) {
                 if (exceptionCallback != null) {
                     exceptionCallback.run(e2);
-                    return;
                 }
+                FileLog.e(e2);
                 return;
-            } catch (Throwable unused) {
+            } catch (Throwable th) {
                 if (exceptionCallback != null) {
                     exceptionCallback.run(null);
-                    return;
                 }
+                FileLog.e(th, false);
                 return;
             }
         }

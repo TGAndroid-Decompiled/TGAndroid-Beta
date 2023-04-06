@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$DialogFilter extends TLObject {
     public boolean bots;
     public boolean broadcasts;
@@ -12,7 +11,7 @@ public abstract class TLRPC$DialogFilter extends TLObject {
     public boolean exclude_read;
     public int flags;
     public boolean groups;
-    public int f864id;
+    public int id;
     public boolean non_contacts;
     public String title;
     public ArrayList<TLRPC$InputPeer> pinned_peers = new ArrayList<>();

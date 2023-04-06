@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_toggleStickerSets extends TLObject {
     public static int constructor = -1257951254;
     public boolean archive;

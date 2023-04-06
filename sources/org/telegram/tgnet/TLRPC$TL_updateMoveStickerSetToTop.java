@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateMoveStickerSetToTop extends TLRPC$Update {
     public static int constructor = -2030252155;
     public boolean emojis;

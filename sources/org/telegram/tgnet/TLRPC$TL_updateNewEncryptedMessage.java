@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateNewEncryptedMessage extends TLRPC$Update {
     public static int constructor = 314359194;
     public TLRPC$EncryptedMessage message;

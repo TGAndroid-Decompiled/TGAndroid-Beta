@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getOldFeaturedStickers extends TLObject {
     public static int constructor = 2127598753;
     public long hash;

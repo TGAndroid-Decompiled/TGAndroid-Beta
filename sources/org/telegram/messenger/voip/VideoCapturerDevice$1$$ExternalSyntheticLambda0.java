@@ -1,7 +1,6 @@
 package org.telegram.messenger.voip;
 
 import org.telegram.messenger.voip.VideoCapturerDevice;
-
 public final class VideoCapturerDevice$1$$ExternalSyntheticLambda0 implements Runnable {
     public static final VideoCapturerDevice$1$$ExternalSyntheticLambda0 INSTANCE = new VideoCapturerDevice$1$$ExternalSyntheticLambda0();
 
@@ -10,6 +9,6 @@ public final class VideoCapturerDevice$1$$ExternalSyntheticLambda0 implements Ru
 
     @Override
     public final void run() {
-        VideoCapturerDevice.C11171.lambda$onStop$0();
+        VideoCapturerDevice.AnonymousClass1.lambda$onStop$0();
     }
 }

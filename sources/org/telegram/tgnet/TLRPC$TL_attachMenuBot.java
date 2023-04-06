@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
     public static int constructor = -928371502;
     public long bot_id;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_replyKeyboardMarkup extends TLRPC$ReplyMarkup {
     public static int constructor = -2049074735;
 
@@ -10,6 +9,7 @@ public class TLRPC$TL_replyKeyboardMarkup extends TLRPC$ReplyMarkup {
         this.resize = (readInt32 & 1) != 0;
         this.single_use = (readInt32 & 2) != 0;
         this.selective = (readInt32 & 4) != 0;
+        this.is_persistent = (readInt32 & 16) != 0;
         int readInt322 = abstractSerializedData.readInt32(z);
         if (readInt322 != 481674261) {
             if (z) {
@@ -39,12 +39,14 @@ public class TLRPC$TL_replyKeyboardMarkup extends TLRPC$ReplyMarkup {
         this.flags = i2;
         int i3 = this.selective ? i2 | 4 : i2 & (-5);
         this.flags = i3;
-        abstractSerializedData.writeInt32(i3);
+        int i4 = this.is_persistent ? i3 | 16 : i3 & (-17);
+        this.flags = i4;
+        abstractSerializedData.writeInt32(i4);
         abstractSerializedData.writeInt32(481674261);
         int size = this.rows.size();
         abstractSerializedData.writeInt32(size);
-        for (int i4 = 0; i4 < size; i4++) {
-            this.rows.get(i4).serializeToStream(abstractSerializedData);
+        for (int i5 = 0; i5 < size; i5++) {
+            this.rows.get(i5).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 8) != 0) {
             abstractSerializedData.writeString(this.placeholder);

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_toggleSlowMode extends TLObject {
     public static int constructor = -304832784;
     public TLRPC$InputChannel channel;

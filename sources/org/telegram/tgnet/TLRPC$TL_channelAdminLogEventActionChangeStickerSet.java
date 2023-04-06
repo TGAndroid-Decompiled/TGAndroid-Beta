@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionChangeStickerSet extends TLRPC$ChannelAdminLogEventAction {
     public static int constructor = -1312568665;
     public TLRPC$InputStickerSet new_stickerset;

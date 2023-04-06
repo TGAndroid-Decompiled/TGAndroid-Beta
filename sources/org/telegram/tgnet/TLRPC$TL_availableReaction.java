@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_availableReaction extends TLObject {
     public static int constructor = -1065882623;
     public TLRPC$Document activate_animation;

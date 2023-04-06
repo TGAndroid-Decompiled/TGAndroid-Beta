@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_inputPrivacyValueAllowChatParticipants extends TLRPC$InputPrivacyRule {
     public static int constructor = -2079962673;
     public ArrayList<Long> chats = new ArrayList<>();

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_contacts_resolveUsername extends TLObject {
     public static int constructor = -113456221;
     public String username;

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_chatFull extends TLObject {
     public static int constructor = -438840932;
     public TLRPC$ChatFull full_chat;

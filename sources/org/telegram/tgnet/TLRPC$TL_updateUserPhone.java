@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateUserPhone extends TLRPC$Update {
     public static int constructor = 88680979;
     public String phone;

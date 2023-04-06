@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_langPackLanguage extends TLObject {
     public static int constructor = -288727837;
     public String base_lang_code;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_updateEmojiStatus extends TLObject {
     public static int constructor = -70001045;
     public TLRPC$EmojiStatus emoji_status;

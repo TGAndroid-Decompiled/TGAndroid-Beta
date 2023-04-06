@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_groupCallParticipantVideo extends TLObject {
     public static int constructor = 1735736008;
     public int audio_source;

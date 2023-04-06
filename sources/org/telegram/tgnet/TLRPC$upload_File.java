@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$upload_File extends TLObject {
     public NativeByteBuffer bytes;
     public int dc_id;

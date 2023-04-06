@@ -5,8 +5,7 @@ import java.io.StringWriter;
 import java.util.EnumSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.tgnet.ConnectionsManager;
-
+import org.telegram.messenger.LiteMode;
 public class Logging {
     private static final Logger fallbackLogger = createFallbackLogger();
     private static Loggable loggable;
@@ -60,12 +59,12 @@ public class Logging {
         TRACE_APICALL(16),
         TRACE_DEFAULT(255),
         TRACE_MODULECALL(32),
-        TRACE_MEMORY(256),
-        TRACE_TIMER(512),
-        TRACE_STREAM(ConnectionsManager.RequestFlagDoNotWaitFloodWait),
-        TRACE_DEBUG(2048),
-        TRACE_INFO(4096),
-        TRACE_TERSEINFO(8192),
+        TRACE_MEMORY(LiteMode.FLAG_CHAT_BLUR),
+        TRACE_TIMER(LiteMode.FLAG_CALLS_ANIMATIONS),
+        TRACE_STREAM(1024),
+        TRACE_DEBUG(LiteMode.FLAG_AUTOPLAY_GIFS),
+        TRACE_INFO(LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM),
+        TRACE_TERSEINFO(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM),
         TRACE_ALL(65535);
         
         public final int level;
@@ -106,7 +105,7 @@ public class Logging {
         } else if (loggingEnabled) {
             nativeLog(severity.ordinal(), str, str2);
         } else {
-            int i = C43171.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
+            int i = AnonymousClass1.$SwitchMap$org$webrtc$Logging$Severity[severity.ordinal()];
             if (i == 1) {
                 level = Level.SEVERE;
             } else if (i == 2) {
@@ -121,7 +120,7 @@ public class Logging {
         }
     }
 
-    public static class C43171 {
+    public static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$Logging$Severity;
 
         static {
@@ -142,33 +141,33 @@ public class Logging {
         }
     }
 
-    public static void m9d(String str, String str2) {
+    public static void d(String str, String str2) {
         log(Severity.LS_INFO, str, str2);
     }
 
-    public static void m8e(String str, String str2) {
+    public static void e(String str, String str2) {
         log(Severity.LS_ERROR, str, str2);
     }
 
-    public static void m5w(String str, String str2) {
+    public static void w(String str, String str2) {
         log(Severity.LS_WARNING, str, str2);
     }
 
-    public static void m7e(String str, String str2, Throwable th) {
+    public static void e(String str, String str2, Throwable th) {
         Severity severity = Severity.LS_ERROR;
         log(severity, str, str2);
         log(severity, str, th.toString());
         log(severity, str, getStackTraceString(th));
     }
 
-    public static void m4w(String str, String str2, Throwable th) {
+    public static void w(String str, String str2, Throwable th) {
         Severity severity = Severity.LS_WARNING;
         log(severity, str, str2);
         log(severity, str, th.toString());
         log(severity, str, getStackTraceString(th));
     }
 
-    public static void m6v(String str, String str2) {
+    public static void v(String str, String str2) {
         log(Severity.LS_VERBOSE, str, str2);
     }
 

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputMediaUploadedPhoto extends TLRPC$InputMedia {
     public static int constructor = 505969924;
 

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_decryptedMessageMediaDocument extends TLRPC$DecryptedMessageMedia {
-    public static int constructor = 2063502050;
+    public static int constructor = 1790809986;
     public byte[] thumb;
 
     @Override
@@ -10,9 +9,9 @@ public class TLRPC$TL_decryptedMessageMediaDocument extends TLRPC$DecryptedMessa
         this.thumb_w = abstractSerializedData.readInt32(z);
         this.thumb_h = abstractSerializedData.readInt32(z);
         this.mime_type = abstractSerializedData.readString(z);
-        this.size = abstractSerializedData.readInt32(z);
+        this.size = abstractSerializedData.readInt64(z);
         this.key = abstractSerializedData.readByteArray(z);
-        this.f861iv = abstractSerializedData.readByteArray(z);
+        this.iv = abstractSerializedData.readByteArray(z);
         int readInt32 = abstractSerializedData.readInt32(z);
         if (readInt32 != 481674261) {
             if (z) {
@@ -38,9 +37,9 @@ public class TLRPC$TL_decryptedMessageMediaDocument extends TLRPC$DecryptedMessa
         abstractSerializedData.writeInt32(this.thumb_w);
         abstractSerializedData.writeInt32(this.thumb_h);
         abstractSerializedData.writeString(this.mime_type);
-        abstractSerializedData.writeInt32((int) this.size);
+        abstractSerializedData.writeInt64(this.size);
         abstractSerializedData.writeByteArray(this.key);
-        abstractSerializedData.writeByteArray(this.f861iv);
+        abstractSerializedData.writeByteArray(this.iv);
         abstractSerializedData.writeInt32(481674261);
         int size = this.attributes.size();
         abstractSerializedData.writeInt32(size);

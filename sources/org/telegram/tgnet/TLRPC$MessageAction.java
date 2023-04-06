@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$MessageAction extends TLObject {
     public String address;
     public long amount;
@@ -9,6 +8,8 @@ public abstract class TLRPC$MessageAction extends TLObject {
     public long call_id;
     public long channel_id;
     public long chat_id;
+    public long cryptoAmount;
+    public String cryptoCurrency;
     public String currency;
     public int duration;
     public TLRPC$DecryptedMessageAction encryptedAction;
@@ -217,28 +218,22 @@ public abstract class TLRPC$MessageAction extends TLObject {
             case -1434950843:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionSetChatTheme();
                 break;
-            case -1415514682:
+            case -1410748418:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -1415514682;
+                    public static int constructor = -1410748418;
+                    public String domain;
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.currency = abstractSerializedData2.readString(z2);
-                        this.amount = abstractSerializedData2.readInt64(z2);
-                        this.months = abstractSerializedData2.readInt32(z2);
+                        this.domain = abstractSerializedData2.readString(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeString(this.currency);
-                        abstractSerializedData2.writeInt64(this.amount);
-                        abstractSerializedData2.writeInt32(this.months);
+                        abstractSerializedData2.writeString(this.domain);
                     }
                 };
-                break;
-            case -1410748418:
-                tLRPC$MessageAction = new TLRPC$TL_messageActionBotAllowed();
                 break;
             case -1336546578:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChannelMigrateFrom() {
@@ -340,6 +335,39 @@ public abstract class TLRPC$MessageAction extends TLObject {
             case -1064024032:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionTopicEdit();
                 break;
+            case -988359047:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionBotAllowed();
+                break;
+            case -935499028:
+                tLRPC$MessageAction = new TLRPC$MessageAction() {
+                    public static int constructor = -935499028;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.flags = abstractSerializedData2.readInt32(z2);
+                        this.currency = abstractSerializedData2.readString(z2);
+                        this.amount = abstractSerializedData2.readInt64(z2);
+                        this.months = abstractSerializedData2.readInt32(z2);
+                        if ((this.flags & 1) != 0) {
+                            this.cryptoCurrency = abstractSerializedData2.readString(z2);
+                            this.cryptoAmount = abstractSerializedData2.readInt64(z2);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(this.flags);
+                        abstractSerializedData2.writeString(this.currency);
+                        abstractSerializedData2.writeInt64(this.amount);
+                        abstractSerializedData2.writeInt32(this.months);
+                        if ((this.flags & 1) != 0) {
+                            abstractSerializedData2.writeString(this.cryptoCurrency);
+                            abstractSerializedData2.writeInt64(this.cryptoAmount);
+                        }
+                    }
+                };
+                break;
             case -648257196:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionSecureValuesSent();
                 break;
@@ -407,6 +435,9 @@ public abstract class TLRPC$MessageAction extends TLObject {
                         abstractSerializedData2.writeString(this.message);
                     }
                 };
+                break;
+            case -25742243:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionRequestedPeer();
                 break;
             case 29007925:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {

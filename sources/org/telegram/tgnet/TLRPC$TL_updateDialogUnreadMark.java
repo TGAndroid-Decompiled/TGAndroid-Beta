@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateDialogUnreadMark extends TLRPC$Update {
     public static int constructor = -513517117;
     public int flags;

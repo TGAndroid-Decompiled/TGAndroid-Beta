@@ -52,7 +52,6 @@ import org.telegram.tgnet.TLRPC$Update;
 import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$messages_Messages;
-
 @SuppressLint({"MissingPermission"})
 public class LocationController extends BaseController implements NotificationCenter.NotificationCenterDelegate, ILocationServiceProvider.IAPIConnectionCallbacks, ILocationServiceProvider.IAPIOnConnectionFailedListener {
     private static final int BACKGROUD_UPDATE_TIME = 30000;
@@ -327,7 +326,7 @@ public class LocationController extends BaseController implements NotificationCe
                 startFusedLocationRequest(true);
             }
         } catch (Throwable th) {
-            FileLog.m32e(th);
+            FileLog.e(th);
         }
     }
 
@@ -402,7 +401,7 @@ public class LocationController extends BaseController implements NotificationCe
                     ApplicationLoader.getLocationServiceProvider().requestLocationUpdates(this.locationRequest, this.fusedLocationListener);
                     return;
                 } catch (Throwable th) {
-                    FileLog.m32e(th);
+                    FileLog.e(th);
                     return;
                 }
             }
@@ -462,8 +461,8 @@ public class LocationController extends BaseController implements NotificationCe
                 }
                 final TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
                 tLRPC$TL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-                tLRPC$TL_messages_editMessage.f940id = sharingLocationInfo.mid;
-                tLRPC$TL_messages_editMessage.flags |= 16384;
+                tLRPC$TL_messages_editMessage.id = sharingLocationInfo.mid;
+                tLRPC$TL_messages_editMessage.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
                 TLRPC$TL_inputMediaGeoLive tLRPC$TL_inputMediaGeoLive = new TLRPC$TL_inputMediaGeoLive();
                 tLRPC$TL_messages_editMessage.media = tLRPC$TL_inputMediaGeoLive;
                 tLRPC$TL_inputMediaGeoLive.stopped = false;
@@ -680,7 +679,7 @@ public class LocationController extends BaseController implements NotificationCe
     public void addSharingLocation(TLRPC$Message tLRPC$Message) {
         final SharingLocationInfo sharingLocationInfo = new SharingLocationInfo();
         sharingLocationInfo.did = tLRPC$Message.dialog_id;
-        sharingLocationInfo.mid = tLRPC$Message.f881id;
+        sharingLocationInfo.mid = tLRPC$Message.id;
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         sharingLocationInfo.period = tLRPC$MessageMedia.period;
         int i = tLRPC$MessageMedia.proximity_notification_radius;
@@ -754,7 +753,7 @@ public class LocationController extends BaseController implements NotificationCe
             executeFast.step();
             executeFast.dispose();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 
@@ -816,7 +815,7 @@ public class LocationController extends BaseController implements NotificationCe
                 getMessagesStorage().getUsersInternal(TextUtils.join(",", arrayList4), arrayList2);
             }
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
         if (arrayList.isEmpty()) {
             return;
@@ -900,7 +899,7 @@ public class LocationController extends BaseController implements NotificationCe
                 nativeByteBuffer.reuse();
             }
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 
@@ -919,8 +918,8 @@ public class LocationController extends BaseController implements NotificationCe
         if (sharingLocationInfo != null) {
             TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
             tLRPC$TL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-            tLRPC$TL_messages_editMessage.f940id = sharingLocationInfo.mid;
-            tLRPC$TL_messages_editMessage.flags |= 16384;
+            tLRPC$TL_messages_editMessage.id = sharingLocationInfo.mid;
+            tLRPC$TL_messages_editMessage.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
             TLRPC$TL_inputMediaGeoLive tLRPC$TL_inputMediaGeoLive = new TLRPC$TL_inputMediaGeoLive();
             tLRPC$TL_messages_editMessage.media = tLRPC$TL_inputMediaGeoLive;
             tLRPC$TL_inputMediaGeoLive.stopped = true;
@@ -965,7 +964,7 @@ public class LocationController extends BaseController implements NotificationCe
         try {
             ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, LocationSharingService.class));
         } catch (Throwable th) {
-            FileLog.m32e(th);
+            FileLog.e(th);
         }
     }
 
@@ -987,8 +986,8 @@ public class LocationController extends BaseController implements NotificationCe
             SharingLocationInfo sharingLocationInfo = this.sharingLocations.get(i);
             TLRPC$TL_messages_editMessage tLRPC$TL_messages_editMessage = new TLRPC$TL_messages_editMessage();
             tLRPC$TL_messages_editMessage.peer = getMessagesController().getInputPeer(sharingLocationInfo.did);
-            tLRPC$TL_messages_editMessage.f940id = sharingLocationInfo.mid;
-            tLRPC$TL_messages_editMessage.flags |= 16384;
+            tLRPC$TL_messages_editMessage.id = sharingLocationInfo.mid;
+            tLRPC$TL_messages_editMessage.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
             TLRPC$TL_inputMediaGeoLive tLRPC$TL_inputMediaGeoLive = new TLRPC$TL_inputMediaGeoLive();
             tLRPC$TL_messages_editMessage.media = tLRPC$TL_inputMediaGeoLive;
             tLRPC$TL_inputMediaGeoLive.stopped = true;
@@ -1056,7 +1055,7 @@ public class LocationController extends BaseController implements NotificationCe
                 ApplicationLoader.getLocationServiceProvider().removeLocationUpdates(this.fusedLocationListener);
                 this.apiClient.disconnect();
             } catch (Throwable th) {
-                FileLog.m31e(th, false);
+                FileLog.e(th, false);
             }
         }
         this.locationManager.removeUpdates(this.gpsLocationListener);
@@ -1152,7 +1151,7 @@ public class LocationController extends BaseController implements NotificationCe
                     tLRPC$TL_messages_readMessageContents = new TLRPC$TL_channels_readMessageContents();
                     int size = arrayList.size();
                     while (i < size) {
-                        tLRPC$TL_messages_readMessageContents.f900id.add(Integer.valueOf(arrayList.get(i).f881id));
+                        tLRPC$TL_messages_readMessageContents.id.add(Integer.valueOf(arrayList.get(i).id));
                         i++;
                     }
                     tLRPC$TL_messages_readMessageContents.channel = getMessagesController().getInputChannel(j2);
@@ -1167,7 +1166,7 @@ public class LocationController extends BaseController implements NotificationCe
             tLRPC$TL_messages_readMessageContents = new TLRPC$TL_messages_readMessageContents();
             int size2 = arrayList.size();
             while (i < size2) {
-                tLRPC$TL_messages_readMessageContents.f956id.add(Integer.valueOf(arrayList.get(i).f881id));
+                tLRPC$TL_messages_readMessageContents.id.add(Integer.valueOf(arrayList.get(i).id));
                 i++;
             }
             getConnectionsManager().sendRequest(tLRPC$TL_messages_readMessageContents, new RequestDelegate() {

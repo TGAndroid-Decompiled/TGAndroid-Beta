@@ -1,7 +1,6 @@
 package org.telegram.messenger.audioinfo.mp3;
 
 import org.telegram.messenger.OneUIUtilities;
-
 public class MP3Frame {
     private final byte[] bytes;
     private final Header header;

@@ -1,7 +1,6 @@
 package org.telegram.messenger.camera;
 
 import java.util.Comparator;
-
 public final class CameraController$$ExternalSyntheticLambda17 implements Comparator {
     public static final CameraController$$ExternalSyntheticLambda17 INSTANCE = new CameraController$$ExternalSyntheticLambda17();
 

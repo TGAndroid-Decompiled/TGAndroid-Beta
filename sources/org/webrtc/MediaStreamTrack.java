@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public class MediaStreamTrack {
     public static final String AUDIO_TRACK_KIND = "audio";
     public static final String VIDEO_TRACK_KIND = "video";
@@ -73,7 +72,7 @@ public class MediaStreamTrack {
         this.nativeTrack = j;
     }
 
-    public String m3id() {
+    public String id() {
         checkMediaStreamTrackExists();
         return nativeGetId(this.nativeTrack);
     }

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_checkChatInvite extends TLObject {
     public static int constructor = 1051570619;
     public String hash;

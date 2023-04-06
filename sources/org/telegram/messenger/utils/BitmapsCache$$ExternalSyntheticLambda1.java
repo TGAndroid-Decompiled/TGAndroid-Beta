@@ -1,5 +1,4 @@
 package org.telegram.messenger.utils;
-
 public final class BitmapsCache$$ExternalSyntheticLambda1 implements Runnable {
     public static final BitmapsCache$$ExternalSyntheticLambda1 INSTANCE = new BitmapsCache$$ExternalSyntheticLambda1();
 

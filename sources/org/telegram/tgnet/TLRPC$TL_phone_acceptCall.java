@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_acceptCall extends TLObject {
     public static int constructor = 1003664544;
     public byte[] g_b;

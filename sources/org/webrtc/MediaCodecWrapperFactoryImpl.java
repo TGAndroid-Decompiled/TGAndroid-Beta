@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.Surface;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-
 class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
 
     private static class MediaCodecWrapperImpl implements MediaCodecWrapper {

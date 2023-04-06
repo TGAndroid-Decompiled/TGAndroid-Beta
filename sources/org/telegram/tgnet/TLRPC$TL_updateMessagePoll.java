@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateMessagePoll extends TLRPC$Update {
     public static int constructor = -1398708869;
     public int flags;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_statsGraphAsync extends TLRPC$StatsGraph {
     public static int constructor = 1244130093;
     public String token;

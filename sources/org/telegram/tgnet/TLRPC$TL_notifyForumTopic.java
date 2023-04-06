@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_notifyForumTopic extends TLRPC$NotifyPeer {
     public static int constructor = 577659656;
     public TLRPC$Peer peer;

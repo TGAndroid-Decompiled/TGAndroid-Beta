@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_help_getCountriesList extends TLObject {
     public static int constructor = 1935116200;
     public int hash;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_toggleParticipantsHidden extends TLObject {
     public static int constructor = 1785624660;
     public TLRPC$InputChannel channel;

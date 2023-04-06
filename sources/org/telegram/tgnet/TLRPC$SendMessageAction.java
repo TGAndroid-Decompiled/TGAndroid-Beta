@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$SendMessageAction extends TLObject {
     public int progress;
 

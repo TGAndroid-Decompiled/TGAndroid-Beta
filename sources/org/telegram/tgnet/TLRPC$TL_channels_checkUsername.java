@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_checkUsername extends TLObject {
     public static int constructor = 283557164;
     public TLRPC$InputChannel channel;

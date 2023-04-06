@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$ReactionCount extends TLObject {
     public boolean chosen;
     public int chosen_order;

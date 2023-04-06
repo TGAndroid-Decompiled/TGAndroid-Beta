@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_fileLocation_layer82 extends TLRPC$TL_fileLocation_layer97 {
     public static int constructor = 1406570614;
 

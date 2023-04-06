@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_langPackDifference extends TLObject {
     public static int constructor = -209337866;
     public int from_version;

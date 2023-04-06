@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_stats_getMegagroupStats extends TLObject {
     public static int constructor = -589330937;
     public TLRPC$InputChannel channel;

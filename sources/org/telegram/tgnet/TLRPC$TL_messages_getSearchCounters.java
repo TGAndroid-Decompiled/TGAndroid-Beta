@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_getSearchCounters extends TLObject {
     public static int constructor = 11435201;
     public ArrayList<TLRPC$MessagesFilter> filters = new ArrayList<>();

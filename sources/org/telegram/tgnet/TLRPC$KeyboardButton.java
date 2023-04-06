@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$KeyboardButton extends TLObject {
     public TLRPC$InputUser bot;
     public int button_id;
@@ -199,6 +198,9 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                         abstractSerializedData2.writeString(this.query);
                     }
                 };
+                break;
+            case 218842764:
+                tLRPC$KeyboardButton = new TLRPC$TL_keyboardButtonRequestPeer();
                 break;
             case 280464681:
                 tLRPC$KeyboardButton = new TLRPC$TL_keyboardButtonUrlAuth();

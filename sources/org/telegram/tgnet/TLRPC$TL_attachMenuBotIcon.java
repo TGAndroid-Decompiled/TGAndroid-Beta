@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_attachMenuBotIcon extends TLObject {
     public static int constructor = -1297663893;
     public ArrayList<TLRPC$TL_attachMenuBotIconColor> colors = new ArrayList<>();

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputMessagesFilterPhoneCalls extends TLRPC$MessagesFilter {
     public static int constructor = -2134272152;
 

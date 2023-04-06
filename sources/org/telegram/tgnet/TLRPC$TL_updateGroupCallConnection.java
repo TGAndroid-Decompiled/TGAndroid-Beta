@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateGroupCallConnection extends TLRPC$Update {
     public static int constructor = 192428418;
     public int flags;

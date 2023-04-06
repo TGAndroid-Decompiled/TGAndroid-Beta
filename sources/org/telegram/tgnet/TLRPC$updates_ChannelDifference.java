@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$updates_ChannelDifference extends TLObject {
     public TLRPC$Dialog dialog;
     public int flags;

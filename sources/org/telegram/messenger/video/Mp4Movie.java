@@ -5,7 +5,6 @@ import android.media.MediaFormat;
 import com.googlecode.mp4parser.util.Matrix;
 import java.io.File;
 import java.util.ArrayList;
-
 public class Mp4Movie {
     private File cacheFile;
     private int height;

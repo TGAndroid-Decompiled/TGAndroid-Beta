@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_webDocument extends TLRPC$WebDocument {
     public static int constructor = 475467473;
 

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_affectedFoundMessages extends TLObject {
     public static int constructor = -275956116;
     public ArrayList<Integer> messages = new ArrayList<>();

@@ -1,14 +1,13 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_help_appUpdate extends TLRPC$help_AppUpdate {
     public static int constructor = -860107216;
     public boolean can_not_skip;
     public TLRPC$Document document;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
-    public int f914id;
+    public int id;
     public TLRPC$Document sticker;
     public String text;
     public String url;
@@ -19,7 +18,7 @@ public class TLRPC$TL_help_appUpdate extends TLRPC$help_AppUpdate {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.can_not_skip = (readInt32 & 1) != 0;
-        this.f914id = abstractSerializedData.readInt32(z);
+        this.id = abstractSerializedData.readInt32(z);
         this.version = abstractSerializedData.readString(z);
         this.text = abstractSerializedData.readString(z);
         int readInt322 = abstractSerializedData.readInt32(z);
@@ -54,7 +53,7 @@ public class TLRPC$TL_help_appUpdate extends TLRPC$help_AppUpdate {
         int i = this.can_not_skip ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
-        abstractSerializedData.writeInt32(this.f914id);
+        abstractSerializedData.writeInt32(this.id);
         abstractSerializedData.writeString(this.version);
         abstractSerializedData.writeString(this.text);
         abstractSerializedData.writeInt32(481674261);

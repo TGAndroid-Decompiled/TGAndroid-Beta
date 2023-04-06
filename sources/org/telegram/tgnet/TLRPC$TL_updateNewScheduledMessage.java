@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateNewScheduledMessage extends TLRPC$Update {
     public static int constructor = 967122427;
     public TLRPC$Message message;

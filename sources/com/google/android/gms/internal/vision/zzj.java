@@ -3,7 +3,6 @@ package com.google.android.gms.internal.vision;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelReader;
-
 public final class zzj implements Parcelable.Creator<zzk> {
     @Override
     public final zzk[] newArray(int i) {

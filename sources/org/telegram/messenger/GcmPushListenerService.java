@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import java.util.Map;
-
 public class GcmPushListenerService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -11,7 +10,7 @@ public class GcmPushListenerService extends FirebaseMessagingService {
         Map<String, String> data = remoteMessage.getData();
         long sentTime = remoteMessage.getSentTime();
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d("FCM received data: " + data + " from: " + from);
+            FileLog.d("FCM received data: " + data + " from: " + from);
         }
         PushListenerController.processRemoteMessage(2, data.get("p"), sentTime);
     }
@@ -28,7 +27,7 @@ public class GcmPushListenerService extends FirebaseMessagingService {
 
     public static void lambda$onNewToken$0(String str) {
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d("Refreshed FCM token: " + str);
+            FileLog.d("Refreshed FCM token: " + str);
         }
         ApplicationLoader.postInitApplication();
         PushListenerController.sendRegistrationToServer(2, str);

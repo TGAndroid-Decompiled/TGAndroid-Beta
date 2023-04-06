@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$LangPackString extends TLObject {
     public String few_value;
     public int flags;

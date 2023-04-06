@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_getPrivacy extends TLObject {
     public static int constructor = -623130288;
     public TLRPC$InputPrivacyKey key;

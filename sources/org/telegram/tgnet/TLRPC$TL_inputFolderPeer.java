@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputFolderPeer extends TLObject {
     public static int constructor = -70073706;
     public int folder_id;

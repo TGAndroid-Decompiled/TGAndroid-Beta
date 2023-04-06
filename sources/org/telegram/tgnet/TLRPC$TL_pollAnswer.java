@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pollAnswer extends TLObject {
     public static int constructor = 1823064809;
     public byte[] option;

@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import java.util.Comparator;
 import org.telegram.messenger.FileLoadOperation;
-
 public final class FileLoadOperation$$ExternalSyntheticLambda15 implements Comparator {
     public static final FileLoadOperation$$ExternalSyntheticLambda15 INSTANCE = new FileLoadOperation$$ExternalSyntheticLambda15();
 

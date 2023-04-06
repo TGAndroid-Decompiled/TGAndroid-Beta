@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$MessageFwdHeader extends TLObject {
     public int channel_post;
     public int date;

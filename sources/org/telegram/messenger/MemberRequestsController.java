@@ -12,7 +12,6 @@ import org.telegram.tgnet.TLRPC$TL_messages_chatInviteImporters;
 import org.telegram.tgnet.TLRPC$TL_messages_getChatInviteImporters;
 import org.telegram.tgnet.TLRPC$TL_updatePendingJoinRequests;
 import org.telegram.tgnet.TLRPC$User;
-
 public class MemberRequestsController extends BaseController {
     private static final MemberRequestsController[] instances = new MemberRequestsController[4];
     private final LongSparseArray<TLRPC$TL_messages_chatInviteImporters> firstImportersCache;
@@ -48,7 +47,7 @@ public class MemberRequestsController extends BaseController {
         tLRPC$TL_messages_getChatInviteImporters.requested = true;
         tLRPC$TL_messages_getChatInviteImporters.limit = 30;
         if (!isEmpty) {
-            tLRPC$TL_messages_getChatInviteImporters.f943q = str;
+            tLRPC$TL_messages_getChatInviteImporters.q = str;
             tLRPC$TL_messages_getChatInviteImporters.flags |= 4;
         }
         if (tLRPC$TL_chatInviteImporter == null) {

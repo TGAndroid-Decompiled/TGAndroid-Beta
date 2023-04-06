@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageEntityCode extends TLRPC$MessageEntity {
     public static int constructor = 681706865;
 

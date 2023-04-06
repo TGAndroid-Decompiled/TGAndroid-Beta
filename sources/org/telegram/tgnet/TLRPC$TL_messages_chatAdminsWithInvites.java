@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_chatAdminsWithInvites extends TLObject {
     public static int constructor = -1231326505;
     public ArrayList<TLRPC$TL_chatAdminWithInvites> admins = new ArrayList<>();

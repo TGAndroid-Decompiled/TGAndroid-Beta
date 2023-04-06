@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import org.webrtc.EncodedImage;
-
 public interface VideoEncoder {
 
     public interface Callback {
@@ -125,36 +124,36 @@ public interface VideoEncoder {
         public static final ScalingSettings OFF = new ScalingSettings();
         public final Integer high;
         public final Integer low;
-        public final boolean f1177on;
+        public final boolean on;
 
         public ScalingSettings(int i, int i2) {
-            this.f1177on = true;
+            this.on = true;
             this.low = Integer.valueOf(i);
             this.high = Integer.valueOf(i2);
         }
 
         private ScalingSettings() {
-            this.f1177on = false;
+            this.on = false;
             this.low = null;
             this.high = null;
         }
 
         @Deprecated
         public ScalingSettings(boolean z) {
-            this.f1177on = z;
+            this.on = z;
             this.low = null;
             this.high = null;
         }
 
         @Deprecated
         public ScalingSettings(boolean z, int i, int i2) {
-            this.f1177on = z;
+            this.on = z;
             this.low = Integer.valueOf(i);
             this.high = Integer.valueOf(i2);
         }
 
         public String toString() {
-            if (this.f1177on) {
+            if (this.on) {
                 return "[ " + this.low + ", " + this.high + " ]";
             }
             return "OFF";

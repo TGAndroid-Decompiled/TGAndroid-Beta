@@ -1,20 +1,19 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$Video extends TLObject {
     public long access_hash;
     public String caption;
     public int date;
     public int dc_id;
     public int duration;
-    public int f997h;
-    public long f998id;
-    public byte[] f999iv;
+    public int h;
+    public long id;
+    public byte[] iv;
     public byte[] key;
     public String mime_type;
     public int size;
     public TLRPC$PhotoSize thumb;
     public long user_id;
-    public int f1000w;
+    public int w;
 
     public static TLRPC$Video TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Video tLRPC$Video;
@@ -25,13 +24,13 @@ public abstract class TLRPC$Video extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f998id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f998id);
+                        abstractSerializedData2.writeInt64(this.id);
                     }
                 };
                 break;
@@ -41,7 +40,7 @@ public abstract class TLRPC$Video extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f998id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.user_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -49,14 +48,14 @@ public abstract class TLRPC$Video extends TLObject {
                         this.size = abstractSerializedData2.readInt32(z2);
                         this.thumb = TLRPC$PhotoSize.TLdeserialize(0L, 0L, 0L, abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.dc_id = abstractSerializedData2.readInt32(z2);
-                        this.f1000w = abstractSerializedData2.readInt32(z2);
-                        this.f997h = abstractSerializedData2.readInt32(z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f998id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.date);
@@ -64,8 +63,8 @@ public abstract class TLRPC$Video extends TLObject {
                         abstractSerializedData2.writeInt32(this.size);
                         this.thumb.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.dc_id);
-                        abstractSerializedData2.writeInt32(this.f1000w);
-                        abstractSerializedData2.writeInt32(this.f997h);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
                     }
                 };
                 break;
@@ -78,7 +77,7 @@ public abstract class TLRPC$Video extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f998id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.user_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -88,14 +87,14 @@ public abstract class TLRPC$Video extends TLObject {
                         this.size = abstractSerializedData2.readInt32(z2);
                         this.thumb = TLRPC$PhotoSize.TLdeserialize(0L, 0L, 0L, abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.dc_id = abstractSerializedData2.readInt32(z2);
-                        this.f1000w = abstractSerializedData2.readInt32(z2);
-                        this.f997h = abstractSerializedData2.readInt32(z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f998id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.date);
@@ -105,8 +104,8 @@ public abstract class TLRPC$Video extends TLObject {
                         abstractSerializedData2.writeInt32(this.size);
                         this.thumb.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.dc_id);
-                        abstractSerializedData2.writeInt32(this.f1000w);
-                        abstractSerializedData2.writeInt32(this.f997h);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
                     }
                 };
                 break;
@@ -116,7 +115,7 @@ public abstract class TLRPC$Video extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f998id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.user_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -125,16 +124,16 @@ public abstract class TLRPC$Video extends TLObject {
                         this.size = abstractSerializedData2.readInt32(z2);
                         this.thumb = TLRPC$PhotoSize.TLdeserialize(0L, 0L, 0L, abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.dc_id = abstractSerializedData2.readInt32(z2);
-                        this.f1000w = abstractSerializedData2.readInt32(z2);
-                        this.f997h = abstractSerializedData2.readInt32(z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
                         this.key = abstractSerializedData2.readByteArray(z2);
-                        this.f999iv = abstractSerializedData2.readByteArray(z2);
+                        this.iv = abstractSerializedData2.readByteArray(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f998id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.date);
@@ -143,10 +142,10 @@ public abstract class TLRPC$Video extends TLObject {
                         abstractSerializedData2.writeInt32(this.size);
                         this.thumb.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.dc_id);
-                        abstractSerializedData2.writeInt32(this.f1000w);
-                        abstractSerializedData2.writeInt32(this.f997h);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
                         abstractSerializedData2.writeByteArray(this.key);
-                        abstractSerializedData2.writeByteArray(this.f999iv);
+                        abstractSerializedData2.writeByteArray(this.iv);
                     }
                 };
                 break;
@@ -156,7 +155,7 @@ public abstract class TLRPC$Video extends TLObject {
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.f998id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt64(z2);
                         this.access_hash = abstractSerializedData2.readInt64(z2);
                         this.user_id = abstractSerializedData2.readInt32(z2);
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -165,14 +164,14 @@ public abstract class TLRPC$Video extends TLObject {
                         this.size = abstractSerializedData2.readInt32(z2);
                         this.thumb = TLRPC$PhotoSize.TLdeserialize(0L, 0L, 0L, abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         this.dc_id = abstractSerializedData2.readInt32(z2);
-                        this.f1000w = abstractSerializedData2.readInt32(z2);
-                        this.f997h = abstractSerializedData2.readInt32(z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt64(this.f998id);
+                        abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.date);
@@ -181,8 +180,8 @@ public abstract class TLRPC$Video extends TLObject {
                         abstractSerializedData2.writeInt32(this.size);
                         this.thumb.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.dc_id);
-                        abstractSerializedData2.writeInt32(this.f1000w);
-                        abstractSerializedData2.writeInt32(this.f997h);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
                     }
                 };
                 break;

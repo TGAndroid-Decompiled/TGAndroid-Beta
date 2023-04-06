@@ -1,7 +1,5 @@
 package org.telegram.messenger;
 
-import org.telegram.p009ui.Components.AvatarDrawable;
-import org.telegram.p009ui.Components.BackupImageView;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
@@ -11,7 +9,8 @@ import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$TL_dialog;
 import org.telegram.tgnet.TLRPC$TL_dialogFolder;
 import org.telegram.tgnet.TLRPC$User;
-
+import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.BackupImageView;
 public class DialogObject {
     public static int getEncryptedChatId(long j) {
         return (int) (j & 4294967295L);
@@ -42,7 +41,7 @@ public class DialogObject {
     }
 
     public static void initDialog(TLRPC$Dialog tLRPC$Dialog) {
-        if (tLRPC$Dialog == null || tLRPC$Dialog.f863id != 0) {
+        if (tLRPC$Dialog == null || tLRPC$Dialog.id != 0) {
             return;
         }
         if (tLRPC$Dialog instanceof TLRPC$TL_dialog) {
@@ -52,17 +51,17 @@ public class DialogObject {
             }
             long j = tLRPC$Peer.user_id;
             if (j != 0) {
-                tLRPC$Dialog.f863id = j;
+                tLRPC$Dialog.id = j;
                 return;
             }
             long j2 = tLRPC$Peer.chat_id;
             if (j2 != 0) {
-                tLRPC$Dialog.f863id = -j2;
+                tLRPC$Dialog.id = -j2;
             } else {
-                tLRPC$Dialog.f863id = -tLRPC$Peer.channel_id;
+                tLRPC$Dialog.id = -tLRPC$Peer.channel_id;
             }
         } else if (tLRPC$Dialog instanceof TLRPC$TL_dialogFolder) {
-            tLRPC$Dialog.f863id = makeFolderDialogId(((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.f909id);
+            tLRPC$Dialog.id = makeFolderDialogId(((TLRPC$TL_dialogFolder) tLRPC$Dialog).folder.id);
         }
     }
 
@@ -112,7 +111,7 @@ public class DialogObject {
         if (tLObject instanceof TLRPC$User) {
             TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
             if (UserObject.isReplyUser(tLRPC$User)) {
-                String string = LocaleController.getString("RepliesTitle", C1072R.string.RepliesTitle);
+                String string = LocaleController.getString("RepliesTitle", R.string.RepliesTitle);
                 if (avatarDrawable != null) {
                     avatarDrawable.setAvatarType(12);
                 }
@@ -122,7 +121,7 @@ public class DialogObject {
                 }
                 return string;
             } else if (UserObject.isUserSelf(tLRPC$User)) {
-                String string2 = LocaleController.getString("SavedMessages", C1072R.string.SavedMessages);
+                String string2 = LocaleController.getString("SavedMessages", R.string.SavedMessages);
                 if (avatarDrawable != null) {
                     avatarDrawable.setAvatarType(1);
                 }

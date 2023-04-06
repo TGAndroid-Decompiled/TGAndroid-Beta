@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionParticipantMute extends TLRPC$ChannelAdminLogEventAction {
     public static int constructor = -115071790;
     public TLRPC$TL_groupCallParticipant participant;

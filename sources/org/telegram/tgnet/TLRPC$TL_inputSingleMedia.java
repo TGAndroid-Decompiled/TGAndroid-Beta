@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_inputSingleMedia extends TLObject {
     public static int constructor = 482797855;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();

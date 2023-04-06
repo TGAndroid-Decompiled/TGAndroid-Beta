@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_privacyValueDisallowChatParticipants extends TLRPC$PrivacyRule {
     public static int constructor = 1103656293;
     public ArrayList<Long> chats = new ArrayList<>();

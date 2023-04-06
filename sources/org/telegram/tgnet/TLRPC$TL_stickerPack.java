@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_stickerPack extends TLObject {
     public static int constructor = 313694676;
     public ArrayList<Long> documents = new ArrayList<>();

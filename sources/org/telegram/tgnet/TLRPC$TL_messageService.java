@@ -1,5 +1,6 @@
 package org.telegram.tgnet;
 
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messageService extends TLRPC$Message {
     public static int constructor = 721967202;
 
@@ -10,11 +11,11 @@ public class TLRPC$TL_messageService extends TLRPC$Message {
         this.out = (readInt32 & 2) != 0;
         this.mentioned = (readInt32 & 16) != 0;
         this.media_unread = (readInt32 & 32) != 0;
-        this.silent = (readInt32 & 8192) != 0;
-        this.post = (readInt32 & 16384) != 0;
+        this.silent = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+        this.post = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
         this.legacy = (readInt32 & 524288) != 0;
-        this.f881id = abstractSerializedData.readInt32(z);
-        if ((this.flags & 256) != 0) {
+        this.id = abstractSerializedData.readInt32(z);
+        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         this.peer_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -37,15 +38,15 @@ public class TLRPC$TL_messageService extends TLRPC$Message {
         this.flags = i2;
         int i3 = this.media_unread ? i2 | 32 : i2 & (-33);
         this.flags = i3;
-        int i4 = this.silent ? i3 | 8192 : i3 & (-8193);
+        int i4 = this.silent ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i3 & (-8193);
         this.flags = i4;
-        int i5 = this.post ? i4 | 16384 : i4 & (-16385);
+        int i5 = this.post ? i4 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i4 & (-16385);
         this.flags = i5;
         int i6 = this.legacy ? i5 | 524288 : i5 & (-524289);
         this.flags = i6;
         abstractSerializedData.writeInt32(i6);
-        abstractSerializedData.writeInt32(this.f881id);
-        if ((this.flags & 256) != 0) {
+        abstractSerializedData.writeInt32(this.id);
+        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
             this.from_id.serializeToStream(abstractSerializedData);
         }
         this.peer_id.serializeToStream(abstractSerializedData);

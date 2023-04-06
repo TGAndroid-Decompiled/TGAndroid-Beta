@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_decryptedMessageMediaContact extends TLRPC$DecryptedMessageMedia {
     public static int constructor = 1485441687;
 

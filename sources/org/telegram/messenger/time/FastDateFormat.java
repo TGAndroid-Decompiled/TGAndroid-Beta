@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.TimeZone;
-
 public class FastDateFormat extends Format implements DateParser, DatePrinter {
     public static final int FULL = 0;
     public static final int LONG = 1;

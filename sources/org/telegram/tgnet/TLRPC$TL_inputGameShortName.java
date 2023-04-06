@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputGameShortName extends TLRPC$InputGame {
     public static int constructor = -1020139510;
 

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_readMentions extends TLObject {
     public static int constructor = 921026381;
     public int flags;

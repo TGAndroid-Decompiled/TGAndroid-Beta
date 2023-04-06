@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_toggleAntiSpam extends TLObject {
     public static int constructor = 1760814315;
     public TLRPC$InputChannel channel;

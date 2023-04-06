@@ -10,7 +10,6 @@ import java.nio.charset.Charset;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
-
 public class FileVideoCapturer implements VideoCapturer {
     private static final String TAG = "FileVideoCapturer";
     private CapturerObserver capturerObserver;
@@ -75,7 +74,7 @@ public class FileVideoCapturer implements VideoCapturer {
                             i = Integer.parseInt(str3.substring(1));
                         }
                     }
-                    Logging.m9d(TAG, "Color space: " + str2);
+                    Logging.d(TAG, "Color space: " + str2);
                     if (!str2.equals("420") && !str2.equals("420mpeg2")) {
                         throw new IllegalArgumentException("Does not support any other color space than I420 or I420mpeg2");
                     }
@@ -84,7 +83,7 @@ public class FileVideoCapturer implements VideoCapturer {
                     }
                     this.frameWidth = i;
                     this.frameHeight = i2;
-                    Logging.m9d(TAG, "frame dim: (" + i + ", " + i2 + ")");
+                    Logging.d(TAG, "frame dim: (" + i + ", " + i2 + ")");
                     return;
                 }
             }
@@ -128,7 +127,7 @@ public class FileVideoCapturer implements VideoCapturer {
             try {
                 this.mediaFile.close();
             } catch (IOException e) {
-                Logging.m7e(TAG, "Problem closing file", e);
+                Logging.e(TAG, "Problem closing file", e);
             }
         }
     }
@@ -137,7 +136,7 @@ public class FileVideoCapturer implements VideoCapturer {
         try {
             this.videoReader = new VideoReaderY4M(str);
         } catch (IOException e) {
-            Logging.m9d(TAG, "Could not open video file: " + str);
+            Logging.d(TAG, "Could not open video file: " + str);
             throw e;
         }
     }

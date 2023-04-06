@@ -2,13 +2,13 @@ package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.IOException;
 import java.io.InputStream;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.audioinfo.util.RangeInputStream;
-
 public class ID3v2FrameBody {
     static final ThreadLocal<Buffer> textBuffer = new ThreadLocal<Buffer>() {
         @Override
         public Buffer initialValue() {
-            return new Buffer(4096);
+            return new Buffer(LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM);
         }
     };
     private final ID3v2DataInput data;

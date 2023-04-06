@@ -10,7 +10,6 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.tgnet.TLRPC$TL_messageActionTopicCreate;
 import org.telegram.tgnet.TLRPC$User;
-
 public class WearReplyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -88,7 +87,7 @@ public class WearReplyReceiver extends BroadcastReceiver {
         if (i != 0) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.message = "";
-            tLRPC$TL_message.f881id = i;
+            tLRPC$TL_message.id = i;
             tLRPC$TL_message.peer_id = accountInstance.getMessagesController().getPeer(j);
             TLRPC$TL_messageActionTopicCreate tLRPC$TL_messageActionTopicCreate = new TLRPC$TL_messageActionTopicCreate();
             tLRPC$TL_message.action = tLRPC$TL_messageActionTopicCreate;

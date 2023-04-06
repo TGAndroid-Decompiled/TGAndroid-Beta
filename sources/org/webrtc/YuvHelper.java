@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import java.nio.ByteBuffer;
-
 public class YuvHelper {
     private static native void nativeABGRToI420(ByteBuffer byteBuffer, int i, ByteBuffer byteBuffer2, int i2, ByteBuffer byteBuffer3, int i3, ByteBuffer byteBuffer4, int i4, int i5, int i6);
 

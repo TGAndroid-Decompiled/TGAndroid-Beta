@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public final class CryptoOptions {
     private final SFrame sframe;
     private final Srtp srtp;

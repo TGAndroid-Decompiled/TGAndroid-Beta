@@ -2,7 +2,6 @@ package org.telegram.messenger.voip;
 
 import android.media.AudioTrack;
 import java.nio.ByteBuffer;
-
 public class AudioTrackJNI {
     private AudioTrack audioTrack;
     private byte[] buffer = new byte[1920];
@@ -28,13 +27,13 @@ public class AudioTrackJNI {
         AudioTrack audioTrack = new AudioTrack(0, 48000, i3 == 1 ? 4 : 12, 2, getBufferSize(i4, 48000), 1);
         this.audioTrack = audioTrack;
         if (audioTrack.getState() != 1) {
-            VLog.m22w("Error initializing AudioTrack with 48k, trying 44.1k with resampling");
+            VLog.w("Error initializing AudioTrack with 48k, trying 44.1k with resampling");
             try {
                 this.audioTrack.release();
             } catch (Throwable unused) {
             }
             int bufferSize = getBufferSize(i4 * 6, 44100);
-            VLog.m28d("buffer size: " + bufferSize);
+            VLog.d("buffer size: " + bufferSize);
             this.audioTrack = new AudioTrack(0, 44100, i3 == 1 ? 4 : 12, 2, bufferSize, 1);
             this.needResampling = true;
         }
@@ -57,7 +56,7 @@ public class AudioTrackJNI {
             try {
                 thread.join();
             } catch (InterruptedException e) {
-                VLog.m25e(e);
+                VLog.e(e);
             }
             this.thread = null;
         }
@@ -111,7 +110,7 @@ public class AudioTrackJNI {
                         this.audioTrack.write(this.buffer, 0, 1920);
                     }
                 } catch (Exception e) {
-                    VLog.m25e(e);
+                    VLog.e(e);
                 }
                 if (!this.running) {
                     this.audioTrack.stop();
@@ -119,9 +118,9 @@ public class AudioTrackJNI {
                 }
                 continue;
             }
-            VLog.m24i("audiotrack thread exits");
+            VLog.i("audiotrack thread exits");
         } catch (Exception e2) {
-            VLog.m26e("error starting AudioTrack", e2);
+            VLog.e("error starting AudioTrack", e2);
         }
     }
 }

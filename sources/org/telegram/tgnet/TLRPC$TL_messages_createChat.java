@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_createChat extends TLObject {
     public static int constructor = 3450904;
     public int flags;

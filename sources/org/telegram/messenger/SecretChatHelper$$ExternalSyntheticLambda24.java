@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import java.util.Comparator;
 import org.telegram.messenger.SecretChatHelper;
-
 public final class SecretChatHelper$$ExternalSyntheticLambda24 implements Comparator {
     public static final SecretChatHelper$$ExternalSyntheticLambda24 INSTANCE = new SecretChatHelper$$ExternalSyntheticLambda24();
 

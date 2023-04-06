@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_sendMessageEmojiInteractionSeen extends TLRPC$SendMessageAction {
     public static int constructor = -1234857938;
     public String emoticon;

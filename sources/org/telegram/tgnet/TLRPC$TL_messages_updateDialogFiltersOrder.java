@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_updateDialogFiltersOrder extends TLObject {
     public static int constructor = -983318044;
     public ArrayList<Integer> order = new ArrayList<>();

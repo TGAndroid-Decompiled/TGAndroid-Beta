@@ -1,8 +1,7 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getMessageEditData extends TLObject {
     public static int constructor = -39416522;
-    public int f946id;
+    public int id;
     public TLRPC$InputPeer peer;
 
     @Override
@@ -14,6 +13,6 @@ public class TLRPC$TL_messages_getMessageEditData extends TLObject {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         this.peer.serializeToStream(abstractSerializedData);
-        abstractSerializedData.writeInt32(this.f946id);
+        abstractSerializedData.writeInt32(this.id);
     }
 }

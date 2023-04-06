@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getAdminsWithInvites extends TLObject {
     public static int constructor = 958457583;
     public TLRPC$InputPeer peer;

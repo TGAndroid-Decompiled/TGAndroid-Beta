@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$account_EmailVerified extends TLObject {
     public static TLRPC$account_EmailVerified TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$account_EmailVerified tLRPC$TL_account_emailVerifiedLogin;

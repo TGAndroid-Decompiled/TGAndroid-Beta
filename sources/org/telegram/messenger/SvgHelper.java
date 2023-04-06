@@ -17,6 +17,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.SparseArray;
+import androidx.core.graphics.ColorUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -26,41 +27,39 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.xml.parsers.SAXParserFactory;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.p009ui.ActionBar.Theme;
-import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.ActionBar.Theme;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
-
 public class SvgHelper {
-    private static final double[] pow10 = new double[ConnectionsManager.RequestFlagNeedQuickAck];
+    private static final double[] pow10 = new double[128];
 
     private static void drawArc(Path path, float f, float f2, float f3, float f4, float f5, float f6, float f7, int i, int i2) {
     }
 
     public static class Line {
-        float f826x1;
-        float f827x2;
-        float f828y1;
-        float f829y2;
+        float x1;
+        float x2;
+        float y1;
+        float y2;
 
         public Line(float f, float f2, float f3, float f4) {
-            this.f826x1 = f;
-            this.f828y1 = f2;
-            this.f827x2 = f3;
-            this.f829y2 = f4;
+            this.x1 = f;
+            this.y1 = f2;
+            this.x2 = f3;
+            this.y2 = f4;
         }
     }
 
     public static class Circle {
         float rad;
-        float f824x1;
-        float f825y1;
+        float x1;
+        float y1;
 
         public Circle(float f, float f2, float f3) {
-            this.f824x1 = f;
-            this.f825y1 = f2;
+            this.x1 = f;
+            this.y1 = f2;
             this.rad = f3;
         }
     }
@@ -75,11 +74,11 @@ public class SvgHelper {
 
     public static class RoundRect {
         RectF rect;
-        float f832rx;
+        float rx;
 
         public RoundRect(RectF rectF, float f) {
             this.rect = rectF;
-            this.f832rx = f;
+            this.rx = f;
         }
     }
 
@@ -156,7 +155,7 @@ public class SvgHelper {
                 setupGradient(str, this.currentResourcesProvider, this.colorAlpha, z);
             }
             float scale = getScale((int) f3, (int) f4);
-            if (this.placeholderGradient[i] != null && gradientWidth > 0.0f && !SharedConfig.getLightMode().enabled()) {
+            if (this.placeholderGradient[i] != null && gradientWidth > 0.0f && LiteMode.isEnabled(32)) {
                 if (z) {
                     long j3 = j - lastUpdateTime;
                     j2 = j3 <= 64 ? j3 : 64L;
@@ -254,16 +253,16 @@ public class SvgHelper {
                         canvas.drawRect((RectF) obj, paint);
                     } else if (obj instanceof Line) {
                         Line line = (Line) obj;
-                        canvas.drawLine(line.f826x1, line.f828y1, line.f827x2, line.f829y2, paint);
+                        canvas.drawLine(line.x1, line.y1, line.x2, line.y2, paint);
                     } else if (obj instanceof Circle) {
                         Circle circle = (Circle) obj;
-                        canvas.drawCircle(circle.f824x1, circle.f825y1, circle.rad, paint);
+                        canvas.drawCircle(circle.x1, circle.y1, circle.rad, paint);
                     } else if (obj instanceof Oval) {
                         canvas.drawOval(((Oval) obj).rect, paint);
                     } else if (obj instanceof RoundRect) {
                         RoundRect roundRect = (RoundRect) obj;
                         RectF rectF = roundRect.rect;
-                        float f10 = roundRect.f832rx;
+                        float f10 = roundRect.rx;
                         canvas.drawRoundRect(rectF, f10, f10, paint);
                     }
                     paint.setAlpha(alpha);
@@ -311,25 +310,26 @@ public class SvgHelper {
                 this.currentColorKey = str;
                 iArr[z ? 1 : 0] = color;
                 gradientWidth = AndroidUtilities.displaySize.x * 2;
-                if (SharedConfig.getLightMode().enabled()) {
+                if (!LiteMode.isEnabled(32)) {
+                    int alphaComponent = ColorUtils.setAlphaComponent(this.currentColor[z ? 1 : 0], 70);
                     if (z) {
                         if (this.backgroundPaint == null) {
                             this.backgroundPaint = new Paint(1);
                         }
                         this.backgroundPaint.setShader(null);
-                        this.backgroundPaint.setColor(this.currentColor[z ? 1 : 0]);
+                        this.backgroundPaint.setColor(alphaComponent);
                         return;
                     }
                     for (Paint paint : this.paints.values()) {
                         paint.setShader(null);
-                        paint.setColor(this.currentColor[z ? 1 : 0]);
+                        paint.setColor(alphaComponent);
                     }
                     return;
                 }
-                float m36dp = AndroidUtilities.m36dp(180.0f) / gradientWidth;
+                float dp = AndroidUtilities.dp(180.0f) / gradientWidth;
                 int argb = Color.argb((int) ((Color.alpha(color) / 2) * this.colorAlpha), Color.red(color), Color.green(color), Color.blue(color));
-                float f2 = (1.0f - m36dp) / 2.0f;
-                float f3 = m36dp / 2.0f;
+                float f2 = (1.0f - dp) / 2.0f;
+                float f3 = dp / 2.0f;
                 this.placeholderGradient[z ? 1 : 0] = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{0, 0, argb, 0, 0}, new float[]{0.0f, f2 - f3, f2, f2 + f3, 1.0f}, Shader.TileMode.REPEAT);
                 int i = Build.VERSION.SDK_INT;
                 if (i >= 28) {
@@ -394,6 +394,26 @@ public class SvgHelper {
             ArrayList<Object> arrayList = this.commands;
             arrayList.add(arrayList.get(i));
         }
+
+        public SvgDrawable clone() {
+            SvgDrawable svgDrawable = new SvgDrawable();
+            for (int i = 0; i < this.commands.size(); i++) {
+                svgDrawable.commands.add(this.commands.get(i));
+                Paint paint = this.paints.get(this.commands.get(i));
+                if (paint != null) {
+                    Paint paint2 = new Paint();
+                    paint2.setColor(paint.getColor());
+                    paint2.setStrokeCap(paint.getStrokeCap());
+                    paint2.setStrokeJoin(paint.getStrokeJoin());
+                    paint2.setStrokeWidth(paint.getStrokeWidth());
+                    paint2.setStyle(paint.getStyle());
+                    svgDrawable.paints.put(this.commands.get(i), paint2);
+                }
+            }
+            svgDrawable.width = this.width;
+            svgDrawable.height = this.height;
+            return svgDrawable;
+        }
     }
 
     public static Bitmap getBitmap(int i, int i2, int i3, int i4) {
@@ -413,7 +433,7 @@ public class SvgHelper {
             }
             return bitmap;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return null;
         }
     }
@@ -429,7 +449,7 @@ public class SvgHelper {
             fileInputStream.close();
             return bitmap;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return null;
         }
     }
@@ -442,7 +462,7 @@ public class SvgHelper {
             xMLReader.parse(new InputSource(new StringReader(str)));
             return sVGHandler.getBitmap();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return null;
         }
     }
@@ -455,7 +475,7 @@ public class SvgHelper {
             xMLReader.parse(new InputSource(new StringReader(str)));
             return sVGHandler.getDrawable();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return null;
         }
     }
@@ -468,7 +488,7 @@ public class SvgHelper {
             xMLReader.parse(new InputSource(ApplicationLoader.applicationContext.getResources().openRawResource(i)));
             return sVGHandler.getDrawable();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return null;
         }
     }
@@ -483,7 +503,21 @@ public class SvgHelper {
             svgDrawable.height = i2;
             return svgDrawable;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
+            return null;
+        }
+    }
+
+    public static SvgDrawable getDrawableByPath(Path path, int i, int i2) {
+        try {
+            SvgDrawable svgDrawable = new SvgDrawable();
+            svgDrawable.commands.add(path);
+            svgDrawable.paints.put(path, new Paint(1));
+            svgDrawable.width = i;
+            svgDrawable.height = i2;
+            return svgDrawable;
+        } catch (Exception e) {
+            FileLog.e(e);
             return null;
         }
     }
@@ -499,7 +533,7 @@ public class SvgHelper {
             canvas.drawPath(doPath, paint);
             return createBitmap;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return null;
         }
     }
@@ -557,7 +591,7 @@ public class SvgHelper {
                     case 'm':
                     case 'q':
                     case 's':
-                    case 't':
+                    case MessagesStorage.LAST_DB_VERSION:
                     case 'v':
                     case 'z':
                         String substring2 = str.substring(i, i2);
@@ -1474,20 +1508,20 @@ public class SvgHelper {
 
     public static class ParserHelper {
         private char current;
-        private int f830n;
+        private int n;
         public int pos;
-        private CharSequence f831s;
+        private CharSequence s;
 
         public ParserHelper(CharSequence charSequence, int i) {
-            this.f831s = charSequence;
+            this.s = charSequence;
             this.pos = i;
-            this.f830n = charSequence.length();
+            this.n = charSequence.length();
             this.current = charSequence.charAt(i);
         }
 
         private char read() {
             int i = this.pos;
-            int i2 = this.f830n;
+            int i2 = this.n;
             if (i < i2) {
                 this.pos = i + 1;
             }
@@ -1495,13 +1529,13 @@ public class SvgHelper {
             if (i3 == i2) {
                 return (char) 0;
             }
-            return this.f831s.charAt(i3);
+            return this.s.charAt(i3);
         }
 
         public void skipWhitespace() {
             while (true) {
                 int i = this.pos;
-                if (i >= this.f830n || !Character.isWhitespace(this.f831s.charAt(i))) {
+                if (i >= this.n || !Character.isWhitespace(this.s.charAt(i))) {
                     return;
                 }
                 advance();
@@ -1511,10 +1545,10 @@ public class SvgHelper {
         public void skipNumberSeparator() {
             while (true) {
                 int i = this.pos;
-                if (i >= this.f830n) {
+                if (i >= this.n) {
                     return;
                 }
-                char charAt = this.f831s.charAt(i);
+                char charAt = this.s.charAt(i);
                 if (charAt != '\t' && charAt != '\n' && charAt != ' ' && charAt != ',') {
                     return;
                 }
@@ -1590,7 +1624,7 @@ public class SvgHelper {
             sb.append('z');
             return sb.toString();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return "";
         }
     }

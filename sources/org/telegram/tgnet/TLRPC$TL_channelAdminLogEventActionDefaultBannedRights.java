@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionDefaultBannedRights extends TLRPC$ChannelAdminLogEventAction {
     public static int constructor = 771095562;
     public TLRPC$TL_chatBannedRights new_banned_rights;

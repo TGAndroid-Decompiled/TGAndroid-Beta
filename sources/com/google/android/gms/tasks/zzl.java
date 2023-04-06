@@ -1,14 +1,9 @@
 package com.google.android.gms.tasks;
 
 import java.util.concurrent.Executor;
-import javax.annotation.Nullable;
-import javax.annotation.concurrent.GuardedBy;
-
 public final class zzl implements zzq {
     private final Executor zza;
     private final Object zzb = new Object();
-    @GuardedBy("mLock")
-    @Nullable
     private OnFailureListener zzc;
 
     public zzl(Executor executor, OnFailureListener onFailureListener) {

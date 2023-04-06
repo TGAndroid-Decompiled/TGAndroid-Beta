@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_reportPeer extends TLObject {
     public static int constructor = -977650298;
     public String message;

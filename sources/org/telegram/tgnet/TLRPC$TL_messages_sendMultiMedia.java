@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
     public static int constructor = -1225713124;
     public boolean background;
@@ -29,18 +29,18 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
         this.flags = i;
         int i2 = this.background ? i | 64 : i & (-65);
         this.flags = i2;
-        int i3 = this.clear_draft ? i2 | ConnectionsManager.RequestFlagNeedQuickAck : i2 & (-129);
+        int i3 = this.clear_draft ? i2 | 128 : i2 & (-129);
         this.flags = i3;
-        int i4 = this.noforwards ? i3 | 16384 : i3 & (-16385);
+        int i4 = this.noforwards ? i3 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i3 & (-16385);
         this.flags = i4;
-        int i5 = this.update_stickersets_order ? i4 | 32768 : i4 & (-32769);
+        int i5 = this.update_stickersets_order ? i4 | LiteMode.FLAG_CHAT_SCALE : i4 & (-32769);
         this.flags = i5;
         abstractSerializedData.writeInt32(i5);
         this.peer.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.reply_to_msg_id);
         }
-        if ((this.flags & 512) != 0) {
+        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
             abstractSerializedData.writeInt32(this.top_msg_id);
         }
         abstractSerializedData.writeInt32(481674261);
@@ -49,10 +49,10 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
         for (int i6 = 0; i6 < size; i6++) {
             this.multi_media.get(i6).serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
+        if ((this.flags & 1024) != 0) {
             abstractSerializedData.writeInt32(this.schedule_date);
         }
-        if ((this.flags & 8192) != 0) {
+        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
             this.send_as.serializeToStream(abstractSerializedData);
         }
     }

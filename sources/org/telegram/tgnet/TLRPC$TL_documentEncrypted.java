@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_documentEncrypted extends TLRPC$Document {
     public static int constructor = 1431655768;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.f865id = abstractSerializedData.readInt64(z);
+        this.id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.date = abstractSerializedData.readInt32(z);
         this.mime_type = abstractSerializedData.readString(z);
@@ -28,13 +27,13 @@ public class TLRPC$TL_documentEncrypted extends TLRPC$Document {
             this.attributes.add(TLdeserialize);
         }
         this.key = abstractSerializedData.readByteArray(z);
-        this.f866iv = abstractSerializedData.readByteArray(z);
+        this.iv = abstractSerializedData.readByteArray(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.f865id);
+        abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeString(this.mime_type);
@@ -48,6 +47,6 @@ public class TLRPC$TL_documentEncrypted extends TLRPC$Document {
             this.attributes.get(i).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeByteArray(this.key);
-        abstractSerializedData.writeByteArray(this.f866iv);
+        abstractSerializedData.writeByteArray(this.iv);
     }
 }

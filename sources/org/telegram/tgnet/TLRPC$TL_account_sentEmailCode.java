@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_sentEmailCode extends TLObject {
     public static int constructor = -2128640689;
     public String email_pattern;

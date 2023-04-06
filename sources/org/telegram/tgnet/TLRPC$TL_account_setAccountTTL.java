@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_setAccountTTL extends TLObject {
     public static int constructor = 608323678;
     public TLRPC$TL_accountDaysTTL ttl;

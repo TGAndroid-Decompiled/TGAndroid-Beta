@@ -2,9 +2,7 @@ package org.telegram.messenger;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.Application;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -24,11 +22,10 @@ import com.google.android.gms.common.GooglePlayServicesUtil;
 import java.io.File;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
-import org.telegram.p009ui.Components.ForegroundDetector;
-import org.telegram.p009ui.LauncherIconController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$User;
-
+import org.telegram.ui.Components.ForegroundDetector;
+import org.telegram.ui.LauncherIconController;
 public class ApplicationLoader extends Application {
     @SuppressLint({"StaticFieldLeak"})
     public static volatile Context applicationContext = null;
@@ -130,7 +127,7 @@ public class ApplicationLoader extends Application {
             file.mkdirs();
             return file;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return new File("/data/data/org.telegram.messenger/files");
         }
     }
@@ -174,7 +171,7 @@ public class ApplicationLoader extends Application {
         try {
             isScreenOn = ((PowerManager) applicationContext.getSystemService("power")).isScreenOn();
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m35d("screen state = " + isScreenOn);
+                FileLog.d("screen state = " + isScreenOn);
             }
         } catch (Exception e4) {
             e4.printStackTrace();
@@ -197,7 +194,7 @@ public class ApplicationLoader extends Application {
         }
         ((ApplicationLoader) applicationContext).initPushServices();
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d("app initied");
+            FileLog.d("app initied");
         }
         MediaController.getInstance();
         for (int i2 = 0; i2 < 4; i2++) {
@@ -222,30 +219,35 @@ public class ApplicationLoader extends Application {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             startTime = elapsedRealtime;
             sb.append(elapsedRealtime);
-            FileLog.m35d(sb.toString());
-            FileLog.m35d("buildVersion = " + BuildVars.BUILD_VERSION);
+            FileLog.d(sb.toString());
+            FileLog.d("buildVersion = " + BuildVars.BUILD_VERSION);
         }
         if (applicationContext == null) {
             applicationContext = getApplicationContext();
         }
         NativeLoader.initNativeLibs(applicationContext);
-        ConnectionsManager.native_setJava(false);
-        new ForegroundDetector(this) {
-            @Override
-            public void onActivityStarted(Activity activity) {
-                boolean isBackground = isBackground();
-                super.onActivityStarted(activity);
-                if (isBackground) {
-                    ApplicationLoader.ensureCurrentNetworkGet(true);
+        try {
+            ConnectionsManager.native_setJava(false);
+            new ForegroundDetector(this) {
+                @Override
+                public void onActivityStarted(Activity activity) {
+                    boolean isBackground = isBackground();
+                    super.onActivityStarted(activity);
+                    if (isBackground) {
+                        ApplicationLoader.ensureCurrentNetworkGet(true);
+                    }
                 }
+            };
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
             }
-        };
-        if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
+            applicationHandler = new Handler(applicationContext.getMainLooper());
+            AndroidUtilities.runOnUIThread(ApplicationLoader$$ExternalSyntheticLambda1.INSTANCE);
+            LauncherIconController.tryFixLauncherIconIfNeeded();
+            ProxyRotationController.init();
+        } catch (UnsatisfiedLinkError unused2) {
+            throw new RuntimeException("can't load native libraries " + Build.CPU_ABI + " lookup folder " + NativeLoader.getAbiFolder());
         }
-        applicationHandler = new Handler(applicationContext.getMainLooper());
-        AndroidUtilities.runOnUIThread(ApplicationLoader$$ExternalSyntheticLambda1.INSTANCE);
-        LauncherIconController.tryFixLauncherIconIfNeeded();
     }
 
     public static void startPushService() {
@@ -265,7 +267,6 @@ public class ApplicationLoader extends Application {
             }
         }
         applicationContext.stopService(new Intent(applicationContext, NotificationsService.class));
-        ((AlarmManager) applicationContext.getSystemService("alarm")).cancel(PendingIntent.getService(applicationContext, 0, new Intent(applicationContext, NotificationsService.class), ConnectionsManager.FileTypeVideo));
     }
 
     @Override
@@ -291,7 +292,7 @@ public class ApplicationLoader extends Application {
             return;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.m35d("No valid " + getPushProvider().getLogTitle() + " APK found.");
+            FileLog.d("No valid " + getPushProvider().getLogTitle() + " APK found.");
         }
         SharedConfig.pushStringStatus = "__NO_GOOGLE_PLAY_SERVICES__";
         PushListenerController.sendRegistrationToServer(getPushProvider().getPushType(), null);
@@ -301,7 +302,7 @@ public class ApplicationLoader extends Application {
         try {
             return GooglePlayServicesUtil.isGooglePlayServicesAvailable(this) == 0;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return true;
         }
     }
@@ -341,7 +342,7 @@ public class ApplicationLoader extends Application {
             }
             return false;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return false;
         }
     }
@@ -358,7 +359,7 @@ public class ApplicationLoader extends Application {
                 return true;
             }
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
         return false;
     }
@@ -372,7 +373,7 @@ public class ApplicationLoader extends Application {
                 }
             }
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
         return false;
     }
@@ -396,7 +397,7 @@ public class ApplicationLoader extends Application {
         try {
             ensureCurrentNetworkGet(false);
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
         if (currentNetworkInfo == null) {
             return 0;
@@ -441,7 +442,7 @@ public class ApplicationLoader extends Application {
             }
             return true;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return true;
         }
     }
@@ -465,7 +466,7 @@ public class ApplicationLoader extends Application {
             }
             return true;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return true;
         }
     }
@@ -473,7 +474,7 @@ public class ApplicationLoader extends Application {
     public static boolean isNetworkOnline() {
         boolean isNetworkOnlineRealtime = isNetworkOnlineRealtime();
         if (BuildVars.DEBUG_PRIVATE_VERSION && isNetworkOnlineRealtime != isNetworkOnlineFast()) {
-            FileLog.m35d("network online mismatch");
+            FileLog.d("network online mismatch");
         }
         return isNetworkOnlineRealtime;
     }

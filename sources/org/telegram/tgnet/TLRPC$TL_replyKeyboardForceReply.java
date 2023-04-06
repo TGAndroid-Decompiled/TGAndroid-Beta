@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_replyKeyboardForceReply extends TLRPC$ReplyMarkup {
     public static int constructor = -2035021048;
 

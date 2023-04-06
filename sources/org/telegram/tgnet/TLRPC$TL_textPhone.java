@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_textPhone extends TLRPC$RichText {
     public static int constructor = 483104362;
     public String phone;

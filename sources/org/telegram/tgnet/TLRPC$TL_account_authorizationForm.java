@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_account_authorizationForm extends TLObject {
     public static int constructor = -1389486888;
     public int flags;

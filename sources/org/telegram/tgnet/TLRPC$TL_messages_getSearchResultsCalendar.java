@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getSearchResultsCalendar extends TLObject {
     public static int constructor = 1240514025;
     public TLRPC$MessagesFilter filter;

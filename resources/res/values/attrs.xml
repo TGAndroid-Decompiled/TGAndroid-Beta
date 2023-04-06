@@ -146,6 +146,8 @@
     </attr>
     <attr name="keylines" format="reference">
     </attr>
+    <attr name="lStar" format="float">
+    </attr>
     <attr name="latLngBoundsNorthEastLatitude" format="float">
     </attr>
     <attr name="latLngBoundsNorthEastLongitude" format="float">

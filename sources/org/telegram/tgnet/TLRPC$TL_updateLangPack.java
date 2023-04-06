@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateLangPack extends TLRPC$Update {
     public static int constructor = 1442983757;
     public TLRPC$TL_langPackDifference difference;

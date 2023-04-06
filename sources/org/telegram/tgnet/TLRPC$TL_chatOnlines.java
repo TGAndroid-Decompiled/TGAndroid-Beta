@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_chatOnlines extends TLObject {
     public static int constructor = -264117680;
     public int onlines;

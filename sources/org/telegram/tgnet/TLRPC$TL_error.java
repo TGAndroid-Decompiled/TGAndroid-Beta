@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_error extends TLObject {
     public static int constructor = -994444869;
     public int code;

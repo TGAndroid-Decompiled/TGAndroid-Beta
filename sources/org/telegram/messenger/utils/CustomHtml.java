@@ -2,12 +2,10 @@ package org.telegram.messenger.utils;
 
 import android.text.Spanned;
 import org.telegram.messenger.CharacterCompat;
-import org.telegram.p009ui.Components.AnimatedEmojiSpan;
-import org.telegram.p009ui.Components.TextStyleSpan;
-import org.telegram.p009ui.Components.URLSpanMono;
-import org.telegram.p009ui.Components.URLSpanReplacement;
-import org.telegram.tgnet.ConnectionsManager;
-
+import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.TextStyleSpan;
+import org.telegram.ui.Components.URLSpanMono;
+import org.telegram.ui.Components.URLSpanReplacement;
 public class CustomHtml {
     public static String toHtml(Spanned spanned) {
         StringBuilder sb = new StringBuilder();
@@ -41,7 +39,7 @@ public class CustomHtml {
                         if ((styleFlags & 8) > 0) {
                             sb.append("<s>");
                         }
-                        if ((styleFlags & ConnectionsManager.RequestFlagNeedQuickAck) > 0 && textStyleSpan.getTextStyleRun() != null && textStyleSpan.getTextStyleRun().urlEntity != null) {
+                        if ((styleFlags & 128) > 0 && textStyleSpan.getTextStyleRun() != null && textStyleSpan.getTextStyleRun().urlEntity != null) {
                             sb.append("<a href=\"");
                             sb.append(textStyleSpan.getTextStyleRun().urlEntity.url);
                             sb.append("\">");
@@ -56,7 +54,7 @@ public class CustomHtml {
                 for (TextStyleSpan textStyleSpan2 : textStyleSpanArr) {
                     if (textStyleSpan2 != null) {
                         int styleFlags2 = textStyleSpan2.getStyleFlags();
-                        if ((styleFlags2 & ConnectionsManager.RequestFlagNeedQuickAck) > 0 && textStyleSpan2.getTextStyleRun() != null && textStyleSpan2.getTextStyleRun().urlEntity != null) {
+                        if ((styleFlags2 & 128) > 0 && textStyleSpan2.getTextStyleRun() != null && textStyleSpan2.getTextStyleRun().urlEntity != null) {
                             sb.append("</a>");
                         }
                         if ((styleFlags2 & 8) > 0) {

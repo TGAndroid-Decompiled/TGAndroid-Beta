@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_fileLocationToBeDeprecated extends TLRPC$FileLocation {
     public static int constructor = -1132476723;
 

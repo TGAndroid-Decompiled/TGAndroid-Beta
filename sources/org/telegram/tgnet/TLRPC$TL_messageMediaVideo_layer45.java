@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageMediaVideo_layer45 extends TLRPC$MessageMedia {
     public static int constructor = 1540298357;
 

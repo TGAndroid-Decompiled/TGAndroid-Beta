@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageEntitySpoiler extends TLRPC$MessageEntity {
     public static int constructor = 852137487;
 

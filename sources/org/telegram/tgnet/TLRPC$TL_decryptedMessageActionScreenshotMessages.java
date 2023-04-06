@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_decryptedMessageActionScreenshotMessages extends TLRPC$DecryptedMessageAction {
     public static int constructor = -1967000459;
 

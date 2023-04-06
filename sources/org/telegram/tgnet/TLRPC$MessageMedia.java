@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$MessageMedia extends TLObject {
     public String address;
     public TLRPC$Audio audio_unused;
@@ -425,7 +424,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
                     tLRPC$TL_messageMediaDocument.document = tLRPC$TL_documentEncrypted;
                     TLRPC$Video tLRPC$Video = tLRPC$MessageMedia.video_unused;
                     tLRPC$TL_documentEncrypted.key = tLRPC$Video.key;
-                    tLRPC$TL_documentEncrypted.f866iv = tLRPC$Video.f999iv;
+                    tLRPC$TL_documentEncrypted.iv = tLRPC$Video.iv;
                 } else {
                     tLRPC$TL_messageMediaDocument.document = new TLRPC$TL_document();
                 }
@@ -433,7 +432,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
                 TLRPC$Document tLRPC$Document = tLRPC$TL_messageMediaDocument.document;
                 tLRPC$Document.file_reference = new byte[0];
                 TLRPC$Video tLRPC$Video2 = tLRPC$MessageMedia.video_unused;
-                tLRPC$Document.f865id = tLRPC$Video2.f998id;
+                tLRPC$Document.id = tLRPC$Video2.id;
                 tLRPC$Document.access_hash = tLRPC$Video2.access_hash;
                 tLRPC$Document.date = tLRPC$Video2.date;
                 String str = tLRPC$Video2.mime_type;
@@ -448,8 +447,8 @@ public abstract class TLRPC$MessageMedia extends TLObject {
                 tLRPC$TL_messageMediaDocument.captionLegacy = tLRPC$MessageMedia.captionLegacy;
                 TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = new TLRPC$TL_documentAttributeVideo();
                 TLRPC$Video tLRPC$Video3 = tLRPC$MessageMedia.video_unused;
-                tLRPC$TL_documentAttributeVideo.f868w = tLRPC$Video3.f1000w;
-                tLRPC$TL_documentAttributeVideo.f867h = tLRPC$Video3.f997h;
+                tLRPC$TL_documentAttributeVideo.w = tLRPC$Video3.w;
+                tLRPC$TL_documentAttributeVideo.h = tLRPC$Video3.h;
                 tLRPC$TL_documentAttributeVideo.duration = tLRPC$Video3.duration;
                 tLRPC$TL_messageMediaDocument.document.attributes.add(tLRPC$TL_documentAttributeVideo);
                 if (tLRPC$TL_messageMediaDocument.captionLegacy == null) {
@@ -464,7 +463,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
                     tLRPC$TL_messageMediaDocument.document = tLRPC$TL_documentEncrypted2;
                     TLRPC$Audio tLRPC$Audio = tLRPC$MessageMedia.audio_unused;
                     tLRPC$TL_documentEncrypted2.key = tLRPC$Audio.key;
-                    tLRPC$TL_documentEncrypted2.f866iv = tLRPC$Audio.f854iv;
+                    tLRPC$TL_documentEncrypted2.iv = tLRPC$Audio.iv;
                 } else {
                     tLRPC$TL_messageMediaDocument.document = new TLRPC$TL_document();
                 }
@@ -472,7 +471,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
                 TLRPC$Document tLRPC$Document2 = tLRPC$TL_messageMediaDocument.document;
                 tLRPC$Document2.file_reference = new byte[0];
                 TLRPC$Audio tLRPC$Audio2 = tLRPC$MessageMedia.audio_unused;
-                tLRPC$Document2.f865id = tLRPC$Audio2.f853id;
+                tLRPC$Document2.id = tLRPC$Audio2.id;
                 tLRPC$Document2.access_hash = tLRPC$Audio2.access_hash;
                 tLRPC$Document2.date = tLRPC$Audio2.date;
                 String str2 = tLRPC$Audio2.mime_type;

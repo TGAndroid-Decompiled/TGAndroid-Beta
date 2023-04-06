@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_postAddress extends TLObject {
     public static int constructor = 512535275;
     public String city;

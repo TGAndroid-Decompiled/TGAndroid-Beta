@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_search extends TLObject {
     public static int constructor = -1593989278;
     public int add_offset;
@@ -14,7 +13,7 @@ public class TLRPC$TL_messages_search extends TLObject {
     public int min_id;
     public int offset_id;
     public TLRPC$InputPeer peer;
-    public String f961q;
+    public String q;
     public int top_msg_id;
 
     @Override
@@ -27,7 +26,7 @@ public class TLRPC$TL_messages_search extends TLObject {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
         this.peer.serializeToStream(abstractSerializedData);
-        abstractSerializedData.writeString(this.f961q);
+        abstractSerializedData.writeString(this.q);
         if ((this.flags & 1) != 0) {
             this.from_id.serializeToStream(abstractSerializedData);
         }

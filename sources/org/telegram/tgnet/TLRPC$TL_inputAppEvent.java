@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputAppEvent extends TLObject {
     public static int constructor = 488313413;
     public TLRPC$JSONValue data;

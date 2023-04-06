@@ -13,7 +13,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import org.telegram.messenger.NotificationCenter;
-
 public class NotificationImageProvider extends ContentProvider implements NotificationCenter.NotificationCenterDelegate {
     private static String authority;
     private static UriMatcher matcher;
@@ -110,7 +109,7 @@ public class NotificationImageProvider extends ContentProvider implements Notifi
                 while (!file.exists()) {
                     if (System.currentTimeMillis() - longValue >= 3000) {
                         if (BuildVars.LOGS_ENABLED) {
-                            FileLog.m30w("Waiting for " + str2 + " to download timed out");
+                            FileLog.w("Waiting for " + str2 + " to download timed out");
                         }
                         if (TextUtils.isEmpty(queryParameter2)) {
                             throw new FileNotFoundException("Download timed out");

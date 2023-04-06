@@ -9,7 +9,6 @@ import com.google.android.gms.common.internal.zzt;
 import com.google.android.gms.common.util.DeviceProperties;
 import com.google.android.gms.common.wrappers.Wrappers;
 import com.google.android.gms.internal.common.zzd;
-
 public class GoogleApiAvailabilityLight {
     public static final int GOOGLE_PLAY_SERVICES_VERSION_CODE = GooglePlayServicesUtilLight.GOOGLE_PLAY_SERVICES_VERSION_CODE;
     private static final GoogleApiAvailabilityLight zza = new GoogleApiAvailabilityLight();

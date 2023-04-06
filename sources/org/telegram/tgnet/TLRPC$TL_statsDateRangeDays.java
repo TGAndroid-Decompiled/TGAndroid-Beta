@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_statsDateRangeDays extends TLObject {
     public static int constructor = -1237848657;
     public int max_date;

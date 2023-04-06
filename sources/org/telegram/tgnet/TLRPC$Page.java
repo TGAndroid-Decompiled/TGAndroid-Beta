@@ -1,13 +1,12 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$Page extends TLObject {
     public int flags;
     public boolean part;
     public boolean rtl;
     public String url;
-    public boolean f882v2;
+    public boolean v2;
     public int views;
     public ArrayList<TLRPC$PageBlock> blocks = new ArrayList<>();
     public ArrayList<TLRPC$Photo> photos = new ArrayList<>();

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_hidePeerSettingsBar extends TLObject {
     public static int constructor = 1336717624;
     public TLRPC$InputPeer peer;

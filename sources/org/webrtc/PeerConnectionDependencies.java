@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import org.webrtc.PeerConnection;
-
 public final class PeerConnectionDependencies {
     private final PeerConnection.Observer observer;
     private final SSLCertificateVerifier sslCertificateVerifier;

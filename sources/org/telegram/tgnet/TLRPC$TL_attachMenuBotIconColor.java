@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_attachMenuBotIconColor extends TLObject {
     public static int constructor = 1165423600;
     public int color;

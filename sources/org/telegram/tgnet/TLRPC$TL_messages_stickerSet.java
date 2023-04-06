@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_stickerSet extends TLRPC$messages_StickerSet {
     public static int constructor = 1846886166;
 

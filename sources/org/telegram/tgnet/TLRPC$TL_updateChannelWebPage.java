@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateChannelWebPage extends TLRPC$Update {
     public static int constructor = 791390623;
     public long channel_id;

@@ -24,7 +24,6 @@ import org.webrtc.ScreenCapturerAndroid;
 import org.webrtc.SurfaceTextureHelper;
 import org.webrtc.VideoCapturer;
 import org.webrtc.voiceengine.WebRtcAudioRecord;
-
 @TargetApi(18)
 public class VideoCapturerDevice {
     private static final int CAPTURE_FPS = 30;
@@ -59,7 +58,7 @@ public class VideoCapturerDevice {
             return;
         }
         Logging.enableLogToDebugOutput(Logging.Severity.LS_INFO);
-        Logging.m9d("VideoCapturerDevice", "device model = " + Build.MANUFACTURER + Build.MODEL);
+        Logging.d("VideoCapturerDevice", "device model = " + Build.MANUFACTURER + Build.MODEL);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -176,7 +175,7 @@ public class VideoCapturerDevice {
         this.nativePtr = j;
         if ("screen".equals(str)) {
             if (Build.VERSION.SDK_INT >= 21 && this.videoCapturer == null) {
-                this.videoCapturer = new ScreenCapturerAndroid(mediaProjectionPermissionResultData, new C11171());
+                this.videoCapturer = new ScreenCapturerAndroid(mediaProjectionPermissionResultData, new AnonymousClass1());
                 final Point screenCaptureSize = getScreenCaptureSize();
                 this.currentWidth = screenCaptureSize.x;
                 this.currentHeight = screenCaptureSize.y;
@@ -209,7 +208,7 @@ public class VideoCapturerDevice {
         }
         final String str2 = deviceNames[i];
         if (this.videoCapturer == null) {
-            this.videoCapturer = camera2Enumerator.createCapturer(str2, new C11182());
+            this.videoCapturer = camera2Enumerator.createCapturer(str2, new AnonymousClass2());
             this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
             this.handler.post(new Runnable() {
                 @Override
@@ -227,8 +226,8 @@ public class VideoCapturerDevice {
         });
     }
 
-    public class C11171 extends MediaProjection.Callback {
-        C11171() {
+    public class AnonymousClass1 extends MediaProjection.Callback {
+        AnonymousClass1() {
         }
 
         @Override
@@ -259,7 +258,7 @@ public class VideoCapturerDevice {
         }
     }
 
-    public class C11182 implements CameraVideoCapturer.CameraEventsHandler {
+    public class AnonymousClass2 implements CameraVideoCapturer.CameraEventsHandler {
         @Override
         public void onCameraClosed() {
         }
@@ -280,7 +279,7 @@ public class VideoCapturerDevice {
         public void onCameraOpening(String str) {
         }
 
-        C11182() {
+        AnonymousClass2() {
         }
 
         @Override
@@ -304,12 +303,12 @@ public class VideoCapturerDevice {
         this.videoCapturer.startCapture(CAPTURE_WIDTH, CAPTURE_HEIGHT, CAPTURE_FPS);
     }
 
-    public class C11193 implements CameraVideoCapturer.CameraSwitchHandler {
+    public class AnonymousClass3 implements CameraVideoCapturer.CameraSwitchHandler {
         @Override
         public void onCameraSwitchError(String str) {
         }
 
-        C11193() {
+        AnonymousClass3() {
         }
 
         @Override
@@ -317,7 +316,7 @@ public class VideoCapturerDevice {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoCapturerDevice.C11193.lambda$onCameraSwitchDone$0(z);
+                    VideoCapturerDevice.AnonymousClass3.lambda$onCameraSwitchDone$0(z);
                 }
             });
         }
@@ -330,7 +329,7 @@ public class VideoCapturerDevice {
     }
 
     public void lambda$init$4(String str) {
-        ((CameraVideoCapturer) this.videoCapturer).switchCamera(new C11193(), str);
+        ((CameraVideoCapturer) this.videoCapturer).switchCamera(new AnonymousClass3(), str);
     }
 
     public static MediaProjection getMediaProjection() {
@@ -416,7 +415,7 @@ public class VideoCapturerDevice {
         try {
             this.thread.quitSafely();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 

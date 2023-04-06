@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import java.util.Comparator;
 import org.telegram.tgnet.TLRPC$Message;
-
 public final class SecretChatHelper$$ExternalSyntheticLambda25 implements Comparator {
     public static final SecretChatHelper$$ExternalSyntheticLambda25 INSTANCE = new SecretChatHelper$$ExternalSyntheticLambda25();
 

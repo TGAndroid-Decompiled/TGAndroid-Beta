@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_botInfo extends TLRPC$BotInfo {
     public static int constructor = -1892676777;
 

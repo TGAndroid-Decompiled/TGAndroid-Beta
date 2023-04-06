@@ -4,23 +4,21 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.util.Base64;
+import android.util.LongSparseArray;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+import org.telegram.messenger.SaveToGallerySettingsHelper;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$EmojiStatus;
 import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
 import org.telegram.tgnet.TLRPC$TL_account_tmpPassword;
 import org.telegram.tgnet.TLRPC$TL_defaultHistoryTTL;
-import org.telegram.tgnet.TLRPC$TL_emojiStatus;
-import org.telegram.tgnet.TLRPC$TL_emojiStatusUntil;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_help_termsOfService;
 import org.telegram.tgnet.TLRPC$User;
-
 public class UserConfig extends BaseController {
     private static volatile UserConfig[] Instance = new UserConfig[4];
     public static final int MAX_ACCOUNT_COUNT = 4;
@@ -36,8 +34,9 @@ public class UserConfig extends BaseController {
     public List<String> awaitBillingProductIds;
     public TLRPC$InputStorePaymentPurpose billingPaymentPurpose;
     public int botRatingLoadTime;
+    LongSparseArray<SaveToGallerySettingsHelper.DialogException> chanelSaveGalleryExceptions;
     public long clientUserId;
-    private boolean configLoaded;
+    private volatile boolean configLoaded;
     public boolean contactsReimported;
     public int contactsSavedCount;
     private TLRPC$User currentUser;
@@ -46,6 +45,7 @@ public class UserConfig extends BaseController {
     public boolean filtersLoaded;
     public String genericAnimationsStickerPack;
     int globalTtl;
+    LongSparseArray<SaveToGallerySettingsHelper.DialogException> groupsSaveGalleryExceptions;
     public boolean hasSecureData;
     public boolean hasValidDialogLoadIds;
     public int lastBroadcastId;
@@ -80,6 +80,7 @@ public class UserConfig extends BaseController {
     boolean ttlIsLoading;
     public TLRPC$TL_help_termsOfService unacceptedTermsOfService;
     public boolean unreadDialogsLoaded;
+    LongSparseArray<SaveToGallerySettingsHelper.DialogException> userSaveGalleryExceptions;
 
     public static UserConfig getInstance(int i) {
         UserConfig userConfig = Instance[i];
@@ -158,88 +159,90 @@ public class UserConfig extends BaseController {
     }
 
     public void lambda$saveConfig$0(boolean z) {
-        synchronized (this.sync) {
-            try {
-                SharedPreferences.Editor edit = getPreferences().edit();
-                if (this.currentAccount == 0) {
-                    edit.putInt("selectedAccount", selectedAccount);
-                }
-                edit.putBoolean("registeredForPush", this.registeredForPush);
-                edit.putInt("lastSendMessageId", this.lastSendMessageId);
-                edit.putInt("contactsSavedCount", this.contactsSavedCount);
-                edit.putInt("lastBroadcastId", this.lastBroadcastId);
-                edit.putInt("lastContactsSyncTime", this.lastContactsSyncTime);
-                edit.putInt("lastHintsSyncTime", this.lastHintsSyncTime);
-                edit.putBoolean("draftsLoaded", this.draftsLoaded);
-                edit.putBoolean("unreadDialogsLoaded", this.unreadDialogsLoaded);
-                edit.putInt("ratingLoadTime", this.ratingLoadTime);
-                edit.putInt("botRatingLoadTime", this.botRatingLoadTime);
-                edit.putBoolean("contactsReimported", this.contactsReimported);
-                edit.putInt("loginTime", this.loginTime);
-                edit.putBoolean("syncContacts", this.syncContacts);
-                edit.putBoolean("suggestContacts", this.suggestContacts);
-                edit.putBoolean("hasSecureData", this.hasSecureData);
-                edit.putBoolean("notificationsSettingsLoaded3", this.notificationsSettingsLoaded);
-                edit.putBoolean("notificationsSignUpSettingsLoaded", this.notificationsSignUpSettingsLoaded);
-                edit.putLong("autoDownloadConfigLoadTime", this.autoDownloadConfigLoadTime);
-                edit.putBoolean("hasValidDialogLoadIds", this.hasValidDialogLoadIds);
-                edit.putInt("sharingMyLocationUntil", this.sharingMyLocationUntil);
-                edit.putInt("lastMyLocationShareTime", this.lastMyLocationShareTime);
-                edit.putBoolean("filtersLoaded", this.filtersLoaded);
-                edit.putStringSet("awaitBillingProductIds", new HashSet(this.awaitBillingProductIds));
-                TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose = this.billingPaymentPurpose;
-                if (tLRPC$InputStorePaymentPurpose != null) {
-                    SerializedData serializedData = new SerializedData(tLRPC$InputStorePaymentPurpose.getObjectSize());
-                    this.billingPaymentPurpose.serializeToStream(serializedData);
-                    edit.putString("billingPaymentPurpose", Base64.encodeToString(serializedData.toByteArray(), 0));
-                    serializedData.cleanup();
-                } else {
-                    edit.remove("billingPaymentPurpose");
-                }
-                edit.putString("premiumGiftsStickerPack", this.premiumGiftsStickerPack);
-                edit.putLong("lastUpdatedPremiumGiftsStickerPack", this.lastUpdatedPremiumGiftsStickerPack);
-                edit.putString("genericAnimationsStickerPack", this.genericAnimationsStickerPack);
-                edit.putLong("lastUpdatedGenericAnimations", this.lastUpdatedGenericAnimations);
-                edit.putInt("6migrateOffsetId", this.migrateOffsetId);
-                if (this.migrateOffsetId != -1) {
-                    edit.putInt("6migrateOffsetDate", this.migrateOffsetDate);
-                    edit.putLong("6migrateOffsetUserId", this.migrateOffsetUserId);
-                    edit.putLong("6migrateOffsetChatId", this.migrateOffsetChatId);
-                    edit.putLong("6migrateOffsetChannelId", this.migrateOffsetChannelId);
-                    edit.putLong("6migrateOffsetAccess", this.migrateOffsetAccess);
-                }
-                TLRPC$TL_help_termsOfService tLRPC$TL_help_termsOfService = this.unacceptedTermsOfService;
-                if (tLRPC$TL_help_termsOfService != null) {
-                    try {
-                        SerializedData serializedData2 = new SerializedData(tLRPC$TL_help_termsOfService.getObjectSize());
-                        this.unacceptedTermsOfService.serializeToStream(serializedData2);
-                        edit.putString("terms", Base64.encodeToString(serializedData2.toByteArray(), 0));
-                        serializedData2.cleanup();
-                    } catch (Exception unused) {
+        if (this.configLoaded) {
+            synchronized (this.sync) {
+                try {
+                    SharedPreferences.Editor edit = getPreferences().edit();
+                    if (this.currentAccount == 0) {
+                        edit.putInt("selectedAccount", selectedAccount);
                     }
-                } else {
-                    edit.remove("terms");
+                    edit.putBoolean("registeredForPush", this.registeredForPush);
+                    edit.putInt("lastSendMessageId", this.lastSendMessageId);
+                    edit.putInt("contactsSavedCount", this.contactsSavedCount);
+                    edit.putInt("lastBroadcastId", this.lastBroadcastId);
+                    edit.putInt("lastContactsSyncTime", this.lastContactsSyncTime);
+                    edit.putInt("lastHintsSyncTime", this.lastHintsSyncTime);
+                    edit.putBoolean("draftsLoaded", this.draftsLoaded);
+                    edit.putBoolean("unreadDialogsLoaded", this.unreadDialogsLoaded);
+                    edit.putInt("ratingLoadTime", this.ratingLoadTime);
+                    edit.putInt("botRatingLoadTime", this.botRatingLoadTime);
+                    edit.putBoolean("contactsReimported", this.contactsReimported);
+                    edit.putInt("loginTime", this.loginTime);
+                    edit.putBoolean("syncContacts", this.syncContacts);
+                    edit.putBoolean("suggestContacts", this.suggestContacts);
+                    edit.putBoolean("hasSecureData", this.hasSecureData);
+                    edit.putBoolean("notificationsSettingsLoaded3", this.notificationsSettingsLoaded);
+                    edit.putBoolean("notificationsSignUpSettingsLoaded", this.notificationsSignUpSettingsLoaded);
+                    edit.putLong("autoDownloadConfigLoadTime", this.autoDownloadConfigLoadTime);
+                    edit.putBoolean("hasValidDialogLoadIds", this.hasValidDialogLoadIds);
+                    edit.putInt("sharingMyLocationUntil", this.sharingMyLocationUntil);
+                    edit.putInt("lastMyLocationShareTime", this.lastMyLocationShareTime);
+                    edit.putBoolean("filtersLoaded", this.filtersLoaded);
+                    edit.putStringSet("awaitBillingProductIds", new HashSet(this.awaitBillingProductIds));
+                    TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose = this.billingPaymentPurpose;
+                    if (tLRPC$InputStorePaymentPurpose != null) {
+                        SerializedData serializedData = new SerializedData(tLRPC$InputStorePaymentPurpose.getObjectSize());
+                        this.billingPaymentPurpose.serializeToStream(serializedData);
+                        edit.putString("billingPaymentPurpose", Base64.encodeToString(serializedData.toByteArray(), 0));
+                        serializedData.cleanup();
+                    } else {
+                        edit.remove("billingPaymentPurpose");
+                    }
+                    edit.putString("premiumGiftsStickerPack", this.premiumGiftsStickerPack);
+                    edit.putLong("lastUpdatedPremiumGiftsStickerPack", this.lastUpdatedPremiumGiftsStickerPack);
+                    edit.putString("genericAnimationsStickerPack", this.genericAnimationsStickerPack);
+                    edit.putLong("lastUpdatedGenericAnimations", this.lastUpdatedGenericAnimations);
+                    edit.putInt("6migrateOffsetId", this.migrateOffsetId);
+                    if (this.migrateOffsetId != -1) {
+                        edit.putInt("6migrateOffsetDate", this.migrateOffsetDate);
+                        edit.putLong("6migrateOffsetUserId", this.migrateOffsetUserId);
+                        edit.putLong("6migrateOffsetChatId", this.migrateOffsetChatId);
+                        edit.putLong("6migrateOffsetChannelId", this.migrateOffsetChannelId);
+                        edit.putLong("6migrateOffsetAccess", this.migrateOffsetAccess);
+                    }
+                    TLRPC$TL_help_termsOfService tLRPC$TL_help_termsOfService = this.unacceptedTermsOfService;
+                    if (tLRPC$TL_help_termsOfService != null) {
+                        try {
+                            SerializedData serializedData2 = new SerializedData(tLRPC$TL_help_termsOfService.getObjectSize());
+                            this.unacceptedTermsOfService.serializeToStream(serializedData2);
+                            edit.putString("terms", Base64.encodeToString(serializedData2.toByteArray(), 0));
+                            serializedData2.cleanup();
+                        } catch (Exception unused) {
+                        }
+                    } else {
+                        edit.remove("terms");
+                    }
+                    SharedConfig.saveConfig();
+                    if (this.tmpPassword != null) {
+                        SerializedData serializedData3 = new SerializedData();
+                        this.tmpPassword.serializeToStream(serializedData3);
+                        edit.putString("tmpPassword", Base64.encodeToString(serializedData3.toByteArray(), 0));
+                        serializedData3.cleanup();
+                    } else {
+                        edit.remove("tmpPassword");
+                    }
+                    if (this.currentUser == null) {
+                        edit.remove("user");
+                    } else if (z) {
+                        SerializedData serializedData4 = new SerializedData();
+                        this.currentUser.serializeToStream(serializedData4);
+                        edit.putString("user", Base64.encodeToString(serializedData4.toByteArray(), 0));
+                        serializedData4.cleanup();
+                    }
+                    edit.commit();
+                } catch (Exception e) {
+                    FileLog.e(e);
                 }
-                SharedConfig.saveConfig();
-                if (this.tmpPassword != null) {
-                    SerializedData serializedData3 = new SerializedData();
-                    this.tmpPassword.serializeToStream(serializedData3);
-                    edit.putString("tmpPassword", Base64.encodeToString(serializedData3.toByteArray(), 0));
-                    serializedData3.cleanup();
-                } else {
-                    edit.remove("tmpPassword");
-                }
-                if (this.currentUser == null) {
-                    edit.remove("user");
-                } else if (z) {
-                    SerializedData serializedData4 = new SerializedData();
-                    this.currentUser.serializeToStream(serializedData4);
-                    edit.putString("user", Base64.encodeToString(serializedData4.toByteArray(), 0));
-                    serializedData4.cleanup();
-                }
-                edit.commit();
-            } catch (Exception e) {
-                FileLog.m32e(e);
             }
         }
     }
@@ -260,7 +263,7 @@ public class UserConfig extends BaseController {
         long j;
         synchronized (this.sync) {
             TLRPC$User tLRPC$User = this.currentUser;
-            j = tLRPC$User != null ? tLRPC$User.f995id : 0L;
+            j = tLRPC$User != null ? tLRPC$User.id : 0L;
         }
         return j;
     }
@@ -288,7 +291,7 @@ public class UserConfig extends BaseController {
         synchronized (this.sync) {
             TLRPC$User tLRPC$User2 = this.currentUser;
             this.currentUser = tLRPC$User;
-            this.clientUserId = tLRPC$User.f995id;
+            this.clientUserId = tLRPC$User.id;
             checkPremiumSelf(tLRPC$User2, tLRPC$User);
         }
     }
@@ -352,6 +355,46 @@ public class UserConfig extends BaseController {
         return context.getSharedPreferences("userconfig" + this.currentAccount, 0);
     }
 
+    public LongSparseArray<SaveToGallerySettingsHelper.DialogException> getSaveGalleryExceptions(int i) {
+        if (i == 1) {
+            if (this.userSaveGalleryExceptions == null) {
+                Context context = ApplicationLoader.applicationContext;
+                this.userSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(context.getSharedPreferences(SaveToGallerySettingsHelper.USERS_PREF_NAME + "_" + this.currentAccount, 0));
+            }
+            return this.userSaveGalleryExceptions;
+        } else if (i == 2) {
+            if (this.groupsSaveGalleryExceptions == null) {
+                Context context2 = ApplicationLoader.applicationContext;
+                this.groupsSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(context2.getSharedPreferences(SaveToGallerySettingsHelper.GROUPS_PREF_NAME + "_" + this.currentAccount, 0));
+            }
+            return this.groupsSaveGalleryExceptions;
+        } else if (i == 4) {
+            if (this.chanelSaveGalleryExceptions == null) {
+                Context context3 = ApplicationLoader.applicationContext;
+                this.chanelSaveGalleryExceptions = SaveToGallerySettingsHelper.loadExceptions(context3.getSharedPreferences(SaveToGallerySettingsHelper.CHANNELS_PREF_NAME + "_" + this.currentAccount, 0));
+            }
+            return this.chanelSaveGalleryExceptions;
+        } else {
+            return null;
+        }
+    }
+
+    public void updateSaveGalleryExceptions(int i, LongSparseArray<SaveToGallerySettingsHelper.DialogException> longSparseArray) {
+        if (i == 1) {
+            this.userSaveGalleryExceptions = longSparseArray;
+            Context context = ApplicationLoader.applicationContext;
+            SaveToGallerySettingsHelper.saveExceptions(context.getSharedPreferences(SaveToGallerySettingsHelper.USERS_PREF_NAME + "_" + this.currentAccount, 0), this.userSaveGalleryExceptions);
+        } else if (i == 2) {
+            this.groupsSaveGalleryExceptions = longSparseArray;
+            Context context2 = ApplicationLoader.applicationContext;
+            SaveToGallerySettingsHelper.saveExceptions(context2.getSharedPreferences(SaveToGallerySettingsHelper.GROUPS_PREF_NAME + "_" + this.currentAccount, 0), this.groupsSaveGalleryExceptions);
+        } else if (i == 4) {
+            this.chanelSaveGalleryExceptions = longSparseArray;
+            Context context3 = ApplicationLoader.applicationContext;
+            SaveToGallerySettingsHelper.saveExceptions(context3.getSharedPreferences(SaveToGallerySettingsHelper.CHANNELS_PREF_NAME + "_" + this.currentAccount, 0), this.chanelSaveGalleryExceptions);
+        }
+    }
+
     public void clearConfig() {
         getPreferences().edit().clear().apply();
         boolean z = false;
@@ -411,6 +454,16 @@ public class UserConfig extends BaseController {
     public void setPinnedDialogsLoaded(int i, boolean z) {
         SharedPreferences.Editor edit = getPreferences().edit();
         edit.putBoolean("2pinnedDialogsLoaded" + i, z).commit();
+    }
+
+    public void clearPinnedDialogsLoaded() {
+        SharedPreferences.Editor edit = getPreferences().edit();
+        for (String str : getPreferences().getAll().keySet()) {
+            if (str.startsWith("2pinnedDialogsLoaded")) {
+                edit.remove(str);
+            }
+        }
+        edit.apply();
     }
 
     public int getTotalDialogsCount(int i) {
@@ -496,19 +549,7 @@ public class UserConfig extends BaseController {
     }
 
     public Long getEmojiStatus() {
-        TLRPC$User tLRPC$User = this.currentUser;
-        if (tLRPC$User == null) {
-            return null;
-        }
-        TLRPC$EmojiStatus tLRPC$EmojiStatus = tLRPC$User.emoji_status;
-        if ((tLRPC$EmojiStatus instanceof TLRPC$TL_emojiStatusUntil) && ((TLRPC$TL_emojiStatusUntil) tLRPC$EmojiStatus).until > ((int) (System.currentTimeMillis() / 1000))) {
-            return Long.valueOf(((TLRPC$TL_emojiStatusUntil) this.currentUser.emoji_status).document_id);
-        }
-        TLRPC$EmojiStatus tLRPC$EmojiStatus2 = this.currentUser.emoji_status;
-        if (tLRPC$EmojiStatus2 instanceof TLRPC$TL_emojiStatus) {
-            return Long.valueOf(((TLRPC$TL_emojiStatus) tLRPC$EmojiStatus2).document_id);
-        }
-        return null;
+        return UserObject.getEmojiStatusDocumentId(this.currentUser);
     }
 
     public int getGlobalTTl() {
@@ -560,5 +601,10 @@ public class UserConfig extends BaseController {
 
     public void setGlobalTtl(int i) {
         this.globalTtl = i;
+    }
+
+    public void clearFilters() {
+        getPreferences().edit().remove("filtersLoaded").apply();
+        this.filtersLoaded = false;
     }
 }

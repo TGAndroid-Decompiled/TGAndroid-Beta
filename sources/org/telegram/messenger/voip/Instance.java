@@ -1,6 +1,6 @@
 package org.telegram.messenger.voip;
 
-import android.os.Build;
+import com.google.android.exoplayer2.util.Util;
 import java.util.Arrays;
 import java.util.List;
 import org.json.JSONException;
@@ -11,11 +11,9 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.NativeInstance;
 import org.webrtc.ContextUtils;
 import org.webrtc.VideoSink;
-
 public final class Instance {
     public static final int AUDIO_STATE_ACTIVE = 1;
     public static final int AUDIO_STATE_MUTED = 0;
-    public static final List<String> AVAILABLE_VERSIONS;
     public static final int DATA_SAVING_ALWAYS = 2;
     public static final int DATA_SAVING_MOBILE = 1;
     public static final int DATA_SAVING_NEVER = 0;
@@ -55,8 +53,9 @@ public final class Instance {
     public static final int VIDEO_STATE_INACTIVE = 0;
     public static final int VIDEO_STATE_PAUSED = 1;
     private static int bufferSize;
-    private static ServerConfig globalServerConfig;
     private static NativeInstance instance;
+    public static final List<String> AVAILABLE_VERSIONS = Arrays.asList("2.4.4", "2.7.7", "5.0.0", "6.0.0", "7.0.0", "8.0.0", "9.0.0", "10.0.0", "11.0.0");
+    private static ServerConfig globalServerConfig = new ServerConfig(new JSONObject());
 
     public interface OnRemoteMediaStateUpdatedListener {
         void onMediaStateUpdated(int i, int i2);
@@ -78,11 +77,6 @@ public final class Instance {
         return 92;
     }
 
-    static {
-        AVAILABLE_VERSIONS = Build.VERSION.SDK_INT >= 18 ? Arrays.asList("4.1.2", "4.0.2", "4.0.1", "4.0.0", "3.0.0", "2.7.7", "2.4.4") : Arrays.asList("2.4.4");
-        globalServerConfig = new ServerConfig(new JSONObject());
-    }
-
     private Instance() {
     }
 
@@ -99,7 +93,7 @@ public final class Instance {
             }
         } catch (JSONException e) {
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.m33e("failed to parse tgvoip server config", e);
+                FileLog.e("failed to parse tgvoip server config", e);
             }
         }
     }
@@ -175,13 +169,14 @@ public final class Instance {
     }
 
     public static final class Endpoint {
-        public final long f851id;
+        public final long id;
         public final String ipv4;
         public final String ipv6;
         public final boolean isRtc;
         public final String password;
         public final byte[] peerTag;
         public final int port;
+        public int reflectorId;
         public final boolean stun;
         public final boolean tcp;
         public final boolean turn;
@@ -190,7 +185,7 @@ public final class Instance {
 
         public Endpoint(boolean z, long j, String str, String str2, int i, int i2, byte[] bArr, boolean z2, boolean z3, String str3, String str4, boolean z4) {
             this.isRtc = z;
-            this.f851id = j;
+            this.id = j;
             this.ipv4 = str;
             this.ipv6 = str2;
             this.port = i;
@@ -198,13 +193,21 @@ public final class Instance {
             this.peerTag = bArr;
             this.turn = z2;
             this.stun = z3;
-            this.username = str3;
-            this.password = str4;
+            if (z) {
+                this.username = str3;
+                this.password = str4;
+            } else if (bArr != null) {
+                this.username = "reflector";
+                this.password = Util.toHexString(bArr);
+            } else {
+                this.username = null;
+                this.password = null;
+            }
             this.tcp = z4;
         }
 
         public String toString() {
-            return "Endpoint{id=" + this.f851id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
+            return "Endpoint{id=" + this.id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
         }
     }
 
@@ -296,8 +299,8 @@ public final class Instance {
         public final String component;
         public final String foundation;
         public final String generation;
-        public final String f849id;
-        public final String f850ip;
+        public final String id;
+        public final String ip;
         public final String network;
         public final String port;
         public final String priority;
@@ -312,11 +315,11 @@ public final class Instance {
             this.protocol = str2;
             this.network = str3;
             this.generation = str4;
-            this.f849id = str5;
+            this.id = str5;
             this.component = str6;
             this.foundation = str7;
             this.priority = str8;
-            this.f850ip = str9;
+            this.ip = str9;
             this.type = str10;
             this.tcpType = str11;
             this.relAddr = str12;
@@ -324,7 +327,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f849id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.f850ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
+            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
         }
     }
 

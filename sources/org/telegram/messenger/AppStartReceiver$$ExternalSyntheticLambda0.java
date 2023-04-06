@@ -1,5 +1,4 @@
 package org.telegram.messenger;
-
 public final class AppStartReceiver$$ExternalSyntheticLambda0 implements Runnable {
     public static final AppStartReceiver$$ExternalSyntheticLambda0 INSTANCE = new AppStartReceiver$$ExternalSyntheticLambda0();
 

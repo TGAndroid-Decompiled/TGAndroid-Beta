@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_cancelCode extends TLObject {
     public static int constructor = 520357240;
     public String phone_code_hash;

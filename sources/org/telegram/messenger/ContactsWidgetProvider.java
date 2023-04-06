@@ -10,9 +10,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 import java.util.ArrayList;
-import org.telegram.p009ui.LaunchActivity;
 import org.telegram.tgnet.ConnectionsManager;
-
+import org.telegram.ui.LaunchActivity;
 public class ContactsWidgetProvider extends AppWidgetProvider {
     private static int getCellsForSize(int i) {
         int i2 = 2;
@@ -80,21 +79,21 @@ public class ContactsWidgetProvider extends AppWidgetProvider {
             }
             int ceil = (int) Math.ceil(arrayList.size() / 2.0f);
             if (cellsForSize == 1 || ceil <= 1) {
-                i2 = C1072R.layout.contacts_widget_layout_1;
+                i2 = R.layout.contacts_widget_layout_1;
             } else if (cellsForSize == 2 || ceil <= 2) {
-                i2 = C1072R.layout.contacts_widget_layout_2;
+                i2 = R.layout.contacts_widget_layout_2;
             } else if (cellsForSize == 3 || ceil <= 3) {
-                i2 = C1072R.layout.contacts_widget_layout_3;
+                i2 = R.layout.contacts_widget_layout_3;
             } else {
-                i2 = C1072R.layout.contacts_widget_layout_4;
+                i2 = R.layout.contacts_widget_layout_4;
             }
         } else {
-            i2 = C1072R.layout.contacts_widget_layout_1;
+            i2 = R.layout.contacts_widget_layout_1;
         }
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), i2);
-        int i4 = C1072R.C1074id.list_view;
+        int i4 = R.id.list_view;
         remoteViews.setRemoteAdapter(i, i4, intent);
-        remoteViews.setEmptyView(i4, C1072R.C1074id.empty_view);
+        remoteViews.setEmptyView(i4, R.id.empty_view);
         Intent intent2 = new Intent(ApplicationLoader.applicationContext, LaunchActivity.class);
         intent2.setAction("com.tmessages.openchat" + Math.random() + ConnectionsManager.DEFAULT_DATACENTER_ID);
         intent2.addFlags(ConnectionsManager.FileTypeFile);

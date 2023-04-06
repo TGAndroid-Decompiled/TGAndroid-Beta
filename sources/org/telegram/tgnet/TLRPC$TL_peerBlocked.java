@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_peerBlocked extends TLObject {
     public static int constructor = -386039788;
     public int date;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelParticipantSelf extends TLRPC$ChannelParticipant {
     public static int constructor = 900251559;
 

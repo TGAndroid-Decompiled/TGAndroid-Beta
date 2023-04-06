@@ -11,7 +11,6 @@ import java.nio.ByteBuffer;
 import org.telegram.messenger.CharacterCompat;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
-
 public class AudioRecoder {
     private final MediaCodec decoder;
     private ByteBuffer[] decoderInputBuffers;
@@ -59,7 +58,7 @@ public class AudioRecoder {
             this.extractor.unselectTrack(this.trackIndex);
             this.extractor.release();
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
         }
     }
 

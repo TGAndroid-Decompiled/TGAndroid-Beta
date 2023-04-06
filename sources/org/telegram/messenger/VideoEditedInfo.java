@@ -7,17 +7,16 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.MediaController;
-import org.telegram.p009ui.Components.AnimatedFileDrawable;
-import org.telegram.p009ui.Components.Paint.PaintTypeface;
-import org.telegram.p009ui.Components.PhotoFilterView;
-import org.telegram.p009ui.Components.Point;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$InputEncryptedFile;
 import org.telegram.tgnet.TLRPC$InputFile;
 import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
-
+import org.telegram.ui.Components.AnimatedFileDrawable;
+import org.telegram.ui.Components.Paint.PaintTypeface;
+import org.telegram.ui.Components.PhotoFilterView;
+import org.telegram.ui.Components.Point;
 public class VideoEditedInfo {
     public int bitrate;
     public boolean canceled;
@@ -31,7 +30,7 @@ public class VideoEditedInfo {
     public TLRPC$InputFile file;
     public MediaController.SavedFilterState filterState;
     public boolean isPhoto;
-    public byte[] f833iv;
+    public byte[] iv;
     public byte[] key;
     public ArrayList<MediaEntity> mediaEntities;
     public boolean muted;
@@ -93,6 +92,8 @@ public class VideoEditedInfo {
         public Object parentObject;
         public long ptr;
         public float rotation;
+        public float roundRadius;
+        public Canvas roundRadiusCanvas;
         public float scale;
         public byte subType;
         public String text;
@@ -107,8 +108,8 @@ public class VideoEditedInfo {
         public int viewHeight;
         public int viewWidth;
         public float width;
-        public float f834x;
-        public float f835y;
+        public float x;
+        public float y;
 
         public MediaEntity() {
             this.entities = new ArrayList<>();
@@ -118,8 +119,8 @@ public class VideoEditedInfo {
             this.entities = new ArrayList<>();
             this.type = serializedData.readByte(false);
             this.subType = serializedData.readByte(false);
-            this.f834x = serializedData.readFloat(false);
-            this.f835y = serializedData.readFloat(false);
+            this.x = serializedData.readFloat(false);
+            this.y = serializedData.readFloat(false);
             this.rotation = serializedData.readFloat(false);
             this.width = serializedData.readFloat(false);
             this.height = serializedData.readFloat(false);
@@ -136,13 +137,14 @@ public class VideoEditedInfo {
             this.viewWidth = serializedData.readInt32(false);
             this.viewHeight = serializedData.readInt32(false);
             this.textAlign = serializedData.readInt32(false);
+            this.textTypeface = PaintTypeface.find(serializedData.readString(false));
         }
 
         public void serializeTo(SerializedData serializedData) {
             serializedData.writeByte(this.type);
             serializedData.writeByte(this.subType);
-            serializedData.writeFloat(this.f834x);
-            serializedData.writeFloat(this.f835y);
+            serializedData.writeFloat(this.x);
+            serializedData.writeFloat(this.y);
             serializedData.writeFloat(this.rotation);
             serializedData.writeFloat(this.width);
             serializedData.writeFloat(this.height);
@@ -156,14 +158,16 @@ public class VideoEditedInfo {
             serializedData.writeInt32(this.viewWidth);
             serializedData.writeInt32(this.viewHeight);
             serializedData.writeInt32(this.textAlign);
+            PaintTypeface paintTypeface = this.textTypeface;
+            serializedData.writeString(paintTypeface == null ? "" : paintTypeface.getKey());
         }
 
         public MediaEntity copy() {
             MediaEntity mediaEntity = new MediaEntity();
             mediaEntity.type = this.type;
             mediaEntity.subType = this.subType;
-            mediaEntity.f834x = this.f834x;
-            mediaEntity.f835y = this.f835y;
+            mediaEntity.x = this.x;
+            mediaEntity.y = this.y;
             mediaEntity.rotation = this.rotation;
             mediaEntity.width = this.width;
             mediaEntity.height = this.height;
@@ -179,6 +183,7 @@ public class VideoEditedInfo {
             mediaEntity.textViewX = this.textViewX;
             mediaEntity.textViewY = this.textViewY;
             mediaEntity.textAlign = this.textAlign;
+            mediaEntity.textTypeface = this.textTypeface;
             return mediaEntity;
         }
     }
@@ -223,8 +228,8 @@ public class VideoEditedInfo {
                 serializedData.writeFloat(this.filterState.blurExcludeSize);
                 Point point = this.filterState.blurExcludePoint;
                 if (point != null) {
-                    serializedData.writeFloat(point.f1103x);
-                    serializedData.writeFloat(this.filterState.blurExcludePoint.f1104y);
+                    serializedData.writeFloat(point.x);
+                    serializedData.writeFloat(this.filterState.blurExcludePoint.y);
                 } else {
                     serializedData.writeFloat(0.0f);
                     serializedData.writeFloat(0.0f);
@@ -401,7 +406,7 @@ public class VideoEditedInfo {
             }
             return true;
         } catch (Exception e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return false;
         }
     }

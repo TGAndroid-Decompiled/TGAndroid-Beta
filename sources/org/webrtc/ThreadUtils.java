@@ -7,7 +7,6 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import org.telegram.messenger.BuildVars;
-
 public class ThreadUtils {
 
     public interface BlockingOperation {
@@ -128,22 +127,22 @@ public class ThreadUtils {
                 try {
                     C1Result.this.value = callable.call();
                 } catch (Exception e2) {
-                    c1CaughtException.f1175e = e2;
+                    c1CaughtException.e = e2;
                 }
                 countDownLatch.countDown();
             }
         });
         awaitUninterruptibly(countDownLatch);
-        if (c1CaughtException.f1175e != null) {
-            RuntimeException runtimeException = new RuntimeException(c1CaughtException.f1175e);
-            runtimeException.setStackTrace(concatStackTraces(c1CaughtException.f1175e.getStackTrace(), runtimeException.getStackTrace()));
+        if (c1CaughtException.e != null) {
+            RuntimeException runtimeException = new RuntimeException(c1CaughtException.e);
+            runtimeException.setStackTrace(concatStackTraces(c1CaughtException.e.getStackTrace(), runtimeException.getStackTrace()));
             throw runtimeException;
         }
         return c1Result.value;
     }
 
     public class C1CaughtException {
-        Exception f1175e;
+        Exception e;
 
         C1CaughtException() {
         }

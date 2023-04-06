@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageActionPaymentSent extends TLRPC$MessageAction {
     public static int constructor = -1776926890;
 

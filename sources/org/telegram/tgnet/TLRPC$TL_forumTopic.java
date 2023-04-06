@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
-
 public class TLRPC$TL_forumTopic extends TLRPC$ForumTopic {
     public static int constructor = 1903173033;
     public boolean closed;
@@ -14,9 +13,9 @@ public class TLRPC$TL_forumTopic extends TLRPC$ForumTopic {
     public boolean hidden;
     public int icon_color;
     public long icon_emoji_id;
-    public int f910id;
+    public int id;
     public boolean isShort;
-    public boolean f911my;
+    public boolean my;
     public TLRPC$PeerNotifySettings notify_settings;
     public boolean pinned;
     public int pinnedOrder;
@@ -33,33 +32,26 @@ public class TLRPC$TL_forumTopic extends TLRPC$ForumTopic {
     public int unread_reactions_count;
 
     public static TLRPC$TL_forumTopic TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$TL_forumTopic tLRPC$TL_forumTopicDeleted;
-        if (i == 37687451) {
-            tLRPC$TL_forumTopicDeleted = new TLRPC$TL_forumTopicDeleted();
-        } else if (i == 1495324380) {
-            tLRPC$TL_forumTopicDeleted = new TLRPC$TL_forumTopic_layer147();
-        } else {
-            tLRPC$TL_forumTopicDeleted = i != 1903173033 ? null : new TLRPC$TL_forumTopic();
-        }
-        if (tLRPC$TL_forumTopicDeleted == null && z) {
+        TLRPC$TL_forumTopic tLRPC$TL_forumTopic = i != 37687451 ? i != 1495324380 ? i != 1903173033 ? null : new TLRPC$TL_forumTopic() : new TLRPC$TL_forumTopic_layer147() : new TLRPC$TL_forumTopicDeleted();
+        if (tLRPC$TL_forumTopic == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in TL_forumTopic", Integer.valueOf(i)));
         }
-        if (tLRPC$TL_forumTopicDeleted != null) {
-            tLRPC$TL_forumTopicDeleted.readParams(abstractSerializedData, z);
+        if (tLRPC$TL_forumTopic != null) {
+            tLRPC$TL_forumTopic.readParams(abstractSerializedData, z);
         }
-        return tLRPC$TL_forumTopicDeleted;
+        return tLRPC$TL_forumTopic;
     }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        this.f911my = (readInt32 & 2) != 0;
+        this.my = (readInt32 & 2) != 0;
         this.closed = (readInt32 & 4) != 0;
         this.pinned = (readInt32 & 8) != 0;
         this.isShort = (readInt32 & 32) != 0;
         this.hidden = (readInt32 & 64) != 0;
-        this.f910id = abstractSerializedData.readInt32(z);
+        this.id = abstractSerializedData.readInt32(z);
         this.date = abstractSerializedData.readInt32(z);
         this.title = abstractSerializedData.readString(z);
         this.icon_color = abstractSerializedData.readInt32(z);
@@ -82,7 +74,7 @@ public class TLRPC$TL_forumTopic extends TLRPC$ForumTopic {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        int i = this.f911my ? this.flags | 2 : this.flags & (-3);
+        int i = this.my ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.closed ? i | 4 : i & (-5);
         this.flags = i2;
@@ -93,7 +85,7 @@ public class TLRPC$TL_forumTopic extends TLRPC$ForumTopic {
         int i5 = this.hidden ? i4 | 64 : i4 & (-65);
         this.flags = i5;
         abstractSerializedData.writeInt32(i5);
-        abstractSerializedData.writeInt32(this.f910id);
+        abstractSerializedData.writeInt32(this.id);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeString(this.title);
         abstractSerializedData.writeInt32(this.icon_color);

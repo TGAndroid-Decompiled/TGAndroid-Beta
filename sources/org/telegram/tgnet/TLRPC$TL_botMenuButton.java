@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_botMenuButton extends TLRPC$BotMenuButton {
     public static int constructor = -944407322;
     public String text;

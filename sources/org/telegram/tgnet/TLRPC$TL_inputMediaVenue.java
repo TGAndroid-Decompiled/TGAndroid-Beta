@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputMediaVenue extends TLRPC$InputMedia {
     public static int constructor = -1052959727;
 

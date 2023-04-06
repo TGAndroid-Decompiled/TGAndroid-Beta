@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$ThemeSettings extends TLObject {
     public int accent_color;
     public TLRPC$BaseTheme base_theme;

@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import android.media.SoundPool;
-
 public final class NotificationsController$$ExternalSyntheticLambda2 implements SoundPool.OnLoadCompleteListener {
     public static final NotificationsController$$ExternalSyntheticLambda2 INSTANCE = new NotificationsController$$ExternalSyntheticLambda2();
 

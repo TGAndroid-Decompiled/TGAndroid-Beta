@@ -1,9 +1,8 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$FileLocation extends TLObject {
     public int dc_id;
     public byte[] file_reference;
-    public byte[] f871iv;
+    public byte[] iv;
     public byte[] key;
     public int local_id;
     public long secret;

@@ -1,5 +1,4 @@
 package org.telegram.messenger;
-
 public final class SharedConfig$$ExternalSyntheticLambda4 implements Runnable {
     public static final SharedConfig$$ExternalSyntheticLambda4 INSTANCE = new SharedConfig$$ExternalSyntheticLambda4();
 
@@ -8,6 +7,6 @@ public final class SharedConfig$$ExternalSyntheticLambda4 implements Runnable {
 
     @Override
     public final void run() {
-        SharedConfig.saveConfig();
+        SharedConfig.lambda$checkSaveToGalleryFiles$5();
     }
 }

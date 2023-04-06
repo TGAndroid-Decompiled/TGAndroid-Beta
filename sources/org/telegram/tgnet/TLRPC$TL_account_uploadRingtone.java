@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_uploadRingtone extends TLObject {
     public static int constructor = -2095414366;
     public TLRPC$InputFile file;

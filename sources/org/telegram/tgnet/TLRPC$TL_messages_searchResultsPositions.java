@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_searchResultsPositions extends TLObject {
     public static int constructor = 1404185519;
     public int count;

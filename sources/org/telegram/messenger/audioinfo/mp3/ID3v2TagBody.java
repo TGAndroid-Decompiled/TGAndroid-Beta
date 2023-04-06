@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.InflaterInputStream;
 import org.telegram.messenger.audioinfo.util.RangeInputStream;
-
 public class ID3v2TagBody {
     private final ID3v2DataInput data;
     private final RangeInputStream input;

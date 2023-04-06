@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_inputThemeSettings extends TLObject {
     public static int constructor = -1881255857;
     public int accent_color;

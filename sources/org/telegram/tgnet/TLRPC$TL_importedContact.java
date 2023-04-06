@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_importedContact extends TLObject {
     public static int constructor = -1052885936;
     public long client_id;

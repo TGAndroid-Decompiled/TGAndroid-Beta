@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_stats_megagroupStats extends TLObject {
     public static int constructor = -276825834;
     public TLRPC$StatsGraph actions_graph;

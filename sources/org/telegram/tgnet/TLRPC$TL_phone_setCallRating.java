@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_setCallRating extends TLObject {
     public static int constructor = 1508562471;
     public String comment;

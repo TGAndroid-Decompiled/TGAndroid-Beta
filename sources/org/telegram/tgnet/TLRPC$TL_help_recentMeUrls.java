@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_help_recentMeUrls extends TLObject {
     public static int constructor = 235081943;
     public ArrayList<TLRPC$RecentMeUrl> urls = new ArrayList<>();

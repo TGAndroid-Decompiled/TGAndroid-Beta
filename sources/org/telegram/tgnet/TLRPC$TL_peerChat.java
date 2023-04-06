@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_peerChat extends TLRPC$Peer {
     public static int constructor = 918946202;
 

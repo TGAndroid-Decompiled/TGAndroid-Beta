@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_exportedChatInvites extends TLObject {
     public static int constructor = -1111085620;
     public int count;

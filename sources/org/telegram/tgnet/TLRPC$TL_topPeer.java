@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_topPeer extends TLObject {
     public static int constructor = -305282981;
     public TLRPC$Peer peer;

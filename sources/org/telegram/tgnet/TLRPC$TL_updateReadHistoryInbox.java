@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateReadHistoryInbox extends TLRPC$Update {
     public static int constructor = -1667805217;
     public int flags;

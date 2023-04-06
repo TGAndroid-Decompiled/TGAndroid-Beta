@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputPeerPhotoFileLocation extends TLRPC$InputFileLocation {
     public static int constructor = 925204121;
     public boolean big;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_contactStatus extends TLObject {
     public static int constructor = 383348795;
     public TLRPC$UserStatus status;

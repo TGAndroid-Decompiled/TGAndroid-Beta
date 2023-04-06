@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_botInlineMessageMediaContact extends TLRPC$BotInlineMessage {
     public static int constructor = 416402882;
 

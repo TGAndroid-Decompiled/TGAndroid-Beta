@@ -1,7 +1,11 @@
 package org.telegram.messenger;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
@@ -11,7 +15,6 @@ import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$TL_chatFull;
 import org.telegram.tgnet.TLRPC$TL_peerNotifySettingsEmpty_layer77;
 import org.telegram.tgnet.TLRPC$TL_photoEmpty;
-
 public class DatabaseMigrationHelper {
     public static int migrate(MessagesStorage messagesStorage, int i) throws Exception {
         SQLiteDatabase sQLiteDatabase;
@@ -181,7 +184,7 @@ public class DatabaseMigrationHelper {
                     byteBufferValue2.reuse();
                     if (TLdeserialize != null) {
                         TLRPC$TL_chatFull tLRPC$TL_chatFull = new TLRPC$TL_chatFull();
-                        tLRPC$TL_chatFull.f858id = intValue2;
+                        tLRPC$TL_chatFull.id = intValue2;
                         tLRPC$TL_chatFull.chat_photo = new TLRPC$TL_photoEmpty();
                         tLRPC$TL_chatFull.notify_settings = new TLRPC$TL_peerNotifySettingsEmpty_layer77();
                         tLRPC$TL_chatFull.exported_invite = null;
@@ -544,7 +547,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor8 = database.queryFinalized("SELECT mid, uid, send_state, date, data, ttl, replydata FROM scheduled_messages_v2 WHERE 1", new Object[0]);
             } catch (Exception e) {
-                FileLog.m32e(e);
+                FileLog.e(e);
                 sQLiteCursor8 = null;
             }
             if (sQLiteCursor8 != null) {
@@ -597,7 +600,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor7 = database.queryFinalized("SELECT mid, uid, date, type, data FROM media_v2 WHERE 1", new Object[0]);
             } catch (Exception e2) {
-                FileLog.m32e(e2);
+                FileLog.e(e2);
                 sQLiteCursor7 = null;
             }
             if (sQLiteCursor7 != null) {
@@ -643,7 +646,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor3 = database.queryFinalized("SELECT r.random_id, r.mid, m.uid FROM randoms as r INNER JOIN messages as m ON r.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e3) {
-                FileLog.m32e(e3);
+                FileLog.e(e3);
                 sQLiteCursor3 = null;
             }
             if (sQLiteCursor3 != null) {
@@ -667,7 +670,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor4 = database.queryFinalized("SELECT p.mid, m.uid, p.id FROM polls as p INNER JOIN messages as m ON p.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e4) {
-                FileLog.m32e(e4);
+                FileLog.e(e4);
                 sQLiteCursor4 = null;
             }
             if (sQLiteCursor4 != null) {
@@ -691,7 +694,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor5 = database.queryFinalized("SELECT wp.id, wp.mid, m.uid FROM webpage_pending as wp INNER JOIN messages as m ON wp.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e5) {
-                FileLog.m32e(e5);
+                FileLog.e(e5);
                 sQLiteCursor5 = null;
             }
             if (sQLiteCursor5 != null) {
@@ -715,7 +718,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor6 = database.queryFinalized("SELECT et.mid, m.uid, et.date, et.media FROM enc_tasks_v3 as et INNER JOIN messages as m ON et.mid = m.mid WHERE 1", new Object[0]);
             } catch (Exception e6) {
-                FileLog.m32e(e6);
+                FileLog.e(e6);
                 sQLiteCursor6 = null;
             }
             if (sQLiteCursor6 != null) {
@@ -762,7 +765,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor2 = database.queryFinalized("SELECT mid, uid, read_state, send_state, date, data, out, ttl, media, replydata, imp, mention, forwards, replies_data, thread_reply_id FROM messages WHERE 1", new Object[0]);
             } catch (Exception e7) {
-                FileLog.m32e(e7);
+                FileLog.e(e7);
                 sQLiteCursor2 = null;
             }
             if (sQLiteCursor2 != null) {
@@ -978,7 +981,7 @@ public class DatabaseMigrationHelper {
             try {
                 sQLiteCursor = sQLiteDatabase.queryFinalized("SELECT mid, uid, date, type, data FROM media_v3 WHERE 1", new Object[0]);
             } catch (Exception e8) {
-                FileLog.m32e(e8);
+                FileLog.e(e8);
                 sQLiteCursor = null;
             }
             if (sQLiteCursor != null) {
@@ -1159,8 +1162,181 @@ public class DatabaseMigrationHelper {
         if (i7 == 109) {
             sQLiteDatabase.executeFast("ALTER TABLE dialogs ADD COLUMN ttl_period INTEGER default 0").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 110").stepThis().dispose();
-            return 110;
+            i7 = 110;
+        }
+        if (i7 == 110) {
+            sQLiteDatabase.executeFast("CREATE TABLE stickersets(id INTEGER PRIMATE KEY, data BLOB, hash INTEGER);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 111").stepThis().dispose();
+            i7 = 111;
+        }
+        if (i7 == 111) {
+            sQLiteDatabase.executeFast("CREATE TABLE emoji_groups(type INTEGER PRIMARY KEY, data BLOB)").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 112").stepThis().dispose();
+            i7 = 112;
+        }
+        if (i7 == 112) {
+            sQLiteDatabase.executeFast("CREATE TABLE app_config(data BLOB)").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 113").stepThis().dispose();
+            i7 = 113;
+        }
+        if (i7 == 113) {
+            messagesStorage.reset();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 114").stepThis().dispose();
+            i7 = 114;
+        }
+        if (i7 == 114) {
+            sQLiteDatabase.executeFast("CREATE TABLE bot_keyboard_topics(uid INTEGER, tid INTEGER, mid INTEGER, info BLOB, PRIMARY KEY(uid, tid))").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS bot_keyboard_topics_idx_mid_v2 ON bot_keyboard_topics(mid, uid, tid);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 115").stepThis().dispose();
+            i7 = 115;
+        }
+        if (i7 == 115) {
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_messages_v2 ON messages_v2(reply_to_message_id, mid);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_scheduled_messages_v2 ON scheduled_messages_v2(reply_to_message_id, mid);").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_messages_topics ON messages_topics(reply_to_message_id, mid);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 116").stepThis().dispose();
+            return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
+    }
+
+    public static boolean recoverDatabase(File file, File file2, File file3, int i) {
+        boolean z;
+        SQLiteDatabase sQLiteDatabase;
+        int intValue;
+        SQLiteCursor sQLiteCursor;
+        int i2;
+        File filesDirFixed = ApplicationLoader.getFilesDirFixed();
+        File file4 = new File(filesDirFixed, "recover_database_" + i + "/");
+        file4.mkdirs();
+        File file5 = new File(file4, "cache4.db");
+        File file6 = new File(file4, "cache4.db-wal");
+        File file7 = new File(file4, "cache4.db-shm");
+        try {
+            file5.delete();
+            file6.delete();
+            file7.delete();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        long j = 0;
+        ArrayList arrayList = new ArrayList();
+        ArrayList arrayList2 = new ArrayList();
+        FileLog.d("start recover database");
+        int i3 = 1;
+        int i4 = 0;
+        try {
+            j = System.currentTimeMillis();
+            sQLiteDatabase = new SQLiteDatabase(file5.getPath());
+            sQLiteDatabase.executeFast("PRAGMA secure_delete = ON").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA temp_store = MEMORY").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA journal_mode = WAL").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA journal_size_limit = 10485760").stepThis().dispose();
+            MessagesStorage.createTables(sQLiteDatabase);
+            sQLiteDatabase.executeFast("ATTACH DATABASE \"" + file.getAbsolutePath() + "\" AS old;").stepThis().dispose();
+            intValue = sQLiteDatabase.executeInt("PRAGMA old.user_version", new Object[0]).intValue();
+        } catch (Exception e2) {
+            FileLog.e(e2);
+            z = false;
+        }
+        if (intValue != 116) {
+            FileLog.e("can't restore database from version " + intValue);
+            return false;
+        }
+        HashSet hashSet = new HashSet();
+        hashSet.add("messages_v2");
+        hashSet.add("messages_holes");
+        hashSet.add("scheduled_messages_v2");
+        hashSet.add("media_holes_v2");
+        hashSet.add("media_v4");
+        hashSet.add("messages_holes_topics");
+        hashSet.add("messages_topics");
+        hashSet.add("media_topics");
+        hashSet.add("media_holes_topics");
+        hashSet.add("topics");
+        hashSet.add("media_counts_v2");
+        hashSet.add("media_counts_topics");
+        hashSet.add("dialogs");
+        hashSet.add("dialog_filter");
+        hashSet.add("dialog_filter_ep");
+        hashSet.add("dialog_filter_pin_v2");
+        int i5 = 0;
+        while (true) {
+            String[] strArr = MessagesStorage.DATABASE_TABLES;
+            if (i5 >= strArr.length) {
+                break;
+            }
+            String str = strArr[i5];
+            if (!hashSet.contains(str)) {
+                sQLiteDatabase.executeFast(String.format(Locale.US, "INSERT OR IGNORE INTO %s SELECT * FROM old.%s;", str, str)).stepThis().dispose();
+            }
+            i5++;
+        }
+        SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT did FROM old.dialogs", new Object[0]);
+        while (queryFinalized.next()) {
+            long longValue = queryFinalized.longValue(0);
+            if (DialogObject.isEncryptedDialog(longValue)) {
+                arrayList.add(Long.valueOf(longValue));
+            } else {
+                arrayList2.add(Long.valueOf(longValue));
+            }
+        }
+        queryFinalized.dispose();
+        for (int i6 = 0; i6 < arrayList.size(); i6++) {
+            long longValue2 = ((Long) arrayList.get(i6)).longValue();
+            Locale locale = Locale.US;
+            sQLiteDatabase.executeFast(String.format(locale, "INSERT OR IGNORE INTO messages_v2 SELECT * FROM old.messages_v2 WHERE uid = %d;", Long.valueOf(longValue2))).stepThis().dispose();
+            sQLiteDatabase.executeFast(String.format(locale, "INSERT OR IGNORE INTO messages_holes SELECT * FROM old.messages_holes WHERE uid = %d;", Long.valueOf(longValue2))).stepThis().dispose();
+            sQLiteDatabase.executeFast(String.format(locale, "INSERT OR IGNORE INTO media_holes_v2 SELECT * FROM old.media_holes_v2 WHERE uid = %d;", Long.valueOf(longValue2))).stepThis().dispose();
+            sQLiteDatabase.executeFast(String.format(locale, "INSERT OR IGNORE INTO media_v4 SELECT * FROM old.media_v4 WHERE uid = %d;", Long.valueOf(longValue2))).stepThis().dispose();
+        }
+        SQLitePreparedStatement executeFast = sQLiteDatabase.executeFast("REPLACE INTO messages_holes VALUES(?, ?, ?)");
+        SQLitePreparedStatement executeFast2 = sQLiteDatabase.executeFast("REPLACE INTO media_holes_v2 VALUES(?, ?, ?, ?)");
+        int i7 = 0;
+        while (i7 < arrayList2.size()) {
+            Long l = (Long) arrayList2.get(i7);
+            SQLiteCursor queryFinalized2 = sQLiteDatabase.queryFinalized("SELECT last_mid_i, last_mid FROM old.dialogs WHERE did = " + l, new Object[i4]);
+            if (queryFinalized2.next()) {
+                long longValue3 = queryFinalized2.longValue(i4);
+                SQLiteDatabase sQLiteDatabase2 = sQLiteDatabase;
+                long longValue4 = queryFinalized2.longValue(i3);
+                sQLiteDatabase2.executeFast("INSERT OR IGNORE INTO messages_v2 SELECT * FROM old.messages_v2 WHERE uid = " + l + " AND mid IN (" + longValue3 + "," + longValue4 + ")").stepThis().dispose();
+                sQLiteDatabase = sQLiteDatabase2;
+                sQLiteCursor = queryFinalized2;
+                i2 = i7;
+                MessagesStorage.createFirstHoles(l.longValue(), executeFast, executeFast2, (int) longValue4, 0);
+            } else {
+                sQLiteCursor = queryFinalized2;
+                i2 = i7;
+            }
+            sQLiteCursor.dispose();
+            i7 = i2 + 1;
+            i3 = 1;
+            i4 = 0;
+        }
+        executeFast.dispose();
+        executeFast2.dispose();
+        sQLiteDatabase.executeFast("DETACH DATABASE old;").stepThis().dispose();
+        sQLiteDatabase.close();
+        z = true;
+        if (z) {
+            try {
+                file.delete();
+                file2.delete();
+                file3.delete();
+                AndroidUtilities.copyFile(file5, file);
+                AndroidUtilities.copyFile(file6, file2);
+                AndroidUtilities.copyFile(file7, file3);
+                file5.delete();
+                file6.delete();
+                file7.delete();
+                FileLog.d("database recovered time " + (System.currentTimeMillis() - j));
+                return true;
+            } catch (IOException e3) {
+                e3.printStackTrace();
+                return false;
+            }
+        }
+        return false;
     }
 }

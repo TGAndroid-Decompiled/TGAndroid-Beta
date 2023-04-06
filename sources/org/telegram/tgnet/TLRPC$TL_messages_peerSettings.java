@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_peerSettings extends TLObject {
     public static int constructor = 1753266509;
     public TLRPC$TL_peerSettings settings;

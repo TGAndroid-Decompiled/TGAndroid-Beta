@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_searchResultsCalendarPeriod extends TLObject {
     public static int constructor = -911191137;
     public int count;

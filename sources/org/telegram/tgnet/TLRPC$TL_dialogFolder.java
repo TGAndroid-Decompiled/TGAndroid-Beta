@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_dialogFolder extends TLRPC$Dialog {
     public static int constructor = 1908216652;
     public TLRPC$TL_folder folder;

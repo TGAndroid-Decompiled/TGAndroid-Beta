@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_account_registerDevice extends TLObject {
     public static int constructor = -326762118;
     public boolean app_sandbox;

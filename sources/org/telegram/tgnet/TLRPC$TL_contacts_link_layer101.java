@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_contacts_link_layer101 extends TLObject {
     public static int constructor = 986597452;
     public TLRPC$ContactLink_layer101 foreign_link;

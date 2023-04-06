@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_statsPercentValue extends TLObject {
     public static int constructor = -875679776;
     public double part;

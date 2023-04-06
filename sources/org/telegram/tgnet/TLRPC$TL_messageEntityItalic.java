@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageEntityItalic extends TLRPC$MessageEntity {
     public static int constructor = -2106619040;
 

@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
-
 public class Bitmaps {
     private static volatile Matrix sScaleMatrix;
     private static final ThreadLocal<byte[]> jpegData = new ThreadLocal<byte[]>() {
@@ -91,7 +90,7 @@ public class Bitmaps {
         Bitmap.Config config = Bitmap.Config.ARGB_8888;
         Bitmap.Config config2 = bitmap.getConfig();
         if (config2 != null) {
-            int i8 = C10042.$SwitchMap$android$graphics$Bitmap$Config[config2.ordinal()];
+            int i8 = AnonymousClass2.$SwitchMap$android$graphics$Bitmap$Config[config2.ordinal()];
             if (i8 == 1) {
                 config = Bitmap.Config.ARGB_8888;
             } else if (i8 == 2) {
@@ -135,7 +134,7 @@ public class Bitmaps {
         return createBitmap;
     }
 
-    public static class C10042 {
+    public static class AnonymousClass2 {
         static final int[] $SwitchMap$android$graphics$Bitmap$Config;
 
         static {

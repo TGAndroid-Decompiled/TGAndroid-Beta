@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_payments_canPurchasePremium extends TLObject {
     public static int constructor = -1614700874;
     public TLRPC$InputStorePaymentPurpose purpose;

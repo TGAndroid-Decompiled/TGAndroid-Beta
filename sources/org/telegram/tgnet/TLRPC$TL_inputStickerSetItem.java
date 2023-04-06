@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputStickerSetItem extends TLObject {
     public static int constructor = -6249322;
     public TLRPC$InputDocument document;

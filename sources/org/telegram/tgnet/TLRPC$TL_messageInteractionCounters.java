@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageInteractionCounters extends TLObject {
     public static int constructor = -1387279939;
     public int forwards;

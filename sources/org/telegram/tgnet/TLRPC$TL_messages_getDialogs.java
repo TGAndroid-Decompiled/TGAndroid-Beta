@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getDialogs extends TLObject {
     public static int constructor = -1594569905;
     public boolean exclude_pinned;

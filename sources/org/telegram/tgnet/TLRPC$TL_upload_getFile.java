@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_upload_getFile extends TLObject {
     public static int constructor = -1101843010;
     public boolean cdn_supported;

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getMessageReadParticipants extends TLObject {
-    public static int constructor = 745510839;
+    public static int constructor = 834782287;
     public int msg_id;
     public TLRPC$InputPeer peer;
 
@@ -10,7 +9,11 @@ public class TLRPC$TL_messages_getMessageReadParticipants extends TLObject {
         TLRPC$Vector tLRPC$Vector = new TLRPC$Vector();
         int readInt32 = abstractSerializedData.readInt32(z);
         for (int i2 = 0; i2 < readInt32; i2++) {
-            tLRPC$Vector.objects.add(Long.valueOf(abstractSerializedData.readInt64(z)));
+            TLRPC$TL_readParticipantDate TLdeserialize = TLRPC$TL_readParticipantDate.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize == null) {
+                return tLRPC$Vector;
+            }
+            tLRPC$Vector.objects.add(TLdeserialize);
         }
         return tLRPC$Vector;
     }

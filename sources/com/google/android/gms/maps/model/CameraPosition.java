@@ -7,7 +7,6 @@ import com.google.android.gms.common.internal.Preconditions;
 import com.google.android.gms.common.internal.ReflectedParcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.internal.safeparcel.SafeParcelWriter;
-
 public final class CameraPosition extends AbstractSafeParcelable implements ReflectedParcelable {
     public static final Parcelable.Creator<CameraPosition> CREATOR = new zza();
     public final float bearing;

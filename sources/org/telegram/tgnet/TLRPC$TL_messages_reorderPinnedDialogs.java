@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_reorderPinnedDialogs extends TLObject {
     public static int constructor = 991616823;
     public int flags;

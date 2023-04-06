@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_decryptedMessageLayer extends TLObject {
     public static int constructor = 467867529;
     public int in_seq_no;

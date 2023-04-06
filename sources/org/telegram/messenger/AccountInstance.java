@@ -1,9 +1,8 @@
 package org.telegram.messenger;
 
 import android.content.SharedPreferences;
-import org.telegram.p009ui.Components.Paint.PersistColorPalette;
 import org.telegram.tgnet.ConnectionsManager;
-
+import org.telegram.ui.Components.Paint.PersistColorPalette;
 public class AccountInstance {
     private static volatile AccountInstance[] Instance = new AccountInstance[4];
     private int currentAccount;

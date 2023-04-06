@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getReplies extends TLObject {
     public static int constructor = 584962828;
     public int add_offset;

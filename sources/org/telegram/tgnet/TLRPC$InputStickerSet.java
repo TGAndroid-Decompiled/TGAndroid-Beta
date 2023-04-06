@@ -1,8 +1,7 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$InputStickerSet extends TLObject {
     public long access_hash;
-    public long f880id;
+    public long id;
     public String short_name;
 
     public static TLRPC$InputStickerSet TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {

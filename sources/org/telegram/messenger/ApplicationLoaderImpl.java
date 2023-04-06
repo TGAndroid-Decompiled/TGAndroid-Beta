@@ -6,7 +6,6 @@ import android.text.TextUtils;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.crashes.Crashes;
 import com.microsoft.appcenter.distribute.Distribute;
-
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
 
@@ -24,10 +23,17 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                     throw new RuntimeException("App Center hash is empty. add to local.properties field APP_CENTER_HASH_PRIVATE and APP_CENTER_HASH_PUBLIC");
                 }
                 AppCenter.start(activity.getApplication(), BuildConfig.APP_CENTER_HASH, Distribute.class, Crashes.class);
+                Crashes.getMinidumpDirectory().thenAccept(ApplicationLoaderImpl$$ExternalSyntheticLambda0.INSTANCE);
                 AppCenter.setUserId("uid=" + UserConfig.getInstance(UserConfig.selectedAccount).clientUserId);
             }
         } catch (Throwable th) {
-            FileLog.m32e(th);
+            FileLog.e(th);
+        }
+    }
+
+    public static void lambda$startAppCenterInternal$0(String str) {
+        if (str != null) {
+            Utilities.setupNativeCrashesListener(str);
         }
     }
 
@@ -40,7 +46,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             lastUpdateCheckTime = SystemClock.elapsedRealtime();
             Distribute.checkForUpdate();
         } catch (Throwable th) {
-            FileLog.m32e(th);
+            FileLog.e(th);
         }
     }
 

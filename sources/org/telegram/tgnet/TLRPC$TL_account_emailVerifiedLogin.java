@@ -1,14 +1,13 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_emailVerifiedLogin extends TLRPC$account_EmailVerified {
     public static int constructor = -507835039;
     public String email;
-    public TLRPC$TL_auth_sentCode sent_code;
+    public TLRPC$auth_SentCode sent_code;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.email = abstractSerializedData.readString(z);
-        this.sent_code = TLRPC$TL_auth_sentCode.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.sent_code = TLRPC$auth_SentCode.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
     }
 
     @Override

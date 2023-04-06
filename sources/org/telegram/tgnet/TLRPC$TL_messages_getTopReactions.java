@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getTopReactions extends TLObject {
     public static int constructor = -1149164102;
     public long hash;

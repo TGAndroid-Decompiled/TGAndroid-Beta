@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 public class SmsReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -45,7 +44,7 @@ public class SmsReceiver extends BroadcastReceiver {
                 }
             }
         } catch (Throwable th) {
-            FileLog.m32e(th);
+            FileLog.e(th);
         }
     }
 

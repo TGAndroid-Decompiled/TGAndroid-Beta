@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_emailVerificationCode extends TLRPC$EmailVerification {
     public static int constructor = -1842457175;
     public String code;

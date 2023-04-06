@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_statsGraph extends TLRPC$StatsGraph {
     public static int constructor = -1901828938;
     public int flags;

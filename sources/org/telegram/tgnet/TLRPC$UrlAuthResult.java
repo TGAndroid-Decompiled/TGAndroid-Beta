@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$UrlAuthResult extends TLObject {
     public static TLRPC$UrlAuthResult TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$UrlAuthResult tLRPC$TL_urlAuthResultAccepted;

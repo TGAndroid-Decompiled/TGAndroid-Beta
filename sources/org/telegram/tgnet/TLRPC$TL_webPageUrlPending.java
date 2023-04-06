@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_webPageUrlPending extends TLRPC$WebPage {
     public static int constructor = -736472729;
 

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_requestPasswordRecovery extends TLObject {
     public static int constructor = -661144474;
 

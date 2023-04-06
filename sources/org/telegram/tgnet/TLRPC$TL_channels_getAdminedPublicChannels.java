@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_getAdminedPublicChannels extends TLObject {
     public static int constructor = -122669393;
     public boolean by_location;

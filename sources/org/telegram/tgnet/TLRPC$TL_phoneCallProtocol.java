@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phoneCallProtocol extends TLRPC$PhoneCallProtocol {
     public static int constructor = -58224696;
 

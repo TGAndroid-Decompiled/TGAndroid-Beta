@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionToggleForum extends TLRPC$ChannelAdminLogEventAction {
     public static int constructor = 46949251;
     public boolean new_value;

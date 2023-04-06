@@ -1,5 +1,4 @@
 package org.telegram.messenger;
-
 public final class NotificationCenter$$ExternalSyntheticLambda1 implements Runnable {
     public final NotificationCenter f$0;
 

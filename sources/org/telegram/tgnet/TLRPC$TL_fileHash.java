@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_fileHash extends TLObject {
     public static int constructor = -207944868;
     public byte[] hash;

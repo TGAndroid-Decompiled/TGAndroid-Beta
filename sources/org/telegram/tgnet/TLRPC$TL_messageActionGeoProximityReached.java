@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageActionGeoProximityReached extends TLRPC$MessageAction {
     public static int constructor = -1730095465;
     public int distance;

@@ -1,8 +1,8 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_authorization extends TLRPC$auth_Authorization {
-    public static int constructor = 872119224;
+    public static int constructor = 782418132;
     public int flags;
+    public byte[] future_auth_token;
     public int otherwise_relogin_days;
     public boolean setup_password_required;
     public int tmp_sessions;
@@ -19,6 +19,9 @@ public class TLRPC$TL_auth_authorization extends TLRPC$auth_Authorization {
         if ((this.flags & 1) != 0) {
             this.tmp_sessions = abstractSerializedData.readInt32(z);
         }
+        if ((this.flags & 4) != 0) {
+            this.future_auth_token = abstractSerializedData.readByteArray(z);
+        }
         this.user = TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
     }
 
@@ -33,6 +36,9 @@ public class TLRPC$TL_auth_authorization extends TLRPC$auth_Authorization {
         }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.tmp_sessions);
+        }
+        if ((this.flags & 4) != 0) {
+            abstractSerializedData.writeByteArray(this.future_auth_token);
         }
         this.user.serializeToStream(abstractSerializedData);
     }

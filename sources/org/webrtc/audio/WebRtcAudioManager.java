@@ -8,7 +8,6 @@ import android.os.Build;
 import org.webrtc.CalledByNative;
 import org.webrtc.Logging;
 import org.webrtc.MediaStreamTrack;
-
 class WebRtcAudioManager {
     private static final int BITS_PER_SAMPLE = 16;
     private static final int DEFAULT_FRAME_PER_BUFFER = 256;
@@ -50,11 +49,11 @@ class WebRtcAudioManager {
     @CalledByNative
     public static int getSampleRate(AudioManager audioManager) {
         if (WebRtcAudioUtils.runningOnEmulator()) {
-            Logging.m9d(TAG, "Running emulator, overriding sample rate to 8 kHz.");
+            Logging.d(TAG, "Running emulator, overriding sample rate to 8 kHz.");
             return 8000;
         }
         int sampleRateForApiLevel = getSampleRateForApiLevel(audioManager);
-        Logging.m9d(TAG, "Sample rate is set to " + sampleRateForApiLevel + " Hz");
+        Logging.d(TAG, "Sample rate is set to " + sampleRateForApiLevel + " Hz");
         return sampleRateForApiLevel;
     }
 
@@ -65,7 +64,10 @@ class WebRtcAudioManager {
 
     private static int getLowLatencyFramesPerBuffer(AudioManager audioManager) {
         String property;
-        return (Build.VERSION.SDK_INT >= 17 && (property = audioManager.getProperty("android.media.property.OUTPUT_FRAMES_PER_BUFFER")) != null) ? Integer.parseInt(property) : DEFAULT_FRAME_PER_BUFFER;
+        if (Build.VERSION.SDK_INT >= 17 && (property = audioManager.getProperty("android.media.property.OUTPUT_FRAMES_PER_BUFFER")) != null) {
+            return Integer.parseInt(property);
+        }
+        return 256;
     }
 
     private static int getMinOutputFrameSize(int i, int i2) {

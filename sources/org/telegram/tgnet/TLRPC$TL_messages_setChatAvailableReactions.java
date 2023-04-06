@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_setChatAvailableReactions extends TLObject {
     public static int constructor = -21928079;
     public TLRPC$ChatReactions available_reactions;

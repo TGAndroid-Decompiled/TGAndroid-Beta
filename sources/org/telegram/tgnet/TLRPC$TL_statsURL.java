@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_statsURL extends TLObject {
     public static int constructor = 1202287072;
     public String url;

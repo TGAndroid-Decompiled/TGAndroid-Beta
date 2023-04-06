@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_getSavedRingtones extends TLObject {
     public static int constructor = -510647672;
     public long hash;

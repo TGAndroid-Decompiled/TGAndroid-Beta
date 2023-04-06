@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageActionSetMessagesTTL extends TLRPC$MessageAction {
     public static int constructor = 1007897979;
     public long auto_setting_from;

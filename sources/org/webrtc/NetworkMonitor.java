@@ -5,7 +5,6 @@ import android.os.Build;
 import java.util.ArrayList;
 import java.util.List;
 import org.webrtc.NetworkChangeDetector;
-
 public class NetworkMonitor {
     private static final String TAG = "NetworkMonitor";
     private volatile NetworkChangeDetector.ConnectionType currentConnectionType;
@@ -88,7 +87,7 @@ public class NetworkMonitor {
 
     @CalledByNative
     private void startMonitoring(Context context, long j) {
-        Logging.m9d(TAG, "Start monitoring with native observer " + j);
+        Logging.d(TAG, "Start monitoring with native observer " + j);
         if (context == null) {
             context = ContextUtils.getApplicationContext();
         }
@@ -113,7 +112,7 @@ public class NetworkMonitor {
 
     @CalledByNative
     private void stopMonitoring(long j) {
-        Logging.m9d(TAG, "Stop monitoring with native observer " + j);
+        Logging.d(TAG, "Stop monitoring with native observer " + j);
         stopMonitoring();
         synchronized (this.nativeNetworkObservers) {
             this.nativeNetworkObservers.remove(Long.valueOf(j));

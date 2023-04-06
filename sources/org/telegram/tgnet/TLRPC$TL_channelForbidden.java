@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.CharacterCompat;
-
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_channelForbidden extends TLRPC$Chat {
     public static int constructor = 399807445;
 
@@ -10,8 +10,8 @@ public class TLRPC$TL_channelForbidden extends TLRPC$Chat {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.broadcast = (readInt32 & 32) != 0;
-        this.megagroup = (readInt32 & 256) != 0;
-        this.f857id = abstractSerializedData.readInt64(z);
+        this.megagroup = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
+        this.id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.title = abstractSerializedData.readString(z);
         if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {
@@ -24,10 +24,10 @@ public class TLRPC$TL_channelForbidden extends TLRPC$Chat {
         abstractSerializedData.writeInt32(constructor);
         int i = this.broadcast ? this.flags | 32 : this.flags & (-33);
         this.flags = i;
-        int i2 = this.megagroup ? i | 256 : i & (-257);
+        int i2 = this.megagroup ? i | LiteMode.FLAG_CHAT_BLUR : i & (-257);
         this.flags = i2;
         abstractSerializedData.writeInt32(i2);
-        abstractSerializedData.writeInt64(this.f857id);
+        abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeString(this.title);
         if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputWebFileLocation extends TLRPC$InputWebFileLocation {
     public static int constructor = -1036396922;
     public long access_hash;

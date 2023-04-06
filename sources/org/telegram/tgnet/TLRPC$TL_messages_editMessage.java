@@ -1,12 +1,12 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_editMessage extends TLObject {
     public static int constructor = 1224152952;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
-    public int f940id;
+    public int id;
     public TLRPC$InputMedia media;
     public String message;
     public boolean no_webpage;
@@ -26,11 +26,11 @@ public class TLRPC$TL_messages_editMessage extends TLObject {
         this.flags = i;
         abstractSerializedData.writeInt32(i);
         this.peer.serializeToStream(abstractSerializedData);
-        abstractSerializedData.writeInt32(this.f940id);
-        if ((this.flags & 2048) != 0) {
+        abstractSerializedData.writeInt32(this.id);
+        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
             abstractSerializedData.writeString(this.message);
         }
-        if ((this.flags & 16384) != 0) {
+        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
             this.media.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 4) != 0) {
@@ -44,7 +44,7 @@ public class TLRPC$TL_messages_editMessage extends TLObject {
                 this.entities.get(i2).serializeToStream(abstractSerializedData);
             }
         }
-        if ((this.flags & 32768) != 0) {
+        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
             abstractSerializedData.writeInt32(this.schedule_date);
         }
     }

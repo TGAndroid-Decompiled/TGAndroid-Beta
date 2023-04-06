@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_getTmpPassword extends TLObject {
     public static int constructor = 1151208273;
     public TLRPC$InputCheckPasswordSRP password;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_dialogs extends TLRPC$messages_Dialogs {
     public static int constructor = 364538944;
 

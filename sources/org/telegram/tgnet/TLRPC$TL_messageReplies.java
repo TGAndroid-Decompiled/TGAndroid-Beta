@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageReplies extends TLRPC$MessageReplies {
     public static int constructor = -2083123262;
 

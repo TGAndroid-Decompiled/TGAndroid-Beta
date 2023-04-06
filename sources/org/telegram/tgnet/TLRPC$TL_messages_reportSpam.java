@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_reportSpam extends TLObject {
     public static int constructor = -820669733;
     public TLRPC$InputPeer peer;

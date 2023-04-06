@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateReadHistoryOutbox extends TLRPC$Update {
     public static int constructor = 791617983;
     public int max_id;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$RecentMeUrl extends TLObject {
     public long chat_id;
     public TLRPC$ChatInvite chat_invite;

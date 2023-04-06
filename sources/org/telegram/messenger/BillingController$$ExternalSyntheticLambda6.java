@@ -1,5 +1,4 @@
 package org.telegram.messenger;
-
 public final class BillingController$$ExternalSyntheticLambda6 implements Runnable {
     public static final BillingController$$ExternalSyntheticLambda6 INSTANCE = new BillingController$$ExternalSyntheticLambda6();
 

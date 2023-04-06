@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputStickerSetDice extends TLRPC$InputStickerSet {
     public static int constructor = -427863538;
     public String emoticon;

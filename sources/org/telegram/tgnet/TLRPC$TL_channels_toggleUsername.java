@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_toggleUsername extends TLObject {
     public static int constructor = 1358053637;
     public boolean active;

@@ -1,10 +1,10 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputChatUploadedPhoto extends TLRPC$InputChatPhoto {
-    public static int constructor = -968723890;
+    public static int constructor = -1110593856;
     public TLRPC$InputFile file;
     public int flags;
     public TLRPC$InputFile video;
+    public TLRPC$VideoSize video_emoji_markup;
     public double video_start_ts;
 
     @Override
@@ -20,6 +20,9 @@ public class TLRPC$TL_inputChatUploadedPhoto extends TLRPC$InputChatPhoto {
         if ((this.flags & 4) != 0) {
             this.video_start_ts = abstractSerializedData.readDouble(z);
         }
+        if ((this.flags & 8) != 0) {
+            this.video_emoji_markup = TLRPC$VideoSize.TLdeserialize(0L, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
     }
 
     @Override
@@ -34,6 +37,9 @@ public class TLRPC$TL_inputChatUploadedPhoto extends TLRPC$InputChatPhoto {
         }
         if ((this.flags & 4) != 0) {
             abstractSerializedData.writeDouble(this.video_start_ts);
+        }
+        if ((this.flags & 8) != 0) {
+            this.video_emoji_markup.serializeToStream(abstractSerializedData);
         }
     }
 }

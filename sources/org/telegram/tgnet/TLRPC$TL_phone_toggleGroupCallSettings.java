@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_toggleGroupCallSettings extends TLObject {
     public static int constructor = 1958458429;
     public TLRPC$TL_inputGroupCall call;

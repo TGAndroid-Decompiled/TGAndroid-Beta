@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$ExportedChatInvite extends TLObject {
     public static TLRPC$TL_chatInviteExported TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported;

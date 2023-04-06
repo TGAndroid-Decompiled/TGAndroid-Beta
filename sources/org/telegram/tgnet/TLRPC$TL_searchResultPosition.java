@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_searchResultPosition extends TLObject {
     public static int constructor = 2137295719;
     public int date;

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_inputMediaPoll extends TLRPC$InputMedia {
     public static int constructor = 261416433;
     public TLRPC$Poll poll;

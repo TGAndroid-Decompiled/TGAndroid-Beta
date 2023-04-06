@@ -1,5 +1,4 @@
 package org.telegram.messenger;
-
 public final class AndroidUtilities$$ExternalSyntheticLambda17 implements GenericProvider {
     public static final AndroidUtilities$$ExternalSyntheticLambda17 INSTANCE = new AndroidUtilities$$ExternalSyntheticLambda17();
 

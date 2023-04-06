@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getAvailableReactions extends TLObject {
     public static int constructor = 417243308;
     public int hash;

@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_keyboardButtonRow extends TLObject {
     public static int constructor = 2002815875;
     public ArrayList<TLRPC$KeyboardButton> buttons = new ArrayList<>();

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pageBlockAnchor extends TLRPC$PageBlock {
     public static int constructor = -837994576;
     public String name;

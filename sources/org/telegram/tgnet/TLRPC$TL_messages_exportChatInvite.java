@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_exportChatInvite extends TLObject {
     public static int constructor = -1607670315;
     public int expire_date;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getWebPage extends TLObject {
     public static int constructor = 852135825;
     public int hash;

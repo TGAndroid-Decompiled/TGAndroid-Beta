@@ -2,7 +2,6 @@ package org.webrtc;
 
 import android.graphics.Point;
 import android.opengl.Matrix;
-
 public class RendererCommon {
     private static float BALANCED_VISIBLE_FRACTION = 0.5625f;
 
@@ -101,7 +100,7 @@ public class RendererCommon {
         fArr[13] = fArr[13] + 0.5f;
     }
 
-    public static class C43311 {
+    public static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$RendererCommon$ScalingType;
 
         static {
@@ -123,7 +122,7 @@ public class RendererCommon {
     }
 
     public static float convertScalingTypeToVisibleFraction(ScalingType scalingType) {
-        int i = C43311.$SwitchMap$org$webrtc$RendererCommon$ScalingType[scalingType.ordinal()];
+        int i = AnonymousClass1.$SwitchMap$org$webrtc$RendererCommon$ScalingType[scalingType.ordinal()];
         if (i != 1) {
             if (i != 2) {
                 if (i == 3) {

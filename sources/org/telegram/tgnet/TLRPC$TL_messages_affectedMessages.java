@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_affectedMessages extends TLObject {
     public static int constructor = -2066640507;
     public int pts;

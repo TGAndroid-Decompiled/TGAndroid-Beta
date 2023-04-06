@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_peerNotifySettings extends TLRPC$PeerNotifySettings {
     public static int constructor = -1472527322;
 

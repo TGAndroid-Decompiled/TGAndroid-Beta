@@ -1,9 +1,8 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getMessageReactionsList extends TLObject {
     public static int constructor = 1176190792;
     public int flags;
-    public int f947id;
+    public int id;
     public int limit;
     public String offset;
     public TLRPC$InputPeer peer;
@@ -19,7 +18,7 @@ public class TLRPC$TL_messages_getMessageReactionsList extends TLObject {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
         this.peer.serializeToStream(abstractSerializedData);
-        abstractSerializedData.writeInt32(this.f947id);
+        abstractSerializedData.writeInt32(this.id);
         if ((this.flags & 1) != 0) {
             this.reaction.serializeToStream(abstractSerializedData);
         }

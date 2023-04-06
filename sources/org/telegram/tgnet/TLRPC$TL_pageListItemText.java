@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pageListItemText extends TLRPC$PageListItem {
     public static int constructor = -1188055347;
     public TLRPC$RichText text;

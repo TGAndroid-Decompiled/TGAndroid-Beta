@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getAttachMenuBot extends TLObject {
     public static int constructor = 1998676370;
     public TLRPC$InputUser bot;

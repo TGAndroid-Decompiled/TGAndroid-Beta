@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_stats_getBroadcastStats extends TLObject {
     public static int constructor = -1421720550;
     public TLRPC$InputChannel channel;

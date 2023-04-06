@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateDialogPinned extends TLRPC$Update {
     public static int constructor = 1852826908;
     public int flags;

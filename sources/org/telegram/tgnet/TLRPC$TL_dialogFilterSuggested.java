@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_dialogFilterSuggested extends TLObject {
     public static int constructor = 2004110666;
     public String description;

@@ -36,7 +36,6 @@ import java.util.Map;
 import java.util.Objects;
 import org.telegram.messenger.GoogleMapsProvider;
 import org.telegram.messenger.IMapsProvider;
-
 public class GoogleMapsProvider implements IMapsProvider {
     @Override
     public String getMapsAppPackageName() {
@@ -80,7 +79,7 @@ public class GoogleMapsProvider implements IMapsProvider {
 
     @Override
     public int getInstallMapsString() {
-        return C1072R.string.InstallGoogleMaps;
+        return R.string.InstallGoogleMaps;
     }
 
     @Override
@@ -559,8 +558,8 @@ public class GoogleMapsProvider implements IMapsProvider {
             return IMapsProvider.IMapView.CC.$default$getGlSurfaceView(this);
         }
 
-        public class C10281 extends MapView {
-            C10281(Context context) {
+        public class AnonymousClass1 extends MapView {
+            AnonymousClass1(Context context) {
                 super(context);
             }
 
@@ -571,7 +570,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                         @Override
                         public final Object call(Object obj) {
                             Boolean lambda$dispatchTouchEvent$0;
-                            lambda$dispatchTouchEvent$0 = GoogleMapsProvider.GoogleMapView.C10281.this.lambda$dispatchTouchEvent$0((MotionEvent) obj);
+                            lambda$dispatchTouchEvent$0 = GoogleMapsProvider.GoogleMapView.AnonymousClass1.this.lambda$dispatchTouchEvent$0((MotionEvent) obj);
                             return lambda$dispatchTouchEvent$0;
                         }
                     });
@@ -590,7 +589,7 @@ public class GoogleMapsProvider implements IMapsProvider {
                         @Override
                         public final Object call(Object obj) {
                             Boolean lambda$onInterceptTouchEvent$1;
-                            lambda$onInterceptTouchEvent$1 = GoogleMapsProvider.GoogleMapView.C10281.this.lambda$onInterceptTouchEvent$1((MotionEvent) obj);
+                            lambda$onInterceptTouchEvent$1 = GoogleMapsProvider.GoogleMapView.AnonymousClass1.this.lambda$onInterceptTouchEvent$1((MotionEvent) obj);
                             return lambda$onInterceptTouchEvent$1;
                         }
                     });
@@ -612,7 +611,7 @@ public class GoogleMapsProvider implements IMapsProvider {
         }
 
         private GoogleMapView(Context context) {
-            this.mapView = new C10281(context);
+            this.mapView = new AnonymousClass1(context);
         }
 
         @Override

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getSavedGifs extends TLObject {
     public static int constructor = 1559270965;
     public long hash;

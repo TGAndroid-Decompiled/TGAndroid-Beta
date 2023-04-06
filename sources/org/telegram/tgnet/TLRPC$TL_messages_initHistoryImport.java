@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_initHistoryImport extends TLObject {
     public static int constructor = 873008187;
     public TLRPC$InputFile file;

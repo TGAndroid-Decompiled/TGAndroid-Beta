@@ -5,7 +5,6 @@ import android.view.Surface;
 import java.util.ArrayList;
 import org.webrtc.EglBase10;
 import org.webrtc.EglBase14;
-
 public interface EglBase {
     public static final int EGL_OPENGL_ES2_BIT = 4;
     public static final int EGL_OPENGL_ES3_BIT = 64;

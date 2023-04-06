@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getArchivedStickers extends TLObject {
     public static int constructor = 1475442322;
     public boolean emojis;

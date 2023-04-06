@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputMediaGeoPoint extends TLRPC$InputMedia {
     public static int constructor = -104578748;
 

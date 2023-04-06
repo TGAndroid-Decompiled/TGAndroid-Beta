@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_getWebPagePreview extends TLObject {
     public static int constructor = -1956073268;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();

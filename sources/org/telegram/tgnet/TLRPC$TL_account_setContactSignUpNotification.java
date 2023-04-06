@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_setContactSignUpNotification extends TLObject {
     public static int constructor = -806076575;
     public boolean silent;

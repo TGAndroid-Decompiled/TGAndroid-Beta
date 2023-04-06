@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_toggleJoinToSend extends TLObject {
     public static int constructor = -456419968;
     public TLRPC$InputChannel channel;

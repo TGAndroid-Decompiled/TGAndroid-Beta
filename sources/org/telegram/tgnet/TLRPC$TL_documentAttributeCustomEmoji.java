@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_documentAttributeCustomEmoji extends TLRPC$DocumentAttribute {
     public static int constructor = -48981863;
     public boolean free;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getDiscussionMessage extends TLObject {
     public static int constructor = 1147761405;
     public int msg_id;

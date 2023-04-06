@@ -5,7 +5,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.SystemClock;
 import java.util.concurrent.CountDownLatch;
-
 public class DispatchQueue extends Thread {
     private static int indexPointer;
     private volatile Handler handler;
@@ -49,7 +48,7 @@ public class DispatchQueue extends Thread {
             this.syncLatch.await();
             this.handler.removeCallbacks(runnable);
         } catch (Exception e) {
-            FileLog.m31e((Throwable) e, false);
+            FileLog.e((Throwable) e, false);
         }
     }
 
@@ -60,7 +59,7 @@ public class DispatchQueue extends Thread {
                 this.handler.removeCallbacks(runnable);
             }
         } catch (Exception e) {
-            FileLog.m31e((Throwable) e, false);
+            FileLog.e((Throwable) e, false);
         }
     }
 
@@ -73,7 +72,7 @@ public class DispatchQueue extends Thread {
         try {
             this.syncLatch.await();
         } catch (Exception e) {
-            FileLog.m31e((Throwable) e, false);
+            FileLog.e((Throwable) e, false);
         }
         if (j <= 0) {
             return this.handler.post(runnable);
@@ -86,7 +85,7 @@ public class DispatchQueue extends Thread {
             this.syncLatch.await();
             this.handler.removeCallbacksAndMessages(null);
         } catch (Exception e) {
-            FileLog.m31e((Throwable) e, false);
+            FileLog.e((Throwable) e, false);
         }
     }
 

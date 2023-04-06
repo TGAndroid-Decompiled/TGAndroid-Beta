@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_secureValueError extends TLRPC$SecureValueError {
     public static int constructor = -2036501105;
     public byte[] hash;

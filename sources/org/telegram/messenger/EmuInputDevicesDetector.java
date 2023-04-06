@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-
 public final class EmuInputDevicesDetector {
     private static final String INPUT_DEVICES_FILE = "/proc/bus/input/devices";
     private static final String NAME_PREFIX = "N: Name=\"";
@@ -41,18 +40,20 @@ public final class EmuInputDevicesDetector {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
             while (true) {
                 String readLine = bufferedReader.readLine();
-                if (readLine == null) {
-                    return arrayList;
-                }
-                if (readLine.startsWith(NAME_PREFIX)) {
-                    String substring = readLine.substring(9, readLine.length() - 1);
-                    if (!TextUtils.isEmpty(substring)) {
-                        arrayList.add(substring);
+                if (readLine != null) {
+                    if (readLine.startsWith(NAME_PREFIX)) {
+                        String substring = readLine.substring(9, readLine.length() - 1);
+                        if (!TextUtils.isEmpty(substring)) {
+                            arrayList.add(substring);
+                        }
                     }
+                } else {
+                    bufferedReader.close();
+                    return arrayList;
                 }
             }
         } catch (IOException e) {
-            FileLog.m32e(e);
+            FileLog.e(e);
             return null;
         }
     }

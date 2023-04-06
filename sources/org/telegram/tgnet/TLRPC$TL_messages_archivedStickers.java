@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_messages_archivedStickers extends TLObject {
     public static int constructor = 1338747336;
     public int count;

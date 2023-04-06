@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_channels_sendAsPeers extends TLObject {
     public static int constructor = -191450938;
     public ArrayList<TLRPC$TL_sendAsPeer> peers = new ArrayList<>();

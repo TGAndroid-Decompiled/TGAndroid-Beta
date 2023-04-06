@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$MessageReactions extends TLObject {
     public boolean can_see_list;
     public int flags;

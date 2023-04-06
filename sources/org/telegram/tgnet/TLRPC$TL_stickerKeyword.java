@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_stickerKeyword extends TLObject {
     public static int constructor = -50416996;
     public long document_id;

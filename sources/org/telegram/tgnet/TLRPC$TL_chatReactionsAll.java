@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_chatReactionsAll extends TLRPC$ChatReactions {
     public static int constructor = 1385335754;
     public boolean allow_custom;

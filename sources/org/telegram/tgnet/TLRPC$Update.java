@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public abstract class TLRPC$Update extends TLObject {
     public static TLRPC$Update TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$Update tLRPC$TL_updateTheme;
@@ -262,6 +261,9 @@ public abstract class TLRPC$Update extends TLObject {
             case -1020437742:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateDeleteChannelMessages();
                 break;
+            case -856651050:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateGroupInvitePrivacyForbidden();
+                break;
             case -761649164:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChannelMessageForwards();
                 break;
@@ -405,12 +407,12 @@ public abstract class TLRPC$Update extends TLObject {
                     public static int constructor = 654302845;
                     public TLRPC$DialogFilter filter;
                     public int flags;
-                    public int f989id;
+                    public int id;
 
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
-                        this.f989id = abstractSerializedData2.readInt32(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
                         if ((this.flags & 1) != 0) {
                             this.filter = TLRPC$DialogFilter.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                         }
@@ -420,7 +422,7 @@ public abstract class TLRPC$Update extends TLObject {
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeInt32(this.f989id);
+                        abstractSerializedData2.writeInt32(this.id);
                         if ((this.flags & 1) != 0) {
                             this.filter.serializeToStream(abstractSerializedData2);
                         }

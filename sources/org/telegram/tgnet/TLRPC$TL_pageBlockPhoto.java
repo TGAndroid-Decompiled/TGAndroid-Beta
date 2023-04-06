@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pageBlockPhoto extends TLRPC$PageBlock {
     public static int constructor = 391759200;
     public TLRPC$TL_pageCaption caption;

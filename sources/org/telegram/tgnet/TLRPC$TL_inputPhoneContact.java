@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputPhoneContact extends TLObject {
     public static int constructor = -208488460;
     public long client_id;

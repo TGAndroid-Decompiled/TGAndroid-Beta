@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_authorizationSignUpRequired extends TLRPC$auth_Authorization {
     public static int constructor = 1148485274;
     public int flags;

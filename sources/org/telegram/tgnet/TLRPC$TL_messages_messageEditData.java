@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_messageEditData extends TLObject {
     public static int constructor = 649453030;
     public boolean caption;

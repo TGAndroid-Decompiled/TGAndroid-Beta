@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_statsAbsValueAndPrev extends TLObject {
     public static int constructor = -884757282;
     public double current;

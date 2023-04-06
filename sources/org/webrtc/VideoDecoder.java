@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public interface VideoDecoder {
 
     public final class CC {

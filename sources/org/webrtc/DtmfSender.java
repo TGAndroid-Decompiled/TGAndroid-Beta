@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public class DtmfSender {
     private long nativeDtmfSender;
 

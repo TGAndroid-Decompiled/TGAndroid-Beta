@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_checkedHistoryImportPeer extends TLObject {
     public static int constructor = -1571952873;
     public String confirm_text;

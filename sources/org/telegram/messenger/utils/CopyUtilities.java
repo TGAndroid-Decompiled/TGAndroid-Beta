@@ -15,8 +15,6 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.p009ui.Components.AnimatedEmojiSpan;
-import org.telegram.p009ui.Components.URLSpanReplacement;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$TL_messageEntityBold;
 import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
@@ -25,12 +23,13 @@ import org.telegram.tgnet.TLRPC$TL_messageEntityPre;
 import org.telegram.tgnet.TLRPC$TL_messageEntitySpoiler;
 import org.telegram.tgnet.TLRPC$TL_messageEntityStrike;
 import org.telegram.tgnet.TLRPC$TL_messageEntityUnderline;
+import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.URLSpanReplacement;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
-
 public class CopyUtilities {
     public static Spannable fromHTML(String str) {
         try {
@@ -88,7 +87,7 @@ public class CopyUtilities {
             MediaDataController.addAnimatedEmojiSpans(arrayList, spannableString, null);
             return spannableString;
         } catch (Exception e) {
-            FileLog.m33e("Html.fromHtml", e);
+            FileLog.e("Html.fromHtml", e);
             return null;
         }
     }

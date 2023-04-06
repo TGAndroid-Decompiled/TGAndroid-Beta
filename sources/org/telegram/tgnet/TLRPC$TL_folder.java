@@ -1,12 +1,11 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_folder extends TLObject {
     public static int constructor = -11252123;
     public boolean autofill_new_broadcasts;
     public boolean autofill_new_correspondents;
     public boolean autofill_public_groups;
     public int flags;
-    public int f909id;
+    public int id;
     public TLRPC$ChatPhoto photo;
     public String title;
 
@@ -29,7 +28,7 @@ public class TLRPC$TL_folder extends TLObject {
         this.autofill_new_broadcasts = (readInt32 & 1) != 0;
         this.autofill_public_groups = (readInt32 & 2) != 0;
         this.autofill_new_correspondents = (readInt32 & 4) != 0;
-        this.f909id = abstractSerializedData.readInt32(z);
+        this.id = abstractSerializedData.readInt32(z);
         this.title = abstractSerializedData.readString(z);
         if ((this.flags & 8) != 0) {
             this.photo = TLRPC$ChatPhoto.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -46,7 +45,7 @@ public class TLRPC$TL_folder extends TLObject {
         int i3 = this.autofill_new_correspondents ? i2 | 4 : i2 & (-5);
         this.flags = i3;
         abstractSerializedData.writeInt32(i3);
-        abstractSerializedData.writeInt32(this.f909id);
+        abstractSerializedData.writeInt32(this.id);
         abstractSerializedData.writeString(this.title);
         if ((this.flags & 8) != 0) {
             this.photo.serializeToStream(abstractSerializedData);

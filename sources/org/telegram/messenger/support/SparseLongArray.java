@@ -1,5 +1,4 @@
 package org.telegram.messenger.support;
-
 public class SparseLongArray implements Cloneable {
     private int[] mKeys;
     private int mSize;
@@ -17,19 +16,18 @@ public class SparseLongArray implements Cloneable {
     }
 
     public SparseLongArray clone() {
-        SparseLongArray sparseLongArray;
-        SparseLongArray sparseLongArray2 = null;
+        SparseLongArray sparseLongArray = null;
         try {
-            sparseLongArray = (SparseLongArray) super.clone();
-        } catch (CloneNotSupportedException unused) {
-        }
-        try {
-            sparseLongArray.mKeys = (int[]) this.mKeys.clone();
-            sparseLongArray.mValues = (long[]) this.mValues.clone();
-            return sparseLongArray;
+            SparseLongArray sparseLongArray2 = (SparseLongArray) super.clone();
+            try {
+                sparseLongArray2.mKeys = (int[]) this.mKeys.clone();
+                sparseLongArray2.mValues = (long[]) this.mValues.clone();
+                return sparseLongArray2;
+            } catch (CloneNotSupportedException unused) {
+                sparseLongArray = sparseLongArray2;
+                return sparseLongArray;
+            }
         } catch (CloneNotSupportedException unused2) {
-            sparseLongArray2 = sparseLongArray;
-            return sparseLongArray2;
         }
     }
 

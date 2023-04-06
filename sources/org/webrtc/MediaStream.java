@@ -3,7 +3,6 @@ package org.webrtc;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
 public class MediaStream {
     private static final String TAG = "MediaStream";
     private long nativeStream;
@@ -136,6 +135,6 @@ public class MediaStream {
                 return;
             }
         }
-        Logging.m8e(TAG, "Couldn't not find track");
+        Logging.e(TAG, "Couldn't not find track");
     }
 }

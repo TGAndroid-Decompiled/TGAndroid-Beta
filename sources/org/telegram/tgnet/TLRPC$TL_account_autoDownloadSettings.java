@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_autoDownloadSettings extends TLObject {
     public static int constructor = 1674235686;
     public TLRPC$TL_autoDownloadSettings high;

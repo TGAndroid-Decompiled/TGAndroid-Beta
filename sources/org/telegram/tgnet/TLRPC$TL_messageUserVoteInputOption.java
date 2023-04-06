@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageUserVoteInputOption extends TLRPC$MessageUserVote {
     public static int constructor = 1017491692;
 

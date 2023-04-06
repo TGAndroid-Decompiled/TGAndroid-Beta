@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_upload_saveBigFilePart extends TLObject {
     public static int constructor = -562337987;
     public NativeByteBuffer bytes;

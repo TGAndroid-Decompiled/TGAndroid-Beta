@@ -4,10 +4,10 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Message;
-
+import org.telegram.tgnet.TLRPC$TL_textWithEntities;
 public class MessageCustomParamsHelper {
     public static boolean isEmpty(TLRPC$Message tLRPC$Message) {
-        return (tLRPC$Message.voiceTranscription != null || tLRPC$Message.voiceTranscriptionOpen || tLRPC$Message.voiceTranscriptionFinal || tLRPC$Message.voiceTranscriptionRated || tLRPC$Message.voiceTranscriptionForce || tLRPC$Message.voiceTranscriptionId != 0 || tLRPC$Message.premiumEffectWasPlayed) ? false : true;
+        return tLRPC$Message.voiceTranscription == null && !tLRPC$Message.voiceTranscriptionOpen && !tLRPC$Message.voiceTranscriptionFinal && !tLRPC$Message.voiceTranscriptionRated && !tLRPC$Message.voiceTranscriptionForce && tLRPC$Message.voiceTranscriptionId == 0 && !tLRPC$Message.premiumEffectWasPlayed && tLRPC$Message.originalLanguage == null && tLRPC$Message.translatedToLanguage == null && tLRPC$Message.translatedText == null;
     }
 
     public static void copyParams(TLRPC$Message tLRPC$Message, TLRPC$Message tLRPC$Message2) {
@@ -18,6 +18,9 @@ public class MessageCustomParamsHelper {
         tLRPC$Message2.voiceTranscriptionRated = tLRPC$Message.voiceTranscriptionRated;
         tLRPC$Message2.voiceTranscriptionId = tLRPC$Message.voiceTranscriptionId;
         tLRPC$Message2.premiumEffectWasPlayed = tLRPC$Message.premiumEffectWasPlayed;
+        tLRPC$Message2.originalLanguage = tLRPC$Message.originalLanguage;
+        tLRPC$Message2.translatedToLanguage = tLRPC$Message.translatedToLanguage;
+        tLRPC$Message2.translatedText = tLRPC$Message.translatedText;
     }
 
     public static void readLocalParams(TLRPC$Message tLRPC$Message, NativeByteBuffer nativeByteBuffer) {
@@ -56,7 +59,13 @@ public class MessageCustomParamsHelper {
             this.message = tLRPC$Message;
             int i = (tLRPC$Message.voiceTranscription != null ? 1 : 0) + 0;
             this.flags = i;
-            this.flags = i + (tLRPC$Message.voiceTranscriptionForce ? 2 : 0);
+            int i2 = i + (tLRPC$Message.voiceTranscriptionForce ? 2 : 0);
+            this.flags = i2;
+            int i3 = i2 + (tLRPC$Message.originalLanguage != null ? 4 : 0);
+            this.flags = i3;
+            int i4 = i3 + (tLRPC$Message.translatedToLanguage != null ? 8 : 0);
+            this.flags = i4;
+            this.flags = i4 + (tLRPC$Message.translatedText != null ? 16 : 0);
         }
 
         @Override
@@ -73,6 +82,15 @@ public class MessageCustomParamsHelper {
             abstractSerializedData.writeBool(this.message.voiceTranscriptionRated);
             abstractSerializedData.writeInt64(this.message.voiceTranscriptionId);
             abstractSerializedData.writeBool(this.message.premiumEffectWasPlayed);
+            if ((this.flags & 4) != 0) {
+                abstractSerializedData.writeString(this.message.originalLanguage);
+            }
+            if ((this.flags & 8) != 0) {
+                abstractSerializedData.writeString(this.message.translatedToLanguage);
+            }
+            if ((this.flags & 16) != 0) {
+                this.message.translatedText.serializeToStream(abstractSerializedData);
+            }
         }
 
         @Override
@@ -89,6 +107,15 @@ public class MessageCustomParamsHelper {
             this.message.voiceTranscriptionRated = abstractSerializedData.readBool(z);
             this.message.voiceTranscriptionId = abstractSerializedData.readInt64(z);
             this.message.premiumEffectWasPlayed = abstractSerializedData.readBool(z);
+            if ((this.flags & 4) != 0) {
+                this.message.originalLanguage = abstractSerializedData.readString(z);
+            }
+            if ((this.flags & 8) != 0) {
+                this.message.translatedToLanguage = abstractSerializedData.readString(z);
+            }
+            if ((this.flags & 16) != 0) {
+                this.message.translatedText = TLRPC$TL_textWithEntities.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            }
         }
     }
 }

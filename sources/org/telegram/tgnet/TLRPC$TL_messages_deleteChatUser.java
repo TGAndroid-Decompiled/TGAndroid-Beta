@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_deleteChatUser extends TLObject {
     public static int constructor = -1575461717;
     public long chat_id;

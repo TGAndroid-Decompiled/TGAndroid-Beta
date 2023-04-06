@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateBotMenuButton extends TLRPC$Update {
     public static int constructor = 347625491;
     public long bot_id;

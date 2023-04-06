@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_sendCode extends TLObject {
     public static int constructor = -1502141361;
     public String api_hash;
@@ -9,7 +8,7 @@ public class TLRPC$TL_auth_sendCode extends TLObject {
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        return TLRPC$TL_auth_sentCode.TLdeserialize(abstractSerializedData, i, z);
+        return TLRPC$auth_SentCode.TLdeserialize(abstractSerializedData, i, z);
     }
 
     @Override

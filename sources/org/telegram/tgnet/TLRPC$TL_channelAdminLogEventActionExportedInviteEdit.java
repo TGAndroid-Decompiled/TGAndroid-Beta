@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionExportedInviteEdit extends TLRPC$ChannelAdminLogEventAction {
     public static int constructor = -384910503;
     public TLRPC$TL_chatInviteExported new_invite;

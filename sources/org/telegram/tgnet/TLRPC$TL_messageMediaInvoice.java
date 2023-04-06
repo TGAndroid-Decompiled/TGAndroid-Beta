@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageMediaInvoice extends TLRPC$MessageMedia {
     public static int constructor = -156940077;
     public TLRPC$WebDocument webPhoto;

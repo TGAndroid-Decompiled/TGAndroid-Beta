@@ -9,14 +9,14 @@ import android.view.TextureView;
 import android.view.View;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.p009ui.ActionBar.Theme$$ExternalSyntheticLambda2;
+import org.telegram.ui.ActionBar.Theme$$ExternalSyntheticLambda2;
 import org.webrtc.EglBase;
 import org.webrtc.EglRenderer;
 import org.webrtc.GlGenericDrawer;
 import org.webrtc.RendererCommon;
 import org.webrtc.TextureViewRenderer;
-
 public class TextureViewRenderer extends TextureView implements TextureView.SurfaceTextureListener, VideoSink, RendererCommon.RendererEvents {
     private static final String TAG = "TextureViewRenderer";
     private TextureView backgroundRenderer;
@@ -44,33 +44,35 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     private int videoWidth;
 
     public void setBackgroundRenderer(TextureView textureView) {
-        this.backgroundRenderer = textureView;
-        if (textureView == null) {
-            ThreadUtils.checkIsOnMainThread();
-            this.eglRenderer.releaseEglSurface(null, true);
-            return;
-        }
-        textureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
-            @Override
-            public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
-            }
-
-            @Override
-            public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-            }
-
-            @Override
-            public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
-                TextureViewRenderer.this.createBackgroundSurface(surfaceTexture);
-            }
-
-            @Override
-            public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        if (LiteMode.isEnabled(LiteMode.FLAG_CALLS_ANIMATIONS)) {
+            this.backgroundRenderer = textureView;
+            if (textureView == null) {
                 ThreadUtils.checkIsOnMainThread();
-                TextureViewRenderer.this.eglRenderer.releaseEglSurface(null, true);
-                return false;
+                this.eglRenderer.releaseEglSurface(null, true);
+                return;
             }
-        });
+            textureView.setSurfaceTextureListener(new TextureView.SurfaceTextureListener() {
+                @Override
+                public void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i, int i2) {
+                }
+
+                @Override
+                public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+                }
+
+                @Override
+                public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i2) {
+                    TextureViewRenderer.this.createBackgroundSurface(surfaceTexture);
+                }
+
+                @Override
+                public boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+                    ThreadUtils.checkIsOnMainThread();
+                    TextureViewRenderer.this.eglRenderer.releaseEglSurface(null, true);
+                    return false;
+                }
+            });
+        }
     }
 
     public void clearFirstFrame() {
@@ -185,7 +187,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
         }
 
         private void logD(String str) {
-            Logging.m9d(TAG, this.name + ": " + str);
+            Logging.d(TAG, this.name + ": " + str);
         }
 
         @Override
@@ -594,7 +596,7 @@ public class TextureViewRenderer extends TextureView implements TextureView.Surf
     }
 
     private void logD(String str) {
-        Logging.m9d(TAG, this.resourceName + ": " + str);
+        Logging.d(TAG, this.resourceName + ": " + str);
     }
 
     public void createBackgroundSurface(SurfaceTexture surfaceTexture) {

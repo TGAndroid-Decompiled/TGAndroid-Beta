@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_secureValueErrorFrontSide extends TLRPC$SecureValueError {
     public static int constructor = 12467706;
     public byte[] file_hash;

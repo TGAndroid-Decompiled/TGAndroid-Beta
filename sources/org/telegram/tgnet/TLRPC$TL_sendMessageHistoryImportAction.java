@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_sendMessageHistoryImportAction extends TLRPC$SendMessageAction {
     public static int constructor = -606432698;
     public int progress;

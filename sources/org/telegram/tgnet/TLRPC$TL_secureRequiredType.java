@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_secureRequiredType extends TLRPC$SecureRequiredType {
     public static int constructor = -2103600678;
     public int flags;

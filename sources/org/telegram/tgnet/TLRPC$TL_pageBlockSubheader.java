@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_pageBlockSubheader extends TLRPC$PageBlock {
     public static int constructor = -248793375;
     public TLRPC$RichText text;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_keyboardButtonCallback extends TLRPC$KeyboardButton {
     public static int constructor = 901503851;
 

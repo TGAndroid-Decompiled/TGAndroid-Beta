@@ -1,12 +1,13 @@
 package org.telegram.tgnet;
 
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_webPage extends TLRPC$WebPage {
     public static int constructor = -392411726;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.flags = abstractSerializedData.readInt32(z);
-        this.f1004id = abstractSerializedData.readInt64(z);
+        this.id = abstractSerializedData.readInt64(z);
         this.url = abstractSerializedData.readString(z);
         this.display_url = abstractSerializedData.readString(z);
         this.hash = abstractSerializedData.readInt32(z);
@@ -37,19 +38,19 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
         if ((this.flags & 64) != 0) {
             this.embed_height = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
+        if ((this.flags & 128) != 0) {
             this.duration = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & 256) != 0) {
+        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
             this.author = abstractSerializedData.readString(z);
         }
-        if ((this.flags & 512) != 0) {
+        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
             this.document = TLRPC$Document.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
+        if ((this.flags & 1024) != 0) {
             this.cached_page = TLRPC$Page.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & 4096) != 0) {
+        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
             int readInt32 = abstractSerializedData.readInt32(z);
             if (readInt32 != 481674261) {
                 if (z) {
@@ -72,7 +73,7 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
-        abstractSerializedData.writeInt64(this.f1004id);
+        abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeString(this.url);
         abstractSerializedData.writeString(this.display_url);
         abstractSerializedData.writeInt32(this.hash);
@@ -103,19 +104,19 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
         if ((this.flags & 64) != 0) {
             abstractSerializedData.writeInt32(this.embed_height);
         }
-        if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
+        if ((this.flags & 128) != 0) {
             abstractSerializedData.writeInt32(this.duration);
         }
-        if ((this.flags & 256) != 0) {
+        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
             abstractSerializedData.writeString(this.author);
         }
-        if ((this.flags & 512) != 0) {
+        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
             this.document.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
+        if ((this.flags & 1024) != 0) {
             this.cached_page.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & 4096) != 0) {
+        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size = this.attributes.size();
             abstractSerializedData.writeInt32(size);

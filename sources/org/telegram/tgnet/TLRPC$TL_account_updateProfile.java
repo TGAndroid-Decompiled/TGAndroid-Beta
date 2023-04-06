@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_updateProfile extends TLObject {
     public static int constructor = 2018596725;
     public String about;

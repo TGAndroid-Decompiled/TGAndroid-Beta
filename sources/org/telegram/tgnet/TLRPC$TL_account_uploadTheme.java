@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_uploadTheme extends TLObject {
     public static int constructor = 473805619;
     public TLRPC$InputFile file;

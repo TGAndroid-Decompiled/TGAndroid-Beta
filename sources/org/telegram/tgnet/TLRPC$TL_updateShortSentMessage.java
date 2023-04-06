@@ -1,5 +1,6 @@
 package org.telegram.tgnet;
 
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_updateShortSentMessage extends TLRPC$Updates {
     public static int constructor = -1877614335;
 
@@ -8,14 +9,14 @@ public class TLRPC$TL_updateShortSentMessage extends TLRPC$Updates {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.out = (readInt32 & 2) != 0;
-        this.f994id = abstractSerializedData.readInt32(z);
+        this.id = abstractSerializedData.readInt32(z);
         this.pts = abstractSerializedData.readInt32(z);
         this.pts_count = abstractSerializedData.readInt32(z);
         this.date = abstractSerializedData.readInt32(z);
-        if ((this.flags & 512) != 0) {
+        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
             this.media = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & ConnectionsManager.RequestFlagNeedQuickAck) != 0) {
+        if ((this.flags & 128) != 0) {
             int readInt322 = abstractSerializedData.readInt32(z);
             if (readInt322 != 481674261) {
                 if (z) {

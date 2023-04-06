@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageEntityBlockquote extends TLRPC$MessageEntity {
     public static int constructor = 34469328;
 

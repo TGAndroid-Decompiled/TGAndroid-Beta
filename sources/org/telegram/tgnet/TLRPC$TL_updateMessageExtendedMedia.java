@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateMessageExtendedMedia extends TLRPC$Update {
     public static int constructor = 1517529484;
     public TLRPC$MessageExtendedMedia extended_media;

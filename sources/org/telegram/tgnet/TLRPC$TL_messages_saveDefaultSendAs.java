@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_saveDefaultSendAs extends TLObject {
     public static int constructor = -855777386;
     public TLRPC$InputPeer peer;

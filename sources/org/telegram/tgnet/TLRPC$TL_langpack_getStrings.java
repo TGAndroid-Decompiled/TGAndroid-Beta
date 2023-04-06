@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_langpack_getStrings extends TLObject {
     public static int constructor = 773776152;
     public ArrayList<String> keys = new ArrayList<>();

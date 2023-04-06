@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_help_country extends TLObject {
     public static int constructor = -1014526429;
     public ArrayList<TLRPC$TL_help_countryCode> country_codes = new ArrayList<>();

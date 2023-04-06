@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_sendAsPeer extends TLObject {
     public static int constructor = -1206095820;
     public int flags;

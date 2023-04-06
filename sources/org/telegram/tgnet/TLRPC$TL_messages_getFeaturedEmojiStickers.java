@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getFeaturedEmojiStickers extends TLObject {
     public static int constructor = 248473398;
     public long hash;

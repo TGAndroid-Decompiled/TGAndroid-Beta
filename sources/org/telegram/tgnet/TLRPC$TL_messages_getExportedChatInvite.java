@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_getExportedChatInvite extends TLObject {
     public static int constructor = 1937010524;
     public String link;

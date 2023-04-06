@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_webViewResultUrl extends TLObject {
     public static int constructor = 202659196;
     public long query_id;

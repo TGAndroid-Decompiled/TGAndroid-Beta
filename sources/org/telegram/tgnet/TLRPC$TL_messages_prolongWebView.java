@@ -1,5 +1,6 @@
 package org.telegram.tgnet;
 
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_prolongWebView extends TLObject {
     public static int constructor = -362824498;
     public TLRPC$InputUser bot;
@@ -27,7 +28,7 @@ public class TLRPC$TL_messages_prolongWebView extends TLObject {
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.reply_to_msg_id);
         }
-        if ((this.flags & 8192) != 0) {
+        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
             this.send_as.serializeToStream(abstractSerializedData);
         }
     }

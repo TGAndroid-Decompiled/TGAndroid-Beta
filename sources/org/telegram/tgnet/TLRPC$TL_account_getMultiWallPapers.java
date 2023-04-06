@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_account_getMultiWallPapers extends TLObject {
     public static int constructor = 1705865692;
     public ArrayList<TLRPC$InputWallPaper> wallpapers = new ArrayList<>();

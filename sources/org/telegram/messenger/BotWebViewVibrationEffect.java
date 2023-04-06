@@ -2,7 +2,6 @@ package org.telegram.messenger;
 
 import android.os.Build;
 import android.os.VibrationEffect;
-
 public enum BotWebViewVibrationEffect {
     IMPACT_LIGHT(new long[]{7}, new int[]{65}, new long[]{60}),
     IMPACT_MEDIUM(new long[]{7}, new int[]{145}, new long[]{70}),

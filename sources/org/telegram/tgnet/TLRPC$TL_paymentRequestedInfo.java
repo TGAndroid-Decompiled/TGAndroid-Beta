@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_paymentRequestedInfo extends TLObject {
     public static int constructor = -1868808300;
     public String email;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_deletePhoneCallHistory extends TLObject {
     public static int constructor = -104078327;
     public int flags;

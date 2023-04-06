@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputStickerSetThumb extends TLRPC$InputFileLocation {
     public static int constructor = -1652231205;
     public TLRPC$InputStickerSet stickerset;

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_sendSignalingData extends TLObject {
     public static int constructor = -8744061;
     public byte[] data;

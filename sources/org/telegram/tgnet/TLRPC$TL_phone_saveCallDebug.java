@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_saveCallDebug extends TLObject {
     public static int constructor = 662363518;
     public TLRPC$TL_dataJSON debug;

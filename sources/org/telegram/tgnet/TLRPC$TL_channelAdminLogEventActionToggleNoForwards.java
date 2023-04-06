@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channelAdminLogEventActionToggleNoForwards extends TLRPC$ChannelAdminLogEventAction {
     public static int constructor = -886388890;
     public boolean new_value;

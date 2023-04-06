@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_contacts_found extends TLObject {
     public static int constructor = -1290580579;
     public ArrayList<TLRPC$Peer> my_results = new ArrayList<>();

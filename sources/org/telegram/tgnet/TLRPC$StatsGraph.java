@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$StatsGraph extends TLObject {
     public static TLRPC$StatsGraph TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$StatsGraph tLRPC$TL_statsGraph;

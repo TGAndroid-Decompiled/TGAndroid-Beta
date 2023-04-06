@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import android.graphics.ImageDecoder;
-
 public final class NotificationsController$$ExternalSyntheticLambda0 implements ImageDecoder.OnHeaderDecodedListener {
     public static final NotificationsController$$ExternalSyntheticLambda0 INSTANCE = new NotificationsController$$ExternalSyntheticLambda0();
 

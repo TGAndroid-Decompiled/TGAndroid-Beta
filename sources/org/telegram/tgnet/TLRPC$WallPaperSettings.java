@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$WallPaperSettings extends TLObject {
     public int background_color;
     public boolean blur;

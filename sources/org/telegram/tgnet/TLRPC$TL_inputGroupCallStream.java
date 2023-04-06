@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputGroupCallStream extends TLRPC$InputFileLocation {
     public static int constructor = 93890858;
     public TLRPC$TL_inputGroupCall call;

@@ -3,7 +3,6 @@ package org.telegram.messenger;
 import android.util.Pair;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC$TL_error;
-
 public final class ChatThemeController$$ExternalSyntheticLambda7 implements ResultCallback {
     public static final ChatThemeController$$ExternalSyntheticLambda7 INSTANCE = new ChatThemeController$$ExternalSyntheticLambda7();
 

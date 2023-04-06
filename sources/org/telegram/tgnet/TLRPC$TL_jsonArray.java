@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_jsonArray extends TLRPC$JSONValue {
     public static int constructor = -146520221;
     public ArrayList<TLRPC$JSONValue> value = new ArrayList<>();

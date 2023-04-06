@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_editCreator extends TLObject {
     public static int constructor = -1892102881;
     public TLRPC$InputChannel channel;

@@ -3,7 +3,6 @@ package org.webrtc;
 import android.media.MediaCodecInfo;
 import org.webrtc.EglBase;
 import org.webrtc.Predicate;
-
 public class PlatformSoftwareVideoDecoderFactory extends MediaCodecVideoDecoderFactory {
     private static final Predicate<MediaCodecInfo> defaultAllowedPredicate = new Predicate<MediaCodecInfo>() {
         @Override
@@ -17,7 +16,7 @@ public class PlatformSoftwareVideoDecoderFactory extends MediaCodecVideoDecoderF
         }
 
         @Override
-        public Predicate<MediaCodecInfo> mo2or(Predicate<? super MediaCodecInfo> predicate) {
+        public Predicate<MediaCodecInfo> or(Predicate<? super MediaCodecInfo> predicate) {
             return Predicate.CC.$default$or(this, predicate);
         }
 

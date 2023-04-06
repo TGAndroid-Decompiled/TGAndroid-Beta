@@ -1,10 +1,15 @@
 package org.telegram.tgnet;
 
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_chat extends TLRPC$Chat {
     public static int constructor = 1103884886;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
+        readParams(abstractSerializedData, z, true);
+    }
+
+    public void readParams(AbstractSerializedData abstractSerializedData, boolean z, boolean z2) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.creator = (readInt32 & 1) != 0;
@@ -14,16 +19,16 @@ public class TLRPC$TL_chat extends TLRPC$Chat {
         this.call_active = (8388608 & readInt32) != 0;
         this.call_not_empty = (16777216 & readInt32) != 0;
         this.noforwards = (readInt32 & ConnectionsManager.FileTypeVideo) != 0;
-        this.f857id = abstractSerializedData.readInt64(z);
+        this.id = abstractSerializedData.readInt64(z);
         this.title = abstractSerializedData.readString(z);
-        this.photo = TLRPC$ChatPhoto.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.photo = TLRPC$ChatPhoto.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z, z2);
         this.participants_count = abstractSerializedData.readInt32(z);
         this.date = abstractSerializedData.readInt32(z);
         this.version = abstractSerializedData.readInt32(z);
         if ((this.flags & 64) != 0) {
             this.migrated_to = TLRPC$InputChannel.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & 16384) != 0) {
+        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
             this.admin_rights = TLRPC$TL_chatAdminRights.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 262144) != 0) {
@@ -49,7 +54,7 @@ public class TLRPC$TL_chat extends TLRPC$Chat {
         int i7 = this.noforwards ? i6 | ConnectionsManager.FileTypeVideo : i6 & (-33554433);
         this.flags = i7;
         abstractSerializedData.writeInt32(i7);
-        abstractSerializedData.writeInt64(this.f857id);
+        abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeString(this.title);
         this.photo.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.participants_count);
@@ -58,7 +63,7 @@ public class TLRPC$TL_chat extends TLRPC$Chat {
         if ((this.flags & 64) != 0) {
             this.migrated_to.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & 16384) != 0) {
+        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
             this.admin_rights.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 262144) != 0) {

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public abstract class TLRPC$MessageEntity extends TLObject {
     public String language;
     public int length;
@@ -64,22 +63,7 @@ public abstract class TLRPC$MessageEntity extends TLObject {
                 tLRPC$TL_messageEntityItalic = new TLRPC$TL_messageEntityMentionName();
                 break;
             case -100378723:
-                tLRPC$TL_messageEntityItalic = new TLRPC$MessageEntity() {
-                    public static int constructor = -100378723;
-
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.offset = abstractSerializedData2.readInt32(z2);
-                        this.length = abstractSerializedData2.readInt32(z2);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.offset);
-                        abstractSerializedData2.writeInt32(this.length);
-                    }
-                };
+                tLRPC$TL_messageEntityItalic = new TLRPC$TL_messageEntityMention();
                 break;
             case 34469328:
                 tLRPC$TL_messageEntityItalic = new TLRPC$TL_messageEntityBlockquote();

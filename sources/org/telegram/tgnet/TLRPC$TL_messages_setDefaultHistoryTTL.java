@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_setDefaultHistoryTTL extends TLObject {
     public static int constructor = -1632299963;
     public int period;

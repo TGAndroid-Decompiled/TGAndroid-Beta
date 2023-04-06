@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_saveTheme extends TLObject {
     public static int constructor = -229175188;
     public TLRPC$InputTheme theme;

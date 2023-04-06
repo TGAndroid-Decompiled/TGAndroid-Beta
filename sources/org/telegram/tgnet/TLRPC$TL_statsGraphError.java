@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_statsGraphError extends TLRPC$StatsGraph {
     public static int constructor = -1092839390;
     public String error;

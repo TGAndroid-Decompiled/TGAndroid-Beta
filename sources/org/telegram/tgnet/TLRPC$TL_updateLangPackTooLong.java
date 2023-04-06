@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateLangPackTooLong extends TLRPC$Update {
     public static int constructor = 1180041828;
     public String lang_code;

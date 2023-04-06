@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_deleteParticipantHistory extends TLObject {
     public static int constructor = 913655003;
     public TLRPC$InputChannel channel;

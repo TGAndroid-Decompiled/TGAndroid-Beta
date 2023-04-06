@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateShort extends TLRPC$Updates {
     public static int constructor = 2027216577;
 

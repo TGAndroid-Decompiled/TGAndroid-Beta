@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import android.media.MediaRecorder;
-
 public interface CameraVideoCapturer extends VideoCapturer {
 
     public interface CameraEventsHandler {
@@ -74,13 +73,13 @@ public interface CameraVideoCapturer extends VideoCapturer {
                 @Override
                 public void run() {
                     int round = Math.round((CameraStatistics.this.frameCount * 1000.0f) / 2000.0f);
-                    Logging.m9d(CameraStatistics.TAG, "Camera fps: " + round + ".");
+                    Logging.d(CameraStatistics.TAG, "Camera fps: " + round + ".");
                     if (CameraStatistics.this.frameCount != 0) {
                         CameraStatistics.this.freezePeriodCount = 0;
                     } else {
                         CameraStatistics.access$104(CameraStatistics.this);
                         if (CameraStatistics.this.freezePeriodCount * CameraStatistics.CAMERA_OBSERVER_PERIOD_MS >= CameraStatistics.CAMERA_FREEZE_REPORT_TIMOUT_MS && CameraStatistics.this.eventsHandler != null) {
-                            Logging.m8e(CameraStatistics.TAG, "Camera freezed.");
+                            Logging.e(CameraStatistics.TAG, "Camera freezed.");
                             if (CameraStatistics.this.surfaceTextureHelper.isTextureInUse()) {
                                 CameraStatistics.this.eventsHandler.onCameraFreezed("Camera failure. Client must return video buffers.");
                                 return;

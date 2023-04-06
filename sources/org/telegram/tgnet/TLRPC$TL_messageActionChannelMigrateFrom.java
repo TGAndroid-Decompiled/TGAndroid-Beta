@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageActionChannelMigrateFrom extends TLRPC$MessageAction {
     public static int constructor = -365344535;
 

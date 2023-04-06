@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_textSuperscript extends TLRPC$RichText {
     public static int constructor = -939827711;
     public TLRPC$RichText text;

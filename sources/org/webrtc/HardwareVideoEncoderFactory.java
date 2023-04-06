@@ -3,12 +3,12 @@ package org.webrtc;
 import android.media.MediaCodecInfo;
 import android.os.Build;
 import java.util.ArrayList;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.Instance;
 import org.telegram.messenger.voip.VoIPService;
 import org.webrtc.EglBase;
 import org.webrtc.EglBase14;
 import org.webrtc.VideoEncoderFactory;
-
 public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     private static final int QCOM_VP8_KEY_FRAME_INTERVAL_ANDROID_L_MS = 15000;
     private static final int QCOM_VP8_KEY_FRAME_INTERVAL_ANDROID_M_MS = 20000;
@@ -39,7 +39,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         if (context instanceof EglBase14.Context) {
             this.sharedContext = (EglBase14.Context) context;
         } else {
-            Logging.m5w(TAG, "No shared EglBase.Context.  Encoders will not use texture mode.");
+            Logging.w(TAG, "No shared EglBase.Context.  Encoders will not use texture mode.");
             this.sharedContext = null;
         }
         this.enableIntelVp8Encoder = z;
@@ -100,24 +100,41 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     private MediaCodecInfo findCodecForType(VideoCodecMimeType videoCodecMimeType) {
         ArrayList<MediaCodecInfo> sortedCodecsList = MediaCodecUtils.getSortedCodecsList();
         int size = sortedCodecsList.size();
+        MediaCodecInfo mediaCodecInfo = null;
         for (int i = 0; i < size; i++) {
-            MediaCodecInfo mediaCodecInfo = sortedCodecsList.get(i);
-            if (mediaCodecInfo != null && mediaCodecInfo.isEncoder() && isSupportedCodec(mediaCodecInfo, videoCodecMimeType)) {
-                return mediaCodecInfo;
+            MediaCodecInfo mediaCodecInfo2 = sortedCodecsList.get(i);
+            if (mediaCodecInfo2 != null && mediaCodecInfo2.isEncoder()) {
+                if (isSupportedCodec(mediaCodecInfo2, videoCodecMimeType, true)) {
+                    return mediaCodecInfo2;
+                }
+                if (mediaCodecInfo == null && isSupportedCodec(mediaCodecInfo2, videoCodecMimeType, false)) {
+                    mediaCodecInfo = mediaCodecInfo2;
+                }
             }
         }
-        return null;
+        if (mediaCodecInfo == null) {
+            StringBuilder sb = new StringBuilder();
+            for (int i2 = 0; i2 < size; i2++) {
+                MediaCodecInfo mediaCodecInfo3 = sortedCodecsList.get(i2);
+                if (mediaCodecInfo3 != null && mediaCodecInfo3.isEncoder() && MediaCodecUtils.codecSupportsType(mediaCodecInfo3, videoCodecMimeType)) {
+                    sb.append(mediaCodecInfo3.getName());
+                    sb.append(", ");
+                }
+            }
+            FileLog.e("can't create video encoder " + videoCodecMimeType.mimeType() + ", supported codecs" + ((Object) sb));
+        }
+        return mediaCodecInfo;
     }
 
-    private boolean isSupportedCodec(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
-        return MediaCodecUtils.codecSupportsType(mediaCodecInfo, videoCodecMimeType) && MediaCodecUtils.selectColorFormat(MediaCodecUtils.ENCODER_COLOR_FORMATS, mediaCodecInfo.getCapabilitiesForType(videoCodecMimeType.mimeType())) != null && isHardwareSupportedInCurrentSdk(mediaCodecInfo, videoCodecMimeType) && isMediaCodecAllowed(mediaCodecInfo);
+    private boolean isSupportedCodec(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType, boolean z) {
+        return MediaCodecUtils.codecSupportsType(mediaCodecInfo, videoCodecMimeType) && MediaCodecUtils.selectColorFormat(MediaCodecUtils.ENCODER_COLOR_FORMATS, mediaCodecInfo.getCapabilitiesForType(videoCodecMimeType.mimeType())) != null && isHardwareSupportedInCurrentSdk(mediaCodecInfo, videoCodecMimeType, z) && isMediaCodecAllowed(mediaCodecInfo);
     }
 
-    private boolean isHardwareSupportedInCurrentSdk(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType) {
+    private boolean isHardwareSupportedInCurrentSdk(MediaCodecInfo mediaCodecInfo, VideoCodecMimeType videoCodecMimeType, boolean z) {
         if (VoIPService.getSharedInstance() == null || VoIPService.getSharedInstance().groupCall == null) {
             Instance.ServerConfig globalServerConfig = Instance.getGlobalServerConfig();
             if (globalServerConfig.enable_h264_encoder || globalServerConfig.enable_h265_encoder || globalServerConfig.enable_vp8_encoder || globalServerConfig.enable_vp9_encoder) {
-                int i = C43161.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+                int i = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
                 if (i != 1) {
                     if (i != 2) {
                         if (i != 3) {
@@ -128,16 +145,16 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
                         }
                         return isHardwareSupportedInCurrentSdkH264(mediaCodecInfo);
                     }
-                    return isHardwareSupportedInCurrentSdkVp9(mediaCodecInfo);
+                    return isHardwareSupportedInCurrentSdkVp9(mediaCodecInfo, z);
                 }
-                return isHardwareSupportedInCurrentSdkVp8(mediaCodecInfo);
+                return isHardwareSupportedInCurrentSdkVp8(mediaCodecInfo, z);
             }
             return false;
         }
         return false;
     }
 
-    public static class C43161 {
+    public static class AnonymousClass1 {
         static final int[] $SwitchMap$org$webrtc$VideoCodecMimeType;
 
         static {
@@ -162,18 +179,50 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
         }
     }
 
-    private boolean isHardwareSupportedInCurrentSdkVp8(MediaCodecInfo mediaCodecInfo) {
+    private boolean isHardwareSupportedInCurrentSdkVp8(MediaCodecInfo mediaCodecInfo, boolean z) {
         if (Instance.getGlobalServerConfig().enable_vp8_encoder) {
             String name = mediaCodecInfo.getName();
-            return (name.startsWith("OMX.qcom.") && Build.VERSION.SDK_INT >= 19) || (name.startsWith("OMX.hisi.") && Build.VERSION.SDK_INT >= 19) || ((name.startsWith("OMX.Exynos.") && Build.VERSION.SDK_INT >= 23) || (name.startsWith("OMX.Intel.") && Build.VERSION.SDK_INT >= 21 && this.enableIntelVp8Encoder));
+            if ((!name.startsWith("OMX.qcom.") || Build.VERSION.SDK_INT < 19) && ((!name.startsWith("OMX.hisi.") || Build.VERSION.SDK_INT < 19) && ((!name.startsWith("OMX.Exynos.") || Build.VERSION.SDK_INT < 23) && (!(name.startsWith("OMX.Intel.") && Build.VERSION.SDK_INT >= 21 && this.enableIntelVp8Encoder) && (!name.startsWith("c2.exynos.") || Build.VERSION.SDK_INT < 23))))) {
+                if (!z) {
+                    int i = 0;
+                    while (true) {
+                        String[] strArr = MediaCodecUtils.SOFTWARE_IMPLEMENTATION_PREFIXES;
+                        if (i >= strArr.length) {
+                            break;
+                        } else if (name.startsWith(strArr[i])) {
+                            return true;
+                        } else {
+                            i++;
+                        }
+                    }
+                }
+                return false;
+            }
+            return true;
         }
         return false;
     }
 
-    private boolean isHardwareSupportedInCurrentSdkVp9(MediaCodecInfo mediaCodecInfo) {
+    private boolean isHardwareSupportedInCurrentSdkVp9(MediaCodecInfo mediaCodecInfo, boolean z) {
         if (Instance.getGlobalServerConfig().enable_vp9_encoder) {
             String name = mediaCodecInfo.getName();
-            return (name.startsWith("OMX.qcom.") || name.startsWith("OMX.Exynos.") || name.startsWith("OMX.hisi.")) && Build.VERSION.SDK_INT >= 24;
+            if ((name.startsWith("OMX.qcom.") || name.startsWith("OMX.Exynos.") || name.startsWith("OMX.hisi.")) && Build.VERSION.SDK_INT >= 24) {
+                return true;
+            }
+            if (!z) {
+                int i = 0;
+                while (true) {
+                    String[] strArr = MediaCodecUtils.SOFTWARE_IMPLEMENTATION_PREFIXES;
+                    if (i >= strArr.length) {
+                        break;
+                    } else if (name.startsWith(strArr[i])) {
+                        return true;
+                    } else {
+                        i++;
+                    }
+                }
+            }
+            return false;
         }
         return false;
     }
@@ -203,7 +252,7 @@ public class HardwareVideoEncoderFactory implements VideoEncoderFactory {
     }
 
     private int getKeyFrameIntervalSec(VideoCodecMimeType videoCodecMimeType) {
-        int i = C43161.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
+        int i = AnonymousClass1.$SwitchMap$org$webrtc$VideoCodecMimeType[videoCodecMimeType.ordinal()];
         if (i == 1 || i == 2) {
             return 100;
         }

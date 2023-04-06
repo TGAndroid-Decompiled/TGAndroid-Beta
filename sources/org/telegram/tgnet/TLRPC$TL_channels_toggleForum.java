@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_toggleForum extends TLObject {
     public static int constructor = -1540781271;
     public TLRPC$InputChannel channel;

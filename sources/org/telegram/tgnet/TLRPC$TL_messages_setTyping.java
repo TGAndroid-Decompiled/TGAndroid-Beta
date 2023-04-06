@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_setTyping extends TLObject {
     public static int constructor = 1486110434;
     public TLRPC$SendMessageAction action;

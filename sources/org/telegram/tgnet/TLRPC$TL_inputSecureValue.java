@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_inputSecureValue extends TLObject {
     public static int constructor = -618540889;
     public TLRPC$TL_secureData data;

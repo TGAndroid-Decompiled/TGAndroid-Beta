@@ -3,7 +3,6 @@ package org.webrtc;
 import java.util.List;
 import java.util.Map;
 import org.webrtc.MediaStreamTrack;
-
 public class RtpParameters {
     public final List<Codec> codecs;
     public DegradationPreference degradationPreference;
@@ -185,13 +184,13 @@ public class RtpParameters {
 
     public static class HeaderExtension {
         private final boolean encrypted;
-        private final int f1172id;
+        private final int id;
         private final String uri;
 
         @CalledByNative("HeaderExtension")
         HeaderExtension(String str, int i, boolean z) {
             this.uri = str;
-            this.f1172id = i;
+            this.id = i;
             this.encrypted = z;
         }
 
@@ -202,7 +201,7 @@ public class RtpParameters {
 
         @CalledByNative("HeaderExtension")
         public int getId() {
-            return this.f1172id;
+            return this.id;
         }
 
         @CalledByNative("HeaderExtension")

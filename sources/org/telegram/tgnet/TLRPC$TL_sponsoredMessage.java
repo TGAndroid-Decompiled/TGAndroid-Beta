@@ -1,9 +1,10 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
+import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_sponsoredMessage extends TLObject {
-    public static int constructor = 981691896;
+    public static int constructor = -64636888;
+    public String additional_info;
     public int channel_post;
     public TLRPC$ChatInvite chat_invite;
     public String chat_invite_hash;
@@ -14,6 +15,7 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
     public byte[] random_id;
     public boolean recommended;
     public boolean show_peer_photo;
+    public String sponsor_info;
     public String start_param;
 
     public static TLRPC$TL_sponsoredMessage TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -68,6 +70,12 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
                 this.entities.add(TLdeserialize);
             }
         }
+        if ((this.flags & 128) != 0) {
+            this.sponsor_info = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+            this.additional_info = abstractSerializedData.readString(z);
+        }
     }
 
     @Override
@@ -102,6 +110,12 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
             for (int i3 = 0; i3 < size; i3++) {
                 this.entities.get(i3).serializeToStream(abstractSerializedData);
             }
+        }
+        if ((this.flags & 128) != 0) {
+            abstractSerializedData.writeString(this.sponsor_info);
+        }
+        if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+            abstractSerializedData.writeString(this.additional_info);
         }
     }
 }

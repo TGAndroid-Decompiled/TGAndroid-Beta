@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_phone_exportGroupCallInvite extends TLObject {
     public static int constructor = -425040769;
     public TLRPC$TL_inputGroupCall call;

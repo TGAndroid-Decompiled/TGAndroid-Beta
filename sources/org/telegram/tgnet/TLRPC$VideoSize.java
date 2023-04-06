@@ -1,74 +1,88 @@
 package org.telegram.tgnet;
 
 import android.text.TextUtils;
-
+import java.util.ArrayList;
 public abstract class TLRPC$VideoSize extends TLObject {
+    public ArrayList<Integer> background_colors = new ArrayList<>();
     public int flags;
-    public int f1001h;
+    public int h;
     public TLRPC$FileLocation location;
     public int size;
     public String type;
     public double video_start_ts;
-    public int f1002w;
+    public int w;
 
     public static TLRPC$VideoSize TLdeserialize(long j, long j2, AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$TL_videoSize tLRPC$TL_videoSize;
-        if (i == -567037804) {
-            tLRPC$TL_videoSize = new TLRPC$TL_videoSize();
-        } else if (i != -399391402) {
-            tLRPC$TL_videoSize = i != 1130084743 ? null : new TLRPC$TL_videoSize() {
-                public static int constructor = 1130084743;
+        TLRPC$VideoSize tLRPC$TL_videoSize;
+        switch (i) {
+            case -567037804:
+                tLRPC$TL_videoSize = new TLRPC$TL_videoSize();
+                break;
+            case -399391402:
+                tLRPC$TL_videoSize = new TLRPC$TL_videoSize() {
+                    public static int constructor = -399391402;
 
-                @Override
-                public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                    this.type = abstractSerializedData2.readString(z2);
-                    this.location = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                    this.f1002w = abstractSerializedData2.readInt32(z2);
-                    this.f1001h = abstractSerializedData2.readInt32(z2);
-                    this.size = abstractSerializedData2.readInt32(z2);
-                }
-
-                @Override
-                public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
-                    abstractSerializedData2.writeString(this.type);
-                    this.location.serializeToStream(abstractSerializedData2);
-                    abstractSerializedData2.writeInt32(this.f1002w);
-                    abstractSerializedData2.writeInt32(this.f1001h);
-                    abstractSerializedData2.writeInt32(this.size);
-                }
-            };
-        } else {
-            tLRPC$TL_videoSize = new TLRPC$TL_videoSize() {
-                public static int constructor = -399391402;
-
-                @Override
-                public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                    this.flags = abstractSerializedData2.readInt32(z2);
-                    this.type = abstractSerializedData2.readString(z2);
-                    this.location = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                    this.f1002w = abstractSerializedData2.readInt32(z2);
-                    this.f1001h = abstractSerializedData2.readInt32(z2);
-                    this.size = abstractSerializedData2.readInt32(z2);
-                    if ((this.flags & 1) != 0) {
-                        this.video_start_ts = abstractSerializedData2.readDouble(z2);
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.flags = abstractSerializedData2.readInt32(z2);
+                        this.type = abstractSerializedData2.readString(z2);
+                        this.location = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
+                        this.size = abstractSerializedData2.readInt32(z2);
+                        if ((this.flags & 1) != 0) {
+                            this.video_start_ts = abstractSerializedData2.readDouble(z2);
+                        }
                     }
-                }
 
-                @Override
-                public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
-                    abstractSerializedData2.writeInt32(this.flags);
-                    abstractSerializedData2.writeString(this.type);
-                    this.location.serializeToStream(abstractSerializedData2);
-                    abstractSerializedData2.writeInt32(this.f1002w);
-                    abstractSerializedData2.writeInt32(this.f1001h);
-                    abstractSerializedData2.writeInt32(this.size);
-                    if ((this.flags & 1) != 0) {
-                        abstractSerializedData2.writeDouble(this.video_start_ts);
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(this.flags);
+                        abstractSerializedData2.writeString(this.type);
+                        this.location.serializeToStream(abstractSerializedData2);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
+                        abstractSerializedData2.writeInt32(this.size);
+                        if ((this.flags & 1) != 0) {
+                            abstractSerializedData2.writeDouble(this.video_start_ts);
+                        }
                     }
-                }
-            };
+                };
+                break;
+            case -128171716:
+                tLRPC$TL_videoSize = new TLRPC$TL_videoSizeEmojiMarkup();
+                break;
+            case 228623102:
+                tLRPC$TL_videoSize = new TLRPC$TL_videoSizeStickerMarkup();
+                break;
+            case 1130084743:
+                tLRPC$TL_videoSize = new TLRPC$TL_videoSize() {
+                    public static int constructor = 1130084743;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.type = abstractSerializedData2.readString(z2);
+                        this.location = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        this.w = abstractSerializedData2.readInt32(z2);
+                        this.h = abstractSerializedData2.readInt32(z2);
+                        this.size = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeString(this.type);
+                        this.location.serializeToStream(abstractSerializedData2);
+                        abstractSerializedData2.writeInt32(this.w);
+                        abstractSerializedData2.writeInt32(this.h);
+                        abstractSerializedData2.writeInt32(this.size);
+                    }
+                };
+                break;
+            default:
+                tLRPC$TL_videoSize = null;
+                break;
         }
         if (tLRPC$TL_videoSize == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in VideoSize", Integer.valueOf(i)));

@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messageEntityMentionName extends TLRPC$MessageEntity {
     public static int constructor = -595914432;
     public long user_id;

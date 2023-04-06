@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_exportedMessageLink extends TLObject {
     public static int constructor = 1571494644;
     public String html;

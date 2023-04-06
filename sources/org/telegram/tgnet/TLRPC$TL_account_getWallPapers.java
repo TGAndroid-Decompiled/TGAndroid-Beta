@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_getWallPapers extends TLObject {
     public static int constructor = 127302966;
     public long hash;

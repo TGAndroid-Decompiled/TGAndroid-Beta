@@ -1,5 +1,4 @@
 package org.webrtc;
-
 public class LibvpxVp8Encoder extends WrappedNativeVideoEncoder {
     static native long nativeCreateEncoder();
 

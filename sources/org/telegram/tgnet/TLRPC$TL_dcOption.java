@@ -1,10 +1,9 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_dcOption extends TLObject {
     public static int constructor = 414687501;
     public boolean cdn;
     public int flags;
-    public int f908id;
+    public int id;
     public String ip_address;
     public boolean ipv6;
     public boolean isStatic;
@@ -34,10 +33,10 @@ public class TLRPC$TL_dcOption extends TLObject {
         this.tcpo_only = (readInt32 & 4) != 0;
         this.cdn = (readInt32 & 8) != 0;
         this.isStatic = (readInt32 & 16) != 0;
-        this.f908id = abstractSerializedData.readInt32(z);
+        this.id = abstractSerializedData.readInt32(z);
         this.ip_address = abstractSerializedData.readString(z);
         this.port = abstractSerializedData.readInt32(z);
-        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
+        if ((this.flags & 1024) != 0) {
             this.secret = abstractSerializedData.readByteArray(z);
         }
     }
@@ -56,10 +55,10 @@ public class TLRPC$TL_dcOption extends TLObject {
         int i5 = this.isStatic ? i4 | 16 : i4 & (-17);
         this.flags = i5;
         abstractSerializedData.writeInt32(i5);
-        abstractSerializedData.writeInt32(this.f908id);
+        abstractSerializedData.writeInt32(this.id);
         abstractSerializedData.writeString(this.ip_address);
         abstractSerializedData.writeInt32(this.port);
-        if ((this.flags & ConnectionsManager.RequestFlagDoNotWaitFloodWait) != 0) {
+        if ((this.flags & 1024) != 0) {
             abstractSerializedData.writeByteArray(this.secret);
         }
     }

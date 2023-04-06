@@ -1,49 +1,44 @@
 package com.google.android.exoplayer2;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+import android.os.Bundle;
+import com.google.android.exoplayer2.Bundleable;
 import com.google.android.exoplayer2.drm.DrmInitData;
-import com.google.android.exoplayer2.drm.ExoMediaCrypto;
 import com.google.android.exoplayer2.metadata.Metadata;
+import com.google.android.exoplayer2.util.BundleableUtil;
+import com.google.android.exoplayer2.util.MimeTypes;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.ColorInfo;
+import com.google.common.base.Joiner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
-
-public final class Format implements Parcelable {
-    public static final Parcelable.Creator<Format> CREATOR = new Parcelable.Creator<Format>() {
-        @Override
-        public Format createFromParcel(Parcel parcel) {
-            return new Format(parcel);
-        }
-
-        @Override
-        public Format[] newArray(int i) {
-            return new Format[i];
-        }
-    };
+import java.util.UUID;
+import org.telegram.messenger.LiteMode;
+public final class Format implements Bundleable {
     public final int accessibilityChannel;
+    public final int averageBitrate;
     public final int bitrate;
     public final int channelCount;
     public final String codecs;
     public final ColorInfo colorInfo;
     public final String containerMimeType;
+    public final int cryptoType;
     public final DrmInitData drmInitData;
     public final int encoderDelay;
     public final int encoderPadding;
-    public final Class<? extends ExoMediaCrypto> exoMediaCryptoType;
     public final float frameRate;
     private int hashCode;
     public final int height;
-    public final String f13id;
+    public final String id;
     public final List<byte[]> initializationData;
     public final String label;
     public final String language;
     public final int maxInputSize;
     public final Metadata metadata;
     public final int pcmEncoding;
+    public final int peakBitrate;
     public final float pixelWidthHeightRatio;
     public final byte[] projectionData;
     public final int roleFlags;
@@ -53,201 +48,400 @@ public final class Format implements Parcelable {
     public final int selectionFlags;
     public final int stereoMode;
     public final long subsampleOffsetUs;
+    public final int tileCountHorizontal;
+    public final int tileCountVertical;
     public final int width;
+    private static final Format DEFAULT = new Builder().build();
+    private static final String FIELD_ID = Util.intToStringMaxRadix(0);
+    private static final String FIELD_LABEL = Util.intToStringMaxRadix(1);
+    private static final String FIELD_LANGUAGE = Util.intToStringMaxRadix(2);
+    private static final String FIELD_SELECTION_FLAGS = Util.intToStringMaxRadix(3);
+    private static final String FIELD_ROLE_FLAGS = Util.intToStringMaxRadix(4);
+    private static final String FIELD_AVERAGE_BITRATE = Util.intToStringMaxRadix(5);
+    private static final String FIELD_PEAK_BITRATE = Util.intToStringMaxRadix(6);
+    private static final String FIELD_CODECS = Util.intToStringMaxRadix(7);
+    private static final String FIELD_METADATA = Util.intToStringMaxRadix(8);
+    private static final String FIELD_CONTAINER_MIME_TYPE = Util.intToStringMaxRadix(9);
+    private static final String FIELD_SAMPLE_MIME_TYPE = Util.intToStringMaxRadix(10);
+    private static final String FIELD_MAX_INPUT_SIZE = Util.intToStringMaxRadix(11);
+    private static final String FIELD_INITIALIZATION_DATA = Util.intToStringMaxRadix(12);
+    private static final String FIELD_DRM_INIT_DATA = Util.intToStringMaxRadix(13);
+    private static final String FIELD_SUBSAMPLE_OFFSET_US = Util.intToStringMaxRadix(14);
+    private static final String FIELD_WIDTH = Util.intToStringMaxRadix(15);
+    private static final String FIELD_HEIGHT = Util.intToStringMaxRadix(16);
+    private static final String FIELD_FRAME_RATE = Util.intToStringMaxRadix(17);
+    private static final String FIELD_ROTATION_DEGREES = Util.intToStringMaxRadix(18);
+    private static final String FIELD_PIXEL_WIDTH_HEIGHT_RATIO = Util.intToStringMaxRadix(19);
+    private static final String FIELD_PROJECTION_DATA = Util.intToStringMaxRadix(20);
+    private static final String FIELD_STEREO_MODE = Util.intToStringMaxRadix(21);
+    private static final String FIELD_COLOR_INFO = Util.intToStringMaxRadix(22);
+    private static final String FIELD_CHANNEL_COUNT = Util.intToStringMaxRadix(23);
+    private static final String FIELD_SAMPLE_RATE = Util.intToStringMaxRadix(24);
+    private static final String FIELD_PCM_ENCODING = Util.intToStringMaxRadix(25);
+    private static final String FIELD_ENCODER_DELAY = Util.intToStringMaxRadix(26);
+    private static final String FIELD_ENCODER_PADDING = Util.intToStringMaxRadix(27);
+    private static final String FIELD_ACCESSIBILITY_CHANNEL = Util.intToStringMaxRadix(28);
+    private static final String FIELD_CRYPTO_TYPE = Util.intToStringMaxRadix(29);
+    private static final String FIELD_TILE_COUNT_HORIZONTAL = Util.intToStringMaxRadix(30);
+    private static final String FIELD_TILE_COUNT_VERTICAL = Util.intToStringMaxRadix(31);
+    public static final Bundleable.Creator<Format> CREATOR = Format$$ExternalSyntheticLambda0.INSTANCE;
 
-    @Override
-    public int describeContents() {
-        return 0;
+    private static <T> T defaultIfNull(T t, T t2) {
+        return t != null ? t : t2;
     }
 
-    public static Format createVideoContainerFormat(String str, String str2, String str3, String str4, String str5, Metadata metadata, int i, int i2, int i3, float f, List<byte[]> list, int i4, int i5) {
-        return new Format(str, str2, i4, i5, i, str5, metadata, str3, str4, -1, list, null, Long.MAX_VALUE, i2, i3, f, -1, -1.0f, null, -1, null, -1, -1, -1, -1, -1, null, -1, null);
-    }
+    public static final class Builder {
+        private int accessibilityChannel;
+        private int averageBitrate;
+        private int channelCount;
+        private String codecs;
+        private ColorInfo colorInfo;
+        private String containerMimeType;
+        private int cryptoType;
+        private DrmInitData drmInitData;
+        private int encoderDelay;
+        private int encoderPadding;
+        private float frameRate;
+        private int height;
+        private String id;
+        private List<byte[]> initializationData;
+        private String label;
+        private String language;
+        private int maxInputSize;
+        private Metadata metadata;
+        private int pcmEncoding;
+        private int peakBitrate;
+        private float pixelWidthHeightRatio;
+        private byte[] projectionData;
+        private int roleFlags;
+        private int rotationDegrees;
+        private String sampleMimeType;
+        private int sampleRate;
+        private int selectionFlags;
+        private int stereoMode;
+        private long subsampleOffsetUs;
+        private int tileCountHorizontal;
+        private int tileCountVertical;
+        private int width;
 
-    public static Format createVideoSampleFormat(String str, String str2, String str3, int i, int i2, int i3, int i4, float f, List<byte[]> list, int i5, float f2, DrmInitData drmInitData) {
-        return createVideoSampleFormat(str, str2, str3, i, i2, i3, i4, f, list, i5, f2, null, -1, null, drmInitData);
-    }
-
-    public static Format createVideoSampleFormat(String str, String str2, String str3, int i, int i2, int i3, int i4, float f, List<byte[]> list, int i5, float f2, byte[] bArr, int i6, ColorInfo colorInfo, DrmInitData drmInitData) {
-        return new Format(str, null, 0, 0, i, str3, null, null, str2, i2, list, drmInitData, Long.MAX_VALUE, i3, i4, f, i5, f2, bArr, i6, colorInfo, -1, -1, -1, -1, -1, null, -1, null);
-    }
-
-    public static Format createAudioContainerFormat(String str, String str2, String str3, String str4, String str5, Metadata metadata, int i, int i2, int i3, List<byte[]> list, int i4, int i5, String str6) {
-        return new Format(str, str2, i4, i5, i, str5, metadata, str3, str4, -1, list, null, Long.MAX_VALUE, -1, -1, -1.0f, -1, -1.0f, null, -1, null, i2, i3, -1, -1, -1, str6, -1, null);
-    }
-
-    public static Format createAudioSampleFormat(String str, String str2, String str3, int i, int i2, int i3, int i4, List<byte[]> list, DrmInitData drmInitData, int i5, String str4) {
-        return createAudioSampleFormat(str, str2, str3, i, i2, i3, i4, -1, list, drmInitData, i5, str4);
-    }
-
-    public static Format createAudioSampleFormat(String str, String str2, String str3, int i, int i2, int i3, int i4, int i5, List<byte[]> list, DrmInitData drmInitData, int i6, String str4) {
-        return createAudioSampleFormat(str, str2, str3, i, i2, i3, i4, i5, -1, -1, list, drmInitData, i6, str4, null);
-    }
-
-    public static Format createAudioSampleFormat(String str, String str2, String str3, int i, int i2, int i3, int i4, int i5, int i6, int i7, List<byte[]> list, DrmInitData drmInitData, int i8, String str4, Metadata metadata) {
-        return new Format(str, null, i8, 0, i, str3, metadata, null, str2, i2, list, drmInitData, Long.MAX_VALUE, -1, -1, -1.0f, -1, -1.0f, null, -1, null, i3, i4, i5, i6, i7, str4, -1, null);
-    }
-
-    public static Format createTextContainerFormat(String str, String str2, String str3, String str4, String str5, int i, int i2, int i3, String str6) {
-        return createTextContainerFormat(str, str2, str3, str4, str5, i, i2, i3, str6, -1);
-    }
-
-    public static Format createTextContainerFormat(String str, String str2, String str3, String str4, String str5, int i, int i2, int i3, String str6, int i4) {
-        return new Format(str, str2, i2, i3, i, str5, null, str3, str4, -1, null, null, Long.MAX_VALUE, -1, -1, -1.0f, -1, -1.0f, null, -1, null, -1, -1, -1, -1, -1, str6, i4, null);
-    }
-
-    public static Format createTextSampleFormat(String str, String str2, int i, String str3) {
-        return createTextSampleFormat(str, str2, i, str3, null);
-    }
-
-    public static Format createTextSampleFormat(String str, String str2, int i, String str3, DrmInitData drmInitData) {
-        return createTextSampleFormat(str, str2, null, -1, i, str3, -1, drmInitData, Long.MAX_VALUE, Collections.emptyList());
-    }
-
-    public static Format createTextSampleFormat(String str, String str2, String str3, int i, int i2, String str4, DrmInitData drmInitData, long j) {
-        return createTextSampleFormat(str, str2, str3, i, i2, str4, -1, drmInitData, j, Collections.emptyList());
-    }
-
-    public static Format createTextSampleFormat(String str, String str2, String str3, int i, int i2, String str4, int i3, DrmInitData drmInitData, long j, List<byte[]> list) {
-        return new Format(str, null, i2, 0, i, str3, null, null, str2, -1, list, drmInitData, j, -1, -1, -1.0f, -1, -1.0f, null, -1, null, -1, -1, -1, -1, -1, str4, i3, null);
-    }
-
-    public static Format createImageSampleFormat(String str, String str2, String str3, int i, int i2, List<byte[]> list, String str4, DrmInitData drmInitData) {
-        return new Format(str, null, i2, 0, i, str3, null, null, str2, -1, list, drmInitData, Long.MAX_VALUE, -1, -1, -1.0f, -1, -1.0f, null, -1, null, -1, -1, -1, -1, -1, str4, -1, null);
-    }
-
-    public static Format createContainerFormat(String str, String str2, String str3, String str4, String str5, int i, int i2, int i3, String str6) {
-        return new Format(str, str2, i2, i3, i, str5, null, str3, str4, -1, null, null, Long.MAX_VALUE, -1, -1, -1.0f, -1, -1.0f, null, -1, null, -1, -1, -1, -1, -1, str6, -1, null);
-    }
-
-    public static Format createSampleFormat(String str, String str2, long j) {
-        return new Format(str, null, 0, 0, -1, null, null, null, str2, -1, null, null, j, -1, -1, -1.0f, -1, -1.0f, null, -1, null, -1, -1, -1, -1, -1, null, -1, null);
-    }
-
-    public static Format createSampleFormat(String str, String str2, String str3, int i, DrmInitData drmInitData) {
-        return new Format(str, null, 0, 0, i, str3, null, null, str2, -1, null, drmInitData, Long.MAX_VALUE, -1, -1, -1.0f, -1, -1.0f, null, -1, null, -1, -1, -1, -1, -1, null, -1, null);
-    }
-
-    Format(String str, String str2, int i, int i2, int i3, String str3, Metadata metadata, String str4, String str5, int i4, List<byte[]> list, DrmInitData drmInitData, long j, int i5, int i6, float f, int i7, float f2, byte[] bArr, int i8, ColorInfo colorInfo, int i9, int i10, int i11, int i12, int i13, String str6, int i14, Class<? extends ExoMediaCrypto> cls) {
-        this.f13id = str;
-        this.label = str2;
-        this.selectionFlags = i;
-        this.roleFlags = i2;
-        this.bitrate = i3;
-        this.codecs = str3;
-        this.metadata = metadata;
-        this.containerMimeType = str4;
-        this.sampleMimeType = str5;
-        this.maxInputSize = i4;
-        this.initializationData = list == null ? Collections.emptyList() : list;
-        this.drmInitData = drmInitData;
-        this.subsampleOffsetUs = j;
-        this.width = i5;
-        this.height = i6;
-        this.frameRate = f;
-        int i15 = i7;
-        this.rotationDegrees = i15 == -1 ? 0 : i15;
-        this.pixelWidthHeightRatio = f2 == -1.0f ? 1.0f : f2;
-        this.projectionData = bArr;
-        this.stereoMode = i8;
-        this.colorInfo = colorInfo;
-        this.channelCount = i9;
-        this.sampleRate = i10;
-        this.pcmEncoding = i11;
-        int i16 = i12;
-        this.encoderDelay = i16 == -1 ? 0 : i16;
-        this.encoderPadding = i13 != -1 ? i13 : 0;
-        this.language = Util.normalizeLanguageCode(str6);
-        this.accessibilityChannel = i14;
-        this.exoMediaCryptoType = cls;
-    }
-
-    Format(Parcel parcel) {
-        this.f13id = parcel.readString();
-        this.label = parcel.readString();
-        this.selectionFlags = parcel.readInt();
-        this.roleFlags = parcel.readInt();
-        this.bitrate = parcel.readInt();
-        this.codecs = parcel.readString();
-        this.metadata = (Metadata) parcel.readParcelable(Metadata.class.getClassLoader());
-        this.containerMimeType = parcel.readString();
-        this.sampleMimeType = parcel.readString();
-        this.maxInputSize = parcel.readInt();
-        int readInt = parcel.readInt();
-        this.initializationData = new ArrayList(readInt);
-        for (int i = 0; i < readInt; i++) {
-            this.initializationData.add(parcel.createByteArray());
+        public Builder() {
+            this.averageBitrate = -1;
+            this.peakBitrate = -1;
+            this.maxInputSize = -1;
+            this.subsampleOffsetUs = Long.MAX_VALUE;
+            this.width = -1;
+            this.height = -1;
+            this.frameRate = -1.0f;
+            this.pixelWidthHeightRatio = 1.0f;
+            this.stereoMode = -1;
+            this.channelCount = -1;
+            this.sampleRate = -1;
+            this.pcmEncoding = -1;
+            this.accessibilityChannel = -1;
+            this.tileCountHorizontal = -1;
+            this.tileCountVertical = -1;
+            this.cryptoType = 0;
         }
-        this.drmInitData = (DrmInitData) parcel.readParcelable(DrmInitData.class.getClassLoader());
-        this.subsampleOffsetUs = parcel.readLong();
-        this.width = parcel.readInt();
-        this.height = parcel.readInt();
-        this.frameRate = parcel.readFloat();
-        this.rotationDegrees = parcel.readInt();
-        this.pixelWidthHeightRatio = parcel.readFloat();
-        this.projectionData = Util.readBoolean(parcel) ? parcel.createByteArray() : null;
-        this.stereoMode = parcel.readInt();
-        this.colorInfo = (ColorInfo) parcel.readParcelable(ColorInfo.class.getClassLoader());
-        this.channelCount = parcel.readInt();
-        this.sampleRate = parcel.readInt();
-        this.pcmEncoding = parcel.readInt();
-        this.encoderDelay = parcel.readInt();
-        this.encoderPadding = parcel.readInt();
-        this.language = parcel.readString();
-        this.accessibilityChannel = parcel.readInt();
-        this.exoMediaCryptoType = null;
-    }
 
-    public Format copyWithMaxInputSize(int i) {
-        return new Format(this.f13id, this.label, this.selectionFlags, this.roleFlags, this.bitrate, this.codecs, this.metadata, this.containerMimeType, this.sampleMimeType, i, this.initializationData, this.drmInitData, this.subsampleOffsetUs, this.width, this.height, this.frameRate, this.rotationDegrees, this.pixelWidthHeightRatio, this.projectionData, this.stereoMode, this.colorInfo, this.channelCount, this.sampleRate, this.pcmEncoding, this.encoderDelay, this.encoderPadding, this.language, this.accessibilityChannel, this.exoMediaCryptoType);
-    }
+        private Builder(Format format) {
+            this.id = format.id;
+            this.label = format.label;
+            this.language = format.language;
+            this.selectionFlags = format.selectionFlags;
+            this.roleFlags = format.roleFlags;
+            this.averageBitrate = format.averageBitrate;
+            this.peakBitrate = format.peakBitrate;
+            this.codecs = format.codecs;
+            this.metadata = format.metadata;
+            this.containerMimeType = format.containerMimeType;
+            this.sampleMimeType = format.sampleMimeType;
+            this.maxInputSize = format.maxInputSize;
+            this.initializationData = format.initializationData;
+            this.drmInitData = format.drmInitData;
+            this.subsampleOffsetUs = format.subsampleOffsetUs;
+            this.width = format.width;
+            this.height = format.height;
+            this.frameRate = format.frameRate;
+            this.rotationDegrees = format.rotationDegrees;
+            this.pixelWidthHeightRatio = format.pixelWidthHeightRatio;
+            this.projectionData = format.projectionData;
+            this.stereoMode = format.stereoMode;
+            this.colorInfo = format.colorInfo;
+            this.channelCount = format.channelCount;
+            this.sampleRate = format.sampleRate;
+            this.pcmEncoding = format.pcmEncoding;
+            this.encoderDelay = format.encoderDelay;
+            this.encoderPadding = format.encoderPadding;
+            this.accessibilityChannel = format.accessibilityChannel;
+            this.tileCountHorizontal = format.tileCountHorizontal;
+            this.tileCountVertical = format.tileCountVertical;
+            this.cryptoType = format.cryptoType;
+        }
 
-    public Format copyWithSubsampleOffsetUs(long j) {
-        return new Format(this.f13id, this.label, this.selectionFlags, this.roleFlags, this.bitrate, this.codecs, this.metadata, this.containerMimeType, this.sampleMimeType, this.maxInputSize, this.initializationData, this.drmInitData, j, this.width, this.height, this.frameRate, this.rotationDegrees, this.pixelWidthHeightRatio, this.projectionData, this.stereoMode, this.colorInfo, this.channelCount, this.sampleRate, this.pcmEncoding, this.encoderDelay, this.encoderPadding, this.language, this.accessibilityChannel, this.exoMediaCryptoType);
-    }
-
-    public Format copyWithLabel(String str) {
-        return new Format(this.f13id, str, this.selectionFlags, this.roleFlags, this.bitrate, this.codecs, this.metadata, this.containerMimeType, this.sampleMimeType, this.maxInputSize, this.initializationData, this.drmInitData, this.subsampleOffsetUs, this.width, this.height, this.frameRate, this.rotationDegrees, this.pixelWidthHeightRatio, this.projectionData, this.stereoMode, this.colorInfo, this.channelCount, this.sampleRate, this.pcmEncoding, this.encoderDelay, this.encoderPadding, this.language, this.accessibilityChannel, this.exoMediaCryptoType);
-    }
-
-    public Format copyWithContainerInfo(String str, String str2, String str3, String str4, Metadata metadata, int i, int i2, int i3, int i4, int i5, String str5) {
-        Metadata metadata2 = this.metadata;
-        return new Format(str, str2, i5, this.roleFlags, i, str4, metadata2 != null ? metadata2.copyWithAppendedEntriesFrom(metadata) : metadata, this.containerMimeType, str3, this.maxInputSize, this.initializationData, this.drmInitData, this.subsampleOffsetUs, i2, i3, this.frameRate, this.rotationDegrees, this.pixelWidthHeightRatio, this.projectionData, this.stereoMode, this.colorInfo, i4, this.sampleRate, this.pcmEncoding, this.encoderDelay, this.encoderPadding, str5, this.accessibilityChannel, this.exoMediaCryptoType);
-    }
-
-    public com.google.android.exoplayer2.Format copyWithManifestFormatInfo(com.google.android.exoplayer2.Format r35) {
-        throw new UnsupportedOperationException("Method not decompiled: com.google.android.exoplayer2.Format.copyWithManifestFormatInfo(com.google.android.exoplayer2.Format):com.google.android.exoplayer2.Format");
-    }
-
-    public Format copyWithGaplessInfo(int i, int i2) {
-        return new Format(this.f13id, this.label, this.selectionFlags, this.roleFlags, this.bitrate, this.codecs, this.metadata, this.containerMimeType, this.sampleMimeType, this.maxInputSize, this.initializationData, this.drmInitData, this.subsampleOffsetUs, this.width, this.height, this.frameRate, this.rotationDegrees, this.pixelWidthHeightRatio, this.projectionData, this.stereoMode, this.colorInfo, this.channelCount, this.sampleRate, this.pcmEncoding, i, i2, this.language, this.accessibilityChannel, this.exoMediaCryptoType);
-    }
-
-    public Format copyWithFrameRate(float f) {
-        return new Format(this.f13id, this.label, this.selectionFlags, this.roleFlags, this.bitrate, this.codecs, this.metadata, this.containerMimeType, this.sampleMimeType, this.maxInputSize, this.initializationData, this.drmInitData, this.subsampleOffsetUs, this.width, this.height, f, this.rotationDegrees, this.pixelWidthHeightRatio, this.projectionData, this.stereoMode, this.colorInfo, this.channelCount, this.sampleRate, this.pcmEncoding, this.encoderDelay, this.encoderPadding, this.language, this.accessibilityChannel, this.exoMediaCryptoType);
-    }
-
-    public Format copyWithDrmInitData(DrmInitData drmInitData) {
-        return copyWithAdjustments(drmInitData, this.metadata);
-    }
-
-    public Format copyWithMetadata(Metadata metadata) {
-        return copyWithAdjustments(this.drmInitData, metadata);
-    }
-
-    public Format copyWithAdjustments(DrmInitData drmInitData, Metadata metadata) {
-        if (drmInitData == this.drmInitData && metadata == this.metadata) {
+        public Builder setId(String str) {
+            this.id = str;
             return this;
         }
-        return new Format(this.f13id, this.label, this.selectionFlags, this.roleFlags, this.bitrate, this.codecs, metadata, this.containerMimeType, this.sampleMimeType, this.maxInputSize, this.initializationData, drmInitData, this.subsampleOffsetUs, this.width, this.height, this.frameRate, this.rotationDegrees, this.pixelWidthHeightRatio, this.projectionData, this.stereoMode, this.colorInfo, this.channelCount, this.sampleRate, this.pcmEncoding, this.encoderDelay, this.encoderPadding, this.language, this.accessibilityChannel, this.exoMediaCryptoType);
+
+        public Builder setId(int i) {
+            this.id = Integer.toString(i);
+            return this;
+        }
+
+        public Builder setLabel(String str) {
+            this.label = str;
+            return this;
+        }
+
+        public Builder setLanguage(String str) {
+            this.language = str;
+            return this;
+        }
+
+        public Builder setSelectionFlags(int i) {
+            this.selectionFlags = i;
+            return this;
+        }
+
+        public Builder setRoleFlags(int i) {
+            this.roleFlags = i;
+            return this;
+        }
+
+        public Builder setAverageBitrate(int i) {
+            this.averageBitrate = i;
+            return this;
+        }
+
+        public Builder setPeakBitrate(int i) {
+            this.peakBitrate = i;
+            return this;
+        }
+
+        public Builder setCodecs(String str) {
+            this.codecs = str;
+            return this;
+        }
+
+        public Builder setMetadata(Metadata metadata) {
+            this.metadata = metadata;
+            return this;
+        }
+
+        public Builder setContainerMimeType(String str) {
+            this.containerMimeType = str;
+            return this;
+        }
+
+        public Builder setSampleMimeType(String str) {
+            this.sampleMimeType = str;
+            return this;
+        }
+
+        public Builder setMaxInputSize(int i) {
+            this.maxInputSize = i;
+            return this;
+        }
+
+        public Builder setInitializationData(List<byte[]> list) {
+            this.initializationData = list;
+            return this;
+        }
+
+        public Builder setDrmInitData(DrmInitData drmInitData) {
+            this.drmInitData = drmInitData;
+            return this;
+        }
+
+        public Builder setSubsampleOffsetUs(long j) {
+            this.subsampleOffsetUs = j;
+            return this;
+        }
+
+        public Builder setWidth(int i) {
+            this.width = i;
+            return this;
+        }
+
+        public Builder setHeight(int i) {
+            this.height = i;
+            return this;
+        }
+
+        public Builder setFrameRate(float f) {
+            this.frameRate = f;
+            return this;
+        }
+
+        public Builder setRotationDegrees(int i) {
+            this.rotationDegrees = i;
+            return this;
+        }
+
+        public Builder setPixelWidthHeightRatio(float f) {
+            this.pixelWidthHeightRatio = f;
+            return this;
+        }
+
+        public Builder setProjectionData(byte[] bArr) {
+            this.projectionData = bArr;
+            return this;
+        }
+
+        public Builder setStereoMode(int i) {
+            this.stereoMode = i;
+            return this;
+        }
+
+        public Builder setColorInfo(ColorInfo colorInfo) {
+            this.colorInfo = colorInfo;
+            return this;
+        }
+
+        public Builder setChannelCount(int i) {
+            this.channelCount = i;
+            return this;
+        }
+
+        public Builder setSampleRate(int i) {
+            this.sampleRate = i;
+            return this;
+        }
+
+        public Builder setPcmEncoding(int i) {
+            this.pcmEncoding = i;
+            return this;
+        }
+
+        public Builder setEncoderDelay(int i) {
+            this.encoderDelay = i;
+            return this;
+        }
+
+        public Builder setEncoderPadding(int i) {
+            this.encoderPadding = i;
+            return this;
+        }
+
+        public Builder setAccessibilityChannel(int i) {
+            this.accessibilityChannel = i;
+            return this;
+        }
+
+        public Builder setTileCountHorizontal(int i) {
+            this.tileCountHorizontal = i;
+            return this;
+        }
+
+        public Builder setTileCountVertical(int i) {
+            this.tileCountVertical = i;
+            return this;
+        }
+
+        public Builder setCryptoType(int i) {
+            this.cryptoType = i;
+            return this;
+        }
+
+        public Format build() {
+            return new Format(this);
+        }
     }
 
-    public Format copyWithBitrate(int i) {
-        return new Format(this.f13id, this.label, this.selectionFlags, this.roleFlags, i, this.codecs, this.metadata, this.containerMimeType, this.sampleMimeType, this.maxInputSize, this.initializationData, this.drmInitData, this.subsampleOffsetUs, this.width, this.height, this.frameRate, this.rotationDegrees, this.pixelWidthHeightRatio, this.projectionData, this.stereoMode, this.colorInfo, this.channelCount, this.sampleRate, this.pcmEncoding, this.encoderDelay, this.encoderPadding, this.language, this.accessibilityChannel, this.exoMediaCryptoType);
+    private Format(Builder builder) {
+        this.id = builder.id;
+        this.label = builder.label;
+        this.language = Util.normalizeLanguageCode(builder.language);
+        this.selectionFlags = builder.selectionFlags;
+        this.roleFlags = builder.roleFlags;
+        int i = builder.averageBitrate;
+        this.averageBitrate = i;
+        int i2 = builder.peakBitrate;
+        this.peakBitrate = i2;
+        this.bitrate = i2 != -1 ? i2 : i;
+        this.codecs = builder.codecs;
+        this.metadata = builder.metadata;
+        this.containerMimeType = builder.containerMimeType;
+        this.sampleMimeType = builder.sampleMimeType;
+        this.maxInputSize = builder.maxInputSize;
+        this.initializationData = builder.initializationData == null ? Collections.emptyList() : builder.initializationData;
+        DrmInitData drmInitData = builder.drmInitData;
+        this.drmInitData = drmInitData;
+        this.subsampleOffsetUs = builder.subsampleOffsetUs;
+        this.width = builder.width;
+        this.height = builder.height;
+        this.frameRate = builder.frameRate;
+        this.rotationDegrees = builder.rotationDegrees == -1 ? 0 : builder.rotationDegrees;
+        this.pixelWidthHeightRatio = builder.pixelWidthHeightRatio == -1.0f ? 1.0f : builder.pixelWidthHeightRatio;
+        this.projectionData = builder.projectionData;
+        this.stereoMode = builder.stereoMode;
+        this.colorInfo = builder.colorInfo;
+        this.channelCount = builder.channelCount;
+        this.sampleRate = builder.sampleRate;
+        this.pcmEncoding = builder.pcmEncoding;
+        this.encoderDelay = builder.encoderDelay == -1 ? 0 : builder.encoderDelay;
+        this.encoderPadding = builder.encoderPadding != -1 ? builder.encoderPadding : 0;
+        this.accessibilityChannel = builder.accessibilityChannel;
+        this.tileCountHorizontal = builder.tileCountHorizontal;
+        this.tileCountVertical = builder.tileCountVertical;
+        if (builder.cryptoType != 0 || drmInitData == null) {
+            this.cryptoType = builder.cryptoType;
+        } else {
+            this.cryptoType = 1;
+        }
     }
 
-    public Format copyWithExoMediaCryptoType(Class<? extends ExoMediaCrypto> cls) {
-        return new Format(this.f13id, this.label, this.selectionFlags, this.roleFlags, this.bitrate, this.codecs, this.metadata, this.containerMimeType, this.sampleMimeType, this.maxInputSize, this.initializationData, this.drmInitData, this.subsampleOffsetUs, this.width, this.height, this.frameRate, this.rotationDegrees, this.pixelWidthHeightRatio, this.projectionData, this.stereoMode, this.colorInfo, this.channelCount, this.sampleRate, this.pcmEncoding, this.encoderDelay, this.encoderPadding, this.language, this.accessibilityChannel, cls);
+    public Builder buildUpon() {
+        return new Builder();
+    }
+
+    public Format withManifestFormatInfo(Format format) {
+        String str;
+        Metadata copyWithAppendedEntriesFrom;
+        if (this == format) {
+            return this;
+        }
+        int trackType = MimeTypes.getTrackType(this.sampleMimeType);
+        String str2 = format.id;
+        String str3 = format.label;
+        if (str3 == null) {
+            str3 = this.label;
+        }
+        String str4 = this.language;
+        if ((trackType == 3 || trackType == 1) && (str = format.language) != null) {
+            str4 = str;
+        }
+        int i = this.averageBitrate;
+        if (i == -1) {
+            i = format.averageBitrate;
+        }
+        int i2 = this.peakBitrate;
+        if (i2 == -1) {
+            i2 = format.peakBitrate;
+        }
+        String str5 = this.codecs;
+        if (str5 == null) {
+            String codecsOfType = Util.getCodecsOfType(format.codecs, trackType);
+            if (Util.splitCodecs(codecsOfType).length == 1) {
+                str5 = codecsOfType;
+            }
+        }
+        Metadata metadata = this.metadata;
+        if (metadata == null) {
+            copyWithAppendedEntriesFrom = format.metadata;
+        } else {
+            copyWithAppendedEntriesFrom = metadata.copyWithAppendedEntriesFrom(format.metadata);
+        }
+        float f = this.frameRate;
+        if (f == -1.0f && trackType == 2) {
+            f = format.frameRate;
+        }
+        int i3 = this.selectionFlags | format.selectionFlags;
+        return buildUpon().setId(str2).setLabel(str3).setLanguage(str4).setSelectionFlags(i3).setRoleFlags(this.roleFlags | format.roleFlags).setAverageBitrate(i).setPeakBitrate(i2).setCodecs(str5).setMetadata(copyWithAppendedEntriesFrom).setDrmInitData(DrmInitData.createSessionCreationData(format.drmInitData, this.drmInitData)).setFrameRate(f).build();
+    }
+
+    public Format copyWithCryptoType(int i) {
+        return buildUpon().setCryptoType(i).build();
     }
 
     public int getPixelCount() {
@@ -260,27 +454,25 @@ public final class Format implements Parcelable {
     }
 
     public String toString() {
-        return "Format(" + this.f13id + ", " + this.label + ", " + this.containerMimeType + ", " + this.sampleMimeType + ", " + this.codecs + ", " + this.bitrate + ", " + this.language + ", [" + this.width + ", " + this.height + ", " + this.frameRate + "], [" + this.channelCount + ", " + this.sampleRate + "])";
+        return "Format(" + this.id + ", " + this.label + ", " + this.containerMimeType + ", " + this.sampleMimeType + ", " + this.codecs + ", " + this.bitrate + ", " + this.language + ", [" + this.width + ", " + this.height + ", " + this.frameRate + "], [" + this.channelCount + ", " + this.sampleRate + "])";
     }
 
     public int hashCode() {
         if (this.hashCode == 0) {
-            String str = this.f13id;
+            String str = this.id;
             int hashCode = (527 + (str == null ? 0 : str.hashCode())) * 31;
             String str2 = this.label;
-            int hashCode2 = (((((((hashCode + (str2 != null ? str2.hashCode() : 0)) * 31) + this.selectionFlags) * 31) + this.roleFlags) * 31) + this.bitrate) * 31;
-            String str3 = this.codecs;
-            int hashCode3 = (hashCode2 + (str3 == null ? 0 : str3.hashCode())) * 31;
+            int hashCode2 = (hashCode + (str2 != null ? str2.hashCode() : 0)) * 31;
+            String str3 = this.language;
+            int hashCode3 = (((((((((hashCode2 + (str3 == null ? 0 : str3.hashCode())) * 31) + this.selectionFlags) * 31) + this.roleFlags) * 31) + this.averageBitrate) * 31) + this.peakBitrate) * 31;
+            String str4 = this.codecs;
+            int hashCode4 = (hashCode3 + (str4 == null ? 0 : str4.hashCode())) * 31;
             Metadata metadata = this.metadata;
-            int hashCode4 = (hashCode3 + (metadata == null ? 0 : metadata.hashCode())) * 31;
-            String str4 = this.containerMimeType;
-            int hashCode5 = (hashCode4 + (str4 == null ? 0 : str4.hashCode())) * 31;
-            String str5 = this.sampleMimeType;
-            int hashCode6 = (((((((((((((((((((((((((((hashCode5 + (str5 == null ? 0 : str5.hashCode())) * 31) + this.maxInputSize) * 31) + ((int) this.subsampleOffsetUs)) * 31) + this.width) * 31) + this.height) * 31) + Float.floatToIntBits(this.frameRate)) * 31) + this.rotationDegrees) * 31) + Float.floatToIntBits(this.pixelWidthHeightRatio)) * 31) + this.stereoMode) * 31) + this.channelCount) * 31) + this.sampleRate) * 31) + this.pcmEncoding) * 31) + this.encoderDelay) * 31) + this.encoderPadding) * 31;
-            String str6 = this.language;
-            int hashCode7 = (((hashCode6 + (str6 == null ? 0 : str6.hashCode())) * 31) + this.accessibilityChannel) * 31;
-            Class<? extends ExoMediaCrypto> cls = this.exoMediaCryptoType;
-            this.hashCode = hashCode7 + (cls != null ? cls.hashCode() : 0);
+            int hashCode5 = (hashCode4 + (metadata == null ? 0 : metadata.hashCode())) * 31;
+            String str5 = this.containerMimeType;
+            int hashCode6 = (hashCode5 + (str5 == null ? 0 : str5.hashCode())) * 31;
+            String str6 = this.sampleMimeType;
+            this.hashCode = ((((((((((((((((((((((((((((((((((hashCode6 + (str6 != null ? str6.hashCode() : 0)) * 31) + this.maxInputSize) * 31) + ((int) this.subsampleOffsetUs)) * 31) + this.width) * 31) + this.height) * 31) + Float.floatToIntBits(this.frameRate)) * 31) + this.rotationDegrees) * 31) + Float.floatToIntBits(this.pixelWidthHeightRatio)) * 31) + this.stereoMode) * 31) + this.channelCount) * 31) + this.sampleRate) * 31) + this.pcmEncoding) * 31) + this.encoderDelay) * 31) + this.encoderPadding) * 31) + this.accessibilityChannel) * 31) + this.tileCountHorizontal) * 31) + this.tileCountVertical) * 31) + this.cryptoType;
         }
         return this.hashCode;
     }
@@ -295,7 +487,7 @@ public final class Format implements Parcelable {
         }
         Format format = (Format) obj;
         int i2 = this.hashCode;
-        return (i2 == 0 || (i = format.hashCode) == 0 || i2 == i) && this.selectionFlags == format.selectionFlags && this.roleFlags == format.roleFlags && this.bitrate == format.bitrate && this.maxInputSize == format.maxInputSize && this.subsampleOffsetUs == format.subsampleOffsetUs && this.width == format.width && this.height == format.height && this.rotationDegrees == format.rotationDegrees && this.stereoMode == format.stereoMode && this.channelCount == format.channelCount && this.sampleRate == format.sampleRate && this.pcmEncoding == format.pcmEncoding && this.encoderDelay == format.encoderDelay && this.encoderPadding == format.encoderPadding && this.accessibilityChannel == format.accessibilityChannel && Float.compare(this.frameRate, format.frameRate) == 0 && Float.compare(this.pixelWidthHeightRatio, format.pixelWidthHeightRatio) == 0 && Util.areEqual(this.exoMediaCryptoType, format.exoMediaCryptoType) && Util.areEqual(this.f13id, format.f13id) && Util.areEqual(this.label, format.label) && Util.areEqual(this.codecs, format.codecs) && Util.areEqual(this.containerMimeType, format.containerMimeType) && Util.areEqual(this.sampleMimeType, format.sampleMimeType) && Util.areEqual(this.language, format.language) && Arrays.equals(this.projectionData, format.projectionData) && Util.areEqual(this.metadata, format.metadata) && Util.areEqual(this.colorInfo, format.colorInfo) && Util.areEqual(this.drmInitData, format.drmInitData) && initializationDataEquals(format);
+        return (i2 == 0 || (i = format.hashCode) == 0 || i2 == i) && this.selectionFlags == format.selectionFlags && this.roleFlags == format.roleFlags && this.averageBitrate == format.averageBitrate && this.peakBitrate == format.peakBitrate && this.maxInputSize == format.maxInputSize && this.subsampleOffsetUs == format.subsampleOffsetUs && this.width == format.width && this.height == format.height && this.rotationDegrees == format.rotationDegrees && this.stereoMode == format.stereoMode && this.channelCount == format.channelCount && this.sampleRate == format.sampleRate && this.pcmEncoding == format.pcmEncoding && this.encoderDelay == format.encoderDelay && this.encoderPadding == format.encoderPadding && this.accessibilityChannel == format.accessibilityChannel && this.tileCountHorizontal == format.tileCountHorizontal && this.tileCountVertical == format.tileCountVertical && this.cryptoType == format.cryptoType && Float.compare(this.frameRate, format.frameRate) == 0 && Float.compare(this.pixelWidthHeightRatio, format.pixelWidthHeightRatio) == 0 && Util.areEqual(this.id, format.id) && Util.areEqual(this.label, format.label) && Util.areEqual(this.codecs, format.codecs) && Util.areEqual(this.containerMimeType, format.containerMimeType) && Util.areEqual(this.sampleMimeType, format.sampleMimeType) && Util.areEqual(this.language, format.language) && Arrays.equals(this.projectionData, format.projectionData) && Util.areEqual(this.metadata, format.metadata) && Util.areEqual(this.colorInfo, format.colorInfo) && Util.areEqual(this.drmInitData, format.drmInitData) && initializationDataEquals(format);
     }
 
     public boolean initializationDataEquals(Format format) {
@@ -310,43 +502,224 @@ public final class Format implements Parcelable {
         return true;
     }
 
+    public static String toLogString(Format format) {
+        if (format == null) {
+            return "null";
+        }
+        StringBuilder sb = new StringBuilder();
+        sb.append("id=");
+        sb.append(format.id);
+        sb.append(", mimeType=");
+        sb.append(format.sampleMimeType);
+        if (format.bitrate != -1) {
+            sb.append(", bitrate=");
+            sb.append(format.bitrate);
+        }
+        if (format.codecs != null) {
+            sb.append(", codecs=");
+            sb.append(format.codecs);
+        }
+        if (format.drmInitData != null) {
+            LinkedHashSet linkedHashSet = new LinkedHashSet();
+            int i = 0;
+            while (true) {
+                DrmInitData drmInitData = format.drmInitData;
+                if (i >= drmInitData.schemeDataCount) {
+                    break;
+                }
+                UUID uuid = drmInitData.get(i).uuid;
+                if (uuid.equals(C.COMMON_PSSH_UUID)) {
+                    linkedHashSet.add("cenc");
+                } else if (uuid.equals(C.CLEARKEY_UUID)) {
+                    linkedHashSet.add("clearkey");
+                } else if (uuid.equals(C.PLAYREADY_UUID)) {
+                    linkedHashSet.add("playready");
+                } else if (uuid.equals(C.WIDEVINE_UUID)) {
+                    linkedHashSet.add("widevine");
+                } else if (uuid.equals(C.UUID_NIL)) {
+                    linkedHashSet.add("universal");
+                } else {
+                    linkedHashSet.add("unknown (" + uuid + ")");
+                }
+                i++;
+            }
+            sb.append(", drm=[");
+            Joiner.on(',').appendTo(sb, linkedHashSet);
+            sb.append(']');
+        }
+        if (format.width != -1 && format.height != -1) {
+            sb.append(", res=");
+            sb.append(format.width);
+            sb.append("x");
+            sb.append(format.height);
+        }
+        if (format.frameRate != -1.0f) {
+            sb.append(", fps=");
+            sb.append(format.frameRate);
+        }
+        if (format.channelCount != -1) {
+            sb.append(", channels=");
+            sb.append(format.channelCount);
+        }
+        if (format.sampleRate != -1) {
+            sb.append(", sample_rate=");
+            sb.append(format.sampleRate);
+        }
+        if (format.language != null) {
+            sb.append(", language=");
+            sb.append(format.language);
+        }
+        if (format.label != null) {
+            sb.append(", label=");
+            sb.append(format.label);
+        }
+        if (format.selectionFlags != 0) {
+            ArrayList arrayList = new ArrayList();
+            if ((format.selectionFlags & 4) != 0) {
+                arrayList.add("auto");
+            }
+            if ((format.selectionFlags & 1) != 0) {
+                arrayList.add("default");
+            }
+            if ((format.selectionFlags & 2) != 0) {
+                arrayList.add("forced");
+            }
+            sb.append(", selectionFlags=[");
+            Joiner.on(',').appendTo(sb, arrayList);
+            sb.append("]");
+        }
+        if (format.roleFlags != 0) {
+            ArrayList arrayList2 = new ArrayList();
+            if ((format.roleFlags & 1) != 0) {
+                arrayList2.add("main");
+            }
+            if ((format.roleFlags & 2) != 0) {
+                arrayList2.add("alt");
+            }
+            if ((format.roleFlags & 4) != 0) {
+                arrayList2.add("supplementary");
+            }
+            if ((format.roleFlags & 8) != 0) {
+                arrayList2.add("commentary");
+            }
+            if ((format.roleFlags & 16) != 0) {
+                arrayList2.add("dub");
+            }
+            if ((format.roleFlags & 32) != 0) {
+                arrayList2.add("emergency");
+            }
+            if ((format.roleFlags & 64) != 0) {
+                arrayList2.add("caption");
+            }
+            if ((format.roleFlags & 128) != 0) {
+                arrayList2.add("subtitle");
+            }
+            if ((format.roleFlags & LiteMode.FLAG_CHAT_BLUR) != 0) {
+                arrayList2.add("sign");
+            }
+            if ((format.roleFlags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+                arrayList2.add("describes-video");
+            }
+            if ((format.roleFlags & 1024) != 0) {
+                arrayList2.add("describes-music");
+            }
+            if ((format.roleFlags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                arrayList2.add("enhanced-intelligibility");
+            }
+            if ((format.roleFlags & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0) {
+                arrayList2.add("transcribes-dialog");
+            }
+            if ((format.roleFlags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
+                arrayList2.add("easy-read");
+            }
+            if ((format.roleFlags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
+                arrayList2.add("trick-play");
+            }
+            sb.append(", roleFlags=[");
+            Joiner.on(',').appendTo(sb, arrayList2);
+            sb.append("]");
+        }
+        return sb.toString();
+    }
+
     @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(this.f13id);
-        parcel.writeString(this.label);
-        parcel.writeInt(this.selectionFlags);
-        parcel.writeInt(this.roleFlags);
-        parcel.writeInt(this.bitrate);
-        parcel.writeString(this.codecs);
-        parcel.writeParcelable(this.metadata, 0);
-        parcel.writeString(this.containerMimeType);
-        parcel.writeString(this.sampleMimeType);
-        parcel.writeInt(this.maxInputSize);
-        int size = this.initializationData.size();
-        parcel.writeInt(size);
-        for (int i2 = 0; i2 < size; i2++) {
-            parcel.writeByteArray(this.initializationData.get(i2));
+    public Bundle toBundle() {
+        return toBundle(false);
+    }
+
+    public Bundle toBundle(boolean z) {
+        Bundle bundle = new Bundle();
+        bundle.putString(FIELD_ID, this.id);
+        bundle.putString(FIELD_LABEL, this.label);
+        bundle.putString(FIELD_LANGUAGE, this.language);
+        bundle.putInt(FIELD_SELECTION_FLAGS, this.selectionFlags);
+        bundle.putInt(FIELD_ROLE_FLAGS, this.roleFlags);
+        bundle.putInt(FIELD_AVERAGE_BITRATE, this.averageBitrate);
+        bundle.putInt(FIELD_PEAK_BITRATE, this.peakBitrate);
+        bundle.putString(FIELD_CODECS, this.codecs);
+        if (!z) {
+            bundle.putParcelable(FIELD_METADATA, this.metadata);
         }
-        parcel.writeParcelable(this.drmInitData, 0);
-        parcel.writeLong(this.subsampleOffsetUs);
-        parcel.writeInt(this.width);
-        parcel.writeInt(this.height);
-        parcel.writeFloat(this.frameRate);
-        parcel.writeInt(this.rotationDegrees);
-        parcel.writeFloat(this.pixelWidthHeightRatio);
-        Util.writeBoolean(parcel, this.projectionData != null);
-        byte[] bArr = this.projectionData;
-        if (bArr != null) {
-            parcel.writeByteArray(bArr);
+        bundle.putString(FIELD_CONTAINER_MIME_TYPE, this.containerMimeType);
+        bundle.putString(FIELD_SAMPLE_MIME_TYPE, this.sampleMimeType);
+        bundle.putInt(FIELD_MAX_INPUT_SIZE, this.maxInputSize);
+        for (int i = 0; i < this.initializationData.size(); i++) {
+            bundle.putByteArray(keyForInitializationData(i), this.initializationData.get(i));
         }
-        parcel.writeInt(this.stereoMode);
-        parcel.writeParcelable(this.colorInfo, i);
-        parcel.writeInt(this.channelCount);
-        parcel.writeInt(this.sampleRate);
-        parcel.writeInt(this.pcmEncoding);
-        parcel.writeInt(this.encoderDelay);
-        parcel.writeInt(this.encoderPadding);
-        parcel.writeString(this.language);
-        parcel.writeInt(this.accessibilityChannel);
+        bundle.putParcelable(FIELD_DRM_INIT_DATA, this.drmInitData);
+        bundle.putLong(FIELD_SUBSAMPLE_OFFSET_US, this.subsampleOffsetUs);
+        bundle.putInt(FIELD_WIDTH, this.width);
+        bundle.putInt(FIELD_HEIGHT, this.height);
+        bundle.putFloat(FIELD_FRAME_RATE, this.frameRate);
+        bundle.putInt(FIELD_ROTATION_DEGREES, this.rotationDegrees);
+        bundle.putFloat(FIELD_PIXEL_WIDTH_HEIGHT_RATIO, this.pixelWidthHeightRatio);
+        bundle.putByteArray(FIELD_PROJECTION_DATA, this.projectionData);
+        bundle.putInt(FIELD_STEREO_MODE, this.stereoMode);
+        ColorInfo colorInfo = this.colorInfo;
+        if (colorInfo != null) {
+            bundle.putBundle(FIELD_COLOR_INFO, colorInfo.toBundle());
+        }
+        bundle.putInt(FIELD_CHANNEL_COUNT, this.channelCount);
+        bundle.putInt(FIELD_SAMPLE_RATE, this.sampleRate);
+        bundle.putInt(FIELD_PCM_ENCODING, this.pcmEncoding);
+        bundle.putInt(FIELD_ENCODER_DELAY, this.encoderDelay);
+        bundle.putInt(FIELD_ENCODER_PADDING, this.encoderPadding);
+        bundle.putInt(FIELD_ACCESSIBILITY_CHANNEL, this.accessibilityChannel);
+        bundle.putInt(FIELD_TILE_COUNT_HORIZONTAL, this.tileCountHorizontal);
+        bundle.putInt(FIELD_TILE_COUNT_VERTICAL, this.tileCountVertical);
+        bundle.putInt(FIELD_CRYPTO_TYPE, this.cryptoType);
+        return bundle;
+    }
+
+    public static Format fromBundle(Bundle bundle) {
+        Builder builder = new Builder();
+        BundleableUtil.ensureClassLoader(bundle);
+        String string = bundle.getString(FIELD_ID);
+        Format format = DEFAULT;
+        builder.setId((String) defaultIfNull(string, format.id)).setLabel((String) defaultIfNull(bundle.getString(FIELD_LABEL), format.label)).setLanguage((String) defaultIfNull(bundle.getString(FIELD_LANGUAGE), format.language)).setSelectionFlags(bundle.getInt(FIELD_SELECTION_FLAGS, format.selectionFlags)).setRoleFlags(bundle.getInt(FIELD_ROLE_FLAGS, format.roleFlags)).setAverageBitrate(bundle.getInt(FIELD_AVERAGE_BITRATE, format.averageBitrate)).setPeakBitrate(bundle.getInt(FIELD_PEAK_BITRATE, format.peakBitrate)).setCodecs((String) defaultIfNull(bundle.getString(FIELD_CODECS), format.codecs)).setMetadata((Metadata) defaultIfNull((Metadata) bundle.getParcelable(FIELD_METADATA), format.metadata)).setContainerMimeType((String) defaultIfNull(bundle.getString(FIELD_CONTAINER_MIME_TYPE), format.containerMimeType)).setSampleMimeType((String) defaultIfNull(bundle.getString(FIELD_SAMPLE_MIME_TYPE), format.sampleMimeType)).setMaxInputSize(bundle.getInt(FIELD_MAX_INPUT_SIZE, format.maxInputSize));
+        ArrayList arrayList = new ArrayList();
+        int i = 0;
+        while (true) {
+            byte[] byteArray = bundle.getByteArray(keyForInitializationData(i));
+            if (byteArray == null) {
+                break;
+            }
+            arrayList.add(byteArray);
+            i++;
+        }
+        Builder drmInitData = builder.setInitializationData(arrayList).setDrmInitData((DrmInitData) bundle.getParcelable(FIELD_DRM_INIT_DATA));
+        String str = FIELD_SUBSAMPLE_OFFSET_US;
+        Format format2 = DEFAULT;
+        drmInitData.setSubsampleOffsetUs(bundle.getLong(str, format2.subsampleOffsetUs)).setWidth(bundle.getInt(FIELD_WIDTH, format2.width)).setHeight(bundle.getInt(FIELD_HEIGHT, format2.height)).setFrameRate(bundle.getFloat(FIELD_FRAME_RATE, format2.frameRate)).setRotationDegrees(bundle.getInt(FIELD_ROTATION_DEGREES, format2.rotationDegrees)).setPixelWidthHeightRatio(bundle.getFloat(FIELD_PIXEL_WIDTH_HEIGHT_RATIO, format2.pixelWidthHeightRatio)).setProjectionData(bundle.getByteArray(FIELD_PROJECTION_DATA)).setStereoMode(bundle.getInt(FIELD_STEREO_MODE, format2.stereoMode));
+        Bundle bundle2 = bundle.getBundle(FIELD_COLOR_INFO);
+        if (bundle2 != null) {
+            builder.setColorInfo(ColorInfo.CREATOR.fromBundle(bundle2));
+        }
+        builder.setChannelCount(bundle.getInt(FIELD_CHANNEL_COUNT, format2.channelCount)).setSampleRate(bundle.getInt(FIELD_SAMPLE_RATE, format2.sampleRate)).setPcmEncoding(bundle.getInt(FIELD_PCM_ENCODING, format2.pcmEncoding)).setEncoderDelay(bundle.getInt(FIELD_ENCODER_DELAY, format2.encoderDelay)).setEncoderPadding(bundle.getInt(FIELD_ENCODER_PADDING, format2.encoderPadding)).setAccessibilityChannel(bundle.getInt(FIELD_ACCESSIBILITY_CHANNEL, format2.accessibilityChannel)).setTileCountHorizontal(bundle.getInt(FIELD_TILE_COUNT_HORIZONTAL, format2.tileCountHorizontal)).setTileCountVertical(bundle.getInt(FIELD_TILE_COUNT_VERTICAL, format2.tileCountVertical)).setCryptoType(bundle.getInt(FIELD_CRYPTO_TYPE, format2.cryptoType));
+        return builder.build();
+    }
+
+    private static String keyForInitializationData(int i) {
+        return FIELD_INITIALIZATION_DATA + "_" + Integer.toString(i, 36);
     }
 }

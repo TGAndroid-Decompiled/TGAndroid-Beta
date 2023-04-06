@@ -1,7 +1,6 @@
 package org.webrtc;
 
 import java.util.List;
-
 public class RtpSender {
     private MediaStreamTrack cachedTrack;
     private final DtmfSender dtmfSender;
@@ -72,7 +71,7 @@ public class RtpSender {
         return nativeGetParameters(this.nativeRtpSender);
     }
 
-    public String m0id() {
+    public String id() {
         checkRtpSenderExists();
         return nativeGetId(this.nativeRtpSender);
     }

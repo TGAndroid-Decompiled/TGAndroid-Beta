@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_contacts_resolvedPeer extends TLObject {
     public static int constructor = 2131196633;
     public TLRPC$Peer peer;

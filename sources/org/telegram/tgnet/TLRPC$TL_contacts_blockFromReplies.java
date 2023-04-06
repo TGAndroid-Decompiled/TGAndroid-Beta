@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_contacts_blockFromReplies extends TLObject {
     public static int constructor = 698914348;
     public boolean delete_history;

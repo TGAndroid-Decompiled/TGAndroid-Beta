@@ -3,8 +3,7 @@ package org.telegram.messenger;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import org.telegram.p009ui.LaunchActivity;
-
+import org.telegram.ui.LaunchActivity;
 public class OpenChatReceiver extends Activity {
     @Override
     protected void onCreate(Bundle bundle) {
@@ -28,7 +27,7 @@ public class OpenChatReceiver extends Activity {
                 startActivity(intent2);
                 finish();
             } catch (Throwable th) {
-                FileLog.m32e(th);
+                FileLog.e(th);
             }
         }
     }

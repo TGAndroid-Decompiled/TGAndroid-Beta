@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.IBinder;
-
 public class AuthenticatorService extends Service {
     private static Authenticator authenticator;
 

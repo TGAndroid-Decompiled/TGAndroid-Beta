@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateChannelAvailableMessages extends TLRPC$Update {
     public static int constructor = -1304443240;
     public int available_min_id;

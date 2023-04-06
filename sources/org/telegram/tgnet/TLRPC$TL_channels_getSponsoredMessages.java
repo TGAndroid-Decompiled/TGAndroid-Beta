@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_getSponsoredMessages extends TLObject {
     public static int constructor = -333377601;
     public TLRPC$InputChannel channel;

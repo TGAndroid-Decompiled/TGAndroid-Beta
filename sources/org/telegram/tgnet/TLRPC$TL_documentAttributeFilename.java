@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_documentAttributeFilename extends TLRPC$DocumentAttribute {
     public static int constructor = 358154344;
 

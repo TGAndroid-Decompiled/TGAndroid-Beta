@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import org.telegram.messenger.MediaController;
-
 public class Track {
     private static Map<Integer, Integer> samplingFrequencyIndexMap;
     private String handler;
@@ -44,7 +43,7 @@ public class Track {
     private boolean first = true;
 
     public static class SamplePresentationTime {
-        private long f847dt;
+        private long dt;
         private int index;
         private long presentationTime;
 
@@ -288,13 +287,13 @@ public class Track {
             this.duration += j;
         }
         for (i = 1; i < arrayList.size(); i++) {
-            ((SamplePresentationTime) arrayList.get(i)).f847dt = this.sampleDurations[i] + ((SamplePresentationTime) arrayList.get(i - 1)).f847dt;
+            ((SamplePresentationTime) arrayList.get(i)).dt = this.sampleDurations[i] + ((SamplePresentationTime) arrayList.get(i - 1)).dt;
         }
         if (z) {
             this.sampleCompositions = new int[this.samplePresentationTimes.size()];
             for (int i3 = 0; i3 < this.samplePresentationTimes.size(); i3++) {
                 SamplePresentationTime samplePresentationTime2 = this.samplePresentationTimes.get(i3);
-                this.sampleCompositions[samplePresentationTime2.index] = (int) (samplePresentationTime2.presentationTime - samplePresentationTime2.f847dt);
+                this.sampleCompositions[samplePresentationTime2.index] = (int) (samplePresentationTime2.presentationTime - samplePresentationTime2.dt);
             }
         }
     }

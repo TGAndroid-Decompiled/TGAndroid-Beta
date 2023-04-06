@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_updateTranscribedAudio extends TLRPC$Update {
     public static int constructor = 8703322;
     public int flags;

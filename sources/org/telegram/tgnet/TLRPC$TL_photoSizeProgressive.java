@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-
 public class TLRPC$TL_photoSizeProgressive extends TLRPC$PhotoSize {
     public static int constructor = -96535659;
     public ArrayList<Integer> sizes = new ArrayList<>();
@@ -9,8 +8,8 @@ public class TLRPC$TL_photoSizeProgressive extends TLRPC$PhotoSize {
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.type = abstractSerializedData.readString(z);
-        this.f888w = abstractSerializedData.readInt32(z);
-        this.f887h = abstractSerializedData.readInt32(z);
+        this.w = abstractSerializedData.readInt32(z);
+        this.h = abstractSerializedData.readInt32(z);
         int readInt32 = abstractSerializedData.readInt32(z);
         if (readInt32 != 481674261) {
             if (z) {
@@ -33,8 +32,8 @@ public class TLRPC$TL_photoSizeProgressive extends TLRPC$PhotoSize {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeString(this.type);
-        abstractSerializedData.writeInt32(this.f888w);
-        abstractSerializedData.writeInt32(this.f887h);
+        abstractSerializedData.writeInt32(this.w);
+        abstractSerializedData.writeInt32(this.h);
         abstractSerializedData.writeInt32(481674261);
         int size = this.sizes.size();
         abstractSerializedData.writeInt32(size);

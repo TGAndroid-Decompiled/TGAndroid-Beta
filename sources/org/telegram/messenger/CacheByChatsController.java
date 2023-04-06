@@ -8,7 +8,6 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC$Chat;
-
 public class CacheByChatsController {
     public static int KEEP_MEDIA_DELETE = 4;
     public static int KEEP_MEDIA_FOREVER = 2;
@@ -39,7 +38,7 @@ public class CacheByChatsController {
             return KEEP_MEDIA_ONE_MONTH;
         }
         if (i == 2) {
-            return KEEP_MEDIA_ONE_MONTH;
+            return KEEP_MEDIA_ONE_WEEK;
         }
         return SharedConfig.keepMedia;
     }
@@ -57,20 +56,20 @@ public class CacheByChatsController {
         if (i == KEEP_MEDIA_ONE_MONTH) {
             return LocaleController.formatPluralString("Months", 1, new Object[0]);
         }
-        return LocaleController.getString("AutoDeleteMediaNever", C1072R.string.AutoDeleteMediaNever);
+        return LocaleController.getString("AutoDeleteMediaNever", R.string.AutoDeleteMediaNever);
     }
 
     public static long getDaysInSeconds(int i) {
-        if (i == KEEP_MEDIA_FOREVER) {
-            return Long.MAX_VALUE;
-        }
         if (i == KEEP_MEDIA_ONE_WEEK) {
             return 604800L;
         }
         if (i == KEEP_MEDIA_ONE_MONTH) {
             return 2592000L;
         }
-        return i == KEEP_MEDIA_ONE_DAY ? 86400L : 60L;
+        if (i == KEEP_MEDIA_ONE_DAY) {
+            return 86400L;
+        }
+        return (i == KEEP_MEDIA_ONE_MINUTE && BuildVars.DEBUG_PRIVATE_VERSION) ? 60L : Long.MAX_VALUE;
     }
 
     public ArrayList<KeepMediaException> getKeepMediaExceptions(int i) {
@@ -125,7 +124,7 @@ public class CacheByChatsController {
         edit.putInt("keep_media_type_" + i, i2).apply();
     }
 
-    public void lookupFiles(ArrayList<KeepMediaFile> arrayList) {
+    public void lookupFiles(ArrayList<? extends KeepMediaFile> arrayList) {
         int i;
         LongSparseArray<ArrayList<KeepMediaFile>> lookupFiles = FileLoader.getInstance(this.currentAccount).getFileDatabase().lookupFiles(arrayList);
         LongSparseArray<KeepMediaException> keepMediaExceptionsByDialogs = getKeepMediaExceptionsByDialogs();

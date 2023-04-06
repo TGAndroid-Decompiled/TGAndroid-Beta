@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_messages_migrateChat extends TLObject {
     public static int constructor = -1568189671;
     public long chat_id;

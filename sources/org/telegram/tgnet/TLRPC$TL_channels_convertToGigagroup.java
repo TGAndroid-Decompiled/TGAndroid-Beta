@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_channels_convertToGigagroup extends TLObject {
     public static int constructor = 187239529;
     public TLRPC$InputChannel channel;

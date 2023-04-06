@@ -1,12 +1,11 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_document extends TLRPC$Document {
     public static int constructor = -1881881384;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.flags = abstractSerializedData.readInt32(z);
-        this.f865id = abstractSerializedData.readInt64(z);
+        this.id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.file_reference = abstractSerializedData.readByteArray(z);
         this.date = abstractSerializedData.readInt32(z);
@@ -24,7 +23,7 @@ public class TLRPC$TL_document extends TLRPC$Document {
             int i = 0;
             while (i < readInt322) {
                 int i2 = i;
-                TLRPC$PhotoSize TLdeserialize = TLRPC$PhotoSize.TLdeserialize(0L, this.f865id, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TLRPC$PhotoSize TLdeserialize = TLRPC$PhotoSize.TLdeserialize(0L, this.id, 0L, abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize == null) {
                     return;
                 }
@@ -42,7 +41,7 @@ public class TLRPC$TL_document extends TLRPC$Document {
             }
             int readInt324 = abstractSerializedData.readInt32(z);
             for (int i3 = 0; i3 < readInt324; i3++) {
-                TLRPC$VideoSize TLdeserialize2 = TLRPC$VideoSize.TLdeserialize(0L, this.f865id, abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TLRPC$VideoSize TLdeserialize2 = TLRPC$VideoSize.TLdeserialize(0L, this.id, abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize2 == null) {
                     return;
                 }
@@ -71,7 +70,7 @@ public class TLRPC$TL_document extends TLRPC$Document {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
-        abstractSerializedData.writeInt64(this.f865id);
+        abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeByteArray(this.file_reference);
         abstractSerializedData.writeInt32(this.date);

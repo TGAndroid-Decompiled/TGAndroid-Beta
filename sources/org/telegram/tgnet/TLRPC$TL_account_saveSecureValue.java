@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_saveSecureValue extends TLObject {
     public static int constructor = -1986010339;
     public long secure_secret_id;

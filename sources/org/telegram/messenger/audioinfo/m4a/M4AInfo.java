@@ -8,7 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.telegram.messenger.audioinfo.AudioInfo;
 import org.telegram.messenger.audioinfo.mp3.ID3v1Genre;
-
 public class M4AInfo extends AudioInfo {
     static final Logger LOGGER = Logger.getLogger(M4AInfo.class.getName());
     private final Level debugLevel;

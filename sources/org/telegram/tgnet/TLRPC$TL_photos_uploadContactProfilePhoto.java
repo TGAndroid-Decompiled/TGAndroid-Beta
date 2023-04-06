@@ -1,13 +1,13 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_photos_uploadContactProfilePhoto extends TLObject {
-    public static int constructor = -1189444673;
+    public static int constructor = -515093903;
     public TLRPC$InputFile file;
     public int flags;
     public boolean save;
     public boolean suggest;
     public TLRPC$InputUser user_id;
     public TLRPC$InputFile video;
+    public TLRPC$VideoSize video_emoji_markup;
     public double video_start_ts;
 
     @Override
@@ -32,6 +32,9 @@ public class TLRPC$TL_photos_uploadContactProfilePhoto extends TLObject {
         }
         if ((this.flags & 4) != 0) {
             abstractSerializedData.writeDouble(this.video_start_ts);
+        }
+        if ((this.flags & 32) != 0) {
+            this.video_emoji_markup.serializeToStream(abstractSerializedData);
         }
     }
 }

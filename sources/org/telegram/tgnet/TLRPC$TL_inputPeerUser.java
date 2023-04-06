@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_inputPeerUser extends TLRPC$InputPeer {
     public static int constructor = -571955892;
 

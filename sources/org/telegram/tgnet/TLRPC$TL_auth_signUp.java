@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_auth_signUp extends TLObject {
     public static int constructor = -2131827673;
     public String first_name;

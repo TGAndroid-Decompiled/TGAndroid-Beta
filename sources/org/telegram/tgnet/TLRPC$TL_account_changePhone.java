@@ -1,5 +1,4 @@
 package org.telegram.tgnet;
-
 public class TLRPC$TL_account_changePhone extends TLObject {
     public static int constructor = 1891839707;
     public String phone_code;

@@ -9,7 +9,6 @@ import android.opengl.EGLExt;
 import android.opengl.EGLSurface;
 import android.view.Surface;
 import java.util.Objects;
-
 @TargetApi(17)
 public class InputSurface {
     private static final int EGL_OPENGL_ES2_BIT = 4;

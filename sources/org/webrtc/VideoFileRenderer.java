@@ -10,7 +10,6 @@ import java.util.concurrent.CountDownLatch;
 import org.webrtc.EglBase;
 import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
-
 public class VideoFileRenderer implements VideoSink {
     private static final String TAG = "VideoFileRenderer";
     private EglBase eglBase;
@@ -132,7 +131,7 @@ public class VideoFileRenderer implements VideoSink {
             this.fileThread.join();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            Logging.m7e(TAG, "Interrupted while waiting for the write to disk to complete.", e);
+            Logging.e(TAG, "Interrupted while waiting for the write to disk to complete.", e);
         }
     }
 
@@ -146,7 +145,7 @@ public class VideoFileRenderer implements VideoSink {
     public void lambda$release$3() {
         try {
             this.videoOutFile.close();
-            Logging.m9d(TAG, "Video written to disk as " + this.outputFileName + ". The number of frames is " + this.frameCount + " and the dimensions of the frames are " + this.outputFileWidth + "x" + this.outputFileHeight + ".");
+            Logging.d(TAG, "Video written to disk as " + this.outputFileName + ". The number of frames is " + this.frameCount + " and the dimensions of the frames are " + this.outputFileWidth + "x" + this.outputFileHeight + ".");
             this.fileThread.quit();
         } catch (IOException e) {
             throw new RuntimeException("Error closing output file", e);
