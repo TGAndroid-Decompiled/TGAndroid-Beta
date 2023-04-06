@@ -4400,4 +4400,14 @@ public class AndroidUtilities {
         }
         return null;
     }
+
+    public static boolean isActivityRunning(Activity activity) {
+        if (activity == null) {
+            return false;
+        }
+        if (Build.VERSION.SDK_INT >= 17) {
+            return (activity.isDestroyed() || activity.isFinishing()) ? false : true;
+        }
+        return !activity.isFinishing();
+    }
 }

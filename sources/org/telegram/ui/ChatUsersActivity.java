@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -50,6 +51,7 @@ import org.telegram.tgnet.TLRPC$ChatParticipant;
 import org.telegram.tgnet.TLRPC$TL_channelFull;
 import org.telegram.tgnet.TLRPC$TL_channelParticipant;
 import org.telegram.tgnet.TLRPC$TL_channelParticipantAdmin;
+import org.telegram.tgnet.TLRPC$TL_channelParticipantBanned;
 import org.telegram.tgnet.TLRPC$TL_channelParticipantCreator;
 import org.telegram.tgnet.TLRPC$TL_channelParticipantSelf;
 import org.telegram.tgnet.TLRPC$TL_channelParticipantsAdmins;
@@ -98,6 +100,7 @@ import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.GigagroupConvertAlert;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.RecyclerListView;
@@ -807,7 +810,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         if (getParentActivity() != null) {
             RecyclerView.Adapter adapter = this.listView.getAdapter();
             ListAdapter listAdapter = this.listViewAdapter;
-            return adapter == listAdapter && createMenuForParticipant(listAdapter.getItem(i), false);
+            if (adapter == listAdapter) {
+                return createMenuForParticipant(listAdapter.getItem(i), false, view);
+            }
         }
         return false;
     }
@@ -1174,14 +1179,6 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return null;
     }
 
-    private void removeParticipants(TLObject tLObject) {
-        if (tLObject instanceof TLRPC$ChatParticipant) {
-            removeParticipants(((TLRPC$ChatParticipant) tLObject).user_id);
-        } else if (tLObject instanceof TLRPC$ChannelParticipant) {
-            removeParticipants(MessageObject.getPeerId(((TLRPC$ChannelParticipant) tLObject).peer));
-        }
-    }
-
     public void removeParticipants(long j) {
         LongSparseArray<TLObject> longSparseArray;
         ArrayList<TLObject> arrayList;
@@ -1247,124 +1244,276 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public boolean createMenuForParticipant(final org.telegram.tgnet.TLObject r24, boolean r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatUsersActivity.createMenuForParticipant(org.telegram.tgnet.TLObject, boolean):boolean");
-    }
-
-    public void lambda$createMenuForParticipant$10(final ArrayList arrayList, TLRPC$User tLRPC$User, final long j, final boolean z, final TLObject tLObject, final int i, final TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, final TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, final String str, DialogInterface dialogInterface, final int i2) {
-        if (((Integer) arrayList.get(i2)).intValue() == 2) {
-            getMessagesController().deleteParticipantFromChat(this.chatId, tLRPC$User);
-            removeParticipants(j);
-            if (this.currentChat == null || tLRPC$User == null || !BulletinFactory.canShowBulletin(this)) {
-                return;
+    public boolean createMenuForParticipant(final TLObject tLObject, boolean z, View view) {
+        long j;
+        final TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
+        final TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights;
+        final String str;
+        final int i;
+        boolean z2;
+        int i2;
+        String str2;
+        int i3;
+        String str3;
+        if (tLObject == null || this.selectType != 0) {
+            return false;
+        }
+        if (tLObject instanceof TLRPC$ChannelParticipant) {
+            TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLObject;
+            long peerId = MessageObject.getPeerId(tLRPC$ChannelParticipant.peer);
+            z2 = tLRPC$ChannelParticipant.can_edit;
+            TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2 = tLRPC$ChannelParticipant.banned_rights;
+            TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2 = tLRPC$ChannelParticipant.admin_rights;
+            j = peerId;
+            i = tLRPC$ChannelParticipant.date;
+            str = tLRPC$ChannelParticipant.rank;
+            tLRPC$TL_chatBannedRights = tLRPC$TL_chatBannedRights2;
+            tLRPC$TL_chatAdminRights = tLRPC$TL_chatAdminRights2;
+        } else if (tLObject instanceof TLRPC$ChatParticipant) {
+            TLRPC$ChatParticipant tLRPC$ChatParticipant = (TLRPC$ChatParticipant) tLObject;
+            long j2 = tLRPC$ChatParticipant.user_id;
+            int i4 = tLRPC$ChatParticipant.date;
+            j = j2;
+            z2 = ChatObject.canAddAdmins(this.currentChat);
+            str = "";
+            i = i4;
+            tLRPC$TL_chatAdminRights = null;
+            tLRPC$TL_chatBannedRights = null;
+        } else {
+            j = 0;
+            tLRPC$TL_chatAdminRights = null;
+            tLRPC$TL_chatBannedRights = null;
+            str = null;
+            i = 0;
+            z2 = false;
+        }
+        if (j == 0 || j == getUserConfig().getClientUserId()) {
+            return false;
+        }
+        if (this.type == 2) {
+            final TLRPC$User user = getMessagesController().getUser(Long.valueOf(j));
+            boolean z3 = ChatObject.canAddAdmins(this.currentChat) && ((tLObject instanceof TLRPC$TL_channelParticipant) || (tLObject instanceof TLRPC$TL_channelParticipantBanned) || (tLObject instanceof TLRPC$TL_chatParticipant) || z2);
+            boolean z4 = tLObject instanceof TLRPC$TL_channelParticipantAdmin;
+            boolean z5 = !(z4 || (tLObject instanceof TLRPC$TL_channelParticipantCreator) || (tLObject instanceof TLRPC$TL_chatParticipantCreator) || (tLObject instanceof TLRPC$TL_chatParticipantAdmin)) || z2;
+            boolean z6 = z4 || (tLObject instanceof TLRPC$TL_chatParticipantAdmin);
+            boolean z7 = ChatObject.canBlockUsers(this.currentChat) && z5 && !this.isChannel && ChatObject.isChannel(this.currentChat) && !this.currentChat.gigagroup;
+            if (this.selectType == 0) {
+                z3 &= !UserObject.isDeleted(user);
             }
-            BulletinFactory.createRemoveFromChatBulletin(this, tLRPC$User, this.currentChat.title).show();
-        } else if (((Integer) arrayList.get(i2)).intValue() == 1 && z && ((tLObject instanceof TLRPC$TL_channelParticipantAdmin) || (tLObject instanceof TLRPC$TL_chatParticipantAdmin))) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
-            builder.setTitle(LocaleController.getString("AppName", R.string.AppName));
-            builder.setMessage(LocaleController.formatString("AdminWillBeRemoved", R.string.AdminWillBeRemoved, UserObject.getUserName(tLRPC$User)));
-            builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+            boolean z8 = z3;
+            boolean z9 = z8 || (ChatObject.canBlockUsers(this.currentChat) && z5);
+            if (z || !z9) {
+                return z9;
+            }
+            final long j3 = j;
+            final long j4 = j;
+            boolean z10 = z7;
+            final boolean z11 = z5;
+            final Utilities.Callback callback = new Utilities.Callback() {
                 @Override
-                public final void onClick(DialogInterface dialogInterface2, int i3) {
-                    ChatUsersActivity.this.lambda$createMenuForParticipant$9(j, i, tLObject, tLRPC$TL_chatAdminRights, tLRPC$TL_chatBannedRights, str, z, arrayList, i2, dialogInterface2, i3);
+                public final void run(Object obj) {
+                    ChatUsersActivity.this.lambda$createMenuForParticipant$9(j3, i, tLObject, tLRPC$TL_chatAdminRights, tLRPC$TL_chatBannedRights, str, z11, (Integer) obj);
+                }
+            };
+            ItemOptions addIf = ItemOptions.makeOptions(this, view).setScrimViewBackground(new ColorDrawable(Theme.getColor("windowBackgroundWhite"))).addIf(z8, R.drawable.msg_admins, z6 ? LocaleController.getString("EditAdminRights", R.string.EditAdminRights) : LocaleController.getString("SetAsAdmin", R.string.SetAsAdmin), new Runnable() {
+                @Override
+                public final void run() {
+                    ChatUsersActivity.lambda$createMenuForParticipant$10(Utilities.Callback.this);
+                }
+            }).addIf(z10, R.drawable.msg_permissions, LocaleController.getString("ChangePermissions", R.string.ChangePermissions), new Runnable() {
+                @Override
+                public final void run() {
+                    ChatUsersActivity.this.lambda$createMenuForParticipant$12(tLObject, user, callback);
                 }
             });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-            showDialog(builder.create());
-        } else {
-            openRightsEdit2(j, i, tLObject, tLRPC$TL_chatAdminRights, tLRPC$TL_chatBannedRights, str, z, ((Integer) arrayList.get(i2)).intValue(), false);
-        }
-    }
-
-    public void lambda$createMenuForParticipant$9(long j, int i, TLObject tLObject, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, String str, boolean z, ArrayList arrayList, int i2, DialogInterface dialogInterface, int i3) {
-        openRightsEdit2(j, i, tLObject, tLRPC$TL_chatAdminRights, tLRPC$TL_chatBannedRights, str, z, ((Integer) arrayList.get(i2)).intValue(), false);
-    }
-
-    public void lambda$createMenuForParticipant$13(CharSequence[] charSequenceArr, long j, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, String str, final TLObject tLObject, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, DialogInterface dialogInterface, int i) {
-        TLRPC$Chat chat;
-        int i2 = this.type;
-        if (i2 == 1) {
-            if (i == 0 && charSequenceArr.length == 2) {
-                ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, tLRPC$TL_chatAdminRights, null, null, str, 0, true, false, null);
-                chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
-                    @Override
-                    public void didSetRights(int i3, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2, String str2) {
-                        TLObject tLObject2 = tLObject;
-                        if (tLObject2 instanceof TLRPC$ChannelParticipant) {
-                            TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLObject2;
-                            tLRPC$ChannelParticipant.admin_rights = tLRPC$TL_chatAdminRights2;
-                            tLRPC$ChannelParticipant.banned_rights = tLRPC$TL_chatBannedRights2;
-                            tLRPC$ChannelParticipant.rank = str2;
-                            ChatUsersActivity.this.updateParticipantWithRights(tLRPC$ChannelParticipant, tLRPC$TL_chatAdminRights2, tLRPC$TL_chatBannedRights2, 0L, false);
-                        }
-                    }
-
-                    @Override
-                    public void didChangeOwner(TLRPC$User tLRPC$User) {
-                        ChatUsersActivity.this.onOwnerChaged(tLRPC$User);
-                    }
-                });
-                presentFragment(chatRightsEditActivity);
-                return;
+            boolean z12 = ChatObject.canBlockUsers(this.currentChat) && z5;
+            int i5 = R.drawable.msg_remove;
+            if (this.isChannel) {
+                i3 = R.string.ChannelRemoveUser;
+                str3 = "ChannelRemoveUser";
+            } else {
+                i3 = R.string.KickFromGroup;
+                str3 = "KickFromGroup";
             }
-            getMessagesController().setUserAdminRole(this.chatId, getMessagesController().getUser(Long.valueOf(j)), new TLRPC$TL_chatAdminRights(), "", !this.isChannel, this, false, false, null, null);
-            removeParticipants(j);
-        } else if (i2 != 0 && i2 != 3) {
-            if (i == 0) {
-                TLRPC$User tLRPC$User = null;
-                if (j > 0) {
-                    chat = null;
-                    tLRPC$User = getMessagesController().getUser(Long.valueOf(j));
+            addIf.addIf(z12, i5, LocaleController.getString(str3, i3), true, new Runnable() {
+                @Override
+                public final void run() {
+                    ChatUsersActivity.this.lambda$createMenuForParticipant$13(user, j4);
+                }
+            }).setMinWidth(190).show();
+            return true;
+        }
+        final long j5 = j;
+        ItemOptions makeOptions = ItemOptions.makeOptions(this, view);
+        if (this.type == 3 && ChatObject.canBlockUsers(this.currentChat)) {
+            final TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights3 = tLRPC$TL_chatBannedRights;
+            final String str4 = str;
+            makeOptions.add(R.drawable.msg_permissions, LocaleController.getString("ChannelEditPermissions", R.string.ChannelEditPermissions), new Runnable() {
+                @Override
+                public final void run() {
+                    ChatUsersActivity.this.lambda$createMenuForParticipant$14(j5, tLRPC$TL_chatBannedRights3, str4, tLObject);
+                }
+            });
+            makeOptions.add(R.drawable.msg_delete, LocaleController.getString("ChannelDeleteFromList", R.string.ChannelDeleteFromList), true, new Runnable() {
+                @Override
+                public final void run() {
+                    ChatUsersActivity.this.lambda$createMenuForParticipant$15(j5);
+                }
+            });
+        } else if (this.type == 0 && ChatObject.canBlockUsers(this.currentChat)) {
+            if (ChatObject.canAddUsers(this.currentChat) && j5 > 0) {
+                int i6 = R.drawable.msg_contact_add;
+                if (this.isChannel) {
+                    i2 = R.string.ChannelAddToChannel;
+                    str2 = "ChannelAddToChannel";
                 } else {
-                    chat = getMessagesController().getChat(Long.valueOf(-j));
+                    i2 = R.string.ChannelAddToGroup;
+                    str2 = "ChannelAddToGroup";
                 }
-                getMessagesController().deleteParticipantFromChat(this.chatId, tLRPC$User, chat, false, false);
-            }
-        } else {
-            if (i == 0) {
-                if (i2 == 3) {
-                    ChatRightsEditActivity chatRightsEditActivity2 = new ChatRightsEditActivity(j, this.chatId, null, this.defaultBannedRights, tLRPC$TL_chatBannedRights, str, 1, true, false, null);
-                    chatRightsEditActivity2.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
-                        @Override
-                        public void didSetRights(int i3, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2, String str2) {
-                            TLObject tLObject2 = tLObject;
-                            if (tLObject2 instanceof TLRPC$ChannelParticipant) {
-                                TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLObject2;
-                                tLRPC$ChannelParticipant.admin_rights = tLRPC$TL_chatAdminRights2;
-                                tLRPC$ChannelParticipant.banned_rights = tLRPC$TL_chatBannedRights2;
-                                tLRPC$ChannelParticipant.rank = str2;
-                                ChatUsersActivity.this.updateParticipantWithRights(tLRPC$ChannelParticipant, tLRPC$TL_chatAdminRights2, tLRPC$TL_chatBannedRights2, 0L, false);
-                            }
-                        }
-
-                        @Override
-                        public void didChangeOwner(TLRPC$User tLRPC$User2) {
-                            ChatUsersActivity.this.onOwnerChaged(tLRPC$User2);
-                        }
-                    });
-                    presentFragment(chatRightsEditActivity2);
-                } else if (i2 == 0 && j > 0) {
-                    getMessagesController().addUserToChat(this.chatId, getMessagesController().getUser(Long.valueOf(j)), 0, null, this, null);
-                }
-            } else if (i == 1) {
-                TLRPC$TL_channels_editBanned tLRPC$TL_channels_editBanned = new TLRPC$TL_channels_editBanned();
-                tLRPC$TL_channels_editBanned.participant = getMessagesController().getInputPeer(j);
-                tLRPC$TL_channels_editBanned.channel = getMessagesController().getInputChannel(this.chatId);
-                tLRPC$TL_channels_editBanned.banned_rights = new TLRPC$TL_chatBannedRights();
-                getConnectionsManager().sendRequest(tLRPC$TL_channels_editBanned, new RequestDelegate() {
+                makeOptions.add(i6, LocaleController.getString(str2, i2), new Runnable() {
                     @Override
-                    public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error) {
-                        ChatUsersActivity.this.lambda$createMenuForParticipant$12(tLObject2, tLRPC$TL_error);
+                    public final void run() {
+                        ChatUsersActivity.this.lambda$createMenuForParticipant$16(j5);
                     }
                 });
             }
-            if ((i == 0 && this.type == 0) || i == 1) {
-                removeParticipants(tLObject);
+            makeOptions.add(R.drawable.msg_delete, LocaleController.getString("ChannelDeleteFromList", R.string.ChannelDeleteFromList), true, new Runnable() {
+                @Override
+                public final void run() {
+                    ChatUsersActivity.this.lambda$createMenuForParticipant$17(j5);
+                }
+            });
+        } else if (this.type == 1 && ChatObject.canAddAdmins(this.currentChat) && z2) {
+            if (this.currentChat.creator || !(tLObject instanceof TLRPC$TL_channelParticipantCreator)) {
+                final TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights3 = tLRPC$TL_chatAdminRights;
+                final String str5 = str;
+                makeOptions.add(R.drawable.msg_admins, LocaleController.getString("EditAdminRights", R.string.EditAdminRights), new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChatUsersActivity.this.lambda$createMenuForParticipant$18(j5, tLRPC$TL_chatAdminRights3, str5, tLObject);
+                    }
+                });
             }
+            makeOptions.add(R.drawable.msg_remove, LocaleController.getString("ChannelRemoveUserAdmin", R.string.ChannelRemoveUserAdmin), true, new Runnable() {
+                @Override
+                public final void run() {
+                    ChatUsersActivity.this.lambda$createMenuForParticipant$19(j5);
+                }
+            });
+        }
+        makeOptions.setScrimViewBackground(new ColorDrawable(Theme.getColor("windowBackgroundWhite")));
+        makeOptions.setMinWidth(190);
+        makeOptions.show();
+        boolean z13 = makeOptions.getItemsCount() <= 0;
+        if (z || !z13) {
+            return z13;
+        }
+        return true;
+    }
+
+    public void lambda$createMenuForParticipant$9(long j, int i, TLObject tLObject, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, String str, boolean z, Integer num) {
+        openRightsEdit2(j, i, tLObject, tLRPC$TL_chatAdminRights, tLRPC$TL_chatBannedRights, str, z, num.intValue(), false);
+    }
+
+    public static void lambda$createMenuForParticipant$10(Utilities.Callback callback) {
+        callback.run(0);
+    }
+
+    public void lambda$createMenuForParticipant$12(TLObject tLObject, TLRPC$User tLRPC$User, final Utilities.Callback callback) {
+        if ((tLObject instanceof TLRPC$TL_channelParticipantAdmin) || (tLObject instanceof TLRPC$TL_chatParticipantAdmin)) {
+            showDialog(new AlertDialog.Builder(getParentActivity()).setTitle(LocaleController.getString("AppName", R.string.AppName)).setMessage(LocaleController.formatString("AdminWillBeRemoved", R.string.AdminWillBeRemoved, UserObject.getUserName(tLRPC$User))).setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i) {
+                    ChatUsersActivity.lambda$createMenuForParticipant$11(Utilities.Callback.this, dialogInterface, i);
+                }
+            }).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).create());
+        } else {
+            callback.run(1);
         }
     }
 
-    public void lambda$createMenuForParticipant$12(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$createMenuForParticipant$11(Utilities.Callback callback, DialogInterface dialogInterface, int i) {
+        callback.run(1);
+    }
+
+    public void lambda$createMenuForParticipant$13(TLRPC$User tLRPC$User, long j) {
+        getMessagesController().deleteParticipantFromChat(this.chatId, tLRPC$User);
+        removeParticipants(j);
+        if (this.currentChat == null || tLRPC$User == null || !BulletinFactory.canShowBulletin(this)) {
+            return;
+        }
+        BulletinFactory.createRemoveFromChatBulletin(this, tLRPC$User, this.currentChat.title).show();
+    }
+
+    public void lambda$createMenuForParticipant$14(long j, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, String str, final TLObject tLObject) {
+        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, null, this.defaultBannedRights, tLRPC$TL_chatBannedRights, str, 1, true, false, null);
+        chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
+            @Override
+            public void didSetRights(int i, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2, String str2) {
+                TLObject tLObject2 = tLObject;
+                if (tLObject2 instanceof TLRPC$ChannelParticipant) {
+                    TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLObject2;
+                    tLRPC$ChannelParticipant.admin_rights = tLRPC$TL_chatAdminRights;
+                    tLRPC$ChannelParticipant.banned_rights = tLRPC$TL_chatBannedRights2;
+                    tLRPC$ChannelParticipant.rank = str2;
+                    ChatUsersActivity.this.updateParticipantWithRights(tLRPC$ChannelParticipant, tLRPC$TL_chatAdminRights, tLRPC$TL_chatBannedRights2, 0L, false);
+                }
+            }
+
+            @Override
+            public void didChangeOwner(TLRPC$User tLRPC$User) {
+                ChatUsersActivity.this.onOwnerChaged(tLRPC$User);
+            }
+        });
+        presentFragment(chatRightsEditActivity);
+    }
+
+    public void lambda$createMenuForParticipant$16(long j) {
+        getMessagesController().addUserToChat(this.chatId, getMessagesController().getUser(Long.valueOf(j)), 0, null, this, null);
+    }
+
+    public void lambda$createMenuForParticipant$18(long j, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, String str, final TLObject tLObject) {
+        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, this.chatId, tLRPC$TL_chatAdminRights, null, null, str, 0, true, false, null);
+        chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
+            @Override
+            public void didSetRights(int i, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights2, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights, String str2) {
+                TLObject tLObject2 = tLObject;
+                if (tLObject2 instanceof TLRPC$ChannelParticipant) {
+                    TLRPC$ChannelParticipant tLRPC$ChannelParticipant = (TLRPC$ChannelParticipant) tLObject2;
+                    tLRPC$ChannelParticipant.admin_rights = tLRPC$TL_chatAdminRights2;
+                    tLRPC$ChannelParticipant.banned_rights = tLRPC$TL_chatBannedRights;
+                    tLRPC$ChannelParticipant.rank = str2;
+                    ChatUsersActivity.this.updateParticipantWithRights(tLRPC$ChannelParticipant, tLRPC$TL_chatAdminRights2, tLRPC$TL_chatBannedRights, 0L, false);
+                }
+            }
+
+            @Override
+            public void didChangeOwner(TLRPC$User tLRPC$User) {
+                ChatUsersActivity.this.onOwnerChaged(tLRPC$User);
+            }
+        });
+        presentFragment(chatRightsEditActivity);
+    }
+
+    public void lambda$createMenuForParticipant$19(long j) {
+        getMessagesController().setUserAdminRole(this.chatId, getMessagesController().getUser(Long.valueOf(j)), new TLRPC$TL_chatAdminRights(), "", !this.isChannel, this, false, false, null, null);
+        removeParticipants(j);
+    }
+
+    public void lambda$createMenuForParticipant$17(long j) {
+        TLRPC$TL_channels_editBanned tLRPC$TL_channels_editBanned = new TLRPC$TL_channels_editBanned();
+        tLRPC$TL_channels_editBanned.participant = getMessagesController().getInputPeer(j);
+        tLRPC$TL_channels_editBanned.channel = getMessagesController().getInputChannel(this.chatId);
+        tLRPC$TL_channels_editBanned.banned_rights = new TLRPC$TL_chatBannedRights();
+        getConnectionsManager().sendRequest(tLRPC$TL_channels_editBanned, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                ChatUsersActivity.this.lambda$deletePeer$21(tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public void lambda$deletePeer$21(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLObject != null) {
             final TLRPC$Updates tLRPC$Updates = (TLRPC$Updates) tLObject;
             getMessagesController().processUpdates(tLRPC$Updates, false);
@@ -1374,13 +1523,13 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatUsersActivity.this.lambda$createMenuForParticipant$11(tLRPC$Updates);
+                    ChatUsersActivity.this.lambda$deletePeer$20(tLRPC$Updates);
                 }
             }, 1000L);
         }
     }
 
-    public void lambda$createMenuForParticipant$11(TLRPC$Updates tLRPC$Updates) {
+    public void lambda$deletePeer$20(TLRPC$Updates tLRPC$Updates) {
         getMessagesController().loadFullChat(tLRPC$Updates.chats.get(0).id, 0, true);
     }
 
@@ -1403,14 +1552,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatUsersActivity.this.lambda$didReceivedNotification$14();
+                        ChatUsersActivity.this.lambda$didReceivedNotification$22();
                     }
                 });
             }
         }
     }
 
-    public void lambda$didReceivedNotification$14() {
+    public void lambda$didReceivedNotification$22() {
         loadChatParticipants(0, 200);
     }
 
@@ -1471,24 +1620,24 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         builder.setPositiveButton(LocaleController.getString("ApplyTheme", R.string.ApplyTheme), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ChatUsersActivity.this.lambda$checkDiscard$15(dialogInterface, i);
+                ChatUsersActivity.this.lambda$checkDiscard$23(dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                ChatUsersActivity.this.lambda$checkDiscard$16(dialogInterface, i);
+                ChatUsersActivity.this.lambda$checkDiscard$24(dialogInterface, i);
             }
         });
         showDialog(builder.create());
         return false;
     }
 
-    public void lambda$checkDiscard$15(DialogInterface dialogInterface, int i) {
+    public void lambda$checkDiscard$23(DialogInterface dialogInterface, int i) {
         processDone();
     }
 
-    public void lambda$checkDiscard$16(DialogInterface dialogInterface, int i) {
+    public void lambda$checkDiscard$24(DialogInterface dialogInterface, int i) {
         finishFragment();
     }
 
@@ -1620,7 +1769,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             MessagesController.getInstance(this.currentAccount).convertToMegaGroup(getParentActivity(), this.chatId, this, new MessagesStorage.LongCallback() {
                 @Override
                 public final void run(long j) {
-                    ChatUsersActivity.this.lambda$processDone$17(j);
+                    ChatUsersActivity.this.lambda$processDone$25(j);
                 }
             });
             return;
@@ -1641,7 +1790,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         finishFragment();
     }
 
-    public void lambda$processDone$17(long j) {
+    public void lambda$processDone$25(long j) {
         if (j != 0) {
             this.chatId = j;
             this.currentChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
@@ -1808,7 +1957,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatUsersActivity.this.lambda$loadChatParticipants$18(loadChatParticipantsRequests, arrayList);
+                ChatUsersActivity.this.lambda$loadChatParticipants$26(loadChatParticipantsRequests, arrayList);
             }
         };
         final AtomicInteger atomicInteger = new AtomicInteger(0);
@@ -1818,14 +1967,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(loadChatParticipantsRequests.get(i3), new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChatUsersActivity.lambda$loadChatParticipants$20(arrayList, i5, atomicInteger, loadChatParticipantsRequests, runnable, tLObject, tLRPC$TL_error);
+                    ChatUsersActivity.lambda$loadChatParticipants$28(arrayList, i5, atomicInteger, loadChatParticipantsRequests, runnable, tLObject, tLRPC$TL_error);
                 }
             }), this.classGuid);
             i3++;
         }
     }
 
-    public void lambda$loadChatParticipants$18(ArrayList arrayList, ArrayList arrayList2) {
+    public void lambda$loadChatParticipants$26(ArrayList arrayList, ArrayList arrayList2) {
         int i;
         ArrayList<TLObject> arrayList3;
         LongSparseArray<TLObject> longSparseArray;
@@ -1957,16 +2106,16 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         resumeDelayedFragmentAnimation();
     }
 
-    public static void lambda$loadChatParticipants$20(final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final ArrayList arrayList2, final Runnable runnable, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$loadChatParticipants$28(final ArrayList arrayList, final int i, final AtomicInteger atomicInteger, final ArrayList arrayList2, final Runnable runnable, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatUsersActivity.lambda$loadChatParticipants$19(TLRPC$TL_error.this, tLObject, arrayList, i, atomicInteger, arrayList2, runnable);
+                ChatUsersActivity.lambda$loadChatParticipants$27(TLRPC$TL_error.this, tLObject, arrayList, i, atomicInteger, arrayList2, runnable);
             }
         });
     }
 
-    public static void lambda$loadChatParticipants$19(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, ArrayList arrayList, int i, AtomicInteger atomicInteger, ArrayList arrayList2, Runnable runnable) {
+    public static void lambda$loadChatParticipants$27(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, ArrayList arrayList, int i, AtomicInteger atomicInteger, ArrayList arrayList2, Runnable runnable) {
         if (tLRPC$TL_error == null && (tLObject instanceof TLRPC$TL_channels_channelParticipants)) {
             arrayList.set(i, (TLRPC$TL_channels_channelParticipants) tLObject);
         }
@@ -1981,14 +2130,14 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$sortUsers$21;
-                lambda$sortUsers$21 = ChatUsersActivity.this.lambda$sortUsers$21(currentTime, (TLObject) obj, (TLObject) obj2);
-                return lambda$sortUsers$21;
+                int lambda$sortUsers$29;
+                lambda$sortUsers$29 = ChatUsersActivity.this.lambda$sortUsers$29(currentTime, (TLObject) obj, (TLObject) obj2);
+                return lambda$sortUsers$29;
             }
         });
     }
 
-    public int lambda$sortUsers$21(int i, TLObject tLObject, TLObject tLObject2) {
+    public int lambda$sortUsers$29(int i, TLObject tLObject, TLObject tLObject2) {
         int i2;
         TLRPC$UserStatus tLRPC$UserStatus;
         TLRPC$UserStatus tLRPC$UserStatus2;
@@ -2313,7 +2462,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         public boolean lambda$onCreateViewHolder$5(ManageChatUserCell manageChatUserCell, boolean z) {
             TLObject item = getItem(((Integer) manageChatUserCell.getTag()).intValue());
             if (item instanceof TLRPC$ChannelParticipant) {
-                return ChatUsersActivity.this.createMenuForParticipant((TLRPC$ChannelParticipant) item, !z);
+                return ChatUsersActivity.this.createMenuForParticipant((TLRPC$ChannelParticipant) item, !z, manageChatUserCell);
             }
             return false;
         }
@@ -2396,7 +2545,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         }
 
         public boolean lambda$onCreateViewHolder$0(ManageChatUserCell manageChatUserCell, boolean z) {
-            return ChatUsersActivity.this.createMenuForParticipant(ChatUsersActivity.this.listViewAdapter.getItem(((Integer) manageChatUserCell.getTag()).intValue()), !z);
+            return ChatUsersActivity.this.createMenuForParticipant(ChatUsersActivity.this.listViewAdapter.getItem(((Integer) manageChatUserCell.getTag()).intValue()), !z, manageChatUserCell);
         }
 
         @Override
@@ -2813,7 +2962,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                ChatUsersActivity.this.lambda$getThemeDescriptions$22();
+                ChatUsersActivity.this.lambda$getThemeDescriptions$30();
             }
 
             @Override
@@ -2871,7 +3020,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$22() {
+    public void lambda$getThemeDescriptions$30() {
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();

@@ -2673,7 +2673,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 i = Math.min(i, this.dialogFilters.get(i2).order);
             }
             dialogFilter.order = i - 1;
-            if (this.dialogFilters.get(0).isDefault() && !getUserConfig().isPremium()) {
+            if (this.dialogFilters.get(0).isDefault()) {
                 this.dialogFilters.add(1, dialogFilter);
             } else {
                 this.dialogFilters.add(0, dialogFilter);

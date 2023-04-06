@@ -72,6 +72,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     private UndoView undoView;
     private ArrayList<ItemInner> oldItems = new ArrayList<>();
     private ArrayList<ItemInner> items = new ArrayList<>();
+    private int filtersSectionStart = -1;
+    private int filtersSectionEnd = -1;
 
     public static void lambda$onFragmentDestroy$0(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
@@ -457,11 +459,16 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.items.add(ItemInner.asShadow(null));
         }
         if (!dialogFilters.isEmpty()) {
+            this.filtersSectionStart = this.items.size();
             this.items.add(ItemInner.asHeader(LocaleController.getString("Filters", R.string.Filters)));
             this.filtersStartPosition = this.items.size();
             for (int i2 = 0; i2 < dialogFilters.size(); i2++) {
                 this.items.add(ItemInner.asFilter(dialogFilters.get(i2)));
             }
+            this.filtersSectionEnd = this.items.size();
+        } else {
+            this.filtersSectionEnd = -1;
+            this.filtersSectionStart = -1;
         }
         if (dialogFilters.size() < getMessagesController().dialogFiltersLimitPremium) {
             this.items.add(ItemInner.asButton(LocaleController.getString("CreateNewFilter", R.string.CreateNewFilter)));
@@ -571,6 +578,12 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
         public void lambda$onTouchEvent$0() {
             FiltersSetupActivity.this.getMessagesController().lockFiltersInternal();
+        }
+
+        @Override
+        public void dispatchDraw(Canvas canvas) {
+            drawSectionBackground(canvas, FiltersSetupActivity.this.filtersSectionStart, FiltersSetupActivity.this.filtersSectionEnd, Theme.getColor("windowBackgroundWhite"));
+            super.dispatchDraw(canvas);
         }
     }
 
@@ -899,7 +912,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         }
 
         public void lambda$onCreateViewHolder$9(SuggestedFilterCell suggestedFilterCell, View view) {
-            TLRPC$TL_dialogFilterSuggested suggestedFilter = suggestedFilterCell.getSuggestedFilter();
+            final TLRPC$TL_dialogFilterSuggested suggestedFilter = suggestedFilterCell.getSuggestedFilter();
             MessagesController.DialogFilter dialogFilter = new MessagesController.DialogFilter();
             dialogFilter.name = suggestedFilter.filter.title;
             dialogFilter.id = 2;
@@ -951,15 +964,16 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             if (tLRPC$DialogFilter2.exclude_muted) {
                 dialogFilter.flags |= MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED;
             }
-            FilterCreateActivity.saveFilterToServer(dialogFilter, dialogFilter.flags, dialogFilter.name, dialogFilter.alwaysShow, dialogFilter.neverShow, dialogFilter.pinnedDialogs, true, false, true, true, false, FiltersSetupActivity.this, new Runnable() {
+            FilterCreateActivity.saveFilterToServer(dialogFilter, dialogFilter.flags, dialogFilter.name, dialogFilter.alwaysShow, dialogFilter.neverShow, dialogFilter.pinnedDialogs, true, true, true, true, false, FiltersSetupActivity.this, new Runnable() {
                 @Override
                 public final void run() {
-                    FiltersSetupActivity.ListAdapter.this.lambda$onCreateViewHolder$8();
+                    FiltersSetupActivity.ListAdapter.this.lambda$onCreateViewHolder$8(suggestedFilter);
                 }
             });
         }
 
-        public void lambda$onCreateViewHolder$8() {
+        public void lambda$onCreateViewHolder$8(TLRPC$TL_dialogFilterSuggested tLRPC$TL_dialogFilterSuggested) {
+            FiltersSetupActivity.this.getMessagesController().suggestedFilters.remove(tLRPC$TL_dialogFilterSuggested);
             FiltersSetupActivity.this.getNotificationCenter().postNotificationName(NotificationCenter.dialogFiltersUpdated, new Object[0]);
         }
 

@@ -2304,6 +2304,7 @@
     <string name="FilterInviteChats_two">Includes %d chats</string>
     <string name="FilterInviteEditName">Name this link</string>
     <string name="FilterInviteErrorEmpty">You can’t share empty folders.</string>
+    <string name="FilterInviteErrorEmptyName">You can’t share folders without a name.</string>
     <string name="FilterInviteErrorExcluded">You can’t share folders with excluded chats.</string>
     <string name="FilterInviteErrorTypes">You can’t share folders with include chat types.</string>
     <string name="FilterInviteErrorTypesExcluded">You can only share folders without chat types and excluded chats.</string>
@@ -2424,6 +2425,8 @@
     <string name="FolderLinkHeaderChatsQuit_two">%d chats to quit</string>
     <string name="FolderLinkHint">You can deselect the chats you don’t want to join.</string>
     <string name="FolderLinkHintRemove">You can select the chats you want to leave.</string>
+    <string name="FolderLinkNoChatsError">You don’t have access to share any of these chats.</string>
+    <string name="FolderLinkOtherAdminLimitError">One of the groups in this folder can’t be added because one of its admins has too many groups and channels.</string>
     <string name="FolderLinkPreviewLeft">All chats</string>
     <string name="FolderLinkPreviewRight">Personal</string>
     <string name="FolderLinkRemovedChats_few">%d chats removed from folder</string>
@@ -2447,11 +2450,16 @@
     <string name="FolderLinkTitleAddChats">Add Chats to Folder</string>
     <string name="FolderLinkTitleAlready">Folder already added</string>
     <string name="FolderLinkTitleRemove">Remove Folder</string>
-    <string name="FolderLinkUpdatedSubtitle_few">You have joined %d new chats.</string>
-    <string name="FolderLinkUpdatedSubtitle_many">You have joined %d new chats.</string>
-    <string name="FolderLinkUpdatedSubtitle_one">You have joined %d new chat.</string>
-    <string name="FolderLinkUpdatedSubtitle_other">You have joined %d new chats.</string>
-    <string name="FolderLinkUpdatedSubtitle_two">You have joined %d new chats.</string>
+    <string name="FolderLinkUpdatedJoinedSubtitle_few">You have joined %d new chats.</string>
+    <string name="FolderLinkUpdatedJoinedSubtitle_many">You have joined %d new chats.</string>
+    <string name="FolderLinkUpdatedJoinedSubtitle_one">You have joined %d new chat.</string>
+    <string name="FolderLinkUpdatedJoinedSubtitle_other">You have joined %d new chats.</string>
+    <string name="FolderLinkUpdatedJoinedSubtitle_two">You have joined %d new chats.</string>
+    <string name="FolderLinkUpdatedSubtitle_few">You have added %d new chats.</string>
+    <string name="FolderLinkUpdatedSubtitle_many">You have added %d new chats.</string>
+    <string name="FolderLinkUpdatedSubtitle_one">You have added %d new chat.</string>
+    <string name="FolderLinkUpdatedSubtitle_other">You have added %d new chats.</string>
+    <string name="FolderLinkUpdatedSubtitle_two">You have added %d new chats.</string>
     <string name="FolderLinkUpdatedTitle">Folder **%s** Updated</string>
     <string name="FolderUpdatesSubtitle_few">Tap here to view them</string>
     <string name="FolderUpdatesSubtitle_many">Tap here to view them</string>
@@ -3251,6 +3259,7 @@
     <string name="MaxCacheSizeInfo">If your cache size exceeds this limit, the oldest media will be removed from the device.</string>
     <string name="MaxVideoSize">Maximum video size</string>
     <string name="May">May</string>
+    <string name="MediaAndSoundSettings">Media and Sound</string>
     <string name="MediaSavedHint_few">%1$d items saved to gallery</string>
     <string name="MediaSavedHint_many">%1$d items saved to gallery</string>
     <string name="MediaSavedHint_one">An item saved to gallery</string>
@@ -3485,7 +3494,6 @@
     <string name="NeverAllow">Never Allow</string>
     <string name="NeverShareWith">Never Share With</string>
     <string name="NeverShareWithTitle">Never Share</string>
-    <string name="New">NEW</string>
     <string name="NewBroadcastList">New Broadcast List</string>
     <string name="NewChannel">New Channel</string>
     <string name="NewChatsFromNonContacts">New chats from unknown users</string>
@@ -3519,6 +3527,7 @@
     <string name="NewThemeTitle">New Theme</string>
     <string name="NewTopic">New Topic</string>
     <string name="Next">Next</string>
+    <string name="NextMediaTap">Show next media on Tap</string>
     <string name="NoAudioFiles">No audio files</string>
     <string name="NoAudioFilesInfo">Your music library is empty.</string>
     <string name="NoAudioFound">No results found</string>
@@ -3872,6 +3881,7 @@
     <string name="Orange">Orange</string>
     <string name="OtherLoginCode">Your login code is **%1$s**. Enter it in the Telegram app where you are trying to log in.\n\nDo not give this code to anyone.</string>
     <string name="OtherSessions">Active sessions</string>
+    <string name="OtherSettings">Other Settings</string>
     <string name="OtherStickers">More Stickers</string>
     <string name="OtherWebSessions">Connected websites</string>
     <string name="OutgoingCalls">Outgoing calls</string>
@@ -5425,7 +5435,7 @@
     <string name="StickersCopy">Copy link</string>
     <string name="StickersHide">Archive</string>
     <string name="StickersName">Stickers</string>
-    <string name="StickersNameInfo">Manage your sticker packs, emoji and reactions.</string>
+    <string name="StickersNameInfo2">Manage stickers, emoji and reactions</string>
     <string name="StickersRemove">Remove</string>
     <string name="StickersRemoved">Stickers removed.</string>
     <string name="StickersRemovedInfo">%1$s is no longer in your stickers.</string>

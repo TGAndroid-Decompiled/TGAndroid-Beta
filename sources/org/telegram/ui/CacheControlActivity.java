@@ -2393,7 +2393,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 0) {
                     if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 1) {
                         if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType == 2) {
-                            textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("CacheChannels", R.string.CacheChannels), keepMediaString, true, R.drawable.msg_filled_menu_channels, CacheControlActivity.this.getThemedColor("statisticChartLine_golden"), true);
+                            textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("CacheChannels", R.string.CacheChannels), keepMediaString, true, R.drawable.msg_filled_menu_channels, CacheControlActivity.this.getThemedColor("statisticChartLine_golden"), false);
                         }
                     } else {
                         textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("GroupChats", R.string.GroupChats), keepMediaString, true, R.drawable.msg_filled_menu_groups, CacheControlActivity.this.getThemedColor("statisticChartLine_green"), true);

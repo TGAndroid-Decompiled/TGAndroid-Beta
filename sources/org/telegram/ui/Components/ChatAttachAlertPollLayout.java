@@ -684,6 +684,10 @@ public class ChatAttachAlertPollLayout extends ChatAttachAlert.AttachAlertLayout
 
     @Override
     void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
+        try {
+            this.parentAlert.actionBar.getTitleTextView().setBuildFullLayout(true);
+        } catch (Exception unused) {
+        }
         if (this.quizOnly == 1) {
             this.parentAlert.actionBar.setTitle(LocaleController.getString("NewQuiz", R.string.NewQuiz));
         } else {

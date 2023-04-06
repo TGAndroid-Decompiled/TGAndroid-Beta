@@ -86,6 +86,7 @@ public class SharedConfig {
     public static int lockRecordAudioVideoHint = 0;
     public static int mediaColumnsCount = 0;
     public static int messageSeenHintCount = 0;
+    public static boolean nextMediaTap = false;
     public static boolean noSoundHintShowed = false;
     public static final boolean noStatusBar = true;
     public static boolean noiseSupression = false;
@@ -199,6 +200,7 @@ public class SharedConfig {
         chatBubbles = Build.VERSION.SDK_INT >= 30;
         raiseToSpeak = false;
         raiseToListen = true;
+        nextMediaTap = true;
         recordViaSco = false;
         customTabs = true;
         directShare = true;
@@ -763,6 +765,13 @@ public class SharedConfig {
         raiseToListen = !raiseToListen;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("raise_to_listen", raiseToListen);
+        edit.commit();
+    }
+
+    public static void toggleNextMediaTap() {
+        nextMediaTap = !nextMediaTap;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("next_media_on_tap", nextMediaTap);
         edit.commit();
     }
 

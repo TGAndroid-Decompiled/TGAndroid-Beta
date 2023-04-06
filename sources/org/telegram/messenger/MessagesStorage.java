@@ -2812,12 +2812,12 @@ public class MessagesStorage extends BaseController {
                         }
                         sQLitePreparedStatement.requery();
                         int objectSize = tLRPC$Photo.getObjectSize();
-                        if (arrayList != null && arrayList.get(i) != null) {
+                        if (arrayList != null && i < arrayList.size() && arrayList.get(i) != null) {
                             objectSize += arrayList.get(i).getObjectSize();
                         }
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(objectSize);
                         tLRPC$Photo.serializeToStream(nativeByteBuffer);
-                        if (arrayList != null && arrayList.get(i) != null) {
+                        if (arrayList != null && i < arrayList.size() && arrayList.get(i) != null) {
                             arrayList.get(i).serializeToStream(nativeByteBuffer);
                         }
                         sQLitePreparedStatement.bindLong(1, j);
@@ -4285,13 +4285,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateUserInfo$108(z, tLRPC$UserFull);
+                MessagesStorage.this.lambda$updateUserInfo$108(tLRPC$UserFull, z);
             }
         });
     }
 
-    public void lambda$updateUserInfo$108(boolean r9, org.telegram.tgnet.TLRPC$UserFull r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUserInfo$108(boolean, org.telegram.tgnet.TLRPC$UserFull):void");
+    public void lambda$updateUserInfo$108(org.telegram.tgnet.TLRPC$UserFull r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUserInfo$108(org.telegram.tgnet.TLRPC$UserFull, boolean):void");
     }
 
     public void saveChatInviter(final long j, final long j2) {

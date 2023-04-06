@@ -4140,12 +4140,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     inputStream.close();
                 } catch (Exception e2) {
                     FileLog.e(e2);
+                    if (inputStream != null) {
+                        inputStream.close();
+                    }
                 }
             } catch (Exception e3) {
                 FileLog.e(e3);
-                if (inputStream != null) {
-                    inputStream.close();
-                }
             }
             return false;
         } catch (Throwable th) {

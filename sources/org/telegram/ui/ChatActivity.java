@@ -9735,7 +9735,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.drawCaptionAfter = new ArrayList<>();
             this.adjustPanLayoutHelper = new AdjustPanLayoutHelper(this, ChatActivity.this) {
                 @Override
-                public void onTransitionStart(boolean z, int i) {
+                protected void onTransitionStart(boolean z, int i) {
                     ChatActivity.this.wasManualScroll = true;
                     ChatActivityEnterView chatActivityEnterView = ChatActivity.this.chatActivityEnterView;
                     if (chatActivityEnterView != null) {
@@ -9751,7 +9751,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
 
                 @Override
-                public void onTransitionEnd() {
+                protected void onTransitionEnd() {
                     ChatActivityEnterView chatActivityEnterView = ChatActivity.this.chatActivityEnterView;
                     if (chatActivityEnterView != null) {
                         chatActivityEnterView.onAdjustPanTransitionEnd();
@@ -9767,7 +9767,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
 
                 @Override
-                public void onPanTranslationUpdate(float f, float f2, boolean z) {
+                protected void onPanTranslationUpdate(float f, float f2, boolean z) {
                     if (ChatActivity.this.getParentLayout() == null || !ChatActivity.this.getParentLayout().isPreviewOpenAnimationInProgress()) {
                         ChatActivity.this.contentPanTranslation = f;
                         ChatAttachAlert chatAttachAlert = ChatActivity.this.chatAttachAlert;
@@ -14907,7 +14907,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     public void lambda$createMenu$202(int i, int i2, boolean z, ReactionsContainerLayout reactionsContainerLayout) {
         ActionBarPopupWindow actionBarPopupWindow = this.scrimPopupWindow;
-        if (actionBarPopupWindow == null || this.fragmentView == null || actionBarPopupWindow.isShowing()) {
+        if (actionBarPopupWindow == null || this.fragmentView == null || actionBarPopupWindow.isShowing() || !AndroidUtilities.isActivityRunning(getParentActivity())) {
             return;
         }
         this.scrimPopupWindow.showAtLocation(this.chatListView, 51, i, i2);

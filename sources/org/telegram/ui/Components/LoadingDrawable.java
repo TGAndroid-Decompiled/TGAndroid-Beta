@@ -176,7 +176,7 @@ public class LoadingDrawable extends Drawable {
     }
 
     @Override
-    public void draw(android.graphics.Canvas r25) {
+    public void draw(android.graphics.Canvas r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.LoadingDrawable.draw(android.graphics.Canvas):void");
     }
 

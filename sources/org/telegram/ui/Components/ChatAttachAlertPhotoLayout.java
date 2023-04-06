@@ -4325,7 +4325,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
         @Override
         public boolean fastScrollIsVisible(RecyclerListView recyclerListView) {
-            return !(ChatAttachAlertPhotoLayout.cameraPhotos.isEmpty() && ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.isEmpty()) && ChatAttachAlertPhotoLayout.this.parentAlert.pinnedToTop;
+            return !(ChatAttachAlertPhotoLayout.cameraPhotos.isEmpty() && (ChatAttachAlertPhotoLayout.this.selectedAlbumEntry == null || ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.isEmpty())) && ChatAttachAlertPhotoLayout.this.parentAlert.pinnedToTop;
         }
 
         @Override

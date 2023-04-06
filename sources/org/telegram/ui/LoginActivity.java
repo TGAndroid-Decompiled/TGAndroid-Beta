@@ -2477,7 +2477,49 @@ public class LoginActivity extends BaseFragment {
         }
 
         public void invalidateCountryHint() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.PhoneView.invalidateCountryHint():void");
+            int i;
+            String str = this.countryCodeForHint;
+            String replace = this.phoneField.getText() != null ? this.phoneField.getText().toString().replace(" ", "") : "";
+            if (this.phoneFormatMap.get(str) != null && !this.phoneFormatMap.get(str).isEmpty()) {
+                List<String> list = this.phoneFormatMap.get(str);
+                if (!replace.isEmpty()) {
+                    i = 0;
+                    while (i < list.size()) {
+                        if (replace.startsWith(list.get(i).replace(" ", "").replace("X", "").replace("0", ""))) {
+                            break;
+                        }
+                        i++;
+                    }
+                }
+                i = -1;
+                if (i == -1) {
+                    for (int i2 = 0; i2 < list.size(); i2++) {
+                        String str2 = list.get(i2);
+                        if (str2.startsWith("X") || str2.startsWith("0")) {
+                            i = i2;
+                            break;
+                        }
+                    }
+                    if (i == -1) {
+                        i = 0;
+                    }
+                }
+                if (this.wasCountryHintIndex != i) {
+                    String str3 = this.phoneFormatMap.get(str).get(i);
+                    int selectionStart = this.phoneField.getSelectionStart();
+                    int selectionEnd = this.phoneField.getSelectionEnd();
+                    this.phoneField.setHintText(str3 != null ? str3.replace('X', '0') : null);
+                    AnimatedPhoneNumberEditText animatedPhoneNumberEditText = this.phoneField;
+                    animatedPhoneNumberEditText.setSelection(Math.max(0, Math.min(animatedPhoneNumberEditText.length(), selectionStart)), Math.max(0, Math.min(this.phoneField.length(), selectionEnd)));
+                    this.wasCountryHintIndex = i;
+                }
+            } else if (this.wasCountryHintIndex != -1) {
+                int selectionStart2 = this.phoneField.getSelectionStart();
+                int selectionEnd2 = this.phoneField.getSelectionEnd();
+                this.phoneField.setHintText((String) null);
+                this.phoneField.setSelection(selectionStart2, selectionEnd2);
+                this.wasCountryHintIndex = -1;
+            }
         }
 
         public void setCountryButtonText(CharSequence charSequence) {
@@ -4075,6 +4117,9 @@ public class LoginActivity extends BaseFragment {
             LoginActivity.this.needHideProgress(false);
             if (tLRPC$TL_error == null) {
                 final TLRPC$TL_auth_passwordRecovery tLRPC$TL_auth_passwordRecovery = (TLRPC$TL_auth_passwordRecovery) tLObject;
+                if (LoginActivity.this.getParentActivity() == null) {
+                    return;
+                }
                 AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this.getParentActivity());
                 String str = tLRPC$TL_auth_passwordRecovery.email_pattern;
                 SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);

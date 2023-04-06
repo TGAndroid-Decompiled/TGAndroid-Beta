@@ -147,6 +147,7 @@ public class TextCheckCell extends FrameLayout {
     public void setTextAndCheck(String str, boolean z, boolean z2) {
         this.textView.setText(str);
         this.isMultiline = false;
+        this.checkBox.setVisibility(0);
         this.checkBox.setChecked(z, this.attached);
         this.needDivider = z2;
         this.valueTextView.setVisibility(8);
@@ -207,6 +208,7 @@ public class TextCheckCell extends FrameLayout {
     public void setTextAndValueAndCheck(String str, String str2, boolean z, boolean z2, boolean z3) {
         this.textView.setText(str);
         this.valueTextView.setText(str2);
+        this.checkBox.setVisibility(0);
         this.checkBox.setChecked(z, false);
         this.needDivider = z3;
         this.valueTextView.setVisibility(0);

@@ -13148,7 +13148,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         float x = motionEvent.getX();
         float y = motionEvent.getY();
-        if (this.checkImageView.getVisibility() != 0 && y > ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(40.0f)) {
+        if (this.checkImageView.getVisibility() != 0 && SharedConfig.nextMediaTap && y > ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(40.0f)) {
             int min = Math.min(135, this.containerView.getMeasuredWidth() / 8);
             if (x < min) {
                 if (this.leftImage.hasImageSet()) {

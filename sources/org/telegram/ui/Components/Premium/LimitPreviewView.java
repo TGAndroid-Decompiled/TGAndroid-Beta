@@ -21,6 +21,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
@@ -57,9 +58,10 @@ public class LimitPreviewView extends LinearLayout {
     }
 
     @SuppressLint({"SetTextI18n"})
-    public LimitPreviewView(Context context, int i, int i2, int i3, final float f) {
+    public LimitPreviewView(Context context, int i, int i2, int i3, float f) {
         super(context);
         this.animationCanPlay = true;
+        final float clamp = MathUtils.clamp(f, 0.1f, 0.9f);
         this.icon = i;
         setOrientation(1);
         setClipChildren(false);
@@ -82,7 +84,7 @@ public class LimitPreviewView extends LinearLayout {
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.grayPaint);
                 canvas.save();
-                canvas.clipRect(getMeasuredWidth() * f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                canvas.clipRect(getMeasuredWidth() * clamp, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 Paint mainGradientPaint = PremiumGradient.getInstance().getMainGradientPaint();
                 if (LimitPreviewView.this.parentVideForGradient != null) {
                     View view = LimitPreviewView.this.parentVideForGradient;
@@ -123,9 +125,11 @@ public class LimitPreviewView extends LinearLayout {
         this.defaultCount.setText(Integer.toString(i3));
         this.defaultCount.setGravity(16);
         this.defaultCount.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        frameLayout.addView(textView, LayoutHelper.createFrame(-1, 30.0f, 3, 0.0f, 0.0f, 36.0f, 0.0f));
-        frameLayout.addView(this.defaultCount, LayoutHelper.createFrame(-2, 30.0f, 5, 0.0f, 0.0f, 12.0f, 0.0f));
-        this.limitsContainer.addView(frameLayout, LayoutHelper.createLinear(-1, 30, (1.0f - f) * 2.0f));
+        if (clamp > 0.3f) {
+            frameLayout.addView(textView, LayoutHelper.createFrame(-1, 30.0f, 3, 0.0f, 0.0f, 36.0f, 0.0f));
+            frameLayout.addView(this.defaultCount, LayoutHelper.createFrame(-2, 30.0f, 5, 0.0f, 0.0f, 12.0f, 0.0f));
+        }
+        this.limitsContainer.addView(frameLayout, LayoutHelper.createLinear(-1, 30, (1.0f - clamp) * 2.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
         TextView textView3 = new TextView(context);
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -139,9 +143,11 @@ public class LimitPreviewView extends LinearLayout {
         this.premiumCount.setText(Integer.toString(i3));
         this.premiumCount.setGravity(16);
         this.premiumCount.setTextColor(-1);
-        frameLayout2.addView(textView3, LayoutHelper.createFrame(-1, 30.0f, 3, 0.0f, 0.0f, 36.0f, 0.0f));
-        frameLayout2.addView(this.premiumCount, LayoutHelper.createFrame(-2, 30.0f, 5, 0.0f, 0.0f, 12.0f, 0.0f));
-        this.limitsContainer.addView(frameLayout2, LayoutHelper.createLinear(-1, 30, f * 2.0f));
+        if (clamp < 0.7f) {
+            frameLayout2.addView(textView3, LayoutHelper.createFrame(-1, 30.0f, 3, 0.0f, 0.0f, 36.0f, 0.0f));
+            frameLayout2.addView(this.premiumCount, LayoutHelper.createFrame(-2, 30.0f, 5, 0.0f, 0.0f, 12.0f, 0.0f));
+        }
+        this.limitsContainer.addView(frameLayout2, LayoutHelper.createLinear(-1, 30, clamp * 2.0f));
         addView(this.limitsContainer, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 14, i == 0 ? 0 : 12, 14, 0));
     }
 
@@ -283,7 +289,7 @@ public class LimitPreviewView extends LinearLayout {
     }
 
     public void setBagePosition(float f) {
-        this.position = f;
+        this.position = MathUtils.clamp(f, 0.1f, 0.9f);
     }
 
     public void setParentViewForGradien(ViewGroup viewGroup) {

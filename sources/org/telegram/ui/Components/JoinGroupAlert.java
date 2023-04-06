@@ -403,6 +403,13 @@ public class JoinGroupAlert extends BottomSheet {
 
     public static void showBulletin(Context context, BaseFragment baseFragment, boolean z) {
         String string;
+        if (context == null) {
+            if (baseFragment != null) {
+                baseFragment.getContext();
+                return;
+            }
+            return;
+        }
         Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(context, baseFragment.getResourceProvider());
         twoLineLottieLayout.imageView.setAnimation(R.raw.timer_3, 28, 28);
         twoLineLottieLayout.titleTextView.setText(LocaleController.getString("RequestToJoinSent", R.string.RequestToJoinSent));

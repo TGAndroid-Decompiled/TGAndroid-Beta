@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Switch;
@@ -21,8 +20,8 @@ public class NotificationsCheckCell extends FrameLayout {
     private Switch checkBox;
     private int currentHeight;
     private boolean drawLine;
+    private ImageView imageView;
     private boolean isMultiline;
-    private ImageView moveImageView;
     private boolean needDivider;
     private Theme.ResourcesProvider resourcesProvider;
     private TextView textView;
@@ -47,12 +46,10 @@ public class NotificationsCheckCell extends FrameLayout {
         this.currentHeight = i2;
         if (z) {
             ImageView imageView = new ImageView(context);
-            this.moveImageView = imageView;
+            this.imageView = imageView;
             imageView.setFocusable(false);
-            this.moveImageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.moveImageView.setImageResource(R.drawable.poll_reorder);
-            this.moveImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon", resourcesProvider), PorterDuff.Mode.MULTIPLY));
-            addView(this.moveImageView, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
+            this.imageView.setScaleType(ImageView.ScaleType.CENTER);
+            addView(this.imageView, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 16, 8.0f, 0.0f, 8.0f, 0.0f));
         }
         TextView textView = new TextView(context);
         this.textView = textView;
@@ -97,7 +94,7 @@ public class NotificationsCheckCell extends FrameLayout {
         } else {
             f3 = z ? 64 : i;
         }
-        float f6 = ((this.currentHeight - 70) / 2) + 38;
+        float f6 = (38 - (z ? 2 : 0)) + ((this.currentHeight - 70) / 2);
         if (z3) {
             f4 = z ? 64 : i;
         }
@@ -127,9 +124,18 @@ public class NotificationsCheckCell extends FrameLayout {
     }
 
     public void setTextAndValueAndCheck(String str, CharSequence charSequence, boolean z, int i, boolean z2, boolean z3) {
+        setTextAndValueAndIconAndCheck(str, charSequence, 0, z, i, z2, z3);
+    }
+
+    public void setTextAndValueAndIconAndCheck(String str, CharSequence charSequence, int i, boolean z, int i2, boolean z2, boolean z3) {
         this.textView.setText(str);
         this.valueTextView.setText(charSequence);
-        this.checkBox.setChecked(z, i, this.animationsEnabled);
+        ImageView imageView = this.imageView;
+        if (imageView != null) {
+            imageView.setImageResource(i);
+            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogIcon"), PorterDuff.Mode.MULTIPLY));
+        }
+        this.checkBox.setChecked(z, i2, this.animationsEnabled);
         this.valueTextView.setVisibility(0);
         this.needDivider = z3;
         this.isMultiline = z2;
@@ -167,13 +173,27 @@ public class NotificationsCheckCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        int measuredHeight;
+        float dp;
+        int i;
         if (this.needDivider) {
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(20.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(20.0f) : 0), getMeasuredHeight() - 1, Theme.dividerPaint);
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(this.imageView != null ? 64.0f : 20.0f);
+            }
+            float measuredHeight2 = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i = AndroidUtilities.dp(this.imageView == null ? 20.0f : 64.0f);
+            } else {
+                i = 0;
+            }
+            canvas.drawLine(dp, measuredHeight2, measuredWidth - i, getMeasuredHeight() - 1, Theme.dividerPaint);
         }
         if (this.drawLine) {
-            int dp = LocaleController.isRTL ? AndroidUtilities.dp(76.0f) : (getMeasuredWidth() - AndroidUtilities.dp(76.0f)) - 1;
-            int measuredHeight = (getMeasuredHeight() - AndroidUtilities.dp(22.0f)) / 2;
-            canvas.drawRect(dp, measuredHeight, dp + 2, measuredHeight + AndroidUtilities.dp(22.0f), Theme.dividerPaint);
+            int dp2 = LocaleController.isRTL ? AndroidUtilities.dp(76.0f) : (getMeasuredWidth() - AndroidUtilities.dp(76.0f)) - 1;
+            canvas.drawRect(dp2, (getMeasuredHeight() - AndroidUtilities.dp(22.0f)) / 2, dp2 + 2, measuredHeight + AndroidUtilities.dp(22.0f), Theme.dividerPaint);
         }
     }
 
