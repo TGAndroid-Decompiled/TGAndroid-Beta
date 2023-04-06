@@ -842,7 +842,7 @@ public class ManageLinksActivity extends BaseFragment {
                     TextSettingsCell textSettingsCell = new TextSettingsCell(this.mContext);
                     textSettingsCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     textSettingsCell.setText(LocaleController.getString("DeleteAllRevokedLinks", R.string.DeleteAllRevokedLinks), false);
-                    textSettingsCell.setTextColor(Theme.getColor("windowBackgroundWhiteRedText5"));
+                    textSettingsCell.setTextColor(Theme.getColor("text_RedRegular"));
                     linkActionView = textSettingsCell;
                     break;
                 case 9:

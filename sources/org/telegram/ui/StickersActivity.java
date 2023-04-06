@@ -72,6 +72,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EmojiPacksAlert;
+import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.NumberTextView;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
@@ -1043,7 +1044,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     if (i != 1 || (textView = (TextView) create.getButton(-1)) == null) {
                         return;
                     }
-                    textView.setTextColor(Theme.getColor("dialogTextRed"));
+                    textView.setTextColor(Theme.getColor("text_RedBold"));
                 }
             }
         }
@@ -1155,38 +1156,74 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             return false;
         }
 
-        public void lambda$onCreateViewHolder$4(View view) {
-            int[] iArr;
-            final int[] iArr2;
-            CharSequence[] charSequenceArr;
-            final TLRPC$TL_messages_stickerSet stickersSet = ((StickerSetCell) view.getParent()).getStickersSet();
-            AlertDialog.Builder builder = new AlertDialog.Builder(StickersActivity.this.getParentActivity());
-            builder.setTitle(stickersSet.set.title);
-            if (stickersSet.set.official) {
-                iArr2 = new int[]{0, 4};
-                charSequenceArr = new CharSequence[]{LocaleController.getString("StickersHide", R.string.StickersHide), LocaleController.getString("StickersReorder", R.string.StickersReorder)};
-                iArr = new int[]{R.drawable.msg_archive, R.drawable.msg_reorder};
-            } else {
-                CharSequence[] charSequenceArr2 = {LocaleController.getString("StickersHide", R.string.StickersHide), LocaleController.getString("StickersCopy", R.string.StickersCopy), LocaleController.getString("StickersReorder", R.string.StickersReorder), LocaleController.getString("StickersShare", R.string.StickersShare), LocaleController.getString("StickersRemove", R.string.StickersRemove)};
-                iArr = new int[]{R.drawable.msg_archive, R.drawable.msg_link, R.drawable.msg_reorder, R.drawable.msg_share, R.drawable.msg_delete};
-                iArr2 = new int[]{0, 3, 4, 2, 1};
-                charSequenceArr = charSequenceArr2;
-            }
-            builder.setItems(charSequenceArr, iArr, new DialogInterface.OnClickListener() {
+        public void lambda$onCreateViewHolder$9(View view) {
+            StickerSetCell stickerSetCell = (StickerSetCell) view.getParent();
+            final TLRPC$TL_messages_stickerSet stickersSet = stickerSetCell.getStickersSet();
+            ItemOptions makeOptions = ItemOptions.makeOptions(StickersActivity.this, stickerSetCell);
+            makeOptions.add(R.drawable.msg_archive, LocaleController.getString("StickersHide", R.string.StickersHide), new Runnable() {
                 @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    StickersActivity.ListAdapter.this.lambda$onCreateViewHolder$3(iArr2, stickersSet, dialogInterface, i);
+                public final void run() {
+                    StickersActivity.ListAdapter.this.lambda$onCreateViewHolder$3(stickersSet);
                 }
             });
-            AlertDialog create = builder.create();
-            StickersActivity.this.showDialog(create);
-            if (iArr2[iArr2.length - 1] == 1) {
-                create.setItemColor(charSequenceArr.length - 1, Theme.getColor("dialogTextRed"), Theme.getColor("dialogRedIcon"));
+            if (stickersSet.set.official) {
+                makeOptions.add(R.drawable.msg_reorder, LocaleController.getString("StickersReorder", R.string.StickersReorder), new Runnable() {
+                    @Override
+                    public final void run() {
+                        StickersActivity.ListAdapter.this.lambda$onCreateViewHolder$4(stickersSet);
+                    }
+                });
+            } else {
+                makeOptions.add(R.drawable.msg_link, LocaleController.getString("StickersCopy", R.string.StickersCopy), new Runnable() {
+                    @Override
+                    public final void run() {
+                        StickersActivity.ListAdapter.this.lambda$onCreateViewHolder$5(stickersSet);
+                    }
+                });
+                makeOptions.add(R.drawable.msg_reorder, LocaleController.getString("StickersReorder", R.string.StickersReorder), new Runnable() {
+                    @Override
+                    public final void run() {
+                        StickersActivity.ListAdapter.this.lambda$onCreateViewHolder$6(stickersSet);
+                    }
+                });
+                makeOptions.add(R.drawable.msg_share, LocaleController.getString("StickersShare", R.string.StickersShare), new Runnable() {
+                    @Override
+                    public final void run() {
+                        StickersActivity.ListAdapter.this.lambda$onCreateViewHolder$7(stickersSet);
+                    }
+                });
+                makeOptions.add(R.drawable.msg_delete, LocaleController.getString("StickersRemove", R.string.StickersRemove), true, new Runnable() {
+                    @Override
+                    public final void run() {
+                        StickersActivity.ListAdapter.this.lambda$onCreateViewHolder$8(stickersSet);
+                    }
+                });
             }
+            makeOptions.show();
         }
 
-        public void lambda$onCreateViewHolder$3(int[] iArr, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, DialogInterface dialogInterface, int i) {
-            processSelectionOption(iArr[i], tLRPC$TL_messages_stickerSet);
+        public void lambda$onCreateViewHolder$3(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+            processSelectionOption(0, tLRPC$TL_messages_stickerSet);
+        }
+
+        public void lambda$onCreateViewHolder$4(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+            processSelectionOption(4, tLRPC$TL_messages_stickerSet);
+        }
+
+        public void lambda$onCreateViewHolder$5(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+            processSelectionOption(3, tLRPC$TL_messages_stickerSet);
+        }
+
+        public void lambda$onCreateViewHolder$6(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+            processSelectionOption(4, tLRPC$TL_messages_stickerSet);
+        }
+
+        public void lambda$onCreateViewHolder$7(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+            processSelectionOption(2, tLRPC$TL_messages_stickerSet);
+        }
+
+        public void lambda$onCreateViewHolder$8(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+            processSelectionOption(1, tLRPC$TL_messages_stickerSet);
         }
 
         @Override
@@ -1245,7 +1282,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                 stickerSetCell.setOnOptionsClick(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        StickersActivity.ListAdapter.this.lambda$onCreateViewHolder$4(view);
+                        StickersActivity.ListAdapter.this.lambda$onCreateViewHolder$9(view);
                     }
                 });
                 featuredStickerSetCell2 = stickerSetCell;
@@ -1321,9 +1358,9 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             Collections.sort(mediaDataController.getStickerSets(StickersActivity.this.currentType), new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    int lambda$swapElements$5;
-                    lambda$swapElements$5 = StickersActivity.ListAdapter.this.lambda$swapElements$5((TLRPC$TL_messages_stickerSet) obj, (TLRPC$TL_messages_stickerSet) obj2);
-                    return lambda$swapElements$5;
+                    int lambda$swapElements$10;
+                    lambda$swapElements$10 = StickersActivity.ListAdapter.this.lambda$swapElements$10((TLRPC$TL_messages_stickerSet) obj, (TLRPC$TL_messages_stickerSet) obj2);
+                    return lambda$swapElements$10;
                 }
             });
             notifyItemMoved(i, i2);
@@ -1333,7 +1370,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
             }
         }
 
-        public int lambda$swapElements$5(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet2) {
+        public int lambda$swapElements$10(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet2) {
             int indexOf = this.stickerSets.indexOf(tLRPC$TL_messages_stickerSet);
             int indexOf2 = this.stickerSets.indexOf(tLRPC$TL_messages_stickerSet2);
             if (indexOf < 0 || indexOf2 < 0) {

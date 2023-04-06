@@ -322,7 +322,7 @@ public class ThemeEditorView {
                     this.colorEditText[i].setCursorWidth(1.5f);
                     this.colorEditText[i].setTextSize(1, 18.0f);
                     this.colorEditText[i].setBackground(null);
-                    this.colorEditText[i].setLineColors(Theme.getColor("dialogInputField"), Theme.getColor("dialogInputFieldActivated"), Theme.getColor("dialogTextRed"));
+                    this.colorEditText[i].setLineColors(Theme.getColor("dialogInputField"), Theme.getColor("dialogInputFieldActivated"), Theme.getColor("text_RedBold"));
                     this.colorEditText[i].setMaxLines(1);
                     this.colorEditText[i].setTag(Integer.valueOf(i));
                     this.colorEditText[i].setGravity(17);

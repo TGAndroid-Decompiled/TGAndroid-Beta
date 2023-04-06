@@ -42,6 +42,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -76,6 +77,7 @@ public class RecyclerListView extends RecyclerView {
     private FastScroll fastScroll;
     public boolean fastScrollAnimationRunning;
     private GestureDetectorFixDoubleTap gestureDetector;
+    private GenericProvider<Integer, Integer> getSelectorColor;
     private ArrayList<View> headers;
     private ArrayList<View> headersCache;
     private boolean hiddenByEmptyView;
@@ -220,10 +222,6 @@ public class RecyclerListView extends RecyclerView {
 
     public boolean canHighlightChildAt(View view, float f, float f2) {
         return true;
-    }
-
-    public Integer getSelectorColor(int i) {
-        return null;
     }
 
     @Override
@@ -508,11 +506,13 @@ public class RecyclerListView extends RecyclerView {
         private float textY;
         float touchSlop;
         private int type;
+        public boolean usePadding;
         float viewAlpha;
         float visibilityAlpha;
 
         public FastScroll(Context context, int i) {
             super(context);
+            this.usePadding = true;
             this.rect = new RectF();
             this.paint = new Paint(1);
             this.paint2 = new Paint(1);
@@ -534,6 +534,7 @@ public class RecyclerListView extends RecyclerView {
                     AndroidUtilities.runOnUIThread(FastScroll.this.hideFloatingDateRunnable, 4000L);
                 }
             };
+            this.viewAlpha = 1.0f;
             this.type = i;
             if (i == 0) {
                 this.letterPaint.setTextSize(AndroidUtilities.dp(45.0f));
@@ -1323,7 +1324,7 @@ public class RecyclerListView extends RecyclerView {
         super.onMeasure(i, i2);
         FastScroll fastScroll = this.fastScroll;
         if (fastScroll != null && fastScroll.getLayoutParams() != null) {
-            int measuredHeight = (getMeasuredHeight() - getPaddingTop()) - getPaddingBottom();
+            int measuredHeight = (getMeasuredHeight() - (this.fastScroll.usePadding ? getPaddingTop() : 0)) - getPaddingBottom();
             this.fastScroll.getLayoutParams().height = measuredHeight;
             this.fastScroll.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(132.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, 1073741824));
         }
@@ -1333,16 +1334,17 @@ public class RecyclerListView extends RecyclerView {
     @Override
     public void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
-        if (this.fastScroll != null) {
+        FastScroll fastScroll = this.fastScroll;
+        if (fastScroll != null) {
             this.selfOnLayout = true;
-            int paddingTop = i2 + getPaddingTop();
-            FastScroll fastScroll = this.fastScroll;
-            if (fastScroll.isRtl) {
-                fastScroll.layout(0, paddingTop, fastScroll.getMeasuredWidth(), this.fastScroll.getMeasuredHeight() + paddingTop);
+            int paddingTop = i2 + (fastScroll.usePadding ? getPaddingTop() : 0);
+            FastScroll fastScroll2 = this.fastScroll;
+            if (fastScroll2.isRtl) {
+                fastScroll2.layout(0, paddingTop, fastScroll2.getMeasuredWidth(), this.fastScroll.getMeasuredHeight() + paddingTop);
             } else {
                 int measuredWidth = getMeasuredWidth() - this.fastScroll.getMeasuredWidth();
-                FastScroll fastScroll2 = this.fastScroll;
-                fastScroll2.layout(measuredWidth, paddingTop, fastScroll2.getMeasuredWidth() + measuredWidth, this.fastScroll.getMeasuredHeight() + paddingTop);
+                FastScroll fastScroll3 = this.fastScroll;
+                fastScroll3.layout(measuredWidth, paddingTop, fastScroll3.getMeasuredWidth() + measuredWidth, this.fastScroll.getMeasuredHeight() + paddingTop);
             }
             this.selfOnLayout = false;
         }
@@ -1586,8 +1588,20 @@ public class RecyclerListView extends RecyclerView {
         }
     }
 
-    public void setListSelectorColor(int i) {
-        Theme.setSelectorDrawableColor(this.selectorDrawable, i, true);
+    public void setListSelectorColor(Integer num) {
+        Theme.setSelectorDrawableColor(this.selectorDrawable, num == null ? getThemedColor("listSelectorSDK21") : num.intValue(), true);
+    }
+
+    public Integer getSelectorColor(int i) {
+        GenericProvider<Integer, Integer> genericProvider = this.getSelectorColor;
+        if (genericProvider != null) {
+            return genericProvider.provide(Integer.valueOf(i));
+        }
+        return null;
+    }
+
+    public void setItemSelectorColorProvider(GenericProvider<Integer, Integer> genericProvider) {
+        this.getSelectorColor = genericProvider;
     }
 
     public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
@@ -2007,10 +2021,7 @@ public class RecyclerListView extends RecyclerView {
             this.selectorDrawable.setVisible(false, false);
             this.selectorDrawable.setState(StateSet.NOTHING);
         }
-        Integer selectorColor = getSelectorColor(i);
-        if (selectorColor != null) {
-            setListSelectorColor(selectorColor.intValue());
-        }
+        setListSelectorColor(getSelectorColor(i));
         this.selectorDrawable.setBounds(this.selectorRect);
         if (z2 && getVisibility() == 0) {
             this.selectorDrawable.setVisible(true, false);

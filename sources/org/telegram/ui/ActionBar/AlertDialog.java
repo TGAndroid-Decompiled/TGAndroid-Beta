@@ -170,7 +170,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     public void redPositive() {
         TextView textView = (TextView) getButton(-1);
         if (textView != null) {
-            textView.setTextColor(getThemedColor("dialogTextRed"));
+            textView.setTextColor(getThemedColor("text_RedBold"));
         }
     }
 

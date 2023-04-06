@@ -187,15 +187,24 @@ public class PaintTextOptionsView extends LinearLayout {
     }
 
     public void lambda$setTypeface$5(final String str) {
-        if (this.typefaceCell != null && PaintTypeface.fetched(new Runnable() {
+        if (this.typefaceCell == null) {
+            return;
+        }
+        for (PaintTypeface paintTypeface : PaintTypeface.BUILT_IN_FONTS) {
+            if (paintTypeface.getKey().equals(str)) {
+                this.typefaceCell.bind(paintTypeface);
+                return;
+            }
+        }
+        if (PaintTypeface.fetched(new Runnable() {
             @Override
             public final void run() {
                 PaintTextOptionsView.this.lambda$setTypeface$5(str);
             }
         })) {
-            for (PaintTypeface paintTypeface : PaintTypeface.get()) {
-                if (paintTypeface.getKey().equals(str)) {
-                    this.typefaceCell.bind(paintTypeface);
+            for (PaintTypeface paintTypeface2 : PaintTypeface.get()) {
+                if (paintTypeface2.getKey().equals(str)) {
+                    this.typefaceCell.bind(paintTypeface2);
                     return;
                 }
             }

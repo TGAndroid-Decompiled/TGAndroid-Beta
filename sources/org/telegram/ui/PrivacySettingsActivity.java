@@ -356,7 +356,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     showDialog(create);
                     TextView textView = (TextView) create.getButton(-1);
                     if (textView != null) {
-                        textView.setTextColor(Theme.getColor("dialogTextRed"));
+                        textView.setTextColor(Theme.getColor("text_RedBold"));
                     }
                 } else if (i == this.contactsSuggestRow) {
                     final TextCheckCell textCheckCell = (TextCheckCell) view;
@@ -375,7 +375,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                         showDialog(create2);
                         TextView textView2 = (TextView) create2.getButton(-1);
                         if (textView2 != null) {
-                            textView2.setTextColor(Theme.getColor("dialogTextRed"));
+                            textView2.setTextColor(Theme.getColor("text_RedBold"));
                             return;
                         }
                         return;
@@ -439,7 +439,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
                     showDialog(create3);
                     TextView textView3 = (TextView) create3.getButton(-1);
                     if (textView3 != null) {
-                        textView3.setTextColor(Theme.getColor("dialogTextRed"));
+                        textView3.setTextColor(Theme.getColor("text_RedBold"));
                     }
                 } else if (i == this.passportRow) {
                     presentFragment(new PassportActivity(5, 0L, "", "", (String) null, (String) null, (String) null, (TLRPC$TL_account_authorizationForm) null, (TLRPC$account_Password) null));
@@ -609,7 +609,7 @@ public class PrivacySettingsActivity extends BaseFragment implements Notificatio
         showDialog(create);
         TextView textView = (TextView) create.getButton(-1);
         if (textView != null) {
-            textView.setTextColor(Theme.getColor("dialogTextRed"));
+            textView.setTextColor(Theme.getColor("text_RedBold"));
         }
     }
 

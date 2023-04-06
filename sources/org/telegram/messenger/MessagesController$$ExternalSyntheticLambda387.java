@@ -11,6 +11,6 @@ public final class MessagesController$$ExternalSyntheticLambda387 implements Req
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        MessagesController.lambda$updateEmojiStatus$25(tLObject, tLRPC$TL_error);
+        MessagesController.lambda$completeReadTask$208(tLObject, tLRPC$TL_error);
     }
 }

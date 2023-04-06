@@ -11,6 +11,6 @@ public final class MessagesController$$ExternalSyntheticLambda385 implements Req
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        MessagesController.lambda$unregistedPush$271(tLObject, tLRPC$TL_error);
+        MessagesController.lambda$saveTheme$105(tLObject, tLRPC$TL_error);
     }
 }

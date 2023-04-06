@@ -248,7 +248,7 @@ public class ProxySettingsActivity extends BaseFragment {
             this.inputFields[i2].setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             this.inputFields[i2].setHeaderHintColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
             this.inputFields[i2].setTransformHintToHeader(true);
-            this.inputFields[i2].setLineColors(Theme.getColor("windowBackgroundWhiteInputField"), Theme.getColor("windowBackgroundWhiteInputFieldActivated"), Theme.getColor("windowBackgroundWhiteRedText3"));
+            this.inputFields[i2].setLineColors(Theme.getColor("windowBackgroundWhiteInputField"), Theme.getColor("windowBackgroundWhiteInputFieldActivated"), Theme.getColor("text_RedRegular"));
             if (i2 == 0) {
                 this.inputFields[i2].setInputType(524305);
                 this.inputFields[i2].addTextChangedListener(new TextWatcher() {
@@ -697,7 +697,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 arrayList.add(new ThemeDescription(this.inputFields[i2], ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
                 arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteInputField"));
                 arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteInputFieldActivated"));
-                arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteRedText3"));
+                arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "text_RedRegular"));
             }
         } else {
             arrayList.add(new ThemeDescription(null, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
@@ -738,7 +738,7 @@ public class ProxySettingsActivity extends BaseFragment {
             if (i >= editTextBoldCursorArr.length) {
                 return;
             }
-            editTextBoldCursorArr[i].setLineColors(Theme.getColor("windowBackgroundWhiteInputField"), Theme.getColor("windowBackgroundWhiteInputFieldActivated"), Theme.getColor("windowBackgroundWhiteRedText3"));
+            editTextBoldCursorArr[i].setLineColors(Theme.getColor("windowBackgroundWhiteInputField"), Theme.getColor("windowBackgroundWhiteInputFieldActivated"), Theme.getColor("text_RedRegular"));
             i++;
         }
     }

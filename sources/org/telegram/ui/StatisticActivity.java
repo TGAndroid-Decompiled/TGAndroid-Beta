@@ -2367,7 +2367,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundGray"));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundGrayShadow"));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteGreenText2"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteRedText5"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "text_RedRegular"));
         arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
         ChatAvatarContainer chatAvatarContainer = this.avatarContainer;
         arrayList.add(new ThemeDescription(chatAvatarContainer != null ? chatAvatarContainer.getTitleTextView() : null, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "player_actionBarTitle"));
@@ -2378,8 +2378,8 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayIcon"));
         arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueButton"));
         arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueIcon"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteRedText5"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteRedText5"));
+        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "text_RedRegular"));
+        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "text_RedRegular"));
         arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{ManageChatUserCell.class, ManageChatTextCell.class, HeaderCell.class, TextView.class, PeopleNearbyActivity.HintInnerCell.class}, null, null, null, "windowBackgroundWhite"));
         if (this.isMegagroup) {
             for (int i = 0; i < 6; i++) {
@@ -2762,12 +2762,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.primary[2].setText(overviewChannelData.viewsPrimary);
             this.primary[3].setText(overviewChannelData.sharesPrimary);
             this.secondary[0].setText(overviewChannelData.followersSecondary);
-            this.secondary[0].setTag(overviewChannelData.followersUp ? "windowBackgroundWhiteGreenText2" : "windowBackgroundWhiteRedText5");
+            this.secondary[0].setTag(overviewChannelData.followersUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
             this.secondary[1].setText("");
             this.secondary[2].setText(overviewChannelData.viewsSecondary);
-            this.secondary[2].setTag(overviewChannelData.viewsUp ? "windowBackgroundWhiteGreenText2" : "windowBackgroundWhiteRedText5");
+            this.secondary[2].setTag(overviewChannelData.viewsUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
             this.secondary[3].setText(overviewChannelData.sharesSecondary);
-            this.secondary[3].setTag(overviewChannelData.sharesUp ? "windowBackgroundWhiteGreenText2" : "windowBackgroundWhiteRedText5");
+            this.secondary[3].setTag(overviewChannelData.sharesUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
             this.title[0].setText(overviewChannelData.followersTitle);
             this.title[1].setText(overviewChannelData.notificationsTitle);
             this.title[2].setText(overviewChannelData.viewsTitle);
@@ -2781,13 +2781,13 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.primary[2].setText(overviewChatData.viewingMembersPrimary);
             this.primary[3].setText(overviewChatData.postingMembersPrimary);
             this.secondary[0].setText(overviewChatData.membersSecondary);
-            this.secondary[0].setTag(overviewChatData.membersUp ? "windowBackgroundWhiteGreenText2" : "windowBackgroundWhiteRedText5");
+            this.secondary[0].setTag(overviewChatData.membersUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
             this.secondary[1].setText(overviewChatData.messagesSecondary);
-            this.secondary[1].setTag(overviewChatData.messagesUp ? "windowBackgroundWhiteGreenText2" : "windowBackgroundWhiteRedText5");
+            this.secondary[1].setTag(overviewChatData.messagesUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
             this.secondary[2].setText(overviewChatData.viewingMembersSecondary);
-            this.secondary[2].setTag(overviewChatData.viewingMembersUp ? "windowBackgroundWhiteGreenText2" : "windowBackgroundWhiteRedText5");
+            this.secondary[2].setTag(overviewChatData.viewingMembersUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
             this.secondary[3].setText(overviewChatData.postingMembersSecondary);
-            this.secondary[3].setTag(overviewChatData.postingMembersUp ? "windowBackgroundWhiteGreenText2" : "windowBackgroundWhiteRedText5");
+            this.secondary[3].setTag(overviewChatData.postingMembersUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
             this.title[0].setText(overviewChatData.membersTitle);
             this.title[1].setText(overviewChatData.messagesTitle);
             this.title[2].setText(overviewChatData.viewingMembersTitle);

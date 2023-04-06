@@ -576,7 +576,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.descriptionTextView.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
             this.descriptionTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
             this.descriptionTextView.setBackgroundDrawable(null);
-            this.descriptionTextView.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("windowBackgroundWhiteRedText3"));
+            this.descriptionTextView.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("text_RedRegular"));
             this.descriptionTextView.setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
             this.descriptionTextView.setGravity(LocaleController.isRTL ? 5 : 3);
             this.descriptionTextView.setInputType(180225);
@@ -780,7 +780,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                         int indexOf = charSequence.toString().indexOf(10);
                         if (indexOf >= 0) {
                             charSequence.replace(indexOf, indexOf + 1, " ");
-                            charSequence.setSpan(new ForegroundColorSpan(ChannelCreateActivity.this.getThemedColor("windowBackgroundWhiteRedText4")), 0, indexOf, 33);
+                            charSequence.setSpan(new ForegroundColorSpan(ChannelCreateActivity.this.getThemedColor("text_RedRegular")), 0, indexOf, 33);
                         }
                         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
                         final String obj = (ChannelCreateActivity.this.descriptionTextView == null || ChannelCreateActivity.this.descriptionTextView.getText() == null) ? "" : ChannelCreateActivity.this.descriptionTextView.getText().toString();
@@ -1066,8 +1066,8 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         int i3 = 8;
         if (!this.isPrivate && !this.canCreatePublic) {
             this.typeInfoCell.setText(LocaleController.getString("ChangePublicLimitReached", R.string.ChangePublicLimitReached));
-            this.typeInfoCell.setTag("windowBackgroundWhiteRedText4");
-            this.typeInfoCell.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+            this.typeInfoCell.setTag("text_RedRegular");
+            this.typeInfoCell.setTextColor(Theme.getColor("text_RedRegular"));
             this.linkContainer.setVisibility(8);
             this.sectionCell.setVisibility(8);
             if (this.loadingAdminedChannels) {
@@ -1475,34 +1475,34 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         if (str != null) {
             if (str.startsWith("_") || str.endsWith("_")) {
                 this.checkTextView.setText(LocaleController.getString("LinkInvalid", R.string.LinkInvalid));
-                this.checkTextView.setTag("windowBackgroundWhiteRedText4");
-                this.checkTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+                this.checkTextView.setTag("text_RedRegular");
+                this.checkTextView.setTextColor(Theme.getColor("text_RedRegular"));
                 return false;
             }
             for (int i = 0; i < str.length(); i++) {
                 char charAt = str.charAt(i);
                 if (i == 0 && charAt >= '0' && charAt <= '9') {
                     this.checkTextView.setText(LocaleController.getString("LinkInvalidStartNumber", R.string.LinkInvalidStartNumber));
-                    this.checkTextView.setTag("windowBackgroundWhiteRedText4");
-                    this.checkTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+                    this.checkTextView.setTag("text_RedRegular");
+                    this.checkTextView.setTextColor(Theme.getColor("text_RedRegular"));
                     return false;
                 } else if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != '_'))) {
                     this.checkTextView.setText(LocaleController.getString("LinkInvalid", R.string.LinkInvalid));
-                    this.checkTextView.setTag("windowBackgroundWhiteRedText4");
-                    this.checkTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+                    this.checkTextView.setTag("text_RedRegular");
+                    this.checkTextView.setTextColor(Theme.getColor("text_RedRegular"));
                     return false;
                 }
             }
         }
         if (str == null || str.length() < 4) {
             this.checkTextView.setText(LocaleController.getString("LinkInvalidShort", R.string.LinkInvalidShort));
-            this.checkTextView.setTag("windowBackgroundWhiteRedText4");
-            this.checkTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+            this.checkTextView.setTag("text_RedRegular");
+            this.checkTextView.setTextColor(Theme.getColor("text_RedRegular"));
             return false;
         } else if (str.length() > 32) {
             this.checkTextView.setText(LocaleController.getString("LinkInvalidLong", R.string.LinkInvalidLong));
-            this.checkTextView.setTag("windowBackgroundWhiteRedText4");
-            this.checkTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+            this.checkTextView.setTag("text_RedRegular");
+            this.checkTextView.setTextColor(Theme.getColor("text_RedRegular"));
             return false;
         } else {
             this.checkTextView.setText(LocaleController.getString("LinkChecking", R.string.LinkChecking));
@@ -1557,7 +1557,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         }
         if (tLRPC$TL_error != null && "USERNAME_INVALID".equals(tLRPC$TL_error.text) && tLRPC$TL_channels_checkUsername.username.length() == 4) {
             this.checkTextView.setText(LocaleController.getString("UsernameInvalidShort", R.string.UsernameInvalidShort));
-            this.checkTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+            this.checkTextView.setTextColor(Theme.getColor("text_RedRegular"));
         } else if (tLRPC$TL_error != null && "USERNAME_PURCHASE_AVAILABLE".equals(tLRPC$TL_error.text)) {
             if (tLRPC$TL_channels_checkUsername.username.length() == 4) {
                 this.checkTextView.setText(LocaleController.getString("UsernameInvalidShortPurchase", R.string.UsernameInvalidShortPurchase));
@@ -1566,11 +1566,11 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             }
             this.checkTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText8"));
         } else if (tLRPC$TL_error != null && "CHANNELS_ADMIN_PUBLIC_TOO_MUCH".equals(tLRPC$TL_error.text)) {
-            this.checkTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+            this.checkTextView.setTextColor(Theme.getColor("text_RedRegular"));
             this.canCreatePublic = false;
             showPremiumIncreaseLimitDialog();
         } else {
-            this.checkTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+            this.checkTextView.setTextColor(Theme.getColor("text_RedRegular"));
             this.checkTextView.setText(LocaleController.getString("LinkInUse", R.string.LinkInUse));
         }
         this.lastNameAvailable = false;
@@ -1632,12 +1632,12 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         arrayList.add(new ThemeDescription(this.headerCell2, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueHeader"));
         arrayList.add(new ThemeDescription(this.editText, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
         arrayList.add(new ThemeDescription(this.editText, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, "windowBackgroundWhiteHintText"));
-        arrayList.add(new ThemeDescription(this.checkTextView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, "windowBackgroundWhiteRedText4"));
+        arrayList.add(new ThemeDescription(this.checkTextView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, "text_RedRegular"));
         arrayList.add(new ThemeDescription(this.checkTextView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, "windowBackgroundWhiteGrayText8"));
         arrayList.add(new ThemeDescription(this.checkTextView, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, null, null, null, null, "windowBackgroundWhiteGreenText"));
         arrayList.add(new ThemeDescription(this.typeInfoCell, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, "windowBackgroundGrayShadow"));
         arrayList.add(new ThemeDescription(this.typeInfoCell, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayText4"));
-        arrayList.add(new ThemeDescription(this.typeInfoCell, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteRedText4"));
+        arrayList.add(new ThemeDescription(this.typeInfoCell, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "text_RedRegular"));
         arrayList.add(new ThemeDescription(this.adminedInfoCell, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, "windowBackgroundGrayShadow"));
         arrayList.add(new ThemeDescription(this.adminnedChannelsLayout, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
         arrayList.add(new ThemeDescription(this.privateContainer, ThemeDescription.FLAG_SELECTOR, null, null, null, null, "listSelectorSDK21"));

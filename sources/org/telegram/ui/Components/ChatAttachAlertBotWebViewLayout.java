@@ -321,7 +321,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
             create.show();
-            ((TextView) create.getButton(-1)).setTextColor(getThemedColor("dialogTextRed"));
+            ((TextView) create.getButton(-1)).setTextColor(getThemedColor("text_RedBold"));
             return false;
         }
         this.parentAlert.dismiss();

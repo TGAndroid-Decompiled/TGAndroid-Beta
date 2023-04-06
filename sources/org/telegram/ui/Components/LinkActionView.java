@@ -64,6 +64,7 @@ public class LinkActionView extends LinearLayout {
     private boolean permanent;
     float[] point;
     private QRCodeBottomSheet qrCodeBottomSheet;
+    private String qrText;
     private final TextView removeView;
     private final TextView shareView;
     private int usersCount;
@@ -292,7 +293,7 @@ public class LinkActionView extends LinearLayout {
         if (!this.hideRevokeOption) {
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(context, false, true);
             actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("RevokeLink", R.string.RevokeLink), R.drawable.msg_delete);
-            actionBarMenuSubItem3.setColors(Theme.getColor("windowBackgroundWhiteRedText"), Theme.getColor("windowBackgroundWhiteRedText"));
+            actionBarMenuSubItem3.setColors(Theme.getColor("text_RedRegular"), Theme.getColor("text_RedRegular"));
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
@@ -428,20 +429,28 @@ public class LinkActionView extends LinearLayout {
         fArr[1] = f - frameLayout2.getPaddingTop();
     }
 
+    public void setQrText(String str) {
+        this.qrText = str;
+    }
+
     private void showQrCode() {
         int i;
         String str;
         Context context = getContext();
         String string = LocaleController.getString("InviteByQRCode", R.string.InviteByQRCode);
         String str2 = this.link;
-        if (this.isChannel) {
-            i = R.string.QRCodeLinkHelpChannel;
-            str = "QRCodeLinkHelpChannel";
-        } else {
-            i = R.string.QRCodeLinkHelpGroup;
-            str = "QRCodeLinkHelpGroup";
+        String str3 = this.qrText;
+        if (str3 == null) {
+            if (this.isChannel) {
+                i = R.string.QRCodeLinkHelpChannel;
+                str = "QRCodeLinkHelpChannel";
+            } else {
+                i = R.string.QRCodeLinkHelpGroup;
+                str = "QRCodeLinkHelpGroup";
+            }
+            str3 = LocaleController.getString(str, i);
         }
-        QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, string, str2, LocaleController.getString(str, i), false) {
+        QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, string, str2, str3, false) {
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -541,8 +550,8 @@ public class LinkActionView extends LinearLayout {
             return;
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this.fragment.getParentActivity());
-        builder.setMessage(LocaleController.getString("RevokeAlert", R.string.RevokeAlert));
         builder.setTitle(LocaleController.getString("RevokeLink", R.string.RevokeLink));
+        builder.setMessage(LocaleController.getString("RevokeAlert", R.string.RevokeAlert));
         builder.setPositiveButton(LocaleController.getString("RevokeButton", R.string.RevokeButton), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
@@ -550,6 +559,10 @@ public class LinkActionView extends LinearLayout {
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        TextView textView = (TextView) builder.create().getButton(-1);
+        if (textView != null) {
+            textView.setTextColor(Theme.getColor("text_RedBold"));
+        }
         builder.show();
     }
 

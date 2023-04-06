@@ -56,6 +56,7 @@ public class UndoView extends FrameLayout {
     private Runnable currentCancelRunnable;
     private ArrayList<Long> currentDialogIds;
     private Object currentInfoObject;
+    private Object currentInfoObject2;
     float enterOffset;
     private int enterOffsetMargin;
     private boolean fromTop;
@@ -249,8 +250,9 @@ public class UndoView extends FrameLayout {
 
     private boolean hasSubInfo() {
         int i;
+        Object obj;
         int i2 = this.currentAction;
-        return i2 == 11 || i2 == 24 || i2 == 6 || i2 == 3 || i2 == 5 || i2 == 13 || i2 == 14 || i2 == 74 || (i2 == 7 && MessagesController.getInstance(this.currentAccount).dialogFilters.isEmpty()) || (i = this.currentAction) == ACTION_RINGTONE_ADDED || i == 85;
+        return i2 == 11 || i2 == 24 || i2 == 6 || i2 == 3 || i2 == 5 || i2 == 13 || i2 == 14 || i2 == 74 || (i2 == 7 && MessagesController.getInstance(this.currentAccount).dialogFilters.isEmpty()) || (i = this.currentAction) == ACTION_RINGTONE_ADDED || i == 85 || (i == 88 && (obj = this.currentInfoObject2) != null && ((Integer) obj).intValue() > 0);
     }
 
     public boolean isMultilineSubInfo() {
@@ -272,6 +274,7 @@ public class UndoView extends FrameLayout {
     public void hide(boolean z, int i) {
         if (getVisibility() == 0 && this.isShown) {
             this.currentInfoObject = null;
+            this.currentInfoObject2 = null;
             this.isShown = false;
             Runnable runnable = this.currentActionRunnable;
             if (runnable != null) {
@@ -350,7 +353,7 @@ public class UndoView extends FrameLayout {
         showWithAction(arrayList, i, obj, obj2, runnable, runnable2);
     }
 
-    public void showWithAction(java.util.ArrayList<java.lang.Long> r19, int r20, java.lang.Object r21, java.lang.Object r22, java.lang.Runnable r23, java.lang.Runnable r24) {
+    public void showWithAction(java.util.ArrayList<java.lang.Long> r18, int r19, java.lang.Object r20, java.lang.Object r21, java.lang.Runnable r22, java.lang.Runnable r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UndoView.showWithAction(java.util.ArrayList, int, java.lang.Object, java.lang.Object, java.lang.Runnable, java.lang.Runnable):void");
     }
 
@@ -430,7 +433,7 @@ public class UndoView extends FrameLayout {
             this.backgroundDrawable.draw(canvas);
         }
         int i = this.currentAction;
-        if (i == 1 || i == 0 || i == 27 || i == 26 || i == 81) {
+        if (i == 1 || i == 0 || i == 27 || i == 26 || i == 81 || i == 88) {
             long j = this.timeLeft;
             int ceil = j > 0 ? (int) Math.ceil(((float) j) / 1000.0f) : 0;
             if (this.prevSeconds != ceil) {

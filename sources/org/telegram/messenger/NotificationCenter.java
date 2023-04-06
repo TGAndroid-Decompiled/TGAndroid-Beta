@@ -39,6 +39,7 @@ public class NotificationCenter {
     public static final int chatSearchResultsAvailable;
     public static final int chatSearchResultsLoading;
     public static int chatSwithcedToForum = 0;
+    public static int chatlistFolderUpdate = 0;
     public static final int closeChats;
     public static final int closeInCallActivity;
     public static final int closeOtherAppActivities;
@@ -968,8 +969,11 @@ public class NotificationCenter {
         int i232 = i231 + 1;
         totalEvents = i232;
         didUpdateGlobalAutoDeleteTimer = i231;
-        totalEvents = i232 + 1;
+        int i233 = i232 + 1;
+        totalEvents = i233;
         onDatabaseReset = i232;
+        totalEvents = i233 + 1;
+        chatlistFolderUpdate = i233;
     }
 
     public static class DelayedPost {
@@ -1365,6 +1369,27 @@ public class NotificationCenter {
         if (i == emojiLoaded && view != null && view.isAttachedToWindow()) {
             view.invalidate();
         }
+    }
+
+    public void listenOnce(final int i, final Runnable runnable) {
+        final NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenterDelegate() {
+            @Override
+            public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
+                NotificationCenter.this.lambda$listenOnce$2(i, notificationCenterDelegateArr, runnable, i2, i3, objArr);
+            }
+        }};
+        addObserver(notificationCenterDelegateArr[0], i);
+    }
+
+    public void lambda$listenOnce$2(int i, NotificationCenterDelegate[] notificationCenterDelegateArr, Runnable runnable, int i2, int i3, Object[] objArr) {
+        if (i2 != i || notificationCenterDelegateArr[0] == null) {
+            return;
+        }
+        if (runnable != null) {
+            runnable.run();
+        }
+        removeObserver(notificationCenterDelegateArr[0], i);
+        notificationCenterDelegateArr[0] = null;
     }
 
     public class UniqArrayList<T> extends ArrayList<T> {

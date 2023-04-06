@@ -3382,7 +3382,7 @@ public class AndroidUtilities {
                         });
                     } catch (NumberFormatException unused) {
                         textDetailSettingsCell.getTextView().setText(LocaleController.getString(R.string.Unavailable));
-                        textDetailSettingsCell.getTextView().setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+                        textDetailSettingsCell.getTextView().setTextColor(Theme.getColor("text_RedRegular"));
                     }
                 }
             }
@@ -3427,7 +3427,7 @@ public class AndroidUtilities {
     public static void lambda$showProxyAlert$11(long j, TextDetailSettingsCell textDetailSettingsCell) {
         if (j == -1) {
             textDetailSettingsCell.getTextView().setText(LocaleController.getString(R.string.Unavailable));
-            textDetailSettingsCell.getTextView().setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+            textDetailSettingsCell.getTextView().setTextColor(Theme.getColor("text_RedRegular"));
             return;
         }
         TextView textView = textDetailSettingsCell.getTextView();

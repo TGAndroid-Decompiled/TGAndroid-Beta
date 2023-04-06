@@ -320,7 +320,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             } else if (i == 4) {
                 TextCell textCell3 = new TextCell(viewGroup.getContext());
                 textCell3.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
-                textCell3.setColors(null, "windowBackgroundWhiteRedText5");
+                textCell3.setColors(null, "text_RedRegular");
                 textCell3.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 textCell = textCell3;
             }

@@ -324,7 +324,7 @@ public class DataSettingsActivity extends BaseFragment {
             @Override
             public Integer getSelectorColor(int i) {
                 if (i == DataSettingsActivity.this.resetDownloadRow) {
-                    return Integer.valueOf(Theme.multAlpha(getThemedColor("windowBackgroundWhiteRedText2"), 0.1f));
+                    return Integer.valueOf(Theme.multAlpha(getThemedColor("text_RedRegular"), 0.1f));
                 }
                 return Integer.valueOf(getThemedColor("listSelectorSDK21"));
             }

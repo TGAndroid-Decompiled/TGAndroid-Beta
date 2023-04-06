@@ -173,7 +173,7 @@ public class EditTextCaption extends EditTextBoldCursor {
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setFocusable(true);
         editTextBoldCursor.setTransformHintToHeader(true);
-        editTextBoldCursor.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("windowBackgroundWhiteRedText3"));
+        editTextBoldCursor.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("text_RedRegular"));
         editTextBoldCursor.setImeOptions(6);
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.requestFocus();

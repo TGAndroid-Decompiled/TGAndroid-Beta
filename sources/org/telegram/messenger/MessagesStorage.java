@@ -118,7 +118,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsSearchAdapter;
 public class MessagesStorage extends BaseController {
     public static final String[] DATABASE_TABLES;
-    public static final int LAST_DB_VERSION = 116;
+    public static final int LAST_DB_VERSION = 117;
     private int archiveUnreadCount;
     private int[][] bots;
     private File cacheFile;
@@ -454,7 +454,7 @@ public class MessagesStorage extends BaseController {
                         FileLog.e(e3);
                     }
                 }
-                if (intValue < 116) {
+                if (intValue < 117) {
                     try {
                         updateDbToLastVersion(intValue);
                     } catch (Exception e4) {
@@ -683,7 +683,7 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS reaction_mentions_topics_did ON reaction_mentions_topics(dialog_id, topic_id);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE emoji_groups(type INTEGER PRIMARY KEY, data BLOB)").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE app_config(data BLOB)").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 116").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 117").stepThis().dispose();
     }
 
     public boolean isDatabaseMigrationInProgress() {
@@ -2129,17 +2129,17 @@ public class MessagesStorage extends BaseController {
         return arrayList2;
     }
 
-    public void checkLoadedRemoteFilters(final TLRPC$Vector tLRPC$Vector) {
+    public void checkLoadedRemoteFilters(final TLRPC$Vector tLRPC$Vector, final Runnable runnable) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$checkLoadedRemoteFilters$52(tLRPC$Vector);
+                MessagesStorage.this.lambda$checkLoadedRemoteFilters$52(tLRPC$Vector, runnable);
             }
         });
     }
 
-    public void lambda$checkLoadedRemoteFilters$52(org.telegram.tgnet.TLRPC$Vector r36) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$checkLoadedRemoteFilters$52(org.telegram.tgnet.TLRPC$Vector):void");
+    public void lambda$checkLoadedRemoteFilters$52(org.telegram.tgnet.TLRPC$Vector r36, java.lang.Runnable r37) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$checkLoadedRemoteFilters$52(org.telegram.tgnet.TLRPC$Vector, java.lang.Runnable):void");
     }
 
     public static int lambda$checkLoadedRemoteFilters$51(LongSparseIntArray longSparseIntArray, Long l, Long l2) {
@@ -2151,7 +2151,7 @@ public class MessagesStorage extends BaseController {
         return i < i2 ? -1 : 0;
     }
 
-    public void lambda$processLoadedFilterPeers$54(TLRPC$messages_Dialogs tLRPC$messages_Dialogs, TLRPC$messages_Dialogs tLRPC$messages_Dialogs2, ArrayList<TLRPC$User> arrayList, ArrayList<TLRPC$Chat> arrayList2, ArrayList<MessagesController.DialogFilter> arrayList3, SparseArray<MessagesController.DialogFilter> sparseArray, ArrayList<Integer> arrayList4, HashMap<Integer, HashSet<Long>> hashMap, HashSet<Integer> hashSet) {
+    public void lambda$processLoadedFilterPeers$54(TLRPC$messages_Dialogs tLRPC$messages_Dialogs, TLRPC$messages_Dialogs tLRPC$messages_Dialogs2, ArrayList<TLRPC$User> arrayList, ArrayList<TLRPC$Chat> arrayList2, ArrayList<MessagesController.DialogFilter> arrayList3, SparseArray<MessagesController.DialogFilter> sparseArray, ArrayList<Integer> arrayList4, HashMap<Integer, HashSet<Long>> hashMap, HashSet<Integer> hashSet, Runnable runnable) {
         putUsersAndChats(arrayList, arrayList2, true, false);
         int size = sparseArray.size();
         int i = 0;
@@ -2202,7 +2202,7 @@ public class MessagesStorage extends BaseController {
         }
         int i4 = z ? 1 : 2;
         calcUnreadCounters(true);
-        getMessagesController().processLoadedDialogFilters(new ArrayList<>(this.dialogFilters), tLRPC$messages_Dialogs, tLRPC$messages_Dialogs2, arrayList, arrayList2, null, i4);
+        getMessagesController().processLoadedDialogFilters(new ArrayList<>(this.dialogFilters), tLRPC$messages_Dialogs, tLRPC$messages_Dialogs2, arrayList, arrayList2, null, i4, runnable);
     }
 
     public static int lambda$processLoadedFilterPeersInternal$53(MessagesController.DialogFilter dialogFilter, MessagesController.DialogFilter dialogFilter2) {
@@ -2214,11 +2214,11 @@ public class MessagesStorage extends BaseController {
         return i < i2 ? -1 : 0;
     }
 
-    public void processLoadedFilterPeers(final TLRPC$messages_Dialogs tLRPC$messages_Dialogs, final TLRPC$messages_Dialogs tLRPC$messages_Dialogs2, final ArrayList<TLRPC$User> arrayList, final ArrayList<TLRPC$Chat> arrayList2, final ArrayList<MessagesController.DialogFilter> arrayList3, final SparseArray<MessagesController.DialogFilter> sparseArray, final ArrayList<Integer> arrayList4, final HashMap<Integer, HashSet<Long>> hashMap, final HashSet<Integer> hashSet) {
+    public void processLoadedFilterPeers(final TLRPC$messages_Dialogs tLRPC$messages_Dialogs, final TLRPC$messages_Dialogs tLRPC$messages_Dialogs2, final ArrayList<TLRPC$User> arrayList, final ArrayList<TLRPC$Chat> arrayList2, final ArrayList<MessagesController.DialogFilter> arrayList3, final SparseArray<MessagesController.DialogFilter> sparseArray, final ArrayList<Integer> arrayList4, final HashMap<Integer, HashSet<Long>> hashMap, final HashSet<Integer> hashSet, final Runnable runnable) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$processLoadedFilterPeers$54(tLRPC$messages_Dialogs, tLRPC$messages_Dialogs2, arrayList, arrayList2, arrayList3, sparseArray, arrayList4, hashMap, hashSet);
+                MessagesStorage.this.lambda$processLoadedFilterPeers$54(tLRPC$messages_Dialogs, tLRPC$messages_Dialogs2, arrayList, arrayList2, arrayList3, sparseArray, arrayList4, hashMap, hashSet, runnable);
             }
         });
     }
@@ -7173,12 +7173,12 @@ public class MessagesStorage extends BaseController {
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported_old) {
             if (tLRPC$MessageMedia.bytes.length == 0) {
-                tLRPC$MessageMedia.bytes = Utilities.intToBytes(157);
+                tLRPC$MessageMedia.bytes = Utilities.intToBytes(158);
             }
         } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported) {
             TLRPC$TL_messageMediaUnsupported_old tLRPC$TL_messageMediaUnsupported_old = new TLRPC$TL_messageMediaUnsupported_old();
             tLRPC$Message.media = tLRPC$TL_messageMediaUnsupported_old;
-            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(157);
+            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(158);
             tLRPC$Message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
         }
     }
@@ -7710,6 +7710,7 @@ public class MessagesStorage extends BaseController {
 
     public void lambda$setDialogsFolderId$199(ArrayList arrayList, ArrayList arrayList2, int i, long j) {
         SQLitePreparedStatement executeFast;
+        boolean z;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -7724,11 +7725,15 @@ public class MessagesStorage extends BaseController {
         try {
             if (arrayList != null) {
                 int size = arrayList.size();
+                z = false;
                 for (int i2 = 0; i2 < size; i2++) {
                     TLRPC$TL_folderPeer tLRPC$TL_folderPeer = (TLRPC$TL_folderPeer) arrayList.get(i2);
                     long peerDialogId = DialogObject.getPeerDialogId(tLRPC$TL_folderPeer.peer);
                     executeFast.requery();
                     executeFast.bindInteger(1, tLRPC$TL_folderPeer.folder_id);
+                    if (tLRPC$TL_folderPeer.folder_id == 1) {
+                        z = true;
+                    }
                     executeFast.bindInteger(2, 0);
                     executeFast.bindLong(3, peerDialogId);
                     executeFast.step();
@@ -7736,11 +7741,15 @@ public class MessagesStorage extends BaseController {
                 }
             } else if (arrayList2 != null) {
                 int size2 = arrayList2.size();
+                z = false;
                 for (int i3 = 0; i3 < size2; i3++) {
                     TLRPC$TL_inputFolderPeer tLRPC$TL_inputFolderPeer = (TLRPC$TL_inputFolderPeer) arrayList2.get(i3);
                     long peerDialogId2 = DialogObject.getPeerDialogId(tLRPC$TL_inputFolderPeer.peer);
                     executeFast.requery();
                     executeFast.bindInteger(1, tLRPC$TL_inputFolderPeer.folder_id);
+                    if (tLRPC$TL_inputFolderPeer.folder_id == 1) {
+                        z = true;
+                    }
                     executeFast.bindInteger(2, 0);
                     executeFast.bindLong(3, peerDialogId2);
                     executeFast.step();
@@ -7749,13 +7758,17 @@ public class MessagesStorage extends BaseController {
             } else {
                 executeFast.requery();
                 executeFast.bindInteger(1, i);
+                boolean z2 = i == 1;
                 executeFast.bindInteger(2, 0);
                 executeFast.bindLong(3, j);
                 executeFast.step();
+                z = z2;
             }
             executeFast.dispose();
             this.database.commitTransaction();
-            lambda$checkIfFolderEmpty$201(1);
+            if (!z) {
+                lambda$checkIfFolderEmpty$201(1);
+            }
             resetAllUnreadCounters(false);
             SQLiteDatabase sQLiteDatabase = this.database;
             if (sQLiteDatabase != null) {

@@ -544,7 +544,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     break;
                 default:
                     HeaderCell headerCell2 = new HeaderCell(context, "windowBackgroundWhiteBlueHeader", 21, 15, true);
-                    headerCell2.getTextView2().setTextColor(Theme.getColor("windowBackgroundWhiteRedText"));
+                    headerCell2.getTextView2().setTextColor(Theme.getColor("text_RedRegular"));
                     headerCell2.getTextView2().setTextSize(15);
                     headerCell2.getTextView2().setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                     headerCell = headerCell2;
@@ -824,7 +824,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                         return;
                     }
                     timerPrivacyCell.setText(LocaleController.getString("LinkIsExpired", R.string.LinkIsExpired));
-                    timerPrivacyCell.setTextColor(Theme.getColor("windowBackgroundWhiteRedText"));
+                    timerPrivacyCell.setTextColor(Theme.getColor("text_RedRegular"));
                 } else if (tLRPC$TL_chatInviteExported2.expire_date > 0) {
                     long currentTimeMillis = System.currentTimeMillis() + (InviteLinkBottomSheet.this.timeDif * 1000);
                     int i10 = InviteLinkBottomSheet.this.invite.expire_date;

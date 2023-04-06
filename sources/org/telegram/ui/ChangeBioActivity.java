@@ -93,7 +93,7 @@ public class ChangeBioActivity extends BaseFragment {
         this.firstNameField.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
         this.firstNameField.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.firstNameField.setBackgroundDrawable(null);
-        this.firstNameField.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("windowBackgroundWhiteRedText3"));
+        this.firstNameField.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("text_RedRegular"));
         this.firstNameField.setMaxLines(4);
         this.firstNameField.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 24.0f : 0.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 24.0f), AndroidUtilities.dp(6.0f));
         this.firstNameField.setGravity(LocaleController.isRTL ? 5 : 3);

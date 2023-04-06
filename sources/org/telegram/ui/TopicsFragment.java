@@ -1737,7 +1737,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         create.show();
         TextView textView = (TextView) create.getButton(-1);
         if (textView != null) {
-            textView.setTextColor(Theme.getColor("dialogTextRed"));
+            textView.setTextColor(Theme.getColor("text_RedBold"));
         }
     }
 
@@ -1846,8 +1846,8 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         if (ChatObject.canDeleteTopic(this.currentAccount, getCurrentChat(), tLRPC$TL_forumTopic)) {
             ActionBarMenuSubItem actionBarMenuSubItem4 = new ActionBarMenuSubItem(getParentActivity(), false, true);
             actionBarMenuSubItem4.setTextAndIcon(LocaleController.getPluralString("DeleteTopics", 1), R.drawable.msg_delete);
-            actionBarMenuSubItem4.setIconColor(getThemedColor("dialogRedIcon"));
-            actionBarMenuSubItem4.setTextColor(getThemedColor("dialogTextRed"));
+            actionBarMenuSubItem4.setIconColor(getThemedColor("text_RedRegular"));
+            actionBarMenuSubItem4.setTextColor(getThemedColor("text_RedBold"));
             actionBarMenuSubItem4.setMinimumWidth(160);
             actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -2420,7 +2420,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     private void setButtonType(int i) {
         if (this.bottomButtonType != i) {
             this.bottomButtonType = i;
-            this.bottomOverlayChatText.setTextColorKey(i == 0 ? "chat_fieldOverlayText" : "chat_reportSpam");
+            this.bottomOverlayChatText.setTextColorKey(i == 0 ? "chat_fieldOverlayText" : "text_RedBold");
             this.closeReportSpam.setVisibility(i == 1 ? 0 : 8);
             updateChatInfo();
         }

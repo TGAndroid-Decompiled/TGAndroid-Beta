@@ -476,7 +476,7 @@ public class LinkEditActivity extends BaseFragment {
             this.revokeLink = textSettingsCell;
             textSettingsCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
             this.revokeLink.setText(LocaleController.getString("RevokeLink", R.string.RevokeLink), false);
-            this.revokeLink.setTextColor(Theme.getColor("windowBackgroundWhiteRedText5"));
+            this.revokeLink.setTextColor(Theme.getColor("text_RedRegular"));
             this.revokeLink.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -839,7 +839,7 @@ public class LinkEditActivity extends BaseFragment {
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteBlackText"));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteGrayText"));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "featuredStickers_buttonText"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteRedText5"));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "text_RedRegular"));
         return arrayList;
     }
 
@@ -859,7 +859,7 @@ public class LinkEditActivity extends BaseFragment {
             this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
             TextSettingsCell textSettingsCell = this.revokeLink;
             if (textSettingsCell != null) {
-                textSettingsCell.setTextColor(Theme.getColor("windowBackgroundWhiteRedText5"));
+                textSettingsCell.setTextColor(Theme.getColor("text_RedRegular"));
             }
             this.createTextView.setTextColor(Theme.getColor("actionBarDefaultTitle"));
             this.dividerName.setBackground(Theme.getThemedDrawable(context, i, "windowBackgroundGrayShadow"));

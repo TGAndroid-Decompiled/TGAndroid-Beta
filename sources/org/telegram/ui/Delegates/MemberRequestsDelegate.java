@@ -966,7 +966,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             });
             actionBarPopupWindowLayout.addView(actionBarMenuSubItem2);
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(context, false, true);
-            actionBarMenuSubItem3.setColors(Theme.getColor("dialogTextRed", resourcesProvider), Theme.getColor("dialogRedIcon", resourcesProvider));
+            actionBarMenuSubItem3.setColors(Theme.getColor("text_RedBold", resourcesProvider), Theme.getColor("text_RedRegular", resourcesProvider));
             actionBarMenuSubItem3.setSelectorColor(Theme.getColor("dialogButtonSelector", resourcesProvider));
             actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("DismissRequest", R.string.DismissRequest), R.drawable.msg_remove);
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {

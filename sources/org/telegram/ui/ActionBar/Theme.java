@@ -85,7 +85,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda238;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda242;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -3582,7 +3582,7 @@ public class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda238.INSTANCE, 2100L);
+                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda242.INSTANCE, 2100L);
                 }
             }
             currentTheme = themeInfo;
@@ -5488,11 +5488,11 @@ public class Theme {
             setDrawableColorByKey(chat_msgOutCallSelectedDrawable[i], "chat_outInstantSelected");
         }
         setDrawableColorByKey(chat_msgCallUpGreenDrawable, "chat_outUpCall");
-        setDrawableColorByKey(chat_msgCallDownRedDrawable, "chat_inUpCall");
+        setDrawableColorByKey(chat_msgCallDownRedDrawable, "fill_RedNormal");
         setDrawableColorByKey(chat_msgCallDownGreenDrawable, "chat_inDownCall");
-        setDrawableColorByKey(calllog_msgCallUpRedDrawable, "calls_callReceivedRedIcon");
+        setDrawableColorByKey(calllog_msgCallUpRedDrawable, "fill_RedNormal");
         setDrawableColorByKey(calllog_msgCallUpGreenDrawable, "calls_callReceivedGreenIcon");
-        setDrawableColorByKey(calllog_msgCallDownRedDrawable, "calls_callReceivedRedIcon");
+        setDrawableColorByKey(calllog_msgCallDownRedDrawable, "fill_RedNormal");
         setDrawableColorByKey(calllog_msgCallDownGreenDrawable, "calls_callReceivedGreenIcon");
         int i2 = 0;
         while (true) {

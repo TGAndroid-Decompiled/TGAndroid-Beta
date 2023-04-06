@@ -3080,7 +3080,7 @@ public class LoginActivity extends BaseFragment {
             if (this.currentType != 15) {
                 this.problemText.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText4"));
             }
-            this.wrongCode.setTextColor(Theme.getColor("dialogTextRed"));
+            this.wrongCode.setTextColor(Theme.getColor("text_RedBold"));
         }
 
         private void applyLottieColors(RLottieDrawable rLottieDrawable) {
@@ -5165,7 +5165,7 @@ public class LoginActivity extends BaseFragment {
             this.resendCodeView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText4"));
             this.cantAccessEmailView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText4"));
             this.emailResetInView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText6"));
-            this.wrongCodeView.setTextColor(Theme.getColor("dialogTextRed"));
+            this.wrongCodeView.setTextColor(Theme.getColor("text_RedBold"));
             this.codeFieldContainer.invalidate();
         }
 
@@ -7458,7 +7458,7 @@ public class LoginActivity extends BaseFragment {
             public void onAnimationProgress(float f) {
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
-        }, "windowBackgroundWhiteBlackText", "windowBackgroundWhiteGrayText6", "windowBackgroundWhiteHintText", "listSelectorSDK21", "chats_actionBackground", "chats_actionIcon", "windowBackgroundWhiteInputField", "windowBackgroundWhiteInputFieldActivated", "windowBackgroundWhiteValueText", "dialogTextRed", "windowBackgroundWhiteGrayText", "checkbox", "windowBackgroundWhiteBlueText4", "changephoneinfo_image2", "chats_actionPressedBackground", "windowBackgroundWhiteRedText2", "windowBackgroundWhiteLinkText", "checkboxSquareUnchecked", "checkboxSquareBackground", "checkboxSquareCheck", "dialogBackground", "dialogTextGray2", "dialogTextBlack");
+        }, "windowBackgroundWhiteBlackText", "windowBackgroundWhiteGrayText6", "windowBackgroundWhiteHintText", "listSelectorSDK21", "chats_actionBackground", "chats_actionIcon", "windowBackgroundWhiteInputField", "windowBackgroundWhiteInputFieldActivated", "windowBackgroundWhiteValueText", "text_RedBold", "windowBackgroundWhiteGrayText", "checkbox", "windowBackgroundWhiteBlueText4", "changephoneinfo_image2", "chats_actionPressedBackground", "text_RedRegular", "windowBackgroundWhiteLinkText", "checkboxSquareUnchecked", "checkboxSquareBackground", "checkboxSquareCheck", "dialogBackground", "dialogTextGray2", "dialogTextBlack");
     }
 
     public void tryResetAccount(final String str, final String str2, final String str3) {

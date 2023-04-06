@@ -228,7 +228,7 @@ public class DataUsage2Activity extends BaseFragment {
                 DataUsage2Activity.this.showDialog(create);
                 TextView textView = (TextView) create.getButton(-1);
                 if (textView != null) {
-                    textView.setTextColor(Theme.getColor("dialogTextRed"));
+                    textView.setTextColor(Theme.getColor("text_RedBold"));
                 }
             }
         }
@@ -539,7 +539,7 @@ public class DataUsage2Activity extends BaseFragment {
                     textCell = headerCell;
                 } else if (i == 5) {
                     TextCell textCell2 = new TextCell(ListView.this.getContext());
-                    textCell2.setTextColor(ListView.this.getThemedColor("windowBackgroundWhiteRedText5"));
+                    textCell2.setTextColor(ListView.this.getThemedColor("text_RedRegular"));
                     textCell2.setBackgroundColor(ListView.this.getThemedColor("windowBackgroundWhite"));
                     textCell = textCell2;
                 } else if (i == 6) {

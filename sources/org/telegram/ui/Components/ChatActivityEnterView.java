@@ -5227,7 +5227,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (baseFragment != null) {
             new PremiumFeatureBottomSheet(baseFragment, 11, false).show();
         } else if (baseFragment.getContext() instanceof LaunchActivity) {
-            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$77(new PremiumPreviewFragment(null));
+            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$79(new PremiumPreviewFragment(null));
         }
     }
 
@@ -6479,7 +6479,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         NumberTextView numberTextView = this.captionLimitView;
         if (numberTextView != null && this.messageEditText != null) {
             if (this.codePointCount - this.currentLimit < 0) {
-                numberTextView.setTextColor(getThemedColor("windowBackgroundWhiteRedText"));
+                numberTextView.setTextColor(getThemedColor("text_RedRegular"));
             } else {
                 numberTextView.setTextColor(getThemedColor("windowBackgroundWhiteGrayText"));
             }

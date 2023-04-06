@@ -149,7 +149,7 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                     }
                 }).create();
                 create.show();
-                ((TextView) create.getButton(-1)).setTextColor(Theme.getColor("dialogTextRed"));
+                ((TextView) create.getButton(-1)).setTextColor(Theme.getColor("text_RedBold"));
             } else if (i == this.changePasscodeRow) {
                 presentFragment(new PasscodeActivity(1));
             } else if (i == this.autoLockRow) {
@@ -978,8 +978,8 @@ public class PasscodeActivity extends BaseFragment implements NotificationCenter
                     if (i != PasscodeActivity.this.autoLockRow) {
                         if (i == PasscodeActivity.this.disablePasscodeRow) {
                             textSettingsCell.setText(LocaleController.getString(R.string.DisablePasscode), false);
-                            textSettingsCell.setTag("dialogTextRed");
-                            textSettingsCell.setTextColor(Theme.getColor("dialogTextRed"));
+                            textSettingsCell.setTag("text_RedBold");
+                            textSettingsCell.setTextColor(Theme.getColor("text_RedBold"));
                             return;
                         }
                         return;

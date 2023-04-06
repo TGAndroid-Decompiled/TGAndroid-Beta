@@ -44,17 +44,23 @@ public class CrossfadeDrawable extends Drawable {
         if (drawable2 != null) {
             drawable2.setCallback(new Drawable.Callback() {
                 @Override
+                public void invalidateDrawable(Drawable drawable3) {
+                    if (CrossfadeDrawable.this.progress > 0.0f) {
+                        CrossfadeDrawable.this.invalidateSelf();
+                    }
+                }
+
+                @Override
                 public void scheduleDrawable(Drawable drawable3, Runnable runnable, long j) {
+                    if (CrossfadeDrawable.this.progress > 0.0f) {
+                        CrossfadeDrawable.this.scheduleSelf(runnable, j);
+                    }
                 }
 
                 @Override
                 public void unscheduleDrawable(Drawable drawable3, Runnable runnable) {
-                }
-
-                @Override
-                public void invalidateDrawable(Drawable drawable3) {
                     if (CrossfadeDrawable.this.progress > 0.0f) {
-                        CrossfadeDrawable.this.invalidateSelf();
+                        CrossfadeDrawable.this.unscheduleSelf(runnable);
                     }
                 }
             });

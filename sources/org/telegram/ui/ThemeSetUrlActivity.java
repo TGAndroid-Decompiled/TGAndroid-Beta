@@ -483,7 +483,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         }
         if (str != null) {
             if (str.startsWith("_") || str.endsWith("_")) {
-                setCheckText(LocaleController.getString("SetUrlInvalid", R.string.SetUrlInvalid), "windowBackgroundWhiteRedText4");
+                setCheckText(LocaleController.getString("SetUrlInvalid", R.string.SetUrlInvalid), "text_RedRegular");
                 return false;
             }
             for (int i = 0; i < str.length(); i++) {
@@ -492,14 +492,14 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
                     if (z) {
                         AlertsCreator.showSimpleAlert(this, LocaleController.getString("Theme", R.string.Theme), LocaleController.getString("SetUrlInvalidStartNumber", R.string.SetUrlInvalidStartNumber));
                     } else {
-                        setCheckText(LocaleController.getString("SetUrlInvalidStartNumber", R.string.SetUrlInvalidStartNumber), "windowBackgroundWhiteRedText4");
+                        setCheckText(LocaleController.getString("SetUrlInvalidStartNumber", R.string.SetUrlInvalidStartNumber), "text_RedRegular");
                     }
                     return false;
                 } else if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != '_'))) {
                     if (z) {
                         AlertsCreator.showSimpleAlert(this, LocaleController.getString("Theme", R.string.Theme), LocaleController.getString("SetUrlInvalid", R.string.SetUrlInvalid));
                     } else {
-                        setCheckText(LocaleController.getString("SetUrlInvalid", R.string.SetUrlInvalid), "windowBackgroundWhiteRedText4");
+                        setCheckText(LocaleController.getString("SetUrlInvalid", R.string.SetUrlInvalid), "text_RedRegular");
                     }
                     return false;
                 }
@@ -509,14 +509,14 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
             if (z) {
                 AlertsCreator.showSimpleAlert(this, LocaleController.getString("Theme", R.string.Theme), LocaleController.getString("SetUrlInvalidShort", R.string.SetUrlInvalidShort));
             } else {
-                setCheckText(LocaleController.getString("SetUrlInvalidShort", R.string.SetUrlInvalidShort), "windowBackgroundWhiteRedText4");
+                setCheckText(LocaleController.getString("SetUrlInvalidShort", R.string.SetUrlInvalidShort), "text_RedRegular");
             }
             return false;
         } else if (str.length() > 64) {
             if (z) {
                 AlertsCreator.showSimpleAlert(this, LocaleController.getString("Theme", R.string.Theme), LocaleController.getString("SetUrlInvalidLong", R.string.SetUrlInvalidLong));
             } else {
-                setCheckText(LocaleController.getString("SetUrlInvalidLong", R.string.SetUrlInvalidLong), "windowBackgroundWhiteRedText4");
+                setCheckText(LocaleController.getString("SetUrlInvalidLong", R.string.SetUrlInvalidLong), "text_RedRegular");
             }
             return false;
         } else {
@@ -572,7 +572,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         if (tLRPC$TL_error == null || !("THEME_SLUG_INVALID".equals(tLRPC$TL_error.text) || "THEME_SLUG_OCCUPIED".equals(tLRPC$TL_error.text))) {
             setCheckText(LocaleController.formatString("SetUrlAvailable", R.string.SetUrlAvailable, str), "windowBackgroundWhiteGreenText");
         } else {
-            setCheckText(LocaleController.getString("SetUrlInUse", R.string.SetUrlInUse), "windowBackgroundWhiteRedText4");
+            setCheckText(LocaleController.getString("SetUrlInUse", R.string.SetUrlInUse), "text_RedRegular");
         }
     }
 
@@ -730,7 +730,7 @@ public class ThemeSetUrlActivity extends BaseFragment implements NotificationCen
         arrayList.add(new ThemeDescription(this.helpInfoCell, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, "windowBackgroundGrayShadow"));
         arrayList.add(new ThemeDescription(this.helpInfoCell, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayText4"));
         arrayList.add(new ThemeDescription(this.checkInfoCell, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, "windowBackgroundGrayShadow"));
-        arrayList.add(new ThemeDescription(this.checkInfoCell, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteRedText4"));
+        arrayList.add(new ThemeDescription(this.checkInfoCell, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "text_RedRegular"));
         arrayList.add(new ThemeDescription(this.checkInfoCell, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayText8"));
         arrayList.add(new ThemeDescription(this.checkInfoCell, ThemeDescription.FLAG_CHECKTAG, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGreenText"));
         arrayList.add(new ThemeDescription(this.createCell, 0, new Class[]{TextSettingsCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlackText"));

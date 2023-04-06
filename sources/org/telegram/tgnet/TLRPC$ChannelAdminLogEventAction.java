@@ -81,6 +81,9 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
             case -26672755:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangeTheme();
                 break;
+            case -23084712:
+                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionParticipantJoinByInvite();
+                break;
             case 46949251:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionToggleForum();
                 break;
@@ -152,23 +155,6 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
                 break;
             case 1515256996:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionExportedInviteDelete();
-                break;
-            case 1557846647:
-                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$ChannelAdminLogEventAction() {
-                    public static int constructor = 1557846647;
-                    public TLRPC$TL_chatInviteExported invite;
-
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.invite = TLRPC$ExportedChatInvite.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
-                        this.invite.serializeToStream(abstractSerializedData2);
-                    }
-                };
                 break;
             case 1569535291:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionPinTopic();

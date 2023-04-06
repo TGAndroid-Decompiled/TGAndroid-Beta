@@ -205,6 +205,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     private ChatAttachAlertPhotoLayout photoLayout;
     private ChatAttachAlertPhotoLayoutPreview photoPreviewLayout;
     private boolean photosEnabled;
+    public boolean pinnedToTop;
     private boolean plainTextEnabled;
     private ChatAttachAlertPollLayout pollLayout;
     private boolean pollsEnabled;
@@ -4570,7 +4571,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             create.show();
             TextView textView = (TextView) create.getButton(-1);
             if (textView != null) {
-                textView.setTextColor(getThemedColor("dialogTextRed"));
+                textView.setTextColor(getThemedColor("text_RedBold"));
                 return;
             }
             return;

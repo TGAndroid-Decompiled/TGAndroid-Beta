@@ -16,6 +16,7 @@ import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.ActionBar.Theme;
 public class CheckBoxBase {
     private static Paint eraser;
+    private static Paint forbidPaint;
     private static Paint paint;
     private boolean attachedToWindow;
     private Paint backgroundPaint;
@@ -23,6 +24,7 @@ public class CheckBoxBase {
     private ObjectAnimator checkAnimator;
     private Paint checkPaint;
     private String checkedText;
+    private boolean forbidden;
     private boolean isChecked;
     private Theme.MessageDrawable messageDrawable;
     private View parentView;
@@ -34,6 +36,7 @@ public class CheckBoxBase {
     private boolean useDefaultCheck;
     public android.graphics.Rect bounds = new android.graphics.Rect();
     private RectF rect = new RectF();
+    private float alpha = 1.0f;
     private Path path = new Path();
     private boolean enabled = true;
     private float backgroundAlpha = 1.0f;
@@ -46,6 +49,11 @@ public class CheckBoxBase {
 
     public interface ProgressDelegate {
         void setProgress(float f);
+    }
+
+    public void setAlpha(float f) {
+        this.alpha = f;
+        invalidate();
     }
 
     public CheckBoxBase(View view, int i, Theme.ResourcesProvider resourcesProvider) {
@@ -108,6 +116,14 @@ public class CheckBoxBase {
         }
     }
 
+    public void setForbidden(boolean z) {
+        if (this.forbidden == z) {
+            return;
+        }
+        this.forbidden = z;
+        invalidate();
+    }
+
     private void invalidate() {
         if (this.parentView.getParent() != null) {
             ((View) this.parentView.getParent()).invalidate();
@@ -142,7 +158,7 @@ public class CheckBoxBase {
                 this.checkPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
             }
         } else if (i == 3) {
-            this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.2f));
+            this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(3.0f));
         } else if (i != 0) {
             this.backgroundPaint.setStrokeWidth(AndroidUtilities.dp(1.5f));
         }
@@ -227,7 +243,7 @@ public class CheckBoxBase {
         setProgress(z ? 1.0f : 0.0f);
     }
 
-    public void draw(android.graphics.Canvas r23) {
+    public void draw(android.graphics.Canvas r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.CheckBoxBase.draw(android.graphics.Canvas):void");
     }
 

@@ -161,6 +161,7 @@ import org.telegram.tgnet.TLRPC$TL_reactionCount;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
 import org.telegram.tgnet.TLRPC$TL_replyInlineMarkup;
+import org.telegram.tgnet.TLRPC$TL_stickerPack;
 import org.telegram.tgnet.TLRPC$TL_stickerSetFullCovered;
 import org.telegram.tgnet.TLRPC$TL_textWithEntities;
 import org.telegram.tgnet.TLRPC$TL_webPage;
@@ -3920,6 +3921,10 @@ public class MessageObject {
     }
 
     public static String findAnimatedEmojiEmoticon(TLRPC$Document tLRPC$Document, String str) {
+        return findAnimatedEmojiEmoticon(tLRPC$Document, str, null);
+    }
+
+    public static String findAnimatedEmojiEmoticon(TLRPC$Document tLRPC$Document, String str, Integer num) {
         if (tLRPC$Document == null) {
             return str;
         }
@@ -3927,6 +3932,21 @@ public class MessageObject {
         for (int i = 0; i < size; i++) {
             TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i);
             if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeCustomEmoji) || (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker)) {
+                if (num != null) {
+                    TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(num.intValue()).getStickerSet(tLRPC$DocumentAttribute.stickerset, true);
+                    StringBuilder sb = new StringBuilder("");
+                    if (stickerSet != null && stickerSet.packs != null) {
+                        for (int i2 = 0; i2 < stickerSet.packs.size(); i2++) {
+                            TLRPC$TL_stickerPack tLRPC$TL_stickerPack = stickerSet.packs.get(i2);
+                            if (tLRPC$TL_stickerPack.documents.contains(Long.valueOf(tLRPC$Document.id))) {
+                                sb.append(tLRPC$TL_stickerPack.emoticon);
+                            }
+                        }
+                    }
+                    if (!TextUtils.isEmpty(sb)) {
+                        return sb.toString();
+                    }
+                }
                 return tLRPC$DocumentAttribute.alt;
             }
         }

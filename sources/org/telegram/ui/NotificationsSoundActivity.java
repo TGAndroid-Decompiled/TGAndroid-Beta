@@ -293,7 +293,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 });
                 TextView textView = (TextView) builder.show().getButton(-1);
                 if (textView != null) {
-                    textView.setTextColor(Theme.getColor("dialogTextRed", NotificationsSoundActivity.this.resourcesProvider));
+                    textView.setTextColor(Theme.getColor("text_RedBold", NotificationsSoundActivity.this.resourcesProvider));
                 }
             } else if (i == 2) {
                 if (NotificationsSoundActivity.this.selectedTones.size() == 1) {

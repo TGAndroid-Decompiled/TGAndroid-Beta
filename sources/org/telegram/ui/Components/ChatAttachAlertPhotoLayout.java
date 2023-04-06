@@ -644,9 +644,14 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             }
         };
         this.gridView = recyclerListView;
+        recyclerListView.setFastScrollEnabled(1);
+        this.gridView.setFastScrollVisible(true);
+        this.gridView.getFastScroll().setAlpha(0.0f);
+        this.gridView.getFastScroll().usePadding = false;
+        RecyclerListView recyclerListView2 = this.gridView;
         PhotoAttachAdapter photoAttachAdapter = new PhotoAttachAdapter(context, true);
         this.adapter = photoAttachAdapter;
-        recyclerListView.setAdapter(photoAttachAdapter);
+        recyclerListView2.setAdapter(photoAttachAdapter);
         this.adapter.createCache();
         this.gridView.setClipToPadding(false);
         this.gridView.setItemAnimator(null);
@@ -655,6 +660,8 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.gridView.setGlowColor(getThemedColor("dialogScrollGlow"));
         addView(this.gridView, LayoutHelper.createFrame(-1, -1.0f));
         this.gridView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            boolean parentPinnedToTop;
+
             @Override
             public void onScrolled(RecyclerView recyclerView, int i, int i2) {
                 if (ChatAttachAlertPhotoLayout.this.gridView.getChildCount() <= 0) {
@@ -662,6 +669,13 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 }
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ChatAttachAlertPhotoLayout.this;
                 chatAttachAlertPhotoLayout.parentAlert.updateLayout(chatAttachAlertPhotoLayout, true, i2);
+                boolean z2 = this.parentPinnedToTop;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = ChatAttachAlertPhotoLayout.this;
+                boolean z3 = chatAttachAlertPhotoLayout2.parentAlert.pinnedToTop;
+                if (z2 != z3) {
+                    this.parentPinnedToTop = z3;
+                    chatAttachAlertPhotoLayout2.gridView.getFastScroll().animate().alpha(this.parentPinnedToTop ? 1.0f : 0.0f).setDuration(100L).start();
+                }
                 if (i2 != 0) {
                     ChatAttachAlertPhotoLayout.this.checkCameraViewPosition();
                 }
@@ -929,7 +943,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.tooltipTextView.setShadowLayer(AndroidUtilities.dp(3.33333f), 0.0f, AndroidUtilities.dp(0.666f), 1275068416);
         this.tooltipTextView.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
         this.cameraPanel.addView(this.tooltipTextView, LayoutHelper.createFrame(-2, -2.0f, 81, 0.0f, 0.0f, 0.0f, 16.0f));
-        RecyclerListView recyclerListView2 = new RecyclerListView(context, resourcesProvider) {
+        RecyclerListView recyclerListView3 = new RecyclerListView(context, resourcesProvider) {
             @Override
             public void requestLayout() {
                 if (ChatAttachAlertPhotoLayout.this.cameraPhotoRecyclerViewIgnoreLayout) {
@@ -938,12 +952,12 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 super.requestLayout();
             }
         };
-        this.cameraPhotoRecyclerView = recyclerListView2;
-        recyclerListView2.setVerticalScrollBarEnabled(true);
-        RecyclerListView recyclerListView3 = this.cameraPhotoRecyclerView;
+        this.cameraPhotoRecyclerView = recyclerListView3;
+        recyclerListView3.setVerticalScrollBarEnabled(true);
+        RecyclerListView recyclerListView4 = this.cameraPhotoRecyclerView;
         PhotoAttachAdapter photoAttachAdapter2 = new PhotoAttachAdapter(context, false);
         this.cameraAttachAdapter = photoAttachAdapter2;
-        recyclerListView3.setAdapter(photoAttachAdapter2);
+        recyclerListView4.setAdapter(photoAttachAdapter2);
         this.cameraAttachAdapter.createCache();
         this.cameraPhotoRecyclerView.setClipToPadding(false);
         this.cameraPhotoRecyclerView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
@@ -3986,10 +4000,11 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
-    public class PhotoAttachAdapter extends RecyclerListView.SelectionAdapter {
+    public class PhotoAttachAdapter extends RecyclerListView.FastScrollAdapter {
         private int itemsCount;
         private Context mContext;
         private boolean needCamera;
+        private int photosStartRow;
         private ArrayList<RecyclerListView.Holder> viewsCache = new ArrayList<>(8);
 
         @Override
@@ -4232,6 +4247,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 if (ChatAttachAlertPhotoLayout.this.noGalleryPermissions && this == ChatAttachAlertPhotoLayout.this.adapter) {
                     i++;
                 }
+                this.photosStartRow = i;
                 int size = i + ChatAttachAlertPhotoLayout.cameraPhotos.size();
                 if (ChatAttachAlertPhotoLayout.this.selectedAlbumEntry != null) {
                     size += ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.size();
@@ -4269,6 +4285,59 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             if (this == ChatAttachAlertPhotoLayout.this.adapter) {
                 ChatAttachAlertPhotoLayout.this.progressView.setVisibility((!(getItemCount() == 1 && ChatAttachAlertPhotoLayout.this.selectedAlbumEntry == null) && ChatAttachAlertPhotoLayout.this.mediaEnabled) ? 4 : 0);
             }
+        }
+
+        @Override
+        public float getScrollProgress(RecyclerListView recyclerListView) {
+            int i = ChatAttachAlertPhotoLayout.this.itemsPerRow;
+            int ceil = (int) Math.ceil(this.itemsCount / i);
+            if (recyclerListView.getChildCount() == 0) {
+                return 0.0f;
+            }
+            int measuredHeight = recyclerListView.getChildAt(0).getMeasuredHeight();
+            View childAt = recyclerListView.getChildAt(0);
+            int childAdapterPosition = recyclerListView.getChildAdapterPosition(childAt);
+            if (childAdapterPosition < 0) {
+                return 0.0f;
+            }
+            return Utilities.clamp((((childAdapterPosition / i) * measuredHeight) - childAt.getTop()) / ((ceil * measuredHeight) - recyclerListView.getMeasuredHeight()), 1.0f, 0.0f);
+        }
+
+        @Override
+        public String getLetter(int i) {
+            MediaController.PhotoEntry photo = getPhoto(i);
+            if (photo == null) {
+                if (i <= this.photosStartRow) {
+                    photo = !ChatAttachAlertPhotoLayout.cameraPhotos.isEmpty() ? (MediaController.PhotoEntry) ChatAttachAlertPhotoLayout.cameraPhotos.get(0) : ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.get(0);
+                } else if (!ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.isEmpty()) {
+                    photo = ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.get(ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.size() - 1);
+                }
+            }
+            if (photo != null) {
+                long j = photo.dateTaken;
+                if (Build.VERSION.SDK_INT <= 28) {
+                    j /= 1000;
+                }
+                return LocaleController.formatYearMont(j, true);
+            }
+            return "";
+        }
+
+        @Override
+        public boolean fastScrollIsVisible(RecyclerListView recyclerListView) {
+            return !(ChatAttachAlertPhotoLayout.cameraPhotos.isEmpty() && ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.isEmpty()) && ChatAttachAlertPhotoLayout.this.parentAlert.pinnedToTop;
+        }
+
+        @Override
+        public void getPositionForScrollProgress(RecyclerListView recyclerListView, float f, int[] iArr) {
+            int measuredHeight = recyclerListView.getChildAt(0).getMeasuredHeight();
+            float measuredHeight2 = f * ((this.itemsCount * measuredHeight) - recyclerListView.getMeasuredHeight());
+            iArr[0] = (int) (measuredHeight2 / measuredHeight);
+            iArr[1] = (((int) measuredHeight2) % measuredHeight) + recyclerListView.getPaddingTop();
+            if (iArr[0] != 0 || iArr[1] >= ChatAttachAlertPhotoLayout.this.getListTopPadding()) {
+                return;
+            }
+            iArr[1] = ChatAttachAlertPhotoLayout.this.getListTopPadding();
         }
     }
 }

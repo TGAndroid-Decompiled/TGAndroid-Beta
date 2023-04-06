@@ -469,7 +469,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             } else {
                 TextCell textCell = new TextCell(viewGroup.getContext());
                 textCell.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
-                textCell.setColors(null, "windowBackgroundWhiteRedText5");
+                textCell.setColors(null, "text_RedRegular");
                 textCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 headerCell = textCell;
             }

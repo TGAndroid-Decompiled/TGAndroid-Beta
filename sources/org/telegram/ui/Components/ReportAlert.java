@@ -96,7 +96,7 @@ public class ReportAlert extends BottomSheet {
         this.editText.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
         this.editText.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.editText.setBackgroundDrawable(null);
-        this.editText.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("windowBackgroundWhiteRedText3"));
+        this.editText.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("text_RedRegular"));
         this.editText.setMaxLines(1);
         this.editText.setLines(1);
         this.editText.setPadding(0, 0, 0, 0);

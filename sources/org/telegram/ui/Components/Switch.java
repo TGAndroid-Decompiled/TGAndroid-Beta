@@ -72,7 +72,7 @@ public class Switch extends View {
     public Switch(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.iconProgress = 1.0f;
-        this.trackColorKey = "switch2Track";
+        this.trackColorKey = "fill_RedNormal";
         this.trackCheckedColorKey = "switch2TrackChecked";
         this.thumbColorKey = "windowBackgroundWhite";
         this.thumbCheckedColorKey = "windowBackgroundWhite";

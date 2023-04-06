@@ -29,9 +29,6 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.LaunchActivity;
 public class SharedConfig {
-    private static final int[] AVERAGE_DEVICES;
-    private static final int[] HIGH_DEVICES;
-    private static final int[] LOW_DEVICES;
     private static final int[] LOW_SOC;
     public static final int PASSCODE_TYPE_PASSWORD = 1;
     public static final int PASSCODE_TYPE_PIN = 0;
@@ -222,9 +219,6 @@ public class SharedConfig {
         fastScrollHintCount = 3;
         translateChats = true;
         LOW_SOC = new int[]{-1775228513, 802464304, 802464333, 802464302, 2067362118, 2067362060, 2067362084, 2067362241, 2067362117, 2067361998, -1853602818};
-        LOW_DEVICES = new int[]{1903542002, 1904553494, 1616144535, -713271737, -1394191140, -270252297, -270251367, -270252359};
-        AVERAGE_DEVICES = new int[]{812981419, -993913431};
-        HIGH_DEVICES = new int[]{1908570923, -980514379, 577463889, 1764745014, 1908524435, -215787089, -215458996, -1394179578, 220599115, 1737652784};
         loadConfig();
         proxyList = new ArrayList<>();
     }
@@ -1102,39 +1096,17 @@ public class SharedConfig {
     public static int measureDevicePerformanceClass() {
         long j;
         String str;
-        String str2;
         int i = Build.VERSION.SDK_INT;
         int i2 = ConnectionsManager.CPU_COUNT;
         int memoryClass = ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryClass();
-        String str3 = Build.DEVICE;
-        int i3 = 2;
-        if (str3 != null && (str2 = Build.MANUFACTURER) != null) {
-            int hashCode = (str2 + " " + str3).toUpperCase().hashCode();
+        int i3 = 0;
+        if (i >= 31 && (str = Build.SOC_MODEL) != null) {
+            int hashCode = str.toUpperCase().hashCode();
             int i4 = 0;
             while (true) {
-                int[] iArr = LOW_DEVICES;
+                int[] iArr = LOW_SOC;
                 if (i4 >= iArr.length) {
-                    int i5 = 0;
-                    while (true) {
-                        int[] iArr2 = AVERAGE_DEVICES;
-                        if (i5 >= iArr2.length) {
-                            int i6 = 0;
-                            while (true) {
-                                int[] iArr3 = HIGH_DEVICES;
-                                if (i6 >= iArr3.length) {
-                                    break;
-                                } else if (iArr3[i6] == hashCode) {
-                                    return 2;
-                                } else {
-                                    i6++;
-                                }
-                            }
-                        } else if (iArr2[i5] == hashCode) {
-                            return 1;
-                        } else {
-                            i5++;
-                        }
-                    }
+                    break;
                 } else if (iArr[i4] == hashCode) {
                     return 0;
                 } else {
@@ -1142,35 +1114,21 @@ public class SharedConfig {
                 }
             }
         }
-        if (Build.VERSION.SDK_INT >= 31 && (str = Build.SOC_MODEL) != null) {
-            int hashCode2 = str.toUpperCase().hashCode();
-            int i7 = 0;
-            while (true) {
-                int[] iArr4 = LOW_SOC;
-                if (i7 >= iArr4.length) {
-                    break;
-                } else if (iArr4[i7] == hashCode2) {
-                    return 0;
-                } else {
-                    i7++;
-                }
-            }
-        }
-        int i8 = 0;
-        int i9 = 0;
-        for (int i10 = 0; i10 < i2; i10++) {
+        int i5 = 0;
+        int i6 = 0;
+        for (int i7 = 0; i7 < i2; i7++) {
             try {
-                RandomAccessFile randomAccessFile = new RandomAccessFile(String.format(Locale.ENGLISH, "/sys/devices/system/cpu/cpu%d/cpufreq/cpuinfo_max_freq", Integer.valueOf(i10)), "r");
+                RandomAccessFile randomAccessFile = new RandomAccessFile(String.format(Locale.ENGLISH, "/sys/devices/system/cpu/cpu%d/cpufreq/cpuinfo_max_freq", Integer.valueOf(i7)), "r");
                 String readLine = randomAccessFile.readLine();
                 if (readLine != null) {
-                    i9 += Utilities.parseInt((CharSequence) readLine).intValue() / 1000;
-                    i8++;
+                    i6 += Utilities.parseInt((CharSequence) readLine).intValue() / 1000;
+                    i5++;
                 }
                 randomAccessFile.close();
             } catch (Throwable unused) {
             }
         }
-        int ceil = i8 == 0 ? -1 : (int) Math.ceil(i9 / i8);
+        int ceil = i5 == 0 ? -1 : (int) Math.ceil(i6 / i5);
         try {
             ActivityManager.MemoryInfo memoryInfo = new ActivityManager.MemoryInfo();
             ((ActivityManager) ApplicationLoader.applicationContext.getSystemService("activity")).getMemoryInfo(memoryInfo);
@@ -1178,10 +1136,8 @@ public class SharedConfig {
         } catch (Exception unused2) {
             j = -1;
         }
-        if (i < 21 || i2 <= 2 || memoryClass <= 100 || ((i2 <= 4 && ceil != -1 && ceil <= 1250) || ((i2 <= 4 && ceil <= 1600 && memoryClass <= 128 && i <= 21) || ((i2 <= 4 && ceil <= 1300 && memoryClass <= 128 && i <= 24) || (j != -1 && j < 2147483648L))))) {
-            i3 = 0;
-        } else if (i2 < 8 || memoryClass <= 160 || ((ceil != -1 && ceil <= 2055) || (ceil == -1 && i2 == 8 && i <= 23))) {
-            i3 = 1;
+        if (i >= 21 && i2 > 2 && memoryClass > 100 && ((i2 > 4 || ceil == -1 || ceil > 1250) && ((i2 > 4 || ceil > 1600 || memoryClass > 128 || i > 21) && ((i2 > 4 || ceil > 1300 || memoryClass > 128 || i > 24) && (j == -1 || j >= 2147483648L))))) {
+            i3 = (i2 < 8 || memoryClass <= 160 || (ceil != -1 && ceil <= 2055) || (ceil == -1 && i2 == 8 && i <= 23)) ? 1 : 2;
         }
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d("device performance info selected_class = " + i3 + " (cpu_count = " + i2 + ", freq = " + ceil + ", memoryClass = " + memoryClass + ", android version " + i + ", manufacture " + Build.MANUFACTURER + ", screenRefreshRate=" + AndroidUtilities.screenRefreshRate + ")");

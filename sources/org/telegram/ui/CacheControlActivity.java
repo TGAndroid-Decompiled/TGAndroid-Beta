@@ -1004,8 +1004,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         frameLayout.addView(this.actionModeClearButton, LayoutHelper.createFrame(-2, 28.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
         ActionBarMenuSubItem addSubItem = this.actionBar.createMenu().addItem(2, R.drawable.ic_ab_other).addSubItem(3, R.drawable.msg_delete, LocaleController.getString("ClearLocalDatabase", R.string.ClearLocalDatabase));
         this.clearDatabaseItem = addSubItem;
-        addSubItem.setIconColor(Theme.getColor("dialogRedIcon"));
-        this.clearDatabaseItem.setTextColor(Theme.getColor("dialogTextRed"));
+        addSubItem.setIconColor(Theme.getColor("text_RedRegular"));
+        this.clearDatabaseItem.setTextColor(Theme.getColor("text_RedBold"));
+        this.clearDatabaseItem.setSelectorColor(Theme.multAlpha(Theme.getColor("text_RedRegular"), 0.12f));
         updateDatabaseItemSize();
         this.listAdapter = new ListAdapter(context);
         NestedSizeNotifierLayout nestedSizeNotifierLayout = new NestedSizeNotifierLayout(context) {
@@ -1162,7 +1163,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         showDialog(create);
         TextView textView = (TextView) create.getButton(-1);
         if (textView != null) {
-            textView.setTextColor(Theme.getColor("dialogTextRed"));
+            textView.setTextColor(Theme.getColor("text_RedBold"));
         }
     }
 
@@ -1362,7 +1363,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         showDialog(create);
         TextView textView = (TextView) create.getButton(-1);
         if (textView != null) {
-            textView.setTextColor(Theme.getColor("dialogTextRed"));
+            textView.setTextColor(Theme.getColor("text_RedBold"));
         }
     }
 

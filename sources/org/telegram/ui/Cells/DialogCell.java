@@ -812,42 +812,45 @@ public class DialogCell extends BaseCell {
     private CharSequence formatArchivedDialogNames() {
         TLRPC$User tLRPC$User;
         String replace;
-        ArrayList<TLRPC$Dialog> dialogs = MessagesController.getInstance(this.currentAccount).getDialogs(this.currentDialogFolderId);
+        MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
+        ArrayList<TLRPC$Dialog> dialogs = messagesController.getDialogs(this.currentDialogFolderId);
         this.currentDialogFolderDialogsCount = dialogs.size();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         int size = dialogs.size();
         for (int i = 0; i < size; i++) {
             TLRPC$Dialog tLRPC$Dialog = dialogs.get(i);
-            TLRPC$Chat tLRPC$Chat = null;
-            if (DialogObject.isEncryptedDialog(tLRPC$Dialog.id)) {
-                TLRPC$EncryptedChat encryptedChat = MessagesController.getInstance(this.currentAccount).getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(tLRPC$Dialog.id)));
-                tLRPC$User = encryptedChat != null ? MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(encryptedChat.user_id)) : null;
-            } else if (DialogObject.isUserDialog(tLRPC$Dialog.id)) {
-                tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$Dialog.id));
-            } else {
-                tLRPC$Chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.id));
-                tLRPC$User = null;
-            }
-            if (tLRPC$Chat != null) {
-                replace = tLRPC$Chat.title.replace('\n', ' ');
-            } else if (tLRPC$User == null) {
-                continue;
-            } else if (UserObject.isDeleted(tLRPC$User)) {
-                replace = LocaleController.getString("HiddenName", R.string.HiddenName);
-            } else {
-                replace = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace('\n', ' ');
-            }
-            if (spannableStringBuilder.length() > 0) {
-                spannableStringBuilder.append((CharSequence) ", ");
-            }
-            int length = spannableStringBuilder.length();
-            int length2 = replace.length() + length;
-            spannableStringBuilder.append((CharSequence) replace);
-            if (tLRPC$Dialog.unread_count > 0) {
-                spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, Theme.getColor("chats_nameArchived", this.resourcesProvider)), length, length2, 33);
-            }
-            if (spannableStringBuilder.length() > 150) {
-                break;
+            if (!messagesController.isHiddenByUndo(tLRPC$Dialog.id)) {
+                TLRPC$Chat tLRPC$Chat = null;
+                if (DialogObject.isEncryptedDialog(tLRPC$Dialog.id)) {
+                    TLRPC$EncryptedChat encryptedChat = messagesController.getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(tLRPC$Dialog.id)));
+                    tLRPC$User = encryptedChat != null ? messagesController.getUser(Long.valueOf(encryptedChat.user_id)) : null;
+                } else if (DialogObject.isUserDialog(tLRPC$Dialog.id)) {
+                    tLRPC$User = messagesController.getUser(Long.valueOf(tLRPC$Dialog.id));
+                } else {
+                    tLRPC$Chat = messagesController.getChat(Long.valueOf(-tLRPC$Dialog.id));
+                    tLRPC$User = null;
+                }
+                if (tLRPC$Chat != null) {
+                    replace = tLRPC$Chat.title.replace('\n', ' ');
+                } else if (tLRPC$User == null) {
+                    continue;
+                } else if (UserObject.isDeleted(tLRPC$User)) {
+                    replace = LocaleController.getString("HiddenName", R.string.HiddenName);
+                } else {
+                    replace = ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace('\n', ' ');
+                }
+                if (spannableStringBuilder.length() > 0) {
+                    spannableStringBuilder.append((CharSequence) ", ");
+                }
+                int length = spannableStringBuilder.length();
+                int length2 = replace.length() + length;
+                spannableStringBuilder.append((CharSequence) replace);
+                if (tLRPC$Dialog.unread_count > 0) {
+                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, Theme.getColor("chats_nameArchived", this.resourcesProvider)), length, length2, 33);
+                }
+                if (spannableStringBuilder.length() > 150) {
+                    break;
+                }
             }
         }
         return Emoji.replaceEmoji(spannableStringBuilder, Theme.dialogs_messagePaint[this.paintIndex].getFontMetricsInt(), AndroidUtilities.dp(17.0f), false);

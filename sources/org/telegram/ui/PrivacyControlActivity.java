@@ -1604,7 +1604,7 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                     PrivacyControlActivity.this.oldPhotoCell.setText(LocaleController.getString("RemovePublicPhoto", R.string.RemovePublicPhoto), false);
                     PrivacyControlActivity.this.oldPhotoCell.getImageView().setVisibility(0);
                     PrivacyControlActivity.this.oldPhotoCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                    PrivacyControlActivity.this.oldPhotoCell.setColors("windowBackgroundWhiteRedText", "windowBackgroundWhiteRedText");
+                    PrivacyControlActivity.this.oldPhotoCell.setColors("text_RedRegular", "text_RedRegular");
                     PrivacyControlActivity.this.oldPhotoCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     view = PrivacyControlActivity.this.oldPhotoCell;
                 }

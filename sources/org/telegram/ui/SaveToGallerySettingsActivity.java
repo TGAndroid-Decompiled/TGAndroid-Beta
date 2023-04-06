@@ -272,7 +272,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext());
             ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_customize, LocaleController.getString("EditException", R.string.EditException), false, null);
             ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_delete, LocaleController.getString("DeleteException", R.string.DeleteException), false, null);
-            addItem2.setColors(Theme.getColor("windowBackgroundWhiteRedText"), Theme.getColor("windowBackgroundWhiteRedText"));
+            addItem2.setColors(Theme.getColor("text_RedRegular"), Theme.getColor("text_RedRegular"));
             final ActionBarPopupWindow createSimplePopup = AlertsCreator.createSimplePopup(this, actionBarPopupWindowLayout, view, f, f2);
             actionBarPopupWindowLayout.setParentWindow(createSimplePopup);
             addItem.setOnClickListener(new View.OnClickListener() {
@@ -411,7 +411,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                 case 4:
                     TextCell textCell3 = new TextCell(viewGroup.getContext());
                     textCell3.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
-                    textCell3.setColors(null, "windowBackgroundWhiteRedText5");
+                    textCell3.setColors(null, "text_RedRegular");
                     textCell3.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                     textCell = textCell3;
                     shadowSectionCell = textCell;

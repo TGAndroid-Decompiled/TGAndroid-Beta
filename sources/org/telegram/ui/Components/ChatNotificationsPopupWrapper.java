@@ -254,7 +254,7 @@ public class ChatNotificationsPopupWrapper {
             this.soundToggle.setVisibility(8);
         } else {
             this.muteUnmuteButton.setTextAndIcon(LocaleController.getString("MuteNotifications", R.string.MuteNotifications), R.drawable.msg_mute);
-            int color = Theme.getColor("dialogTextRed");
+            int color = Theme.getColor("text_RedBold");
             this.soundToggle.setVisibility(0);
             if (MessagesController.getInstance(this.currentAccount).isDialogNotificationsSoundEnabled(j, i)) {
                 this.soundToggle.setTextAndIcon(LocaleController.getString("SoundOff", R.string.SoundOff), R.drawable.msg_tone_off);

@@ -90,8 +90,8 @@ public class OutlineTextContainerView extends FrameLayout {
     }
 
     public void updateColor() {
-        this.textPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteHintText"), Theme.getColor("windowBackgroundWhiteValueText"), this.forceUseCenter ? 0.0f : this.selectionProgress), Theme.getColor("dialogTextRed"), this.errorProgress));
-        setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteInputField"), Theme.getColor("windowBackgroundWhiteInputFieldActivated"), this.forceUseCenter ? 0.0f : this.selectionProgress), Theme.getColor("dialogTextRed"), this.errorProgress));
+        this.textPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteHintText"), Theme.getColor("windowBackgroundWhiteValueText"), this.forceUseCenter ? 0.0f : this.selectionProgress), Theme.getColor("text_RedBold"), this.errorProgress));
+        setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteInputField"), Theme.getColor("windowBackgroundWhiteInputFieldActivated"), this.forceUseCenter ? 0.0f : this.selectionProgress), Theme.getColor("text_RedBold"), this.errorProgress));
     }
 
     public void animateSelection(float f) {

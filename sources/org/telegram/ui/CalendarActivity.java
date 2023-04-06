@@ -307,9 +307,9 @@ public class CalendarActivity extends BaseFragment {
             this.bottomBar.addView(this.removeDaysButton, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
             this.contentView.addView(this.bottomBar, LayoutHelper.createFrame(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
             this.selectDaysButton.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("chat_fieldOverlayText"), 51), 2));
-            this.removeDaysButton.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("dialogTextRed"), 51), 2));
+            this.removeDaysButton.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("text_RedBold"), 51), 2));
             this.selectDaysButton.setTextColor(Theme.getColor("chat_fieldOverlayText"));
-            this.removeDaysButton.setTextColor(Theme.getColor("dialogTextRed"));
+            this.removeDaysButton.setTextColor(Theme.getColor("text_RedBold"));
         }
         return this.fragmentView;
     }

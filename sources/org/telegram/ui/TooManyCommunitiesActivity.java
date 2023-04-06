@@ -753,7 +753,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
         arrayList.add(new ThemeDescription(this.buttonTextView, 0, null, null, null, themeDescriptionDelegate, "featuredStickers_addButton"));
         arrayList.add(new ThemeDescription(this.buttonTextView, 0, null, null, null, themeDescriptionDelegate, "featuredStickers_addButtonPressed"));
         arrayList.add(new ThemeDescription(this.progressBar, 0, null, null, null, themeDescriptionDelegate, "featuredStickers_addButtonPressed"));
-        arrayList.add(new ThemeDescription(this.hintCell, 0, new Class[]{TooManyCommunitiesHintCell.class}, new String[]{"imageLayout"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "dialogRedIcon"));
+        arrayList.add(new ThemeDescription(this.hintCell, 0, new Class[]{TooManyCommunitiesHintCell.class}, new String[]{"imageLayout"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "text_RedRegular"));
         return arrayList;
     }
 

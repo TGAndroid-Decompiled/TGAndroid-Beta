@@ -7,6 +7,7 @@ public class TLRPC$TL_chatInviteImporter extends TLObject {
     public int flags;
     public boolean requested;
     public long user_id;
+    public boolean via_chatlist;
 
     public static TLRPC$TL_chatInviteImporter TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (constructor != i) {
@@ -25,6 +26,7 @@ public class TLRPC$TL_chatInviteImporter extends TLObject {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.requested = (readInt32 & 1) != 0;
+        this.via_chatlist = (readInt32 & 8) != 0;
         this.user_id = abstractSerializedData.readInt64(z);
         this.date = abstractSerializedData.readInt32(z);
         if ((this.flags & 4) != 0) {
@@ -40,7 +42,9 @@ public class TLRPC$TL_chatInviteImporter extends TLObject {
         abstractSerializedData.writeInt32(constructor);
         int i = this.requested ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
-        abstractSerializedData.writeInt32(i);
+        int i2 = this.via_chatlist ? i | 8 : i & (-9);
+        this.flags = i2;
+        abstractSerializedData.writeInt32(i2);
         abstractSerializedData.writeInt64(this.user_id);
         abstractSerializedData.writeInt32(this.date);
         if ((this.flags & 4) != 0) {

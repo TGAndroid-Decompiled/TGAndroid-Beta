@@ -872,7 +872,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                     Bundle bundle = new Bundle();
                     bundle.putLong("user_id", j2);
                     if (BotWebViewSheet.this.parentActivity instanceof LaunchActivity) {
-                        ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$77(new ChatActivity(bundle));
+                        ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$79(new ChatActivity(bundle));
                     }
                     BotWebViewSheet.this.dismiss();
                 } else if (i5 == R.id.menu_reload_page) {
@@ -1134,7 +1134,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
             create.show();
-            ((TextView) create.getButton(-1)).setTextColor(getColor("dialogTextRed"));
+            ((TextView) create.getButton(-1)).setTextColor(getColor("text_RedBold"));
             return false;
         }
         dismiss();

@@ -1296,7 +1296,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         int min = (int) ((Math.min(point.x, point.y) / 2) / AndroidUtilities.density);
         if (this.importingStickers != null) {
             this.previewSendButton.setText(LocaleController.getString("ImportStickersRemove", R.string.ImportStickersRemove));
-            this.previewSendButton.setTextColor(getThemedColor("dialogTextRed"));
+            this.previewSendButton.setTextColor(getThemedColor("text_RedBold"));
             float f = min;
             this.stickerImageView.setLayoutParams(LayoutHelper.createFrame(min, f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
             this.stickerEmojiTextView.setLayoutParams(LayoutHelper.createFrame(min, f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
@@ -1568,14 +1568,14 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                         public final void onClick(View view) {
                             StickersAlert.this.lambda$updateFields$18(view);
                         }
-                    }, formatPluralString, "dialogTextRed");
+                    }, formatPluralString, "text_RedBold");
                 } else {
                     setButton(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
                             StickersAlert.this.lambda$updateFields$19(view);
                         }
-                    }, formatPluralString, "dialogTextRed");
+                    }, formatPluralString, "text_RedBold");
                 }
             }
             this.adapter.notifyDataSetChanged();
@@ -1621,7 +1621,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         if (baseFragment != null) {
             new PremiumFeatureBottomSheet(baseFragment, 11, false).show();
         } else if (getContext() instanceof LaunchActivity) {
-            ((LaunchActivity) getContext()).lambda$runLinkRequest$77(new PremiumPreviewFragment(null));
+            ((LaunchActivity) getContext()).lambda$runLinkRequest$79(new PremiumPreviewFragment(null));
         }
     }
 
@@ -1737,7 +1737,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         frameLayout.addView(textView2, LayoutHelper.createFrame(-2, 36, 51));
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         editTextBoldCursor.setBackground(null);
-        editTextBoldCursor.setLineColors(Theme.getColor("dialogInputField"), Theme.getColor("dialogInputFieldActivated"), Theme.getColor("dialogTextRed"));
+        editTextBoldCursor.setLineColors(Theme.getColor("dialogInputField"), Theme.getColor("dialogInputFieldActivated"), Theme.getColor("text_RedBold"));
         editTextBoldCursor.setTextSize(1, 16.0f);
         editTextBoldCursor.setTextColor(getThemedColor("dialogTextBlack"));
         editTextBoldCursor.setMaxLines(1);
@@ -1918,7 +1918,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         if (str != null) {
             if (str.startsWith("_") || str.endsWith("_")) {
                 textView.setText(LocaleController.getString("ImportStickersLinkInvalid", R.string.ImportStickersLinkInvalid));
-                textView.setTextColor(getThemedColor("windowBackgroundWhiteRedText4"));
+                textView.setTextColor(getThemedColor("text_RedRegular"));
                 return;
             }
             int length = str.length();
@@ -1926,17 +1926,17 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 char charAt = str.charAt(i);
                 if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && charAt != '_'))) {
                     textView.setText(LocaleController.getString("ImportStickersEnterUrlInfo", R.string.ImportStickersEnterUrlInfo));
-                    textView.setTextColor(getThemedColor("windowBackgroundWhiteRedText4"));
+                    textView.setTextColor(getThemedColor("text_RedRegular"));
                     return;
                 }
             }
         }
         if (str == null || str.length() < 5) {
             textView.setText(LocaleController.getString("ImportStickersLinkInvalidShort", R.string.ImportStickersLinkInvalidShort));
-            textView.setTextColor(getThemedColor("windowBackgroundWhiteRedText4"));
+            textView.setTextColor(getThemedColor("text_RedRegular"));
         } else if (str.length() > 32) {
             textView.setText(LocaleController.getString("ImportStickersLinkInvalidLong", R.string.ImportStickersLinkInvalidLong));
-            textView.setTextColor(getThemedColor("windowBackgroundWhiteRedText4"));
+            textView.setTextColor(getThemedColor("text_RedRegular"));
         } else {
             textView.setText(LocaleController.getString("ImportStickersLinkChecking", R.string.ImportStickersLinkChecking));
             textView.setTextColor(getThemedColor("windowBackgroundWhiteGrayText8"));
@@ -1985,7 +1985,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             return;
         }
         textView.setText(LocaleController.getString("ImportStickersLinkTaken", R.string.ImportStickersLinkTaken));
-        textView.setTextColor(getThemedColor("windowBackgroundWhiteRedText4"));
+        textView.setTextColor(getThemedColor("text_RedRegular"));
         this.lastNameAvailable = false;
     }
 
@@ -2266,7 +2266,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             marginLayoutParams3.bottomMargin = dp2;
             marginLayoutParams4.bottomMargin = dp2;
         } else {
-            this.pickerBottomLayout.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor("dialogBackground"), Theme.multAlpha(getThemedColor("dialogTextRed"), 0.1f)));
+            this.pickerBottomLayout.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor("dialogBackground"), Theme.multAlpha(getThemedColor("text_RedBold"), 0.1f)));
             this.pickerBottomFrameLayout.setBackgroundColor(0);
             marginLayoutParams.bottomMargin = 0;
             marginLayoutParams.rightMargin = 0;

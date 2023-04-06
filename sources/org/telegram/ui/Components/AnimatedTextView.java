@@ -8,6 +8,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -45,6 +48,10 @@ public class AnimatedTextView extends View {
         private Part[] currentParts;
         private CharSequence currentText;
         private float currentWidth;
+        private boolean ellipsizeByGradient;
+        private LinearGradient ellipsizeGradient;
+        private Matrix ellipsizeGradientMatrix;
+        private Paint ellipsizePaint;
         private int gravity;
         public boolean ignoreRTL;
         private boolean isRTL;
@@ -118,160 +125,18 @@ public class AnimatedTextView extends View {
             this.allowCancel = z;
         }
 
+        public void setEllipsizeByGradient(boolean z) {
+            this.ellipsizeByGradient = z;
+            invalidateSelf();
+        }
+
         public void setOnAnimationFinishListener(Runnable runnable) {
             this.onAnimationFinishListener = runnable;
         }
 
         @Override
-        public void draw(Canvas canvas) {
-            float f;
-            float f2;
-            float f3;
-            float f4;
-            float f5;
-            float f6;
-            float f7;
-            float f8;
-            float f9;
-            canvas.save();
-            android.graphics.Rect rect = this.bounds;
-            canvas.translate(rect.left, rect.top);
-            int width = this.bounds.width();
-            int height = this.bounds.height();
-            if (this.currentParts != null && this.oldParts != null) {
-                float f10 = this.t;
-                if (f10 != 1.0f) {
-                    float lerp = AndroidUtilities.lerp(this.oldWidth, this.currentWidth, f10);
-                    canvas.translate(0.0f, (height - AndroidUtilities.lerp(this.oldHeight, this.currentHeight, this.t)) / 2.0f);
-                    int i = 0;
-                    while (true) {
-                        Part[] partArr = this.currentParts;
-                        if (i >= partArr.length) {
-                            break;
-                        }
-                        Part part = partArr[i];
-                        int i2 = part.toOppositeIndex;
-                        float f11 = part.offset;
-                        if (i2 >= 0) {
-                            boolean z = this.isRTL;
-                            if (z && !this.ignoreRTL) {
-                                f11 = this.currentWidth - (f11 + part.width);
-                            }
-                            Part part2 = this.oldParts[i2];
-                            float f12 = part2.offset;
-                            if (z && !this.ignoreRTL) {
-                                f12 = this.oldWidth - (f12 + part2.width);
-                            }
-                            f7 = AndroidUtilities.lerp(f12 - part2.left, f11 - part.left, this.t);
-                            this.textPaint.setAlpha(this.alpha);
-                            f8 = 0.0f;
-                        } else {
-                            if (this.isRTL && !this.ignoreRTL) {
-                                f11 = this.currentWidth - (f11 + part.width);
-                            }
-                            f7 = f11 - part.left;
-                            float f13 = (-this.textPaint.getTextSize()) * this.moveAmplitude;
-                            float f14 = this.t;
-                            f8 = f13 * (1.0f - f14) * (this.moveDown ? 1.0f : -1.0f);
-                            this.textPaint.setAlpha((int) (this.alpha * f14));
-                        }
-                        canvas.save();
-                        float f15 = i2 >= 0 ? lerp : this.currentWidth;
-                        int i3 = this.gravity;
-                        if ((i3 | (-4)) != -1) {
-                            if ((i3 | (-6)) != -1) {
-                                if ((i3 | (-2)) == -1) {
-                                    f9 = (width - f15) / 2.0f;
-                                    f7 += f9;
-                                } else if (this.isRTL) {
-                                    if (this.ignoreRTL) {
-                                    }
-                                }
-                            }
-                            f9 = width - f15;
-                            f7 += f9;
-                        }
-                        canvas.translate(f7, f8);
-                        part.layout.draw(canvas);
-                        canvas.restore();
-                        i++;
-                    }
-                    int i4 = 0;
-                    while (true) {
-                        Part[] partArr2 = this.oldParts;
-                        if (i4 >= partArr2.length) {
-                            break;
-                        }
-                        Part part3 = partArr2[i4];
-                        if (part3.toOppositeIndex < 0) {
-                            float f16 = part3.offset;
-                            float textSize = this.textPaint.getTextSize() * this.moveAmplitude;
-                            float f17 = this.t;
-                            float f18 = textSize * f17 * (this.moveDown ? 1.0f : -1.0f);
-                            this.textPaint.setAlpha((int) (this.alpha * (1.0f - f17)));
-                            canvas.save();
-                            boolean z2 = this.isRTL;
-                            if (z2 && !this.ignoreRTL) {
-                                f16 = this.oldWidth - (f16 + part3.width);
-                            }
-                            float f19 = f16 - part3.left;
-                            int i5 = this.gravity;
-                            if ((i5 | (-4)) != -1) {
-                                if ((i5 | (-6)) == -1) {
-                                    f4 = width;
-                                    f5 = this.oldWidth;
-                                } else if ((i5 | (-2)) == -1) {
-                                    f6 = (width - this.oldWidth) / 2.0f;
-                                    f19 += f6;
-                                } else if (z2 && !this.ignoreRTL) {
-                                    f4 = width;
-                                    f5 = this.oldWidth;
-                                }
-                                f6 = f4 - f5;
-                                f19 += f6;
-                            }
-                            canvas.translate(f19, f18);
-                            part3.layout.draw(canvas);
-                            canvas.restore();
-                        }
-                        i4++;
-                    }
-                    canvas.restore();
-                }
-            }
-            canvas.translate(0.0f, (height - this.currentHeight) / 2.0f);
-            if (this.currentParts != null) {
-                this.textPaint.setAlpha(this.alpha);
-                for (int i6 = 0; i6 < this.currentParts.length; i6++) {
-                    canvas.save();
-                    Part part4 = this.currentParts[i6];
-                    float f20 = part4.offset;
-                    boolean z3 = this.isRTL;
-                    if (z3 && !this.ignoreRTL) {
-                        f20 = this.currentWidth - (f20 + part4.width);
-                    }
-                    float f21 = f20 - part4.left;
-                    int i7 = this.gravity;
-                    if ((i7 | (-4)) != -1) {
-                        if ((i7 | (-6)) == -1) {
-                            f = width;
-                            f2 = this.currentWidth;
-                        } else if ((i7 | (-2)) == -1) {
-                            f3 = (width - this.currentWidth) / 2.0f;
-                            f21 += f3;
-                        } else if (z3 && !this.ignoreRTL) {
-                            f = width;
-                            f2 = this.currentWidth;
-                        }
-                        f3 = f - f2;
-                        f21 += f3;
-                    }
-                    canvas.translate(f21, 0.0f);
-                    part4.layout.draw(canvas);
-                    canvas.restore();
-                }
-            }
-            canvas.restore();
+        public void draw(android.graphics.Canvas r17) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedTextView.AnimatedTextDrawable.draw(android.graphics.Canvas):void");
         }
 
         public void cancelAnimation() {
@@ -955,5 +820,9 @@ public class AnimatedTextView extends View {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.TextView");
         accessibilityNodeInfo.setText(getText());
+    }
+
+    public void setEllipsizeByGradient(boolean z) {
+        this.drawable.setEllipsizeByGradient(z);
     }
 }

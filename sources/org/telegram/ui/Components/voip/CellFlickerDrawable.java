@@ -88,7 +88,7 @@ public class CellFlickerDrawable {
     }
 
     private void update(View view) {
-        if (this.progress <= 1.0f || this.repeatEnabled) {
+        if (this.repeatEnabled || this.progress < 1.0f) {
             if (view != null) {
                 view.invalidate();
             }
@@ -111,14 +111,14 @@ public class CellFlickerDrawable {
             } else {
                 this.lastUpdateTime = currentTimeMillis;
             }
-            int i = this.parentWidth;
-            int i2 = this.size;
-            float f2 = ((i + (i2 * 2)) * this.progress) - i2;
-            this.matrix.reset();
-            this.matrix.setTranslate(f2, 0.0f);
-            this.gradientShader.setLocalMatrix(this.matrix);
-            this.gradientShader2.setLocalMatrix(this.matrix);
         }
+        int i = this.parentWidth;
+        int i2 = this.size;
+        float f2 = ((i + (i2 * 2)) * this.progress) - i2;
+        this.matrix.reset();
+        this.matrix.setTranslate(f2, 0.0f);
+        this.gradientShader.setLocalMatrix(this.matrix);
+        this.gradientShader2.setLocalMatrix(this.matrix);
     }
 
     public void draw(Canvas canvas, GroupCallMiniTextureView groupCallMiniTextureView) {

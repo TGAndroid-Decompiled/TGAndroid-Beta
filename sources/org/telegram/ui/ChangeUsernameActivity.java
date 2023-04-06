@@ -581,7 +581,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                         int indexOf = charSequence.toString().indexOf(10);
                         if (indexOf >= 0) {
                             charSequence.replace(indexOf, indexOf + 1, " ");
-                            charSequence.setSpan(new ForegroundColorSpan(ChangeUsernameActivity.this.getThemedColor("windowBackgroundWhiteRedText4")), 0, indexOf, 33);
+                            charSequence.setSpan(new ForegroundColorSpan(ChangeUsernameActivity.this.getThemedColor("text_RedRegular")), 0, indexOf, 33);
                         }
                         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
                         for (int i = 0; i < typefaceSpanArr.length; i++) {
@@ -1107,8 +1107,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                 LinkSpanDrawable.LinksTextView linksTextView2 = this.statusTextView;
                 if (linksTextView2 != null) {
                     linksTextView2.setText(LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
-                    this.statusTextView.setTag("windowBackgroundWhiteRedText4");
-                    this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+                    this.statusTextView.setTag("text_RedRegular");
+                    this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
                     UsernameHelpCell usernameHelpCell2 = this.helpCell;
                     if (usernameHelpCell2 != null) {
                         usernameHelpCell2.update();
@@ -1125,8 +1125,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                         LinkSpanDrawable.LinksTextView linksTextView3 = this.statusTextView;
                         if (linksTextView3 != null) {
                             linksTextView3.setText(LocaleController.getString("UsernameInvalidStartNumber", R.string.UsernameInvalidStartNumber));
-                            this.statusTextView.setTag("windowBackgroundWhiteRedText4");
-                            this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+                            this.statusTextView.setTag("text_RedRegular");
+                            this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
                             UsernameHelpCell usernameHelpCell3 = this.helpCell;
                             if (usernameHelpCell3 != null) {
                                 usernameHelpCell3.update();
@@ -1141,8 +1141,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                         LinkSpanDrawable.LinksTextView linksTextView4 = this.statusTextView;
                         if (linksTextView4 != null) {
                             linksTextView4.setText(LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
-                            this.statusTextView.setTag("windowBackgroundWhiteRedText4");
-                            this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+                            this.statusTextView.setTag("text_RedRegular");
+                            this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
                             UsernameHelpCell usernameHelpCell4 = this.helpCell;
                             if (usernameHelpCell4 != null) {
                                 usernameHelpCell4.update();
@@ -1160,8 +1160,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                 LinkSpanDrawable.LinksTextView linksTextView5 = this.statusTextView;
                 if (linksTextView5 != null) {
                     linksTextView5.setText(LocaleController.getString("UsernameInvalidShort", R.string.UsernameInvalidShort));
-                    this.statusTextView.setTag("windowBackgroundWhiteRedText4");
-                    this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+                    this.statusTextView.setTag("text_RedRegular");
+                    this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
                     UsernameHelpCell usernameHelpCell5 = this.helpCell;
                     if (usernameHelpCell5 != null) {
                         usernameHelpCell5.update();
@@ -1176,8 +1176,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                 LinkSpanDrawable.LinksTextView linksTextView6 = this.statusTextView;
                 if (linksTextView6 != null) {
                     linksTextView6.setText(LocaleController.getString("UsernameInvalidLong", R.string.UsernameInvalidLong));
-                    this.statusTextView.setTag("windowBackgroundWhiteRedText4");
-                    this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+                    this.statusTextView.setTag("text_RedRegular");
+                    this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
                     UsernameHelpCell usernameHelpCell6 = this.helpCell;
                     if (usernameHelpCell6 != null) {
                         usernameHelpCell6.update();
@@ -1268,8 +1268,8 @@ public class ChangeUsernameActivity extends BaseFragment {
         } else if (this.statusTextView != null) {
             if (tLRPC$TL_error != null && "USERNAME_INVALID".equals(tLRPC$TL_error.text) && tLRPC$TL_account_checkUsername.username.length() == 4) {
                 this.statusTextView.setText(LocaleController.getString("UsernameInvalidShort", R.string.UsernameInvalidShort));
-                this.statusTextView.setTag("windowBackgroundWhiteRedText4");
-                this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+                this.statusTextView.setTag("text_RedRegular");
+                this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
             } else if (tLRPC$TL_error != null && "USERNAME_PURCHASE_AVAILABLE".equals(tLRPC$TL_error.text)) {
                 if (tLRPC$TL_account_checkUsername.username.length() == 4) {
                     this.statusTextView.setText(LocaleController.getString("UsernameInvalidShortPurchase", R.string.UsernameInvalidShortPurchase));
@@ -1280,8 +1280,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                 this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText8"));
             } else {
                 this.statusTextView.setText(LocaleController.getString("UsernameInUse", R.string.UsernameInUse));
-                this.statusTextView.setTag("windowBackgroundWhiteRedText4");
-                this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteRedText4"));
+                this.statusTextView.setTag("text_RedRegular");
+                this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
             }
             UsernameHelpCell usernameHelpCell2 = this.helpCell;
             if (usernameHelpCell2 != null) {

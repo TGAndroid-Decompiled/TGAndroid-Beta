@@ -436,7 +436,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 showDialog(create);
                 TextView textView = (TextView) create.getButton(-1);
                 if (textView != null) {
-                    textView.setTextColor(Theme.getColor("dialogTextRed"));
+                    textView.setTextColor(Theme.getColor("text_RedBold"));
                 }
             }
         }
@@ -1183,7 +1183,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 ManageChatTextCell manageChatTextCell = (ManageChatTextCell) viewHolder.itemView;
                 if (ChatLinkActivity.this.isChannel) {
                     if (ChatLinkActivity.this.info.linked_chat_id != 0) {
-                        manageChatTextCell.setColors("windowBackgroundWhiteRedText5", "windowBackgroundWhiteRedText5");
+                        manageChatTextCell.setColors("text_RedRegular", "text_RedRegular");
                         manageChatTextCell.setText(LocaleController.getString("DiscussionUnlinkGroup", R.string.DiscussionUnlinkGroup), null, R.drawable.msg_remove, false);
                         return;
                     }
@@ -1191,7 +1191,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                     manageChatTextCell.setText(LocaleController.getString("DiscussionCreateGroup", R.string.DiscussionCreateGroup), null, R.drawable.msg_groups, true);
                     return;
                 }
-                manageChatTextCell.setColors("windowBackgroundWhiteRedText5", "windowBackgroundWhiteRedText5");
+                manageChatTextCell.setColors("text_RedRegular", "text_RedRegular");
                 manageChatTextCell.setText(LocaleController.getString("DiscussionUnlinkChannel", R.string.DiscussionUnlinkChannel), null, R.drawable.msg_remove, false);
             }
         }

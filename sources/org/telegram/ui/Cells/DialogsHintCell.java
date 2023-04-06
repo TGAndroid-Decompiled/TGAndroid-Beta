@@ -53,7 +53,6 @@ public class DialogsHintCell extends FrameLayout {
     public void updateColors() {
         this.titleView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         this.messageView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
-        setBackground(Theme.AdaptiveRipple.filledRect());
     }
 
     public void setText(CharSequence charSequence, CharSequence charSequence2) {

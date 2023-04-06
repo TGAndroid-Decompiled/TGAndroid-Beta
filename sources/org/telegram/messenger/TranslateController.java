@@ -38,7 +38,7 @@ import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.ui.Components.TranslateAlert2;
 import org.telegram.ui.RestrictedLanguagesSelectActivity;
 public class TranslateController extends BaseController {
-    private static final int GROUPING_TRANSLATIONS_TIMEOUT = 200;
+    private static final int GROUPING_TRANSLATIONS_TIMEOUT = 80;
     private static final int MAX_MESSAGES_PER_REQUEST = 20;
     private static final int MAX_SYMBOLS_PER_REQUEST = 25000;
     private static final float REQUIRED_MIN_PERCENTAGE_MESSAGES_UNKNOWN = 0.65f;
@@ -752,6 +752,7 @@ public class TranslateController extends BaseController {
 
     public static class PendingTranslation {
         ArrayList<Utilities.Callback2<TLRPC$TL_textWithEntities, String>> callbacks;
+        int delay;
         String language;
         ArrayList<Integer> messageIds;
         ArrayList<TLRPC$TL_textWithEntities> messageTexts;
@@ -763,6 +764,7 @@ public class TranslateController extends BaseController {
             this.messageIds = new ArrayList<>();
             this.messageTexts = new ArrayList<>();
             this.callbacks = new ArrayList<>();
+            this.delay = TranslateController.GROUPING_TRANSLATIONS_TIMEOUT;
             this.reqId = -1;
         }
     }
@@ -809,6 +811,8 @@ public class TranslateController extends BaseController {
                 }
             }
             if (pendingTranslation.symbolsCount + i >= MAX_SYMBOLS_PER_REQUEST || pendingTranslation.messageIds.size() + 1 >= 20) {
+                AndroidUtilities.cancelRunOnUIThread(pendingTranslation.runnable);
+                AndroidUtilities.runOnUIThread(pendingTranslation.runnable);
                 pendingTranslation = new PendingTranslation();
                 arrayList.add(pendingTranslation);
             }
@@ -835,7 +839,8 @@ public class TranslateController extends BaseController {
                 }
             };
             pendingTranslation.runnable = runnable2;
-            AndroidUtilities.runOnUIThread(runnable2, 200L);
+            AndroidUtilities.runOnUIThread(runnable2, pendingTranslation.delay);
+            pendingTranslation.delay /= 2;
         }
     }
 

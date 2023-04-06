@@ -127,7 +127,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
                 TopicsNotifySettingsFragments.this.showDialog(create);
                 TextView textView = (TextView) create.getButton(-1);
                 if (textView != null) {
-                    textView.setTextColor(Theme.getColor("dialogTextRed"));
+                    textView.setTextColor(Theme.getColor("text_RedBold"));
                 }
             }
         }
@@ -274,7 +274,7 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
             } else if (i == 4) {
                 TextCell textCell3 = new TextCell(viewGroup.getContext());
                 textCell3.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
-                textCell3.setColors(null, "windowBackgroundWhiteRedText5");
+                textCell3.setColors(null, "text_RedRegular");
                 textCell3.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
                 textCell = textCell3;
             }

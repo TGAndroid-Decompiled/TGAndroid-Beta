@@ -452,7 +452,7 @@ public class ThemeDescription {
         if (view13 instanceof RecyclerListView) {
             RecyclerListView recyclerListView = (RecyclerListView) view13;
             if ((this.changeFlags & FLAG_SELECTOR) != 0) {
-                recyclerListView.setListSelectorColor(i);
+                recyclerListView.setListSelectorColor(Integer.valueOf(i));
             }
             if ((this.changeFlags & FLAG_FASTSCROLL) != 0) {
                 recyclerListView.updateFastScrollColors();

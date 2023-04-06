@@ -945,7 +945,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         showDialog(create);
         TextView textView = (TextView) create.getButton(-1);
         if (textView != null) {
-            textView.setTextColor(getThemedColor("dialogTextRed"));
+            textView.setTextColor(getThemedColor("text_RedBold"));
         }
     }
 

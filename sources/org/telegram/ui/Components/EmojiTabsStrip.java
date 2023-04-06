@@ -782,7 +782,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
             };
             this.imageView = imageView;
             imageView.setImageDrawable(drawable);
-            if (drawable instanceof AnimatedEmojiDrawable) {
+            if ((drawable instanceof AnimatedEmojiDrawable) || (drawable instanceof DelayedAnimatedEmojiDrawable)) {
                 this.isAnimatedEmoji = true;
                 this.imageView.setColorFilter(EmojiTabsStrip.this.getEmojiColorFilter());
             }

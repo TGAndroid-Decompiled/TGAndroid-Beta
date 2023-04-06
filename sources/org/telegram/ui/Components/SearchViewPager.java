@@ -500,7 +500,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             });
             TextView textView = (TextView) builder.show().getButton(-1);
             if (textView != null) {
-                textView.setTextColor(Theme.getColor("dialogTextRed"));
+                textView.setTextColor(Theme.getColor("text_RedBold"));
             }
         } else if (i == 203) {
             if (isSpeedItemVisible()) {

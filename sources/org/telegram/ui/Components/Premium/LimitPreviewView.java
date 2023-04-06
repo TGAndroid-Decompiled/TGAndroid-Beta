@@ -52,8 +52,12 @@ public class LimitPreviewView extends LinearLayout {
     boolean wasAnimation;
     boolean wasHaptic;
 
-    @SuppressLint({"SetTextI18n"})
     public LimitPreviewView(Context context, int i, int i2, int i3) {
+        this(context, i, i2, i3, 0.5f);
+    }
+
+    @SuppressLint({"SetTextI18n"})
+    public LimitPreviewView(Context context, int i, int i2, int i3, final float f) {
         super(context);
         this.animationCanPlay = true;
         this.icon = i;
@@ -74,11 +78,11 @@ public class LimitPreviewView extends LinearLayout {
             protected void dispatchDraw(Canvas canvas) {
                 this.grayPaint.setColor(Theme.getColor("windowBackgroundGray"));
                 RectF rectF = AndroidUtilities.rectTmp;
-                float f = 0.0f;
+                float f2 = 0.0f;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.grayPaint);
                 canvas.save();
-                canvas.clipRect(getMeasuredWidth() / 2.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                canvas.clipRect(getMeasuredWidth() * f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 Paint mainGradientPaint = PremiumGradient.getInstance().getMainGradientPaint();
                 if (LimitPreviewView.this.parentVideForGradient != null) {
                     View view = LimitPreviewView.this.parentVideForGradient;
@@ -86,9 +90,9 @@ public class LimitPreviewView extends LinearLayout {
                     PremiumGradient.PremiumGradientTools premiumGradientTools = limitPreviewView.staticGradient;
                     if (premiumGradientTools == null) {
                         for (View view2 = this; view2 != view; view2 = (View) view2.getParent()) {
-                            f += view2.getY();
+                            f2 += view2.getY();
                         }
-                        PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), LimitPreviewView.this.getGlobalXOffset() - getLeft(), -f);
+                        PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), LimitPreviewView.this.getGlobalXOffset() - getLeft(), -f2);
                     } else {
                         mainGradientPaint = premiumGradientTools.paint;
                         premiumGradientTools.gradientMatrixLinear(limitPreviewView.gradientTotalHeight, -limitPreviewView.gradientYOffset);
@@ -121,7 +125,7 @@ public class LimitPreviewView extends LinearLayout {
         this.defaultCount.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         frameLayout.addView(textView, LayoutHelper.createFrame(-1, 30.0f, 3, 0.0f, 0.0f, 36.0f, 0.0f));
         frameLayout.addView(this.defaultCount, LayoutHelper.createFrame(-2, 30.0f, 5, 0.0f, 0.0f, 12.0f, 0.0f));
-        this.limitsContainer.addView(frameLayout, LayoutHelper.createLinear(0, 30, 1.0f));
+        this.limitsContainer.addView(frameLayout, LayoutHelper.createLinear(-1, 30, (1.0f - f) * 2.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
         TextView textView3 = new TextView(context);
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -137,7 +141,7 @@ public class LimitPreviewView extends LinearLayout {
         this.premiumCount.setTextColor(-1);
         frameLayout2.addView(textView3, LayoutHelper.createFrame(-1, 30.0f, 3, 0.0f, 0.0f, 36.0f, 0.0f));
         frameLayout2.addView(this.premiumCount, LayoutHelper.createFrame(-2, 30.0f, 5, 0.0f, 0.0f, 12.0f, 0.0f));
-        this.limitsContainer.addView(frameLayout2, LayoutHelper.createLinear(0, 30, 1.0f));
+        this.limitsContainer.addView(frameLayout2, LayoutHelper.createLinear(-1, 30, f * 2.0f));
         addView(this.limitsContainer, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 14, i == 0 ? 0 : 12, 14, 0));
     }
 

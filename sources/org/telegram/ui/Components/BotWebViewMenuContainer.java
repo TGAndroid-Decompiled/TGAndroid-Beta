@@ -531,7 +531,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
             create.show();
-            ((TextView) create.getButton(-1)).setTextColor(getColor("dialogTextRed"));
+            ((TextView) create.getButton(-1)).setTextColor(getColor("text_RedBold"));
             return false;
         }
         dismiss();

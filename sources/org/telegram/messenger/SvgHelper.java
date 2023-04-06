@@ -591,7 +591,7 @@ public class SvgHelper {
                     case 'm':
                     case 'q':
                     case 's':
-                    case MessagesStorage.LAST_DB_VERSION:
+                    case 't':
                     case 'v':
                     case 'z':
                         String substring2 = str.substring(i, i2);

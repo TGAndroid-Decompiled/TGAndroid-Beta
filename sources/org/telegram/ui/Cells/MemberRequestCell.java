@@ -130,6 +130,10 @@ public class MemberRequestCell extends FrameLayout {
         this.avatarImageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
         this.nameTextView.setText(UserObject.getUserName(tLRPC$User));
         String formatDateAudio = LocaleController.formatDateAudio(tLRPC$TL_chatInviteImporter.date, false);
+        if (tLRPC$TL_chatInviteImporter.via_chatlist) {
+            this.statusTextView.setText(LocaleController.getString("JoinedViaFolder", R.string.JoinedViaFolder));
+            return;
+        }
         long j = tLRPC$TL_chatInviteImporter.approved_by;
         if (j == 0) {
             this.statusTextView.setText(LocaleController.formatString("RequestedToJoinAt", R.string.RequestedToJoinAt, formatDateAudio));

@@ -39,6 +39,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$RecentMeUrl;
 import org.telegram.tgnet.TLRPC$RequestPeerType;
+import org.telegram.tgnet.TLRPC$TL_chatlists_chatlistUpdates;
 import org.telegram.tgnet.TLRPC$TL_contact;
 import org.telegram.tgnet.TLRPC$TL_requestPeerTypeBroadcast;
 import org.telegram.tgnet.TLRPC$User;
@@ -49,6 +50,7 @@ import org.telegram.ui.Cells.ArchiveHintCell;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.DialogMeUrlCell;
 import org.telegram.ui.Cells.DialogsEmptyCell;
+import org.telegram.ui.Cells.DialogsHintCell;
 import org.telegram.ui.Cells.DialogsRequestedEmptyCell;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
@@ -77,6 +79,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     private int folderId;
     private boolean forceShowEmptyCell;
     private boolean forceUpdatingContacts;
+    private boolean hasChatlistHint;
     private boolean hasHints;
     public boolean isEmpty;
     private boolean isOnlySelect;
@@ -144,6 +147,9 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
     public int fixPosition(int i) {
         int i2;
+        if (this.hasChatlistHint) {
+            i--;
+        }
         if (this.hasHints) {
             i -= MessagesController.getInstance(this.currentAccount).hintDialogs.size() + 2;
         }
@@ -200,12 +206,18 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     public class ItemInternal extends AdapterWithDiffUtils.Item {
+        TLRPC$TL_chatlists_chatlistUpdates chatlistUpdates;
         TLRPC$TL_contact contact;
         TLRPC$Dialog dialog;
         private boolean isFolder;
         boolean isForumCell;
         private boolean pinned;
         TLRPC$RecentMeUrl recentMeUrl;
+
+        public ItemInternal(DialogsAdapter dialogsAdapter, TLRPC$TL_chatlists_chatlistUpdates tLRPC$TL_chatlists_chatlistUpdates) {
+            super(17, true);
+            this.chatlistUpdates = tLRPC$TL_chatlists_chatlistUpdates;
+        }
 
         public ItemInternal(DialogsAdapter dialogsAdapter, int i, TLRPC$Dialog tLRPC$Dialog) {
             super(i, true);
@@ -590,6 +602,9 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     }
                 };
                 break;
+            case 17:
+                flickerLoadingView = new DialogsHintCell(this.mContext);
+                break;
         }
         flickerLoadingView.setLayoutParams(new RecyclerView.LayoutParams(-1, i == 5 ? -1 : -2));
         return new RecyclerListView.Holder(flickerLoadingView);
@@ -597,7 +612,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
     public int dialogsEmptyType() {
         int i = this.dialogsType;
-        return (i == 7 || i == 8) ? MessagesController.getInstance(this.currentAccount).isDialogsEndReached(this.folderId) ? 2 : 3 : this.onlineContacts != null ? 1 : 0;
+        if (i == 7 || i == 8) {
+            return MessagesController.getInstance(this.currentAccount).isDialogsEndReached(this.folderId) ? 2 : 3;
+        } else if (this.folderId == 1) {
+            return 2;
+        } else {
+            return this.onlineContacts != null ? 1 : 0;
+        }
     }
 
     @Override
@@ -786,6 +807,15 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 case 16:
                     ((DialogsRequestedEmptyCell) viewHolder.itemView).set(this.requestPeerType);
                     break;
+                case 17:
+                    DialogsHintCell dialogsHintCell = (DialogsHintCell) viewHolder.itemView;
+                    TLRPC$TL_chatlists_chatlistUpdates tLRPC$TL_chatlists_chatlistUpdates = this.itemInternals.get(i).chatlistUpdates;
+                    if (tLRPC$TL_chatlists_chatlistUpdates != null) {
+                        int size = tLRPC$TL_chatlists_chatlistUpdates.missing_peers.size();
+                        dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("FolderUpdatesTitle", size, new Object[0]), "windowBackgroundWhiteValueText", 0, null), LocaleController.formatPluralString("FolderUpdatesSubtitle", size, new Object[0]));
+                        break;
+                    }
+                    break;
             }
         } else {
             TextCell textCell = (TextCell) viewHolder.itemView;
@@ -814,6 +844,14 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
     public void lambda$onBindViewHolder$3(Float f) {
         this.parentFragment.setContactsAlpha(f.floatValue());
+    }
+
+    public TLRPC$TL_chatlists_chatlistUpdates getChatlistUpdate() {
+        ItemInternal itemInternal = this.itemInternals.get(0);
+        if (itemInternal == null || itemInternal.viewType != 17) {
+            return null;
+        }
+        return itemInternal.chatlistUpdates;
     }
 
     public void setForceUpdatingContacts(boolean z) {

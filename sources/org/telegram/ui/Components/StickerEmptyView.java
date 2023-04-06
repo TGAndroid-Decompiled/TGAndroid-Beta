@@ -13,6 +13,7 @@ import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
@@ -102,7 +103,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         textView2.setTextColor(getThemedColor("windowBackgroundWhiteGrayText"));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(17);
-        this.linearLayout.addView(this.stickerView, LayoutHelper.createLinear(117, 117, 1));
+        this.linearLayout.addView(this.stickerView, LayoutHelper.createLinear((int) MessagesStorage.LAST_DB_VERSION, (int) MessagesStorage.LAST_DB_VERSION, 1));
         this.linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 12, 0, 0));
         this.linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
         addView(this.linearLayout, LayoutHelper.createFrame(-2, -2.0f, 17, 46.0f, 0.0f, 46.0f, 30.0f));

@@ -141,14 +141,15 @@ public class FilterTabsView extends FrameLayout {
         return this.positionToStableId.get(i, -1);
     }
 
-    public void selectTabWithStableId(int i) {
+    public boolean selectTabWithStableId(int i) {
         for (int i2 = 0; i2 < this.tabs.size(); i2++) {
             if (this.positionToStableId.get(i2, -1) == i) {
                 this.currentPosition = i2;
                 this.selectedTabId = this.positionToId.get(i2);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     public class Tab {
@@ -489,11 +490,11 @@ public class FilterTabsView extends FrameLayout {
                         elapsedRealtime = 17;
                     }
                     FilterTabsView.access$2616(FilterTabsView.this, ((float) elapsedRealtime) / 200.0f);
-                    FilterTabsView filterTabsView = FilterTabsView.this;
-                    filterTabsView.setAnimationIdicatorProgress(filterTabsView.interpolator.getInterpolation(FilterTabsView.this.animationTime));
                     if (FilterTabsView.this.animationTime > 1.0f) {
                         FilterTabsView.this.animationTime = 1.0f;
                     }
+                    FilterTabsView filterTabsView = FilterTabsView.this;
+                    filterTabsView.setAnimationIdicatorProgress(filterTabsView.interpolator.getInterpolation(FilterTabsView.this.animationTime));
                     if (FilterTabsView.this.animationTime < 1.0f) {
                         AndroidUtilities.runOnUIThread(FilterTabsView.this.animationRunnable);
                         return;
@@ -804,7 +805,7 @@ public class FilterTabsView extends FrameLayout {
         return this.animatingIndicator;
     }
 
-    private void scrollToTab(Tab tab, int i) {
+    public void scrollToTab(Tab tab, int i) {
         if (tab.isLocked) {
             FilterTabsViewDelegate filterTabsViewDelegate = this.delegate;
             if (filterTabsViewDelegate != null) {
@@ -841,6 +842,14 @@ public class FilterTabsView extends FrameLayout {
             return;
         }
         scrollToTab(this.tabs.get(0), 0);
+    }
+
+    public void selectLastTab() {
+        if (this.tabs.isEmpty()) {
+            return;
+        }
+        ArrayList<Tab> arrayList = this.tabs;
+        scrollToTab(arrayList.get(arrayList.size() - 1), this.tabs.size() - 1);
     }
 
     public void setAnimationIdicatorProgress(float f) {
@@ -895,6 +904,17 @@ public class FilterTabsView extends FrameLayout {
         tab.isLocked = z2;
         this.allTabsWidth += tab.getWidth(true) + AndroidUtilities.dp(32.0f);
         this.tabs.add(tab);
+    }
+
+    public int getTabsCount() {
+        return this.tabs.size();
+    }
+
+    public Tab getTab(int i) {
+        if (i < 0 || i >= getTabsCount()) {
+            return null;
+        }
+        return this.tabs.get(i);
     }
 
     public void finishAddingTabs(boolean z) {
@@ -1025,7 +1045,7 @@ public class FilterTabsView extends FrameLayout {
     }
 
     @Override
-    public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         super.onLayout(z, i, i2, i3, i4);
         int i5 = i3 - i;
         if (this.prevLayoutWidth != i5) {
@@ -1086,10 +1106,10 @@ public class FilterTabsView extends FrameLayout {
         }
         MessagesStorage.getInstance(UserConfig.selectedAccount).saveDialogFiltersOrder();
         TLRPC$TL_messages_updateDialogFiltersOrder tLRPC$TL_messages_updateDialogFiltersOrder = new TLRPC$TL_messages_updateDialogFiltersOrder();
-        ArrayList<MessagesController.DialogFilter> arrayList = MessagesController.getInstance(UserConfig.selectedAccount).dialogFilters;
-        int size = arrayList.size();
+        ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
+        int size = dialogFilters.size();
         for (int i = 0; i < size; i++) {
-            MessagesController.DialogFilter dialogFilter = arrayList.get(i);
+            MessagesController.DialogFilter dialogFilter = dialogFilters.get(i);
             if (dialogFilter.isDefault()) {
                 tLRPC$TL_messages_updateDialogFiltersOrder.order.add(0);
             } else {
@@ -1176,14 +1196,14 @@ public class FilterTabsView extends FrameLayout {
             if (i < 0 || i2 < 0 || i >= size || i2 >= size) {
                 return;
             }
-            ArrayList<MessagesController.DialogFilter> arrayList = MessagesController.getInstance(UserConfig.selectedAccount).dialogFilters;
-            MessagesController.DialogFilter dialogFilter = arrayList.get(i);
-            MessagesController.DialogFilter dialogFilter2 = arrayList.get(i2);
+            ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
+            MessagesController.DialogFilter dialogFilter = dialogFilters.get(i);
+            MessagesController.DialogFilter dialogFilter2 = dialogFilters.get(i2);
             int i3 = dialogFilter.order;
             dialogFilter.order = dialogFilter2.order;
             dialogFilter2.order = i3;
-            arrayList.set(i, dialogFilter2);
-            arrayList.set(i2, dialogFilter);
+            dialogFilters.set(i, dialogFilter2);
+            dialogFilters.set(i2, dialogFilter);
             Tab tab = (Tab) FilterTabsView.this.tabs.get(i);
             Tab tab2 = (Tab) FilterTabsView.this.tabs.get(i2);
             int i4 = tab.id;
@@ -1220,21 +1240,21 @@ public class FilterTabsView extends FrameLayout {
             if (i < 0 || i >= size) {
                 return;
             }
-            ArrayList<MessagesController.DialogFilter> arrayList = MessagesController.getInstance(UserConfig.selectedAccount).dialogFilters;
+            ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
             int i2 = FilterTabsView.this.positionToStableId.get(i);
             int i3 = ((Tab) FilterTabsView.this.tabs.get(i)).id;
             for (int i4 = i - 1; i4 >= 0; i4--) {
                 FilterTabsView.this.positionToStableId.put(i4 + 1, FilterTabsView.this.positionToStableId.get(i4));
             }
-            MessagesController.DialogFilter remove = arrayList.remove(i);
+            MessagesController.DialogFilter remove = dialogFilters.remove(i);
             remove.order = 0;
-            arrayList.add(0, remove);
+            dialogFilters.add(0, remove);
             FilterTabsView.this.positionToStableId.put(0, i2);
             FilterTabsView.this.tabs.add(0, (Tab) FilterTabsView.this.tabs.remove(i));
             ((Tab) FilterTabsView.this.tabs.get(0)).id = i3;
             for (int i5 = 0; i5 <= i; i5++) {
                 ((Tab) FilterTabsView.this.tabs.get(i5)).id = i5;
-                arrayList.get(i5).order = i5;
+                dialogFilters.get(i5).order = i5;
             }
             int i6 = 0;
             while (i6 <= i) {
