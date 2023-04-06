@@ -4308,7 +4308,11 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             MediaController.PhotoEntry photo = getPhoto(i);
             if (photo == null) {
                 if (i <= this.photosStartRow) {
-                    photo = !ChatAttachAlertPhotoLayout.cameraPhotos.isEmpty() ? (MediaController.PhotoEntry) ChatAttachAlertPhotoLayout.cameraPhotos.get(0) : ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.get(0);
+                    if (!ChatAttachAlertPhotoLayout.cameraPhotos.isEmpty()) {
+                        photo = (MediaController.PhotoEntry) ChatAttachAlertPhotoLayout.cameraPhotos.get(0);
+                    } else if (ChatAttachAlertPhotoLayout.this.selectedAlbumEntry != null && ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos != null) {
+                        photo = ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.get(0);
+                    }
                 } else if (!ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.isEmpty()) {
                     photo = ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.get(ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.size() - 1);
                 }

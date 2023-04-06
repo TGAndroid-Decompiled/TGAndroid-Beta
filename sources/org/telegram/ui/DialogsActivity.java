@@ -2543,13 +2543,14 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     DialogsActivity.this.viewPages[0].setTranslationX(DialogsActivity.this.viewPages[0].getMeasuredWidth() * f);
                     DialogsActivity.this.viewPages[1].setTranslationX((DialogsActivity.this.viewPages[0].getMeasuredWidth() * f) - DialogsActivity.this.viewPages[0].getMeasuredWidth());
                 }
-                if (f >= 1.0f) {
+                if (f == 1.0f) {
                     ViewPage viewPage = DialogsActivity.this.viewPages[0];
                     DialogsActivity.this.viewPages[0] = DialogsActivity.this.viewPages[1];
                     DialogsActivity.this.viewPages[1] = viewPage;
                     DialogsActivity.this.viewPages[1].setVisibility(8);
                     DialogsActivity.this.showScrollbars(true);
                     DialogsActivity.this.updateCounters(false);
+                    DialogsActivity.this.filterTabsView.stopAnimatingIndicator();
                     DialogsActivity dialogsActivity = DialogsActivity.this;
                     dialogsActivity.checkListLoad(dialogsActivity.viewPages[0]);
                     DialogsActivity.this.viewPages[0].dialogsAdapter.resume();
@@ -5134,7 +5135,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
         if (viewPage.dialogsType == 7 || viewPage.dialogsType == 8) {
             ArrayList<MessagesController.DialogFilter> dialogFilters = getMessagesController().getDialogFilters();
-            if (viewPage.selectedType >= 0 && viewPage.selectedType < dialogFilters.size() && (getMessagesController().getDialogFilters().get(viewPage.selectedType).flags & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED) == 0 && ((abs > 0 && findLastVisibleItemPosition >= getDialogsArray(this.currentAccount, viewPage.dialogsType, 1, this.dialogsListFrozen).size() - 10) || (abs == 0 && !getMessagesController().isDialogsEndReached(1)))) {
+            if (viewPage.selectedType >= 0 && viewPage.selectedType < dialogFilters.size() && (dialogFilters.get(viewPage.selectedType).flags & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_ARCHIVED) == 0 && ((abs > 0 && findLastVisibleItemPosition >= getDialogsArray(this.currentAccount, viewPage.dialogsType, 1, this.dialogsListFrozen).size() - 10) || (abs == 0 && !getMessagesController().isDialogsEndReached(1)))) {
                 boolean z6 = !getMessagesController().isDialogsEndReached(1);
                 if (z6 || !getMessagesController().isServerDialogsEndReached(1)) {
                     z = z6;

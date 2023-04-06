@@ -201,10 +201,6 @@ public class LinkActionView extends LinearLayout {
             }
         });
         frameLayout.setOnClickListener(new View.OnClickListener() {
-            {
-                LinkActionView.this = this;
-            }
-
             @Override
             public void onClick(View view) {
                 LinkActionView.this.copyView.callOnClick();
@@ -315,10 +311,6 @@ public class LinkActionView extends LinearLayout {
             getPointOnScreen(this.frameLayout, container, this.point);
             float f = this.point[1];
             final View view2 = new View(context) {
-                {
-                    LinkActionView.this = this;
-                }
-
                 @Override
                 protected void onDraw(Canvas canvas) {
                     canvas.drawColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
@@ -351,19 +343,11 @@ public class LinkActionView extends LinearLayout {
             ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
             this.actionBarPopupWindow = actionBarPopupWindow;
             actionBarPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                {
-                    LinkActionView.this = this;
-                }
-
                 @Override
                 public void onDismiss() {
                     LinkActionView.this.actionBarPopupWindow = null;
                     view2.animate().cancel();
                     view2.animate().alpha(0.0f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
-                        {
-                            AnonymousClass3.this = this;
-                        }
-
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             if (view2.getParent() != null) {
@@ -467,10 +451,6 @@ public class LinkActionView extends LinearLayout {
             str3 = LocaleController.getString(str, i);
         }
         QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, string, str2, str3, false) {
-            {
-                LinkActionView.this = this;
-            }
-
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -544,12 +524,7 @@ public class LinkActionView extends LinearLayout {
 
         public AvatarsContainer(Context context) {
             super(context);
-            LinkActionView.this = r6;
-            this.avatarsImageView = new AvatarsImageView(context, false, r6) {
-                {
-                    AvatarsContainer.this = this;
-                }
-
+            this.avatarsImageView = new AvatarsImageView(context, false, LinkActionView.this) {
                 @Override
                 public void onMeasure(int i, int i2) {
                     int min = Math.min(3, LinkActionView.this.usersCount);

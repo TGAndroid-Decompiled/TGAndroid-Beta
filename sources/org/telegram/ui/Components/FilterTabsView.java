@@ -490,11 +490,11 @@ public class FilterTabsView extends FrameLayout {
                         elapsedRealtime = 17;
                     }
                     FilterTabsView.access$2616(FilterTabsView.this, ((float) elapsedRealtime) / 200.0f);
+                    FilterTabsView filterTabsView = FilterTabsView.this;
+                    filterTabsView.setAnimationIdicatorProgress(filterTabsView.interpolator.getInterpolation(FilterTabsView.this.animationTime));
                     if (FilterTabsView.this.animationTime > 1.0f) {
                         FilterTabsView.this.animationTime = 1.0f;
                     }
-                    FilterTabsView filterTabsView = FilterTabsView.this;
-                    filterTabsView.setAnimationIdicatorProgress(filterTabsView.interpolator.getInterpolation(FilterTabsView.this.animationTime));
                     if (FilterTabsView.this.animationTime < 1.0f) {
                         AndroidUtilities.runOnUIThread(FilterTabsView.this.animationRunnable);
                         return;
@@ -803,6 +803,10 @@ public class FilterTabsView extends FrameLayout {
 
     public boolean isAnimatingIndicator() {
         return this.animatingIndicator;
+    }
+
+    public void stopAnimatingIndicator() {
+        this.animatingIndicator = false;
     }
 
     public void scrollToTab(Tab tab, int i) {

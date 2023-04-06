@@ -87,7 +87,6 @@ import org.telegram.ui.FilterChatlistActivity;
 public class FilterChatlistActivity extends BaseFragment {
     private ListAdapter adapter;
     private ActionBarMenuItem doneButton;
-    private float doneButtonAlpha;
     private CrossfadeDrawable doneButtonDrawable;
     private ValueAnimator doneButtonDrawableAnimator;
     MessagesController.DialogFilter filter;
@@ -121,6 +120,7 @@ public class FilterChatlistActivity extends BaseFragment {
             FilterChatlistActivity.this.lambda$new$7();
         }
     };
+    private float doneButtonAlpha = 1.0f;
 
     public FilterChatlistActivity(MessagesController.DialogFilter dialogFilter, TLRPC$TL_exportedChatlistInvite tLRPC$TL_exportedChatlistInvite) {
         this.filter = dialogFilter;
