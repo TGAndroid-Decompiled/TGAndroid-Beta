@@ -33,8 +33,9 @@ public class EmojiThemes {
     public String emoji;
     public ArrayList<ThemeItem> items = new ArrayList<>();
     public boolean showAsDefaultStub;
+    public TLRPC$WallPaper wallpaper;
 
-    private EmojiThemes() {
+    public EmojiThemes() {
     }
 
     public EmojiThemes(TLRPC$TL_theme tLRPC$TL_theme, boolean z) {
@@ -312,27 +313,30 @@ public class EmojiThemes {
         return this.items.get(i).themeInfo;
     }
 
-    public void loadWallpaper(int i, final ResultCallback<Pair<Long, Bitmap>> resultCallback) {
-        final TLRPC$WallPaper wallpaper = getWallpaper(i);
+    public void loadWallpaper(int i, ResultCallback<Pair<Long, Bitmap>> resultCallback) {
+        TLRPC$WallPaper wallpaper = getWallpaper(i);
         if (wallpaper != null) {
-            final long j = getTlTheme(i).id;
-            ChatThemeController.getWallpaperBitmap(j, new ResultCallback() {
-                @Override
-                public final void onComplete(Object obj) {
-                    EmojiThemes.lambda$loadWallpaper$1(ResultCallback.this, j, wallpaper, (Bitmap) obj);
-                }
-
-                @Override
-                public void onError(TLRPC$TL_error tLRPC$TL_error) {
-                    ResultCallback.CC.$default$onError(this, tLRPC$TL_error);
-                }
-            });
+            loadWallpaperImage(getTlTheme(i).id, wallpaper, resultCallback);
         } else if (resultCallback != null) {
             resultCallback.onComplete(null);
         }
     }
 
-    public static void lambda$loadWallpaper$1(final ResultCallback resultCallback, final long j, TLRPC$WallPaper tLRPC$WallPaper, Bitmap bitmap) {
+    public static void loadWallpaperImage(final long j, final TLRPC$WallPaper tLRPC$WallPaper, final ResultCallback<Pair<Long, Bitmap>> resultCallback) {
+        ChatThemeController.getWallpaperBitmap(j, new ResultCallback() {
+            @Override
+            public final void onComplete(Object obj) {
+                EmojiThemes.lambda$loadWallpaperImage$1(ResultCallback.this, j, tLRPC$WallPaper, (Bitmap) obj);
+            }
+
+            @Override
+            public void onError(TLRPC$TL_error tLRPC$TL_error) {
+                ResultCallback.CC.$default$onError(this, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public static void lambda$loadWallpaperImage$1(final ResultCallback resultCallback, final long j, TLRPC$WallPaper tLRPC$WallPaper, Bitmap bitmap) {
         if (bitmap != null && resultCallback != null) {
             resultCallback.onComplete(new Pair(Long.valueOf(j), bitmap));
             return;
@@ -348,7 +352,7 @@ public class EmojiThemes {
         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                EmojiThemes.lambda$loadWallpaper$0(ResultCallback.this, j, imageReceiver2, z, z2, z3);
+                EmojiThemes.lambda$loadWallpaperImage$0(ResultCallback.this, j, imageReceiver2, z, z2, z3);
             }
 
             @Override
@@ -359,7 +363,7 @@ public class EmojiThemes {
         ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 
-    public static void lambda$loadWallpaper$0(ResultCallback resultCallback, long j, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void lambda$loadWallpaperImage$0(ResultCallback resultCallback, long j, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (!z || bitmapSafe == null) {
             return;

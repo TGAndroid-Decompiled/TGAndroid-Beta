@@ -704,7 +704,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
                 i = i5;
                 f = f4;
             }
-            LimitPreviewView limitPreviewView = new LimitPreviewView(context, i2, i, i4, i3 / i4);
+            LimitPreviewView limitPreviewView = new LimitPreviewView(context, i2, i, i4, f);
             limitReachedBottomSheet.limitPreviewView = limitPreviewView;
             limitPreviewView.setBagePosition(f);
             limitReachedBottomSheet.limitPreviewView.setType(limitReachedBottomSheet.type);

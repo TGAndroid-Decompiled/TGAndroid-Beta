@@ -1149,7 +1149,7 @@ public class PipVideoOverlay {
         }
         if (!z && (!z2 || !LaunchActivity.isResumed)) {
             Objects.requireNonNull(view);
-            LaunchActivity.onResumeStaticCallback = new ChatActivityEnterView$$ExternalSyntheticLambda33(view);
+            LaunchActivity.onResumeStaticCallback = new ChatActivityEnterView$$ExternalSyntheticLambda34(view);
             Context context = ApplicationLoader.applicationContext;
             Intent intent = new Intent(context, LaunchActivity.class);
             intent.addFlags(268435456);

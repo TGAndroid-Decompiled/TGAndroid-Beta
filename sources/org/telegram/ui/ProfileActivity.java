@@ -1880,8 +1880,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected boolean onMemberClick(TLRPC$ChatParticipant tLRPC$ChatParticipant, boolean z2) {
-                return ProfileActivity.this.onMemberClick(tLRPC$ChatParticipant, z2, (View) null);
+            protected boolean onMemberClick(TLRPC$ChatParticipant tLRPC$ChatParticipant, boolean z2, View view) {
+                return ProfileActivity.this.onMemberClick(tLRPC$ChatParticipant, z2, view);
             }
 
             @Override
@@ -2825,9 +2825,17 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     return;
                 }
                 Bundle bundle4 = new Bundle();
-                bundle4.putLong("chat_id", ProfileActivity.this.chatId);
+                if (ProfileActivity.this.chatId != 0) {
+                    bundle4.putLong("chat_id", ProfileActivity.this.chatId);
+                } else if (ProfileActivity.this.isBot) {
+                    bundle4.putLong("user_id", ProfileActivity.this.userId);
+                }
                 ChatEditActivity chatEditActivity = new ChatEditActivity(bundle4);
-                chatEditActivity.setInfo(ProfileActivity.this.chatInfo);
+                if (ProfileActivity.this.chatInfo != null) {
+                    chatEditActivity.setInfo(ProfileActivity.this.chatInfo);
+                } else {
+                    chatEditActivity.setInfo(ProfileActivity.this.userInfo);
+                }
                 ProfileActivity.this.presentFragment(chatEditActivity);
             } else if (i == 9) {
                 final TLRPC$User user4 = ProfileActivity.this.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId));
@@ -5284,10 +5292,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public boolean onMemberClick(TLRPC$ChatParticipant tLRPC$ChatParticipant, boolean z, boolean z2) {
-        return onMemberClick(tLRPC$ChatParticipant, z, z2, null);
-    }
-
     public boolean onMemberClick(final TLRPC$ChatParticipant tLRPC$ChatParticipant, boolean z, boolean z2, View view) {
         boolean z3;
         TLRPC$ChannelParticipant tLRPC$ChannelParticipant;

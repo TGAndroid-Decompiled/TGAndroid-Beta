@@ -166,7 +166,7 @@ public class FileLog {
                 public boolean shouldSkipClass(Class<?> cls) {
                     return cls.isInstance(ColorStateList.class) || cls.isInstance(Context.class);
                 }
-            }).create();
+            }).registerTypeAdapterFactory(RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_")).create();
         }
     }
 

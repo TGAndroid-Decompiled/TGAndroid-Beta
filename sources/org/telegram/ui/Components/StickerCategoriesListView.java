@@ -136,7 +136,6 @@ public class StickerCategoriesListView extends RecyclerListView {
         setLayoutManager(linearLayoutManager);
         this.layoutManager.setOrientation(0);
         this.selectedPaint.setColor(getThemedColor("listSelectorSDK21"));
-        setSelectorDrawableColor(0);
         setWillNotDraw(false);
         setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
@@ -170,6 +169,11 @@ public class StickerCategoriesListView extends RecyclerListView {
             setCategoriesShownT(0.0f);
             updateCategoriesShown(this.categoriesShouldShow, System.currentTimeMillis() - j > 16);
         }
+    }
+
+    @Override
+    public Integer getSelectorColor(int i) {
+        return 0;
     }
 
     public void setShownButtonsAtStart(float f) {

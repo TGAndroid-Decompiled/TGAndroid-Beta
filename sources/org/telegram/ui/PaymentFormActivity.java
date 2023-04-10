@@ -145,7 +145,7 @@ import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.TextPriceCell;
 import org.telegram.ui.Cells.TextSettingsCell;
 import org.telegram.ui.Components.AlertsCreator;
-import org.telegram.ui.Components.ChatActivityEnterView$$ExternalSyntheticLambda33;
+import org.telegram.ui.Components.ChatActivityEnterView$$ExternalSyntheticLambda34;
 import org.telegram.ui.Components.ContextProgressView;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.LayoutHelper;
@@ -845,7 +845,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             }
             if (i == 2 && !tLRPC$TL_payments_paymentForm.additional_methods.isEmpty()) {
                 Objects.requireNonNull(view);
-                showChoosePaymentMethod(new ChatActivityEnterView$$ExternalSyntheticLambda33(view));
+                showChoosePaymentMethod(new ChatActivityEnterView$$ExternalSyntheticLambda34(view));
                 return;
             }
             presentFragment(new PaymentFormActivity(this.paymentForm, this.messageObject, this.invoiceSlug, i, this.requestedInfo, this.shippingOption, this.tipAmount, this.paymentJson, this.cardName, this.validateRequest, this.saveCardInfo, null, this.parentFragment));

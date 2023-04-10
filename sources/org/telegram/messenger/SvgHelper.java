@@ -85,7 +85,6 @@ public class SvgHelper {
     public static class SvgDrawable extends Drawable {
         private static float gradientWidth;
         private static long lastUpdateTime;
-        private static int[] parentPosition = new int[2];
         private static WeakReference<Drawable> shiftDrawable;
         private static Runnable shiftRunnable;
         private static float totalTranslation;
@@ -98,6 +97,8 @@ public class SvgHelper {
         private Paint overridePaint;
         private ImageReceiver parentImageReceiver;
         protected int width;
+        private static int[] parentPosition = new int[2];
+        private static boolean lite = LiteMode.isEnabled(32);
         protected ArrayList<Object> commands = new ArrayList<>();
         protected HashMap<Object, Paint> paints = new HashMap<>();
         private Bitmap[] backgroundBitmap = new Bitmap[3];
@@ -117,6 +118,10 @@ public class SvgHelper {
 
         @Override
         public void setColorFilter(ColorFilter colorFilter) {
+        }
+
+        public static void updateLiteValues() {
+            lite = LiteMode.isEnabled(32);
         }
 
         @Override
@@ -155,67 +160,70 @@ public class SvgHelper {
                 setupGradient(str, this.currentResourcesProvider, this.colorAlpha, z);
             }
             float scale = getScale((int) f3, (int) f4);
-            if (this.placeholderGradient[i] != null && gradientWidth > 0.0f && LiteMode.isEnabled(32)) {
-                if (z) {
-                    long j3 = j - lastUpdateTime;
-                    j2 = j3 <= 64 ? j3 : 64L;
-                    if (j2 > 0) {
+            if (this.placeholderGradient[i] != null) {
+                float f5 = gradientWidth;
+                if (f5 > 0.0f && lite) {
+                    if (z) {
+                        long j3 = j - lastUpdateTime;
+                        j2 = j3 <= 64 ? j3 : 64L;
+                        if (j2 > 0) {
+                            lastUpdateTime = j;
+                            totalTranslation += (((float) j2) * f5) / 1800.0f;
+                            while (true) {
+                                float f6 = totalTranslation;
+                                float f7 = gradientWidth;
+                                if (f6 < f7 * 2.0f) {
+                                    break;
+                                }
+                                totalTranslation = f6 - (f7 * 2.0f);
+                            }
+                        }
+                    } else if (shiftRunnable == null || shiftDrawable.get() == this) {
+                        long j4 = j - lastUpdateTime;
+                        j2 = j4 <= 64 ? j4 : 64L;
+                        long j5 = j2 >= 0 ? j2 : 0L;
                         lastUpdateTime = j;
-                        totalTranslation += (((float) j2) * gradientWidth) / 1800.0f;
+                        totalTranslation += (((float) j5) * gradientWidth) / 1800.0f;
                         while (true) {
-                            float f5 = totalTranslation;
-                            float f6 = gradientWidth;
-                            if (f5 < f6 * 2.0f) {
+                            float f8 = totalTranslation;
+                            float f9 = gradientWidth;
+                            if (f8 < f9 / 2.0f) {
                                 break;
                             }
-                            totalTranslation = f5 - (f6 * 2.0f);
+                            totalTranslation = f8 - f9;
                         }
-                    }
-                } else if (shiftRunnable == null || shiftDrawable.get() == this) {
-                    long j4 = j - lastUpdateTime;
-                    j2 = j4 <= 64 ? j4 : 64L;
-                    long j5 = j2 >= 0 ? j2 : 0L;
-                    lastUpdateTime = j;
-                    totalTranslation += (((float) j5) * gradientWidth) / 1800.0f;
-                    while (true) {
-                        float f7 = totalTranslation;
-                        float f8 = gradientWidth;
-                        if (f7 < f8 / 2.0f) {
-                            break;
+                        shiftDrawable = new WeakReference<>(this);
+                        Runnable runnable = shiftRunnable;
+                        if (runnable != null) {
+                            AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        totalTranslation = f7 - f8;
+                        SvgHelper$SvgDrawable$$ExternalSyntheticLambda0 svgHelper$SvgDrawable$$ExternalSyntheticLambda0 = SvgHelper$SvgDrawable$$ExternalSyntheticLambda0.INSTANCE;
+                        shiftRunnable = svgHelper$SvgDrawable$$ExternalSyntheticLambda0;
+                        AndroidUtilities.runOnUIThread(svgHelper$SvgDrawable$$ExternalSyntheticLambda0, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
                     }
-                    shiftDrawable = new WeakReference<>(this);
-                    Runnable runnable = shiftRunnable;
-                    if (runnable != null) {
-                        AndroidUtilities.cancelRunOnUIThread(runnable);
-                    }
-                    SvgHelper$SvgDrawable$$ExternalSyntheticLambda0 svgHelper$SvgDrawable$$ExternalSyntheticLambda0 = SvgHelper$SvgDrawable$$ExternalSyntheticLambda0.INSTANCE;
-                    shiftRunnable = svgHelper$SvgDrawable$$ExternalSyntheticLambda0;
-                    AndroidUtilities.runOnUIThread(svgHelper$SvgDrawable$$ExternalSyntheticLambda0, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
-                }
-                ImageReceiver imageReceiver = this.parentImageReceiver;
-                if (imageReceiver == null || z) {
-                    i2 = 0;
-                } else {
-                    imageReceiver.getParentPosition(parentPosition);
-                    i2 = parentPosition[0];
-                }
-                int i3 = z ? i + 1 : 0;
-                Matrix[] matrixArr = this.placeholderMatrix;
-                if (matrixArr[i3] != null) {
-                    matrixArr[i3].reset();
-                    if (z) {
-                        this.placeholderMatrix[i3].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
+                    ImageReceiver imageReceiver = this.parentImageReceiver;
+                    if (imageReceiver == null || z) {
+                        i2 = 0;
                     } else {
-                        this.placeholderMatrix[i3].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
+                        imageReceiver.getParentPosition(parentPosition);
+                        i2 = parentPosition[0];
                     }
-                    float f9 = 1.0f / scale;
-                    this.placeholderMatrix[i3].postScale(f9, f9);
-                    this.placeholderGradient[i3].setLocalMatrix(this.placeholderMatrix[i3]);
-                    ImageReceiver imageReceiver2 = this.parentImageReceiver;
-                    if (imageReceiver2 != null && !z) {
-                        imageReceiver2.invalidate();
+                    int i3 = z ? i + 1 : 0;
+                    Matrix[] matrixArr = this.placeholderMatrix;
+                    if (matrixArr[i3] != null) {
+                        matrixArr[i3].reset();
+                        if (z) {
+                            this.placeholderMatrix[i3].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
+                        } else {
+                            this.placeholderMatrix[i3].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
+                        }
+                        float f10 = 1.0f / scale;
+                        this.placeholderMatrix[i3].postScale(f10, f10);
+                        this.placeholderGradient[i3].setLocalMatrix(this.placeholderMatrix[i3]);
+                        ImageReceiver imageReceiver2 = this.parentImageReceiver;
+                        if (imageReceiver2 != null && !z) {
+                            imageReceiver2.invalidate();
+                        }
                     }
                 }
             }
@@ -262,8 +270,8 @@ public class SvgHelper {
                     } else if (obj instanceof RoundRect) {
                         RoundRect roundRect = (RoundRect) obj;
                         RectF rectF = roundRect.rect;
-                        float f10 = roundRect.rx;
-                        canvas.drawRoundRect(rectF, f10, f10, paint);
+                        float f11 = roundRect.rx;
+                        canvas.drawRoundRect(rectF, f11, f11, paint);
                     }
                     paint.setAlpha(alpha);
                 }
@@ -310,8 +318,8 @@ public class SvgHelper {
                 this.currentColorKey = str;
                 iArr[z ? 1 : 0] = color;
                 gradientWidth = AndroidUtilities.displaySize.x * 2;
-                if (!LiteMode.isEnabled(32)) {
-                    int alphaComponent = ColorUtils.setAlphaComponent(this.currentColor[z ? 1 : 0], 70);
+                if (!lite) {
+                    int alphaComponent = ColorUtils.setAlphaComponent(iArr[z ? 1 : 0], 70);
                     if (z) {
                         if (this.backgroundPaint == null) {
                             this.backgroundPaint = new Paint(1);

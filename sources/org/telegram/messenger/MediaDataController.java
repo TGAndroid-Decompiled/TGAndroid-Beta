@@ -6623,6 +6623,9 @@ public class MediaDataController extends BaseController {
                         textStyleRun.flags = 128;
                         textStyleRun.urlEntity = tLRPC$MessageEntity;
                     }
+                    if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityTextUrl) {
+                        textStyleRun.flags |= 1024;
+                    }
                     textStyleRun.flags &= i;
                     int size2 = arrayList2.size();
                     int i5 = 0;
@@ -8293,7 +8296,7 @@ public class MediaDataController extends BaseController {
     public ArrayList<TLRPC$EmojiStatus> getDefaultEmojiStatuses() {
         if (!this.emojiStatusesFromCacheFetched[1]) {
             fetchEmojiStatuses(1, true);
-        } else if (this.emojiStatusesFetchDate[1] == null || (System.currentTimeMillis() / 1000) - this.emojiStatusesFetchDate[1].longValue() > 1800) {
+        } else if (this.emojiStatuses[1] == null || (this.emojiStatusesFetchDate[1] != null && (System.currentTimeMillis() / 1000) - this.emojiStatusesFetchDate[1].longValue() > 1800)) {
             fetchEmojiStatuses(1, false);
         }
         return this.emojiStatuses[1];
@@ -8302,7 +8305,7 @@ public class MediaDataController extends BaseController {
     public ArrayList<TLRPC$EmojiStatus> getRecentEmojiStatuses() {
         if (!this.emojiStatusesFromCacheFetched[0]) {
             fetchEmojiStatuses(0, true);
-        } else if (this.emojiStatusesFetchDate[0] == null || (System.currentTimeMillis() / 1000) - this.emojiStatusesFetchDate[0].longValue() > 1800) {
+        } else if (this.emojiStatuses[0] == null || (this.emojiStatusesFetchDate[0] != null && (System.currentTimeMillis() / 1000) - this.emojiStatusesFetchDate[0].longValue() > 1800)) {
             fetchEmojiStatuses(0, false);
         }
         return this.emojiStatuses[0];

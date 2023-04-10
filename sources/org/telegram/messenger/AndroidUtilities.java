@@ -150,6 +150,7 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextDetailSettingsCell;
 import org.telegram.ui.ChatActivity;
+import org.telegram.ui.ChatBackgroundDrawable;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EllipsizeSpanAnimator;
@@ -226,6 +227,7 @@ public class AndroidUtilities {
     public static float density = 1.0f;
     public static Point displaySize = new Point();
     public static float screenRefreshRate = 60.0f;
+    public static float screenRefreshTime = 1000.0f / 60.0f;
     public static Integer photoSize = null;
     public static DisplayMetrics displayMetrics = new DisplayMetrics();
     public static DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator();
@@ -851,8 +853,11 @@ public class AndroidUtilities {
 
     public static int[] calcDrawableColor(Drawable drawable) {
         int i;
-        int[] iArr = new int[4];
+        if (drawable instanceof ChatBackgroundDrawable) {
+            return calcDrawableColor(((ChatBackgroundDrawable) drawable).getDrawable());
+        }
         int i2 = -16777216;
+        int[] iArr = new int[4];
         try {
             if (drawable instanceof BitmapDrawable) {
                 i2 = calcBitmapColor(((BitmapDrawable) drawable).getBitmap());
@@ -1952,7 +1957,9 @@ public class AndroidUtilities {
             if (windowManager != null && (defaultDisplay = windowManager.getDefaultDisplay()) != null) {
                 defaultDisplay.getMetrics(displayMetrics);
                 defaultDisplay.getSize(displaySize);
-                screenRefreshRate = defaultDisplay.getRefreshRate();
+                float refreshRate = defaultDisplay.getRefreshRate();
+                screenRefreshRate = refreshRate;
+                screenRefreshTime = 1000.0f / refreshRate;
             }
             int i = configuration.screenWidthDp;
             if (i != 0) {
@@ -3895,7 +3902,7 @@ public class AndroidUtilities {
 
     public static void setNavigationBarColor(final Window window, int i, boolean z, final IntColorCallback intColorCallback) {
         ValueAnimator valueAnimator;
-        if (Build.VERSION.SDK_INT < 21) {
+        if (window == null || Build.VERSION.SDK_INT < 21) {
             return;
         }
         HashMap<Window, ValueAnimator> hashMap = navigationBarColorAnimators;
@@ -4083,19 +4090,23 @@ public class AndroidUtilities {
     }
 
     public static void updateViewVisibilityAnimated(View view, boolean z) {
-        updateViewVisibilityAnimated(view, z, 1.0f, true);
+        updateViewVisibilityAnimated(view, z, 1.0f, true, true);
     }
 
     public static void updateViewVisibilityAnimated(View view, boolean z, float f, boolean z2) {
+        updateViewVisibilityAnimated(view, z, f, true, z2);
+    }
+
+    public static void updateViewVisibilityAnimated(View view, boolean z, float f, boolean z2, boolean z3) {
         if (view == null) {
             return;
         }
         if (view.getParent() == null) {
-            z2 = false;
+            z3 = false;
         }
-        if (!z2) {
+        if (!z3) {
             view.animate().setListener(null).cancel();
-            view.setVisibility(z ? 0 : 8);
+            view.setVisibility(z ? 0 : z2 ? 8 : 4);
             view.setTag(z ? 1 : null);
             view.setAlpha(1.0f);
             view.setScaleX(1.0f);
@@ -4113,7 +4124,7 @@ public class AndroidUtilities {
         } else if (z || view.getTag() == null) {
         } else {
             view.animate().setListener(null).cancel();
-            view.animate().alpha(0.0f).scaleY(f).scaleX(f).setListener(new HideViewAfterAnimation(view)).setDuration(150L).start();
+            view.animate().alpha(0.0f).scaleY(f).scaleX(f).setListener(new HideViewAfterAnimation(view, z2)).setDuration(150L).start();
             view.setTag(null);
         }
     }

@@ -105,7 +105,7 @@ public class TextCheckCell extends FrameLayout {
         this.valueTextView.setEllipsize(TextUtils.TruncateAt.END);
         TextView textView4 = this.valueTextView;
         boolean z3 = LocaleController.isRTL;
-        addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 64.0f : i, 36.0f, z3 ? i : 64.0f, 0.0f));
+        addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 70.0f : i, 35.0f, z3 ? i : 70.0f, 0.0f));
         Switch r2 = new Switch(context, resourcesProvider);
         this.checkBox = r2;
         r2.setColors("switchTrack", "switchTrackChecked", "windowBackgroundWhite", "windowBackgroundWhite");

@@ -70,6 +70,7 @@ import org.telegram.tgnet.TLRPC$TL_wallPaper;
 import org.telegram.tgnet.TLRPC$TL_wallPaperNoFile;
 import org.telegram.tgnet.TLRPC$TL_wallPaperSettings;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$WallPaper;
 import org.telegram.tgnet.TLRPC$WallPaperSettings;
 import org.telegram.tgnet.TLRPC$WebDocument;
@@ -93,18 +94,26 @@ import org.telegram.ui.Components.NumberTextView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.WallpaperUpdater;
 import org.telegram.ui.DialogsActivity;
-import org.telegram.ui.ThemePreviewActivity;
 import org.telegram.ui.WallpapersListActivity;
 public class WallpapersListActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
+    private ArrayList<View> actionModeViews;
     private ColorWallpaper addedColorWallpaper;
     private FileWallpaper addedFileWallpaper;
+    private ArrayList<Object> allWallPapers;
+    private HashMap<String, Object> allWallPapersDict;
     private ColorWallpaper catsWallpaper;
     private Paint colorFramePaint;
     private Paint colorPaint;
+    private int columnsCount;
     private int currentType;
+    private final long dialogId;
     private LinearLayoutManager layoutManager;
     private ListAdapter listAdapter;
     private RecyclerListView listView;
+    private HashMap<String, Object> localDict;
+    private ArrayList<ColorWallpaper> localWallPapers;
+    private ArrayList<Object> patterns;
+    private HashMap<Long, Object> patternsDict;
     private AlertDialog progressDialog;
     private int resetInfoRow;
     private int resetRow;
@@ -117,6 +126,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     private int sectionRow;
     private boolean selectedBackgroundBlurred;
     private boolean selectedBackgroundMotion;
+    private String selectedBackgroundSlug;
     private int selectedColor;
     private int selectedGradientColor1;
     private int selectedGradientColor2;
@@ -124,28 +134,19 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     private int selectedGradientRotation;
     private float selectedIntensity;
     private NumberTextView selectedMessagesCountTextView;
+    private LongSparseArray<Object> selectedWallPapers;
     private int setColorRow;
     private FileWallpaper themeWallpaper;
     private int totalWallpaperRows;
     private WallpaperUpdater updater;
     private int uploadImageRow;
     private int wallPaperStartRow;
+    private ArrayList<Object> wallPapers;
     private static final int[][] defaultColorsLight = {new int[]{-2368069, -9722489, -2762611, -7817084}, new int[]{-7487253, -4599318, -3755537, -1320977}, new int[]{-6832405, -5117462, -3755537, -1067044}, new int[]{-7676942, -7827988, -1859606, -9986835}, new int[]{-5190165, -6311702, -4461867, -5053475}, new int[]{-2430264, -6114049, -1258497, -4594945}, new int[]{-2298990, -7347754, -9985038, -8006011}, new int[]{-1399954, -990074, -876865, -1523602}, new int[]{-15438, -1916673, -6222, -471346}, new int[]{-2891798}, new int[]{-5913125}, new int[]{-9463352}, new int[]{-2956375}, new int[]{-5974898}, new int[]{-8537234}, new int[]{-1647186}, new int[]{-2769263}, new int[]{-3431303}, new int[]{-1326919}, new int[]{-2054243}, new int[]{-3573648}, new int[]{-1328696}, new int[]{-2056777}, new int[]{-2984557}, new int[]{-2440467}, new int[]{-2906649}, new int[]{-4880430}, new int[]{-4013331}, new int[]{-5921305}, new int[]{-8421424}, new int[]{-4005139}, new int[]{-5908761}, new int[]{-8406320}, new int[]{-2702663}, new int[]{-6518654}, new int[]{-16777216}};
     private static final int[][] defaultColorsDark = {new int[]{-14797481, -15394250, -14924974, -14006975}, new int[]{-14867905, -14870478, -14997181, -15460815}, new int[]{-14666695, -15720408, -14861254, -15260107}, new int[]{-14932175, -15066075, -14208965, -15000799}, new int[]{-12968902, -14411460, -13029826, -15067598}, new int[]{-13885157, -12307670, -14542561, -12899018}, new int[]{-14797481, -15196106, -14924974, -15325638}, new int[]{-15658442, -15449521, -16047308, -12897955}, new int[]{-13809610, -15258855, -13221071, -15715791}, new int[]{-14865092}, new int[]{-15656154}, new int[]{-16051170}, new int[]{-14731745}, new int[]{-15524075}, new int[]{-15853808}, new int[]{-13685209}, new int[]{-14014945}, new int[]{-15132649}, new int[]{-12374480}, new int[]{-13755362}, new int[]{-14740716}, new int[]{-12374468}, new int[]{-13755352}, new int[]{-14740709}, new int[]{-12833213}, new int[]{-14083026}, new int[]{-14872031}, new int[]{-13554109}, new int[]{-14803922}, new int[]{-15461855}, new int[]{-13680833}, new int[]{-14602960}, new int[]{-15458784}, new int[]{-14211804}, new int[]{-15132906}, new int[]{-16777216}};
     private static final int[] searchColors = {-16746753, -65536, -30208, -13824, -16718798, -14702165, -9240406, -409915, -9224159, -16777216, -10725281, -1};
     private static final String[] searchColorsNames = {"Blue", "Red", "Orange", "Yellow", "Green", "Teal", "Purple", "Pink", "Brown", "Black", "Gray", "White"};
     private static final int[] searchColorsNamesR = {R.string.Blue, R.string.Red, R.string.Orange, R.string.Yellow, R.string.Green, R.string.Teal, R.string.Purple, R.string.Pink, R.string.Brown, R.string.Black, R.string.Gray, R.string.White};
-    private ArrayList<View> actionModeViews = new ArrayList<>();
-    private int columnsCount = 3;
-    private String selectedBackgroundSlug = "";
-    private ArrayList<Object> allWallPapers = new ArrayList<>();
-    private HashMap<String, Object> allWallPapersDict = new HashMap<>();
-    private HashMap<String, Object> localDict = new HashMap<>();
-    private ArrayList<Object> wallPapers = new ArrayList<>();
-    private ArrayList<ColorWallpaper> localWallPapers = new ArrayList<>();
-    private ArrayList<Object> patterns = new ArrayList<>();
-    private HashMap<Long, Object> patternsDict = new HashMap<>();
-    private LongSparseArray<Object> selectedWallPapers = new LongSparseArray<>();
 
     public static boolean lambda$createView$0(View view, MotionEvent motionEvent) {
         return true;
@@ -269,7 +270,23 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     }
 
     public WallpapersListActivity(int i) {
+        this(i, 0L);
+    }
+
+    public WallpapersListActivity(int i, long j) {
+        this.actionModeViews = new ArrayList<>();
+        this.columnsCount = 3;
+        this.selectedBackgroundSlug = "";
+        this.allWallPapers = new ArrayList<>();
+        this.allWallPapersDict = new HashMap<>();
+        this.localDict = new HashMap<>();
+        this.wallPapers = new ArrayList<>();
+        this.localWallPapers = new ArrayList<>();
+        this.patterns = new ArrayList<>();
+        this.patternsDict = new HashMap<>();
+        this.selectedWallPapers = new LongSparseArray<>();
         this.currentType = i;
+        this.dialogId = j;
     }
 
     @Override
@@ -280,20 +297,24 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersNeedReload);
             getMessagesStorage().getWallpapers();
         } else {
-            int[][] iArr = Theme.isCurrentThemeDark() ? defaultColorsDark : defaultColorsLight;
-            for (int i = 0; i < iArr.length; i++) {
-                if (iArr[i].length == 1) {
-                    this.wallPapers.add(new ColorWallpaper("c", iArr[i][0], 0, 45));
-                } else {
-                    this.wallPapers.add(new ColorWallpaper("c", iArr[i][0], iArr[i][1], iArr[i][2], iArr[i][3]));
-                }
-            }
+            fillDefaultColors(this.wallPapers);
             if (this.currentType == 1 && this.patterns.isEmpty()) {
                 NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersDidLoad);
                 getMessagesStorage().getWallpapers();
             }
         }
         return super.onFragmentCreate();
+    }
+
+    public static void fillDefaultColors(ArrayList<Object> arrayList) {
+        int[][] iArr = Theme.isCurrentThemeDark() ? defaultColorsDark : defaultColorsLight;
+        for (int i = 0; i < iArr.length; i++) {
+            if (iArr[i].length == 1) {
+                arrayList.add(new ColorWallpaper("c", iArr[i][0], 0, 45));
+            } else {
+                arrayList.add(new ColorWallpaper("c", iArr[i][0], iArr[i][1], iArr[i][2], iArr[i][3]));
+            }
+        }
     }
 
     @Override
@@ -326,7 +347,12 @@ public class WallpapersListActivity extends BaseFragment implements Notification
 
             @Override
             public void didSelectWallpaper(File file, Bitmap bitmap, boolean z) {
-                WallpapersListActivity.this.presentFragment(new ThemePreviewActivity(new FileWallpaper("", file, file), bitmap), z);
+                ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(new FileWallpaper("", file, file), bitmap);
+                themePreviewActivity.setDialogId(WallpapersListActivity.this.dialogId);
+                if (WallpapersListActivity.this.dialogId != 0) {
+                    themePreviewActivity.setDelegate(new WallpapersListActivity$$ExternalSyntheticLambda8(WallpapersListActivity.this));
+                }
+                WallpapersListActivity.this.presentFragment(themePreviewActivity, z);
             }
         });
         this.hasOwnBackground = true;
@@ -723,29 +749,57 @@ public class WallpapersListActivity extends BaseFragment implements Notification
 
     @Override
     public void onResume() {
+        TLRPC$WallPaper tLRPC$WallPaper;
         super.onResume();
         MessagesController.getGlobalMainSettings();
-        Theme.OverrideWallpaperInfo overrideWallpaperInfo = Theme.getActiveTheme().overrideWallpaper;
-        if (overrideWallpaperInfo != null) {
-            this.selectedBackgroundSlug = overrideWallpaperInfo.slug;
-            this.selectedColor = overrideWallpaperInfo.color;
-            this.selectedGradientColor1 = overrideWallpaperInfo.gradientColor1;
-            this.selectedGradientColor2 = overrideWallpaperInfo.gradientColor2;
-            this.selectedGradientColor3 = overrideWallpaperInfo.gradientColor3;
-            this.selectedGradientRotation = overrideWallpaperInfo.rotation;
-            this.selectedIntensity = overrideWallpaperInfo.intensity;
-            this.selectedBackgroundMotion = overrideWallpaperInfo.isMotion;
-            this.selectedBackgroundBlurred = overrideWallpaperInfo.isBlurred;
+        Theme.ThemeInfo activeTheme = Theme.getActiveTheme();
+        if (this.dialogId != 0) {
+            TLRPC$UserFull userFull = getMessagesController().getUserFull(this.dialogId);
+            if (userFull != null && (tLRPC$WallPaper = userFull.wallpaper) != null) {
+                String str = tLRPC$WallPaper.slug;
+                this.selectedBackgroundSlug = str;
+                if (str == null) {
+                    this.selectedBackgroundSlug = "";
+                }
+                TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$WallPaper.settings;
+                if (tLRPC$WallPaperSettings != null) {
+                    this.selectedColor = tLRPC$WallPaperSettings.background_color;
+                    this.selectedGradientColor1 = tLRPC$WallPaperSettings.second_background_color;
+                    this.selectedGradientColor2 = tLRPC$WallPaperSettings.third_background_color;
+                    this.selectedGradientColor3 = tLRPC$WallPaperSettings.fourth_background_color;
+                    this.selectedGradientRotation = tLRPC$WallPaperSettings.rotation;
+                    this.selectedIntensity = tLRPC$WallPaperSettings.intensity;
+                    this.selectedBackgroundMotion = tLRPC$WallPaperSettings.motion;
+                    this.selectedBackgroundBlurred = tLRPC$WallPaperSettings.blur;
+                }
+            }
         } else {
-            this.selectedBackgroundSlug = Theme.hasWallpaperFromTheme() ? "t" : "d";
-            this.selectedColor = 0;
-            this.selectedGradientColor1 = 0;
-            this.selectedGradientColor2 = 0;
-            this.selectedGradientColor3 = 0;
-            this.selectedGradientRotation = 45;
-            this.selectedIntensity = 1.0f;
-            this.selectedBackgroundMotion = false;
-            this.selectedBackgroundBlurred = false;
+            Theme.OverrideWallpaperInfo overrideWallpaperInfo = activeTheme.overrideWallpaper;
+            if (overrideWallpaperInfo != null) {
+                String str2 = overrideWallpaperInfo.slug;
+                this.selectedBackgroundSlug = str2;
+                if (str2 == null) {
+                    this.selectedBackgroundSlug = "";
+                }
+                this.selectedColor = overrideWallpaperInfo.color;
+                this.selectedGradientColor1 = overrideWallpaperInfo.gradientColor1;
+                this.selectedGradientColor2 = overrideWallpaperInfo.gradientColor2;
+                this.selectedGradientColor3 = overrideWallpaperInfo.gradientColor3;
+                this.selectedGradientRotation = overrideWallpaperInfo.rotation;
+                this.selectedIntensity = overrideWallpaperInfo.intensity;
+                this.selectedBackgroundMotion = overrideWallpaperInfo.isMotion;
+                this.selectedBackgroundBlurred = overrideWallpaperInfo.isBlurred;
+            } else {
+                this.selectedBackgroundSlug = Theme.hasWallpaperFromTheme() ? "t" : "d";
+                this.selectedColor = 0;
+                this.selectedGradientColor1 = 0;
+                this.selectedGradientColor2 = 0;
+                this.selectedGradientColor3 = 0;
+                this.selectedGradientRotation = 45;
+                this.selectedIntensity = 1.0f;
+                this.selectedBackgroundMotion = false;
+                this.selectedBackgroundBlurred = false;
+            }
         }
         fillWallpapersWithCustom();
         fixLayout();
@@ -853,18 +907,14 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             }
         }
         ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(obj4, null, true, false);
-        if (this.currentType == 1) {
-            themePreviewActivity.setDelegate(new ThemePreviewActivity.WallpaperActivityDelegate() {
-                @Override
-                public final void didSetNewBackground() {
-                    WallpapersListActivity.this.removeSelfFromStack();
-                }
-            });
+        if (this.currentType == 1 || this.dialogId != 0) {
+            themePreviewActivity.setDelegate(new WallpapersListActivity$$ExternalSyntheticLambda8(this));
         }
         if (this.selectedBackgroundSlug.equals(wallPaperSlug)) {
             themePreviewActivity.setInitialModes(this.selectedBackgroundBlurred, this.selectedBackgroundMotion);
         }
         themePreviewActivity.setPatterns(this.patterns);
+        themePreviewActivity.setDialogId(this.dialogId);
         presentFragment(themePreviewActivity);
     }
 
@@ -969,7 +1019,9 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                     getMessagesStorage().deleteWallpaper(((TLRPC$WallPaper) arrayList2.get(i7)).id);
                 }
             }
-            this.selectedBackgroundSlug = Theme.getSelectedBackgroundSlug();
+            if (this.dialogId == 0) {
+                this.selectedBackgroundSlug = Theme.getSelectedBackgroundSlug();
+            }
             fillWallpapersWithCustom();
             loadWallpapers(false);
         } else if (i == NotificationCenter.didSetNewWallpapper) {
@@ -1868,7 +1920,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                         j = r3.id;
                     } else if (colorWallpaper instanceof ColorWallpaper) {
                         ColorWallpaper colorWallpaper2 = colorWallpaper;
-                        if (("d".equals(colorWallpaper2.slug) && WallpapersListActivity.this.selectedBackgroundSlug.equals(colorWallpaper2.slug)) || (colorWallpaper2.color == WallpapersListActivity.this.selectedColor && colorWallpaper2.gradientColor1 == WallpapersListActivity.this.selectedGradientColor1 && colorWallpaper2.gradientColor2 == WallpapersListActivity.this.selectedGradientColor2 && colorWallpaper2.gradientColor3 == WallpapersListActivity.this.selectedGradientColor3 && ((WallpapersListActivity.this.selectedGradientColor1 == 0 || colorWallpaper2.gradientRotation == WallpapersListActivity.this.selectedGradientRotation) && ((!"c".equals(WallpapersListActivity.this.selectedBackgroundSlug) || colorWallpaper2.slug == null) && ("c".equals(WallpapersListActivity.this.selectedBackgroundSlug) || (TextUtils.equals(WallpapersListActivity.this.selectedBackgroundSlug, colorWallpaper2.slug) && ((int) (colorWallpaper2.intensity * 100.0f)) == ((int) (WallpapersListActivity.this.selectedIntensity * 100.0f)))))))) {
+                        if (("d".equals(colorWallpaper2.slug) && WallpapersListActivity.this.selectedBackgroundSlug != null && WallpapersListActivity.this.selectedBackgroundSlug.equals(colorWallpaper2.slug)) || (colorWallpaper2.color == WallpapersListActivity.this.selectedColor && colorWallpaper2.gradientColor1 == WallpapersListActivity.this.selectedGradientColor1 && colorWallpaper2.gradientColor2 == WallpapersListActivity.this.selectedGradientColor2 && colorWallpaper2.gradientColor3 == WallpapersListActivity.this.selectedGradientColor3 && ((WallpapersListActivity.this.selectedGradientColor1 == 0 || colorWallpaper2.gradientRotation == WallpapersListActivity.this.selectedGradientRotation) && ((!"c".equals(WallpapersListActivity.this.selectedBackgroundSlug) || colorWallpaper2.slug == null) && ("c".equals(WallpapersListActivity.this.selectedBackgroundSlug) || (TextUtils.equals(WallpapersListActivity.this.selectedBackgroundSlug, colorWallpaper2.slug) && ((int) (colorWallpaper2.intensity * 100.0f)) == ((int) (WallpapersListActivity.this.selectedIntensity * 100.0f)))))))) {
                             fileWallpaper = colorWallpaper;
                         }
                         TLRPC$WallPaper tLRPC$WallPaper = colorWallpaper2.parentWallpaper;

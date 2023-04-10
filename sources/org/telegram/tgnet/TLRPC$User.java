@@ -9,6 +9,7 @@ public abstract class TLRPC$User extends TLObject {
     public boolean attach_menu_enabled;
     public boolean bot;
     public boolean bot_attach_menu;
+    public boolean bot_can_edit;
     public boolean bot_chat_history;
     public int bot_info_version;
     public boolean bot_inline_geo;

@@ -1802,20 +1802,20 @@ public class Bulletin {
         @Override
         protected void onDraw(Canvas canvas) {
             long j;
-            String format;
+            String valueOf;
             super.onDraw(canvas);
             int ceil = this.timeLeft > 0 ? (int) Math.ceil(((float) j) / 1000.0f) : 0;
             this.rect.set(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), getMeasuredHeight() - AndroidUtilities.dp(1.0f));
             if (this.prevSeconds != ceil) {
                 this.prevSeconds = ceil;
-                this.timeLeftString = String.format("%d", Integer.valueOf(Math.max(0, ceil)));
+                this.timeLeftString = String.valueOf(Math.max(0, ceil));
                 StaticLayout staticLayout = this.timeLayout;
                 if (staticLayout != null) {
                     this.timeLayoutOut = staticLayout;
                     this.timeReplaceProgress = 0.0f;
                     this.textWidthOut = this.textWidth;
                 }
-                this.textWidth = (int) Math.ceil(this.textPaint.measureText(format));
+                this.textWidth = (int) Math.ceil(this.textPaint.measureText(valueOf));
                 this.timeLayout = new StaticLayout(this.timeLeftString, this.textPaint, ConnectionsManager.DEFAULT_DATACENTER_ID, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
             float f = this.timeReplaceProgress;

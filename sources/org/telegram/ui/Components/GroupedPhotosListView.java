@@ -128,6 +128,14 @@ public class GroupedPhotosListView extends View implements GestureDetector.OnGes
         invalidate();
     }
 
+    public int getCount() {
+        return this.currentPhotos.size();
+    }
+
+    public int getIndex() {
+        return this.currentImage;
+    }
+
     public void setMoveProgress(float f) {
         if (this.scrolling || this.animateToItem >= 0) {
             return;

@@ -375,7 +375,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         }
     }
 
-    public void lambda$createView$1(android.content.Context r8, android.view.View r9, int r10) {
+    public void lambda$createView$1(android.content.Context r9, android.view.View r10, int r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.NotificationsSoundActivity.lambda$createView$1(android.content.Context, android.view.View, int):void");
     }
 

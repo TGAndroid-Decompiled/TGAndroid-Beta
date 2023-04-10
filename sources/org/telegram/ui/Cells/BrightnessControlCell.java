@@ -16,19 +16,25 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.SeekBarView;
 public class BrightnessControlCell extends FrameLayout {
     private ImageView leftImageView;
+    Theme.ResourcesProvider resourcesProvider;
     private ImageView rightImageView;
-    private SeekBarView seekBarView;
+    public final SeekBarView seekBarView;
+    private final int size;
 
     protected void didChangedValue(float f) {
     }
 
-    public BrightnessControlCell(Context context) {
+    public BrightnessControlCell(Context context, int i) {
+        this(context, i, null);
+    }
+
+    public BrightnessControlCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         ImageView imageView = new ImageView(context);
         this.leftImageView = imageView;
-        imageView.setImageResource(R.drawable.msg_brightness_low);
-        addView(this.leftImageView, LayoutHelper.createFrame(24, 24.0f, 51, 17.0f, 12.0f, 0.0f, 0.0f));
-        SeekBarView seekBarView = new SeekBarView(this, context, true, null) {
+        addView(imageView, LayoutHelper.createFrame(24, 24.0f, 51, 17.0f, 12.0f, 0.0f, 0.0f));
+        SeekBarView seekBarView = new SeekBarView(this, context, true, resourcesProvider) {
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0) {
@@ -39,7 +45,7 @@ public class BrightnessControlCell extends FrameLayout {
         };
         this.seekBarView = seekBarView;
         seekBarView.setReportChanges(true);
-        this.seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
+        seekBarView.setDelegate(new SeekBarView.SeekBarViewDelegate() {
             @Override
             public CharSequence getContentDescription() {
                 return " ";
@@ -59,24 +65,32 @@ public class BrightnessControlCell extends FrameLayout {
                 BrightnessControlCell.this.didChangedValue(f);
             }
         });
-        this.seekBarView.setImportantForAccessibility(2);
-        addView(this.seekBarView, LayoutHelper.createFrame(-1, 38.0f, 51, 54.0f, 5.0f, 54.0f, 0.0f));
+        seekBarView.setImportantForAccessibility(2);
+        addView(seekBarView, LayoutHelper.createFrame(-1, 38.0f, 51, 54.0f, 5.0f, 54.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.rightImageView = imageView2;
-        imageView2.setImageResource(R.drawable.msg_brightness_high);
-        addView(this.rightImageView, LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 12.0f, 17.0f, 0.0f));
+        addView(imageView2, LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 12.0f, 17.0f, 0.0f));
+        if (i == 0) {
+            this.leftImageView.setImageResource(R.drawable.msg_brightness_low);
+            this.rightImageView.setImageResource(R.drawable.msg_brightness_high);
+            this.size = 48;
+            return;
+        }
+        this.leftImageView.setImageResource(R.drawable.msg_brightness_high);
+        this.rightImageView.setImageResource(R.drawable.msg_brightness_low);
+        this.size = 43;
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.leftImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));
-        this.rightImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));
+        this.leftImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon", this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        this.rightImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon", this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.size), 1073741824));
     }
 
     public void setProgress(float f) {

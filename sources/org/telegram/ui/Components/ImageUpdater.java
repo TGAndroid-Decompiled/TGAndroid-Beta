@@ -445,6 +445,11 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     return false;
                 }
 
+                @Override
+                public void onWallpaperSelected(Object obj) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onWallpaperSelected(this, obj);
+                }
+
                 {
                     ImageUpdater.this = this;
                 }

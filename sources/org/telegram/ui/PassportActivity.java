@@ -6319,6 +6319,11 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
                 }
 
                 @Override
+                public void onWallpaperSelected(Object obj) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onWallpaperSelected(this, obj);
+                }
+
+                @Override
                 public void openAvatarsSearch() {
                     ChatAttachAlert.ChatAttachViewDelegate.CC.$default$openAvatarsSearch(this);
                 }

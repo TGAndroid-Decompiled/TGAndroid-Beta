@@ -27,7 +27,9 @@ public class TLRPC$TL_user extends TLRPC$User {
         this.bot_attach_menu = (134217728 & readInt32) != 0;
         this.premium = (268435456 & readInt32) != 0;
         this.attach_menu_enabled = (readInt32 & 536870912) != 0;
-        this.flags2 = abstractSerializedData.readInt32(z);
+        int readInt322 = abstractSerializedData.readInt32(z);
+        this.flags2 = readInt322;
+        this.bot_can_edit = (readInt322 & 2) != 0;
         this.id = abstractSerializedData.readInt64(z);
         if ((this.flags & 1) != 0) {
             this.access_hash = abstractSerializedData.readInt64(z);
@@ -54,15 +56,15 @@ public class TLRPC$TL_user extends TLRPC$User {
             this.bot_info_version = abstractSerializedData.readInt32(z);
         }
         if ((this.flags & 262144) != 0) {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            if (readInt322 != 481674261) {
+            int readInt323 = abstractSerializedData.readInt32(z);
+            if (readInt323 != 481674261) {
                 if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                 }
                 return;
             }
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
+            int readInt324 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt324; i++) {
                 TLRPC$TL_restrictionReason TLdeserialize = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize == null) {
                     return;
@@ -80,15 +82,15 @@ public class TLRPC$TL_user extends TLRPC$User {
             this.emoji_status = TLRPC$EmojiStatus.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags2 & 1) != 0) {
-            int readInt324 = abstractSerializedData.readInt32(z);
-            if (readInt324 != 481674261) {
+            int readInt325 = abstractSerializedData.readInt32(z);
+            if (readInt325 != 481674261) {
                 if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                 }
                 return;
             }
-            int readInt325 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < readInt325; i2++) {
+            int readInt326 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt326; i2++) {
                 TLRPC$TL_username TLdeserialize2 = TLRPC$TL_username.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize2 == null) {
                     return;
@@ -140,6 +142,7 @@ public class TLRPC$TL_user extends TLRPC$User {
         this.flags = i17;
         int i18 = this.attach_menu_enabled ? i17 | 536870912 : i17 & (-536870913);
         this.flags = i18;
+        this.flags2 = this.bot_can_edit ? this.flags2 | 2 : this.flags2 & (-3);
         abstractSerializedData.writeInt32(i18);
         abstractSerializedData.writeInt32(this.flags2);
         abstractSerializedData.writeInt64(this.id);

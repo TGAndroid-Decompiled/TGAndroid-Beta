@@ -62,7 +62,9 @@ public class AnimatedTextView extends View {
         private CharSequence oldText;
         private float oldWidth;
         private Runnable onAnimationFinishListener;
+        private int overrideFullWidth;
         private boolean preserveIndex;
+        private float rightPadding;
         private boolean splitByWords;
         private boolean startFromEnd;
         private float t;
@@ -139,6 +141,11 @@ public class AnimatedTextView extends View {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedTextView.AnimatedTextDrawable.draw(android.graphics.Canvas):void");
         }
 
+        public void setRightPadding(float f) {
+            this.rightPadding = f;
+            invalidateSelf();
+        }
+
         public void cancelAnimation() {
             ValueAnimator valueAnimator = this.animator;
             if (valueAnimator != null) {
@@ -163,6 +170,10 @@ public class AnimatedTextView extends View {
             z = (this.currentText == null || charSequence == null) ? false : false;
             if (charSequence == null) {
                 charSequence = "";
+            }
+            final int i = this.overrideFullWidth;
+            if (i <= 0) {
+                i = this.bounds.width();
             }
             if (z) {
                 if (this.allowCancel) {
@@ -190,18 +201,18 @@ public class AnimatedTextView extends View {
                 this.isRTL = AndroidUtilities.isRTL(this.currentText);
                 diff(this.splitByWords ? new WordSequence(this.oldText) : this.oldText, this.splitByWords ? new WordSequence(this.currentText) : this.currentText, new RegionCallback() {
                     @Override
-                    public final void run(CharSequence charSequence2, int i, int i2) {
-                        AnimatedTextView.AnimatedTextDrawable.this.lambda$setText$0(arrayList2, arrayList, charSequence2, i, i2);
+                    public final void run(CharSequence charSequence2, int i2, int i3) {
+                        AnimatedTextView.AnimatedTextDrawable.this.lambda$setText$0(i, arrayList2, arrayList, charSequence2, i2, i3);
                     }
                 }, new RegionCallback() {
                     @Override
-                    public final void run(CharSequence charSequence2, int i, int i2) {
-                        AnimatedTextView.AnimatedTextDrawable.this.lambda$setText$1(arrayList, charSequence2, i, i2);
+                    public final void run(CharSequence charSequence2, int i2, int i3) {
+                        AnimatedTextView.AnimatedTextDrawable.this.lambda$setText$1(i, arrayList, charSequence2, i2, i3);
                     }
                 }, new RegionCallback() {
                     @Override
-                    public final void run(CharSequence charSequence2, int i, int i2) {
-                        AnimatedTextView.AnimatedTextDrawable.this.lambda$setText$2(arrayList2, charSequence2, i, i2);
+                    public final void run(CharSequence charSequence2, int i2, int i3) {
+                        AnimatedTextView.AnimatedTextDrawable.this.lambda$setText$2(i, arrayList2, charSequence2, i2, i3);
                     }
                 });
                 Part[] partArr = this.currentParts;
@@ -266,9 +277,9 @@ public class AnimatedTextView extends View {
             this.toSetTextMoveDown = false;
             this.t = 0.0f;
             if (!charSequence.equals(this.currentText)) {
-                this.currentParts = r11;
+                this.currentParts = r12;
                 this.currentText = charSequence;
-                Part[] partArr3 = {new Part(this, makeLayout(charSequence, this.bounds.width()), 0.0f, -1)};
+                Part[] partArr3 = {new Part(this, makeLayout(charSequence, i), 0.0f, -1)};
                 Part[] partArr4 = this.currentParts;
                 this.currentWidth = partArr4[0].width;
                 this.currentHeight = partArr4[0].layout.getHeight();
@@ -281,8 +292,8 @@ public class AnimatedTextView extends View {
             invalidateSelf();
         }
 
-        public void lambda$setText$0(ArrayList arrayList, ArrayList arrayList2, CharSequence charSequence, int i, int i2) {
-            StaticLayout makeLayout = makeLayout(charSequence, this.bounds.width() - ((int) Math.ceil(Math.min(this.currentWidth, this.oldWidth))));
+        public void lambda$setText$0(int i, ArrayList arrayList, ArrayList arrayList2, CharSequence charSequence, int i2, int i3) {
+            StaticLayout makeLayout = makeLayout(charSequence, i - ((int) Math.ceil(Math.min(this.currentWidth, this.oldWidth))));
             Part part = new Part(this, makeLayout, this.currentWidth, arrayList.size());
             Part part2 = new Part(this, makeLayout, this.oldWidth, arrayList.size());
             arrayList2.add(part);
@@ -294,17 +305,17 @@ public class AnimatedTextView extends View {
             this.oldHeight = Math.max(this.oldHeight, makeLayout.getHeight());
         }
 
-        public void lambda$setText$1(ArrayList arrayList, CharSequence charSequence, int i, int i2) {
+        public void lambda$setText$1(int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
             StaticLayout makeLayout;
-            Part part = new Part(this, makeLayout(charSequence, this.bounds.width() - ((int) Math.ceil(this.currentWidth))), this.currentWidth, -1);
+            Part part = new Part(this, makeLayout(charSequence, i - ((int) Math.ceil(this.currentWidth))), this.currentWidth, -1);
             arrayList.add(part);
             this.currentWidth += part.width;
             this.currentHeight = Math.max(this.currentHeight, makeLayout.getHeight());
         }
 
-        public void lambda$setText$2(ArrayList arrayList, CharSequence charSequence, int i, int i2) {
+        public void lambda$setText$2(int i, ArrayList arrayList, CharSequence charSequence, int i2, int i3) {
             StaticLayout makeLayout;
-            Part part = new Part(this, makeLayout(charSequence, this.bounds.width() - ((int) Math.ceil(this.oldWidth))), this.oldWidth, -1);
+            Part part = new Part(this, makeLayout(charSequence, i - ((int) Math.ceil(this.oldWidth))), this.oldWidth, -1);
             arrayList.add(part);
             this.oldWidth += part.width;
             this.oldHeight = Math.max(this.oldHeight, makeLayout.getHeight());
@@ -824,5 +835,9 @@ public class AnimatedTextView extends View {
 
     public void setEllipsizeByGradient(boolean z) {
         this.drawable.setEllipsizeByGradient(z);
+    }
+
+    public void setRightPadding(float f) {
+        this.drawable.setRightPadding(f);
     }
 }

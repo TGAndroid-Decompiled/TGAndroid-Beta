@@ -4,6 +4,7 @@ import android.os.SystemClock;
 import android.util.SparseArray;
 import android.view.View;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -242,6 +243,7 @@ public class NotificationCenter {
     public static final int voipServiceCreated;
     public static final int walletPendingTransactionsChanged;
     public static final int walletSyncProgressChanged;
+    public static int wallpaperSettedToUser;
     public static final int wallpapersDidLoad;
     public static final int wallpapersNeedReload;
     public static final int wasUnableToFindCurrentLocation;
@@ -264,6 +266,7 @@ public class NotificationCenter {
     private int animationInProgressPointer = 1;
     HashSet<Integer> heavyOperationsCounter = new HashSet<>();
     private final HashMap<Integer, AllowedNotifications> allowedNotifications = new HashMap<>();
+    SparseArray<Runnable> alreadyPostedRannubles = new SparseArray<>();
 
     public interface NotificationCenterDelegate {
         void didReceivedNotification(int i, int i2, Object... objArr);
@@ -972,8 +975,11 @@ public class NotificationCenter {
         int i233 = i232 + 1;
         totalEvents = i233;
         onDatabaseReset = i232;
-        totalEvents = i233 + 1;
-        chatlistFolderUpdate = i233;
+        int i234 = i233 + 1;
+        totalEvents = i234;
+        wallpaperSettedToUser = i233;
+        totalEvents = i234 + 1;
+        chatlistFolderUpdate = i234;
     }
 
     public static class DelayedPost {
@@ -1184,12 +1190,40 @@ public class NotificationCenter {
         } else if (i == stopAllHeavyOperations) {
             this.currentHeavyOperationFlags = ((Integer) objArr[0]).intValue() | this.currentHeavyOperationFlags;
         }
-        postNotificationNameInternal(i, z, objArr);
+        if (shouldDebounce(i, objArr) && BuildVars.DEBUG_VERSION) {
+            postNotificationDebounced(i, objArr);
+        } else {
+            postNotificationNameInternal(i, z, objArr);
+        }
         if (arrayList != null) {
             for (int i4 = 0; i4 < arrayList.size(); i4++) {
                 onAnimationFinish(((Integer) arrayList.get(i4)).intValue());
             }
         }
+    }
+
+    private void postNotificationDebounced(final int i, final Object[] objArr) {
+        final int hashCode = (Arrays.hashCode(objArr) << 16) + i;
+        if (this.alreadyPostedRannubles.indexOfKey(hashCode) >= 0) {
+            return;
+        }
+        Runnable runnable = new Runnable() {
+            @Override
+            public final void run() {
+                NotificationCenter.this.lambda$postNotificationDebounced$1(i, objArr, hashCode);
+            }
+        };
+        this.alreadyPostedRannubles.put(hashCode, runnable);
+        AndroidUtilities.runOnUIThread(runnable, 250L);
+    }
+
+    public void lambda$postNotificationDebounced$1(int i, Object[] objArr, int i2) {
+        postNotificationNameInternal(i, false, objArr);
+        this.alreadyPostedRannubles.remove(i2);
+    }
+
+    private boolean shouldDebounce(int i, Object[] objArr) {
+        return i == updateInterfaces;
     }
 
     public void postNotificationNameInternal(int i, boolean z, Object... objArr) {
@@ -1349,7 +1383,7 @@ public class NotificationCenter {
         final NotificationCenterDelegate notificationCenterDelegate = new NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i, int i2, Object[] objArr) {
-                NotificationCenter.lambda$listenEmojiLoading$1(view, i, i2, objArr);
+                NotificationCenter.lambda$listenEmojiLoading$2(view, i, i2, objArr);
             }
         };
         view.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
@@ -1365,7 +1399,7 @@ public class NotificationCenter {
         });
     }
 
-    public static void lambda$listenEmojiLoading$1(View view, int i, int i2, Object[] objArr) {
+    public static void lambda$listenEmojiLoading$2(View view, int i, int i2, Object[] objArr) {
         if (i == emojiLoaded && view != null && view.isAttachedToWindow()) {
             view.invalidate();
         }
@@ -1375,13 +1409,13 @@ public class NotificationCenter {
         final NotificationCenterDelegate[] notificationCenterDelegateArr = {new NotificationCenterDelegate() {
             @Override
             public final void didReceivedNotification(int i2, int i3, Object[] objArr) {
-                NotificationCenter.this.lambda$listenOnce$2(i, notificationCenterDelegateArr, runnable, i2, i3, objArr);
+                NotificationCenter.this.lambda$listenOnce$3(i, notificationCenterDelegateArr, runnable, i2, i3, objArr);
             }
         }};
         addObserver(notificationCenterDelegateArr[0], i);
     }
 
-    public void lambda$listenOnce$2(int i, NotificationCenterDelegate[] notificationCenterDelegateArr, Runnable runnable, int i2, int i3, Object[] objArr) {
+    public void lambda$listenOnce$3(int i, NotificationCenterDelegate[] notificationCenterDelegateArr, Runnable runnable, int i2, int i3, Object[] objArr) {
         if (i2 != i || notificationCenterDelegateArr[0] == null) {
             return;
         }

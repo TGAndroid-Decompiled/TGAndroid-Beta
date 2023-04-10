@@ -1499,6 +1499,7 @@ public class Theme {
     public static class OverrideWallpaperInfo {
         public long accessHash;
         public int color;
+        public long dialogId;
         public String fileName;
         public int gradientColor1;
         public int gradientColor2;

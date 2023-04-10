@@ -29,7 +29,6 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
@@ -41,6 +40,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -278,16 +278,6 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
                 }
                 return null;
             }
-
-            @Override
-            public CharSequence getTitleFor(int i) {
-                return FilteredSearchView.createFromInfoString(FilteredSearchView.this.messages.get(i));
-            }
-
-            @Override
-            public CharSequence getSubtitleFor(int i) {
-                return LocaleController.formatDateAudio(FilteredSearchView.this.messages.get(i).messageOwner.date, false);
-            }
         };
         this.animationIndex = -1;
         this.hideFloatingDateRunnable = new Runnable() {
@@ -471,14 +461,24 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
     }
 
     public static CharSequence createFromInfoString(MessageObject messageObject) {
+        return createFromInfoString(messageObject, true);
+    }
+
+    public static CharSequence createFromInfoString(MessageObject messageObject, boolean z) {
         TLRPC$TL_forumTopic findTopic;
         TLRPC$TL_forumTopic findTopic2;
-        if (arrowSpan == null) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("-");
-            arrowSpan = spannableStringBuilder;
-            spannableStringBuilder.setSpan(new ColoredImageSpan(ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.search_arrow).mutate()), 0, 1, 0);
+        if (messageObject == null) {
+            return "";
         }
-        ?? r0 = 0;
+        if (arrowSpan == null) {
+            arrowSpan = new SpannableStringBuilder(">");
+            Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.attach_arrow_right).mutate();
+            ColoredImageSpan coloredImageSpan = new ColoredImageSpan(mutate, 2);
+            mutate.setBounds(0, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(14.0f));
+            SpannableStringBuilder spannableStringBuilder = arrowSpan;
+            spannableStringBuilder.setSpan(coloredImageSpan, 0, spannableStringBuilder.length(), 0);
+        }
+        CharSequence charSequence = null;
         TLRPC$User user = messageObject.messageOwner.from_id.user_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(messageObject.messageOwner.from_id.user_id)) : null;
         TLRPC$Chat chat = messageObject.messageOwner.from_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
         if (chat == null) {
@@ -488,24 +488,28 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         if (chat2 == null) {
             chat2 = messageObject.messageOwner.peer_id.chat_id != 0 ? MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(messageObject.messageOwner.peer_id.chat_id)) : null;
         }
-        if (user != null && chat2 != null) {
-            CharSequence charSequence = chat2.title;
-            if (ChatObject.isForum(chat2) && (findTopic2 = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat2.id, MessageObject.getTopicId(messageObject.messageOwner, true))) != null) {
-                charSequence = ForumUtilities.getTopicSpannedName(findTopic2, null);
-            }
-            CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence, null, AndroidUtilities.dp(12.0f), false);
-            r0 = new SpannableStringBuilder();
-            r0.append(ContactsController.formatName(user.first_name, user.last_name)).append(' ').append((CharSequence) arrowSpan).append(' ').append(replaceEmoji);
-        } else if (user != null) {
-            r0 = ContactsController.formatName(user.first_name, user.last_name);
-        } else if (chat != null) {
-            CharSequence charSequence2 = chat.title;
-            if (ChatObject.isForum(chat) && (findTopic = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat.id, MessageObject.getTopicId(messageObject.messageOwner, true))) != null) {
-                charSequence2 = ForumUtilities.getTopicSpannedName(findTopic, null);
-            }
-            r0 = Emoji.replaceEmoji(charSequence2, null, AndroidUtilities.dp(12.0f), false);
+        if (!ChatObject.isChannelAndNotMegaGroup(chat2) && !z) {
+            chat2 = null;
         }
-        return r0 == 0 ? "" : r0;
+        if (user != null && chat2 != null) {
+            CharSequence charSequence2 = chat2.title;
+            if (ChatObject.isForum(chat2) && (findTopic2 = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat2.id, MessageObject.getTopicId(messageObject.messageOwner, true))) != null) {
+                charSequence2 = ForumUtilities.getTopicSpannedName(findTopic2, null);
+            }
+            CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence2, null, AndroidUtilities.dp(12.0f), false);
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            spannableStringBuilder2.append(Emoji.replaceEmoji(UserObject.getFirstName(user), null, AndroidUtilities.dp(12.0f), false)).append((char) 8202).append((CharSequence) arrowSpan).append((char) 8202).append(replaceEmoji);
+            charSequence = spannableStringBuilder2;
+        } else if (user != null) {
+            charSequence = Emoji.replaceEmoji(UserObject.getUserName(user), null, AndroidUtilities.dp(12.0f), false);
+        } else if (chat != null) {
+            CharSequence charSequence3 = chat.title;
+            if (ChatObject.isForum(chat) && (findTopic = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat.id, MessageObject.getTopicId(messageObject.messageOwner, true))) != null) {
+                charSequence3 = ForumUtilities.getTopicSpannedName(findTopic, null);
+            }
+            charSequence = Emoji.replaceEmoji(charSequence3, null, AndroidUtilities.dp(12.0f), false);
+        }
+        return charSequence == null ? "" : charSequence;
     }
 
     public void search(final long j, final long j2, final long j3, final FiltersView.MediaFilterData mediaFilterData, final boolean z, final String str, boolean z2) {

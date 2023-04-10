@@ -9,8 +9,8 @@ public final class PhotoViewer$$ExternalSyntheticLambda86 implements NumberPicke
 
     @Override
     public final String format(int i) {
-        String lambda$setParentActivity$28;
-        lambda$setParentActivity$28 = PhotoViewer.lambda$setParentActivity$28(i);
-        return lambda$setParentActivity$28;
+        String lambda$setParentActivity$26;
+        lambda$setParentActivity$26 = PhotoViewer.lambda$setParentActivity$26(i);
+        return lambda$setParentActivity$26;
     }
 }

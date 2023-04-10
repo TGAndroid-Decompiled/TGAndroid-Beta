@@ -939,9 +939,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 if (this.searchResultBotContextSwitch == null) {
                     this.searchResultBotContextSwitch = tLRPC$TL_messages_botResults.switch_pm;
                 }
-                if (this.searchResultBotWebViewSwitch == null) {
-                    this.searchResultBotWebViewSwitch = tLRPC$TL_messages_botResults.switch_webview;
-                }
+                this.searchResultBotWebViewSwitch = tLRPC$TL_messages_botResults.switch_webview;
                 int i2 = 0;
                 while (i2 < tLRPC$TL_messages_botResults.results.size()) {
                     TLRPC$BotInlineResult tLRPC$BotInlineResult = tLRPC$TL_messages_botResults.results.get(i2);

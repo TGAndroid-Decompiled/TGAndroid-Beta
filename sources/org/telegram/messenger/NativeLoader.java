@@ -6,8 +6,8 @@ public class NativeLoader {
     private static final String LIB_SO_NAME = "libtmessages.44.so";
     private static final int LIB_VERSION = 44;
     private static final String LOCALE_LIB_SO_NAME = "libtmessages.44loc.so";
+    public static StringBuilder log = new StringBuilder();
     private static volatile boolean nativeLoaded = false;
-    private String crashPath = "";
 
     private static native void init(String str, boolean z);
 
@@ -21,7 +21,7 @@ public class NativeLoader {
     }
 
     @android.annotation.SuppressLint({"UnsafeDynamicallyLoadedCode"})
-    public static synchronized void initNativeLibs(android.content.Context r7) {
+    public static synchronized void initNativeLibs(android.content.Context r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NativeLoader.initNativeLibs(android.content.Context):void");
     }
 

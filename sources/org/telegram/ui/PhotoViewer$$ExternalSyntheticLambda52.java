@@ -10,8 +10,8 @@ public final class PhotoViewer$$ExternalSyntheticLambda52 implements View.OnTouc
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        boolean lambda$setParentActivity$26;
-        lambda$setParentActivity$26 = PhotoViewer.lambda$setParentActivity$26(view, motionEvent);
-        return lambda$setParentActivity$26;
+        boolean lambda$setParentActivity$24;
+        lambda$setParentActivity$24 = PhotoViewer.lambda$setParentActivity$24(view, motionEvent);
+        return lambda$setParentActivity$24;
     }
 }

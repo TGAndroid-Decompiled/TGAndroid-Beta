@@ -7,6 +7,7 @@ import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$JSONValue;
 import org.telegram.tgnet.TLRPC$TL_jsonArray;
@@ -266,7 +267,11 @@ public class LiteMode {
         if ((i3 & FLAGS_ANIMATED_EMOJI) > 0) {
             AnimatedEmojiDrawable.updateAll();
         }
-        if ((i3 & 32) > 0) {
+        int i4 = i3 & 32;
+        if (i4 > 0) {
+            SvgHelper.SvgDrawable.updateLiteValues();
+        }
+        if (i4 > 0) {
             Theme.reloadWallpaper();
         }
     }

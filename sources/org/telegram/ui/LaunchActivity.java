@@ -4956,19 +4956,20 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         TLRPC$Chat chat = sharedInstance.getChat();
         BaseFragment baseFragment = this.actionBarLayout.getFragmentStack().get(this.actionBarLayout.getFragmentStack().size() - 1);
+        UndoView undoView = null;
         if (baseFragment instanceof ChatActivity) {
             ChatActivity chatActivity = (ChatActivity) baseFragment;
             if (chatActivity.getDialogId() == (-chat.id)) {
                 chat = null;
             }
-            UndoView undoView = chatActivity.getUndoView();
-            if (undoView != null) {
-                undoView.showWithAction(0L, i, chat);
-            }
+            undoView = chatActivity.getUndoView();
         } else if (baseFragment instanceof DialogsActivity) {
-            ((DialogsActivity) baseFragment).getUndoView().showWithAction(0L, i, chat);
+            undoView = ((DialogsActivity) baseFragment).getUndoView();
         } else if (baseFragment instanceof ProfileActivity) {
-            ((ProfileActivity) baseFragment).getUndoView().showWithAction(0L, i, chat);
+            undoView = ((ProfileActivity) baseFragment).getUndoView();
+        }
+        if (undoView != null) {
+            undoView.showWithAction(0L, i, chat);
         }
         if (i != 38 || VoIPService.getSharedInstance() == null) {
             return;

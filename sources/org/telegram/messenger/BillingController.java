@@ -42,6 +42,7 @@ import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.ui.PremiumPreviewFragment;
 public class BillingController implements PurchasesUpdatedListener, BillingClientStateListener {
     public static ProductDetails PREMIUM_PRODUCT_DETAILS = null;
+    public static boolean billingClientEmpty;
     private static BillingController instance;
     private BillingClient billingClient;
     private String lastPremiumToken;
@@ -117,6 +118,14 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             return;
         }
         this.billingClient.startConnection(this);
+    }
+
+    private void switchToInvoice() {
+        if (billingClientEmpty) {
+            return;
+        }
+        billingClientEmpty = true;
+        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
     }
 
     private void parseCurrencies(JSONObject jSONObject) {
@@ -329,17 +338,25 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     public void onBillingSetupFinished(BillingResult billingResult) {
         FileLog.d("Billing setup finished with result " + billingResult);
         if (billingResult.getResponseCode() == 0) {
-            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), BillingController$$ExternalSyntheticLambda2.INSTANCE);
+            queryProductDetails(Collections.singletonList(PREMIUM_PRODUCT), new ProductDetailsResponseListener() {
+                @Override
+                public final void onProductDetailsResponse(BillingResult billingResult2, List list) {
+                    BillingController.this.lambda$onBillingSetupFinished$6(billingResult2, list);
+                }
+            });
             queryPurchases("subs", new PurchasesResponseListener() {
                 @Override
                 public final void onQueryPurchasesResponse(BillingResult billingResult2, List list) {
                     BillingController.this.onPurchasesUpdated(billingResult2, list);
                 }
             });
+            return;
         }
+        switchToInvoice();
     }
 
-    public static void lambda$onBillingSetupFinished$6(BillingResult billingResult, List list) {
+    public void lambda$onBillingSetupFinished$6(BillingResult billingResult, List list) {
+        FileLog.d("Query product details finished " + billingResult + ", " + list);
         if (billingResult.getResponseCode() == 0) {
             Iterator it = list.iterator();
             while (it.hasNext()) {
@@ -348,8 +365,15 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
                     PREMIUM_PRODUCT_DETAILS = productDetails;
                 }
             }
-            AndroidUtilities.runOnUIThread(BillingController$$ExternalSyntheticLambda6.INSTANCE);
+            if (PREMIUM_PRODUCT_DETAILS == null) {
+                switchToInvoice();
+                return;
+            } else {
+                AndroidUtilities.runOnUIThread(BillingController$$ExternalSyntheticLambda6.INSTANCE);
+                return;
+            }
         }
+        switchToInvoice();
     }
 
     public static void lambda$onBillingSetupFinished$5() {

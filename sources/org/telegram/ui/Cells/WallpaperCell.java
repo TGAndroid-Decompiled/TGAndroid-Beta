@@ -42,6 +42,7 @@ public class WallpaperCell extends FrameLayout {
     private Paint framePaint;
     private boolean isBottom;
     private boolean isTop;
+    int size;
     private int spanCount;
     private WallpaperView[] wallpaperViews;
 
@@ -325,31 +326,35 @@ public class WallpaperCell extends FrameLayout {
     }
 
     public WallpaperCell(Context context) {
+        this(context, 5);
+    }
+
+    public WallpaperCell(Context context, int i) {
         super(context);
         this.spanCount = 3;
-        this.wallpaperViews = new WallpaperView[5];
-        final int i = 0;
+        this.wallpaperViews = new WallpaperView[i];
+        final int i2 = 0;
         while (true) {
             WallpaperView[] wallpaperViewArr = this.wallpaperViews;
-            if (i < wallpaperViewArr.length) {
+            if (i2 < wallpaperViewArr.length) {
                 final WallpaperView wallpaperView = new WallpaperView(context);
-                wallpaperViewArr[i] = wallpaperView;
+                wallpaperViewArr[i2] = wallpaperView;
                 addView(wallpaperView);
                 wallpaperView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        WallpaperCell.this.lambda$new$0(wallpaperView, i, view);
+                        WallpaperCell.this.lambda$new$0(wallpaperView, i2, view);
                     }
                 });
                 wallpaperView.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public final boolean onLongClick(View view) {
                         boolean lambda$new$1;
-                        lambda$new$1 = WallpaperCell.this.lambda$new$1(wallpaperView, i, view);
+                        lambda$new$1 = WallpaperCell.this.lambda$new$1(wallpaperView, i2, view);
                         return lambda$new$1;
                     }
                 });
-                i++;
+                i2++;
             } else {
                 Paint paint = new Paint();
                 this.framePaint = paint;
@@ -374,25 +379,34 @@ public class WallpaperCell extends FrameLayout {
 
     @Override
     protected void onMeasure(int i, int i2) {
+        int i3 = 0;
+        if (this.spanCount == 1) {
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.size, 1073741824), View.MeasureSpec.makeMeasureSpec(this.size + AndroidUtilities.dp(6.0f), 1073741824));
+            setPadding(0, 0, 0, AndroidUtilities.dp(6.0f));
+            return;
+        }
         int size = View.MeasureSpec.getSize(i);
         int dp = size - AndroidUtilities.dp(((this.spanCount - 1) * 6) + 28);
-        int i3 = dp / this.spanCount;
-        int dp2 = this.currentType == 0 ? AndroidUtilities.dp(180.0f) : i3;
-        int i4 = 0;
+        int i4 = dp / this.spanCount;
+        int dp2 = this.currentType == 0 ? AndroidUtilities.dp(180.0f) : i4;
         setMeasuredDimension(size, (this.isTop ? AndroidUtilities.dp(14.0f) : 0) + dp2 + AndroidUtilities.dp(this.isBottom ? 14.0f : 6.0f));
         while (true) {
             int i5 = this.spanCount;
-            if (i4 >= i5) {
+            if (i3 >= i5) {
                 return;
             }
-            this.wallpaperViews[i4].measure(View.MeasureSpec.makeMeasureSpec(i4 == i5 + (-1) ? dp : i3, 1073741824), View.MeasureSpec.makeMeasureSpec(dp2, 1073741824));
-            dp -= i3;
-            i4++;
+            this.wallpaperViews[i3].measure(View.MeasureSpec.makeMeasureSpec(i3 == i5 + (-1) ? dp : i4, 1073741824), View.MeasureSpec.makeMeasureSpec(dp2, 1073741824));
+            dp -= i4;
+            i3++;
         }
     }
 
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        if (this.spanCount == 1) {
+            super.onLayout(z, i, i2, i3, i4);
+            return;
+        }
         int dp = AndroidUtilities.dp(14.0f);
         int dp2 = this.isTop ? AndroidUtilities.dp(14.0f) : 0;
         for (int i5 = 0; i5 < this.spanCount; i5++) {
@@ -439,6 +453,13 @@ public class WallpaperCell extends FrameLayout {
         super.invalidate();
         for (int i = 0; i < this.spanCount; i++) {
             this.wallpaperViews[i].invalidate();
+        }
+    }
+
+    public void setSize(int i) {
+        if (this.size != i) {
+            this.size = i;
+            requestLayout();
         }
     }
 }

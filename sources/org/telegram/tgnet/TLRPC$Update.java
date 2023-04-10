@@ -476,49 +476,6 @@ public abstract class TLRPC$Update extends TLObject {
             case 1180041828:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateLangPackTooLong();
                 break;
-            case 1232025500:
-                tLRPC$TL_updateTheme = new TLRPC$Update() {
-                    public static int constructor = 1232025500;
-                    public int flags;
-                    public TLRPC$GeoPoint geo;
-                    public String offset;
-                    public TLRPC$InlineQueryPeerType peer_type;
-                    public String query;
-                    public long query_id;
-                    public long user_id;
-
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.flags = abstractSerializedData2.readInt32(z2);
-                        this.query_id = abstractSerializedData2.readInt64(z2);
-                        this.user_id = abstractSerializedData2.readInt64(z2);
-                        this.query = abstractSerializedData2.readString(z2);
-                        if ((this.flags & 1) != 0) {
-                            this.geo = TLRPC$GeoPoint.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                        }
-                        if ((this.flags & 2) != 0) {
-                            this.peer_type = TLRPC$InlineQueryPeerType.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                        }
-                        this.offset = abstractSerializedData2.readString(z2);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeInt64(this.query_id);
-                        abstractSerializedData2.writeInt64(this.user_id);
-                        abstractSerializedData2.writeString(this.query);
-                        if ((this.flags & 1) != 0) {
-                            this.geo.serializeToStream(abstractSerializedData2);
-                        }
-                        if ((this.flags & 2) != 0) {
-                            this.peer_type.serializeToStream(abstractSerializedData2);
-                        }
-                        abstractSerializedData2.writeString(this.offset);
-                    }
-                };
-                break;
             case 1299263278:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateBotCommands();
                 break;

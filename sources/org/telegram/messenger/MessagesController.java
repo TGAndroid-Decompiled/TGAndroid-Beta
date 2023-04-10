@@ -72,6 +72,7 @@ import org.telegram.tgnet.TLRPC$InputFile;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputPhoto;
 import org.telegram.tgnet.TLRPC$InputUser;
+import org.telegram.tgnet.TLRPC$InputWallPaper;
 import org.telegram.tgnet.TLRPC$JSONValue;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageAction;
@@ -208,6 +209,7 @@ import org.telegram.tgnet.TLRPC$TL_inputThemeSettings;
 import org.telegram.tgnet.TLRPC$TL_inputUser;
 import org.telegram.tgnet.TLRPC$TL_inputUserEmpty;
 import org.telegram.tgnet.TLRPC$TL_inputUserSelf;
+import org.telegram.tgnet.TLRPC$TL_inputWallPaper;
 import org.telegram.tgnet.TLRPC$TL_inputWallPaperNoFile;
 import org.telegram.tgnet.TLRPC$TL_inputWallPaperSlug;
 import org.telegram.tgnet.TLRPC$TL_jsonArray;
@@ -734,8 +736,8 @@ public class MessagesController extends BaseController implements NotificationCe
     public int uploadMaxFilePartsPremium;
     private String uploadingAvatar;
     private HashMap<String, Object> uploadingThemes;
-    private String uploadingWallpaper;
-    private Theme.OverrideWallpaperInfo uploadingWallpaperInfo;
+    public String uploadingWallpaper;
+    public Theme.OverrideWallpaperInfo uploadingWallpaperInfo;
     private UserNameResolver userNameResolver;
     private ConcurrentHashMap<Long, TLRPC$User> users;
     public String venueSearchBot;
@@ -2313,7 +2315,7 @@ public class MessagesController extends BaseController implements NotificationCe
                             }
                         }
                     }
-                    getTranslateController().checkDialogMessages(keyAt);
+                    getTranslateController().checkDialogMessage(keyAt);
                 } else {
                     tLRPC$Dialog2.pinned = tLRPC$Dialog.pinned;
                     tLRPC$Dialog2.pinnedNum = tLRPC$Dialog.pinnedNum;
@@ -2377,7 +2379,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                 }
                             }
                         }
-                        getTranslateController().checkDialogMessages(keyAt);
+                        getTranslateController().checkDialogMessage(keyAt);
                     } else {
                         this.dialogs_dict.put(keyAt, tLRPC$Dialog);
                         this.dialogMessage.put(keyAt, arrayList5);
@@ -2424,7 +2426,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                 }
                             }
                         }
-                        getTranslateController().checkDialogMessages(j7);
+                        getTranslateController().checkDialogMessage(j7);
                     }
                 }
             }
@@ -5561,6 +5563,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 tLRPC$TL_account_uploadWallPaper.file = tLRPC$InputFile3;
                 tLRPC$TL_account_uploadWallPaper.mime_type = "image/jpeg";
                 final Theme.OverrideWallpaperInfo overrideWallpaperInfo = this.uploadingWallpaperInfo;
+                final String str4 = this.uploadingWallpaper;
                 final TLRPC$TL_wallPaperSettings tLRPC$TL_wallPaperSettings = new TLRPC$TL_wallPaperSettings();
                 tLRPC$TL_wallPaperSettings.blur = overrideWallpaperInfo.isBlurred;
                 tLRPC$TL_wallPaperSettings.motion = overrideWallpaperInfo.isMotion;
@@ -5568,7 +5571,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 getConnectionsManager().sendRequest(tLRPC$TL_account_uploadWallPaper, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        MessagesController.this.lambda$didReceivedNotification$34(overrideWallpaperInfo, tLRPC$TL_wallPaperSettings, tLObject, tLRPC$TL_error);
+                        MessagesController.this.lambda$didReceivedNotification$34(overrideWallpaperInfo, tLRPC$TL_wallPaperSettings, str4, tLObject, tLRPC$TL_error);
                     }
                 });
                 return;
@@ -5702,19 +5705,19 @@ public class MessagesController extends BaseController implements NotificationCe
                 }
             });
         } else if (i == NotificationCenter.fileUploadFailed) {
-            String str4 = (String) objArr[0];
-            String str5 = this.uploadingAvatar;
-            if (str5 != null && str5.equals(str4)) {
+            String str5 = (String) objArr[0];
+            String str6 = this.uploadingAvatar;
+            if (str6 != null && str6.equals(str5)) {
                 this.uploadingAvatar = null;
                 return;
             }
-            String str6 = this.uploadingWallpaper;
-            if (str6 != null && str6.equals(str4)) {
+            String str7 = this.uploadingWallpaper;
+            if (str7 != null && str7.equals(str5)) {
                 this.uploadingWallpaper = null;
                 this.uploadingWallpaperInfo = null;
                 return;
             }
-            Object remove = this.uploadingThemes.remove(str4);
+            Object remove = this.uploadingThemes.remove(str5);
             if (remove instanceof Theme.ThemeInfo) {
                 Theme.ThemeInfo themeInfo3 = (Theme.ThemeInfo) remove;
                 themeInfo3.uploadedFile = null;
@@ -5819,7 +5822,7 @@ public class MessagesController extends BaseController implements NotificationCe
         getUserConfig().saveConfig(true);
     }
 
-    public void lambda$didReceivedNotification$34(final Theme.OverrideWallpaperInfo overrideWallpaperInfo, final TLRPC$TL_wallPaperSettings tLRPC$TL_wallPaperSettings, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$didReceivedNotification$34(final Theme.OverrideWallpaperInfo overrideWallpaperInfo, final TLRPC$TL_wallPaperSettings tLRPC$TL_wallPaperSettings, final String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         final TLRPC$WallPaper tLRPC$WallPaper = (TLRPC$WallPaper) tLObject;
         final File file = new File(ApplicationLoader.getFilesDirFixed(), overrideWallpaperInfo.originalFileName);
         if (tLRPC$WallPaper != null) {
@@ -5831,12 +5834,12 @@ public class MessagesController extends BaseController implements NotificationCe
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesController.this.lambda$didReceivedNotification$33(tLRPC$WallPaper, tLRPC$TL_wallPaperSettings, overrideWallpaperInfo, file);
+                MessagesController.this.lambda$didReceivedNotification$33(tLRPC$WallPaper, tLRPC$TL_wallPaperSettings, overrideWallpaperInfo, file, str);
             }
         });
     }
 
-    public void lambda$didReceivedNotification$33(TLRPC$WallPaper tLRPC$WallPaper, TLRPC$TL_wallPaperSettings tLRPC$TL_wallPaperSettings, Theme.OverrideWallpaperInfo overrideWallpaperInfo, File file) {
+    public void lambda$didReceivedNotification$33(TLRPC$WallPaper tLRPC$WallPaper, TLRPC$TL_wallPaperSettings tLRPC$TL_wallPaperSettings, Theme.OverrideWallpaperInfo overrideWallpaperInfo, File file, String str) {
         if (this.uploadingWallpaper == null || tLRPC$WallPaper == null) {
             return;
         }
@@ -5852,6 +5855,9 @@ public class MessagesController extends BaseController implements NotificationCe
             ImageLoader.getInstance().replaceImageInCache(Utilities.MD5(file.getAbsolutePath()) + "@100_100", closestPhotoSizeWithSize.location.volume_id + "_" + closestPhotoSizeWithSize.location.local_id + "@100_100", ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$WallPaper.document), false);
         }
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.wallpapersNeedReload, tLRPC$WallPaper.slug);
+        if (overrideWallpaperInfo.dialogId != 0) {
+            ChatThemeController.getInstance(this.currentAccount).setWallpaperToUser(overrideWallpaperInfo.dialogId, str, overrideWallpaperInfo, null, null);
+        }
     }
 
     public void lambda$didReceivedNotification$40(TLRPC$TL_theme tLRPC$TL_theme, final Theme.ThemeInfo themeInfo, TLRPC$TL_inputThemeSettings tLRPC$TL_inputThemeSettings, final Theme.ThemeAccent themeAccent, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -7029,6 +7035,9 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC$UserFull tLRPC$UserFull2 = tLRPC$TL_users_userFull.full_user;
             tLRPC$UserFull2.user = getUser(Long.valueOf(tLRPC$UserFull2.id));
             getMessagesStorage().updateUserInfo(tLRPC$UserFull, false);
+            ChatThemeController chatThemeController = ChatThemeController.getInstance(this.currentAccount);
+            TLRPC$UserFull tLRPC$UserFull3 = tLRPC$TL_users_userFull.full_user;
+            chatThemeController.saveChatWallpaper(tLRPC$UserFull3.id, tLRPC$UserFull3.wallpaper);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -8319,12 +8328,61 @@ public class MessagesController extends BaseController implements NotificationCe
         getFileLoader().uploadFile(str, false, true, ConnectionsManager.FileTypePhoto);
     }
 
-    public void saveWallpaperToServer(java.io.File r10, org.telegram.ui.ActionBar.Theme.OverrideWallpaperInfo r11, boolean r12, final long r13) {
+    public void saveWallpaperToServer(java.io.File r8, org.telegram.ui.ActionBar.Theme.OverrideWallpaperInfo r9, boolean r10, final long r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.saveWallpaperToServer(java.io.File, org.telegram.ui.ActionBar.Theme$OverrideWallpaperInfo, boolean, long):void");
     }
 
     public void lambda$saveWallpaperToServer$110(long j, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         getMessagesStorage().removePendingTask(j);
+    }
+
+    public static TLRPC$TL_wallPaperSettings getWallpaperSetting(Theme.OverrideWallpaperInfo overrideWallpaperInfo) {
+        TLRPC$TL_wallPaperSettings tLRPC$TL_wallPaperSettings = new TLRPC$TL_wallPaperSettings();
+        tLRPC$TL_wallPaperSettings.blur = overrideWallpaperInfo.isBlurred;
+        tLRPC$TL_wallPaperSettings.motion = overrideWallpaperInfo.isMotion;
+        int i = overrideWallpaperInfo.color;
+        if (i != 0) {
+            tLRPC$TL_wallPaperSettings.background_color = i & 16777215;
+            int i2 = tLRPC$TL_wallPaperSettings.flags | 1;
+            tLRPC$TL_wallPaperSettings.flags = i2;
+            tLRPC$TL_wallPaperSettings.intensity = (int) (overrideWallpaperInfo.intensity * 100.0f);
+            tLRPC$TL_wallPaperSettings.flags = i2 | 8;
+        } else {
+            float f = overrideWallpaperInfo.intensity;
+            if (f > 0.0f) {
+                tLRPC$TL_wallPaperSettings.intensity = (int) (f * 100.0f);
+                tLRPC$TL_wallPaperSettings.flags |= 8;
+            }
+        }
+        int i3 = overrideWallpaperInfo.gradientColor1;
+        if (i3 != 0) {
+            tLRPC$TL_wallPaperSettings.second_background_color = i3 & 16777215;
+            tLRPC$TL_wallPaperSettings.rotation = AndroidUtilities.getWallpaperRotation(overrideWallpaperInfo.rotation, true);
+            tLRPC$TL_wallPaperSettings.flags |= 16;
+        }
+        int i4 = overrideWallpaperInfo.gradientColor2;
+        if (i4 != 0) {
+            tLRPC$TL_wallPaperSettings.third_background_color = i4 & 16777215;
+            tLRPC$TL_wallPaperSettings.flags |= 32;
+        }
+        int i5 = overrideWallpaperInfo.gradientColor3;
+        if (i5 != 0) {
+            tLRPC$TL_wallPaperSettings.fourth_background_color = i5 & 16777215;
+            tLRPC$TL_wallPaperSettings.flags |= 64;
+        }
+        return tLRPC$TL_wallPaperSettings;
+    }
+
+    public static TLRPC$InputWallPaper getInputWallpaper(Theme.OverrideWallpaperInfo overrideWallpaperInfo) {
+        if (overrideWallpaperInfo.wallpaperId > 0) {
+            TLRPC$TL_inputWallPaper tLRPC$TL_inputWallPaper = new TLRPC$TL_inputWallPaper();
+            tLRPC$TL_inputWallPaper.id = overrideWallpaperInfo.wallpaperId;
+            tLRPC$TL_inputWallPaper.access_hash = overrideWallpaperInfo.accessHash;
+            return tLRPC$TL_inputWallPaper;
+        }
+        TLRPC$TL_inputWallPaperSlug tLRPC$TL_inputWallPaperSlug = new TLRPC$TL_inputWallPaperSlug();
+        tLRPC$TL_inputWallPaperSlug.slug = overrideWallpaperInfo.slug;
+        return tLRPC$TL_inputWallPaperSlug;
     }
 
     public void markDialogMessageAsDeleted(long j, ArrayList<Integer> arrayList) {
@@ -9774,7 +9832,7 @@ public class MessagesController extends BaseController implements NotificationCe
             if (tLRPC$Dialog4.last_message_date == 0) {
                 tLRPC$Dialog4.last_message_date = messageObject.messageOwner.date;
             }
-            getTranslateController().checkDialogMessages(j);
+            getTranslateController().checkDialogMessage(j);
         }
         sortDialogs(null);
         getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, Boolean.TRUE);
@@ -11283,7 +11341,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     }
                 }
             }
-            getTranslateController().checkDialogMessages(keyAt);
+            getTranslateController().checkDialogMessage(keyAt);
         }
         this.allDialogs.clear();
         int size = this.dialogs_dict.size();
@@ -11415,7 +11473,7 @@ public class MessagesController extends BaseController implements NotificationCe
         checkChatInviter(tLRPC$Chat.id, true);
     }
 
-    public void lambda$processLoadedDialogs$188(org.telegram.tgnet.TLRPC$Message r24, int r25, org.telegram.tgnet.TLRPC$messages_Dialogs r26, java.util.ArrayList r27, java.util.ArrayList r28, boolean r29, int r30, androidx.collection.LongSparseArray r31, androidx.collection.LongSparseArray r32, androidx.collection.LongSparseArray r33, int r34, boolean r35, int r36, java.util.ArrayList r37) {
+    public void lambda$processLoadedDialogs$188(org.telegram.tgnet.TLRPC$Message r27, int r28, org.telegram.tgnet.TLRPC$messages_Dialogs r29, java.util.ArrayList r30, java.util.ArrayList r31, boolean r32, int r33, androidx.collection.LongSparseArray r34, androidx.collection.LongSparseArray r35, androidx.collection.LongSparseArray r36, int r37, boolean r38, int r39, java.util.ArrayList r40) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.lambda$processLoadedDialogs$188(org.telegram.tgnet.TLRPC$Message, int, org.telegram.tgnet.TLRPC$messages_Dialogs, java.util.ArrayList, java.util.ArrayList, boolean, int, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, int, boolean, int, java.util.ArrayList):void");
     }
 
@@ -14775,7 +14833,7 @@ public class MessagesController extends BaseController implements NotificationCe
                             arrayList7 = arrayList3;
                         }
                     }
-                    getTranslateController().checkDialogMessages(tLRPC$Dialog2.id);
+                    getTranslateController().checkDialogMessage(tLRPC$Dialog2.id);
                     z3 = true;
                 }
                 i5++;
