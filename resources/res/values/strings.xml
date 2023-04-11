@@ -847,7 +847,6 @@
     <string name="AwaitingEncryption">Waiting for %s to get online...</string>
     <string name="AwayTo">%1$s away</string>
     <string name="Back">Back</string>
-    <string name="BackToOtherOptions">Back to other options</string>
     <string name="BackgroundAnimate">Animate</string>
     <string name="BackgroundAnimateInfo">Colors will move when you send messages</string>
     <string name="BackgroundBlurred">Blurred</string>
@@ -1265,7 +1264,7 @@
     <string name="ChatArchived">Chat archived.</string>
     <string name="ChatArchivedInfo">Hide the archive by swiping left on it.</string>
     <string name="ChatBackground">Chat Background</string>
-    <string name="ChatBackgroundHint">Background will not be applied for %s</string>
+    <string name="ChatBackgroundHint">%s will be able to apply this wallpaper</string>
     <string name="ChatCamera">Camera</string>
     <string name="ChatDeletedUndo">Chat deleted</string>
     <string name="ChatDistanceToPeer">%1$s is %2$s</string>
@@ -1298,6 +1297,7 @@
     <string name="ChatSetPhotoOrVideo">Set Photo or Video</string>
     <string name="ChatSetThisLocation">Set this location</string>
     <string name="ChatSettings">Chat Settings</string>
+    <string name="ChatThemeApplyHint">Theme will also be applied for %s</string>
     <string name="ChatThemeChangedTo">%1$s changed the chat theme to %2$s</string>
     <string name="ChatThemeChangedYou">You changed the chat theme to %1$s</string>
     <string name="ChatThemeDayNightSwitchTooltip">Tap here to view how **%s** will see this theme when using night mode.</string>
@@ -1374,11 +1374,12 @@
     <string name="CheckYourNewEmail">Check Your New Email</string>
     <string name="CheckYourNewEmailSubtitle">Please enter the code we have sent to your new email %1$s.</string>
     <string name="Checking">Checking...</string>
+    <string name="ChooseANewWallpaper">Choose a New Wallpaper</string>
     <string name="ChooseBackground">Choose background</string>
-    <string name="ChooseBackgroundFromGallery">Choose Background from Gallery</string>
+    <string name="ChooseBackgroundFromGallery">Choose Wallpaper from Gallery</string>
     <string name="ChooseBot">Choose Bot</string>
     <string name="ChooseChannel">Choose Channel</string>
-    <string name="ChooseColorAsBackground">Choose Color as a Background</string>
+    <string name="ChooseColorAsBackground">Choose Color as a Wallpaper</string>
     <string name="ChooseCountry">Choose a country</string>
     <string name="ChooseCover">Choose a cover for your profile video</string>
     <string name="ChooseDate">Choose date</string>
@@ -4550,6 +4551,8 @@
     <string name="PreviewForwardVideo_other">Forward %1$d videos</string>
     <string name="PreviewForwardVideo_two">Forward %1$d videos</string>
     <string name="PreviewForwardVideo_zero">Forward %1$d videos</string>
+    <string name="PreviewWallpaperDay">Preview this background in day mode.</string>
+    <string name="PreviewWallpaperNight">Preview this background in night mode.</string>
     <string name="PreviousPinnedMessage">Previous Message</string>
     <string name="PricePerMonth">%1$s / month</string>
     <string name="PricePerMonthMe">%1$s/month</string>
@@ -4931,7 +4934,7 @@
     <string name="ResetToOriginalPhoto">Reset to Original Photo</string>
     <string name="ResetToOriginalPhotoMessage">Are you sure you want to reset to the original photo from %s?</string>
     <string name="ResetToOriginalPhotoTitle">Reset Photo</string>
-    <string name="RestToDefaultBackground">Reset to Default Background</string>
+    <string name="RestToDefaultBackground">Remove Wallpaper</string>
     <string name="RestartTopic">Reopen topic</string>
     <string name="RestartTopics">Reopen topics</string>
     <string name="Restore">Restore</string>
@@ -5229,7 +5232,7 @@
     <string name="SetBackgroundFromGallery">Set Background From Gallery</string>
     <string name="SetChannelPhoto">Set Channel Photo</string>
     <string name="SetColor">Set a color</string>
-    <string name="SetColorAsBackground">Set a Color as Background</string>
+    <string name="SetColorAsBackground">Set a Color as Wallpaper</string>
     <string name="SetCover">Set a cover for this video</string>
     <string name="SetCustomTime">Set Custom Time</string>
     <string name="SetEmojiStatus">Set Emoji Status</string>

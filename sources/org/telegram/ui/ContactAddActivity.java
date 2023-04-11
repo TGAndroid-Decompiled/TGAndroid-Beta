@@ -375,7 +375,6 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             textCell.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
             int i2 = R.raw.photo_suggest_icon;
             final RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
-            textCell.imageView.setTranslationY((float) (-AndroidUtilities.dp(9.0f)));
             textCell.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
             textCell.imageView.setAnimation(rLottieDrawable);
             textCell.setOnClickListener(new View.OnClickListener() {
@@ -391,7 +390,6 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             textCell2.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
             int i3 = R.raw.camera_outline;
             final RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
-            textCell2.imageView.setTranslationY((float) (-AndroidUtilities.dp(9.0f)));
             textCell2.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
             textCell2.imageView.setAnimation(rLottieDrawable2);
             textCell2.setOnClickListener(new View.OnClickListener() {

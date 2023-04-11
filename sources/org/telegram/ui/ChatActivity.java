@@ -89,6 +89,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.util.Log;
 import j$.util.Comparator$CC;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -1244,10 +1245,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public boolean allowSendPhotos() {
         TLRPC$Chat tLRPC$Chat = this.currentChat;
         return tLRPC$Chat == null || ChatObject.canSendPhoto(tLRPC$Chat);
-    }
-
-    public ThemeDelegate createThemeDelegate() {
-        return new ThemeDelegate();
     }
 
     public RecyclerListView getChatListView() {
@@ -9752,7 +9749,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.drawCaptionAfter = new ArrayList<>();
             this.adjustPanLayoutHelper = new AdjustPanLayoutHelper(this, ChatActivity.this) {
                 @Override
-                protected void onTransitionStart(boolean z, int i) {
+                public void onTransitionStart(boolean z, int i) {
                     ChatActivity.this.wasManualScroll = true;
                     ChatActivityEnterView chatActivityEnterView = ChatActivity.this.chatActivityEnterView;
                     if (chatActivityEnterView != null) {
@@ -9768,7 +9765,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
 
                 @Override
-                protected void onTransitionEnd() {
+                public void onTransitionEnd() {
                     ChatActivityEnterView chatActivityEnterView = ChatActivity.this.chatActivityEnterView;
                     if (chatActivityEnterView != null) {
                         chatActivityEnterView.onAdjustPanTransitionEnd();
@@ -9784,7 +9781,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
 
                 @Override
-                protected void onPanTranslationUpdate(float f, float f2, boolean z) {
+                public void onPanTranslationUpdate(float f, float f2, boolean z) {
                     if (ChatActivity.this.getParentLayout() == null || !ChatActivity.this.getParentLayout().isPreviewOpenAnimationInProgress()) {
                         ChatActivity.this.contentPanTranslation = f;
                         ChatAttachAlert chatAttachAlert = ChatActivity.this.chatAttachAlert;
@@ -12478,7 +12475,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         motionBackgroundDrawable.switchToNextPosition();
     }
 
-    private void processNewMessages(java.util.ArrayList<org.telegram.messenger.MessageObject> r33) {
+    private void processNewMessages(java.util.ArrayList<org.telegram.messenger.MessageObject> r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.processNewMessages(java.util.ArrayList):void");
     }
 
@@ -16791,7 +16788,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getConnectionsManager().cancelRequest(i, true);
     }
 
-    private void removeMessageObject(MessageObject messageObject) {
+    public void removeMessageObject(MessageObject messageObject) {
         int indexOf = this.messages.indexOf(messageObject);
         if (indexOf == -1) {
             return;
@@ -17640,13 +17637,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     @Override
                     public void didClickImage(ChatActionCell chatActionCell3) {
                         TLRPC$VideoSize tLRPC$VideoSize;
+                        String str;
                         MessageObject messageObject = chatActionCell3.getMessageObject();
                         PhotoViewer photoViewer = PhotoViewer.getInstance();
                         ChatActivity chatActivity = ChatActivity.this;
                         photoViewer.setParentActivity(chatActivity, chatActivity.themeDelegate);
                         TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 640);
                         if (chatActionCell3.getMessageObject().type == 22) {
-                            if (!chatActionCell3.hasButton()) {
+                            MessagesController messagesController = MessagesController.getInstance(((BaseFragment) ChatActivity.this).currentAccount);
+                            if (messageObject.getId() < 0 && (str = messagesController.uploadingWallpaper) != null && TextUtils.equals(messageObject.messageOwner.action.wallpaper.uploadingImage, str)) {
+                                messagesController.cancelUploadWallpaper();
+                                ChatActivity.this.removeMessageObject(messageObject);
+                                return;
+                            } else if (!chatActionCell3.hasButton()) {
                                 ChatActivity.this.showChatThemeBottomSheet();
                                 return;
                             } else {
@@ -20677,6 +20680,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     private void setChatThemeEmoticon(String str) {
+        TLRPC$UserFull userFull;
         ChatThemeController.getInstance(this.currentAccount).setDialogTheme(this.dialog_id, str, false);
         if (!TextUtils.isEmpty(str)) {
             ChatThemeController.requestChatTheme(str, new ResultCallback() {
@@ -20690,17 +20694,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     ResultCallback.CC.$default$onError(this, tLRPC$TL_error);
                 }
             });
-            return;
         }
-        TLRPC$UserFull tLRPC$UserFull = this.userInfo;
-        TLRPC$WallPaper tLRPC$WallPaper = tLRPC$UserFull != null ? tLRPC$UserFull.wallpaper : null;
+        TLRPC$WallPaper tLRPC$WallPaper = (this.dialog_id < 0 || (userFull = getMessagesController().getUserFull(this.dialog_id)) == null) ? null : userFull.wallpaper;
         ThemeDelegate themeDelegate = this.themeDelegate;
         themeDelegate.setCurrentTheme(themeDelegate.chatTheme, tLRPC$WallPaper, this.openAnimationStartTime != 0, null);
     }
 
     public void lambda$setChatThemeEmoticon$276(EmojiThemes emojiThemes) {
-        TLRPC$UserFull tLRPC$UserFull = this.userInfo;
-        this.themeDelegate.setCurrentTheme(emojiThemes, tLRPC$UserFull != null ? tLRPC$UserFull.wallpaper : null, this.openAnimationStartTime != 0, null);
+        ThemeDelegate themeDelegate = this.themeDelegate;
+        themeDelegate.setCurrentTheme(emojiThemes, themeDelegate.wallpaper, this.openAnimationStartTime != 0, null);
     }
 
     @Override
@@ -20828,9 +20830,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             HashMap<String, Integer> hashMap = this.animatingColors;
             if (hashMap == null || (num = hashMap.get(str)) == null) {
                 Integer num2 = this.currentColors.get(str);
-                if (num2 == null && this.chatTheme == null) {
-                    return Integer.valueOf(Theme.getColor(str));
-                }
                 if (num2 == null) {
                     if ("chat_outBubbleGradient".equals(str) || "chat_outBubbleGradient2".equals(str) || "chat_outBubbleGradient3".equals(str)) {
                         num2 = this.currentColors.get("chat_outBubble");
@@ -20844,6 +20843,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     if (num2 == null && (fallbackKey = Theme.getFallbackKey(str)) != null) {
                         num2 = this.currentColors.get(fallbackKey);
                     }
+                }
+                if (num2 == null && this.chatTheme == null) {
+                    return Integer.valueOf(Theme.getColor(str));
                 }
                 return (num2 != null || this.chatTheme == null) ? num2 : Integer.valueOf(Theme.getDefaultColor(str));
             }
@@ -21113,6 +21115,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             if (tLRPC$WallPaper != null) {
                 this.backgroundDrawable = ChatBackgroundDrawable.getOrCreate(this.backgroundDrawable, tLRPC$WallPaper, this.isDark);
+                if (tLRPC$WallPaper.uploadingImage == null) {
+                    Log.d("kek", ":(");
+                }
+                Log.d("kek", "create new background " + tLRPC$WallPaper.uploadingImage);
             } else {
                 this.backgroundDrawable = getBackgroundDrawableFromTheme(emojiThemes, phase);
             }

@@ -137,6 +137,10 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private RadialProgress2 radialProgress;
     private RectF rect;
     private View rippleView;
+    private StaticLayout settingWallpaperLayout;
+    TextPaint settingWallpaperPaint;
+    private float settingWallpaperProgress;
+    private StaticLayout settingWallpaperProgressTextLayout;
     public List<SpoilerEffect> spoilers;
     private Stack<SpoilerEffect> spoilersPool;
     private StarParticlesView.Drawable starParticlesDrawable;
@@ -439,6 +443,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     public void setMessageObject(MessageObject messageObject, boolean z) {
         TLRPC$PhotoSize tLRPC$PhotoSize;
         TLRPC$Document tLRPC$Document;
+        float f;
         StaticLayout staticLayout;
         if (this.currentMessageObject != messageObject || (!((staticLayout = this.textLayout) == null || TextUtils.equals(staticLayout.getText(), messageObject.messageText)) || (!(this.hasReplyMessage || messageObject.replyMessageObject == null) || z || messageObject.type == 21))) {
             if (BuildVars.DEBUG_PRIVATE_VERSION && Thread.currentThread() != ApplicationLoader.applicationHandler.getLooper().getThread()) {
@@ -465,8 +470,19 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     }
                 }
                 TLRPC$MessageAction tLRPC$MessageAction = messageObject.messageOwner.action;
-                this.imageReceiver.setImage(ImageLocation.getForDocument((TLRPC$Document) messageObject.photoThumbsObject), "150_150_wallpaper" + tLRPC$MessageAction.wallpaper.id + ChatBackgroundDrawable.hash(tLRPC$MessageAction.wallpaper.settings), null, null, ChatBackgroundDrawable.createThumb(tLRPC$MessageAction.wallpaper), 0L, null, tLRPC$MessageAction.wallpaper, 1);
-                this.imageReceiver.setRoundRadius((int) (((float) this.stickerSize) / 2.0f));
+                String str = tLRPC$MessageAction.wallpaper.uploadingImage;
+                if (str != null) {
+                    this.imageReceiver.setImage(ImageLocation.getForPath(str), "150_150_wallpaper" + tLRPC$MessageAction.wallpaper.id + ChatBackgroundDrawable.hash(tLRPC$MessageAction.wallpaper.settings), null, null, ChatBackgroundDrawable.createThumb(tLRPC$MessageAction.wallpaper), 0L, null, tLRPC$MessageAction.wallpaper, 1);
+                } else {
+                    this.imageReceiver.setImage(ImageLocation.getForDocument((TLRPC$Document) messageObject.photoThumbsObject), "150_150_wallpaper" + tLRPC$MessageAction.wallpaper.id + ChatBackgroundDrawable.hash(tLRPC$MessageAction.wallpaper.settings), null, null, ChatBackgroundDrawable.createThumb(tLRPC$MessageAction.wallpaper), 0L, null, tLRPC$MessageAction.wallpaper, 1);
+                }
+                this.imageReceiver.setRoundRadius((int) (this.stickerSize / 2.0f));
+                if (getUploadingInfoProgress(messageObject) == 1.0f) {
+                    this.radialProgress.setProgress(1.0f, !z2);
+                    this.radialProgress.setIcon(4, !z2, !z2);
+                } else {
+                    this.radialProgress.setIcon(3, !z2, !z2);
+                }
             } else if (i == 21) {
                 this.imageReceiver.setRoundRadius((int) (this.stickerSize / 2.0f));
                 this.imageReceiver.setAllowStartLottieAnimation(true);
@@ -501,31 +517,35 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 }
                 this.imageReceiver.setAllowStartLottieAnimation(false);
                 ImageUpdater imageUpdater = MessagesController.getInstance(this.currentAccount).photoSuggestion.get(messageObject.messageOwner.local_id);
-                if (imageUpdater == null || imageUpdater.getCurrentImageProgress() == 1.0f) {
-                    this.radialProgress.setProgress(1.0f, !z2);
-                    this.radialProgress.setIcon(4, !z2, !z2);
+                if (imageUpdater != null) {
+                    f = 1.0f;
+                    if (imageUpdater.getCurrentImageProgress() != 1.0f) {
+                        this.radialProgress.setIcon(3, !z2, !z2);
+                    }
                 } else {
-                    this.radialProgress.setIcon(3, !z2, !z2);
+                    f = 1.0f;
                 }
+                this.radialProgress.setProgress(f, !z2);
+                this.radialProgress.setIcon(4, !z2, !z2);
             } else if (i == 18) {
                 this.imageReceiver.setRoundRadius(0);
-                String str = UserConfig.getInstance(this.currentAccount).premiumGiftsStickerPack;
-                if (str == null) {
+                String str2 = UserConfig.getInstance(this.currentAccount).premiumGiftsStickerPack;
+                if (str2 == null) {
                     MediaDataController.getInstance(this.currentAccount).checkPremiumGiftStickers();
                     return;
                 }
-                TLRPC$TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName(str);
+                TLRPC$TL_messages_stickerSet stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByName(str2);
                 if (stickerSetByName == null) {
-                    stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName(str);
+                    stickerSetByName = MediaDataController.getInstance(this.currentAccount).getStickerSetByEmojiOrName(str2);
                 }
                 TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = stickerSetByName;
                 if (tLRPC$TL_messages_stickerSet != null) {
-                    String str2 = monthsToEmoticon.get(Integer.valueOf(messageObject.messageOwner.action.months));
+                    String str3 = monthsToEmoticon.get(Integer.valueOf(messageObject.messageOwner.action.months));
                     Iterator<TLRPC$TL_stickerPack> it = tLRPC$TL_messages_stickerSet.packs.iterator();
                     tLRPC$Document = null;
                     while (it.hasNext()) {
                         TLRPC$TL_stickerPack next = it.next();
-                        if (Objects.equals(next.emoticon, str2)) {
+                        if (Objects.equals(next.emoticon, str3)) {
                             Iterator<Long> it2 = next.documents.iterator();
                             while (it2.hasNext()) {
                                 long longValue = it2.next().longValue();
@@ -579,7 +599,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                     this.imageReceiver.setAutoRepeat(0);
                     this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), messageObject.getId() + "_130_130", svgThumb, "tgs", tLRPC$TL_messages_stickerSet, 1);
                 } else {
-                    MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName(str, false, tLRPC$TL_messages_stickerSet == null);
+                    MediaDataController.getInstance(this.currentAccount).loadStickersByEmojiOrName(str2, false, tLRPC$TL_messages_stickerSet == null);
                 }
             } else if (i == 11) {
                 this.imageReceiver.setAllowStartLottieAnimation(true);
@@ -631,6 +651,15 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             ForumUtilities.applyTopicToMessage(messageObject);
             requestLayout();
         }
+    }
+
+    private float getUploadingInfoProgress(MessageObject messageObject) {
+        MessagesController messagesController;
+        String str;
+        if (messageObject == null || messageObject.type != 22 || (str = (messagesController = MessagesController.getInstance(this.currentAccount)).uploadingWallpaper) == null || !TextUtils.equals(messageObject.messageOwner.action.wallpaper.uploadingImage, str)) {
+            return 1.0f;
+        }
+        return messagesController.uploadingWallpaperInfo.uploadingProgress;
     }
 
     public MessageObject getMessageObject() {
@@ -957,7 +986,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r21) {
+    public void onDraw(android.graphics.Canvas r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onDraw(android.graphics.Canvas):void");
     }
 

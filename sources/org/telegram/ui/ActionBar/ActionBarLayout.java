@@ -1907,12 +1907,12 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                         }
                     }
                     onFragmentStackChanged("closeLastFragment");
-                    return;
+                } else {
+                    closeLastFragmentInternalRemoveOld(baseFragment2);
+                    baseFragment2.onTransitionAnimationEnd(false, true);
+                    baseFragment.onTransitionAnimationEnd(true, true);
+                    baseFragment.onBecomeFullyVisible();
                 }
-                closeLastFragmentInternalRemoveOld(baseFragment2);
-                baseFragment2.onTransitionAnimationEnd(false, true);
-                baseFragment.onTransitionAnimationEnd(true, true);
-                baseFragment.onBecomeFullyVisible();
             } else if (this.useAlphaAnimations && !z2) {
                 this.transitionAnimationStartTime = System.currentTimeMillis();
                 this.transitionAnimationInProgress = true;
@@ -1953,6 +1953,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
                     view3.setVisibility(8);
                 }
             }
+            baseFragment2.onFragmentClosed();
         }
     }
 

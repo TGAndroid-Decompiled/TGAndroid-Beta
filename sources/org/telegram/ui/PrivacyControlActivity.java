@@ -110,6 +110,7 @@ import org.telegram.ui.Components.BackgroundGradientDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CombinedDrawable;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.HintView;
 import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.Components.LayoutHelper;
@@ -780,7 +781,13 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
         frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
-        RecyclerListView recyclerListView = new RecyclerListView(context);
+        RecyclerListView recyclerListView = new RecyclerListView(context) {
+            @Override
+            public void dispatchDraw(Canvas canvas) {
+                drawSectionBackground(canvas, PrivacyControlActivity.this.shareSectionRow, PrivacyControlActivity.this.shareDetailRow - 1, getThemedColor("windowBackgroundWhite"));
+                super.dispatchDraw(canvas);
+            }
+        };
         this.listView = recyclerListView;
         recyclerListView.setLayoutManager(new LinearLayoutManager(context, 1, false));
         this.listView.setVerticalScrollBarEnabled(false);
@@ -793,6 +800,17 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                 PrivacyControlActivity.this.lambda$createView$8(view, i2);
             }
         });
+        DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
+            @Override
+            public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                super.onMoveAnimationUpdate(viewHolder);
+                PrivacyControlActivity.this.listView.invalidate();
+            }
+        };
+        defaultItemAnimator.setDurations(350L);
+        defaultItemAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        defaultItemAnimator.setDelayAnimations(false);
+        this.listView.setItemAnimator(defaultItemAnimator);
         setMessageText();
         return this.fragmentView;
     }
@@ -1296,11 +1314,11 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
         int i7 = i6 + 1;
         this.rowCount = i7;
         this.myContactsRow = i6;
-        if (i3 != 4 && i3 != 0 && i3 != 2 && i3 != 3 && i3 != 5 && i3 != 6 && i3 != 8) {
-            this.nobodyRow = -1;
-        } else {
+        if (i3 == 4 || i3 == 0 || i3 == 2 || i3 == 3 || i3 == 5 || i3 == 6 || i3 == 8 || i3 == 1) {
             this.rowCount = i7 + 1;
             this.nobodyRow = i7;
+        } else {
+            this.nobodyRow = -1;
         }
         if (i3 == 6 && this.currentType == 1) {
             int i8 = this.rowCount;
@@ -1565,7 +1583,6 @@ public class PrivacyControlActivity extends BaseFragment implements Notification
                     PrivacyControlActivity privacyControlActivity = PrivacyControlActivity.this;
                     int i2 = R.raw.camera_outline;
                     privacyControlActivity.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
-                    PrivacyControlActivity.this.setAvatarCell.imageView.setTranslationY((float) (-AndroidUtilities.dp(9.0f)));
                     PrivacyControlActivity.this.setAvatarCell.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
                     PrivacyControlActivity.this.setAvatarCell.imageView.setAnimation(PrivacyControlActivity.this.cameraDrawable);
                     PrivacyControlActivity.this.setAvatarCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));

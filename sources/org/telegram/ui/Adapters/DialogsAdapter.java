@@ -209,6 +209,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         TLRPC$TL_chatlists_chatlistUpdates chatlistUpdates;
         TLRPC$TL_contact contact;
         TLRPC$Dialog dialog;
+        private int emptyType;
         private boolean isFolder;
         boolean isForumCell;
         private boolean pinned;
@@ -242,6 +243,12 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
         public ItemInternal(DialogsAdapter dialogsAdapter, int i) {
             super(i, true);
+            this.emptyType = this.emptyType;
+        }
+
+        public ItemInternal(DialogsAdapter dialogsAdapter, int i, int i2) {
+            super(i, true);
+            this.emptyType = i2;
         }
 
         public ItemInternal(DialogsAdapter dialogsAdapter, int i, TLRPC$TL_contact tLRPC$TL_contact) {
@@ -267,11 +274,11 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             } else if (i == 4) {
                 TLRPC$RecentMeUrl tLRPC$RecentMeUrl = this.recentMeUrl;
                 return (tLRPC$RecentMeUrl == null || itemInternal.recentMeUrl == null || (str = tLRPC$RecentMeUrl.url) == null || !str.equals(str)) ? false : true;
-            } else if (i == 6) {
+            } else if (i != 6) {
+                return i != 5 || this.emptyType == itemInternal.emptyType;
+            } else {
                 TLRPC$TL_contact tLRPC$TL_contact2 = this.contact;
                 return (tLRPC$TL_contact2 == null || (tLRPC$TL_contact = itemInternal.contact) == null || tLRPC$TL_contact2.user_id != tLRPC$TL_contact.user_id) ? false : true;
-            } else {
-                return true;
             }
         }
 

@@ -2100,6 +2100,7 @@ public class MessagesController extends BaseController implements NotificationCe
         MessagesController messagesController = getMessagesController();
         getNotificationCenter().addObserver(messagesController, NotificationCenter.fileUploaded);
         getNotificationCenter().addObserver(messagesController, NotificationCenter.fileUploadFailed);
+        getNotificationCenter().addObserver(messagesController, NotificationCenter.fileUploadProgressChanged);
         getNotificationCenter().addObserver(messagesController, NotificationCenter.fileLoaded);
         getNotificationCenter().addObserver(messagesController, NotificationCenter.fileLoadFailed);
         getNotificationCenter().addObserver(messagesController, NotificationCenter.messageReceivedByServer);
@@ -5538,8 +5539,8 @@ public class MessagesController extends BaseController implements NotificationCe
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         MessageObject messageObject;
         TLRPC$InputFile tLRPC$InputFile;
-        TLRPC$InputFile tLRPC$InputFile2;
         final Theme.ThemeInfo themeInfo;
+        TLRPC$InputFile tLRPC$InputFile2;
         final Theme.ThemeAccent themeAccent;
         TLRPC$TL_theme tLRPC$TL_theme;
         TLRPC$TL_inputThemeSettings tLRPC$TL_inputThemeSettings = null;
@@ -5557,179 +5558,191 @@ public class MessagesController extends BaseController implements NotificationCe
                         MessagesController.this.lambda$didReceivedNotification$32(tLObject, tLRPC$TL_error);
                     }
                 });
-                return;
-            }
-            String str3 = this.uploadingWallpaper;
-            if (str3 != null && str3.equals(str)) {
-                TLRPC$TL_account_uploadWallPaper tLRPC$TL_account_uploadWallPaper = new TLRPC$TL_account_uploadWallPaper();
-                tLRPC$TL_account_uploadWallPaper.file = tLRPC$InputFile3;
-                tLRPC$TL_account_uploadWallPaper.mime_type = "image/jpeg";
-                final Theme.OverrideWallpaperInfo overrideWallpaperInfo = this.uploadingWallpaperInfo;
-                final String str4 = this.uploadingWallpaper;
-                final TLRPC$TL_wallPaperSettings tLRPC$TL_wallPaperSettings = new TLRPC$TL_wallPaperSettings();
-                tLRPC$TL_wallPaperSettings.blur = overrideWallpaperInfo.isBlurred;
-                tLRPC$TL_wallPaperSettings.motion = overrideWallpaperInfo.isMotion;
-                tLRPC$TL_account_uploadWallPaper.settings = tLRPC$TL_wallPaperSettings;
-                getConnectionsManager().sendRequest(tLRPC$TL_account_uploadWallPaper, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        MessagesController.this.lambda$didReceivedNotification$34(overrideWallpaperInfo, tLRPC$TL_wallPaperSettings, str4, tLObject, tLRPC$TL_error);
-                    }
-                });
-                return;
-            }
-            Object obj = this.uploadingThemes.get(str);
-            if (obj instanceof Theme.ThemeInfo) {
-                Theme.ThemeInfo themeInfo2 = (Theme.ThemeInfo) obj;
-                if (str.equals(themeInfo2.uploadingThumb)) {
-                    themeInfo2.uploadedThumb = tLRPC$InputFile3;
-                    themeInfo2.uploadingThumb = null;
-                } else if (str.equals(themeInfo2.uploadingFile)) {
-                    themeInfo2.uploadedFile = tLRPC$InputFile3;
-                    themeInfo2.uploadingFile = null;
-                }
-                tLRPC$InputFile = themeInfo2.uploadedThumb;
-                tLRPC$InputFile2 = themeInfo2.uploadedFile;
-                themeInfo = themeInfo2;
-                themeAccent = null;
-            } else if (obj instanceof Theme.ThemeAccent) {
-                Theme.ThemeAccent themeAccent2 = (Theme.ThemeAccent) obj;
-                if (str.equals(themeAccent2.uploadingThumb)) {
-                    themeAccent2.uploadedThumb = tLRPC$InputFile3;
-                    themeAccent2.uploadingThumb = null;
-                } else if (str.equals(themeAccent2.uploadingFile)) {
-                    themeAccent2.uploadedFile = tLRPC$InputFile3;
-                    themeAccent2.uploadingFile = null;
-                }
-                themeInfo = themeAccent2.parentTheme;
-                themeAccent = themeAccent2;
-                tLRPC$InputFile = themeAccent2.uploadedThumb;
-                tLRPC$InputFile2 = themeAccent2.uploadedFile;
             } else {
-                tLRPC$InputFile = null;
-                tLRPC$InputFile2 = null;
-                themeInfo = null;
-                themeAccent = null;
-            }
-            this.uploadingThemes.remove(str);
-            if (tLRPC$InputFile2 == null || tLRPC$InputFile == null) {
-                return;
-            }
-            new File(str);
-            TLRPC$TL_account_uploadTheme tLRPC$TL_account_uploadTheme = new TLRPC$TL_account_uploadTheme();
-            tLRPC$TL_account_uploadTheme.mime_type = "application/x-tgtheme-android";
-            tLRPC$TL_account_uploadTheme.file_name = "theme.attheme";
-            tLRPC$TL_account_uploadTheme.file = tLRPC$InputFile2;
-            tLRPC$InputFile2.name = "theme.attheme";
-            tLRPC$TL_account_uploadTheme.thumb = tLRPC$InputFile;
-            tLRPC$InputFile.name = "theme-preview.jpg";
-            tLRPC$TL_account_uploadTheme.flags |= 1;
-            if (themeAccent != null) {
-                themeAccent.uploadedFile = null;
-                themeAccent.uploadedThumb = null;
-                tLRPC$TL_theme = themeAccent.info;
-                tLRPC$TL_inputThemeSettings = new TLRPC$TL_inputThemeSettings();
-                tLRPC$TL_inputThemeSettings.base_theme = Theme.getBaseThemeByKey(themeInfo.name);
-                tLRPC$TL_inputThemeSettings.accent_color = themeAccent.accentColor;
-                int i3 = themeAccent.accentColor2;
-                if (i3 != 0) {
-                    tLRPC$TL_inputThemeSettings.flags |= 8;
-                    tLRPC$TL_inputThemeSettings.outbox_accent_color = i3;
-                }
-                int i4 = themeAccent.myMessagesAccentColor;
-                if (i4 != 0) {
-                    tLRPC$TL_inputThemeSettings.message_colors.add(Integer.valueOf(i4));
-                    tLRPC$TL_inputThemeSettings.flags |= 1;
-                    int i5 = themeAccent.myMessagesGradientAccentColor1;
-                    if (i5 != 0) {
-                        tLRPC$TL_inputThemeSettings.message_colors.add(Integer.valueOf(i5));
-                        int i6 = themeAccent.myMessagesGradientAccentColor2;
-                        if (i6 != 0) {
-                            tLRPC$TL_inputThemeSettings.message_colors.add(Integer.valueOf(i6));
-                            int i7 = themeAccent.myMessagesGradientAccentColor3;
-                            if (i7 != 0) {
-                                tLRPC$TL_inputThemeSettings.message_colors.add(Integer.valueOf(i7));
-                            }
+                String str3 = this.uploadingWallpaper;
+                if (str3 != null && str3.equals(str)) {
+                    TLRPC$TL_account_uploadWallPaper tLRPC$TL_account_uploadWallPaper = new TLRPC$TL_account_uploadWallPaper();
+                    tLRPC$TL_account_uploadWallPaper.file = tLRPC$InputFile3;
+                    tLRPC$TL_account_uploadWallPaper.mime_type = "image/jpeg";
+                    final Theme.OverrideWallpaperInfo overrideWallpaperInfo = this.uploadingWallpaperInfo;
+                    final String str4 = this.uploadingWallpaper;
+                    final TLRPC$TL_wallPaperSettings tLRPC$TL_wallPaperSettings = new TLRPC$TL_wallPaperSettings();
+                    tLRPC$TL_wallPaperSettings.blur = overrideWallpaperInfo.isBlurred;
+                    tLRPC$TL_wallPaperSettings.motion = overrideWallpaperInfo.isMotion;
+                    tLRPC$TL_account_uploadWallPaper.settings = tLRPC$TL_wallPaperSettings;
+                    Theme.OverrideWallpaperInfo overrideWallpaperInfo2 = this.uploadingWallpaperInfo;
+                    overrideWallpaperInfo2.uploadingProgress = 1.0f;
+                    overrideWallpaperInfo2.requestIds = new ArrayList<>();
+                    this.uploadingWallpaperInfo.requestIds.add(Integer.valueOf(getConnectionsManager().sendRequest(tLRPC$TL_account_uploadWallPaper, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                            MessagesController.this.lambda$didReceivedNotification$34(overrideWallpaperInfo, tLRPC$TL_wallPaperSettings, str4, tLObject, tLRPC$TL_error);
                         }
-                    }
-                    tLRPC$TL_inputThemeSettings.message_colors_animated = themeAccent.myMessagesAnimated;
-                }
-                tLRPC$TL_inputThemeSettings.flags |= 2;
-                tLRPC$TL_inputThemeSettings.wallpaper_settings = new TLRPC$TL_wallPaperSettings();
-                if (!TextUtils.isEmpty(themeAccent.patternSlug)) {
-                    TLRPC$TL_inputWallPaperSlug tLRPC$TL_inputWallPaperSlug = new TLRPC$TL_inputWallPaperSlug();
-                    tLRPC$TL_inputWallPaperSlug.slug = themeAccent.patternSlug;
-                    tLRPC$TL_inputThemeSettings.wallpaper = tLRPC$TL_inputWallPaperSlug;
-                    TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$TL_inputThemeSettings.wallpaper_settings;
-                    tLRPC$WallPaperSettings.intensity = (int) (themeAccent.patternIntensity * 100.0f);
-                    tLRPC$WallPaperSettings.flags |= 8;
+                    })));
                 } else {
-                    TLRPC$TL_inputWallPaperNoFile tLRPC$TL_inputWallPaperNoFile = new TLRPC$TL_inputWallPaperNoFile();
-                    tLRPC$TL_inputWallPaperNoFile.id = 0L;
-                    tLRPC$TL_inputThemeSettings.wallpaper = tLRPC$TL_inputWallPaperNoFile;
+                    Object obj = this.uploadingThemes.get(str);
+                    if (obj instanceof Theme.ThemeInfo) {
+                        themeInfo = (Theme.ThemeInfo) obj;
+                        if (str.equals(themeInfo.uploadingThumb)) {
+                            themeInfo.uploadedThumb = tLRPC$InputFile3;
+                            themeInfo.uploadingThumb = null;
+                        } else if (str.equals(themeInfo.uploadingFile)) {
+                            themeInfo.uploadedFile = tLRPC$InputFile3;
+                            themeInfo.uploadingFile = null;
+                        }
+                        tLRPC$InputFile = themeInfo.uploadedThumb;
+                        tLRPC$InputFile2 = themeInfo.uploadedFile;
+                        themeAccent = null;
+                    } else if (obj instanceof Theme.ThemeAccent) {
+                        Theme.ThemeAccent themeAccent2 = (Theme.ThemeAccent) obj;
+                        if (str.equals(themeAccent2.uploadingThumb)) {
+                            themeAccent2.uploadedThumb = tLRPC$InputFile3;
+                            themeAccent2.uploadingThumb = null;
+                        } else if (str.equals(themeAccent2.uploadingFile)) {
+                            themeAccent2.uploadedFile = tLRPC$InputFile3;
+                            themeAccent2.uploadingFile = null;
+                        }
+                        Theme.ThemeInfo themeInfo2 = themeAccent2.parentTheme;
+                        TLRPC$InputFile tLRPC$InputFile4 = themeAccent2.uploadedThumb;
+                        TLRPC$InputFile tLRPC$InputFile5 = themeAccent2.uploadedFile;
+                        themeInfo = themeInfo2;
+                        tLRPC$InputFile = tLRPC$InputFile4;
+                        tLRPC$InputFile2 = tLRPC$InputFile5;
+                        themeAccent = themeAccent2;
+                    } else {
+                        tLRPC$InputFile = null;
+                        themeInfo = null;
+                        tLRPC$InputFile2 = null;
+                        themeAccent = null;
+                    }
+                    this.uploadingThemes.remove(str);
+                    if (tLRPC$InputFile2 != null && tLRPC$InputFile != null) {
+                        new File(str);
+                        TLRPC$TL_account_uploadTheme tLRPC$TL_account_uploadTheme = new TLRPC$TL_account_uploadTheme();
+                        tLRPC$TL_account_uploadTheme.mime_type = "application/x-tgtheme-android";
+                        tLRPC$TL_account_uploadTheme.file_name = "theme.attheme";
+                        tLRPC$TL_account_uploadTheme.file = tLRPC$InputFile2;
+                        tLRPC$InputFile2.name = "theme.attheme";
+                        tLRPC$TL_account_uploadTheme.thumb = tLRPC$InputFile;
+                        tLRPC$InputFile.name = "theme-preview.jpg";
+                        tLRPC$TL_account_uploadTheme.flags |= 1;
+                        if (themeAccent != null) {
+                            themeAccent.uploadedFile = null;
+                            themeAccent.uploadedThumb = null;
+                            tLRPC$TL_theme = themeAccent.info;
+                            tLRPC$TL_inputThemeSettings = new TLRPC$TL_inputThemeSettings();
+                            tLRPC$TL_inputThemeSettings.base_theme = Theme.getBaseThemeByKey(themeInfo.name);
+                            tLRPC$TL_inputThemeSettings.accent_color = themeAccent.accentColor;
+                            int i3 = themeAccent.accentColor2;
+                            if (i3 != 0) {
+                                tLRPC$TL_inputThemeSettings.flags |= 8;
+                                tLRPC$TL_inputThemeSettings.outbox_accent_color = i3;
+                            }
+                            int i4 = themeAccent.myMessagesAccentColor;
+                            if (i4 != 0) {
+                                tLRPC$TL_inputThemeSettings.message_colors.add(Integer.valueOf(i4));
+                                tLRPC$TL_inputThemeSettings.flags |= 1;
+                                int i5 = themeAccent.myMessagesGradientAccentColor1;
+                                if (i5 != 0) {
+                                    tLRPC$TL_inputThemeSettings.message_colors.add(Integer.valueOf(i5));
+                                    int i6 = themeAccent.myMessagesGradientAccentColor2;
+                                    if (i6 != 0) {
+                                        tLRPC$TL_inputThemeSettings.message_colors.add(Integer.valueOf(i6));
+                                        int i7 = themeAccent.myMessagesGradientAccentColor3;
+                                        if (i7 != 0) {
+                                            tLRPC$TL_inputThemeSettings.message_colors.add(Integer.valueOf(i7));
+                                        }
+                                    }
+                                }
+                                tLRPC$TL_inputThemeSettings.message_colors_animated = themeAccent.myMessagesAnimated;
+                            }
+                            tLRPC$TL_inputThemeSettings.flags |= 2;
+                            tLRPC$TL_inputThemeSettings.wallpaper_settings = new TLRPC$TL_wallPaperSettings();
+                            if (!TextUtils.isEmpty(themeAccent.patternSlug)) {
+                                TLRPC$TL_inputWallPaperSlug tLRPC$TL_inputWallPaperSlug = new TLRPC$TL_inputWallPaperSlug();
+                                tLRPC$TL_inputWallPaperSlug.slug = themeAccent.patternSlug;
+                                tLRPC$TL_inputThemeSettings.wallpaper = tLRPC$TL_inputWallPaperSlug;
+                                TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$TL_inputThemeSettings.wallpaper_settings;
+                                tLRPC$WallPaperSettings.intensity = (int) (themeAccent.patternIntensity * 100.0f);
+                                tLRPC$WallPaperSettings.flags |= 8;
+                            } else {
+                                TLRPC$TL_inputWallPaperNoFile tLRPC$TL_inputWallPaperNoFile = new TLRPC$TL_inputWallPaperNoFile();
+                                tLRPC$TL_inputWallPaperNoFile.id = 0L;
+                                tLRPC$TL_inputThemeSettings.wallpaper = tLRPC$TL_inputWallPaperNoFile;
+                            }
+                            TLRPC$WallPaperSettings tLRPC$WallPaperSettings2 = tLRPC$TL_inputThemeSettings.wallpaper_settings;
+                            tLRPC$WallPaperSettings2.motion = themeAccent.patternMotion;
+                            long j = themeAccent.backgroundOverrideColor;
+                            if (j != 0) {
+                                tLRPC$WallPaperSettings2.background_color = (int) j;
+                                tLRPC$WallPaperSettings2.flags |= 1;
+                            }
+                            long j2 = themeAccent.backgroundGradientOverrideColor1;
+                            if (j2 != 0) {
+                                tLRPC$WallPaperSettings2.second_background_color = (int) j2;
+                                tLRPC$WallPaperSettings2.flags |= 16;
+                                tLRPC$WallPaperSettings2.rotation = AndroidUtilities.getWallpaperRotation(themeAccent.backgroundRotation, true);
+                            }
+                            long j3 = themeAccent.backgroundGradientOverrideColor2;
+                            if (j3 != 0) {
+                                TLRPC$WallPaperSettings tLRPC$WallPaperSettings3 = tLRPC$TL_inputThemeSettings.wallpaper_settings;
+                                tLRPC$WallPaperSettings3.third_background_color = (int) j3;
+                                tLRPC$WallPaperSettings3.flags |= 32;
+                            }
+                            long j4 = themeAccent.backgroundGradientOverrideColor3;
+                            if (j4 != 0) {
+                                TLRPC$WallPaperSettings tLRPC$WallPaperSettings4 = tLRPC$TL_inputThemeSettings.wallpaper_settings;
+                                tLRPC$WallPaperSettings4.fourth_background_color = (int) j4;
+                                tLRPC$WallPaperSettings4.flags |= 64;
+                            }
+                        } else {
+                            themeInfo.uploadedFile = null;
+                            themeInfo.uploadedThumb = null;
+                            tLRPC$TL_theme = themeInfo.info;
+                        }
+                        final TLRPC$TL_theme tLRPC$TL_theme2 = tLRPC$TL_theme;
+                        final TLRPC$TL_inputThemeSettings tLRPC$TL_inputThemeSettings2 = tLRPC$TL_inputThemeSettings;
+                        getConnectionsManager().sendRequest(tLRPC$TL_account_uploadTheme, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                                MessagesController.this.lambda$didReceivedNotification$40(tLRPC$TL_theme2, themeInfo, tLRPC$TL_inputThemeSettings2, themeAccent, tLObject, tLRPC$TL_error);
+                            }
+                        });
+                    }
                 }
-                TLRPC$WallPaperSettings tLRPC$WallPaperSettings2 = tLRPC$TL_inputThemeSettings.wallpaper_settings;
-                tLRPC$WallPaperSettings2.motion = themeAccent.patternMotion;
-                long j = themeAccent.backgroundOverrideColor;
-                if (j != 0) {
-                    tLRPC$WallPaperSettings2.background_color = (int) j;
-                    tLRPC$WallPaperSettings2.flags |= 1;
-                }
-                long j2 = themeAccent.backgroundGradientOverrideColor1;
-                if (j2 != 0) {
-                    tLRPC$WallPaperSettings2.second_background_color = (int) j2;
-                    tLRPC$WallPaperSettings2.flags |= 16;
-                    tLRPC$WallPaperSettings2.rotation = AndroidUtilities.getWallpaperRotation(themeAccent.backgroundRotation, true);
-                }
-                long j3 = themeAccent.backgroundGradientOverrideColor2;
-                if (j3 != 0) {
-                    TLRPC$WallPaperSettings tLRPC$WallPaperSettings3 = tLRPC$TL_inputThemeSettings.wallpaper_settings;
-                    tLRPC$WallPaperSettings3.third_background_color = (int) j3;
-                    tLRPC$WallPaperSettings3.flags |= 32;
-                }
-                long j4 = themeAccent.backgroundGradientOverrideColor3;
-                if (j4 != 0) {
-                    TLRPC$WallPaperSettings tLRPC$WallPaperSettings4 = tLRPC$TL_inputThemeSettings.wallpaper_settings;
-                    tLRPC$WallPaperSettings4.fourth_background_color = (int) j4;
-                    tLRPC$WallPaperSettings4.flags |= 64;
-                }
-            } else {
-                themeInfo.uploadedFile = null;
-                themeInfo.uploadedThumb = null;
-                tLRPC$TL_theme = themeInfo.info;
             }
-            final TLRPC$TL_theme tLRPC$TL_theme2 = tLRPC$TL_theme;
-            final TLRPC$TL_inputThemeSettings tLRPC$TL_inputThemeSettings2 = tLRPC$TL_inputThemeSettings;
-            getConnectionsManager().sendRequest(tLRPC$TL_account_uploadTheme, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MessagesController.this.lambda$didReceivedNotification$40(tLRPC$TL_theme2, themeInfo, tLRPC$TL_inputThemeSettings2, themeAccent, tLObject, tLRPC$TL_error);
-                }
-            });
         } else if (i == NotificationCenter.fileUploadFailed) {
             String str5 = (String) objArr[0];
             String str6 = this.uploadingAvatar;
             if (str6 != null && str6.equals(str5)) {
                 this.uploadingAvatar = null;
+            } else {
+                String str7 = this.uploadingWallpaper;
+                if (str7 != null && str7.equals(str5)) {
+                    this.uploadingWallpaper = null;
+                    this.uploadingWallpaperInfo = null;
+                } else {
+                    Object remove = this.uploadingThemes.remove(str5);
+                    if (remove instanceof Theme.ThemeInfo) {
+                        Theme.ThemeInfo themeInfo3 = (Theme.ThemeInfo) remove;
+                        themeInfo3.uploadedFile = null;
+                        themeInfo3.uploadedThumb = null;
+                        getNotificationCenter().postNotificationName(NotificationCenter.themeUploadError, themeInfo3, 0);
+                    } else if (remove instanceof Theme.ThemeAccent) {
+                        Theme.ThemeAccent themeAccent3 = (Theme.ThemeAccent) remove;
+                        themeAccent3.uploadingThumb = null;
+                        getNotificationCenter().postNotificationName(NotificationCenter.themeUploadError, themeAccent3.parentTheme, themeAccent3);
+                    }
+                }
+            }
+        }
+        if (i == NotificationCenter.fileUploadProgressChanged) {
+            String str8 = (String) objArr[0];
+            String str9 = this.uploadingWallpaper;
+            if (str9 == null || !str9.equals(str8)) {
                 return;
             }
-            String str7 = this.uploadingWallpaper;
-            if (str7 != null && str7.equals(str5)) {
-                this.uploadingWallpaper = null;
-                this.uploadingWallpaperInfo = null;
-                return;
-            }
-            Object remove = this.uploadingThemes.remove(str5);
-            if (remove instanceof Theme.ThemeInfo) {
-                Theme.ThemeInfo themeInfo3 = (Theme.ThemeInfo) remove;
-                themeInfo3.uploadedFile = null;
-                themeInfo3.uploadedThumb = null;
-                getNotificationCenter().postNotificationName(NotificationCenter.themeUploadError, themeInfo3, 0);
-            } else if (remove instanceof Theme.ThemeAccent) {
-                Theme.ThemeAccent themeAccent3 = (Theme.ThemeAccent) remove;
-                themeAccent3.uploadingThumb = null;
-                getNotificationCenter().postNotificationName(NotificationCenter.themeUploadError, themeAccent3.parentTheme, themeAccent3);
-            }
+            this.uploadingWallpaperInfo.uploadingProgress = ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue());
         } else if (i == NotificationCenter.messageReceivedByServer) {
             if (((Boolean) objArr[6]).booleanValue()) {
                 return;
@@ -5858,7 +5871,7 @@ public class MessagesController extends BaseController implements NotificationCe
         }
         NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.wallpapersNeedReload, tLRPC$WallPaper.slug);
         if (overrideWallpaperInfo.dialogId != 0) {
-            ChatThemeController.getInstance(this.currentAccount).setWallpaperToUser(overrideWallpaperInfo.dialogId, str, overrideWallpaperInfo, null, null);
+            this.uploadingWallpaperInfo.requestIds.add(Integer.valueOf(ChatThemeController.getInstance(this.currentAccount).setWallpaperToUser(overrideWallpaperInfo.dialogId, str, overrideWallpaperInfo, null, null)));
         }
     }
 
@@ -17021,5 +17034,25 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public boolean isHiddenByUndo(long j) {
         return !this.hiddenUndoChats.isEmpty() && this.hiddenUndoChats.contains(Long.valueOf(j));
+    }
+
+    public void cancelUploadWallpaper() {
+        TLRPC$UserFull userFull;
+        Theme.OverrideWallpaperInfo overrideWallpaperInfo = this.uploadingWallpaperInfo;
+        if (overrideWallpaperInfo != null) {
+            if (overrideWallpaperInfo.requestIds != null) {
+                for (int i = 0; i < this.uploadingWallpaperInfo.requestIds.size(); i++) {
+                    ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.uploadingWallpaperInfo.requestIds.get(i).intValue(), true);
+                }
+            }
+            FileLoader.getInstance(this.currentAccount).cancelFileUpload(this.uploadingWallpaper, false);
+            long j = this.uploadingWallpaperInfo.dialogId;
+            if (j != 0 && (userFull = getUserFull(j)) != null) {
+                userFull.wallpaper = this.uploadingWallpaperInfo.prevUserWallpaper;
+                NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(this.uploadingWallpaperInfo.dialogId), userFull);
+            }
+            this.uploadingWallpaperInfo = null;
+            this.uploadingWallpaper = null;
+        }
     }
 }

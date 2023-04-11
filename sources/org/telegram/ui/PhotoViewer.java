@@ -9142,7 +9142,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    private void switchToEditMode(final int i) {
+    public void switchToEditMode(final int i) {
         ActionBar actionBar;
         int i2;
         ActionBar actionBar2;

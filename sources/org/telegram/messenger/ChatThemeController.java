@@ -200,7 +200,14 @@ public class ChatThemeController extends BaseController {
         if (tLRPC$WallPaper == null && tLRPC$WallPaper2 == null) {
             return true;
         }
-        return tLRPC$WallPaper != null && tLRPC$WallPaper2 != null && tLRPC$WallPaper.id == tLRPC$WallPaper2.id && TextUtils.equals(ChatBackgroundDrawable.hash(tLRPC$WallPaper.settings), ChatBackgroundDrawable.hash(tLRPC$WallPaper2.settings));
+        if (tLRPC$WallPaper == null || tLRPC$WallPaper2 == null) {
+            return false;
+        }
+        String str = tLRPC$WallPaper.uploadingImage;
+        if (str != null) {
+            return TextUtils.equals(tLRPC$WallPaper2.uploadingImage, str);
+        }
+        return tLRPC$WallPaper.id == tLRPC$WallPaper2.id && TextUtils.equals(ChatBackgroundDrawable.hash(tLRPC$WallPaper.settings), ChatBackgroundDrawable.hash(tLRPC$WallPaper2.settings));
     }
 
     public void setDialogTheme(long j, String str, boolean z) {
@@ -394,7 +401,7 @@ public class ChatThemeController extends BaseController {
         getConnectionsManager().sendRequest(tLRPC$TL_messages_setChatWallPaper, ChatThemeController$$ExternalSyntheticLambda9.INSTANCE);
     }
 
-    public void setWallpaperToUser(final long j, final String str, Theme.OverrideWallpaperInfo overrideWallpaperInfo, MessageObject messageObject, final Runnable runnable) {
+    public int setWallpaperToUser(final long j, final String str, Theme.OverrideWallpaperInfo overrideWallpaperInfo, MessageObject messageObject, final Runnable runnable) {
         String str2;
         TLRPC$TL_messages_setChatWallPaper tLRPC$TL_messages_setChatWallPaper = new TLRPC$TL_messages_setChatWallPaper();
         if (j > 0) {
@@ -453,7 +460,7 @@ public class ChatThemeController extends BaseController {
         }
         tLRPC$TL_messages_setChatWallPaper.flags |= 4;
         tLRPC$TL_messages_setChatWallPaper.settings = MessagesController.getWallpaperSetting(overrideWallpaperInfo);
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_setChatWallPaper, new RequestDelegate() {
+        return ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_setChatWallPaper, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 ChatThemeController.this.lambda$setWallpaperToUser$10(j, z, str, runnable, tLObject, tLRPC$TL_error);

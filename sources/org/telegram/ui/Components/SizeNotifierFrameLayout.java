@@ -18,6 +18,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.view.View;
 import android.widget.FrameLayout;
+import com.google.android.exoplayer2.util.Log;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DispatchQueue;
@@ -190,6 +191,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                 SizeNotifierFrameLayout.this.checkMotion();
             }
             float themeAnimationValue = SizeNotifierFrameLayout.this.parentLayout != null ? SizeNotifierFrameLayout.this.parentLayout.getThemeAnimationValue() : 1.0f;
+            Log.d("kek", "draw background " + SizeNotifierFrameLayout.this.backgroundDrawable + " " + themeAnimationValue);
             int i3 = 0;
             while (i3 < 2) {
                 SizeNotifierFrameLayout sizeNotifierFrameLayout4 = SizeNotifierFrameLayout.this;

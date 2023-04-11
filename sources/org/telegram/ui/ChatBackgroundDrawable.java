@@ -50,16 +50,15 @@ public class ChatBackgroundDrawable extends Drawable {
 
     public static Drawable getOrCreate(Drawable drawable, TLRPC$WallPaper tLRPC$WallPaper, boolean z) {
         TLRPC$WallPaperSettings tLRPC$WallPaperSettings;
-        String str;
         TLRPC$WallPaperSettings tLRPC$WallPaperSettings2;
-        TLRPC$WallPaperSettings tLRPC$WallPaperSettings3;
         if (drawable instanceof ChatBackgroundDrawable) {
             ChatBackgroundDrawable chatBackgroundDrawable = (ChatBackgroundDrawable) drawable;
-            String str2 = tLRPC$WallPaper.uploadingImage;
-            if (str2 != null && (str = chatBackgroundDrawable.wallpaper.uploadingImage) != null && str2.equals(str) && (tLRPC$WallPaperSettings2 = tLRPC$WallPaper.settings) != null && (tLRPC$WallPaperSettings3 = chatBackgroundDrawable.wallpaper.settings) != null && tLRPC$WallPaperSettings2.intensity == tLRPC$WallPaperSettings3.intensity) {
-                return chatBackgroundDrawable;
-            }
-            if (tLRPC$WallPaper.id == chatBackgroundDrawable.wallpaper.id && TextUtils.equals(hash(tLRPC$WallPaper.settings), hash(chatBackgroundDrawable.wallpaper.settings)) && (tLRPC$WallPaper.document == null || tLRPC$WallPaper.pattern || (tLRPC$WallPaperSettings = tLRPC$WallPaper.settings) == null || tLRPC$WallPaperSettings.intensity <= 0 || chatBackgroundDrawable.themeIsDark == z)) {
+            String str = tLRPC$WallPaper.uploadingImage;
+            if (str != null) {
+                if (str.equals(chatBackgroundDrawable.wallpaper.uploadingImage) && ((tLRPC$WallPaperSettings2 = tLRPC$WallPaper.settings) == null || chatBackgroundDrawable.wallpaper.settings == null || tLRPC$WallPaperSettings2.intensity <= 0 || chatBackgroundDrawable.themeIsDark == z)) {
+                    return chatBackgroundDrawable;
+                }
+            } else if (tLRPC$WallPaper.id == chatBackgroundDrawable.wallpaper.id && TextUtils.equals(hash(tLRPC$WallPaper.settings), hash(chatBackgroundDrawable.wallpaper.settings)) && (tLRPC$WallPaper.document == null || tLRPC$WallPaper.pattern || (tLRPC$WallPaperSettings = tLRPC$WallPaper.settings) == null || tLRPC$WallPaperSettings.intensity <= 0 || chatBackgroundDrawable.themeIsDark == z)) {
                 return chatBackgroundDrawable;
             }
         }

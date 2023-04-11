@@ -331,20 +331,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 tLRPC$MessageAction = new TLRPC$TL_messageActionEmpty();
                 break;
             case -1136350937:
-                tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -1136350937;
-
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
-                        this.wallpaper.serializeToStream(abstractSerializedData2);
-                    }
-                };
+                tLRPC$MessageAction = new TLRPC$TL_messageActionSetChatWallPaper();
                 break;
             case -1119368275:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatCreate();

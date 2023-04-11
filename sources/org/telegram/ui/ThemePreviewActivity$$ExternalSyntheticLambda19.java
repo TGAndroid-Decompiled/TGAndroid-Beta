@@ -7,6 +7,6 @@ public final class ThemePreviewActivity$$ExternalSyntheticLambda19 implements Ru
 
     @Override
     public final void run() {
-        ThemePreviewActivity.lambda$createView$6();
+        ThemePreviewActivity.lambda$createView$7();
     }
 }

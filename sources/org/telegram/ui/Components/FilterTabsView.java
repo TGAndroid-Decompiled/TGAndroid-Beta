@@ -848,6 +848,10 @@ public class FilterTabsView extends FrameLayout {
         scrollToTab(this.tabs.get(0), 0);
     }
 
+    public boolean isFirstTab() {
+        return this.currentPosition <= 0;
+    }
+
     public void selectLastTab() {
         if (this.tabs.isEmpty()) {
             return;
