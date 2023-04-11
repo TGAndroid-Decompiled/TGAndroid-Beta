@@ -1440,6 +1440,7 @@ public class MessagesController extends BaseController implements NotificationCe
         public ArrayList<Long> neverShow = new ArrayList<>();
         public LongSparseIntArray pinnedDialogs = new LongSparseIntArray();
         public ArrayList<TLRPC$Dialog> dialogs = new ArrayList<>();
+        public ArrayList<TLRPC$Dialog> dialogsForward = new ArrayList<>();
         public ArrayList<TLRPC$TL_exportedChatlistInvite> invites = null;
 
         public DialogFilter() {
@@ -2654,6 +2655,7 @@ public class MessagesController extends BaseController implements NotificationCe
             sortDialogs(null);
         } else if (dialogFilter2 != null) {
             dialogFilter2.dialogs.clear();
+            dialogFilter2.dialogsForward.clear();
         }
     }
 
@@ -8858,6 +8860,7 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             if (dialogFilterArr[i] != null) {
                 dialogFilterArr[i].dialogs.remove(tLRPC$Dialog);
+                this.selectedDialogFilter[i].dialogsForward.remove(tLRPC$Dialog);
             }
             i++;
         }
@@ -16058,14 +16061,16 @@ public class MessagesController extends BaseController implements NotificationCe
         if (dialogFilter == null) {
             return;
         }
-        dialogFilter.dialogs.clear();
+        ArrayList<TLRPC$Dialog> arrayList = dialogFilter.dialogs;
+        ArrayList<TLRPC$Dialog> arrayList2 = dialogFilter.dialogsForward;
+        arrayList.clear();
+        arrayList2.clear();
         this.sortingDialogFilter = dialogFilter;
         try {
             Collections.sort(this.allDialogs, this.dialogDateComparator);
         } catch (Exception e) {
             FileLog.e(e);
         }
-        ArrayList<TLRPC$Dialog> arrayList = dialogFilter.dialogs;
         int size = this.allDialogs.size();
         for (int i = 0; i < size; i++) {
             TLRPC$Dialog tLRPC$Dialog = this.allDialogs.get(i);
@@ -16075,6 +16080,9 @@ public class MessagesController extends BaseController implements NotificationCe
                     j = encryptedChat.user_id;
                 }
                 if (dialogFilter.includesDialog(getAccountInstance(), j, tLRPC$Dialog)) {
+                    if (canAddToForward(tLRPC$Dialog)) {
+                        arrayList2.add(tLRPC$Dialog);
+                    }
                     arrayList.add(tLRPC$Dialog);
                 }
             }
@@ -16083,6 +16091,10 @@ public class MessagesController extends BaseController implements NotificationCe
             Collections.sort(this.allDialogs, this.dialogComparator);
         } catch (Exception unused) {
         }
+    }
+
+    private boolean canAddToForward(org.telegram.tgnet.TLRPC$Dialog r6) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.canAddToForward(org.telegram.tgnet.TLRPC$Dialog):boolean");
     }
 
     public void sortDialogs(androidx.collection.LongSparseArray<org.telegram.tgnet.TLRPC$Chat> r17) {

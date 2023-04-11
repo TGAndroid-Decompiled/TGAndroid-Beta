@@ -2367,6 +2367,8 @@
     <string name="FilterNoChats">No Chats</string>
     <string name="FilterNoChatsToDisplay">No chats found</string>
     <string name="FilterNoChatsToDisplayInfo">No chats currently belong to this folder.</string>
+    <string name="FilterNoChatsToForward">No chats found</string>
+    <string name="FilterNoChatsToForwardInfo">No chats in this folder to forward to.</string>
     <string name="FilterNonContact">Non-Contact</string>
     <string name="FilterNonContacts">Non Contacts</string>
     <string name="FilterRead">Read</string>

@@ -107,7 +107,7 @@ public class DialogsEmptyCell extends LinearLayout {
         this.onUtyanAnimationUpdateListener = consumer;
     }
 
-    public void setType(int i) {
+    public void setType(int i, boolean z) {
         int i2;
         String string;
         if (this.currentType == i) {
@@ -121,8 +121,13 @@ public class DialogsEmptyCell extends LinearLayout {
         } else if (i == 2) {
             this.imageView.setAutoRepeat(false);
             i2 = R.raw.filter_no_chats;
-            string = LocaleController.getString("FilterNoChatsToDisplayInfo", R.string.FilterNoChatsToDisplayInfo);
-            this.titleView.setText(LocaleController.getString("FilterNoChatsToDisplay", R.string.FilterNoChatsToDisplay));
+            if (z) {
+                this.titleView.setText(LocaleController.getString("FilterNoChatsToForward", R.string.FilterNoChatsToForward));
+                string = LocaleController.getString("FilterNoChatsToForwardInfo", R.string.FilterNoChatsToForwardInfo);
+            } else {
+                this.titleView.setText(LocaleController.getString("FilterNoChatsToDisplay", R.string.FilterNoChatsToDisplay));
+                string = LocaleController.getString("FilterNoChatsToDisplayInfo", R.string.FilterNoChatsToDisplayInfo);
+            }
         } else {
             this.imageView.setAutoRepeat(true);
             i2 = R.raw.filter_new;

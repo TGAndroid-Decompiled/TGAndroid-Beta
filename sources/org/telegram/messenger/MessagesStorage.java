@@ -2017,7 +2017,11 @@ public class MessagesStorage extends BaseController {
             try {
                 if (!this.dialogFilters.contains(dialogFilter)) {
                     if (z) {
-                        this.dialogFilters.add(0, dialogFilter);
+                        if (this.dialogFilters.get(0).isDefault()) {
+                            this.dialogFilters.add(1, dialogFilter);
+                        } else {
+                            this.dialogFilters.add(0, dialogFilter);
+                        }
                     } else {
                         this.dialogFilters.add(dialogFilter);
                     }

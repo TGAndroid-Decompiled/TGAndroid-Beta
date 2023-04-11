@@ -209,7 +209,7 @@ public class FilterChatlistActivity extends BaseFragment {
         }
         for (int i2 = 0; i2 < this.filter.dialogs.size(); i2++) {
             TLRPC$Dialog tLRPC$Dialog = this.filter.dialogs.get(i2);
-            if (tLRPC$Dialog != null && !this.peers.contains(Long.valueOf(tLRPC$Dialog.id))) {
+            if (tLRPC$Dialog != null && !DialogObject.isEncryptedDialog(tLRPC$Dialog.id) && !this.peers.contains(Long.valueOf(tLRPC$Dialog.id))) {
                 long j = tLRPC$Dialog.id;
                 boolean z = j < 0;
                 if (j < 0) {
@@ -223,7 +223,7 @@ public class FilterChatlistActivity extends BaseFragment {
         }
         for (int i3 = 0; i3 < this.filter.dialogs.size(); i3++) {
             TLRPC$Dialog tLRPC$Dialog2 = this.filter.dialogs.get(i3);
-            if (tLRPC$Dialog2 != null && !this.peers.contains(Long.valueOf(tLRPC$Dialog2.id)) && !this.allowedPeers.contains(Long.valueOf(tLRPC$Dialog2.id))) {
+            if (tLRPC$Dialog2 != null && !DialogObject.isEncryptedDialog(tLRPC$Dialog2.id) && !this.peers.contains(Long.valueOf(tLRPC$Dialog2.id)) && !this.allowedPeers.contains(Long.valueOf(tLRPC$Dialog2.id))) {
                 this.peers.add(Long.valueOf(tLRPC$Dialog2.id));
             }
         }

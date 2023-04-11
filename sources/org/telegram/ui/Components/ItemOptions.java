@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
+import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -26,6 +27,7 @@ public class ItemOptions {
     private ActionBarPopupWindow actionBarPopupWindow;
     private ViewGroup container;
     private Context context;
+    private int dimAlpha;
     private BaseFragment fragment;
     private int gravity;
     private ActionBarPopupWindow.ActionBarPopupWindowLayout layout;
@@ -50,6 +52,7 @@ public class ItemOptions {
     private ItemOptions(BaseFragment baseFragment, View view) {
         this.gravity = 5;
         this.point = new float[2];
+        this.dimAlpha = Theme.isCurrentThemeDark() ? 102 : 51;
         if (baseFragment.getContext() == null) {
             return;
         }
@@ -62,6 +65,7 @@ public class ItemOptions {
     private ItemOptions(ViewGroup viewGroup, View view) {
         this.gravity = 5;
         this.point = new float[2];
+        this.dimAlpha = Theme.isCurrentThemeDark() ? 102 : 51;
         if (viewGroup.getContext() == null) {
             return;
         }
@@ -206,11 +210,12 @@ public class ItemOptions {
                 View view2 = this.scrimView;
                 float f2 = 0.0f;
                 final float y = (view2 == null || !(view2.getParent() instanceof View)) ? 0.0f : ((View) this.scrimView.getParent()).getY() + this.scrimView.getY();
+                final int alphaComponent = ColorUtils.setAlphaComponent(0, this.dimAlpha);
                 final View view3 = new View(this.context) {
                     @Override
                     protected void onDraw(Canvas canvas) {
                         super.onDraw(canvas);
-                        canvas.drawColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+                        canvas.drawColor(alphaComponent);
                         if (bitmap == null || !(ItemOptions.this.scrimView.getParent() instanceof View)) {
                             if (ItemOptions.this.scrimView == null || !(ItemOptions.this.scrimView.getParent() instanceof View)) {
                                 return;

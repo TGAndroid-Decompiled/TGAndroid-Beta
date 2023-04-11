@@ -727,7 +727,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             int i5 = this.lastDialogsEmptyType;
             int dialogsEmptyType = dialogsEmptyType();
             this.lastDialogsEmptyType = dialogsEmptyType;
-            dialogsEmptyCell.setType(dialogsEmptyType);
+            dialogsEmptyCell.setType(dialogsEmptyType, this.isOnlySelect);
             int i6 = this.dialogsType;
             if (i6 != 7 && i6 != 8) {
                 dialogsEmptyCell.setOnUtyanAnimationEndListener(new Runnable() {
