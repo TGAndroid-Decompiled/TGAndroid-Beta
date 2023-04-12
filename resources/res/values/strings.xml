@@ -6104,6 +6104,7 @@
     <string name="ViewStats">View Stats</string>
     <string name="ViewThread">View Thread</string>
     <string name="ViewVideoAction">View Video</string>
+    <string name="ViewWallpaperAction">View Wallpaper</string>
     <string name="ViewersWatchingNobody">Nobody watching</string>
     <string name="ViewersWatching_few">%1$d watching</string>
     <string name="ViewersWatching_many">%1$d watching</string>
@@ -6393,6 +6394,8 @@
     <string name="Vote_zero">%1$d votes</string>
     <string name="WaitMore">Wait more</string>
     <string name="WaitingForNetwork">Waiting for network...</string>
+    <string name="WallpaperNotification">Set a new chat Wallpaper</string>
+    <string name="WallpaperPreview">Wallpaper</string>
     <string name="WantsToSpeak">wants to speak</string>
     <string name="Warmth">Warmth</string>
     <string name="Warning">Warning</string>

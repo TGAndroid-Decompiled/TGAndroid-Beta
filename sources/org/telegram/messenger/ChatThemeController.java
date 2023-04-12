@@ -93,16 +93,18 @@ public class ChatThemeController extends BaseController {
                 }
             });
         }
-        if (allChatThemes != null) {
-            ArrayList<EmojiThemes> arrayList = new ArrayList(allChatThemes);
-            if (z && !arrayList.get(0).showAsDefaultStub) {
-                arrayList.add(0, EmojiThemes.createChatThemesDefault());
-            }
-            for (EmojiThemes emojiThemes : arrayList) {
-                emojiThemes.initColors();
-            }
-            resultCallback.onComplete(arrayList);
+        List<EmojiThemes> list2 = allChatThemes;
+        if (list2 == null || list2.isEmpty()) {
+            return;
         }
+        ArrayList<EmojiThemes> arrayList = new ArrayList(allChatThemes);
+        if (z && !arrayList.get(0).showAsDefaultStub) {
+            arrayList.add(0, EmojiThemes.createChatThemesDefault());
+        }
+        for (EmojiThemes emojiThemes : arrayList) {
+            emojiThemes.initColors();
+        }
+        resultCallback.onComplete(arrayList);
     }
 
     public static void lambda$requestAllChatThemes$3(final ResultCallback resultCallback, final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {

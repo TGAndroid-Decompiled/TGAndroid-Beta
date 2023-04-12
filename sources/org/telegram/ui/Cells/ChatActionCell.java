@@ -904,7 +904,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                             string = null;
                         } else {
                             charSequence2 = messageObject.messageText;
-                            string = LocaleController.getString("ViewPhotoAction", R.string.ViewPhotoAction);
+                            string = LocaleController.getString("ViewWallpaperAction", R.string.ViewWallpaperAction);
                         }
                         createGiftPremiumLayouts(null, charSequence2, string, this.giftRectSize);
                         this.textLayout = null;

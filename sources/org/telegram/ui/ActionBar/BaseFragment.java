@@ -71,6 +71,7 @@ public abstract class BaseFragment {
         public boolean allowNestedScroll;
         public Runnable onDismiss;
         public Runnable onOpenAnimationFinished;
+        public Runnable onPreFinished;
         public boolean transitionFromLeft;
     }
 
@@ -802,7 +803,12 @@ public abstract class BaseFragment {
 
         @Override
         public void dismiss() {
+            Runnable runnable;
             super.dismiss();
+            BottomSheetParams bottomSheetParams = this.val$params;
+            if (bottomSheetParams != null && (runnable = bottomSheetParams.onPreFinished) != null) {
+                runnable.run();
+            }
             this.val$actionBarLayout[0] = null;
         }
 

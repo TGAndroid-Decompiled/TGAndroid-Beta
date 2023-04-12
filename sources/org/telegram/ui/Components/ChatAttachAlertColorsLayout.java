@@ -209,7 +209,7 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            return new RecyclerListView.Holder(new WallpaperCell(this.mContext, 1) {
+            WallpaperCell wallpaperCell = new WallpaperCell(this.mContext, 1) {
                 @Override
                 protected void onWallpaperClick(Object obj, int i2) {
                     Consumer<Object> consumer = ChatAttachAlertColorsLayout.this.wallpaperConsumer;
@@ -217,7 +217,9 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
                         consumer.accept(obj);
                     }
                 }
-            });
+            };
+            wallpaperCell.drawStubBackground = false;
+            return new RecyclerListView.Holder(wallpaperCell);
         }
 
         @Override

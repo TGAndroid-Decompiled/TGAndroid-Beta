@@ -2302,7 +2302,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
                     this.radialProgress.setIcon(10, z, z2);
                 }
-                if (this.screenType == 2) {
+                if (this.screenType == 2 && this.dialogId == 0) {
                     this.actionBar2.setSubtitle(LocaleController.getString("LoadingFullImage", R.string.LoadingFullImage));
                 }
                 this.backgroundImage.invalidate();

@@ -39,6 +39,7 @@ public class WallpaperCell extends FrameLayout {
     private Drawable checkDrawable;
     private Paint circlePaint;
     private int currentType;
+    public boolean drawStubBackground;
     private Paint framePaint;
     private boolean isBottom;
     private boolean isTop;
@@ -318,7 +319,7 @@ public class WallpaperCell extends FrameLayout {
 
         @Override
         protected void onDraw(Canvas canvas) {
-            if (!this.checkBox.isChecked() && this.imageView.getImageReceiver().hasBitmapImage() && this.imageView.getImageReceiver().getCurrentAlpha() == 1.0f) {
+            if (!(WallpaperCell.this.drawStubBackground && this.checkBox.isChecked()) && this.imageView.getImageReceiver().hasBitmapImage() && this.imageView.getImageReceiver().getCurrentAlpha() == 1.0f) {
                 return;
             }
             canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), WallpaperCell.this.backgroundPaint);
@@ -331,6 +332,7 @@ public class WallpaperCell extends FrameLayout {
 
     public WallpaperCell(Context context, int i) {
         super(context);
+        this.drawStubBackground = true;
         this.spanCount = 3;
         this.wallpaperViews = new WallpaperView[i];
         final int i2 = 0;
