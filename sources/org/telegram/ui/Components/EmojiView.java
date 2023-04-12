@@ -1906,7 +1906,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     }
 
                     @Override
-                    protected void onMeasure(int i5, int i6) {
+                    public void onMeasure(int i5, int i6) {
                         super.onMeasure(i5, i6);
                         if (this.wasMeasured) {
                             return;
@@ -1916,7 +1916,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                     }
 
                     @Override
-                    protected void onLayout(boolean z5, int i5, int i6, int i7, int i8) {
+                    public void onLayout(boolean z5, int i5, int i6, int i7, int i8) {
                         if (EmojiView.this.firstGifAttach && EmojiView.this.gifAdapter.getItemCount() > 1) {
                             this.ignoreLayout = true;
                             EmojiView.this.gifLayoutManager.scrollToPositionWithOffset(0, 0);
@@ -2043,7 +2043,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 }
 
                 @Override
-                protected void onLayout(boolean z5, int i5, int i6, int i7, int i8) {
+                public void onLayout(boolean z5, int i5, int i6, int i7, int i8) {
                     if (EmojiView.this.firstStickersAttach && EmojiView.this.stickersGridAdapter.getItemCount() > 0) {
                         this.ignoreLayout = true;
                         EmojiView.this.stickersLayoutManager.scrollToPositionWithOffset(0, 0);
@@ -2815,7 +2815,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             this.ignoreLayout = true;
             int size = View.MeasureSpec.getSize(i);
             int spanCount = EmojiView.this.emojiLayoutManager.getSpanCount();
@@ -2828,7 +2828,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
             if (EmojiView.this.needEmojiSearch && EmojiView.this.firstEmojiAttach) {
                 this.ignoreLayout = true;
                 EmojiView.this.emojiLayoutManager.scrollToPositionWithOffset(0, 0);
@@ -2872,7 +2872,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        protected void dispatchDraw(Canvas canvas) {
+        public void dispatchDraw(Canvas canvas) {
             super.dispatchDraw(canvas);
             if (this.lastChildCount != getChildCount()) {
                 updateEmojiDrawables();
@@ -2977,13 +2977,13 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
 
         @Override
-        protected void onAttachedToWindow() {
+        public void onAttachedToWindow() {
             super.onAttachedToWindow();
             updateEmojiDrawables();
         }
 
         @Override
-        protected void onDetachedFromWindow() {
+        public void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             AnimatedEmojiSpan.release(this, EmojiView.this.animatedEmojiDrawables);
             for (int i = 0; i < this.lineDrawables.size(); i++) {

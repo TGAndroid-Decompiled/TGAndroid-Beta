@@ -1395,6 +1395,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         if (this.chatAttachAlert.getCurrentAttachLayout() == this.chatAttachAlert.getPhotoLayout()) {
             this.chatAttachButtonText.setText(LocaleController.getString("ChooseBackgroundFromGallery", R.string.ChooseBackgroundFromGallery));
             this.chatAttachAlert.openColorsLayout();
+            this.chatAttachAlert.colorsLayout.updateColors(this.forceDark);
             return;
         }
         this.chatAttachButtonText.setText(LocaleController.getString("SetColorAsBackground", R.string.SetColorAsBackground));

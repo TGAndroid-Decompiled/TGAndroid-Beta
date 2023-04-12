@@ -677,12 +677,16 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 }
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ChatAttachAlertPhotoLayout.this;
                 chatAttachAlertPhotoLayout.parentAlert.updateLayout(chatAttachAlertPhotoLayout, true, i2);
-                boolean z3 = this.parentPinnedToTop;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = ChatAttachAlertPhotoLayout.this;
-                boolean z4 = chatAttachAlertPhotoLayout2.parentAlert.pinnedToTop;
-                if (z3 != z4) {
-                    this.parentPinnedToTop = z4;
-                    chatAttachAlertPhotoLayout2.gridView.getFastScroll().animate().alpha(this.parentPinnedToTop ? 1.0f : 0.0f).setDuration(100L).start();
+                if (ChatAttachAlertPhotoLayout.this.adapter.getTotalItemsCount() > 30) {
+                    boolean z3 = this.parentPinnedToTop;
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = ChatAttachAlertPhotoLayout.this;
+                    boolean z4 = chatAttachAlertPhotoLayout2.parentAlert.pinnedToTop;
+                    if (z3 != z4) {
+                        this.parentPinnedToTop = z4;
+                        chatAttachAlertPhotoLayout2.gridView.getFastScroll().animate().alpha(this.parentPinnedToTop ? 1.0f : 0.0f).setDuration(100L).start();
+                    }
+                } else {
+                    ChatAttachAlertPhotoLayout.this.gridView.getFastScroll().setAlpha(0.0f);
                 }
                 if (i2 != 0) {
                     ChatAttachAlertPhotoLayout.this.checkCameraViewPosition();
@@ -4349,15 +4353,19 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
         @Override
         public boolean fastScrollIsVisible(RecyclerListView recyclerListView) {
-            return !(ChatAttachAlertPhotoLayout.cameraPhotos.isEmpty() && (ChatAttachAlertPhotoLayout.this.selectedAlbumEntry == null || ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.isEmpty())) && ChatAttachAlertPhotoLayout.this.parentAlert.pinnedToTop;
+            return !(ChatAttachAlertPhotoLayout.cameraPhotos.isEmpty() && (ChatAttachAlertPhotoLayout.this.selectedAlbumEntry == null || ChatAttachAlertPhotoLayout.this.selectedAlbumEntry.photos.isEmpty())) && ChatAttachAlertPhotoLayout.this.parentAlert.pinnedToTop && getTotalItemsCount() > 30;
         }
 
         @Override
         public void getPositionForScrollProgress(RecyclerListView recyclerListView, float f, int[] iArr) {
+            double d;
             int measuredHeight = recyclerListView.getChildAt(0).getMeasuredHeight();
-            float measuredHeight2 = f * ((this.itemsCount * measuredHeight) - recyclerListView.getMeasuredHeight());
-            iArr[0] = (int) (measuredHeight2 / measuredHeight);
-            iArr[1] = (((int) measuredHeight2) % measuredHeight) + recyclerListView.getPaddingTop();
+            double ceil = Math.ceil(getTotalItemsCount() / ChatAttachAlertPhotoLayout.this.itemsPerRow);
+            Double.isNaN(measuredHeight);
+            float measuredHeight2 = f * (((int) (ceil * d)) - recyclerListView.getMeasuredHeight());
+            float f2 = measuredHeight;
+            iArr[0] = ((int) (measuredHeight2 / f2)) * ChatAttachAlertPhotoLayout.this.itemsPerRow;
+            iArr[1] = ((int) (measuredHeight2 % f2)) + recyclerListView.getPaddingTop();
             if (iArr[0] != 0 || iArr[1] >= ChatAttachAlertPhotoLayout.this.getListTopPadding()) {
                 return;
             }

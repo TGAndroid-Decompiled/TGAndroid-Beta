@@ -275,6 +275,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     private TLRPC$TL_wallPaper selectedPattern;
     MessageObject serverWallpaper;
     private Drawable sheetDrawable;
+    private boolean shouldShowBrightnessControll;
     private boolean shouldShowDayNightIcon;
     private boolean showColor;
     private RLottieDrawable sunDrawable;
@@ -635,6 +636,9 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
     }
 
     public void lambda$createView$1() {
+        if (getParentActivity() == null || getContext() == null) {
+            return;
+        }
         SharedConfig.increaseDayNightWallpaperSiwtchHint();
         HintView hintView = new HintView(getContext(), 7, true);
         hintView.setAlpha(0.0f);
@@ -745,39 +749,41 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 DayNightSwitchDelegate dayNightSwitchDelegate = ThemePreviewActivity.this.onSwitchDayNightDelegate;
                 if (dayNightSwitchDelegate != null) {
                     dayNightSwitchDelegate.switchDayNight();
-                    if (ThemePreviewActivity.this.onSwitchDayNightDelegate.isDark()) {
+                    if (ThemePreviewActivity.this.onSwitchDayNightDelegate.isDark() && ThemePreviewActivity.this.shouldShowBrightnessControll) {
                         ThemePreviewActivity.this.dimmingHeaderCell.setVisibility(0);
                         ThemePreviewActivity.this.brightnessControlCell.setVisibility(0);
                     }
                 }
-                if (ThemePreviewActivity.this.changeDayNightViewAnimator != null) {
-                    ThemePreviewActivity.this.changeDayNightViewAnimator.removeAllListeners();
-                    ThemePreviewActivity.this.changeDayNightViewAnimator.cancel();
-                }
-                ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
-                float[] fArr = new float[2];
-                fArr[0] = themePreviewActivity.progressToDarkTheme;
-                fArr[1] = ThemePreviewActivity.this.onSwitchDayNightDelegate.isDark() ? 1.0f : 0.0f;
-                themePreviewActivity.changeDayNightViewAnimator = ValueAnimator.ofFloat(fArr);
-                ThemePreviewActivity.this.changeDayNightViewAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        ThemePreviewActivity.AnonymousClass8.this.lambda$onItemClick$0(valueAnimator);
+                if (ThemePreviewActivity.this.shouldShowBrightnessControll) {
+                    if (ThemePreviewActivity.this.changeDayNightViewAnimator != null) {
+                        ThemePreviewActivity.this.changeDayNightViewAnimator.removeAllListeners();
+                        ThemePreviewActivity.this.changeDayNightViewAnimator.cancel();
                     }
-                });
-                ThemePreviewActivity.this.changeDayNightViewAnimator.addListener(new AnimatorListenerAdapter() {
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        if (ThemePreviewActivity.this.onSwitchDayNightDelegate.isDark()) {
-                            return;
+                    ThemePreviewActivity themePreviewActivity = ThemePreviewActivity.this;
+                    float[] fArr = new float[2];
+                    fArr[0] = themePreviewActivity.progressToDarkTheme;
+                    fArr[1] = ThemePreviewActivity.this.onSwitchDayNightDelegate.isDark() ? 1.0f : 0.0f;
+                    themePreviewActivity.changeDayNightViewAnimator = ValueAnimator.ofFloat(fArr);
+                    ThemePreviewActivity.this.changeDayNightViewAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            ThemePreviewActivity.AnonymousClass8.this.lambda$onItemClick$0(valueAnimator);
                         }
-                        ThemePreviewActivity.this.dimmingHeaderCell.setVisibility(8);
-                        ThemePreviewActivity.this.brightnessControlCell.setVisibility(8);
-                    }
-                });
-                ThemePreviewActivity.this.changeDayNightViewAnimator.setDuration(250L);
-                ThemePreviewActivity.this.changeDayNightViewAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
-                ThemePreviewActivity.this.changeDayNightViewAnimator.start();
+                    });
+                    ThemePreviewActivity.this.changeDayNightViewAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            if (ThemePreviewActivity.this.onSwitchDayNightDelegate.isDark()) {
+                                return;
+                            }
+                            ThemePreviewActivity.this.dimmingHeaderCell.setVisibility(8);
+                            ThemePreviewActivity.this.brightnessControlCell.setVisibility(8);
+                        }
+                    });
+                    ThemePreviewActivity.this.changeDayNightViewAnimator.setDuration(250L);
+                    ThemePreviewActivity.this.changeDayNightViewAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+                    ThemePreviewActivity.this.changeDayNightViewAnimator.start();
+                }
             } else if (ThemePreviewActivity.this.getParentActivity() == null) {
             } else {
                 StringBuilder sb = new StringBuilder();

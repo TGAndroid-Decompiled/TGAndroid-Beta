@@ -74,8 +74,9 @@ public class ChatBackgroundDrawable extends Drawable {
     }
 
     public ChatBackgroundDrawable(final TLRPC$WallPaper tLRPC$WallPaper, boolean z, boolean z2) {
-        String str;
         TLRPC$WallPaperSettings tLRPC$WallPaperSettings;
+        String str;
+        TLRPC$WallPaperSettings tLRPC$WallPaperSettings2;
         ImageReceiver imageReceiver = new ImageReceiver() {
             @Override
             public void invalidate() {
@@ -91,30 +92,27 @@ public class ChatBackgroundDrawable extends Drawable {
         this.isPattern = z3;
         this.wallpaper = tLRPC$WallPaper;
         this.themeIsDark = z;
-        if (z && ((tLRPC$WallPaper.document != null || tLRPC$WallPaper.uploadingImage != null) && !z3 && (tLRPC$WallPaperSettings = tLRPC$WallPaper.settings) != null)) {
-            this.dimAmount = tLRPC$WallPaperSettings.intensity / 100.0f;
+        if (z && ((tLRPC$WallPaper.document != null || tLRPC$WallPaper.uploadingImage != null) && !z3 && (tLRPC$WallPaperSettings2 = tLRPC$WallPaper.settings) != null)) {
+            this.dimAmount = tLRPC$WallPaperSettings2.intensity / 100.0f;
             this.imageReceiver.setColorFilter(new PorterDuffColorFilter(ColorUtils.setAlphaComponent(-16777216, (int) (this.dimAmount * 255.0f)), PorterDuff.Mode.DARKEN));
         }
-        if (this.isPattern || tLRPC$WallPaper.document == null) {
-            TLRPC$WallPaperSettings tLRPC$WallPaperSettings2 = tLRPC$WallPaper.settings;
-            if (tLRPC$WallPaperSettings2.second_background_color != 0 && tLRPC$WallPaperSettings2.third_background_color != 0) {
-                MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
-                this.motionBackgroundDrawable = motionBackgroundDrawable;
-                TLRPC$WallPaperSettings tLRPC$WallPaperSettings3 = tLRPC$WallPaper.settings;
-                motionBackgroundDrawable.setColors(tLRPC$WallPaperSettings3.background_color, tLRPC$WallPaperSettings3.second_background_color, tLRPC$WallPaperSettings3.third_background_color, tLRPC$WallPaperSettings3.fourth_background_color);
-                EmojiThemes.loadWallpaperImage(tLRPC$WallPaper.id, tLRPC$WallPaper, new ResultCallback() {
-                    @Override
-                    public final void onComplete(Object obj) {
-                        ChatBackgroundDrawable.this.lambda$new$0(tLRPC$WallPaper, (Pair) obj);
-                    }
+        if ((this.isPattern || tLRPC$WallPaper.document == null) && (tLRPC$WallPaperSettings = tLRPC$WallPaper.settings) != null && tLRPC$WallPaperSettings.second_background_color != 0 && tLRPC$WallPaperSettings.third_background_color != 0) {
+            MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
+            this.motionBackgroundDrawable = motionBackgroundDrawable;
+            TLRPC$WallPaperSettings tLRPC$WallPaperSettings3 = tLRPC$WallPaper.settings;
+            motionBackgroundDrawable.setColors(tLRPC$WallPaperSettings3.background_color, tLRPC$WallPaperSettings3.second_background_color, tLRPC$WallPaperSettings3.third_background_color, tLRPC$WallPaperSettings3.fourth_background_color);
+            EmojiThemes.loadWallpaperImage(tLRPC$WallPaper.id, tLRPC$WallPaper, new ResultCallback() {
+                @Override
+                public final void onComplete(Object obj) {
+                    ChatBackgroundDrawable.this.lambda$new$0(tLRPC$WallPaper, (Pair) obj);
+                }
 
-                    @Override
-                    public void onError(TLRPC$TL_error tLRPC$TL_error) {
-                        ResultCallback.CC.$default$onError(this, tLRPC$TL_error);
-                    }
-                });
-                return;
-            }
+                @Override
+                public void onError(TLRPC$TL_error tLRPC$TL_error) {
+                    ResultCallback.CC.$default$onError(this, tLRPC$TL_error);
+                }
+            });
+            return;
         }
         Point point = AndroidUtilities.displaySize;
         int min = Math.min(point.x, point.y);

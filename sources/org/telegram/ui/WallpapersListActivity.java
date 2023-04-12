@@ -297,7 +297,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersNeedReload);
             getMessagesStorage().getWallpapers();
         } else {
-            fillDefaultColors(this.wallPapers);
+            fillDefaultColors(this.wallPapers, Theme.isCurrentThemeDark());
             if (this.currentType == 1 && this.patterns.isEmpty()) {
                 NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.wallpapersDidLoad);
                 getMessagesStorage().getWallpapers();
@@ -306,8 +306,8 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         return super.onFragmentCreate();
     }
 
-    public static void fillDefaultColors(ArrayList<Object> arrayList) {
-        int[][] iArr = Theme.isCurrentThemeDark() ? defaultColorsDark : defaultColorsLight;
+    public static void fillDefaultColors(ArrayList<Object> arrayList, boolean z) {
+        int[][] iArr = z ? defaultColorsDark : defaultColorsLight;
         for (int i = 0; i < iArr.length; i++) {
             if (iArr[i].length == 1) {
                 arrayList.add(new ColorWallpaper("c", iArr[i][0], 0, 45));

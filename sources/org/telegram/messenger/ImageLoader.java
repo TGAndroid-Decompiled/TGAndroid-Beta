@@ -785,7 +785,7 @@ public class ImageLoader {
 
         private Bitmap applyWallpaperSetting(Bitmap bitmap, TLRPC$WallPaper tLRPC$WallPaper) {
             int i;
-            if (!tLRPC$WallPaper.pattern) {
+            if (!tLRPC$WallPaper.pattern || tLRPC$WallPaper.settings == null) {
                 TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$WallPaper.settings;
                 return (tLRPC$WallPaperSettings == null || !tLRPC$WallPaperSettings.blur) ? bitmap : Utilities.blurWallpaper(bitmap);
             }

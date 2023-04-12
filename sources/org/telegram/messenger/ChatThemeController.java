@@ -92,16 +92,17 @@ public class ChatThemeController extends BaseController {
                     ChatThemeController.lambda$requestAllChatThemes$3(ResultCallback.this, z, tLObject, tLRPC$TL_error);
                 }
             });
-            return;
         }
-        ArrayList<EmojiThemes> arrayList = new ArrayList(allChatThemes);
-        if (z && !arrayList.get(0).showAsDefaultStub) {
-            arrayList.add(0, EmojiThemes.createChatThemesDefault());
+        if (allChatThemes != null) {
+            ArrayList<EmojiThemes> arrayList = new ArrayList(allChatThemes);
+            if (z && !arrayList.get(0).showAsDefaultStub) {
+                arrayList.add(0, EmojiThemes.createChatThemesDefault());
+            }
+            for (EmojiThemes emojiThemes : arrayList) {
+                emojiThemes.initColors();
+            }
+            resultCallback.onComplete(arrayList);
         }
-        for (EmojiThemes emojiThemes : arrayList) {
-            emojiThemes.initColors();
-        }
-        resultCallback.onComplete(arrayList);
     }
 
     public static void lambda$requestAllChatThemes$3(final ResultCallback resultCallback, final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {

@@ -161,7 +161,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     private final NumberTextView captionLimitView;
     private float chatActivityEnterViewAnimateFromTop;
     private int codepointCount;
-    private ChatAttachAlertColorsLayout colorsLayout;
+    public ChatAttachAlertColorsLayout colorsLayout;
     protected EditTextEmoji commentTextView;
     private int[] commentTextViewLocation;
     private AnimatorSet commentsAnimator;
