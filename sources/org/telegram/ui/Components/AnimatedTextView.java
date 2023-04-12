@@ -102,6 +102,10 @@ public class AnimatedTextView extends View {
             }
         }
 
+        public void setOverrideFullWidth(int i) {
+            this.overrideFullWidth = i;
+        }
+
         public AnimatedTextDrawable() {
             this(false, false, false);
         }

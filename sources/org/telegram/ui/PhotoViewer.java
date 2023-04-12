@@ -210,6 +210,7 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AnimatedFileDrawable;
+import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.BackupImageView;
@@ -1080,9 +1081,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         void updateSlideshowCell(TLRPC$PageBlock tLRPC$PageBlock);
     }
 
-    private static class PhotoCountView extends View {
-    }
-
     public interface PhotoViewerProvider {
 
         public final class CC {
@@ -1484,6 +1482,162 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
+        }
+    }
+
+    public static class PhotoCountView extends View {
+        Paint backgroundPaint;
+        StaticLayout center;
+        float centerWidth;
+        AnimatedTextView.AnimatedTextDrawable left;
+        private String lng;
+        private int marginTop;
+        private boolean nextNotAnimate;
+        TextPaint paint;
+        AnimatedTextView.AnimatedTextDrawable right;
+        private AnimatedFloat showT;
+        private boolean shown;
+
+        public PhotoCountView(Context context) {
+            super(context);
+            this.backgroundPaint = new Paint(1);
+            this.paint = new TextPaint(1);
+            this.shown = false;
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+            this.showT = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
+            this.backgroundPaint.setColor(2130706432);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+            this.left = animatedTextDrawable;
+            animatedTextDrawable.setAnimationProperties(0.3f, 0L, 320L, cubicBezierInterpolator);
+            this.left.setTextColor(-1);
+            this.left.setTextSize(AndroidUtilities.dp(14.0f));
+            this.left.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.left.setCallback(this);
+            this.left.setText("0");
+            this.left.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+            this.paint.setColor(-1);
+            this.paint.setTextSize(AndroidUtilities.dp(14.0f));
+            this.paint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            setCenterText();
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
+            this.right = animatedTextDrawable2;
+            animatedTextDrawable2.setAnimationProperties(0.3f, 0L, 320L, cubicBezierInterpolator);
+            this.right.setTextColor(-1);
+            this.right.setTextSize(AndroidUtilities.dp(14.0f));
+            this.right.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.right.setCallback(this);
+            this.right.setText("0");
+            this.right.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+        }
+
+        private void setCenterText() {
+            StaticLayout staticLayout = new StaticLayout(getOf(), this.paint, AndroidUtilities.dp(200.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            this.center = staticLayout;
+            if (staticLayout.getLineCount() >= 1) {
+                this.centerWidth = this.center.getLineWidth(0);
+                this.center.getLineTop(0);
+                return;
+            }
+            this.centerWidth = 0.0f;
+        }
+
+        private String getOf() {
+            this.lng = LocaleController.getInstance().getCurrentLocaleInfo().shortName;
+            return LocaleController.getString("Of").replace("%1$d", "").replace("%2$d", "");
+        }
+
+        public void set(int i, int i2) {
+            set(i, i2, true);
+        }
+
+        public void set(int i, int i2, boolean z) {
+            if (!TextUtils.equals(this.lng, LocaleController.getInstance().getCurrentLocaleInfo().shortName)) {
+                setCenterText();
+            }
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.left;
+            Object[] objArr = new Object[1];
+            boolean z2 = false;
+            objArr[0] = Integer.valueOf(LocaleController.isRTL ? i2 : i);
+            animatedTextDrawable.setText(String.format("%d", objArr), (!z || this.nextNotAnimate || LocaleController.isRTL) ? false : true);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.right;
+            Object[] objArr2 = new Object[1];
+            if (!LocaleController.isRTL) {
+                i = i2;
+            }
+            objArr2[0] = Integer.valueOf(i);
+            String format = String.format("%d", objArr2);
+            if (z && !this.nextNotAnimate && !LocaleController.isRTL) {
+                z2 = true;
+            }
+            animatedTextDrawable2.setText(format, z2);
+            this.nextNotAnimate = !z;
+        }
+
+        @Override
+        protected boolean verifyDrawable(Drawable drawable) {
+            return this.left == drawable || this.right == drawable || super.verifyDrawable(drawable);
+        }
+
+        public void updateShow(boolean z, boolean z2) {
+            if (this.shown != z) {
+                this.shown = z;
+                if (!z) {
+                    this.nextNotAnimate = true;
+                }
+                if (!z2) {
+                    this.showT.set(z ? 1.0f : 0.0f, true);
+                }
+                invalidate();
+            }
+        }
+
+        @Override
+        public boolean isShown() {
+            return this.shown;
+        }
+
+        @Override
+        protected void onDraw(Canvas canvas) {
+            super.onDraw(canvas);
+            float f = this.showT.set(this.shown ? 1.0f : 0.0f);
+            if (f <= 0.0f) {
+                return;
+            }
+            float currentWidth = this.left.getCurrentWidth() + this.centerWidth + this.right.getCurrentWidth() + AndroidUtilities.dp(18.0f);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((getWidth() - currentWidth) / 2.0f, this.marginTop + AndroidUtilities.dpf2(10.0f), (getWidth() + currentWidth) / 2.0f, this.marginTop + AndroidUtilities.dpf2(33.0f));
+            int alpha = this.backgroundPaint.getAlpha();
+            this.backgroundPaint.setAlpha((int) (alpha * f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(12.0f), AndroidUtilities.dpf2(12.0f), this.backgroundPaint);
+            this.backgroundPaint.setAlpha(alpha);
+            canvas.save();
+            canvas.translate(((getWidth() - currentWidth) / 2.0f) + AndroidUtilities.dp(9.0f), this.marginTop + AndroidUtilities.dp(10.0f));
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.left;
+            animatedTextDrawable.setBounds(0, 0, (int) animatedTextDrawable.getCurrentWidth(), AndroidUtilities.dp(23.0f));
+            int i = (int) (f * 255.0f);
+            this.left.setAlpha(i);
+            this.left.draw(canvas);
+            canvas.translate(this.left.getCurrentWidth(), 0.0f);
+            canvas.save();
+            canvas.translate((-(this.center.getWidth() - this.centerWidth)) / 2.0f, AndroidUtilities.dp(1.0f) + ((AndroidUtilities.dp(23.0f) - this.center.getHeight()) / 2.0f));
+            this.paint.setAlpha(i);
+            this.center.draw(canvas);
+            canvas.restore();
+            canvas.translate(this.centerWidth, 0.0f);
+            AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = this.right;
+            animatedTextDrawable2.setBounds(0, 0, (int) animatedTextDrawable2.getCurrentWidth(), AndroidUtilities.dp(23.0f));
+            this.right.setAlpha(i);
+            this.right.draw(canvas);
+            canvas.restore();
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            int size = View.MeasureSpec.getSize(i);
+            this.marginTop = ActionBar.getCurrentActionBarHeight() + (Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0);
+            this.left.setOverrideFullWidth(size);
+            this.right.setOverrideFullWidth(size);
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(this.marginTop + AndroidUtilities.dp(43.0f), 1073741824));
         }
     }
 
@@ -2410,7 +2564,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     PhotoViewer.this.currentPanTranslationY = f;
                     if (PhotoViewer.this.currentEditMode != 3) {
                         PhotoViewer.this.actionBar.setTranslationY(f);
-                        PhotoCountView unused = PhotoViewer.this.countView;
+                        if (PhotoViewer.this.countView != null) {
+                            PhotoViewer.this.countView.setTranslationY(f);
+                        }
                     }
                     if (PhotoViewer.this.miniProgressView != null) {
                         PhotoViewer.this.miniProgressView.setTranslationY(f);
@@ -2449,7 +2605,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         if (PhotoViewer.this.captionEditText != null) {
                             PhotoViewer.this.captionEditText.setTranslationY(f);
                         }
-                        IPhotoPaintView unused2 = PhotoViewer.this.photoPaintView;
+                        IPhotoPaintView unused = PhotoViewer.this.photoPaintView;
                     } else {
                         if (PhotoViewer.this.photoPaintView != null) {
                             PhotoViewer.this.photoPaintView.getView().setTranslationY(f);
@@ -3635,6 +3791,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.actionBarContainer = photoViewerActionBarContainer;
         this.actionBar.addView(photoViewerActionBarContainer, LayoutHelper.createFrame(-1, -1, 119));
         this.containerView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
+        PhotoCountView photoCountView = new PhotoCountView(parentActivity);
+        this.countView = photoCountView;
+        this.containerView.addView(photoCountView, LayoutHelper.createFrame(-1, -2, 55));
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass13(resourcesProvider));
         ActionBarMenu createMenu = this.actionBar.createMenu();
         this.menu = createMenu;
@@ -9179,7 +9338,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.navigationBar.setVisibility(i != 2 ? 0 : 4);
                 this.switchingToMode = i;
                 if (this.currentEditMode == 0) {
-                    this.wasCountViewShown = false;
+                    PhotoCountView photoCountView = this.countView;
+                    this.wasCountViewShown = photoCountView != null && photoCountView.isShown();
+                }
+                PhotoCountView photoCountView2 = this.countView;
+                if (photoCountView2 != null) {
+                    photoCountView2.updateShow(i == 0 && this.wasCountViewShown, true);
                 }
                 if (i == 0) {
                     if (this.centerImage.getBitmap() != null) {
@@ -10385,59 +10549,75 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                             this.bottomLayout.setTranslationY(0.0f);
                         }
                     }
-                    View view = this.navigationBar;
-                    if (view != null) {
+                    PhotoCountView photoCountView = this.countView;
+                    if (photoCountView != null) {
                         Property property7 = View.ALPHA;
                         float[] fArr7 = new float[1];
                         fArr7[0] = z ? 1.0f : 0.0f;
-                        arrayList.add(ObjectAnimator.ofFloat(view, property7, fArr7));
+                        arrayList.add(ObjectAnimator.ofFloat(photoCountView, property7, fArr7));
+                        if (actionBarToggleParams.enableTranslationAnimation) {
+                            PhotoCountView photoCountView2 = this.countView;
+                            Property property8 = View.TRANSLATION_Y;
+                            float[] fArr8 = new float[1];
+                            fArr8[0] = z ? 0.0f : -dpf2;
+                            arrayList.add(ObjectAnimator.ofFloat(photoCountView2, property8, fArr8));
+                        } else {
+                            this.countView.setTranslationY(0.0f);
+                        }
+                    }
+                    View view = this.navigationBar;
+                    if (view != null) {
+                        Property property9 = View.ALPHA;
+                        float[] fArr9 = new float[1];
+                        fArr9[0] = z ? 1.0f : 0.0f;
+                        arrayList.add(ObjectAnimator.ofFloat(view, property9, fArr9));
                     }
                     if (this.videoPlayerControlVisible) {
                         VideoPlayerControlFrameLayout videoPlayerControlFrameLayout = this.videoPlayerControlFrameLayout;
-                        Property<VideoPlayerControlFrameLayout, Float> property8 = VPC_PROGRESS;
-                        float[] fArr8 = new float[1];
-                        fArr8[0] = z ? 1.0f : 0.0f;
-                        arrayList.add(ObjectAnimator.ofFloat(videoPlayerControlFrameLayout, property8, fArr8));
+                        Property<VideoPlayerControlFrameLayout, Float> property10 = VPC_PROGRESS;
+                        float[] fArr10 = new float[1];
+                        fArr10[0] = z ? 1.0f : 0.0f;
+                        arrayList.add(ObjectAnimator.ofFloat(videoPlayerControlFrameLayout, property10, fArr10));
                     } else {
                         this.videoPlayerControlFrameLayout.setProgress(z ? 1.0f : 0.0f);
                     }
                     GroupedPhotosListView groupedPhotosListView = this.groupedPhotosListView;
-                    Property property9 = View.ALPHA;
-                    float[] fArr9 = new float[1];
-                    fArr9[0] = z ? 1.0f : 0.0f;
-                    arrayList.add(ObjectAnimator.ofFloat(groupedPhotosListView, property9, fArr9));
+                    Property property11 = View.ALPHA;
+                    float[] fArr11 = new float[1];
+                    fArr11[0] = z ? 1.0f : 0.0f;
+                    arrayList.add(ObjectAnimator.ofFloat(groupedPhotosListView, property11, fArr11));
                     if (actionBarToggleParams.enableTranslationAnimation) {
                         GroupedPhotosListView groupedPhotosListView2 = this.groupedPhotosListView;
-                        Property property10 = View.TRANSLATION_Y;
-                        float[] fArr10 = new float[1];
-                        fArr10[0] = z ? 0.0f : dpf2;
-                        arrayList.add(ObjectAnimator.ofFloat(groupedPhotosListView2, property10, fArr10));
+                        Property property12 = View.TRANSLATION_Y;
+                        float[] fArr12 = new float[1];
+                        fArr12[0] = z ? 0.0f : dpf2;
+                        arrayList.add(ObjectAnimator.ofFloat(groupedPhotosListView2, property12, fArr12));
                     } else {
                         this.groupedPhotosListView.setTranslationY(0.0f);
                     }
                     if (!this.needCaptionLayout && (captionScrollView2 = this.captionScrollView) != null) {
-                        Property property11 = View.ALPHA;
-                        float[] fArr11 = new float[1];
-                        fArr11[0] = z ? 1.0f : 0.0f;
-                        arrayList.add(ObjectAnimator.ofFloat(captionScrollView2, property11, fArr11));
+                        Property property13 = View.ALPHA;
+                        float[] fArr13 = new float[1];
+                        fArr13[0] = z ? 1.0f : 0.0f;
+                        arrayList.add(ObjectAnimator.ofFloat(captionScrollView2, property13, fArr13));
                         if (actionBarToggleParams.enableTranslationAnimation) {
                             CaptionScrollView captionScrollView3 = this.captionScrollView;
-                            Property property12 = View.TRANSLATION_Y;
-                            float[] fArr12 = new float[1];
+                            Property property14 = View.TRANSLATION_Y;
+                            float[] fArr14 = new float[1];
                             if (z) {
                                 dpf2 = 0.0f;
                             }
-                            fArr12[0] = dpf2;
-                            arrayList.add(ObjectAnimator.ofFloat(captionScrollView3, property12, fArr12));
+                            fArr14[0] = dpf2;
+                            arrayList.add(ObjectAnimator.ofFloat(captionScrollView3, property14, fArr14));
                         } else {
                             this.captionScrollView.setTranslationY(0.0f);
                         }
                     }
                     if (this.videoPlayerControlVisible && this.isPlaying) {
-                        float[] fArr13 = new float[2];
-                        fArr13[0] = this.photoProgressViews[0].animAlphas[1];
-                        fArr13[1] = z ? 1.0f : 0.0f;
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr13);
+                        float[] fArr15 = new float[2];
+                        fArr15[0] = this.photoProgressViews[0].animAlphas[1];
+                        fArr15[1] = z ? 1.0f : 0.0f;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr15);
                         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
                             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -10448,10 +10628,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                     if (this.muteItem.getTag() != null) {
                         ImageView imageView3 = this.muteItem;
-                        Property property13 = View.ALPHA;
-                        float[] fArr14 = new float[1];
-                        fArr14[0] = z ? 1.0f : 0.0f;
-                        arrayList.add(ObjectAnimator.ofFloat(imageView3, property13, fArr14));
+                        Property property15 = View.ALPHA;
+                        float[] fArr16 = new float[1];
+                        fArr16[0] = z ? 1.0f : 0.0f;
+                        arrayList.add(ObjectAnimator.ofFloat(imageView3, property15, fArr16));
                     }
                     AnimatorSet animatorSet2 = new AnimatorSet();
                     this.actionBarAnimator = animatorSet2;
@@ -10493,6 +10673,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     this.fullscreenButton[i3].setTranslationY(z ? 0.0f : dpf2);
                 }
                 this.actionBar.setTranslationY(z ? 0.0f : -dpf2);
+                PhotoCountView photoCountView3 = this.countView;
+                if (photoCountView3 != null) {
+                    photoCountView3.setAlpha(z ? 1.0f : 0.0f);
+                    this.countView.setTranslationY(z ? 0.0f : -dpf2);
+                }
                 this.bottomLayout.setAlpha(z ? 1.0f : 0.0f);
                 this.bottomLayout.setTranslationY(z ? 0.0f : dpf2);
                 this.navigationBar.setAlpha(z ? 1.0f : 0.0f);
@@ -11723,6 +11908,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.sendPhotoType = i2;
             this.doneButtonPressed = false;
             this.actionBarContainer.setTitle("");
+            this.actionBarContainer.setSubtitle("", false);
             this.placeProvider = photoViewerProvider;
             this.mergeDialogId = 0L;
             this.currentDialogId = 0L;
@@ -12037,6 +12223,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.lastTitle = null;
                 this.isEmbedVideo = num != null;
                 this.actionBarContainer.setTitle("");
+                this.actionBarContainer.setSubtitle("", false);
+                PhotoCountView photoCountView = this.countView;
+                if (photoCountView != null) {
+                    photoCountView.set(0, 0, false);
+                    this.countView.updateShow(false, false);
+                }
                 this.actionBar.setTitleScrollNonFitText(false);
                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoadFailed);
                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoaded);

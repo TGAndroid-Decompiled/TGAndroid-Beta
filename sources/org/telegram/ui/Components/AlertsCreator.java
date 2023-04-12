@@ -2137,7 +2137,7 @@ public class AlertsCreator {
         LinearLayout linearLayout = new LinearLayout(baseFragment.getParentActivity());
         linearLayout.setOrientation(1);
         TextView textView = new TextView(baseFragment.getParentActivity());
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -1, 0, 24, 16, 24, 24));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -1, 0, 21, 0, 21, 8));
         textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
         textView.setTextSize(1, 16.0f);
         textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("ChatWithAdminMessage", R.string.ChatWithAdminMessage, str, LocaleController.formatDateAudio(i, false))));
@@ -2149,7 +2149,7 @@ public class AlertsCreator {
         textView2.setText(LocaleController.getString("IUnderstand", R.string.IUnderstand));
         textView2.setTextColor(Theme.getColor("featuredStickers_buttonText"));
         textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 0, 24, 15, 16, 24));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, 48, 0, 16, 12, 16, 8));
         builder.setCustomView(linearLayout);
         final BottomSheet show = builder.show();
         textView2.setOnClickListener(new View.OnClickListener() {

@@ -7334,7 +7334,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 return;
             }
             SharedPreferences.Editor edit = this.notificationsPreferences.edit();
-            boolean z2 = (tLRPC$TL_peerSettings.report_spam || tLRPC$TL_peerSettings.add_contact || tLRPC$TL_peerSettings.block_contact || tLRPC$TL_peerSettings.share_contact || tLRPC$TL_peerSettings.report_geo || tLRPC$TL_peerSettings.invite_members) ? false : true;
+            boolean z2 = tLRPC$TL_peerSettings.flags == 0;
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("peer settings loaded for " + j + " add = " + tLRPC$TL_peerSettings.add_contact + " block = " + tLRPC$TL_peerSettings.block_contact + " spam = " + tLRPC$TL_peerSettings.report_spam + " share = " + tLRPC$TL_peerSettings.share_contact + " geo = " + tLRPC$TL_peerSettings.report_geo + " hide = " + z2 + " distance = " + tLRPC$TL_peerSettings.geo_distance + " invite = " + tLRPC$TL_peerSettings.invite_members);
             }

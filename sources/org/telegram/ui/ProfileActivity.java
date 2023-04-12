@@ -5382,9 +5382,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
 
     public void lambda$onMemberClick$21(TLRPC$ChannelParticipant tLRPC$ChannelParticipant, TLRPC$User tLRPC$User, TLRPC$ChatParticipant tLRPC$ChatParticipant, boolean z, Integer num) {
         if (tLRPC$ChannelParticipant != null) {
-            openRightsEdit(1, tLRPC$User, tLRPC$ChatParticipant, tLRPC$ChannelParticipant.admin_rights, tLRPC$ChannelParticipant.banned_rights, tLRPC$ChannelParticipant.rank, z);
+            openRightsEdit(num.intValue(), tLRPC$User, tLRPC$ChatParticipant, tLRPC$ChannelParticipant.admin_rights, tLRPC$ChannelParticipant.banned_rights, tLRPC$ChannelParticipant.rank, z);
         } else {
-            openRightsEdit(1, tLRPC$User, tLRPC$ChatParticipant, null, null, "", z);
+            openRightsEdit(num.intValue(), tLRPC$User, tLRPC$ChatParticipant, null, null, "", z);
         }
     }
 

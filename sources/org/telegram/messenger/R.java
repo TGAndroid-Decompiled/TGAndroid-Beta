@@ -2226,10 +2226,10 @@ public final class R {
         public static final int ActionRequestedPeerChat = 0x7f0e012c;
         public static final int ActionRequestedPeerUser = 0x7f0e012d;
         public static final int ActionRevokedInviteLinkClickable = 0x7f0e012e;
-        public static final int ActionSetSameWallpeprForThisChat = 0x7f0e012f;
-        public static final int ActionSetSameWallpeprForThisChatSelf = 0x7f0e0130;
-        public static final int ActionSetWallpeprForThisChat = 0x7f0e0131;
-        public static final int ActionSetWallpeprForThisChatSelf = 0x7f0e0132;
+        public static final int ActionSetSameWallpaperForThisChat = 0x7f0e012f;
+        public static final int ActionSetSameWallpaperForThisChatSelf = 0x7f0e0130;
+        public static final int ActionSetWallpaperForThisChat = 0x7f0e0131;
+        public static final int ActionSetWallpaperForThisChatSelf = 0x7f0e0132;
         public static final int ActionSkip = 0x7f0e0133;
         public static final int ActionSuggestPhoto = 0x7f0e0134;
         public static final int ActionSuggestPhotoFromYouDescription = 0x7f0e0135;

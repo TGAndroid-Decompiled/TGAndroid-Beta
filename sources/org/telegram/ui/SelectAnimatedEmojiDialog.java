@@ -4026,9 +4026,8 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                     forDocument = ImageLocation.getForDocument(tLRPC$Document);
                 }
                 this.imageReceiver.setImage(forDocument, str, ImageLocation.getForDocument(closestPhotoSizeWithSize, tLRPC$Document), "160_160", null, null, svgThumb, tLRPC$Document.size, null, tLRPC$Document, 1);
-                Drawable drawable2 = imageViewEmoji.drawable;
-                if ((drawable2 instanceof AnimatedEmojiDrawable) && ((AnimatedEmojiDrawable) drawable2).canOverrideColor()) {
-                    this.imageReceiver.setColorFilter(AnimatedEmojiDrawable.isDefaultStatusEmoji((AnimatedEmojiDrawable) imageViewEmoji.drawable) ? SelectAnimatedEmojiDialog.this.premiumStarColorFilter : Theme.chat_animatedEmojiTextColorFilter);
+                if ((imageViewEmoji.drawable instanceof AnimatedEmojiDrawable) && (MessageObject.isTextColorEmoji(tLRPC$Document) || ((AnimatedEmojiDrawable) imageViewEmoji.drawable).canOverrideColor())) {
+                    this.imageReceiver.setColorFilter((MessageObject.isTextColorEmoji(tLRPC$Document) || AnimatedEmojiDrawable.isDefaultStatusEmoji((AnimatedEmojiDrawable) imageViewEmoji.drawable)) ? SelectAnimatedEmojiDialog.this.premiumStarColorFilter : Theme.chat_animatedEmojiTextColorFilter);
                 }
             }
             imageViewEmoji.getLocationOnScreen(this.tempLocation);

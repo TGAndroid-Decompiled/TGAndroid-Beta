@@ -7184,6 +7184,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     DialogsActivity.this.lambda$didReceivedNotification$65(tLRPC$Chat, longValue2, booleanValue, tLRPC$User, z);
                 }
             };
+            createUndoView();
             if (this.undoView[0] != null) {
                 if (!ChatObject.isForum(tLRPC$Chat)) {
                     UndoView undoView = getUndoView();

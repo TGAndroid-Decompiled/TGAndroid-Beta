@@ -5334,6 +5334,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return;
         }
         createTopPanel();
+        if (this.topChatPanelView == null) {
+            return;
+        }
         TranslateButton translateButton = new TranslateButton(getContext(), this, this.themeDelegate) {
             @Override
             protected void onButtonClick() {
@@ -20377,10 +20380,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             suggestEmojiView.updateColors();
         }
         ChatAvatarContainer chatAvatarContainer2 = this.avatarContainer;
-        if (chatAvatarContainer2 == null || chatAvatarContainer2.getTimeItem() == null) {
-            return;
+        if (chatAvatarContainer2 != null && chatAvatarContainer2.getTimeItem() != null) {
+            this.avatarContainer.getTimeItem().invalidate();
         }
-        this.avatarContainer.getTimeItem().invalidate();
+        TranslateButton translateButton = this.translateButton;
+        if (translateButton != null) {
+            translateButton.updateColors();
+        }
     }
 
     @Override

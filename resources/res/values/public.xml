@@ -2146,10 +2146,10 @@
     <public type="string" name="ActionRequestedPeerChat" id="0x7f0e012c" />
     <public type="string" name="ActionRequestedPeerUser" id="0x7f0e012d" />
     <public type="string" name="ActionRevokedInviteLinkClickable" id="0x7f0e012e" />
-    <public type="string" name="ActionSetSameWallpeprForThisChat" id="0x7f0e012f" />
-    <public type="string" name="ActionSetSameWallpeprForThisChatSelf" id="0x7f0e0130" />
-    <public type="string" name="ActionSetWallpeprForThisChat" id="0x7f0e0131" />
-    <public type="string" name="ActionSetWallpeprForThisChatSelf" id="0x7f0e0132" />
+    <public type="string" name="ActionSetSameWallpaperForThisChat" id="0x7f0e012f" />
+    <public type="string" name="ActionSetSameWallpaperForThisChatSelf" id="0x7f0e0130" />
+    <public type="string" name="ActionSetWallpaperForThisChat" id="0x7f0e0131" />
+    <public type="string" name="ActionSetWallpaperForThisChatSelf" id="0x7f0e0132" />
     <public type="string" name="ActionSkip" id="0x7f0e0133" />
     <public type="string" name="ActionSuggestPhoto" id="0x7f0e0134" />
     <public type="string" name="ActionSuggestPhotoFromYouDescription" id="0x7f0e0135" />
