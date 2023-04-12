@@ -9751,7 +9751,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.drawCaptionAfter = new ArrayList<>();
             this.adjustPanLayoutHelper = new AdjustPanLayoutHelper(this, ChatActivity.this) {
                 @Override
-                public void onTransitionStart(boolean z, int i) {
+                protected void onTransitionStart(boolean z, int i) {
                     ChatActivity.this.wasManualScroll = true;
                     ChatActivityEnterView chatActivityEnterView = ChatActivity.this.chatActivityEnterView;
                     if (chatActivityEnterView != null) {
@@ -9767,7 +9767,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
 
                 @Override
-                public void onTransitionEnd() {
+                protected void onTransitionEnd() {
                     ChatActivityEnterView chatActivityEnterView = ChatActivity.this.chatActivityEnterView;
                     if (chatActivityEnterView != null) {
                         chatActivityEnterView.onAdjustPanTransitionEnd();
@@ -9783,7 +9783,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
 
                 @Override
-                public void onPanTranslationUpdate(float f, float f2, boolean z) {
+                protected void onPanTranslationUpdate(float f, float f2, boolean z) {
                     if (ChatActivity.this.getParentLayout() == null || !ChatActivity.this.getParentLayout().isPreviewOpenAnimationInProgress()) {
                         ChatActivity.this.contentPanTranslation = f;
                         ChatAttachAlert chatAttachAlert = ChatActivity.this.chatAttachAlert;
@@ -19219,6 +19219,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         @Override
         public void didPressInstantButton(ChatMessageCell chatMessageCell, int i) {
             TLRPC$WebPage tLRPC$WebPage;
+            int i2;
             TLRPC$WebPage tLRPC$WebPage2;
             MessageObject messageObject = chatMessageCell.getMessageObject();
             if (i == 8) {
@@ -19249,14 +19250,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         return;
                     }
                     long peerId = MessageObject.getPeerId(messageObject.messageOwner.from_id);
+                    if (peerId == ChatActivity.this.getDialogId() && (i2 = messageObject.sponsoredChannelPost) != 0) {
+                        ChatActivity.this.scrollToMessageId(i2, 0, true, 0, false, 0);
+                        return;
+                    }
                     if (peerId < 0) {
                         bundle.putLong("chat_id", -peerId);
                     } else {
                         bundle.putLong("user_id", peerId);
                     }
-                    int i2 = messageObject.sponsoredChannelPost;
-                    if (i2 != 0) {
-                        bundle.putInt("message_id", i2);
+                    int i3 = messageObject.sponsoredChannelPost;
+                    if (i3 != 0) {
+                        bundle.putInt("message_id", i3);
                     }
                     String str2 = messageObject.botStartParam;
                     if (str2 != null) {

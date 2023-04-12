@@ -10,8 +10,8 @@ public final class AlertsCreator$$ExternalSyntheticLambda86 implements View.OnTo
 
     @Override
     public final boolean onTouch(View view, MotionEvent motionEvent) {
-        boolean lambda$createCalendarPickerDialog$87;
-        lambda$createCalendarPickerDialog$87 = AlertsCreator.lambda$createCalendarPickerDialog$87(view, motionEvent);
-        return lambda$createCalendarPickerDialog$87;
+        boolean lambda$createAutoDeleteDatePickerDialog$79;
+        lambda$createAutoDeleteDatePickerDialog$79 = AlertsCreator.lambda$createAutoDeleteDatePickerDialog$79(view, motionEvent);
+        return lambda$createAutoDeleteDatePickerDialog$79;
     }
 }

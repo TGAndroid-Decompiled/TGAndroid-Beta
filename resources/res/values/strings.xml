@@ -983,6 +983,7 @@
     <string name="BotWebViewRequestMicrophonePermission">Allow **%1$s** to access to your microphone?\n\nThe developer of **%1$s** will be able to access your microphone when this web app is open.</string>
     <string name="BotWebViewRequestMicrophonePermissionWithHint">Allow **%1$s** to access to your microphone?\n\nThe developer of **%1$s** will be able to access your microphone when this web app is open.\n\nEnable microphone access in Settings &gt; Permissions &gt; Microphone.</string>
     <string name="BotWebViewSettings">Settings</string>
+    <string name="BotWebViewStartPermission">You will connect to this bot\'s website to launch its web app.</string>
     <string name="BotsMenuTitle">Menu</string>
     <string name="BroadcastGroup">Broadcast Group</string>
     <string name="BroadcastGroupConvert">Convert to Broadcast Group</string>
@@ -3488,6 +3489,7 @@
     <string name="Months_other">%1$d months</string>
     <string name="Months_two">%1$d months</string>
     <string name="Months_zero">%1$d months</string>
+    <string name="MoreAboutThisBot">More about this bot</string>
     <string name="MoreInfo">More info</string>
     <string name="Music">Music</string>
     <string name="MusicFiles_few">%1$d music files</string>

@@ -8872,7 +8872,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public SearchResult[] onCreateSearchArray() {
-            SearchResult[] searchResultArr = new SearchResult[125];
+            SearchResult[] searchResultArr = new SearchResult[143];
             searchResultArr[0] = new SearchResult(this, 500, LocaleController.getString("EditName", R.string.EditName), 0, new Runnable() {
                 @Override
                 public final void run() {
@@ -8995,429 +8995,429 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$19();
                 }
             });
-            searchResultArr[19] = new SearchResult(this, FileLoader.MEDIA_DIR_VIDEO_PUBLIC, LocaleController.getString("BlockedUsers", R.string.BlockedUsers), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
+            String string4 = LocaleController.getString("TwoStepVerification", R.string.TwoStepVerification);
+            String string5 = LocaleController.getString("PrivacySettings", i3);
+            int i5 = R.drawable.msg2_secret;
+            searchResultArr[19] = new SearchResult(this, 109, string4, string5, i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$20();
                 }
             });
-            searchResultArr[20] = new SearchResult(this, 105, LocaleController.getString("PrivacyPhone", R.string.PrivacyPhone), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
+            searchResultArr[20] = new SearchResult(this, 124, LocaleController.getString(R.string.AutoDeleteMessages), LocaleController.getString(i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$21();
                 }
             });
-            searchResultArr[21] = new SearchResult(this, 102, LocaleController.getString("PrivacyLastSeen", R.string.PrivacyLastSeen), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
+            searchResultArr[21] = new SearchResult(this, 108, LocaleController.getString("Passcode", R.string.Passcode), LocaleController.getString("PrivacySettings", i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$22();
                 }
             });
-            searchResultArr[22] = new SearchResult(this, 103, LocaleController.getString("PrivacyProfilePhoto", R.string.PrivacyProfilePhoto), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
+            searchResultArr[22] = SharedConfig.hasEmailLogin ? new SearchResult(this, 125, LocaleController.getString(R.string.EmailLogin), "emailLoginRow", LocaleController.getString("PrivacySettings", i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$23();
                 }
-            });
-            searchResultArr[23] = new SearchResult(this, 104, LocaleController.getString("PrivacyForwards", R.string.PrivacyForwards), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
+            }) : null;
+            searchResultArr[23] = new SearchResult(this, FileLoader.MEDIA_DIR_VIDEO_PUBLIC, LocaleController.getString("BlockedUsers", R.string.BlockedUsers), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$24();
                 }
             });
-            searchResultArr[24] = new SearchResult(this, 122, LocaleController.getString("PrivacyP2P", R.string.PrivacyP2P), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
+            searchResultArr[24] = new SearchResult(this, 110, LocaleController.getString("SessionsTitle", R.string.SessionsTitle), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$25();
                 }
             });
-            int i5 = R.string.Calls;
-            searchResultArr[25] = new SearchResult(this, 106, LocaleController.getString("Calls", i5), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
+            searchResultArr[25] = new SearchResult(this, 105, LocaleController.getString("PrivacyPhone", R.string.PrivacyPhone), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$26();
                 }
             });
-            searchResultArr[26] = new SearchResult(this, 107, LocaleController.getString("GroupsAndChannels", R.string.GroupsAndChannels), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
+            searchResultArr[26] = new SearchResult(this, 102, LocaleController.getString("PrivacyLastSeen", R.string.PrivacyLastSeen), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$27();
                 }
             });
-            searchResultArr[27] = new SearchResult(this, 123, LocaleController.getString("PrivacyVoiceMessages", R.string.PrivacyVoiceMessages), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
+            searchResultArr[27] = new SearchResult(this, 103, LocaleController.getString("PrivacyProfilePhoto", R.string.PrivacyProfilePhoto), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$28();
                 }
             });
-            String string4 = LocaleController.getString("Passcode", R.string.Passcode);
-            String string5 = LocaleController.getString("PrivacySettings", i3);
-            int i6 = R.drawable.msg2_secret;
-            searchResultArr[28] = new SearchResult(this, 108, string4, string5, i6, new Runnable() {
+            searchResultArr[28] = new SearchResult(this, 104, LocaleController.getString("PrivacyForwards", R.string.PrivacyForwards), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$29();
                 }
             });
-            searchResultArr[29] = new SearchResult(this, 109, LocaleController.getString("TwoStepVerification", R.string.TwoStepVerification), LocaleController.getString("PrivacySettings", i3), i6, new Runnable() {
+            searchResultArr[29] = new SearchResult(this, 122, LocaleController.getString("PrivacyP2P", R.string.PrivacyP2P), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$30();
                 }
             });
-            searchResultArr[30] = new SearchResult(this, 110, LocaleController.getString("SessionsTitle", R.string.SessionsTitle), i6, new Runnable() {
+            int i6 = R.string.Calls;
+            searchResultArr[30] = new SearchResult(this, 106, LocaleController.getString("Calls", i6), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$31();
                 }
             });
-            searchResultArr[31] = ProfileActivity.this.getMessagesController().autoarchiveAvailable ? new SearchResult(this, 121, LocaleController.getString("ArchiveAndMute", R.string.ArchiveAndMute), "newChatsRow", LocaleController.getString("PrivacySettings", i3), i6, new Runnable() {
+            searchResultArr[31] = new SearchResult(this, 107, LocaleController.getString("GroupsAndChannels", R.string.GroupsAndChannels), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$32();
                 }
-            }) : null;
-            searchResultArr[32] = new SearchResult(this, 112, LocaleController.getString("DeleteAccountIfAwayFor2", R.string.DeleteAccountIfAwayFor2), "deleteAccountRow", LocaleController.getString("PrivacySettings", i3), i6, new Runnable() {
+            });
+            searchResultArr[32] = new SearchResult(this, 123, LocaleController.getString("PrivacyVoiceMessages", R.string.PrivacyVoiceMessages), LocaleController.getString("PrivacySettings", i3), i4, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$33();
                 }
             });
-            searchResultArr[33] = new SearchResult(this, 113, LocaleController.getString("PrivacyPaymentsClear", R.string.PrivacyPaymentsClear), "paymentsClearRow", LocaleController.getString("PrivacySettings", i3), i6, new Runnable() {
+            searchResultArr[33] = ProfileActivity.this.getMessagesController().autoarchiveAvailable ? new SearchResult(this, 121, LocaleController.getString("ArchiveAndMute", R.string.ArchiveAndMute), "newChatsRow", LocaleController.getString("PrivacySettings", i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$34();
                 }
-            });
-            searchResultArr[34] = new SearchResult(this, 114, LocaleController.getString("WebSessionsTitle", R.string.WebSessionsTitle), LocaleController.getString("PrivacySettings", i3), i6, new Runnable() {
+            }) : null;
+            searchResultArr[34] = new SearchResult(this, 112, LocaleController.getString("DeleteAccountIfAwayFor2", R.string.DeleteAccountIfAwayFor2), "deleteAccountRow", LocaleController.getString("PrivacySettings", i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$35();
                 }
             });
-            searchResultArr[35] = new SearchResult(this, 115, LocaleController.getString("SyncContactsDelete", R.string.SyncContactsDelete), "contactsDeleteRow", LocaleController.getString("PrivacySettings", i3), i6, new Runnable() {
+            searchResultArr[35] = new SearchResult(this, 113, LocaleController.getString("PrivacyPaymentsClear", R.string.PrivacyPaymentsClear), "paymentsClearRow", LocaleController.getString("PrivacySettings", i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$36();
                 }
             });
-            searchResultArr[36] = new SearchResult(this, 116, LocaleController.getString("SyncContacts", R.string.SyncContacts), "contactsSyncRow", LocaleController.getString("PrivacySettings", i3), i6, new Runnable() {
+            searchResultArr[36] = new SearchResult(this, 114, LocaleController.getString("WebSessionsTitle", R.string.WebSessionsTitle), LocaleController.getString("PrivacySettings", i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$37();
                 }
             });
-            searchResultArr[37] = new SearchResult(this, MessagesStorage.LAST_DB_VERSION, LocaleController.getString("SuggestContacts", R.string.SuggestContacts), "contactsSuggestRow", LocaleController.getString("PrivacySettings", i3), i6, new Runnable() {
+            searchResultArr[37] = new SearchResult(this, 115, LocaleController.getString("SyncContactsDelete", R.string.SyncContactsDelete), "contactsDeleteRow", LocaleController.getString("PrivacySettings", i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$38();
                 }
             });
-            searchResultArr[38] = new SearchResult(this, 118, LocaleController.getString("MapPreviewProvider", R.string.MapPreviewProvider), "secretMapRow", LocaleController.getString("PrivacySettings", i3), i6, new Runnable() {
+            searchResultArr[38] = new SearchResult(this, 116, LocaleController.getString("SyncContacts", R.string.SyncContacts), "contactsSyncRow", LocaleController.getString("PrivacySettings", i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$39();
                 }
             });
-            searchResultArr[39] = new SearchResult(this, 119, LocaleController.getString("SecretWebPage", R.string.SecretWebPage), "secretWebpageRow", LocaleController.getString("PrivacySettings", i3), i6, new Runnable() {
+            searchResultArr[39] = new SearchResult(this, MessagesStorage.LAST_DB_VERSION, LocaleController.getString("SuggestContacts", R.string.SuggestContacts), "contactsSuggestRow", LocaleController.getString("PrivacySettings", i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$40();
                 }
             });
-            int i7 = R.string.Devices;
-            String string6 = LocaleController.getString(i7);
-            int i8 = R.drawable.msg2_devices;
-            searchResultArr[40] = new SearchResult(this, 120, string6, i8, new Runnable() {
+            searchResultArr[40] = new SearchResult(this, 118, LocaleController.getString("MapPreviewProvider", R.string.MapPreviewProvider), "secretMapRow", LocaleController.getString("PrivacySettings", i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$41();
                 }
             });
-            searchResultArr[41] = new SearchResult(this, 121, LocaleController.getString(R.string.TerminateAllSessions), "terminateAllSessionsRow", LocaleController.getString(i7), i8, new Runnable() {
+            searchResultArr[41] = new SearchResult(this, 119, LocaleController.getString("SecretWebPage", R.string.SecretWebPage), "secretWebpageRow", LocaleController.getString("PrivacySettings", i3), i5, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$42();
                 }
             });
-            searchResultArr[42] = new SearchResult(this, 122, LocaleController.getString(R.string.LinkDesktopDevice), LocaleController.getString(i7), i8, new Runnable() {
+            int i7 = R.string.Devices;
+            String string6 = LocaleController.getString(i7);
+            int i8 = R.drawable.msg2_devices;
+            searchResultArr[42] = new SearchResult(this, 120, string6, i8, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$43();
                 }
             });
-            int i9 = R.string.DataSettings;
-            String string7 = LocaleController.getString("DataSettings", i9);
-            int i10 = R.drawable.msg2_data;
-            searchResultArr[43] = new SearchResult(this, 200, string7, i10, new Runnable() {
+            searchResultArr[43] = new SearchResult(this, 121, LocaleController.getString(R.string.TerminateAllSessions), "terminateAllSessionsRow", LocaleController.getString(i7), i8, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$44();
                 }
             });
-            searchResultArr[44] = new SearchResult(this, 201, LocaleController.getString("DataUsage", R.string.DataUsage), "usageSectionRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[44] = new SearchResult(this, 122, LocaleController.getString(R.string.LinkDesktopDevice), LocaleController.getString(i7), i8, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$45();
                 }
             });
-            int i11 = R.string.StorageUsage;
-            searchResultArr[45] = new SearchResult(this, 202, LocaleController.getString("StorageUsage", i11), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            int i9 = R.string.DataSettings;
+            String string7 = LocaleController.getString("DataSettings", i9);
+            int i10 = R.drawable.msg2_data;
+            searchResultArr[45] = new SearchResult(this, 200, string7, i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$46();
                 }
             });
-            searchResultArr[46] = new SearchResult(203, LocaleController.getString("KeepMedia", R.string.KeepMedia), "keepMediaRow", LocaleController.getString("DataSettings", i9), LocaleController.getString("StorageUsage", i11), i10, new Runnable() {
+            searchResultArr[46] = new SearchResult(this, 201, LocaleController.getString("DataUsage", R.string.DataUsage), "usageSectionRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$47();
                 }
             });
-            searchResultArr[47] = new SearchResult(204, LocaleController.getString("ClearMediaCache", R.string.ClearMediaCache), "cacheRow", LocaleController.getString("DataSettings", i9), LocaleController.getString("StorageUsage", i11), i10, new Runnable() {
+            int i11 = R.string.StorageUsage;
+            searchResultArr[47] = new SearchResult(this, 202, LocaleController.getString("StorageUsage", i11), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$48();
                 }
             });
-            searchResultArr[48] = new SearchResult(205, LocaleController.getString("LocalDatabase", R.string.LocalDatabase), "databaseRow", LocaleController.getString("DataSettings", i9), LocaleController.getString("StorageUsage", i11), i10, new Runnable() {
+            searchResultArr[48] = new SearchResult(203, LocaleController.getString("KeepMedia", R.string.KeepMedia), "keepMediaRow", LocaleController.getString("DataSettings", i9), LocaleController.getString("StorageUsage", i11), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$49();
                 }
             });
-            searchResultArr[49] = new SearchResult(this, 206, LocaleController.getString("NetworkUsage", R.string.NetworkUsage), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[49] = new SearchResult(204, LocaleController.getString("ClearMediaCache", R.string.ClearMediaCache), "cacheRow", LocaleController.getString("DataSettings", i9), LocaleController.getString("StorageUsage", i11), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$50();
                 }
             });
-            searchResultArr[50] = new SearchResult(this, 207, LocaleController.getString("AutomaticMediaDownload", R.string.AutomaticMediaDownload), "mediaDownloadSectionRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[50] = new SearchResult(205, LocaleController.getString("LocalDatabase", R.string.LocalDatabase), "databaseRow", LocaleController.getString("DataSettings", i9), LocaleController.getString("StorageUsage", i11), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$51();
                 }
             });
-            searchResultArr[51] = new SearchResult(this, 208, LocaleController.getString("WhenUsingMobileData", R.string.WhenUsingMobileData), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[51] = new SearchResult(this, 206, LocaleController.getString("NetworkUsage", R.string.NetworkUsage), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$52();
                 }
             });
-            searchResultArr[52] = new SearchResult(this, 209, LocaleController.getString("WhenConnectedOnWiFi", R.string.WhenConnectedOnWiFi), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[52] = new SearchResult(this, 207, LocaleController.getString("AutomaticMediaDownload", R.string.AutomaticMediaDownload), "mediaDownloadSectionRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$53();
                 }
             });
-            searchResultArr[53] = new SearchResult(this, 210, LocaleController.getString("WhenRoaming", R.string.WhenRoaming), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[53] = new SearchResult(this, 208, LocaleController.getString("WhenUsingMobileData", R.string.WhenUsingMobileData), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$54();
                 }
             });
-            searchResultArr[54] = new SearchResult(this, 211, LocaleController.getString("ResetAutomaticMediaDownload", R.string.ResetAutomaticMediaDownload), "resetDownloadRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[54] = new SearchResult(this, 209, LocaleController.getString("WhenConnectedOnWiFi", R.string.WhenConnectedOnWiFi), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$55();
                 }
             });
-            searchResultArr[55] = new SearchResult(this, 212, LocaleController.getString("AutoplayMedia", R.string.AutoplayMedia), "autoplayHeaderRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[55] = new SearchResult(this, 210, LocaleController.getString("WhenRoaming", R.string.WhenRoaming), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$56();
                 }
             });
-            searchResultArr[56] = new SearchResult(this, 213, LocaleController.getString("AutoplayGIF", R.string.AutoplayGIF), "autoplayGifsRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[56] = new SearchResult(this, 211, LocaleController.getString("ResetAutomaticMediaDownload", R.string.ResetAutomaticMediaDownload), "resetDownloadRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$57();
                 }
             });
-            searchResultArr[57] = new SearchResult(this, 214, LocaleController.getString("AutoplayVideo", R.string.AutoplayVideo), "autoplayVideoRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[57] = new SearchResult(this, 215, LocaleController.getString("Streaming", R.string.Streaming), "streamSectionRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$58();
                 }
             });
-            searchResultArr[58] = new SearchResult(this, 215, LocaleController.getString("Streaming", R.string.Streaming), "streamSectionRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[58] = new SearchResult(this, 216, LocaleController.getString("EnableStreaming", R.string.EnableStreaming), "enableStreamRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$59();
                 }
             });
-            searchResultArr[59] = new SearchResult(this, 216, LocaleController.getString("EnableStreaming", R.string.EnableStreaming), "enableStreamRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[59] = new SearchResult(this, 217, LocaleController.getString("Calls", i6), "callsSectionRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$60();
                 }
             });
-            searchResultArr[60] = new SearchResult(this, 217, LocaleController.getString("Calls", i5), "callsSectionRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[60] = new SearchResult(this, 218, LocaleController.getString("VoipUseLessData", R.string.VoipUseLessData), "useLessDataForCallsRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$61();
                 }
             });
-            searchResultArr[61] = new SearchResult(this, 218, LocaleController.getString("VoipUseLessData", R.string.VoipUseLessData), "useLessDataForCallsRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[61] = new SearchResult(this, 219, LocaleController.getString("VoipQuickReplies", R.string.VoipQuickReplies), "quickRepliesRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$62();
                 }
             });
-            searchResultArr[62] = new SearchResult(this, 219, LocaleController.getString("VoipQuickReplies", R.string.VoipQuickReplies), "quickRepliesRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            int i12 = R.string.ProxySettings;
+            searchResultArr[62] = new SearchResult(this, 220, LocaleController.getString("ProxySettings", i12), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$63();
                 }
             });
-            int i12 = R.string.ProxySettings;
-            searchResultArr[63] = new SearchResult(this, 220, LocaleController.getString("ProxySettings", i12), LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            searchResultArr[63] = new SearchResult(221, LocaleController.getString("UseProxyForCalls", R.string.UseProxyForCalls), "callsRow", LocaleController.getString("DataSettings", i9), LocaleController.getString("ProxySettings", i12), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$64();
                 }
             });
-            searchResultArr[64] = new SearchResult(221, LocaleController.getString("UseProxyForCalls", R.string.UseProxyForCalls), "callsRow", LocaleController.getString("DataSettings", i9), LocaleController.getString("ProxySettings", i12), i10, new Runnable() {
+            searchResultArr[64] = new SearchResult(this, 111, LocaleController.getString("PrivacyDeleteCloudDrafts", R.string.PrivacyDeleteCloudDrafts), "clearDraftsRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$65();
                 }
             });
-            searchResultArr[65] = new SearchResult(this, 111, LocaleController.getString("PrivacyDeleteCloudDrafts", R.string.PrivacyDeleteCloudDrafts), "clearDraftsRow", LocaleController.getString("DataSettings", i9), i10, new Runnable() {
+            int i13 = R.string.SaveToGallery;
+            searchResultArr[65] = new SearchResult(this, 222, LocaleController.getString(i13), "saveToGallerySectionRow", LocaleController.getString(i9), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$66();
                 }
             });
-            int i13 = R.string.SaveToGallery;
-            searchResultArr[66] = new SearchResult(this, 222, LocaleController.getString(i13), "saveToGallerySectionRow", LocaleController.getString(i9), i10, new Runnable() {
+            searchResultArr[66] = new SearchResult(223, LocaleController.getString(R.string.SaveToGalleryPrivate), "saveToGalleryPeerRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$67();
                 }
             });
-            searchResultArr[67] = new SearchResult(223, LocaleController.getString(R.string.SaveToGalleryPrivate), "saveToGalleryPeerRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
+            searchResultArr[67] = new SearchResult(224, LocaleController.getString(R.string.SaveToGalleryGroups), "saveToGalleryGroupsRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$68();
                 }
             });
-            searchResultArr[68] = new SearchResult(224, LocaleController.getString(R.string.SaveToGalleryGroups), "saveToGalleryGroupsRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
+            searchResultArr[68] = new SearchResult(225, LocaleController.getString(R.string.SaveToGalleryChannels), "saveToGalleryChannelsRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$69();
                 }
             });
-            searchResultArr[69] = new SearchResult(225, LocaleController.getString(R.string.SaveToGalleryChannels), "saveToGalleryChannelsRow", LocaleController.getString(i9), LocaleController.getString(i13), i10, new Runnable() {
+            int i14 = R.string.ChatSettings;
+            String string8 = LocaleController.getString("ChatSettings", i14);
+            int i15 = R.drawable.msg2_discussion;
+            searchResultArr[69] = new SearchResult(this, 300, string8, i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$70();
                 }
             });
-            int i14 = R.string.ChatSettings;
-            String string8 = LocaleController.getString("ChatSettings", i14);
-            int i15 = R.drawable.msg2_discussion;
-            searchResultArr[70] = new SearchResult(this, 300, string8, i15, new Runnable() {
+            searchResultArr[70] = new SearchResult(this, 301, LocaleController.getString("TextSizeHeader", R.string.TextSizeHeader), "textSizeHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$71();
                 }
             });
-            searchResultArr[71] = new SearchResult(this, 301, LocaleController.getString("TextSizeHeader", R.string.TextSizeHeader), "textSizeHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[71] = new SearchResult(this, 302, LocaleController.getString(R.string.ChangeChatBackground), LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$72();
                 }
             });
-            searchResultArr[72] = new SearchResult(this, 302, LocaleController.getString(R.string.ChangeChatBackground), LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            String string9 = LocaleController.getString("SetColor", R.string.SetColor);
+            String string10 = LocaleController.getString("ChatSettings", i14);
+            int i16 = R.string.ChatBackground;
+            searchResultArr[72] = new SearchResult(303, string9, null, string10, LocaleController.getString("ChatBackground", i16), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$73();
                 }
             });
-            String string9 = LocaleController.getString("SetColor", R.string.SetColor);
-            String string10 = LocaleController.getString("ChatSettings", i14);
-            int i16 = R.string.ChatBackground;
-            searchResultArr[73] = new SearchResult(303, string9, null, string10, LocaleController.getString("ChatBackground", i16), i15, new Runnable() {
+            searchResultArr[73] = new SearchResult(304, LocaleController.getString("ResetChatBackgrounds", R.string.ResetChatBackgrounds), "resetRow", LocaleController.getString("ChatSettings", i14), LocaleController.getString("ChatBackground", i16), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$74();
                 }
             });
-            searchResultArr[74] = new SearchResult(304, LocaleController.getString("ResetChatBackgrounds", R.string.ResetChatBackgrounds), "resetRow", LocaleController.getString("ChatSettings", i14), LocaleController.getString("ChatBackground", i16), i15, new Runnable() {
+            searchResultArr[74] = new SearchResult(this, 306, LocaleController.getString("ColorTheme", R.string.ColorTheme), "themeHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$75();
                 }
             });
-            searchResultArr[75] = new SearchResult(this, 306, LocaleController.getString("ColorTheme", R.string.ColorTheme), "themeHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            int i17 = R.string.BrowseThemes;
+            searchResultArr[75] = new SearchResult(this, 319, LocaleController.getString(i17), null, LocaleController.getString(i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$76();
                 }
             });
-            int i17 = R.string.BrowseThemes;
-            searchResultArr[76] = new SearchResult(this, 319, LocaleController.getString(i17), null, LocaleController.getString(i14), i15, new Runnable() {
+            searchResultArr[76] = new SearchResult(320, LocaleController.getString(R.string.CreateNewTheme), "createNewThemeRow", LocaleController.getString(i14), LocaleController.getString(i17), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$77();
                 }
             });
-            searchResultArr[77] = new SearchResult(320, LocaleController.getString(R.string.CreateNewTheme), "createNewThemeRow", LocaleController.getString(i14), LocaleController.getString(i17), i15, new Runnable() {
+            searchResultArr[77] = new SearchResult(this, 321, LocaleController.getString(R.string.BubbleRadius), "bubbleRadiusHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$78();
                 }
             });
-            searchResultArr[78] = new SearchResult(this, 321, LocaleController.getString(R.string.BubbleRadius), "bubbleRadiusHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[78] = new SearchResult(this, 322, LocaleController.getString(R.string.ChatList), "chatListHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$79();
                 }
             });
-            searchResultArr[79] = new SearchResult(this, 322, LocaleController.getString(R.string.ChatList), "chatListHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[79] = new SearchResult(this, 323, LocaleController.getString(R.string.ChatListSwipeGesture), "swipeGestureHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$80();
                 }
             });
-            searchResultArr[80] = new SearchResult(this, 323, LocaleController.getString(R.string.ChatListSwipeGesture), "swipeGestureHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[80] = new SearchResult(this, 324, LocaleController.getString(R.string.AppIcon), "appIconHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$81();
                 }
             });
-            searchResultArr[81] = new SearchResult(this, 324, LocaleController.getString(R.string.AppIcon), "appIconHeaderRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[81] = new SearchResult(this, 305, LocaleController.getString("AutoNightTheme", R.string.AutoNightTheme), LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$82();
                 }
             });
-            searchResultArr[82] = new SearchResult(this, 305, LocaleController.getString("AutoNightTheme", R.string.AutoNightTheme), LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[82] = new SearchResult(this, 307, LocaleController.getString("ChromeCustomTabs", R.string.ChromeCustomTabs), "customTabsRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$83();
                 }
             });
-            searchResultArr[83] = new SearchResult(this, 307, LocaleController.getString("ChromeCustomTabs", R.string.ChromeCustomTabs), "customTabsRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[83] = new SearchResult(this, 328, LocaleController.getString(R.string.NextMediaTap), "nextMediaTapRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$84();
                 }
             });
-            searchResultArr[84] = new SearchResult(this, 308, LocaleController.getString("DirectShare", R.string.DirectShare), "directShareRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[84] = new SearchResult(this, 327, LocaleController.getString(R.string.RaiseToListen), "raiseToListenRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$85();
                 }
             });
-            searchResultArr[85] = new SearchResult(this, 309, LocaleController.getString("EnableAnimations", R.string.EnableAnimations), "enableAnimationsRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[85] = new SearchResult(this, 310, LocaleController.getString("RaiseToSpeak", R.string.RaiseToSpeak), "raiseToSpeakRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$86();
                 }
             });
-            searchResultArr[86] = new SearchResult(this, 310, LocaleController.getString("RaiseToSpeak", R.string.RaiseToSpeak), "raiseToSpeakRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[86] = new SearchResult(this, 326, LocaleController.getString(R.string.PauseMusicOnMedia), "pauseOnMediaRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$87();
@@ -9429,18 +9429,18 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$88();
                 }
             });
-            searchResultArr[88] = new SearchResult(this, 311, LocaleController.getString("SendByEnter", R.string.SendByEnter), "sendByEnterRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[88] = new SearchResult(this, 308, LocaleController.getString("DirectShare", R.string.DirectShare), "directShareRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$89();
                 }
             });
-            searchResultArr[89] = SharedConfig.canBlurChat() ? new SearchResult(this, 326, LocaleController.getString(R.string.BlurInChat), "chatBlurRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
+            searchResultArr[89] = new SearchResult(this, 311, LocaleController.getString("SendByEnter", R.string.SendByEnter), "sendByEnterRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$90();
                 }
-            }) : null;
+            });
             searchResultArr[90] = new SearchResult(this, 318, LocaleController.getString("DistanceUnits", R.string.DistanceUnits), "distanceRow", LocaleController.getString("ChatSettings", i14), i15, new Runnable() {
                 @Override
                 public final void run() {
@@ -9625,47 +9625,163 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$119();
                 }
             }) : null;
-            int i24 = R.string.Language;
-            String string15 = LocaleController.getString("Language", i24);
-            int i25 = R.drawable.msg2_language;
-            searchResultArr[119] = new SearchResult(this, 400, string15, i25, new Runnable() {
+            int i24 = R.string.PowerUsage;
+            String string15 = LocaleController.getString(i24);
+            int i25 = R.drawable.msg2_battery;
+            searchResultArr[119] = new SearchResult(this, 900, string15, null, i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$120();
                 }
             });
-            searchResultArr[120] = new SearchResult(this, 405, LocaleController.getString(R.string.ShowTranslateButton), LocaleController.getString(i24), i25, new Runnable() {
+            int i26 = R.string.LiteOptionsStickers;
+            searchResultArr[120] = new SearchResult(this, 901, LocaleController.getString(i26), LocaleController.getString(i24), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$121();
                 }
             });
-            searchResultArr[121] = MessagesController.getInstance(((BaseFragment) ProfileActivity.this).currentAccount).getTranslateController().isContextTranslateEnabled() ? new SearchResult(this, 406, LocaleController.getString(R.string.DoNotTranslate), LocaleController.getString(i24), i25, new Runnable() {
+            int i27 = R.string.LiteOptionsAutoplayKeyboard;
+            searchResultArr[121] = new SearchResult(902, LocaleController.getString(i27), null, LocaleController.getString(i24), LocaleController.getString(i26), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$122();
                 }
-            }) : null;
-            String string16 = LocaleController.getString("AskAQuestion", R.string.AskAQuestion);
-            int i26 = R.string.SettingsHelp;
-            String string17 = LocaleController.getString("SettingsHelp", i26);
-            int i27 = R.drawable.msg2_help;
-            searchResultArr[122] = new SearchResult(this, 402, string16, string17, i27, new Runnable() {
+            });
+            int i28 = R.string.LiteOptionsAutoplayChat;
+            searchResultArr[122] = new SearchResult(903, LocaleController.getString(i28), null, LocaleController.getString(i24), LocaleController.getString(i26), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$123();
                 }
             });
-            searchResultArr[123] = new SearchResult(this, 403, LocaleController.getString("TelegramFAQ", R.string.TelegramFAQ), LocaleController.getString("SettingsHelp", i26), i27, new Runnable() {
+            int i29 = R.string.LiteOptionsEmoji;
+            searchResultArr[123] = new SearchResult(this, 904, LocaleController.getString(i29), LocaleController.getString(i24), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$124();
                 }
             });
-            searchResultArr[124] = new SearchResult(this, 404, LocaleController.getString("PrivacyPolicy", R.string.PrivacyPolicy), LocaleController.getString("SettingsHelp", i26), i27, new Runnable() {
+            searchResultArr[124] = new SearchResult(905, LocaleController.getString(i27), null, LocaleController.getString(i24), LocaleController.getString(i29), i25, new Runnable() {
                 @Override
                 public final void run() {
                     ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$125();
+                }
+            });
+            searchResultArr[125] = new SearchResult(906, LocaleController.getString(R.string.LiteOptionsAutoplayReactions), null, LocaleController.getString(i24), LocaleController.getString(i29), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$126();
+                }
+            });
+            searchResultArr[126] = new SearchResult(907, LocaleController.getString(i28), null, LocaleController.getString(i24), LocaleController.getString(i29), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$127();
+                }
+            });
+            int i30 = R.string.LiteOptionsChat;
+            searchResultArr[127] = new SearchResult(this, 908, LocaleController.getString(i30), LocaleController.getString(i24), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$128();
+                }
+            });
+            searchResultArr[128] = new SearchResult(909, LocaleController.getString(R.string.LiteOptionsBackground), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$129();
+                }
+            });
+            searchResultArr[129] = new SearchResult(910, LocaleController.getString(R.string.LiteOptionsTopics), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$130();
+                }
+            });
+            searchResultArr[130] = new SearchResult(911, LocaleController.getString(R.string.LiteOptionsSpoiler), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$131();
+                }
+            });
+            searchResultArr[131] = SharedConfig.getDevicePerformanceClass() >= 1 ? new SearchResult(326, LocaleController.getString(R.string.LiteOptionsBlur), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$132();
+                }
+            }) : null;
+            searchResultArr[132] = new SearchResult(912, LocaleController.getString(R.string.LiteOptionsScale), null, LocaleController.getString(i24), LocaleController.getString(i30), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$133();
+                }
+            });
+            searchResultArr[133] = new SearchResult(this, 913, LocaleController.getString(R.string.LiteOptionsCalls), LocaleController.getString(i24), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$134();
+                }
+            });
+            searchResultArr[134] = new SearchResult(this, 214, LocaleController.getString(R.string.LiteOptionsAutoplayVideo), LocaleController.getString(i24), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$135();
+                }
+            });
+            searchResultArr[135] = new SearchResult(this, 213, LocaleController.getString(R.string.LiteOptionsAutoplayGifs), LocaleController.getString(i24), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$136();
+                }
+            });
+            searchResultArr[136] = new SearchResult(this, 914, LocaleController.getString(R.string.LiteSmoothTransitions), LocaleController.getString(i24), i25, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$137();
+                }
+            });
+            int i31 = R.string.Language;
+            String string16 = LocaleController.getString("Language", i31);
+            int i32 = R.drawable.msg2_language;
+            searchResultArr[137] = new SearchResult(this, 400, string16, i32, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$138();
+                }
+            });
+            searchResultArr[138] = new SearchResult(this, 405, LocaleController.getString(R.string.ShowTranslateButton), LocaleController.getString(i31), i32, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$139();
+                }
+            });
+            searchResultArr[139] = MessagesController.getInstance(((BaseFragment) ProfileActivity.this).currentAccount).getTranslateController().isContextTranslateEnabled() ? new SearchResult(this, 406, LocaleController.getString(R.string.DoNotTranslate), LocaleController.getString(i31), i32, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$140();
+                }
+            }) : null;
+            String string17 = LocaleController.getString("AskAQuestion", R.string.AskAQuestion);
+            int i33 = R.string.SettingsHelp;
+            String string18 = LocaleController.getString("SettingsHelp", i33);
+            int i34 = R.drawable.msg2_help;
+            searchResultArr[140] = new SearchResult(this, 402, string17, string18, i34, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$141();
+                }
+            });
+            searchResultArr[141] = new SearchResult(this, 403, LocaleController.getString("TelegramFAQ", R.string.TelegramFAQ), LocaleController.getString("SettingsHelp", i33), i34, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$142();
+                }
+            });
+            searchResultArr[142] = new SearchResult(this, 404, LocaleController.getString("PrivacyPolicy", R.string.PrivacyPolicy), LocaleController.getString("SettingsHelp", i33), i34, new Runnable() {
+                @Override
+                public final void run() {
+                    ProfileActivity.SearchAdapter.this.lambda$onCreateSearchArray$143();
                 }
             });
             return searchResultArr;
@@ -9760,38 +9876,60 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$20() {
-            ProfileActivity.this.presentFragment(new PrivacyUsersActivity());
+            ProfileActivity.this.presentFragment(new TwoStepVerificationActivity());
         }
 
         public void lambda$onCreateSearchArray$21() {
-            ProfileActivity.this.presentFragment(new PrivacyControlActivity(6, true));
+            if (ProfileActivity.this.getUserConfig().getGlobalTTl() >= 0) {
+                ProfileActivity.this.presentFragment(new AutoDeleteMessagesActivity());
+            }
         }
 
         public void lambda$onCreateSearchArray$22() {
-            ProfileActivity.this.presentFragment(new PrivacyControlActivity(0, true));
+            ProfileActivity.this.presentFragment(PasscodeActivity.determineOpenFragment());
         }
 
         public void lambda$onCreateSearchArray$23() {
-            ProfileActivity.this.presentFragment(new PrivacyControlActivity(4, true));
+            ProfileActivity.this.presentFragment(new PrivacySettingsActivity());
         }
 
         public void lambda$onCreateSearchArray$24() {
-            ProfileActivity.this.presentFragment(new PrivacyControlActivity(5, true));
+            ProfileActivity.this.presentFragment(new PrivacyUsersActivity());
         }
 
         public void lambda$onCreateSearchArray$25() {
-            ProfileActivity.this.presentFragment(new PrivacyControlActivity(3, true));
+            ProfileActivity.this.presentFragment(new SessionsActivity(0));
         }
 
         public void lambda$onCreateSearchArray$26() {
-            ProfileActivity.this.presentFragment(new PrivacyControlActivity(2, true));
+            ProfileActivity.this.presentFragment(new PrivacyControlActivity(6, true));
         }
 
         public void lambda$onCreateSearchArray$27() {
-            ProfileActivity.this.presentFragment(new PrivacyControlActivity(1, true));
+            ProfileActivity.this.presentFragment(new PrivacyControlActivity(0, true));
         }
 
         public void lambda$onCreateSearchArray$28() {
+            ProfileActivity.this.presentFragment(new PrivacyControlActivity(4, true));
+        }
+
+        public void lambda$onCreateSearchArray$29() {
+            ProfileActivity.this.presentFragment(new PrivacyControlActivity(5, true));
+        }
+
+        public void lambda$onCreateSearchArray$30() {
+            ProfileActivity.this.presentFragment(new PrivacyControlActivity(3, true));
+        }
+
+        public void lambda$onCreateSearchArray$31() {
+            ProfileActivity.this.presentFragment(new PrivacyControlActivity(2, true));
+        }
+
+        public void lambda$onCreateSearchArray$32() {
+            ProfileActivity.this.presentFragment(new PrivacyControlActivity(1, true));
+        }
+
+        public void lambda$onCreateSearchArray$33() {
             if (!ProfileActivity.this.getUserConfig().isPremium()) {
                 try {
                     ((BaseFragment) ProfileActivity.this).fragmentView.performHapticFeedback(3, 2);
@@ -9804,32 +9942,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             ProfileActivity.this.presentFragment(new PrivacyControlActivity(8, true));
         }
 
-        public void lambda$onCreateSearchArray$29() {
-            ProfileActivity.this.presentFragment(PasscodeActivity.determineOpenFragment());
-        }
-
-        public void lambda$onCreateSearchArray$30() {
-            ProfileActivity.this.presentFragment(new TwoStepVerificationActivity());
-        }
-
-        public void lambda$onCreateSearchArray$31() {
-            ProfileActivity.this.presentFragment(new SessionsActivity(0));
-        }
-
-        public void lambda$onCreateSearchArray$32() {
-            ProfileActivity.this.presentFragment(new PrivacySettingsActivity());
-        }
-
-        public void lambda$onCreateSearchArray$33() {
-            ProfileActivity.this.presentFragment(new PrivacySettingsActivity());
-        }
-
         public void lambda$onCreateSearchArray$34() {
             ProfileActivity.this.presentFragment(new PrivacySettingsActivity());
         }
 
         public void lambda$onCreateSearchArray$35() {
-            ProfileActivity.this.presentFragment(new SessionsActivity(1));
+            ProfileActivity.this.presentFragment(new PrivacySettingsActivity());
         }
 
         public void lambda$onCreateSearchArray$36() {
@@ -9837,7 +9955,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$37() {
-            ProfileActivity.this.presentFragment(new PrivacySettingsActivity());
+            ProfileActivity.this.presentFragment(new SessionsActivity(1));
         }
 
         public void lambda$onCreateSearchArray$38() {
@@ -9853,31 +9971,31 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$41() {
-            ProfileActivity.this.presentFragment(new SessionsActivity(0));
+            ProfileActivity.this.presentFragment(new PrivacySettingsActivity());
         }
 
         public void lambda$onCreateSearchArray$42() {
-            ProfileActivity.this.presentFragment(new SessionsActivity(0));
+            ProfileActivity.this.presentFragment(new PrivacySettingsActivity());
         }
 
         public void lambda$onCreateSearchArray$43() {
-            ProfileActivity.this.presentFragment(new SessionsActivity(0).setHighlightLinkDesktopDevice());
+            ProfileActivity.this.presentFragment(new SessionsActivity(0));
         }
 
         public void lambda$onCreateSearchArray$44() {
-            ProfileActivity.this.presentFragment(new DataSettingsActivity());
+            ProfileActivity.this.presentFragment(new SessionsActivity(0));
         }
 
         public void lambda$onCreateSearchArray$45() {
-            ProfileActivity.this.presentFragment(new DataSettingsActivity());
+            ProfileActivity.this.presentFragment(new SessionsActivity(0).setHighlightLinkDesktopDevice());
         }
 
         public void lambda$onCreateSearchArray$46() {
-            ProfileActivity.this.presentFragment(new CacheControlActivity());
+            ProfileActivity.this.presentFragment(new DataSettingsActivity());
         }
 
         public void lambda$onCreateSearchArray$47() {
-            ProfileActivity.this.presentFragment(new CacheControlActivity());
+            ProfileActivity.this.presentFragment(new DataSettingsActivity());
         }
 
         public void lambda$onCreateSearchArray$48() {
@@ -9889,31 +10007,31 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$50() {
-            ProfileActivity.this.presentFragment(new DataUsage2Activity());
+            ProfileActivity.this.presentFragment(new CacheControlActivity());
         }
 
         public void lambda$onCreateSearchArray$51() {
-            ProfileActivity.this.presentFragment(new DataSettingsActivity());
+            ProfileActivity.this.presentFragment(new CacheControlActivity());
         }
 
         public void lambda$onCreateSearchArray$52() {
-            ProfileActivity.this.presentFragment(new DataAutoDownloadActivity(0));
+            ProfileActivity.this.presentFragment(new DataUsage2Activity());
         }
 
         public void lambda$onCreateSearchArray$53() {
-            ProfileActivity.this.presentFragment(new DataAutoDownloadActivity(1));
+            ProfileActivity.this.presentFragment(new DataSettingsActivity());
         }
 
         public void lambda$onCreateSearchArray$54() {
-            ProfileActivity.this.presentFragment(new DataAutoDownloadActivity(2));
+            ProfileActivity.this.presentFragment(new DataAutoDownloadActivity(0));
         }
 
         public void lambda$onCreateSearchArray$55() {
-            ProfileActivity.this.presentFragment(new DataSettingsActivity());
+            ProfileActivity.this.presentFragment(new DataAutoDownloadActivity(1));
         }
 
         public void lambda$onCreateSearchArray$56() {
-            ProfileActivity.this.presentFragment(new DataSettingsActivity());
+            ProfileActivity.this.presentFragment(new DataAutoDownloadActivity(2));
         }
 
         public void lambda$onCreateSearchArray$57() {
@@ -9941,7 +10059,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$63() {
-            ProfileActivity.this.presentFragment(new DataSettingsActivity());
+            ProfileActivity.this.presentFragment(new ProxyListActivity());
         }
 
         public void lambda$onCreateSearchArray$64() {
@@ -9949,7 +10067,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$65() {
-            ProfileActivity.this.presentFragment(new ProxyListActivity());
+            ProfileActivity.this.presentFragment(new DataSettingsActivity());
         }
 
         public void lambda$onCreateSearchArray$66() {
@@ -9969,7 +10087,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$70() {
-            ProfileActivity.this.presentFragment(new DataSettingsActivity());
+            ProfileActivity.this.presentFragment(new ThemeActivity(0));
         }
 
         public void lambda$onCreateSearchArray$71() {
@@ -9977,23 +10095,23 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$72() {
-            ProfileActivity.this.presentFragment(new ThemeActivity(0));
+            ProfileActivity.this.presentFragment(new WallpapersListActivity(0));
         }
 
         public void lambda$onCreateSearchArray$73() {
-            ProfileActivity.this.presentFragment(new WallpapersListActivity(0));
-        }
-
-        public void lambda$onCreateSearchArray$74() {
             ProfileActivity.this.presentFragment(new WallpapersListActivity(1));
         }
 
-        public void lambda$onCreateSearchArray$75() {
+        public void lambda$onCreateSearchArray$74() {
             ProfileActivity.this.presentFragment(new WallpapersListActivity(0));
         }
 
-        public void lambda$onCreateSearchArray$76() {
+        public void lambda$onCreateSearchArray$75() {
             ProfileActivity.this.presentFragment(new ThemeActivity(0));
+        }
+
+        public void lambda$onCreateSearchArray$76() {
+            ProfileActivity.this.presentFragment(new ThemeActivity(3));
         }
 
         public void lambda$onCreateSearchArray$77() {
@@ -10001,7 +10119,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$78() {
-            ProfileActivity.this.presentFragment(new ThemeActivity(3));
+            ProfileActivity.this.presentFragment(new ThemeActivity(0));
         }
 
         public void lambda$onCreateSearchArray$79() {
@@ -10017,11 +10135,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$82() {
-            ProfileActivity.this.presentFragment(new ThemeActivity(0));
+            ProfileActivity.this.presentFragment(new ThemeActivity(1));
         }
 
         public void lambda$onCreateSearchArray$83() {
-            ProfileActivity.this.presentFragment(new ThemeActivity(1));
+            ProfileActivity.this.presentFragment(new ThemeActivity(0));
         }
 
         public void lambda$onCreateSearchArray$84() {
@@ -10169,27 +10287,143 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$onCreateSearchArray$120() {
-            ProfileActivity.this.presentFragment(new LanguageSelectActivity());
+            ProfileActivity.this.presentFragment(new LiteModeSettingsActivity());
         }
 
         public void lambda$onCreateSearchArray$121() {
-            ProfileActivity.this.presentFragment(new LanguageSelectActivity());
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.scrollToFlags(3);
         }
 
         public void lambda$onCreateSearchArray$122() {
-            ProfileActivity.this.presentFragment(new LanguageSelectActivity());
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.setExpanded(3, true);
+            liteModeSettingsActivity.scrollToFlags(1);
         }
 
         public void lambda$onCreateSearchArray$123() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.setExpanded(3, true);
+            liteModeSettingsActivity.scrollToFlags(2);
+        }
+
+        public void lambda$onCreateSearchArray$124() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.scrollToFlags(LiteMode.FLAGS_ANIMATED_EMOJI);
+        }
+
+        public void lambda$onCreateSearchArray$125() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.setExpanded(LiteMode.FLAGS_ANIMATED_EMOJI, true);
+            liteModeSettingsActivity.scrollToFlags(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD);
+        }
+
+        public void lambda$onCreateSearchArray$126() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.setExpanded(LiteMode.FLAGS_ANIMATED_EMOJI, true);
+            liteModeSettingsActivity.scrollToFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS);
+        }
+
+        public void lambda$onCreateSearchArray$127() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.setExpanded(LiteMode.FLAGS_ANIMATED_EMOJI, true);
+            liteModeSettingsActivity.scrollToFlags(LiteMode.FLAG_ANIMATED_EMOJI_CHAT);
+        }
+
+        public void lambda$onCreateSearchArray$128() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.scrollToFlags(LiteMode.FLAGS_CHAT);
+        }
+
+        public void lambda$onCreateSearchArray$129() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.setExpanded(LiteMode.FLAGS_CHAT, true);
+            liteModeSettingsActivity.scrollToFlags(32);
+        }
+
+        public void lambda$onCreateSearchArray$130() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.setExpanded(LiteMode.FLAGS_CHAT, true);
+            liteModeSettingsActivity.scrollToFlags(64);
+        }
+
+        public void lambda$onCreateSearchArray$131() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.setExpanded(LiteMode.FLAGS_CHAT, true);
+            liteModeSettingsActivity.scrollToFlags(128);
+        }
+
+        public void lambda$onCreateSearchArray$132() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.setExpanded(LiteMode.FLAGS_CHAT, true);
+            liteModeSettingsActivity.scrollToFlags(LiteMode.FLAG_CHAT_BLUR);
+        }
+
+        public void lambda$onCreateSearchArray$133() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.setExpanded(LiteMode.FLAGS_CHAT, true);
+            liteModeSettingsActivity.scrollToFlags(LiteMode.FLAG_CHAT_SCALE);
+        }
+
+        public void lambda$onCreateSearchArray$134() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.scrollToFlags(LiteMode.FLAG_CALLS_ANIMATIONS);
+        }
+
+        public void lambda$onCreateSearchArray$135() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.scrollToFlags(1024);
+        }
+
+        public void lambda$onCreateSearchArray$136() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.scrollToFlags(LiteMode.FLAG_AUTOPLAY_GIFS);
+        }
+
+        public void lambda$onCreateSearchArray$137() {
+            LiteModeSettingsActivity liteModeSettingsActivity = new LiteModeSettingsActivity();
+            ProfileActivity.this.presentFragment(liteModeSettingsActivity);
+            liteModeSettingsActivity.scrollToType(1);
+        }
+
+        public void lambda$onCreateSearchArray$138() {
+            ProfileActivity.this.presentFragment(new LanguageSelectActivity());
+        }
+
+        public void lambda$onCreateSearchArray$139() {
+            ProfileActivity.this.presentFragment(new LanguageSelectActivity());
+        }
+
+        public void lambda$onCreateSearchArray$140() {
+            ProfileActivity.this.presentFragment(new LanguageSelectActivity());
+        }
+
+        public void lambda$onCreateSearchArray$141() {
             ProfileActivity profileActivity = ProfileActivity.this;
             profileActivity.showDialog(AlertsCreator.createSupportAlert(profileActivity, null));
         }
 
-        public void lambda$onCreateSearchArray$124() {
+        public void lambda$onCreateSearchArray$142() {
             Browser.openUrl(ProfileActivity.this.getParentActivity(), LocaleController.getString("TelegramFaqUrl", R.string.TelegramFaqUrl));
         }
 
-        public void lambda$onCreateSearchArray$125() {
+        public void lambda$onCreateSearchArray$143() {
             Browser.openUrl(ProfileActivity.this.getParentActivity(), LocaleController.getString("PrivacyPolicyUrl", R.string.PrivacyPolicyUrl));
         }
 
@@ -10216,12 +10450,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             ProfileActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_messages_getWebPage, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ProfileActivity.SearchAdapter.this.lambda$loadFaqWebPage$127(tLObject, tLRPC$TL_error);
+                    ProfileActivity.SearchAdapter.this.lambda$loadFaqWebPage$145(tLObject, tLRPC$TL_error);
                 }
             });
         }
 
-        public void lambda$loadFaqWebPage$127(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$loadFaqWebPage$145(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
             if (tLObject instanceof TLRPC$WebPage) {
                 final ArrayList arrayList = new ArrayList();
                 TLRPC$WebPage tLRPC$WebPage = (TLRPC$WebPage) tLObject;
@@ -10260,14 +10494,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ProfileActivity.SearchAdapter.this.lambda$loadFaqWebPage$126(arrayList);
+                        ProfileActivity.SearchAdapter.this.lambda$loadFaqWebPage$144(arrayList);
                     }
                 });
             }
             this.loadingFaqPage = false;
         }
 
-        public void lambda$loadFaqWebPage$126(ArrayList arrayList) {
+        public void lambda$loadFaqWebPage$144(ArrayList arrayList) {
             this.faqSearchArray.addAll(arrayList);
             ProfileActivity.this.getMessagesController().faqSearchArray = arrayList;
             ProfileActivity.this.getMessagesController().faqWebPage = this.faqWebPage;
@@ -10429,14 +10663,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileActivity.SearchAdapter.this.lambda$search$129(str);
+                    ProfileActivity.SearchAdapter.this.lambda$search$147(str);
                 }
             };
             this.searchRunnable = runnable;
             dispatchQueue.postRunnable(runnable, 300L);
         }
 
-        public void lambda$search$129(final String str) {
+        public void lambda$search$147(final String str) {
             SpannableStringBuilder spannableStringBuilder;
             String str2;
             int i;
@@ -10562,12 +10796,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileActivity.SearchAdapter.this.lambda$search$128(str, arrayList, arrayList2, arrayList3);
+                    ProfileActivity.SearchAdapter.this.lambda$search$146(str, arrayList, arrayList2, arrayList3);
                 }
             });
         }
 
-        public void lambda$search$128(String str, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
+        public void lambda$search$146(String str, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3) {
             if (str.equals(this.lastSearchString)) {
                 if (!this.searchWas) {
                     ProfileActivity.this.emptyView.stickerView.getImageReceiver().startAnimation();

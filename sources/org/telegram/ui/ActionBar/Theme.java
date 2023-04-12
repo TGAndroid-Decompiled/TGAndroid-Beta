@@ -510,6 +510,7 @@ public class Theme {
         private Drawable[][] backgroundDrawable;
         private int[][] backgroundDrawableColor;
         private Rect backupRect;
+        private boolean botButtonsBottom;
         private Bitmap crosfadeFromBitmap;
         private Shader crosfadeFromBitmapShader;
         public MessageDrawable crossfadeFromDrawable;
@@ -574,9 +575,9 @@ public class Theme {
             this.shadowDrawableBitmap = new Bitmap[4];
             this.shadowDrawable = new Drawable[4];
             this.shadowDrawableColor = new int[]{-1, -1, -1, -1};
-            this.currentBackgroundDrawableRadius = new int[][]{new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}};
-            this.backgroundDrawable = (Drawable[][]) Array.newInstance(Drawable.class, 2, 4);
-            this.backgroundDrawableColor = new int[][]{new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}};
+            this.currentBackgroundDrawableRadius = new int[][]{new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}};
+            this.backgroundDrawable = (Drawable[][]) Array.newInstance(Drawable.class, 4, 4);
+            this.backgroundDrawableColor = new int[][]{new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}, new int[]{-1, -1, -1, -1}};
             this.resourcesProvider = resourcesProvider;
             this.isOut = z;
             this.currentType = i;
@@ -634,6 +635,10 @@ public class Theme {
             return resourcesProvider != null ? resourcesProvider.getCurrentColor(str) : (Integer) Theme.currentColors.get(str);
         }
 
+        public void setBotButtonsBottom(boolean z) {
+            this.botButtonsBottom = z;
+        }
+
         public void setTop(int i, int i2, int i3, boolean z, boolean z2) {
             setTop(i, i2, i3, i3, 0, 0, z, z2);
         }
@@ -670,6 +675,7 @@ public class Theme {
                 i = this.overrideRounding > 0.0f ? 0 : AndroidUtilities.dp(SharedConfig.bubbleRadius);
             }
             boolean z2 = this.isTopNear;
+            char c2 = 3;
             if (z2 && this.isBottomNear) {
                 c = 3;
             } else if (z2) {
@@ -678,10 +684,17 @@ public class Theme {
                 c = this.isBottomNear ? (char) 1 : (char) 0;
             }
             boolean z3 = this.isSelected;
+            if (!z3 || !this.botButtonsBottom) {
+                if (z3) {
+                    c2 = 1;
+                } else {
+                    c2 = this.botButtonsBottom ? (char) 2 : (char) 0;
+                }
+            }
             boolean z4 = (this.gradientShader != null || z3 || this.isCrossfadeBackground) ? false : true;
             int color2 = getColor(this.isOut ? "chat_outBubbleShadow" : "chat_inBubbleShadow");
-            if (this.lastDrawWithShadow != z4 || this.currentBackgroundDrawableRadius[z3 ? 1 : 0][c] != i || (z4 && this.shadowDrawableColor[c] != color2)) {
-                this.currentBackgroundDrawableRadius[z3 ? 1 : 0][c] = i;
+            if (this.lastDrawWithShadow != z4 || this.currentBackgroundDrawableRadius[c2][c] != i || (z4 && this.shadowDrawableColor[c] != color2)) {
+                this.currentBackgroundDrawableRadius[c2][c] = i;
                 try {
                     Bitmap createBitmap = Bitmap.createBitmap(dp(50.0f), dp(40.0f), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(createBitmap);
@@ -710,7 +723,7 @@ public class Theme {
                     paint2.setColor(-1);
                     setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());
                     draw(canvas, paint2);
-                    this.backgroundDrawable[z3 ? 1 : 0][c] = new NinePatchDrawable(createBitmap, getByteBuffer((createBitmap.getWidth() / 2) - 1, (createBitmap.getWidth() / 2) + 1, (createBitmap.getHeight() / 2) - 1, (createBitmap.getHeight() / 2) + 1).array(), new Rect(), null);
+                    this.backgroundDrawable[c2][c] = new NinePatchDrawable(createBitmap, getByteBuffer((createBitmap.getWidth() / 2) - 1, (createBitmap.getWidth() / 2) + 1, (createBitmap.getHeight() / 2) - 1, (createBitmap.getHeight() / 2) + 1).array(), new Rect(), null);
                     try {
                         setBounds(this.backupRect);
                     } catch (Throwable unused) {
@@ -726,11 +739,11 @@ public class Theme {
                 color = getColor(this.isOut ? "chat_outBubble" : "chat_inBubble");
             }
             Drawable[][] drawableArr = this.backgroundDrawable;
-            if (drawableArr[z3 ? 1 : 0][c] != null && (this.backgroundDrawableColor[z3 ? 1 : 0][c] != color || z)) {
-                drawableArr[z3 ? 1 : 0][c].setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
-                this.backgroundDrawableColor[z3 ? 1 : 0][c] = color;
+            if (drawableArr[c2][c] != null && (this.backgroundDrawableColor[c2][c] != color || z)) {
+                drawableArr[c2][c].setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
+                this.backgroundDrawableColor[c2][c] = color;
             }
-            return this.backgroundDrawable[z3 ? 1 : 0][c];
+            return this.backgroundDrawable[c2][c];
         }
 
         public Drawable getTransitionDrawable(int i) {
