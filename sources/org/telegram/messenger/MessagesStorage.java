@@ -7483,7 +7483,8 @@ public class MessagesStorage extends BaseController {
             TLRPC$MessageMedia tLRPC$MessageMedia2 = tLRPC$Message.media;
             if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaPoll) {
                 TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia2;
-                if (!tLRPC$TL_messageMediaPoll.results.recent_voters.isEmpty()) {
+                ArrayList<Long> arrayList4 = tLRPC$TL_messageMediaPoll.results.recent_voters;
+                if (arrayList4 != null && !arrayList4.isEmpty()) {
                     arrayList.addAll(tLRPC$TL_messageMediaPoll.results.recent_voters);
                 }
             }
