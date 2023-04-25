@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -58,8 +59,8 @@ public class UserCell2 extends FrameLayout {
         float f;
         this.currentAccount = UserConfig.selectedAccount;
         this.resourcesProvider = resourcesProvider;
-        this.statusColor = Theme.getColor("windowBackgroundWhiteGrayText", resourcesProvider);
-        this.statusOnlineColor = Theme.getColor("windowBackgroundWhiteBlueText", resourcesProvider);
+        this.statusColor = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider);
+        this.statusOnlineColor = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, resourcesProvider);
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
@@ -75,7 +76,7 @@ public class UserCell2 extends FrameLayout {
         };
         this.nameTextView = simpleTextView;
         NotificationCenter.listenEmojiLoading(simpleTextView);
-        this.nameTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
+        this.nameTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         this.nameTextView.setTextSize(17);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         View view2 = this.nameTextView;
@@ -103,7 +104,7 @@ public class UserCell2 extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon", resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
         this.imageView.setVisibility(8);
         View view4 = this.imageView;
         boolean z4 = LocaleController.isRTL;
@@ -117,7 +118,7 @@ public class UserCell2 extends FrameLayout {
             CheckBox checkBox = new CheckBox(context, R.drawable.round_check2);
             this.checkBox = checkBox;
             checkBox.setVisibility(4);
-            this.checkBox.setColor(Theme.getColor("checkbox", resourcesProvider), Theme.getColor("checkboxCheck", resourcesProvider));
+            this.checkBox.setColor(Theme.getColor(Theme.key_checkbox, resourcesProvider), Theme.getColor(Theme.key_checkboxCheck, resourcesProvider));
             View view5 = this.checkBox;
             boolean z6 = LocaleController.isRTL;
             addView(view5, LayoutHelper.createFrame(22, 22.0f, (z6 ? 5 : 3) | 48, z6 ? 0.0f : i + 37, 41.0f, z6 ? i + 37 : 0.0f, 0.0f));
@@ -129,8 +130,8 @@ public class UserCell2 extends FrameLayout {
             this.currentStatus = null;
             this.currentName = null;
             this.currentObject = null;
-            this.nameTextView.setText("");
-            this.statusTextView.setText("");
+            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
             this.avatarImageView.setImageDrawable(null);
             return;
         }

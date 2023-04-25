@@ -152,7 +152,7 @@ public class OverlayActionBarLayoutDialog extends Dialog implements INavigationL
             this.frameLayout.setOnApplyWindowInsetsListener(OverlayActionBarLayoutDialog$$ExternalSyntheticLambda0.INSTANCE);
         }
         if (i >= 26) {
-            AndroidUtilities.setLightNavigationBar(window, ColorUtils.calculateLuminance(Theme.getColor("windowBackgroundWhite", null, true)) >= 0.9d);
+            AndroidUtilities.setLightNavigationBar(window, ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) >= 0.9d);
         }
     }
 

@@ -24,30 +24,30 @@ public class HeaderCell extends FrameLayout {
     private SimpleTextView textView2;
 
     public HeaderCell(Context context) {
-        this(context, "windowBackgroundWhiteBlueHeader", 21, 15, false, null);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, false, null);
     }
 
     public HeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
-        this(context, "windowBackgroundWhiteBlueHeader", 21, 15, false, resourcesProvider);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, 21, 15, false, resourcesProvider);
     }
 
     public HeaderCell(Context context, int i) {
-        this(context, "windowBackgroundWhiteBlueHeader", i, 15, false, null);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, i, 15, false, null);
     }
 
     public HeaderCell(Context context, int i, Theme.ResourcesProvider resourcesProvider) {
-        this(context, "windowBackgroundWhiteBlueHeader", i, 15, false, resourcesProvider);
+        this(context, Theme.key_windowBackgroundWhiteBlueHeader, i, 15, false, resourcesProvider);
     }
 
-    public HeaderCell(Context context, String str, int i, int i2, boolean z) {
-        this(context, str, i, i2, z, null);
+    public HeaderCell(Context context, int i, int i2, int i3, boolean z) {
+        this(context, i, i2, i3, z, null);
     }
 
-    public HeaderCell(Context context, String str, int i, int i2, boolean z, Theme.ResourcesProvider resourcesProvider) {
-        this(context, str, i, i2, 0, z, resourcesProvider);
+    public HeaderCell(Context context, int i, int i2, int i3, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        this(context, i, i2, i3, 0, z, resourcesProvider);
     }
 
-    public HeaderCell(Context context, String str, int i, int i2, int i3, boolean z, Theme.ResourcesProvider resourcesProvider) {
+    public HeaderCell(Context context, int i, int i2, int i3, int i4, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.height = 40;
         this.resourcesProvider = resourcesProvider;
@@ -57,17 +57,17 @@ public class HeaderCell extends FrameLayout {
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setMinHeight(AndroidUtilities.dp(this.height - i2));
-        this.textView.setTextColor(getThemedColor(str));
-        this.textView.setTag(str);
-        float f = i;
-        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, f, i2, f, z ? 0.0f : i3));
+        this.textView.setMinHeight(AndroidUtilities.dp(this.height - i3));
+        this.textView.setTextColor(getThemedColor(i));
+        this.textView.setTag(Integer.valueOf(i));
+        float f = i2;
+        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, f, i3, f, z ? 0.0f : i4));
         if (z) {
             SimpleTextView simpleTextView = new SimpleTextView(getContext());
             this.textView2 = simpleTextView;
             simpleTextView.setTextSize(13);
             this.textView2.setGravity((LocaleController.isRTL ? 3 : 5) | 48);
-            addView(this.textView2, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, f, 21.0f, f, i3));
+            addView(this.textView2, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, f, 21.0f, f, i4));
         }
         ViewCompat.setAccessibilityHeading(this, true);
     }
@@ -151,9 +151,7 @@ public class HeaderCell extends FrameLayout {
         accessibilityNodeInfo.setEnabled(true);
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

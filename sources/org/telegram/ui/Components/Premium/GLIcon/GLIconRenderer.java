@@ -30,8 +30,8 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
     private final float[] mProjectionMatrix = new float[16];
     private final float[] mViewMatrix = new float[16];
     private final float[] mRotationMatrix = new float[16];
-    public String colorKey1 = "premiumStarGradient1";
-    public String colorKey2 = "premiumStarGradient2";
+    public int colorKey1 = Theme.key_premiumStartGradient1;
+    public int colorKey2 = Theme.key_premiumStartGradient2;
 
     public GLIconRenderer(Context context, int i) {
         this.context = context;
@@ -114,6 +114,6 @@ public class GLIconRenderer implements GLSurfaceView.Renderer {
         this.color1 = Theme.getColor(this.colorKey1);
         this.color2 = Theme.getColor(this.colorKey2);
         boolean z = true;
-        this.isDarkBackground = (this.style != 1 || ColorUtils.calculateLuminance(Theme.getColor("dialogBackground")) >= 0.5d) ? false : false;
+        this.isDarkBackground = (this.style != 1 || ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground)) >= 0.5d) ? false : false;
     }
 }

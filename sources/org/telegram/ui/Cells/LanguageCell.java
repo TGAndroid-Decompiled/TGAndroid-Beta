@@ -31,13 +31,13 @@ public class LanguageCell extends FrameLayout {
         RadioButton radioButton = new RadioButton(context);
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        this.radioButton.setColor(Theme.getColor("dialogRadioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
+        this.radioButton.setColor(Theme.getColor(Theme.key_dialogRadioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
         RadioButton radioButton2 = this.radioButton;
         boolean z = LocaleController.isRTL;
         addView(radioButton2, LayoutHelper.createFrame(22, 22.0f, (z ? 5 : 3) | 16, z ? 0 : 20, 0.0f, z ? 20 : 0, 0.0f));
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor("dialogTextBlack"));
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setSingleLine(true);
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -47,7 +47,7 @@ public class LanguageCell extends FrameLayout {
         addView(textView2, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? this.marginEndDp : this.marginStartDp, 0.0f, z2 ? this.marginStartDp : this.marginEndDp, 17.0f));
         TextView textView3 = new TextView(context);
         this.textView2 = textView3;
-        textView3.setTextColor(Theme.getColor("dialogTextGray3"));
+        textView3.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
         this.textView2.setTextSize(1, 13.0f);
         this.textView2.setSingleLine(true);
         this.textView2.setEllipsize(TextUtils.TruncateAt.END);

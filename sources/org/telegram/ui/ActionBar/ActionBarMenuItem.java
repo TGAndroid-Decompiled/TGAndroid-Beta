@@ -45,8 +45,9 @@ import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -87,7 +88,7 @@ public class ActionBarMenuItem extends FrameLayout {
     protected ActionBarMenuItemSearchListener listener;
     private int[] location;
     private boolean longClickEnabled;
-    private int notificationIndex;
+    private final AnimationNotificationsLocker notificationsLocker;
     private View.OnClickListener onClickListener;
     protected boolean overrideMenuClick;
     private ActionBarMenu parentMenu;
@@ -206,7 +207,7 @@ public class ActionBarMenuItem extends FrameLayout {
         this.showSubmenuByMove = true;
         this.currentSearchFilters = new ArrayList<>();
         this.selectedFilterIndex = -1;
-        this.notificationIndex = -1;
+        this.notificationsLocker = new AnimationNotificationsLocker();
         this.resourcesProvider = resourcesProvider;
         if (i != 0) {
             setBackgroundDrawable(Theme.createSelectorDrawable(i, z ? 5 : 1));
@@ -497,7 +498,7 @@ public class ActionBarMenuItem extends FrameLayout {
     public TextView addSubItem(int i, CharSequence charSequence) {
         createPopupLayout();
         TextView textView = new TextView(getContext());
-        textView.setTextColor(getThemedColor("actionBarDefaultSubmenuItem"));
+        textView.setTextColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
         textView.setBackgroundDrawable(Theme.getSelectorDrawable(false));
         if (!LocaleController.isRTL) {
             textView.setGravity(16);
@@ -1025,7 +1026,7 @@ public class ActionBarMenuItem extends FrameLayout {
         this.searchContainerAnimator.start();
         setVisibility(8);
         clearSearchFilters();
-        this.searchField.setText("");
+        this.searchField.setText(BuildConfig.APP_CENTER_HASH);
         this.searchField.requestFocus();
         if (z) {
             AndroidUtilities.showKeyboard(this.searchField);
@@ -1102,7 +1103,6 @@ public class ActionBarMenuItem extends FrameLayout {
             }.setDuration(150L)).addTransition(changeBounds);
             transitionSet.setOrdering(0);
             transitionSet.setInterpolator((TimeInterpolator) CubicBezierInterpolator.EASE_OUT);
-            final int i = UserConfig.selectedAccount;
             transitionSet.addListener(new Transition.TransitionListener() {
                 @Override
                 public void onTransitionPause(Transition transition) {
@@ -1114,32 +1114,32 @@ public class ActionBarMenuItem extends FrameLayout {
 
                 @Override
                 public void onTransitionStart(Transition transition) {
-                    ActionBarMenuItem.this.notificationIndex = NotificationCenter.getInstance(i).setAnimationInProgress(ActionBarMenuItem.this.notificationIndex, null);
+                    ActionBarMenuItem.this.notificationsLocker.lock();
                 }
 
                 @Override
                 public void onTransitionEnd(Transition transition) {
-                    NotificationCenter.getInstance(i).onAnimationFinish(ActionBarMenuItem.this.notificationIndex);
+                    ActionBarMenuItem.this.notificationsLocker.unlock();
                 }
 
                 @Override
                 public void onTransitionCancel(Transition transition) {
-                    NotificationCenter.getInstance(i).onAnimationFinish(ActionBarMenuItem.this.notificationIndex);
+                    ActionBarMenuItem.this.notificationsLocker.unlock();
                 }
             });
             TransitionManager.beginDelayedTransition(this.searchFilterLayout, transitionSet);
         }
-        int i2 = 0;
-        while (i2 < this.searchFilterLayout.getChildCount()) {
-            if (!arrayList.remove(((SearchFilterView) this.searchFilterLayout.getChildAt(i2)).getFilter())) {
-                this.searchFilterLayout.removeViewAt(i2);
-                i2--;
+        int i = 0;
+        while (i < this.searchFilterLayout.getChildCount()) {
+            if (!arrayList.remove(((SearchFilterView) this.searchFilterLayout.getChildAt(i)).getFilter())) {
+                this.searchFilterLayout.removeViewAt(i);
+                i--;
             }
-            i2++;
+            i++;
         }
-        for (int i3 = 0; i3 < arrayList.size(); i3++) {
+        for (int i2 = 0; i2 < arrayList.size(); i2++) {
             final SearchFilterView searchFilterView = new SearchFilterView(getContext(), this.resourcesProvider);
-            searchFilterView.setData((FiltersView.MediaFilterData) arrayList.get(i3));
+            searchFilterView.setData((FiltersView.MediaFilterData) arrayList.get(i2));
             searchFilterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -1148,10 +1148,10 @@ public class ActionBarMenuItem extends FrameLayout {
             });
             this.searchFilterLayout.addView(searchFilterView, LayoutHelper.createLinear(-2, -1, 0, 0, 0, 6, 0));
         }
-        int i4 = 0;
-        while (i4 < this.searchFilterLayout.getChildCount()) {
-            ((SearchFilterView) this.searchFilterLayout.getChildAt(i4)).setExpanded(i4 == this.selectedFilterIndex);
-            i4++;
+        int i3 = 0;
+        while (i3 < this.searchFilterLayout.getChildCount()) {
+            ((SearchFilterView) this.searchFilterLayout.getChildAt(i3)).setExpanded(i3 == this.selectedFilterIndex);
+            i3++;
         }
         this.searchFilterLayout.setTag(z ? 1 : null);
         final float x = this.searchField.getX();
@@ -1440,26 +1440,28 @@ public class ActionBarMenuItem extends FrameLayout {
             TextView textView = new TextView(getContext());
             this.searchFieldCaption = textView;
             textView.setTextSize(1, 18.0f);
-            this.searchFieldCaption.setTextColor(getThemedColor("actionBarDefaultSearch"));
+            TextView textView2 = this.searchFieldCaption;
+            int i = Theme.key_actionBarDefaultSearch;
+            textView2.setTextColor(getThemedColor(i));
             this.searchFieldCaption.setSingleLine(true);
             this.searchFieldCaption.setEllipsize(TextUtils.TruncateAt.END);
             this.searchFieldCaption.setVisibility(8);
             this.searchFieldCaption.setGravity(LocaleController.isRTL ? 5 : 3);
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
                 @Override
-                public void onMeasure(int i, int i2) {
-                    super.onMeasure(i, i2);
-                    setMeasuredDimension(Math.max(View.MeasureSpec.getSize(i), getMeasuredWidth()) + AndroidUtilities.dp(3.0f), getMeasuredHeight());
+                public void onMeasure(int i2, int i3) {
+                    super.onMeasure(i2, i3);
+                    setMeasuredDimension(Math.max(View.MeasureSpec.getSize(i2), getMeasuredWidth()) + AndroidUtilities.dp(3.0f), getMeasuredHeight());
                 }
 
                 @Override
-                protected void onSelectionChanged(int i, int i2) {
-                    super.onSelectionChanged(i, i2);
+                protected void onSelectionChanged(int i2, int i3) {
+                    super.onSelectionChanged(i2, i3);
                 }
 
                 @Override
-                public boolean onKeyDown(int i, KeyEvent keyEvent) {
-                    if (i == 67 && ActionBarMenuItem.this.searchField.length() == 0 && ((ActionBarMenuItem.this.searchFieldCaption.getVisibility() == 0 && ActionBarMenuItem.this.searchFieldCaption.length() > 0) || ActionBarMenuItem.this.hasRemovableFilters())) {
+                public boolean onKeyDown(int i2, KeyEvent keyEvent) {
+                    if (i2 == 67 && ActionBarMenuItem.this.searchField.length() == 0 && ((ActionBarMenuItem.this.searchFieldCaption.getVisibility() == 0 && ActionBarMenuItem.this.searchFieldCaption.length() > 0) || ActionBarMenuItem.this.hasRemovableFilters())) {
                         if (ActionBarMenuItem.this.hasRemovableFilters()) {
                             FiltersView.MediaFilterData mediaFilterData = (FiltersView.MediaFilterData) ActionBarMenuItem.this.currentSearchFilters.get(ActionBarMenuItem.this.currentSearchFilters.size() - 1);
                             ActionBarMenuItemSearchListener actionBarMenuItemSearchListener = ActionBarMenuItem.this.listener;
@@ -1472,7 +1474,7 @@ public class ActionBarMenuItem extends FrameLayout {
                         }
                         return true;
                     }
-                    return super.onKeyDown(i, keyEvent);
+                    return super.onKeyDown(i2, keyEvent);
                 }
 
                 @Override
@@ -1488,10 +1490,10 @@ public class ActionBarMenuItem extends FrameLayout {
             this.searchField = editTextBoldCursor;
             editTextBoldCursor.setScrollContainer(false);
             this.searchField.setCursorWidth(1.5f);
-            this.searchField.setCursorColor(getThemedColor("actionBarDefaultSearch"));
+            this.searchField.setCursorColor(getThemedColor(i));
             this.searchField.setTextSize(1, 18.0f);
-            this.searchField.setHintTextColor(getThemedColor("actionBarDefaultSearchPlaceholder"));
-            this.searchField.setTextColor(getThemedColor("actionBarDefaultSearch"));
+            this.searchField.setHintTextColor(getThemedColor(Theme.key_actionBarDefaultSearchPlaceholder));
+            this.searchField.setTextColor(getThemedColor(i));
             this.searchField.setSingleLine(true);
             this.searchField.setBackgroundResource(0);
             this.searchField.setPadding(0, 0, 0, 0);
@@ -1520,9 +1522,9 @@ public class ActionBarMenuItem extends FrameLayout {
             }
             this.searchField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
-                public final boolean onEditorAction(TextView textView2, int i, KeyEvent keyEvent) {
+                public final boolean onEditorAction(TextView textView3, int i2, KeyEvent keyEvent) {
                     boolean lambda$checkCreateSearchField$12;
-                    lambda$checkCreateSearchField$12 = ActionBarMenuItem.this.lambda$checkCreateSearchField$12(textView2, i, keyEvent);
+                    lambda$checkCreateSearchField$12 = ActionBarMenuItem.this.lambda$checkCreateSearchField$12(textView3, i2, keyEvent);
                     return lambda$checkCreateSearchField$12;
                 }
             });
@@ -1532,11 +1534,11 @@ public class ActionBarMenuItem extends FrameLayout {
                 }
 
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                 }
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     if (ActionBarMenuItem.this.ignoreOnTextChange) {
                         ActionBarMenuItem.this.ignoreOnTextChange = false;
                         return;
@@ -1556,8 +1558,8 @@ public class ActionBarMenuItem extends FrameLayout {
             });
             this.searchField.setImeOptions(234881027);
             this.searchField.setTextIsSelectable(false);
-            this.searchField.setHighlightColor(getThemedColor("chat_inTextSelectionHighlight"));
-            this.searchField.setHandlesColor(getThemedColor("chat_TextSelectionCursor"));
+            this.searchField.setHighlightColor(getThemedColor(Theme.key_chat_inTextSelectionHighlight));
+            this.searchField.setHandlesColor(getThemedColor(Theme.key_chat_TextSelectionCursor));
             CharSequence charSequence = this.searchFieldHint;
             if (charSequence != null) {
                 this.searchField.setHint(charSequence);
@@ -1654,7 +1656,7 @@ public class ActionBarMenuItem extends FrameLayout {
 
     public void lambda$checkCreateSearchField$13(View view) {
         if (this.searchField.length() != 0) {
-            this.searchField.setText("");
+            this.searchField.setText(BuildConfig.APP_CENTER_HASH);
         } else if (hasRemovableFilters()) {
             this.searchField.hideActionMode();
             for (int i = 0; i < this.currentSearchFilters.size(); i++) {
@@ -1830,7 +1832,7 @@ public class ActionBarMenuItem extends FrameLayout {
         if (editTextBoldCursor == null) {
             return;
         }
-        editTextBoldCursor.setText("");
+        editTextBoldCursor.setText(BuildConfig.APP_CENTER_HASH);
     }
 
     public ActionBarMenuItem setActionBarMenuItemSearchListener(ActionBarMenuItemSearchListener actionBarMenuItemSearchListener) {
@@ -2069,17 +2071,18 @@ public class ActionBarMenuItem extends FrameLayout {
         if (this.popupLayout != null) {
             for (int i2 = 0; i2 < this.popupLayout.getItemsCount(); i2++) {
                 if (this.popupLayout.getItemAt(i2) instanceof ActionBarMenuSubItem) {
-                    ((ActionBarMenuSubItem) this.popupLayout.getItemAt(i2)).setSelectorColor(getThemedColor("dialogButtonSelector"));
+                    ((ActionBarMenuSubItem) this.popupLayout.getItemAt(i2)).setSelectorColor(getThemedColor(Theme.key_dialogButtonSelector));
                 }
             }
         }
         EditTextBoldCursor editTextBoldCursor = this.searchField;
         if (editTextBoldCursor != null) {
-            editTextBoldCursor.setCursorColor(getThemedColor("actionBarDefaultSearch"));
-            this.searchField.setHintTextColor(getThemedColor("actionBarDefaultSearchPlaceholder"));
-            this.searchField.setTextColor(getThemedColor("actionBarDefaultSearch"));
-            this.searchField.setHighlightColor(getThemedColor("chat_inTextSelectionHighlight"));
-            this.searchField.setHandlesColor(getThemedColor("chat_TextSelectionCursor"));
+            int i3 = Theme.key_actionBarDefaultSearch;
+            editTextBoldCursor.setCursorColor(getThemedColor(i3));
+            this.searchField.setHintTextColor(getThemedColor(Theme.key_actionBarDefaultSearchPlaceholder));
+            this.searchField.setTextColor(getThemedColor(i3));
+            this.searchField.setHighlightColor(getThemedColor(Theme.key_chat_inTextSelectionHighlight));
+            this.searchField.setHandlesColor(getThemedColor(Theme.key_chat_TextSelectionCursor));
         }
     }
 
@@ -2093,10 +2096,8 @@ public class ActionBarMenuItem extends FrameLayout {
         setTranslationX(0.0f);
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     public static class SearchFilterView extends FrameLayout {
@@ -2141,10 +2142,12 @@ public class ActionBarMenuItem extends FrameLayout {
         }
 
         public void updateColors() {
-            int themedColor = getThemedColor("groupcreate_spanBackground");
-            int themedColor2 = getThemedColor("avatar_backgroundBlue");
-            int themedColor3 = getThemedColor("windowBackgroundWhiteBlackText");
-            int themedColor4 = getThemedColor("avatar_actionBarIconBlue");
+            int themedColor = getThemedColor(Theme.key_groupcreate_spanBackground);
+            int i = Theme.key_avatar_backgroundBlue;
+            int themedColor2 = getThemedColor(i);
+            int themedColor3 = getThemedColor(Theme.key_windowBackgroundWhiteBlackText);
+            int i2 = Theme.key_avatar_actionBarIconBlue;
+            int themedColor4 = getThemedColor(i2);
             this.shapeDrawable.getPaint().setColor(ColorUtils.blendARGB(themedColor, themedColor2, this.selectedProgress));
             this.titleView.setTextColor(ColorUtils.blendARGB(themedColor3, themedColor4, this.selectedProgress));
             this.closeIconView.setColorFilter(themedColor4);
@@ -2153,8 +2156,8 @@ public class ActionBarMenuItem extends FrameLayout {
             this.closeIconView.setScaleY(this.selectedProgress * 0.82f);
             Drawable drawable = this.thumbDrawable;
             if (drawable != null) {
-                Theme.setCombinedDrawableColor(drawable, getThemedColor("avatar_backgroundBlue"), false);
-                Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor("avatar_actionBarIconBlue"), true);
+                Theme.setCombinedDrawableColor(drawable, getThemedColor(i), false);
+                Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor(i2), true);
             }
             this.avatarImageView.setAlpha(1.0f - this.selectedProgress);
             FiltersView.MediaFilterData mediaFilterData = this.data;
@@ -2166,18 +2169,20 @@ public class ActionBarMenuItem extends FrameLayout {
 
         public void setData(FiltersView.MediaFilterData mediaFilterData) {
             this.data = mediaFilterData;
-            this.titleView.setText(mediaFilterData.title);
+            this.titleView.setText(mediaFilterData.getTitle());
             CombinedDrawable createCircleDrawableWithIcon = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), mediaFilterData.iconResFilled);
             this.thumbDrawable = createCircleDrawableWithIcon;
-            Theme.setCombinedDrawableColor(createCircleDrawableWithIcon, getThemedColor("avatar_backgroundBlue"), false);
-            Theme.setCombinedDrawableColor(this.thumbDrawable, getThemedColor("avatar_actionBarIconBlue"), true);
-            int i = mediaFilterData.filterType;
-            if (i != 4) {
-                if (i == 7) {
+            Theme.setCombinedDrawableColor(createCircleDrawableWithIcon, getThemedColor(Theme.key_avatar_backgroundBlue), false);
+            Drawable drawable = this.thumbDrawable;
+            int i = Theme.key_avatar_actionBarIconBlue;
+            Theme.setCombinedDrawableColor(drawable, getThemedColor(i), true);
+            int i2 = mediaFilterData.filterType;
+            if (i2 != 4) {
+                if (i2 == 7) {
                     CombinedDrawable createCircleDrawableWithIcon2 = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), R.drawable.chats_archive);
                     createCircleDrawableWithIcon2.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-                    Theme.setCombinedDrawableColor(createCircleDrawableWithIcon2, getThemedColor("avatar_backgroundArchived"), false);
-                    Theme.setCombinedDrawableColor(createCircleDrawableWithIcon2, getThemedColor("avatar_actionBarIconBlue"), true);
+                    Theme.setCombinedDrawableColor(createCircleDrawableWithIcon2, getThemedColor(Theme.key_avatar_backgroundArchived), false);
+                    Theme.setCombinedDrawableColor(createCircleDrawableWithIcon2, getThemedColor(i), true);
                     this.avatarImageView.setImageDrawable(createCircleDrawableWithIcon2);
                     return;
                 }
@@ -2190,8 +2195,8 @@ public class ActionBarMenuItem extends FrameLayout {
                 if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().id == tLRPC$User.id) {
                     CombinedDrawable createCircleDrawableWithIcon3 = Theme.createCircleDrawableWithIcon(AndroidUtilities.dp(32.0f), R.drawable.chats_saved);
                     createCircleDrawableWithIcon3.setIconSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-                    Theme.setCombinedDrawableColor(createCircleDrawableWithIcon3, getThemedColor("avatar_backgroundSaved"), false);
-                    Theme.setCombinedDrawableColor(createCircleDrawableWithIcon3, getThemedColor("avatar_actionBarIconBlue"), true);
+                    Theme.setCombinedDrawableColor(createCircleDrawableWithIcon3, getThemedColor(Theme.key_avatar_backgroundSaved), false);
+                    Theme.setCombinedDrawableColor(createCircleDrawableWithIcon3, getThemedColor(i), true);
                     this.avatarImageView.setImageDrawable(createCircleDrawableWithIcon3);
                     return;
                 }
@@ -2256,10 +2261,8 @@ public class ActionBarMenuItem extends FrameLayout {
             return this.data;
         }
 
-        private int getThemedColor(String str) {
-            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-            Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-            return color != null ? color.intValue() : Theme.getColor(str);
+        protected int getThemedColor(int i) {
+            return Theme.getColor(i, this.resourcesProvider);
         }
     }
 
@@ -2269,7 +2272,7 @@ public class ActionBarMenuItem extends FrameLayout {
 
     public ActionBarPopupWindow.GapView addColoredGap(int i) {
         createPopupLayout();
-        ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(getContext(), this.resourcesProvider, "actionBarDefaultSubmenuSeparator");
+        ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(getContext(), this.resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
         if (i != -1) {
             gapView.setTag(Integer.valueOf(i));
         }
@@ -2353,7 +2356,7 @@ public class ActionBarMenuItem extends FrameLayout {
                     }
                     this.view = actionBarMenuSubItem;
                 } else if (i == 1) {
-                    ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(actionBarMenuItem.getContext(), actionBarMenuItem.resourcesProvider, "actionBarDefaultSubmenuSeparator");
+                    ActionBarPopupWindow.GapView gapView = new ActionBarPopupWindow.GapView(actionBarMenuItem.getContext(), actionBarMenuItem.resourcesProvider, Theme.key_actionBarDefaultSubmenuSeparator);
                     gapView.setTag(R.id.fit_width_tag, 1);
                     actionBarMenuItem.popupLayout.addView((View) gapView, LayoutHelper.createLinear(-1, 8));
                     this.view = gapView;

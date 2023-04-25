@@ -150,15 +150,19 @@ public class UndoView extends FrameLayout {
         TextView textView = new TextView(context);
         this.infoTextView = textView;
         textView.setTextSize(1, 15.0f);
-        this.infoTextView.setTextColor(getThemedColor("undo_infoColor"));
-        this.infoTextView.setLinkTextColor(getThemedColor("undo_cancelColor"));
+        TextView textView2 = this.infoTextView;
+        int i = Theme.key_undo_infoColor;
+        textView2.setTextColor(getThemedColor(i));
+        TextView textView3 = this.infoTextView;
+        int i2 = Theme.key_undo_cancelColor;
+        textView3.setLinkTextColor(getThemedColor(i2));
         this.infoTextView.setMovementMethod(new LinkMovementMethodMy());
         addView(this.infoTextView, LayoutHelper.createFrame(-2, -2.0f, 51, 45.0f, 13.0f, 0.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.subinfoTextView = textView2;
-        textView2.setTextSize(1, 13.0f);
-        this.subinfoTextView.setTextColor(getThemedColor("undo_infoColor"));
-        this.subinfoTextView.setLinkTextColor(getThemedColor("undo_cancelColor"));
+        TextView textView4 = new TextView(context);
+        this.subinfoTextView = textView4;
+        textView4.setTextSize(1, 13.0f);
+        this.subinfoTextView.setTextColor(getThemedColor(i));
+        this.subinfoTextView.setLinkTextColor(getThemedColor(i2));
         this.subinfoTextView.setHighlightColor(0);
         this.subinfoTextView.setSingleLine(true);
         this.subinfoTextView.setEllipsize(TextUtils.TruncateAt.END);
@@ -167,21 +171,23 @@ public class UndoView extends FrameLayout {
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.leftImageView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.leftImageView.setLayerColor("info1.**", getThemedColor("undo_background") | (-16777216));
-        this.leftImageView.setLayerColor("info2.**", getThemedColor("undo_background") | (-16777216));
-        this.leftImageView.setLayerColor("luc12.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("luc11.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("luc10.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("luc9.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("luc8.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("luc7.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("luc6.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("luc5.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("luc4.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("luc3.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("luc2.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("luc1.**", getThemedColor("undo_infoColor"));
-        this.leftImageView.setLayerColor("Oval.**", getThemedColor("undo_infoColor"));
+        RLottieImageView rLottieImageView2 = this.leftImageView;
+        int i3 = Theme.key_undo_background;
+        rLottieImageView2.setLayerColor("info1.**", getThemedColor(i3) | (-16777216));
+        this.leftImageView.setLayerColor("info2.**", getThemedColor(i3) | (-16777216));
+        this.leftImageView.setLayerColor("luc12.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc11.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc10.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc9.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc8.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc7.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc6.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc5.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc4.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc3.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc2.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("luc1.**", getThemedColor(i));
+        this.leftImageView.setLayerColor("Oval.**", getThemedColor(i));
         addView(this.leftImageView, LayoutHelper.createFrame(54, -2.0f, 19, 3.0f, 0.0f, 0.0f, 0.0f));
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
@@ -190,7 +196,7 @@ public class UndoView extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(context);
         this.undoButton = linearLayout;
         linearLayout.setOrientation(0);
-        this.undoButton.setBackground(Theme.createRadSelectorDrawable(getThemedColor("undo_cancelColor") & 587202559, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
+        this.undoButton.setBackground(Theme.createRadSelectorDrawable(getThemedColor(i2) & 587202559, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
         addView(this.undoButton, LayoutHelper.createFrame(-2, -2.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
         this.undoButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,13 +207,13 @@ public class UndoView extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.undoImageView = imageView;
         imageView.setImageResource(R.drawable.chats_undo);
-        this.undoImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("undo_cancelColor"), PorterDuff.Mode.MULTIPLY));
+        this.undoImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
         this.undoButton.addView(this.undoImageView, LayoutHelper.createLinear(-2, -2, 19, 4, 4, 0, 4));
-        TextView textView3 = new TextView(context);
-        this.undoTextView = textView3;
-        textView3.setTextSize(1, 14.0f);
+        TextView textView5 = new TextView(context);
+        this.undoTextView = textView5;
+        textView5.setTextSize(1, 14.0f);
         this.undoTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.undoTextView.setTextColor(getThemedColor("undo_cancelColor"));
+        this.undoTextView.setTextColor(getThemedColor(i2));
         this.undoTextView.setText(LocaleController.getString("Undo", R.string.Undo));
         this.undoButton.addView(this.undoTextView, LayoutHelper.createLinear(-2, -2, 19, 6, 4, 8, 4));
         this.rect = new RectF(AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), AndroidUtilities.dp(33.0f), AndroidUtilities.dp(33.0f));
@@ -216,14 +222,14 @@ public class UndoView extends FrameLayout {
         paint.setStyle(Paint.Style.STROKE);
         this.progressPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         this.progressPaint.setStrokeCap(Paint.Cap.ROUND);
-        this.progressPaint.setColor(getThemedColor("undo_infoColor"));
+        this.progressPaint.setColor(getThemedColor(i));
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.textPaint.setColor(getThemedColor("undo_infoColor"));
+        this.textPaint.setColor(getThemedColor(i));
         setWillNotDraw(false);
-        this.backgroundDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), getThemedColor("undo_background"));
+        this.backgroundDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(10.0f), getThemedColor(i3));
         setOnTouchListener(UndoView$$ExternalSyntheticLambda3.INSTANCE);
         setVisibility(4);
     }
@@ -353,7 +359,7 @@ public class UndoView extends FrameLayout {
         showWithAction(arrayList, i, obj, obj2, runnable, runnable2);
     }
 
-    public void showWithAction(java.util.ArrayList<java.lang.Long> r18, int r19, java.lang.Object r20, java.lang.Object r21, java.lang.Runnable r22, java.lang.Runnable r23) {
+    public void showWithAction(java.util.ArrayList<java.lang.Long> r19, int r20, java.lang.Object r21, java.lang.Object r22, java.lang.Runnable r23, java.lang.Runnable r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UndoView.showWithAction(java.util.ArrayList, int, java.lang.Object, java.lang.Object, java.lang.Runnable, java.lang.Runnable):void");
     }
 
@@ -535,9 +541,7 @@ public class UndoView extends FrameLayout {
         return this.backgroundDrawable;
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

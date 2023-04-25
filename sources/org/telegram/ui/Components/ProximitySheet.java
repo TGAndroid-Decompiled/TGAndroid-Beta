@@ -92,7 +92,7 @@ public class ProximitySheet extends FrameLayout {
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         android.graphics.Rect rect = new android.graphics.Rect();
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         mutate.getPadding(rect);
         this.backgroundPaddingLeft = rect.left;
         FrameLayout frameLayout = new FrameLayout(this, getContext()) {
@@ -151,7 +151,7 @@ public class ProximitySheet extends FrameLayout {
         this.customView.addView(frameLayout2, LayoutHelper.createLinear(-1, -2, 51, 22, 0, 0, 4));
         TextView textView = new TextView(context);
         textView.setText(LocaleController.getString("LocationNotifiation", R.string.LocationNotifiation));
-        textView.setTextColor(Theme.getColor("dialogTextBlack"));
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
@@ -208,11 +208,11 @@ public class ProximitySheet extends FrameLayout {
         this.customView.addView(frameLayout3, LayoutHelper.createLinear(-1, 48, 83, 16, 15, 16, 16));
         this.buttonTextView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         this.buttonTextView.setGravity(17);
-        this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+        this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setMaxLines(2);
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.buttonTextView.setBackgroundDrawable(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+        this.buttonTextView.setBackgroundDrawable(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
         frameLayout3.addView(this.buttonTextView, LayoutHelper.createFrame(-1, 48.0f));
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,7 +222,7 @@ public class ProximitySheet extends FrameLayout {
         });
         this.infoTextView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         this.infoTextView.setGravity(17);
-        this.infoTextView.setTextColor(Theme.getColor("dialogTextGray2"));
+        this.infoTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray2));
         this.infoTextView.setTextSize(1, 14.0f);
         this.infoTextView.setAlpha(0.0f);
         this.infoTextView.setScaleX(0.5f);

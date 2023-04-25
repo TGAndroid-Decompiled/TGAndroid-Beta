@@ -39,6 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -168,18 +169,19 @@ public class FilterChatlistActivity extends BaseFragment {
         });
         ActionBarMenu createMenu = this.actionBar.createMenu();
         Drawable mutate = context.getResources().getDrawable(R.drawable.ic_ab_done).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
-        CrossfadeDrawable crossfadeDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor("actionBarDefaultIcon")));
+        int i = Theme.key_actionBarDefaultIcon;
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+        CrossfadeDrawable crossfadeDrawable = new CrossfadeDrawable(mutate, new CircularProgressDrawable(Theme.getColor(i)));
         this.doneButtonDrawable = crossfadeDrawable;
         this.doneButton = createMenu.addItemWithWidth(1, crossfadeDrawable, AndroidUtilities.dp(56.0f), LocaleController.getString("Done", R.string.Done));
         checkDoneButton();
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         RecyclerListView recyclerListView = new RecyclerListView(this, context) {
             @Override
-            public boolean requestFocus(int i, Rect rect) {
+            public boolean requestFocus(int i2, Rect rect) {
                 return false;
             }
         };
@@ -193,22 +195,22 @@ public class FilterChatlistActivity extends BaseFragment {
         recyclerListView2.setAdapter(listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) {
-                FilterChatlistActivity.this.lambda$createView$0(view, i);
+            public final void onItemClick(View view, int i2) {
+                FilterChatlistActivity.this.lambda$createView$0(view, i2);
             }
         });
         getMessagesController().updateFilterDialogs(this.filter);
         this.peers.clear();
         if (this.invite != null) {
-            for (int i = 0; i < this.invite.peers.size(); i++) {
-                long peerDialogId = DialogObject.getPeerDialogId(this.invite.peers.get(i));
+            for (int i2 = 0; i2 < this.invite.peers.size(); i2++) {
+                long peerDialogId = DialogObject.getPeerDialogId(this.invite.peers.get(i2));
                 this.peers.add(Long.valueOf(peerDialogId));
                 this.selectedPeers.add(Long.valueOf(peerDialogId));
                 this.allowedPeers.add(Long.valueOf(peerDialogId));
             }
         }
-        for (int i2 = 0; i2 < this.filter.dialogs.size(); i2++) {
-            TLRPC$Dialog tLRPC$Dialog = this.filter.dialogs.get(i2);
+        for (int i3 = 0; i3 < this.filter.dialogs.size(); i3++) {
+            TLRPC$Dialog tLRPC$Dialog = this.filter.dialogs.get(i3);
             if (tLRPC$Dialog != null && !DialogObject.isEncryptedDialog(tLRPC$Dialog.id) && !this.peers.contains(Long.valueOf(tLRPC$Dialog.id))) {
                 long j = tLRPC$Dialog.id;
                 boolean z = j < 0;
@@ -221,8 +223,8 @@ public class FilterChatlistActivity extends BaseFragment {
                 }
             }
         }
-        for (int i3 = 0; i3 < this.filter.dialogs.size(); i3++) {
-            TLRPC$Dialog tLRPC$Dialog2 = this.filter.dialogs.get(i3);
+        for (int i4 = 0; i4 < this.filter.dialogs.size(); i4++) {
+            TLRPC$Dialog tLRPC$Dialog2 = this.filter.dialogs.get(i4);
             if (tLRPC$Dialog2 != null && !DialogObject.isEncryptedDialog(tLRPC$Dialog2.id) && !this.peers.contains(Long.valueOf(tLRPC$Dialog2.id)) && !this.allowedPeers.contains(Long.valueOf(tLRPC$Dialog2.id))) {
                 this.peers.add(Long.valueOf(tLRPC$Dialog2.id));
             }
@@ -459,7 +461,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 }
             });
         } else {
-            this.headerCountCell.setAction("", null);
+            this.headerCountCell.setAction(BuildConfig.APP_CENTER_HASH, null);
         }
         if (z) {
             AndroidUtilities.makeAccessibilityAnnouncement(((Object) this.headerCountCell.textView.getText()) + ", " + ((Object) this.headerCountCell.actionTextView.getText()));
@@ -537,13 +539,13 @@ public class FilterChatlistActivity extends BaseFragment {
             } else if (i == 3) {
                 frameLayout = new AnonymousClass1(FilterChatlistActivity.this.getContext(), FilterChatlistActivity.this);
                 frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 4) {
                 frameLayout = new GroupCreateUserCell(FilterChatlistActivity.this.getContext(), 1, 0, false);
-                frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 5) {
                 frameLayout = new FolderBottomSheet.HeaderCell(FilterChatlistActivity.this.getContext());
-                frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else {
                 frameLayout = null;
             }
@@ -599,7 +601,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
                 editTextBoldCursor.setBackgroundDrawable(Theme.createEditTextDrawable(getContext(), true));
                 final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setDialogButtonColorKey("dialogButton");
+                builder.setDialogButtonColorKey(Theme.key_dialogButton);
                 builder.setTitle(LocaleController.getString("FilterInviteEditName", R.string.FilterInviteEditName));
                 builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
                     @Override
@@ -611,7 +613,8 @@ public class FilterChatlistActivity extends BaseFragment {
                 linearLayout.setOrientation(1);
                 builder.setView(linearLayout);
                 editTextBoldCursor.setTextSize(1, 16.0f);
-                editTextBoldCursor.setTextColor(Theme.getColor("dialogTextBlack"));
+                int i = Theme.key_dialogTextBlack;
+                editTextBoldCursor.setTextColor(Theme.getColor(i));
                 editTextBoldCursor.setMaxLines(1);
                 editTextBoldCursor.setLines(1);
                 editTextBoldCursor.setInputType(16385);
@@ -619,17 +622,17 @@ public class FilterChatlistActivity extends BaseFragment {
                 editTextBoldCursor.setSingleLine(true);
                 editTextBoldCursor.setImeOptions(6);
                 editTextBoldCursor.setHint(FilterChatlistActivity.this.filter.name);
-                editTextBoldCursor.setHintTextColor(Theme.getColor("dialogTextHint"));
-                editTextBoldCursor.setCursorColor(Theme.getColor("dialogTextBlack"));
+                editTextBoldCursor.setHintTextColor(Theme.getColor(Theme.key_dialogTextHint));
+                editTextBoldCursor.setCursorColor(Theme.getColor(i));
                 editTextBoldCursor.setCursorSize(AndroidUtilities.dp(20.0f));
                 editTextBoldCursor.setCursorWidth(1.5f);
                 editTextBoldCursor.setPadding(0, AndroidUtilities.dp(4.0f), 0, 0);
                 linearLayout.addView(editTextBoldCursor, LayoutHelper.createLinear(-1, 36, 51, 24, 6, 24, 0));
                 editTextBoldCursor.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                     @Override
-                    public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                    public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
                         boolean lambda$editname$5;
-                        lambda$editname$5 = FilterChatlistActivity.ListAdapter.AnonymousClass1.lambda$editname$5(AlertDialog.Builder.this, textView, i, keyEvent);
+                        lambda$editname$5 = FilterChatlistActivity.ListAdapter.AnonymousClass1.lambda$editname$5(AlertDialog.Builder.this, textView, i2, keyEvent);
                         return lambda$editname$5;
                     }
                 });
@@ -637,11 +640,11 @@ public class FilterChatlistActivity extends BaseFragment {
                     boolean ignoreTextChange;
 
                     @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                    public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     }
 
                     @Override
-                    public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                    public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     }
 
                     @Override
@@ -661,8 +664,8 @@ public class FilterChatlistActivity extends BaseFragment {
                 }
                 builder.setPositiveButton(LocaleController.getString("Save", R.string.Save), new DialogInterface.OnClickListener() {
                     @Override
-                    public final void onClick(DialogInterface dialogInterface, int i) {
-                        FilterChatlistActivity.ListAdapter.AnonymousClass1.this.lambda$editname$6(editTextBoldCursor, builder, dialogInterface, i);
+                    public final void onClick(DialogInterface dialogInterface, int i2) {
+                        FilterChatlistActivity.ListAdapter.AnonymousClass1.this.lambda$editname$6(editTextBoldCursor, builder, dialogInterface, i2);
                     }
                 });
                 AlertDialog create = builder.create();
@@ -679,7 +682,7 @@ public class FilterChatlistActivity extends BaseFragment {
                     }
                 });
                 create.show();
-                create.setTextColor(Theme.getColor("dialogTextBlack"));
+                create.setTextColor(Theme.getColor(i));
                 editTextBoldCursor.requestFocus();
             }
 
@@ -724,7 +727,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 FilterChatlistActivity.this.updateHintCell(false);
             } else if (itemViewType == 2) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(FilterChatlistActivity.this.getContext(), i == FilterChatlistActivity.this.chatsSectionRow ? R.drawable.greydivider_bottom : R.drawable.greydivider, "windowBackgroundGrayShadow"));
+                textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(FilterChatlistActivity.this.getContext(), i == FilterChatlistActivity.this.chatsSectionRow ? R.drawable.greydivider_bottom : R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 if (i == FilterChatlistActivity.this.chatsSectionRow) {
                     textInfoPrivacyCell.setFixedSize(0);
                     FilterChatlistActivity filterChatlistActivity = FilterChatlistActivity.this;
@@ -756,11 +759,11 @@ public class FilterChatlistActivity extends BaseFragment {
                                 return;
                             }
                             headerCell.setText(LocaleController.getString("FilterInviteHeaderChatsNo", R.string.FilterInviteHeaderChatsNo), false);
-                            headerCell.setAction("", null);
+                            headerCell.setAction(BuildConfig.APP_CENTER_HASH, null);
                             return;
                         }
                         headerCell.setText(LocaleController.getString("InviteLink", R.string.InviteLink), false);
-                        headerCell.setAction("", null);
+                        headerCell.setAction(BuildConfig.APP_CENTER_HASH, null);
                     }
                 } else {
                     GroupCreateUserCell groupCreateUserCell = (GroupCreateUserCell) viewHolder.itemView;
@@ -906,7 +909,7 @@ public class FilterChatlistActivity extends BaseFragment {
             addView(this.imageView, LayoutHelper.createFrame(90, 90.0f, 49, 0.0f, 14.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             this.subtitleTextView = textView;
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText4"));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
             this.subtitleTextView.setTextSize(1, 14.0f);
             this.subtitleTextView.setGravity(17);
             this.subtitleTextView.setLines(2);
@@ -1048,7 +1051,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 this.radii = new float[8];
                 this.path = new Path();
                 setWillNotDraw(false);
-                this.paint.setColor(Theme.getColor("featuredStickers_addButton"));
+                this.paint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
             }
 
             public void setT(float f) {
@@ -1092,7 +1095,9 @@ public class FilterChatlistActivity extends BaseFragment {
             this.parentFragment = baseFragment;
             FrameLayout frameLayout = new FrameLayout(context);
             this.linkBox = frameLayout;
-            frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor("graySection"), Theme.blendOver(Theme.getColor("graySection"), Theme.getColor("listSelectorSDK21"))));
+            int dp = AndroidUtilities.dp(8.0f);
+            int i = Theme.key_graySection;
+            frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.getColor(i), Theme.blendOver(Theme.getColor(i), Theme.getColor(Theme.key_listSelector))));
             this.linkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -1103,7 +1108,9 @@ public class FilterChatlistActivity extends BaseFragment {
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.spoilerTextView = simpleTextView;
             simpleTextView.setTextSize(16);
-            this.spoilerTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            SimpleTextView simpleTextView2 = this.spoilerTextView;
+            int i2 = Theme.key_windowBackgroundWhiteBlackText;
+            simpleTextView2.setTextColor(Theme.getColor(i2));
             SpannableString spannableString = new SpannableString("t.me/folder/N3k/dImA/bIo");
             TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
             textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
@@ -1111,10 +1118,10 @@ public class FilterChatlistActivity extends BaseFragment {
             this.spoilerTextView.setText(spannableString);
             this.spoilerTextView.setAlpha(1.0f);
             this.linkBox.addView(this.spoilerTextView, LayoutHelper.createFrame(-1, -2.0f, 23, 20.0f, 0.0f, 40.0f, 0.0f));
-            SimpleTextView simpleTextView2 = new SimpleTextView(context);
-            this.textView = simpleTextView2;
-            simpleTextView2.setTextSize(16);
-            this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            SimpleTextView simpleTextView3 = new SimpleTextView(context);
+            this.textView = simpleTextView3;
+            simpleTextView3.setTextSize(16);
+            this.textView.setTextColor(Theme.getColor(i2));
             this.textView.setText(spannableString);
             this.textView.setAlpha(0.0f);
             this.linkBox.addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 23, 20.0f, 0.0f, 40.0f, 0.0f));
@@ -1122,7 +1129,7 @@ public class FilterChatlistActivity extends BaseFragment {
             this.optionsIcon = imageView;
             imageView.setImageDrawable(getContext().getResources().getDrawable(R.drawable.ic_ab_other));
             this.optionsIcon.setScaleType(ImageView.ScaleType.CENTER);
-            this.optionsIcon.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextGray3"), PorterDuff.Mode.SRC_IN));
+            this.optionsIcon.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogTextGray3), PorterDuff.Mode.SRC_IN));
             this.optionsIcon.setAlpha(0.0f);
             this.optionsIcon.setVisibility(8);
             this.optionsIcon.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
@@ -1138,13 +1145,15 @@ public class FilterChatlistActivity extends BaseFragment {
             addView(buttonsBox, LayoutHelper.createFrame(-1, 42.0f, 55, 22.0f, 69.0f, 22.0f, 0.0f));
             TextView textView = new TextView(this, context) {
                 @Override
-                protected void onMeasure(int i, int i2) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i) - AndroidUtilities.dp(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                protected void onMeasure(int i3, int i4) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i3) - AndroidUtilities.dp(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
                 }
             };
             this.copyButton = textView;
             textView.setGravity(17);
-            this.copyButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+            TextView textView2 = this.copyButton;
+            int i3 = Theme.key_featuredStickers_buttonText;
+            textView2.setTextColor(Theme.getColor(i3));
             this.copyButton.setBackground(Theme.createRadSelectorDrawable(822083583, 8, 8));
             this.copyButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.copyButton.setTextSize(14.0f);
@@ -1163,15 +1172,15 @@ public class FilterChatlistActivity extends BaseFragment {
             this.copyButton.setAlpha(0.0f);
             this.copyButton.setVisibility(8);
             this.buttonsBox.addView(this.copyButton, LayoutHelper.createFrame(-1, -1, 3));
-            TextView textView2 = new TextView(this, context) {
+            TextView textView3 = new TextView(this, context) {
                 @Override
-                protected void onMeasure(int i, int i2) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i) - AndroidUtilities.dp(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
+                protected void onMeasure(int i4, int i5) {
+                    super.onMeasure(View.MeasureSpec.makeMeasureSpec((View.MeasureSpec.getSize(i4) - AndroidUtilities.dp(8.0f)) / 2, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(42.0f), 1073741824));
                 }
             };
-            this.shareButton = textView2;
-            textView2.setGravity(17);
-            this.shareButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+            this.shareButton = textView3;
+            textView3.setGravity(17);
+            this.shareButton.setTextColor(Theme.getColor(i3));
             this.shareButton.setBackground(Theme.createRadSelectorDrawable(822083583, 8, 8));
             this.shareButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.shareButton.setTextSize(14.0f);
@@ -1190,10 +1199,10 @@ public class FilterChatlistActivity extends BaseFragment {
             this.shareButton.setAlpha(0.0f);
             this.shareButton.setVisibility(8);
             this.buttonsBox.addView(this.shareButton, LayoutHelper.createFrame(-1, -1, 5));
-            TextView textView3 = new TextView(context);
-            this.generateButton = textView3;
-            textView3.setGravity(17);
-            this.generateButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+            TextView textView4 = new TextView(context);
+            this.generateButton = textView4;
+            textView4.setGravity(17);
+            this.generateButton.setTextColor(Theme.getColor(i3));
             this.generateButton.setBackground(Theme.createRadSelectorDrawable(822083583, 8, 8));
             this.generateButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.generateButton.setTextSize(14.0f);
@@ -1357,8 +1366,9 @@ public class FilterChatlistActivity extends BaseFragment {
             });
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(getContext(), false, true);
             actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("DeleteLink", R.string.DeleteLink), R.drawable.msg_delete);
-            actionBarMenuSubItem3.setColors(Theme.getColor("text_RedRegular"), Theme.getColor("text_RedRegular"));
-            actionBarMenuSubItem3.setSelectorColor(Theme.multAlpha(Theme.getColor("text_RedRegular"), 0.12f));
+            int i = Theme.key_text_RedRegular;
+            actionBarMenuSubItem3.setColors(Theme.getColor(i), Theme.getColor(i));
+            actionBarMenuSubItem3.setSelectorColor(Theme.multAlpha(Theme.getColor(i), 0.12f));
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {

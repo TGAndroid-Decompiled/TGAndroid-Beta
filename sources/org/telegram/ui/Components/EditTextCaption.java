@@ -167,13 +167,13 @@ public class EditTextCaption extends EditTextBoldCursor {
         };
         editTextBoldCursor.setTextSize(1, 18.0f);
         editTextBoldCursor.setText("http://");
-        editTextBoldCursor.setTextColor(getThemedColor("dialogTextBlack"));
+        editTextBoldCursor.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         editTextBoldCursor.setHintText(LocaleController.getString("URL", R.string.URL));
-        editTextBoldCursor.setHeaderHintColor(getThemedColor("windowBackgroundWhiteBlueHeader"));
+        editTextBoldCursor.setHeaderHintColor(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader));
         editTextBoldCursor.setSingleLine(true);
         editTextBoldCursor.setFocusable(true);
         editTextBoldCursor.setTransformHintToHeader(true);
-        editTextBoldCursor.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("text_RedRegular"));
+        editTextBoldCursor.setLineColors(getThemedColor(Theme.key_windowBackgroundWhiteInputField), getThemedColor(Theme.key_windowBackgroundWhiteInputFieldActivated), getThemedColor(Theme.key_text_RedRegular));
         editTextBoldCursor.setImeOptions(6);
         editTextBoldCursor.setBackgroundDrawable(null);
         editTextBoldCursor.requestFocus();
@@ -515,10 +515,8 @@ public class EditTextCaption extends EditTextBoldCursor {
         return performMenuAction(i) || super.performAccessibilityAction(i, bundle);
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     @Override

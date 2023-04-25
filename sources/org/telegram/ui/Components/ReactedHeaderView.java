@@ -67,13 +67,13 @@ public class ReactedHeaderView extends FrameLayout {
         this.message = messageObject;
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
         this.flickerLoadingView = flickerLoadingView;
-        flickerLoadingView.setColors("actionBarDefaultSubmenuBackground", "listSelectorSDK21", null);
+        flickerLoadingView.setColors(Theme.key_actionBarDefaultSubmenuBackground, Theme.key_listSelector, -1);
         this.flickerLoadingView.setViewType(13);
         this.flickerLoadingView.setIsSingleCell(false);
         addView(this.flickerLoadingView, LayoutHelper.createFrame(-2, -1.0f));
         TextView textView = new TextView(context);
         this.titleView = textView;
-        textView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
+        textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
         this.titleView.setTextSize(1, 16.0f);
         this.titleView.setLines(1);
         this.titleView.setEllipsize(TextUtils.TruncateAt.END);
@@ -87,7 +87,7 @@ public class ReactedHeaderView extends FrameLayout {
         this.iconView = imageView;
         addView(imageView, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388627, 11.0f, 0.0f, 0.0f, 0.0f));
         Drawable mutate = ContextCompat.getDrawable(context, R.drawable.msg_reactions).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultSubmenuItemIcon"), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.MULTIPLY));
         this.iconView.setImageDrawable(mutate);
         this.iconView.setVisibility(8);
         BackupImageView backupImageView = new BackupImageView(context);

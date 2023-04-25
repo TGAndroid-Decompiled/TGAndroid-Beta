@@ -39,7 +39,7 @@ public class TextDetailCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
+        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         textView.setTextSize(1, 16.0f);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
         textView.setLines(1);
@@ -63,7 +63,7 @@ public class TextDetailCell extends FrameLayout {
             linksTextView.setLines(1);
             linksTextView.setSingleLine(true);
         }
-        linksTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2", resourcesProvider));
+        linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
         linksTextView.setTextSize(1, 13.0f);
         linksTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         linksTextView.setImportantForAccessibility(2);
@@ -123,7 +123,7 @@ public class TextDetailCell extends FrameLayout {
             this.imageView.setBackground(null);
             this.imageView.setImportantForAccessibility(2);
         } else {
-            this.imageView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(48.0f), 0, Theme.getColor("listSelectorSDK21", this.resourcesProvider)));
+            this.imageView.setBackground(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(48.0f), 0, Theme.getColor(Theme.key_listSelector, this.resourcesProvider)));
             this.imageView.setImportantForAccessibility(1);
         }
         int dp = AndroidUtilities.dp(23.0f) + (drawable != null ? AndroidUtilities.dp(48.0f) : 0);

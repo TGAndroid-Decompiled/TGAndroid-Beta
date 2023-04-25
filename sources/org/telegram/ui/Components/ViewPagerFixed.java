@@ -573,7 +573,7 @@ public class ViewPagerFixed extends FrameLayout {
     }
 
     public static class TabsView extends FrameLayout {
-        private String activeTextColorKey;
+        private int activeTextColorKey;
         private ListAdapter adapter;
         private int additionalTabWidth;
         private int allTabsWidth;
@@ -581,7 +581,7 @@ public class ViewPagerFixed extends FrameLayout {
         private float animatingIndicatorProgress;
         private Runnable animationRunnable;
         private float animationTime;
-        private String backgroundColorKey;
+        private int backgroundColorKey;
         private Paint counterPaint;
         private float crossfadeAlpha;
         private Bitmap crossfadeBitmap;
@@ -615,15 +615,15 @@ public class ViewPagerFixed extends FrameLayout {
         private Theme.ResourcesProvider resourcesProvider;
         private int scrollingToChild;
         private int selectedTabId;
-        private String selectorColorKey;
+        private int selectorColorKey;
         private GradientDrawable selectorDrawable;
-        private String tabLineColorKey;
+        private int tabLineColorKey;
         public int tabMarginDp;
         private ArrayList<Tab> tabs;
         ValueAnimator tabsAnimator;
         private TextPaint textCounterPaint;
         private TextPaint textPaint;
-        private String unactiveTextColorKey;
+        private int unactiveTextColorKey;
 
         public interface TabsViewDelegate {
             boolean canPerformActions();
@@ -706,14 +706,16 @@ public class ViewPagerFixed extends FrameLayout {
             protected void onDraw(Canvas canvas) {
                 int i;
                 int i2;
-                String str;
-                String str2;
                 int i3;
-                String str3;
                 int i4;
                 int i5;
                 int i6;
                 int i7;
+                String str;
+                int i8;
+                int i9;
+                int i10;
+                int i11;
                 if (this.currentTab.id != Integer.MAX_VALUE && TabsView.this.editingAnimationProgress != 0.0f) {
                     canvas.save();
                     float f = TabsView.this.editingAnimationProgress * (this.currentPosition % 2 == 0 ? 1.0f : -1.0f);
@@ -727,47 +729,47 @@ public class ViewPagerFixed extends FrameLayout {
                     i = TabsView.this.selectedTabId;
                     i2 = TabsView.this.previousId;
                 }
-                String str4 = "chats_tabUnreadActiveBackground";
-                String str5 = "chats_tabUnreadUnactiveBackground";
                 if (this.currentTab.id == i) {
-                    str = TabsView.this.activeTextColorKey;
-                    str2 = TabsView.this.unactiveTextColorKey;
+                    i3 = TabsView.this.activeTextColorKey;
+                    i4 = TabsView.this.unactiveTextColorKey;
+                    i5 = Theme.key_chats_tabUnreadActiveBackground;
+                    i6 = Theme.key_chats_tabUnreadUnactiveBackground;
                 } else {
-                    str = TabsView.this.unactiveTextColorKey;
-                    str2 = TabsView.this.activeTextColorKey;
-                    str5 = "chats_tabUnreadActiveBackground";
-                    str4 = "chats_tabUnreadUnactiveBackground";
+                    i3 = TabsView.this.unactiveTextColorKey;
+                    i4 = TabsView.this.activeTextColorKey;
+                    i5 = Theme.key_chats_tabUnreadUnactiveBackground;
+                    i6 = Theme.key_chats_tabUnreadActiveBackground;
                 }
-                if ((TabsView.this.animatingIndicator || TabsView.this.manualScrollingToId != -1) && ((i3 = this.currentTab.id) == i || i3 == i2)) {
-                    TabsView.this.textPaint.setColor(ColorUtils.blendARGB(Theme.getColor(str2, TabsView.this.resourcesProvider), Theme.getColor(str, TabsView.this.resourcesProvider), TabsView.this.animatingIndicatorProgress));
+                if ((TabsView.this.animatingIndicator || TabsView.this.manualScrollingToId != -1) && ((i7 = this.currentTab.id) == i || i7 == i2)) {
+                    TabsView.this.textPaint.setColor(ColorUtils.blendARGB(Theme.getColor(i4, TabsView.this.resourcesProvider), Theme.getColor(i3, TabsView.this.resourcesProvider), TabsView.this.animatingIndicatorProgress));
                 } else {
-                    TabsView.this.textPaint.setColor(Theme.getColor(str, TabsView.this.resourcesProvider));
+                    TabsView.this.textPaint.setColor(Theme.getColor(i3, TabsView.this.resourcesProvider));
                 }
-                int i8 = this.currentTab.counter;
-                if (i8 > 0) {
-                    str3 = String.format("%d", Integer.valueOf(i8));
-                    i4 = (int) Math.ceil(TabsView.this.textCounterPaint.measureText(str3));
-                    i5 = Math.max(AndroidUtilities.dp(10.0f), i4) + AndroidUtilities.dp(10.0f);
+                int i12 = this.currentTab.counter;
+                if (i12 > 0) {
+                    str = String.format("%d", Integer.valueOf(i12));
+                    i8 = (int) Math.ceil(TabsView.this.textCounterPaint.measureText(str));
+                    i9 = Math.max(AndroidUtilities.dp(10.0f), i8) + AndroidUtilities.dp(10.0f);
                 } else {
-                    str3 = null;
-                    i4 = 0;
-                    i5 = 0;
+                    str = null;
+                    i8 = 0;
+                    i9 = 0;
                 }
                 if (this.currentTab.id != Integer.MAX_VALUE && (TabsView.this.isEditing || TabsView.this.editingStartAnimationProgress != 0.0f)) {
-                    i5 = (int) (i5 + ((AndroidUtilities.dp(20.0f) - i5) * TabsView.this.editingStartAnimationProgress));
+                    i9 = (int) (i9 + ((AndroidUtilities.dp(20.0f) - i9) * TabsView.this.editingStartAnimationProgress));
                 }
-                int i9 = this.currentTab.titleWidth;
-                if (i5 != 0) {
-                    i6 = AndroidUtilities.dp((str3 != null ? 1.0f : TabsView.this.editingStartAnimationProgress) * 6.0f) + i5;
+                int i13 = this.currentTab.titleWidth;
+                if (i9 != 0) {
+                    i10 = AndroidUtilities.dp((str != null ? 1.0f : TabsView.this.editingStartAnimationProgress) * 6.0f) + i9;
                 } else {
-                    i6 = 0;
+                    i10 = 0;
                 }
-                this.tabWidth = i9 + i6;
+                this.tabWidth = i13 + i10;
                 int measuredWidth = (getMeasuredWidth() - this.tabWidth) / 2;
                 if (!TextUtils.equals(this.currentTab.title, this.currentText)) {
-                    String str6 = this.currentTab.title;
-                    this.currentText = str6;
-                    StaticLayout staticLayout = new StaticLayout(Emoji.replaceEmoji(str6, TabsView.this.textPaint.getFontMetricsInt(), AndroidUtilities.dp(15.0f), false), TabsView.this.textPaint, AndroidUtilities.dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                    String str2 = this.currentTab.title;
+                    this.currentText = str2;
+                    StaticLayout staticLayout = new StaticLayout(Emoji.replaceEmoji(str2, TabsView.this.textPaint.getFontMetricsInt(), AndroidUtilities.dp(15.0f), false), TabsView.this.textPaint, AndroidUtilities.dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                     this.textLayout = staticLayout;
                     this.textHeight = staticLayout.getHeight();
                     this.textOffsetX = (int) (-this.textLayout.getLineLeft(0));
@@ -778,35 +780,35 @@ public class ViewPagerFixed extends FrameLayout {
                     this.textLayout.draw(canvas);
                     canvas.restore();
                 }
-                if (str3 != null || (this.currentTab.id != Integer.MAX_VALUE && (TabsView.this.isEditing || TabsView.this.editingStartAnimationProgress != 0.0f))) {
+                if (str != null || (this.currentTab.id != Integer.MAX_VALUE && (TabsView.this.isEditing || TabsView.this.editingStartAnimationProgress != 0.0f))) {
                     TabsView.this.textCounterPaint.setColor(Theme.getColor(TabsView.this.backgroundColorKey, TabsView.this.resourcesProvider));
-                    if (!Theme.hasThemeKey(str4) || !Theme.hasThemeKey(str5)) {
+                    if (!Theme.hasThemeKey(i5) || !Theme.hasThemeKey(i6)) {
                         TabsView.this.counterPaint.setColor(TabsView.this.textPaint.getColor());
                     } else {
-                        int color = Theme.getColor(str4, TabsView.this.resourcesProvider);
-                        if ((TabsView.this.animatingIndicator || TabsView.this.manualScrollingToPosition != -1) && ((i7 = this.currentTab.id) == i || i7 == i2)) {
-                            TabsView.this.counterPaint.setColor(ColorUtils.blendARGB(Theme.getColor(str5, TabsView.this.resourcesProvider), color, TabsView.this.animatingIndicatorProgress));
+                        int color = Theme.getColor(i5, TabsView.this.resourcesProvider);
+                        if ((TabsView.this.animatingIndicator || TabsView.this.manualScrollingToPosition != -1) && ((i11 = this.currentTab.id) == i || i11 == i2)) {
+                            TabsView.this.counterPaint.setColor(ColorUtils.blendARGB(Theme.getColor(i6, TabsView.this.resourcesProvider), color, TabsView.this.animatingIndicatorProgress));
                         } else {
                             TabsView.this.counterPaint.setColor(color);
                         }
                     }
                     int dp = measuredWidth + this.currentTab.titleWidth + AndroidUtilities.dp(6.0f);
                     int measuredHeight = (getMeasuredHeight() - AndroidUtilities.dp(20.0f)) / 2;
-                    if (this.currentTab.id == Integer.MAX_VALUE || ((!TabsView.this.isEditing && TabsView.this.editingStartAnimationProgress == 0.0f) || str3 != null)) {
+                    if (this.currentTab.id == Integer.MAX_VALUE || ((!TabsView.this.isEditing && TabsView.this.editingStartAnimationProgress == 0.0f) || str != null)) {
                         TabsView.this.counterPaint.setAlpha(255);
                     } else {
                         TabsView.this.counterPaint.setAlpha((int) (TabsView.this.editingStartAnimationProgress * 255.0f));
                     }
-                    this.rect.set(dp, measuredHeight, dp + i5, AndroidUtilities.dp(20.0f) + measuredHeight);
+                    this.rect.set(dp, measuredHeight, dp + i9, AndroidUtilities.dp(20.0f) + measuredHeight);
                     RectF rectF = this.rect;
                     float f2 = AndroidUtilities.density;
                     canvas.drawRoundRect(rectF, f2 * 11.5f, f2 * 11.5f, TabsView.this.counterPaint);
-                    if (str3 != null) {
+                    if (str != null) {
                         if (this.currentTab.id != Integer.MAX_VALUE) {
                             TabsView.this.textCounterPaint.setAlpha((int) ((1.0f - TabsView.this.editingStartAnimationProgress) * 255.0f));
                         }
                         RectF rectF2 = this.rect;
-                        canvas.drawText(str3, rectF2.left + ((rectF2.width() - i4) / 2.0f), measuredHeight + AndroidUtilities.dp(14.5f), TabsView.this.textCounterPaint);
+                        canvas.drawText(str, rectF2.left + ((rectF2.width() - i8) / 2.0f), measuredHeight + AndroidUtilities.dp(14.5f), TabsView.this.textCounterPaint);
                     }
                     if (this.currentTab.id != Integer.MAX_VALUE && (TabsView.this.isEditing || TabsView.this.editingStartAnimationProgress != 0.0f)) {
                         TabsView.this.deletePaint.setColor(TabsView.this.textCounterPaint.getColor());
@@ -843,11 +845,11 @@ public class ViewPagerFixed extends FrameLayout {
             this.manualScrollingToPosition = -1;
             this.manualScrollingToId = -1;
             this.scrollingToChild = -1;
-            this.tabLineColorKey = "profile_tabSelectedLine";
-            this.activeTextColorKey = "profile_tabSelectedText";
-            this.unactiveTextColorKey = "profile_tabText";
-            this.selectorColorKey = "profile_tabSelector";
-            this.backgroundColorKey = "actionBarDefault";
+            this.tabLineColorKey = Theme.key_profile_tabSelectedLine;
+            this.activeTextColorKey = Theme.key_profile_tabSelectedText;
+            this.unactiveTextColorKey = Theme.key_profile_tabText;
+            this.selectorColorKey = Theme.key_profile_tabSelector;
+            this.backgroundColorKey = Theme.key_actionBarDefault;
             this.interpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             this.positionToId = new SparseIntArray(5);
             this.idToPosition = new SparseIntArray(5);

@@ -26,13 +26,13 @@ public class RadioColorCell extends FrameLayout {
         RadioButton radioButton = new RadioButton(context);
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
-        this.radioButton.setColor(getThemedColor("dialogRadioBackground"), getThemedColor("dialogRadioBackgroundChecked"));
+        this.radioButton.setColor(getThemedColor(Theme.key_dialogRadioBackground), getThemedColor(Theme.key_dialogRadioBackgroundChecked));
         RadioButton radioButton2 = this.radioButton;
         boolean z = LocaleController.isRTL;
         addView(radioButton2, LayoutHelper.createFrame(22, 22.0f, (z ? 5 : 3) | 48, z ? 0 : 18, 14.0f, z ? 18 : 0, 0.0f));
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(getThemedColor("dialogTextBlack"));
+        textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
@@ -43,7 +43,7 @@ public class RadioColorCell extends FrameLayout {
         addView(textView2, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 21 : 51, 13.0f, z2 ? 51 : 21, 0.0f));
         TextView textView3 = new TextView(context);
         this.text2View = textView3;
-        textView3.setTextColor(getThemedColor("windowBackgroundWhiteGrayText"));
+        textView3.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText));
         this.text2View.setTextSize(1, 14.0f);
         this.text2View.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.text2View.setVisibility(8);
@@ -89,9 +89,7 @@ public class RadioColorCell extends FrameLayout {
         accessibilityNodeInfo.setChecked(this.radioButton.isChecked());
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.IMapsProvider;
@@ -67,7 +68,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
         simpleTextView.setTextSize(16);
-        this.nameTextView.setTextColor(getThemedColor("windowBackgroundWhiteBlackText"));
+        this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         if (z) {
@@ -80,7 +81,7 @@ public class SharingLiveLocationCell extends FrameLayout {
             SimpleTextView simpleTextView3 = new SimpleTextView(context);
             this.distanceTextView = simpleTextView3;
             simpleTextView3.setTextSize(14);
-            this.distanceTextView.setTextColor(getThemedColor("windowBackgroundWhiteGrayText3"));
+            this.distanceTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
             this.distanceTextView.setGravity(LocaleController.isRTL ? 5 : 3);
             SimpleTextView simpleTextView4 = this.distanceTextView;
             boolean z4 = LocaleController.isRTL;
@@ -117,8 +118,9 @@ public class SharingLiveLocationCell extends FrameLayout {
         this.currentAccount = UserConfig.selectedAccount;
         String str = tLRPC$TL_channelLocation.address;
         this.avatarDrawable = null;
-        String str2 = "";
-        if (DialogObject.isUserDialog(j)) {
+        boolean isUserDialog = DialogObject.isUserDialog(j);
+        String str2 = BuildConfig.APP_CENTER_HASH;
+        if (isUserDialog) {
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
             if (user != null) {
                 this.avatarDrawable = new AvatarDrawable(user);
@@ -152,8 +154,8 @@ public class SharingLiveLocationCell extends FrameLayout {
         if (!TextUtils.isEmpty(messageObject.messageOwner.media.title)) {
             str = messageObject.messageOwner.media.title;
             Drawable drawable = getResources().getDrawable(R.drawable.pin);
-            drawable.setColorFilter(new PorterDuffColorFilter(getThemedColor("location_sendLocationIcon"), PorterDuff.Mode.MULTIPLY));
-            int themedColor = getThemedColor("location_placeLocationBackground");
+            drawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_location_sendLocationIcon), PorterDuff.Mode.MULTIPLY));
+            int themedColor = getThemedColor(Theme.key_location_placeLocationBackground);
             CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(42.0f), themedColor, themedColor), drawable);
             combinedDrawable.setCustomSize(AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
             combinedDrawable.setIconSize(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
@@ -168,7 +170,7 @@ public class SharingLiveLocationCell extends FrameLayout {
                     this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
                     str = userName;
                 }
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             } else {
                 TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-fromChatId));
                 if (chat != null) {
@@ -178,7 +180,7 @@ public class SharingLiveLocationCell extends FrameLayout {
                     this.avatarImageView.setForUserOrChat(chat, avatarDrawable);
                     str = str3;
                 }
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
         }
         this.nameTextView.setText(str);
@@ -196,7 +198,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         } else if (!z) {
             this.distanceTextView.setText(LocaleController.getString("Loading", R.string.Loading));
         } else {
-            this.distanceTextView.setText("");
+            this.distanceTextView.setText(BuildConfig.APP_CENTER_HASH);
         }
     }
 
@@ -282,9 +284,9 @@ public class SharingLiveLocationCell extends FrameLayout {
             this.rect.set(getMeasuredWidth() - AndroidUtilities.dp(43.0f), AndroidUtilities.dp(this.distanceTextView == null ? 12.0f : 18.0f), getMeasuredWidth() - AndroidUtilities.dp(13.0f), AndroidUtilities.dp(this.distanceTextView == null ? 42.0f : 48.0f));
         }
         if (this.distanceTextView == null) {
-            themedColor = getThemedColor("dialog_liveLocationProgress");
+            themedColor = getThemedColor(Theme.key_dialog_liveLocationProgress);
         } else {
-            themedColor = getThemedColor("location_liveLocationProgress");
+            themedColor = getThemedColor(Theme.key_location_liveLocationProgress);
         }
         Theme.chat_radialProgress2Paint.setColor(themedColor);
         Theme.chat_livePaint.setColor(themedColor);
@@ -293,9 +295,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         canvas.drawText(formatLocationLeftTime, this.rect.centerX() - (Theme.chat_livePaint.measureText(formatLocationLeftTime) / 2.0f), AndroidUtilities.dp(this.distanceTextView != null ? 37.0f : 31.0f), Theme.chat_livePaint);
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

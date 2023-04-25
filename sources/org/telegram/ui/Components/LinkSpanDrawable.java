@@ -64,7 +64,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
         this.isLite = !LiteMode.isEnabled(LiteMode.FLAGS_CHAT);
         this.mSpan = s;
         this.mResourcesProvider = resourcesProvider;
-        setColor(Theme.getColor("chat_linkSelectBackground", resourcesProvider));
+        setColor(Theme.getColor(Theme.key_chat_linkSelectBackground, resourcesProvider));
         this.mTouchX = f;
         this.mTouchY = f2;
         this.mLongPressDuration = ViewConfiguration.getLongPressTimeout();
@@ -463,10 +463,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
             if (obj instanceof View) {
                 ((View) obj).invalidate();
             } else if (obj instanceof ArticleViewer.DrawingText) {
-                View view2 = ((ArticleViewer.DrawingText) obj).latestParentView;
-                if (view2 != null) {
-                    view2.invalidate();
-                }
+                ((ArticleViewer.DrawingText) obj).invalidateParent();
             } else if (!z || (view = this.mParent) == null) {
             } else {
                 view.invalidate();

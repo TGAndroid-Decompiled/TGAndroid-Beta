@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessagesController;
@@ -26,7 +27,7 @@ import org.telegram.ui.Components.CounterView;
 import org.telegram.ui.Components.LayoutHelper;
 public class HintDialogCell extends FrameLayout {
     private AvatarDrawable avatarDrawable;
-    private String backgroundColorKey;
+    private int backgroundColorKey;
     CheckBox2 checkBox;
     CounterView counterView;
     private int currentAccount;
@@ -44,7 +45,7 @@ public class HintDialogCell extends FrameLayout {
         this.avatarDrawable = new AvatarDrawable();
         new RectF();
         this.currentAccount = UserConfig.selectedAccount;
-        this.backgroundColorKey = "windowBackgroundWhite";
+        this.backgroundColorKey = Theme.key_windowBackgroundWhite;
         this.drawCheckbox = z;
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
@@ -58,7 +59,7 @@ public class HintDialogCell extends FrameLayout {
         };
         this.nameTextView = textView;
         NotificationCenter.listenEmojiLoading(textView);
-        this.nameTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.nameTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.nameTextView.setTextSize(1, 12.0f);
         this.nameTextView.setMaxLines(1);
         this.nameTextView.setGravity(49);
@@ -68,12 +69,12 @@ public class HintDialogCell extends FrameLayout {
         CounterView counterView = new CounterView(context, null);
         this.counterView = counterView;
         addView(counterView, LayoutHelper.createFrame(-1, 28.0f, 48, 0.0f, 4.0f, 0.0f, 0.0f));
-        this.counterView.setColors("chats_unreadCounterText", "chats_unreadCounter");
+        this.counterView.setColors(Theme.key_chats_unreadCounterText, Theme.key_chats_unreadCounter);
         this.counterView.setGravity(5);
         if (z) {
             CheckBox2 checkBox2 = new CheckBox2(context, 21);
             this.checkBox = checkBox2;
-            checkBox2.setColor("dialogRoundCheckBox", "dialogBackground", "dialogRoundCheckBoxCheck");
+            checkBox2.setColor(Theme.key_dialogRoundCheckBox, Theme.key_dialogBackground, Theme.key_dialogRoundCheckBoxCheck);
             this.checkBox.setDrawUnchecked(false);
             this.checkBox.setDrawBackgroundAsArc(4);
             this.checkBox.setProgressDelegate(new CheckBoxBase.ProgressDelegate() {
@@ -135,10 +136,10 @@ public class HintDialogCell extends FrameLayout {
         this.currentUser = null;
     }
 
-    public void setColors(String str, String str2) {
-        this.nameTextView.setTextColor(Theme.getColor(str));
-        this.backgroundColorKey = str2;
-        this.checkBox.setColor("dialogRoundCheckBox", str2, "dialogRoundCheckBoxCheck");
+    public void setColors(int i, int i2) {
+        this.nameTextView.setTextColor(Theme.getColor(i));
+        this.backgroundColorKey = i2;
+        this.checkBox.setColor(Theme.key_dialogRoundCheckBox, i2, Theme.key_dialogRoundCheckBoxCheck);
     }
 
     public void setDialog(long j, boolean z, CharSequence charSequence) {
@@ -155,7 +156,7 @@ public class HintDialogCell extends FrameLayout {
             } else if (user != null) {
                 this.nameTextView.setText(UserObject.getFirstName(user));
             } else {
-                this.nameTextView.setText("");
+                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
             }
             this.avatarDrawable.setInfo(this.currentUser);
             this.imageView.setForUserOrChat(this.currentUser, this.avatarDrawable);
@@ -166,7 +167,7 @@ public class HintDialogCell extends FrameLayout {
             } else if (chat != null) {
                 this.nameTextView.setText(chat.title);
             } else {
-                this.nameTextView.setText("");
+                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
             }
             this.avatarDrawable.setInfo(chat);
             this.currentUser = null;
@@ -187,7 +188,7 @@ public class HintDialogCell extends FrameLayout {
         if (this.drawCheckbox) {
             int left = this.imageView.getLeft() + (this.imageView.getMeasuredWidth() / 2);
             int top = this.imageView.getTop() + (this.imageView.getMeasuredHeight() / 2);
-            Theme.checkboxSquare_checkPaint.setColor(Theme.getColor("dialogRoundCheckBox"));
+            Theme.checkboxSquare_checkPaint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox));
             Theme.checkboxSquare_checkPaint.setAlpha((int) (this.checkBox.getProgress() * 255.0f));
             canvas.drawCircle(left, top, AndroidUtilities.dp(28.0f), Theme.checkboxSquare_checkPaint);
         }

@@ -57,7 +57,7 @@ public class ChatActivityMemberRequestsDelegate {
             FrameLayout frameLayout = new FrameLayout(this.fragment.getParentActivity());
             this.root = frameLayout;
             frameLayout.setBackgroundResource(R.drawable.blockpanel);
-            this.root.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(this.fragment.getThemedColor("chat_topPanelBackground"), PorterDuff.Mode.MULTIPLY));
+            this.root.getBackground().mutate().setColorFilter(new PorterDuffColorFilter(this.fragment.getThemedColor(Theme.key_chat_topPanelBackground), PorterDuff.Mode.MULTIPLY));
             this.root.setVisibility(8);
             this.pendingRequestsEnterOffset = -getViewHeight();
             View view = new View(this.fragment.getParentActivity());
@@ -88,15 +88,15 @@ public class ChatActivityMemberRequestsDelegate {
             this.requestsCountTextView.setGravity(16);
             this.requestsCountTextView.setSingleLine();
             this.requestsCountTextView.setText((CharSequence) null);
-            this.requestsCountTextView.setTextColor(this.fragment.getThemedColor("chat_topPanelTitle"));
+            this.requestsCountTextView.setTextColor(this.fragment.getThemedColor(Theme.key_chat_topPanelTitle));
             this.requestsCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             linearLayout.addView(this.requestsCountTextView, LayoutHelper.createFrame(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
             ImageView imageView = new ImageView(this.fragment.getParentActivity());
             this.closeView = imageView;
             if (Build.VERSION.SDK_INT >= 21) {
-                imageView.setBackground(Theme.createSelectorDrawable(this.fragment.getThemedColor("inappPlayerClose") & 436207615, 1, AndroidUtilities.dp(14.0f)));
+                imageView.setBackground(Theme.createSelectorDrawable(this.fragment.getThemedColor(Theme.key_inappPlayerClose) & 436207615, 1, AndroidUtilities.dp(14.0f)));
             }
-            this.closeView.setColorFilter(new PorterDuffColorFilter(this.fragment.getThemedColor("chat_topPanelClose"), PorterDuff.Mode.MULTIPLY));
+            this.closeView.setColorFilter(new PorterDuffColorFilter(this.fragment.getThemedColor(Theme.key_chat_topPanelClose), PorterDuff.Mode.MULTIPLY));
             this.closeView.setContentDescription(LocaleController.getString("Close", R.string.Close));
             this.closeView.setImageResource(R.drawable.miniplayer_close);
             this.closeView.setScaleType(ImageView.ScaleType.CENTER);
@@ -265,8 +265,8 @@ public class ChatActivityMemberRequestsDelegate {
     }
 
     public void fillThemeDescriptions(List<ThemeDescription> list) {
-        list.add(new ThemeDescription(this.root, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, "chat_topPanelBackground"));
-        list.add(new ThemeDescription(this.requestsCountTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "chat_topPanelTitle"));
-        list.add(new ThemeDescription(this.closeView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, "chat_topPanelClose"));
+        list.add(new ThemeDescription(this.root, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_chat_topPanelBackground));
+        list.add(new ThemeDescription(this.requestsCountTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_chat_topPanelTitle));
+        list.add(new ThemeDescription(this.closeView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_chat_topPanelClose));
     }
 }

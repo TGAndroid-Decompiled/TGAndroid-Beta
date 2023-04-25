@@ -25,17 +25,18 @@ public class TooManyCommunitiesHintCell extends FrameLayout {
         super(context);
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_nameMessage_threeLines"), PorterDuff.Mode.MULTIPLY));
+        int i = Theme.key_chats_nameMessage_threeLines;
+        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
         TextView textView = new TextView(context);
         this.headerTextView = textView;
-        textView.setTextColor(Theme.getColor("chats_nameMessage_threeLines"));
+        textView.setTextColor(Theme.getColor(i));
         this.headerTextView.setTextSize(1, 20.0f);
         this.headerTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.headerTextView.setGravity(17);
         addView(this.headerTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 52.0f, 75.0f, 52.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.messageTextView = textView2;
-        textView2.setTextColor(Theme.getColor("chats_message"));
+        textView2.setTextColor(Theme.getColor(Theme.key_chats_message));
         this.messageTextView.setTextSize(1, 14.0f);
         this.messageTextView.setGravity(17);
         addView(this.messageTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 36.0f, 110.0f, 36.0f, 0.0f));
@@ -50,7 +51,7 @@ public class TooManyCommunitiesHintCell extends FrameLayout {
             @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
-                paint.setColor(Theme.getColor("text_RedRegular"));
+                paint.setColor(Theme.getColor(Theme.key_text_RedRegular));
                 canvas.save();
                 canvas.translate((getMeasuredWidth() - textPaint.measureText(r5)) - AndroidUtilities.dp(8.0f), AndroidUtilities.dpf2(7.0f));
                 this.rect.set(0.0f, 0.0f, textPaint.measureText(r5), textPaint.getTextSize());

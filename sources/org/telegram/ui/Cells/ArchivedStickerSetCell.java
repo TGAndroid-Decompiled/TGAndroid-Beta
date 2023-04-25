@@ -60,9 +60,9 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
             this.addButton = progressButton;
             this.currentButton = progressButton;
             progressButton.setText(LocaleController.getString("Add", R.string.Add));
-            progressButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-            progressButton.setProgressColor(Theme.getColor("featuredStickers_buttonProgress"));
-            progressButton.setBackgroundRoundRect(Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed"));
+            progressButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+            progressButton.setProgressColor(Theme.getColor(Theme.key_featuredStickers_buttonProgress));
+            progressButton.setBackgroundRoundRect(Theme.getColor(Theme.key_featuredStickers_addButton), Theme.getColor(Theme.key_featuredStickers_addButtonPressed));
             addView(progressButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
             int dp = AndroidUtilities.dp(60.0f);
             ProgressButton progressButton2 = new ProgressButton(context);
@@ -71,9 +71,10 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
             progressButton2.setMinWidth(dp);
             progressButton2.setMinimumWidth(dp);
             progressButton2.setTextSize(1, 14.0f);
-            progressButton2.setTextColor(Theme.getColor("featuredStickers_removeButtonText"));
+            int i = Theme.key_featuredStickers_removeButtonText;
+            progressButton2.setTextColor(Theme.getColor(i));
             progressButton2.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
-            progressButton2.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor("featuredStickers_removeButtonText")));
+            progressButton2.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor(i)));
             progressButton2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             ViewHelper.setPadding(progressButton2, 8.0f, 0.0f, 8.0f, 0.0f);
             if (Build.VERSION.SDK_INT >= 21) {
@@ -95,7 +96,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
         }
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         textView.setTextSize(1, 16.0f);
         textView.setLines(1);
         textView.setMaxLines(1);
@@ -105,7 +106,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
         addView(textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388611, 71.0f, 10.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
-        textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
         textView2.setTextSize(1, 13.0f);
         textView2.setLines(1);
         textView2.setMaxLines(1);
@@ -166,7 +167,7 @@ public class ArchivedStickerSetCell extends FrameLayout implements Checkable {
             if (closestPhotoSizeWithSize == null) {
                 closestPhotoSizeWithSize = tLRPC$Document;
             }
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$StickerSetCovered.set.thumbs, "windowBackgroundGray", 1.0f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$StickerSetCovered.set.thumbs, Theme.key_windowBackgroundGray, 1.0f);
             boolean z2 = closestPhotoSizeWithSize instanceof TLRPC$Document;
             if (z2) {
                 forSticker = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document);

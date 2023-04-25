@@ -86,25 +86,26 @@ public class AutoDeletePopupWrapper {
             }
         });
         if (i != 1) {
-            addItem2.setColors(Theme.getColor("text_RedBold"), Theme.getColor("text_RedBold"));
+            int i2 = Theme.key_text_RedBold;
+            addItem2.setColors(Theme.getColor(i2), Theme.getColor(i2));
         }
         if (i != 1) {
             FrameLayout frameLayout = new FrameLayout(context);
-            frameLayout.setBackgroundColor(Theme.getColor("actionBarDefaultSubmenuSeparator", resourcesProvider));
+            frameLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
             View view = new View(context);
-            view.setBackground(Theme.getThemedDrawable(context, R.drawable.greydivider, "windowBackgroundGrayShadow", resourcesProvider));
+            view.setBackground(Theme.getThemedDrawable(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow, resourcesProvider));
             frameLayout.addView(view, LayoutHelper.createFrame(-1, -1.0f));
-            int i2 = R.id.fit_width_tag;
-            frameLayout.setTag(i2, 1);
+            int i3 = R.id.fit_width_tag;
+            frameLayout.setTag(i3, 1);
             this.windowLayout.addView((View) frameLayout, LayoutHelper.createLinear(-1, 8));
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
             this.textView = linksTextView;
-            linksTextView.setTag(i2, 1);
+            linksTextView.setTag(i3, 1);
             this.textView.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
             this.textView.setTextSize(1, 13.0f);
-            this.textView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
+            this.textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
             this.textView.setMovementMethod(LinkMovementMethod.getInstance());
-            this.textView.setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText"));
+            this.textView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText));
             this.textView.setText(LocaleController.getString("AutoDeletePopupDescription", R.string.AutoDeletePopupDescription));
             this.windowLayout.addView((View) this.textView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 8, 0, 0));
         }

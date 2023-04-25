@@ -238,9 +238,11 @@ public class BotCommandsMenuContainer extends FrameLayout implements NestedScrol
     }
 
     public void updateColors() {
-        this.topBackground.setColor(Theme.getColor("key_sheet_scrollUp"));
-        this.backgroundPaint.setColor(Theme.getColor("windowBackgroundWhite"));
-        this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite"), PorterDuff.Mode.MULTIPLY));
+        this.topBackground.setColor(Theme.getColor(Theme.key_sheet_scrollUp));
+        Paint paint = this.backgroundPaint;
+        int i = Theme.key_windowBackgroundWhite;
+        paint.setColor(Theme.getColor(i));
+        this.shadowDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
         invalidate();
     }
 }

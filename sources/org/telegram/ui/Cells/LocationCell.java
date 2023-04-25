@@ -49,7 +49,7 @@ public class LocationCell extends FrameLayout {
         this.nameTextView.setMaxLines(1);
         this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.nameTextView.setSingleLine(true);
-        this.nameTextView.setTextColor(getThemedColor("windowBackgroundWhiteBlackText"));
+        this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         TextView textView2 = this.nameTextView;
@@ -61,7 +61,7 @@ public class LocationCell extends FrameLayout {
         this.addressTextView.setMaxLines(1);
         this.addressTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.addressTextView.setSingleLine(true);
-        this.addressTextView.setTextColor(getThemedColor("windowBackgroundWhiteGrayText3"));
+        this.addressTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
         this.addressTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         TextView textView4 = this.addressTextView;
         boolean z4 = LocaleController.isRTL;
@@ -182,9 +182,7 @@ public class LocationCell extends FrameLayout {
         }
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

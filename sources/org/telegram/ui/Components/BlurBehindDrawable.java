@@ -148,7 +148,7 @@ public class BlurBehindDrawable {
                     this.blurredBitmapTmp[i].eraseColor(0);
                 }
                 if (i == 1) {
-                    this.blurredBitmapTmp[i].eraseColor(getThemedColor("windowBackgroundWhite"));
+                    this.blurredBitmapTmp[i].eraseColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 }
                 this.blurCanvas[i].save();
                 this.blurCanvas[i].scale(0.16666667f, 0.16666667f, 0.0f, 0.0f);
@@ -306,7 +306,7 @@ public class BlurBehindDrawable {
                 int i2 = (int) (measuredWidth / 6.0f);
                 this.blurredBitmapTmp[i] = Bitmap.createBitmap(i2, (int) (dp / 6.0f), Bitmap.Config.ARGB_8888);
                 if (i == 1) {
-                    this.blurredBitmapTmp[i].eraseColor(getThemedColor("windowBackgroundWhite"));
+                    this.blurredBitmapTmp[i].eraseColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 }
                 this.blurCanvas[i] = new Canvas(this.blurredBitmapTmp[i]);
                 if (i == 0) {
@@ -338,7 +338,7 @@ public class BlurBehindDrawable {
                 Utilities.stackBlurBitmap(this.blurredBitmapTmp[i], getBlurRadius());
                 this.emptyPaint.setAlpha(255);
                 if (i == 1) {
-                    this.renderingBitmap[i].eraseColor(getThemedColor("windowBackgroundWhite"));
+                    this.renderingBitmap[i].eraseColor(getThemedColor(Theme.key_windowBackgroundWhite));
                 }
                 this.renderingBitmapCanvas[i].drawBitmap(this.blurredBitmapTmp[i], 0.0f, 0.0f, this.emptyPaint);
             }
@@ -391,7 +391,7 @@ public class BlurBehindDrawable {
                     }
                 }
                 if (i2 == 1) {
-                    BlurBehindDrawable.this.backgroundBitmap[i2].eraseColor(BlurBehindDrawable.this.getThemedColor("windowBackgroundWhite"));
+                    BlurBehindDrawable.this.backgroundBitmap[i2].eraseColor(BlurBehindDrawable.this.getThemedColor(Theme.key_windowBackgroundWhite));
                 } else {
                     BlurBehindDrawable.this.backgroundBitmap[i2].eraseColor(0);
                 }
@@ -440,9 +440,7 @@ public class BlurBehindDrawable {
         return Theme.getCachedWallpaperNonBlocking();
     }
 
-    public int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    public int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

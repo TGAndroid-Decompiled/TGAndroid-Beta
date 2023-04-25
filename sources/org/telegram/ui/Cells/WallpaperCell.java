@@ -100,7 +100,7 @@ public class WallpaperCell extends FrameLayout {
             CheckBox checkBox = new CheckBox(context, R.drawable.round_check2);
             this.checkBox = checkBox;
             checkBox.setVisibility(4);
-            this.checkBox.setColor(Theme.getColor("checkbox"), Theme.getColor("checkboxCheck"));
+            this.checkBox.setColor(Theme.getColor(Theme.key_checkbox), Theme.getColor(Theme.key_checkboxCheck));
             addView(this.checkBox, LayoutHelper.createFrame(22, 22.0f, 53, 0.0f, 2.0f, 2.0f, 0.0f));
         }
 
@@ -365,7 +365,7 @@ public class WallpaperCell extends FrameLayout {
                 this.checkDrawable = context.getResources().getDrawable(R.drawable.background_selected).mutate();
                 Paint paint2 = new Paint();
                 this.backgroundPaint = paint2;
-                paint2.setColor(Theme.getColor("sharedMedia_photoPlaceholder"));
+                paint2.setColor(Theme.getColor(Theme.key_sharedMedia_photoPlaceholder));
                 return;
             }
         }

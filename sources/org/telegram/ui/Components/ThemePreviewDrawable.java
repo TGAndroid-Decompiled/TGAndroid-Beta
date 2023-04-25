@@ -10,8 +10,8 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.util.SparseIntArray;
 import java.io.File;
-import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Bitmaps;
@@ -36,22 +36,22 @@ public class ThemePreviewDrawable extends BitmapDrawable {
         Paint paint = new Paint();
         Bitmap createBitmap = Bitmaps.createBitmap(560, 678, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
-        HashMap<String, Integer> themeFileValues = Theme.getThemeFileValues(null, themeDocument.baseTheme.assetName, null);
-        final HashMap<String, Integer> hashMap = new HashMap<>(themeFileValues);
-        themeDocument.accent.fillAccentColors(themeFileValues, hashMap);
-        int previewColor = Theme.getPreviewColor(hashMap, "actionBarDefault");
-        int previewColor2 = Theme.getPreviewColor(hashMap, "actionBarDefaultIcon");
-        int previewColor3 = Theme.getPreviewColor(hashMap, "chat_messagePanelBackground");
-        int previewColor4 = Theme.getPreviewColor(hashMap, "chat_messagePanelIcons");
-        int previewColor5 = Theme.getPreviewColor(hashMap, "chat_inBubble");
-        int previewColor6 = Theme.getPreviewColor(hashMap, "chat_outBubble");
-        Integer num = hashMap.get("chat_wallpaper");
-        Integer num2 = hashMap.get("chat_wallpaper_gradient_to");
-        Integer num3 = hashMap.get("key_chat_wallpaper_gradient_to2");
-        Integer num4 = hashMap.get("key_chat_wallpaper_gradient_to3");
-        Integer num5 = hashMap.get("chat_wallpaper_gradient_rotation");
-        if (num5 == null) {
-            num5 = 45;
+        SparseIntArray themeFileValues = Theme.getThemeFileValues(null, themeDocument.baseTheme.assetName, null);
+        final SparseIntArray clone = themeFileValues.clone();
+        themeDocument.accent.fillAccentColors(themeFileValues, clone);
+        int previewColor = Theme.getPreviewColor(clone, Theme.key_actionBarDefault);
+        int previewColor2 = Theme.getPreviewColor(clone, Theme.key_actionBarDefaultIcon);
+        int previewColor3 = Theme.getPreviewColor(clone, Theme.key_chat_messagePanelBackground);
+        int previewColor4 = Theme.getPreviewColor(clone, Theme.key_chat_messagePanelIcons);
+        int previewColor5 = Theme.getPreviewColor(clone, Theme.key_chat_inBubble);
+        int previewColor6 = Theme.getPreviewColor(clone, Theme.key_chat_outBubble);
+        Integer valueOf = Integer.valueOf(clone.get(Theme.key_chat_wallpaper));
+        Integer valueOf2 = Integer.valueOf(clone.get(Theme.key_chat_wallpaper_gradient_to1));
+        Integer valueOf3 = Integer.valueOf(clone.get(Theme.key_chat_wallpaper_gradient_to2));
+        Integer valueOf4 = Integer.valueOf(clone.get(Theme.key_chat_wallpaper_gradient_to3));
+        Integer valueOf5 = Integer.valueOf(clone.get(Theme.key_chat_wallpaper_gradient_rotation));
+        if (valueOf5 == null) {
+            valueOf5 = 45;
         }
         Drawable mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.preview_back).mutate();
         Theme.setDrawableColor(mutate, previewColor2);
@@ -69,17 +69,17 @@ public class ThemePreviewDrawable extends BitmapDrawable {
             int i2 = previewColor;
             messageDrawableArr[i] = new Theme.MessageDrawable(2, i == 1, false) {
                 @Override
-                protected int getColor(String str) {
-                    Integer num6 = (Integer) hashMap.get(str);
-                    if (num6 == null) {
-                        return Theme.getColor(str);
+                protected int getColor(int i3) {
+                    Integer valueOf6 = Integer.valueOf(clone.get(i3));
+                    if (valueOf6 == null) {
+                        return Theme.getColor(i3);
                     }
-                    return num6.intValue();
+                    return valueOf6.intValue();
                 }
 
                 @Override
-                protected Integer getCurrentColor(String str) {
-                    return (Integer) hashMap.get(str);
+                protected int getCurrentColor(int i3) {
+                    return clone.get(i3);
                 }
             };
             Theme.setDrawableColor(messageDrawableArr[i], i == 1 ? previewColor6 : previewColor5);
@@ -91,20 +91,20 @@ public class ThemePreviewDrawable extends BitmapDrawable {
         Paint paint3 = paint;
         int i3 = previewColor;
         Drawable drawable2 = mutate2;
-        if (num != null) {
-            if (num2 == null) {
-                createDitheredGradientBitmapDrawable = new ColorDrawable(num.intValue());
-                patternColor = AndroidUtilities.getPatternColor(num.intValue());
+        if (valueOf != null) {
+            if (valueOf2 == null) {
+                createDitheredGradientBitmapDrawable = new ColorDrawable(valueOf.intValue());
+                patternColor = AndroidUtilities.getPatternColor(valueOf.intValue());
                 motionBackgroundDrawable = null;
             } else {
-                if (num3.intValue() != 0) {
-                    motionBackgroundDrawable = new MotionBackgroundDrawable(num.intValue(), num2.intValue(), num3.intValue(), num4.intValue(), true);
+                if (valueOf3.intValue() != 0) {
+                    motionBackgroundDrawable = new MotionBackgroundDrawable(valueOf.intValue(), valueOf2.intValue(), valueOf3.intValue(), valueOf4.intValue(), true);
                     createDitheredGradientBitmapDrawable = null;
                 } else {
-                    createDitheredGradientBitmapDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(num5.intValue(), new int[]{num.intValue(), num2.intValue()}, createBitmap.getWidth(), createBitmap.getHeight() - 120);
+                    createDitheredGradientBitmapDrawable = BackgroundGradientDrawable.createDitheredGradientBitmapDrawable(valueOf5.intValue(), new int[]{valueOf.intValue(), valueOf2.intValue()}, createBitmap.getWidth(), createBitmap.getHeight() - 120);
                     motionBackgroundDrawable = null;
                 }
-                patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(num.intValue(), num2.intValue()));
+                patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(valueOf.intValue(), valueOf2.intValue()));
             }
             if (createDitheredGradientBitmapDrawable != null) {
                 z2 = false;

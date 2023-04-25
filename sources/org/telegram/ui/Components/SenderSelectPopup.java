@@ -89,7 +89,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         setHeight(-2);
         setBackgroundDrawable(null);
         Drawable mutate = ContextCompat.getDrawable(context, R.drawable.popup_fixed_alert).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultSubmenuBackground"), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground), PorterDuff.Mode.MULTIPLY));
         this.scrimPopupContainerLayout.setBackground(mutate);
         android.graphics.Rect rect = new android.graphics.Rect();
         mutate.getPadding(rect);
@@ -114,7 +114,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
         this.headerText = textView;
-        textView.setTextColor(Theme.getColor("dialogTextBlue"));
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlue));
         this.headerText.setTextSize(1, 16.0f);
         this.headerText.setText(LocaleController.getString("SendMessageAsTitle", R.string.SendMessageAsTitle));
         this.headerText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 1);
@@ -160,7 +160,7 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
                             ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_mini_premiumlock);
                             coloredImageSpan.setTopOffset(1);
                             coloredImageSpan.setSize(AndroidUtilities.dp(14.0f));
-                            coloredImageSpan.setColorKey("windowBackgroundWhiteGrayText5");
+                            coloredImageSpan.setColorKey(Theme.key_windowBackgroundWhiteGrayText5);
                             spannableString.setSpan(coloredImageSpan, spannableString.length() - 1, spannableString.length(), 33);
                             senderView.title.setEllipsize(null);
                             senderView.title.setText(spannableString);
@@ -568,14 +568,15 @@ public class SenderSelectPopup extends ActionBarPopupWindow {
             addView(linearLayout, LayoutHelper.createLinear(0, -1, 1.0f, 12, 0, 0, 0));
             TextView textView = new TextView(context);
             this.title = textView;
-            textView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
+            int i2 = Theme.key_actionBarDefaultSubmenuItem;
+            textView.setTextColor(Theme.getColor(i2));
             textView.setTextSize(1, 16.0f);
             textView.setTag(textView);
             textView.setMaxLines(1);
             linearLayout.addView(textView);
             TextView textView2 = new TextView(context);
             this.subtitle = textView2;
-            textView2.setTextColor(ColorUtils.setAlphaComponent(Theme.getColor("actionBarDefaultSubmenuItem"), 102));
+            textView2.setTextColor(ColorUtils.setAlphaComponent(Theme.getColor(i2), 102));
             textView2.setTextSize(1, 14.0f);
             textView2.setTag(textView2);
             textView2.setMaxLines(1);

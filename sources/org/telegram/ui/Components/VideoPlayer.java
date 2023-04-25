@@ -46,6 +46,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.MappingTrackSelector;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultAllocator;
+import com.google.android.exoplayer2.video.ColorInfo;
 import com.google.android.exoplayer2.video.SurfaceNotValidException;
 import com.google.android.exoplayer2.video.VideoListener;
 import com.google.android.exoplayer2.video.VideoSize;
@@ -1413,6 +1414,24 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
 
         public void lambda$handleBuffer$1(float[] fArr) {
             VideoPlayer.this.audioVisualizerDelegate.onVisualizerUpdate(true, true, fArr);
+        }
+    }
+
+    public boolean isHDR() {
+        ColorInfo colorInfo;
+        ExoPlayer exoPlayer = this.player;
+        if (exoPlayer == null) {
+            return false;
+        }
+        try {
+            Format videoFormat = exoPlayer.getVideoFormat();
+            if (videoFormat != null && (colorInfo = videoFormat.colorInfo) != null) {
+                int i = colorInfo.colorTransfer;
+                return i == 6 || i == 7;
+            }
+            return false;
+        } catch (Exception unused) {
+            return false;
         }
     }
 }

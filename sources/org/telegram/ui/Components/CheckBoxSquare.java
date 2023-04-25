@@ -19,9 +19,9 @@ public class CheckBoxSquare extends View {
     private boolean isAlert;
     private boolean isChecked;
     private boolean isDisabled;
-    private String key1;
-    private String key2;
-    private String key3;
+    private int key1;
+    private int key2;
+    private int key3;
     private float progress;
     private RectF rectF;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -37,19 +37,19 @@ public class CheckBoxSquare extends View {
             Theme.createCommonResources(context);
         }
         boolean z2 = this.isAlert;
-        this.key1 = z2 ? "dialogCheckboxSquareUnchecked" : "checkboxSquareUnchecked";
-        this.key2 = z2 ? "dialogCheckboxSquareBackground" : "checkboxSquareBackground";
-        this.key3 = z2 ? "dialogCheckboxSquareCheck" : "checkboxSquareCheck";
+        this.key1 = z2 ? Theme.key_dialogCheckboxSquareUnchecked : Theme.key_checkboxSquareUnchecked;
+        this.key2 = z2 ? Theme.key_dialogCheckboxSquareBackground : Theme.key_checkboxSquareBackground;
+        this.key3 = z2 ? Theme.key_dialogCheckboxSquareCheck : Theme.key_checkboxSquareCheck;
         this.rectF = new RectF();
         this.drawBitmap = Bitmap.createBitmap(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), Bitmap.Config.ARGB_4444);
         this.drawCanvas = new Canvas(this.drawBitmap);
         this.isAlert = z;
     }
 
-    public void setColors(String str, String str2, String str3) {
-        this.key1 = str;
-        this.key2 = str2;
-        this.key3 = str3;
+    public void setColors(int i, int i2, int i3) {
+        this.key1 = i;
+        this.key2 = i2;
+        this.key3 = i3;
         invalidate();
     }
 
@@ -142,7 +142,7 @@ public class CheckBoxSquare extends View {
             f2 = 1.0f;
         }
         if (this.isDisabled) {
-            Theme.checkboxSquare_backgroundPaint.setColor(getThemedColor(this.isAlert ? "dialogCheckboxSquareDisabled" : "checkboxSquareDisabled"));
+            Theme.checkboxSquare_backgroundPaint.setColor(getThemedColor(this.isAlert ? Theme.key_dialogCheckboxSquareDisabled : Theme.key_checkboxSquareDisabled));
         }
         float dp = AndroidUtilities.dp(1.0f) * f;
         this.rectF.set(dp, dp, AndroidUtilities.dp(18.0f) - dp, AndroidUtilities.dp(18.0f) - dp);
@@ -162,9 +162,7 @@ public class CheckBoxSquare extends View {
         canvas.drawBitmap(this.drawBitmap, 0.0f, 0.0f, (Paint) null);
     }
 
-    protected int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    protected int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

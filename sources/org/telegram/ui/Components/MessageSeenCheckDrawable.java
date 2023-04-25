@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DialogCell;
 public class MessageSeenCheckDrawable {
-    private String colorKey;
+    private int colorKey;
     private Drawable drawable;
     private int h;
     private int lastColor;
@@ -20,18 +20,18 @@ public class MessageSeenCheckDrawable {
     private int resId;
     private int w;
 
-    public MessageSeenCheckDrawable(int i, String str) {
+    public MessageSeenCheckDrawable(int i, int i2) {
         this.w = -1;
         this.h = -1;
         this.oy = 4.66f;
         this.resId = i;
-        this.colorKey = str;
+        this.colorKey = i2;
     }
 
-    public MessageSeenCheckDrawable(int i, String str, int i2, int i3, float f) {
-        this(i, str);
-        this.w = i2;
-        this.h = i3;
+    public MessageSeenCheckDrawable(int i, int i2, int i3, int i4, float f) {
+        this(i, i2);
+        this.w = i3;
+        this.h = i4;
         this.oy = f;
     }
 

@@ -39,12 +39,14 @@ public class TextCheckCell2 extends FrameLayout {
             this.animatedTextView = animatedTextView;
             animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
             this.animatedTextView.getDrawable().setAllowCancel(true);
-            this.animatedTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            AnimatedTextView animatedTextView2 = this.animatedTextView;
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            animatedTextView2.setTextColor(Theme.getColor(i));
             this.animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.collapseViewContainer.addView(this.animatedTextView, LayoutHelper.createFrame(-2, 20.0f));
             this.collapsedArrow = new View(getContext());
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"), PorterDuff.Mode.MULTIPLY));
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
             this.collapsedArrow.setBackground(mutate);
             this.collapseViewContainer.addView(this.collapsedArrow, LayoutHelper.createLinear(16, 16, 16));
             this.collapseViewContainer.setClipChildren(false);
@@ -58,7 +60,7 @@ public class TextCheckCell2 extends FrameLayout {
                 }
             };
             this.checkBoxClickArea = view;
-            view.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 2));
+            view.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 2));
             addView(this.checkBoxClickArea, LayoutHelper.createFrame(76, -1, LocaleController.isRTL ? 3 : 5));
         }
         this.animatedTextView.setText(str);
@@ -80,7 +82,7 @@ public class TextCheckCell2 extends FrameLayout {
         super(context);
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
+        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
@@ -92,7 +94,7 @@ public class TextCheckCell2 extends FrameLayout {
         addView(textView2, LayoutHelper.createFrame(-2, -1.0f, (z ? 5 : 3) | 48, z ? 64.0f : 21.0f, 0.0f, z ? 21.0f : 64.0f, 0.0f));
         TextView textView3 = new TextView(context);
         this.valueTextView = textView3;
-        textView3.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2", resourcesProvider));
+        textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.valueTextView.setLines(1);

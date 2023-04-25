@@ -26,14 +26,14 @@ public class TopicExceptionCell extends FrameLayout {
         addView(backupImageView, LayoutHelper.createFrame(30, 30.0f, 16, 20.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.title = textView;
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.title.setTextSize(1, 16.0f);
         this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.title.setMaxLines(1);
         addView(this.title, LayoutHelper.createFrame(-1, -2.0f, 0, 72.0f, 8.0f, 12.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.subtitle = textView2;
-        textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
         this.subtitle.setTextSize(1, 14.0f);
         addView(this.subtitle, LayoutHelper.createFrame(-1, -2.0f, 0, 72.0f, 32.0f, 12.0f, 0.0f));
     }
@@ -42,7 +42,7 @@ public class TopicExceptionCell extends FrameLayout {
         ForumUtilities.setTopicIcon(this.backupImageView, tLRPC$TL_forumTopic);
         BackupImageView backupImageView = this.backupImageView;
         if (backupImageView != null && backupImageView.getImageReceiver() != null && (this.backupImageView.getImageReceiver().getDrawable() instanceof ForumUtilities.GeneralTopicDrawable)) {
-            ((ForumUtilities.GeneralTopicDrawable) this.backupImageView.getImageReceiver().getDrawable()).setColor(Theme.getColor("chats_archiveBackground"));
+            ((ForumUtilities.GeneralTopicDrawable) this.backupImageView.getImageReceiver().getDrawable()).setColor(Theme.getColor(Theme.key_chats_archiveBackground));
         }
         this.title.setText(tLRPC$TL_forumTopic.title);
         this.subtitle.setText(MessagesController.getInstance(UserConfig.selectedAccount).getMutedString(j, tLRPC$TL_forumTopic.id));

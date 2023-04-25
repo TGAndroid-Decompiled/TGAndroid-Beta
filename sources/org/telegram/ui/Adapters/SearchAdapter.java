@@ -27,6 +27,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_contact;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.ProfileSearchCell;
@@ -395,12 +396,11 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-        String str;
+        long j;
         boolean z;
-        SpannableStringBuilder spannableStringBuilder;
-        int indexOfIgnoreCase;
+        String str;
+        CharSequence charSequence;
         int itemViewType = viewHolder.getItemViewType();
-        String str2 = null;
         boolean z2 = false;
         if (itemViewType != 0) {
             if (itemViewType == 1) {
@@ -417,7 +417,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                 }
             } else if (itemViewType == 2) {
                 TextCell textCell = (TextCell) viewHolder.itemView;
-                textCell.setColors(null, "windowBackgroundWhiteBlueText2");
+                textCell.setColors(-1, Theme.key_windowBackgroundWhiteBlueText2);
                 textCell.setText(LocaleController.formatString("AddContactByPhone", R.string.AddContactByPhone, PhoneFormat.getInstance().format("+" + ((String) getItem(i)))), false);
                 return;
             } else if (itemViewType != 3) {
@@ -432,60 +432,65 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
         }
         TLObject tLObject = (TLObject) getItem(i);
         if (tLObject != null) {
-            long j = 0;
+            CharSequence charSequence2 = null;
             if (tLObject instanceof TLRPC$User) {
                 TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
                 str = tLRPC$User.username;
                 j = tLRPC$User.id;
                 z = tLRPC$User.self;
-            } else {
-                if (tLObject instanceof TLRPC$Chat) {
-                    TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
-                    str = ChatObject.getPublicUsername(tLRPC$Chat);
-                    j = tLRPC$Chat.id;
-                } else {
-                    str = null;
-                }
+            } else if (tLObject instanceof TLRPC$Chat) {
+                TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) tLObject;
+                str = ChatObject.getPublicUsername(tLRPC$Chat);
+                j = tLRPC$Chat.id;
                 z = false;
+            } else {
+                j = 0;
+                z = false;
+                str = null;
             }
             if (i < this.searchResult.size()) {
-                CharSequence charSequence = this.searchResultNames.get(i);
-                if (charSequence != null && str != null && str.length() > 0) {
-                    if (charSequence.toString().startsWith("@" + str)) {
-                        spannableStringBuilder = charSequence;
+                CharSequence charSequence3 = this.searchResultNames.get(i);
+                if (charSequence3 != null && str != null && str.length() > 0) {
+                    if (charSequence3.toString().startsWith("@" + str)) {
+                        charSequence = charSequence3;
                     }
                 }
-                spannableStringBuilder = null;
-                str2 = charSequence;
+                charSequence = null;
+                charSequence2 = charSequence3;
             } else if (i <= this.searchResult.size() || str == null) {
-                spannableStringBuilder = null;
+                charSequence = null;
             } else {
                 String lastFoundUsername = this.searchAdapterHelper.getLastFoundUsername();
                 if (lastFoundUsername != null && lastFoundUsername.startsWith("@")) {
                     lastFoundUsername = lastFoundUsername.substring(1);
                 }
                 try {
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-                    spannableStringBuilder2.append((CharSequence) "@");
-                    spannableStringBuilder2.append((CharSequence) str);
-                    if (lastFoundUsername != null && (indexOfIgnoreCase = AndroidUtilities.indexOfIgnoreCase(str, lastFoundUsername)) != -1) {
-                        int length = lastFoundUsername.length();
-                        if (indexOfIgnoreCase == 0) {
-                            length++;
-                        } else {
-                            indexOfIgnoreCase++;
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                    spannableStringBuilder.append((CharSequence) "@");
+                    spannableStringBuilder.append((CharSequence) str);
+                    charSequence = spannableStringBuilder;
+                    if (lastFoundUsername != null) {
+                        int indexOfIgnoreCase = AndroidUtilities.indexOfIgnoreCase(str, lastFoundUsername);
+                        charSequence = spannableStringBuilder;
+                        if (indexOfIgnoreCase != -1) {
+                            int length = lastFoundUsername.length();
+                            if (indexOfIgnoreCase == 0) {
+                                length++;
+                            } else {
+                                indexOfIgnoreCase++;
+                            }
+                            spannableStringBuilder.setSpan(new ForegroundColorSpanThemable(Theme.key_windowBackgroundWhiteBlueText4), indexOfIgnoreCase, length + indexOfIgnoreCase, 33);
+                            charSequence = spannableStringBuilder;
                         }
-                        spannableStringBuilder2.setSpan(new ForegroundColorSpanThemable("windowBackgroundWhiteBlueText4"), indexOfIgnoreCase, length + indexOfIgnoreCase, 33);
                     }
-                    spannableStringBuilder = spannableStringBuilder2;
                 } catch (Exception e) {
                     FileLog.e(e);
-                    spannableStringBuilder = str;
+                    charSequence = str;
                 }
             }
             if (this.useUserCell) {
                 UserCell userCell = (UserCell) viewHolder.itemView;
-                userCell.setData(tLObject, str2, spannableStringBuilder, 0);
+                userCell.setData(tLObject, charSequence2, charSequence, 0);
                 LongSparseArray<?> longSparseArray = this.checkedMap;
                 if (longSparseArray != null) {
                     userCell.setChecked(longSparseArray.indexOfKey(j) >= 0, false);
@@ -494,7 +499,7 @@ public class SearchAdapter extends RecyclerListView.SelectionAdapter {
                 return;
             }
             ProfileSearchCell profileSearchCell2 = (ProfileSearchCell) viewHolder.itemView;
-            profileSearchCell2.setData(tLObject, null, z ? LocaleController.getString("SavedMessages", R.string.SavedMessages) : str2, spannableStringBuilder, false, z);
+            profileSearchCell2.setData(tLObject, null, z ? LocaleController.getString("SavedMessages", R.string.SavedMessages) : charSequence2, charSequence, false, z);
             if (i != getItemCount() - 1 && i != this.searchResult.size() - 1) {
                 z2 = true;
             }

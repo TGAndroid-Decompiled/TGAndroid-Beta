@@ -50,6 +50,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -57,6 +58,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ActionBar.ThemeColors;
 import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Cells.TextColorThemeCell;
 import org.telegram.ui.Components.RecyclerListView;
@@ -243,7 +245,7 @@ public class ThemeEditorView {
             }
 
             public void lambda$new$0(View view) {
-                this.searchEditText.setText("");
+                this.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
                 AndroidUtilities.showKeyboard(this.searchEditText);
             }
 
@@ -322,7 +324,7 @@ public class ThemeEditorView {
                     this.colorEditText[i].setCursorWidth(1.5f);
                     this.colorEditText[i].setTextSize(1, 18.0f);
                     this.colorEditText[i].setBackground(null);
-                    this.colorEditText[i].setLineColors(Theme.getColor("dialogInputField"), Theme.getColor("dialogInputFieldActivated"), Theme.getColor("text_RedBold"));
+                    this.colorEditText[i].setLineColors(Theme.getColor(Theme.key_dialogInputField), Theme.getColor(Theme.key_dialogInputFieldActivated), Theme.getColor(Theme.key_text_RedBold));
                     this.colorEditText[i].setMaxLines(1);
                     this.colorEditText[i].setTag(Integer.valueOf(i));
                     this.colorEditText[i].setGravity(17);
@@ -509,13 +511,13 @@ public class ThemeEditorView {
                 if (!EditorAlert.this.ignoreTextChange) {
                     EditorAlert.this.ignoreTextChange = true;
                     EditTextBoldCursor editTextBoldCursor = this.colorEditText[0];
-                    editTextBoldCursor.setText("" + red);
+                    editTextBoldCursor.setText(BuildConfig.APP_CENTER_HASH + red);
                     EditTextBoldCursor editTextBoldCursor2 = this.colorEditText[1];
-                    editTextBoldCursor2.setText("" + green);
+                    editTextBoldCursor2.setText(BuildConfig.APP_CENTER_HASH + green);
                     EditTextBoldCursor editTextBoldCursor3 = this.colorEditText[2];
-                    editTextBoldCursor3.setText("" + blue);
+                    editTextBoldCursor3.setText(BuildConfig.APP_CENTER_HASH + blue);
                     EditTextBoldCursor editTextBoldCursor4 = this.colorEditText[3];
-                    editTextBoldCursor4.setText("" + alpha);
+                    editTextBoldCursor4.setText(BuildConfig.APP_CENTER_HASH + alpha);
                     for (int i2 = 0; i2 < 4; i2++) {
                         EditTextBoldCursor[] editTextBoldCursorArr = this.colorEditText;
                         editTextBoldCursorArr[i2].setSelection(editTextBoldCursorArr[i2].length());
@@ -605,8 +607,8 @@ public class ThemeEditorView {
                 private void updateLightStatusBar(boolean z) {
                     Boolean bool = this.statusBarOpen;
                     if (bool == null || bool.booleanValue() != z) {
-                        boolean z2 = AndroidUtilities.computePerceivedBrightness(EditorAlert.this.getThemedColor("dialogBackground")) > 0.721f;
-                        boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(EditorAlert.this.getThemedColor("actionBarDefault"), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
+                        boolean z2 = AndroidUtilities.computePerceivedBrightness(EditorAlert.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
+                        boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(EditorAlert.this.getThemedColor(Theme.key_actionBarDefault), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
                         Boolean valueOf = Boolean.valueOf(z);
                         this.statusBarOpen = valueOf;
                         if (!valueOf.booleanValue()) {
@@ -791,7 +793,7 @@ public class ThemeEditorView {
             ThemeEditorView.this.currentThemeDesriptionPosition = i;
             for (int i2 = 0; i2 < ThemeEditorView.this.currentThemeDesription.size(); i2++) {
                 ThemeDescription themeDescription = (ThemeDescription) ThemeEditorView.this.currentThemeDesription.get(i2);
-                if (themeDescription.getCurrentKey().equals("chat_wallpaper")) {
+                if (themeDescription.getCurrentKey() == Theme.key_chat_wallpaper) {
                     ThemeEditorView.this.wallpaperUpdater.showAlert(true);
                     return;
                 }
@@ -1036,7 +1038,7 @@ public class ThemeEditorView {
 
             public CharSequence generateSearchName(String str, String str2) {
                 if (TextUtils.isEmpty(str)) {
-                    return "";
+                    return BuildConfig.APP_CENTER_HASH;
                 }
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 String trim = str.trim();
@@ -1090,15 +1092,15 @@ public class ThemeEditorView {
                     int size = EditorAlert.this.listAdapter.items.size();
                     for (int i3 = 0; i3 < size; i3++) {
                         ArrayList<ThemeDescription> arrayList3 = (ArrayList) EditorAlert.this.listAdapter.items.get(i3);
-                        String currentKey = arrayList3.get(0).getCurrentKey();
-                        String lowerCase2 = currentKey.toLowerCase();
+                        String stringName = ThemeColors.getStringName(arrayList3.get(0).getCurrentKey());
+                        String lowerCase2 = stringName.toLowerCase();
                         int i4 = 0;
                         while (true) {
                             if (i4 < i2) {
                                 String str2 = strArr[i4];
                                 if (lowerCase2.contains(str2)) {
                                     arrayList.add(arrayList3);
-                                    arrayList2.add(generateSearchName(currentKey, str2));
+                                    arrayList2.add(generateSearchName(stringName, str2));
                                     break;
                                 }
                                 i4++;
@@ -1207,7 +1209,7 @@ public class ThemeEditorView {
                 if (viewHolder.getItemViewType() == 0) {
                     int i2 = i - 1;
                     ThemeDescription themeDescription = this.searchResult.get(i2).get(0);
-                    ((TextColorThemeCell) viewHolder.itemView).setTextAndColor(this.searchNames.get(i2), themeDescription.getCurrentKey().equals("chat_wallpaper") ? 0 : themeDescription.getSetColor());
+                    ((TextColorThemeCell) viewHolder.itemView).setTextAndColor(this.searchNames.get(i2), themeDescription.getCurrentKey() != Theme.key_chat_wallpaper ? themeDescription.getSetColor() : 0);
                 }
             }
         }
@@ -1232,21 +1234,24 @@ public class ThemeEditorView {
                 int size = arrayList.size();
                 for (int i = 0; i < size; i++) {
                     ThemeDescription themeDescription = arrayList.get(i);
-                    String currentKey = themeDescription.getCurrentKey();
-                    ArrayList<ThemeDescription> arrayList2 = (ArrayList) hashMap.get(currentKey);
+                    int currentKey = themeDescription.getCurrentKey();
+                    ArrayList<ThemeDescription> arrayList2 = (ArrayList) hashMap.get(Integer.valueOf(currentKey));
                     if (arrayList2 == null) {
                         arrayList2 = new ArrayList<>();
-                        hashMap.put(currentKey, arrayList2);
+                        hashMap.put(Integer.valueOf(currentKey), arrayList2);
                         this.items.add(arrayList2);
                     }
                     arrayList2.add(themeDescription);
                 }
-                if (Build.VERSION.SDK_INT < 26 || hashMap.containsKey("windowBackgroundGray")) {
-                    return;
+                if (Build.VERSION.SDK_INT >= 26) {
+                    int i2 = Theme.key_windowBackgroundGray;
+                    if (hashMap.containsKey(Integer.valueOf(i2))) {
+                        return;
+                    }
+                    ArrayList<ThemeDescription> arrayList3 = new ArrayList<>();
+                    arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, i2));
+                    this.items.add(arrayList3);
                 }
-                ArrayList<ThemeDescription> arrayList3 = new ArrayList<>();
-                arrayList3.add(new ThemeDescription(null, 0, null, null, null, null, "windowBackgroundGray"));
-                this.items.add(arrayList3);
             }
 
             @Override
@@ -1281,7 +1286,7 @@ public class ThemeEditorView {
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 if (viewHolder.getItemViewType() == 0) {
                     ThemeDescription themeDescription = this.items.get(i - 1).get(0);
-                    ((TextColorThemeCell) viewHolder.itemView).setTextAndColor(themeDescription.getTitle(), themeDescription.getCurrentKey().equals("chat_wallpaper") ? 0 : themeDescription.getSetColor());
+                    ((TextColorThemeCell) viewHolder.itemView).setTextAndColor(themeDescription.getTitle(), themeDescription.getCurrentKey() != Theme.key_chat_wallpaper ? themeDescription.getSetColor() : 0);
                 }
             }
         }

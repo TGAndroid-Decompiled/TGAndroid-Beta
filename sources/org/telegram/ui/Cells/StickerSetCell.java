@@ -27,10 +27,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
@@ -98,33 +100,35 @@ public class StickerSetCell extends FrameLayout {
             imageView.setFocusable(false);
             this.optionsButton.setScaleType(ImageView.ScaleType.CENTER);
             if (i != 3) {
-                this.optionsButton.setBackground(Theme.createSelectorDrawable(Theme.getColor("stickers_menuSelector")));
+                this.optionsButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector)));
             }
             if (i == 1) {
-                this.optionsButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
+                ImageView imageView2 = this.optionsButton;
+                int i2 = Theme.key_stickers_menu;
+                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
                 this.optionsButton.setImageResource(R.drawable.msg_actions);
                 this.optionsButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
                 addView(this.optionsButton, LayoutHelper.createFrame(40, 40, (LocaleController.isRTL ? 3 : 5) | 16));
-                ImageView imageView2 = new ImageView(context);
-                this.reorderButton = imageView2;
-                imageView2.setAlpha(0.0f);
+                ImageView imageView3 = new ImageView(context);
+                this.reorderButton = imageView3;
+                imageView3.setAlpha(0.0f);
                 this.reorderButton.setVisibility(8);
                 this.reorderButton.setScaleType(ImageView.ScaleType.CENTER);
                 this.reorderButton.setImageResource(R.drawable.list_reorder);
-                this.reorderButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
+                this.reorderButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
                 addView(this.reorderButton, LayoutHelper.createFrameRelatively(58.0f, 58.0f, 8388613));
                 CheckBox2 checkBox2 = new CheckBox2(context, 21);
                 this.checkBox = checkBox2;
-                checkBox2.setColor(null, "windowBackgroundWhite", "checkboxCheck");
+                checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
                 this.checkBox.setDrawUnchecked(false);
                 this.checkBox.setDrawBackgroundAsArc(3);
                 addView(this.checkBox, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388611, 34.0f, 30.0f, 0.0f, 0.0f));
             } else if (i == 3) {
-                this.optionsButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("featuredStickers_addedIcon"), PorterDuff.Mode.MULTIPLY));
+                this.optionsButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_featuredStickers_addedIcon), PorterDuff.Mode.MULTIPLY));
                 this.optionsButton.setImageResource(R.drawable.floating_check);
-                ImageView imageView3 = this.optionsButton;
+                ImageView imageView4 = this.optionsButton;
                 boolean z2 = LocaleController.isRTL;
-                addView(imageView3, LayoutHelper.createFrame(40, 40.0f, (z2 ? 3 : 5) | 48, z2 ? 10 : 0, 9.0f, z2 ? 0 : 10, 0.0f));
+                addView(imageView4, LayoutHelper.createFrame(40, 40.0f, (z2 ? 3 : 5) | 48, z2 ? 10 : 0, 9.0f, z2 ? 0 : 10, 0.0f));
             }
         }
         this.sideButtons = new FrameLayout(getContext());
@@ -133,8 +137,10 @@ public class StickerSetCell extends FrameLayout {
         textView.setTextSize(1, 14.0f);
         this.addButtonView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.addButtonView.setText(LocaleController.getString("Add", R.string.Add));
-        this.addButtonView.setTextColor(Theme.getColor("featuredStickers_buttonText", resourcesProvider));
-        this.addButtonView.setBackground(Theme.AdaptiveRipple.createRect(Theme.getColor("featuredStickers_addButton", resourcesProvider), Theme.getColor("featuredStickers_addButtonPressed", resourcesProvider), 4.0f));
+        this.addButtonView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
+        TextView textView2 = this.addButtonView;
+        int i3 = Theme.key_featuredStickers_addButton;
+        textView2.setBackground(Theme.AdaptiveRipple.createRect(Theme.getColor(i3, resourcesProvider), Theme.getColor(Theme.key_featuredStickers_addButtonPressed, resourcesProvider), 4.0f));
         this.addButtonView.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
         this.addButtonView.setGravity(17);
         this.addButtonView.setOnClickListener(new View.OnClickListener() {
@@ -144,13 +150,13 @@ public class StickerSetCell extends FrameLayout {
             }
         });
         this.sideButtons.addView(this.addButtonView, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, (LocaleController.isRTL ? 3 : 5) | 16));
-        TextView textView2 = new TextView(context);
-        this.removeButtonView = textView2;
-        textView2.setTextSize(1, 14.0f);
+        TextView textView3 = new TextView(context);
+        this.removeButtonView = textView3;
+        textView3.setTextSize(1, 14.0f);
         this.removeButtonView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.removeButtonView.setText(LocaleController.getString("StickersRemove", R.string.StickersRemove));
-        this.removeButtonView.setTextColor(Theme.getColor("featuredStickers_removeButtonText", resourcesProvider));
-        this.removeButtonView.setBackground(Theme.AdaptiveRipple.createRect(0, Theme.getColor("featuredStickers_addButton", resourcesProvider) & 452984831, 4.0f));
+        this.removeButtonView.setTextColor(Theme.getColor(Theme.key_featuredStickers_removeButtonText, resourcesProvider));
+        this.removeButtonView.setBackground(Theme.AdaptiveRipple.createRect(0, Theme.getColor(i3, resourcesProvider) & 452984831, 4.0f));
         this.removeButtonView.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
         this.removeButtonView.setGravity(17);
         this.removeButtonView.setOnClickListener(new View.OnClickListener() {
@@ -189,15 +195,15 @@ public class StickerSetCell extends FrameLayout {
                 StickerSetCell.this.lambda$new$3(view);
             }
         });
-        TextView textView3 = new TextView(this, context) {
+        TextView textView4 = new TextView(this, context) {
             @Override
             public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                 super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false), bufferType);
             }
         };
-        this.textView = textView3;
-        NotificationCenter.listenEmojiLoading(textView3);
-        this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.textView = textView4;
+        NotificationCenter.listenEmojiLoading(textView4);
+        this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setLines(1);
@@ -206,9 +212,9 @@ public class StickerSetCell extends FrameLayout {
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         this.textView.setGravity(LayoutHelper.getAbsoluteGravityStart());
         addView(this.textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388611, 71.0f, 9.0f, 70.0f, 0.0f));
-        TextView textView4 = new TextView(context);
-        this.valueTextView = textView4;
-        textView4.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
+        TextView textView5 = new TextView(context);
+        this.valueTextView = textView5;
+        textView5.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
@@ -260,7 +266,7 @@ public class StickerSetCell extends FrameLayout {
         int indexOf = str2.toLowerCase(locale).indexOf(str);
         if (indexOf != -1) {
             SpannableString spannableString = new SpannableString(tLRPC$StickerSet.title);
-            spannableString.setSpan(new ForegroundColorSpanThemable("windowBackgroundWhiteBlueText4", resourcesProvider), indexOf, str.length() + indexOf, 0);
+            spannableString.setSpan(new ForegroundColorSpanThemable(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider), indexOf, str.length() + indexOf, 0);
             this.textView.setText(spannableString);
         }
         int indexOf2 = tLRPC$StickerSet.short_name.toLowerCase(locale).indexOf(str);
@@ -268,7 +274,7 @@ public class StickerSetCell extends FrameLayout {
             String str3 = tLRPC$StickerSet.emojis ? "t.me/addemoji/" : "t.me/addstickers/";
             int length = indexOf2 + str3.length();
             SpannableString spannableString2 = new SpannableString(str3 + tLRPC$StickerSet.short_name);
-            spannableString2.setSpan(new ForegroundColorSpanThemable("windowBackgroundWhiteBlueText4", resourcesProvider), length, str.length() + length, 0);
+            spannableString2.setSpan(new ForegroundColorSpanThemable(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider), length, str.length() + length, 0);
             this.valueTextView.setText(spannableString2);
         }
     }
@@ -319,32 +325,36 @@ public class StickerSetCell extends FrameLayout {
             if (tLRPC$Document == null) {
                 tLRPC$Document = arrayList.get(0);
             }
-            TLRPC$Document tLRPC$Document3 = tLRPC$Document;
+            LiteMode.isEnabled(1);
             TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messages_stickerSet.set.thumbs, 90);
             if (closestPhotoSizeWithSize == null) {
-                closestPhotoSizeWithSize = tLRPC$Document3;
+                closestPhotoSizeWithSize = tLRPC$Document;
             }
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$TL_messages_stickerSet.set.thumbs, "windowBackgroundGray", 1.0f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$TL_messages_stickerSet.set.thumbs, Theme.key_windowBackgroundGray, 1.0f);
             boolean z4 = closestPhotoSizeWithSize instanceof TLRPC$Document;
             if (z4) {
-                forSticker = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document3.thumbs, 90), tLRPC$Document3);
+                forSticker = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document);
             } else {
-                forSticker = ImageLocation.getForSticker((TLRPC$PhotoSize) closestPhotoSizeWithSize, tLRPC$Document3, tLRPC$TL_messages_stickerSet.set.thumb_version);
+                forSticker = ImageLocation.getForSticker((TLRPC$PhotoSize) closestPhotoSizeWithSize, tLRPC$Document, tLRPC$TL_messages_stickerSet.set.thumb_version);
             }
-            ImageLocation imageLocation = forSticker;
-            if ((z4 && MessageObject.isAnimatedStickerDocument(tLRPC$Document3, true)) || MessageObject.isVideoSticker(tLRPC$Document3)) {
+            boolean isEnabled = LiteMode.isEnabled(this.emojis ? LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD : 1);
+            StringBuilder sb = new StringBuilder();
+            sb.append("50_50");
+            sb.append(!isEnabled ? "_firstframe" : BuildConfig.APP_CENTER_HASH);
+            String sb2 = sb.toString();
+            if ((z4 && MessageObject.isAnimatedStickerDocument(tLRPC$Document, true)) || MessageObject.isVideoSticker(tLRPC$Document)) {
                 if (svgThumb != null) {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document3), "50_50", svgThumb, 0, tLRPC$TL_messages_stickerSet);
+                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), sb2, svgThumb, 0, tLRPC$TL_messages_stickerSet);
                 } else {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document3), "50_50", imageLocation, (String) null, 0, tLRPC$TL_messages_stickerSet);
+                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), sb2, forSticker, (String) null, 0, tLRPC$TL_messages_stickerSet);
                 }
-                if (MessageObject.isTextColorEmoji(tLRPC$Document3)) {
+                if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
                     this.imageView.setColorFilter(Theme.chat_animatedEmojiTextColorFilter);
                 }
-            } else if (imageLocation != null && imageLocation.imageType == 1) {
-                this.imageView.setImage(imageLocation, "50_50", "tgs", svgThumb, tLRPC$TL_messages_stickerSet);
+            } else if (forSticker != null && forSticker.imageType == 1) {
+                this.imageView.setImage(forSticker, sb2, "tgs", svgThumb, tLRPC$TL_messages_stickerSet);
             } else {
-                this.imageView.setImage(imageLocation, "50_50", "webp", svgThumb, tLRPC$TL_messages_stickerSet);
+                this.imageView.setImage(forSticker, sb2, "webp", svgThumb, tLRPC$TL_messages_stickerSet);
             }
         } else {
             this.valueTextView.setText(LocaleController.formatPluralString(tLRPC$TL_messages_stickerSet.set.emojis ? "EmojiCount" : "Stickers", 0, new Object[0]));
@@ -352,10 +362,10 @@ public class StickerSetCell extends FrameLayout {
         }
         if (z2) {
             TextView textView = this.valueTextView;
-            StringBuilder sb = new StringBuilder();
-            sb.append(tLRPC$TL_messages_stickerSet.set.emojis ? "t.me/addemoji/" : "t.me/addstickers/");
-            sb.append(tLRPC$TL_messages_stickerSet.set.short_name);
-            textView.setText(sb.toString());
+            StringBuilder sb3 = new StringBuilder();
+            sb3.append(tLRPC$TL_messages_stickerSet.set.emojis ? "t.me/addemoji/" : "t.me/addstickers/");
+            sb3.append(tLRPC$TL_messages_stickerSet.set.short_name);
+            textView.setText(sb3.toString());
         }
     }
 

@@ -24,8 +24,8 @@ public class SharedMediaFastScrollTooltip extends FrameLayout {
         textView.setText(LocaleController.getString("SharedMediaFastScrollHint", R.string.SharedMediaFastScrollHint));
         textView.setTextSize(1, 14.0f);
         textView.setMaxLines(3);
-        textView.setTextColor(Theme.getColor("chat_gifSaveHintText"));
-        setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("chat_gifSaveHintBackground")));
+        textView.setTextColor(Theme.getColor(Theme.key_chat_gifSaveHintText));
+        setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_chat_gifSaveHintBackground)));
         addView(textView, LayoutHelper.createFrame(-2, -2.0f, 16, 46.0f, 8.0f, 8.0f, 8.0f));
         addView(new TooltipDrawableView(this, context), LayoutHelper.createFrame(29, 32.0f, 0, 8.0f, 8.0f, 8.0f, 8.0f));
     }
@@ -52,8 +52,10 @@ public class SharedMediaFastScrollTooltip extends FrameLayout {
             this.paint2 = new Paint(1);
             this.progress = 1.0f;
             this.fromProgress = 0.0f;
-            this.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor("chat_gifSaveHintText"), 76));
-            this.paint2.setColor(Theme.getColor("chat_gifSaveHintText"));
+            Paint paint = this.paint;
+            int i = Theme.key_chat_gifSaveHintText;
+            paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(i), 76));
+            this.paint2.setColor(Theme.getColor(i));
             this.fadePaint = new Paint();
             this.fadePaint.setShader(new LinearGradient(0.0f, AndroidUtilities.dp(4.0f), 0.0f, 0.0f, new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
             this.fadePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));

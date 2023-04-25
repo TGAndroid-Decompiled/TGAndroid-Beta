@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$RequestPeerType;
@@ -30,7 +31,7 @@ public class RequestPeerRequirementsCell extends LinearLayout {
         super(context);
         this.requirements = new ArrayList<>();
         setOrientation(1);
-        setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
     }
 
     public void set(TLRPC$RequestPeerType tLRPC$RequestPeerType) {
@@ -74,15 +75,16 @@ public class RequestPeerRequirementsCell extends LinearLayout {
             }
             HeaderCell headerCell = new HeaderCell(getContext(), 20);
             headerCell.setText(LocaleController.getString("PeerRequirements", R.string.PeerRequirements));
-            headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+            int i = Theme.key_windowBackgroundWhite;
+            headerCell.setBackgroundColor(Theme.getColor(i));
             addView(headerCell, LayoutHelper.createLinear(-1, -2));
-            addView(emptyView(9, Theme.getColor("windowBackgroundWhite")), LayoutHelper.createLinear(-1, -2));
+            addView(emptyView(9, Theme.getColor(i)), LayoutHelper.createLinear(-1, -2));
             Iterator<Requirement> it = this.requirements.iterator();
             while (it.hasNext()) {
                 addView(new RequirementCell(this, getContext(), it.next()), LayoutHelper.createLinear(-1, -2));
             }
-            addView(emptyView(12, Theme.getColor("windowBackgroundWhite")), LayoutHelper.createLinear(-1, -2));
-            addView(emptyView(12, Theme.getThemedDrawable(getContext(), R.drawable.greydivider_bottom, "windowBackgroundGrayShadow")), LayoutHelper.createLinear(-1, -2));
+            addView(emptyView(12, Theme.getColor(Theme.key_windowBackgroundWhite)), LayoutHelper.createLinear(-1, -2));
+            addView(emptyView(12, Theme.getThemedDrawable(getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow)), LayoutHelper.createLinear(-1, -2));
         }
     }
 
@@ -165,7 +167,7 @@ public class RequestPeerRequirementsCell extends LinearLayout {
             return ((Requirement) arrayList.get(0)).text.toString().toLowerCase();
         }
         if (arrayList.isEmpty()) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
@@ -256,18 +258,18 @@ public class RequestPeerRequirementsCell extends LinearLayout {
 
         public RequirementCell(RequestPeerRequirementsCell requestPeerRequirementsCell, Context context, Requirement requirement) {
             super(context);
-            setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             setOrientation(0);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.imageView.setImageResource(requirement.padding <= 0 ? R.drawable.list_check : R.drawable.list_circle);
-            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlueHeader"), PorterDuff.Mode.MULTIPLY));
+            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader), PorterDuff.Mode.MULTIPLY));
             addView(this.imageView, LayoutHelper.createLinear(20, 20, 0.0f, 51, (requirement.padding * 16) + 17, -1, 0, 0));
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTextSize(1, 14.0f);
-            this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
+            this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
             this.textView.setSingleLine(false);
             this.textView.setText(requirement.text);
             addView(this.textView, LayoutHelper.createLinear(-1, -2, 1, 6, 4, 24, 4));

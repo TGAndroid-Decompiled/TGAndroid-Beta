@@ -20,8 +20,8 @@ public class LoadingDrawable extends Drawable {
     public Paint backgroundPaint;
     public Integer color1;
     public Integer color2;
-    public String colorKey1;
-    public String colorKey2;
+    public int colorKey1;
+    public int colorKey2;
     private LinearGradient disappearGradient;
     private int disappearGradientWidth;
     private Matrix disappearMatrix;
@@ -66,8 +66,8 @@ public class LoadingDrawable extends Drawable {
         this.disappearStart = -1L;
         this.matrix = new Matrix();
         this.strokeMatrix = new Matrix();
-        this.colorKey1 = "dialogBackground";
-        this.colorKey2 = "dialogBackgroundGray";
+        this.colorKey1 = Theme.key_dialogBackground;
+        this.colorKey2 = Theme.key_dialogBackgroundGray;
         this.gradientWidthScale = 1.0f;
         this.speed = 1.0f;
         this.paint = new Paint(1);
@@ -154,6 +154,26 @@ public class LoadingDrawable extends Drawable {
         this.path.rewind();
         this.rectF.set(this.lastBounds);
         this.path.addRoundRect(this.rectF, this.radii, Path.Direction.CW);
+    }
+
+    public void setRadii(float[] fArr) {
+        if (fArr == null || fArr.length != 8) {
+            return;
+        }
+        boolean z = false;
+        for (int i = 0; i < 8; i++) {
+            float[] fArr2 = this.radii;
+            if (fArr2[i] != fArr[i]) {
+                fArr2[i] = fArr[i];
+                z = true;
+            }
+        }
+        if (this.lastBounds == null || !z) {
+            return;
+        }
+        this.path.rewind();
+        this.rectF.set(this.lastBounds);
+        this.path.addRoundRect(this.rectF, fArr, Path.Direction.CW);
     }
 
     public void setBounds(RectF rectF) {

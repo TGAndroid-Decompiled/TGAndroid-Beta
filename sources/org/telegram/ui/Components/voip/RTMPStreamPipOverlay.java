@@ -424,7 +424,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
             });
             this.contentFrameLayout.setClipToOutline(true);
         }
-        this.contentFrameLayout.setBackgroundColor(Theme.getColor("voipgroup_actionBar"));
+        this.contentFrameLayout.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_actionBar));
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
         this.contentFrameLayout.addView(backupImageView, LayoutHelper.createFrame(-1, -1.0f));
@@ -469,8 +469,10 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         int dp = AndroidUtilities.dp(8.0f);
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.pip_video_close);
-        imageView.setColorFilter(Theme.getColor("voipgroup_actionBarItems"));
-        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
+        int i2 = Theme.key_voipgroup_actionBarItems;
+        imageView.setColorFilter(Theme.getColor(i2));
+        int i3 = Theme.key_listSelector;
+        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i3)));
         imageView.setPadding(dp, dp, dp, dp);
         imageView.setOnClickListener(RTMPStreamPipOverlay$$ExternalSyntheticLambda2.INSTANCE);
         float f = 38;
@@ -478,8 +480,8 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         this.controlsView.addView(imageView, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, f2, 0.0f));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(R.drawable.pip_video_expand);
-        imageView2.setColorFilter(Theme.getColor("voipgroup_actionBarItems"));
-        imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
+        imageView2.setColorFilter(Theme.getColor(i2));
+        imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(i3)));
         imageView2.setPadding(dp, dp, dp, dp);
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -492,10 +494,10 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         this.windowManager = (WindowManager) ApplicationLoader.applicationContext.getSystemService("window");
         WindowManager.LayoutParams createWindowLayoutParams = createWindowLayoutParams();
         this.windowLayoutParams = createWindowLayoutParams;
-        int i2 = this.pipWidth;
-        createWindowLayoutParams.width = i2;
+        int i4 = this.pipWidth;
+        createWindowLayoutParams.width = i4;
         createWindowLayoutParams.height = this.pipHeight;
-        float dp2 = (AndroidUtilities.displaySize.x - i2) - AndroidUtilities.dp(16.0f);
+        float dp2 = (AndroidUtilities.displaySize.x - i4) - AndroidUtilities.dp(16.0f);
         this.pipX = dp2;
         createWindowLayoutParams.x = (int) dp2;
         WindowManager.LayoutParams layoutParams = this.windowLayoutParams;

@@ -924,11 +924,11 @@ public final class FloatingToolbar {
             imageButton.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             imageButton.setImageDrawable(this.mOverflow);
             if (FloatingToolbar.this.currentStyle == 0) {
-                themedColor = FloatingToolbar.this.getThemedColor("dialogTextBlack");
-                imageButton.setBackgroundDrawable(Theme.createSelectorDrawable(FloatingToolbar.this.getThemedColor("listSelectorSDK21"), 1));
+                themedColor = FloatingToolbar.this.getThemedColor(Theme.key_dialogTextBlack);
+                imageButton.setBackgroundDrawable(Theme.createSelectorDrawable(FloatingToolbar.this.getThemedColor(Theme.key_listSelector), 1));
             } else if (FloatingToolbar.this.currentStyle != 2) {
-                themedColor = FloatingToolbar.this.getThemedColor("windowBackgroundWhiteBlackText");
-                imageButton.setBackgroundDrawable(Theme.createSelectorDrawable(FloatingToolbar.this.getThemedColor("listSelectorSDK21"), 1));
+                themedColor = FloatingToolbar.this.getThemedColor(Theme.key_windowBackgroundWhiteBlackText);
+                imageButton.setBackgroundDrawable(Theme.createSelectorDrawable(FloatingToolbar.this.getThemedColor(Theme.key_listSelector), 1));
             } else {
                 themedColor = -328966;
                 imageButton.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039, 1));
@@ -1158,15 +1158,15 @@ public final class FloatingToolbar {
         textView.setFocusable(false);
         textView.setImportantForAccessibility(2);
         textView.setFocusableInTouchMode(false);
-        int color = Theme.getColor("listSelectorSDK21");
+        int color = Theme.getColor(Theme.key_listSelector);
         int i2 = this.currentStyle;
         if (i2 == 0) {
-            textView.setTextColor(getThemedColor("dialogTextBlack"));
+            textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         } else if (i2 == 2) {
             textView.setTextColor(-328966);
             color = 1090519039;
         } else if (i2 == 1) {
-            textView.setTextColor(getThemedColor("windowBackgroundWhiteBlackText"));
+            textView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
         }
         if (z || z2) {
             linearLayout.setBackgroundDrawable(Theme.createRadSelectorDrawable(color, z ? 6 : 0, z2 ? 6 : 0, z2 ? 6 : 0, z ? 6 : 0));
@@ -1211,11 +1211,11 @@ public final class FloatingToolbar {
         gradientDrawable.setCornerRadii(new float[]{dp2, dp2, dp2, dp2, dp2, dp2, dp2, dp2});
         int i = this.currentStyle;
         if (i == 0) {
-            gradientDrawable.setColor(getThemedColor("dialogBackground"));
+            gradientDrawable.setColor(getThemedColor(Theme.key_dialogBackground));
         } else if (i == 2) {
             gradientDrawable.setColor(-115203550);
         } else if (i == 1) {
-            gradientDrawable.setColor(getThemedColor("windowBackgroundWhite"));
+            gradientDrawable.setColor(getThemedColor(Theme.key_windowBackgroundWhite));
         }
         relativeLayout.setBackgroundDrawable(gradientDrawable);
         relativeLayout.setLayoutParams(new ViewGroup.LayoutParams(-2, -2));
@@ -1223,10 +1223,8 @@ public final class FloatingToolbar {
         return relativeLayout;
     }
 
-    public int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    public int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     public static PopupWindow createPopupWindow(ViewGroup viewGroup) {

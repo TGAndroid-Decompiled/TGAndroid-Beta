@@ -47,7 +47,7 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.textView = simpleTextView;
         simpleTextView.setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
-        this.textView.setTextColor(Theme.getColor("chats_menuItemText"));
+        this.textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
         this.textView.setTextSize(15);
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setMaxLines(1);
@@ -62,7 +62,7 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
         groupCreateCheckBox.setChecked(true, false);
         this.checkBox.setCheckScale(0.9f);
         this.checkBox.setInnerRadDiff(AndroidUtilities.dp(1.5f));
-        this.checkBox.setColorKeysOverrides("chats_unreadCounterText", "chats_unreadCounter", "chats_menuBackground");
+        this.checkBox.setColorKeysOverrides(Theme.key_chats_unreadCounterText, Theme.key_chats_unreadCounter, Theme.key_chats_menuBackground);
         addView(this.checkBox, LayoutHelper.createFrame(18, 18.0f, 51, 37.0f, 27.0f, 0.0f, 0.0f));
         setWillNotDraw(false);
     }
@@ -75,7 +75,7 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.textView.setTextColor(Theme.getColor("chats_menuItemText"));
+        this.textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
         for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.updateInterfaces);
@@ -140,7 +140,7 @@ public class DrawerUserCell extends FrameLayout implements NotificationCenter.No
             this.status.set((Drawable) null, true);
             this.textView.setRightDrawableOutside(false);
         }
-        this.status.setColor(Integer.valueOf(Theme.getColor("chats_verifiedBackground")));
+        this.status.setColor(Integer.valueOf(Theme.getColor(Theme.key_chats_verifiedBackground)));
         this.imageView.getImageReceiver().setCurrentAccount(i);
         this.imageView.setForUserOrChat(currentUser, this.avatarDrawable);
         this.checkBox.setVisibility(i != UserConfig.selectedAccount ? 4 : 0);

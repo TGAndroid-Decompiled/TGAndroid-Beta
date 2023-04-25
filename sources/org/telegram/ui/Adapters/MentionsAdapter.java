@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
@@ -135,7 +136,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
             MentionsAdapter.this.lastKnownLocation = location;
             MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-            mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, MentionsAdapter.this.searchingContextQuery, "");
+            mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, MentionsAdapter.this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
         }
 
         @Override
@@ -562,7 +563,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     public String getContextBotName() {
         TLRPC$User tLRPC$User = this.foundContextBot;
-        return tLRPC$User != null ? tLRPC$User.username : "";
+        return tLRPC$User != null ? tLRPC$User.username : BuildConfig.APP_CENTER_HASH;
     }
 
     public void processFoundUser(TLRPC$User tLRPC$User) {
@@ -624,7 +625,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         if (mentionsAdapterDelegate != null) {
             mentionsAdapterDelegate.onContextSearch(true);
         }
-        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
+        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
     }
 
     public void lambda$processFoundUser$2(boolean[] zArr, TLRPC$User tLRPC$User, DialogInterface dialogInterface, int i) {
@@ -743,7 +744,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     return;
                 }
                 MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-                mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, this.val$query, "");
+                mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, this.val$query, BuildConfig.APP_CENTER_HASH);
                 return;
             }
             MentionsAdapter.this.searchingContextUsername = this.val$username;
@@ -804,7 +805,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.lastKnownLocation = location;
         location.setLatitude(-1000.0d);
         this.lastKnownLocation.setLongitude(-1000.0d);
-        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
+        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
     }
 
     private void checkLocationPermissionsOrStart() {
@@ -836,7 +837,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         if (str == null || !str.equals("gif")) {
             return null;
         }
-        return "Search GIFs";
+        return LocaleController.getString("SearchGifsTitle", R.string.SearchGifsTitle);
     }
 
     public void searchForContextBotForNextOffset() {
@@ -875,7 +876,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             sb.append("_");
             sb.append(tLRPC$User.id);
             sb.append("_");
-            sb.append((!tLRPC$User.bot_inline_geo || this.lastKnownLocation.getLatitude() == -1000.0d) ? "" : Double.valueOf(this.lastKnownLocation.getLatitude() + this.lastKnownLocation.getLongitude()));
+            sb.append((!tLRPC$User.bot_inline_geo || this.lastKnownLocation.getLatitude() == -1000.0d) ? BuildConfig.APP_CENTER_HASH : Double.valueOf(this.lastKnownLocation.getLatitude() + this.lastKnownLocation.getLongitude()));
             final String sb2 = sb.toString();
             final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             RequestDelegate requestDelegate = new RequestDelegate() {
@@ -957,7 +958,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 } else {
                     this.searchResultBotContext.addAll(tLRPC$TL_messages_botResults.results);
                     if (tLRPC$TL_messages_botResults.results.isEmpty()) {
-                        this.nextQueryOffset = "";
+                        this.nextQueryOffset = BuildConfig.APP_CENTER_HASH;
                     }
                     z2 = true;
                 }
@@ -1287,7 +1288,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             if (arrayList7.get(i) != null) {
                 Object[] objArr = new Object[2];
                 objArr[0] = this.searchResultCommands.get(i);
-                objArr[1] = this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : "";
+                objArr[1] = this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : BuildConfig.APP_CENTER_HASH;
                 return String.format("%s@%s", objArr);
             }
             return String.format("%s", this.searchResultCommands.get(i));
@@ -1350,7 +1351,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             TextView textView = new TextView(this.mContext);
             textView.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
             textView.setTextSize(1, 14.0f);
-            textView.setTextColor(getThemedColor("windowBackgroundWhiteGrayText2"));
+            textView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
             contextLinkCell = textView;
         } else {
             contextLinkCell = new StickerCell(this.mContext);
@@ -1451,9 +1452,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

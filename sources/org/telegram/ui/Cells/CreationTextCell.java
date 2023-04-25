@@ -27,8 +27,10 @@ public class CreationTextCell extends FrameLayout {
         this.textView = simpleTextView;
         simpleTextView.setTextSize(16);
         this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText2", resourcesProvider));
-        this.textView.setTag("windowBackgroundWhiteBlueText2");
+        SimpleTextView simpleTextView2 = this.textView;
+        int i = Theme.key_windowBackgroundWhiteBlueText2;
+        simpleTextView2.setTextColor(Theme.getColor(i, resourcesProvider));
+        this.textView.setTag(Integer.valueOf(i));
         addView(this.textView);
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;

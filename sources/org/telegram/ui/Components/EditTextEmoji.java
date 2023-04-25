@@ -162,21 +162,23 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         editTextCaption3.setFocusable(editTextCaption3.isEnabled());
         this.editText.setCursorSize(AndroidUtilities.dp(20.0f));
         this.editText.setCursorWidth(1.5f);
-        this.editText.setCursorColor(getThemedColor("windowBackgroundWhiteBlackText"));
+        EditTextCaption editTextCaption4 = this.editText;
+        int i2 = Theme.key_windowBackgroundWhiteBlackText;
+        editTextCaption4.setCursorColor(getThemedColor(i2));
         if (i == 0) {
             this.editText.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             this.editText.setBackground(null);
-            this.editText.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("text_RedRegular"));
-            this.editText.setHintTextColor(getThemedColor("windowBackgroundWhiteHintText"));
-            this.editText.setTextColor(getThemedColor("windowBackgroundWhiteBlackText"));
+            this.editText.setLineColors(getThemedColor(Theme.key_windowBackgroundWhiteInputField), getThemedColor(Theme.key_windowBackgroundWhiteInputFieldActivated), getThemedColor(Theme.key_text_RedRegular));
+            this.editText.setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
+            this.editText.setTextColor(getThemedColor(i2));
             this.editText.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(40.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(40.0f), AndroidUtilities.dp(8.0f));
-            EditTextCaption editTextCaption4 = this.editText;
+            EditTextCaption editTextCaption5 = this.editText;
             boolean z2 = LocaleController.isRTL;
-            addView(editTextCaption4, LayoutHelper.createFrame(-1, -2.0f, 19, z2 ? 11.0f : 0.0f, 1.0f, z2 ? 0.0f : 11.0f, 0.0f));
+            addView(editTextCaption5, LayoutHelper.createFrame(-1, -2.0f, 19, z2 ? 11.0f : 0.0f, 1.0f, z2 ? 0.0f : 11.0f, 0.0f));
         } else {
             this.editText.setGravity(19);
-            this.editText.setHintTextColor(getThemedColor("dialogTextHint"));
-            this.editText.setTextColor(getThemedColor("dialogTextBlack"));
+            this.editText.setHintTextColor(getThemedColor(Theme.key_dialogTextHint));
+            this.editText.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
             this.editText.setBackground(null);
             this.editText.setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(12.0f));
             addView(this.editText, LayoutHelper.createFrame(-1, -1.0f, 19, 48.0f, 0.0f, 0.0f, 0.0f));
@@ -188,7 +190,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         ReplaceableIconDrawable replaceableIconDrawable = new ReplaceableIconDrawable(context);
         this.emojiIconDrawable = replaceableIconDrawable;
         imageView2.setImageDrawable(replaceableIconDrawable);
-        this.emojiIconDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_messagePanelIcons"), PorterDuff.Mode.MULTIPLY));
+        this.emojiIconDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_messagePanelIcons), PorterDuff.Mode.MULTIPLY));
         if (i == 0) {
             this.emojiIconDrawable.setIcon(R.drawable.smiles_tab_smiles, false);
             addView(this.emojiButton, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 3 : 5) | 16, 0.0f, 0.0f, 0.0f, 7.0f));
@@ -197,7 +199,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             addView(this.emojiButton, LayoutHelper.createFrame(48, 48.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         if (Build.VERSION.SDK_INT >= 21) {
-            this.emojiButton.setBackground(Theme.createSelectorDrawable(getThemedColor("listSelectorSDK21")));
+            this.emojiButton.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
         }
         this.emojiButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -311,14 +313,16 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
 
     public void updateColors() {
         if (this.currentStyle == 0) {
-            this.editText.setHintTextColor(getThemedColor("windowBackgroundWhiteHintText"));
-            this.editText.setCursorColor(getThemedColor("windowBackgroundWhiteBlackText"));
-            this.editText.setTextColor(getThemedColor("windowBackgroundWhiteBlackText"));
+            this.editText.setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
+            EditTextCaption editTextCaption = this.editText;
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            editTextCaption.setCursorColor(getThemedColor(i));
+            this.editText.setTextColor(getThemedColor(i));
         } else {
-            this.editText.setHintTextColor(getThemedColor("dialogTextHint"));
-            this.editText.setTextColor(getThemedColor("dialogTextBlack"));
+            this.editText.setHintTextColor(getThemedColor(Theme.key_dialogTextHint));
+            this.editText.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         }
-        this.emojiIconDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_messagePanelIcons"), PorterDuff.Mode.MULTIPLY));
+        this.emojiIconDrawable.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_messagePanelIcons), PorterDuff.Mode.MULTIPLY));
         EmojiView emojiView = this.emojiView;
         if (emojiView != null) {
             emojiView.updateColors();
@@ -833,9 +837,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         return this.editText;
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

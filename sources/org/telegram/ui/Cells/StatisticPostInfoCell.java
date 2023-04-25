@@ -98,10 +98,14 @@ public class StatisticPostInfoCell extends FrameLayout {
         linearLayout3.addView(this.shares, LayoutHelper.createLinear(-2, -2));
         linearLayout.addView(linearLayout3, LayoutHelper.createFrame(-1, -2.0f, 8388659, 0.0f, 2.0f, 0.0f, 8.0f));
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 72.0f, 0.0f, 12.0f, 0.0f));
-        this.message.setTextColor(Theme.getColor("dialogTextBlack"));
-        this.views.setTextColor(Theme.getColor("dialogTextBlack"));
-        this.date.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText3"));
-        this.shares.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText3"));
+        TextView textView5 = this.message;
+        int i = Theme.key_dialogTextBlack;
+        textView5.setTextColor(Theme.getColor(i));
+        this.views.setTextColor(Theme.getColor(i));
+        TextView textView6 = this.date;
+        int i2 = Theme.key_windowBackgroundWhiteGrayText3;
+        textView6.setTextColor(Theme.getColor(i2));
+        this.shares.setTextColor(Theme.getColor(i2));
     }
 
     public void setData(StatisticActivity.RecentPostInfo recentPostInfo) {

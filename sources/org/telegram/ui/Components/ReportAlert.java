@@ -28,7 +28,7 @@ public class ReportAlert extends BottomSheet {
             super(context);
             View view = new View(context);
             this.background = view;
-            view.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+            view.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
             TextView textView = new TextView(context);
             this.textView = textView;
@@ -37,7 +37,7 @@ public class ReportAlert extends BottomSheet {
             this.textView.setGravity(1);
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
             this.textView.setGravity(17);
-            this.textView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+            this.textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             this.textView.setTextSize(1, 14.0f);
             this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
@@ -69,7 +69,7 @@ public class ReportAlert extends BottomSheet {
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 24.0f);
-        textView.setTextColor(Theme.getColor("dialogTextBlack"));
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         if (i == 0) {
             textView.setText(LocaleController.getString("ReportTitleSpam", R.string.ReportTitleSpam));
         } else if (i == 6) {
@@ -86,17 +86,19 @@ public class ReportAlert extends BottomSheet {
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 49, 17.0f, 197.0f, 17.0f, 0.0f));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(Theme.getColor("dialogTextGray3"));
+        textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
         textView2.setGravity(1);
         textView2.setText(LocaleController.getString("ReportInfo", R.string.ReportInfo));
         frameLayout.addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 49, 30.0f, 235.0f, 30.0f, 44.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.editText = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 18.0f);
-        this.editText.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
-        this.editText.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.editText.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
+        EditTextBoldCursor editTextBoldCursor2 = this.editText;
+        int i2 = Theme.key_windowBackgroundWhiteBlackText;
+        editTextBoldCursor2.setTextColor(Theme.getColor(i2));
         this.editText.setBackgroundDrawable(null);
-        this.editText.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("text_RedRegular"));
+        this.editText.setLineColors(getThemedColor(Theme.key_windowBackgroundWhiteInputField), getThemedColor(Theme.key_windowBackgroundWhiteInputFieldActivated), getThemedColor(Theme.key_text_RedRegular));
         this.editText.setMaxLines(1);
         this.editText.setLines(1);
         this.editText.setPadding(0, 0, 0, 0);
@@ -105,14 +107,14 @@ public class ReportAlert extends BottomSheet {
         this.editText.setInputType(180224);
         this.editText.setImeOptions(6);
         this.editText.setHint(LocaleController.getString("ReportHint", R.string.ReportHint));
-        this.editText.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.editText.setCursorColor(Theme.getColor(i2));
         this.editText.setCursorSize(AndroidUtilities.dp(20.0f));
         this.editText.setCursorWidth(1.5f);
         this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public final boolean onEditorAction(TextView textView3, int i2, KeyEvent keyEvent) {
+            public final boolean onEditorAction(TextView textView3, int i3, KeyEvent keyEvent) {
                 boolean lambda$new$0;
-                lambda$new$0 = ReportAlert.this.lambda$new$0(textView3, i2, keyEvent);
+                lambda$new$0 = ReportAlert.this.lambda$new$0(textView3, i3, keyEvent);
                 return lambda$new$0;
             }
         });

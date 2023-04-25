@@ -63,15 +63,17 @@ public class TextPriceCell extends FrameLayout {
             this.valueTextView.setVisibility(4);
         }
         if (z) {
-            setTag("windowBackgroundWhiteBlackText");
-            this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            setTag(Integer.valueOf(i));
+            this.textView.setTextColor(Theme.getColor(i));
+            this.valueTextView.setTextColor(Theme.getColor(i));
             this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         } else {
-            setTag("windowBackgroundWhiteGrayText2");
-            this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
-            this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
+            int i2 = Theme.key_windowBackgroundWhiteGrayText2;
+            setTag(Integer.valueOf(i2));
+            this.textView.setTextColor(Theme.getColor(i2));
+            this.valueTextView.setTextColor(Theme.getColor(i2));
             this.textView.setTypeface(Typeface.DEFAULT);
             this.valueTextView.setTypeface(Typeface.DEFAULT);
         }

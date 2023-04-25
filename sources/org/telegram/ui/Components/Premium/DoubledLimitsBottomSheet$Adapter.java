@@ -39,7 +39,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
         ArrayList<DoubledLimitsBottomSheet$Limit> arrayList = new ArrayList<>();
         this.limits = arrayList;
         this.drawHeader = z;
-        PremiumGradient.PremiumGradientTools premiumGradientTools = new PremiumGradient.PremiumGradientTools("premiumGradient1", "premiumGradient2", "premiumGradient3", "premiumGradient4");
+        PremiumGradient.PremiumGradientTools premiumGradientTools = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, Theme.key_premiumGradient3, Theme.key_premiumGradient4);
         this.gradientTools = premiumGradientTools;
         premiumGradientTools.x1 = 0.0f;
         premiumGradientTools.y1 = 0.0f;
@@ -93,7 +93,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
             textView.setText(LocaleController.getString("DoubledLimits", R.string.DoubledLimits));
             textView.setGravity(17);
             textView.setTextSize(1, 20.0f);
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             linearLayout.addView(textView, LayoutHelper.createFrame(-2, -2, 16));
             frameLayout.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));

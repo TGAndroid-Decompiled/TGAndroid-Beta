@@ -28,11 +28,11 @@ public class LocationLoadingCell extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
         imageView.setImageResource(R.drawable.location_empty);
-        this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("dialogEmptyImage"), PorterDuff.Mode.MULTIPLY));
+        this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogEmptyImage), PorterDuff.Mode.MULTIPLY));
         addView(this.imageView, LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 0.0f, 0.0f, 24.0f));
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(getThemedColor("dialogEmptyText"));
+        textView.setTextColor(getThemedColor(Theme.key_dialogEmptyText));
         this.textView.setGravity(17);
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setTextSize(1, 17.0f);
@@ -51,9 +51,7 @@ public class LocationLoadingCell extends FrameLayout {
         this.imageView.setVisibility(z ? 4 : 0);
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

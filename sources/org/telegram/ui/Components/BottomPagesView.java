@@ -10,14 +10,14 @@ import androidx.viewpager.widget.ViewPager;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 public class BottomPagesView extends View {
-    private String colorKey;
+    private int colorKey;
     private int currentPage;
     private int pagesCount;
     private Paint paint;
     private float progress;
     private RectF rect;
     private int scrollPosition;
-    private String selectedColorKey;
+    private int selectedColorKey;
     private ViewPager viewPager;
 
     public BottomPagesView(Context context, ViewPager viewPager, int i) {
@@ -25,6 +25,8 @@ public class BottomPagesView extends View {
         this.paint = new Paint(1);
         new DecelerateInterpolator();
         this.rect = new RectF();
+        this.colorKey = -1;
+        this.selectedColorKey = -1;
         this.viewPager = viewPager;
         this.pagesCount = i;
     }
@@ -40,31 +42,31 @@ public class BottomPagesView extends View {
         invalidate();
     }
 
-    public void setColor(String str, String str2) {
-        this.colorKey = str;
-        this.selectedColorKey = str2;
+    public void setColor(int i, int i2) {
+        this.colorKey = i;
+        this.selectedColorKey = i2;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         AndroidUtilities.dp(5.0f);
-        String str = this.colorKey;
-        if (str != null) {
-            this.paint.setColor((Theme.getColor(str) & 16777215) | (-1275068416));
+        int i = this.colorKey;
+        if (i >= 0) {
+            this.paint.setColor((Theme.getColor(i) & 16777215) | (-1275068416));
         } else {
             this.paint.setColor(Theme.getCurrentTheme().isDark() ? -11184811 : -4473925);
         }
         this.currentPage = this.viewPager.getCurrentItem();
-        for (int i = 0; i < this.pagesCount; i++) {
-            if (i != this.currentPage) {
-                int dp = AndroidUtilities.dp(11.0f) * i;
+        for (int i2 = 0; i2 < this.pagesCount; i2++) {
+            if (i2 != this.currentPage) {
+                int dp = AndroidUtilities.dp(11.0f) * i2;
                 this.rect.set(dp, 0.0f, dp + AndroidUtilities.dp(5.0f), AndroidUtilities.dp(5.0f));
                 canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.5f), AndroidUtilities.dp(2.5f), this.paint);
             }
         }
-        String str2 = this.selectedColorKey;
-        if (str2 != null) {
-            this.paint.setColor(Theme.getColor(str2));
+        int i3 = this.selectedColorKey;
+        if (i3 >= 0) {
+            this.paint.setColor(Theme.getColor(i3));
         } else {
             this.paint.setColor(-13851168);
         }

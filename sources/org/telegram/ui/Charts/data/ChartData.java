@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.SegmentTree;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.ActionBar.ThemeColors;
 public class ChartData {
     public String[] daysLookup;
     public ArrayList<Line> lines = new ArrayList<>();
@@ -78,7 +79,7 @@ public class ChartData {
                 Matcher matcher = compile.matcher(optJSONObject.getString(line2.id));
                 if (matcher.matches()) {
                     if (!TextUtils.isEmpty(matcher.group(1))) {
-                        line2.colorKey = "statisticChartLine_" + matcher.group(1).toLowerCase();
+                        line2.colorKey = ThemeColors.stringKeyToInt("statisticChartLine_" + matcher.group(1).toLowerCase());
                     }
                     int parseColor = Color.parseColor(matcher.group(2));
                     line2.color = parseColor;
@@ -220,7 +221,7 @@ public class ChartData {
     }
 
     public class Line {
-        public String colorKey;
+        public int colorKey;
         public String id;
         public String name;
         public SegmentTree segmentTree;

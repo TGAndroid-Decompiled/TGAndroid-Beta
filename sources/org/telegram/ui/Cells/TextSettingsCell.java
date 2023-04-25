@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -69,7 +70,7 @@ public class TextSettingsCell extends FrameLayout {
         this.textView.setSingleLine(true);
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
+        this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         float f = i;
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, f, 0.0f, f, 0.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, !LocaleController.isRTL);
@@ -77,19 +78,21 @@ public class TextSettingsCell extends FrameLayout {
         animatedTextView.setAnimationProperties(0.55f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.valueTextView.setTextSize(AndroidUtilities.dp(16.0f));
         this.valueTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
-        this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteValueText", resourcesProvider));
+        this.valueTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText, resourcesProvider));
         addView(this.valueTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, f, 0.0f, f, 0.0f));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon", resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        ImageView imageView = this.imageView;
+        int i2 = Theme.key_windowBackgroundWhiteGrayIcon;
+        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), PorterDuff.Mode.MULTIPLY));
         this.imageView.setVisibility(8);
         addView(this.imageView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 16, 21.0f, 0.0f, 21.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.valueImageView = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        ImageView imageView2 = new ImageView(context);
+        this.valueImageView = imageView2;
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
         this.valueImageView.setVisibility(4);
-        this.valueImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon", resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        this.valueImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2, resourcesProvider), PorterDuff.Mode.MULTIPLY));
         addView(this.valueImageView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 3 : 5) | 16, f, 0.0f, f, 0.0f));
     }
 
@@ -200,7 +203,7 @@ public class TextSettingsCell extends FrameLayout {
             }
         }
         this.imageView.setImageResource(i);
-        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon", this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
         this.imageView.setBackground(null);
         this.imageView.setVisibility(0);
         if (LocaleController.isRTL) {
@@ -260,7 +263,7 @@ public class TextSettingsCell extends FrameLayout {
             if (this.paint == null) {
                 Paint paint = new Paint(1);
                 this.paint = paint;
-                paint.setColor(Theme.getColor("dialogSearchBackground", this.resourcesProvider));
+                paint.setColor(Theme.getColor(Theme.key_dialogSearchBackground, this.resourcesProvider));
             }
             if (this.incrementLoadingProgress) {
                 float f = this.loadingProgress + 0.016f;
@@ -330,7 +333,7 @@ public class TextSettingsCell extends FrameLayout {
         sb.append((Object) this.textView.getText());
         AnimatedTextView animatedTextView = this.valueTextView;
         if (animatedTextView == null || animatedTextView.getVisibility() != 0) {
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         } else {
             str = "\n" + ((Object) this.valueTextView.getText());
         }

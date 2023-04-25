@@ -83,13 +83,13 @@ public class PremiumButtonView extends FrameLayout {
             this.overlayTextView = animatedTextView2;
             animatedTextView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             this.overlayTextView.setGravity(17);
-            this.overlayTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+            this.overlayTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             this.overlayTextView.setTextSize(AndroidUtilities.dp(14.0f));
             this.overlayTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.overlayTextView.getDrawable().setAllowCancel(true);
             this.overlayTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(-1, 120)));
             addView(this.overlayTextView);
-            this.paintOverlayPaint.setColor(Theme.getColor("featuredStickers_addButton"));
+            this.paintOverlayPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
             updateOverlayProgress();
         }
     }
@@ -284,7 +284,7 @@ public class PremiumButtonView extends FrameLayout {
             CounterView counterView = new CounterView(getContext(), null);
             this.counterView = counterView;
             counterView.setGravity(3);
-            this.counterView.setColors("featuredStickers_addButton", "featuredStickers_buttonText");
+            this.counterView.setColors(Theme.key_featuredStickers_addButton, Theme.key_featuredStickers_buttonText);
             this.counterView.counterDrawable.circleScale = 0.8f;
             setClipChildren(false);
             addView(this.counterView, LayoutHelper.createFrame(-1, 24, 16));

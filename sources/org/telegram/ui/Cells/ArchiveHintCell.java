@@ -34,7 +34,7 @@ public class ArchiveHintCell extends FrameLayout {
             }
         };
         this.viewPager = viewPager;
-        AndroidUtilities.setViewPagerEdgeEffectColor(viewPager, Theme.getColor("actionBarDefaultArchived"));
+        AndroidUtilities.setViewPagerEdgeEffectColor(viewPager, Theme.getColor(Theme.key_actionBarDefaultArchived));
         this.viewPager.setAdapter(new Adapter());
         this.viewPager.setPageMargin(0);
         this.viewPager.setOffscreenPageLimit(1);
@@ -55,7 +55,7 @@ public class ArchiveHintCell extends FrameLayout {
         });
         BottomPagesView bottomPagesView = new BottomPagesView(context, this.viewPager, 3);
         this.bottomPages = bottomPagesView;
-        bottomPagesView.setColor("chats_unreadCounterMuted", "chats_actionBackground");
+        bottomPagesView.setColor(Theme.key_chats_unreadCounterMuted, Theme.key_chats_actionBackground);
         addView(this.bottomPages, LayoutHelper.createFrame(33, 5.0f, 81, 0.0f, 0.0f, 0.0f, 19.0f));
     }
 

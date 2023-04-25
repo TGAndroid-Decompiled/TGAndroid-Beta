@@ -19,7 +19,7 @@ public class DrawerAddCell extends FrameLayout {
         super(context);
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor("chats_menuItemText"));
+        textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
         this.textView.setTextSize(1, 15.0f);
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setLines(1);
@@ -38,11 +38,11 @@ public class DrawerAddCell extends FrameLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.textView.setTextColor(Theme.getColor("chats_menuItemText"));
+        this.textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
         this.textView.setText(LocaleController.getString("AddAccount", R.string.AddAccount));
         Drawable drawable = getResources().getDrawable(R.drawable.msg_add);
         if (drawable != null) {
-            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_menuItemIcon"), PorterDuff.Mode.MULTIPLY));
+            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_menuItemIcon), PorterDuff.Mode.MULTIPLY));
         }
         this.textView.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, (Drawable) null, (Drawable) null);
     }

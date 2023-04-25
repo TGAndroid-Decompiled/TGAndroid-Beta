@@ -60,7 +60,7 @@ public class ReactionTabHolderView extends FrameLayout {
         TextView textView = new TextView(context);
         this.counterView = textView;
         textView.setImportantForAccessibility(2);
-        this.counterView.setTextColor(Theme.getColor("avatar_nameInMessageBlue"));
+        this.counterView.setTextColor(Theme.getColor(Theme.key_avatar_nameInMessageBlue));
         this.counterView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         addView(this.counterView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 40.0f, 0.0f, 8.0f, 0.0f));
         this.outlinePaint.setStyle(Paint.Style.STROKE);
@@ -71,14 +71,16 @@ public class ReactionTabHolderView extends FrameLayout {
 
     public void setOutlineProgress(float f) {
         this.outlineProgress = f;
-        int color = Theme.getColor("chat_inReactionButtonBackground");
-        int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor("chat_inReactionButtonBackground"), 16);
-        int blendARGB = ColorUtils.blendARGB(Theme.getColor("chat_inReactionButtonText"), Theme.getColor("chat_inReactionButtonTextSelected"), f);
+        int i = Theme.key_chat_inReactionButtonBackground;
+        int color = Theme.getColor(i);
+        int alphaComponent = ColorUtils.setAlphaComponent(Theme.getColor(i), 16);
+        int i2 = Theme.key_chat_inReactionButtonTextSelected;
+        int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_inReactionButtonText), Theme.getColor(i2), f);
         this.bgPaint.setColor(ColorUtils.blendARGB(alphaComponent, color, f));
         this.counterView.setTextColor(blendARGB);
         this.drawable.setColorFilter(new PorterDuffColorFilter(blendARGB, PorterDuff.Mode.MULTIPLY));
         if (f == 1.0f) {
-            this.overlaySelectorView.setBackground(Theme.createSimpleSelectorRoundRectDrawable((int) this.radius, 0, ColorUtils.setAlphaComponent(Theme.getColor("chat_inReactionButtonTextSelected"), 76)));
+            this.overlaySelectorView.setBackground(Theme.createSimpleSelectorRoundRectDrawable((int) this.radius, 0, ColorUtils.setAlphaComponent(Theme.getColor(i2), 76)));
         } else if (f == 0.0f) {
             this.overlaySelectorView.setBackground(Theme.createSimpleSelectorRoundRectDrawable((int) this.radius, 0, ColorUtils.setAlphaComponent(color, 76)));
         }
@@ -101,7 +103,7 @@ public class ReactionTabHolderView extends FrameLayout {
         if (fromTLReaction.emojicon != null) {
             for (TLRPC$TL_availableReaction tLRPC$TL_availableReaction : MediaDataController.getInstance(i).getReactionsList()) {
                 if (tLRPC$TL_availableReaction.reaction.equals(this.reaction.emojicon)) {
-                    this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, "windowBackgroundGray", 1.0f), tLRPC$TL_availableReaction);
+                    this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tLRPC$TL_availableReaction);
                     this.reactView.setVisibility(0);
                     this.iconView.setVisibility(8);
                     return;

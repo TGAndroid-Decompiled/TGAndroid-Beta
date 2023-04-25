@@ -41,7 +41,7 @@ public class ContactsEmptyView extends LinearLayout implements NotificationCente
         TextView textView = new TextView(context);
         this.titleTextView = textView;
         textView.setTextSize(1, 20.0f);
-        this.titleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.titleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.titleTextView.setGravity(1);
         this.titleTextView.setText(LocaleController.getString("NoContactsYet", R.string.NoContactsYet));
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -59,12 +59,13 @@ public class ContactsEmptyView extends LinearLayout implements NotificationCente
             linearLayout2.setOrientation(0);
             linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, -2, LocaleController.isRTL ? 5 : 3, 0, 8, 0, 0));
             ImageView imageView = new ImageView(context);
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayText"), PorterDuff.Mode.MULTIPLY));
+            int i2 = Theme.key_windowBackgroundWhiteGrayText;
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
             imageView.setImageResource(R.drawable.list_circle);
             this.imageViews.add(imageView);
             TextView textView2 = new TextView(context);
             textView2.setTextSize(1, 15.0f);
-            textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+            textView2.setTextColor(Theme.getColor(i2));
             textView2.setMaxWidth(AndroidUtilities.dp(260.0f));
             this.textViews.add(textView2);
             textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);

@@ -302,15 +302,17 @@ public class PhotoViewerWebView extends FrameLayout {
         TextView textView = new TextView(context);
         this.errorMessage = textView;
         textView.setTextSize(1, 16.0f);
-        this.errorMessage.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        this.errorMessage.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
         this.errorMessage.setGravity(17);
         this.errorLayout.addView(this.errorMessage, LayoutHelper.createLinear(-2, -2, 1));
         TextView textView2 = new TextView(context);
         this.errorButton = textView2;
         textView2.setTextSize(1, 16.0f);
-        this.errorButton.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
+        TextView textView3 = this.errorButton;
+        int i2 = Theme.key_windowBackgroundWhiteBlueText;
+        textView3.setTextColor(Theme.getColor(i2));
         this.errorButton.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f));
-        this.errorButton.setBackground(Theme.AdaptiveRipple.rect("windowBackgroundWhiteBlueText", 12.0f));
+        this.errorButton.setBackground(Theme.AdaptiveRipple.rectByKey(i2, 12.0f));
         this.errorButton.setVisibility(8);
         this.errorLayout.addView(this.errorButton, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
         View view2 = new View(context) {

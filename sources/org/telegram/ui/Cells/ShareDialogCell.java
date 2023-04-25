@@ -15,6 +15,7 @@ import androidx.dynamicanimation.animation.FloatValueHolder;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -76,7 +77,7 @@ public class ShareDialogCell extends FrameLayout {
         };
         this.nameTextView = textView;
         NotificationCenter.listenEmojiLoading(textView);
-        this.nameTextView.setTextColor(getThemedColor(i == 1 ? "voipgroup_nameText" : "dialogTextBlack"));
+        this.nameTextView.setTextColor(getThemedColor(i == 1 ? Theme.key_voipgroup_nameText : Theme.key_dialogTextBlack));
         this.nameTextView.setTextSize(1, 12.0f);
         this.nameTextView.setMaxLines(2);
         this.nameTextView.setGravity(49);
@@ -85,7 +86,7 @@ public class ShareDialogCell extends FrameLayout {
         addView(this.nameTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, this.currentType == 2 ? 58.0f : 66.0f, 6.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.topicTextView = simpleTextView;
-        simpleTextView.setTextColor(getThemedColor(i != 1 ? "dialogTextBlack" : "voipgroup_nameText"));
+        simpleTextView.setTextColor(getThemedColor(i == 1 ? Theme.key_voipgroup_nameText : Theme.key_dialogTextBlack));
         this.topicTextView.setTextSize(12);
         this.topicTextView.setMaxLines(2);
         this.topicTextView.setGravity(49);
@@ -93,7 +94,7 @@ public class ShareDialogCell extends FrameLayout {
         addView(this.topicTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, this.currentType == 2 ? 58.0f : 66.0f, 6.0f, 0.0f));
         CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
         this.checkBox = checkBox2;
-        checkBox2.setColor("dialogRoundCheckBox", i == 1 ? "voipgroup_inviteMembersBackground" : "dialogBackground", "dialogRoundCheckBoxCheck");
+        checkBox2.setColor(Theme.key_dialogRoundCheckBox, i == 1 ? Theme.key_voipgroup_inviteMembersBackground : Theme.key_dialogBackground, Theme.key_dialogRoundCheckBoxCheck);
         this.checkBox.setDrawUnchecked(false);
         this.checkBox.setDrawBackgroundAsArc(4);
         this.checkBox.setProgressDelegate(new CheckBoxBase.ProgressDelegate() {
@@ -103,7 +104,7 @@ public class ShareDialogCell extends FrameLayout {
             }
         });
         addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 49, 19.0f, this.currentType == 2 ? -40.0f : 42.0f, 0.0f, 0.0f));
-        setBackground(Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21"), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
+        setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
     public void lambda$new$0(float f) {
@@ -139,7 +140,7 @@ public class ShareDialogCell extends FrameLayout {
                     if (tLRPC$User != null) {
                         this.nameTextView.setText(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name));
                     } else {
-                        this.nameTextView.setText("");
+                        this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
                     }
                 }
                 this.imageView.setForUserOrChat(this.user, this.avatarDrawable);
@@ -153,7 +154,7 @@ public class ShareDialogCell extends FrameLayout {
             } else if (chat != null) {
                 this.nameTextView.setText(chat.title);
             } else {
-                this.nameTextView.setText("");
+                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
             }
             this.avatarDrawable.setInfo(chat);
             this.imageView.setForUserOrChat(chat, this.avatarDrawable);
@@ -250,11 +251,11 @@ public class ShareDialogCell extends FrameLayout {
             if (z || this.onlineProgress != 0.0f) {
                 int bottom = this.imageView.getBottom() - AndroidUtilities.dp(6.0f);
                 int right = this.imageView.getRight() - AndroidUtilities.dp(10.0f);
-                Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(this.currentType == 1 ? "voipgroup_inviteMembersBackground" : "windowBackgroundWhite"));
+                Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(this.currentType == 1 ? Theme.key_voipgroup_inviteMembersBackground : Theme.key_windowBackgroundWhite));
                 float f = right;
                 float f2 = bottom;
                 canvas.drawCircle(f, f2, AndroidUtilities.dp(7.0f) * this.onlineProgress, Theme.dialogs_onlineCirclePaint);
-                Theme.dialogs_onlineCirclePaint.setColor(getThemedColor("chats_onlineCircle"));
+                Theme.dialogs_onlineCirclePaint.setColor(getThemedColor(Theme.key_chats_onlineCircle));
                 canvas.drawCircle(f, f2, AndroidUtilities.dp(5.0f) * this.onlineProgress, Theme.dialogs_onlineCirclePaint);
                 if (z) {
                     float f3 = this.onlineProgress;
@@ -288,7 +289,7 @@ public class ShareDialogCell extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         int left = this.imageView.getLeft() + (this.imageView.getMeasuredWidth() / 2);
         int top = this.imageView.getTop() + (this.imageView.getMeasuredHeight() / 2);
-        Theme.checkboxSquare_checkPaint.setColor(getThemedColor("dialogRoundCheckBox"));
+        Theme.checkboxSquare_checkPaint.setColor(getThemedColor(Theme.key_dialogRoundCheckBox));
         Theme.checkboxSquare_checkPaint.setAlpha((int) (this.checkBox.getProgress() * 255.0f));
         int dp = AndroidUtilities.dp(this.currentType == 2 ? 24.0f : 28.0f);
         RectF rectF = AndroidUtilities.rectTmp;
@@ -297,10 +298,8 @@ public class ShareDialogCell extends FrameLayout {
         super.onDraw(canvas);
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     @Override

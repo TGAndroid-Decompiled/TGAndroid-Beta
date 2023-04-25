@@ -19,14 +19,14 @@ public class LocationDirectionCell extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         FrameLayout frameLayout = new FrameLayout(context);
         this.frameLayout = frameLayout;
-        frameLayout.setBackground(Theme.AdaptiveRipple.filledRect(getThemedColor("featuredStickers_addButton"), 4.0f));
+        frameLayout.setBackground(Theme.AdaptiveRipple.filledRect(getThemedColor(Theme.key_featuredStickers_addButton), 4.0f));
         addView(this.frameLayout, LayoutHelper.createFrame(-1, 48.0f, 51, 16.0f, 10.0f, 16.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.buttonTextView = simpleTextView;
         simpleTextView.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
         this.buttonTextView.setGravity(17);
         this.buttonTextView.setDrawablePadding(AndroidUtilities.dp(8.0f));
-        this.buttonTextView.setTextColor(getThemedColor("featuredStickers_buttonText"));
+        this.buttonTextView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
         this.buttonTextView.setTextSize(14);
         this.buttonTextView.setText(LocaleController.getString("Directions", R.string.Directions));
         this.buttonTextView.setLeftDrawable(R.drawable.navigate);
@@ -43,9 +43,7 @@ public class LocationDirectionCell extends FrameLayout {
         this.frameLayout.setOnClickListener(onClickListener);
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

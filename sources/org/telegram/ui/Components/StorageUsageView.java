@@ -111,7 +111,8 @@ public class StorageUsageView extends FrameLayout {
         linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 21.0f, 40.0f, 21.0f, 16.0f));
         TextView textView = new TextView(context);
         this.calculatingTextView = textView;
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        int i = Theme.key_windowBackgroundWhiteGrayText;
+        textView.setTextColor(Theme.getColor(i));
         String string = LocaleController.getString("CalculatingSize", R.string.CalculatingSize);
         int indexOf = string.indexOf("...");
         if (indexOf >= 0) {
@@ -126,20 +127,20 @@ public class StorageUsageView extends FrameLayout {
         TextView textView2 = new TextView(context);
         this.telegramCacheTextView = textView2;
         textView2.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-        this.telegramCacheTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        this.telegramCacheTextView.setTextColor(Theme.getColor(i));
         TextView textView3 = new TextView(context);
         this.telegramDatabaseTextView = textView3;
         textView3.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-        this.telegramDatabaseTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        this.telegramDatabaseTextView.setTextColor(Theme.getColor(i));
         TextView textView4 = new TextView(context);
         this.freeSizeTextView = textView4;
         textView4.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-        this.freeSizeTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        this.freeSizeTextView.setTextColor(Theme.getColor(i));
         TextView textView5 = new TextView(context);
         this.totlaSizeTextView = textView5;
         textView5.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
-        this.totlaSizeTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
-        this.lastProgressColor = Theme.getColor("player_progress");
+        this.totlaSizeTextView.setTextColor(Theme.getColor(i));
+        this.lastProgressColor = Theme.getColor(Theme.key_player_progress);
         this.telegramCacheTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
         this.telegramCacheTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
         this.freeSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 64)), (Drawable) null, (Drawable) null, (Drawable) null);
@@ -157,7 +158,7 @@ public class StorageUsageView extends FrameLayout {
         this.divider = view;
         linearLayout.addView(view, LayoutHelper.createLinear(-1, -2, 0, 21, 0, 0, 0));
         this.divider.getLayoutParams().height = 1;
-        this.divider.setBackgroundColor(Theme.getColor("divider"));
+        this.divider.setBackgroundColor(Theme.getColor(Theme.key_divider));
         TextSettingsCell textSettingsCell = new TextSettingsCell(getContext());
         this.textSettingsCell = textSettingsCell;
         linearLayout.addView(textSettingsCell, LayoutHelper.createLinear(-1, -2));
@@ -238,7 +239,7 @@ public class StorageUsageView extends FrameLayout {
                 this.valueAnimator2.start();
             }
         }
-        this.textSettingsCell.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.textSettingsCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         requestLayout();
     }
 
@@ -256,8 +257,10 @@ public class StorageUsageView extends FrameLayout {
     public void invalidate() {
         super.invalidate();
         this.progressView.invalidate();
-        if (this.lastProgressColor != Theme.getColor("player_progress")) {
-            this.lastProgressColor = Theme.getColor("player_progress");
+        int i = this.lastProgressColor;
+        int i2 = Theme.key_player_progress;
+        if (i != Theme.getColor(i2)) {
+            this.lastProgressColor = Theme.getColor(i2);
             this.telegramCacheTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
             this.telegramCacheTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
             this.telegramDatabaseTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), this.lastProgressColor), (Drawable) null, (Drawable) null, (Drawable) null);
@@ -267,8 +270,8 @@ public class StorageUsageView extends FrameLayout {
             this.totlaSizeTextView.setCompoundDrawablesWithIntrinsicBounds(Theme.createCircleDrawable(AndroidUtilities.dp(10.0f), ColorUtils.setAlphaComponent(this.lastProgressColor, 127)), (Drawable) null, (Drawable) null, (Drawable) null);
             this.totlaSizeTextView.setCompoundDrawablePadding(AndroidUtilities.dp(6.0f));
         }
-        this.textSettingsCell.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        this.divider.setBackgroundColor(Theme.getColor("divider"));
+        this.textSettingsCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.divider.setBackgroundColor(Theme.getColor(Theme.key_divider));
     }
 
     public class ProgressView extends View {
@@ -284,14 +287,14 @@ public class StorageUsageView extends FrameLayout {
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
-            int color = Theme.getColor("player_progress");
+            int color = Theme.getColor(Theme.key_player_progress);
             StorageUsageView.this.paintFill.setColor(color);
             StorageUsageView.this.paintProgress.setColor(color);
             StorageUsageView.this.paintProgress2.setColor(color);
             StorageUsageView.this.paintProgress.setAlpha(255);
             StorageUsageView.this.paintProgress2.setAlpha(82);
             StorageUsageView.this.paintFill.setAlpha(46);
-            StorageUsageView.this.bgPaint.setColor(Theme.getColor("windowBackgroundWhite"));
+            StorageUsageView.this.bgPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             canvas.drawLine(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), getMeasuredWidth() - AndroidUtilities.dp(24.0f), AndroidUtilities.dp(20.0f), StorageUsageView.this.paintFill);
             if (StorageUsageView.this.calculating || StorageUsageView.this.calculatingProgress != 0.0f) {
                 if (StorageUsageView.this.calculating) {

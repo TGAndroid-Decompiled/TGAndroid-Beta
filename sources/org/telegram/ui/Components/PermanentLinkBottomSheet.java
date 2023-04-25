@@ -8,6 +8,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.widget.NestedScrollView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -54,7 +55,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         int i2 = R.raw.shared_link_enter;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f), false, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f), false, null);
         this.linkIcon = rLottieDrawable;
         rLottieDrawable.setCustomEndFrame(42);
         rLottieImageView.setAnimation(this.linkIcon);
@@ -86,7 +87,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         textView.setText(LocaleController.getString("InviteLink", R.string.InviteLink));
         textView.setTextSize(24.0f);
         textView.setGravity(1);
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         TextView textView2 = new TextView(context);
         this.subtitle = textView2;
         if (z2) {
@@ -99,13 +100,14 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         textView2.setText(LocaleController.getString(str, i));
         textView2.setTextSize(14.0f);
         textView2.setGravity(1);
-        textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
         TextView textView3 = new TextView(context);
         this.manage = textView3;
         textView3.setText(LocaleController.getString("ManageInviteLinks", R.string.ManageInviteLinks));
         textView3.setTextSize(14.0f);
-        textView3.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
-        textView3.setBackground(Theme.createRadSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlueText"), 76), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
+        int i3 = Theme.key_windowBackgroundWhiteBlueText;
+        textView3.setTextColor(Theme.getColor(i3));
+        textView3.setBackground(Theme.createRadSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor(i3), 76), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
         textView3.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f));
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,24 +222,27 @@ public class PermanentLinkBottomSheet extends BottomSheet {
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
         };
-        arrayList.add(new ThemeDescription(this.titleView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.subtitle, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteGrayText"));
-        arrayList.add(new ThemeDescription(this.manage, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlueText"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "featuredStickers_addButton"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "featuredStickers_buttonText"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteBlueText"));
+        arrayList.add(new ThemeDescription(this.titleView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteBlackText));
+        arrayList.add(new ThemeDescription(this.subtitle, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText));
+        TextView textView = this.manage;
+        int i = ThemeDescription.FLAG_TEXTCOLOR;
+        int i2 = Theme.key_windowBackgroundWhiteBlueText;
+        arrayList.add(new ThemeDescription(textView, i, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_addButton));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_buttonText));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i2));
         return arrayList;
     }
 
     public void updateColors() {
-        this.imageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(90.0f), Theme.getColor("featuredStickers_addButton")));
-        this.manage.setBackground(Theme.createRadSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlueText"), 76), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
-        int color = Theme.getColor("featuredStickers_buttonText");
+        this.imageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(90.0f), Theme.getColor(Theme.key_featuredStickers_addButton)));
+        this.manage.setBackground(Theme.createRadSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText), 76), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
+        int color = Theme.getColor(Theme.key_featuredStickers_buttonText);
         this.linkIcon.setLayerColor("Top.**", color);
         this.linkIcon.setLayerColor("Bottom.**", color);
         this.linkIcon.setLayerColor("Center.**", color);
         this.linkActionView.updateColors();
-        setBackgroundColor(Theme.getColor("dialogBackground"));
+        setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
     }
 
     @Override

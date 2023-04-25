@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -177,7 +178,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 return;
             }
             SuggestEmojiView.this.enterView.getParentFragment().sendAnimatedEmoji(tLRPC$Document, true, 0);
-            SuggestEmojiView.this.enterView.setFieldText("");
+            SuggestEmojiView.this.enterView.setFieldText(BuildConfig.APP_CENTER_HASH);
         }
 
         @Override
@@ -366,7 +367,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         defaultItemAnimator.setDurations(45L);
         defaultItemAnimator.setTranslationInterpolator(cubicBezierInterpolator);
         this.listView.setItemAnimator(defaultItemAnimator);
-        this.listView.setSelectorDrawableColor(Theme.getColor("listSelectorSDK21", this.resourcesProvider));
+        this.listView.setSelectorDrawableColor(Theme.getColor(Theme.key_listSelector, this.resourcesProvider));
         RecyclerListView recyclerListView2 = this.listView;
         final RecyclerListView.OnItemClickListener onItemClickListener = new RecyclerListView.OnItemClickListener() {
             @Override
@@ -423,10 +424,12 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
     public void updateColors() {
         Paint paint = this.backgroundPaint;
         if (paint != null) {
-            paint.setColor(Theme.getColor("chat_stickersHintPanel", this.resourcesProvider));
+            paint.setColor(Theme.getColor(Theme.key_chat_stickersHintPanel, this.resourcesProvider));
         }
-        Theme.chat_gradientLeftDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chat_stickersHintPanel", this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        Theme.chat_gradientRightDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chat_stickersHintPanel", this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        Drawable drawable = Theme.chat_gradientLeftDrawable;
+        int i = Theme.key_chat_stickersHintPanel;
+        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        Theme.chat_gradientRightDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
     }
 
     public void forceClose() {
@@ -485,7 +488,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         CharSequence fieldText = this.enterView.getFieldText();
         boolean z = fieldText instanceof Spanned;
         Emoji.EmojiSpan[] emojiSpanArr = z ? (Emoji.EmojiSpan[]) ((Spanned) fieldText).getSpans(Math.max(0, selectionEnd - 24), selectionEnd, Emoji.EmojiSpan.class) : null;
-        if (emojiSpanArr != null && emojiSpanArr.length > 0 && SharedConfig.suggestAnimatedEmoji) {
+        if (emojiSpanArr != null && emojiSpanArr.length > 0 && SharedConfig.suggestAnimatedEmoji && UserConfig.getInstance(this.currentAccount).isPremium()) {
             Emoji.EmojiSpan emojiSpan = emojiSpanArr[emojiSpanArr.length - 1];
             if (emojiSpan != null) {
                 Spanned spanned = (Spanned) fieldText;
@@ -853,7 +856,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             this.backgroundPaint = paint;
             paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(2.0f)));
             this.backgroundPaint.setShadowLayer(AndroidUtilities.dp(4.33f), 0.0f, AndroidUtilities.dp(0.33333334f), AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
-            this.backgroundPaint.setColor(Theme.getColor("chat_stickersHintPanel", this.resourcesProvider));
+            this.backgroundPaint.setColor(Theme.getColor(Theme.key_chat_stickersHintPanel, this.resourcesProvider));
         }
         if (f < 1.0f) {
             this.circlePath.rewind();

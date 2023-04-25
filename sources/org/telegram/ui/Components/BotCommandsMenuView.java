@@ -18,7 +18,9 @@ import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$BotInfo;
 import org.telegram.tgnet.TLRPC$TL_botCommand;
@@ -82,7 +84,7 @@ public class BotCommandsMenuView extends View {
         menuDrawable.setCallback(this);
         textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         menuDrawable.setRoundCap();
-        Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 0, Theme.getColor("featuredStickers_addButtonPressed"));
+        Drawable createSimpleSelectorRoundRectDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(16.0f), 0, Theme.getColor(Theme.key_featuredStickers_addButtonPressed));
         this.backgroundDrawable = createSimpleSelectorRoundRectDrawable;
         createSimpleSelectorRoundRectDrawable.setCallback(this);
         setContentDescription(LocaleController.getString("AccDescrBotMenu", R.string.AccDescrBotMenu));
@@ -112,8 +114,8 @@ public class BotCommandsMenuView extends View {
     }
 
     private void updateColors() {
-        this.paint.setColor(Theme.getColor("chat_messagePanelVoiceBackground"));
-        int color = Theme.getColor("chat_messagePanelVoiceDuration");
+        this.paint.setColor(Theme.getColor(Theme.key_chat_messagePanelVoiceBackground));
+        int color = Theme.getColor(Theme.key_chat_messagePanelVoiceDuration);
         this.backDrawable.setBackColor(color);
         this.backDrawable.setIconColor(color);
         RLottieDrawable rLottieDrawable = this.webViewAnimation;
@@ -248,19 +250,29 @@ public class BotCommandsMenuView extends View {
             super(context);
             setOrientation(0);
             setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
-            TextView textView = new TextView(context);
+            TextView textView = new TextView(this, context) {
+                @Override
+                public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+                    super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false), bufferType);
+                }
+            };
             this.description = textView;
-            textView.setTextSize(1, 16.0f);
-            this.description.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.description.setTag("windowBackgroundWhiteBlackText");
+            NotificationCenter.listenEmojiLoading(textView);
+            this.description.setTextSize(1, 16.0f);
+            TextView textView2 = this.description;
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            textView2.setTextColor(Theme.getColor(i));
+            this.description.setTag(Integer.valueOf(i));
             this.description.setLines(1);
             this.description.setEllipsize(TextUtils.TruncateAt.END);
             addView(this.description, LayoutHelper.createLinear(-1, -2, 1.0f, 16, 0, 0, AndroidUtilities.dp(8.0f), 0));
-            TextView textView2 = new TextView(context);
-            this.command = textView2;
-            textView2.setTextSize(1, 14.0f);
-            this.command.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
-            this.command.setTag("windowBackgroundWhiteGrayText");
+            TextView textView3 = new TextView(context);
+            this.command = textView3;
+            textView3.setTextSize(1, 14.0f);
+            TextView textView4 = this.command;
+            int i2 = Theme.key_windowBackgroundWhiteGrayText;
+            textView4.setTextColor(Theme.getColor(i2));
+            this.command.setTag(Integer.valueOf(i2));
             addView(this.command, LayoutHelper.createLinear(-2, -2, 0.0f, 16));
         }
 

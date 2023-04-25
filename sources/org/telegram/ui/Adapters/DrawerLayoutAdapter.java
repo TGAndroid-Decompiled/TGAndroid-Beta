@@ -256,9 +256,9 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             UserConfig userConfig = UserConfig.getInstance(UserConfig.selectedAccount);
             if (userConfig != null && userConfig.isPremium()) {
                 if (userConfig.getEmojiStatus() != null) {
-                    this.items.add(new Item(15, LocaleController.getString("ChangeEmojiStatus", R.string.ChangeEmojiStatus), 0, R.raw.emoji_status_change_to_set));
+                    this.items.add(new Item(15, LocaleController.getString("ChangeEmojiStatus", R.string.ChangeEmojiStatus), R.drawable.msg_status_edit));
                 } else {
-                    this.items.add(new Item(15, LocaleController.getString("SetEmojiStatus", R.string.SetEmojiStatus), 0, R.raw.emoji_status_set_to_change));
+                    this.items.add(new Item(15, LocaleController.getString("SetEmojiStatus", R.string.SetEmojiStatus), R.drawable.msg_status_set));
                 }
                 this.items.add(null);
             }
@@ -311,7 +311,6 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
     public static class Item {
         public int icon;
         public int id;
-        public int lottieIcon;
         public String text;
 
         public Item(int i, String str, int i2) {
@@ -320,15 +319,8 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             this.text = str;
         }
 
-        public Item(int i, String str, int i2, int i3) {
-            this.icon = i2;
-            this.lottieIcon = i3;
-            this.id = i;
-            this.text = str;
-        }
-
         public void bind(DrawerActionCell drawerActionCell) {
-            drawerActionCell.setTextAndIcon(this.id, this.text, this.icon, this.lottieIcon);
+            drawerActionCell.setTextAndIcon(this.id, this.text, this.icon);
         }
     }
 }

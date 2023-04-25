@@ -176,18 +176,23 @@ public class QRCodeBottomSheet extends BottomSheet {
     }
 
     public void updateColors() {
-        this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        this.buttonTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
-        TextView textView = this.button2TextView;
-        if (textView != null) {
-            textView.setTextColor(Theme.getColor("featuredStickers_addButton"));
-            this.button2TextView.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor("featuredStickers_addButton"), Math.min(255, Color.alpha(Theme.getColor("listSelectorSDK21")) * 2)), 7));
+        this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+        TextView textView = this.buttonTextView;
+        int dp = AndroidUtilities.dp(6.0f);
+        int i = Theme.key_featuredStickers_addButton;
+        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.getColor(i), Theme.getColor(Theme.key_featuredStickers_addButtonPressed)));
+        TextView textView2 = this.button2TextView;
+        if (textView2 != null) {
+            textView2.setTextColor(Theme.getColor(i));
+            this.button2TextView.setBackground(Theme.createSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor(i), Math.min(255, Color.alpha(Theme.getColor(Theme.key_listSelector)) * 2)), 7));
         }
-        this.help.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
-        this.help.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        TextView textView3 = this.help;
+        int i2 = Theme.key_windowBackgroundWhiteGrayText;
+        textView3.setTextColor(Theme.getColor(i2));
+        this.help.setTextColor(Theme.getColor(i2));
         if (getTitleView() != null) {
-            getTitleView().setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            getTitleView().setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         }
-        setBackgroundColor(Theme.getColor("dialogBackground"));
+        setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
     }
 }

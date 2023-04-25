@@ -11,7 +11,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.ActionBar.Theme;
 public class ColoredImageSpan extends ReplacementSpan {
-    String colorKey;
+    int colorKey;
     Drawable drawable;
     int drawableColor;
     private int size;
@@ -90,9 +90,9 @@ public class ColoredImageSpan extends ReplacementSpan {
         canvas.restore();
     }
 
-    public void setColorKey(String str) {
-        this.colorKey = str;
-        this.usePaintColor = str == null;
+    public void setColorKey(int i) {
+        this.colorKey = i;
+        this.usePaintColor = i < 0;
     }
 
     public void setTopOffset(int i) {

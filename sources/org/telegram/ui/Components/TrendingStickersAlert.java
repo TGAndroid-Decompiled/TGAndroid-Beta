@@ -116,8 +116,8 @@ public class TrendingStickersAlert extends BottomSheet {
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
         });
-        arrayList.add(new ThemeDescription(this.alertContainerView, 0, null, null, new Drawable[]{this.shadowDrawable}, null, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.alertContainerView, 0, null, null, null, null, "key_sheet_scrollUp"));
+        arrayList.add(new ThemeDescription(this.alertContainerView, 0, null, null, new Drawable[]{this.shadowDrawable}, null, Theme.key_dialogBackground));
+        arrayList.add(new ThemeDescription(this.alertContainerView, 0, null, null, null, null, Theme.key_sheet_scrollUp));
         return arrayList;
     }
 
@@ -240,7 +240,7 @@ public class TrendingStickersAlert extends BottomSheet {
             ((BottomSheet) TrendingStickersAlert.this).shadowDrawable.draw(canvas);
             if (fraction > 0.0f && fraction < 1.0f) {
                 float dp = AndroidUtilities.dp(12.0f) * fraction;
-                TrendingStickersAlert.this.shapeDrawable.setColor(TrendingStickersAlert.this.getThemedColor("dialogBackground"));
+                TrendingStickersAlert.this.shapeDrawable.setColor(TrendingStickersAlert.this.getThemedColor(Theme.key_dialogBackground));
                 float[] fArr = this.radii;
                 fArr[3] = dp;
                 fArr[2] = dp;
@@ -256,8 +256,8 @@ public class TrendingStickersAlert extends BottomSheet {
         private void updateLightStatusBar(boolean z) {
             if (this.statusBarOpen != z) {
                 this.statusBarOpen = z;
-                boolean z2 = AndroidUtilities.computePerceivedBrightness(TrendingStickersAlert.this.getThemedColor("dialogBackground")) > 0.721f;
-                boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(TrendingStickersAlert.this.getThemedColor("actionBarDefault"), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
+                boolean z2 = AndroidUtilities.computePerceivedBrightness(TrendingStickersAlert.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
+                boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(TrendingStickersAlert.this.getThemedColor(Theme.key_actionBarDefault), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
                 if (!z) {
                     z2 = z3;
                 }
@@ -271,7 +271,7 @@ public class TrendingStickersAlert extends BottomSheet {
             setStatusBarVisible(fraction == 0.0f && Build.VERSION.SDK_INT >= 21 && !TrendingStickersAlert.this.isDismissed(), true);
             updateLightStatusBar(this.statusBarAlpha > 0.5f);
             if (this.statusBarAlpha > 0.0f) {
-                this.paint.setColor(TrendingStickersAlert.this.getThemedColor("dialogBackground"));
+                this.paint.setColor(TrendingStickersAlert.this.getThemedColor(Theme.key_dialogBackground));
                 int max = (int) Math.max(0.0f, TrendingStickersAlert.this.scrollOffsetY + (TrendingStickersAlert.this.topOffset * (1.0f - getFraction())) + AndroidUtilities.dp(24.0f) + TrendingStickersAlert.this.layout.getTranslationY() + ((Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0) - TrendingStickersAlert.this.topOffset));
                 canvas.drawRect(((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, AndroidUtilities.lerp(max, -AndroidUtilities.statusBarHeight, this.statusBarAlpha), getMeasuredWidth() - ((BottomSheet) TrendingStickersAlert.this).backgroundPaddingLeft, max, this.paint);
             }
@@ -282,7 +282,7 @@ public class TrendingStickersAlert extends BottomSheet {
             int dp2 = AndroidUtilities.dp(4.0f);
             int i = (int) (dp2 * 2.0f * (1.0f - fraction));
             TrendingStickersAlert.this.shapeDrawable.setCornerRadius(AndroidUtilities.dp(2.0f));
-            int themedColor = TrendingStickersAlert.this.getThemedColor("key_sheet_scrollUp");
+            int themedColor = TrendingStickersAlert.this.getThemedColor(Theme.key_sheet_scrollUp);
             TrendingStickersAlert.this.shapeDrawable.setColor(ColorUtils.setAlphaComponent(themedColor, (int) (Color.alpha(themedColor) * fraction)));
             TrendingStickersAlert.this.shapeDrawable.setBounds((getWidth() - dp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.dp(10.0f) + i, (getWidth() + dp) / 2, TrendingStickersAlert.this.scrollOffsetY + AndroidUtilities.dp(10.0f) + i + dp2);
             TrendingStickersAlert.this.shapeDrawable.draw(canvas);

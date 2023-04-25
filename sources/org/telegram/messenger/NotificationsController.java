@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.support.LongSparseIntArray;
@@ -209,7 +210,7 @@ public class NotificationsController extends BaseController {
         StringBuilder sb = new StringBuilder();
         sb.append("messages");
         int i2 = this.currentAccount;
-        sb.append(i2 == 0 ? "" : Integer.valueOf(i2));
+        sb.append(i2 == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i2));
         this.notificationGroup = sb.toString();
         SharedPreferences notificationsSettings = getAccountInstance().getNotificationsSettings();
         this.inChatSoundEnabled = notificationsSettings.getBoolean("EnableInChatSound", true);
@@ -299,11 +300,7 @@ public class NotificationsController extends BaseController {
     }
 
     public static String getSharedPrefKey(long j, int i) {
-        String l = Long.toString(j);
-        if (i != 0) {
-            return l + "_" + i;
-        }
-        return l;
+        return i != 0 ? String.format(Locale.US, "%d_%d", Long.valueOf(j), Integer.valueOf(i)) : String.valueOf(j);
     }
 
     public void muteUntil(long j, int i, int i2) {
@@ -1658,7 +1655,7 @@ public class NotificationsController extends BaseController {
             if (user == null) {
                 getUserConfig().getCurrentUser();
             }
-            String str6 = user != null ? " (" + ContactsController.formatName(user.first_name, user.last_name) + ")" : "";
+            String str6 = user != null ? " (" + ContactsController.formatName(user.first_name, user.last_name) + ")" : BuildConfig.APP_CENTER_HASH;
             ArrayList arrayList = new ArrayList();
             if (str2 != null) {
                 arrayList.add(new NotificationChannelGroup(str2, LocaleController.getString("NotificationsChannels", R.string.NotificationsChannels) + str6));
@@ -1734,7 +1731,7 @@ public class NotificationsController extends BaseController {
     }
 
     @android.annotation.SuppressLint({"InlinedApi"})
-    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r73, java.lang.String r74, long r75, int r77, java.lang.String r78, long[] r79, int r80, android.net.Uri r81, int r82, boolean r83, boolean r84, boolean r85, int r86) {
+    private void showExtraNotifications(androidx.core.app.NotificationCompat.Builder r72, java.lang.String r73, long r74, int r76, java.lang.String r77, long[] r78, int r79, android.net.Uri r80, int r81, boolean r82, boolean r83, boolean r84, int r85) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.showExtraNotifications(androidx.core.app.NotificationCompat$Builder, java.lang.String, long, int, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):void");
     }
 
@@ -1802,7 +1799,7 @@ public class NotificationsController extends BaseController {
     }
 
     @TargetApi(28)
-    private void loadRoundAvatar(File file, Person.Builder builder) {
+    public static void loadRoundAvatar(File file, Person.Builder builder) {
         if (file != null) {
             try {
                 builder.setIcon(IconCompat.createWithBitmap(ImageDecoder.decodeBitmap(ImageDecoder.createSource(file), NotificationsController$$ExternalSyntheticLambda0.INSTANCE)));
@@ -1979,7 +1976,7 @@ public class NotificationsController extends BaseController {
             tLRPC$TL_notificationSoundRingtone.id = j2;
             tLRPC$TL_account_updateNotifySettings.settings.sound = tLRPC$TL_notificationSoundRingtone;
         } else if (string != null) {
-            if (string.equals("NoSound")) {
+            if (string.equalsIgnoreCase("NoSound")) {
                 tLRPC$TL_account_updateNotifySettings.settings.sound = new TLRPC$TL_notificationSoundNone();
             } else {
                 TLRPC$TL_notificationSoundLocal tLRPC$TL_notificationSoundLocal = new TLRPC$TL_notificationSoundLocal();
@@ -2042,7 +2039,7 @@ public class NotificationsController extends BaseController {
             tLRPC$TL_notificationSoundRingtone.id = j;
             tLRPC$TL_account_updateNotifySettings.settings.sound = tLRPC$TL_notificationSoundRingtone;
         } else if (string != null) {
-            if (string.equals("NoSound")) {
+            if (string.equalsIgnoreCase("NoSound")) {
                 tLRPC$TL_account_updateNotifySettings.settings.sound = new TLRPC$TL_notificationSoundNone();
             } else {
                 TLRPC$TL_notificationSoundLocal tLRPC$TL_notificationSoundLocal = new TLRPC$TL_notificationSoundLocal();
@@ -2117,7 +2114,7 @@ public class NotificationsController extends BaseController {
         for (Map.Entry<String, ?> entry : MessagesController.getNotificationsSettings(this.currentAccount).getAll().entrySet()) {
             String key = entry.getKey();
             if (key.startsWith(NotificationsSettingsFacade.PROPERTY_NOTIFY + j)) {
-                int intValue = Utilities.parseInt((CharSequence) key.replace(NotificationsSettingsFacade.PROPERTY_NOTIFY + j, "")).intValue();
+                int intValue = Utilities.parseInt((CharSequence) key.replace(NotificationsSettingsFacade.PROPERTY_NOTIFY + j, BuildConfig.APP_CENTER_HASH)).intValue();
                 if (intValue != 0 && getMessagesController().isDialogMuted(j, intValue) != getMessagesController().isDialogMuted(j, 0)) {
                     hashSet.add(Integer.valueOf(intValue));
                 }

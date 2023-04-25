@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.view.GestureDetectorCompat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 public class CustomPhoneKeyboardView extends ViewGroup {
@@ -106,7 +107,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
                         break;
                     case 9:
                     default:
-                        str = "";
+                        str = BuildConfig.APP_CENTER_HASH;
                         break;
                     case 10:
                         str = "+";
@@ -141,7 +142,7 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         };
         this.backButton = imageView;
         imageView.setImageResource(R.drawable.msg_clear_input);
-        this.backButton.setColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.backButton.setColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.backButton.setBackground(getButtonDrawable());
         int dp = AndroidUtilities.dp(11.0f);
         this.backButton.setPadding(dp, dp, dp, dp);
@@ -266,12 +267,14 @@ public class CustomPhoneKeyboardView extends ViewGroup {
     }
 
     public static Drawable getButtonDrawable() {
-        return Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("listSelectorSDK21"), ColorUtils.setAlphaComponent(Theme.getColor("listSelectorSDK21"), 60));
+        int dp = AndroidUtilities.dp(6.0f);
+        int i = Theme.key_listSelector;
+        return Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.getColor(i), ColorUtils.setAlphaComponent(Theme.getColor(i), 60));
     }
 
     public void updateColors() {
         View[] viewArr;
-        this.backButton.setColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.backButton.setColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         for (View view : this.views) {
             if (view != null) {
                 view.setBackground(getButtonDrawable());
@@ -303,8 +306,8 @@ public class CustomPhoneKeyboardView extends ViewGroup {
         }
 
         public void updateColors() {
-            this.numberTextPaint.setColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.symbolsTextPaint.setColor(Theme.getColor("windowBackgroundWhiteHintText"));
+            this.numberTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            this.symbolsTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
         }
 
         @Override

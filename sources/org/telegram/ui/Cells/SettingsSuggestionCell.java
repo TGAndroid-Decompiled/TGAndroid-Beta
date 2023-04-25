@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -43,14 +44,14 @@ public class SettingsSuggestionCell extends LinearLayout {
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueHeader", resourcesProvider));
+        this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider));
         addView(this.textView, LayoutHelper.createLinear(-1, -2, (LocaleController.isRTL ? 5 : 3) | 48, 21, 15, 21, 0));
         TextView textView2 = new TextView(context);
         this.detailTextView = textView2;
-        textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2", resourcesProvider));
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
         this.detailTextView.setTextSize(1, 13.0f);
-        this.detailTextView.setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText", resourcesProvider));
-        this.detailTextView.setHighlightColor(Theme.getColor("windowBackgroundWhiteLinkSelection", resourcesProvider));
+        this.detailTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, resourcesProvider));
+        this.detailTextView.setHighlightColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkSelection, resourcesProvider));
         this.detailTextView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         this.detailTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         addView(this.detailTextView, LayoutHelper.createLinear(-2, -2, LocaleController.isRTL ? 5 : 3, 21, 8, 21, 0));
@@ -60,13 +61,13 @@ public class SettingsSuggestionCell extends LinearLayout {
         int i = 0;
         while (i < 2) {
             TextView textView3 = new TextView(context);
-            textView3.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+            textView3.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
             textView3.setLines(1);
             textView3.setSingleLine(true);
             textView3.setGravity(1);
             textView3.setEllipsize(TextUtils.TruncateAt.END);
             textView3.setGravity(17);
-            textView3.setTextColor(Theme.getColor("featuredStickers_buttonText", resourcesProvider));
+            textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
             textView3.setTextSize(1, 14.0f);
             textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             linearLayout.addView(textView3, LayoutHelper.createLinear(0, 40, 0.5f, i == 0 ? 0 : 4, 0, i == 0 ? 4 : 0, 0));
@@ -121,8 +122,8 @@ public class SettingsSuggestionCell extends LinearLayout {
         int indexOf = string.indexOf("**");
         int lastIndexOf = string.lastIndexOf("**");
         if (indexOf >= 0 && lastIndexOf >= 0 && indexOf != lastIndexOf) {
-            spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
-            spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
+            spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) BuildConfig.APP_CENTER_HASH);
+            spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) BuildConfig.APP_CENTER_HASH);
             try {
                 spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("CheckPhoneNumberLearnMoreUrl", R.string.CheckPhoneNumberLearnMoreUrl)), indexOf, lastIndexOf - 2, 33);
             } catch (Exception e) {

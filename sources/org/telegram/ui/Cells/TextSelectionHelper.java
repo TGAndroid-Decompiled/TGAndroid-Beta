@@ -33,6 +33,7 @@ import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
@@ -669,13 +670,13 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 this.popupLayout.setShownFromBottom(false);
                 TextView textView = new TextView(this.textSelectionOverlay.getContext());
                 this.deleteView = textView;
-                textView.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor("listSelectorSDK21"), 2));
+                textView.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 2));
                 this.deleteView.setGravity(16);
                 this.deleteView.setPadding(AndroidUtilities.dp(20.0f), 0, AndroidUtilities.dp(20.0f), 0);
                 this.deleteView.setTextSize(1, 15.0f);
                 this.deleteView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 this.deleteView.setText(this.textSelectionOverlay.getContext().getString(17039361));
-                this.deleteView.setTextColor(getThemedColor("actionBarDefaultSubmenuItem"));
+                this.deleteView.setTextColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
                 this.deleteView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -690,7 +691,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 this.popupWindow.setOutsideTouchable(true);
                 ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout2 = this.popupLayout;
                 if (actionBarPopupWindowLayout2 != null) {
-                    actionBarPopupWindowLayout2.setBackgroundColor(getThemedColor("actionBarDefaultSubmenuBackground"));
+                    actionBarPopupWindowLayout2.setBackgroundColor(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
                 }
             }
             this.popupWindow.showAtLocation(this.textSelectionOverlay, 48, 0, ((this.selectedView == null || (r2 = (((int) (((float) (offsetToCord(this.selectionStart)[1] + this.textY)) + this.selectedView.getY())) + ((-getLineHeight()) / 2)) - AndroidUtilities.dp(4.0f)) < 0) ? 0 : 0) - AndroidUtilities.dp(48.0f));
@@ -876,9 +877,9 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                     Cell cell = TextSelectionHelper.this.selectedView;
                     MessageObject messageObject = cell instanceof ChatMessageCell ? ((ChatMessageCell) cell).getMessageObject() : null;
                     if (messageObject != null && messageObject.isOutOwner()) {
-                        this.handleViewPaint.setColor(TextSelectionHelper.this.getThemedColor("chat_outTextSelectionCursor"));
+                        this.handleViewPaint.setColor(TextSelectionHelper.this.getThemedColor(Theme.key_chat_outTextSelectionCursor));
                     } else {
-                        this.handleViewPaint.setColor(TextSelectionHelper.this.getThemedColor("chat_TextSelectionCursor"));
+                        this.handleViewPaint.setColor(TextSelectionHelper.this.getThemedColor(Theme.key_chat_TextSelectionCursor));
                     }
                     TextSelectionHelper textSelectionHelper5 = TextSelectionHelper.this;
                     int length = textSelectionHelper5.getText(textSelectionHelper5.selectedView, false).length();
@@ -1550,11 +1551,15 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             int clamp2 = Utilities.clamp(i3, textLayoutBlock.textLayout.getText().length(), 0);
             if (clamp != clamp2) {
                 if (messageObject2.isOutOwner()) {
-                    this.selectionPaint.setColor(getThemedColor("chat_outTextSelectionHighlight"));
-                    this.selectionHandlePaint.setColor(getThemedColor("chat_outTextSelectionHighlight"));
+                    Paint paint = this.selectionPaint;
+                    int i4 = Theme.key_chat_outTextSelectionHighlight;
+                    paint.setColor(getThemedColor(i4));
+                    this.selectionHandlePaint.setColor(getThemedColor(i4));
                 } else {
-                    this.selectionPaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
-                    this.selectionHandlePaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
+                    Paint paint2 = this.selectionPaint;
+                    int i5 = Theme.key_chat_inTextSelectionHighlight;
+                    paint2.setColor(getThemedColor(i5));
+                    this.selectionHandlePaint.setColor(getThemedColor(i5));
                 }
                 drawSelection(canvas, textLayoutBlock.textLayout, clamp, clamp2, true, true);
             }
@@ -1747,11 +1752,15 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 return;
             }
             if (z) {
-                this.selectionPaint.setColor(getThemedColor("chat_outTextSelectionHighlight"));
-                this.selectionHandlePaint.setColor(getThemedColor("chat_outTextSelectionHighlight"));
+                Paint paint = this.selectionPaint;
+                int i = Theme.key_chat_outTextSelectionHighlight;
+                paint.setColor(getThemedColor(i));
+                this.selectionHandlePaint.setColor(getThemedColor(i));
             } else {
-                this.selectionPaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
-                this.selectionHandlePaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
+                Paint paint2 = this.selectionPaint;
+                int i2 = Theme.key_chat_inTextSelectionHighlight;
+                paint2.setColor(getThemedColor(i2));
+                this.selectionHandlePaint.setColor(getThemedColor(i2));
             }
             drawSelection(canvas, staticLayout, this.selectionStart, this.selectionEnd, true, true);
         }
@@ -1759,11 +1768,15 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         public void drawDescription(boolean z, StaticLayout staticLayout, Canvas canvas) {
             if (this.isDescription) {
                 if (z) {
-                    this.selectionPaint.setColor(getThemedColor("chat_outTextSelectionHighlight"));
-                    this.selectionHandlePaint.setColor(getThemedColor("chat_outTextSelectionHighlight"));
+                    Paint paint = this.selectionPaint;
+                    int i = Theme.key_chat_outTextSelectionHighlight;
+                    paint.setColor(getThemedColor(i));
+                    this.selectionHandlePaint.setColor(getThemedColor(i));
                 } else {
-                    this.selectionPaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
-                    this.selectionHandlePaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
+                    Paint paint2 = this.selectionPaint;
+                    int i2 = Theme.key_chat_inTextSelectionHighlight;
+                    paint2.setColor(getThemedColor(i2));
+                    this.selectionHandlePaint.setColor(getThemedColor(i2));
                 }
                 drawSelection(canvas, staticLayout, this.selectionStart, this.selectionEnd, true, true);
             }
@@ -1857,7 +1870,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             } else {
                 i = this.startPeek ? this.startViewChildPosition : this.endViewChildPosition;
             }
-            return (this.arrayList.isEmpty() || i < 0) ? "" : this.arrayList.get(i).getLayout().getText();
+            return (this.arrayList.isEmpty() || i < 0) ? BuildConfig.APP_CENTER_HASH : this.arrayList.get(i).getLayout().getText();
         }
 
         @Override
@@ -2040,8 +2053,10 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
 
         public void draw(Canvas canvas, ArticleSelectableView articleSelectableView, int i) {
-            this.selectionPaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
-            this.selectionHandlePaint.setColor(getThemedColor("chat_inTextSelectionHighlight"));
+            Paint paint = this.selectionPaint;
+            int i2 = Theme.key_chat_inTextSelectionHighlight;
+            paint.setColor(getThemedColor(i2));
+            this.selectionHandlePaint.setColor(getThemedColor(i2));
             int adapterPosition = getAdapterPosition(articleSelectableView);
             if (adapterPosition < 0) {
                 return;
@@ -2052,30 +2067,30 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 return;
             }
             TextLayoutBlock textLayoutBlock = this.arrayList.get(i);
-            int i2 = this.endViewOffset;
+            int i3 = this.endViewOffset;
             int length = textLayoutBlock.getLayout().getText().length();
-            int i3 = i2 > length ? length : i2;
-            int i4 = this.startViewPosition;
-            if (adapterPosition == i4 && adapterPosition == this.endViewPosition) {
-                int i5 = this.startViewChildPosition;
-                int i6 = this.endViewChildPosition;
-                if (i5 == i6 && i5 == i) {
-                    drawSelection(canvas, textLayoutBlock.getLayout(), this.startViewOffset, i3, true, true);
-                } else if (i == i5) {
-                    drawSelection(canvas, textLayoutBlock.getLayout(), this.startViewOffset, length, true, false);
+            int i4 = i3 > length ? length : i3;
+            int i5 = this.startViewPosition;
+            if (adapterPosition == i5 && adapterPosition == this.endViewPosition) {
+                int i6 = this.startViewChildPosition;
+                int i7 = this.endViewChildPosition;
+                if (i6 == i7 && i6 == i) {
+                    drawSelection(canvas, textLayoutBlock.getLayout(), this.startViewOffset, i4, true, true);
                 } else if (i == i6) {
-                    drawSelection(canvas, textLayoutBlock.getLayout(), 0, i3, false, true);
-                } else if (i <= i5 || i >= i6) {
+                    drawSelection(canvas, textLayoutBlock.getLayout(), this.startViewOffset, length, true, false);
+                } else if (i == i7) {
+                    drawSelection(canvas, textLayoutBlock.getLayout(), 0, i4, false, true);
+                } else if (i <= i6 || i >= i7) {
                 } else {
                     drawSelection(canvas, textLayoutBlock.getLayout(), 0, length, false, false);
                 }
-            } else if (adapterPosition == i4 && this.startViewChildPosition == i) {
+            } else if (adapterPosition == i5 && this.startViewChildPosition == i) {
                 drawSelection(canvas, textLayoutBlock.getLayout(), this.startViewOffset, length, true, false);
             } else {
-                int i7 = this.endViewPosition;
-                if (adapterPosition == i7 && this.endViewChildPosition == i) {
-                    drawSelection(canvas, textLayoutBlock.getLayout(), 0, i3, false, true);
-                } else if ((adapterPosition <= i4 || adapterPosition >= i7) && ((adapterPosition != i4 || i <= this.startViewChildPosition) && (adapterPosition != i7 || i >= this.endViewChildPosition))) {
+                int i8 = this.endViewPosition;
+                if (adapterPosition == i8 && this.endViewChildPosition == i) {
+                    drawSelection(canvas, textLayoutBlock.getLayout(), 0, i4, false, true);
+                } else if ((adapterPosition <= i5 || adapterPosition >= i8) && ((adapterPosition != i5 || i <= this.startViewChildPosition) && (adapterPosition != i8 || i >= this.endViewChildPosition))) {
                 } else {
                     drawSelection(canvas, textLayoutBlock.getLayout(), 0, length, false, false);
                 }
@@ -2637,7 +2652,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         invalidate();
     }
 
-    public int getThemedColor(String str) {
-        return Theme.getColor(str);
+    protected int getThemedColor(int i) {
+        return Theme.getColor(i);
     }
 }

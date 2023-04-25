@@ -45,9 +45,9 @@ public class URLSpanMono extends MetricAffectingSpan {
         if (b == 2) {
             textPaint.setColor(-1);
         } else if (b == 1) {
-            textPaint.setColor(Theme.getColor("chat_messageTextOut"));
+            textPaint.setColor(Theme.getColor(Theme.key_chat_messageTextOut));
         } else {
-            textPaint.setColor(Theme.getColor("chat_messageTextIn"));
+            textPaint.setColor(Theme.getColor(Theme.key_chat_messageTextIn));
         }
         TextStyleSpan.TextStyleRun textStyleRun = this.style;
         if (textStyleRun != null) {

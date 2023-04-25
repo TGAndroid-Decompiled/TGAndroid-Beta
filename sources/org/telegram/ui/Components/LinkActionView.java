@@ -59,6 +59,7 @@ public class LinkActionView extends LinearLayout {
     private boolean isChannel;
     String link;
     TextView linkView;
+    private String loadedInviteLink;
     boolean loadingImporters;
     ImageView optionsView;
     private boolean permanent;
@@ -167,6 +168,7 @@ public class LinkActionView extends LinearLayout {
         addView(linearLayout, LayoutHelper.createLinear(-1, -2, 0.0f, 20.0f, 0.0f, 0.0f));
         AvatarsContainer avatarsContainer = new AvatarsContainer(context);
         this.avatarsContainer = avatarsContainer;
+        avatarsContainer.avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
         addView(avatarsContainer, LayoutHelper.createLinear(-1, 44, 0.0f, 12.0f, 0.0f, 0.0f));
         textView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,10 +203,6 @@ public class LinkActionView extends LinearLayout {
             }
         });
         frameLayout.setOnClickListener(new View.OnClickListener() {
-            {
-                LinkActionView.this = this;
-            }
-
             @Override
             public void onClick(View view) {
                 LinkActionView.this.copyView.callOnClick();
@@ -297,7 +295,8 @@ public class LinkActionView extends LinearLayout {
         if (!this.hideRevokeOption) {
             ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(context, false, true);
             actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("RevokeLink", R.string.RevokeLink), R.drawable.msg_delete);
-            actionBarMenuSubItem3.setColors(Theme.getColor("text_RedRegular"), Theme.getColor("text_RedRegular"));
+            int i = Theme.key_text_RedRegular;
+            actionBarMenuSubItem3.setColors(Theme.getColor(i), Theme.getColor(i));
             actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
@@ -315,10 +314,6 @@ public class LinkActionView extends LinearLayout {
             getPointOnScreen(this.frameLayout, container, this.point);
             float f = this.point[1];
             final View view2 = new View(context) {
-                {
-                    LinkActionView.this = this;
-                }
-
                 @Override
                 protected void onDraw(Canvas canvas) {
                     canvas.drawColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
@@ -351,19 +346,11 @@ public class LinkActionView extends LinearLayout {
             ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
             this.actionBarPopupWindow = actionBarPopupWindow;
             actionBarPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                {
-                    LinkActionView.this = this;
-                }
-
                 @Override
                 public void onDismiss() {
                     LinkActionView.this.actionBarPopupWindow = null;
                     view2.animate().cancel();
                     view2.animate().alpha(0.0f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
-                        {
-                            AnonymousClass3.this = this;
-                        }
-
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             if (view2.getParent() != null) {
@@ -467,10 +454,6 @@ public class LinkActionView extends LinearLayout {
             str3 = LocaleController.getString(str, i);
         }
         QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, string, str2, str3, false) {
-            {
-                LinkActionView.this = this;
-            }
-
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -487,17 +470,26 @@ public class LinkActionView extends LinearLayout {
     }
 
     public void updateColors() {
-        this.copyView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        this.shareView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        this.removeView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        this.copyView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
-        this.shareView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed")));
-        this.removeView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("chat_attachAudioBackground"), ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), 120)));
-        this.frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("graySection"), ColorUtils.setAlphaComponent(Theme.getColor("listSelectorSDK21"), 76)));
-        this.linkView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        this.optionsView.setColorFilter(Theme.getColor("dialogTextGray3"));
-        this.avatarsContainer.countTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
-        this.avatarsContainer.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlueText"), 76)));
+        TextView textView = this.copyView;
+        int i = Theme.key_featuredStickers_buttonText;
+        textView.setTextColor(Theme.getColor(i));
+        this.shareView.setTextColor(Theme.getColor(i));
+        this.removeView.setTextColor(Theme.getColor(i));
+        TextView textView2 = this.copyView;
+        int dp = AndroidUtilities.dp(6.0f);
+        int i2 = Theme.key_featuredStickers_addButton;
+        int color = Theme.getColor(i2);
+        int i3 = Theme.key_featuredStickers_addButtonPressed;
+        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, color, Theme.getColor(i3)));
+        this.shareView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(i2), Theme.getColor(i3)));
+        this.removeView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_chat_attachAudioBackground), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
+        this.frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_graySection), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_listSelector), 76)));
+        this.linkView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.optionsView.setColorFilter(Theme.getColor(Theme.key_dialogTextGray3));
+        TextView textView3 = this.avatarsContainer.countTextView;
+        int i4 = Theme.key_windowBackgroundWhiteBlueText;
+        textView3.setTextColor(Theme.getColor(i4));
+        this.avatarsContainer.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i4), 76)));
         QRCodeBottomSheet qRCodeBottomSheet = this.qrCodeBottomSheet;
         if (qRCodeBottomSheet != null) {
             qRCodeBottomSheet.updateColors();
@@ -544,12 +536,7 @@ public class LinkActionView extends LinearLayout {
 
         public AvatarsContainer(Context context) {
             super(context);
-            LinkActionView.this = r6;
-            this.avatarsImageView = new AvatarsImageView(context, false, r6) {
-                {
-                    AvatarsContainer.this = this;
-                }
-
+            this.avatarsImageView = new AvatarsImageView(context, false, LinkActionView.this) {
                 @Override
                 public void onMeasure(int i, int i2) {
                     int min = Math.min(3, LinkActionView.this.usersCount);
@@ -586,7 +573,7 @@ public class LinkActionView extends LinearLayout {
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
         TextView textView = (TextView) builder.create().getButton(-1);
         if (textView != null) {
-            textView.setTextColor(Theme.getColor("text_RedBold"));
+            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
         }
         builder.show();
     }
@@ -603,6 +590,10 @@ public class LinkActionView extends LinearLayout {
     }
 
     public void setUsers(int i, ArrayList<TLRPC$User> arrayList) {
+        setUsers(i, arrayList, false);
+    }
+
+    public void setUsers(int i, ArrayList<TLRPC$User> arrayList, boolean z) {
         this.usersCount = i;
         if (i == 0) {
             this.avatarsContainer.setVisibility(8);
@@ -614,52 +605,60 @@ public class LinkActionView extends LinearLayout {
             this.avatarsContainer.requestLayout();
         }
         if (arrayList != null) {
-            for (int i2 = 0; i2 < 3; i2++) {
-                if (i2 < arrayList.size()) {
-                    MessagesController.getInstance(UserConfig.selectedAccount).putUser(arrayList.get(i2), false);
-                    this.avatarsContainer.avatarsImageView.setObject(i2, UserConfig.selectedAccount, arrayList.get(i2));
-                } else {
-                    this.avatarsContainer.avatarsImageView.setObject(i2, UserConfig.selectedAccount, null);
-                }
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                MessagesController.getInstance(UserConfig.selectedAccount).putUser(arrayList.get(i2), false);
             }
-            this.avatarsContainer.avatarsImageView.commitTransition(false);
+            int min = Math.min(3, Math.min(i, arrayList.size()));
+            this.avatarsContainer.avatarsImageView.setCount(min);
+            for (int i3 = 0; i3 < min; i3++) {
+                this.avatarsContainer.avatarsImageView.setObject(i3, UserConfig.selectedAccount, arrayList.get(i3));
+            }
+        } else {
+            this.avatarsContainer.avatarsImageView.setCount(0);
         }
+        this.avatarsContainer.avatarsImageView.commitTransition(z);
     }
 
     public void loadUsers(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, long j) {
         if (tLRPC$TL_chatInviteExported == null) {
-            setUsers(0, null);
-            return;
-        }
-        setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers);
-        if (tLRPC$TL_chatInviteExported.usage <= 0 || tLRPC$TL_chatInviteExported.importers != null || this.loadingImporters) {
-            return;
-        }
-        TLRPC$TL_messages_getChatInviteImporters tLRPC$TL_messages_getChatInviteImporters = new TLRPC$TL_messages_getChatInviteImporters();
-        tLRPC$TL_messages_getChatInviteImporters.link = tLRPC$TL_chatInviteExported.link;
-        tLRPC$TL_messages_getChatInviteImporters.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(-j);
-        tLRPC$TL_messages_getChatInviteImporters.offset_user = new TLRPC$TL_inputUserEmpty();
-        tLRPC$TL_messages_getChatInviteImporters.limit = Math.min(tLRPC$TL_chatInviteExported.usage, 3);
-        this.loadingImporters = true;
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_getChatInviteImporters, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LinkActionView.this.lambda$loadUsers$12(tLRPC$TL_chatInviteExported, tLObject, tLRPC$TL_error);
+            setUsers(0, null, false);
+        } else if (TextUtils.equals(this.loadedInviteLink, tLRPC$TL_chatInviteExported.link)) {
+        } else {
+            setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers, false);
+            if (tLRPC$TL_chatInviteExported.usage <= 0 || tLRPC$TL_chatInviteExported.importers != null || this.loadingImporters) {
+                return;
             }
-        });
+            TLRPC$TL_messages_getChatInviteImporters tLRPC$TL_messages_getChatInviteImporters = new TLRPC$TL_messages_getChatInviteImporters();
+            String str = tLRPC$TL_chatInviteExported.link;
+            if (str != null) {
+                tLRPC$TL_messages_getChatInviteImporters.flags |= 2;
+                tLRPC$TL_messages_getChatInviteImporters.link = str;
+            }
+            tLRPC$TL_messages_getChatInviteImporters.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(-j);
+            tLRPC$TL_messages_getChatInviteImporters.offset_user = new TLRPC$TL_inputUserEmpty();
+            tLRPC$TL_messages_getChatInviteImporters.limit = Math.min(tLRPC$TL_chatInviteExported.usage, 3);
+            this.loadingImporters = true;
+            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_getChatInviteImporters, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    LinkActionView.this.lambda$loadUsers$12(tLRPC$TL_chatInviteExported, tLObject, tLRPC$TL_error);
+                }
+            });
+        }
     }
 
     public void lambda$loadUsers$12(final TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LinkActionView.this.lambda$loadUsers$11(tLRPC$TL_error, tLObject, tLRPC$TL_chatInviteExported);
+                LinkActionView.this.lambda$loadUsers$11(tLRPC$TL_chatInviteExported, tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$loadUsers$11(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported) {
+    public void lambda$loadUsers$11(TLRPC$TL_chatInviteExported tLRPC$TL_chatInviteExported, TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         this.loadingImporters = false;
+        this.loadedInviteLink = tLRPC$TL_chatInviteExported.link;
         if (tLRPC$TL_error == null) {
             TLRPC$TL_messages_chatInviteImporters tLRPC$TL_messages_chatInviteImporters = (TLRPC$TL_messages_chatInviteImporters) tLObject;
             if (tLRPC$TL_chatInviteExported.importers == null) {
@@ -669,7 +668,7 @@ public class LinkActionView extends LinearLayout {
             for (int i = 0; i < tLRPC$TL_messages_chatInviteImporters.users.size(); i++) {
                 tLRPC$TL_chatInviteExported.importers.addAll(tLRPC$TL_messages_chatInviteImporters.users);
             }
-            setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers);
+            setUsers(tLRPC$TL_chatInviteExported.usage, tLRPC$TL_chatInviteExported.importers, true);
         }
     }
 

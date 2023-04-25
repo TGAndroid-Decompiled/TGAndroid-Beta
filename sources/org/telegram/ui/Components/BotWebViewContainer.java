@@ -46,6 +46,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -144,7 +145,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
 
         void onWebAppReady();
 
-        void onWebAppSetActionBarColor(String str);
+        void onWebAppSetActionBarColor(int i);
 
         void onWebAppSetBackgroundColor(int i);
 
@@ -163,9 +164,9 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
     public BotWebViewContainer(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
         super(context);
         this.flickerDrawable = new CellFlickerDrawable();
-        this.lastButtonColor = getColor("featuredStickers_addButton");
-        this.lastButtonTextColor = getColor("featuredStickers_buttonText");
-        this.lastButtonText = "";
+        this.lastButtonColor = getColor(Theme.key_featuredStickers_addButton);
+        this.lastButtonTextColor = getColor(Theme.key_featuredStickers_buttonText);
+        this.lastButtonText = BuildConfig.APP_CENTER_HASH;
         this.resourcesProvider = resourcesProvider;
         if (context instanceof Activity) {
             this.parentActivity = (Activity) context;
@@ -175,11 +176,11 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         cellFlickerDrawable.setColors(i, 153, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
-                this.imageReceiver = new C00181(this);
+                this.imageReceiver = new C00151(this);
             }
 
-            public class C00181 extends ImageReceiver {
-                C00181(View view) {
+            public class C00151 extends ImageReceiver {
+                C00151(View view) {
                     super(view);
                 }
 
@@ -190,7 +191,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                     duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            BotWebViewContainer.AnonymousClass1.C00181.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                            BotWebViewContainer.AnonymousClass1.C00151.this.lambda$setImageBitmapByKey$0(valueAnimator);
                         }
                     });
                     duration.start();
@@ -217,13 +218,13 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             }
         };
         this.flickerView = backupImageView;
-        backupImageView.setColorFilter(new PorterDuffColorFilter(getColor("dialogSearchHint"), PorterDuff.Mode.SRC_IN));
+        backupImageView.setColorFilter(new PorterDuffColorFilter(getColor(Theme.key_dialogSearchHint), PorterDuff.Mode.SRC_IN));
         this.flickerView.getImageReceiver().setAspectFit(true);
         addView(this.flickerView, LayoutHelper.createFrame(-1, -2, 48));
         TextView textView = new TextView(context);
         this.webViewNotAvailableText = textView;
         textView.setText(LocaleController.getString(R.string.BotWebViewNotAvailablePlaceholder));
-        this.webViewNotAvailableText.setTextColor(getColor("windowBackgroundWhiteGrayText"));
+        this.webViewNotAvailableText.setTextColor(getColor(Theme.key_windowBackgroundWhiteGrayText));
         this.webViewNotAvailableText.setTextSize(1, 15.0f);
         this.webViewNotAvailableText.setGravity(17);
         this.webViewNotAvailableText.setVisibility(8);
@@ -307,7 +308,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             }
         };
         this.webView = webView2;
-        webView2.setBackgroundColor(getColor("windowBackgroundWhite"));
+        webView2.setBackgroundColor(getColor(Theme.key_windowBackgroundWhite));
         WebSettings settings = this.webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setGeolocationEnabled(true);
@@ -812,7 +813,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         if (publicUsername != null && publicUsername.equals("DurgerKingBot")) {
             this.flickerView.setVisibility(0);
             this.flickerView.setAlpha(1.0f);
-            this.flickerView.setImageDrawable(SvgHelper.getDrawable(R.raw.durgerking_placeholder, Integer.valueOf(getColor("windowBackgroundGray"))));
+            this.flickerView.setImageDrawable(SvgHelper.getDrawable(R.raw.durgerking_placeholder, Integer.valueOf(getColor(Theme.key_windowBackgroundGray))));
             setupFlickerParams(false);
             return;
         }
@@ -989,9 +990,9 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         if (i == NotificationCenter.didSetNewTheme) {
             WebView webView = this.webView;
             if (webView != null) {
-                webView.setBackgroundColor(getColor("windowBackgroundWhite"));
+                webView.setBackgroundColor(getColor(Theme.key_windowBackgroundWhite));
             }
-            this.flickerView.setColorFilter(new PorterDuffColorFilter(getColor("dialogSearchHint"), PorterDuff.Mode.SRC_IN));
+            this.flickerView.setColorFilter(new PorterDuffColorFilter(getColor(Theme.key_dialogSearchHint), PorterDuff.Mode.SRC_IN));
             notifyThemeChanged();
         } else if (i == NotificationCenter.onActivityResultReceived) {
             onActivityResult(((Integer) objArr[0]).intValue(), ((Integer) objArr[1]).intValue(), (Intent) objArr[2]);
@@ -1116,13 +1117,13 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
     private JSONObject buildThemeParams() {
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("bg_color", formatColor("windowBackgroundWhite"));
-            jSONObject.put("secondary_bg_color", formatColor("windowBackgroundGray"));
-            jSONObject.put("text_color", formatColor("windowBackgroundWhiteBlackText"));
-            jSONObject.put("hint_color", formatColor("windowBackgroundWhiteHintText"));
-            jSONObject.put("link_color", formatColor("windowBackgroundWhiteLinkText"));
-            jSONObject.put("button_color", formatColor("featuredStickers_addButton"));
-            jSONObject.put("button_text_color", formatColor("featuredStickers_buttonText"));
+            jSONObject.put("bg_color", formatColor(Theme.key_windowBackgroundWhite));
+            jSONObject.put("secondary_bg_color", formatColor(Theme.key_windowBackgroundGray));
+            jSONObject.put("text_color", formatColor(Theme.key_windowBackgroundWhiteBlackText));
+            jSONObject.put("hint_color", formatColor(Theme.key_windowBackgroundWhiteHintText));
+            jSONObject.put("link_color", formatColor(Theme.key_windowBackgroundWhiteLinkText));
+            jSONObject.put("button_color", formatColor(Theme.key_featuredStickers_addButton));
+            jSONObject.put("button_text_color", formatColor(Theme.key_featuredStickers_buttonText));
             return new JSONObject().put("theme_params", jSONObject);
         } catch (Exception e) {
             FileLog.e(e);
@@ -1130,17 +1131,16 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         }
     }
 
-    private int getColor(String str) {
+    private int getColor(int i) {
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer valueOf = Integer.valueOf(resourcesProvider != null ? resourcesProvider.getColor(str).intValue() : Theme.getColor(str));
-        if (valueOf == null) {
-            valueOf = Integer.valueOf(Theme.getColor(str));
+        if (resourcesProvider != null && resourcesProvider.contains(i)) {
+            return this.resourcesProvider.getColor(i);
         }
-        return valueOf.intValue();
+        return Theme.getColor(i);
     }
 
-    private String formatColor(String str) {
-        int color = getColor(str);
+    private String formatColor(int i) {
+        int color = getColor(i);
         return "#" + hexFixed(Color.red(color)) + hexFixed(Color.green(color)) + hexFixed(Color.blue(color));
     }
 
@@ -1174,9 +1174,9 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
     public static final class PopupButton {
         public String id;
         public String text;
-        public String textColorKey;
+        public int textColorKey;
 
-        public PopupButton(org.json.JSONObject r8) throws org.json.JSONException {
+        public PopupButton(org.json.JSONObject r9) throws org.json.JSONException {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BotWebViewContainer.PopupButton.<init>(org.json.JSONObject):void");
         }
     }

@@ -90,7 +90,7 @@ public class SvgHelper {
         private static float totalTranslation;
         private Paint backgroundPaint;
         private float colorAlpha;
-        private String currentColorKey;
+        private int currentColorKey;
         private Theme.ResourcesProvider currentResourcesProvider;
         protected int height;
         private Integer overrideColor;
@@ -155,9 +155,9 @@ public class SvgHelper {
         public void drawInternal(Canvas canvas, boolean z, int i, long j, float f, float f2, float f3, float f4) {
             long j2;
             int i2;
-            String str = this.currentColorKey;
-            if (str != null) {
-                setupGradient(str, this.currentResourcesProvider, this.colorAlpha, z);
+            int i3 = this.currentColorKey;
+            if (i3 >= 0) {
+                setupGradient(i3, this.currentResourcesProvider, this.colorAlpha, z);
             }
             float scale = getScale((int) f3, (int) f4);
             if (this.placeholderGradient[i] != null) {
@@ -208,18 +208,18 @@ public class SvgHelper {
                         imageReceiver.getParentPosition(parentPosition);
                         i2 = parentPosition[0];
                     }
-                    int i3 = z ? i + 1 : 0;
+                    int i4 = z ? i + 1 : 0;
                     Matrix[] matrixArr = this.placeholderMatrix;
-                    if (matrixArr[i3] != null) {
-                        matrixArr[i3].reset();
+                    if (matrixArr[i4] != null) {
+                        matrixArr[i4].reset();
                         if (z) {
-                            this.placeholderMatrix[i3].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
+                            this.placeholderMatrix[i4].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
                         } else {
-                            this.placeholderMatrix[i3].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
+                            this.placeholderMatrix[i4].postTranslate(((-i2) + totalTranslation) - f, 0.0f);
                         }
                         float f10 = 1.0f / scale;
-                        this.placeholderMatrix[i3].postScale(f10, f10);
-                        this.placeholderGradient[i3].setLocalMatrix(this.placeholderMatrix[i3]);
+                        this.placeholderMatrix[i4].postScale(f10, f10);
+                        this.placeholderGradient[i4].setLocalMatrix(this.placeholderMatrix[i4]);
                         ImageReceiver imageReceiver2 = this.parentImageReceiver;
                         if (imageReceiver2 != null && !z) {
                             imageReceiver2.invalidate();
@@ -234,15 +234,15 @@ public class SvgHelper {
             }
             canvas.scale(scale, scale);
             int size = this.commands.size();
-            for (int i4 = 0; i4 < size; i4++) {
-                Object obj = this.commands.get(i4);
+            for (int i5 = 0; i5 < size; i5++) {
+                Object obj = this.commands.get(i5);
                 if (obj instanceof Matrix) {
                     canvas.save();
                     canvas.concat((Matrix) obj);
                 } else if (obj == null) {
                     canvas.restore();
                 } else {
-                    Paint paint = this.overridePaintByPosition.get(i4);
+                    Paint paint = this.overridePaintByPosition.get(i5);
                     if (paint == null) {
                         paint = this.overridePaint;
                     }
@@ -303,19 +303,19 @@ public class SvgHelper {
             this.parentImageReceiver = imageReceiver;
         }
 
-        public void setupGradient(String str, float f, boolean z) {
-            setupGradient(str, null, f, z);
+        public void setupGradient(int i, float f, boolean z) {
+            setupGradient(i, null, f, z);
         }
 
-        public void setupGradient(String str, Theme.ResourcesProvider resourcesProvider, float f, boolean z) {
+        public void setupGradient(int i, Theme.ResourcesProvider resourcesProvider, float f, boolean z) {
             Shader bitmapShader;
             Integer num = this.overrideColor;
-            int color = num == null ? Theme.getColor(str, resourcesProvider) : num.intValue();
+            int color = num == null ? Theme.getColor(i, resourcesProvider) : num.intValue();
             this.currentResourcesProvider = resourcesProvider;
             int[] iArr = this.currentColor;
             if (iArr[z ? 1 : 0] != color) {
                 this.colorAlpha = f;
-                this.currentColorKey = str;
+                this.currentColorKey = i;
                 iArr[z ? 1 : 0] = color;
                 gradientWidth = AndroidUtilities.displaySize.x * 2;
                 if (!lite) {
@@ -339,8 +339,8 @@ public class SvgHelper {
                 float f2 = (1.0f - dp) / 2.0f;
                 float f3 = dp / 2.0f;
                 this.placeholderGradient[z ? 1 : 0] = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{0, 0, argb, 0, 0}, new float[]{0.0f, f2 - f3, f2, f2 + f3, 1.0f}, Shader.TileMode.REPEAT);
-                int i = Build.VERSION.SDK_INT;
-                if (i >= 28) {
+                int i2 = Build.VERSION.SDK_INT;
+                if (i2 >= 28) {
                     bitmapShader = new LinearGradient(0.0f, 0.0f, gradientWidth, 0.0f, new int[]{argb, argb}, (float[]) null, Shader.TileMode.REPEAT);
                 } else {
                     Bitmap[] bitmapArr = this.backgroundBitmap;
@@ -359,7 +359,7 @@ public class SvgHelper {
                     if (this.backgroundPaint == null) {
                         this.backgroundPaint = new Paint(1);
                     }
-                    if (i <= 22) {
+                    if (i2 <= 22) {
                         this.backgroundPaint.setShader(bitmapShader);
                         return;
                     } else {
@@ -377,12 +377,12 @@ public class SvgHelper {
             }
         }
 
-        public void setColorKey(String str) {
-            this.currentColorKey = str;
+        public void setColorKey(int i) {
+            this.currentColorKey = i;
         }
 
-        public void setColorKey(String str, Theme.ResourcesProvider resourcesProvider) {
-            this.currentColorKey = str;
+        public void setColorKey(int i, Theme.ResourcesProvider resourcesProvider) {
+            this.currentColorKey = i;
             this.currentResourcesProvider = resourcesProvider;
         }
 
@@ -1479,7 +1479,7 @@ public class SvgHelper {
                     if (sb != null) {
                         String[] split = sb.toString().split("\\}");
                         for (int i = 0; i < split.length; i++) {
-                            split[i] = split[i].trim().replace("\t", "").replace("\n", "");
+                            split[i] = split[i].trim().replace("\t", BuildConfig.APP_CENTER_HASH).replace("\n", BuildConfig.APP_CENTER_HASH);
                             if (split[i].length() != 0 && split[i].charAt(0) == '.' && (indexOf = split[i].indexOf(123)) >= 0) {
                                 this.globalStyles.put(split[i].substring(1, indexOf).trim(), new StyleSet(split[i].substring(indexOf + 1)));
                             }
@@ -1633,7 +1633,7 @@ public class SvgHelper {
             return sb.toString();
         } catch (Exception e) {
             FileLog.e(e);
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 }

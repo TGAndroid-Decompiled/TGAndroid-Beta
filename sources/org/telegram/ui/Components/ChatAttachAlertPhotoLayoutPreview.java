@@ -133,7 +133,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.header.setLines(1);
         this.header.setMaxLines(1);
         this.header.setEllipsize(TextUtils.TruncateAt.END);
-        this.header.setTextColor(getThemedColor("dialogTextBlack"));
+        this.header.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         this.header.setText(LocaleController.getString("AttachMediaPreview", R.string.AttachMediaPreview));
         this.header.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.header.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
@@ -1638,16 +1638,19 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
                             this.textPaint = textPaint;
                             textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                         }
-                        this.textPaint.setColor(ChatAttachAlertPhotoLayoutPreview.this.getThemedColor("chat_attachCheckBoxCheck"));
+                        TextPaint textPaint2 = this.textPaint;
+                        ChatAttachAlertPhotoLayoutPreview chatAttachAlertPhotoLayoutPreview = ChatAttachAlertPhotoLayoutPreview.this;
+                        int i3 = Theme.key_chat_attachCheckBoxCheck;
+                        textPaint2.setColor(chatAttachAlertPhotoLayoutPreview.getThemedColor(i3));
                         int length = str.length();
                         float f5 = (length == 0 || length == 1 || length == 2) ? 14.0f : length != 3 ? 8.0f : 10.0f;
                         this.textPaint.setTextSize(AndroidUtilities.dp(f5));
                         float f6 = i / 2.0f;
-                        this.paint.setColor(ChatAttachAlertPhotoLayoutPreview.this.getThemedColor("chat_attachCheckBoxBackground"));
+                        this.paint.setColor(ChatAttachAlertPhotoLayoutPreview.this.getThemedColor(Theme.key_chat_attachCheckBoxBackground));
                         float f7 = (int) f6;
                         float f8 = dp;
                         canvas2.drawCircle(f7, f7, f8, this.paint);
-                        this.strokePaint.setColor(AndroidUtilities.getOffsetColor(-1, ChatAttachAlertPhotoLayoutPreview.this.getThemedColor("chat_attachCheckBoxCheck"), 1.0f, 1.0f));
+                        this.strokePaint.setColor(AndroidUtilities.getOffsetColor(-1, ChatAttachAlertPhotoLayoutPreview.this.getThemedColor(i3), 1.0f, 1.0f));
                         this.strokePaint.setStyle(Paint.Style.STROKE);
                         this.strokePaint.setStrokeWidth(dp2);
                         canvas2.drawCircle(f7, f7, f8, this.strokePaint);

@@ -217,7 +217,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         };
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.device_phone_android);
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_actionIcon"), PorterDuff.Mode.SRC_IN));
+        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.SRC_IN));
         this.floatingButtonContainer.addView(imageView);
         this.floatingButtonContainer.setVisibility(8);
         addView(this.floatingButtonContainer, LayoutHelper.createFrame(56, 56.0f));
@@ -262,11 +262,11 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
                 int i2 = AnonymousClass4.$SwitchMap$org$telegram$ui$Components$FloatingDebug$FloatingDebugController$DebugItemType[debugItem.type.ordinal()];
                 if (i2 == 1) {
                     AlertDialog.AlertDialogCell alertDialogCell = (AlertDialog.AlertDialogCell) viewHolder.itemView;
-                    alertDialogCell.setTextColor(Theme.getColor("dialogTextBlack"));
+                    alertDialogCell.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
                     alertDialogCell.setTextAndIcon(debugItem.title, 0);
                 } else if (i2 == 2) {
                     HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
-                    headerCell.setTextColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
+                    headerCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader));
                     headerCell.setText(debugItem.title);
                 } else if (i2 != 3) {
                 } else {
@@ -355,16 +355,16 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     }
 
     private void updateDrawables() {
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
+        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground));
         Drawable mutate = getResources().getDrawable(R.drawable.floating_shadow).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
         CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, createSimpleSelectorCircleDrawable, 0, 0);
         combinedDrawable.setIconSize(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
         this.floatingButtonBackground = combinedDrawable;
         Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
-        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
+        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         this.bigLayout.setBackground(drawable);
-        this.titleView.setTextColor(Theme.getColor("dialogTextBlack"));
+        this.titleView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         invalidate();
     }
 
@@ -627,9 +627,9 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
 
         @Override
         protected void onDraw(Canvas canvas) {
-            this.textPaint.setColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             canvas.drawText(this.title, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), this.textPaint);
-            this.textPaint.setColor(Theme.getColor("windowBackgroundWhiteValueText"));
+            this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText));
             String format = String.format(Locale.ROOT, "%.2f", Float.valueOf(this.value));
             canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - this.textPaint.measureText(format), AndroidUtilities.dp(23.0f) + this.seekBar.getY(), this.textPaint);
         }

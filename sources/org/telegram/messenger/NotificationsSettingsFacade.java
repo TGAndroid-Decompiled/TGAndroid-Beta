@@ -9,6 +9,7 @@ import org.telegram.tgnet.TLRPC$TL_notificationSoundDefault;
 import org.telegram.tgnet.TLRPC$TL_notificationSoundLocal;
 import org.telegram.tgnet.TLRPC$TL_notificationSoundNone;
 import org.telegram.tgnet.TLRPC$TL_notificationSoundRingtone;
+import org.telegram.ui.NotificationsSoundActivity;
 public class NotificationsSettingsFacade {
     public static final String PROPERTY_CONTENT_PREVIEW = "content_preview_";
     public static final String PROPERTY_CUSTOM = "custom_";
@@ -139,6 +140,21 @@ public class NotificationsSettingsFacade {
             str2 = "ChannelSoundDocId";
             str3 = "ChannelSoundPath";
         }
+        if (tLRPC$NotificationSound instanceof TLRPC$TL_notificationSoundLocal) {
+            TLRPC$TL_notificationSoundLocal tLRPC$TL_notificationSoundLocal = (TLRPC$TL_notificationSoundLocal) tLRPC$NotificationSound;
+            if ("Default".equalsIgnoreCase(tLRPC$TL_notificationSoundLocal.data)) {
+                tLRPC$NotificationSound = new TLRPC$TL_notificationSoundDefault();
+            } else if ("NoSound".equalsIgnoreCase(tLRPC$TL_notificationSoundLocal.data)) {
+                tLRPC$NotificationSound = new TLRPC$TL_notificationSoundNone();
+            } else {
+                String findRingtonePathByName = NotificationsSoundActivity.findRingtonePathByName(tLRPC$TL_notificationSoundLocal.title);
+                if (findRingtonePathByName == null) {
+                    tLRPC$NotificationSound = new TLRPC$TL_notificationSoundDefault();
+                } else {
+                    tLRPC$TL_notificationSoundLocal.data = findRingtonePathByName;
+                }
+            }
+        }
         if (tLRPC$NotificationSound instanceof TLRPC$TL_notificationSoundDefault) {
             editor.putString(str, "Default");
             editor.putString(str3, "Default");
@@ -148,9 +164,9 @@ public class NotificationsSettingsFacade {
             editor.putString(str3, "NoSound");
             editor.remove(str2);
         } else if (tLRPC$NotificationSound instanceof TLRPC$TL_notificationSoundLocal) {
-            TLRPC$TL_notificationSoundLocal tLRPC$TL_notificationSoundLocal = (TLRPC$TL_notificationSoundLocal) tLRPC$NotificationSound;
-            editor.putString(str, tLRPC$TL_notificationSoundLocal.title);
-            editor.putString(str3, tLRPC$TL_notificationSoundLocal.data);
+            TLRPC$TL_notificationSoundLocal tLRPC$TL_notificationSoundLocal2 = (TLRPC$TL_notificationSoundLocal) tLRPC$NotificationSound;
+            editor.putString(str, tLRPC$TL_notificationSoundLocal2.title);
+            editor.putString(str3, tLRPC$TL_notificationSoundLocal2.data);
             editor.remove(str2);
         } else if (tLRPC$NotificationSound instanceof TLRPC$TL_notificationSoundRingtone) {
             TLRPC$TL_notificationSoundRingtone tLRPC$TL_notificationSoundRingtone = (TLRPC$TL_notificationSoundRingtone) tLRPC$NotificationSound;

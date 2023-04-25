@@ -171,10 +171,10 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             }
         });
         frameLayout.addView(this.recyclerListView);
-        frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         if (this.dialogException != null) {
             FrameLayout frameLayout2 = new FrameLayout(getContext());
-            frameLayout2.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 8.0f));
+            frameLayout2.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 8.0f));
             TextView textView = new TextView(getContext());
             textView.setTextSize(1, 14.0f);
             if (this.isNewException) {
@@ -187,7 +187,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             textView.setText(LocaleController.getString(str, i));
             textView.setGravity(17);
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            textView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+            textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             frameLayout2.addView(textView, LayoutHelper.createFrame(-2, -2, 17));
             frameLayout2.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -272,7 +272,8 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
             ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext());
             ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_customize, LocaleController.getString("EditException", R.string.EditException), false, null);
             ActionBarMenuSubItem addItem2 = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_delete, LocaleController.getString("DeleteException", R.string.DeleteException), false, null);
-            addItem2.setColors(Theme.getColor("text_RedRegular"), Theme.getColor("text_RedRegular"));
+            int i2 = Theme.key_text_RedRegular;
+            addItem2.setColors(Theme.getColor(i2), Theme.getColor(i2));
             final ActionBarPopupWindow createSimplePopup = AlertsCreator.createSimplePopup(this, actionBarPopupWindowLayout, view, f, f2);
             actionBarPopupWindowLayout.setParentWindow(createSimplePopup);
             addItem.setOnClickListener(new View.OnClickListener() {
@@ -390,40 +391,39 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            TextCell textCell;
+            UserCell2 userCell2;
             ShadowSectionCell shadowSectionCell = null;
             switch (i) {
                 case 1:
-                    TextCell textCell2 = new TextCell(viewGroup.getContext());
-                    textCell2.setTextAndIcon(LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
-                    textCell2.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
-                    textCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                    shadowSectionCell = textCell2;
+                    TextCell textCell = new TextCell(viewGroup.getContext());
+                    textCell.setTextAndIcon(LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
+                    textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
+                    textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    shadowSectionCell = textCell;
                     break;
                 case 2:
                     UserCell userCell = new UserCell(viewGroup.getContext(), 4, 0, false, false);
-                    userCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    userCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     shadowSectionCell = userCell;
                     break;
                 case 3:
                     shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
                     break;
                 case 4:
-                    TextCell textCell3 = new TextCell(viewGroup.getContext());
-                    textCell3.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
-                    textCell3.setColors(null, "text_RedRegular");
-                    textCell3.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                    textCell = textCell3;
-                    shadowSectionCell = textCell;
+                    TextCell textCell2 = new TextCell(viewGroup.getContext());
+                    textCell2.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
+                    textCell2.setColors(-1, Theme.key_text_RedRegular);
+                    textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    shadowSectionCell = textCell2;
                     break;
                 case 5:
                     HeaderCell headerCell = new HeaderCell(viewGroup.getContext());
-                    headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     shadowSectionCell = headerCell;
                     break;
                 case 6:
                     TextCheckCell textCheckCell = new TextCheckCell(viewGroup.getContext());
-                    textCheckCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    textCheckCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     shadowSectionCell = textCheckCell;
                     break;
                 case 7:
@@ -500,21 +500,19 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                     });
                     seekBarView.setProgress(((float) j) > ((float) SaveToGallerySettingsHelper.DEFAULT_VIDEO_LIMIT) * 0.7f ? (0.3f * (((float) (j - SaveToGallerySettingsHelper.DEFAULT_VIDEO_LIMIT)) / ((float) 4089446400L))) + 0.7f : (((float) (j - 524288)) / ((float) 104333312)) * 0.7f);
                     seekBarView.delegate.onSeekBarDrag(false, seekBarView.getProgress());
-                    TextCell textCell4 = linearLayout;
-                    textCell4.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                    textCell = textCell4;
-                    shadowSectionCell = textCell;
+                    userCell2 = linearLayout;
+                    userCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    shadowSectionCell = userCell2;
                     break;
                 case 9:
-                    UserCell2 userCell2 = new UserCell2(SaveToGallerySettingsActivity.this.getContext(), 4, 0, SaveToGallerySettingsActivity.this.getResourceProvider());
+                    userCell2 = new UserCell2(SaveToGallerySettingsActivity.this.getContext(), 4, 0, SaveToGallerySettingsActivity.this.getResourceProvider());
                     userCell2.setData(DialogObject.isUserDialog(SaveToGallerySettingsActivity.this.dialogId) ? MessagesController.getInstance(((BaseFragment) SaveToGallerySettingsActivity.this).currentAccount).getUser(Long.valueOf(SaveToGallerySettingsActivity.this.dialogId)) : MessagesController.getInstance(((BaseFragment) SaveToGallerySettingsActivity.this).currentAccount).getChat(Long.valueOf(-SaveToGallerySettingsActivity.this.dialogId)), null, null, 0);
-                    userCell2.setBackgroundColor(SaveToGallerySettingsActivity.this.getThemedColor("windowBackgroundWhite"));
-                    textCell = userCell2;
-                    shadowSectionCell = textCell;
+                    userCell2.setBackgroundColor(SaveToGallerySettingsActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                    shadowSectionCell = userCell2;
                     break;
                 case 10:
                     ShadowSectionCell shadowSectionCell2 = new ShadowSectionCell(viewGroup.getContext());
-                    shadowSectionCell2.setBackgroundDrawable(Theme.getThemedDrawable(SaveToGallerySettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.getColor("windowBackgroundGrayShadow", SaveToGallerySettingsActivity.this.getResourceProvider())));
+                    shadowSectionCell2.setBackgroundDrawable(Theme.getThemedDrawable(SaveToGallerySettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.getColor(Theme.key_windowBackgroundGrayShadow, SaveToGallerySettingsActivity.this.getResourceProvider())));
                     shadowSectionCell = shadowSectionCell2;
                     break;
             }
@@ -531,11 +529,11 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                 SaveToGallerySettingsHelper.Settings settings = SaveToGallerySettingsActivity.this.getSettings();
                 if (i == SaveToGallerySettingsActivity.this.savePhotosRow) {
                     textCheckCell.setTextAndCheck(LocaleController.getString(R.string.SaveToGalleryPhotos), settings.savePhoto, true);
-                    textCheckCell.setColorfullIcon(SaveToGallerySettingsActivity.this.getThemedColor("statisticChartLine_lightblue"), R.drawable.msg_filled_data_photos);
+                    textCheckCell.setColorfullIcon(SaveToGallerySettingsActivity.this.getThemedColor(Theme.key_statisticChartLine_lightblue), R.drawable.msg_filled_data_photos);
                     return;
                 }
                 textCheckCell.setTextAndCheck(LocaleController.getString(R.string.SaveToGalleryVideos), settings.saveVideo, false);
-                textCheckCell.setColorfullIcon(SaveToGallerySettingsActivity.this.getThemedColor("statisticChartLine_green"), R.drawable.msg_filled_data_videos);
+                textCheckCell.setColorfullIcon(SaveToGallerySettingsActivity.this.getThemedColor(Theme.key_statisticChartLine_green), R.drawable.msg_filled_data_videos);
             } else if (SaveToGallerySettingsActivity.this.items.get(i).viewType == 7) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 SaveToGallerySettingsActivity saveToGallerySettingsActivity = SaveToGallerySettingsActivity.this;
@@ -679,7 +677,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
         @Override
         protected void dispatchDraw(Canvas canvas) {
             this.progressToSelect.set(this.selected ? 1.0f : 0.0f);
-            setTextColor(ColorUtils.blendARGB(SaveToGallerySettingsActivity.this.getThemedColor("windowBackgroundWhiteGrayText"), SaveToGallerySettingsActivity.this.getThemedColor("windowBackgroundWhiteBlueText"), this.progressToSelect.get()));
+            setTextColor(ColorUtils.blendARGB(SaveToGallerySettingsActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteGrayText), SaveToGallerySettingsActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlueText), this.progressToSelect.get()));
             super.dispatchDraw(canvas);
         }
 

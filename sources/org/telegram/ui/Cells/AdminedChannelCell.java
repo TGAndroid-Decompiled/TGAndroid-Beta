@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -50,7 +51,7 @@ public class AdminedChannelCell extends FrameLayout {
         if (z) {
             CheckBox2 checkBox2 = new CheckBox2(context, 21);
             this.checkBox = checkBox2;
-            checkBox2.setColor(null, "windowBackgroundWhite", "checkboxCheck");
+            checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             this.checkBox.setDrawUnchecked(false);
             this.checkBox.setDrawBackgroundAsArc(3);
             CheckBox2 checkBox22 = this.checkBox;
@@ -60,7 +61,7 @@ public class AdminedChannelCell extends FrameLayout {
         int i2 = onClickListener == null ? 24 : 62;
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
-        simpleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.nameTextView.setTextSize(17);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         SimpleTextView simpleTextView2 = this.nameTextView;
@@ -69,20 +70,22 @@ public class AdminedChannelCell extends FrameLayout {
         SimpleTextView simpleTextView3 = new SimpleTextView(context);
         this.statusTextView = simpleTextView3;
         simpleTextView3.setTextSize(14);
-        this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
-        this.statusTextView.setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText"));
-        this.statusTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
         SimpleTextView simpleTextView4 = this.statusTextView;
+        int i3 = Theme.key_windowBackgroundWhiteGrayText;
+        simpleTextView4.setTextColor(Theme.getColor(i3));
+        this.statusTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText));
+        this.statusTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        SimpleTextView simpleTextView5 = this.statusTextView;
         boolean z5 = LocaleController.isRTL;
-        addView(simpleTextView4, LayoutHelper.createFrame(-1, 20.0f, (z5 ? 5 : 3) | 48, z5 ? i2 : i + 73, 32.5f, z5 ? i + 73 : i2, 6.0f));
+        addView(simpleTextView5, LayoutHelper.createFrame(-1, 20.0f, (z5 ? 5 : 3) | 48, z5 ? i2 : i + 73, 32.5f, z5 ? i + 73 : i2, 6.0f));
         if (onClickListener != null) {
             ImageView imageView = new ImageView(context);
             this.deleteButton = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.deleteButton.setImageResource(R.drawable.msg_panel_clear);
             this.deleteButton.setOnClickListener(onClickListener);
-            this.deleteButton.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
-            this.deleteButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayText"), PorterDuff.Mode.MULTIPLY));
+            this.deleteButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector)));
+            this.deleteButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i3), PorterDuff.Mode.MULTIPLY));
             ImageView imageView2 = this.deleteButton;
             boolean z6 = LocaleController.isRTL;
             addView(imageView2, LayoutHelper.createFrame(48, 48.0f, (z6 ? 3 : 5) | 48, z6 ? 7.0f : 0.0f, 6.0f, z6 ? 0.0f : 7.0f, 0.0f));
@@ -95,7 +98,7 @@ public class AdminedChannelCell extends FrameLayout {
         this.avatarDrawable.setInfo(tLRPC$Chat);
         this.nameTextView.setText(tLRPC$Chat.title);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str + ChatObject.getPublicUsername(tLRPC$Chat));
-        spannableStringBuilder.setSpan(new URLSpanNoUnderline(""), str.length(), spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new URLSpanNoUnderline(BuildConfig.APP_CENTER_HASH), str.length(), spannableStringBuilder.length(), 33);
         this.statusTextView.setText(spannableStringBuilder);
         this.avatarImageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
         this.isLast = z;

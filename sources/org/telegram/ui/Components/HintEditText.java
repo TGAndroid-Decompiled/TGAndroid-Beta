@@ -22,7 +22,7 @@ public class HintEditText extends EditTextBoldCursor {
         super(context);
         this.hintPaint = new TextPaint(1);
         this.rect = new android.graphics.Rect();
-        this.hintPaint.setColor(Theme.getColor("windowBackgroundWhiteHintText"));
+        this.hintPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
     }
 
     @Override

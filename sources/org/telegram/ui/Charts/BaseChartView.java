@@ -312,17 +312,17 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
 
     public void updateColors() {
         if (this.useAlphaSignature) {
-            this.signaturePaint.setColor(Theme.getColor("statisticChartSignatureAlpha"));
+            this.signaturePaint.setColor(Theme.getColor(Theme.key_statisticChartSignatureAlpha));
         } else {
-            this.signaturePaint.setColor(Theme.getColor("statisticChartSignature"));
+            this.signaturePaint.setColor(Theme.getColor(Theme.key_statisticChartSignature));
         }
-        this.bottomSignaturePaint.setColor(Theme.getColor("statisticChartSignature"));
-        this.linePaint.setColor(Theme.getColor("statisticChartHintLine"));
-        this.selectedLinePaint.setColor(Theme.getColor("statisticChartActiveLine"));
-        this.pickerSelectorPaint.setColor(Theme.getColor("statisticChartActivePickerChart"));
-        this.unactiveBottomChartPaint.setColor(Theme.getColor("statisticChartInactivePickerChart"));
-        this.selectionBackgroundPaint.setColor(Theme.getColor("windowBackgroundWhite"));
-        this.ripplePaint.setColor(Theme.getColor("statisticChartRipple"));
+        this.bottomSignaturePaint.setColor(Theme.getColor(Theme.key_statisticChartSignature));
+        this.linePaint.setColor(Theme.getColor(Theme.key_statisticChartHintLine));
+        this.selectedLinePaint.setColor(Theme.getColor(Theme.key_statisticChartActiveLine));
+        this.pickerSelectorPaint.setColor(Theme.getColor(Theme.key_statisticChartActivePickerChart));
+        this.unactiveBottomChartPaint.setColor(Theme.getColor(Theme.key_statisticChartInactivePickerChart));
+        this.selectionBackgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+        this.ripplePaint.setColor(Theme.getColor(Theme.key_statisticChartRipple));
         this.legendSignatureView.recolor();
         this.hintLinePaintAlpha = this.linePaint.getAlpha();
         this.chartActiveLineAlpha = this.selectedLinePaint.getAlpha();
@@ -1455,7 +1455,7 @@ public abstract class BaseChartView<T extends ChartData, L extends LineViewData>
                 this.pickerRoundBitmap = Bitmap.createBitmap(i2, i, Bitmap.Config.ARGB_8888);
                 this.canvas = new Canvas(this.pickerRoundBitmap);
                 this.rectF.set(0.0f, 0.0f, i2, i);
-                this.canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
+                this.canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 this.canvas.drawRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.xRefP);
             }
             return this.pickerRoundBitmap;

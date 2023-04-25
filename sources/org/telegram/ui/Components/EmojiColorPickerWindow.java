@@ -170,9 +170,11 @@ public class EmojiColorPickerWindow extends PopupWindow {
         }
 
         public void updateColors() {
-            Theme.setDrawableColor(this.backgroundDrawable, Theme.getColor("dialogBackground", this.resourcesProvider));
-            Theme.setDrawableColor(this.arrowDrawable, Theme.getColor("dialogBackground", this.resourcesProvider));
-            CompoundEmoji.setPlaceholderColor(Theme.getColor("chat_emojiPanelIcon", this.resourcesProvider));
+            Drawable drawable = this.backgroundDrawable;
+            int i = Theme.key_dialogBackground;
+            Theme.setDrawableColor(drawable, Theme.getColor(i, this.resourcesProvider));
+            Theme.setDrawableColor(this.arrowDrawable, Theme.getColor(i, this.resourcesProvider));
+            CompoundEmoji.setPlaceholderColor(Theme.getColor(Theme.key_chat_emojiPanelIcon, this.resourcesProvider));
         }
 
         public void setArrowX(int i) {
@@ -327,7 +329,7 @@ public class EmojiColorPickerWindow extends PopupWindow {
                         int i2 = this.emojiSize;
                         this.rect.set(dp2, lerp, dp2 + i2, lerp + i2);
                         this.rect.inset(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(max * (-2.0f)));
-                        this.rectPaint.setColor(Theme.multAlpha(Theme.getColor("listSelectorSDK21", this.resourcesProvider), AndroidUtilities.lerp(1.0f, 0.5f, max)));
+                        this.rectPaint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_listSelector, this.resourcesProvider), AndroidUtilities.lerp(1.0f, 0.5f, max)));
                         canvas.drawRoundRect(this.rect, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.rectPaint);
                         int i3 = 0;
                         while (i3 < 5) {
@@ -354,7 +356,7 @@ public class EmojiColorPickerWindow extends PopupWindow {
                 int i6 = this.emojiSize;
                 this.rect.set((int) ((this.emojiSize * f4) + AndroidUtilities.dp((f4 * 4.0f) + 5.0f)), f5, dp + i6, i6 + dp5);
                 this.rect.inset(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(-2.0f));
-                this.rectPaint.setColor(Theme.getColor("listSelectorSDK21", this.resourcesProvider));
+                this.rectPaint.setColor(Theme.getColor(Theme.key_listSelector, this.resourcesProvider));
                 canvas.drawRoundRect(this.rect, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.rectPaint);
                 for (int i7 = 0; i7 < 6; i7++) {
                     Drawable drawable2 = this.drawables[i7];

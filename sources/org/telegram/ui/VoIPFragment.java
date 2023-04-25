@@ -47,6 +47,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.view.ViewCompat;
 import java.io.ByteArrayOutputStream;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
@@ -170,7 +171,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
     Paint overlayBottomPaint = new Paint();
     private boolean uiVisible = true;
     float uiVisibilityAlpha = 1.0f;
-    int animationIndex = -1;
+    AnimationNotificationsLocker notificationsLocker = new AnimationNotificationsLocker();
     ValueAnimator.AnimatorUpdateListener statusbarAnimatorListener = new ValueAnimator.AnimatorUpdateListener() {
         @Override
         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -667,7 +668,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             int blackoutColor = ColorUtils.setAlphaComponent(-16777216, 76);
 
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
                 canvas.drawColor(this.blackoutColor);
             }
@@ -1173,7 +1174,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         VoIPPiPView.switchingToPip = true;
         this.switchingToPip = true;
         Animator createPiPTransition = createPiPTransition(false);
-        this.animationIndex = NotificationCenter.getInstance(this.currentAccount).setAnimationInProgress(this.animationIndex, null);
+        this.notificationsLocker.lock();
         createPiPTransition.addListener(new AnonymousClass12());
         createPiPTransition.setDuration(350L);
         createPiPTransition.setInterpolator(cubicBezierInterpolator);
@@ -1196,7 +1197,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
 
         public void lambda$onAnimationEnd$0() {
-            NotificationCenter.getInstance(VoIPFragment.this.currentAccount).onAnimationFinish(VoIPFragment.this.animationIndex);
+            VoIPFragment.this.notificationsLocker.unlock();
             VoIPPiPView.getInstance().onTransitionEnd();
             VoIPFragment.this.currentUserCameraFloatingLayout.setCornerRadius(-1.0f);
             VoIPFragment.this.callingUserTextureView.renderer.release();
@@ -1222,7 +1223,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.switchingToPip = true;
         VoIPPiPView.switchingToPip = true;
         VoIPPiPView.prepareForTransition();
-        this.animationIndex = NotificationCenter.getInstance(this.currentAccount).setAnimationInProgress(this.animationIndex, null);
+        this.notificationsLocker.lock();
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -1269,7 +1270,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         animator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator2) {
-                NotificationCenter.getInstance(VoIPFragment.this.currentAccount).onAnimationFinish(VoIPFragment.this.animationIndex);
+                VoIPFragment.this.notificationsLocker.unlock();
                 VoIPFragment.this.currentUserCameraFloatingLayout.setCornerRadius(-1.0f);
                 VoIPFragment.this.switchingToPip = false;
                 VoIPFragment.this.currentUserCameraFloatingLayout.switchingToPip = false;

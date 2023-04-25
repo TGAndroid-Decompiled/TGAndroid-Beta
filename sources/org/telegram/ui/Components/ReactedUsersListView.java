@@ -113,7 +113,7 @@ public class ReactedUsersListView extends FrameLayout {
             this.listView.setClipToPadding(false);
         }
         if (Build.VERSION.SDK_INT >= 29) {
-            this.listView.setVerticalScrollbarThumbDrawable(new ColorDrawable(Theme.getColor("listSelectorSDK21")));
+            this.listView.setVerticalScrollbarThumbDrawable(new ColorDrawable(Theme.getColor(Theme.key_listSelector)));
         }
         RecyclerListView recyclerListView = this.listView;
         RecyclerView.Adapter adapter = new RecyclerView.Adapter() {
@@ -132,7 +132,7 @@ public class ReactedUsersListView extends FrameLayout {
                     }
                     reactedUserHolderView = new FrameLayout(context);
                     View view = new View(context);
-                    view.setBackgroundColor(Theme.getColor("actionBarDefaultSubmenuSeparator", resourcesProvider));
+                    view.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
                     reactedUserHolderView.addView(view, LayoutHelper.createFrame(-1, 8.0f));
                     reactedUserHolderView.addView(ReactedUsersListView.this.messageContainsEmojiButton, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
                 }
@@ -188,7 +188,7 @@ public class ReactedUsersListView extends FrameLayout {
             }
         };
         this.loadingView = flickerLoadingView;
-        flickerLoadingView.setColors("actionBarDefaultSubmenuBackground", "listSelectorSDK21", null);
+        flickerLoadingView.setColors(Theme.key_actionBarDefaultSubmenuBackground, Theme.key_listSelector, -1);
         this.loadingView.setIsSingleCell(true);
         this.loadingView.setItemsCount(this.predictiveCount);
         addView(this.loadingView, LayoutHelper.createFrame(-1, -1.0f));
@@ -446,6 +446,8 @@ public class ReactedUsersListView extends FrameLayout {
     }
 
     private static final class ReactedUserHolderView extends FrameLayout {
+        private static final MessageSeenCheckDrawable reactDrawable;
+        private static final MessageSeenCheckDrawable seenDrawable;
         AvatarDrawable avatarDrawable;
         BackupImageView avatarView;
         int currentAccount;
@@ -454,8 +456,13 @@ public class ReactedUsersListView extends FrameLayout {
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable rightDrawable;
         SimpleTextView subtitleView;
         SimpleTextView titleView;
-        private static final MessageSeenCheckDrawable seenDrawable = new MessageSeenCheckDrawable(R.drawable.msg_mini_checks, "windowBackgroundWhiteGrayText");
-        private static final MessageSeenCheckDrawable reactDrawable = new MessageSeenCheckDrawable(R.drawable.msg_reactions, "windowBackgroundWhiteGrayText", 16, 16, 5.66f);
+
+        static {
+            int i = R.drawable.msg_mini_checks;
+            int i2 = Theme.key_windowBackgroundWhiteGrayText;
+            seenDrawable = new MessageSeenCheckDrawable(i, i2);
+            reactDrawable = new MessageSeenCheckDrawable(R.drawable.msg_reactions, i2, 16, 16, 5.66f);
+        }
 
         ReactedUserHolderView(int i, Context context) {
             super(context);
@@ -475,7 +482,7 @@ public class ReactedUsersListView extends FrameLayout {
             this.titleView = simpleTextView;
             NotificationCenter.listenEmojiLoading(simpleTextView);
             this.titleView.setTextSize(16);
-            this.titleView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
+            this.titleView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
             this.titleView.setEllipsizeByGradient(true);
             this.titleView.setImportantForAccessibility(2);
             this.titleView.setRightPadding(AndroidUtilities.dp(30.0f));
@@ -488,7 +495,7 @@ public class ReactedUsersListView extends FrameLayout {
             SimpleTextView simpleTextView2 = new SimpleTextView(context);
             this.subtitleView = simpleTextView2;
             simpleTextView2.setTextSize(13);
-            this.subtitleView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+            this.subtitleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
             this.subtitleView.setEllipsizeByGradient(true);
             this.subtitleView.setImportantForAccessibility(2);
             this.subtitleView.setTranslationX(LocaleController.isRTL ? AndroidUtilities.dp(30.0f) : 0.0f);

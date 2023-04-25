@@ -39,6 +39,7 @@ import java.util.Iterator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.CacheByChatsController;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
@@ -915,7 +916,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     @Override
     public boolean isLightStatusBar() {
         if (this.changeStatusBar) {
-            return AndroidUtilities.computePerceivedBrightness(Theme.getColor("windowBackgroundGray")) > 0.721f;
+            return AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundGray)) > 0.721f;
         }
         return super.isLightStatusBar();
     }
@@ -959,19 +960,21 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         this.actionBar.setCastShadows(false);
         this.actionBar.setAddToContainer(false);
         this.actionBar.setOccupyStatusBar(true);
-        this.actionBar.setTitleColor(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlackText"), 0));
-        this.actionBar.setItemsColor(Theme.getColor("windowBackgroundWhiteBlackText"), false);
-        this.actionBar.setItemsBackgroundColor(Theme.getColor("listSelectorSDK21"), false);
+        ActionBar actionBar = this.actionBar;
+        int i = Theme.key_windowBackgroundWhiteBlackText;
+        actionBar.setTitleColor(ColorUtils.setAlphaComponent(Theme.getColor(i), 0));
+        this.actionBar.setItemsColor(Theme.getColor(i), false);
+        this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_listSelector), false);
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setAllowOverlayTitle(false);
         this.actionBar.setTitle(LocaleController.getString("StorageUsage", R.string.StorageUsage));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
-                if (i != -1) {
-                    if (i == 1) {
+            public void onItemClick(int i2) {
+                if (i2 != -1) {
+                    if (i2 == 1) {
                         CacheControlActivity.this.clearSelectedFiles();
-                    } else if (i == 3) {
+                    } else if (i2 == 3) {
                         CacheControlActivity.this.clearDatabase();
                     }
                 } else if (((BaseFragment) CacheControlActivity.this).actionBar.isActionModeShowed()) {
@@ -997,20 +1000,20 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         animatedTextView.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
         this.actionModeTitle.setTextSize(AndroidUtilities.dp(18.0f));
         this.actionModeTitle.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.actionModeTitle.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.actionModeTitle.setTextColor(Theme.getColor(i));
         frameLayout.addView(this.actionModeTitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, -11.0f, 0.0f, 0.0f));
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);
         this.actionModeSubtitle = animatedTextView2;
         animatedTextView2.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
         this.actionModeSubtitle.setTextSize(AndroidUtilities.dp(14.0f));
-        this.actionModeSubtitle.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        this.actionModeSubtitle.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
         frameLayout.addView(this.actionModeSubtitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, 10.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.actionModeClearButton = textView;
         textView.setTextSize(1, 14.0f);
         this.actionModeClearButton.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
-        this.actionModeClearButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        this.actionModeClearButton.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 6.0f));
+        this.actionModeClearButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+        this.actionModeClearButton.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 6.0f));
         this.actionModeClearButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.actionModeClearButton.setGravity(17);
         this.actionModeClearButton.setText(LocaleController.getString("CacheClear", R.string.CacheClear));
@@ -1023,9 +1026,10 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         frameLayout.addView(this.actionModeClearButton, LayoutHelper.createFrame(-2, 28.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
         ActionBarMenuSubItem addSubItem = this.actionBar.createMenu().addItem(2, R.drawable.ic_ab_other).addSubItem(3, R.drawable.msg_delete, LocaleController.getString("ClearLocalDatabase", R.string.ClearLocalDatabase));
         this.clearDatabaseItem = addSubItem;
-        addSubItem.setIconColor(Theme.getColor("text_RedRegular"));
-        this.clearDatabaseItem.setTextColor(Theme.getColor("text_RedBold"));
-        this.clearDatabaseItem.setSelectorColor(Theme.multAlpha(Theme.getColor("text_RedRegular"), 0.12f));
+        int i2 = Theme.key_text_RedRegular;
+        addSubItem.setIconColor(Theme.getColor(i2));
+        this.clearDatabaseItem.setTextColor(Theme.getColor(Theme.key_text_RedBold));
+        this.clearDatabaseItem.setSelectorColor(Theme.multAlpha(Theme.getColor(i2), 0.12f));
         updateDatabaseItemSize();
         this.listAdapter = new ListAdapter(context);
         NestedSizeNotifierLayout nestedSizeNotifierLayout = new NestedSizeNotifierLayout(context) {
@@ -1051,12 +1055,12 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         };
         this.nestedSizeNotifierLayout = nestedSizeNotifierLayout;
         this.fragmentView = nestedSizeNotifierLayout;
-        nestedSizeNotifierLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        nestedSizeNotifierLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 if (CacheControlActivity.this.sectionsStartRow >= 0 && CacheControlActivity.this.sectionsEndRow >= 0) {
-                    drawSectionBackgroundExclusive(canvas, CacheControlActivity.this.sectionsStartRow - 1, CacheControlActivity.this.sectionsEndRow, Theme.getColor("windowBackgroundWhite"));
+                    drawSectionBackgroundExclusive(canvas, CacheControlActivity.this.sectionsStartRow - 1, CacheControlActivity.this.sectionsEndRow, Theme.getColor(Theme.key_windowBackgroundWhite));
                 }
                 super.dispatchDraw(canvas);
             }
@@ -1089,26 +1093,26 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         this.listView.setItemAnimator(defaultItemAnimator);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
-            public boolean hasDoubleTap(View view, int i) {
-                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i);
+            public boolean hasDoubleTap(View view, int i3) {
+                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i3);
             }
 
             @Override
-            public void onDoubleTap(View view, int i, float f, float f2) {
-                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i, f, f2);
+            public void onDoubleTap(View view, int i3, float f, float f2) {
+                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i3, f, f2);
             }
 
             @Override
-            public final void onItemClick(View view, int i, float f, float f2) {
-                CacheControlActivity.this.lambda$createView$19(view, i, f, f2);
+            public final void onItemClick(View view, int i3, float f, float f2) {
+                CacheControlActivity.this.lambda$createView$19(view, i3, f, f2);
             }
         });
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             boolean pinned;
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
-                super.onScrolled(recyclerView, i, i2);
+            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+                super.onScrolled(recyclerView, i3, i4);
                 CacheControlActivity cacheControlActivity = CacheControlActivity.this;
                 cacheControlActivity.updateActionBar(cacheControlActivity.layoutManager.findFirstVisibleItemPosition() > 0 || ((BaseFragment) CacheControlActivity.this).actionBar.isActionModeShowed());
                 if (this.pinned != CacheControlActivity.this.nestedSizeNotifierLayout.isPinnedToTop()) {
@@ -1182,7 +1186,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         showDialog(create);
         TextView textView = (TextView) create.getButton(-1);
         if (textView != null) {
-            textView.setTextColor(Theme.getColor("text_RedBold"));
+            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
         }
     }
 
@@ -1227,8 +1231,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
     public void lambda$updateActionBar$21(ValueAnimator valueAnimator) {
         this.actionBarShownT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        this.actionBar.setTitleColor(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlackText"), (int) (this.actionBarShownT * 255.0f)));
-        this.actionBar.setBackgroundColor(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), (int) (this.actionBarShownT * 255.0f)));
+        this.actionBar.setTitleColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText), (int) (this.actionBarShownT * 255.0f)));
+        this.actionBar.setBackgroundColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), (int) (this.actionBarShownT * 255.0f)));
         this.fragmentView.invalidate();
     }
 
@@ -1382,7 +1386,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         showDialog(create);
         TextView textView = (TextView) create.getButton(-1);
         if (textView != null) {
-            textView.setTextColor(Theme.getColor("text_RedBold"));
+            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
         }
     }
 
@@ -1462,7 +1466,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.title.setTextSize(AndroidUtilities.dp(20.0f));
             this.title.setText(LocaleController.getString("StorageUsage", R.string.StorageUsage));
             this.title.setGravity(17);
-            this.title.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.title.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             addView(this.title, LayoutHelper.createFrame(-2, 26, 49));
             int i = 0;
             while (i < 3) {
@@ -1481,7 +1485,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     this.subtitle[i].setAlpha(0.0f);
                     this.subtitle[i].setVisibility(4);
                 }
-                this.subtitle[i].setTextColor(Theme.getColor("windowBackgroundWhiteGrayText4"));
+                this.subtitle[i].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
                 addView(this.subtitle[i], LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, i == 2 ? 12.0f : -6.0f, 0.0f, 0.0f));
                 i++;
             }
@@ -1492,14 +1496,14 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 }
             };
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.popup_fixed_alert2).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite"), PorterDuff.Mode.MULTIPLY));
+            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhite), PorterDuff.Mode.MULTIPLY));
             this.bottomImage.setBackground(mutate);
             FrameLayout.LayoutParams createFrame = LayoutHelper.createFrame(-1, 24, 87);
             ((ViewGroup.MarginLayoutParams) createFrame).leftMargin = -this.bottomImage.getPaddingLeft();
             ((ViewGroup.MarginLayoutParams) createFrame).bottomMargin = -AndroidUtilities.dp(11.0f);
             ((ViewGroup.MarginLayoutParams) createFrame).rightMargin = -this.bottomImage.getPaddingRight();
             addView(this.bottomImage, createFrame);
-            this.loadingDrawable.setColors(Theme.getColor("actionBarActionModeDefaultSelector"), Theme.multAlpha(Theme.getColor("windowBackgroundWhiteGrayText4"), 0.2f));
+            this.loadingDrawable.setColors(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4), 0.2f));
             this.loadingDrawable.setRadiiDp(4.0f);
             this.loadingDrawable.setCallback(this);
         }
@@ -1619,9 +1623,11 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             AnimatedFloat animatedFloat2 = this.usedPercentAnimated;
             Float f4 = this.usedPercent;
             float f5 = animatedFloat2.set(f4 == null ? 0.0f : f4.floatValue());
-            this.loadingBackgroundPaint.setColor(Theme.getColor("actionBarActionModeDefaultSelector"));
             Paint paint = this.loadingBackgroundPaint;
-            paint.setAlpha((int) (paint.getAlpha() * alpha));
+            int i = Theme.key_actionBarActionModeDefaultSelector;
+            paint.setColor(Theme.getColor(i));
+            Paint paint2 = this.loadingBackgroundPaint;
+            paint2.setAlpha((int) (paint2.getAlpha() * alpha));
             RectF rectF = AndroidUtilities.rectTmp;
             float f6 = 1.0f - f;
             float max = Math.max(this.progressRect.left + (Math.max(AndroidUtilities.dp(4.0f), this.progressRect.width() * f5) * f6), this.progressRect.left + (Math.max(AndroidUtilities.dp(4.0f), this.progressRect.width() * f3) * f6)) + AndroidUtilities.dp(1.0f);
@@ -1633,18 +1639,20 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.loadingDrawable.setBounds(this.progressRect);
             this.loadingDrawable.setAlpha((int) (255.0f * alpha * f));
             this.loadingDrawable.draw(canvas);
-            this.usedPercentPaint.setColor(Theme.percentSV(Theme.getColor("radioBackgroundChecked"), Theme.getColor("actionBarActionModeDefaultSelector"), 0.922f, 1.8f));
-            Paint paint2 = this.usedPercentPaint;
-            paint2.setAlpha((int) (paint2.getAlpha() * alpha));
+            Paint paint3 = this.usedPercentPaint;
+            int i2 = Theme.key_radioBackgroundChecked;
+            paint3.setColor(Theme.percentSV(Theme.getColor(i2), Theme.getColor(i), 0.922f, 1.8f));
+            Paint paint4 = this.usedPercentPaint;
+            paint4.setAlpha((int) (paint4.getAlpha() * alpha));
             float max2 = this.progressRect.left + (Math.max(AndroidUtilities.dp(4.0f), this.progressRect.width() * f3) * f6) + AndroidUtilities.dp(1.0f);
             RectF rectF3 = this.progressRect;
             rectF.set(max2, rectF3.top, rectF3.left + (Math.max(AndroidUtilities.dp(4.0f), this.progressRect.width() * f5) * f6), this.progressRect.bottom);
             if (rectF.width() > AndroidUtilities.dp(3.0f)) {
                 drawRoundRect(canvas, rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(f5 > 0.97f ? 2.0f : 1.0f), this.usedPercentPaint);
             }
-            this.percentPaint.setColor(Theme.getColor("radioBackgroundChecked"));
-            Paint paint3 = this.percentPaint;
-            paint3.setAlpha((int) (paint3.getAlpha() * alpha));
+            this.percentPaint.setColor(Theme.getColor(i2));
+            Paint paint5 = this.percentPaint;
+            paint5.setAlpha((int) (paint5.getAlpha() * alpha));
             RectF rectF4 = this.progressRect;
             float f7 = rectF4.left;
             rectF.set(f7, rectF4.top, (f6 * Math.max(AndroidUtilities.dp(4.0f), this.progressRect.width() * f3)) + f7, this.progressRect.bottom);
@@ -1698,7 +1706,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.percentsTextView = animatedTextView;
             animatedTextView.setAnimationProperties(0.35f, 0L, 120L, CubicBezierInterpolator.EASE_OUT);
             this.percentsTextView.setGravity(1);
-            this.percentsTextView.setTextColor(Theme.getColor("dialogTextBlack"));
+            AnimatedTextView animatedTextView2 = this.percentsTextView;
+            int i = Theme.key_dialogTextBlack;
+            animatedTextView2.setTextColor(Theme.getColor(i));
             this.percentsTextView.setTextSize(AndroidUtilities.dp(24.0f));
             this.percentsTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             addView(this.percentsTextView, LayoutHelper.createFrame(-1, 32.0f, 49, 0.0f, 176.0f, 0.0f, 0.0f));
@@ -1708,7 +1718,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             TextView textView = new TextView(context);
             this.title = textView;
             textView.setGravity(1);
-            this.title.setTextColor(Theme.getColor("dialogTextBlack"));
+            this.title.setTextColor(Theme.getColor(i));
             this.title.setTextSize(1, 16.0f);
             this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.title.setText(LocaleController.getString("ClearingCache", R.string.ClearingCache));
@@ -1716,7 +1726,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             TextView textView2 = new TextView(context);
             this.subtitle = textView2;
             textView2.setGravity(1);
-            this.subtitle.setTextColor(Theme.getColor("dialogTextBlack"));
+            this.subtitle.setTextColor(Theme.getColor(i));
             this.subtitle.setTextSize(1, 14.0f);
             this.subtitle.setText(LocaleController.getString("ClearingCacheDescription", R.string.ClearingCacheDescription));
             addView(this.subtitle, LayoutHelper.createFrame(240, -2.0f, 49, 0.0f, 289.0f, 0.0f, 0.0f));
@@ -1745,8 +1755,10 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 this.in = new Paint(1);
                 this.out = new Paint(1);
                 this.progressT = new AnimatedFloat(this, 350L, CubicBezierInterpolator.EASE_OUT);
-                this.in.setColor(Theme.getColor("switchTrackChecked"));
-                this.out.setColor(Theme.multAlpha(Theme.getColor("switchTrackChecked"), 0.2f));
+                Paint paint = this.in;
+                int i = Theme.key_switchTrackChecked;
+                paint.setColor(Theme.getColor(i));
+                this.out.setColor(Theme.multAlpha(Theme.getColor(i), 0.2f));
             }
 
             public void setProgress(float f) {
@@ -1784,7 +1796,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             StringBuilder sb = new StringBuilder();
             sb.append(LocaleController.getString("ClearCache", R.string.ClearCache));
             if (TextUtils.isEmpty(this.valueTextView.getText())) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             } else {
                 str = " (" + ((Object) this.valueTextView.getText()) + ")";
             }
@@ -1798,8 +1810,9 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             CacheControlActivity.this.showDialog(create);
             View button = create.getButton(-1);
             if (button instanceof TextView) {
-                ((TextView) button).setTextColor(Theme.getColor("text_RedRegular"));
-                button.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(Theme.getColor("text_RedRegular"), 0.12f)));
+                int i = Theme.key_text_RedRegular;
+                ((TextView) button).setTextColor(Theme.getColor(i));
+                button.setBackground(Theme.getRoundRectSelectorDrawable(AndroidUtilities.dp(6.0f), Theme.multAlpha(Theme.getColor(i), 0.12f)));
             }
         }
 
@@ -1946,7 +1959,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 }
             };
             this.button = frameLayout;
-            frameLayout.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 8.0f));
+            int i = Theme.key_featuredStickers_addButton;
+            frameLayout.setBackground(Theme.AdaptiveRipple.filledRectByKey(i, 8.0f));
             this.button.setImportantForAccessibility(1);
             if (LocaleController.isRTL) {
                 TextView textView = new TextView(context);
@@ -1955,7 +1969,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 this.rtlTextView.setGravity(17);
                 this.rtlTextView.setTextSize(1, 14.0f);
                 this.rtlTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-                this.rtlTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+                this.rtlTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
                 this.button.addView(this.rtlTextView, LayoutHelper.createFrame(-2, -1, 17));
             }
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
@@ -1967,17 +1981,17 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.textView.setText(LocaleController.getString("ClearCache", R.string.ClearCache));
             this.textView.setGravity(5);
             this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.textView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+            this.textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(true, true, true);
             this.valueTextView = animatedTextDrawable2;
             animatedTextDrawable2.setAnimationProperties(0.25f, 0L, 300L, cubicBezierInterpolator);
             this.valueTextView.setCallback(this.button);
             this.valueTextView.setTextSize(AndroidUtilities.dp(14.0f));
             this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.valueTextView.setTextColor(Theme.adaptHSV(Theme.getColor("featuredStickers_addButton"), -0.46f, 0.08f));
-            this.valueTextView.setText("");
+            this.valueTextView.setTextColor(Theme.adaptHSV(Theme.getColor(i), -0.46f, 0.08f));
+            this.valueTextView.setText(BuildConfig.APP_CENTER_HASH);
             this.button.setContentDescription(TextUtils.concat(this.textView.getText(), "\t", this.valueTextView.getText()));
-            setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             addView(this.button, LayoutHelper.createFrame(-1, 48.0f, 119, 16.0f, 16.0f, 16.0f, 16.0f));
         }
 
@@ -1995,7 +2009,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 string = LocaleController.getString("ClearSelectedCache", R.string.ClearSelectedCache);
             }
             animatedTextDrawable.setText(string);
-            this.valueTextView.setText(j <= 0 ? "" : AndroidUtilities.formatFileSize(j));
+            this.valueTextView.setText(j <= 0 ? BuildConfig.APP_CENTER_HASH : AndroidUtilities.formatFileSize(j));
             setDisabled(j <= 0);
             this.button.invalidate();
             this.button.setContentDescription(TextUtils.concat(this.textView.getText(), "\t", this.valueTextView.getText()));
@@ -2226,53 +2240,53 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            FrameLayout frameLayout;
-            View view;
+            FlickerLoadingView flickerLoadingView;
+            SlideChooseView slideChooseView;
             if (i == 0) {
-                FrameLayout textSettingsCell = new TextSettingsCell(this.mContext);
-                textSettingsCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                frameLayout = textSettingsCell;
+                View textSettingsCell = new TextSettingsCell(this.mContext);
+                textSettingsCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                flickerLoadingView = textSettingsCell;
             } else {
                 switch (i) {
                     case 2:
-                        FrameLayout storageUsageView = new StorageUsageView(this.mContext);
-                        storageUsageView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                        frameLayout = storageUsageView;
+                        View storageUsageView = new StorageUsageView(this.mContext);
+                        storageUsageView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                        flickerLoadingView = storageUsageView;
                         break;
                     case 3:
-                        FrameLayout headerCell = new HeaderCell(this.mContext);
-                        headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                        frameLayout = headerCell;
+                        View headerCell = new HeaderCell(this.mContext);
+                        headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                        flickerLoadingView = headerCell;
                         break;
                     case 4:
-                        SlideChooseView slideChooseView = new SlideChooseView(this.mContext);
-                        slideChooseView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        slideChooseView = new SlideChooseView(this.mContext);
+                        slideChooseView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                         slideChooseView.setCallback(CacheControlActivity$ListAdapter$$ExternalSyntheticLambda3.INSTANCE);
                         int i2 = SharedConfig.keepMedia;
                         slideChooseView.setOptions(i2 == 3 ? 0 : i2 + 1, LocaleController.formatPluralString("Days", 3, new Object[0]), LocaleController.formatPluralString("Weeks", 1, new Object[0]), LocaleController.formatPluralString("Months", 1, new Object[0]), LocaleController.getString("KeepMediaForever", R.string.KeepMediaForever));
-                        frameLayout = slideChooseView;
+                        flickerLoadingView = slideChooseView;
                         break;
                     case 5:
                         FrameLayout userCell = new UserCell(CacheControlActivity.this.getContext(), CacheControlActivity.this.getResourceProvider());
-                        userCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                        frameLayout = userCell;
+                        userCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                        flickerLoadingView = userCell;
                         break;
                     case 6:
-                        FlickerLoadingView flickerLoadingView = new FlickerLoadingView(CacheControlActivity.this.getContext());
-                        flickerLoadingView.setIsSingleCell(true);
-                        flickerLoadingView.setItemsCount(3);
-                        flickerLoadingView.setIgnoreHeightCheck(true);
-                        flickerLoadingView.setViewType(25);
-                        flickerLoadingView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                        frameLayout = flickerLoadingView;
+                        FlickerLoadingView flickerLoadingView2 = new FlickerLoadingView(CacheControlActivity.this.getContext());
+                        flickerLoadingView2.setIsSingleCell(true);
+                        flickerLoadingView2.setItemsCount(3);
+                        flickerLoadingView2.setIgnoreHeightCheck(true);
+                        flickerLoadingView2.setViewType(25);
+                        flickerLoadingView2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                        flickerLoadingView = flickerLoadingView2;
                         break;
                     case 7:
-                        FrameLayout textCell = new TextCell(this.mContext);
-                        textCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                        frameLayout = textCell;
+                        View textCell = new TextCell(this.mContext);
+                        textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                        flickerLoadingView = textCell;
                         break;
                     case 8:
-                        FrameLayout frameLayout2 = CacheControlActivity.this.cachedMediaLayout = new CachedMediaLayout(this.mContext, CacheControlActivity.this) {
+                        View view = CacheControlActivity.this.cachedMediaLayout = new CachedMediaLayout(this.mContext, CacheControlActivity.this) {
                             @Override
                             protected void onMeasure(int i3, int i4) {
                                 super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i4) - (ActionBar.getCurrentActionBarHeight() / 2), 1073741824));
@@ -2331,36 +2345,36 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         });
                         CacheControlActivity.this.cachedMediaLayout.setCacheModel(CacheControlActivity.this.cacheModel);
                         CacheControlActivity.this.nestedSizeNotifierLayout.setChildLayout(CacheControlActivity.this.cachedMediaLayout);
-                        frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                        frameLayout2.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
-                        frameLayout = frameLayout2;
+                        view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                        view.setLayoutParams(new RecyclerView.LayoutParams(-1, -1));
+                        flickerLoadingView = view;
                         break;
                     case 9:
-                        view = CacheControlActivity.this.cacheChart = new AnonymousClass1(this.mContext);
+                        flickerLoadingView = CacheControlActivity.this.cacheChart = new AnonymousClass1(this.mContext);
                         break;
                     case 10:
-                        view = CacheControlActivity.this.cacheChartHeader = new CacheChartHeader(this.mContext);
+                        flickerLoadingView = CacheControlActivity.this.cacheChartHeader = new CacheChartHeader(this.mContext);
                         break;
                     case 11:
-                        FrameLayout checkBoxCell = new CheckBoxCell(this.mContext, 4, 21, CacheControlActivity.this.getResourceProvider());
-                        checkBoxCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                        frameLayout = checkBoxCell;
+                        View checkBoxCell = new CheckBoxCell(this.mContext, 4, 21, CacheControlActivity.this.getResourceProvider());
+                        checkBoxCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                        flickerLoadingView = checkBoxCell;
                         break;
                     case 12:
-                        FlickerLoadingView flickerLoadingView2 = new FlickerLoadingView(CacheControlActivity.this.getContext());
-                        flickerLoadingView2.setIsSingleCell(true);
-                        flickerLoadingView2.setItemsCount(1);
-                        flickerLoadingView2.setIgnoreHeightCheck(true);
-                        flickerLoadingView2.setViewType(26);
-                        flickerLoadingView2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                        frameLayout = flickerLoadingView2;
+                        FlickerLoadingView flickerLoadingView3 = new FlickerLoadingView(CacheControlActivity.this.getContext());
+                        flickerLoadingView3.setIsSingleCell(true);
+                        flickerLoadingView3.setItemsCount(1);
+                        flickerLoadingView3.setIgnoreHeightCheck(true);
+                        flickerLoadingView3.setViewType(26);
+                        flickerLoadingView3.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                        flickerLoadingView = flickerLoadingView3;
                         break;
                     case 13:
-                        view = CacheControlActivity.this.clearCacheButton = new ClearCacheButtonInternal(this.mContext);
+                        flickerLoadingView = CacheControlActivity.this.clearCacheButton = new ClearCacheButtonInternal(this.mContext);
                         break;
                     case 14:
-                        SlideChooseView slideChooseView2 = new SlideChooseView(this.mContext);
-                        slideChooseView2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                        slideChooseView = new SlideChooseView(this.mContext);
+                        slideChooseView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                         float f = ((int) ((CacheControlActivity.this.totalDeviceSize / 1024) / 1024)) / 1000.0f;
                         final ArrayList arrayList = new ArrayList();
                         if (f <= 17.0f) {
@@ -2386,7 +2400,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                                 strArr[i3] = String.format("%d GB", arrayList.get(i3));
                             }
                         }
-                        slideChooseView2.setCallback(new SlideChooseView.Callback() {
+                        slideChooseView.setCallback(new SlideChooseView.Callback() {
                             @Override
                             public final void onOptionSelected(int i4) {
                                 CacheControlActivity.ListAdapter.lambda$onCreateViewHolder$1(arrayList, i4);
@@ -2401,17 +2415,15 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                         if (indexOf < 0) {
                             indexOf = arrayList.size() - 1;
                         }
-                        slideChooseView2.setOptions(indexOf, strArr);
-                        frameLayout = slideChooseView2;
+                        slideChooseView.setOptions(indexOf, strArr);
+                        flickerLoadingView = slideChooseView;
                         break;
                     default:
-                        view = new TextInfoPrivacyCell(this.mContext);
+                        flickerLoadingView = new TextInfoPrivacyCell(this.mContext);
                         break;
                 }
-                return new RecyclerListView.Holder(view);
             }
-            view = frameLayout;
-            return new RecyclerListView.Holder(view);
+            return new RecyclerListView.Holder(flickerLoadingView);
         }
 
         public static void lambda$onCreateViewHolder$1(ArrayList arrayList, int i) {
@@ -2430,7 +2442,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             } else if (itemViewType == 1) {
                 TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
                 textInfoPrivacyCell.setText(AndroidUtilities.replaceTags(itemInner.text));
-                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, "windowBackgroundGrayShadow"));
+                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
             } else if (itemViewType == 2) {
                 ((StorageUsageView) viewHolder.itemView).setStorageUsage(CacheControlActivity.this.calculating, CacheControlActivity.this.databaseSize, CacheControlActivity.this.totalSize, CacheControlActivity.this.totalDeviceFreeSize, CacheControlActivity.this.totalDeviceSize);
             } else if (itemViewType == 3) {
@@ -2448,13 +2460,13 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 0) {
                     if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType != 1) {
                         if (((ItemInner) CacheControlActivity.this.itemInners.get(i)).keepMediaType == 2) {
-                            textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("CacheChannels", R.string.CacheChannels), keepMediaString, true, R.drawable.msg_filled_menu_channels, CacheControlActivity.this.getThemedColor("statisticChartLine_golden"), false);
+                            textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("CacheChannels", R.string.CacheChannels), keepMediaString, true, R.drawable.msg_filled_menu_channels, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_golden), false);
                         }
                     } else {
-                        textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("GroupChats", R.string.GroupChats), keepMediaString, true, R.drawable.msg_filled_menu_groups, CacheControlActivity.this.getThemedColor("statisticChartLine_green"), true);
+                        textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("GroupChats", R.string.GroupChats), keepMediaString, true, R.drawable.msg_filled_menu_groups, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_green), true);
                     }
                 } else {
-                    textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("PrivateChats", R.string.PrivateChats), keepMediaString, true, R.drawable.msg_filled_menu_users, CacheControlActivity.this.getThemedColor("statisticChartLine_lightblue"), true);
+                    textCell.setTextAndValueAndColorfulIcon(LocaleController.getString("PrivateChats", R.string.PrivateChats), keepMediaString, true, R.drawable.msg_filled_menu_users, CacheControlActivity.this.getThemedColor(Theme.key_statisticChartLine_lightblue), true);
                 }
                 textCell.setSubtitle(formatPluralString);
             } else if (itemViewType == 10) {
@@ -2483,7 +2495,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     r3 = true;
                 }
                 checkBoxCell.setText(checkBoxTitle, formatFileSize, isOtherSelected, r3);
-                checkBoxCell.setCheckBoxColor(itemInner.colorKey, "windowBackgroundWhiteGrayIcon", "checkboxCheck");
+                checkBoxCell.setCheckBoxColor(itemInner.colorKey, Theme.key_windowBackgroundWhiteGrayIcon, Theme.key_checkboxCheck);
                 checkBoxCell.setCollapsed(itemInner.index < 0 ? Boolean.valueOf(CacheControlActivity.this.collapsed) : null);
                 if (itemInner.index == -1) {
                     checkBoxCell.setOnSectionsClickListener(new View.OnClickListener() {
@@ -2567,53 +2579,59 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             }
         };
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{TextSettingsCell.class, SlideChooseView.class, StorageUsageView.class, HeaderCell.class}, null, null, null, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundGray"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "actionBarDefault"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, "actionBarDefault"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, "actionBarDefaultIcon"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, "actionBarDefaultTitle"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "actionBarDefaultSelector"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, "listSelectorSDK21"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSettingsCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSettingsCell.class}, new String[]{"valueTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteValueText"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, "windowBackgroundGrayShadow"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayText4"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueHeader"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{StorageUsageView.class}, new String[]{"paintFill"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "player_progressBackground"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{StorageUsageView.class}, new String[]{"paintProgress"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "player_progress"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{StorageUsageView.class}, new String[]{"telegramCacheTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayText"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{StorageUsageView.class}, new String[]{"freeSizeTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayText"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{StorageUsageView.class}, new String[]{"calculationgTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayText"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SlideChooseView.class}, null, null, null, "switchTrack"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SlideChooseView.class}, null, null, null, "switchTrackChecked"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SlideChooseView.class}, null, null, null, "windowBackgroundWhiteGrayText"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, "windowBackgroundWhiteGrayText"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, new Class[]{CheckBoxCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, new Class[]{CheckBoxCell.class}, new String[]{"valueTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteValueText"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, new Class[]{CheckBoxCell.class}, Theme.dividerPaint, null, null, "divider"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, new Class[]{StorageDiagramView.class}, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription((View) null, 0, new Class[]{TextCheckBoxCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, "statisticChartLine_blue"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, "statisticChartLine_green"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, "statisticChartLine_red"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, "statisticChartLine_golden"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, "statisticChartLine_lightblue"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, "statisticChartLine_lightgreen"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, "statisticChartLine_orange"));
-        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, "statisticChartLine_indigo"));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{TextSettingsCell.class, SlideChooseView.class, StorageUsageView.class, HeaderCell.class}, null, null, null, Theme.key_windowBackgroundWhite));
+        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
+        ActionBar actionBar = this.actionBar;
+        int i = ThemeDescription.FLAG_BACKGROUND;
+        int i2 = Theme.key_actionBarDefault;
+        arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, Theme.key_listSelector));
+        int i3 = Theme.key_windowBackgroundWhiteBlackText;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSettingsCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
+        int i4 = Theme.key_windowBackgroundWhiteValueText;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextSettingsCell.class}, new String[]{"valueTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, Theme.key_windowBackgroundGrayShadow));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueHeader));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{StorageUsageView.class}, new String[]{"paintFill"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_player_progressBackground));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{StorageUsageView.class}, new String[]{"paintProgress"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_player_progress));
+        int i5 = Theme.key_windowBackgroundWhiteGrayText;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{StorageUsageView.class}, new String[]{"telegramCacheTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{StorageUsageView.class}, new String[]{"freeSizeTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{StorageUsageView.class}, new String[]{"calculationgTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SlideChooseView.class}, null, null, null, Theme.key_switchTrack));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SlideChooseView.class}, null, null, null, Theme.key_switchTrackChecked));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{SlideChooseView.class}, null, null, null, i5));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, i5));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, new Class[]{CheckBoxCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, new Class[]{CheckBoxCell.class}, new String[]{"valueTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, new Class[]{CheckBoxCell.class}, Theme.dividerPaint, null, null, Theme.key_divider));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, new Class[]{StorageDiagramView.class}, null, null, null, i3));
+        arrayList.add(new ThemeDescription((View) null, 0, new Class[]{TextCheckBoxCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_dialogBackground));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, Theme.key_statisticChartLine_blue));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, Theme.key_statisticChartLine_green));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, Theme.key_statisticChartLine_red));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, Theme.key_statisticChartLine_golden));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, Theme.key_statisticChartLine_lightblue));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, Theme.key_statisticChartLine_lightgreen));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, Theme.key_statisticChartLine_orange));
+        arrayList.add(new ThemeDescription(this.bottomSheetView, 0, null, null, null, null, Theme.key_statisticChartLine_indigo));
         return arrayList;
     }
 
     public void lambda$getThemeDescriptions$25() {
         BottomSheet bottomSheet = this.bottomSheet;
         if (bottomSheet != null) {
-            bottomSheet.setBackgroundColor(Theme.getColor("dialogBackground"));
+            bottomSheet.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
         }
         View view = this.actionTextView;
         if (view != null) {
-            view.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+            view.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
         }
     }
 
@@ -2638,7 +2656,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.textView.setTextSize(1, 16.0f);
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
             this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
+            this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
             TextView textView2 = this.textView;
             boolean z = LocaleController.isRTL;
             addView(textView2, LayoutHelper.createFrame(-1, -1.0f, (z ? 5 : 3) | 48, z ? 21.0f : 72.0f, 0.0f, z ? 72.0f : 21.0f, 0.0f));
@@ -2647,7 +2665,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             animatedTextView.setAnimationProperties(0.55f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.valueTextView.setTextSize(AndroidUtilities.dp(16.0f));
             this.valueTextView.setGravity((LocaleController.isRTL ? 3 : 5) | 16);
-            this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteValueText", resourcesProvider));
+            this.valueTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText, resourcesProvider));
             AnimatedTextView animatedTextView2 = this.valueTextView;
             boolean z2 = LocaleController.isRTL;
             addView(animatedTextView2, LayoutHelper.createFrame(-2, -1.0f, (z2 ? 3 : 5) | 48, z2 ? 21.0f : 72.0f, 0.0f, z2 ? 72.0f : 21.0f, 0.0f));
@@ -2749,7 +2767,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             sb.append((Object) this.textView.getText());
             AnimatedTextView animatedTextView = this.valueTextView;
             if (animatedTextView == null || animatedTextView.getVisibility() != 0) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             } else {
                 str = "\n" + ((Object) this.valueTextView.getText());
             }
@@ -2785,7 +2803,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 if (checkBox2 == null) {
                     CheckBox2 checkBox22 = new CheckBox2(getContext(), 21, this.resourcesProvider);
                     this.checkBox = checkBox22;
-                    checkBox22.setColor(null, "windowBackgroundWhite", "checkboxCheck");
+                    checkBox22.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
                     this.checkBox.setDrawUnchecked(false);
                     this.checkBox.setDrawBackgroundAsArc(3);
                     addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 0, 38.0f, 25.0f, 0.0f, 0.0f));
@@ -2899,7 +2917,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
     }
 
     public static class ItemInner extends AdapterWithDiffUtils.Item {
-        String colorKey;
+        int colorKey;
         DialogFileEntities entities;
         int headerBottomMargin;
         CharSequence headerName;
@@ -2935,16 +2953,16 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
             this.keepMediaType = -1;
         }
 
-        public static ItemInner asCheckBox(CharSequence charSequence, int i, long j, String str) {
-            return asCheckBox(charSequence, i, j, str, false);
+        public static ItemInner asCheckBox(CharSequence charSequence, int i, long j, int i2) {
+            return asCheckBox(charSequence, i, j, i2, false);
         }
 
-        public static ItemInner asCheckBox(CharSequence charSequence, int i, long j, String str, boolean z) {
+        public static ItemInner asCheckBox(CharSequence charSequence, int i, long j, int i2, boolean z) {
             ItemInner itemInner = new ItemInner(11);
             itemInner.index = i;
             itemInner.headerName = charSequence;
             itemInner.size = j;
-            itemInner.colorKey = str;
+            itemInner.colorKey = i2;
             itemInner.last = z;
             return itemInner;
         }

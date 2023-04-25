@@ -33,6 +33,7 @@ import androidx.annotation.Keep;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -72,6 +73,7 @@ public class ColorPicker extends FrameLayout {
     private RadioButton[] radioButton;
     private FrameLayout radioContainer;
     private TextView resetButton;
+    Theme.ResourcesProvider resourcesProvider;
     private int selectedColor;
     private RectF sliderRect;
     private Paint valueSliderPaint;
@@ -218,17 +220,12 @@ public class ColorPicker extends FrameLayout {
         paint.setColor(301989888);
         setClipChildren(false);
         LinearLayout linearLayout = new LinearLayout(context) {
-            private Paint paint;
             private RectF rect = new RectF();
-
-            {
-                Paint paint2 = new Paint(1);
-                this.paint = paint2;
-                paint2.setColor(Theme.getColor("dialogBackgroundGray"));
-            }
+            private Paint paint = new Paint(1);
 
             @Override
             protected void onDraw(Canvas canvas) {
+                this.paint.setColor(ColorPicker.this.getThemedColor(Theme.key_dialogBackgroundGray));
                 int left = ColorPicker.this.colorEditText[0].getLeft() - AndroidUtilities.dp(13.0f);
                 this.rect.set(left, AndroidUtilities.dp(5.0f), left + ((int) (AndroidUtilities.dp(91.0f) + (ColorPicker.this.clearButton.getVisibility() == 0 ? AndroidUtilities.dp(25.0f) * ColorPicker.this.clearButton.getAlpha() : 0.0f))), AndroidUtilities.dp(37.0f));
                 canvas.drawRoundRect(this.rect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.paint);
@@ -334,7 +331,7 @@ public class ColorPicker extends FrameLayout {
                         while (i3 < editable.length()) {
                             char charAt = editable.charAt(i3);
                             if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
-                                editable.replace(i3, i3 + 1, "");
+                                editable.replace(i3, i3 + 1, BuildConfig.APP_CENTER_HASH);
                                 i3--;
                             }
                             i3++;
@@ -358,14 +355,16 @@ public class ColorPicker extends FrameLayout {
                 this.colorEditText[i2].setOnEditorActionListener(ColorPicker$$ExternalSyntheticLambda5.INSTANCE);
             }
             this.colorEditText[i2].setTextSize(1, 16.0f);
-            this.colorEditText[i2].setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
-            this.colorEditText[i2].setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-            this.colorEditText[i2].setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.colorEditText[i2].setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
+            EditTextBoldCursor editTextBoldCursor = this.colorEditText[i2];
+            int i3 = Theme.key_windowBackgroundWhiteBlackText;
+            editTextBoldCursor.setTextColor(getThemedColor(i3));
+            this.colorEditText[i2].setCursorColor(getThemedColor(i3));
             this.colorEditText[i2].setCursorSize(AndroidUtilities.dp(18.0f));
             this.colorEditText[i2].setCursorWidth(1.5f);
             this.colorEditText[i2].setSingleLine(true);
             this.colorEditText[i2].setGravity(19);
-            this.colorEditText[i2].setHeaderHintColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
+            this.colorEditText[i2].setHeaderHintColor(getThemedColor(Theme.key_windowBackgroundWhiteBlueHeader));
             this.colorEditText[i2].setTransformHintToHeader(true);
             this.colorEditText[i2].setInputType(524416);
             this.colorEditText[i2].setImeOptions(268435462);
@@ -378,9 +377,12 @@ public class ColorPicker extends FrameLayout {
         }
         ImageView imageView = new ImageView(getContext());
         this.addButton = imageView;
-        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 1));
+        int i4 = Theme.key_dialogButtonSelector;
+        imageView.setBackground(Theme.createSelectorDrawable(getThemedColor(i4), 1));
         this.addButton.setImageResource(R.drawable.msg_add);
-        this.addButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"), PorterDuff.Mode.MULTIPLY));
+        ImageView imageView2 = this.addButton;
+        int i5 = Theme.key_windowBackgroundWhiteBlackText;
+        imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i5), PorterDuff.Mode.MULTIPLY));
         this.addButton.setScaleType(ImageView.ScaleType.CENTER);
         this.addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -390,17 +392,17 @@ public class ColorPicker extends FrameLayout {
         });
         this.addButton.setContentDescription(LocaleController.getString("Add", R.string.Add));
         addView(this.addButton, LayoutHelper.createFrame(30, 30.0f, 49, 36.0f, 1.0f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(getContext()) {
+        ImageView imageView3 = new ImageView(getContext()) {
             @Override
             public void setAlpha(float f) {
                 super.setAlpha(f);
                 ColorPicker.this.linearLayout.invalidate();
             }
         };
-        this.clearButton = imageView2;
-        imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 1));
+        this.clearButton = imageView3;
+        imageView3.setBackground(Theme.createSelectorDrawable(getThemedColor(i4), 1));
         this.clearButton.setImageResource(R.drawable.msg_close);
-        this.clearButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"), PorterDuff.Mode.MULTIPLY));
+        this.clearButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i5), PorterDuff.Mode.MULTIPLY));
         this.clearButton.setAlpha(0.0f);
         this.clearButton.setScaleX(0.0f);
         this.clearButton.setScaleY(0.0f);
@@ -420,11 +422,11 @@ public class ColorPicker extends FrameLayout {
         this.resetButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.resetButton.setGravity(17);
         this.resetButton.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        this.resetButton.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.resetButton.setTextColor(getThemedColor(i5));
         addView(this.resetButton, LayoutHelper.createFrame(-2, 36.0f, 53, 0.0f, 3.0f, 14.0f, 0.0f));
         this.resetButton.setOnClickListener(ColorPicker$$ExternalSyntheticLambda4.INSTANCE);
         if (z) {
-            ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, null, 0, Theme.getColor("windowBackgroundWhiteBlackText"));
+            ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, null, 0, getThemedColor(i5));
             this.menuItem = actionBarMenuItem;
             actionBarMenuItem.setLongClickEnabled(false);
             this.menuItem.setIcon(R.drawable.ic_ab_other);
@@ -436,13 +438,13 @@ public class ColorPicker extends FrameLayout {
             this.menuItem.setSubMenuOpenSide(2);
             this.menuItem.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
                 @Override
-                public final void onItemClick(int i3) {
-                    ColorPicker.this.lambda$new$5(i3);
+                public final void onItemClick(int i6) {
+                    ColorPicker.this.lambda$new$5(i6);
                 }
             });
             this.menuItem.setAdditionalYOffset(AndroidUtilities.dp(72.0f));
             this.menuItem.setTranslationX(AndroidUtilities.dp(6.0f));
-            this.menuItem.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 1));
+            this.menuItem.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(i4), 1));
             addView(this.menuItem, LayoutHelper.createFrame(30, 30.0f, 53, 0.0f, 2.0f, 10.0f, 0.0f));
             this.menuItem.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -660,6 +662,10 @@ public class ColorPicker extends FrameLayout {
 
     public void lambda$new$6(View view) {
         this.menuItem.toggleSubMenu();
+    }
+
+    public int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     @Override
@@ -961,15 +967,24 @@ public class ColorPicker extends FrameLayout {
 
     public void provideThemeDescriptions(List<ThemeDescription> list) {
         for (int i = 0; i < this.colorEditText.length; i++) {
-            list.add(new ThemeDescription(this.colorEditText[i], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-            list.add(new ThemeDescription(this.colorEditText[i], ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-            list.add(new ThemeDescription(this.colorEditText[i], ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, "windowBackgroundWhiteHintText"));
-            list.add(new ThemeDescription(this.colorEditText[i], ThemeDescription.FLAG_HINTTEXTCOLOR | ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, "windowBackgroundWhiteBlueHeader"));
-            list.add(new ThemeDescription(this.colorEditText[i], ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, "windowBackgroundWhiteInputField"));
-            list.add(new ThemeDescription(this.colorEditText[i], ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, "windowBackgroundWhiteInputFieldActivated"));
+            EditTextBoldCursor editTextBoldCursor = this.colorEditText[i];
+            int i2 = ThemeDescription.FLAG_TEXTCOLOR;
+            int i3 = Theme.key_windowBackgroundWhiteBlackText;
+            list.add(new ThemeDescription(editTextBoldCursor, i2, null, null, null, null, i3));
+            list.add(new ThemeDescription(this.colorEditText[i], ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, i3));
+            list.add(new ThemeDescription(this.colorEditText[i], ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteHintText));
+            list.add(new ThemeDescription(this.colorEditText[i], ThemeDescription.FLAG_HINTTEXTCOLOR | ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, Theme.key_windowBackgroundWhiteBlueHeader));
+            list.add(new ThemeDescription(this.colorEditText[i], ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, Theme.key_windowBackgroundWhiteInputField));
+            list.add(new ThemeDescription(this.colorEditText[i], ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, Theme.key_windowBackgroundWhiteInputFieldActivated));
         }
-        list.add(new ThemeDescription(this.clearButton, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        list.add(new ThemeDescription(this.clearButton, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, "dialogButtonSelector"));
+        ImageView imageView = this.clearButton;
+        int i4 = ThemeDescription.FLAG_IMAGECOLOR;
+        int i5 = Theme.key_windowBackgroundWhiteBlackText;
+        list.add(new ThemeDescription(imageView, i4, null, null, null, null, i5));
+        ImageView imageView2 = this.clearButton;
+        int i6 = ThemeDescription.FLAG_BACKGROUNDFILTER;
+        int i7 = Theme.key_dialogButtonSelector;
+        list.add(new ThemeDescription(imageView2, i6, null, null, null, null, i7));
         if (this.menuItem != null) {
             ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
                 @Override
@@ -982,20 +997,20 @@ public class ColorPicker extends FrameLayout {
                     ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
                 }
             };
-            list.add(new ThemeDescription(this.menuItem, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteBlackText"));
-            list.add(new ThemeDescription(this.menuItem, 0, null, null, null, themeDescriptionDelegate, "dialogButtonSelector"));
-            list.add(new ThemeDescription(this.menuItem, 0, null, null, null, themeDescriptionDelegate, "actionBarDefaultSubmenuItem"));
-            list.add(new ThemeDescription(this.menuItem, 0, null, null, null, themeDescriptionDelegate, "actionBarDefaultSubmenuItemIcon"));
-            list.add(new ThemeDescription(this.menuItem, 0, null, null, null, themeDescriptionDelegate, "actionBarDefaultSubmenuBackground"));
+            list.add(new ThemeDescription(this.menuItem, 0, null, null, null, themeDescriptionDelegate, i5));
+            list.add(new ThemeDescription(this.menuItem, 0, null, null, null, themeDescriptionDelegate, i7));
+            list.add(new ThemeDescription(this.menuItem, 0, null, null, null, themeDescriptionDelegate, Theme.key_actionBarDefaultSubmenuItem));
+            list.add(new ThemeDescription(this.menuItem, 0, null, null, null, themeDescriptionDelegate, Theme.key_actionBarDefaultSubmenuItemIcon));
+            list.add(new ThemeDescription(this.menuItem, 0, null, null, null, themeDescriptionDelegate, Theme.key_actionBarDefaultSubmenuBackground));
         }
     }
 
     public void lambda$provideThemeDescriptions$7() {
-        this.menuItem.setIconColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        Theme.setDrawableColor(this.menuItem.getBackground(), Theme.getColor("dialogButtonSelector"));
-        this.menuItem.setPopupItemsColor(Theme.getColor("actionBarDefaultSubmenuItem"), false);
-        this.menuItem.setPopupItemsColor(Theme.getColor("actionBarDefaultSubmenuItemIcon"), true);
-        this.menuItem.redrawPopup(Theme.getColor("actionBarDefaultSubmenuBackground"));
+        this.menuItem.setIconColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+        Theme.setDrawableColor(this.menuItem.getBackground(), getThemedColor(Theme.key_dialogButtonSelector));
+        this.menuItem.setPopupItemsColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItem), false);
+        this.menuItem.setPopupItemsColor(getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon), true);
+        this.menuItem.redrawPopup(getThemedColor(Theme.key_actionBarDefaultSubmenuBackground));
     }
 
     public static int generateGradientColors(int i) {
@@ -1012,5 +1027,15 @@ public class ColorPicker extends FrameLayout {
             fArr[0] = fArr[0] + 20.0f;
         }
         return Color.HSVToColor(255, fArr);
+    }
+
+    public void setResourcesProvider(Theme.ResourcesProvider resourcesProvider) {
+        this.resourcesProvider = resourcesProvider;
+    }
+
+    @Override
+    public void invalidate() {
+        super.invalidate();
+        this.linearLayout.invalidate();
     }
 }

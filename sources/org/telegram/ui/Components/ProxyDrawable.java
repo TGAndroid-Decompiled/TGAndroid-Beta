@@ -60,7 +60,7 @@ public class ProxyDrawable extends Drawable {
         } else if (!this.connected || this.connectedAnimationProgress != 1.0f) {
             this.emptyDrawable.setBounds(getBounds());
             this.emptyDrawable.draw(canvas);
-            this.outerPaint.setColor(Theme.getColor("contextProgressOuter2"));
+            this.outerPaint.setColor(Theme.getColor(Theme.key_contextProgressOuter2));
             this.outerPaint.setAlpha((int) ((1.0f - this.connectedAnimationProgress) * 255.0f));
             this.radOffset = (int) (this.radOffset + (((float) (360 * j)) / 1000.0f));
             int width = getBounds().width();

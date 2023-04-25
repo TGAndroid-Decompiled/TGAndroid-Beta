@@ -95,12 +95,16 @@ public class LegendSignatureView extends FrameLayout {
     }
 
     public void recolor() {
-        this.time.setTextColor(Theme.getColor("dialogTextBlack"));
-        this.hourTime.setTextColor(Theme.getColor("dialogTextBlack"));
-        this.chevron.setColorFilter(Theme.getColor("statisticChartChevronColor"));
-        this.progressView.setProgressColor(Theme.getColor("statisticChartChevronColor"));
+        TextView textView = this.time;
+        int i = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.getColor(i));
+        this.hourTime.setTextColor(Theme.getColor(i));
+        ImageView imageView = this.chevron;
+        int i2 = Theme.key_statisticChartChevronColor;
+        imageView.setColorFilter(Theme.getColor(i2));
+        this.progressView.setProgressColor(Theme.getColor(i2));
         this.shadowDrawable = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
-        this.backgroundDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.getColor("dialogBackground"), Theme.getColor("listSelectorSDK21"), -16777216);
+        this.backgroundDrawable = Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.getColor(Theme.key_dialogBackground), Theme.getColor(Theme.key_listSelector), -16777216);
         CombinedDrawable combinedDrawable = new CombinedDrawable(this.shadowDrawable, this.backgroundDrawable, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
         combinedDrawable.setFullsize(true);
         setBackground(combinedDrawable);
@@ -154,16 +158,18 @@ public class LegendSignatureView extends FrameLayout {
                 holder.root.setVisibility(0);
                 holder.value.setText(formatWholeNumber(line.y[i]));
                 holder.signature.setText(line.name);
-                String str = line.colorKey;
-                if (str != null && Theme.hasThemeKey(str)) {
+                int i5 = line.colorKey;
+                if (i5 >= 0 && Theme.hasThemeKey(i5)) {
                     holder.value.setTextColor(Theme.getColor(line.colorKey));
                 } else {
                     holder.value.setTextColor(Theme.getCurrentTheme().isDark() ? line.colorDark : line.color);
                 }
-                holder.signature.setTextColor(Theme.getColor("dialogTextBlack"));
+                TextView textView2 = holder.signature;
+                int i6 = Theme.key_dialogTextBlack;
+                textView2.setTextColor(Theme.getColor(i6));
                 if (this.showPercentage && (textView = holder.percentage) != null) {
                     textView.setVisibility(0);
-                    holder.percentage.setTextColor(Theme.getColor("dialogTextBlack"));
+                    holder.percentage.setTextColor(Theme.getColor(i6));
                     float f = arrayList.get(i4).line.y[i] / i2;
                     if (f < 0.1f && f != 0.0f) {
                         holder.percentage.setText(String.format(Locale.ENGLISH, "%.1f%s", Float.valueOf(f * 100.0f), "%"));

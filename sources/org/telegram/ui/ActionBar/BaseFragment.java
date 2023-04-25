@@ -354,11 +354,11 @@ public abstract class BaseFragment {
 
     public ActionBar createActionBar(Context context) {
         ActionBar actionBar = new ActionBar(context, getResourceProvider());
-        actionBar.setBackgroundColor(getThemedColor("actionBarDefault"));
-        actionBar.setItemsBackgroundColor(getThemedColor("actionBarDefaultSelector"), false);
-        actionBar.setItemsBackgroundColor(getThemedColor("actionBarActionModeDefaultSelector"), true);
-        actionBar.setItemsColor(getThemedColor("actionBarDefaultIcon"), false);
-        actionBar.setItemsColor(getThemedColor("actionBarActionModeDefaultIcon"), true);
+        actionBar.setBackgroundColor(getThemedColor(Theme.key_actionBarDefault));
+        actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarDefaultSelector), false);
+        actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), true);
+        actionBar.setItemsColor(getThemedColor(Theme.key_actionBarDefaultIcon), false);
+        actionBar.setItemsColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon), true);
         if (this.inPreviewMode || this.inBubbleMode) {
             actionBar.setOccupyStatusBar(false);
         }
@@ -434,7 +434,7 @@ public abstract class BaseFragment {
         if (!hasForceLightStatusBar() || AndroidUtilities.isTablet() || getParentLayout().getLastFragment() != this || getParentActivity() == null || this.finishing) {
             return;
         }
-        AndroidUtilities.setLightStatusBar(getParentActivity().getWindow(), Theme.getColor("actionBarDefault") == -1);
+        AndroidUtilities.setLightStatusBar(getParentActivity().getWindow(), Theme.getColor(Theme.key_actionBarDefault) == -1);
     }
 
     public void resumeDelayedFragmentAnimation() {
@@ -446,6 +446,10 @@ public abstract class BaseFragment {
 
     public void onResume() {
         this.isPaused = false;
+        ActionBar actionBar = this.actionBar;
+        if (actionBar != null) {
+            actionBar.onResume();
+        }
     }
 
     public void onPause() {
@@ -741,7 +745,7 @@ public abstract class BaseFragment {
                 return lambda$showAsSheet$1;
             }
         })};
-        final BottomSheet[] bottomSheetArr = {new AnonymousClass1(this, getParentActivity(), true, iNavigationLayoutArr, baseFragment, bottomSheetParams)};
+        final BottomSheet[] bottomSheetArr = {new AnonymousClass1(this, getParentActivity(), true, baseFragment.getResourceProvider(), iNavigationLayoutArr, baseFragment, bottomSheetParams)};
         if (bottomSheetParams != null) {
             bottomSheetArr[0].setAllowNestedScroll(bottomSheetParams.allowNestedScroll);
             bottomSheetArr[0].transitionFromRight(bottomSheetParams.transitionFromLeft);
@@ -761,11 +765,12 @@ public abstract class BaseFragment {
             return false;
         }
 
-        AnonymousClass1(BaseFragment baseFragment, Context context, boolean z, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment2, final BottomSheetParams bottomSheetParams) {
-            super(context, z);
+        AnonymousClass1(BaseFragment baseFragment, Context context, boolean z, Theme.ResourcesProvider resourcesProvider, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment2, final BottomSheetParams bottomSheetParams) {
+            super(context, z, resourcesProvider);
             this.val$actionBarLayout = iNavigationLayoutArr;
             this.val$fragment = baseFragment2;
             this.val$params = bottomSheetParams;
+            this.drawNavigationBar = true;
             iNavigationLayoutArr[0].setFragmentStack(new ArrayList());
             iNavigationLayoutArr[0].addFragmentToStack(baseFragment2);
             iNavigationLayoutArr[0].showLastFragment();
@@ -784,11 +789,18 @@ public abstract class BaseFragment {
 
         public static void lambda$new$0(BaseFragment baseFragment, BottomSheetParams bottomSheetParams, DialogInterface dialogInterface) {
             Runnable runnable;
+            baseFragment.onPause();
             baseFragment.onFragmentDestroy();
             if (bottomSheetParams == null || (runnable = bottomSheetParams.onDismiss) == null) {
                 return;
             }
             runnable.run();
+        }
+
+        @Override
+        protected void onCreate(Bundle bundle) {
+            super.onCreate(bundle);
+            fixNavigationBar(Theme.getColor(Theme.key_dialogBackgroundGray, this.val$fragment.getResourceProvider()));
         }
 
         @Override
@@ -803,12 +815,12 @@ public abstract class BaseFragment {
 
         @Override
         public void dismiss() {
+            BottomSheetParams bottomSheetParams;
             Runnable runnable;
-            super.dismiss();
-            BottomSheetParams bottomSheetParams = this.val$params;
-            if (bottomSheetParams != null && (runnable = bottomSheetParams.onPreFinished) != null) {
+            if (!isDismissed() && (bottomSheetParams = this.val$params) != null && (runnable = bottomSheetParams.onPreFinished) != null) {
                 runnable.run();
             }
+            super.dismiss();
             this.val$actionBarLayout[0] = null;
         }
 
@@ -827,8 +839,8 @@ public abstract class BaseFragment {
         return bottomSheetArr[0];
     }
 
-    public int getThemedColor(String str) {
-        return Theme.getColor(str, getResourceProvider());
+    public int getThemedColor(int i) {
+        return Theme.getColor(i, getResourceProvider());
     }
 
     public Drawable getThemedDrawable(String str) {
@@ -836,7 +848,7 @@ public abstract class BaseFragment {
     }
 
     public int getNavigationBarColor() {
-        return Theme.getColor("windowBackgroundGray");
+        return Theme.getColor(Theme.key_windowBackgroundGray, this.resourceProvider);
     }
 
     public void setNavigationBarColor(int i) {
@@ -875,12 +887,15 @@ public abstract class BaseFragment {
         int color;
         if (!hasForceLightStatusBar() || Theme.getCurrentTheme().isDark()) {
             Theme.ResourcesProvider resourceProvider = getResourceProvider();
+            int i = Theme.key_actionBarDefault;
             ActionBar actionBar = this.actionBar;
-            String str = (actionBar == null || !actionBar.isActionModeShowed()) ? "actionBarDefault" : "actionBarActionModeDefault";
+            if (actionBar != null && actionBar.isActionModeShowed()) {
+                i = Theme.key_actionBarActionModeDefault;
+            }
             if (resourceProvider != null) {
-                color = resourceProvider.getColorOrDefault(str);
+                color = resourceProvider.getColorOrDefault(i);
             } else {
-                color = Theme.getColor(str, null, true);
+                color = Theme.getColor(i, null, true);
             }
             return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
         }

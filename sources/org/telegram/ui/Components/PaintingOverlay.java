@@ -165,6 +165,7 @@ public class PaintingOverlay extends FrameLayout {
             int i2 = 2;
             if (b == 0) {
                 BackupImageView backupImageView2 = new BackupImageView(getContext());
+                backupImageView2.setLayerNum(8);
                 backupImageView2.setAspectFit(true);
                 ImageReceiver imageReceiver = backupImageView2.getImageReceiver();
                 if (z) {

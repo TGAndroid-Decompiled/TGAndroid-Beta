@@ -52,8 +52,8 @@ public class GroupCreateSpan extends View {
 
     public void updateColors() {
         int color = this.avatarDrawable.getColor();
-        int color2 = Theme.getColor("groupcreate_spanBackground");
-        int color3 = Theme.getColor("groupcreate_spanDelete");
+        int color2 = Theme.getColor(Theme.key_groupcreate_spanBackground);
+        int color3 = Theme.getColor(Theme.key_groupcreate_spanDelete);
         this.colors[0] = Color.red(color2);
         this.colors[1] = Color.red(color);
         this.colors[2] = Color.green(color2);
@@ -152,7 +152,7 @@ public class GroupCreateSpan extends View {
             canvas.restore();
         }
         canvas.translate(this.textX + AndroidUtilities.dp(41.0f), AndroidUtilities.dp(8.0f));
-        textPaint.setColor(ColorUtils.blendARGB(Theme.getColor("groupcreate_spanText"), Theme.getColor("avatar_text"), this.progress));
+        textPaint.setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_groupcreate_spanText), Theme.getColor(Theme.key_avatar_text), this.progress));
         this.nameLayout.draw(canvas);
         canvas.restore();
     }

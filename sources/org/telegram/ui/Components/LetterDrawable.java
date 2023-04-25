@@ -60,8 +60,8 @@ public class LetterDrawable extends Drawable {
                 namePaint = new TextPaint(1);
             }
             namePaint.setTextSize(AndroidUtilities.dp(28.0f));
-            paint.setColor(Theme.getColor("sharedMedia_linkPlaceholder", resourcesProvider));
-            namePaint.setColor(Theme.getColor("sharedMedia_linkPlaceholderText", resourcesProvider));
+            paint.setColor(Theme.getColor(Theme.key_sharedMedia_linkPlaceholder, resourcesProvider));
+            namePaint.setColor(Theme.getColor(Theme.key_sharedMedia_linkPlaceholderText, resourcesProvider));
             this.textPaint = namePaint;
         } else if (i == 1) {
             if (namePaintTopic == null) {

@@ -29,12 +29,14 @@ public class GraySectionCell extends FrameLayout {
     public GraySectionCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.resourcesProvider = resourcesProvider;
-        setBackgroundColor(getThemedColor("graySection"));
+        setBackgroundColor(getThemedColor(Theme.key_graySection));
         TextView textView = new TextView(getContext());
         this.textView = textView;
         textView.setTextSize(1, 14.0f);
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.textView.setTextColor(getThemedColor("key_graySectionText"));
+        TextView textView2 = this.textView;
+        int i = Theme.key_graySectionText;
+        textView2.setTextColor(getThemedColor(i));
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(this, getContext(), true, true, true) {
@@ -47,7 +49,7 @@ public class GraySectionCell extends FrameLayout {
         animatedTextView.setPadding(AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f), 0);
         this.rightTextView.setAnimationProperties(1.0f, 0L, 400L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.rightTextView.setTextSize(AndroidUtilities.dp(14.0f));
-        this.rightTextView.setTextColor(getThemedColor("key_graySectionText"));
+        this.rightTextView.setTextColor(getThemedColor(i));
         this.rightTextView.setGravity(LocaleController.isRTL ? 3 : 5);
         addView(this.rightTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
         ViewCompat.setAccessibilityHeading(this, true);
@@ -58,8 +60,8 @@ public class GraySectionCell extends FrameLayout {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(32.0f), 1073741824));
     }
 
-    public void setTextColor(String str) {
-        int themedColor = getThemedColor(str);
+    public void setTextColor(int i) {
+        int themedColor = getThemedColor(i);
         this.textView.setTextColor(themedColor);
         this.rightTextView.setTextColor(themedColor);
     }
@@ -91,18 +93,17 @@ public class GraySectionCell extends FrameLayout {
     }
 
     public static void createThemeDescriptions(List<ThemeDescription> list, RecyclerListView recyclerListView) {
-        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "key_graySectionText"));
-        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"rightTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "key_graySectionText"));
-        list.add(new ThemeDescription(recyclerListView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{GraySectionCell.class}, null, null, null, "graySection"));
+        int i = Theme.key_graySectionText;
+        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i));
+        list.add(new ThemeDescription(recyclerListView, 0, new Class[]{GraySectionCell.class}, new String[]{"rightTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i));
+        list.add(new ThemeDescription(recyclerListView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{GraySectionCell.class}, null, null, null, Theme.key_graySection));
     }
 
     public TextView getTextView() {
         return this.textView;
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

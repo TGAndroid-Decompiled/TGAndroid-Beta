@@ -68,11 +68,11 @@ public class ChatListCell extends LinearLayout {
         protected void onDraw(Canvas canvas) {
             int i;
             String str;
-            int color = Theme.getColor("switchTrack");
+            int color = Theme.getColor(Theme.key_switchTrack);
             int red = Color.red(color);
             int green = Color.green(color);
             int blue = Color.blue(color);
-            this.button.setColor(Theme.getColor("radioBackground"), Theme.getColor("radioBackgroundChecked"));
+            this.button.setColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_radioBackgroundChecked));
             this.rect.set(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), getMeasuredWidth() - AndroidUtilities.dp(1.0f), AndroidUtilities.dp(73.0f));
             Theme.chat_instantViewRectPaint.setColor(Color.argb((int) (this.button.getProgress() * 43.0f), red, green, blue));
             canvas.drawRoundRect(this.rect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Theme.chat_instantViewRectPaint);
@@ -87,7 +87,7 @@ public class ChatListCell extends LinearLayout {
                 str = "ChatListDefault";
             }
             String string = LocaleController.getString(str, i);
-            this.textPaint.setColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             canvas.drawText(string, (getMeasuredWidth() - ((int) Math.ceil(this.textPaint.measureText(string)))) / 2, AndroidUtilities.dp(96.0f), this.textPaint);
             int i2 = 0;
             for (int i3 = 2; i2 < i3; i3 = 2) {

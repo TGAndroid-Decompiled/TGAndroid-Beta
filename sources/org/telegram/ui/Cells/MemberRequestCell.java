@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
@@ -46,20 +47,20 @@ public class MemberRequestCell extends FrameLayout {
         addView(backupImageView, LayoutHelper.createFrame(46, 46.0f, LocaleController.isRTL ? 5 : 3, 12.0f, 8.0f, 12.0f, 0.0f));
         simpleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         simpleTextView.setMaxLines(1);
-        simpleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         simpleTextView.setTextSize(17);
         simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         boolean z2 = LocaleController.isRTL;
         addView(simpleTextView, LayoutHelper.createFrame(-1, -2.0f, 48, z2 ? 12.0f : 74.0f, 12.0f, z2 ? 74.0f : 12.0f, 0.0f));
         simpleTextView2.setGravity(LocaleController.isRTL ? 5 : 3);
         simpleTextView2.setMaxLines(1);
-        simpleTextView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        simpleTextView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
         simpleTextView2.setTextSize(14);
         boolean z3 = LocaleController.isRTL;
         addView(simpleTextView2, LayoutHelper.createFrame(-1, -2.0f, 48, z3 ? 12.0f : 74.0f, 36.0f, z3 ? 74.0f : 12.0f, 0.0f));
         int dp = AndroidUtilities.dp(17.0f);
         TextView textView = new TextView(getContext());
-        textView.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+        textView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
         textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView.setMaxLines(1);
         textView.setPadding(dp, 0, dp, 0);
@@ -71,7 +72,7 @@ public class MemberRequestCell extends FrameLayout {
             str = "AddToGroup";
         }
         textView.setText(LocaleController.getString(str, i));
-        textView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+        textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         textView.setTextSize(14.0f);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setOnClickListener(new View.OnClickListener() {
@@ -84,12 +85,12 @@ public class MemberRequestCell extends FrameLayout {
         addView(textView, LayoutHelper.createFrame(-2, 32.0f, z4 ? 5 : 3, z4 ? 0.0f : 73.0f, 62.0f, z4 ? 73.0f : 0.0f, 0.0f));
         float measureText = textView.getPaint().measureText(textView.getText().toString()) + (dp * 2);
         TextView textView2 = new TextView(getContext());
-        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), 0, Theme.getColor("listSelectorSDK21"), -16777216));
+        textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), 0, Theme.getColor(Theme.key_listSelector), -16777216));
         textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         textView2.setMaxLines(1);
         textView2.setPadding(dp, 0, dp, 0);
         textView2.setText(LocaleController.getString("Dismiss", R.string.Dismiss));
-        textView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText));
         textView2.setTextSize(14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView2.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +144,7 @@ public class MemberRequestCell extends FrameLayout {
         if (tLRPC$User2 != null) {
             this.statusTextView.setText(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(tLRPC$User2), formatDateAudio));
         } else {
-            this.statusTextView.setText("");
+            this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
         }
     }
 

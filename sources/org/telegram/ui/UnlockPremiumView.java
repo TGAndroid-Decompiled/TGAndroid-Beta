@@ -23,7 +23,7 @@ public class UnlockPremiumView extends FrameLayout {
         addView(linearLayout, LayoutHelper.createFrame(-1, -2, 80));
         linearLayout.setOrientation(1);
         TextView textView = new TextView(context);
-        textView.setTextColor(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider), 100));
+        textView.setTextColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider), 100));
         textView.setTextSize(1, 13.0f);
         textView.setGravity(17);
         if (i == 0) {

@@ -1,6 +1,7 @@
 package org.webrtc;
 
 import java.nio.ByteBuffer;
+import org.telegram.messenger.BuildConfig;
 public class DataChannel {
     private long nativeDataChannel;
     private long nativeObserver;
@@ -37,7 +38,7 @@ public class DataChannel {
         public boolean ordered = true;
         public int maxRetransmitTimeMs = -1;
         public int maxRetransmits = -1;
-        public String protocol = "";
+        public String protocol = BuildConfig.APP_CENTER_HASH;
         public int id = -1;
 
         @CalledByNative("Init")

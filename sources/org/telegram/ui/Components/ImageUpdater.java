@@ -11,13 +11,14 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Pair;
 import androidx.core.content.FileProvider;
-import androidx.exifinterface.media.ExifInterface;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -135,7 +136,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         if (photoEntry.isVideo || photoEntry.editedInfo != null) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.id = 0;
-            tLRPC$TL_message.message = "";
+            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
             tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
             tLRPC$TL_message.dialog_id = 0L;
@@ -267,7 +268,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         create.setOnHideListener(onDismissListener);
         this.parentFragment.showDialog(create);
         if (z) {
-            create.setItemColor(arrayList.size() - 1, Theme.getColor("text_RedBold"), Theme.getColor("text_RedRegular"));
+            create.setItemColor(arrayList.size() - 1, Theme.getColor(Theme.key_text_RedBold), Theme.getColor(Theme.key_text_RedRegular));
         }
     }
 
@@ -561,7 +562,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         if (sendingMediaInfo.isVideo || sendingMediaInfo.videoEditedInfo != null) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.id = 0;
-            tLRPC$TL_message.message = "";
+            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
             tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
             tLRPC$TL_message.dialog_id = 0L;
@@ -762,11 +763,15 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
     }
 
     public void openPhotoForEdit(String str, String str2, int i, boolean z) {
+        openPhotoForEdit(str, str2, new Pair<>(Integer.valueOf(i), 0), z);
+    }
+
+    public void openPhotoForEdit(String str, String str2, Pair<Integer, Integer> pair, boolean z) {
         final ArrayList<Object> arrayList = new ArrayList<>();
-        MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, str, i, false, 0, 0, 0L);
-        photoEntry.isVideo = z;
-        photoEntry.thumbPath = str2;
-        arrayList.add(photoEntry);
+        MediaController.PhotoEntry orientation = new MediaController.PhotoEntry(0, 0, 0L, str, ((Integer) pair.first).intValue(), false, 0, 0, 0L).setOrientation(pair);
+        orientation.isVideo = z;
+        orientation.thumbPath = str2;
+        arrayList.add(orientation);
         PhotoViewer.getInstance().setParentActivity(this.parentFragment);
         PhotoViewer.getInstance().openPhotoForSelect(arrayList, 0, 1, false, new PhotoViewer.EmptyPhotoViewerProvider() {
             @Override
@@ -784,15 +789,13 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             }
 
             @Override
-            public void sendButtonPressed(int i2, VideoEditedInfo videoEditedInfo, boolean z2, int i3, boolean z3) {
+            public void sendButtonPressed(int i, VideoEditedInfo videoEditedInfo, boolean z2, int i2, boolean z3) {
                 ImageUpdater.this.processEntry((MediaController.PhotoEntry) arrayList.get(0));
             }
         }, null);
     }
 
     public void onActivityResult(int i, int i2, Intent intent) {
-        int i3;
-        int attributeInt;
         if (i2 == -1) {
             if (i == 0 || i == 2) {
                 createChatAttachView();
@@ -801,36 +804,19 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     chatAttachAlert.onActivityResultFragment(i, intent, this.currentPicturePath);
                 }
                 this.currentPicturePath = null;
-            } else if (i != 13) {
-                if (i == 14) {
-                    if (intent == null || intent.getData() == null) {
-                        return;
-                    }
-                    startCrop(null, intent.getData());
-                } else if (i == 15) {
-                    openPhotoForEdit(this.currentPicturePath, null, 0, true);
-                    AndroidUtilities.addMediaToGallery(this.currentPicturePath);
-                    this.currentPicturePath = null;
-                }
-            } else {
+            } else if (i == 13) {
                 this.parentFragment.getParentActivity().overridePendingTransition(R.anim.alpha_in, R.anim.alpha_out);
                 PhotoViewer.getInstance().setParentActivity(this.parentFragment);
-                try {
-                    attributeInt = new ExifInterface(this.currentPicturePath).getAttributeInt("Orientation", 1);
-                } catch (Exception e) {
-                    FileLog.e(e);
+                openPhotoForEdit(this.currentPicturePath, (String) null, AndroidUtilities.getImageOrientation(this.currentPicturePath), false);
+                AndroidUtilities.addMediaToGallery(this.currentPicturePath);
+                this.currentPicturePath = null;
+            } else if (i == 14) {
+                if (intent == null || intent.getData() == null) {
+                    return;
                 }
-                if (attributeInt == 3) {
-                    i3 = 180;
-                } else if (attributeInt != 6) {
-                    if (attributeInt == 8) {
-                        i3 = 270;
-                    }
-                    i3 = 0;
-                } else {
-                    i3 = 90;
-                }
-                openPhotoForEdit(this.currentPicturePath, null, i3, false);
+                startCrop(null, intent.getData());
+            } else if (i == 15) {
+                openPhotoForEdit(this.currentPicturePath, (String) null, 0, true);
                 AndroidUtilities.addMediaToGallery(this.currentPicturePath);
                 this.currentPicturePath = null;
             }

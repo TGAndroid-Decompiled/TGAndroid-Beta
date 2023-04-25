@@ -31,7 +31,7 @@ public class MaxFileSizeCell extends FrameLayout {
         setWillNotDraw(false);
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor("dialogTextBlack"));
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
@@ -42,7 +42,7 @@ public class MaxFileSizeCell extends FrameLayout {
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 13.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.sizeTextView = textView2;
-        textView2.setTextColor(Theme.getColor("dialogTextBlue2"));
+        textView2.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2));
         this.sizeTextView.setTextSize(1, 16.0f);
         this.sizeTextView.setLines(1);
         this.sizeTextView.setMaxLines(1);

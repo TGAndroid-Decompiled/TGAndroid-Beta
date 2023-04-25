@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -27,7 +28,7 @@ public class ManageChatUserCell extends FrameLayout {
     private CharSequence currrntStatus;
     private ImageView customImageView;
     private ManageChatUserCellDelegate delegate;
-    private String dividerColor;
+    private int dividerColor;
     private boolean isAdmin;
     private TLRPC$FileLocation lastAvatar;
     private String lastName;
@@ -57,9 +58,10 @@ public class ManageChatUserCell extends FrameLayout {
     public ManageChatUserCell(Context context, int i, int i2, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
+        this.dividerColor = -1;
         this.resourcesProvider = resourcesProvider;
-        this.statusColor = Theme.getColor("windowBackgroundWhiteGrayText", resourcesProvider);
-        this.statusOnlineColor = Theme.getColor("windowBackgroundWhiteBlueText", resourcesProvider);
+        this.statusColor = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider);
+        this.statusOnlineColor = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, resourcesProvider);
         this.namePadding = i2;
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
@@ -70,7 +72,7 @@ public class ManageChatUserCell extends FrameLayout {
         addView(backupImageView2, LayoutHelper.createFrame(46, 46.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : i + 7, 8.0f, z2 ? i + 7 : 0.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
-        simpleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
+        simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         this.nameTextView.setTextSize(17);
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
@@ -88,9 +90,9 @@ public class ManageChatUserCell extends FrameLayout {
             ImageView imageView = new ImageView(context);
             this.optionsButton = imageView;
             imageView.setFocusable(false);
-            this.optionsButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("stickers_menuSelector", resourcesProvider)));
+            this.optionsButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector, resourcesProvider)));
             this.optionsButton.setImageResource(R.drawable.ic_ab_other);
-            this.optionsButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu", resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            this.optionsButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_stickers_menu, resourcesProvider), PorterDuff.Mode.MULTIPLY));
             this.optionsButton.setScaleType(ImageView.ScaleType.CENTER);
             addView(this.optionsButton, LayoutHelper.createFrame(60, 64, (LocaleController.isRTL ? 3 : 5) | 48));
             this.optionsButton.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +114,7 @@ public class ManageChatUserCell extends FrameLayout {
         this.customImageView = imageView;
         imageView.setImageResource(i);
         this.customImageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.customImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("voipgroup_mutedIconUnscrolled", this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        this.customImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_voipgroup_mutedIconUnscrolled, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
         addView(this.customImageView, LayoutHelper.createFrame(52, 64, (LocaleController.isRTL ? 3 : 5) | 48));
     }
 
@@ -131,8 +133,8 @@ public class ManageChatUserCell extends FrameLayout {
             this.currrntStatus = null;
             this.currentName = null;
             this.currentObject = null;
-            this.nameTextView.setText("");
-            this.statusTextView.setText("");
+            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
             this.avatarImageView.setImageDrawable(null);
             return;
         }
@@ -210,8 +212,8 @@ public class ManageChatUserCell extends FrameLayout {
         this.nameTextView.setTextColor(i);
     }
 
-    public void setDividerColor(String str) {
-        this.dividerColor = str;
+    public void setDividerColor(int i) {
+        this.dividerColor = i;
     }
 
     public void update(int r12) {
@@ -233,11 +235,11 @@ public class ManageChatUserCell extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         if (this.needDivider) {
-            String str = this.dividerColor;
-            if (str != null) {
-                Theme.dividerExtraPaint.setColor(Theme.getColor(str, this.resourcesProvider));
+            int i = this.dividerColor;
+            if (i >= 0) {
+                Theme.dividerExtraPaint.setColor(Theme.getColor(i, this.resourcesProvider));
             }
-            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(68.0f) : 0), getMeasuredHeight() - 1, this.dividerColor != null ? Theme.dividerExtraPaint : Theme.dividerPaint);
+            canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(68.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(68.0f) : 0), getMeasuredHeight() - 1, this.dividerColor >= 0 ? Theme.dividerExtraPaint : Theme.dividerPaint);
         }
     }
 }

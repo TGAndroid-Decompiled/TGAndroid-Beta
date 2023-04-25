@@ -27,9 +27,9 @@ public class RadioButtonCell extends FrameLayout {
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
         if (z) {
-            this.radioButton.setColor(Theme.getColor("dialogRadioBackground"), Theme.getColor("dialogRadioBackgroundChecked"));
+            this.radioButton.setColor(Theme.getColor(Theme.key_dialogRadioBackground), Theme.getColor(Theme.key_dialogRadioBackgroundChecked));
         } else {
-            this.radioButton.setColor(Theme.getColor("radioBackground"), Theme.getColor("radioBackgroundChecked"));
+            this.radioButton.setColor(Theme.getColor(Theme.key_radioBackground), Theme.getColor(Theme.key_radioBackgroundChecked));
         }
         RadioButton radioButton2 = this.radioButton;
         boolean z2 = LocaleController.isRTL;
@@ -37,9 +37,9 @@ public class RadioButtonCell extends FrameLayout {
         TextView textView = new TextView(context);
         this.textView = textView;
         if (z) {
-            textView.setTextColor(Theme.getColor("dialogTextBlack"));
+            textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         } else {
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         }
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
@@ -52,9 +52,9 @@ public class RadioButtonCell extends FrameLayout {
         TextView textView3 = new TextView(context);
         this.valueTextView = textView3;
         if (z) {
-            textView3.setTextColor(Theme.getColor("dialogTextGray2"));
+            textView3.setTextColor(Theme.getColor(Theme.key_dialogTextGray2));
         } else {
-            textView3.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
+            textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
         }
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);

@@ -97,7 +97,7 @@ public class RoundVideoPlayingDrawable extends Drawable {
 
     @Override
     public void draw(Canvas canvas) {
-        this.paint.setColor(ColorUtils.blendARGB(getThemedColor("chat_serviceText"), this.timeColor, this.colorProgress));
+        this.paint.setColor(ColorUtils.blendARGB(getThemedColor(Theme.key_chat_serviceText), this.timeColor, this.colorProgress));
         int i = this.alpha;
         if (i != 255) {
             Paint paint = this.paint;
@@ -130,9 +130,7 @@ public class RoundVideoPlayingDrawable extends Drawable {
         return AndroidUtilities.dp(12.0f);
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

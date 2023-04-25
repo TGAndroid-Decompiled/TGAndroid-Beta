@@ -10,11 +10,11 @@ import org.telegram.ui.ActionBar.Theme;
 public class ContextProgressView extends View {
     private RectF cicleRect;
     private int innerColor;
-    private String innerKey;
+    private int innerKey;
     private Paint innerPaint;
     private long lastUpdateTime;
     private int outerColor;
-    private String outerKey;
+    private int outerKey;
     private Paint outerPaint;
     private int radOffset;
 
@@ -30,39 +30,39 @@ public class ContextProgressView extends View {
         this.outerPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         this.outerPaint.setStrokeCap(Paint.Cap.ROUND);
         if (i == 0) {
-            this.innerKey = "contextProgressInner1";
-            this.outerKey = "contextProgressOuter1";
+            this.innerKey = Theme.key_contextProgressInner1;
+            this.outerKey = Theme.key_contextProgressOuter1;
         } else if (i == 1) {
-            this.innerKey = "contextProgressInner2";
-            this.outerKey = "contextProgressOuter2";
+            this.innerKey = Theme.key_contextProgressInner2;
+            this.outerKey = Theme.key_contextProgressOuter2;
         } else if (i == 2) {
-            this.innerKey = "contextProgressInner3";
-            this.outerKey = "contextProgressOuter3";
+            this.innerKey = Theme.key_contextProgressInner3;
+            this.outerKey = Theme.key_contextProgressOuter3;
         } else if (i == 3) {
-            this.innerKey = "contextProgressInner4";
-            this.outerKey = "contextProgressOuter4";
+            this.innerKey = Theme.key_contextProgressInner4;
+            this.outerKey = Theme.key_contextProgressOuter4;
         }
         updateColors();
     }
 
     public void setColors(int i, int i2) {
-        this.innerKey = null;
-        this.outerKey = null;
+        this.innerKey = -1;
+        this.outerKey = -1;
         this.innerColor = i;
         this.outerColor = i2;
         updateColors();
     }
 
     public void updateColors() {
-        String str = this.innerKey;
-        if (str != null) {
-            this.innerPaint.setColor(Theme.getColor(str));
+        int i = this.innerKey;
+        if (i >= 0) {
+            this.innerPaint.setColor(Theme.getColor(i));
         } else {
             this.innerPaint.setColor(this.innerColor);
         }
-        String str2 = this.outerKey;
-        if (str2 != null) {
-            this.outerPaint.setColor(Theme.getColor(str2));
+        int i2 = this.outerKey;
+        if (i2 >= 0) {
+            this.outerPaint.setColor(Theme.getColor(i2));
         } else {
             this.outerPaint.setColor(this.outerColor);
         }

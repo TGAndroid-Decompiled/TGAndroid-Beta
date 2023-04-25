@@ -40,7 +40,7 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
         setOrientation(1);
-        setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         LinearLayout linearLayout = new LinearLayout(this, context) {
             Paint paint;
             Path path = new Path();
@@ -48,7 +48,7 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
             {
                 Paint paint = new Paint(1);
                 this.paint = paint;
-                paint.setColor(Theme.getColor("windowBackgroundWhite"));
+                paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 this.paint.setShadowLayer(AndroidUtilities.dp(1.33f), 0.0f, AndroidUtilities.dp(0.33f), 503316480);
             }
 
@@ -84,21 +84,21 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
         this.titleView = textView;
         textView.setGravity(17);
         this.titleView.setTextSize(1, 18.0f);
-        this.titleView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.titleView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         linearLayout.addView(this.titleView, LayoutHelper.createLinear(-1, -2, 49, 0, 6, 0, 0));
         TextView textView2 = new TextView(context);
         this.subtitleView = textView2;
         textView2.setGravity(17);
         this.subtitleView.setTextSize(1, 14.0f);
-        this.subtitleView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        this.subtitleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
         linearLayout.addView(this.subtitleView, LayoutHelper.createLinear(-1, -2, 49, 0, 7, 0, 0));
         TextView textView3 = new TextView(context);
         this.buttonView = textView3;
         textView3.setGravity(17);
-        this.buttonView.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 8.0f));
+        this.buttonView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 8.0f));
         this.buttonView.setTextSize(1, 14.0f);
-        this.buttonView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+        this.buttonView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         this.buttonView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.buttonView.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
         this.buttonView.setOnClickListener(new View.OnClickListener() {
@@ -165,7 +165,7 @@ public class DialogsRequestedEmptyCell extends LinearLayout implements Notificat
         TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = stickerSetByName;
         TLRPC$Document tLRPC$Document = (tLRPC$TL_messages_stickerSet == null || 1 >= tLRPC$TL_messages_stickerSet.documents.size()) ? null : tLRPC$TL_messages_stickerSet.documents.get(1);
         if (tLRPC$Document != null) {
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, "windowBackgroundGray", 0.2f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, Theme.key_windowBackgroundGray, 0.2f);
             if (svgThumb != null) {
                 svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
             }

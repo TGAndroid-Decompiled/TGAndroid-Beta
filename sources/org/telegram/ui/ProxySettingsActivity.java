@@ -30,6 +30,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -94,7 +95,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 ProxySettingsActivity.this.updatePasteCell();
             }
         };
-        this.currentProxyInfo = new SharedConfig.ProxyInfo("", 1080, "", "", "");
+        this.currentProxyInfo = new SharedConfig.ProxyInfo(BuildConfig.APP_CENTER_HASH, 1080, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
         this.addingNewProxy = true;
     }
 
@@ -149,13 +150,13 @@ public class ProxySettingsActivity extends BaseFragment {
                     ProxySettingsActivity.this.currentProxyInfo.address = ProxySettingsActivity.this.inputFields[0].getText().toString();
                     ProxySettingsActivity.this.currentProxyInfo.port = Utilities.parseInt((CharSequence) ProxySettingsActivity.this.inputFields[1].getText().toString()).intValue();
                     if (ProxySettingsActivity.this.currentType == 0) {
-                        ProxySettingsActivity.this.currentProxyInfo.secret = "";
+                        ProxySettingsActivity.this.currentProxyInfo.secret = BuildConfig.APP_CENTER_HASH;
                         ProxySettingsActivity.this.currentProxyInfo.username = ProxySettingsActivity.this.inputFields[2].getText().toString();
                         ProxySettingsActivity.this.currentProxyInfo.password = ProxySettingsActivity.this.inputFields[3].getText().toString();
                     } else {
                         ProxySettingsActivity.this.currentProxyInfo.secret = ProxySettingsActivity.this.inputFields[4].getText().toString();
-                        ProxySettingsActivity.this.currentProxyInfo.username = "";
-                        ProxySettingsActivity.this.currentProxyInfo.password = "";
+                        ProxySettingsActivity.this.currentProxyInfo.username = BuildConfig.APP_CENTER_HASH;
+                        ProxySettingsActivity.this.currentProxyInfo.password = BuildConfig.APP_CENTER_HASH;
                     }
                     SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                     SharedPreferences.Editor edit = globalMainSettings.edit();
@@ -189,11 +190,11 @@ public class ProxySettingsActivity extends BaseFragment {
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
-        frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         ScrollView scrollView = new ScrollView(context);
         this.scrollView = scrollView;
         scrollView.setFillViewport(true);
-        AndroidUtilities.setScrollViewEdgeEffectColor(this.scrollView, Theme.getColor("actionBarDefault"));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this.scrollView, Theme.getColor(Theme.key_actionBarDefault));
         frameLayout2.addView(this.scrollView, LayoutHelper.createFrame(-1, -1.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout2 = linearLayout;
@@ -224,7 +225,7 @@ public class ProxySettingsActivity extends BaseFragment {
         LinearLayout linearLayout2 = new LinearLayout(context);
         this.inputFieldsContainer = linearLayout2;
         linearLayout2.setOrientation(1);
-        this.inputFieldsContainer.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+        this.inputFieldsContainer.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         if (Build.VERSION.SDK_INT >= 21) {
             this.inputFieldsContainer.setElevation(AndroidUtilities.dp(1.0f));
             this.inputFieldsContainer.setOutlineProvider(null);
@@ -238,26 +239,28 @@ public class ProxySettingsActivity extends BaseFragment {
             this.inputFields[i2] = new EditTextBoldCursor(context);
             this.inputFields[i2].setTag(Integer.valueOf(i2));
             this.inputFields[i2].setTextSize(1, 16.0f);
-            this.inputFields[i2].setHintColor(Theme.getColor("windowBackgroundWhiteHintText"));
-            this.inputFields[i2].setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.inputFields[i2].setHintColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
+            EditTextBoldCursor editTextBoldCursor = this.inputFields[i2];
+            int i4 = Theme.key_windowBackgroundWhiteBlackText;
+            editTextBoldCursor.setTextColor(Theme.getColor(i4));
             this.inputFields[i2].setBackground(null);
-            this.inputFields[i2].setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.inputFields[i2].setCursorColor(Theme.getColor(i4));
             this.inputFields[i2].setCursorSize(AndroidUtilities.dp(20.0f));
             this.inputFields[i2].setCursorWidth(1.5f);
             this.inputFields[i2].setSingleLine(true);
             this.inputFields[i2].setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            this.inputFields[i2].setHeaderHintColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
+            this.inputFields[i2].setHeaderHintColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader));
             this.inputFields[i2].setTransformHintToHeader(true);
-            this.inputFields[i2].setLineColors(Theme.getColor("windowBackgroundWhiteInputField"), Theme.getColor("windowBackgroundWhiteInputFieldActivated"), Theme.getColor("text_RedRegular"));
+            this.inputFields[i2].setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated), Theme.getColor(Theme.key_text_RedRegular));
             if (i2 == 0) {
                 this.inputFields[i2].setInputType(524305);
                 this.inputFields[i2].addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+                    public void beforeTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
                     }
 
                     @Override
-                    public void onTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+                    public void onTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
                     }
 
                     @Override
@@ -269,11 +272,11 @@ public class ProxySettingsActivity extends BaseFragment {
                 this.inputFields[i2].setInputType(2);
                 this.inputFields[i2].addTextChangedListener(new TextWatcher() {
                     @Override
-                    public void beforeTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+                    public void beforeTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
                     }
 
                     @Override
-                    public void onTextChanged(CharSequence charSequence, int i4, int i5, int i6) {
+                    public void onTextChanged(CharSequence charSequence, int i5, int i6, int i7) {
                     }
 
                     @Override
@@ -281,31 +284,31 @@ public class ProxySettingsActivity extends BaseFragment {
                         if (ProxySettingsActivity.this.ignoreOnTextChange) {
                             return;
                         }
-                        EditTextBoldCursor editTextBoldCursor = ProxySettingsActivity.this.inputFields[1];
-                        int selectionStart = editTextBoldCursor.getSelectionStart();
-                        String obj = editTextBoldCursor.getText().toString();
+                        EditTextBoldCursor editTextBoldCursor2 = ProxySettingsActivity.this.inputFields[1];
+                        int selectionStart = editTextBoldCursor2.getSelectionStart();
+                        String obj = editTextBoldCursor2.getText().toString();
                         StringBuilder sb = new StringBuilder(obj.length());
-                        int i4 = 0;
-                        while (i4 < obj.length()) {
-                            int i5 = i4 + 1;
-                            String substring = obj.substring(i4, i5);
+                        int i5 = 0;
+                        while (i5 < obj.length()) {
+                            int i6 = i5 + 1;
+                            String substring = obj.substring(i5, i6);
                             if ("0123456789".contains(substring)) {
                                 sb.append(substring);
                             }
-                            i4 = i5;
+                            i5 = i6;
                         }
                         ProxySettingsActivity.this.ignoreOnTextChange = true;
                         int intValue = Utilities.parseInt((CharSequence) sb.toString()).intValue();
                         if (intValue < 0 || intValue > 65535 || !obj.equals(sb.toString())) {
                             if (intValue < 0) {
-                                editTextBoldCursor.setText("0");
+                                editTextBoldCursor2.setText("0");
                             } else if (intValue > 65535) {
-                                editTextBoldCursor.setText("65535");
+                                editTextBoldCursor2.setText("65535");
                             } else {
-                                editTextBoldCursor.setText(sb.toString());
+                                editTextBoldCursor2.setText(sb.toString());
                             }
                         } else if (selectionStart >= 0) {
-                            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
+                            editTextBoldCursor2.setSelection(Math.min(selectionStart, editTextBoldCursor2.length()));
                         }
                         ProxySettingsActivity.this.ignoreOnTextChange = false;
                         ProxySettingsActivity.this.checkShareDone(true);
@@ -324,8 +327,8 @@ public class ProxySettingsActivity extends BaseFragment {
                 this.inputFields[i2].setText(this.currentProxyInfo.address);
             } else if (i2 == 1) {
                 this.inputFields[i2].setHintText(LocaleController.getString("UseProxyPort", R.string.UseProxyPort));
-                EditTextBoldCursor editTextBoldCursor = this.inputFields[i2];
-                editTextBoldCursor.setText("" + this.currentProxyInfo.port);
+                EditTextBoldCursor editTextBoldCursor2 = this.inputFields[i2];
+                editTextBoldCursor2.setText(BuildConfig.APP_CENTER_HASH + this.currentProxyInfo.port);
             } else if (i2 == 2) {
                 this.inputFields[i2].setHintText(LocaleController.getString("UseProxyUsername", R.string.UseProxyUsername));
                 this.inputFields[i2].setText(this.currentProxyInfo.username);
@@ -342,31 +345,33 @@ public class ProxySettingsActivity extends BaseFragment {
             frameLayout3.addView(this.inputFields[i2], LayoutHelper.createFrame(-1, -1.0f, 51, 17.0f, i2 == 0 ? 12.0f : 0.0f, 17.0f, 0.0f));
             this.inputFields[i2].setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
-                public final boolean onEditorAction(TextView textView, int i4, KeyEvent keyEvent) {
+                public final boolean onEditorAction(TextView textView, int i5, KeyEvent keyEvent) {
                     boolean lambda$createView$1;
-                    lambda$createView$1 = ProxySettingsActivity.this.lambda$createView$1(textView, i4, keyEvent);
+                    lambda$createView$1 = ProxySettingsActivity.this.lambda$createView$1(textView, i5, keyEvent);
                     return lambda$createView$1;
                 }
             });
             i2++;
         }
-        for (int i4 = 0; i4 < 2; i4++) {
-            this.bottomCells[i4] = new TextInfoPrivacyCell(context);
-            this.bottomCells[i4].setBackground(Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
-            if (i4 == 0) {
-                this.bottomCells[i4].setText(LocaleController.getString("UseProxyInfo", R.string.UseProxyInfo));
+        for (int i5 = 0; i5 < 2; i5++) {
+            this.bottomCells[i5] = new TextInfoPrivacyCell(context);
+            this.bottomCells[i5].setBackground(Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+            if (i5 == 0) {
+                this.bottomCells[i5].setText(LocaleController.getString("UseProxyInfo", R.string.UseProxyInfo));
             } else {
-                TextInfoPrivacyCell textInfoPrivacyCell = this.bottomCells[i4];
+                TextInfoPrivacyCell textInfoPrivacyCell = this.bottomCells[i5];
                 textInfoPrivacyCell.setText(LocaleController.getString("UseProxyTelegramInfo", R.string.UseProxyTelegramInfo) + "\n\n" + LocaleController.getString("UseProxyTelegramInfo2", R.string.UseProxyTelegramInfo2));
-                this.bottomCells[i4].setVisibility(8);
+                this.bottomCells[i5].setVisibility(8);
             }
-            this.linearLayout2.addView(this.bottomCells[i4], LayoutHelper.createLinear(-1, -2));
+            this.linearLayout2.addView(this.bottomCells[i5], LayoutHelper.createLinear(-1, -2));
         }
         TextSettingsCell textSettingsCell = new TextSettingsCell(this.fragmentView.getContext());
         this.pasteCell = textSettingsCell;
         textSettingsCell.setBackground(Theme.getSelectorDrawable(true));
         this.pasteCell.setText(LocaleController.getString("PasteFromClipboard", R.string.PasteFromClipboard), false);
-        this.pasteCell.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText4"));
+        TextSettingsCell textSettingsCell2 = this.pasteCell;
+        int i6 = Theme.key_windowBackgroundWhiteBlueText4;
+        textSettingsCell2.setTextColor(Theme.getColor(i6));
         this.pasteCell.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -378,15 +383,16 @@ public class ProxySettingsActivity extends BaseFragment {
         this.sectionCell[2] = new ShadowSectionCell(this.fragmentView.getContext());
         ShadowSectionCell shadowSectionCell = this.sectionCell[2];
         Context context2 = this.fragmentView.getContext();
-        int i5 = R.drawable.greydivider_bottom;
-        shadowSectionCell.setBackground(Theme.getThemedDrawable(context2, i5, "windowBackgroundGrayShadow"));
+        int i7 = R.drawable.greydivider_bottom;
+        int i8 = Theme.key_windowBackgroundGrayShadow;
+        shadowSectionCell.setBackground(Theme.getThemedDrawable(context2, i7, i8));
         this.linearLayout2.addView(this.sectionCell[2], 1, LayoutHelper.createLinear(-1, -2));
         this.sectionCell[2].setVisibility(8);
-        TextSettingsCell textSettingsCell2 = new TextSettingsCell(context);
-        this.shareCell = textSettingsCell2;
-        textSettingsCell2.setBackgroundDrawable(Theme.getSelectorDrawable(true));
+        TextSettingsCell textSettingsCell3 = new TextSettingsCell(context);
+        this.shareCell = textSettingsCell3;
+        textSettingsCell3.setBackgroundDrawable(Theme.getSelectorDrawable(true));
         this.shareCell.setText(LocaleController.getString("ShareFile", R.string.ShareFile), false);
-        this.shareCell.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText4"));
+        this.shareCell.setTextColor(Theme.getColor(i6));
         this.linearLayout2.addView(this.shareCell, LayoutHelper.createLinear(-1, -2));
         this.shareCell.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -395,7 +401,7 @@ public class ProxySettingsActivity extends BaseFragment {
             }
         });
         this.sectionCell[1] = new ShadowSectionCell(context);
-        this.sectionCell[1].setBackgroundDrawable(Theme.getThemedDrawable(context, i5, "windowBackgroundGrayShadow"));
+        this.sectionCell[1].setBackgroundDrawable(Theme.getThemedDrawable(context, i7, i8));
         this.linearLayout2.addView(this.sectionCell[1], LayoutHelper.createLinear(-1, -2));
         this.clipboardManager = (ClipboardManager) context.getSystemService("clipboard");
         this.shareDoneEnabled = true;
@@ -555,7 +561,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 this.shareDoneAnimator.start();
             } else {
                 this.shareDoneProgress = z ? 1.0f : 0.0f;
-                this.shareCell.setTextColor(Theme.getColor(z ? "windowBackgroundWhiteBlueText4" : "windowBackgroundWhiteGrayText2"));
+                this.shareCell.setTextColor(Theme.getColor(z ? Theme.key_windowBackgroundWhiteBlueText4 : Theme.key_windowBackgroundWhiteGrayText2));
                 this.doneItem.setAlpha(z ? 1.0f : 0.5f);
             }
             this.shareCell.setEnabled(z);
@@ -566,7 +572,7 @@ public class ProxySettingsActivity extends BaseFragment {
 
     public void lambda$setShareDoneEnabled$5(ValueAnimator valueAnimator) {
         this.shareDoneProgress = AndroidUtilities.lerp(this.shareDoneProgressAnimValues, valueAnimator.getAnimatedFraction());
-        this.shareCell.setTextColor(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteGrayText2"), Theme.getColor("windowBackgroundWhiteBlueText4"), this.shareDoneProgress));
+        this.shareCell.setTextColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4), this.shareDoneProgress));
         this.doneItem.setAlpha((this.shareDoneProgress / 2.0f) + 0.5f);
     }
 
@@ -665,61 +671,74 @@ public class ProxySettingsActivity extends BaseFragment {
             }
         };
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundGray"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "actionBarDefault"));
-        arrayList.add(new ThemeDescription(this.scrollView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, "actionBarDefault"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, "actionBarDefaultIcon"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, "actionBarDefaultTitle"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "actionBarDefaultSelector"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCH, null, null, null, null, "actionBarDefaultSearch"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCHPLACEHOLDER, null, null, null, null, "actionBarDefaultSearchPlaceholder"));
-        arrayList.add(new ThemeDescription(this.inputFieldsContainer, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription(this.linearLayout2, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, "divider"));
-        arrayList.add(new ThemeDescription(this.shareCell, ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription(this.shareCell, ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, "listSelectorSDK21"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "windowBackgroundWhiteBlueText4"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "windowBackgroundWhiteGrayText2"));
-        arrayList.add(new ThemeDescription(this.pasteCell, ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription(this.pasteCell, ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, "listSelectorSDK21"));
-        arrayList.add(new ThemeDescription(this.pasteCell, 0, new Class[]{TextSettingsCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueText4"));
-        for (int i = 0; i < this.typeCell.length; i++) {
-            arrayList.add(new ThemeDescription(this.typeCell[i], ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, "windowBackgroundWhite"));
-            arrayList.add(new ThemeDescription(this.typeCell[i], ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, "listSelectorSDK21"));
-            arrayList.add(new ThemeDescription(this.typeCell[i], 0, new Class[]{RadioCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlackText"));
-            arrayList.add(new ThemeDescription(this.typeCell[i], ThemeDescription.FLAG_CHECKBOX, new Class[]{RadioCell.class}, new String[]{"radioButton"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "radioBackground"));
-            arrayList.add(new ThemeDescription(this.typeCell[i], ThemeDescription.FLAG_CHECKBOXCHECK, new Class[]{RadioCell.class}, new String[]{"radioButton"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "radioBackgroundChecked"));
+        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
+        ActionBar actionBar = this.actionBar;
+        int i = ThemeDescription.FLAG_BACKGROUND;
+        int i2 = Theme.key_actionBarDefault;
+        arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.scrollView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCH, null, null, null, null, Theme.key_actionBarDefaultSearch));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCHPLACEHOLDER, null, null, null, null, Theme.key_actionBarDefaultSearchPlaceholder));
+        LinearLayout linearLayout = this.inputFieldsContainer;
+        int i3 = ThemeDescription.FLAG_BACKGROUND;
+        int i4 = Theme.key_windowBackgroundWhite;
+        arrayList.add(new ThemeDescription(linearLayout, i3, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.linearLayout2, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));
+        arrayList.add(new ThemeDescription(this.shareCell, ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, i4));
+        TextSettingsCell textSettingsCell = this.shareCell;
+        int i5 = ThemeDescription.FLAG_SELECTORWHITE;
+        int i6 = Theme.key_listSelector;
+        arrayList.add(new ThemeDescription(textSettingsCell, i5, null, null, null, null, i6));
+        int i7 = Theme.key_windowBackgroundWhiteBlueText4;
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, i7));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteGrayText2));
+        arrayList.add(new ThemeDescription(this.pasteCell, ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.pasteCell, ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, i6));
+        arrayList.add(new ThemeDescription(this.pasteCell, 0, new Class[]{TextSettingsCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i7));
+        for (int i8 = 0; i8 < this.typeCell.length; i8++) {
+            arrayList.add(new ThemeDescription(this.typeCell[i8], ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, Theme.key_windowBackgroundWhite));
+            arrayList.add(new ThemeDescription(this.typeCell[i8], ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, Theme.key_listSelector));
+            arrayList.add(new ThemeDescription(this.typeCell[i8], 0, new Class[]{RadioCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlackText));
+            arrayList.add(new ThemeDescription(this.typeCell[i8], ThemeDescription.FLAG_CHECKBOX, new Class[]{RadioCell.class}, new String[]{"radioButton"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_radioBackground));
+            arrayList.add(new ThemeDescription(this.typeCell[i8], ThemeDescription.FLAG_CHECKBOXCHECK, new Class[]{RadioCell.class}, new String[]{"radioButton"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_radioBackgroundChecked));
         }
         if (this.inputFields != null) {
-            for (int i2 = 0; i2 < this.inputFields.length; i2++) {
-                arrayList.add(new ThemeDescription(this.inputFields[i2], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-                arrayList.add(new ThemeDescription(this.inputFields[i2], ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, "windowBackgroundWhiteHintText"));
-                arrayList.add(new ThemeDescription(this.inputFields[i2], ThemeDescription.FLAG_HINTTEXTCOLOR | ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, "windowBackgroundWhiteBlueHeader"));
-                arrayList.add(new ThemeDescription(this.inputFields[i2], ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-                arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteInputField"));
-                arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteInputFieldActivated"));
-                arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "text_RedRegular"));
+            for (int i9 = 0; i9 < this.inputFields.length; i9++) {
+                EditTextBoldCursor editTextBoldCursor = this.inputFields[i9];
+                int i10 = ThemeDescription.FLAG_TEXTCOLOR;
+                int i11 = Theme.key_windowBackgroundWhiteBlackText;
+                arrayList.add(new ThemeDescription(editTextBoldCursor, i10, null, null, null, null, i11));
+                arrayList.add(new ThemeDescription(this.inputFields[i9], ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteHintText));
+                arrayList.add(new ThemeDescription(this.inputFields[i9], ThemeDescription.FLAG_HINTTEXTCOLOR | ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, Theme.key_windowBackgroundWhiteBlueHeader));
+                arrayList.add(new ThemeDescription(this.inputFields[i9], ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, i11));
+                arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteInputField));
+                arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteInputFieldActivated));
+                arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_text_RedRegular));
             }
         } else {
-            arrayList.add(new ThemeDescription(null, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-            arrayList.add(new ThemeDescription(null, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, "windowBackgroundWhiteHintText"));
+            arrayList.add(new ThemeDescription(null, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteBlackText));
+            arrayList.add(new ThemeDescription(null, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteHintText));
         }
-        arrayList.add(new ThemeDescription(this.headerCell, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription(this.headerCell, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueHeader"));
-        int i3 = 0;
+        arrayList.add(new ThemeDescription(this.headerCell, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
+        arrayList.add(new ThemeDescription(this.headerCell, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueHeader));
+        int i12 = 0;
         while (true) {
             ShadowSectionCell[] shadowSectionCellArr = this.sectionCell;
-            if (i3 >= shadowSectionCellArr.length) {
+            if (i12 >= shadowSectionCellArr.length) {
                 break;
             }
-            if (shadowSectionCellArr[i3] != null) {
-                arrayList.add(new ThemeDescription(this.sectionCell[i3], ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, "windowBackgroundGrayShadow"));
+            if (shadowSectionCellArr[i12] != null) {
+                arrayList.add(new ThemeDescription(this.sectionCell[i12], ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, Theme.key_windowBackgroundGrayShadow));
             }
-            i3++;
+            i12++;
         }
-        for (int i4 = 0; i4 < this.bottomCells.length; i4++) {
-            arrayList.add(new ThemeDescription(this.bottomCells[i4], ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, "windowBackgroundGrayShadow"));
-            arrayList.add(new ThemeDescription(this.bottomCells[i4], 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayText4"));
-            arrayList.add(new ThemeDescription(this.bottomCells[i4], ThemeDescription.FLAG_LINKCOLOR, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteLinkText"));
+        for (int i13 = 0; i13 < this.bottomCells.length; i13++) {
+            arrayList.add(new ThemeDescription(this.bottomCells[i13], ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextInfoPrivacyCell.class}, null, null, null, Theme.key_windowBackgroundGrayShadow));
+            arrayList.add(new ThemeDescription(this.bottomCells[i13], 0, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText4));
+            arrayList.add(new ThemeDescription(this.bottomCells[i13], ThemeDescription.FLAG_LINKCOLOR, new Class[]{TextInfoPrivacyCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteLinkText));
         }
         return arrayList;
     }
@@ -727,7 +746,7 @@ public class ProxySettingsActivity extends BaseFragment {
     public void lambda$getThemeDescriptions$6() {
         ValueAnimator valueAnimator;
         if (this.shareCell != null && ((valueAnimator = this.shareDoneAnimator) == null || !valueAnimator.isRunning())) {
-            this.shareCell.setTextColor(Theme.getColor(this.shareDoneEnabled ? "windowBackgroundWhiteBlueText4" : "windowBackgroundWhiteGrayText2"));
+            this.shareCell.setTextColor(Theme.getColor(this.shareDoneEnabled ? Theme.key_windowBackgroundWhiteBlueText4 : Theme.key_windowBackgroundWhiteGrayText2));
         }
         if (this.inputFields == null) {
             return;
@@ -738,7 +757,7 @@ public class ProxySettingsActivity extends BaseFragment {
             if (i >= editTextBoldCursorArr.length) {
                 return;
             }
-            editTextBoldCursorArr[i].setLineColors(Theme.getColor("windowBackgroundWhiteInputField"), Theme.getColor("windowBackgroundWhiteInputFieldActivated"), Theme.getColor("text_RedRegular"));
+            editTextBoldCursorArr[i].setLineColors(Theme.getColor(Theme.key_windowBackgroundWhiteInputField), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated), Theme.getColor(Theme.key_text_RedRegular));
             i++;
         }
     }

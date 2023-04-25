@@ -57,7 +57,7 @@ public class FlatCheckBox extends View {
     }
 
     public void recolor(int i) {
-        this.colorActive = Theme.getColor("windowBackgroundWhite");
+        this.colorActive = Theme.getColor(Theme.key_windowBackgroundWhite);
         this.colorTextActive = -1;
         this.colorInactive = i;
         invalidate();

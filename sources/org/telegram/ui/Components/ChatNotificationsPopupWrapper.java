@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -130,7 +131,7 @@ public class ChatNotificationsPopupWrapper {
                 ChatNotificationsPopupWrapper.this.lambda$new$7(callback, view);
             }
         });
-        ActionBarMenuSubItem addItem5 = ActionBarMenuItem.addItem(this.windowLayout, 0, "", false, resourcesProvider);
+        ActionBarMenuSubItem addItem5 = ActionBarMenuItem.addItem(this.windowLayout, 0, BuildConfig.APP_CENTER_HASH, false, resourcesProvider);
         this.muteUnmuteButton = addItem5;
         addItem5.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,18 +141,18 @@ public class ChatNotificationsPopupWrapper {
         });
         FrameLayout frameLayout = new FrameLayout(context);
         this.gap = frameLayout;
-        frameLayout.setBackgroundColor(Theme.getColor("actionBarDefaultSubmenuSeparator", resourcesProvider));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
         this.windowLayout.addView((View) frameLayout, LayoutHelper.createLinear(-1, 8));
         TextView textView = new TextView(context);
         this.topicsExceptionsTextView = textView;
         textView.setPadding(AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
         textView.setTextSize(1, 13.0f);
-        textView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem", resourcesProvider));
+        textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider));
         int i4 = R.id.fit_width_tag;
         frameLayout.setTag(i4, 1);
         textView.setTag(i4, 1);
         this.windowLayout.addView((View) textView, LayoutHelper.createLinear(-2, -2));
-        textView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor("dialogButtonSelector", resourcesProvider), 0, 6));
+        textView.setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector, resourcesProvider), 0, 6));
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
@@ -250,11 +251,11 @@ public class ChatNotificationsPopupWrapper {
         boolean isDialogMuted = MessagesController.getInstance(this.currentAccount).isDialogMuted(j, i);
         if (isDialogMuted) {
             this.muteUnmuteButton.setTextAndIcon(LocaleController.getString("UnmuteNotifications", R.string.UnmuteNotifications), R.drawable.msg_unmute);
-            i2 = Theme.getColor("windowBackgroundWhiteGreenText2");
+            i2 = Theme.getColor(Theme.key_windowBackgroundWhiteGreenText2);
             this.soundToggle.setVisibility(8);
         } else {
             this.muteUnmuteButton.setTextAndIcon(LocaleController.getString("MuteNotifications", R.string.MuteNotifications), R.drawable.msg_mute);
-            int color = Theme.getColor("text_RedBold");
+            int color = Theme.getColor(Theme.key_text_RedBold);
             this.soundToggle.setVisibility(0);
             if (MessagesController.getInstance(this.currentAccount).isDialogNotificationsSoundEnabled(j, i)) {
                 this.soundToggle.setTextAndIcon(LocaleController.getString("SoundOff", R.string.SoundOff), R.drawable.msg_tone_off);
@@ -299,7 +300,7 @@ public class ChatNotificationsPopupWrapper {
         }
         this.gap.setVisibility(0);
         this.topicsExceptionsTextView.setVisibility(0);
-        this.topicsExceptionsTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), "windowBackgroundWhiteBlueText", 1, null));
+        this.topicsExceptionsTextView.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("TopicNotificationsExceptions", hashSet.size(), new Object[0]), Theme.key_windowBackgroundWhiteBlueText, 1, null));
     }
 
     private String formatMuteForTime(int i) {

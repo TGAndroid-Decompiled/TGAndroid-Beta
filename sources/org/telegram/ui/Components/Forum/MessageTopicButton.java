@@ -89,13 +89,13 @@ public class MessageTopicButton {
     private void setupColors(int i) {
         MessageObject messageObject = this.lastMessageObject;
         if (messageObject != null && messageObject.shouldDrawWithoutBackground()) {
-            this.topicNameColor = getThemedColor("chat_stickerReplyNameText");
+            this.topicNameColor = getThemedColor(Theme.key_chat_stickerReplyNameText);
             return;
         }
         MessageObject messageObject2 = this.lastMessageObject;
         if (messageObject2 != null && messageObject2.isOutOwner()) {
-            this.topicNameColor = getThemedColor("chat_outReactionButtonText");
-            this.topicBackgroundColor = ColorUtils.setAlphaComponent(getThemedColor("chat_outReactionButtonBackground"), 38);
+            this.topicNameColor = getThemedColor(Theme.key_chat_outReactionButtonText);
+            this.topicBackgroundColor = ColorUtils.setAlphaComponent(getThemedColor(Theme.key_chat_outReactionButtonBackground), 38);
             return;
         }
         if (this.topicHSV == null) {
@@ -105,11 +105,11 @@ public class MessageTopicButton {
         float[] fArr = this.topicHSV;
         float f = fArr[0];
         if (fArr[1] <= 0.02f) {
-            this.topicNameColor = getThemedColor("chat_inReactionButtonText");
-            this.topicBackgroundColor = ColorUtils.setAlphaComponent(getThemedColor("chat_inReactionButtonBackground"), 38);
+            this.topicNameColor = getThemedColor(Theme.key_chat_inReactionButtonText);
+            this.topicBackgroundColor = ColorUtils.setAlphaComponent(getThemedColor(Theme.key_chat_inReactionButtonBackground), 38);
             return;
         }
-        Color.colorToHSV(getThemedColor("chat_inReactionButtonText"), this.topicHSV);
+        Color.colorToHSV(getThemedColor(Theme.key_chat_inReactionButtonText), this.topicHSV);
         this.topicHSV[0] = f;
         float[] fArr2 = Theme.isCurrentThemeDark() ? darkHueRanges : lightHueRanges;
         float[] fArr3 = Theme.isCurrentThemeDark() ? darkSatValues : lightSatValues;
@@ -128,7 +128,7 @@ public class MessageTopicButton {
                 i2++;
             }
         }
-        this.topicNameColor = Color.HSVToColor(Color.alpha(getThemedColor("chat_inReactionButtonText")), this.topicHSV);
+        this.topicNameColor = Color.HSVToColor(Color.alpha(getThemedColor(Theme.key_chat_inReactionButtonText)), this.topicHSV);
         this.topicBackgroundColor = Color.HSVToColor(38, this.topicHSV);
     }
 
@@ -313,10 +313,8 @@ public class MessageTopicButton {
         }
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     private Paint getThemedPaint(String str) {

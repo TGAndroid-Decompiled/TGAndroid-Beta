@@ -197,7 +197,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                 }
             }
         });
-        this.webViewContainer = new BotWebViewContainer(context, resourcesProvider, getThemedColor("dialogBackground")) {
+        this.webViewContainer = new BotWebViewContainer(context, resourcesProvider, getThemedColor(Theme.key_dialogBackground)) {
             @Override
             public boolean dispatchTouchEvent(MotionEvent motionEvent) {
                 if (motionEvent.getAction() == 0 && !ChatAttachAlertBotWebViewLayout.this.isBotButtonAvailable) {
@@ -321,7 +321,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
             create.show();
-            ((TextView) create.getButton(-1)).setTextColor(getThemedColor("text_RedBold"));
+            ((TextView) create.getButton(-1)).setTextColor(getThemedColor(Theme.key_text_RedBold));
             return false;
         }
         this.parentAlert.dismiss();
@@ -540,13 +540,13 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         }
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("bg_color", getThemedColor("dialogBackground"));
-            jSONObject.put("secondary_bg_color", getThemedColor("windowBackgroundGray"));
-            jSONObject.put("text_color", getThemedColor("windowBackgroundWhiteBlackText"));
-            jSONObject.put("hint_color", getThemedColor("windowBackgroundWhiteHintText"));
-            jSONObject.put("link_color", getThemedColor("windowBackgroundWhiteLinkText"));
-            jSONObject.put("button_color", getThemedColor("featuredStickers_addButton"));
-            jSONObject.put("button_text_color", getThemedColor("featuredStickers_buttonText"));
+            jSONObject.put("bg_color", getThemedColor(Theme.key_dialogBackground));
+            jSONObject.put("secondary_bg_color", getThemedColor(Theme.key_windowBackgroundGray));
+            jSONObject.put("text_color", getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+            jSONObject.put("hint_color", getThemedColor(Theme.key_windowBackgroundWhiteHintText));
+            jSONObject.put("link_color", getThemedColor(Theme.key_windowBackgroundWhiteLinkText));
+            jSONObject.put("button_color", getThemedColor(Theme.key_featuredStickers_addButton));
+            jSONObject.put("button_text_color", getThemedColor(Theme.key_featuredStickers_buttonText));
             TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
             tLRPC$TL_messages_requestWebView.theme_params = tLRPC$TL_dataJSON;
             tLRPC$TL_dataJSON.data = jSONObject.toString();
@@ -602,7 +602,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         if (!this.webViewContainer.isBackButtonVisible()) {
             AndroidUtilities.updateImageViewImageAnimated(this.parentAlert.actionBar.getBackButton(), R.drawable.ic_ab_back);
         }
-        this.parentAlert.actionBar.setBackgroundColor(getThemedColor("windowBackgroundWhite"));
+        this.parentAlert.actionBar.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundWhite));
         if (this.webViewContainer.hasUserPermissions()) {
             this.webViewContainer.destroyWebView();
             this.needReload = true;
@@ -681,7 +681,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
                 this.parentAlert.dismiss();
             }
         } else if (i == NotificationCenter.didSetNewTheme) {
-            this.webViewContainer.updateFlickerBackgroundColor(getThemedColor("dialogBackground"));
+            this.webViewContainer.updateFlickerBackgroundColor(getThemedColor(Theme.key_dialogBackground));
         }
     }
 
@@ -1007,16 +1007,14 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             Paint paint = new Paint(1);
             this.bluePaint = paint;
             this.resourcesProvider = resourcesProvider;
-            paint.setColor(getThemedColor("featuredStickers_addButton"));
+            paint.setColor(getThemedColor(Theme.key_featuredStickers_addButton));
             this.bluePaint.setStyle(Paint.Style.STROKE);
             this.bluePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             this.bluePaint.setStrokeCap(Paint.Cap.ROUND);
         }
 
-        protected int getThemedColor(String str) {
-            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-            Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-            return color != null ? color.intValue() : Theme.getColor(str);
+        protected int getThemedColor(int i) {
+            return Theme.getColor(i, this.resourcesProvider);
         }
 
         @Override

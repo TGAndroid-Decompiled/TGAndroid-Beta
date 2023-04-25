@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -46,8 +47,6 @@ import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 public class CustomEmojiReactionsWindow {
-    private int account;
-    int animationIndex;
     BaseFragment baseFragment;
     private boolean cascadeAnimation;
     ContainerView containerView;
@@ -73,6 +72,7 @@ public class CustomEmojiReactionsWindow {
     public RectF drawingRect = new RectF();
     Path pathToClip = new Path();
     int[] location = new int[2];
+    final AnimationNotificationsLocker notificationsLocker = new AnimationNotificationsLocker();
     HashSet<View> animatingEnterChild = new HashSet<>();
     ArrayList<ValueAnimator> animators = new ArrayList<>();
     private int frameDrawCount = 0;
@@ -305,8 +305,7 @@ public class CustomEmojiReactionsWindow {
         }
         this.selectAnimatedEmojiDialog.setEnterAnimationInProgress(true);
         int i = UserConfig.selectedAccount;
-        this.account = i;
-        this.animationIndex = NotificationCenter.getInstance(i).setAnimationInProgress(this.animationIndex, null);
+        this.notificationsLocker.lock();
         float[] fArr = new float[2];
         fArr[0] = this.enterTransitionProgress;
         fArr[1] = z ? 1.0f : 0.0f;
@@ -456,7 +455,7 @@ public class CustomEmojiReactionsWindow {
 
     public void checkAnimationEnd() {
         if (this.animators.isEmpty()) {
-            NotificationCenter.getInstance(this.account).onAnimationFinish(this.animationIndex);
+            this.notificationsLocker.unlock();
             this.selectAnimatedEmojiDialog.setEnterAnimationInProgress(false);
         }
     }
@@ -570,8 +569,8 @@ public class CustomEmojiReactionsWindow {
             rect.right = dp;
             rect.top = dp;
             rect.left = dp;
-            this.shadow.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chat_messagePanelShadow", CustomEmojiReactionsWindow.this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-            this.backgroundPaint.setColor(Theme.getColor("actionBarDefaultSubmenuBackground", CustomEmojiReactionsWindow.this.resourcesProvider));
+            this.shadow.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chat_messagePanelShadow, CustomEmojiReactionsWindow.this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            this.backgroundPaint.setColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, CustomEmojiReactionsWindow.this.resourcesProvider));
         }
 
         @Override

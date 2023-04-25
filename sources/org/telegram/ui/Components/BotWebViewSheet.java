@@ -199,14 +199,15 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 super.requestLayout();
             }
         };
-        BotWebViewContainer botWebViewContainer = new BotWebViewContainer(context, resourcesProvider, getColor("windowBackgroundWhite"));
+        int i = Theme.key_windowBackgroundWhite;
+        BotWebViewContainer botWebViewContainer = new BotWebViewContainer(context, resourcesProvider, getColor(i));
         this.webViewContainer = botWebViewContainer;
         botWebViewContainer.setDelegate(new AnonymousClass2(context, resourcesProvider));
         this.linePaint.setStyle(Paint.Style.FILL_AND_STROKE);
         this.linePaint.setStrokeWidth(AndroidUtilities.dp(4.0f));
         this.linePaint.setStrokeCap(Paint.Cap.ROUND);
         this.dimPaint.setColor(1073741824);
-        this.actionBarColor = getColor("windowBackgroundWhite");
+        this.actionBarColor = getColor(i);
         SizeNotifierFrameLayout sizeNotifierFrameLayout = new SizeNotifierFrameLayout(context) {
             {
                 setWillNotDraw(false);
@@ -217,12 +218,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 super.onDraw(canvas);
                 if (BotWebViewSheet.this.passcodeView.getVisibility() != 0) {
                     if (!BotWebViewSheet.this.overrideBackgroundColor) {
-                        BotWebViewSheet.this.backgroundPaint.setColor(BotWebViewSheet.this.getColor("windowBackgroundWhite"));
+                        BotWebViewSheet.this.backgroundPaint.setColor(BotWebViewSheet.this.getColor(Theme.key_windowBackgroundWhite));
                     }
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                     canvas.drawRect(rectF, BotWebViewSheet.this.dimPaint);
-                    BotWebViewSheet.this.actionBarPaint.setColor(ColorUtils.blendARGB(BotWebViewSheet.this.actionBarColor, BotWebViewSheet.this.getColor("windowBackgroundWhite"), BotWebViewSheet.this.actionBarTransitionProgress));
+                    BotWebViewSheet.this.actionBarPaint.setColor(ColorUtils.blendARGB(BotWebViewSheet.this.actionBarColor, BotWebViewSheet.this.getColor(Theme.key_windowBackgroundWhite), BotWebViewSheet.this.actionBarTransitionProgress));
                     float dp = AndroidUtilities.dp(16.0f) * (AndroidUtilities.isTablet() ? 1.0f : 1.0f - BotWebViewSheet.this.actionBarTransitionProgress);
                     rectF.set(BotWebViewSheet.this.swipeContainer.getLeft(), AndroidUtilities.lerp(BotWebViewSheet.this.swipeContainer.getTranslationY(), 0.0f, BotWebViewSheet.this.actionBarTransitionProgress), BotWebViewSheet.this.swipeContainer.getRight(), BotWebViewSheet.this.swipeContainer.getTranslationY() + AndroidUtilities.dp(24.0f) + dp);
                     canvas.drawRoundRect(rectF, dp, dp, BotWebViewSheet.this.actionBarPaint);
@@ -235,7 +236,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             public void draw(Canvas canvas) {
                 super.draw(canvas);
                 float f = AndroidUtilities.isTablet() ? 0.0f : BotWebViewSheet.this.actionBarTransitionProgress;
-                BotWebViewSheet.this.linePaint.setColor(Theme.getColor("key_sheet_scrollUp"));
+                BotWebViewSheet.this.linePaint.setColor(Theme.getColor(Theme.key_sheet_scrollUp));
                 BotWebViewSheet.this.linePaint.setAlpha((int) (BotWebViewSheet.this.linePaint.getAlpha() * (1.0f - (Math.min(0.5f, f) / 0.5f))));
                 canvas.save();
                 float f2 = 1.0f - f;
@@ -262,19 +263,19 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.frameLayout = sizeNotifierFrameLayout;
         sizeNotifierFrameLayout.setDelegate(new SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate() {
             @Override
-            public final void onSizeChanged(int i, boolean z) {
-                BotWebViewSheet.this.lambda$new$5(i, z);
+            public final void onSizeChanged(int i2, boolean z) {
+                BotWebViewSheet.this.lambda$new$5(i2, z);
             }
         });
         this.frameLayout.addView(this.swipeContainer, LayoutHelper.createFrame(-1, -1.0f, 49, 0.0f, 24.0f, 0.0f, 0.0f));
         TextView textView = new TextView(this, context) {
             @Override
-            protected void onMeasure(int i, int i2) {
+            protected void onMeasure(int i2, int i3) {
                 if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
                     android.graphics.Point point = AndroidUtilities.displaySize;
-                    i = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
+                    i2 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
                 }
-                super.onMeasure(i, i2);
+                super.onMeasure(i2, i3);
             }
         };
         this.mainButton = textView;
@@ -296,8 +297,8 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.mainButtonAutoAnimator = VerticalPositionAutoAnimator.attach(this.mainButton);
         RadialProgressView radialProgressView = new RadialProgressView(this, context) {
             @Override
-            protected void onMeasure(int i, int i2) {
-                super.onMeasure(i, i2);
+            protected void onMeasure(int i2, int i3) {
+                super.onMeasure(i2, i3);
                 ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) getLayoutParams();
                 if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
                     android.graphics.Point point = AndroidUtilities.displaySize;
@@ -318,12 +319,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.actionBarShadow = ContextCompat.getDrawable(getContext(), R.drawable.header_shadow).mutate();
         ActionBar actionBar = new ActionBar(this, context, resourcesProvider) {
             @Override
-            public void onMeasure(int i, int i2) {
+            public void onMeasure(int i2, int i3) {
                 if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
                     android.graphics.Point point = AndroidUtilities.displaySize;
-                    i = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
+                    i2 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
                 }
-                super.onMeasure(i, i2);
+                super.onMeasure(i2, i3);
             }
         };
         this.actionBar = actionBar;
@@ -332,8 +333,8 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         updateActionBarColors();
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
+            public void onItemClick(int i2) {
+                if (i2 == -1) {
                     BotWebViewSheet.this.onCheckDismissByUser();
                 }
             }
@@ -343,12 +344,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         SizeNotifierFrameLayout sizeNotifierFrameLayout2 = this.frameLayout;
         ChatAttachAlertBotWebViewLayout.WebProgressView webProgressView = new ChatAttachAlertBotWebViewLayout.WebProgressView(this, context, resourcesProvider) {
             @Override
-            protected void onMeasure(int i, int i2) {
+            protected void onMeasure(int i2, int i3) {
                 if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
                     android.graphics.Point point = AndroidUtilities.displaySize;
-                    i = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
+                    i2 = View.MeasureSpec.makeMeasureSpec((int) (Math.min(point.x, point.y) * 0.8f), 1073741824);
                 }
-                super.onMeasure(i, i2);
+                super.onMeasure(i2, i3);
             }
         };
         this.progressView = webProgressView;
@@ -456,15 +457,15 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
 
         @Override
-        public void onWebAppSetActionBarColor(String str) {
-            final int i = BotWebViewSheet.this.actionBarColor;
-            final int color = BotWebViewSheet.this.getColor(str);
+        public void onWebAppSetActionBarColor(int i) {
+            final int i2 = BotWebViewSheet.this.actionBarColor;
+            final int color = BotWebViewSheet.this.getColor(i);
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
             duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BotWebViewSheet.AnonymousClass2.this.lambda$onWebAppSetActionBarColor$1(i, color, valueAnimator);
+                    BotWebViewSheet.AnonymousClass2.this.lambda$onWebAppSetActionBarColor$1(i2, color, valueAnimator);
                 }
             });
             duration.start();
@@ -752,18 +753,20 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     private void updateActionBarColors() {
-        this.actionBar.setTitleColor(getColor("windowBackgroundWhiteBlackText"));
-        this.actionBar.setItemsColor(getColor("windowBackgroundWhiteBlackText"), false);
-        this.actionBar.setItemsBackgroundColor(getColor("actionBarWhiteSelector"), false);
-        this.actionBar.setPopupBackgroundColor(getColor("actionBarDefaultSubmenuBackground"), false);
-        this.actionBar.setPopupItemsColor(getColor("actionBarDefaultSubmenuItem"), false, false);
-        this.actionBar.setPopupItemsColor(getColor("actionBarDefaultSubmenuItemIcon"), true, false);
-        this.actionBar.setPopupItemsSelectorColor(getColor("dialogButtonSelector"), false);
+        ActionBar actionBar = this.actionBar;
+        int i = Theme.key_windowBackgroundWhiteBlackText;
+        actionBar.setTitleColor(getColor(i));
+        this.actionBar.setItemsColor(getColor(i), false);
+        this.actionBar.setItemsBackgroundColor(getColor(Theme.key_actionBarWhiteSelector), false);
+        this.actionBar.setPopupBackgroundColor(getColor(Theme.key_actionBarDefaultSubmenuBackground), false);
+        this.actionBar.setPopupItemsColor(getColor(Theme.key_actionBarDefaultSubmenuItem), false, false);
+        this.actionBar.setPopupItemsColor(getColor(Theme.key_actionBarDefaultSubmenuItemIcon), true, false);
+        this.actionBar.setPopupItemsSelectorColor(getColor(Theme.key_dialogButtonSelector), false);
     }
 
     private void updateLightStatusBar() {
         boolean z = true;
-        z = (AndroidUtilities.isTablet() || ColorUtils.calculateLuminance(Theme.getColor("windowBackgroundWhite", null, true)) < 0.9d || this.actionBarTransitionProgress < 0.85f) ? false : false;
+        z = (AndroidUtilities.isTablet() || ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) < 0.9d || this.actionBarTransitionProgress < 0.85f) ? false : false;
         Boolean bool = this.wasLightStatusBar;
         if (bool == null || bool.booleanValue() != z) {
             this.wasLightStatusBar = Boolean.valueOf(z);
@@ -804,7 +807,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             this.frameLayout.setOnApplyWindowInsetsListener(BotWebViewSheet$$ExternalSyntheticLambda2.INSTANCE);
         }
         if (i >= 26) {
-            AndroidUtilities.setLightNavigationBar(window, ColorUtils.calculateLuminance(Theme.getColor("windowBackgroundWhite", null, true)) >= 0.9d);
+            AndroidUtilities.setLightNavigationBar(window, ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) >= 0.9d);
         }
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewTheme);
     }
@@ -893,13 +896,13 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         });
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("bg_color", getColor("windowBackgroundWhite"));
-            jSONObject.put("secondary_bg_color", getColor("windowBackgroundGray"));
-            jSONObject.put("text_color", getColor("windowBackgroundWhiteBlackText"));
-            jSONObject.put("hint_color", getColor("windowBackgroundWhiteHintText"));
-            jSONObject.put("link_color", getColor("windowBackgroundWhiteLinkText"));
-            jSONObject.put("button_color", getColor("featuredStickers_addButton"));
-            jSONObject.put("button_text_color", getColor("featuredStickers_buttonText"));
+            jSONObject.put("bg_color", getColor(Theme.key_windowBackgroundWhite));
+            jSONObject.put("secondary_bg_color", getColor(Theme.key_windowBackgroundGray));
+            jSONObject.put("text_color", getColor(Theme.key_windowBackgroundWhiteBlackText));
+            jSONObject.put("hint_color", getColor(Theme.key_windowBackgroundWhiteHintText));
+            jSONObject.put("link_color", getColor(Theme.key_windowBackgroundWhiteLinkText));
+            jSONObject.put("button_color", getColor(Theme.key_featuredStickers_addButton));
+            jSONObject.put("button_text_color", getColor(Theme.key_featuredStickers_buttonText));
             str4 = jSONObject.toString();
             z3 = true;
         } catch (Exception e) {
@@ -1081,15 +1084,12 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
     }
 
-    public int getColor(String str) {
-        Integer valueOf;
+    public int getColor(int i) {
         Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        if (resourcesProvider != null) {
-            valueOf = resourcesProvider.getColor(str);
-        } else {
-            valueOf = Integer.valueOf(Theme.getColor(str));
+        if (resourcesProvider != null && resourcesProvider.contains(i)) {
+            return this.resourcesProvider.getColor(i);
         }
-        return valueOf != null ? valueOf.intValue() : Theme.getColor(str);
+        return Theme.getColor(i);
     }
 
     @Override
@@ -1134,7 +1134,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).create();
             create.show();
-            ((TextView) create.getButton(-1)).setTextColor(getColor("text_RedBold"));
+            ((TextView) create.getButton(-1)).setTextColor(getColor(Theme.key_text_RedBold));
             return false;
         }
         dismiss();
@@ -1178,7 +1178,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
         } else if (i == NotificationCenter.didSetNewTheme) {
             this.frameLayout.invalidate();
-            this.webViewContainer.updateFlickerBackgroundColor(getColor("windowBackgroundWhite"));
+            this.webViewContainer.updateFlickerBackgroundColor(getColor(Theme.key_windowBackgroundWhite));
             updateActionBarColors();
             updateLightStatusBar();
         }

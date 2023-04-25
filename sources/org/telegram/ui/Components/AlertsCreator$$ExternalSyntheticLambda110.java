@@ -11,6 +11,6 @@ public final class AlertsCreator$$ExternalSyntheticLambda110 implements RequestD
 
     @Override
     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        AlertsCreator.lambda$createChangeNameAlert$41(tLObject, tLRPC$TL_error);
+        AlertsCreator.lambda$createDeleteMessagesAlert$133(tLObject, tLRPC$TL_error);
     }
 }

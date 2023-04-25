@@ -44,8 +44,8 @@ public class ChangeNameActivity extends BaseFragment {
 
     @Override
     public View createView(Context context) {
-        this.actionBar.setItemsBackgroundColor(Theme.getColor("avatar_actionBarSelectorBlue", this.resourcesProvider), false);
-        this.actionBar.setItemsColor(Theme.getColor("actionBarDefaultIcon", this.resourcesProvider), false);
+        this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_avatar_actionBarSelectorBlue, this.resourcesProvider), false);
+        this.actionBar.setItemsColor(Theme.getColor(Theme.key_actionBarDefaultIcon, this.resourcesProvider), false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setTitle(LocaleController.getString("EditName", R.string.EditName));
@@ -81,10 +81,20 @@ public class ChangeNameActivity extends BaseFragment {
         };
         this.firstNameField = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 18.0f);
-        this.firstNameField.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText", this.resourcesProvider));
-        this.firstNameField.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
+        EditTextBoldCursor editTextBoldCursor2 = this.firstNameField;
+        int i = Theme.key_windowBackgroundWhiteHintText;
+        editTextBoldCursor2.setHintTextColor(Theme.getColor(i, this.resourcesProvider));
+        EditTextBoldCursor editTextBoldCursor3 = this.firstNameField;
+        int i2 = Theme.key_windowBackgroundWhiteBlackText;
+        editTextBoldCursor3.setTextColor(Theme.getColor(i2, this.resourcesProvider));
         this.firstNameField.setBackgroundDrawable(null);
-        this.firstNameField.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("text_RedRegular"));
+        EditTextBoldCursor editTextBoldCursor4 = this.firstNameField;
+        int i3 = Theme.key_windowBackgroundWhiteInputField;
+        int themedColor = getThemedColor(i3);
+        int i4 = Theme.key_windowBackgroundWhiteInputFieldActivated;
+        int themedColor2 = getThemedColor(i4);
+        int i5 = Theme.key_text_RedRegular;
+        editTextBoldCursor4.setLineColors(themedColor, themedColor2, getThemedColor(i5));
         this.firstNameField.setMaxLines(1);
         this.firstNameField.setLines(1);
         this.firstNameField.setSingleLine(true);
@@ -92,30 +102,30 @@ public class ChangeNameActivity extends BaseFragment {
         this.firstNameField.setInputType(49152);
         this.firstNameField.setImeOptions(5);
         this.firstNameField.setHint(LocaleController.getString("FirstName", R.string.FirstName));
-        this.firstNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
+        this.firstNameField.setCursorColor(Theme.getColor(i2, this.resourcesProvider));
         this.firstNameField.setCursorSize(AndroidUtilities.dp(20.0f));
         this.firstNameField.setCursorWidth(1.5f);
         linearLayout.addView(this.firstNameField, LayoutHelper.createLinear(-1, 36, 24.0f, 24.0f, 24.0f, 0.0f));
         this.firstNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+            public final boolean onEditorAction(TextView textView, int i6, KeyEvent keyEvent) {
                 boolean lambda$createView$1;
-                lambda$createView$1 = ChangeNameActivity.this.lambda$createView$1(textView, i, keyEvent);
+                lambda$createView$1 = ChangeNameActivity.this.lambda$createView$1(textView, i6, keyEvent);
                 return lambda$createView$1;
             }
         });
-        EditTextBoldCursor editTextBoldCursor2 = new EditTextBoldCursor(context) {
+        EditTextBoldCursor editTextBoldCursor5 = new EditTextBoldCursor(context) {
             @Override
             protected Theme.ResourcesProvider getResourcesProvider() {
                 return ChangeNameActivity.this.resourcesProvider;
             }
         };
-        this.lastNameField = editTextBoldCursor2;
-        editTextBoldCursor2.setTextSize(1, 18.0f);
-        this.lastNameField.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText", this.resourcesProvider));
-        this.lastNameField.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
+        this.lastNameField = editTextBoldCursor5;
+        editTextBoldCursor5.setTextSize(1, 18.0f);
+        this.lastNameField.setHintTextColor(Theme.getColor(i, this.resourcesProvider));
+        this.lastNameField.setTextColor(Theme.getColor(i2, this.resourcesProvider));
         this.lastNameField.setBackgroundDrawable(null);
-        this.lastNameField.setLineColors(getThemedColor("windowBackgroundWhiteInputField"), getThemedColor("windowBackgroundWhiteInputFieldActivated"), getThemedColor("text_RedRegular"));
+        this.lastNameField.setLineColors(getThemedColor(i3), getThemedColor(i4), getThemedColor(i5));
         this.lastNameField.setMaxLines(1);
         this.lastNameField.setLines(1);
         this.lastNameField.setSingleLine(true);
@@ -123,22 +133,22 @@ public class ChangeNameActivity extends BaseFragment {
         this.lastNameField.setInputType(49152);
         this.lastNameField.setImeOptions(6);
         this.lastNameField.setHint(LocaleController.getString("LastName", R.string.LastName));
-        this.lastNameField.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText", this.resourcesProvider));
+        this.lastNameField.setCursorColor(Theme.getColor(i2, this.resourcesProvider));
         this.lastNameField.setCursorSize(AndroidUtilities.dp(20.0f));
         this.lastNameField.setCursorWidth(1.5f);
         linearLayout.addView(this.lastNameField, LayoutHelper.createLinear(-1, 36, 24.0f, 16.0f, 24.0f, 0.0f));
         this.lastNameField.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+            public final boolean onEditorAction(TextView textView, int i6, KeyEvent keyEvent) {
                 boolean lambda$createView$2;
-                lambda$createView$2 = ChangeNameActivity.this.lambda$createView$2(textView, i, keyEvent);
+                lambda$createView$2 = ChangeNameActivity.this.lambda$createView$2(textView, i6, keyEvent);
                 return lambda$createView$2;
             }
         });
         if (user != null) {
             this.firstNameField.setText(user.first_name);
-            EditTextBoldCursor editTextBoldCursor3 = this.firstNameField;
-            editTextBoldCursor3.setSelection(editTextBoldCursor3.length());
+            EditTextBoldCursor editTextBoldCursor6 = this.firstNameField;
+            editTextBoldCursor6.setSelection(editTextBoldCursor6.length());
             this.lastNameField.setText(user.last_name);
         }
         return this.fragmentView;
@@ -228,19 +238,29 @@ public class ChangeNameActivity extends BaseFragment {
     @Override
     public ArrayList<ThemeDescription> getThemeDescriptions() {
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "actionBarDefault"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, "actionBarDefaultIcon"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, "actionBarDefaultTitle"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "actionBarDefaultSelector"));
-        arrayList.add(new ThemeDescription(this.firstNameField, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.firstNameField, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, "windowBackgroundWhiteHintText"));
-        arrayList.add(new ThemeDescription(this.firstNameField, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, "windowBackgroundWhiteInputField"));
-        arrayList.add(new ThemeDescription(this.firstNameField, ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, "windowBackgroundWhiteInputFieldActivated"));
-        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, "windowBackgroundWhiteHintText"));
-        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, "windowBackgroundWhiteInputField"));
-        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, "windowBackgroundWhiteInputFieldActivated"));
+        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_actionBarDefault));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
+        EditTextBoldCursor editTextBoldCursor = this.firstNameField;
+        int i = ThemeDescription.FLAG_TEXTCOLOR;
+        int i2 = Theme.key_windowBackgroundWhiteBlackText;
+        arrayList.add(new ThemeDescription(editTextBoldCursor, i, null, null, null, null, i2));
+        EditTextBoldCursor editTextBoldCursor2 = this.firstNameField;
+        int i3 = ThemeDescription.FLAG_HINTTEXTCOLOR;
+        int i4 = Theme.key_windowBackgroundWhiteHintText;
+        arrayList.add(new ThemeDescription(editTextBoldCursor2, i3, null, null, null, null, i4));
+        EditTextBoldCursor editTextBoldCursor3 = this.firstNameField;
+        int i5 = ThemeDescription.FLAG_BACKGROUNDFILTER;
+        int i6 = Theme.key_windowBackgroundWhiteInputField;
+        arrayList.add(new ThemeDescription(editTextBoldCursor3, i5, null, null, null, null, i6));
+        int i7 = Theme.key_windowBackgroundWhiteInputFieldActivated;
+        arrayList.add(new ThemeDescription(this.firstNameField, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i7));
+        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_HINTTEXTCOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, null, null, i6));
+        arrayList.add(new ThemeDescription(this.lastNameField, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, i7));
         return arrayList;
     }
 }

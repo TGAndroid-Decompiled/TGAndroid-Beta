@@ -12,6 +12,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.StaticLayout;
@@ -31,6 +32,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -41,6 +43,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -56,11 +59,18 @@ import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$ForumTopic;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageAction;
+import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageFwdHeader;
+import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$TL_dialogFolder;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$TL_messageActionSetChatTheme;
+import org.telegram.tgnet.TLRPC$TL_messageActionTopicCreate;
+import org.telegram.tgnet.TLRPC$TL_messageMediaGame;
+import org.telegram.tgnet.TLRPC$TL_messageMediaInvoice;
+import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
+import org.telegram.tgnet.TLRPC$TL_messageService;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserStatus;
@@ -73,6 +83,7 @@ import org.telegram.ui.Components.BubbleCounterPath;
 import org.telegram.ui.Components.CanvasButton;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.ForegroundColorSpanThemable;
 import org.telegram.ui.Components.Forum.ForumBubbleDrawable;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.PullForegroundDrawable;
@@ -191,6 +202,7 @@ public class DialogCell extends BaseCell {
     private float innerProgress;
     private BounceInterpolator interpolator;
     private boolean isDialogCell;
+    private boolean isForum;
     private boolean isSelected;
     private boolean isSliding;
     private boolean isTopic;
@@ -236,9 +248,9 @@ public class DialogCell extends BaseCell {
     private boolean needEmoji;
     private float onlineProgress;
     protected boolean overrideSwipeAction;
-    protected String overrideSwipeActionBackgroundColorKey;
+    protected int overrideSwipeActionBackgroundColorKey;
     protected RLottieDrawable overrideSwipeActionDrawable;
-    protected String overrideSwipeActionRevealBackgroundColorKey;
+    protected int overrideSwipeActionRevealBackgroundColorKey;
     protected int overrideSwipeActionStringId;
     protected String overrideSwipeActionStringKey;
     private int paintIndex;
@@ -461,6 +473,7 @@ public class DialogCell extends BaseCell {
         this.thumbPath = new Path();
         this.thumbSpoiler = new SpoilerEffect();
         this.collapseOffset = 0.0f;
+        int i2 = 0;
         this.hasUnmutedTopics = false;
         this.overrideSwipeAction = false;
         this.thumbImageSeen = new boolean[3];
@@ -485,20 +498,19 @@ public class DialogCell extends BaseCell {
         this.parentFragment = dialogsActivity;
         Theme.createDialogsResources(context);
         this.avatarImage.setRoundRadius(AndroidUtilities.dp(28.0f));
-        int i2 = 0;
         while (true) {
             ImageReceiver[] imageReceiverArr = this.thumbImage;
             if (i2 < imageReceiverArr.length) {
                 imageReceiverArr[i2] = new ImageReceiver(this);
-                this.thumbImage[i2].setRoundRadius(AndroidUtilities.dp(2.0f));
+                ImageReceiver[] imageReceiverArr2 = this.thumbImage;
+                imageReceiverArr2[i2].ignoreNotifications = true;
+                imageReceiverArr2[i2].setRoundRadius(AndroidUtilities.dp(2.0f));
                 this.thumbImage[i2].setAllowLoadingOnAttachedOnly(true);
                 i2++;
             } else {
                 this.useForceThreeLines = z2;
                 this.currentAccount = i;
-                AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(22.0f));
-                this.emojiStatus = swapAnimatedEmojiDrawable;
-                swapAnimatedEmojiDrawable.center = false;
+                this.emojiStatus = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(22.0f));
                 this.avatarImage.setAllowLoadingOnAttachedOnly(true);
                 return;
             }
@@ -846,7 +858,7 @@ public class DialogCell extends BaseCell {
                 int length2 = replace.length() + length;
                 spannableStringBuilder.append((CharSequence) replace);
                 if (tLRPC$Dialog.unread_count > 0) {
-                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, Theme.getColor("chats_nameArchived", this.resourcesProvider)), length, length2, 33);
+                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, Theme.getColor(Theme.key_chats_nameArchived, this.resourcesProvider)), length, length2, 33);
                 }
                 if (spannableStringBuilder.length() > 150) {
                     break;
@@ -964,7 +976,7 @@ public class DialogCell extends BaseCell {
                     }
                 }
                 if (i2 > 0) {
-                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, "chats_name", null), 0, Math.min(spannableStringBuilder.length(), i2 + 2), 0);
+                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, Theme.key_chats_name, null), 0, Math.min(spannableStringBuilder.length(), i2 + 2), 0);
                 }
                 return spannableStringBuilder;
             } else if (MessagesController.getInstance(this.currentAccount).getTopicsController().endIsReached(this.chat.id)) {
@@ -1086,7 +1098,7 @@ public class DialogCell extends BaseCell {
                     }
                 };
                 this.checkBox = checkBox22;
-                checkBox22.setColor(null, "windowBackgroundWhite", "checkboxCheck");
+                checkBox22.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
                 this.checkBox.setDrawUnchecked(false);
                 this.checkBox.setDrawBackgroundAsArc(3);
                 addView(this.checkBox);
@@ -1236,14 +1248,14 @@ public class DialogCell extends BaseCell {
                 this.counterPaintOutline.setStrokeJoin(Paint.Join.ROUND);
                 this.counterPaintOutline.setStrokeCap(Paint.Cap.ROUND);
             }
-            this.counterPaintOutline.setColor(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhite"), ColorUtils.setAlphaComponent(Theme.getColor("chats_pinnedOverlay"), 255), Color.alpha(color) / 255.0f));
+            this.counterPaintOutline.setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhite), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_chats_pinnedOverlay), 255), Color.alpha(color) / 255.0f));
         }
         if (this.isTopic && this.forumTopic.read_inbox_max_id == 0) {
             if (this.topicCounterPaint == null) {
                 this.topicCounterPaint = new Paint();
             }
             paint = this.topicCounterPaint;
-            int color2 = Theme.getColor(z ? "topics_unreadCounterMuted" : "topics_unreadCounter", this.resourcesProvider);
+            int color2 = Theme.getColor(z ? Theme.key_topics_unreadCounterMuted : Theme.key_topics_unreadCounter, this.resourcesProvider);
             paint.setColor(color2);
             Theme.dialogs_countTextPaint.setColor(color2);
             i4 = z ? 30 : 40;
@@ -1380,7 +1392,7 @@ public class DialogCell extends BaseCell {
             canvas.restore();
         }
         if (z3) {
-            Theme.dialogs_countTextPaint.setColor(Theme.getColor("chats_unreadCounterText"));
+            Theme.dialogs_countTextPaint.setColor(Theme.getColor(Theme.key_chats_unreadCounterText));
         }
     }
 
@@ -1758,26 +1770,185 @@ public class DialogCell extends BaseCell {
         }
         MessageObject messageObject2 = this.message;
         if (messageObject2 != null && (tLRPC$Message2 = messageObject2.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
-            return UserObject.getFirstName(user).replace("\n", "");
+            return UserObject.getFirstName(user).replace("\n", BuildConfig.APP_CENTER_HASH);
         }
         MessageObject messageObject3 = this.message;
         if (messageObject3 == null || (tLRPC$Message = messageObject3.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) {
             if (tLRPC$User == null) {
-                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", "");
+                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", BuildConfig.APP_CENTER_HASH);
             } else if (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) {
                 if (UserObject.isDeleted(tLRPC$User)) {
                     return LocaleController.getString("HiddenName", R.string.HiddenName);
                 }
-                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", "");
+                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", BuildConfig.APP_CENTER_HASH);
             } else {
-                return UserObject.getFirstName(tLRPC$User).replace("\n", "");
+                return UserObject.getFirstName(tLRPC$User).replace("\n", BuildConfig.APP_CENTER_HASH);
             }
         }
         return str2;
     }
 
-    public android.text.SpannableStringBuilder getMessageStringFormatted(java.lang.String r17, java.lang.String r18, java.lang.CharSequence r19, boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.getMessageStringFormatted(java.lang.String, java.lang.String, java.lang.CharSequence, boolean):android.text.SpannableStringBuilder");
+    public SpannableStringBuilder getMessageStringFormatted(String str, String str2, CharSequence charSequence, boolean z) {
+        TLRPC$Message tLRPC$Message;
+        String charSequence2;
+        String formatPluralString;
+        CharSequence charSequence3;
+        SpannableStringBuilder valueOf;
+        TLRPC$TL_forumTopic findTopic;
+        MessageObject captionMessage = getCaptionMessage();
+        MessageObject messageObject = this.message;
+        CharSequence charSequence4 = messageObject != null ? messageObject.messageText : null;
+        this.applyName = true;
+        if (!TextUtils.isEmpty(str2)) {
+            return SpannableStringBuilder.valueOf(AndroidUtilities.formatSpannable(str, str2, charSequence));
+        }
+        MessageObject messageObject2 = this.message;
+        TLRPC$Message tLRPC$Message2 = messageObject2.messageOwner;
+        if (tLRPC$Message2 instanceof TLRPC$TL_messageService) {
+            CharSequence charSequence5 = messageObject2.messageTextShort;
+            if (charSequence5 == null || ((tLRPC$Message2.action instanceof TLRPC$TL_messageActionTopicCreate) && this.isTopic)) {
+                charSequence5 = messageObject2.messageText;
+            }
+            if (MessageObject.isTopicActionMessage(messageObject2)) {
+                valueOf = AndroidUtilities.formatSpannable(str, charSequence5, charSequence);
+                if ((this.message.topicIconDrawable[0] instanceof ForumBubbleDrawable) && (findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-this.message.getDialogId(), MessageObject.getTopicId(this.message.messageOwner, true))) != null) {
+                    ((ForumBubbleDrawable) this.message.topicIconDrawable[0]).setColor(findTopic.icon_color);
+                }
+            } else {
+                this.applyName = false;
+                valueOf = SpannableStringBuilder.valueOf(charSequence5);
+            }
+            if (z) {
+                applyThumbs(valueOf);
+                return valueOf;
+            }
+            return valueOf;
+        }
+        String str3 = BuildConfig.APP_CENTER_HASH;
+        if (captionMessage != null && (charSequence3 = captionMessage.caption) != null) {
+            CharSequence charSequence6 = charSequence3.toString();
+            if (this.needEmoji) {
+                if (captionMessage.isVideo()) {
+                    str3 = "📹 ";
+                } else if (captionMessage.isVoice()) {
+                    str3 = "🎤 ";
+                } else if (captionMessage.isMusic()) {
+                    str3 = "🎧 ";
+                } else {
+                    str3 = captionMessage.isPhoto() ? "🖼 " : "📎 ";
+                }
+            }
+            if (captionMessage.hasHighlightedWords() && !TextUtils.isEmpty(captionMessage.messageOwner.message)) {
+                String str4 = captionMessage.messageTrimmedToHighlight;
+                int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp((this.messagePaddingStart + 23) + 24);
+                if (this.hasNameInMessage) {
+                    if (!TextUtils.isEmpty(charSequence)) {
+                        measuredWidth = (int) (measuredWidth - this.currentMessagePaint.measureText(charSequence.toString()));
+                    }
+                    measuredWidth = (int) (measuredWidth - this.currentMessagePaint.measureText(": "));
+                }
+                if (measuredWidth > 0) {
+                    str4 = AndroidUtilities.ellipsizeCenterEnd(str4, captionMessage.highlightedWords.get(0), measuredWidth, this.currentMessagePaint, 130).toString();
+                }
+                return new SpannableStringBuilder(str3).append((CharSequence) str4);
+            }
+            if (charSequence6.length() > 150) {
+                charSequence6 = charSequence6.subSequence(0, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+            }
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence6);
+            MediaDataController.addTextStyleRuns(captionMessage.messageOwner.entities, charSequence6, spannableStringBuilder, 264);
+            TLRPC$Message tLRPC$Message3 = captionMessage.messageOwner;
+            if (tLRPC$Message3 != null) {
+                ArrayList<TLRPC$MessageEntity> arrayList = tLRPC$Message3.entities;
+                TextPaint textPaint = this.currentMessagePaint;
+                MediaDataController.addAnimatedEmojiSpans(arrayList, spannableStringBuilder, textPaint != null ? textPaint.getFontMetricsInt() : null);
+            }
+            CharSequence append = new SpannableStringBuilder(str3).append(AndroidUtilities.replaceNewLines(spannableStringBuilder));
+            if (z) {
+                append = applyThumbs(append);
+            }
+            return AndroidUtilities.formatSpannable(str, append, charSequence);
+        } else if (tLRPC$Message2.media != null && !messageObject2.isMediaEmpty()) {
+            this.currentMessagePaint = Theme.dialogs_messagePrintingPaint[this.paintIndex];
+            int i = Theme.key_chats_attachMessage;
+            MessageObject messageObject3 = this.message;
+            TLRPC$MessageMedia tLRPC$MessageMedia = messageObject3.messageOwner.media;
+            if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPoll) {
+                TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia;
+                charSequence2 = Build.VERSION.SDK_INT >= 18 ? String.format("📊 \u2068%s\u2069", tLRPC$TL_messageMediaPoll.poll.question) : String.format("📊 %s", tLRPC$TL_messageMediaPoll.poll.question);
+            } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaGame) {
+                charSequence2 = Build.VERSION.SDK_INT >= 18 ? String.format("🎮 \u2068%s\u2069", tLRPC$MessageMedia.game.title) : String.format("🎮 %s", tLRPC$MessageMedia.game.title);
+            } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaInvoice) {
+                charSequence2 = tLRPC$MessageMedia.title;
+            } else if (messageObject3.type == 14) {
+                charSequence2 = Build.VERSION.SDK_INT >= 18 ? String.format("🎧 \u2068%s - %s\u2069", messageObject3.getMusicAuthor(), this.message.getMusicTitle()) : String.format("🎧 %s - %s", messageObject3.getMusicAuthor(), this.message.getMusicTitle());
+            } else if (this.thumbsCount > 1) {
+                if (this.hasVideoThumb) {
+                    ArrayList<MessageObject> arrayList2 = this.groupMessages;
+                    formatPluralString = LocaleController.formatPluralString("Media", arrayList2 == null ? 0 : arrayList2.size(), new Object[0]);
+                } else {
+                    ArrayList<MessageObject> arrayList3 = this.groupMessages;
+                    formatPluralString = LocaleController.formatPluralString("Photos", arrayList3 == null ? 0 : arrayList3.size(), new Object[0]);
+                }
+                charSequence2 = formatPluralString;
+                i = Theme.key_chats_actionMessage;
+            } else {
+                charSequence2 = charSequence4.toString();
+                i = Theme.key_chats_actionMessage;
+            }
+            CharSequence replace = charSequence2.replace('\n', ' ');
+            if (z) {
+                replace = applyThumbs(replace);
+            }
+            SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(str, replace, charSequence);
+            if (!isForumCell()) {
+                try {
+                    formatSpannable.setSpan(new ForegroundColorSpanThemable(i, this.resourcesProvider), this.hasNameInMessage ? charSequence.length() + 2 : 0, formatSpannable.length(), 33);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            return formatSpannable;
+        } else {
+            MessageObject messageObject4 = this.message;
+            CharSequence charSequence7 = messageObject4.messageOwner.message;
+            if (charSequence7 != null) {
+                if (messageObject4.hasHighlightedWords()) {
+                    String str5 = this.message.messageTrimmedToHighlight;
+                    if (str5 != null) {
+                        charSequence7 = str5;
+                    }
+                    int measuredWidth2 = getMeasuredWidth() - AndroidUtilities.dp((this.messagePaddingStart + 23) + 10);
+                    if (this.hasNameInMessage) {
+                        if (!TextUtils.isEmpty(charSequence)) {
+                            measuredWidth2 = (int) (measuredWidth2 - this.currentMessagePaint.measureText(charSequence.toString()));
+                        }
+                        measuredWidth2 = (int) (measuredWidth2 - this.currentMessagePaint.measureText(": "));
+                    }
+                    if (measuredWidth2 > 0) {
+                        charSequence7 = AndroidUtilities.ellipsizeCenterEnd(charSequence7, this.message.highlightedWords.get(0), measuredWidth2, this.currentMessagePaint, 130).toString();
+                    }
+                } else {
+                    if (charSequence7.length() > 150) {
+                        charSequence7 = charSequence7.subSequence(0, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
+                    }
+                    charSequence7 = AndroidUtilities.replaceNewLines(charSequence7);
+                }
+                ?? spannableStringBuilder2 = new SpannableStringBuilder(charSequence7);
+                MediaDataController.addTextStyleRuns(this.message, (Spannable) spannableStringBuilder2, 264);
+                MessageObject messageObject5 = this.message;
+                if (messageObject5 != null && (tLRPC$Message = messageObject5.messageOwner) != null) {
+                    ArrayList<TLRPC$MessageEntity> arrayList4 = tLRPC$Message.entities;
+                    TextPaint textPaint2 = this.currentMessagePaint;
+                    MediaDataController.addAnimatedEmojiSpans(arrayList4, spannableStringBuilder2, textPaint2 != null ? textPaint2.getFontMetricsInt() : null);
+                }
+                if (z) {
+                    spannableStringBuilder2 = applyThumbs(spannableStringBuilder2);
+                }
+                return AndroidUtilities.formatSpannable(str, new CharSequence[]{spannableStringBuilder2, charSequence});
+            }
+            return SpannableStringBuilder.valueOf(BuildConfig.APP_CENTER_HASH);
+        }
     }
 
     @Override
@@ -1837,6 +2008,7 @@ public class DialogCell extends BaseCell {
         public Integer lastDrawnPrintingType;
         public long lastDrawnReadState;
         public int lastDrawnSizeHash;
+        public boolean lastDrawnTranslated;
         public int lastKnownTypingType;
         public int lastTopicsCount;
         long startWaitingTime;

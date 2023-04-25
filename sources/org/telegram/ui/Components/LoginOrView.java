@@ -31,8 +31,8 @@ public class LoginOrView extends View {
     }
 
     public void updateColors() {
-        this.textPaint.setColor(Theme.getColor("windowBackgroundWhiteGrayText"));
-        this.linePaint.setColor(Theme.getColor("key_sheet_scrollUp"));
+        this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+        this.linePaint.setColor(Theme.getColor(Theme.key_sheet_scrollUp));
         invalidate();
     }
 

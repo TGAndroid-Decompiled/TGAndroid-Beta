@@ -43,10 +43,11 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         this.currentAccount = i;
         RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.download_progress, "download_progress", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.downloadDrawable = rLottieDrawable;
-        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
+        int i2 = Theme.key_actionBarDefaultIcon;
+        rLottieDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
         RLottieDrawable rLottieDrawable2 = new RLottieDrawable(R.raw.download_finish, "download_finish", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.downloadCompleteDrawable = rLottieDrawable2;
-        rLottieDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
+        rLottieDrawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
         this.downloadImageReceiver.setImageBitmap(this.downloadDrawable);
         this.downloadCompleteImageReceiver.setImageBitmap(this.downloadCompleteDrawable);
         this.downloadImageReceiver.setAutoRepeat(1);
@@ -70,12 +71,14 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         if (getAlpha() == 0.0f) {
             return;
         }
-        if (this.currentColor != Theme.getColor("actionBarDefaultIcon")) {
-            this.currentColor = Theme.getColor("actionBarDefaultIcon");
-            this.paint.setColor(Theme.getColor("actionBarDefaultIcon"));
-            this.paint2.setColor(Theme.getColor("actionBarDefaultIcon"));
-            this.downloadImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
-            this.downloadCompleteImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultIcon"), PorterDuff.Mode.MULTIPLY));
+        int i = this.currentColor;
+        int i2 = Theme.key_actionBarDefaultIcon;
+        if (i != Theme.getColor(i2)) {
+            this.currentColor = Theme.getColor(i2);
+            this.paint.setColor(Theme.getColor(i2));
+            this.paint2.setColor(Theme.getColor(i2));
+            this.downloadImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
+            this.downloadCompleteImageReceiver.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
             this.paint2.setAlpha(100);
         }
         float f = this.currentProgress;

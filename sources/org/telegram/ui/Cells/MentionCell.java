@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MediaDataController;
@@ -53,7 +54,7 @@ public class MentionCell extends LinearLayout {
         };
         this.nameTextView = textView;
         NotificationCenter.listenEmojiLoading(textView);
-        this.nameTextView.setTextColor(getThemedColor("windowBackgroundWhiteBlackText"));
+        this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
         this.nameTextView.setTextSize(1, 15.0f);
         this.nameTextView.setSingleLine(true);
         this.nameTextView.setGravity(3);
@@ -61,7 +62,7 @@ public class MentionCell extends LinearLayout {
         addView(this.nameTextView, LayoutHelper.createLinear(-2, -2, 16, 12, 0, 0, 0));
         TextView textView2 = new TextView(context);
         this.usernameTextView = textView2;
-        textView2.setTextColor(getThemedColor("windowBackgroundWhiteGrayText3"));
+        textView2.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
         this.usernameTextView.setTextSize(1, 15.0f);
         this.usernameTextView.setSingleLine(true);
         this.usernameTextView.setGravity(3);
@@ -77,8 +78,8 @@ public class MentionCell extends LinearLayout {
     public void setUser(TLRPC$User tLRPC$User) {
         resetEmojiSuggestion();
         if (tLRPC$User == null) {
-            this.nameTextView.setText("");
-            this.usernameTextView.setText("");
+            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
             this.imageView.setImageDrawable(null);
             return;
         }
@@ -94,7 +95,7 @@ public class MentionCell extends LinearLayout {
             TextView textView = this.usernameTextView;
             textView.setText("@" + UserObject.getPublicUsername(tLRPC$User));
         } else {
-            this.usernameTextView.setText("");
+            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
         }
         this.imageView.setVisibility(0);
         this.usernameTextView.setVisibility(0);
@@ -119,8 +120,8 @@ public class MentionCell extends LinearLayout {
     public void setChat(TLRPC$Chat tLRPC$Chat) {
         resetEmojiSuggestion();
         if (tLRPC$Chat == null) {
-            this.nameTextView.setText("");
-            this.usernameTextView.setText("");
+            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
             this.imageView.setImageDrawable(null);
             return;
         }
@@ -137,7 +138,7 @@ public class MentionCell extends LinearLayout {
             TextView textView = this.usernameTextView;
             textView.setText("@" + publicUsername);
         } else {
-            this.usernameTextView.setText("");
+            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
         }
         this.imageView.setVisibility(0);
         this.usernameTextView.setVisibility(0);
@@ -250,14 +251,12 @@ public class MentionCell extends LinearLayout {
             this.usernameTextView.setTextColor(-4473925);
             return;
         }
-        this.nameTextView.setTextColor(getThemedColor("windowBackgroundWhiteBlackText"));
-        this.usernameTextView.setTextColor(getThemedColor("windowBackgroundWhiteGrayText3"));
+        this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.usernameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText3));
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     @Override

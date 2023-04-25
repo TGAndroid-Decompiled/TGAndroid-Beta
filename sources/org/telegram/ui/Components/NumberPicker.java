@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
@@ -132,7 +133,7 @@ public class NumberPicker extends LinearLayout {
         this.mSolidColor = 0;
         Paint paint = new Paint();
         this.mSelectionDivider = paint;
-        paint.setColor(getThemedColor("dialogButton"));
+        paint.setColor(getThemedColor(Theme.key_dialogButton));
         this.mSelectionDividerHeight = (int) TypedValue.applyDimension(1, 2.0f, getResources().getDisplayMetrics());
         TypedValue.applyDimension(1, 48.0f, getResources().getDisplayMetrics());
         this.mMinHeight = -1;
@@ -151,7 +152,7 @@ public class NumberPicker extends LinearLayout {
         this.mInputText = textView;
         textView.setGravity(17);
         this.mInputText.setSingleLine(true);
-        this.mInputText.setTextColor(getThemedColor("dialogTextBlack"));
+        this.mInputText.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         this.mInputText.setBackgroundResource(0);
         this.mInputText.setTextSize(0, this.mTextSize);
         this.mInputText.setVisibility(4);
@@ -924,7 +925,7 @@ public class NumberPicker extends LinearLayout {
         }
         int i2 = this.mMinValue;
         if (i < i2 || i > this.mMaxValue) {
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         } else {
             String[] strArr = this.mDisplayedValues;
             if (strArr != null) {
@@ -1105,9 +1106,7 @@ public class NumberPicker extends LinearLayout {
         invalidate();
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

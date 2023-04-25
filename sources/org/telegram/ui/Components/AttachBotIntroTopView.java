@@ -18,6 +18,7 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
+import org.telegram.ui.ActionBar.Theme;
 public class AttachBotIntroTopView extends View {
     private Drawable attachDrawable;
     private Paint backgroundPaint;
@@ -67,7 +68,7 @@ public class AttachBotIntroTopView extends View {
     public void setAttachBot(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
         TLRPC$TL_attachMenuBotIcon staticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
         if (staticAttachMenuBotIcon != null) {
-            this.imageReceiver.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "42_42", DocumentObject.getSvgThumb(staticAttachMenuBotIcon.icon, "dialogTextGray2", 1.0f), "svg", tLRPC$TL_attachMenuBot, 0);
+            this.imageReceiver.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "42_42", DocumentObject.getSvgThumb(staticAttachMenuBotIcon.icon, Theme.key_dialogTextGray2, 1.0f), "svg", tLRPC$TL_attachMenuBot, 0);
         }
     }
 

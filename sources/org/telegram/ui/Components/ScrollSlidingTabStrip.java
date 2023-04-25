@@ -65,6 +65,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
     ValueAnimator expandStickerAnimator;
     boolean expanded;
     private SparseArray<View> futureTabsPositions;
+    private int imageReceiversPlayingNum;
     private GradientDrawable indicatorDrawable;
     private int indicatorHeight;
     private int lastScrollX;
@@ -117,6 +118,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
 
     public ScrollSlidingTabStrip(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.imageReceiversPlayingNum = 1;
         this.type = Type.LINE;
         this.tabTypes = new HashMap<>();
         this.prevTypes = new HashMap<>();
@@ -409,7 +411,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             avatarDrawable.setTextSize(AndroidUtilities.dp(14.0f));
             avatarDrawable.setInfo(tLRPC$Chat);
             BackupImageView backupImageView = stickerTabView.imageView;
-            backupImageView.setLayerNum(1);
+            backupImageView.setLayerNum(this.imageReceiversPlayingNum);
             backupImageView.setForUserOrChat(tLRPC$Chat, avatarDrawable);
             backupImageView.setAspectFit(true);
             stickerTabView.setExpanded(this.expanded);
@@ -482,6 +484,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             stickerTabView.updateExpandProgress(this.expandProgress);
             this.tabsContainer.addView(stickerTabView, i);
         }
+        stickerTabView.imageView.setLayerNum(this.imageReceiversPlayingNum);
         stickerTabView.isChatSticker = false;
         stickerTabView.setTag(tLObject);
         stickerTabView.setTag(R.id.index_tag, Integer.valueOf(i));
@@ -701,14 +704,14 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
                     TLRPC$Document tLRPC$Document = (TLRPC$Document) childAt.getTag(R.id.object_tag);
                     if (tag3 instanceof TLRPC$Document) {
                         if (!stickerTabView.inited) {
-                            stickerTabView.svgThumb = DocumentObject.getSvgThumb((TLRPC$Document) tag3, "emptyListPlaceholder", 0.2f);
+                            stickerTabView.svgThumb = DocumentObject.getSvgThumb((TLRPC$Document) tag3, Theme.key_emptyListPlaceholder, 0.2f);
                         }
                         forSticker = ImageLocation.getForDocument(tLRPC$Document);
                     } else if (tag3 instanceof TLRPC$PhotoSize) {
                         forSticker = ImageLocation.getForSticker((TLRPC$PhotoSize) tag3, tLRPC$Document, tag4 instanceof TLRPC$TL_messages_stickerSet ? ((TLRPC$TL_messages_stickerSet) tag4).set.thumb_version : 0);
                     }
                     if (!stickerTabView.inited && stickerTabView.svgThumb == null && tLRPC$Document != null) {
-                        stickerTabView.svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, "emptyListPlaceholder", 0.2f);
+                        stickerTabView.svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_emptyListPlaceholder, 0.2f);
                     }
                     if (forSticker != null) {
                         stickerTabView.inited = true;
@@ -829,7 +832,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             float lerp3 = AndroidUtilities.lerp(abs, textWidth + AndroidUtilities.dp(10.0f), interpolation) / 2.0f;
             float abs2 = ((dp * (((Math.abs(0.5f - this.currentPositionAnimated.getTransitionProgressInterpolated()) * 0.1f) * 2.0f) + 0.9f)) * AndroidUtilities.lerp(1.0f, 0.55f, interpolation)) / 2.0f;
             this.tabBounds.set(f - lerp3, lerp2 - abs2, f + lerp3, lerp2 + abs2);
-            this.selectorPaint.setColor(788529151 & getThemedColor("chat_emojiPanelIcon"));
+            this.selectorPaint.setColor(788529151 & getThemedColor(Theme.key_chat_emojiPanelIcon));
             this.selectorPaint.setAlpha((int) (paint.getAlpha() * f5));
             canvas.drawRoundRect(this.tabBounds, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectorPaint);
         }
@@ -1084,9 +1087,11 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         this.dragEnabled = z;
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public void setImageReceiversLayerNum(int i) {
+        this.imageReceiversPlayingNum = i;
     }
 }

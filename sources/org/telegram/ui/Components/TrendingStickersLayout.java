@@ -193,7 +193,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         }, tLRPC$StickerSetCoveredArr, longSparseArray, longSparseArray2, resourcesProvider);
         FrameLayout frameLayout = new FrameLayout(context);
         this.searchLayout = frameLayout;
-        frameLayout.setBackgroundColor(getThemedColor("dialogBackground"));
+        frameLayout.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
         SearchField searchField = new SearchField(context, true, resourcesProvider) {
             @Override
             public void onTextChange(String str) {
@@ -343,7 +343,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         View view = new View(context);
         this.shadowView = view;
-        view.setBackgroundColor(getThemedColor("dialogShadowLine"));
+        view.setBackgroundColor(getThemedColor(Theme.key_dialogShadowLine));
         view.setAlpha(0.0f);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight());
         layoutParams.topMargin = AndroidUtilities.dp(58.0f);
@@ -418,7 +418,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
                     i = ((int) findViewByPosition2.getY()) + findViewByPosition2.getMeasuredHeight();
                 }
                 if (findViewByPosition != null || findViewByPosition2 != null) {
-                    this.paint.setColor(Theme.getColor("featuredStickers_addButton"));
+                    this.paint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
                     float f3 = this.highlightProgress;
                     this.paint.setAlpha((int) ((f3 < 0.06f ? f3 / 0.06f : 1.0f) * 25.5f));
                     canvas.drawRect(0.0f, i2, getMeasuredWidth(), i, this.paint);
@@ -616,8 +616,8 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         this.searchView.getThemeDescriptions(list);
         this.adapter.getThemeDescriptions(list, this.listView, themeDescriptionDelegate);
         this.searchAdapter.getThemeDescriptions(list, this.listView, themeDescriptionDelegate);
-        list.add(new ThemeDescription(this.shadowView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogShadowLine"));
-        list.add(new ThemeDescription(this.searchLayout, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogBackground"));
+        list.add(new ThemeDescription(this.shadowView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_dialogShadowLine));
+        list.add(new ThemeDescription(this.searchLayout, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_dialogBackground));
     }
 
     public void glueToTop(boolean z) {
@@ -1045,9 +1045,7 @@ public class TrendingStickersLayout extends FrameLayout implements NotificationC
         }
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

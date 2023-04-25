@@ -47,11 +47,11 @@ import org.telegram.ui.Components.FilterTabsView;
 import org.telegram.ui.Components.RecyclerListView;
 public class FilterTabsView extends FrameLayout {
     private final Property<FilterTabsView, Float> COLORS;
-    private String aActiveTextColorKey;
-    private String aBackgroundColorKey;
-    private String aTabLineColorKey;
-    private String aUnactiveTextColorKey;
-    private String activeTextColorKey;
+    private int aActiveTextColorKey;
+    private int aBackgroundColorKey;
+    private int aTabLineColorKey;
+    private int aUnactiveTextColorKey;
+    private int activeTextColorKey;
     private ListAdapter adapter;
     private int additionalTabWidth;
     private int allTabsWidth;
@@ -60,7 +60,7 @@ public class FilterTabsView extends FrameLayout {
     private Runnable animationRunnable;
     private float animationTime;
     private float animationValue;
-    private String backgroundColorKey;
+    private int backgroundColorKey;
     private AnimatorSet colorChangeAnimator;
     private Paint counterPaint;
     private int currentPosition;
@@ -93,13 +93,13 @@ public class FilterTabsView extends FrameLayout {
     private int previousPosition;
     private int scrollingToChild;
     private int selectedTabId;
-    private String selectorColorKey;
+    private int selectorColorKey;
     private GradientDrawable selectorDrawable;
-    private String tabLineColorKey;
+    private int tabLineColorKey;
     private ArrayList<Tab> tabs;
     private TextPaint textCounterPaint;
     private TextPaint textPaint;
-    private String unactiveTextColorKey;
+    private int unactiveTextColorKey;
 
     public interface FilterTabsViewDelegate {
         boolean canPerformActions();
@@ -280,7 +280,7 @@ public class FilterTabsView extends FrameLayout {
 
         @Override
         @android.annotation.SuppressLint({"DrawAllocation"})
-        protected void onDraw(android.graphics.Canvas r33) {
+        protected void onDraw(android.graphics.Canvas r32) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FilterTabsView.TabView.onDraw(android.graphics.Canvas):void");
         }
 
@@ -470,11 +470,15 @@ public class FilterTabsView extends FrameLayout {
         this.manualScrollingToPosition = -1;
         this.manualScrollingToId = -1;
         this.scrollingToChild = -1;
-        this.tabLineColorKey = "actionBarTabLine";
-        this.activeTextColorKey = "actionBarTabActiveText";
-        this.unactiveTextColorKey = "actionBarTabUnactiveText";
-        this.selectorColorKey = "actionBarTabSelector";
-        this.backgroundColorKey = "actionBarDefault";
+        this.tabLineColorKey = Theme.key_actionBarTabLine;
+        this.activeTextColorKey = Theme.key_actionBarTabActiveText;
+        this.unactiveTextColorKey = Theme.key_actionBarTabUnactiveText;
+        this.selectorColorKey = Theme.key_actionBarTabSelector;
+        this.backgroundColorKey = Theme.key_actionBarDefault;
+        this.aTabLineColorKey = -1;
+        this.aActiveTextColorKey = -1;
+        this.aUnactiveTextColorKey = -1;
+        this.aBackgroundColorKey = -1;
         this.interpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.positionToId = new SparseIntArray(5);
         this.positionToStableId = new SparseIntArray(5);
@@ -930,17 +934,17 @@ public class FilterTabsView extends FrameLayout {
         this.adapter.notifyDataSetChanged();
     }
 
-    public void animateColorsTo(String str, String str2, String str3, String str4, String str5) {
+    public void animateColorsTo(int i, int i2, int i3, int i4, int i5) {
         AnimatorSet animatorSet = this.colorChangeAnimator;
         if (animatorSet != null) {
             animatorSet.cancel();
         }
-        this.aTabLineColorKey = str;
-        this.aActiveTextColorKey = str2;
-        this.aUnactiveTextColorKey = str3;
-        this.aBackgroundColorKey = str5;
-        this.selectorColorKey = str4;
-        this.listView.setSelectorDrawableColor(Theme.getColor(str4));
+        this.aTabLineColorKey = i;
+        this.aActiveTextColorKey = i2;
+        this.aUnactiveTextColorKey = i3;
+        this.aBackgroundColorKey = i5;
+        this.selectorColorKey = i4;
+        this.listView.setSelectorDrawableColor(Theme.getColor(i4));
         AnimatorSet animatorSet2 = new AnimatorSet();
         this.colorChangeAnimator = animatorSet2;
         animatorSet2.playTogether(ObjectAnimator.ofFloat(this, this.COLORS, 0.0f, 1.0f));
@@ -956,10 +960,10 @@ public class FilterTabsView extends FrameLayout {
                 filterTabsView3.activeTextColorKey = filterTabsView3.aActiveTextColorKey;
                 FilterTabsView filterTabsView4 = FilterTabsView.this;
                 filterTabsView4.unactiveTextColorKey = filterTabsView4.aUnactiveTextColorKey;
-                FilterTabsView.this.aTabLineColorKey = null;
-                FilterTabsView.this.aActiveTextColorKey = null;
-                FilterTabsView.this.aUnactiveTextColorKey = null;
-                FilterTabsView.this.aBackgroundColorKey = null;
+                FilterTabsView.this.aTabLineColorKey = -1;
+                FilterTabsView.this.aActiveTextColorKey = -1;
+                FilterTabsView.this.aUnactiveTextColorKey = -1;
+                FilterTabsView.this.aBackgroundColorKey = -1;
             }
         });
         this.colorChangeAnimator.start();
@@ -973,7 +977,7 @@ public class FilterTabsView extends FrameLayout {
         return this.positionToId.get(0, 0);
     }
 
-    public String getSelectorColorKey() {
+    public int getSelectorColorKey() {
         return this.selectorColorKey;
     }
 

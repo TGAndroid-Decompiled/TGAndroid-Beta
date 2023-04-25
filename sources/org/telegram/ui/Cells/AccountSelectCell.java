@@ -48,11 +48,11 @@ public class AccountSelectCell extends FrameLayout {
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
         if (z) {
             addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, 51, 61.0f, 7.0f, 8.0f, 0.0f));
-            this.textView.setTextColor(Theme.getColor("voipgroup_nameText"));
+            this.textView.setTextColor(Theme.getColor(Theme.key_voipgroup_nameText));
             this.textView.setText(LocaleController.getString("VoipGroupDisplayAs", R.string.VoipGroupDisplayAs));
             TextView textView2 = new TextView(context);
             this.infoTextView = textView2;
-            textView2.setTextColor(Theme.getColor("voipgroup_lastSeenText"));
+            textView2.setTextColor(Theme.getColor(Theme.key_voipgroup_lastSeenText));
             this.infoTextView.setTextSize(1, 15.0f);
             this.infoTextView.setLines(1);
             this.infoTextView.setMaxLines(1);
@@ -64,12 +64,12 @@ public class AccountSelectCell extends FrameLayout {
             return;
         }
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 51, 61.0f, 0.0f, 56.0f, 0.0f));
-        this.textView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
+        this.textView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
         ImageView imageView = new ImageView(context);
         this.checkImageView = imageView;
         imageView.setImageResource(R.drawable.account_check);
         this.checkImageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.checkImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_menuItemCheck"), PorterDuff.Mode.MULTIPLY));
+        this.checkImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_menuItemCheck), PorterDuff.Mode.MULTIPLY));
         addView(this.checkImageView, LayoutHelper.createFrame(40, -1.0f, 53, 0.0f, 0.0f, 6.0f, 0.0f));
     }
 
@@ -86,7 +86,7 @@ public class AccountSelectCell extends FrameLayout {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         if (this.infoTextView == null) {
-            this.textView.setTextColor(Theme.getColor("chats_menuItemText"));
+            this.textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
         }
     }
 

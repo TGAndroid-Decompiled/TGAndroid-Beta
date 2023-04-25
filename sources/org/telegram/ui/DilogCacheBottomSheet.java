@@ -85,7 +85,7 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
                 } else {
                     TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(viewGroup.getContext());
                     textInfoPrivacyCell.setFixedSize(12);
-                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(viewGroup.getContext(), R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(viewGroup.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     combinedDrawable.setFullsize(true);
                     textInfoPrivacyCell.setBackgroundDrawable(combinedDrawable);
                     view = textInfoPrivacyCell;
@@ -103,8 +103,8 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
     public DilogCacheBottomSheet(CacheControlActivity cacheControlActivity, CacheControlActivity.DialogFileEntities dialogFileEntities, final CacheModel cacheModel, final Delegate delegate) {
         super(cacheControlActivity, false, false, !cacheModel.isEmpty(), null);
         String string;
+        int i;
         String str;
-        String str2;
         long j;
         this.clearViewData = new StorageDiagramView.ClearViewData[8];
         this.checkBoxes = new CheckBoxCell[8];
@@ -131,59 +131,59 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         this.circleDiagramView = storageDiagramView;
         this.linearLayout.addView(storageDiagramView, LayoutHelper.createLinear(-2, -2, 1, 0, 16, 0, 16));
         CheckBoxCell checkBoxCell = null;
-        for (int i = 0; i < 7; i++) {
-            if (i == 0) {
+        for (int i2 = 0; i2 < 7; i2++) {
+            if (i2 == 0) {
                 string = LocaleController.getString("LocalPhotoCache", R.string.LocalPhotoCache);
-                str = "statisticChartLine_lightblue";
-            } else if (i == 1) {
+                i = Theme.key_statisticChartLine_lightblue;
+            } else if (i2 == 1) {
                 string = LocaleController.getString("LocalVideoCache", R.string.LocalVideoCache);
-                str = "statisticChartLine_blue";
-            } else if (i == 2) {
+                i = Theme.key_statisticChartLine_blue;
+            } else if (i2 == 2) {
                 string = LocaleController.getString("LocalDocumentCache", R.string.LocalDocumentCache);
-                str = "statisticChartLine_green";
-            } else if (i == 3) {
+                i = Theme.key_statisticChartLine_green;
+            } else if (i2 == 3) {
                 string = LocaleController.getString("LocalMusicCache", R.string.LocalMusicCache);
-                str = "statisticChartLine_red";
-            } else if (i == 4) {
+                i = Theme.key_statisticChartLine_red;
+            } else if (i2 == 4) {
                 string = LocaleController.getString("LocalAudioCache", R.string.LocalAudioCache);
-                str = "statisticChartLine_lightgreen";
-            } else if (i == 5) {
+                i = Theme.key_statisticChartLine_lightgreen;
+            } else if (i2 == 5) {
                 string = LocaleController.getString("LocalStickersCache", R.string.LocalStickersCache);
-                str = "statisticChartLine_orange";
+                i = Theme.key_statisticChartLine_orange;
             } else {
                 string = LocaleController.getString("LocalMiscellaneousCache", R.string.LocalMiscellaneousCache);
-                str = "statisticChartLine_purple";
+                i = Theme.key_statisticChartLine_purple;
             }
-            CacheControlActivity.FileEntities fileEntities = dialogFileEntities.entitiesByType.get(i);
+            CacheControlActivity.FileEntities fileEntities = dialogFileEntities.entitiesByType.get(i2);
             if (fileEntities != null) {
-                str2 = string;
+                str = string;
                 j = fileEntities.totalSize;
             } else {
-                str2 = string;
+                str = string;
                 j = 0;
             }
             if (j > 0) {
-                this.clearViewData[i] = new StorageDiagramView.ClearViewData(this.circleDiagramView);
+                this.clearViewData[i2] = new StorageDiagramView.ClearViewData(this.circleDiagramView);
                 StorageDiagramView.ClearViewData[] clearViewDataArr = this.clearViewData;
-                clearViewDataArr[i].size = j;
-                clearViewDataArr[i].color = str;
+                clearViewDataArr[i2].size = j;
+                clearViewDataArr[i2].colorKey = i;
                 checkBoxCell = new CheckBoxCell(context, 4, 21, null);
-                checkBoxCell.setTag(Integer.valueOf(i));
+                checkBoxCell.setTag(Integer.valueOf(i2));
                 checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
                 this.linearLayout.addView(checkBoxCell, LayoutHelper.createLinear(-1, 50));
-                checkBoxCell.setText(str2, AndroidUtilities.formatFileSize(j), true, true);
-                checkBoxCell.setTextColor(Theme.getColor("dialogTextBlack"));
-                checkBoxCell.setCheckBoxColor(str, "windowBackgroundWhiteGrayIcon", "checkboxCheck");
+                checkBoxCell.setText(str, AndroidUtilities.formatFileSize(j), true, true);
+                checkBoxCell.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+                checkBoxCell.setCheckBoxColor(i, Theme.key_windowBackgroundWhiteGrayIcon, Theme.key_checkboxCheck);
                 checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         DilogCacheBottomSheet.this.lambda$new$0(cacheModel, view);
                     }
                 });
-                this.checkBoxes[i] = checkBoxCell;
+                this.checkBoxes[i2] = checkBoxCell;
             } else {
-                this.clearViewData[i] = null;
-                this.checkBoxes[i] = null;
+                this.clearViewData[i2] = null;
+                this.checkBoxes[i2] = null;
             }
         }
         if (checkBoxCell != null) {
@@ -192,8 +192,8 @@ public class DilogCacheBottomSheet extends BottomSheetWithRecyclerListView {
         this.circleDiagramView.setData(cacheModel, this.clearViewData);
         CachedMediaLayout cachedMediaLayout = new CachedMediaLayout(getContext(), cacheControlActivity) {
             @Override
-            public void onMeasure(int i2, int i3) {
-                super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec((((BottomSheetWithRecyclerListView) DilogCacheBottomSheet.this).contentHeight - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
+            public void onMeasure(int i3, int i4) {
+                super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec((((BottomSheetWithRecyclerListView) DilogCacheBottomSheet.this).contentHeight - ActionBar.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight, 1073741824));
             }
         };
         this.cachedMediaLayout = cachedMediaLayout;

@@ -34,7 +34,7 @@ public class ChecksHintView extends FrameLayout {
         this.imageView = new RLottieImageView[2];
         this.resourcesProvider = resourcesProvider;
         FrameLayout frameLayout = new FrameLayout(context);
-        frameLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor("chat_gifSaveHintBackground")));
+        frameLayout.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor(Theme.key_chat_gifSaveHintBackground)));
         int i = 0;
         frameLayout.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
         addView(frameLayout, LayoutHelper.createFrame(-2, -2.0f, 51, 0.0f, 0.0f, 0.0f, 6.0f));
@@ -43,7 +43,7 @@ public class ChecksHintView extends FrameLayout {
             this.imageView[i].setScaleType(ImageView.ScaleType.CENTER);
             frameLayout.addView(this.imageView[i], LayoutHelper.createFrame(24, 24.0f, 51, 0.0f, i == 0 ? 0.0f : 24.0f, 0.0f, 0.0f));
             this.textView[i] = new TextView(context);
-            this.textView[i].setTextColor(getThemedColor("chat_gifSaveHintText"));
+            this.textView[i].setTextColor(getThemedColor(Theme.key_chat_gifSaveHintText));
             this.textView[i].setTextSize(1, 14.0f);
             this.textView[i].setMaxLines(1);
             this.textView[i].setSingleLine(true);
@@ -64,7 +64,7 @@ public class ChecksHintView extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.arrowImageView = imageView;
         imageView.setImageResource(R.drawable.tooltip_arrow);
-        this.arrowImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_gifSaveHintBackground"), PorterDuff.Mode.MULTIPLY));
+        this.arrowImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_gifSaveHintBackground), PorterDuff.Mode.MULTIPLY));
         addView(this.arrowImageView, LayoutHelper.createFrame(14, 6.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
     }
 
@@ -203,9 +203,7 @@ public class ChecksHintView extends FrameLayout {
         this.animatorSet.start();
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

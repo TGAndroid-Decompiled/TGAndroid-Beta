@@ -22,10 +22,8 @@ import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.StaticLayout;
-import android.text.TextPaint;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.ReplacementSpan;
-import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
@@ -41,9 +39,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.TextStyleSpan;
@@ -462,7 +460,8 @@ public class SpoilerEffect extends Drawable {
     }
 
     public static void addSpoilers(TextView textView, Stack<SpoilerEffect> stack, List<SpoilerEffect> list) {
-        addSpoilers(textView, textView.getLayout(), (Spanned) textView.getText(), stack, list);
+        int measuredWidth = textView.getMeasuredWidth();
+        addSpoilers(textView, textView.getLayout(), 0, measuredWidth > 0 ? measuredWidth : -2, (Spanned) textView.getText(), stack, list);
     }
 
     public static void addSpoilers(View view, Layout layout, Stack<SpoilerEffect> stack, List<SpoilerEffect> list) {
@@ -471,71 +470,46 @@ public class SpoilerEffect extends Drawable {
         }
     }
 
+    public static void addSpoilers(View view, Layout layout, int i, int i2, Stack<SpoilerEffect> stack, List<SpoilerEffect> list) {
+        if (layout.getText() instanceof Spanned) {
+            addSpoilers(view, layout, i, i2, (Spanned) layout.getText(), stack, list);
+        }
+    }
+
     public static void addSpoilers(View view, Layout layout, Spanned spanned, Stack<SpoilerEffect> stack, List<SpoilerEffect> list) {
-        int i;
-        int i2;
-        TextStyleSpan[] textStyleSpanArr;
+        if (layout == null) {
+            return;
+        }
+        addSpoilers(view, layout, -1, -1, spanned, stack, list);
+    }
+
+    public static void addSpoilers(View view, Layout layout, int i, int i2, Spanned spanned, Stack<SpoilerEffect> stack, List<SpoilerEffect> list) {
         int i3;
         int i4;
-        float f;
-        float f2;
-        int i5;
-        int i6 = 0;
-        while (i6 < layout.getLineCount()) {
-            float lineLeft = layout.getLineLeft(i6);
-            float lineTop = layout.getLineTop(i6);
-            float lineRight = layout.getLineRight(i6);
-            float lineBottom = layout.getLineBottom(i6);
-            int lineStart = layout.getLineStart(i6);
-            int lineEnd = layout.getLineEnd(i6);
-            TextStyleSpan[] textStyleSpanArr2 = (TextStyleSpan[]) spanned.getSpans(lineStart, lineEnd, TextStyleSpan.class);
-            int length = textStyleSpanArr2.length;
-            int i7 = 0;
-            while (i7 < length) {
-                TextStyleSpan textStyleSpan = textStyleSpanArr2[i7];
-                if (textStyleSpan.isSpoiler()) {
-                    int spanStart = spanned.getSpanStart(textStyleSpan);
-                    int spanEnd = spanned.getSpanEnd(textStyleSpan);
-                    int max = Math.max(lineStart, spanStart);
-                    int min = Math.min(lineEnd, spanEnd);
-                    if (min - max != 0) {
-                        i = i7;
-                        i2 = length;
-                        textStyleSpanArr = textStyleSpanArr2;
-                        i3 = lineEnd;
-                        i4 = lineStart;
-                        f = lineBottom;
-                        f2 = lineTop;
-                        i5 = i6;
-                        addSpoilersInternal(view, spanned, layout, lineStart, lineEnd, lineLeft, lineTop, lineRight, lineBottom, max, min, stack, list);
-                        i7 = i + 1;
-                        lineBottom = f;
-                        lineTop = f2;
-                        length = i2;
-                        textStyleSpanArr2 = textStyleSpanArr;
-                        lineEnd = i3;
-                        lineStart = i4;
-                        i6 = i5;
+        if (layout == null) {
+            return;
+        }
+        Object[] objArr = (TextStyleSpan[]) spanned.getSpans(0, layout.getText().length(), TextStyleSpan.class);
+        for (int i5 = 0; i5 < objArr.length; i5++) {
+            if (objArr[i5].isSpoiler()) {
+                int spanStart = spanned.getSpanStart(objArr[i5]);
+                int spanEnd = spanned.getSpanEnd(objArr[i5]);
+                if (i == -1 && i2 == -1) {
+                    int i6 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+                    int i7 = Integer.MIN_VALUE;
+                    int lineForOffset = layout.getLineForOffset(spanEnd);
+                    for (int lineForOffset2 = layout.getLineForOffset(spanStart); lineForOffset2 <= lineForOffset; lineForOffset2++) {
+                        i6 = Math.min(i6, (int) layout.getLineLeft(lineForOffset2));
+                        i7 = Math.max(i7, (int) layout.getLineRight(lineForOffset2));
                     }
+                    i3 = i6;
+                    i4 = i7;
+                } else {
+                    i3 = i;
+                    i4 = i2;
                 }
-                i = i7;
-                i2 = length;
-                textStyleSpanArr = textStyleSpanArr2;
-                i3 = lineEnd;
-                i4 = lineStart;
-                f = lineBottom;
-                f2 = lineTop;
-                i5 = i6;
-                i7 = i + 1;
-                lineBottom = f;
-                lineTop = f2;
-                length = i2;
-                textStyleSpanArr2 = textStyleSpanArr;
-                lineEnd = i3;
-                lineStart = i4;
-                i6 = i5;
+                addSpoilerRangesInternal(view, layout, i3, i4, spanStart, spanEnd, stack, list);
             }
-            i6++;
         }
         if (!(view instanceof TextView) || stack == null) {
             return;
@@ -543,58 +517,24 @@ public class SpoilerEffect extends Drawable {
         stack.clear();
     }
 
-    @SuppressLint({"WrongConstant"})
-    private static void addSpoilersInternal(View view, Spanned spanned, Layout layout, int i, int i2, float f, float f2, float f3, float f4, int i3, int i4, Stack<SpoilerEffect> stack, List<SpoilerEffect> list) {
-        int i5;
-        int i6;
-        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(AndroidUtilities.replaceNewLines(new SpannableStringBuilder(spanned, i3, i4)));
-        for (TextStyleSpan textStyleSpan : (TextStyleSpan[]) valueOf.getSpans(0, valueOf.length(), TextStyleSpan.class)) {
-            valueOf.removeSpan(textStyleSpan);
-        }
-        for (URLSpan uRLSpan : (URLSpan[]) valueOf.getSpans(0, valueOf.length(), URLSpan.class)) {
-            valueOf.removeSpan(uRLSpan);
-        }
-        if (valueOf.toString().trim().length() == 0) {
-            return;
-        }
-        int ellipsizedWidth = layout.getEllipsizedWidth() > 0 ? layout.getEllipsizedWidth() : layout.getWidth();
-        TextPaint textPaint = new TextPaint(layout.getPaint());
-        textPaint.setColor(-16777216);
-        if (Build.VERSION.SDK_INT >= 24) {
-            StaticLayout.Builder.obtain(valueOf, 0, valueOf.length(), textPaint, ellipsizedWidth).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).setLineSpacing(layout.getSpacingAdd(), layout.getSpacingMultiplier()).build();
-            i5 = 0;
-        } else {
-            i5 = 0;
-            new StaticLayout(valueOf, textPaint, ellipsizedWidth, Layout.Alignment.ALIGN_NORMAL, layout.getSpacingMultiplier(), layout.getSpacingAdd(), false);
-        }
-        boolean z = (LocaleController.isRTLCharacter(valueOf.charAt(i5)) || LocaleController.isRTLCharacter(valueOf.charAt(valueOf.length() + (-1)))) && !LocaleController.isRTL;
-        SpoilerEffect spoilerEffect = (stack == null || stack.isEmpty()) ? new SpoilerEffect() : stack.remove(i5);
+    private static void addSpoilerRangesInternal(final View view, final Layout layout, final int i, final int i2, int i3, int i4, final Stack<SpoilerEffect> stack, final List<SpoilerEffect> list) {
+        layout.getSelectionPath(i3, i4, new Path() {
+            @Override
+            public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
+                SpoilerEffect.addSpoilerRangeInternal(view, layout, f, f2, f3, f4, stack, list, i, i2);
+            }
+        });
+    }
+
+    public static void addSpoilerRangeInternal(View view, Layout layout, float f, float f2, float f3, float f4, Stack<SpoilerEffect> stack, List<SpoilerEffect> list, int i, int i2) {
+        SpoilerEffect spoilerEffect = (stack == null || stack.isEmpty()) ? new SpoilerEffect() : stack.remove(0);
         spoilerEffect.setRippleProgress(-1.0f);
-        float primaryHorizontal = i3 == i ? f : layout.getPrimaryHorizontal(i3);
-        float primaryHorizontal2 = (i4 == i2 || (z && i4 == (i6 = i2 + (-1)) && spanned.charAt(i6) == 8230)) ? f3 : layout.getPrimaryHorizontal(i4);
-        spoilerEffect.setBounds((int) Math.min(primaryHorizontal, primaryHorizontal2), (int) f2, (int) Math.max(primaryHorizontal, primaryHorizontal2), (int) f4);
+        spoilerEffect.setBounds((int) Math.max(f, i), (int) f2, (int) Math.min(f3, i2 <= 0 ? 2.14748365E9f : i2), (int) f4);
         spoilerEffect.setColor(layout.getPaint().getColor());
         spoilerEffect.setRippleInterpolator(Easings.easeInQuad);
         spoilerEffect.updateMaxParticles();
         if (view != null) {
             spoilerEffect.setParentView(view);
-        }
-        spoilerEffect.spaces.clear();
-        for (int i7 = 0; i7 < valueOf.length(); i7++) {
-            if (valueOf.charAt(i7) == ' ') {
-                RectF rectF = new RectF();
-                int i8 = i3 + i7;
-                int lineForOffset = layout.getLineForOffset(i8);
-                rectF.top = layout.getLineTop(lineForOffset);
-                rectF.bottom = layout.getLineBottom(lineForOffset);
-                float primaryHorizontal3 = layout.getPrimaryHorizontal(i8);
-                float primaryHorizontal4 = layout.getPrimaryHorizontal(i8 + 1);
-                rectF.left = (int) Math.min(primaryHorizontal3, primaryHorizontal4);
-                rectF.right = (int) Math.max(primaryHorizontal3, primaryHorizontal4);
-                if (Math.abs(primaryHorizontal3 - primaryHorizontal4) <= AndroidUtilities.dp(20.0f)) {
-                    spoilerEffect.spaces.add(rectF);
-                }
-            }
         }
         list.add(spoilerEffect);
     }

@@ -191,7 +191,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
         ImageView imageView = new ImageView(context);
         this.floatingButton = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor("chats_actionBackground"), Theme.getColor("chats_actionPressedBackground"));
+        Drawable createSimpleSelectorCircleDrawable = Theme.createSimpleSelectorCircleDrawable(AndroidUtilities.dp(56.0f), Theme.getColor(Theme.key_chats_actionBackground), Theme.getColor(Theme.key_chats_actionPressedBackground));
         int i3 = Build.VERSION.SDK_INT;
         if (i3 < 21) {
             Drawable mutate = context.getResources().getDrawable(R.drawable.floating_shadow).mutate();
@@ -201,7 +201,7 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             createSimpleSelectorCircleDrawable = combinedDrawable;
         }
         imageView.setBackgroundDrawable(createSimpleSelectorCircleDrawable);
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_actionIcon"), PorterDuff.Mode.MULTIPLY));
+        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_actionIcon), PorterDuff.Mode.MULTIPLY));
         imageView.setImageResource(R.drawable.floating_check);
         if (i3 >= 21) {
             StateListAnimator stateListAnimator = new StateListAnimator();
@@ -491,7 +491,8 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
             } else if (i != 5) {
                 ManageChatTextCell manageChatTextCell2 = new ManageChatTextCell(context);
                 manageChatTextCell2.setText(LocaleController.getString("VoipGroupCopyInviteLink", R.string.VoipGroupCopyInviteLink), null, R.drawable.msg_link, 7, true);
-                manageChatTextCell2.setColors("dialogTextBlue2", "dialogTextBlue2");
+                int i2 = Theme.key_dialogTextBlue2;
+                manageChatTextCell2.setColors(i2, i2);
                 manageChatTextCell = manageChatTextCell2;
             } else {
                 StickerEmptyView stickerEmptyView = new StickerEmptyView(this, context, null, 0) {
@@ -1086,8 +1087,8 @@ public class InviteMembersBottomSheet extends UsersAlertBase implements Notifica
                 if (view == InviteMembersBottomSheet.this.spansScrollView) {
                     canvas.save();
                     canvas.clipRect(0.0f, view.getY() - AndroidUtilities.dp(4.0f), getMeasuredWidth(), view.getY() + InviteMembersBottomSheet.this.scrollViewH + 1.0f);
-                    canvas.drawColor(ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), (int) (InviteMembersBottomSheet.this.spansEnterProgress * 255.0f)));
-                    this.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor("divider"), (int) (InviteMembersBottomSheet.this.spansEnterProgress * 255.0f)));
+                    canvas.drawColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), (int) (InviteMembersBottomSheet.this.spansEnterProgress * 255.0f)));
+                    this.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_divider), (int) (InviteMembersBottomSheet.this.spansEnterProgress * 255.0f)));
                     canvas.drawRect(0.0f, view.getY() + InviteMembersBottomSheet.this.scrollViewH, getMeasuredWidth(), view.getY() + InviteMembersBottomSheet.this.scrollViewH + 1.0f, this.paint);
                     boolean drawChild = super.drawChild(canvas, view, j);
                     canvas.restore();

@@ -13,6 +13,7 @@ import android.text.TextPaint;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -65,39 +66,39 @@ public class TimerDrawable extends Drawable {
             invalidateSelf();
             int i2 = this.time;
             if (i2 >= 1 && i2 < 60) {
-                str = "" + i;
+                str = BuildConfig.APP_CENTER_HASH + i;
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerSeconds", R.string.SecretChatTimerSeconds);
                 }
             } else if (i2 >= 60 && i2 < 3600) {
-                str = "" + (i / 60);
+                str = BuildConfig.APP_CENTER_HASH + (i / 60);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerMinutes", R.string.SecretChatTimerMinutes);
                 }
             } else if (i2 >= 3600 && i2 < 86400) {
-                str = "" + ((i / 60) / 60);
+                str = BuildConfig.APP_CENTER_HASH + ((i / 60) / 60);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerHours", R.string.SecretChatTimerHours);
                 }
             } else if (i2 >= 86400 && i2 < 604800) {
-                str = "" + (((i / 60) / 60) / 24);
+                str = BuildConfig.APP_CENTER_HASH + (((i / 60) / 60) / 24);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerDays", R.string.SecretChatTimerDays);
                 }
             } else if (i2 < 2678400) {
-                str = "" + ((((i / 60) / 60) / 24) / 7);
+                str = BuildConfig.APP_CENTER_HASH + ((((i / 60) / 60) / 24) / 7);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerWeeks", R.string.SecretChatTimerWeeks);
                 } else if (str.length() > 2) {
                     str = "c";
                 }
             } else if (i2 < 31449600) {
-                str = "" + ((((i / 60) / 60) / 24) / 30);
+                str = BuildConfig.APP_CENTER_HASH + ((((i / 60) / 60) / 24) / 30);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerMonths", R.string.SecretChatTimerMonths);
                 }
             } else {
-                str = "" + ((((i / 60) / 60) / 24) / 364);
+                str = BuildConfig.APP_CENTER_HASH + ((((i / 60) / 60) / 24) / 364);
                 if (str.length() < 2) {
                     str = str + LocaleController.getString("SecretChatTimerYears", R.string.SecretChatTimerYears);
                 }
@@ -149,16 +150,16 @@ public class TimerDrawable extends Drawable {
             this.timePaint.setColor(-1);
         } else if (!this.isStaticIcon) {
             if (!this.overrideColor) {
-                this.paint.setColor(Theme.getColor("actionBarDefault", this.resourcesProvider));
+                this.paint.setColor(Theme.getColor(Theme.key_actionBarDefault, this.resourcesProvider));
             }
-            this.timePaint.setColor(Theme.getColor("actionBarDefaultTitle", this.resourcesProvider));
+            this.timePaint.setColor(Theme.getColor(Theme.key_actionBarDefaultTitle, this.resourcesProvider));
         } else {
-            this.timePaint.setColor(Theme.getColor("actionBarDefaultSubmenuItemIcon", this.resourcesProvider));
+            this.timePaint.setColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon, this.resourcesProvider));
         }
         if (this.currentTtlIcon != null) {
             if (!this.isStaticIcon && !this.isDialog) {
                 canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, this.paint);
-                int color = Theme.getColor("actionBarDefaultTitle", this.resourcesProvider);
+                int color = Theme.getColor(Theme.key_actionBarDefaultTitle, this.resourcesProvider);
                 if (this.iconColor != color) {
                     this.iconColor = color;
                     this.currentTtlIcon.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
@@ -182,10 +183,9 @@ public class TimerDrawable extends Drawable {
             double width = getBounds().width() / 2;
             double ceil = Math.ceil(this.timeWidth / 2.0f);
             Double.isNaN(width);
-            double d2 = width - ceil;
-            double d3 = i;
-            Double.isNaN(d3);
-            canvas.translate((float) (d2 + d3), (getBounds().height() - this.timeHeight) / 2.0f);
+            double d2 = i;
+            Double.isNaN(d2);
+            canvas.translate((float) ((width - ceil) + d2), (getBounds().height() - this.timeHeight) / 2.0f);
             this.timeLayout.draw(canvas);
             return;
         }

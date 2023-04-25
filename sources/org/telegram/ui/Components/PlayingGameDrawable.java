@@ -85,7 +85,7 @@ public class PlayingGameDrawable extends StatusDrawable {
             intrinsicHeight += AndroidUtilities.dp(1.0f);
         }
         int i = intrinsicHeight;
-        this.paint.setColor(Theme.getColor(this.isDialogScreen ? "chats_actionMessage" : "chat_status", this.resourcesProvider));
+        this.paint.setColor(Theme.getColor(this.isDialogScreen ? Theme.key_chats_actionMessage : Theme.key_chat_status, this.resourcesProvider));
         this.rect.set(0.0f, i, dp, i + dp);
         float f = this.progress;
         int i2 = (int) (f < 0.5f ? (1.0f - (f / 0.5f)) * 35.0f : ((f - 0.5f) * 35.0f) / 0.5f);
@@ -105,7 +105,7 @@ public class PlayingGameDrawable extends StatusDrawable {
         }
         this.paint.setAlpha(255);
         canvas.drawArc(this.rect, i2, 360 - (i2 * 2), true, this.paint);
-        this.paint.setColor(Theme.getColor(this.isDialogScreen ? "windowBackgroundWhite" : "actionBarDefault"));
+        this.paint.setColor(Theme.getColor(this.isDialogScreen ? Theme.key_windowBackgroundWhite : Theme.key_actionBarDefault));
         canvas.drawCircle(AndroidUtilities.dp(4.0f), (i + (dp / 2)) - AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f), this.paint);
         checkUpdate();
     }

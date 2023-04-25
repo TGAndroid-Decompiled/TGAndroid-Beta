@@ -13,6 +13,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 public class OutlineTextContainerView extends FrameLayout {
     private EditText attachedEditText;
@@ -49,7 +50,7 @@ public class OutlineTextContainerView extends FrameLayout {
     public OutlineTextContainerView(Context context) {
         super(context);
         this.rect = new RectF();
-        this.mText = "";
+        this.mText = BuildConfig.APP_CENTER_HASH;
         this.outlinePaint = new Paint(1);
         this.textPaint = new TextPaint(1);
         this.selectionSpring = new SpringAnimation(this, SELECTION_PROGRESS_PROPERTY);
@@ -90,8 +91,11 @@ public class OutlineTextContainerView extends FrameLayout {
     }
 
     public void updateColor() {
-        this.textPaint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteHintText"), Theme.getColor("windowBackgroundWhiteValueText"), this.forceUseCenter ? 0.0f : this.selectionProgress), Theme.getColor("text_RedBold"), this.errorProgress));
-        setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteInputField"), Theme.getColor("windowBackgroundWhiteInputFieldActivated"), this.forceUseCenter ? 0.0f : this.selectionProgress), Theme.getColor("text_RedBold"), this.errorProgress));
+        int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteHintText), Theme.getColor(Theme.key_windowBackgroundWhiteValueText), this.forceUseCenter ? 0.0f : this.selectionProgress);
+        TextPaint textPaint = this.textPaint;
+        int i = Theme.key_text_RedBold;
+        textPaint.setColor(ColorUtils.blendARGB(blendARGB, Theme.getColor(i), this.errorProgress));
+        setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteInputField), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated), this.forceUseCenter ? 0.0f : this.selectionProgress), Theme.getColor(i), this.errorProgress));
     }
 
     public void animateSelection(float f) {

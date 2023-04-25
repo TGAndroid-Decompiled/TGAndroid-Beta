@@ -55,7 +55,7 @@ public class JoinGroupAlert extends BottomSheet {
         String str4;
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
-        fixNavigationBar(getThemedColor("windowBackgroundWhite"));
+        fixNavigationBar(getThemedColor(Theme.key_windowBackgroundWhite));
         this.fragment = baseFragment;
         if (tLObject instanceof TLRPC$ChatInvite) {
             this.chatInvite = (TLRPC$ChatInvite) tLObject;
@@ -72,8 +72,8 @@ public class JoinGroupAlert extends BottomSheet {
         nestedScrollView.addView(frameLayout);
         setCustomView(nestedScrollView);
         ImageView imageView = new ImageView(context);
-        imageView.setBackground(Theme.createSelectorDrawable(getThemedColor("listSelectorSDK21")));
-        imageView.setColorFilter(getThemedColor("key_sheet_other"));
+        imageView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
+        imageView.setColorFilter(getThemedColor(Theme.key_sheet_other));
         imageView.setImageResource(R.drawable.ic_layer_close);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +124,8 @@ public class JoinGroupAlert extends BottomSheet {
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 17.0f);
-        textView.setTextColor(getThemedColor("dialogTextBlack"));
+        int i4 = Theme.key_dialogTextBlack;
+        textView.setTextColor(getThemedColor(i4));
         textView.setText(r9);
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -135,7 +136,7 @@ public class JoinGroupAlert extends BottomSheet {
         if (i > 0) {
             TextView textView2 = new TextView(context);
             textView2.setTextSize(1, 14.0f);
-            textView2.setTextColor(getThemedColor("dialogTextGray3"));
+            textView2.setTextColor(getThemedColor(Theme.key_dialogTextGray3));
             textView2.setSingleLine(true);
             textView2.setEllipsize(TextUtils.TruncateAt.END);
             if (z) {
@@ -149,7 +150,7 @@ public class JoinGroupAlert extends BottomSheet {
             TextView textView3 = new TextView(context);
             textView3.setGravity(17);
             textView3.setText(str2);
-            textView3.setTextColor(getThemedColor("dialogTextBlack"));
+            textView3.setTextColor(getThemedColor(i4));
             textView3.setTextSize(1, 15.0f);
             linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2, 48, 24, 10, 24, 20));
         }
@@ -165,16 +166,18 @@ public class JoinGroupAlert extends BottomSheet {
                     recyclerListView.setHorizontalScrollBarEnabled(false);
                     recyclerListView.setVerticalScrollBarEnabled(false);
                     recyclerListView.setAdapter(new UsersAdapter(context));
-                    recyclerListView.setGlowColor(getThemedColor("dialogScrollGlow"));
+                    recyclerListView.setGlowColor(getThemedColor(Theme.key_dialogScrollGlow));
                     linearLayout.addView(recyclerListView, LayoutHelper.createLinear(-2, 90, 49, 0, 0, 0, 7));
                 }
                 View view = new View(context);
-                view.setBackgroundColor(getThemedColor("dialogShadowLine"));
+                view.setBackgroundColor(getThemedColor(Theme.key_dialogShadowLine));
                 linearLayout.addView(view, new LinearLayout.LayoutParams(-1, AndroidUtilities.getShadowHeight()));
                 PickerBottomLayout pickerBottomLayout = new PickerBottomLayout(context, false, resourcesProvider);
                 linearLayout.addView(pickerBottomLayout, LayoutHelper.createFrame(-1, 48, 83));
                 pickerBottomLayout.cancelButton.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-                pickerBottomLayout.cancelButton.setTextColor(getThemedColor("dialogTextBlue2"));
+                TextView textView4 = pickerBottomLayout.cancelButton;
+                int i5 = Theme.key_dialogTextBlue2;
+                textView4.setTextColor(getThemedColor(i5));
                 pickerBottomLayout.cancelButton.setText(LocaleController.getString("Cancel", R.string.Cancel).toUpperCase());
                 pickerBottomLayout.cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -185,7 +188,7 @@ public class JoinGroupAlert extends BottomSheet {
                 pickerBottomLayout.doneButton.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
                 pickerBottomLayout.doneButton.setVisibility(0);
                 pickerBottomLayout.doneButtonBadgeTextView.setVisibility(8);
-                pickerBottomLayout.doneButtonTextView.setTextColor(getThemedColor("dialogTextBlue2"));
+                pickerBottomLayout.doneButtonTextView.setTextColor(getThemedColor(i5));
                 TLRPC$ChatInvite tLRPC$ChatInvite6 = this.chatInvite;
                 if ((tLRPC$ChatInvite6.channel && !tLRPC$ChatInvite6.megagroup) || (ChatObject.isChannel(tLRPC$ChatInvite6.chat) && !this.chatInvite.chat.megagroup)) {
                     pickerBottomLayout.doneButtonTextView.setText(LocaleController.getString("ProfileJoinChannel", R.string.ProfileJoinChannel).toUpperCase());
@@ -206,17 +209,18 @@ public class JoinGroupAlert extends BottomSheet {
         linearLayout.addView(frameLayout2, LayoutHelper.createLinear(-1, -2));
         RadialProgressView radialProgressView = new RadialProgressView(getContext(), resourcesProvider);
         this.requestProgressView = radialProgressView;
-        radialProgressView.setProgressColor(getThemedColor("featuredStickers_addButton"));
+        int i6 = Theme.key_featuredStickers_addButton;
+        radialProgressView.setProgressColor(getThemedColor(i6));
         this.requestProgressView.setSize(AndroidUtilities.dp(32.0f));
         this.requestProgressView.setVisibility(4);
         frameLayout2.addView(this.requestProgressView, LayoutHelper.createFrame(48, 48, 17));
-        TextView textView4 = new TextView(getContext());
-        this.requestTextView = textView4;
-        textView4.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
+        TextView textView5 = new TextView(getContext());
+        this.requestTextView = textView5;
+        textView5.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), getThemedColor(i6), getThemedColor(Theme.key_featuredStickers_addButtonPressed)));
         this.requestTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.requestTextView.setGravity(17);
         this.requestTextView.setSingleLine(true);
-        TextView textView5 = this.requestTextView;
+        TextView textView6 = this.requestTextView;
         if (z) {
             i2 = R.string.RequestToJoinChannel;
             str3 = "RequestToJoinChannel";
@@ -224,8 +228,8 @@ public class JoinGroupAlert extends BottomSheet {
             i2 = R.string.RequestToJoinGroup;
             str3 = "RequestToJoinGroup";
         }
-        textView5.setText(LocaleController.getString(str3, i2));
-        this.requestTextView.setTextColor(getThemedColor("featuredStickers_buttonText"));
+        textView6.setText(LocaleController.getString(str3, i2));
+        this.requestTextView.setTextColor(getThemedColor(Theme.key_featuredStickers_buttonText));
         this.requestTextView.setTextSize(1, 15.0f);
         this.requestTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.requestTextView.setOnClickListener(new View.OnClickListener() {
@@ -235,9 +239,9 @@ public class JoinGroupAlert extends BottomSheet {
             }
         });
         frameLayout2.addView(this.requestTextView, LayoutHelper.createLinear(-1, 48, 8388611, 16, 0, 16, 0));
-        TextView textView6 = new TextView(getContext());
-        textView6.setGravity(17);
-        textView6.setTextSize(1, 14.0f);
+        TextView textView7 = new TextView(getContext());
+        textView7.setGravity(17);
+        textView7.setTextSize(1, 14.0f);
         if (z) {
             i3 = R.string.RequestToJoinChannelDescription;
             str4 = "RequestToJoinChannelDescription";
@@ -245,9 +249,9 @@ public class JoinGroupAlert extends BottomSheet {
             i3 = R.string.RequestToJoinGroupDescription;
             str4 = "RequestToJoinGroupDescription";
         }
-        textView6.setText(LocaleController.getString(str4, i3));
-        textView6.setTextColor(getThemedColor("dialogTextGray3"));
-        linearLayout.addView(textView6, LayoutHelper.createLinear(-1, -2, 48, 24, 17, 24, 15));
+        textView7.setText(LocaleController.getString(str4, i3));
+        textView7.setTextColor(getThemedColor(Theme.key_dialogTextGray3));
+        linearLayout.addView(textView7, LayoutHelper.createLinear(-1, -2, 48, 24, 17, 24, 15));
     }
 
     public void lambda$new$0(View view) {

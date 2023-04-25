@@ -17,7 +17,7 @@ public class AuthTokensHelper {
         }
         ArrayList<TLRPC$TL_auth_loggedOut> arrayList = new ArrayList<>();
         for (int i2 = 0; i2 < i; i2++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_out_token_" + i2, "")));
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_out_token_" + i2, BuildConfig.APP_CENTER_HASH)));
             TLRPC$TL_auth_loggedOut TLdeserialize = TLRPC$TL_auth_loggedOut.TLdeserialize(serializedData, serializedData.readInt32(true), true);
             if (TLdeserialize != null) {
                 arrayList.add(TLdeserialize);
@@ -54,7 +54,7 @@ public class AuthTokensHelper {
         }
         ArrayList<TLRPC$TL_auth_authorization> arrayList = new ArrayList<>();
         for (int i2 = 0; i2 < i; i2++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_in_token_" + i2, "")));
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("log_in_token_" + i2, BuildConfig.APP_CENTER_HASH)));
             TLRPC$auth_Authorization TLdeserialize = TLRPC$auth_Authorization.TLdeserialize(serializedData, serializedData.readInt32(true), true);
             if (TLdeserialize instanceof TLRPC$TL_auth_authorization) {
                 arrayList.add((TLRPC$TL_auth_authorization) TLdeserialize);

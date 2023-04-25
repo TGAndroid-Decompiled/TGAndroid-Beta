@@ -7,6 +7,6 @@ public final class LPhotoPaintView$$ExternalSyntheticLambda37 implements Runnabl
 
     @Override
     public final void run() {
-        LPhotoPaintView.lambda$shutdown$21();
+        LPhotoPaintView.lambda$shutdown$20();
     }
 }

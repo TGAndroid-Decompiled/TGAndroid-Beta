@@ -6,9 +6,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 public class NotificationCenter {
     private static final long EXPIRE_NOTIFICATIONS_TIME = 5017;
     private static volatile NotificationCenter[] Instance = new NotificationCenter[4];
@@ -265,7 +263,7 @@ public class NotificationCenter {
     private int broadcasting = 0;
     private int animationInProgressPointer = 1;
     HashSet<Integer> heavyOperationsCounter = new HashSet<>();
-    private final HashMap<Integer, AllowedNotifications> allowedNotifications = new HashMap<>();
+    private final SparseArray<AllowedNotifications> allowedNotifications = new SparseArray<>();
     SparseArray<Runnable> alreadyPostedRannubles = new SparseArray<>();
 
     public interface NotificationCenterDelegate {
@@ -1043,7 +1041,7 @@ public class NotificationCenter {
         }
         AllowedNotifications allowedNotifications = new AllowedNotifications();
         allowedNotifications.allowedIds = iArr;
-        this.allowedNotifications.put(Integer.valueOf(this.animationInProgressPointer), allowedNotifications);
+        this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
             NotificationCenter$$ExternalSyntheticLambda1 notificationCenter$$ExternalSyntheticLambda1 = new NotificationCenter$$ExternalSyntheticLambda1(this);
             this.checkForExpiredNotifications = notificationCenter$$ExternalSyntheticLambda1;
@@ -1055,25 +1053,25 @@ public class NotificationCenter {
     public void checkForExpiredNotifications() {
         ArrayList arrayList = null;
         this.checkForExpiredNotifications = null;
-        if (this.allowedNotifications.isEmpty()) {
+        if (this.allowedNotifications.size() == 0) {
             return;
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
         long j = Long.MAX_VALUE;
-        for (Map.Entry<Integer, AllowedNotifications> entry : this.allowedNotifications.entrySet()) {
-            long j2 = entry.getValue().time;
+        for (int i = 0; i < this.allowedNotifications.size(); i++) {
+            long j2 = this.allowedNotifications.valueAt(i).time;
             if (elapsedRealtime - j2 > 1000) {
                 if (arrayList == null) {
                     arrayList = new ArrayList();
                 }
-                arrayList.add(entry.getKey());
+                arrayList.add(Integer.valueOf(this.allowedNotifications.keyAt(i)));
             } else {
                 j = Math.min(j2, j);
             }
         }
         if (arrayList != null) {
-            for (int i = 0; i < arrayList.size(); i++) {
-                onAnimationFinish(((Integer) arrayList.get(i)).intValue());
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                onAnimationFinish(((Integer) arrayList.get(i2)).intValue());
             }
         }
         if (j != Long.MAX_VALUE) {
@@ -1091,14 +1089,16 @@ public class NotificationCenter {
     }
 
     public void updateAllowedNotifications(int i, int[] iArr) {
-        AllowedNotifications allowedNotifications = this.allowedNotifications.get(Integer.valueOf(i));
+        AllowedNotifications allowedNotifications = this.allowedNotifications.get(i);
         if (allowedNotifications != null) {
             allowedNotifications.allowedIds = iArr;
         }
     }
 
     public void onAnimationFinish(int i) {
-        if (this.allowedNotifications.remove(Integer.valueOf(i)) != null) {
+        AllowedNotifications allowedNotifications = this.allowedNotifications.get(i);
+        this.allowedNotifications.delete(i);
+        if (allowedNotifications != null) {
             this.animationInProgressCount--;
             if (!this.heavyOperationsCounter.isEmpty()) {
                 this.heavyOperationsCounter.remove(Integer.valueOf(i));
@@ -1110,7 +1110,7 @@ public class NotificationCenter {
                 runDelayedNotifications();
             }
         }
-        if (this.checkForExpiredNotifications == null || !this.allowedNotifications.isEmpty()) {
+        if (this.checkForExpiredNotifications == null || this.allowedNotifications.size() != 0) {
             return;
         }
         AndroidUtilities.cancelRunOnUIThread(this.checkForExpiredNotifications);
@@ -1155,31 +1155,31 @@ public class NotificationCenter {
     public void postNotificationName(int i, Object... objArr) {
         boolean z = i == startAllHeavyOperations || i == stopAllHeavyOperations || i == didReplacedPhotoInMemCache || i == closeChats || i == invalidateMotionBackground;
         ArrayList arrayList = null;
-        if (!z && !this.allowedNotifications.isEmpty()) {
+        if (!z && this.allowedNotifications.size() > 0) {
             int size = this.allowedNotifications.size();
             long elapsedRealtime = SystemClock.elapsedRealtime();
             int i2 = 0;
-            for (Map.Entry<Integer, AllowedNotifications> entry : this.allowedNotifications.entrySet()) {
-                AllowedNotifications value = entry.getValue();
-                if (elapsedRealtime - value.time > EXPIRE_NOTIFICATIONS_TIME) {
+            for (int i3 = 0; i3 < this.allowedNotifications.size(); i3++) {
+                AllowedNotifications valueAt = this.allowedNotifications.valueAt(i3);
+                if (elapsedRealtime - valueAt.time > EXPIRE_NOTIFICATIONS_TIME) {
                     if (arrayList == null) {
                         arrayList = new ArrayList();
                     }
-                    arrayList.add(entry.getKey());
+                    arrayList.add(Integer.valueOf(this.allowedNotifications.keyAt(i3)));
                 }
-                int[] iArr = value.allowedIds;
+                int[] iArr = valueAt.allowedIds;
                 if (iArr == null) {
                     break;
                 }
-                int i3 = 0;
+                int i4 = 0;
                 while (true) {
-                    if (i3 >= iArr.length) {
+                    if (i4 >= iArr.length) {
                         break;
-                    } else if (iArr[i3] == i) {
+                    } else if (iArr[i4] == i) {
                         i2++;
                         break;
                     } else {
-                        i3++;
+                        i4++;
                     }
                 }
             }
@@ -1196,8 +1196,8 @@ public class NotificationCenter {
             postNotificationNameInternal(i, z, objArr);
         }
         if (arrayList != null) {
-            for (int i4 = 0; i4 < arrayList.size(); i4++) {
-                onAnimationFinish(((Integer) arrayList.get(i4)).intValue());
+            for (int i5 = 0; i5 < arrayList.size(); i5++) {
+                onAnimationFinish(((Integer) arrayList.get(i5)).intValue());
             }
         }
     }

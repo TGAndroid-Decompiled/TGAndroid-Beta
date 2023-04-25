@@ -40,9 +40,9 @@ public class RadioCell extends FrameLayout {
         TextView textView = new TextView(context);
         this.textView = textView;
         if (z) {
-            textView.setTextColor(Theme.getColor("dialogTextBlack", resourcesProvider));
+            textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, resourcesProvider));
         } else {
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         }
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
@@ -56,9 +56,9 @@ public class RadioCell extends FrameLayout {
         this.radioButton = radioButton;
         radioButton.setSize(AndroidUtilities.dp(20.0f));
         if (z) {
-            this.radioButton.setColor(Theme.getColor("dialogRadioBackground", resourcesProvider), Theme.getColor("dialogRadioBackgroundChecked", resourcesProvider));
+            this.radioButton.setColor(Theme.getColor(Theme.key_dialogRadioBackground, resourcesProvider), Theme.getColor(Theme.key_dialogRadioBackgroundChecked, resourcesProvider));
         } else {
-            this.radioButton.setColor(Theme.getColor("radioBackground", resourcesProvider), Theme.getColor("radioBackgroundChecked", resourcesProvider));
+            this.radioButton.setColor(Theme.getColor(Theme.key_radioBackground, resourcesProvider), Theme.getColor(Theme.key_radioBackgroundChecked, resourcesProvider));
         }
         RadioButton radioButton2 = this.radioButton;
         boolean z2 = LocaleController.isRTL;

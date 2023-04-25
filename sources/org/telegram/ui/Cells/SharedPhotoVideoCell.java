@@ -110,7 +110,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
             CheckBox2 checkBox2 = new CheckBox2(context, 21);
             this.checkBox = checkBox2;
             checkBox2.setVisibility(4);
-            this.checkBox.setColor(null, "sharedMedia_photoPlaceholder", "checkboxCheck");
+            this.checkBox.setColor(-1, Theme.key_sharedMedia_photoPlaceholder, Theme.key_checkboxCheck);
             this.checkBox.setDrawUnchecked(false);
             this.checkBox.setDrawBackgroundAsArc(1);
             addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 1.0f, 1.0f, 0.0f));
@@ -268,7 +268,7 @@ public class SharedPhotoVideoCell extends FrameLayout {
         this.backgroundPaint = paint;
         this.currentAccount = UserConfig.selectedAccount;
         this.type = i;
-        paint.setColor(Theme.getColor("sharedMedia_photoPlaceholder"));
+        paint.setColor(Theme.getColor(Theme.key_sharedMedia_photoPlaceholder));
         this.messageObjects = new MessageObject[6];
         this.photoVideoViews = new PhotoVideoView[6];
         this.indeces = new int[6];

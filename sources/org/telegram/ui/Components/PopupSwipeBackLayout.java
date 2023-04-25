@@ -18,7 +18,7 @@ import android.widget.FrameLayout;
 import androidx.core.view.GestureDetectorCompat;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.ActionBarMenuSlider;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -39,7 +39,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
     float lastTransitionProgress;
     private Path mPath;
     private RectF mRect;
-    private int notificationIndex;
+    private AnimationNotificationsLocker notificationsLocker;
     private IntCallback onHeightUpdateListener;
     private ArrayList<OnSwipeBackProgressListener> onSwipeBackProgressListeners;
     private Paint overlayPaint;
@@ -68,6 +68,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
         this.mRect = new RectF();
         this.onSwipeBackProgressListeners = new ArrayList<>();
         this.currentForegroundIndex = -1;
+        this.notificationsLocker = new AnimationNotificationsLocker();
         this.lastHeightReported = -1;
         this.hitRect = new android.graphics.Rect();
         this.resourcesProvider = resourcesProvider;
@@ -129,7 +130,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
         if (indexOfChild != 0) {
             int i = this.foregroundColor;
             if (i == 0) {
-                this.foregroundPaint.setColor(Theme.getColor("actionBarDefaultSubmenuBackground", this.resourcesProvider));
+                this.foregroundPaint.setColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, this.resourcesProvider));
             } else {
                 this.foregroundPaint.setColor(i);
             }
@@ -266,8 +267,8 @@ public class PopupSwipeBackLayout extends FrameLayout {
     public void animateToState(final float f, float f2) {
         ValueAnimator duration = ValueAnimator.ofFloat(this.transitionProgress, f).setDuration(Math.max(0.5f, Math.abs(this.transitionProgress - f) - Math.min(0.2f, f2)) * 300.0f);
         duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
-        final int i = UserConfig.selectedAccount;
-        this.notificationIndex = NotificationCenter.getInstance(i).setAnimationInProgress(this.notificationIndex, null);
+        int i = UserConfig.selectedAccount;
+        this.notificationsLocker.lock();
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -283,7 +284,7 @@ public class PopupSwipeBackLayout extends FrameLayout {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                NotificationCenter.getInstance(i).onAnimationFinish(PopupSwipeBackLayout.this.notificationIndex);
+                PopupSwipeBackLayout.this.notificationsLocker.unlock();
                 PopupSwipeBackLayout popupSwipeBackLayout = PopupSwipeBackLayout.this;
                 float f3 = f;
                 popupSwipeBackLayout.transitionProgress = f3;

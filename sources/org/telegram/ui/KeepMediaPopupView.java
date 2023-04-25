@@ -54,7 +54,8 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.forever = ActionBarMenuItem.addItem(this, R.drawable.msg_cancel, LocaleController.getString("AutoDeleteMediaNever", R.string.AutoDeleteMediaNever), false, null);
         ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(this, R.drawable.msg_delete, LocaleController.getString("DeleteException", R.string.DeleteException), false, null);
         this.delete = addItem;
-        addItem.setColors(Theme.getColor("text_RedRegular"), Theme.getColor("text_RedRegular"));
+        int i = Theme.key_text_RedRegular;
+        addItem.setColors(Theme.getColor(i), Theme.getColor(i));
         this.checkItems.add(new CheckItem(this.oneDay, CacheByChatsController.KEEP_MEDIA_ONE_DAY));
         this.checkItems.add(new CheckItem(this.oneWeek, CacheByChatsController.KEEP_MEDIA_ONE_WEEK));
         this.checkItems.add(new CheckItem(this.oneMonth, CacheByChatsController.KEEP_MEDIA_ONE_MONTH));
@@ -62,9 +63,9 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.checkItems.add(new CheckItem(this.delete, CacheByChatsController.KEEP_MEDIA_DELETE));
         FrameLayout frameLayout = new FrameLayout(context);
         this.gap = frameLayout;
-        frameLayout.setBackgroundColor(Theme.getColor("actionBarDefaultSubmenuSeparator"));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator));
         View view = new View(context);
-        view.setBackground(Theme.getThemedDrawable(context, R.drawable.greydivider, "windowBackgroundGrayShadow", null));
+        view.setBackground(Theme.getThemedDrawable(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow, null));
         this.gap.addView(view, LayoutHelper.createFrame(-1, -1.0f));
         this.gap.setTag(R.id.fit_width_tag, 1);
         addView(this.gap, LayoutHelper.createLinear(-1, 8));
@@ -77,12 +78,12 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
                 KeepMediaPopupView.this.lambda$new$2(baseFragment, view2);
             }
         });
-        for (int i = 0; i < this.checkItems.size(); i++) {
-            final int i2 = this.checkItems.get(i).type;
-            this.checkItems.get(i).item.setOnClickListener(new View.OnClickListener() {
+        for (int i2 = 0; i2 < this.checkItems.size(); i2++) {
+            final int i3 = this.checkItems.get(i2).type;
+            this.checkItems.get(i2).item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    KeepMediaPopupView.this.lambda$new$3(i2, view2);
+                    KeepMediaPopupView.this.lambda$new$3(i3, view2);
                 }
             });
         }
@@ -91,9 +92,9 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         linksTextView.setTag(R.id.fit_width_tag, 1);
         linksTextView.setPadding(AndroidUtilities.dp(13.0f), 0, AndroidUtilities.dp(13.0f), AndroidUtilities.dp(8.0f));
         linksTextView.setTextSize(1, 13.0f);
-        linksTextView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
+        linksTextView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
         linksTextView.setMovementMethod(LinkMovementMethod.getInstance());
-        linksTextView.setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText"));
+        linksTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText));
         linksTextView.setText(LocaleController.getString("KeepMediaPopupDescription", R.string.KeepMediaPopupDescription));
         addView((View) linksTextView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 8, 0, 0));
     }
@@ -230,7 +231,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
             simpleTextView.setTextSize(16);
             this.titleView.setEllipsizeByGradient(true);
             this.titleView.setRightPadding(AndroidUtilities.dp(68.0f));
-            this.titleView.setTextColor(Theme.getColor("dialogTextBlack"));
+            this.titleView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
             addView(this.titleView, LayoutHelper.createFrame(0, -2.0f, 19, 19.0f, 0.0f, 19.0f, 0.0f));
             AvatarsImageView avatarsImageView = new AvatarsImageView(context, false);
             this.avatarsImageView = avatarsImageView;
@@ -238,7 +239,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
             this.avatarsImageView.setStyle(11);
             this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
             addView(this.avatarsImageView, LayoutHelper.createFrame(56, -1.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
-            setBackground(Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21"), 0, 4));
+            setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector), 0, 4));
         }
 
         @Override

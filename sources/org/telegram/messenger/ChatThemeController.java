@@ -18,6 +18,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$MessageAction;
 import org.telegram.tgnet.TLRPC$TL_account_getChatThemes;
 import org.telegram.tgnet.TLRPC$TL_error;
@@ -81,20 +82,17 @@ public class ChatThemeController extends BaseController {
         if (themesHash == 0 || lastReloadTimeMs == 0) {
             init();
         }
-        boolean z2 = System.currentTimeMillis() - lastReloadTimeMs > reloadTimeoutMs;
+        System.currentTimeMillis();
+        TLRPC$TL_account_getChatThemes tLRPC$TL_account_getChatThemes = new TLRPC$TL_account_getChatThemes();
+        tLRPC$TL_account_getChatThemes.hash = themesHash;
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_account_getChatThemes, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                ChatThemeController.lambda$requestAllChatThemes$3(ResultCallback.this, z, tLObject, tLRPC$TL_error);
+            }
+        });
         List<EmojiThemes> list = allChatThemes;
-        if (list == null || list.isEmpty() || z2) {
-            TLRPC$TL_account_getChatThemes tLRPC$TL_account_getChatThemes = new TLRPC$TL_account_getChatThemes();
-            tLRPC$TL_account_getChatThemes.hash = themesHash;
-            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_account_getChatThemes, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    ChatThemeController.lambda$requestAllChatThemes$3(ResultCallback.this, z, tLObject, tLRPC$TL_error);
-                }
-            });
-        }
-        List<EmojiThemes> list2 = allChatThemes;
-        if (list2 == null || list2.isEmpty()) {
+        if (list == null || list.isEmpty()) {
             return;
         }
         ArrayList<EmojiThemes> arrayList = new ArrayList(allChatThemes);
@@ -138,7 +136,7 @@ public class ChatThemeController extends BaseController {
         int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
         ArrayList arrayList = new ArrayList(i);
         for (int i2 = 0; i2 < i; i2++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, BuildConfig.APP_CENTER_HASH)));
             try {
                 TLRPC$TL_theme TLdeserialize = TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true);
                 if (TLdeserialize != null) {
@@ -222,12 +220,25 @@ public class ChatThemeController extends BaseController {
         } else {
             this.dialogEmoticonsMap.put(j, str);
         }
+        if (j >= 0) {
+            TLRPC$UserFull userFull = getMessagesController().getUserFull(j);
+            if (userFull != null) {
+                userFull.theme_emoticon = str;
+                getMessagesStorage().updateUserInfo(userFull, true);
+            }
+        } else {
+            TLRPC$ChatFull chatFull = getMessagesController().getChatFull(-j);
+            if (chatFull != null) {
+                chatFull.theme_emoticon = str;
+                getMessagesStorage().updateChatInfo(chatFull, true);
+            }
+        }
         SharedPreferences.Editor edit = getEmojiSharedPreferences().edit();
         edit.putString("chatTheme_" + this.currentAccount + "_" + j, str).apply();
         if (z) {
             TLRPC$TL_messages_setChatTheme tLRPC$TL_messages_setChatTheme = new TLRPC$TL_messages_setChatTheme();
             if (str == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             tLRPC$TL_messages_setChatTheme.emoticon = str;
             tLRPC$TL_messages_setChatTheme.peer = getMessagesController().getInputPeer(j);
@@ -386,7 +397,7 @@ public class ChatThemeController extends BaseController {
         getSharedPreferences().edit().clear().apply();
     }
 
-    public void clearWallpaper(long j) {
+    public void clearWallpaper(long j, boolean z) {
         TLRPC$TL_messages_setChatWallPaper tLRPC$TL_messages_setChatWallPaper = new TLRPC$TL_messages_setChatWallPaper();
         if (j > 0) {
             tLRPC$TL_messages_setChatWallPaper.peer = MessagesController.getInputPeer(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j)));
@@ -397,7 +408,9 @@ public class ChatThemeController extends BaseController {
                 getMessagesStorage().updateUserInfo(userFull, false);
             }
             saveChatWallpaper(j, null);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
+            if (z) {
+                NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
+            }
         } else {
             tLRPC$TL_messages_setChatWallPaper.peer = MessagesController.getInputPeer(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)));
         }
@@ -448,7 +461,22 @@ public class ChatThemeController extends BaseController {
                 int i4 = i3 | 32;
                 tLRPC$WallPaperSettings.flags = i4;
                 tLRPC$WallPaperSettings.flags = i4 | 64;
-                userFull.wallpaper = tLRPC$TL_messageActionSetChatWallPaper.wallpaper;
+                TLRPC$TL_wallPaper tLRPC$TL_wallPaper2 = new TLRPC$TL_wallPaper();
+                userFull.wallpaper = tLRPC$TL_wallPaper2;
+                TLRPC$WallPaper tLRPC$WallPaper3 = tLRPC$TL_messageActionSetChatWallPaper.wallpaper;
+                tLRPC$TL_wallPaper2.pattern = tLRPC$WallPaper3.pattern;
+                tLRPC$TL_wallPaper2.id = tLRPC$WallPaper3.id;
+                tLRPC$TL_wallPaper2.document = tLRPC$WallPaper3.document;
+                int i5 = tLRPC$WallPaper3.flags;
+                tLRPC$TL_wallPaper2.flags = i5;
+                tLRPC$TL_wallPaper2.creator = tLRPC$WallPaper3.creator;
+                tLRPC$TL_wallPaper2.dark = tLRPC$WallPaper3.dark;
+                tLRPC$TL_wallPaper2.isDefault = tLRPC$WallPaper3.isDefault;
+                tLRPC$TL_wallPaper2.slug = tLRPC$WallPaper3.slug;
+                tLRPC$TL_wallPaper2.access_hash = tLRPC$WallPaper3.access_hash;
+                tLRPC$TL_wallPaper2.stripedThumb = tLRPC$WallPaper3.stripedThumb;
+                tLRPC$TL_wallPaper2.settings = tLRPC$TL_wallPaper.settings;
+                tLRPC$TL_wallPaper2.flags = i5 | 4;
                 userFull.flags |= ConnectionsManager.FileTypePhoto;
                 getMessagesStorage().updateUserInfo(userFull, false);
                 NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);

@@ -41,7 +41,8 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         linearLayout.addView(stickerImageView, LayoutHelper.createLinear(144, 144, 1, 0, 16, 0, 0));
         TextView textView = new TextView(parentActivity);
         textView.setGravity(8388611);
-        textView.setTextColor(Theme.getColor("dialogTextBlack"));
+        int i = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.getColor(i));
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setText(LocaleController.getString("SuggestClearDatabaseTitle", R.string.SuggestClearDatabaseTitle));
@@ -49,7 +50,7 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         TextView textView2 = new TextView(parentActivity);
         textView2.setGravity(8388611);
         textView2.setTextSize(1, 15.0f);
-        textView2.setTextColor(Theme.getColor("dialogTextBlack"));
+        textView2.setTextColor(Theme.getColor(i));
         textView2.setText(AndroidUtilities.replaceTags(LocaleController.formatString("SuggestClearDatabaseMessage", R.string.SuggestClearDatabaseMessage, AndroidUtilities.formatFileSize(baseFragment.getMessagesStorage().getDatabaseSize()))));
         linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
         TextView textView3 = new TextView(parentActivity);
@@ -58,8 +59,8 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView3.setText(LocaleController.getString("ClearLocalDatabase", R.string.ClearLocalDatabase));
-        textView3.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        textView3.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("featuredStickers_addButton"), ColorUtils.setAlphaComponent(Theme.getColor("windowBackgroundWhite"), 120)));
+        textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+        textView3.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_featuredStickers_addButton), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
         linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +88,7 @@ public class SuggestClearDatabaseBottomSheet extends BottomSheet {
         baseFragment.showDialog(create);
         TextView textView = (TextView) create.getButton(-1);
         if (textView != null) {
-            textView.setTextColor(Theme.getColor("text_RedBold"));
+            textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
         }
     }
 

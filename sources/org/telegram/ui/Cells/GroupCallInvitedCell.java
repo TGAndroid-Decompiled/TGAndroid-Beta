@@ -24,7 +24,7 @@ public class GroupCallInvitedCell extends FrameLayout {
     private BackupImageView avatarImageView;
     private TLRPC$User currentUser;
     private Paint dividerPaint;
-    private String grayIconColor;
+    private int grayIconColor;
     private ImageView muteButton;
     private SimpleTextView nameTextView;
     private boolean needDivider;
@@ -37,10 +37,10 @@ public class GroupCallInvitedCell extends FrameLayout {
 
     public GroupCallInvitedCell(Context context) {
         super(context);
-        this.grayIconColor = "voipgroup_mutedIcon";
+        this.grayIconColor = Theme.key_voipgroup_mutedIcon;
         Paint paint = new Paint();
         this.dividerPaint = paint;
-        paint.setColor(Theme.getColor("voipgroup_actionBar"));
+        paint.setColor(Theme.getColor(Theme.key_voipgroup_actionBar));
         this.avatarDrawable = new AvatarDrawable();
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
@@ -50,7 +50,7 @@ public class GroupCallInvitedCell extends FrameLayout {
         addView(backupImageView2, LayoutHelper.createFrame(46, 46.0f, (z ? 5 : 3) | 48, z ? 0.0f : 11.0f, 6.0f, z ? 11.0f : 0.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
-        simpleTextView.setTextColor(Theme.getColor("voipgroup_nameText"));
+        simpleTextView.setTextColor(Theme.getColor(Theme.key_voipgroup_nameText));
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setTextSize(16);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
@@ -96,13 +96,11 @@ public class GroupCallInvitedCell extends FrameLayout {
         invalidate();
     }
 
-    public void setGrayIconColor(String str, int i) {
-        if (!this.grayIconColor.equals(str)) {
-            this.grayIconColor = str;
-        }
-        this.muteButton.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-        this.statusTextView.setTextColor(i);
-        Theme.setSelectorDrawableColor(this.muteButton.getDrawable(), i & 620756991, true);
+    public void setGrayIconColor(int i, int i2) {
+        this.grayIconColor = i;
+        this.muteButton.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.MULTIPLY));
+        this.statusTextView.setTextColor(i2);
+        Theme.setSelectorDrawableColor(this.muteButton.getDrawable(), i2 & 620756991, true);
     }
 
     public TLRPC$User getUser() {

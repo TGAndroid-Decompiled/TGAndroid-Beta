@@ -20,6 +20,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -61,7 +63,6 @@ import org.telegram.ui.Components.ReplaceableIconDrawable;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.TopicCreateFragment;
 public class TopicCreateFragment extends BaseFragment {
-    int animationIndex;
     BackupImageView[] backupImageView;
     long chatId;
     TextCheckCell2 checkBoxCell;
@@ -71,6 +72,7 @@ public class TopicCreateFragment extends BaseFragment {
     String firstSymbol;
     ForumBubbleDrawable forumBubbleDrawable;
     int iconColor;
+    AnimationNotificationsLocker notificationsLocker;
     ReplaceableIconDrawable replaceableIconDrawable;
     SelectAnimatedEmojiDialog selectAnimatedEmojiDialog;
     long selectedEmojiDocumentId;
@@ -87,8 +89,8 @@ public class TopicCreateFragment extends BaseFragment {
     private TopicCreateFragment(Bundle bundle) {
         super(bundle);
         this.backupImageView = new BackupImageView[2];
-        this.firstSymbol = "";
-        this.animationIndex = 0;
+        this.firstSymbol = BuildConfig.APP_CENTER_HASH;
+        this.notificationsLocker = new AnimationNotificationsLocker();
     }
 
     @Override
@@ -156,8 +158,8 @@ public class TopicCreateFragment extends BaseFragment {
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.editTextBoldCursor = editTextBoldCursor;
         editTextBoldCursor.setHintText(LocaleController.getString("EnterTopicName", R.string.EnterTopicName));
-        this.editTextBoldCursor.setHintColor(getThemedColor("chat_messagePanelHint"));
-        this.editTextBoldCursor.setTextColor(getThemedColor("chat_messagePanelText"));
+        this.editTextBoldCursor.setHintColor(getThemedColor(Theme.key_chat_messagePanelHint));
+        this.editTextBoldCursor.setTextColor(getThemedColor(Theme.key_chat_messagePanelText));
         this.editTextBoldCursor.setPadding(AndroidUtilities.dp(0.0f), this.editTextBoldCursor.getPaddingTop(), AndroidUtilities.dp(0.0f), this.editTextBoldCursor.getPaddingBottom());
         this.editTextBoldCursor.setBackgroundDrawable(null);
         this.editTextBoldCursor.setSingleLine(true);
@@ -180,7 +182,7 @@ public class TopicCreateFragment extends BaseFragment {
                 if (trim.length() > 0) {
                     TopicCreateFragment.this.firstSymbol = trim.substring(0, 1).toUpperCase();
                 } else {
-                    TopicCreateFragment.this.firstSymbol = "";
+                    TopicCreateFragment.this.firstSymbol = BuildConfig.APP_CENTER_HASH;
                 }
                 if (str.equals(TopicCreateFragment.this.firstSymbol)) {
                     return;
@@ -208,7 +210,9 @@ public class TopicCreateFragment extends BaseFragment {
         linearLayout.addView(headerCell);
         linearLayout.addView(frameLayout);
         FrameLayout frameLayout2 = new FrameLayout(context);
-        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(context, R.drawable.greydivider_top, Theme.getColor("windowBackgroundGrayShadow")), 0, 0);
+        int i2 = R.drawable.greydivider_top;
+        int i3 = Theme.key_windowBackgroundGrayShadow;
+        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(context, i2, Theme.getColor(i3)), 0, 0);
         combinedDrawable.setFullsize(true);
         frameLayout2.setBackgroundDrawable(combinedDrawable);
         frameLayout2.setClipChildren(false);
@@ -218,8 +222,8 @@ public class TopicCreateFragment extends BaseFragment {
                 private boolean firstLayout = true;
 
                 @Override
-                protected void onLayout(boolean z, int i2, int i3, int i4, int i5) {
-                    super.onLayout(z, i2, i3, i4, i5);
+                protected void onLayout(boolean z, int i4, int i5, int i6, int i7) {
+                    super.onLayout(z, i4, i5, i6, i7);
                     if (this.firstLayout) {
                         this.firstLayout = false;
                         TopicCreateFragment.this.selectAnimatedEmojiDialog.onShow(null);
@@ -242,7 +246,7 @@ public class TopicCreateFragment extends BaseFragment {
             selectAnimatedEmojiDialog.setAnimationsEnabled(this.fragmentBeginToShow);
             this.selectAnimatedEmojiDialog.setClipChildren(false);
             frameLayout2.addView(this.selectAnimatedEmojiDialog, LayoutHelper.createFrame(-1, -1.0f, 0, 12.0f, 12.0f, 12.0f, 12.0f));
-            Drawable createTopicDrawable = ForumUtilities.createTopicDrawable("", this.iconColor);
+            Drawable createTopicDrawable = ForumUtilities.createTopicDrawable(BuildConfig.APP_CENTER_HASH, this.iconColor);
             this.forumBubbleDrawable = (ForumBubbleDrawable) ((CombinedDrawable) createTopicDrawable).getBackgroundDrawable();
             this.replaceableIconDrawable = new ReplaceableIconDrawable(context);
             CombinedDrawable combinedDrawable2 = new CombinedDrawable(createTopicDrawable, this.replaceableIconDrawable, 0, 0);
@@ -259,14 +263,14 @@ public class TopicCreateFragment extends BaseFragment {
         } else {
             ImageView imageView = new ImageView(context);
             imageView.setImageResource(R.drawable.msg_filled_general);
-            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_inMenu"), PorterDuff.Mode.MULTIPLY));
+            imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_chat_inMenu), PorterDuff.Mode.MULTIPLY));
             anonymousClass4.addView(imageView, LayoutHelper.createFrame(22, 22, 17));
             frameLayout2.addView(new ActionBarPopupWindow.GapView(context, getResourceProvider()), LayoutHelper.createFrame(-1, 8.0f));
             TextCheckCell2 textCheckCell2 = new TextCheckCell2(context);
             this.checkBoxCell = textCheckCell2;
             textCheckCell2.getCheckBox().setDrawIconType(0);
             this.checkBoxCell.setTextAndCheck(LocaleController.getString("EditTopicHide", R.string.EditTopicHide), !this.topicForEdit.hidden, false);
-            this.checkBoxCell.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor("windowBackgroundWhite"), getThemedColor("listSelectorSDK21")));
+            this.checkBoxCell.setBackground(Theme.createSelectorWithBackgroundDrawable(getThemedColor(Theme.key_windowBackgroundWhite), getThemedColor(Theme.key_listSelector)));
             this.checkBoxCell.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -276,7 +280,7 @@ public class TopicCreateFragment extends BaseFragment {
             frameLayout2.addView(this.checkBoxCell, LayoutHelper.createFrame(-1, 50.0f, 48, 0.0f, 8.0f, 0.0f, 0.0f));
             TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
             textInfoPrivacyCell.setText(LocaleController.getString("EditTopicHideInfo", R.string.EditTopicHideInfo));
-            textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(getContext(), R.drawable.greydivider_bottom, "windowBackgroundGrayShadow", getResourceProvider()));
+            textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(getContext(), R.drawable.greydivider_bottom, i3, getResourceProvider()));
             frameLayout2.addView(textInfoPrivacyCell, LayoutHelper.createFrame(-1, -2.0f, 48, 0.0f, 58.0f, 0.0f, 0.0f));
         }
         linearLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, -1.0f));
@@ -500,7 +504,7 @@ public class TopicCreateFragment extends BaseFragment {
     public void onTransitionAnimationStart(boolean z, boolean z2) {
         super.onTransitionAnimationStart(z, z2);
         if (z) {
-            this.animationIndex = getNotificationCenter().setAnimationInProgress(this.animationIndex, null);
+            this.notificationsLocker.lock();
         }
     }
 
@@ -510,7 +514,7 @@ public class TopicCreateFragment extends BaseFragment {
         if (!z && this.created) {
             removeSelfFromStack();
         }
-        getNotificationCenter().onAnimationFinish(this.animationIndex);
+        this.notificationsLocker.unlock();
         SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = this.selectAnimatedEmojiDialog;
         if (selectAnimatedEmojiDialog != null) {
             selectAnimatedEmojiDialog.setAnimationsEnabled(this.fragmentBeginToShow);

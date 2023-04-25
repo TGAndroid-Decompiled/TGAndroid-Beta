@@ -22,6 +22,7 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
@@ -527,13 +528,13 @@ public class AnimatedEmojiDrawable extends Drawable {
                 if ("video/webm".equals(this.document.mime_type)) {
                     obj2 = ImageLocation.getForDocument(this.document);
                     str2 = str2 + "_" + ImageLoader.AUTOPLAY_FILTER;
-                    obj = DocumentObject.getSvgThumb(this.document.thumbs, "windowBackgroundWhiteGrayIcon", 0.2f);
+                    obj = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
                 } else if ("application/x-tgsticker".equals(this.document.mime_type)) {
                     StringBuilder sb = new StringBuilder();
                     if (this.cacheType != 0) {
                         str = this.cacheType + "_";
                     } else {
-                        str = "";
+                        str = BuildConfig.APP_CENTER_HASH;
                     }
                     sb.append(str);
                     sb.append(this.documentId);
@@ -541,17 +542,16 @@ public class AnimatedEmojiDrawable extends Drawable {
                     sb.append(str2);
                     String sb2 = sb.toString();
                     if (SharedConfig.getDevicePerformanceClass() != 0 || this.cacheType == 2 || !ImageLoader.getInstance().hasLottieMemCache(sb2)) {
-                        ?? svgThumb = DocumentObject.getSvgThumb(this.document.thumbs, "windowBackgroundWhiteGrayIcon", 0.2f);
+                        ?? svgThumb = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
                         if (svgThumb != 0 && MessageObject.isAnimatedStickerDocument(this.document, true)) {
                             svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
                         }
                         obj2 = svgThumb;
                     }
-                    Object obj3 = obj2;
+                    obj = obj2;
                     obj2 = ImageLocation.getForDocument(this.document);
-                    obj = obj3;
                 } else {
-                    ?? svgThumb2 = DocumentObject.getSvgThumb(this.document.thumbs, "windowBackgroundWhiteGrayIcon", 0.2f);
+                    ?? svgThumb2 = DocumentObject.getSvgThumb(this.document.thumbs, Theme.key_windowBackgroundWhiteGrayIcon, 0.2f);
                     obj = svgThumb2;
                     if (svgThumb2 != 0) {
                         obj = svgThumb2;

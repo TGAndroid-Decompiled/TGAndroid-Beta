@@ -16,6 +16,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -136,7 +137,8 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         this.resourcesProvider = resourcesProvider;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.linkImageView = imageReceiver;
-        imageReceiver.setLayerNum(1);
+        imageReceiver.setAllowLoadingOnAttachedOnly(true);
+        this.linkImageView.setLayerNum(1);
         this.linkImageView.setUseSharedAnimationQueue(true);
         this.letterDrawable = new LetterDrawable(resourcesProvider, 0);
         this.radialProgress = new RadialProgress2(this);
@@ -145,11 +147,12 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         if (z) {
             Paint paint = new Paint();
             this.backgroundPaint = paint;
-            paint.setColor(Theme.getColor("sharedMedia_photoPlaceholder", resourcesProvider));
+            int i = Theme.key_sharedMedia_photoPlaceholder;
+            paint.setColor(Theme.getColor(i, resourcesProvider));
             CheckBox2 checkBox2 = new CheckBox2(context, 21, resourcesProvider);
             this.checkBox = checkBox2;
             checkBox2.setVisibility(4);
-            this.checkBox.setColor(null, "sharedMedia_photoPlaceholder", "checkboxCheck");
+            this.checkBox.setColor(-1, i, Theme.key_checkboxCheck);
             this.checkBox.setDrawUnchecked(false);
             this.checkBox.setDrawBackgroundAsArc(1);
             addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 1.0f, 1.0f, 0.0f));
@@ -202,7 +205,8 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             tLRPC$TL_peerUser.user_id = clientUserId;
             tLRPC$Peer.user_id = clientUserId;
             tLRPC$TL_message.date = (int) (System.currentTimeMillis() / 1000);
-            tLRPC$TL_message.message = "";
+            String str = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
             TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = new TLRPC$TL_messageMediaDocument();
             tLRPC$TL_message.media = tLRPC$TL_messageMediaDocument;
             tLRPC$TL_messageMediaDocument.flags |= 3;
@@ -213,7 +217,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             TLRPC$Document tLRPC$Document2 = this.documentAttach;
             if (tLRPC$Document2 != null) {
                 tLRPC$MessageMedia.document = tLRPC$Document2;
-                tLRPC$TL_message.attachPath = "";
+                tLRPC$TL_message.attachPath = BuildConfig.APP_CENTER_HASH;
             } else {
                 String httpUrlExtension = ImageLoader.getHttpUrlExtension(this.inlineResult.content.url, this.documentAttachType == 5 ? "mp3" : "ogg");
                 TLRPC$Document tLRPC$Document3 = tLRPC$TL_message.media.document;
@@ -227,13 +231,16 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio = new TLRPC$TL_documentAttributeAudio();
                 tLRPC$TL_documentAttributeAudio.duration = MessageObject.getInlineResultDuration(this.inlineResult);
                 TLRPC$BotInlineResult tLRPC$BotInlineResult2 = this.inlineResult;
-                String str = tLRPC$BotInlineResult2.title;
-                if (str == null) {
-                    str = "";
+                String str2 = tLRPC$BotInlineResult2.title;
+                if (str2 == null) {
+                    str2 = BuildConfig.APP_CENTER_HASH;
                 }
-                tLRPC$TL_documentAttributeAudio.title = str;
-                String str2 = tLRPC$BotInlineResult2.description;
-                tLRPC$TL_documentAttributeAudio.performer = str2 != null ? str2 : "";
+                tLRPC$TL_documentAttributeAudio.title = str2;
+                String str3 = tLRPC$BotInlineResult2.description;
+                if (str3 != null) {
+                    str = str3;
+                }
+                tLRPC$TL_documentAttributeAudio.performer = str;
                 tLRPC$TL_documentAttributeAudio.flags |= 3;
                 if (this.documentAttachType == 3) {
                     tLRPC$TL_documentAttributeAudio.voice = true;
@@ -489,14 +496,14 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             canvas.restore();
         }
         if (this.descriptionLayout != null) {
-            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor("windowBackgroundWhiteGrayText2", this.resourcesProvider));
+            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider));
             canvas.save();
             canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.descriptionY);
             this.descriptionLayout.draw(canvas);
             canvas.restore();
         }
         if (this.linkLayout != null) {
-            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor("windowBackgroundWhiteLinkText", this.resourcesProvider));
+            Theme.chat_contextResult_descriptionTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, this.resourcesProvider));
             canvas.save();
             canvas.translate(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : AndroidUtilities.leftBaseline), this.linkY);
             this.linkLayout.draw(canvas);
@@ -510,7 +517,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             }
             int i2 = this.documentAttachType;
             if (i2 == 3 || i2 == 5) {
-                this.radialProgress.setProgressColor(Theme.getColor(this.buttonPressed ? "chat_inAudioSelectedProgress" : "chat_inAudioProgress", this.resourcesProvider));
+                this.radialProgress.setProgressColor(Theme.getColor(this.buttonPressed ? Theme.key_chat_inAudioSelectedProgress : Theme.key_chat_inAudioProgress, this.resourcesProvider));
                 this.radialProgress.draw(canvas);
             } else {
                 TLRPC$BotInlineResult tLRPC$BotInlineResult = this.inlineResult;
@@ -617,7 +624,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     private int getIconForCurrentState() {
         int i = this.documentAttachType;
         if (i == 3 || i == 5) {
-            this.radialProgress.setColors("chat_inLoader", "chat_inLoaderSelected", "chat_inMediaIcon", "chat_inMediaIconSelected");
+            this.radialProgress.setColorKeys(Theme.key_chat_inLoader, Theme.key_chat_inLoaderSelected, Theme.key_chat_inMediaIcon, Theme.key_chat_inMediaIconSelected);
             int i2 = this.buttonState;
             if (i2 == 1) {
                 return 1;
@@ -627,7 +634,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             }
             return i2 == 4 ? 3 : 0;
         }
-        this.radialProgress.setColors("chat_mediaLoaderPhoto", "chat_mediaLoaderPhotoSelected", "chat_mediaLoaderPhotoIcon", "chat_mediaLoaderPhotoIconSelected");
+        this.radialProgress.setColorKeys(Theme.key_chat_mediaLoaderPhoto, Theme.key_chat_mediaLoaderPhotoSelected, Theme.key_chat_mediaLoaderPhotoIcon, Theme.key_chat_mediaLoaderPhotoIconSelected);
         return this.buttonState == 1 ? 10 : 4;
     }
 
@@ -708,7 +715,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             if (contextLinkCell.resolveFileNameId == i) {
                 contextLinkCell.fileName = str;
                 if (str == null) {
-                    contextLinkCell.fileName = "";
+                    contextLinkCell.fileName = BuildConfig.APP_CENTER_HASH;
                 }
                 contextLinkCell.cacheFile = file;
                 contextLinkCell.fileExist = z;

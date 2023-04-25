@@ -38,7 +38,7 @@ public class PremiumGradient {
     }
 
     private PremiumGradient() {
-        PremiumGradientTools premiumGradientTools = new PremiumGradientTools("premiumGradient1", "premiumGradient2", "premiumGradient3", "premiumGradient4");
+        PremiumGradientTools premiumGradientTools = new PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, Theme.key_premiumGradient3, Theme.key_premiumGradient4);
         this.mainGradient = premiumGradientTools;
         this.mainGradientPaint = premiumGradientTools.paint;
         Context context = ApplicationLoader.applicationContext;
@@ -73,8 +73,9 @@ public class PremiumGradient {
     }
 
     public void checkIconColors() {
-        if (Theme.getColor("chats_verifiedBackground") != this.lastStarColor) {
-            this.lastStarColor = Theme.getColor("chats_verifiedBackground");
+        int i = Theme.key_chats_verifiedBackground;
+        if (Theme.getColor(i) != this.lastStarColor) {
+            this.lastStarColor = Theme.getColor(i);
             this.premiumStarDrawableMini.setColorFilter(new PorterDuffColorFilter(this.lastStarColor, PorterDuff.Mode.MULTIPLY));
         }
         this.premiumStarMenuDrawable = checkColors(this.premiumStarMenuDrawable);
@@ -96,7 +97,7 @@ public class PremiumGradient {
         if (this.lockedPremiumPaint == null) {
             this.lockedPremiumPaint = new Paint(1);
         }
-        this.lockedPremiumPaint.setColor(Theme.getColor("featuredStickers_addButton"));
+        this.lockedPremiumPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
         return this.lockedPremiumPaint;
     }
 
@@ -126,18 +127,18 @@ public class PremiumGradient {
             if (this.lockedPremiumPaint == null) {
                 this.lockedPremiumPaint = new Paint(1);
             }
-            this.lockedPremiumPaint.setColor(Theme.getColor("featuredStickers_addButton"));
+            this.lockedPremiumPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
             return this.lockedPremiumPaint;
         }
         return this.mainGradientPaint;
     }
 
     public static class PremiumGradientTools {
-        final String colorKey1;
-        final String colorKey2;
-        final String colorKey3;
-        final String colorKey4;
-        final String colorKey5;
+        final int colorKey1;
+        final int colorKey2;
+        final int colorKey3;
+        final int colorKey4;
+        final int colorKey5;
         final int[] colors;
         public float cx;
         public float cy;
@@ -150,11 +151,11 @@ public class PremiumGradient {
         public float y1;
         public float y2;
 
-        public PremiumGradientTools(String str, String str2, String str3, String str4) {
-            this(str, str2, str3, str4, null);
+        public PremiumGradientTools(int i, int i2, int i3, int i4) {
+            this(i, i2, i3, i4, -1);
         }
 
-        public PremiumGradientTools(String str, String str2, String str3, String str4, String str5) {
+        public PremiumGradientTools(int i, int i2, int i3, int i4, int i5) {
             this.cx = 0.5f;
             this.cy = 0.5f;
             this.matrix = new Matrix();
@@ -164,11 +165,11 @@ public class PremiumGradient {
             this.y1 = 1.0f;
             this.x2 = 1.5f;
             this.y2 = 0.0f;
-            this.colorKey1 = str;
-            this.colorKey2 = str2;
-            this.colorKey3 = str3;
-            this.colorKey4 = str4;
-            this.colorKey5 = str5;
+            this.colorKey1 = i;
+            this.colorKey2 = i2;
+            this.colorKey3 = i3;
+            this.colorKey4 = i4;
+            this.colorKey5 = i5;
         }
 
         public void gradientMatrix(int i, int i2, int i3, int i4, float f, float f2) {
@@ -192,12 +193,12 @@ public class PremiumGradient {
         public void chekColors() {
             int color = Theme.getColor(this.colorKey1);
             int color2 = Theme.getColor(this.colorKey2);
-            String str = this.colorKey3;
-            int color3 = str == null ? 0 : Theme.getColor(str);
-            String str2 = this.colorKey4;
-            int color4 = str2 == null ? 0 : Theme.getColor(str2);
-            String str3 = this.colorKey5;
-            int color5 = str3 == null ? 0 : Theme.getColor(str3);
+            int i = this.colorKey3;
+            int color3 = i < 0 ? 0 : Theme.getColor(i);
+            int i2 = this.colorKey4;
+            int color4 = i2 < 0 ? 0 : Theme.getColor(i2);
+            int i3 = this.colorKey5;
+            int color5 = i3 < 0 ? 0 : Theme.getColor(i3);
             int[] iArr = this.colors;
             if (iArr[0] == color && iArr[1] == color2 && iArr[2] == color3 && iArr[3] == color4 && iArr[4] == color5) {
                 return;

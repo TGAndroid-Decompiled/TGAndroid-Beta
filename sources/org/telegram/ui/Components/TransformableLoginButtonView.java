@@ -29,7 +29,7 @@ public class TransformableLoginButtonView extends View {
         this.drawBackground = true;
         this.transformType = 0;
         this.rect = new RectF();
-        this.backgroundPaint.setColor(Theme.getColor("chats_actionBackground"));
+        this.backgroundPaint.setColor(Theme.getColor(Theme.key_chats_actionBackground));
         this.outlinePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         this.outlinePaint.setStyle(Paint.Style.STROKE);
         this.outlinePaint.setStrokeCap(Paint.Cap.ROUND);

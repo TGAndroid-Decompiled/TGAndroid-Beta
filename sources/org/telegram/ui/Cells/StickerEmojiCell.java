@@ -62,11 +62,12 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
         ImageReceiver imageReceiver = new ImageReceiver();
         this.imageView = imageReceiver;
         imageReceiver.setAspectFit(true);
+        this.imageView.setAllowLoadingOnAttachedOnly(true);
         this.imageView.setLayerNum(1);
         TextView textView = new TextView(context);
         this.emojiTextView = textView;
         textView.setTextSize(1, 16.0f);
-        new Paint(1).setColor(Theme.getColor("featuredStickers_addButton"));
+        new Paint(1).setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
         PremiumLockIconView premiumLockIconView = new PremiumLockIconView(context, PremiumLockIconView.TYPE_STICKERS_PREMIUM_LOCKED);
         this.premiumIconView = premiumLockIconView;
         premiumLockIconView.setImageReceiver(this.imageView);
@@ -137,17 +138,17 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
         this.drawInParentView = false;
         this.imageView.setColorFilter(null);
         if (this.isPremiumSticker) {
-            this.premiumIconView.setColor(Theme.getColor("windowBackgroundWhite"));
+            this.premiumIconView.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             this.premiumIconView.setWaitingImage();
         }
         if (importingSticker != null) {
             this.stickerPath = importingSticker;
             if (importingSticker.validated) {
                 i = 4;
-                this.imageView.setImage(ImageLocation.getForPath(importingSticker.path), "80_80", null, null, DocumentObject.getSvgRectThumb("dialogBackgroundGray", 1.0f), 0L, importingSticker.animated ? "tgs" : null, 0, 1);
+                this.imageView.setImage(ImageLocation.getForPath(importingSticker.path), "80_80", null, null, DocumentObject.getSvgRectThumb(Theme.key_dialogBackgroundGray, 1.0f), 0L, importingSticker.animated ? "tgs" : null, 0, 1);
             } else {
                 i = 4;
-                this.imageView.setImage(null, null, null, null, DocumentObject.getSvgRectThumb("dialogBackgroundGray", 1.0f), 0L, importingSticker.animated ? "tgs" : null, 0, 1);
+                this.imageView.setImage(null, null, null, null, DocumentObject.getSvgRectThumb(Theme.key_dialogBackgroundGray, 1.0f), 0L, importingSticker.animated ? "tgs" : null, 0, 1);
             }
             if (str != null) {
                 TextView textView = this.emojiTextView;
@@ -164,7 +165,7 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
                 this.parentObject = obj;
                 TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
                 boolean z4 = this.fromEmojiPanel;
-                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, z4 ? "emptyListPlaceholder" : "windowBackgroundGray", z4 ? 0.2f : 1.0f);
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, z4 ? Theme.key_emptyListPlaceholder : Theme.key_windowBackgroundGray, z4 ? 0.2f : 1.0f);
                 String str2 = this.fromEmojiPanel ? "66_66_pcache_compress" : "66_66";
                 if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
                     this.imageView.setColorFilter(Theme.chat_animatedEmojiTextColorFilter);

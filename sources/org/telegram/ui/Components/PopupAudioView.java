@@ -77,7 +77,12 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
     public void setMessageObject(MessageObject messageObject) {
         if (this.currentMessageObject != messageObject) {
             this.currentAccount = messageObject.currentAccount;
-            this.seekBar.setColors(Theme.getColor("chat_inAudioSeekbar"), Theme.getColor("chat_inAudioSeekbar"), Theme.getColor("chat_inAudioSeekbarFill"), Theme.getColor("chat_inAudioSeekbarFill"), Theme.getColor("chat_inAudioSeekbarSelected"));
+            SeekBar seekBar = this.seekBar;
+            int i = Theme.key_chat_inAudioSeekbar;
+            int color = Theme.getColor(i);
+            int color2 = Theme.getColor(i);
+            int i2 = Theme.key_chat_inAudioSeekbarFill;
+            seekBar.setColors(color, color2, Theme.getColor(i2), Theme.getColor(i2), Theme.getColor(Theme.key_chat_inAudioSeekbarSelected));
             this.progressView.setProgressColors(-2497813, -7944712);
             this.currentMessageObject = messageObject;
             this.wasLayout = false;

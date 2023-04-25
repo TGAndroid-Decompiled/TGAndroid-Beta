@@ -50,8 +50,10 @@ public class PullForegroundDrawable {
     public float outRadius;
     public float pullProgress;
     private StaticLayout pullTooltipLayout;
+    private float pullTooltipLayoutLeft;
     private float pullTooltipLayoutWidth;
     private StaticLayout releaseTooltipLayout;
+    private float releaseTooltipLayoutLeft;
     private float releaseTooltipLayoutWidth;
     public int scrollDy;
     private float textInProgress;
@@ -65,9 +67,9 @@ public class PullForegroundDrawable {
     private float touchSlop;
     boolean wasSendCallback;
     private boolean willDraw;
-    private String backgroundColorKey = "chats_archivePullDownBackground";
-    private String backgroundActiveColorKey = "chats_archivePullDownBackgroundActive";
-    private String avatarBackgroundColorKey = "avatar_backgroundArchivedHidden";
+    private int backgroundColorKey = Theme.key_chats_archivePullDownBackground;
+    private int backgroundActiveColorKey = Theme.key_chats_archivePullDownBackgroundActive;
+    private int avatarBackgroundColorKey = Theme.key_avatar_backgroundArchivedHidden;
     private boolean changeAvatarColor = true;
     private final Paint paintSecondary = new Paint(1);
     private final Paint paintWhite = new Paint(1);
@@ -137,10 +139,12 @@ public class PullForegroundDrawable {
         this.touchSlop = ViewConfiguration.get(ApplicationLoader.applicationContext).getScaledTouchSlop();
         StaticLayout staticLayout = new StaticLayout(charSequence, 0, charSequence.length(), textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.pullTooltipLayout = staticLayout;
-        this.pullTooltipLayoutWidth = staticLayout.getLineWidth(0);
+        this.pullTooltipLayoutLeft = staticLayout.getLineCount() > 0 ? this.pullTooltipLayout.getLineLeft(0) : 0.0f;
+        this.pullTooltipLayoutWidth = this.pullTooltipLayout.getLineCount() > 0 ? this.pullTooltipLayout.getLineWidth(0) : 0.0f;
         StaticLayout staticLayout2 = new StaticLayout(charSequence2, 0, charSequence2.length(), textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.releaseTooltipLayout = staticLayout2;
-        this.releaseTooltipLayoutWidth = staticLayout2.getLineWidth(0);
+        this.releaseTooltipLayoutLeft = staticLayout2.getLineCount() > 0 ? this.releaseTooltipLayout.getLineLeft(0) : 0.0f;
+        this.releaseTooltipLayoutWidth = this.releaseTooltipLayout.getLineCount() > 0 ? this.releaseTooltipLayout.getLineWidth(0) : 0.0f;
         try {
             this.generalTopicDrawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.msg_filled_general).mutate();
         } catch (Exception unused) {
@@ -355,7 +359,7 @@ public class PullForegroundDrawable {
         }
         float f32 = f3;
         canvas.saveLayerAlpha(0.0f, 0.0f, this.cell.getMeasuredWidth(), this.cell.getMeasuredHeight(), (int) (this.textSwappingProgress * 255.0f * f * this.textInProgress), 31);
-        canvas.translate(width2 - (this.pullTooltipLayoutWidth / 2.0f), ((AndroidUtilities.dp(8.0f) * (1.0f - this.textSwappingProgress)) + height2) - this.tooltipTextPaint.getTextSize());
+        canvas.translate((width2 - this.pullTooltipLayoutLeft) - (this.pullTooltipLayoutWidth / 2.0f), ((AndroidUtilities.dp(8.0f) * (1.0f - this.textSwappingProgress)) + height2) - this.tooltipTextPaint.getTextSize());
         this.pullTooltipLayout.draw(canvas);
         canvas.restore();
         float f33 = this.textSwappingProgress;
@@ -374,7 +378,7 @@ public class PullForegroundDrawable {
             canvas.scale(f35, f35, width2, height2 - (AndroidUtilities.dp(8.0f) * this.textSwappingProgress));
         }
         canvas.saveLayerAlpha(0.0f, 0.0f, this.cell.getMeasuredWidth(), this.cell.getMeasuredHeight(), (int) ((1.0f - this.textSwappingProgress) * 255.0f * f * this.textInProgress), 31);
-        canvas.translate(width2 - (this.releaseTooltipLayoutWidth / 2.0f), (height2 + (AndroidUtilities.dp(8.0f) * this.textSwappingProgress)) - this.tooltipTextPaint.getTextSize());
+        canvas.translate((width2 - this.releaseTooltipLayoutLeft) - (this.releaseTooltipLayoutWidth / 2.0f), (height2 + (AndroidUtilities.dp(8.0f) * this.textSwappingProgress)) - this.tooltipTextPaint.getTextSize());
         this.releaseTooltipLayout.draw(canvas);
         canvas.restore();
         float f36 = this.textSwappingProgress;

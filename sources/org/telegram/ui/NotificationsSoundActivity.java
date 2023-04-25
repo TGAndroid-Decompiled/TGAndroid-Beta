@@ -178,8 +178,8 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
 
     @Override
     public View createView(final Context context) {
-        this.actionBar.setItemsBackgroundColor(Theme.getColor("avatar_actionBarSelectorBlue", this.resourcesProvider), false);
-        this.actionBar.setItemsColor(Theme.getColor("actionBarDefaultIcon", this.resourcesProvider), false);
+        this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_avatar_actionBarSelectorBlue, this.resourcesProvider), false);
+        this.actionBar.setItemsColor(Theme.getColor(Theme.key_actionBarDefaultIcon, this.resourcesProvider), false);
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setAllowOverlayTitle(false);
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass1(context));
@@ -221,7 +221,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.selectedTonesCountTextView = numberTextView;
         numberTextView.setTextSize(18);
         this.selectedTonesCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.selectedTonesCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon", this.resourcesProvider));
+        this.selectedTonesCountTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon, this.resourcesProvider));
         createActionMode.addView(this.selectedTonesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
         this.selectedTonesCountTextView.setOnTouchListener(NotificationsSoundActivity$$ExternalSyntheticLambda0.INSTANCE);
         createActionMode.addItemWithWidth(2, R.drawable.msg_forward, AndroidUtilities.dp(54.0f), LocaleController.getString("ShareFile", R.string.ShareFile));
@@ -229,7 +229,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray", this.resourcesProvider));
+        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray, this.resourcesProvider));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         frameLayout2.addView(recyclerListView, LayoutHelper.createFrame(-1, -1.0f));
@@ -293,7 +293,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 });
                 TextView textView = (TextView) builder.show().getButton(-1);
                 if (textView != null) {
-                    textView.setTextColor(Theme.getColor("text_RedBold", NotificationsSoundActivity.this.resourcesProvider));
+                    textView.setTextColor(Theme.getColor(Theme.key_text_RedBold, NotificationsSoundActivity.this.resourcesProvider));
                 }
             } else if (i == 2) {
                 if (NotificationsSoundActivity.this.selectedTones.size() == 1) {
@@ -495,6 +495,22 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         updateRows();
     }
 
+    public static String findRingtonePathByName(String str) {
+        if (str == null) {
+            return null;
+        }
+        RingtoneManager ringtoneManager = new RingtoneManager(ApplicationLoader.applicationContext);
+        ringtoneManager.setType(2);
+        Cursor cursor = ringtoneManager.getCursor();
+        while (cursor.moveToNext()) {
+            String str2 = cursor.getString(2) + "/" + cursor.getString(0);
+            if (str.equalsIgnoreCase(cursor.getString(1))) {
+                return str2;
+            }
+        }
+        return null;
+    }
+
     public void updateRows() {
         this.serverTonesHeaderRow = -1;
         this.serverTonesStartRow = -1;
@@ -595,16 +611,16 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             Context context = viewGroup.getContext();
             if (i == 0) {
                 View toneCell = new ToneCell(context, NotificationsSoundActivity.this.resourcesProvider);
-                toneCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite", NotificationsSoundActivity.this.resourcesProvider));
+                toneCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, NotificationsSoundActivity.this.resourcesProvider));
                 creationTextCell = toneCell;
             } else if (i == 2) {
                 CreationTextCell creationTextCell2 = new CreationTextCell(context, NotificationsSoundActivity.this.resourcesProvider);
                 creationTextCell2.startPadding = 61;
-                creationTextCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite", NotificationsSoundActivity.this.resourcesProvider));
+                creationTextCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, NotificationsSoundActivity.this.resourcesProvider));
                 creationTextCell = creationTextCell2;
             } else if (i != 3) {
                 View headerCell = new HeaderCell(context, NotificationsSoundActivity.this.resourcesProvider);
-                headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite", NotificationsSoundActivity.this.resourcesProvider));
+                headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, NotificationsSoundActivity.this.resourcesProvider));
                 creationTextCell = headerCell;
             } else {
                 creationTextCell = new ShadowSectionCell(context, NotificationsSoundActivity.this.resourcesProvider);
@@ -624,8 +640,8 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                     CreationTextCell creationTextCell = (CreationTextCell) viewHolder.itemView;
                     Drawable drawable = creationTextCell.getContext().getResources().getDrawable(R.drawable.poll_add_circle);
                     Drawable drawable2 = creationTextCell.getContext().getResources().getDrawable(R.drawable.poll_add_plus);
-                    drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("switchTrackChecked", NotificationsSoundActivity.this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-                    drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("checkboxCheck", NotificationsSoundActivity.this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+                    drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_switchTrackChecked, NotificationsSoundActivity.this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+                    drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck, NotificationsSoundActivity.this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
                     creationTextCell.setTextAndIcon(LocaleController.getString("UploadSound", R.string.UploadSound), new CombinedDrawable(drawable, drawable2), false);
                     return;
                 }
@@ -707,13 +723,13 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             RadioButton radioButton = new RadioButton(context);
             this.radioButton = radioButton;
             radioButton.setSize(AndroidUtilities.dp(20.0f));
-            this.radioButton.setColor(Theme.getColor("radioBackground", resourcesProvider), Theme.getColor("radioBackgroundChecked", resourcesProvider));
+            this.radioButton.setColor(Theme.getColor(Theme.key_radioBackground, resourcesProvider), Theme.getColor(Theme.key_radioBackgroundChecked, resourcesProvider));
             RadioButton radioButton2 = this.radioButton;
             boolean z = LocaleController.isRTL;
             addView(radioButton2, LayoutHelper.createFrame(22, 22.0f, (z ? 5 : 3) | 16, z ? 0 : 20, 0.0f, z ? 20 : 0, 0.0f));
             CheckBox2 checkBox2 = new CheckBox2(context, 24, resourcesProvider);
             this.checkBox = checkBox2;
-            checkBox2.setColor(null, "windowBackgroundWhite", "checkboxCheck");
+            checkBox2.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
             this.checkBox.setDrawUnchecked(false);
             this.checkBox.setDrawBackgroundAsArc(3);
             CheckBox2 checkBox22 = this.checkBox;
@@ -722,7 +738,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             this.checkBox.setChecked(true, false);
             TextView textView = new TextView(context);
             this.textView = textView;
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
             this.textView.setTextSize(1, 16.0f);
             this.textView.setLines(1);
             this.textView.setMaxLines(1);
@@ -769,7 +785,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
 
     @Override
     public int getNavigationBarColor() {
-        return getThemedColor("windowBackgroundGray");
+        return getThemedColor(Theme.key_windowBackgroundGray);
     }
 
     @Override

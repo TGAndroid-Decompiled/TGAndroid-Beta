@@ -35,6 +35,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LruCache;
 import org.telegram.messenger.MessageObject;
@@ -432,14 +433,16 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView.setTextColor(Theme.getColor("player_actionBarTitle"));
-        textView.setTag("player_actionBarTitle");
+        int i = Theme.key_player_actionBarTitle;
+        textView.setTextColor(Theme.getColor(i));
+        textView.setTag(Integer.valueOf(i));
         textView.setText(LocaleController.getString("LoadingStats", R.string.LoadingStats));
         textView.setGravity(1);
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 15.0f);
-        textView2.setTextColor(Theme.getColor("player_actionBarSubtitle"));
-        textView2.setTag("player_actionBarSubtitle");
+        int i2 = Theme.key_player_actionBarSubtitle;
+        textView2.setTextColor(Theme.getColor(i2));
+        textView2.setTag(Integer.valueOf(i2));
         textView2.setText(LocaleController.getString("LoadingStatsDescription", R.string.LoadingStatsDescription));
         textView2.setGravity(1);
         this.progressLayout.addView(this.imageView, LayoutHelper.createLinear(120, 120, 1, 0, 0, 0, 20));
@@ -462,7 +465,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         this.recyclerListView.setItemAnimator(null);
         this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
                 if (StatisticActivity.this.recentPostsAll.size() == StatisticActivity.this.recentPostsLoaded.size() || StatisticActivity.this.messagesIsLoading || StatisticActivity.this.layoutManager.findLastVisibleItemPosition() <= StatisticActivity.this.adapter.getItemCount() - 20) {
                     return;
                 }
@@ -471,15 +474,15 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         });
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) {
-                StatisticActivity.this.lambda$createView$3(view, i);
+            public final void onItemClick(View view, int i3) {
+                StatisticActivity.this.lambda$createView$3(view, i3);
             }
         });
         this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
-            public final boolean onItemClick(View view, int i) {
+            public final boolean onItemClick(View view, int i3) {
                 boolean lambda$createView$5;
-                lambda$createView$5 = StatisticActivity.this.lambda$createView$5(view, i);
+                lambda$createView$5 = StatisticActivity.this.lambda$createView$5(view, i3);
                 return lambda$createView$5;
             }
         });
@@ -495,16 +498,16 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
+            public void onItemClick(int i3) {
+                if (i3 == -1) {
                     StatisticActivity.this.finishFragment();
                 }
             }
         });
-        this.avatarContainer.setTitleColors(Theme.getColor("player_actionBarTitle"), Theme.getColor("player_actionBarSubtitle"));
-        this.actionBar.setItemsColor(Theme.getColor("windowBackgroundWhiteGrayText2"), false);
-        this.actionBar.setItemsBackgroundColor(Theme.getColor("actionBarActionModeDefaultSelector"), false);
-        this.actionBar.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+        this.avatarContainer.setTitleColors(Theme.getColor(i), Theme.getColor(i2));
+        this.actionBar.setItemsColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), false);
+        this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector), false);
+        this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         if (this.initialLoading) {
             this.progressLayout.setAlpha(0.0f);
             AndroidUtilities.runOnUIThread(this.showProgressbar, 500L);
@@ -798,7 +801,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     @Override
                     protected void onDraw(Canvas canvas) {
                         if (getTranslationY() != 0.0f) {
-                            canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
+                            canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                         }
                         super.onDraw(canvas);
                     }
@@ -810,7 +813,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     @Override
                     protected void onDraw(Canvas canvas) {
                         if (getTranslationY() != 0.0f) {
-                            canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
+                            canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                         }
                         super.onDraw(canvas);
                     }
@@ -819,7 +822,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 shadowSectionCell = view2;
             } else if (i == 11) {
                 View loadingCell = new LoadingCell(viewGroup.getContext());
-                loadingCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                loadingCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 shadowSectionCell = loadingCell;
             } else if (i == 12) {
                 shadowSectionCell = new EmptyCell(viewGroup.getContext(), AndroidUtilities.dp(15.0f));
@@ -828,7 +831,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     @Override
                     protected void onDraw(Canvas canvas) {
                         if (getTranslationY() != 0.0f) {
-                            canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
+                            canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                         }
                         super.onDraw(canvas);
                     }
@@ -840,11 +843,11 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 shadowSectionCell = new OverviewCell(viewGroup.getContext());
             } else if (i == 15) {
                 ManageChatTextCell manageChatTextCell = new ManageChatTextCell(viewGroup.getContext());
-                manageChatTextCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                manageChatTextCell.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
+                manageChatTextCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                manageChatTextCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
                 shadowSectionCell = manageChatTextCell;
             } else {
-                shadowSectionCell = new ShadowSectionCell(viewGroup.getContext(), 12, Theme.getColor("windowBackgroundGray"));
+                shadowSectionCell = new ShadowSectionCell(viewGroup.getContext(), 12, Theme.getColor(Theme.key_windowBackgroundGray));
             }
             shadowSectionCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
             return new RecyclerListView.Holder(shadowSectionCell);
@@ -1482,7 +1485,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             textView.setTextSize(1, 15.0f);
             frameLayout.addView(this.errorTextView, LayoutHelper.createFrame(-2, -2.0f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
             this.progressView.setVisibility(8);
-            this.errorTextView.setTextColor(Theme.getColor("dialogTextGray4"));
+            this.errorTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray4));
             this.chartView.setDateSelectionListener(new BaseChartView.DateSelectionListener() {
                 @Override
                 public final void onDateSelected(long j) {
@@ -1857,9 +1860,9 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             ChartViewData chartViewData = this.data;
             if (chartViewData != null && (chartData = chartViewData.chartData) != null && (arrayList = chartData.lines) != null && arrayList.size() > 1) {
                 for (int i2 = 0; i2 < this.data.chartData.lines.size(); i2++) {
-                    if (this.data.chartData.lines.get(i2).colorKey != null && Theme.hasThemeKey(this.data.chartData.lines.get(i2).colorKey)) {
+                    if (this.data.chartData.lines.get(i2).colorKey >= 0 && Theme.hasThemeKey(this.data.chartData.lines.get(i2).colorKey)) {
                         i = Theme.getColor(this.data.chartData.lines.get(i2).colorKey);
-                    } else if (ColorUtils.calculateLuminance(Theme.getColor("windowBackgroundWhite")) < 0.5d) {
+                    } else if (ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite)) < 0.5d) {
                         i = this.data.chartData.lines.get(i2).colorDark;
                     } else {
                         i = this.data.chartData.lines.get(i2).color;
@@ -1869,8 +1872,8 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     }
                 }
             }
-            this.progressView.setProgressColor(Theme.getColor("progressCircle"));
-            this.errorTextView.setTextColor(Theme.getColor("dialogTextGray4"));
+            this.progressView.setProgressColor(Theme.getColor(Theme.key_progressCircle));
+            this.errorTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray4));
         }
 
         public class CheckBoxHolder {
@@ -2134,7 +2137,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         if (view instanceof ChartCell) {
             ((ChartCell) view).recolor();
         } else if (view instanceof ShadowSectionCell) {
-            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor("windowBackgroundGray")), Theme.getThemedDrawable(ApplicationLoader.applicationContext, R.drawable.greydivider, "windowBackgroundGrayShadow"), 0, 0);
+            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(ApplicationLoader.applicationContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow), 0, 0);
             combinedDrawable.setFullsize(true);
             view.setBackground(combinedDrawable);
         } else if (view instanceof ChartHeaderView) {
@@ -2347,51 +2350,57 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             }
         };
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, 0, new Class[]{StatisticPostInfoCell.class}, new String[]{"message"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, 0, new Class[]{StatisticPostInfoCell.class}, new String[]{"views"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, 0, new Class[]{StatisticPostInfoCell.class}, new String[]{"shares"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayText3"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, 0, new Class[]{StatisticPostInfoCell.class}, new String[]{"date"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayText3"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, 0, new Class[]{ChartHeaderView.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "statisticChartSignature"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "statisticChartSignatureAlpha"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "statisticChartHintLine"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "statisticChartActiveLine"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "statisticChartInactivePickerChart"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "statisticChartActivePickerChart"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "dialogBackground"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "windowBackgroundWhiteGrayText2"));
-        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "actionBarActionModeDefaultSelector"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundGray"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundGrayShadow"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteGreenText2"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "text_RedRegular"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
+        View view = this.fragmentView;
+        int i = ThemeDescription.FLAG_BACKGROUND;
+        int i2 = Theme.key_windowBackgroundWhite;
+        arrayList.add(new ThemeDescription(view, i, null, null, null, null, i2));
+        int i3 = Theme.key_dialogTextBlack;
+        arrayList.add(new ThemeDescription(this.recyclerListView, 0, new Class[]{StatisticPostInfoCell.class}, new String[]{"message"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
+        arrayList.add(new ThemeDescription(this.recyclerListView, 0, new Class[]{StatisticPostInfoCell.class}, new String[]{"views"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
+        int i4 = Theme.key_windowBackgroundWhiteGrayText3;
+        arrayList.add(new ThemeDescription(this.recyclerListView, 0, new Class[]{StatisticPostInfoCell.class}, new String[]{"shares"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
+        arrayList.add(new ThemeDescription(this.recyclerListView, 0, new Class[]{StatisticPostInfoCell.class}, new String[]{"date"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
+        arrayList.add(new ThemeDescription(this.recyclerListView, 0, new Class[]{ChartHeaderView.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, i3));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_statisticChartSignature));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_statisticChartSignatureAlpha));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_statisticChartHintLine));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_statisticChartActiveLine));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_statisticChartInactivePickerChart));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_statisticChartActivePickerChart));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_dialogBackground));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, i2));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteGrayText2));
+        arrayList.add(new ThemeDescription((View) null, 0, (Class[]) null, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_actionBarActionModeDefaultSelector));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_windowBackgroundGray));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_windowBackgroundGrayShadow));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteGreenText2));
+        int i5 = Theme.key_text_RedRegular;
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i5));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i2));
         ChatAvatarContainer chatAvatarContainer = this.avatarContainer;
-        arrayList.add(new ThemeDescription(chatAvatarContainer != null ? chatAvatarContainer.getTitleTextView() : null, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "player_actionBarTitle"));
+        arrayList.add(new ThemeDescription(chatAvatarContainer != null ? chatAvatarContainer.getTitleTextView() : null, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_player_actionBarTitle));
         ChatAvatarContainer chatAvatarContainer2 = this.avatarContainer;
-        arrayList.add(new ThemeDescription(chatAvatarContainer2 != null ? chatAvatarContainer2.getSubtitleTextView() : null, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, (Class[]) null, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "player_actionBarSubtitle", (Object) null));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, "statisticChartLineEmpty"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayIcon"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueButton"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueIcon"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "text_RedRegular"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "text_RedRegular"));
-        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{ManageChatUserCell.class, ManageChatTextCell.class, HeaderCell.class, TextView.class, PeopleNearbyActivity.HintInnerCell.class}, null, null, null, "windowBackgroundWhite"));
+        arrayList.add(new ThemeDescription(chatAvatarContainer2 != null ? chatAvatarContainer2.getSubtitleTextView() : null, ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, (Class[]) null, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_player_actionBarSubtitle, (Object) null));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_statisticChartLineEmpty));
+        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlackText));
+        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayIcon));
+        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueButton));
+        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueIcon));
+        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
+        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CHECKTAG, new Class[]{ManageChatTextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i5));
+        arrayList.add(new ThemeDescription(this.recyclerListView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{ManageChatUserCell.class, ManageChatTextCell.class, HeaderCell.class, TextView.class, PeopleNearbyActivity.HintInnerCell.class}, null, null, null, i2));
         if (this.isMegagroup) {
-            for (int i = 0; i < 6; i++) {
-                if (i == 0) {
+            for (int i6 = 0; i6 < 6; i6++) {
+                if (i6 == 0) {
                     chartViewData2 = this.growthData;
-                } else if (i == 1) {
+                } else if (i6 == 1) {
                     chartViewData2 = this.groupMembersData;
-                } else if (i == 2) {
+                } else if (i6 == 2) {
                     chartViewData2 = this.newMembersBySourceData;
-                } else if (i == 3) {
+                } else if (i6 == 3) {
                     chartViewData2 = this.membersLanguageData;
-                } else if (i == 4) {
+                } else if (i6 == 4) {
                     chartViewData2 = this.messagesData;
                 } else {
                     chartViewData2 = this.actionsData;
@@ -2399,22 +2408,22 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 putColorFromData(chartViewData2, arrayList, themeDescriptionDelegate);
             }
         } else {
-            for (int i2 = 0; i2 < 9; i2++) {
-                if (i2 == 0) {
+            for (int i7 = 0; i7 < 9; i7++) {
+                if (i7 == 0) {
                     chartViewData = this.growthData;
-                } else if (i2 == 1) {
+                } else if (i7 == 1) {
                     chartViewData = this.followersData;
-                } else if (i2 == 2) {
+                } else if (i7 == 2) {
                     chartViewData = this.interactionsData;
-                } else if (i2 == 3) {
+                } else if (i7 == 3) {
                     chartViewData = this.ivInteractionsData;
-                } else if (i2 == 4) {
+                } else if (i7 == 4) {
                     chartViewData = this.viewsBySourceData;
-                } else if (i2 == 5) {
+                } else if (i7 == 5) {
                     chartViewData = this.newFollowersBySourceData;
-                } else if (i2 == 6) {
+                } else if (i7 == 6) {
                     chartViewData = this.notificationsData;
-                } else if (i2 == 7) {
+                } else if (i7 == 7) {
                     chartViewData = this.topHoursData;
                 } else {
                     chartViewData = this.languagesData;
@@ -2460,9 +2469,9 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         Iterator<ChartData.Line> it = chartData.lines.iterator();
         while (it.hasNext()) {
             ChartData.Line next = it.next();
-            String str = next.colorKey;
-            if (str != null) {
-                if (!Theme.hasThemeKey(str)) {
+            int i = next.colorKey;
+            if (i >= 0) {
+                if (!Theme.hasThemeKey(i)) {
                     Theme.setColor(next.colorKey, Theme.isCurrentThemeNight() ? next.colorDark : next.color, false);
                     Theme.setDefaultColor(next.colorKey, next.color);
                 }
@@ -2496,14 +2505,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.followersTitle = LocaleController.getString("FollowersChartTitle", R.string.FollowersChartTitle);
             this.followersPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_broadcastStats.followers.current, 0);
             if (i == 0 || abs == 0.0f) {
-                this.followersSecondary = "";
+                this.followersSecondary = BuildConfig.APP_CENTER_HASH;
             } else {
                 int i2 = (int) abs;
                 if (abs == i2) {
                     Locale locale = Locale.ENGLISH;
                     Object[] objArr = new Object[3];
                     StringBuilder sb = new StringBuilder();
-                    sb.append(i > 0 ? "+" : "");
+                    sb.append(i > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
                     sb.append(AndroidUtilities.formatWholeNumber(i, 0));
                     objArr[0] = sb.toString();
                     objArr[1] = Integer.valueOf(i2);
@@ -2513,7 +2522,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     Locale locale2 = Locale.ENGLISH;
                     Object[] objArr2 = new Object[3];
                     StringBuilder sb2 = new StringBuilder();
-                    sb2.append(i > 0 ? "+" : "");
+                    sb2.append(i > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
                     sb2.append(AndroidUtilities.formatWholeNumber(i, 0));
                     objArr2[0] = sb2.toString();
                     objArr2[1] = Float.valueOf(abs);
@@ -2530,14 +2539,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.sharesTitle = LocaleController.getString("SharesPerPost", R.string.SharesPerPost);
             this.sharesPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_broadcastStats.shares_per_post.current, 0);
             if (i3 == 0 || abs2 == 0.0f) {
-                this.sharesSecondary = "";
+                this.sharesSecondary = BuildConfig.APP_CENTER_HASH;
             } else {
                 int i4 = (int) abs2;
                 if (abs2 == i4) {
                     Locale locale3 = Locale.ENGLISH;
                     Object[] objArr3 = new Object[3];
                     StringBuilder sb3 = new StringBuilder();
-                    sb3.append(i3 > 0 ? "+" : "");
+                    sb3.append(i3 > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
                     sb3.append(AndroidUtilities.formatWholeNumber(i3, 0));
                     objArr3[0] = sb3.toString();
                     objArr3[1] = Integer.valueOf(i4);
@@ -2547,7 +2556,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     Locale locale4 = Locale.ENGLISH;
                     Object[] objArr4 = new Object[3];
                     StringBuilder sb4 = new StringBuilder();
-                    sb4.append(i3 > 0 ? "+" : "");
+                    sb4.append(i3 > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
                     sb4.append(AndroidUtilities.formatWholeNumber(i3, 0));
                     objArr4[0] = sb4.toString();
                     objArr4[1] = Float.valueOf(abs2);
@@ -2564,14 +2573,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.viewsTitle = LocaleController.getString("ViewsPerPost", R.string.ViewsPerPost);
             this.viewsPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_broadcastStats.views_per_post.current, 0);
             if (i5 == 0 || abs3 == 0.0f) {
-                this.viewsSecondary = "";
+                this.viewsSecondary = BuildConfig.APP_CENTER_HASH;
             } else {
                 int i6 = (int) abs3;
                 if (abs3 == i6) {
                     Locale locale5 = Locale.ENGLISH;
                     Object[] objArr5 = new Object[3];
                     StringBuilder sb5 = new StringBuilder();
-                    sb5.append(i5 <= 0 ? "" : "+");
+                    sb5.append(i5 <= 0 ? BuildConfig.APP_CENTER_HASH : "+");
                     sb5.append(AndroidUtilities.formatWholeNumber(i5, 0));
                     objArr5[0] = sb5.toString();
                     objArr5[1] = Integer.valueOf(i6);
@@ -2581,7 +2590,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     Locale locale6 = Locale.ENGLISH;
                     Object[] objArr6 = new Object[3];
                     StringBuilder sb6 = new StringBuilder();
-                    sb6.append(i5 <= 0 ? "" : "+");
+                    sb6.append(i5 <= 0 ? BuildConfig.APP_CENTER_HASH : "+");
                     sb6.append(AndroidUtilities.formatWholeNumber(i5, 0));
                     objArr6[0] = sb6.toString();
                     objArr6[1] = Float.valueOf(abs3);
@@ -2629,14 +2638,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.membersTitle = LocaleController.getString("MembersOverviewTitle", R.string.MembersOverviewTitle);
             this.membersPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_megagroupStats.members.current, 0);
             if (i == 0 || abs == 0.0f) {
-                this.membersSecondary = "";
+                this.membersSecondary = BuildConfig.APP_CENTER_HASH;
             } else {
                 int i2 = (int) abs;
                 if (abs == i2) {
                     Locale locale = Locale.ENGLISH;
                     Object[] objArr = new Object[3];
                     StringBuilder sb = new StringBuilder();
-                    sb.append(i > 0 ? "+" : "");
+                    sb.append(i > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
                     sb.append(AndroidUtilities.formatWholeNumber(i, 0));
                     objArr[0] = sb.toString();
                     objArr[1] = Integer.valueOf(i2);
@@ -2646,7 +2655,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                     Locale locale2 = Locale.ENGLISH;
                     Object[] objArr2 = new Object[3];
                     StringBuilder sb2 = new StringBuilder();
-                    sb2.append(i > 0 ? "+" : "");
+                    sb2.append(i > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
                     sb2.append(AndroidUtilities.formatWholeNumber(i, 0));
                     objArr2[0] = sb2.toString();
                     objArr2[1] = Float.valueOf(abs);
@@ -2663,12 +2672,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.viewingMembersTitle = LocaleController.getString("ViewingMembers", R.string.ViewingMembers);
             this.viewingMembersPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_megagroupStats.viewers.current, 0);
             if (i3 == 0 || abs2 == 0.0f) {
-                this.viewingMembersSecondary = "";
+                this.viewingMembersSecondary = BuildConfig.APP_CENTER_HASH;
             } else {
                 Locale locale3 = Locale.ENGLISH;
                 Object[] objArr3 = new Object[1];
                 StringBuilder sb3 = new StringBuilder();
-                sb3.append(i3 > 0 ? "+" : "");
+                sb3.append(i3 > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
                 sb3.append(AndroidUtilities.formatWholeNumber(i3, 0));
                 objArr3[0] = sb3.toString();
                 this.viewingMembersSecondary = String.format(locale3, "%s", objArr3);
@@ -2682,12 +2691,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.postingMembersTitle = LocaleController.getString("PostingMembers", R.string.PostingMembers);
             this.postingMembersPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_megagroupStats.posters.current, 0);
             if (i4 == 0 || abs3 == 0.0f) {
-                this.postingMembersSecondary = "";
+                this.postingMembersSecondary = BuildConfig.APP_CENTER_HASH;
             } else {
                 Locale locale4 = Locale.ENGLISH;
                 Object[] objArr4 = new Object[1];
                 StringBuilder sb4 = new StringBuilder();
-                sb4.append(i4 > 0 ? "+" : "");
+                sb4.append(i4 > 0 ? "+" : BuildConfig.APP_CENTER_HASH);
                 sb4.append(AndroidUtilities.formatWholeNumber(i4, 0));
                 objArr4[0] = sb4.toString();
                 this.postingMembersSecondary = String.format(locale4, "%s", objArr4);
@@ -2701,12 +2710,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.messagesTitle = LocaleController.getString("MessagesOverview", R.string.MessagesOverview);
             this.messagesPrimary = AndroidUtilities.formatWholeNumber((int) tLRPC$TL_stats_megagroupStats.messages.current, 0);
             if (i5 == 0 || abs4 == 0.0f) {
-                this.messagesSecondary = "";
+                this.messagesSecondary = BuildConfig.APP_CENTER_HASH;
             } else {
                 Locale locale5 = Locale.ENGLISH;
                 Object[] objArr5 = new Object[1];
                 StringBuilder sb5 = new StringBuilder();
-                sb5.append(i5 <= 0 ? "" : "+");
+                sb5.append(i5 <= 0 ? BuildConfig.APP_CENTER_HASH : "+");
                 sb5.append(AndroidUtilities.formatWholeNumber(i5, 0));
                 objArr5[0] = sb5.toString();
                 this.messagesSecondary = String.format(locale5, "%s", objArr5);
@@ -2762,12 +2771,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.primary[2].setText(overviewChannelData.viewsPrimary);
             this.primary[3].setText(overviewChannelData.sharesPrimary);
             this.secondary[0].setText(overviewChannelData.followersSecondary);
-            this.secondary[0].setTag(overviewChannelData.followersUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
-            this.secondary[1].setText("");
+            this.secondary[0].setTag(Integer.valueOf(overviewChannelData.followersUp ? Theme.key_windowBackgroundWhiteGreenText2 : Theme.key_text_RedRegular));
+            this.secondary[1].setText(BuildConfig.APP_CENTER_HASH);
             this.secondary[2].setText(overviewChannelData.viewsSecondary);
-            this.secondary[2].setTag(overviewChannelData.viewsUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
+            this.secondary[2].setTag(Integer.valueOf(overviewChannelData.viewsUp ? Theme.key_windowBackgroundWhiteGreenText2 : Theme.key_text_RedRegular));
             this.secondary[3].setText(overviewChannelData.sharesSecondary);
-            this.secondary[3].setTag(overviewChannelData.sharesUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
+            this.secondary[3].setTag(Integer.valueOf(overviewChannelData.sharesUp ? Theme.key_windowBackgroundWhiteGreenText2 : Theme.key_text_RedRegular));
             this.title[0].setText(overviewChannelData.followersTitle);
             this.title[1].setText(overviewChannelData.notificationsTitle);
             this.title[2].setText(overviewChannelData.viewsTitle);
@@ -2781,13 +2790,13 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             this.primary[2].setText(overviewChatData.viewingMembersPrimary);
             this.primary[3].setText(overviewChatData.postingMembersPrimary);
             this.secondary[0].setText(overviewChatData.membersSecondary);
-            this.secondary[0].setTag(overviewChatData.membersUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
+            this.secondary[0].setTag(Integer.valueOf(overviewChatData.membersUp ? Theme.key_windowBackgroundWhiteGreenText2 : Theme.key_text_RedRegular));
             this.secondary[1].setText(overviewChatData.messagesSecondary);
-            this.secondary[1].setTag(overviewChatData.messagesUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
+            this.secondary[1].setTag(Integer.valueOf(overviewChatData.messagesUp ? Theme.key_windowBackgroundWhiteGreenText2 : Theme.key_text_RedRegular));
             this.secondary[2].setText(overviewChatData.viewingMembersSecondary);
-            this.secondary[2].setTag(overviewChatData.viewingMembersUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
+            this.secondary[2].setTag(Integer.valueOf(overviewChatData.viewingMembersUp ? Theme.key_windowBackgroundWhiteGreenText2 : Theme.key_text_RedRegular));
             this.secondary[3].setText(overviewChatData.postingMembersSecondary);
-            this.secondary[3].setTag(overviewChatData.postingMembersUp ? "windowBackgroundWhiteGreenText2" : "text_RedRegular");
+            this.secondary[3].setTag(Integer.valueOf(overviewChatData.postingMembersUp ? Theme.key_windowBackgroundWhiteGreenText2 : Theme.key_text_RedRegular));
             this.title[0].setText(overviewChatData.membersTitle);
             this.title[1].setText(overviewChatData.messagesTitle);
             this.title[2].setText(overviewChatData.viewingMembersTitle);
@@ -2797,11 +2806,11 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
 
         public void updateColors() {
             for (int i = 0; i < 4; i++) {
-                this.primary[i].setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-                this.title[i].setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
-                String str = (String) this.secondary[i].getTag();
-                if (str != null) {
-                    this.secondary[i].setTextColor(Theme.getColor(str));
+                this.primary[i].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+                this.title[i].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
+                Integer num = (Integer) this.secondary[i].getTag();
+                if (num != null) {
+                    this.secondary[i].setTextColor(Theme.getColor(num.intValue()));
                 }
             }
         }
@@ -2867,7 +2876,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             if (i > 0) {
                 memberData.description = LocaleController.formatPluralString("Invitations", i, new Object[0]);
             } else {
-                memberData.description = "";
+                memberData.description = BuildConfig.APP_CENTER_HASH;
             }
             return memberData;
         }
@@ -3084,7 +3093,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                         if (i2 == 0) {
                             TLRPC$ChannelParticipant tLRPC$ChannelParticipant2 = tLRPC$TL_chatChannelParticipant.channelParticipant;
                             tLRPC$ChannelParticipant2.admin_rights = null;
-                            tLRPC$ChannelParticipant2.rank = "";
+                            tLRPC$ChannelParticipant2.rank = BuildConfig.APP_CENTER_HASH;
                             return;
                         }
                         TLRPC$ChannelParticipant tLRPC$ChannelParticipant3 = tLRPC$TL_chatChannelParticipant.channelParticipant;
@@ -3109,6 +3118,6 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
 
     @Override
     public boolean isLightStatusBar() {
-        return ColorUtils.calculateLuminance(Theme.getColor("windowBackgroundWhite")) > 0.699999988079071d;
+        return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite)) > 0.699999988079071d;
     }
 }

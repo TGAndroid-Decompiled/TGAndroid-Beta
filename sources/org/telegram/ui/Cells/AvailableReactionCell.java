@@ -37,7 +37,7 @@ public class AvailableReactionCell extends FrameLayout {
         this.canLock = z2;
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.textView = simpleTextView;
-        simpleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.textView.setTextSize(16);
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setMaxLines(1);
@@ -53,13 +53,13 @@ public class AvailableReactionCell extends FrameLayout {
             CheckBox2 checkBox2 = new CheckBox2(context, 26, null);
             this.checkBox = checkBox2;
             checkBox2.setDrawUnchecked(false);
-            this.checkBox.setColor(null, null, "radioBackgroundChecked");
+            this.checkBox.setColor(-1, -1, Theme.key_radioBackgroundChecked);
             this.checkBox.setDrawBackgroundAsArc(-1);
             addView(this.checkBox, LayoutHelper.createFrameRelatively(26.0f, 26.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
         } else {
             Switch r11 = new Switch(context);
             this.switchView = r11;
-            r11.setColors("switchTrack", "switchTrackChecked", "switchTrackBlueThumb", "switchTrackBlueThumbChecked");
+            r11.setColors(Theme.key_switchTrack, Theme.key_switchTrackChecked, Theme.key_switchTrackBlueThumb, Theme.key_switchTrackBlueThumbChecked);
             addView(this.switchView, LayoutHelper.createFrameRelatively(37.0f, 20.0f, 8388629, 0.0f, 0.0f, 22.0f, 0.0f));
         }
         View view = new View(context);
@@ -80,12 +80,12 @@ public class AvailableReactionCell extends FrameLayout {
         boolean z3 = (tLRPC$TL_availableReaction == null || (tLRPC$TL_availableReaction2 = this.react) == null || !tLRPC$TL_availableReaction.reaction.equals(tLRPC$TL_availableReaction2.reaction)) ? false : true;
         this.react = tLRPC$TL_availableReaction;
         this.textView.setText(tLRPC$TL_availableReaction.title);
-        this.imageView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.activate_animation), "30_30_pcache", "tgs", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, "windowBackgroundGray", 1.0f), tLRPC$TL_availableReaction);
+        this.imageView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.activate_animation), "30_30_pcache", "tgs", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon, Theme.key_windowBackgroundGray, 1.0f), tLRPC$TL_availableReaction);
         z2 = (this.canLock && tLRPC$TL_availableReaction.premium && !UserConfig.getInstance(i).isPremium()) ? false : false;
         this.locked = z2;
         if (z2) {
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.other_lockedfolders2);
-            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
+            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_stickers_menu), PorterDuff.Mode.MULTIPLY));
             this.textView.setRightDrawable(drawable);
         } else {
             this.textView.setRightDrawable((Drawable) null);
@@ -122,7 +122,7 @@ public class AvailableReactionCell extends FrameLayout {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
+        canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         float strokeWidth = Theme.dividerPaint.getStrokeWidth();
         int dp = AndroidUtilities.dp(81.0f);
         int i = 0;

@@ -112,7 +112,7 @@ public class LocationSharingService extends Service implements NotificationCente
                 string = LocaleController.getString("AttachLiveLocationIsSharing", R.string.AttachLiveLocationIsSharing);
             } else {
                 TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-dialogId));
-                formatPluralString = chat != null ? chat.title : "";
+                formatPluralString = chat != null ? chat.title : BuildConfig.APP_CENTER_HASH;
                 string = LocaleController.getString("AttachLiveLocationIsSharingChat", R.string.AttachLiveLocationIsSharingChat);
             }
         } else {

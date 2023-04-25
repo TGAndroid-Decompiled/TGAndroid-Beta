@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -143,7 +144,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         boolean z = sunDrawable == null;
         if (z) {
             int i = R.raw.sun;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
             sunDrawable = rLottieDrawable;
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             if (Theme.isCurrentThemeDay()) {
@@ -167,9 +168,10 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         };
         this.darkThemeView = rLottieImageView;
         rLottieImageView.setFocusable(true);
-        this.darkThemeView.setBackground(Theme.createCircleSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0, 0));
+        this.darkThemeView.setBackground(Theme.createCircleSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector), 0, 0));
         sunDrawable.beginApplyLayerColors();
-        int color = Theme.getColor("chats_menuName");
+        int i2 = Theme.key_chats_menuName;
+        int color = Theme.getColor(i2);
         sunDrawable.setLayerColor("Sunny.**", color);
         sunDrawable.setLayerColor("Path 6.**", color);
         sunDrawable.setLayerColor("Path.**", color);
@@ -178,7 +180,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         this.darkThemeView.setScaleType(ImageView.ScaleType.CENTER);
         this.darkThemeView.setAnimation(sunDrawable);
         if (Build.VERSION.SDK_INT >= 21) {
-            this.darkThemeView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21"), 1, AndroidUtilities.dp(17.0f)));
+            this.darkThemeView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 1, AndroidUtilities.dp(17.0f)));
             Theme.setRippleDrawableForceSoftware((RippleDrawable) this.darkThemeView.getBackground());
         }
         if (!z && sunDrawable.getCustomEndFrame() != sunDrawable.getCurrentFrame()) {
@@ -202,7 +204,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         if (Theme.getEventType() == 0) {
             SnowflakesEffect snowflakesEffect = new SnowflakesEffect(0);
             this.snowflakesEffect = snowflakesEffect;
-            snowflakesEffect.setColorKey("chats_menuName");
+            snowflakesEffect.setColorKey(i2);
         }
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(20.0f));
         this.status = swapAnimatedEmojiDrawable;
@@ -465,7 +467,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     }
 
     @Override
-    protected void onDraw(android.graphics.Canvas r12) {
+    protected void onDraw(android.graphics.Canvas r13) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DrawerProfileCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -522,34 +524,36 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
             if (this.premiumStar == null) {
                 this.premiumStar = getResources().getDrawable(R.drawable.msg_premium_liststar).mutate();
             }
-            this.premiumStar.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chats_menuPhoneCats"), PorterDuff.Mode.MULTIPLY));
+            this.premiumStar.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_menuPhoneCats), PorterDuff.Mode.MULTIPLY));
             this.status.set(this.premiumStar, true);
         } else {
             this.animatedStatus.animateChange(null);
             this.animatedStatus.animate().alpha(0.0f).setDuration(200L).start();
             this.status.set((Drawable) null, true);
         }
-        this.animatedStatus.setColor(Theme.getColor(Theme.isCurrentThemeDark() ? "chats_verifiedBackground" : "chats_menuPhoneCats"));
-        this.status.setColor(Integer.valueOf(Theme.getColor(Theme.isCurrentThemeDark() ? "chats_verifiedBackground" : "chats_menuPhoneCats")));
+        this.animatedStatus.setColor(Theme.getColor(Theme.isCurrentThemeDark() ? Theme.key_chats_verifiedBackground : Theme.key_chats_menuPhoneCats));
+        this.status.setColor(Integer.valueOf(Theme.getColor(Theme.isCurrentThemeDark() ? Theme.key_chats_verifiedBackground : Theme.key_chats_menuPhoneCats)));
         TextView textView = this.phoneTextView;
         PhoneFormat phoneFormat = PhoneFormat.getInstance();
         textView.setText(phoneFormat.format("+" + tLRPC$User.phone));
         AvatarDrawable avatarDrawable = new AvatarDrawable(tLRPC$User);
-        avatarDrawable.setColor(Theme.getColor("avatar_backgroundInProfileBlue"));
+        avatarDrawable.setColor(Theme.getColor(Theme.key_avatar_backgroundInProfileBlue));
         this.avatarImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
         applyBackground(true);
         this.updateRightDrawable = true;
     }
 
-    public String applyBackground(boolean z) {
-        String str = (String) getTag();
-        String str2 = "chats_menuTopBackground";
-        str2 = (!Theme.hasThemeKey("chats_menuTopBackground") || Theme.getColor("chats_menuTopBackground") == 0) ? "chats_menuTopBackgroundCats" : "chats_menuTopBackgroundCats";
-        if (z || !str2.equals(str)) {
-            setBackgroundColor(Theme.getColor(str2));
-            setTag(str2);
+    public Integer applyBackground(boolean z) {
+        Integer num = (Integer) getTag();
+        int i = Theme.key_chats_menuTopBackground;
+        if (!Theme.hasThemeKey(i) || Theme.getColor(i) == 0) {
+            i = Theme.key_chats_menuTopBackgroundCats;
         }
-        return str2;
+        if (z || num == null || i != num.intValue()) {
+            setBackgroundColor(Theme.getColor(i));
+            setTag(Integer.valueOf(i));
+        }
+        return Integer.valueOf(i);
     }
 
     public void updateColors() {
@@ -559,11 +563,11 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         }
         AnimatedStatusView animatedStatusView = this.animatedStatus;
         if (animatedStatusView != null) {
-            animatedStatusView.setColor(Theme.getColor(Theme.isCurrentThemeDark() ? "chats_verifiedBackground" : "chats_menuPhoneCats"));
+            animatedStatusView.setColor(Theme.getColor(Theme.isCurrentThemeDark() ? Theme.key_chats_verifiedBackground : Theme.key_chats_menuPhoneCats));
         }
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.status;
         if (swapAnimatedEmojiDrawable != null) {
-            swapAnimatedEmojiDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.isCurrentThemeDark() ? "chats_verifiedBackground" : "chats_menuPhoneCats")));
+            swapAnimatedEmojiDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.isCurrentThemeDark() ? Theme.key_chats_verifiedBackground : Theme.key_chats_menuPhoneCats)));
         }
     }
 

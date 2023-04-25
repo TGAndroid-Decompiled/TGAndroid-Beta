@@ -19,7 +19,8 @@ public class AnimatedAvatarContainer extends FrameLayout {
         this.leftPadding = AndroidUtilities.dp(8.0f);
         AnimatedTextView animatedTextView = new AnimatedTextView(context, true, true, true);
         this.titleTextView = animatedTextView;
-        animatedTextView.setTextColor(Theme.getColor("actionBarDefaultTitle"));
+        int i = Theme.key_actionBarDefaultTitle;
+        animatedTextView.setTextColor(Theme.getColor(i));
         this.titleTextView.setTextSize(AndroidUtilities.dp(18.0f));
         this.titleTextView.setGravity(3);
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -27,8 +28,8 @@ public class AnimatedAvatarContainer extends FrameLayout {
         addView(this.titleTextView);
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);
         this.subtitleTextView = animatedTextView2;
-        animatedTextView2.setTag("actionBarDefaultSubtitle");
-        this.subtitleTextView.setTextColor(Theme.getColor("actionBarDefaultTitle"));
+        animatedTextView2.setTag(Integer.valueOf(Theme.key_actionBarDefaultSubtitle));
+        this.subtitleTextView.setTextColor(Theme.getColor(i));
         this.subtitleTextView.setTextSize(AndroidUtilities.dp(14.0f));
         this.subtitleTextView.setGravity(3);
         this.subtitleTextView.setPadding(0, 0, AndroidUtilities.dp(10.0f), 0);

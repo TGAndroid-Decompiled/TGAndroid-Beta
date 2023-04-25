@@ -137,7 +137,7 @@ public class ActionBarMenuSlider extends FrameLayout {
         AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, -0.4f);
         AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.1f);
         this.pseudoBlurPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-        this.backgroundPaint.setColor(Theme.getColor("actionBarDefaultSubmenuBackground", resourcesProvider));
+        this.backgroundPaint.setColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, resourcesProvider));
         boolean z = AndroidUtilities.computePerceivedBrightness(this.backgroundPaint.getColor()) <= 0.721f;
         this.backgroundDark = z;
         this.textDrawable.setTextColor(z ? -1 : -16777216);
@@ -428,10 +428,10 @@ public class ActionBarMenuSlider extends FrameLayout {
                     this.pseudoBlurGradient = linearGradient;
                     this.pseudoBlurPaint.setShader(linearGradient);
                 }
-                color = Theme.multAlpha(Theme.getColor("windowBackgroundWhite", this.resourcesProvider), 0.25f);
+                color = Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider), 0.25f);
             }
         } else {
-            color = Theme.getColor("windowBackgroundWhite", this.resourcesProvider);
+            color = Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider);
             if (!Theme.isCurrentThemeDark()) {
                 color = Theme.blendOver(color, Theme.multAlpha(-16777216, 0.18f));
             }
@@ -545,7 +545,7 @@ public class ActionBarMenuSlider extends FrameLayout {
 
         @Override
         protected int getColorValue(float f) {
-            return ColorUtils.blendARGB(Theme.getColor("color_lightblue", this.resourcesProvider), Theme.getColor("color_blue", this.resourcesProvider), MathUtils.clamp((((f * 2.3f) + 0.2f) - 1.0f) / 1.0f, 0.0f, 1.0f));
+            return ColorUtils.blendARGB(Theme.getColor(Theme.key_color_lightblue, this.resourcesProvider), Theme.getColor(Theme.key_color_blue, this.resourcesProvider), MathUtils.clamp((((f * 2.3f) + 0.2f) - 1.0f) / 1.0f, 0.0f, 1.0f));
         }
     }
 }

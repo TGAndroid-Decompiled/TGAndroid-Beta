@@ -28,6 +28,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -87,7 +88,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         });
         FrameLayout frameLayout = new FrameLayout(context);
         this.contentView = frameLayout;
-        frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
@@ -135,7 +136,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         int i2 = item.viewType;
         if (i2 == 3 || i2 == 4) {
             if (LiteMode.isPowerSaverApplied()) {
-                this.restrictBulletin = BulletinFactory.of(this).createSimpleBulletin(new BatteryDrawable(0.1f, -1, Theme.getColor("dialogSwipeRemove"), 1.3f), LocaleController.getString("LiteBatteryRestricted", R.string.LiteBatteryRestricted)).show();
+                this.restrictBulletin = BulletinFactory.of(this).createSimpleBulletin(new BatteryDrawable(0.1f, -1, Theme.getColor(Theme.key_dialogSwipeRemove), 1.3f), LocaleController.getString("LiteBatteryRestricted", R.string.LiteBatteryRestricted)).show();
             } else if (item.viewType == 3 && item.getFlagsCount() > 1 && (!LocaleController.isRTL ? f < view.getMeasuredWidth() - AndroidUtilities.dp(75.0f) : f > AndroidUtilities.dp(75.0f)) && (expandedIndex = getExpandedIndex(item.flags)) != -1) {
                 boolean[] zArr = this.expanded;
                 zArr[expandedIndex] = !zArr[expandedIndex];
@@ -270,7 +271,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         this.items.add(Item.asSwitch(R.drawable.msg2_call_earpiece, LocaleController.getString("LiteOptionsCalls"), LiteMode.FLAG_CALLS_ANIMATIONS));
         this.items.add(Item.asSwitch(R.drawable.msg2_videocall, LocaleController.getString("LiteOptionsAutoplayVideo"), 1024));
         this.items.add(Item.asSwitch(R.drawable.msg2_gif, LocaleController.getString("LiteOptionsAutoplayGifs"), LiteMode.FLAG_AUTOPLAY_GIFS));
-        this.items.add(Item.asInfo(""));
+        this.items.add(Item.asInfo(BuildConfig.APP_CENTER_HASH));
         this.items.add(Item.asSwitch(LocaleController.getString("LiteSmoothTransitions"), 1));
         this.items.add(Item.asInfo(LocaleController.getString("LiteSmoothTransitionsInfo")));
         this.adapter.setItems(this.oldItems, this.items);
@@ -331,10 +332,10 @@ public class LiteModeSettingsActivity extends BaseFragment {
             Context context = viewGroup.getContext();
             if (i == 0) {
                 switchCell = new HeaderCell(context);
-                switchCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                switchCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 1) {
                 switchCell = new PowerSaverSlider(context);
-                switchCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                switchCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 2) {
                 switchCell = new TextInfoPrivacyCell(this, context) {
                     @Override
@@ -354,7 +355,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 switchCell = new SwitchCell(context);
             } else if (i == 5) {
                 switchCell = new TextCell(context, 23, false, true, null);
-                switchCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                switchCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else {
                 switchCell = null;
             }
@@ -398,11 +399,11 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 int i3 = i + 1;
                 z = (i3 >= LiteModeSettingsActivity.this.items.size() || ((Item) LiteModeSettingsActivity.this.items.get(i3)).viewType == 2) ? false : false;
                 if (z2 && z) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider, "windowBackgroundGrayShadow"));
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 } else if (z2) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 } else if (z) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_top, "windowBackgroundGrayShadow"));
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
                 } else {
                     textInfoPrivacyCell.setBackground(null);
                 }
@@ -446,19 +447,20 @@ public class LiteModeSettingsActivity extends BaseFragment {
         public SwitchCell(Context context) {
             super(context);
             setImportantForAccessibility(1);
-            setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+            int i = Theme.key_windowBackgroundWhite;
+            setBackgroundColor(Theme.getColor(i));
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.MULTIPLY));
             this.imageView.setVisibility(8);
             addView(this.imageView, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 20.0f, 0.0f, 20.0f, 0.0f));
             TextView textView = new TextView(this, context, LiteModeSettingsActivity.this) {
                 @Override
-                protected void onMeasure(int i, int i2) {
-                    if (View.MeasureSpec.getMode(i) == Integer.MIN_VALUE) {
-                        i = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i) - AndroidUtilities.dp(52.0f), Integer.MIN_VALUE);
+                protected void onMeasure(int i2, int i3) {
+                    if (View.MeasureSpec.getMode(i2) == Integer.MIN_VALUE) {
+                        i2 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2) - AndroidUtilities.dp(52.0f), Integer.MIN_VALUE);
                     }
-                    super.onMeasure(i, i2);
+                    super.onMeasure(i2, i3);
                 }
             };
             this.textView = textView;
@@ -466,7 +468,9 @@ public class LiteModeSettingsActivity extends BaseFragment {
             this.textView.setSingleLine(true);
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
             this.textView.setTextSize(1, 16.0f);
-            this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            TextView textView2 = this.textView;
+            int i2 = Theme.key_windowBackgroundWhiteBlackText;
+            textView2.setTextColor(Theme.getColor(i2));
             this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
             this.textView.setImportantForAccessibility(2);
             AnimatedTextView animatedTextView = new AnimatedTextView(context, false, true, true);
@@ -474,12 +478,12 @@ public class LiteModeSettingsActivity extends BaseFragment {
             animatedTextView.setAnimationProperties(0.35f, 0L, 200L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.countTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.countTextView.setTextSize(AndroidUtilities.dp(14.0f));
-            this.countTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.countTextView.setTextColor(Theme.getColor(i2));
             this.countTextView.setImportantForAccessibility(2);
             ImageView imageView2 = new ImageView(context);
             this.arrowView = imageView2;
             imageView2.setVisibility(8);
-            this.arrowView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteBlackText"), PorterDuff.Mode.MULTIPLY));
+            this.arrowView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
             this.arrowView.setImageResource(R.drawable.arrow_more);
             LinearLayout linearLayout = new LinearLayout(context);
             this.textViewLayout = linearLayout;
@@ -498,12 +502,12 @@ public class LiteModeSettingsActivity extends BaseFragment {
             Switch r5 = new Switch(context);
             this.switchView = r5;
             r5.setVisibility(8);
-            this.switchView.setColors("switchTrack", "switchTrackChecked", "windowBackgroundWhite", "windowBackgroundWhite");
+            this.switchView.setColors(Theme.key_switchTrack, Theme.key_switchTrackChecked, i, i);
             this.switchView.setImportantForAccessibility(2);
             addView(this.switchView, LayoutHelper.createFrame(37, 50.0f, (LocaleController.isRTL ? 3 : 5) | 16, 19.0f, 0.0f, 19.0f, 0.0f));
             CheckBox2 checkBox2 = new CheckBox2(context, 21);
             this.checkBoxView = checkBox2;
-            checkBox2.setColor("radioBackgroundChecked", "checkboxDisabled", "checkboxCheck");
+            checkBox2.setColor(Theme.key_radioBackgroundChecked, Theme.key_checkboxDisabled, Theme.key_checkboxCheck);
             this.checkBoxView.setDrawUnchecked(true);
             this.checkBoxView.setChecked(true, false);
             this.checkBoxView.setDrawBackgroundAsArc(10);
@@ -684,12 +688,14 @@ public class LiteModeSettingsActivity extends BaseFragment {
             this.headerTextView = textView;
             textView.setTextSize(1, 15.0f);
             this.headerTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.headerTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
+            TextView textView2 = this.headerTextView;
+            int i = Theme.key_windowBackgroundWhiteBlueHeader;
+            textView2.setTextColor(Theme.getColor(i));
             this.headerTextView.setGravity(LocaleController.isRTL ? 5 : 3);
             this.headerTextView.setText(LocaleController.getString("LiteBatteryTitle"));
             this.headerLayout.addView(this.headerTextView, LayoutHelper.createLinear(-2, -2, 16));
             AnimatedTextView animatedTextView = new AnimatedTextView(this, context, true, false, false, LiteModeSettingsActivity.this) {
-                Drawable backgroundDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.multAlpha(Theme.getColor("windowBackgroundWhiteBlueHeader"), 0.15f));
+                Drawable backgroundDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(4.0f), Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader), 0.15f));
 
                 @Override
                 public void onDraw(Canvas canvas) {
@@ -702,7 +708,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.headerOnView.setPadding(AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(5.33f), AndroidUtilities.dp(2.0f));
             this.headerOnView.setTextSize(AndroidUtilities.dp(12.0f));
-            this.headerOnView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
+            this.headerOnView.setTextColor(Theme.getColor(i));
             this.headerLayout.addView(this.headerOnView, LayoutHelper.createLinear(-2, 17, 16, 6, 1, 0, 0));
             addView(this.headerLayout, LayoutHelper.createFrame(-1, -2.0f, 55, 21.0f, 17.0f, 21.0f, 0.0f));
             SeekBarView seekBarView = new SeekBarView(context, true, null);
@@ -745,17 +751,19 @@ public class LiteModeSettingsActivity extends BaseFragment {
             FrameLayout frameLayout = new FrameLayout(context);
             this.valuesView = frameLayout;
             frameLayout.setImportantForAccessibility(4);
-            TextView textView2 = new TextView(context);
-            this.leftTextView = textView2;
-            textView2.setTextSize(1, 13.0f);
-            this.leftTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+            TextView textView3 = new TextView(context);
+            this.leftTextView = textView3;
+            textView3.setTextSize(1, 13.0f);
+            TextView textView4 = this.leftTextView;
+            int i2 = Theme.key_windowBackgroundWhiteGrayText;
+            textView4.setTextColor(Theme.getColor(i2));
             this.leftTextView.setGravity(3);
             this.leftTextView.setText(LocaleController.getString("LiteBatteryDisabled", R.string.LiteBatteryDisabled));
             this.valuesView.addView(this.leftTextView, LayoutHelper.createFrame(-2, -2, 19));
             AnimatedTextView animatedTextView2 = new AnimatedTextView(context, false, true, true, LiteModeSettingsActivity.this) {
                 @Override
-                public void onMeasure(int i, int i2) {
-                    int size = View.MeasureSpec.getSize(i);
+                public void onMeasure(int i3, int i4) {
+                    int size = View.MeasureSpec.getSize(i3);
                     if (size <= 0) {
                         size = AndroidUtilities.displaySize.x - AndroidUtilities.dp(20.0f);
                     }
@@ -766,7 +774,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
             animatedTextView2.setAnimationProperties(0.45f, 0L, 240L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.middleTextView.setGravity(1);
             this.middleTextView.setTextSize(AndroidUtilities.dp(13.0f));
-            this.middleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText"));
+            this.middleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText));
             this.valuesView.addView(this.middleTextView, LayoutHelper.createFrame(-2, -2, 17));
             this.batteryText = new SpannableStringBuilder("b");
             BatteryDrawable batteryDrawable = new BatteryDrawable();
@@ -775,10 +783,10 @@ public class LiteModeSettingsActivity extends BaseFragment {
             this.batteryIcon.setTranslationY(AndroidUtilities.dp(1.5f));
             this.batteryIcon.setBounds(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(-20.0f), AndroidUtilities.dp(23.0f), 0);
             this.batteryText.setSpan(new ImageSpan(this.batteryIcon, 0), 0, this.batteryText.length(), 33);
-            TextView textView3 = new TextView(context);
-            this.rightTextView = textView3;
-            textView3.setTextSize(1, 13.0f);
-            this.rightTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+            TextView textView5 = new TextView(context);
+            this.rightTextView = textView5;
+            textView5.setTextSize(1, 13.0f);
+            this.rightTextView.setTextColor(Theme.getColor(i2));
             this.rightTextView.setGravity(5);
             this.rightTextView.setText(LocaleController.getString("LiteBatteryEnabled", R.string.LiteBatteryEnabled));
             this.valuesView.addView(this.rightTextView, LayoutHelper.createFrame(-2, -2, 21));
@@ -800,8 +808,8 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 }
 
                 @Override
-                protected void setProgress(int i) {
-                    float f = i / 100.0f;
+                protected void setProgress(int i3) {
+                    float f = i3 / 100.0f;
                     PowerSaverSlider.this.seekBarView.delegate.onSeekBarDrag(true, f);
                     PowerSaverSlider.this.seekBarView.setProgress(f);
                 }
@@ -905,7 +913,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 this.onActiveAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
-                        PowerSaverSlider.this.rightTextView.setTextColor(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteGrayText"), Theme.getColor("windowBackgroundWhiteBlueText"), PowerSaverSlider.this.onActiveT = f));
+                        PowerSaverSlider.this.rightTextView.setTextColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText), PowerSaverSlider.this.onActiveT = f));
                     }
                 });
                 this.onActiveAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -916,8 +924,8 @@ public class LiteModeSettingsActivity extends BaseFragment {
 
         public void lambda$updateOnActive$0(ValueAnimator valueAnimator) {
             TextView textView = this.rightTextView;
-            int color = Theme.getColor("windowBackgroundWhiteGrayText");
-            int color2 = Theme.getColor("windowBackgroundWhiteBlueText");
+            int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText);
+            int color2 = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText);
             float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             this.onActiveT = floatValue;
             textView.setTextColor(ColorUtils.blendARGB(color, color2, floatValue));
@@ -943,7 +951,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 this.offActiveAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animator) {
-                        PowerSaverSlider.this.leftTextView.setTextColor(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteGrayText"), Theme.getColor("windowBackgroundWhiteBlueText"), PowerSaverSlider.this.offActiveT = f));
+                        PowerSaverSlider.this.leftTextView.setTextColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText), PowerSaverSlider.this.offActiveT = f));
                     }
                 });
                 this.offActiveAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
@@ -954,8 +962,8 @@ public class LiteModeSettingsActivity extends BaseFragment {
 
         public void lambda$updateOffActive$1(ValueAnimator valueAnimator) {
             TextView textView = this.leftTextView;
-            int color = Theme.getColor("windowBackgroundWhiteGrayText");
-            int color2 = Theme.getColor("windowBackgroundWhiteBlueText");
+            int color = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText);
+            int color2 = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText);
             float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
             this.offActiveT = floatValue;
             textView.setTextColor(ColorUtils.blendARGB(color, color2, floatValue));
@@ -1040,6 +1048,6 @@ public class LiteModeSettingsActivity extends BaseFragment {
         super.onFragmentDestroy();
         LiteMode.savePreference();
         AnimatedEmojiDrawable.updateAll();
-        Theme.reloadWallpaper();
+        Theme.reloadWallpaper(true);
     }
 }

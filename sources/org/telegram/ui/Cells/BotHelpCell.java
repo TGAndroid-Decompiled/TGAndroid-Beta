@@ -15,6 +15,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.Iterator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -71,7 +72,7 @@ public class BotHelpCell extends View {
         imageReceiver.setInvalidateAll(true);
         this.imageReceiver.setCrossfadeWithOldImage(true);
         this.imageReceiver.setCrossfadeDuration(300);
-        int color = Theme.getColor("listSelectorSDK21", resourcesProvider);
+        int color = Theme.getColor(Theme.key_listSelector, resourcesProvider);
         int i = SharedConfig.bubbleRadius;
         this.selectorDrawableRadius = i;
         Drawable createRadSelectorDrawable = Theme.createRadSelectorDrawable(color, i, i);
@@ -103,7 +104,7 @@ public class BotHelpCell extends View {
             setVisibility(8);
             return;
         }
-        String str2 = str == null ? "" : str;
+        String str2 = str == null ? BuildConfig.APP_CENTER_HASH : str;
         if (str2.equals(this.oldText) && this.isPhotoVisible == z2) {
             return;
         }
@@ -251,8 +252,8 @@ public class BotHelpCell extends View {
         }
         this.imageReceiver.setImageCoords(width + i, this.imagePadding, this.width - (i * 2), this.photoHeight - i);
         this.imageReceiver.draw(canvas);
-        Theme.chat_msgTextPaint.setColor(getThemedColor("chat_messageTextIn"));
-        Theme.chat_msgTextPaint.linkColor = getThemedColor("chat_messageLinkIn");
+        Theme.chat_msgTextPaint.setColor(getThemedColor(Theme.key_chat_messageTextIn));
+        Theme.chat_msgTextPaint.linkColor = getThemedColor(Theme.key_chat_messageLinkIn);
         canvas.save();
         int dp2 = AndroidUtilities.dp(this.isPhotoVisible ? 14.0f : 11.0f) + width;
         this.textX = dp2;
@@ -299,10 +300,8 @@ public class BotHelpCell extends View {
         this.animating = z;
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     private Drawable getThemedDrawable(String str) {

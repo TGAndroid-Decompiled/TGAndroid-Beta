@@ -36,6 +36,7 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
             return;
         }
         MessagesController.getInstance(intExtra2).markDialogAsRead(longExtra, intExtra, intExtra, 0, false, 0, 0, true, 0);
+        MessagesController.getInstance(intExtra2).markReactionsAsRead(longExtra, 0);
     }
 
     public static void lambda$onReceive$1(final AccountInstance accountInstance, final long j, final int i, final int i2) {
@@ -51,6 +52,7 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
     public static void lambda$onReceive$0(AccountInstance accountInstance, TLRPC$User tLRPC$User, int i, long j, int i2) {
         accountInstance.getMessagesController().putUser(tLRPC$User, true);
         MessagesController.getInstance(i).markDialogAsRead(j, i2, i2, 0, false, 0, 0, true, 0);
+        MessagesController.getInstance(i).markReactionsAsRead(j, 0);
     }
 
     public static void lambda$onReceive$3(final AccountInstance accountInstance, final long j, final int i, final int i2) {
@@ -66,5 +68,6 @@ public class AutoMessageHeardReceiver extends BroadcastReceiver {
     public static void lambda$onReceive$2(AccountInstance accountInstance, TLRPC$Chat tLRPC$Chat, int i, long j, int i2) {
         accountInstance.getMessagesController().putChat(tLRPC$Chat, true);
         MessagesController.getInstance(i).markDialogAsRead(j, i2, i2, 0, false, 0, 0, true, 0);
+        MessagesController.getInstance(i).markReactionsAsRead(j, 0);
     }
 }

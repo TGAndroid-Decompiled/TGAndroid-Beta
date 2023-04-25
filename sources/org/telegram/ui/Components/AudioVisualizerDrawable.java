@@ -110,10 +110,10 @@ public class AudioVisualizerDrawable {
     public void draw(Canvas canvas, float f, float f2, boolean z, float f3, Theme.ResourcesProvider resourcesProvider) {
         if (LiteMode.isEnabled(32)) {
             if (z) {
-                this.p1.setColor(Theme.getColor("chat_outLoader", resourcesProvider));
+                this.p1.setColor(Theme.getColor(Theme.key_chat_outLoader, resourcesProvider));
                 this.p1.setAlpha((int) (this.ALPHA * f3));
             } else {
-                this.p1.setColor(Theme.getColor("chat_inLoader", resourcesProvider));
+                this.p1.setColor(Theme.getColor(Theme.key_chat_inLoader, resourcesProvider));
                 this.p1.setAlpha((int) (this.ALPHA * f3));
             }
             draw(canvas, f, f2);

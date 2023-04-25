@@ -413,12 +413,14 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             this.selectedMessagesCountTextView = numberTextView;
             numberTextView.setTextSize(18);
             this.selectedMessagesCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.selectedMessagesCountTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
+            NumberTextView numberTextView2 = this.selectedMessagesCountTextView;
+            int i = Theme.key_actionBarActionModeDefaultIcon;
+            numberTextView2.setTextColor(Theme.getColor(i));
             this.actionMode.addView(this.selectedMessagesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
             this.selectedMessagesCountTextView.setOnTouchListener(SearchViewPager$$ExternalSyntheticLambda2.INSTANCE);
             ActionBarMenuItem addItemWithWidth = this.actionMode.addItemWithWidth(203, R.drawable.avd_speed, AndroidUtilities.dp(54.0f), LocaleController.getString("AccDescrPremiumSpeed", R.string.AccDescrPremiumSpeed));
             this.speedItem = addItemWithWidth;
-            addItemWithWidth.getIconView().setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarActionModeDefaultIcon"), PorterDuff.Mode.SRC_IN));
+            addItemWithWidth.getIconView().setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.SRC_IN));
             this.gotoItem = this.actionMode.addItemWithWidth(200, R.drawable.msg_message, AndroidUtilities.dp(54.0f), LocaleController.getString("AccDescrGoToMessage", R.string.AccDescrGoToMessage));
             this.forwardItem = this.actionMode.addItemWithWidth(201, R.drawable.msg_forward, AndroidUtilities.dp(54.0f), LocaleController.getString("Forward", R.string.Forward));
             this.deleteItem = this.actionMode.addItemWithWidth(202, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString("Delete", R.string.Delete));
@@ -426,8 +428,8 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         if (this.selectedMessagesCountTextView != null) {
             DialogsSearchAdapter dialogsSearchAdapter = this.dialogsSearchAdapter;
             ((ViewGroup.MarginLayoutParams) this.selectedMessagesCountTextView.getLayoutParams()).leftMargin = AndroidUtilities.dp((dialogsSearchAdapter != null && (dialogsSearchAdapterDelegate = dialogsSearchAdapter.delegate) != null && (dialogsSearchAdapterDelegate.getSearchForumDialogId() > 0L ? 1 : (dialogsSearchAdapterDelegate.getSearchForumDialogId() == 0L ? 0 : -1)) != 0 ? 56 : 0) + 72);
-            NumberTextView numberTextView2 = this.selectedMessagesCountTextView;
-            numberTextView2.setLayoutParams(numberTextView2.getLayoutParams());
+            NumberTextView numberTextView3 = this.selectedMessagesCountTextView;
+            numberTextView3.setLayoutParams(numberTextView3.getLayoutParams());
         }
         if (this.parent.getActionBar().getBackButton().getDrawable() instanceof MenuDrawable) {
             BackDrawable backDrawable = new BackDrawable(false);
@@ -447,12 +449,12 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         }
         this.parent.getActionBar().hideActionMode();
         this.selectedFiles.clear();
-        for (int i = 0; i < getChildCount(); i++) {
-            if (getChildAt(i) instanceof FilteredSearchView) {
-                ((FilteredSearchView) getChildAt(i)).update();
+        for (int i2 = 0; i2 < getChildCount(); i2++) {
+            if (getChildAt(i2) instanceof FilteredSearchView) {
+                ((FilteredSearchView) getChildAt(i2)).update();
             }
-            if (getChildAt(i) instanceof SearchDownloadsContainer) {
-                ((SearchDownloadsContainer) getChildAt(i)).update(true);
+            if (getChildAt(i2) instanceof SearchDownloadsContainer) {
+                ((SearchDownloadsContainer) getChildAt(i2)).update(true);
             }
         }
         FilteredSearchView filteredSearchView = this.noMediaFiltersSearchView;
@@ -460,8 +462,8 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             filteredSearchView.update();
         }
         int size = this.viewsByType.size();
-        for (int i2 = 0; i2 < size; i2++) {
-            View valueAt = this.viewsByType.valueAt(i2);
+        for (int i3 = 0; i3 < size; i3++) {
+            View valueAt = this.viewsByType.valueAt(i3);
             if (valueAt instanceof FilteredSearchView) {
                 ((FilteredSearchView) valueAt).update();
             }
@@ -500,7 +502,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             });
             TextView textView = (TextView) builder.show().getButton(-1);
             if (textView != null) {
-                textView.setTextColor(Theme.getColor("text_RedBold"));
+                textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
             }
         } else if (i == 203) {
             if (isSpeedItemVisible()) {
@@ -634,7 +636,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
                     int i3 = Build.VERSION.SDK_INT;
                     if (i3 >= 21) {
                         AnimatedVectorDrawable animatedVectorDrawable = (AnimatedVectorDrawable) this.speedItem.getIconView().getDrawable();
-                        animatedVectorDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarActionModeDefaultIcon"), PorterDuff.Mode.SRC_IN));
+                        animatedVectorDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon), PorterDuff.Mode.SRC_IN));
                         if (isSpeedItemVisible) {
                             animatedVectorDrawable.start();
                         } else if (i3 >= 23) {
@@ -711,7 +713,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         for (int i = 0; i < this.searchListView.getChildCount(); i++) {
             View childAt = this.searchListView.getChildAt(i);
             if ((childAt instanceof ProfileSearchCell) || (childAt instanceof DialogCell) || (childAt instanceof HashtagSearchCell)) {
-                arrayList.add(new ThemeDescription(childAt, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
+                arrayList.add(new ThemeDescription(childAt, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
             }
         }
         for (int i2 = 0; i2 < getChildCount(); i2++) {
@@ -730,8 +732,8 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         if (filteredSearchView != null) {
             arrayList.addAll(filteredSearchView.getThemeDescriptions());
         }
-        arrayList.add(new ThemeDescription(this.emptyView.title, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.emptyView.subtitle, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteGrayText"));
+        arrayList.add(new ThemeDescription(this.emptyView.title, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteBlackText));
+        arrayList.add(new ThemeDescription(this.emptyView.subtitle, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText));
         arrayList.addAll(SimpleThemeDescription.createThemeDescriptions(new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
@@ -742,13 +744,13 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             public void onAnimationProgress(float f) {
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
-        }, "actionBarActionModeDefaultIcon"));
+        }, Theme.key_actionBarActionModeDefaultIcon));
     }
 
     public void lambda$getThemeDescriptions$4() {
         NumberTextView numberTextView = this.selectedMessagesCountTextView;
         if (numberTextView != null) {
-            numberTextView.setTextColor(Theme.getColor("actionBarActionModeDefaultIcon"));
+            numberTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));
         }
     }
 
@@ -925,7 +927,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             if (this.items.get(i).type == 1) {
                 return LocaleController.getString("DownloadsTabs", R.string.DownloadsTabs);
             }
-            return FiltersView.filters[this.items.get(i).filterIndex].title;
+            return FiltersView.filters[this.items.get(i).filterIndex].getTitle();
         }
 
         @Override

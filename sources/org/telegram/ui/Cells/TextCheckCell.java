@@ -83,7 +83,7 @@ public class TextCheckCell extends FrameLayout {
         this.padding = i;
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor(z ? "dialogTextBlack" : "windowBackgroundWhiteBlackText", resourcesProvider));
+        textView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
@@ -95,7 +95,7 @@ public class TextCheckCell extends FrameLayout {
         addView(textView2, LayoutHelper.createFrame(-1, -1.0f, (z2 ? 5 : 3) | 48, z2 ? 70.0f : i, 0.0f, z2 ? i : 70.0f, 0.0f));
         TextView textView3 = new TextView(context);
         this.valueTextView = textView3;
-        textView3.setTextColor(Theme.getColor(z ? "dialogIcon" : "windowBackgroundWhiteGrayText2", resourcesProvider));
+        textView3.setTextColor(Theme.getColor(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.valueTextView.setLines(1);
@@ -108,7 +108,10 @@ public class TextCheckCell extends FrameLayout {
         addView(textView4, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 70.0f : i, 35.0f, z3 ? i : 70.0f, 0.0f));
         Switch r2 = new Switch(context, resourcesProvider);
         this.checkBox = r2;
-        r2.setColors("switchTrack", "switchTrackChecked", "windowBackgroundWhite", "windowBackgroundWhite");
+        int i2 = Theme.key_switchTrack;
+        int i3 = Theme.key_switchTrackChecked;
+        int i4 = Theme.key_windowBackgroundWhite;
+        r2.setColors(i2, i3, i4, i4);
         addView(this.checkBox, LayoutHelper.createFrame(37, 20.0f, (LocaleController.isRTL ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         setClipChildren(false);
         this.isRTL = LocaleController.isRTL;
@@ -179,10 +182,10 @@ public class TextCheckCell extends FrameLayout {
         addView(this.checkBox, LayoutHelper.createFrame(37, 20.0f, (LocaleController.isRTL ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
     }
 
-    public void setColors(String str, String str2, String str3, String str4, String str5) {
-        this.textView.setTextColor(Theme.getColor(str, this.resourcesProvider));
-        this.checkBox.setColors(str2, str3, str4, str5);
-        this.textView.setTag(str);
+    public void setColors(int i, int i2, int i3, int i4, int i5) {
+        this.textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        this.checkBox.setColors(i2, i3, i4, i5);
+        this.textView.setTag(Integer.valueOf(i));
     }
 
     public void setTypeface(Typeface typeface) {

@@ -58,6 +58,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LiteMode;
@@ -309,9 +310,9 @@ public class CameraScanActivity extends BaseFragment {
             this.actionBar.setItemsBackgroundColor(-1, false);
             this.actionBar.setTitleColor(-1);
         } else {
-            this.actionBar.setItemsColor(Theme.getColor("windowBackgroundWhiteGrayText2"), false);
-            this.actionBar.setItemsBackgroundColor(Theme.getColor("actionBarWhiteSelector"), false);
-            this.actionBar.setTitleColor(Theme.getColor("actionBarDefaultTitle"));
+            this.actionBar.setItemsColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), false);
+            this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarWhiteSelector), false);
+            this.actionBar.setTitleColor(Theme.getColor(Theme.key_actionBarDefaultTitle));
         }
         this.actionBar.setCastShadows(false);
         if (!AndroidUtilities.isTablet() && !isQr()) {
@@ -510,8 +511,10 @@ public class CameraScanActivity extends BaseFragment {
             initCameraView();
         }
         if (this.currentType == 0) {
-            this.actionBar.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-            this.fragmentView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+            ActionBar actionBar = this.actionBar;
+            int i = Theme.key_windowBackgroundWhite;
+            actionBar.setBackgroundColor(Theme.getColor(i));
+            this.fragmentView.setBackgroundColor(Theme.getColor(i));
         } else {
             this.actionBar.setBackgroundDrawable(null);
             this.actionBar.setAddToContainer(false);
@@ -521,8 +524,8 @@ public class CameraScanActivity extends BaseFragment {
             viewGroup.setBackgroundColor(-16777216);
             viewGroup.addView(this.actionBar);
         }
-        int i = this.currentType;
-        if (i == 2 || i == 3) {
+        int i2 = this.currentType;
+        if (i2 == 2 || i2 == 3) {
             this.actionBar.setTitle(LocaleController.getString("AuthAnotherClientScan", R.string.AuthAnotherClientScan));
         }
         final Paint paint = new Paint(1);
@@ -534,8 +537,8 @@ public class CameraScanActivity extends BaseFragment {
             LinkPath textPath;
 
             @Override
-            protected void onMeasure(int i2, int i3) {
-                super.onMeasure(i2, i3);
+            protected void onMeasure(int i3, int i4) {
+                super.onMeasure(i3, i4);
                 if (getText() instanceof Spanned) {
                     Spanned spanned = (Spanned) getText();
                     URLSpanNoUnderline[] uRLSpanNoUnderlineArr = (URLSpanNoUnderline[]) spanned.getSpans(0, spanned.length(), URLSpanNoUnderline.class);
@@ -545,12 +548,12 @@ public class CameraScanActivity extends BaseFragment {
                     LinkPath linkPath = new LinkPath(true);
                     this.textPath = linkPath;
                     linkPath.setAllowReset(false);
-                    for (int i4 = 0; i4 < uRLSpanNoUnderlineArr.length; i4++) {
-                        int spanStart = spanned.getSpanStart(uRLSpanNoUnderlineArr[i4]);
-                        int spanEnd = spanned.getSpanEnd(uRLSpanNoUnderlineArr[i4]);
+                    for (int i5 = 0; i5 < uRLSpanNoUnderlineArr.length; i5++) {
+                        int spanStart = spanned.getSpanStart(uRLSpanNoUnderlineArr[i5]);
+                        int spanEnd = spanned.getSpanEnd(uRLSpanNoUnderlineArr[i5]);
                         this.textPath.setCurrentLayout(getLayout(), spanStart, 0.0f);
-                        int i5 = getText() != null ? getPaint().baselineShift : 0;
-                        this.textPath.setBaselineShift(i5 != 0 ? i5 + AndroidUtilities.dp(i5 > 0 ? 5.0f : -2.0f) : 0);
+                        int i6 = getText() != null ? getPaint().baselineShift : 0;
+                        this.textPath.setBaselineShift(i6 != 0 ? i6 + AndroidUtilities.dp(i6 > 0 ? 5.0f : -2.0f) : 0);
                         getLayout().getSelectionPath(spanStart, spanEnd, this.textPath);
                     }
                     this.textPath.setAllowReset(true);
@@ -619,7 +622,7 @@ public class CameraScanActivity extends BaseFragment {
         viewGroup.addView(this.titleTextView);
         TextView textView2 = new TextView(context);
         this.descriptionText = textView2;
-        textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText6"));
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6));
         this.descriptionText.setGravity(1);
         this.descriptionText.setTextSize(1, 16.0f);
         viewGroup.addView(this.descriptionText);
@@ -628,36 +631,36 @@ public class CameraScanActivity extends BaseFragment {
         textView3.setTextColor(-1);
         this.recognizedMrzView.setGravity(81);
         this.recognizedMrzView.setAlpha(0.0f);
-        int i2 = this.currentType;
-        if (i2 == 0) {
+        int i3 = this.currentType;
+        if (i3 == 0) {
             this.titleTextView.setText(LocaleController.getString("PassportScanPassport", R.string.PassportScanPassport));
             this.descriptionText.setText(LocaleController.getString("PassportScanPassportInfo", R.string.PassportScanPassportInfo));
-            this.titleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.titleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             this.recognizedMrzView.setTypeface(Typeface.MONOSPACE);
         } else {
             if (!this.needGalleryButton) {
-                if (i2 == 1 || i2 == 3) {
+                if (i3 == 1 || i3 == 3) {
                     this.titleTextView.setText(LocaleController.getString("AuthAnotherClientScan", R.string.AuthAnotherClientScan));
                 } else {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString("AuthAnotherClientInfo5", R.string.AuthAnotherClientInfo5));
                     String[] strArr = {LocaleController.getString("AuthAnotherClientDownloadClientUrl", R.string.AuthAnotherClientDownloadClientUrl), LocaleController.getString("AuthAnotherWebClientUrl", R.string.AuthAnotherWebClientUrl)};
-                    int i3 = 0;
-                    for (int i4 = 2; i3 < i4; i4 = 2) {
+                    int i4 = 0;
+                    for (int i5 = 2; i4 < i5; i5 = 2) {
                         String spannableStringBuilder2 = spannableStringBuilder.toString();
                         int indexOf = spannableStringBuilder2.indexOf(42);
-                        int i5 = indexOf + 1;
-                        int indexOf2 = spannableStringBuilder2.indexOf(42, i5);
+                        int i6 = indexOf + 1;
+                        int indexOf2 = spannableStringBuilder2.indexOf(42, i6);
                         if (indexOf == -1 || indexOf2 == -1 || indexOf == indexOf2) {
                             break;
                         }
                         this.titleTextView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-                        int i6 = indexOf2 + 1;
-                        spannableStringBuilder.replace(indexOf2, i6, (CharSequence) " ");
-                        spannableStringBuilder.replace(indexOf, i5, (CharSequence) " ");
-                        int i7 = i6 - 1;
-                        spannableStringBuilder.setSpan(new URLSpanNoUnderline(strArr[i3], true), i5, i7, 33);
-                        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), i5, i7, 33);
-                        i3++;
+                        int i7 = indexOf2 + 1;
+                        spannableStringBuilder.replace(indexOf2, i7, (CharSequence) " ");
+                        spannableStringBuilder.replace(indexOf, i6, (CharSequence) " ");
+                        int i8 = i7 - 1;
+                        spannableStringBuilder.setSpan(new URLSpanNoUnderline(strArr[i4], true), i6, i8, 33);
+                        spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), i6, i8, 33);
+                        i4++;
                     }
                     this.titleTextView.setLinkTextColor(-1);
                     this.titleTextView.setTextSize(1, 16.0f);
@@ -1461,7 +1464,7 @@ public class CameraScanActivity extends BaseFragment {
                 return null;
             }
             if (this.needGalleryButton) {
-                Uri.parse(str).getPath().replace("/", "");
+                Uri.parse(str).getPath().replace("/", BuildConfig.APP_CENTER_HASH);
             } else if (!str.startsWith("tg://login?token=") && this.currentType != 3) {
                 onNoQrFound();
                 return null;
@@ -1495,12 +1498,15 @@ public class CameraScanActivity extends BaseFragment {
         if (isQr()) {
             return arrayList;
         }
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, "windowBackgroundWhiteGrayText2"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "actionBarWhiteSelector"));
-        arrayList.add(new ThemeDescription(this.titleTextView, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.descriptionText, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "windowBackgroundWhiteGrayText6"));
+        View view = this.fragmentView;
+        int i = ThemeDescription.FLAG_BACKGROUND;
+        int i2 = Theme.key_windowBackgroundWhite;
+        arrayList.add(new ThemeDescription(view, i, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText2));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarWhiteSelector));
+        arrayList.add(new ThemeDescription(this.titleTextView, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteBlackText));
+        arrayList.add(new ThemeDescription(this.descriptionText, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText6));
         return arrayList;
     }
 }

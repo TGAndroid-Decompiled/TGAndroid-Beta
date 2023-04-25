@@ -6,15 +6,15 @@ import android.text.style.UpdateAppearance;
 import org.telegram.ui.ActionBar.Theme;
 public class ForegroundColorSpanThemable extends CharacterStyle implements UpdateAppearance {
     private int color;
-    private String colorKey;
+    private int colorKey;
     private final Theme.ResourcesProvider resourcesProvider;
 
-    public ForegroundColorSpanThemable(String str) {
-        this(str, null);
+    public ForegroundColorSpanThemable(int i) {
+        this(i, null);
     }
 
-    public ForegroundColorSpanThemable(String str, Theme.ResourcesProvider resourcesProvider) {
-        this.colorKey = str;
+    public ForegroundColorSpanThemable(int i, Theme.ResourcesProvider resourcesProvider) {
+        this.colorKey = i;
         this.resourcesProvider = resourcesProvider;
     }
 

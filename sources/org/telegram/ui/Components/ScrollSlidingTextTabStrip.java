@@ -21,7 +21,7 @@ import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.Theme;
 public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
-    private String activeTextColorKey;
+    private int activeTextColorKey;
     private int allTextWidth;
     private int animateFromIndicatorWidth;
     private int animateFromIndicaxtorX;
@@ -49,12 +49,12 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
     private Theme.ResourcesProvider resourcesProvider;
     private int scrollingToChild;
     private int selectedTabId;
-    private String selectorColorKey;
+    private int selectorColorKey;
     private GradientDrawable selectorDrawable;
     private int tabCount;
-    private String tabLineColorKey;
+    private int tabLineColorKey;
     private LinearLayout tabsContainer;
-    private String unactiveTextColorKey;
+    private int unactiveTextColorKey;
     private boolean useSameWidth;
 
     public interface ScrollSlidingTabStripDelegate {
@@ -85,10 +85,10 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         super(context);
         this.selectedTabId = -1;
         this.scrollingToChild = -1;
-        this.tabLineColorKey = "actionBarTabLine";
-        this.activeTextColorKey = "actionBarTabActiveText";
-        this.unactiveTextColorKey = "actionBarTabUnactiveText";
-        this.selectorColorKey = "actionBarTabSelector";
+        this.tabLineColorKey = Theme.key_actionBarTabLine;
+        this.activeTextColorKey = Theme.key_actionBarTabActiveText;
+        this.unactiveTextColorKey = Theme.key_actionBarTabUnactiveText;
+        this.selectorColorKey = Theme.key_actionBarTabSelector;
         this.interpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.positionToId = new SparseIntArray(5);
         this.idToPosition = new SparseIntArray(5);
@@ -182,8 +182,8 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         }
         setAnimationProgressInernal(textView, textView2, f);
         if (f >= 1.0f) {
-            textView2.setTag(this.unactiveTextColorKey);
-            textView.setTag(this.activeTextColorKey);
+            textView2.setTag(Integer.valueOf(this.unactiveTextColorKey));
+            textView.setTag(Integer.valueOf(this.activeTextColorKey));
         }
         ScrollSlidingTabStripDelegate scrollSlidingTabStripDelegate = this.delegate;
         if (scrollSlidingTabStripDelegate != null) {
@@ -326,7 +326,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         int i = 0;
         while (i < childCount) {
             TextView textView = (TextView) this.tabsContainer.getChildAt(i);
-            textView.setTag(this.currentPosition == i ? this.activeTextColorKey : this.unactiveTextColorKey);
+            textView.setTag(Integer.valueOf(this.currentPosition == i ? this.activeTextColorKey : this.unactiveTextColorKey));
             textView.setTextColor(Theme.getColor(this.currentPosition == i ? this.activeTextColorKey : this.unactiveTextColorKey, this.resourcesProvider));
             if (i == 0) {
                 textView.getLayoutParams().width = childCount == 1 ? -2 : 0;
@@ -335,12 +335,12 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
         }
     }
 
-    public void setColors(String str, String str2, String str3, String str4) {
-        this.tabLineColorKey = str;
-        this.activeTextColorKey = str2;
-        this.unactiveTextColorKey = str3;
-        this.selectorColorKey = str4;
-        this.selectorDrawable.setColor(Theme.getColor(str, this.resourcesProvider));
+    public void setColors(int i, int i2, int i3, int i4) {
+        this.tabLineColorKey = i;
+        this.activeTextColorKey = i2;
+        this.unactiveTextColorKey = i3;
+        this.selectorColorKey = i4;
+        this.selectorDrawable.setColor(Theme.getColor(i, this.resourcesProvider));
     }
 
     public int getCurrentTabId() {
@@ -519,8 +519,8 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView {
             this.animateIndicatorToX = textView2.getLeft() + ((textView2.getMeasuredWidth() - this.animateIndicatorToWidth) / 2);
             setAnimationProgressInernal(textView2, textView, f);
             if (f >= 1.0f) {
-                textView.setTag(this.unactiveTextColorKey);
-                textView2.setTag(this.activeTextColorKey);
+                textView.setTag(Integer.valueOf(this.unactiveTextColorKey));
+                textView2.setTag(Integer.valueOf(this.activeTextColorKey));
             }
             scrollToChild(this.tabsContainer.indexOfChild(textView2));
         }

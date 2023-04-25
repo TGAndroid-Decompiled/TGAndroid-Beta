@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -106,7 +107,7 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
         this.blobDrawable.generateBlob();
         this.blobDrawable2.generateBlob();
         int i3 = R.raw.voice_outlined;
-        this.bigMicDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(30.0f), true, null);
+        this.bigMicDrawable = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(30.0f), true, null);
         setWillNotDraw(false);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.muteButton = rLottieImageView;
@@ -148,30 +149,36 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
         public void update(long j, float f) {
             int i = this.currentState;
             if (i == 0) {
-                if (this.color1 != Theme.getColor("voipgroup_overlayGreen1") || this.color2 != Theme.getColor("voipgroup_overlayGreen2")) {
-                    int color = Theme.getColor("voipgroup_overlayGreen1");
+                int i2 = this.color1;
+                int i3 = Theme.key_voipgroup_overlayGreen1;
+                if (i2 != Theme.getColor(i3) || this.color2 != Theme.getColor(Theme.key_voipgroup_overlayGreen2)) {
+                    int color = Theme.getColor(i3);
                     this.color1 = color;
-                    int color2 = Theme.getColor("voipgroup_overlayGreen2");
+                    int color2 = Theme.getColor(Theme.key_voipgroup_overlayGreen2);
                     this.color2 = color2;
                     this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color, color2}, (float[]) null, Shader.TileMode.CLAMP);
                 }
             } else if (i == 1) {
-                if (this.color1 != Theme.getColor("voipgroup_overlayBlue1") || this.color2 != Theme.getColor("voipgroup_overlayBlue2")) {
-                    int color3 = Theme.getColor("voipgroup_overlayBlue1");
+                int i4 = this.color1;
+                int i5 = Theme.key_voipgroup_overlayBlue1;
+                if (i4 != Theme.getColor(i5) || this.color2 != Theme.getColor(Theme.key_voipgroup_overlayBlue2)) {
+                    int color3 = Theme.getColor(i5);
                     this.color1 = color3;
-                    int color4 = Theme.getColor("voipgroup_overlayBlue2");
+                    int color4 = Theme.getColor(Theme.key_voipgroup_overlayBlue2);
                     this.color2 = color4;
                     this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color3, color4}, (float[]) null, Shader.TileMode.CLAMP);
                 }
             } else if (i != 3) {
                 return;
             } else {
-                if (this.color1 != Theme.getColor("voipgroup_mutedByAdminGradient") || this.color2 != Theme.getColor("voipgroup_mutedByAdminGradient2") || this.color3 != Theme.getColor("voipgroup_mutedByAdminGradient3")) {
-                    int color5 = Theme.getColor("voipgroup_mutedByAdminGradient2");
+                int i6 = this.color1;
+                int i7 = Theme.key_voipgroup_mutedByAdminGradient;
+                if (i6 != Theme.getColor(i7) || this.color2 != Theme.getColor(Theme.key_voipgroup_mutedByAdminGradient2) || this.color3 != Theme.getColor(Theme.key_voipgroup_mutedByAdminGradient3)) {
+                    int color5 = Theme.getColor(Theme.key_voipgroup_mutedByAdminGradient2);
                     this.color2 = color5;
-                    int color6 = Theme.getColor("voipgroup_mutedByAdminGradient3");
+                    int color6 = Theme.getColor(Theme.key_voipgroup_mutedByAdminGradient3);
                     this.color3 = color6;
-                    int color7 = Theme.getColor("voipgroup_mutedByAdminGradient");
+                    int color7 = Theme.getColor(i7);
                     this.color1 = color7;
                     this.shader = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{color5, color6, color7}, (float[]) null, Shader.TileMode.CLAMP);
                 }
@@ -225,7 +232,7 @@ public class GroupCallPipButton extends FrameLayout implements NotificationCente
         public void setToPaint(Paint paint) {
             if (this.currentState == 2) {
                 paint.setShader(null);
-                paint.setColor(Theme.getColor("voipgroup_topPanelGray"));
+                paint.setColor(Theme.getColor(Theme.key_voipgroup_topPanelGray));
                 return;
             }
             paint.setShader(this.shader);

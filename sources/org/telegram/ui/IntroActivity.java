@@ -570,11 +570,11 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                     textView4.layout(dp3, textSize, textView4.getMeasuredWidth() + dp3, textView2.getMeasuredHeight() + textSize);
                 }
             };
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             textView.setTextSize(1, 26.0f);
             textView.setGravity(17);
             frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 51, 18.0f, 244.0f, 18.0f, 0.0f));
-            textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText3"));
+            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3));
             textView2.setTextSize(1, 15.0f);
             textView2.setGravity(17);
             frameLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 51, 16.0f, 286.0f, 16.0f, 0.0f));
@@ -620,7 +620,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             int dp = AndroidUtilities.dp(150.0f);
             Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
             Canvas canvas = new Canvas(createBitmap);
-            canvas.drawColor(Theme.getColor("windowBackgroundWhite"));
+            canvas.drawColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             Paint paint = new Paint(1);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
             canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);
@@ -743,7 +743,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                         loadTexture(R.drawable.intro_knot_up, 14);
                         loadTexture(R.drawable.intro_powerful_infinity_white, 15);
                         loadTexture(R.drawable.intro_powerful_infinity, 16);
-                        loadTexture(R.drawable.intro_powerful_mask, 17, Theme.getColor("windowBackgroundWhite"), false);
+                        loadTexture(R.drawable.intro_powerful_mask, 17, Theme.getColor(Theme.key_windowBackgroundWhite), false);
                         loadTexture(R.drawable.intro_powerful_star, 18);
                         loadTexture(R.drawable.intro_private_door, 19);
                         loadTexture(R.drawable.intro_private_screw, 20);
@@ -911,15 +911,20 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
             public void onAnimationProgress(float f) {
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
-        }, "windowBackgroundWhite", "windowBackgroundWhiteBlueText4", "chats_actionBackground", "chats_actionPressedBackground", "featuredStickers_buttonText", "windowBackgroundWhiteBlackText", "windowBackgroundWhiteGrayText3");
+        }, Theme.key_windowBackgroundWhite, Theme.key_windowBackgroundWhiteBlueText4, Theme.key_chats_actionBackground, Theme.key_chats_actionPressedBackground, Theme.key_featuredStickers_buttonText, Theme.key_windowBackgroundWhiteBlackText, Theme.key_windowBackgroundWhiteGrayText3);
     }
 
     private void updateColors(boolean z) {
-        this.fragmentView.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-        this.switchLanguageTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText4"));
-        this.startMessagingButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-        this.startMessagingButton.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor("changephoneinfo_image2"), Theme.getColor("chats_actionPressedBackground")));
-        this.darkThemeDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("changephoneinfo_image2"), PorterDuff.Mode.SRC_IN));
+        View view = this.fragmentView;
+        int i = Theme.key_windowBackgroundWhite;
+        view.setBackgroundColor(Theme.getColor(i));
+        this.switchLanguageTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
+        this.startMessagingButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+        TextView textView = this.startMessagingButton;
+        int dp = AndroidUtilities.dp(6.0f);
+        int i2 = Theme.key_changephoneinfo_image2;
+        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.getColor(i2), Theme.getColor(Theme.key_chats_actionPressedBackground)));
+        this.darkThemeDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.SRC_IN));
         this.bottomPages.invalidate();
         if (z) {
             EGLThread eGLThread = this.eglThread;
@@ -931,27 +936,30 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                     }
                 });
             }
-            for (int i = 0; i < this.viewPager.getChildCount(); i++) {
-                View childAt = this.viewPager.getChildAt(i);
-                ((TextView) childAt.findViewWithTag(this.pagerHeaderTag)).setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-                ((TextView) childAt.findViewWithTag(this.pagerMessageTag)).setTextColor(Theme.getColor("windowBackgroundWhiteGrayText3"));
+            for (int i3 = 0; i3 < this.viewPager.getChildCount(); i3++) {
+                View childAt = this.viewPager.getChildAt(i3);
+                ((TextView) childAt.findViewWithTag(this.pagerHeaderTag)).setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+                ((TextView) childAt.findViewWithTag(this.pagerMessageTag)).setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText3));
             }
             return;
         }
-        Intro.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+        Intro.setBackgroundColor(Theme.getColor(i));
     }
 
     public void lambda$updateColors$6() {
-        this.eglThread.loadTexture(R.drawable.intro_powerful_mask, 17, Theme.getColor("windowBackgroundWhite"), true);
-        this.eglThread.updatePowerfulTextures();
         EGLThread eGLThread = this.eglThread;
-        eGLThread.loadTexture(eGLThread.telegramMaskProvider, 23, true);
+        int i = R.drawable.intro_powerful_mask;
+        int i2 = Theme.key_windowBackgroundWhite;
+        eGLThread.loadTexture(i, 17, Theme.getColor(i2), true);
+        this.eglThread.updatePowerfulTextures();
+        EGLThread eGLThread2 = this.eglThread;
+        eGLThread2.loadTexture(eGLThread2.telegramMaskProvider, 23, true);
         this.eglThread.updateTelegramTextures();
-        Intro.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+        Intro.setBackgroundColor(Theme.getColor(i2));
     }
 
     @Override
     public boolean isLightStatusBar() {
-        return ColorUtils.calculateLuminance(Theme.getColor("windowBackgroundWhite", null, true)) > 0.699999988079071d;
+        return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) > 0.699999988079071d;
     }
 }

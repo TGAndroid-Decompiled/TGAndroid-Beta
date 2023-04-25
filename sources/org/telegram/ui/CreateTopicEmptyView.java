@@ -32,13 +32,14 @@ public class CreateTopicEmptyView extends LinearLayout {
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 15.0f);
-        textView.setTextColor(getThemedColor("chat_serviceText"));
+        int i = Theme.key_chat_serviceText;
+        textView.setTextColor(getThemedColor(i));
         textView.setGravity(1);
         textView.setMaxWidth(AndroidUtilities.dp(210.0f));
         textView.setText(LocaleController.getString(R.string.AlmostDone));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 13.0f);
-        textView2.setTextColor(getThemedColor("chat_serviceText"));
+        textView2.setTextColor(getThemedColor(i));
         textView2.setGravity(1);
         textView2.setMaxWidth(AndroidUtilities.dp(160.0f));
         textView2.setText(LocaleController.getString(R.string.TopicEmptyViewDescription));
@@ -48,10 +49,8 @@ public class CreateTopicEmptyView extends LinearLayout {
         setSticker();
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     private Paint getThemedPaint(String str) {
@@ -63,7 +62,7 @@ public class CreateTopicEmptyView extends LinearLayout {
     private void setSticker() {
         TLRPC$Document emojiAnimatedSticker = MediaDataController.getInstance(UserConfig.selectedAccount).getEmojiAnimatedSticker("\u1f973");
         if (emojiAnimatedSticker != null) {
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(emojiAnimatedSticker.thumbs, "emptyListPlaceholder", 0.2f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(emojiAnimatedSticker.thumbs, Theme.key_emptyListPlaceholder, 0.2f);
             if (svgThumb != null) {
                 svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
             }

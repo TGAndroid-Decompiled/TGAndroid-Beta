@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -45,7 +46,9 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             this.resourcesProvider = resourcesProvider;
             View view = new View(context);
             this.background = view;
-            view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(4.0f), getThemedColor("featuredStickers_addButton"), getThemedColor("featuredStickers_addButtonPressed")));
+            int dp = AndroidUtilities.dp(4.0f);
+            int i = Theme.key_featuredStickers_addButton;
+            view.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, getThemedColor(i), getThemedColor(Theme.key_featuredStickers_addButtonPressed)));
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
             LinearLayout linearLayout = new LinearLayout(context);
             this.linearLayout = linearLayout;
@@ -53,9 +56,11 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             addView(this.linearLayout, LayoutHelper.createFrame(-2, -2, 17));
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.imageView = rLottieImageView;
-            rLottieImageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(20.0f), getThemedColor("featuredStickers_buttonText")));
+            int dp2 = AndroidUtilities.dp(20.0f);
+            int i2 = Theme.key_featuredStickers_buttonText;
+            rLottieImageView.setBackground(Theme.createCircleDrawable(dp2, getThemedColor(i2)));
             this.imageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("featuredStickers_addButton"), PorterDuff.Mode.MULTIPLY));
+            this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(i), PorterDuff.Mode.MULTIPLY));
             this.imageView.setAnimation(R.raw.import_check, 26, 26);
             this.imageView.setScaleX(0.8f);
             this.imageView.setScaleY(0.8f);
@@ -67,7 +72,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             this.textView.setGravity(1);
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
             this.textView.setGravity(17);
-            this.textView.setTextColor(getThemedColor("featuredStickers_buttonText"));
+            this.textView.setTextColor(getThemedColor(i2));
             this.textView.setTextSize(1, 14.0f);
             this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.linearLayout.addView(this.textView, LayoutHelper.createLinear(-2, -2, 16, 10, 0, 0, 0));
@@ -90,10 +95,8 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
             this.textView.setText(charSequence);
         }
 
-        private int getThemedColor(String str) {
-            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-            Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-            return color != null ? color.intValue() : Theme.getColor(str);
+        protected int getThemedColor(int i) {
+            return Theme.getColor(i, this.resourcesProvider);
         }
     }
 
@@ -125,12 +128,13 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 20.0f);
-        textView.setTextColor(getThemedColor("dialogTextBlack"));
+        int i = Theme.key_dialogTextBlack;
+        textView.setTextColor(getThemedColor(i));
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 17.0f, 20.0f, 17.0f, 0.0f));
-        int i = R.raw.import_finish;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), false, null);
+        int i2 = R.raw.import_finish;
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), false, null);
         this.completedDrawable = rLottieDrawable;
         rLottieDrawable.setAllowDecodeSingleFrame(true);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
@@ -144,12 +148,12 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         this.percentTextView = textView2;
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.percentTextView.setTextSize(1, 24.0f);
-        this.percentTextView.setTextColor(getThemedColor("dialogTextBlack"));
+        this.percentTextView.setTextColor(getThemedColor(i));
         frameLayout.addView(this.percentTextView, LayoutHelper.createFrame(-2, -2.0f, 49, 17.0f, 262.0f, 17.0f, 0.0f));
         LineProgressView lineProgressView = new LineProgressView(getContext());
         this.lineProgressView = lineProgressView;
-        lineProgressView.setProgressColor(getThemedColor("featuredStickers_addButton"));
-        this.lineProgressView.setBackColor(getThemedColor("dialogLineProgressBackground"));
+        lineProgressView.setProgressColor(getThemedColor(Theme.key_featuredStickers_addButton));
+        this.lineProgressView.setBackColor(getThemedColor(Theme.key_dialogLineProgressBackground));
         frameLayout.addView(this.lineProgressView, LayoutHelper.createFrame(-1, 4.0f, 51, 50.0f, 307.0f, 50.0f, 0.0f));
         BottomSheetCell bottomSheetCell = new BottomSheetCell(context, resourcesProvider);
         this.cell = bottomSheetCell;
@@ -165,24 +169,24 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         this.cell.background.setPivotY(AndroidUtilities.dp(48.0f));
         this.cell.background.setScaleY(0.04f);
         frameLayout.addView(this.cell, LayoutHelper.createFrame(-1, 50.0f, 51, 34.0f, 247.0f, 34.0f, 0.0f));
-        for (int i2 = 0; i2 < 2; i2++) {
-            this.importCountTextView[i2] = new TextView(context);
-            this.importCountTextView[i2].setTextSize(1, 16.0f);
-            this.importCountTextView[i2].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.importCountTextView[i2].setTextColor(getThemedColor("dialogTextBlack"));
-            frameLayout.addView(this.importCountTextView[i2], LayoutHelper.createFrame(-2, -2.0f, 49, 17.0f, 340.0f, 17.0f, 0.0f));
-            this.infoTextView[i2] = new TextView(context);
-            this.infoTextView[i2].setTextSize(1, 14.0f);
-            this.infoTextView[i2].setTextColor(getThemedColor("dialogTextGray3"));
-            this.infoTextView[i2].setGravity(1);
-            frameLayout.addView(this.infoTextView[i2], LayoutHelper.createFrame(-2, -2.0f, 49, 30.0f, 368.0f, 30.0f, 44.0f));
-            if (i2 == 0) {
-                this.infoTextView[i2].setText(LocaleController.getString("ImportImportingInfo", R.string.ImportImportingInfo));
+        for (int i3 = 0; i3 < 2; i3++) {
+            this.importCountTextView[i3] = new TextView(context);
+            this.importCountTextView[i3].setTextSize(1, 16.0f);
+            this.importCountTextView[i3].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.importCountTextView[i3].setTextColor(getThemedColor(Theme.key_dialogTextBlack));
+            frameLayout.addView(this.importCountTextView[i3], LayoutHelper.createFrame(-2, -2.0f, 49, 17.0f, 340.0f, 17.0f, 0.0f));
+            this.infoTextView[i3] = new TextView(context);
+            this.infoTextView[i3].setTextSize(1, 14.0f);
+            this.infoTextView[i3].setTextColor(getThemedColor(Theme.key_dialogTextGray3));
+            this.infoTextView[i3].setGravity(1);
+            frameLayout.addView(this.infoTextView[i3], LayoutHelper.createFrame(-2, -2.0f, 49, 30.0f, 368.0f, 30.0f, 44.0f));
+            if (i3 == 0) {
+                this.infoTextView[i3].setText(LocaleController.getString("ImportImportingInfo", R.string.ImportImportingInfo));
             } else {
-                this.infoTextView[i2].setAlpha(0.0f);
-                this.infoTextView[i2].setTranslationY(AndroidUtilities.dp(10.0f));
-                this.importCountTextView[i2].setAlpha(0.0f);
-                this.importCountTextView[i2].setTranslationY(AndroidUtilities.dp(10.0f));
+                this.infoTextView[i3].setAlpha(0.0f);
+                this.infoTextView[i3].setTranslationY(AndroidUtilities.dp(10.0f));
+                this.importCountTextView[i3].setAlpha(0.0f);
+                this.importCountTextView[i3].setTranslationY(AndroidUtilities.dp(10.0f));
             }
         }
         if (this.parentFragment != null) {

@@ -113,8 +113,9 @@ public class ItemOptions {
         actionBarMenuSubItem.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(26.0f), 0);
         actionBarMenuSubItem.setTextAndIcon(charSequence, i);
         if (z) {
-            actionBarMenuSubItem.setColors(Theme.getColor("text_RedRegular"), Theme.getColor("text_RedRegular"));
-            actionBarMenuSubItem.setSelectorColor(Theme.multAlpha(Theme.getColor("text_RedRegular"), 0.12f));
+            int i2 = Theme.key_text_RedRegular;
+            actionBarMenuSubItem.setColors(Theme.getColor(i2), Theme.getColor(i2));
+            actionBarMenuSubItem.setSelectorColor(Theme.multAlpha(Theme.getColor(i2), 0.12f));
         }
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -122,9 +123,9 @@ public class ItemOptions {
                 ItemOptions.this.lambda$add$1(runnable, view);
             }
         });
-        int i2 = this.minWidthDp;
-        if (i2 > 0) {
-            actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.dp(i2));
+        int i3 = this.minWidthDp;
+        if (i3 > 0) {
+            actionBarMenuSubItem.setMinimumWidth(AndroidUtilities.dp(i3));
         }
         this.layout.addView((View) actionBarMenuSubItem, LayoutHelper.createLinear(-1, 48));
         return this;

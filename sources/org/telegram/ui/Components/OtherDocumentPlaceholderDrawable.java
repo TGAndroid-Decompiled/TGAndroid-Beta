@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -96,7 +97,7 @@ public class OtherDocumentPlaceholderDrawable extends RecyclableDrawable impleme
                 this.fileName = "name";
             }
             int lastIndexOf = this.fileName.lastIndexOf(46);
-            String upperCase = lastIndexOf == -1 ? "" : this.fileName.substring(lastIndexOf + 1).toUpperCase();
+            String upperCase = lastIndexOf == -1 ? BuildConfig.APP_CENTER_HASH : this.fileName.substring(lastIndexOf + 1).toUpperCase();
             this.ext = upperCase;
             if (((int) Math.ceil(docPaint.measureText(upperCase))) > AndroidUtilities.dp(40.0f)) {
                 this.ext = TextUtils.ellipsize(this.ext, docPaint, AndroidUtilities.dp(40.0f), TextUtils.TruncateAt.END).toString();

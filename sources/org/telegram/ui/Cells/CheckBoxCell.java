@@ -65,7 +65,7 @@ public class CheckBoxCell extends FrameLayout {
         this.textView = textView;
         NotificationCenter.listenEmojiLoading(textView);
         boolean z = true;
-        this.textView.setTag(Integer.valueOf(getThemedColor((i == 1 || i == 5) ? "dialogTextBlack" : "windowBackgroundWhiteBlackText")));
+        this.textView.setTag(Integer.valueOf(getThemedColor((i == 1 || i == 5) ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText)));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
@@ -91,7 +91,7 @@ public class CheckBoxCell extends FrameLayout {
         }
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
-        textView2.setTag((i == 1 || i == 5) ? "dialogTextBlue" : "windowBackgroundWhiteValueText");
+        textView2.setTag(Integer.valueOf((i == 1 || i == 5) ? Theme.key_dialogTextBlue : Theme.key_windowBackgroundWhiteValueText));
         this.valueTextView.setTextSize(1, 16.0f);
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
@@ -140,13 +140,13 @@ public class CheckBoxCell extends FrameLayout {
     public void updateTextColor() {
         TextView textView = this.textView;
         int i = this.currentType;
-        textView.setTextColor(getThemedColor((i == 1 || i == 5) ? "dialogTextBlack" : "windowBackgroundWhiteBlackText"));
+        textView.setTextColor(getThemedColor((i == 1 || i == 5) ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText));
         TextView textView2 = this.textView;
         int i2 = this.currentType;
-        textView2.setLinkTextColor(getThemedColor((i2 == 1 || i2 == 5) ? "dialogTextLink" : "windowBackgroundWhiteLinkText"));
+        textView2.setLinkTextColor(getThemedColor((i2 == 1 || i2 == 5) ? Theme.key_dialogTextLink : Theme.key_windowBackgroundWhiteLinkText));
         TextView textView3 = this.valueTextView;
         int i3 = this.currentType;
-        textView3.setTextColor(getThemedColor((i3 == 1 || i3 == 5) ? "dialogTextBlue" : "windowBackgroundWhiteValueText"));
+        textView3.setTextColor(getThemedColor((i3 == 1 || i3 == 5) ? Theme.key_dialogTextBlue : Theme.key_windowBackgroundWhiteValueText));
     }
 
     public void setOnSectionsClickListener(View.OnClickListener onClickListener, View.OnClickListener onClickListener2) {
@@ -160,7 +160,7 @@ public class CheckBoxCell extends FrameLayout {
             if (this.click1Container == null) {
                 View view2 = new View(getContext());
                 this.click1Container = view2;
-                view2.setBackground(Theme.createSelectorDrawable(getThemedColor("listSelectorSDK21"), 2));
+                view2.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 2));
                 addView(this.click1Container, LayoutHelper.createFrame(-1, -1, 119));
             }
             this.click1Container.setOnClickListener(onClickListener);
@@ -195,7 +195,7 @@ public class CheckBoxCell extends FrameLayout {
         if (this.collapsedArrow == null) {
             this.collapsedArrow = new View(getContext());
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor("windowBackgroundWhiteBlackText"), PorterDuff.Mode.MULTIPLY));
+            mutate.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_windowBackgroundWhiteBlackText), PorterDuff.Mode.MULTIPLY));
             this.collapsedArrow.setBackground(mutate);
             addView(this.collapsedArrow, LayoutHelper.createFrame(16, 16, 16));
         }
@@ -367,10 +367,10 @@ public class CheckBoxCell extends FrameLayout {
         return this.checkBox;
     }
 
-    public void setCheckBoxColor(String str, String str2, String str3) {
+    public void setCheckBoxColor(int i, int i2, int i3) {
         CheckBox2 checkBox2 = this.checkBoxRound;
         if (checkBox2 != null) {
-            checkBox2.setColor(str, str, str3);
+            checkBox2.setColor(i, i, i3);
         }
     }
 
@@ -378,10 +378,10 @@ public class CheckBoxCell extends FrameLayout {
         return this.checkBoxRound;
     }
 
-    public void setSquareCheckBoxColor(String str, String str2, String str3) {
+    public void setSquareCheckBoxColor(int i, int i2, int i3) {
         CheckBoxSquare checkBoxSquare = this.checkBoxSquare;
         if (checkBoxSquare != null) {
-            checkBoxSquare.setColors(str, str2, str3);
+            checkBoxSquare.setColors(i, i2, i3);
         }
     }
 
@@ -407,10 +407,8 @@ public class CheckBoxCell extends FrameLayout {
         accessibilityNodeInfo.setChecked(isChecked());
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     public void setIcon(int i) {

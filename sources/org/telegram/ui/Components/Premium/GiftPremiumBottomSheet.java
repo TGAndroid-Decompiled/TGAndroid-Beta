@@ -29,6 +29,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
@@ -48,6 +49,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
@@ -85,7 +87,9 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
         this.giftTiers = new ArrayList();
         this.selectedTierIndex = 0;
         this.user = tLRPC$User;
-        PremiumGradient.PremiumGradientTools premiumGradientTools = new PremiumGradient.PremiumGradientTools("premiumGradient1", "premiumGradient2", null, null);
+        int i = Theme.key_premiumGradient1;
+        int i2 = Theme.key_premiumGradient2;
+        PremiumGradient.PremiumGradientTools premiumGradientTools = new PremiumGradient.PremiumGradientTools(i, i2, -1, -1);
         this.gradientTools = premiumGradientTools;
         premiumGradientTools.exactly = true;
         premiumGradientTools.x1 = 0.0f;
@@ -94,7 +98,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
         premiumGradientTools.y2 = 1.0f;
         premiumGradientTools.cx = 0.0f;
         premiumGradientTools.cy = 0.0f;
-        PremiumGradient.PremiumGradientTools premiumGradientTools2 = new PremiumGradient.PremiumGradientTools("premiumGradient1", "premiumGradient2", "premiumGradient3", "premiumGradient4");
+        PremiumGradient.PremiumGradientTools premiumGradientTools2 = new PremiumGradient.PremiumGradientTools(i, i2, Theme.key_premiumGradient3, Theme.key_premiumGradient4);
         this.outlineGradient = premiumGradientTools2;
         premiumGradientTools2.paint.setStyle(Paint.Style.STROKE);
         this.outlineGradient.paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
@@ -133,23 +137,23 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
             this.selectedTierIndex = 0;
             updateButtonText(false);
         }
-        int i = this.rowsCount;
-        int i2 = i + 1;
-        this.rowsCount = i2;
-        this.headerRow = i;
-        this.tiersStartRow = i2;
-        int size = i2 + this.giftTiers.size();
+        int i3 = this.rowsCount;
+        int i4 = i3 + 1;
+        this.rowsCount = i4;
+        this.headerRow = i3;
+        this.tiersStartRow = i4;
+        int size = i4 + this.giftTiers.size();
         this.rowsCount = size;
         this.tiersEndRow = size;
-        int i3 = size + 1;
-        this.rowsCount = i3;
+        int i5 = size + 1;
+        this.rowsCount = i5;
         this.footerRow = size;
-        this.rowsCount = i3 + 1;
-        this.buttonRow = i3;
+        this.rowsCount = i5 + 1;
+        this.buttonRow = i5;
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i4) {
-                GiftPremiumBottomSheet.this.lambda$new$2(view, i4);
+            public final void onItemClick(View view, int i6) {
+                GiftPremiumBottomSheet.this.lambda$new$2(view, i6);
             }
         });
         this.recyclerListView.setOverScrollMode(2);
@@ -395,7 +399,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
         this.premiumButtonView = new PremiumButtonView(getContext(), true);
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         frameLayout2.addView(this.premiumButtonView, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
-        frameLayout2.setBackgroundColor(getThemedColor("dialogBackground"));
+        frameLayout2.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
         frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 68, 80));
     }
 
@@ -634,14 +638,14 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
             if (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
         }
 
         public String getFormattedPrice() {
             if (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPrice(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPrice(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPrice(), getCurrency(), 6);
         }
 
         public long getPrice() {
@@ -660,7 +664,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
                 return this.giftOption.currency;
             }
             ProductDetails productDetails = this.googlePlayProductDetails;
-            return productDetails == null ? "" : productDetails.getOneTimePurchaseOfferDetails().getPriceCurrencyCode();
+            return productDetails == null ? BuildConfig.APP_CENTER_HASH : productDetails.getOneTimePurchaseOfferDetails().getPriceCurrencyCode();
         }
     }
 }

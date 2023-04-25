@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
@@ -312,14 +313,16 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                 this.emptyImageView = imageView;
                 imageView.setScaleType(ImageView.ScaleType.CENTER);
                 this.emptyImageView.setImageResource(R.drawable.stickers_empty);
-                this.emptyImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("chat_emojiPanelEmptyText"), PorterDuff.Mode.MULTIPLY));
+                ImageView imageView2 = this.emptyImageView;
+                int i2 = Theme.key_chat_emojiPanelEmptyText;
+                imageView2.setColorFilter(new PorterDuffColorFilter(getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
                 linearLayout2.addView(this.emptyImageView, LayoutHelper.createLinear(-2, -2));
                 linearLayout2.addView(new Space(this.context), LayoutHelper.createLinear(-1, 15));
                 TextView textView = new TextView(this.context);
                 this.emptyTextView = textView;
                 textView.setText(LocaleController.getString("NoStickersFound", R.string.NoStickersFound));
                 this.emptyTextView.setTextSize(1, 16.0f);
-                this.emptyTextView.setTextColor(getThemedColor("chat_emojiPanelEmptyText"));
+                this.emptyTextView.setTextColor(getThemedColor(i2));
                 linearLayout2.addView(this.emptyTextView, LayoutHelper.createLinear(-2, -2));
                 linearLayout2.setMinimumHeight(AndroidUtilities.dp(112.0f));
                 linearLayout2.setLayoutParams(LayoutHelper.createFrame(-1, -1.0f));
@@ -475,7 +478,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                 int i5 = i3 - size2;
                 if (i5 < i2) {
                     int size3 = this.emojiArrays.size();
-                    String str = "";
+                    String str = BuildConfig.APP_CENTER_HASH;
                     int i6 = 0;
                     for (int i7 = 0; i7 < size3; i7++) {
                         ArrayList<TLRPC$Document> arrayList2 = this.emojiArrays.get(i7);
@@ -582,13 +585,14 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
     public void getThemeDescriptions(List<ThemeDescription> list, RecyclerListView recyclerListView, ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate) {
         FeaturedStickerSetInfoCell.createThemeDescriptions(list, recyclerListView, themeDescriptionDelegate);
         StickerSetNameCell.createThemeDescriptions(list, recyclerListView, themeDescriptionDelegate);
-        list.add(new ThemeDescription(this.emptyImageView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, "chat_emojiPanelEmptyText"));
-        list.add(new ThemeDescription(this.emptyTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "chat_emojiPanelEmptyText"));
+        ImageView imageView = this.emptyImageView;
+        int i = ThemeDescription.FLAG_IMAGECOLOR;
+        int i2 = Theme.key_chat_emojiPanelEmptyText;
+        list.add(new ThemeDescription(imageView, i, null, null, null, null, i2));
+        list.add(new ThemeDescription(this.emptyTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i2));
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

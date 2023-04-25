@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -59,7 +60,7 @@ public class GroupCallUserCell extends FrameLayout {
     private TLRPC$User currentUser;
     private Paint dividerPaint;
     private SimpleTextView fullAboutTextView;
-    private String grayIconColor;
+    private int grayIconColor;
     private boolean hasAvatar;
     private boolean isSpeaking;
     private int lastMuteColor;
@@ -278,7 +279,7 @@ public class GroupCallUserCell extends FrameLayout {
                 GroupCallUserCell.this.lambda$new$1();
             }
         };
-        this.grayIconColor = "voipgroup_mutedIcon";
+        this.grayIconColor = Theme.key_voipgroup_mutedIcon;
         this.checkRaiseRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -299,7 +300,7 @@ public class GroupCallUserCell extends FrameLayout {
         };
         Paint paint = new Paint();
         this.dividerPaint = paint;
-        paint.setColor(Theme.getColor("voipgroup_actionBar"));
+        paint.setColor(Theme.getColor(Theme.key_voipgroup_actionBar));
         this.avatarDrawable = new AvatarDrawable();
         setClipChildren(false);
         BackupImageView backupImageView = new BackupImageView(context);
@@ -337,7 +338,7 @@ public class GroupCallUserCell extends FrameLayout {
         AndroidUtilities.updateViewVisibilityAnimated(this.avatarProgressView, false, 1.0f, false);
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
-        simpleTextView.setTextColor(Theme.getColor("voipgroup_nameText"));
+        simpleTextView.setTextColor(Theme.getColor(Theme.key_voipgroup_nameText));
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setTextSize(16);
         this.nameTextView.setDrawablePadding(AndroidUtilities.dp(6.0f));
@@ -348,7 +349,7 @@ public class GroupCallUserCell extends FrameLayout {
         this.rightDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this.nameTextView, AndroidUtilities.dp(20.0f), 9);
         Drawable drawable = context.getResources().getDrawable(R.drawable.voice_volume_mini);
         this.speakingDrawable = drawable;
-        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("voipgroup_speakingText"), PorterDuff.Mode.MULTIPLY));
+        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_voipgroup_speakingText), PorterDuff.Mode.MULTIPLY));
         final int i = 0;
         while (true) {
             SimpleTextView[] simpleTextViewArr = this.statusTextView;
@@ -402,23 +403,23 @@ public class GroupCallUserCell extends FrameLayout {
             this.statusTextView[i].setGravity((LocaleController.isRTL ? 5 : 3) | 48);
             if (i == 4) {
                 this.statusTextView[i].setBuildFullLayout(true);
-                this.statusTextView[i].setTextColor(Theme.getColor("voipgroup_mutedIcon"));
+                this.statusTextView[i].setTextColor(Theme.getColor(Theme.key_voipgroup_mutedIcon));
                 SimpleTextView simpleTextView3 = this.statusTextView[i];
                 boolean z4 = LocaleController.isRTL;
                 addView(simpleTextView3, LayoutHelper.createFrame(-1, -2.0f, (z4 ? 5 : 3) | 48, z4 ? 54.0f : 67.0f, 32.0f, z4 ? 67.0f : 54.0f, 0.0f));
             } else {
                 if (i == 0) {
-                    this.statusTextView[i].setTextColor(Theme.getColor("voipgroup_listeningText"));
+                    this.statusTextView[i].setTextColor(Theme.getColor(Theme.key_voipgroup_listeningText));
                     this.statusTextView[i].setText(LocaleController.getString("Listening", R.string.Listening));
                 } else if (i == 1) {
-                    this.statusTextView[i].setTextColor(Theme.getColor("voipgroup_speakingText"));
+                    this.statusTextView[i].setTextColor(Theme.getColor(Theme.key_voipgroup_speakingText));
                     this.statusTextView[i].setText(LocaleController.getString("Speaking", R.string.Speaking));
                     this.statusTextView[i].setDrawablePadding(AndroidUtilities.dp(2.0f));
                 } else if (i == 2) {
-                    this.statusTextView[i].setTextColor(Theme.getColor("voipgroup_mutedByAdminIcon"));
+                    this.statusTextView[i].setTextColor(Theme.getColor(Theme.key_voipgroup_mutedByAdminIcon));
                     this.statusTextView[i].setText(LocaleController.getString("VoipGroupMutedForMe", R.string.VoipGroupMutedForMe));
                 } else if (i == 3) {
-                    this.statusTextView[i].setTextColor(Theme.getColor("voipgroup_listeningText"));
+                    this.statusTextView[i].setTextColor(Theme.getColor(Theme.key_voipgroup_listeningText));
                     this.statusTextView[i].setText(LocaleController.getString("WantsToSpeak", R.string.WantsToSpeak));
                 }
                 SimpleTextView simpleTextView4 = this.statusTextView[i];
@@ -431,13 +432,13 @@ public class GroupCallUserCell extends FrameLayout {
         this.fullAboutTextView = simpleTextView5;
         simpleTextView5.setMaxLines(3);
         this.fullAboutTextView.setTextSize(15);
-        this.fullAboutTextView.setTextColor(Theme.getColor("voipgroup_mutedIcon"));
+        this.fullAboutTextView.setTextColor(Theme.getColor(Theme.key_voipgroup_mutedIcon));
         this.fullAboutTextView.setVisibility(8);
         addView(this.fullAboutTextView, LayoutHelper.createFrame(-1, 60.0f, (LocaleController.isRTL ? 5 : 3) | 48, 14.0f, 32.0f, 14.0f, 0.0f));
         int i2 = R.raw.voice_outlined2;
-        this.muteDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
+        this.muteDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
         int i3 = R.raw.hand_1;
-        this.shakeHandDrawable = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
+        this.shakeHandDrawable = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, AndroidUtilities.dp(34.0f), AndroidUtilities.dp(32.0f), true, null);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.muteButton = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -569,7 +570,7 @@ public class GroupCallUserCell extends FrameLayout {
                     this.rightDrawable.set((Drawable) null, z);
                 }
             }
-            this.rightDrawable.setColor(Integer.valueOf(Theme.getColor("premiumGradient1")));
+            this.rightDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_premiumGradient1)));
             this.nameTextView.setRightDrawable(this.rightDrawable);
             this.avatarImageView.getImageReceiver().setCurrentAccount(accountInstance.getCurrentAccount());
             if (tLRPC$FileLocation != null) {
@@ -666,16 +667,16 @@ public class GroupCallUserCell extends FrameLayout {
         applyParticipantChanges(z, false);
     }
 
-    public void setGrayIconColor(String str, int i) {
-        if (!this.grayIconColor.equals(str)) {
+    public void setGrayIconColor(int i, int i2) {
+        if (this.grayIconColor != i) {
             if (this.currentIconGray) {
-                this.lastMuteColor = Theme.getColor(str);
+                this.lastMuteColor = Theme.getColor(i);
             }
-            this.grayIconColor = str;
+            this.grayIconColor = i;
         }
         if (this.currentIconGray) {
-            this.muteButton.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.MULTIPLY));
-            Theme.setSelectorDrawableColor(this.muteButton.getDrawable(), i & 620756991, true);
+            this.muteButton.setColorFilter(new PorterDuffColorFilter(i2, PorterDuff.Mode.MULTIPLY));
+            Theme.setSelectorDrawableColor(this.muteButton.getDrawable(), i2 & 620756991, true);
         }
     }
 
@@ -697,7 +698,7 @@ public class GroupCallUserCell extends FrameLayout {
         invalidate();
     }
 
-    private void applyParticipantChanges(boolean r21, boolean r22) {
+    private void applyParticipantChanges(boolean r19, boolean r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.GroupCallUserCell.applyParticipantChanges(boolean, boolean):void");
     }
 
@@ -788,8 +789,10 @@ public class GroupCallUserCell extends FrameLayout {
             blobDrawable.maxRadius = f2;
             blobDrawable2.generateBlob();
             this.blobDrawable2.generateBlob();
-            this.blobDrawable.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_speakingText"), 38));
-            this.blobDrawable2.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_speakingText"), 38));
+            Paint paint = this.blobDrawable.paint;
+            int i3 = Theme.key_voipgroup_speakingText;
+            paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(i3), 38));
+            this.blobDrawable2.paint.setColor(ColorUtils.setAlphaComponent(Theme.getColor(i3), 38));
         }
 
         public void update() {

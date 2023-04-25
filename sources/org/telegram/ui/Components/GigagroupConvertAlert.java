@@ -34,7 +34,7 @@ public class GigagroupConvertAlert extends BottomSheet {
             super(context);
             View view = new View(context);
             this.background = view;
-            view.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+            view.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
             TextView textView = new TextView(context);
             this.textView = textView;
@@ -43,7 +43,7 @@ public class GigagroupConvertAlert extends BottomSheet {
             this.textView.setGravity(1);
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
             this.textView.setGravity(17);
-            this.textView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+            this.textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
             this.textView.setTextSize(1, 14.0f);
             this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
@@ -74,7 +74,7 @@ public class GigagroupConvertAlert extends BottomSheet {
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 24.0f);
-        textView.setTextColor(Theme.getColor("dialogTextBlack"));
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         textView.setText(LocaleController.getString("GigagroupConvertTitle", R.string.GigagroupConvertTitle));
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 49, 17, 18, 17, 0));
         LinearLayout linearLayout2 = new LinearLayout(context);
@@ -87,11 +87,12 @@ public class GigagroupConvertAlert extends BottomSheet {
                 linearLayout3.setOrientation(0);
                 linearLayout2.addView(linearLayout3, LayoutHelper.createLinear(-2, -2, LocaleController.isRTL ? 5 : 3, 0, 8, 0, 0));
                 ImageView imageView = new ImageView(context);
-                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextGray3"), PorterDuff.Mode.MULTIPLY));
+                int i2 = Theme.key_dialogTextGray3;
+                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
                 imageView.setImageResource(R.drawable.list_circle);
                 TextView textView2 = new TextView(context);
                 textView2.setTextSize(1, 15.0f);
-                textView2.setTextColor(Theme.getColor("dialogTextGray3"));
+                textView2.setTextColor(Theme.getColor(i2));
                 textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
                 textView2.setMaxWidth(AndroidUtilities.dp(260.0f));
                 if (i == 0) {
@@ -122,7 +123,7 @@ public class GigagroupConvertAlert extends BottomSheet {
                 linearLayout.addView(bottomSheetCell, LayoutHelper.createLinear(-1, 50, 51, 0, 29, 0, 0));
                 TextView textView3 = new TextView(context);
                 textView3.setTextSize(1, 14.0f);
-                textView3.setTextColor(Theme.getColor("dialogTextBlue2"));
+                textView3.setTextColor(Theme.getColor(Theme.key_dialogTextBlue2));
                 textView3.setText(LocaleController.getString("GigagroupConvertCancelButton", R.string.GigagroupConvertCancelButton));
                 textView3.setGravity(17);
                 linearLayout.addView(textView3, LayoutHelper.createLinear(-2, 48, 49, 17, 0, 17, 16));

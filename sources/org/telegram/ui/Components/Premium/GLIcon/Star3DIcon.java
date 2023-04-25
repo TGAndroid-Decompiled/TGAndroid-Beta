@@ -164,7 +164,7 @@ public class Star3DIcon {
         this.texture = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(this.texture);
         Paint paint = new Paint();
-        paint.setShader(new LinearGradient(0.0f, 100.0f, 150.0f, 0.0f, new int[]{Theme.getColor("premiumGradient1"), Theme.getColor("premiumGradient2"), Theme.getColor("premiumGradient3"), Theme.getColor("premiumGradient4")}, new float[]{0.0f, 0.5f, 0.78f, 1.0f}, Shader.TileMode.CLAMP));
+        paint.setShader(new LinearGradient(0.0f, 100.0f, 150.0f, 0.0f, new int[]{Theme.getColor(Theme.key_premiumGradient1), Theme.getColor(Theme.key_premiumGradient2), Theme.getColor(Theme.key_premiumGradient3), Theme.getColor(Theme.key_premiumGradient4)}, new float[]{0.0f, 0.5f, 0.78f, 1.0f}, Shader.TileMode.CLAMP));
         canvas.drawRect(0.0f, 0.0f, 100.0f, 100.0f, paint);
         int[] iArr = new int[1];
         GLES20.glGenTextures(1, iArr, 0);

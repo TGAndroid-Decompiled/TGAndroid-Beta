@@ -19,8 +19,8 @@ public class EditTextSettingsCell extends FrameLayout {
         super(context);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.textView = editTextBoldCursor;
-        editTextBoldCursor.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        this.textView.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
+        editTextBoldCursor.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.textView.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
         this.textView.setMaxLines(1);

@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -122,7 +123,7 @@ public class JoinCallAlert extends BottomSheet {
             View view = new View(context);
             this.background = view;
             if (this.hasBackground) {
-                view.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+                view.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
             }
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, z ? 0.0f : 16.0f, 16.0f, 16.0f));
             for (int i = 0; i < 2; i++) {
@@ -134,10 +135,10 @@ public class JoinCallAlert extends BottomSheet {
                 this.textView[i].setEllipsize(TextUtils.TruncateAt.END);
                 this.textView[i].setGravity(17);
                 if (this.hasBackground) {
-                    this.textView[i].setTextColor(Theme.getColor("featuredStickers_buttonText"));
+                    this.textView[i].setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
                     this.textView[i].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 } else {
-                    this.textView[i].setTextColor(Theme.getColor("featuredStickers_addButton"));
+                    this.textView[i].setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton));
                 }
                 this.textView[i].setImportantForAccessibility(2);
                 this.textView[i].setTextSize(1, 14.0f);
@@ -372,10 +373,10 @@ public class JoinCallAlert extends BottomSheet {
                 this.selectedPeer = this.chats.get(0);
             }
             Drawable drawable = this.shadowDrawable;
-            color = Theme.getColor("voipgroup_inviteMembersBackground");
+            color = Theme.getColor(Theme.key_voipgroup_inviteMembersBackground);
             drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
         } else {
-            color = Theme.getColor("dialogBackground");
+            color = Theme.getColor(Theme.key_dialogBackground);
             mutate.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
             this.selectedPeer = this.chats.get(0);
         }
@@ -502,7 +503,7 @@ public class JoinCallAlert extends BottomSheet {
         this.listView.setClipToPadding(false);
         this.listView.setEnabled(true);
         this.listView.setSelectorDrawableColor(0);
-        this.listView.setGlowColor(Theme.getColor("dialogScrollGlow"));
+        this.listView.setGlowColor(Theme.getColor(Theme.key_dialogScrollGlow));
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i5, int i6) {
@@ -533,9 +534,9 @@ public class JoinCallAlert extends BottomSheet {
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.textView.setTextSize(1, 20.0f);
         if (i == 2) {
-            this.textView.setTextColor(Theme.getColor("voipgroup_nameText"));
+            this.textView.setTextColor(Theme.getColor(Theme.key_voipgroup_nameText));
         } else {
-            this.textView.setTextColor(Theme.getColor("dialogTextBlack"));
+            this.textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
         }
         this.textView.setSingleLine(true);
         this.textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -559,9 +560,9 @@ public class JoinCallAlert extends BottomSheet {
         TextView textView2 = new TextView(getContext());
         this.messageTextView = textView2;
         if (i == 2) {
-            textView2.setTextColor(Theme.getColor("voipgroup_lastSeenText"));
+            textView2.setTextColor(Theme.getColor(Theme.key_voipgroup_lastSeenText));
         } else {
-            textView2.setTextColor(Theme.getColor("dialogTextGray3"));
+            textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
         }
         this.messageTextView.setTextSize(1, 14.0f);
         int size3 = this.chats.size();
@@ -577,7 +578,7 @@ public class JoinCallAlert extends BottomSheet {
         }
         z = false;
         this.messageTextView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-        this.messageTextView.setLinkTextColor(Theme.getColor("dialogTextLink"));
+        this.messageTextView.setLinkTextColor(Theme.getColor(Theme.key_dialogTextLink));
         if (i == 0) {
             StringBuilder sb = new StringBuilder();
             if (ChatObject.isChannel(chat) && !chat.megagroup) {
@@ -700,7 +701,7 @@ public class JoinCallAlert extends BottomSheet {
         BottomSheetCell bottomSheetCell = this.doneButton;
         int i = R.string.VoipGroupContinueAs;
         Object[] objArr = new Object[1];
-        objArr[0] = chat != null ? chat.title : "";
+        objArr[0] = chat != null ? chat.title : BuildConfig.APP_CENTER_HASH;
         bottomSheetCell.setText(LocaleController.formatString("VoipGroupContinueAs", i, objArr), z);
     }
 

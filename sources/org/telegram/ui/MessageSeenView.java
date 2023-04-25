@@ -77,7 +77,7 @@ public class MessageSeenView extends FrameLayout {
         this.isVoice = messageObject.isRoundVideo() || messageObject.isVoice();
         FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context);
         this.flickerLoadingView = flickerLoadingView;
-        flickerLoadingView.setColors("actionBarDefaultSubmenuBackground", "listSelectorSDK21", null);
+        flickerLoadingView.setColors(Theme.key_actionBarDefaultSubmenuBackground, Theme.key_listSelector, -1);
         this.flickerLoadingView.setViewType(13);
         this.flickerLoadingView.setIsSingleCell(false);
         addView(this.flickerLoadingView, LayoutHelper.createFrame(-2, -1.0f));
@@ -92,7 +92,7 @@ public class MessageSeenView extends FrameLayout {
         avatarsImageView.setStyle(11);
         this.avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(22.0f));
         addView(this.avatarsImageView, LayoutHelper.createFrame(56, -1.0f, 21, 0.0f, 0.0f, 0.0f, 0.0f));
-        this.titleView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
+        this.titleView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
         TLRPC$TL_messages_getMessageReadParticipants tLRPC$TL_messages_getMessageReadParticipants = new TLRPC$TL_messages_getMessageReadParticipants();
         tLRPC$TL_messages_getMessageReadParticipants.msg_id = messageObject.getId();
         tLRPC$TL_messages_getMessageReadParticipants.peer = MessagesController.getInstance(i).getInputPeer(messageObject.getDialogId());
@@ -100,7 +100,7 @@ public class MessageSeenView extends FrameLayout {
         this.iconView = imageView;
         addView(imageView, LayoutHelper.createFrame(24, 24.0f, 19, 11.0f, 0.0f, 0.0f, 0.0f));
         Drawable mutate = ContextCompat.getDrawable(context, this.isVoice ? R.drawable.msg_played : R.drawable.msg_seen).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("actionBarDefaultSubmenuItemIcon"), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultSubmenuItemIcon), PorterDuff.Mode.MULTIPLY));
         this.iconView.setImageDrawable(mutate);
         this.avatarsImageView.setAlpha(0.0f);
         this.titleView.setAlpha(0.0f);
@@ -112,7 +112,7 @@ public class MessageSeenView extends FrameLayout {
                 MessageSeenView.this.lambda$new$5(j, i, tLRPC$Chat, tLObject, tLRPC$TL_error);
             }
         });
-        setBackground(Theme.createRadSelectorDrawable(Theme.getColor("dialogButtonSelector"), 6, 0));
+        setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_dialogButtonSelector), 6, 0));
         setEnabled(false);
     }
 
@@ -361,7 +361,7 @@ public class MessageSeenView extends FrameLayout {
     }
 
     private static class UserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-        private static MessageSeenCheckDrawable seenDrawable = new MessageSeenCheckDrawable(R.drawable.msg_mini_checks, "windowBackgroundWhiteGrayText");
+        private static MessageSeenCheckDrawable seenDrawable = new MessageSeenCheckDrawable(R.drawable.msg_mini_checks, Theme.key_windowBackgroundWhiteGrayText);
         AvatarDrawable avatarDrawable;
         BackupImageView avatarImageView;
         private int currentAccount;
@@ -377,24 +377,31 @@ public class MessageSeenView extends FrameLayout {
             BackupImageView backupImageView = new BackupImageView(context);
             this.avatarImageView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(18.0f));
-            addView(this.avatarImageView, LayoutHelper.createFrame(34, 34.0f, 16, 10.0f, 0.0f, 0.0f, 0.0f));
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.nameView = simpleTextView;
             simpleTextView.setTextSize(16);
-            this.nameView.setEllipsizeByGradient(true);
+            this.nameView.setEllipsizeByGradient(!LocaleController.isRTL);
             this.nameView.setImportantForAccessibility(2);
-            this.nameView.setTextColor(Theme.getColor("actionBarDefaultSubmenuItem"));
-            addView(this.nameView, LayoutHelper.createFrame(-2, -2.0f, 51, 55.0f, 6.33f, 8.0f, 0.0f));
+            this.nameView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
+            this.nameView.setGravity(LocaleController.isRTL ? 5 : 3);
             this.rightDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(18.0f));
             this.nameView.setDrawablePadding(AndroidUtilities.dp(3.0f));
-            this.nameView.setRightDrawable(this.rightDrawable);
             TextView textView = new TextView(context);
             this.readView = textView;
             textView.setTextSize(1, 13.0f);
             this.readView.setLines(1);
             this.readView.setEllipsize(TextUtils.TruncateAt.END);
             this.readView.setImportantForAccessibility(2);
-            this.readView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+            this.readView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+            this.readView.setGravity(LocaleController.isRTL ? 5 : 3);
+            if (LocaleController.isRTL) {
+                addView(this.avatarImageView, LayoutHelper.createFrame(34, 34.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
+                addView(this.nameView, LayoutHelper.createFrame(-2, -2.0f, 53, 8.0f, 6.33f, 55.0f, 0.0f));
+                addView(this.readView, LayoutHelper.createFrame(-2, -2.0f, 53, 13.0f, 20.0f, 55.0f, 0.0f));
+                return;
+            }
+            addView(this.avatarImageView, LayoutHelper.createFrame(34, 34.0f, 19, 10.0f, 0.0f, 0.0f, 0.0f));
+            addView(this.nameView, LayoutHelper.createFrame(-2, -2.0f, 51, 55.0f, 6.33f, 8.0f, 0.0f));
             addView(this.readView, LayoutHelper.createFrame(-2, -2.0f, 51, 55.0f, 20.0f, 13.0f, 0.0f));
         }
 
@@ -447,10 +454,12 @@ public class MessageSeenView extends FrameLayout {
         private void updateStatus(boolean z) {
             Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(this.user);
             if (emojiStatusDocumentId == null) {
+                this.nameView.setRightDrawable((Drawable) null);
                 this.rightDrawable.set((Drawable) null, z);
-            } else {
-                this.rightDrawable.set(emojiStatusDocumentId.longValue(), z);
+                return;
             }
+            this.nameView.setRightDrawable(this.rightDrawable);
+            this.rightDrawable.set(emojiStatusDocumentId.longValue(), z);
         }
 
         @Override

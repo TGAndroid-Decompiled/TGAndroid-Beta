@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
@@ -83,10 +84,10 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         ActionBar actionBar = this.actionBar;
         int i2 = 0;
         if (actionBar != null) {
-            actionBar.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+            actionBar.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-            this.actionBar.setItemsColor(Theme.getColor("windowBackgroundWhiteGrayText2"), false);
-            this.actionBar.setItemsBackgroundColor(Theme.getColor("actionBarWhiteSelector"), false);
+            this.actionBar.setItemsColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), false);
+            this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarWhiteSelector), false);
             this.actionBar.setCastShadows(false);
             this.actionBar.setAddToContainer(false);
             this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
@@ -444,7 +445,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             }
         };
         this.fragmentView = viewGroup;
-        viewGroup.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+        viewGroup.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         ViewGroup viewGroup2 = (ViewGroup) this.fragmentView;
         viewGroup2.setOnTouchListener(ActionIntroActivity$$ExternalSyntheticLambda6.INSTANCE);
         ActionBar actionBar2 = this.actionBar;
@@ -456,22 +457,24 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         viewGroup2.addView(rLottieImageView);
         TextView textView = new TextView(context);
         this.titleTextView = textView;
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        int i3 = 1;
+        int i3 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i3));
         this.titleTextView.setGravity(1);
         this.titleTextView.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
         this.titleTextView.setTextSize(1, 24.0f);
         viewGroup2.addView(this.titleTextView);
         TextView textView2 = new TextView(context);
         this.subtitleTextView = textView2;
-        int i4 = 3;
-        textView2.setTextColor(Theme.getColor(this.currentType == 3 ? "featuredStickers_addButton" : "windowBackgroundWhiteBlackText"));
+        if (this.currentType == 3) {
+            i3 = Theme.key_featuredStickers_addButton;
+        }
+        textView2.setTextColor(Theme.getColor(i3));
         this.subtitleTextView.setGravity(1);
         float f = 15.0f;
         this.subtitleTextView.setTextSize(1, 15.0f);
         this.subtitleTextView.setSingleLine(true);
         this.subtitleTextView.setEllipsize(TextUtils.TruncateAt.END);
-        int i5 = 2;
+        int i4 = 2;
         if (this.currentType == 2) {
             this.subtitleTextView.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         } else {
@@ -481,20 +484,22 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         viewGroup2.addView(this.subtitleTextView);
         TextView textView3 = new TextView(context);
         this.descriptionText = textView3;
-        textView3.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText6"));
+        textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6));
         this.descriptionText.setGravity(1);
         this.descriptionText.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         this.descriptionText.setTextSize(1, 15.0f);
-        int i6 = this.currentType;
-        if (i6 == 6 || i6 == 3) {
+        int i5 = this.currentType;
+        if (i5 == 6 || i5 == 3) {
             this.descriptionText.setPadding(AndroidUtilities.dp(48.0f), 0, AndroidUtilities.dp(48.0f), 0);
-        } else if (i6 == 2) {
+        } else if (i5 == 2) {
             this.descriptionText.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
         } else {
             this.descriptionText.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
         }
         viewGroup2.addView(this.descriptionText);
-        if (this.currentType == 5) {
+        int i6 = this.currentType;
+        String str = BuildConfig.APP_CENTER_HASH;
+        if (i6 == 5) {
             LinearLayout linearLayout = new LinearLayout(context);
             this.descriptionLayout = linearLayout;
             linearLayout.setOrientation(1);
@@ -502,66 +507,66 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             this.descriptionLayout.setGravity(LocaleController.isRTL ? 5 : 3);
             viewGroup2.addView(this.descriptionLayout);
             int i7 = 0;
-            while (i7 < i4) {
+            for (int i8 = 3; i7 < i8; i8 = 3) {
                 LinearLayout linearLayout2 = new LinearLayout(context);
                 linearLayout2.setOrientation(i2);
-                this.descriptionLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 0.0f, i7 != i5 ? 7.0f : 0.0f));
-                int i8 = i7 * 2;
-                this.desctiptionLines[i8] = new TextView(context);
-                this.desctiptionLines[i8].setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-                this.desctiptionLines[i8].setGravity(LocaleController.isRTL ? 5 : 3);
-                this.desctiptionLines[i8].setTextSize(i3, f);
-                TextView textView4 = this.desctiptionLines[i8];
-                String str = LocaleController.isRTL ? ".%d" : "%d.";
-                Object[] objArr = new Object[i3];
-                int i9 = i7 + 1;
-                objArr[i2] = Integer.valueOf(i9);
-                textView4.setText(String.format(str, objArr));
-                this.desctiptionLines[i8].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-                int i10 = i8 + 1;
-                this.desctiptionLines[i10] = new TextView(context);
-                this.desctiptionLines[i10].setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-                this.desctiptionLines[i10].setGravity(LocaleController.isRTL ? 5 : 3);
-                this.desctiptionLines[i10].setTextSize(i3, f);
+                this.descriptionLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 0.0f, i7 != i4 ? 7.0f : 0.0f));
+                int i9 = i7 * 2;
+                this.desctiptionLines[i9] = new TextView(context);
+                TextView textView4 = this.desctiptionLines[i9];
+                int i10 = Theme.key_windowBackgroundWhiteBlackText;
+                textView4.setTextColor(Theme.getColor(i10));
+                this.desctiptionLines[i9].setGravity(LocaleController.isRTL ? 5 : 3);
+                this.desctiptionLines[i9].setTextSize(1, f);
+                TextView textView5 = this.desctiptionLines[i9];
+                String str2 = LocaleController.isRTL ? ".%d" : "%d.";
+                Object[] objArr = new Object[1];
+                int i11 = i7 + 1;
+                objArr[i2] = Integer.valueOf(i11);
+                textView5.setText(String.format(str2, objArr));
+                this.desctiptionLines[i9].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                int i12 = i9 + 1;
+                this.desctiptionLines[i12] = new TextView(context);
+                this.desctiptionLines[i12].setTextColor(Theme.getColor(i10));
+                this.desctiptionLines[i12].setGravity(LocaleController.isRTL ? 5 : 3);
+                this.desctiptionLines[i12].setTextSize(1, f);
                 if (i7 == 0) {
-                    this.desctiptionLines[i10].setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText"));
-                    this.desctiptionLines[i10].setHighlightColor(Theme.getColor("windowBackgroundWhiteLinkSelection"));
+                    this.desctiptionLines[i12].setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText));
+                    this.desctiptionLines[i12].setHighlightColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkSelection));
                     String string = LocaleController.getString("AuthAnotherClientInfo1", R.string.AuthAnotherClientInfo1);
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
                     int indexOf = string.indexOf(42);
                     int lastIndexOf = string.lastIndexOf(42);
                     if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                        this.desctiptionLines[i10].setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-                        spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
-                        spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
+                        this.desctiptionLines[i12].setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
+                        spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                        spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
                         spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("AuthAnotherClientDownloadClientUrl", R.string.AuthAnotherClientDownloadClientUrl)), indexOf, lastIndexOf - 1, 33);
                     }
-                    this.desctiptionLines[i10].setText(spannableStringBuilder);
+                    this.desctiptionLines[i12].setText(spannableStringBuilder);
                 } else if (i7 == 1) {
-                    this.desctiptionLines[i10].setText(LocaleController.getString("AuthAnotherClientInfo2", R.string.AuthAnotherClientInfo2));
+                    this.desctiptionLines[i12].setText(LocaleController.getString("AuthAnotherClientInfo2", R.string.AuthAnotherClientInfo2));
                 } else {
-                    this.desctiptionLines[i10].setText(LocaleController.getString("AuthAnotherClientInfo3", R.string.AuthAnotherClientInfo3));
+                    this.desctiptionLines[i12].setText(LocaleController.getString("AuthAnotherClientInfo3", R.string.AuthAnotherClientInfo3));
                 }
                 if (LocaleController.isRTL) {
                     linearLayout2.setGravity(5);
-                    linearLayout2.addView(this.desctiptionLines[i10], LayoutHelper.createLinear(0, -2, 1.0f));
-                    linearLayout2.addView(this.desctiptionLines[i8], LayoutHelper.createLinear(-2, -2, 4.0f, 0.0f, 0.0f, 0.0f));
+                    linearLayout2.addView(this.desctiptionLines[i12], LayoutHelper.createLinear(0, -2, 1.0f));
+                    linearLayout2.addView(this.desctiptionLines[i9], LayoutHelper.createLinear(-2, -2, 4.0f, 0.0f, 0.0f, 0.0f));
                 } else {
-                    linearLayout2.addView(this.desctiptionLines[i8], LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 4.0f, 0.0f));
-                    linearLayout2.addView(this.desctiptionLines[i10], LayoutHelper.createLinear(-2, -2));
+                    linearLayout2.addView(this.desctiptionLines[i9], LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 4.0f, 0.0f));
+                    linearLayout2.addView(this.desctiptionLines[i12], LayoutHelper.createLinear(-2, -2));
                 }
-                i7 = i9;
+                i7 = i11;
                 i2 = 0;
-                i3 = 1;
                 f = 15.0f;
-                i4 = 3;
-                i5 = 2;
+                i4 = 2;
             }
             this.descriptionText.setVisibility(8);
         }
-        TextView textView5 = new TextView(context);
-        this.descriptionText2 = textView5;
-        textView5.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText6"));
+        TextView textView6 = new TextView(context);
+        this.descriptionText2 = textView6;
+        textView6.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6));
         this.descriptionText2.setGravity(1);
         this.descriptionText2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         this.descriptionText2.setTextSize(1, 13.0f);
@@ -574,7 +579,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             this.descriptionText2.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
         }
         viewGroup2.addView(this.descriptionText2);
-        TextView textView6 = new TextView(context) {
+        TextView textView7 = new TextView(context) {
             CellFlickerDrawable cellFlickerDrawable;
 
             @Override
@@ -595,14 +600,14 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                 }
             }
         };
-        this.buttonTextView = textView6;
-        textView6.setPadding(AndroidUtilities.dp(34.0f), i, AndroidUtilities.dp(34.0f), i);
+        this.buttonTextView = textView7;
+        textView7.setPadding(AndroidUtilities.dp(34.0f), i, AndroidUtilities.dp(34.0f), i);
         this.buttonTextView.setGravity(17);
-        this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+        this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        int i11 = this.currentType;
-        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", (i11 == 6 || i11 == 3 || i11 == 0) ? 6 : 4));
+        int i13 = this.currentType;
+        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, (i13 == 6 || i13 == 3 || i13 == 0) ? 6 : 4));
         viewGroup2.addView(this.buttonTextView);
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -621,7 +626,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                 this.flickerButton = true;
                 break;
             case 1:
-                this.imageView.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(100.0f), Theme.getColor("chats_archiveBackground")));
+                this.imageView.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(100.0f), Theme.getColor(Theme.key_chats_archiveBackground)));
                 this.imageView.setImageDrawable(new ShareLocationDrawable(context, 3));
                 this.imageView.setScaleType(ImageView.ScaleType.CENTER);
                 this.titleTextView.setText(LocaleController.getString("PeopleNearby", R.string.PeopleNearby));
@@ -634,9 +639,12 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                 this.descriptionText2.setVisibility(0);
                 this.imageView.setImageResource(Theme.getCurrentTheme().isDark() ? R.drawable.groupsintro2 : R.drawable.groupsintro);
                 this.imageView.setScaleType(ImageView.ScaleType.CENTER);
-                TextView textView7 = this.subtitleTextView;
-                String str2 = this.currentGroupCreateDisplayAddress;
-                textView7.setText(str2 != null ? str2 : "");
+                TextView textView8 = this.subtitleTextView;
+                String str3 = this.currentGroupCreateDisplayAddress;
+                if (str3 != null) {
+                    str = str3;
+                }
+                textView8.setText(str);
                 this.titleTextView.setText(LocaleController.getString("NearbyCreateGroup", R.string.NearbyCreateGroup));
                 this.descriptionText.setText(LocaleController.getString("NearbyCreateGroupInfo", R.string.NearbyCreateGroupInfo));
                 this.descriptionText2.setText(LocaleController.getString("NearbyCreateGroupInfo2", R.string.NearbyCreateGroupInfo2));
@@ -658,10 +666,10 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                     user = userConfig.getCurrentUser();
                 }
                 if (user != null) {
-                    TextView textView8 = this.subtitleTextView;
-                    int i12 = R.string.PhoneNumberKeepButton;
+                    TextView textView9 = this.subtitleTextView;
+                    int i14 = R.string.PhoneNumberKeepButton;
                     PhoneFormat phoneFormat = PhoneFormat.getInstance();
-                    textView8.setText(LocaleController.formatString("PhoneNumberKeepButton", i12, phoneFormat.format("+" + user.phone)));
+                    textView9.setText(LocaleController.formatString("PhoneNumberKeepButton", i14, phoneFormat.format("+" + user.phone)));
                 }
                 this.subtitleTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -669,16 +677,16 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                         ActionIntroActivity.this.lambda$createView$5(view);
                     }
                 });
-                TextView textView9 = this.titleTextView;
-                int i13 = R.string.PhoneNumberChange2;
-                textView9.setText(LocaleController.getString("PhoneNumberChange2", i13));
+                TextView textView10 = this.titleTextView;
+                int i15 = R.string.PhoneNumberChange2;
+                textView10.setText(LocaleController.getString("PhoneNumberChange2", i15));
                 this.descriptionText.setText(AndroidUtilities.replaceTags(LocaleController.getString("PhoneNumberHelp", R.string.PhoneNumberHelp)));
-                this.buttonTextView.setText(LocaleController.getString("PhoneNumberChange2", i13));
+                this.buttonTextView.setText(LocaleController.getString("PhoneNumberChange2", i15));
                 this.imageView.playAnimation();
                 this.flickerButton = true;
                 break;
             case 4:
-                this.imageView.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(100.0f), Theme.getColor("chats_archiveBackground")));
+                this.imageView.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(100.0f), Theme.getColor(Theme.key_chats_archiveBackground)));
                 this.imageView.setImageDrawable(new ShareLocationDrawable(context, 3));
                 this.imageView.setScaleType(ImageView.ScaleType.CENTER);
                 this.titleTextView.setText(LocaleController.getString("PeopleNearby", R.string.PeopleNearby));
@@ -850,16 +858,17 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             return;
         }
         iArr[0] = 3355443;
-        iArr[1] = Theme.getColor("windowBackgroundWhiteBlackText");
+        iArr[1] = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText);
         int[] iArr2 = this.colors;
         iArr2[2] = 16777215;
-        iArr2[3] = Theme.getColor("windowBackgroundWhite");
+        int i = Theme.key_windowBackgroundWhite;
+        iArr2[3] = Theme.getColor(i);
         int[] iArr3 = this.colors;
         iArr3[4] = 5285866;
-        iArr3[5] = Theme.getColor("featuredStickers_addButton");
+        iArr3[5] = Theme.getColor(Theme.key_featuredStickers_addButton);
         int[] iArr4 = this.colors;
         iArr4[6] = 2170912;
-        iArr4[7] = Theme.getColor("windowBackgroundWhite");
+        iArr4[7] = Theme.getColor(i);
         this.imageView.replaceColors(this.colors);
     }
 
@@ -901,7 +910,7 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                     public final void onClick(DialogInterface dialogInterface, int i2) {
                         ActionIntroActivity.this.lambda$onRequestPermissionsResultFragment$7(dialogInterface, i2);
                     }
-                }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor("dialogTopBackground")).show();
+                }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).show();
             }
         }
     }
@@ -968,31 +977,37 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
         };
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, themeDescriptionDelegate, "windowBackgroundWhite"));
+        View view = this.fragmentView;
+        int i = ThemeDescription.FLAG_BACKGROUND;
+        int i2 = Theme.key_windowBackgroundWhite;
+        arrayList.add(new ThemeDescription(view, i, null, null, null, themeDescriptionDelegate, i2));
         if (this.actionBar != null) {
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, "windowBackgroundWhiteGrayText2"));
-            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "actionBarWhiteSelector"));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i2));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText2));
+            arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarWhiteSelector));
         }
-        arrayList.add(new ThemeDescription(this.titleTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, themeDescriptionDelegate, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.subtitleTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.descriptionText, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteGrayText6"));
-        arrayList.add(new ThemeDescription(this.buttonTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "featuredStickers_buttonText"));
-        arrayList.add(new ThemeDescription(this.buttonTextView, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE, null, null, null, themeDescriptionDelegate, "featuredStickers_addButton"));
-        arrayList.add(new ThemeDescription(this.buttonTextView, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, "featuredStickers_addButtonPressed"));
-        arrayList.add(new ThemeDescription(this.desctiptionLines[0], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.desctiptionLines[1], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.desctiptionLines[1], ThemeDescription.FLAG_LINKCOLOR, null, null, null, null, "windowBackgroundWhiteLinkText"));
-        arrayList.add(new ThemeDescription(this.desctiptionLines[2], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.desctiptionLines[3], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.desctiptionLines[4], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.desctiptionLines[5], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(null, ThemeDescription.FLAG_TEXTCOLOR, null, null, new Drawable[]{this.drawable2}, null, "changephoneinfo_image2"));
+        TextView textView = this.titleTextView;
+        int i3 = ThemeDescription.FLAG_TEXTCOLOR;
+        int i4 = Theme.key_windowBackgroundWhiteBlackText;
+        arrayList.add(new ThemeDescription(textView, i3, null, null, null, themeDescriptionDelegate, i4));
+        arrayList.add(new ThemeDescription(this.subtitleTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.descriptionText, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText6));
+        arrayList.add(new ThemeDescription(this.buttonTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_featuredStickers_buttonText));
+        arrayList.add(new ThemeDescription(this.buttonTextView, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_addButton));
+        arrayList.add(new ThemeDescription(this.buttonTextView, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, Theme.key_featuredStickers_addButtonPressed));
+        arrayList.add(new ThemeDescription(this.desctiptionLines[0], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.desctiptionLines[1], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.desctiptionLines[1], ThemeDescription.FLAG_LINKCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteLinkText));
+        arrayList.add(new ThemeDescription(this.desctiptionLines[2], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.desctiptionLines[3], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.desctiptionLines[4], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.desctiptionLines[5], ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(null, ThemeDescription.FLAG_TEXTCOLOR, null, null, new Drawable[]{this.drawable2}, null, Theme.key_changephoneinfo_image2));
         return arrayList;
     }
 
     @Override
     public boolean isLightStatusBar() {
-        return ColorUtils.calculateLuminance(Theme.getColor("windowBackgroundWhite", null, true)) > 0.699999988079071d;
+        return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) > 0.699999988079071d;
     }
 }

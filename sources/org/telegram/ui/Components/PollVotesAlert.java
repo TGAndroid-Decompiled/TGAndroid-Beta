@@ -41,6 +41,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -166,19 +167,21 @@ public class PollVotesAlert extends BottomSheet {
 
         public SectionCell(Context context) {
             super(context);
-            setBackgroundColor(Theme.getColor("graySection"));
+            setBackgroundColor(Theme.getColor(Theme.key_graySection));
             TextView textView = new TextView(getContext());
             this.textView = textView;
             textView.setTextSize(1, 14.0f);
             this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.textView.setTextColor(Theme.getColor("key_graySectionText"));
+            TextView textView2 = this.textView;
+            int i = Theme.key_graySectionText;
+            textView2.setTextColor(Theme.getColor(i));
             this.textView.setSingleLine(true);
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
             this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-            TextView textView2 = new TextView(getContext());
-            this.middleTextView = textView2;
-            textView2.setTextSize(1, 14.0f);
-            this.middleTextView.setTextColor(Theme.getColor("key_graySectionText"));
+            TextView textView3 = new TextView(getContext());
+            this.middleTextView = textView3;
+            textView3.setTextSize(1, 14.0f);
+            this.middleTextView.setTextColor(Theme.getColor(i));
             this.middleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), PollVotesAlert.this) {
                 @Override
@@ -202,7 +205,7 @@ public class PollVotesAlert extends BottomSheet {
             };
             this.righTextView = animatedTextView;
             animatedTextView.setTextSize(AndroidUtilities.dp(14.0f));
-            this.righTextView.setTextColor(Theme.getColor("key_graySectionText"));
+            this.righTextView.setTextColor(Theme.getColor(i));
             this.righTextView.setGravity(LocaleController.isRTL ? 3 : 5);
             this.righTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -210,9 +213,9 @@ public class PollVotesAlert extends BottomSheet {
                     PollVotesAlert.SectionCell.this.lambda$new$0(view);
                 }
             });
-            TextView textView3 = this.textView;
+            TextView textView4 = this.textView;
             boolean z = LocaleController.isRTL;
-            addView(textView3, LayoutHelper.createFrame(-2, -1.0f, (z ? 5 : 3) | 48, z ? 0 : 16, 0.0f, z ? 16 : 0, 0.0f));
+            addView(textView4, LayoutHelper.createFrame(-2, -1.0f, (z ? 5 : 3) | 48, z ? 0 : 16, 0.0f, z ? 16 : 0, 0.0f));
             addView(this.middleTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 0.0f, 0.0f, 0.0f, 0.0f));
             addView(this.righTextView, LayoutHelper.createFrame(-2, -1.0f, (LocaleController.isRTL ? 3 : 5) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
         }
@@ -303,7 +306,7 @@ public class PollVotesAlert extends BottomSheet {
             addView(backupImageView2, LayoutHelper.createFrame(36, 36.0f, (z ? 5 : 3) | 48, z ? 0.0f : 14.0f, 6.0f, z ? 14.0f : 0.0f, 0.0f));
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.nameTextView = simpleTextView;
-            simpleTextView.setTextColor(Theme.getColor("dialogTextBlack"));
+            simpleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
             this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.nameTextView.setTextSize(16);
             this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
@@ -318,7 +321,7 @@ public class PollVotesAlert extends BottomSheet {
             this.drawPlaceholder = tLRPC$User == null;
             this.placeholderNum = i;
             if (tLRPC$User == null) {
-                this.nameTextView.setText("");
+                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
                 this.avatarImageView.setImageDrawable(null);
             } else {
                 update(0);
@@ -509,14 +512,15 @@ public class PollVotesAlert extends BottomSheet {
         updatePlaceholder();
         Drawable mutate = parentActivity.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.shadowDrawable = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
+        int i9 = Theme.key_dialogBackground;
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i9), PorterDuff.Mode.MULTIPLY));
         FrameLayout frameLayout = new FrameLayout(parentActivity) {
             private boolean ignoreLayout = false;
             private RectF rect = new RectF();
 
             @Override
-            protected void onMeasure(int i9, int i10) {
-                int size2 = View.MeasureSpec.getSize(i10);
+            protected void onMeasure(int i10, int i11) {
+                int size2 = View.MeasureSpec.getSize(i11);
                 if (Build.VERSION.SDK_INT >= 21 && !((BottomSheet) PollVotesAlert.this).isFullscreen) {
                     this.ignoreLayout = true;
                     setPadding(((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, AndroidUtilities.statusBarHeight, ((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, 0);
@@ -527,12 +531,12 @@ public class PollVotesAlert extends BottomSheet {
                 ((FrameLayout.LayoutParams) PollVotesAlert.this.actionBarShadow.getLayoutParams()).topMargin = ActionBar.getCurrentActionBarHeight();
                 int dp = ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop + AndroidUtilities.dp(15.0f) + AndroidUtilities.statusBarHeight;
                 int sectionCount = PollVotesAlert.this.listAdapter.getSectionCount();
-                for (int i11 = 0; i11 < sectionCount; i11++) {
-                    if (i11 == 0) {
-                        PollVotesAlert.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i9 - (((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft * 2)), 1073741824), i10);
+                for (int i12 = 0; i12 < sectionCount; i12++) {
+                    if (i12 == 0) {
+                        PollVotesAlert.this.titleTextView.measure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10 - (((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft * 2)), 1073741824), i11);
                         dp += PollVotesAlert.this.titleTextView.getMeasuredHeight();
                     } else {
-                        dp += AndroidUtilities.dp(32.0f) + (AndroidUtilities.dp(50.0f) * (PollVotesAlert.this.listAdapter.getCountForSection(i11) - 1));
+                        dp += AndroidUtilities.dp(32.0f) + (AndroidUtilities.dp(50.0f) * (PollVotesAlert.this.listAdapter.getCountForSection(i12) - 1));
                     }
                 }
                 int dp2 = (dp < paddingTop ? paddingTop - dp : paddingTop - ((paddingTop / 5) * 3)) + AndroidUtilities.dp(8.0f);
@@ -542,12 +546,12 @@ public class PollVotesAlert extends BottomSheet {
                     PollVotesAlert.this.listView.setPadding(0, dp2, 0, 0);
                     this.ignoreLayout = false;
                 }
-                super.onMeasure(i9, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             }
 
             @Override
-            protected void onLayout(boolean z, int i9, int i10, int i11, int i12) {
-                super.onLayout(z, i9, i10, i11, i12);
+            protected void onLayout(boolean z, int i10, int i11, int i12, int i13) {
+                super.onLayout(z, i10, i11, i12, i13);
                 PollVotesAlert.this.updateLayout(false);
             }
 
@@ -577,17 +581,17 @@ public class PollVotesAlert extends BottomSheet {
             protected void onDraw(Canvas canvas) {
                 float f;
                 int dp = AndroidUtilities.dp(13.0f);
-                int i9 = (PollVotesAlert.this.scrollOffsetY - ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop) - dp;
+                int i10 = (PollVotesAlert.this.scrollOffsetY - ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop) - dp;
                 if (((BottomSheet) PollVotesAlert.this).currentSheetAnimationType == 1) {
-                    i9 = (int) (i9 + PollVotesAlert.this.listView.getTranslationY());
+                    i10 = (int) (i10 + PollVotesAlert.this.listView.getTranslationY());
                 }
-                int dp2 = AndroidUtilities.dp(20.0f) + i9;
+                int dp2 = AndroidUtilities.dp(20.0f) + i10;
                 int measuredHeight = getMeasuredHeight() + AndroidUtilities.dp(15.0f) + ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop;
-                if (((BottomSheet) PollVotesAlert.this).backgroundPaddingTop + i9 < ActionBar.getCurrentActionBarHeight()) {
+                if (((BottomSheet) PollVotesAlert.this).backgroundPaddingTop + i10 < ActionBar.getCurrentActionBarHeight()) {
                     float dp3 = dp + AndroidUtilities.dp(4.0f);
-                    float min = Math.min(1.0f, ((ActionBar.getCurrentActionBarHeight() - i9) - ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop) / dp3);
+                    float min = Math.min(1.0f, ((ActionBar.getCurrentActionBarHeight() - i10) - ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop) / dp3);
                     int currentActionBarHeight = (int) ((ActionBar.getCurrentActionBarHeight() - dp3) * min);
-                    i9 -= currentActionBarHeight;
+                    i10 -= currentActionBarHeight;
                     dp2 -= currentActionBarHeight;
                     measuredHeight += currentActionBarHeight;
                     f = 1.0f - min;
@@ -595,27 +599,27 @@ public class PollVotesAlert extends BottomSheet {
                     f = 1.0f;
                 }
                 if (Build.VERSION.SDK_INT >= 21) {
-                    int i10 = AndroidUtilities.statusBarHeight;
-                    i9 += i10;
-                    dp2 += i10;
+                    int i11 = AndroidUtilities.statusBarHeight;
+                    i10 += i11;
+                    dp2 += i11;
                 }
-                PollVotesAlert.this.shadowDrawable.setBounds(0, i9, getMeasuredWidth(), measuredHeight);
+                PollVotesAlert.this.shadowDrawable.setBounds(0, i10, getMeasuredWidth(), measuredHeight);
                 PollVotesAlert.this.shadowDrawable.draw(canvas);
                 if (f != 1.0f) {
-                    Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor("dialogBackground"));
-                    this.rect.set(((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop + i9, getMeasuredWidth() - ((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop + i9 + AndroidUtilities.dp(24.0f));
+                    Theme.dialogs_onlineCirclePaint.setColor(Theme.getColor(Theme.key_dialogBackground));
+                    this.rect.set(((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop + i10, getMeasuredWidth() - ((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop + i10 + AndroidUtilities.dp(24.0f));
                     canvas.drawRoundRect(this.rect, AndroidUtilities.dp(12.0f) * f, AndroidUtilities.dp(12.0f) * f, Theme.dialogs_onlineCirclePaint);
                 }
                 if (f != 0.0f) {
                     int dp4 = AndroidUtilities.dp(36.0f);
                     this.rect.set((getMeasuredWidth() - dp4) / 2, dp2, (getMeasuredWidth() + dp4) / 2, dp2 + AndroidUtilities.dp(4.0f));
-                    int color = Theme.getColor("key_sheet_scrollUp");
+                    int color = Theme.getColor(Theme.key_sheet_scrollUp);
                     int alpha = Color.alpha(color);
                     Theme.dialogs_onlineCirclePaint.setColor(color);
                     Theme.dialogs_onlineCirclePaint.setAlpha((int) (alpha * 1.0f * f));
                     canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
                 }
-                int color2 = Theme.getColor("dialogBackground");
+                int color2 = Theme.getColor(Theme.key_dialogBackground);
                 Theme.dialogs_onlineCirclePaint.setColor(Color.argb((int) (PollVotesAlert.this.actionBar.getAlpha() * 255.0f), (int) (Color.red(color2) * 0.8f), (int) (Color.green(color2) * 0.8f), (int) (Color.blue(color2) * 0.8f)));
                 canvas.drawRect(((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, 0.0f, getMeasuredWidth() - ((BottomSheet) PollVotesAlert.this).backgroundPaddingLeft, AndroidUtilities.statusBarHeight, Theme.dialogs_onlineCirclePaint);
             }
@@ -623,8 +627,8 @@ public class PollVotesAlert extends BottomSheet {
         this.containerView = frameLayout;
         frameLayout.setWillNotDraw(false);
         ViewGroup viewGroup = this.containerView;
-        int i9 = this.backgroundPaddingLeft;
-        viewGroup.setPadding(i9, 0, i9, 0);
+        int i10 = this.backgroundPaddingLeft;
+        viewGroup.setPadding(i10, 0, i10, 0);
         this.listView = new RecyclerListView(parentActivity) {
             long lastUpdateTime;
 
@@ -680,16 +684,16 @@ public class PollVotesAlert extends BottomSheet {
         Adapter adapter = new Adapter(parentActivity);
         this.listAdapter = adapter;
         recyclerListView.setAdapter(adapter);
-        this.listView.setGlowColor(Theme.getColor("dialogScrollGlow"));
+        this.listView.setGlowColor(Theme.getColor(Theme.key_dialogScrollGlow));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i10) {
-                PollVotesAlert.this.lambda$new$4(chatActivity, view, i10);
+            public final void onItemClick(View view, int i11) {
+                PollVotesAlert.this.lambda$new$4(chatActivity, view, i11);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i10, int i11) {
+            public void onScrolled(RecyclerView recyclerView, int i11, int i12) {
                 if (PollVotesAlert.this.listView.getChildCount() <= 0) {
                     return;
                 }
@@ -697,8 +701,8 @@ public class PollVotesAlert extends BottomSheet {
             }
 
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i10) {
-                if (i10 == 0) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i11) {
+                if (i11 == 0) {
                     if (((PollVotesAlert.this.scrollOffsetY - ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop) - AndroidUtilities.dp(13.0f)) + ((BottomSheet) PollVotesAlert.this).backgroundPaddingTop >= ActionBar.getCurrentActionBarHeight() || !PollVotesAlert.this.listView.canScrollVertically(1)) {
                         return;
                     }
@@ -716,10 +720,12 @@ public class PollVotesAlert extends BottomSheet {
         textView.setTextSize(1, 18.0f);
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleTextView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(21.0f));
-        this.titleTextView.setTextColor(Theme.getColor("dialogTextBlack"));
-        this.titleTextView.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
         TextView textView2 = this.titleTextView;
-        textView2.setText(Emoji.replaceEmoji(this.poll.question, textView2.getPaint().getFontMetricsInt(), AndroidUtilities.dp(18.0f), false));
+        int i11 = Theme.key_dialogTextBlack;
+        textView2.setTextColor(Theme.getColor(i11));
+        this.titleTextView.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+        TextView textView3 = this.titleTextView;
+        textView3.setText(Emoji.replaceEmoji(this.poll.question, textView3.getPaint().getFontMetricsInt(), AndroidUtilities.dp(18.0f), false));
         ActionBar actionBar = new ActionBar(parentActivity) {
             @Override
             public void setAlpha(float f) {
@@ -728,12 +734,12 @@ public class PollVotesAlert extends BottomSheet {
             }
         };
         this.actionBar = actionBar;
-        actionBar.setBackgroundColor(Theme.getColor("dialogBackground"));
+        actionBar.setBackgroundColor(Theme.getColor(i9));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setItemsColor(Theme.getColor("dialogTextBlack"), false);
-        this.actionBar.setItemsBackgroundColor(Theme.getColor("dialogButtonSelector"), false);
-        this.actionBar.setTitleColor(Theme.getColor("dialogTextBlack"));
-        this.actionBar.setSubtitleColor(Theme.getColor("player_actionBarSubtitle"));
+        this.actionBar.setItemsColor(Theme.getColor(i11), false);
+        this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_dialogButtonSelector), false);
+        this.actionBar.setTitleColor(Theme.getColor(i11));
+        this.actionBar.setSubtitleColor(Theme.getColor(Theme.key_player_actionBarSubtitle));
         this.actionBar.setOccupyStatusBar(false);
         this.actionBar.setAlpha(0.0f);
         this.actionBar.setTitle(LocaleController.getString("PollResults", R.string.PollResults));
@@ -745,8 +751,8 @@ public class PollVotesAlert extends BottomSheet {
         this.containerView.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i10) {
-                if (i10 == -1) {
+            public void onItemClick(int i12) {
+                if (i12 == -1) {
                     PollVotesAlert.this.dismiss();
                 }
             }
@@ -754,7 +760,7 @@ public class PollVotesAlert extends BottomSheet {
         View view = new View(parentActivity);
         this.actionBarShadow = view;
         view.setAlpha(0.0f);
-        this.actionBarShadow.setBackgroundColor(Theme.getColor("dialogShadowLine"));
+        this.actionBarShadow.setBackgroundColor(Theme.getColor(Theme.key_dialogShadowLine));
         this.containerView.addView(this.actionBarShadow, LayoutHelper.createFrame(-1, 1.0f));
     }
 
@@ -1053,8 +1059,8 @@ public class PollVotesAlert extends BottomSheet {
         if (this.placeholderPaint == null) {
             return;
         }
-        int color = Theme.getColor("dialogBackground");
-        int color2 = Theme.getColor("dialogBackgroundGray");
+        int color = Theme.getColor(Theme.key_dialogBackground);
+        int color2 = Theme.getColor(Theme.key_dialogBackgroundGray);
         int averageColor = AndroidUtilities.getAverageColor(color2, color);
         this.placeholderPaint.setColor(color2);
         float dp = AndroidUtilities.dp(500.0f);
@@ -1190,8 +1196,8 @@ public class PollVotesAlert extends BottomSheet {
             } else {
                 TextCell textCell2 = new TextCell(this.mContext, 23, true);
                 textCell2.setOffsetFromImage(65);
-                textCell2.setBackgroundColor(PollVotesAlert.this.getThemedColor("dialogBackground"));
-                textCell2.setColors("switchTrackChecked", "windowBackgroundWhiteBlueText4");
+                textCell2.setBackgroundColor(PollVotesAlert.this.getThemedColor(Theme.key_dialogBackground));
+                textCell2.setColors(Theme.key_switchTrackChecked, Theme.key_windowBackgroundWhiteBlueText4);
                 textCell = textCell2;
             }
             return new RecyclerListView.Holder(textCell);
@@ -1328,26 +1334,33 @@ public class PollVotesAlert extends BottomSheet {
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
         };
-        arrayList.add(new ThemeDescription(this.containerView, 0, null, null, null, null, "key_sheet_scrollUp"));
-        arrayList.add(new ThemeDescription(this.containerView, 0, null, null, new Drawable[]{this.shadowDrawable}, null, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, "dialogScrollGlow"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBTITLECOLOR, null, null, null, null, "player_actionBarSubtitle"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.titleTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.actionBarShadow, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogShadowLine"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, "dialogBackgroundGray"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SECTIONS, new Class[]{SectionCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "key_graySectionText"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SECTIONS, new Class[]{SectionCell.class}, new String[]{"middleTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "key_graySectionText"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SECTIONS, new Class[]{SectionCell.class}, new String[]{"righTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "key_graySectionText"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR | ThemeDescription.FLAG_SECTIONS, new Class[]{SectionCell.class}, null, null, null, "graySection"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, "divider"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueText4"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "switchTrackChecked"));
+        arrayList.add(new ThemeDescription(this.containerView, 0, null, null, null, null, Theme.key_sheet_scrollUp));
+        ViewGroup viewGroup = this.containerView;
+        Drawable[] drawableArr = {this.shadowDrawable};
+        int i = Theme.key_dialogBackground;
+        arrayList.add(new ThemeDescription(viewGroup, 0, null, null, drawableArr, null, i));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_dialogScrollGlow));
+        ActionBar actionBar = this.actionBar;
+        int i2 = ThemeDescription.FLAG_AB_ITEMSCOLOR;
+        int i3 = Theme.key_dialogTextBlack;
+        arrayList.add(new ThemeDescription(actionBar, i2, null, null, null, null, i3));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, i3));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBTITLECOLOR, null, null, null, null, Theme.key_player_actionBarSubtitle));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, i3));
+        arrayList.add(new ThemeDescription(this.titleTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i3));
+        arrayList.add(new ThemeDescription(this.actionBarShadow, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_dialogShadowLine));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, i));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, (String[]) null, (Paint[]) null, (Drawable[]) null, themeDescriptionDelegate, Theme.key_dialogBackgroundGray));
+        int i4 = Theme.key_graySectionText;
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SECTIONS, new Class[]{SectionCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SECTIONS, new Class[]{SectionCell.class}, new String[]{"middleTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SECTIONS, new Class[]{SectionCell.class}, new String[]{"righTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i4));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR | ThemeDescription.FLAG_SECTIONS, new Class[]{SectionCell.class}, null, null, null, Theme.key_graySection));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{UserCell.class}, new String[]{"nameTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueText4));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_switchTrackChecked));
         return arrayList;
     }
 }

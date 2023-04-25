@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -81,10 +82,14 @@ public class PhotoPickerSearchActivity extends BaseFragment {
     @Override
     public View createView(Context context) {
         View view;
-        this.actionBar.setBackgroundColor(Theme.getColor("dialogBackground"));
-        this.actionBar.setTitleColor(Theme.getColor("dialogTextBlack"));
-        this.actionBar.setItemsColor(Theme.getColor("dialogTextBlack"), false);
-        this.actionBar.setItemsBackgroundColor(Theme.getColor("dialogButtonSelector"), false);
+        this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
+        ActionBar actionBar = this.actionBar;
+        int i = Theme.key_dialogTextBlack;
+        actionBar.setTitleColor(Theme.getColor(i));
+        this.actionBar.setItemsColor(Theme.getColor(i), false);
+        ActionBar actionBar2 = this.actionBar;
+        int i2 = Theme.key_dialogButtonSelector;
+        actionBar2.setItemsBackgroundColor(Theme.getColor(i2), false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         if (AndroidUtilities.isTablet()) {
             this.actionBar.setOccupyStatusBar(false);
@@ -95,8 +100,8 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         this.actionBar.setClipContent(true);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
+            public void onItemClick(int i3) {
+                if (i3 == -1) {
                     PhotoPickerSearchActivity.this.finishFragment();
                 }
             }
@@ -105,8 +110,8 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
-                PhotoPickerSearchActivity.this.imagesSearch.getActionBar().openSearchField("", false);
-                PhotoPickerSearchActivity.this.gifsSearch.getActionBar().openSearchField("", false);
+                PhotoPickerSearchActivity.this.imagesSearch.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
+                PhotoPickerSearchActivity.this.gifsSearch.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
                 PhotoPickerSearchActivity.this.searchItem.getSearchField().requestFocus();
             }
 
@@ -131,13 +136,15 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         this.searchItem = actionBarMenuItemSearchListener;
         actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("SearchImagesTitle", R.string.SearchImagesTitle));
         EditTextBoldCursor searchField = this.searchItem.getSearchField();
-        searchField.setTextColor(Theme.getColor("dialogTextBlack"));
-        searchField.setCursorColor(Theme.getColor("dialogTextBlack"));
-        searchField.setHintTextColor(Theme.getColor("chat_messagePanelHint"));
+        searchField.setTextColor(Theme.getColor(i));
+        searchField.setCursorColor(Theme.getColor(i));
+        searchField.setHintTextColor(Theme.getColor(Theme.key_chat_messagePanelHint));
         ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = new ScrollSlidingTextTabStrip(context);
         this.scrollSlidingTextTabStrip = scrollSlidingTextTabStrip;
         scrollSlidingTextTabStrip.setUseSameWidth(true);
-        this.scrollSlidingTextTabStrip.setColors("chat_attachActiveTab", "chat_attachActiveTab", "chat_attachUnactiveTab", "dialogButtonSelector");
+        ScrollSlidingTextTabStrip scrollSlidingTextTabStrip2 = this.scrollSlidingTextTabStrip;
+        int i3 = Theme.key_chat_attachActiveTab;
+        scrollSlidingTextTabStrip2.setColors(i3, i3, Theme.key_chat_attachUnactiveTab, i2);
         this.actionBar.addView(this.scrollSlidingTextTabStrip, LayoutHelper.createFrame(-1, 44, 83));
         this.scrollSlidingTextTabStrip.setDelegate(new ScrollSlidingTextTabStrip.ScrollSlidingTabStripDelegate() {
             @Override
@@ -146,17 +153,17 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             }
 
             @Override
-            public void onPageSelected(int i, boolean z) {
-                if (PhotoPickerSearchActivity.this.viewPages[0].selectedType == i) {
+            public void onPageSelected(int i4, boolean z) {
+                if (PhotoPickerSearchActivity.this.viewPages[0].selectedType == i4) {
                     return;
                 }
                 PhotoPickerSearchActivity photoPickerSearchActivity = PhotoPickerSearchActivity.this;
-                photoPickerSearchActivity.swipeBackEnabled = i == photoPickerSearchActivity.scrollSlidingTextTabStrip.getFirstTabId();
-                PhotoPickerSearchActivity.this.viewPages[1].selectedType = i;
+                photoPickerSearchActivity.swipeBackEnabled = i4 == photoPickerSearchActivity.scrollSlidingTextTabStrip.getFirstTabId();
+                PhotoPickerSearchActivity.this.viewPages[1].selectedType = i4;
                 PhotoPickerSearchActivity.this.viewPages[1].setVisibility(0);
                 PhotoPickerSearchActivity.this.switchToCurrentSelectedMode(true);
                 PhotoPickerSearchActivity.this.animatingForward = z;
-                if (i == 0) {
+                if (i4 == 0) {
                     PhotoPickerSearchActivity.this.searchItem.setSearchFieldHint(LocaleController.getString("SearchImagesTitle", R.string.SearchImagesTitle));
                 } else {
                     PhotoPickerSearchActivity.this.searchItem.setSearchFieldHint(LocaleController.getString("SearchGifsTitle", R.string.SearchGifsTitle));
@@ -221,15 +228,15 @@ public class PhotoPickerSearchActivity extends BaseFragment {
             }
 
             @Override
-            protected void onMeasure(int i, int i2) {
-                int size = View.MeasureSpec.getSize(i);
-                int size2 = View.MeasureSpec.getSize(i2);
+            protected void onMeasure(int i4, int i5) {
+                int size = View.MeasureSpec.getSize(i4);
+                int size2 = View.MeasureSpec.getSize(i5);
                 setMeasuredDimension(size, size2);
-                measureChildWithMargins(((BaseFragment) PhotoPickerSearchActivity.this).actionBar, i, 0, i2, 0);
+                measureChildWithMargins(((BaseFragment) PhotoPickerSearchActivity.this).actionBar, i4, 0, i5, 0);
                 if (AndroidUtilities.dp(20.0f) >= 0) {
                     if (!AndroidUtilities.isInMultiwindow) {
                         size2 -= PhotoPickerSearchActivity.this.commentTextView.getEmojiPadding();
-                        i2 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
+                        i5 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
                     }
                 } else {
                     this.globalIgnoreLayout = true;
@@ -238,15 +245,15 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                 }
                 int measuredHeight = ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getMeasuredHeight();
                 this.globalIgnoreLayout = true;
-                for (int i3 = 0; i3 < PhotoPickerSearchActivity.this.viewPages.length; i3++) {
-                    if (PhotoPickerSearchActivity.this.viewPages[i3] != null && PhotoPickerSearchActivity.this.viewPages[i3].listView != null) {
-                        PhotoPickerSearchActivity.this.viewPages[i3].listView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + measuredHeight, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
+                for (int i6 = 0; i6 < PhotoPickerSearchActivity.this.viewPages.length; i6++) {
+                    if (PhotoPickerSearchActivity.this.viewPages[i6] != null && PhotoPickerSearchActivity.this.viewPages[i6].listView != null) {
+                        PhotoPickerSearchActivity.this.viewPages[i6].listView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f) + measuredHeight, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
                     }
                 }
                 this.globalIgnoreLayout = false;
                 int childCount = getChildCount();
-                for (int i4 = 0; i4 < childCount; i4++) {
-                    View childAt = getChildAt(i4);
+                for (int i7 = 0; i7 < childCount; i7++) {
+                    View childAt = getChildAt(i7);
                     if (childAt != null && childAt.getVisibility() != 8 && childAt != ((BaseFragment) PhotoPickerSearchActivity.this).actionBar) {
                         if (PhotoPickerSearchActivity.this.commentTextView != null && PhotoPickerSearchActivity.this.commentTextView.isPopupView(childAt)) {
                             if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
@@ -259,7 +266,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                                 childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
                             }
                         } else {
-                            measureChildWithMargins(childAt, i, 0, i2, 0);
+                            measureChildWithMargins(childAt, i4, 0, i5, 0);
                         }
                     }
                 }
@@ -320,7 +327,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
 
             @Override
             protected void onDraw(Canvas canvas) {
-                PhotoPickerSearchActivity.this.backgroundPaint.setColor(Theme.getColor("windowBackgroundGray"));
+                PhotoPickerSearchActivity.this.backgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
                 canvas.drawRect(0.0f, ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getMeasuredHeight() + ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getTranslationY(), getMeasuredWidth(), getMeasuredHeight(), PhotoPickerSearchActivity.this.backgroundPaint);
             }
 
@@ -457,12 +464,12 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         EditTextEmoji editTextEmoji = this.imagesSearch.commentTextView;
         this.commentTextView = editTextEmoji;
         editTextEmoji.setSizeNotifierLayout(sizeNotifierFrameLayout);
-        for (int i = 0; i < 4; i++) {
-            if (i == 0) {
+        for (int i4 = 0; i4 < 4; i4++) {
+            if (i4 == 0) {
                 view = this.imagesSearch.frameLayout2;
-            } else if (i == 1) {
+            } else if (i4 == 1) {
                 view = this.imagesSearch.writeButtonContainer;
-            } else if (i == 2) {
+            } else if (i4 == 2) {
                 view = this.imagesSearch.selectedCountView;
             } else {
                 view = this.imagesSearch.shadow;
@@ -473,13 +480,13 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         PhotoPickerActivity photoPickerActivity2 = this.imagesSearch;
         photoPickerActivity.setLayoutViews(photoPickerActivity2.frameLayout2, photoPickerActivity2.writeButtonContainer, photoPickerActivity2.selectedCountView, photoPickerActivity2.shadow, photoPickerActivity2.commentTextView);
         this.gifsSearch.setParentFragment(this);
-        int i2 = 0;
+        int i5 = 0;
         while (true) {
             ViewPage[] viewPageArr = this.viewPages;
-            if (i2 >= viewPageArr.length) {
+            if (i5 >= viewPageArr.length) {
                 break;
             }
-            viewPageArr[i2] = new ViewPage(context) {
+            viewPageArr[i5] = new ViewPage(context) {
                 @Override
                 public void setTranslationX(float f) {
                     super.setTranslationX(f);
@@ -488,51 +495,51 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                     }
                 }
             };
-            sizeNotifierFrameLayout.addView(this.viewPages[i2], LayoutHelper.createFrame(-1, -1.0f));
-            if (i2 == 0) {
-                this.viewPages[i2].parentFragment = this.imagesSearch;
-                this.viewPages[i2].listView = this.imagesSearch.getListView();
-            } else if (i2 == 1) {
-                this.viewPages[i2].parentFragment = this.gifsSearch;
-                this.viewPages[i2].listView = this.gifsSearch.getListView();
-                this.viewPages[i2].setVisibility(8);
+            sizeNotifierFrameLayout.addView(this.viewPages[i5], LayoutHelper.createFrame(-1, -1.0f));
+            if (i5 == 0) {
+                this.viewPages[i5].parentFragment = this.imagesSearch;
+                this.viewPages[i5].listView = this.imagesSearch.getListView();
+            } else if (i5 == 1) {
+                this.viewPages[i5].parentFragment = this.gifsSearch;
+                this.viewPages[i5].listView = this.gifsSearch.getListView();
+                this.viewPages[i5].setVisibility(8);
             }
-            this.viewPages[i2].listView.setScrollingTouchSlop(1);
+            this.viewPages[i5].listView.setScrollingTouchSlop(1);
             ViewPage[] viewPageArr2 = this.viewPages;
-            viewPageArr2[i2].fragmentView = (FrameLayout) viewPageArr2[i2].parentFragment.getFragmentView();
-            this.viewPages[i2].listView.setClipToPadding(false);
+            viewPageArr2[i5].fragmentView = (FrameLayout) viewPageArr2[i5].parentFragment.getFragmentView();
+            this.viewPages[i5].listView.setClipToPadding(false);
             ViewPage[] viewPageArr3 = this.viewPages;
-            viewPageArr3[i2].actionBar = viewPageArr3[i2].parentFragment.getActionBar();
+            viewPageArr3[i5].actionBar = viewPageArr3[i5].parentFragment.getActionBar();
             ViewPage[] viewPageArr4 = this.viewPages;
-            viewPageArr4[i2].addView(viewPageArr4[i2].fragmentView, LayoutHelper.createFrame(-1, -1.0f));
+            viewPageArr4[i5].addView(viewPageArr4[i5].fragmentView, LayoutHelper.createFrame(-1, -1.0f));
             ViewPage[] viewPageArr5 = this.viewPages;
-            viewPageArr5[i2].addView(viewPageArr5[i2].actionBar, LayoutHelper.createFrame(-1, -2.0f));
-            this.viewPages[i2].actionBar.setVisibility(8);
-            final RecyclerView.OnScrollListener onScrollListener = this.viewPages[i2].listView.getOnScrollListener();
-            this.viewPages[i2].listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            viewPageArr5[i5].addView(viewPageArr5[i5].actionBar, LayoutHelper.createFrame(-1, -2.0f));
+            this.viewPages[i5].actionBar.setVisibility(8);
+            final RecyclerView.OnScrollListener onScrollListener = this.viewPages[i5].listView.getOnScrollListener();
+            this.viewPages[i5].listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
-                public void onScrollStateChanged(RecyclerView recyclerView, int i3) {
-                    onScrollListener.onScrollStateChanged(recyclerView, i3);
-                    if (i3 != 1) {
-                        int i4 = (int) (-((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getTranslationY());
+                public void onScrollStateChanged(RecyclerView recyclerView, int i6) {
+                    onScrollListener.onScrollStateChanged(recyclerView, i6);
+                    if (i6 != 1) {
+                        int i7 = (int) (-((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getTranslationY());
                         int currentActionBarHeight = ActionBar.getCurrentActionBarHeight();
-                        if (i4 == 0 || i4 == currentActionBarHeight) {
+                        if (i7 == 0 || i7 == currentActionBarHeight) {
                             return;
                         }
-                        if (i4 < currentActionBarHeight / 2) {
-                            PhotoPickerSearchActivity.this.viewPages[0].listView.smoothScrollBy(0, -i4);
+                        if (i7 < currentActionBarHeight / 2) {
+                            PhotoPickerSearchActivity.this.viewPages[0].listView.smoothScrollBy(0, -i7);
                         } else {
-                            PhotoPickerSearchActivity.this.viewPages[0].listView.smoothScrollBy(0, currentActionBarHeight - i4);
+                            PhotoPickerSearchActivity.this.viewPages[0].listView.smoothScrollBy(0, currentActionBarHeight - i7);
                         }
                     }
                 }
 
                 @Override
-                public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
-                    onScrollListener.onScrolled(recyclerView, i3, i4);
+                public void onScrolled(RecyclerView recyclerView, int i6, int i7) {
+                    onScrollListener.onScrolled(recyclerView, i6, i7);
                     if (recyclerView == PhotoPickerSearchActivity.this.viewPages[0].listView) {
                         float translationY = ((BaseFragment) PhotoPickerSearchActivity.this).actionBar.getTranslationY();
-                        float f = translationY - i4;
+                        float f = translationY - i7;
                         if (f < (-ActionBar.getCurrentActionBarHeight())) {
                             f = -ActionBar.getCurrentActionBarHeight();
                         } else if (f > 0.0f) {
@@ -544,7 +551,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
                     }
                 }
             });
-            i2++;
+            i5++;
         }
         sizeNotifierFrameLayout.addView(this.actionBar, LayoutHelper.createFrame(-1, -2.0f));
         sizeNotifierFrameLayout.addView(this.imagesSearch.frameLayout2, LayoutHelper.createFrame(-1, 48, 83));
@@ -553,7 +560,7 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         updateTabs();
         switchToCurrentSelectedMode(false);
         this.swipeBackEnabled = this.scrollSlidingTextTabStrip.getCurrentTabId() == this.scrollSlidingTextTabStrip.getFirstTabId();
-        int color = Theme.getColor("dialogBackground");
+        int color = Theme.getColor(Theme.key_dialogBackground);
         if (Build.VERSION.SDK_INT >= 23 && AndroidUtilities.computePerceivedBrightness(color) >= 0.721f) {
             View view2 = this.fragmentView;
             view2.setSystemUiVisibility(view2.getSystemUiVisibility() | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
@@ -722,18 +729,28 @@ public class PhotoPickerSearchActivity extends BaseFragment {
     @Override
     public ArrayList<ThemeDescription> getThemeDescriptions() {
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "dialogButtonSelector"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCH, null, null, null, null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCHPLACEHOLDER, null, null, null, null, "chat_messagePanelHint"));
-        arrayList.add(new ThemeDescription(this.searchItem.getSearchField(), ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_CHECKTAG | ThemeDescription.FLAG_TEXTCOLOR, new Class[]{TextView.class}, null, null, null, "chat_attachActiveTab"));
-        arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{TextView.class}, null, null, null, "chat_attachUnactiveTab"));
-        arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, new Class[]{TextView.class}, null, null, null, "dialogButtonSelector"));
-        arrayList.add(new ThemeDescription(null, 0, null, null, new Drawable[]{this.scrollSlidingTextTabStrip.getSelectorDrawable()}, null, "chat_attachActiveTab"));
+        View view = this.fragmentView;
+        int i = ThemeDescription.FLAG_BACKGROUND;
+        int i2 = Theme.key_dialogBackground;
+        arrayList.add(new ThemeDescription(view, i, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i2));
+        ActionBar actionBar = this.actionBar;
+        int i3 = ThemeDescription.FLAG_AB_ITEMSCOLOR;
+        int i4 = Theme.key_dialogTextBlack;
+        arrayList.add(new ThemeDescription(actionBar, i3, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, i4));
+        ActionBar actionBar2 = this.actionBar;
+        int i5 = ThemeDescription.FLAG_AB_SELECTORCOLOR;
+        int i6 = Theme.key_dialogButtonSelector;
+        arrayList.add(new ThemeDescription(actionBar2, i5, null, null, null, null, i6));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCH, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCHPLACEHOLDER, null, null, null, null, Theme.key_chat_messagePanelHint));
+        arrayList.add(new ThemeDescription(this.searchItem.getSearchField(), ThemeDescription.FLAG_CURSORCOLOR, null, null, null, null, i4));
+        int i7 = Theme.key_chat_attachActiveTab;
+        arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{TextView.class}, null, null, null, i7));
+        arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_TEXTCOLOR | ThemeDescription.FLAG_CHECKTAG, new Class[]{TextView.class}, null, null, null, Theme.key_chat_attachUnactiveTab));
+        arrayList.add(new ThemeDescription(this.scrollSlidingTextTabStrip.getTabsContainer(), ThemeDescription.FLAG_DRAWABLESELECTEDSTATE | ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextView.class}, null, null, null, i6));
+        arrayList.add(new ThemeDescription(null, 0, null, null, new Drawable[]{this.scrollSlidingTextTabStrip.getSelectorDrawable()}, null, i7));
         arrayList.addAll(this.imagesSearch.getThemeDescriptions());
         arrayList.addAll(this.gifsSearch.getThemeDescriptions());
         return arrayList;

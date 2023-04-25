@@ -33,7 +33,8 @@ public class BackupImageView extends View {
         this.height = -1;
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.imageReceiver = imageReceiver;
-        imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
+        imageReceiver.setAllowLoadingOnAttachedOnly(true);
+        this.imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
                 BackupImageView.this.lambda$new$0(imageReceiver2, z, z2, z3);
@@ -98,6 +99,10 @@ public class BackupImageView extends View {
 
     public void setOrientation(int i, boolean z) {
         this.imageReceiver.setOrientation(i, z);
+    }
+
+    public void setOrientation(int i, int i2, boolean z) {
+        this.imageReceiver.setOrientation(i, i2, z);
     }
 
     public void setImage(SecureDocument secureDocument, String str) {

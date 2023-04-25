@@ -82,7 +82,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         ScrollView scrollView = new ScrollView(getContext());
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(1);
@@ -96,7 +96,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
         LinearLayout linearLayout2 = new LinearLayout(getContext());
         this.checkBoxContainer = linearLayout2;
         linearLayout2.setOrientation(1);
-        this.checkBoxContainer.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+        this.checkBoxContainer.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         linearLayout.addView(this.checkBoxContainer, LayoutHelper.createLinear(-1, -2));
         HeaderCell headerCell = new HeaderCell(getContext());
         headerCell.setText(LocaleController.getString("MessageLifetime", R.string.MessageLifetime));
@@ -186,7 +186,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
 
     private void updateItems() {
         for (int i = 0; i < this.arrayList.size(); i++) {
-            this.arrayList.get(i).setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor("windowBackgroundWhite"), Theme.getColor("listSelectorSDK21")));
+            this.arrayList.get(i).setBackground(Theme.createSelectorWithBackgroundDrawable(Theme.getColor(Theme.key_windowBackgroundWhite), Theme.getColor(Theme.key_listSelector)));
             this.arrayList.get(i).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {

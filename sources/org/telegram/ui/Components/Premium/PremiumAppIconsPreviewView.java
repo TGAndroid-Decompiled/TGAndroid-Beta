@@ -11,6 +11,7 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.AppIconsSelectorCell;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -130,7 +131,7 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
             if (i == 0) {
                 drawable.type = 1002;
             }
-            drawable.colorKey = "premiumStartSmallStarsColor2";
+            drawable.colorKey = Theme.key_premiumStartSmallStarsColor2;
             drawable.init();
             this.paint.setColor(-1);
         }

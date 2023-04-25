@@ -436,15 +436,19 @@ public class NotificationBadge {
 
         @Override
         public void executeBadge(int i) {
+            Object obj = BuildConfig.APP_CENTER_HASH;
             try {
                 Object newInstance = Class.forName("android.app.MiuiNotification").newInstance();
                 Field declaredField = newInstance.getClass().getDeclaredField("messageCount");
                 declaredField.setAccessible(true);
-                declaredField.set(newInstance, String.valueOf(i == 0 ? "" : Integer.valueOf(i)));
+                declaredField.set(newInstance, String.valueOf(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i)));
             } catch (Throwable unused) {
                 final Intent intent = new Intent(INTENT_ACTION);
                 intent.putExtra(EXTRA_UPDATE_APP_COMPONENT_NAME, NotificationBadge.componentName.getPackageName() + "/" + NotificationBadge.componentName.getClassName());
-                intent.putExtra(EXTRA_UPDATE_APP_MSG_TEXT, String.valueOf(i != 0 ? Integer.valueOf(i) : ""));
+                if (i != 0) {
+                    obj = Integer.valueOf(i);
+                }
+                intent.putExtra(EXTRA_UPDATE_APP_MSG_TEXT, String.valueOf(obj));
                 if (NotificationBadge.canResolveBroadcast(intent)) {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override

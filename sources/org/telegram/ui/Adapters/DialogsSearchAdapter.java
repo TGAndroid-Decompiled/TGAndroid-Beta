@@ -19,6 +19,7 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -223,7 +224,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
             if (tLRPC$User != null) {
                 str = UserObject.getFirstName(tLRPC$User);
             } else {
-                str = tLRPC$Chat != null ? tLRPC$Chat.title : "";
+                str = tLRPC$Chat != null ? tLRPC$Chat.title : BuildConfig.APP_CENTER_HASH;
             }
             hintDialogCell.setDialog(j, true, str);
         }
@@ -625,7 +626,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
 
     private boolean resentSearchAvailable() {
         int i = this.dialogsType;
-        return (i == 2 || i == 4 || i == 5 || i == 6 || i == 11 || i == 15) ? false : true;
+        return (i == 2 || i == 4 || i == 5 || i == 6 || i == 1 || i == 11 || i == 15) ? false : true;
     }
 
     public boolean isSearchWas() {
@@ -1482,7 +1483,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                         return super.onInterceptTouchEvent(motionEvent);
                     }
                 };
-                recyclerListView2.setSelectorDrawableColor(Theme.getColor("listSelectorSDK21"));
+                recyclerListView2.setSelectorDrawableColor(Theme.getColor(Theme.key_listSelector));
                 recyclerListView2.setTag(9);
                 recyclerListView2.setItemAnimator(null);
                 recyclerListView2.setLayoutAnimation(null);
@@ -1531,7 +1532,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
     }
 
     @Override
-    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r23, int r24) {
+    public void onBindViewHolder(androidx.recyclerview.widget.RecyclerView.ViewHolder r22, int r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.DialogsSearchAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
     }
 

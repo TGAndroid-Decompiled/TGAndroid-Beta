@@ -19,15 +19,15 @@ public class GroupCreateSectionCell extends FrameLayout {
 
     public GroupCreateSectionCell(Context context) {
         super(context);
-        setBackgroundColor(Theme.getColor("graySection"));
+        setBackgroundColor(Theme.getColor(Theme.key_graySection));
         Drawable drawable = getResources().getDrawable(R.drawable.shadowdown);
         this.drawable = drawable;
-        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("groupcreate_sectionShadow"), PorterDuff.Mode.MULTIPLY));
+        drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_groupcreate_sectionShadow), PorterDuff.Mode.MULTIPLY));
         TextView textView = new TextView(getContext());
         this.textView = textView;
         textView.setTextSize(1, 14.0f);
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.textView.setTextColor(Theme.getColor("groupcreate_sectionText"));
+        this.textView.setTextColor(Theme.getColor(Theme.key_groupcreate_sectionText));
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, 16.0f, 0.0f, 16.0f, 0.0f));
     }

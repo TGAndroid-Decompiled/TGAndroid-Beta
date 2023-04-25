@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 public class CrossOutDrawable extends Drawable {
     int color;
-    String colorKey;
+    int colorKey;
     boolean cross;
     Drawable iconDrawable;
     private float lenOffsetBottom;
@@ -35,11 +35,11 @@ public class CrossOutDrawable extends Drawable {
     public void setColorFilter(ColorFilter colorFilter) {
     }
 
-    public CrossOutDrawable(Context context, int i, String str) {
+    public CrossOutDrawable(Context context, int i, int i2) {
         Paint paint = new Paint(1);
         this.xRefPaint = paint;
         this.iconDrawable = ContextCompat.getDrawable(context, i);
-        this.colorKey = str;
+        this.colorKey = i2;
         this.paint.setStyle(Paint.Style.STROKE);
         this.paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
         this.paint.setStrokeCap(Paint.Cap.ROUND);

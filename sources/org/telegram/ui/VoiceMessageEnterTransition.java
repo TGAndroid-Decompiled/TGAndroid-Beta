@@ -119,7 +119,7 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
         float height = this.messageView.getRadialProgress().getProgressRect().height() / 2.0f;
         float f6 = (this.fromRadius * f4) + (height * interpolation);
         int measuredHeight = this.container.getMeasuredHeight() > 0 ? (int) ((this.container.getMeasuredHeight() * f4) + (((this.listView.getY() - this.container.getY()) + this.listView.getMeasuredHeight()) * interpolation)) : 0;
-        this.circlePaint.setColor(ColorUtils.blendARGB(getThemedColor("chat_messagePanelVoiceBackground"), getThemedColor(this.messageView.getRadialProgress().getCircleColorKey()), interpolation));
+        this.circlePaint.setColor(ColorUtils.blendARGB(getThemedColor(Theme.key_chat_messagePanelVoiceBackground), getThemedColor(this.messageView.getRadialProgress().getCircleColorKey()), interpolation));
         ChatActivityEnterView.RecordCircle recordCircle3 = this.recordCircle;
         if (recordCircle3 != null) {
             recordCircle3.drawWaves(canvas, f3, f5, 1.0f - f2);
@@ -145,9 +145,7 @@ public class VoiceMessageEnterTransition implements MessageEnterTransitionContai
         }
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

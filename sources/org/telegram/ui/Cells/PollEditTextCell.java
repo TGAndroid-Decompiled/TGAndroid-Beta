@@ -138,10 +138,9 @@ public class PollEditTextCell extends FrameLayout {
                 }
             };
         }
-        this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        this.textView.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
+        this.textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.textView.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
         this.textView.setTextSize(1, 16.0f);
-        this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
         this.textView.setBackgroundDrawable(null);
         EditTextBoldCursor editTextBoldCursor = this.textView;
         editTextBoldCursor.setImeOptions(editTextBoldCursor.getImeOptions() | 268435456);
@@ -151,26 +150,28 @@ public class PollEditTextCell extends FrameLayout {
         if (onClickListener != null) {
             EditTextBoldCursor editTextBoldCursor3 = this.textView;
             boolean z2 = LocaleController.isRTL;
-            addView(editTextBoldCursor3, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 16, z2 ? 58.0f : 64.0f, 0.0f, !z2 ? 58.0f : 64.0f, 0.0f));
+            addView(editTextBoldCursor3, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 16, z2 ? 58.0f : 64.0f, 0.0f, z2 ? 64.0f : 58.0f, 0.0f));
             ImageView imageView = new ImageView(context);
             this.moveImageView = imageView;
             imageView.setFocusable(false);
             this.moveImageView.setScaleType(ImageView.ScaleType.CENTER);
             this.moveImageView.setImageResource(R.drawable.poll_reorder);
-            this.moveImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));
+            ImageView imageView2 = this.moveImageView;
+            int i = Theme.key_windowBackgroundWhiteGrayIcon;
+            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
             addView(this.moveImageView, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 48, 6.0f, 2.0f, 6.0f, 0.0f));
-            ImageView imageView2 = new ImageView(context);
-            this.deleteImageView = imageView2;
-            imageView2.setFocusable(false);
+            ImageView imageView3 = new ImageView(context);
+            this.deleteImageView = imageView3;
+            imageView3.setFocusable(false);
             this.deleteImageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.deleteImageView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("stickers_menuSelector")));
+            this.deleteImageView.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(Theme.key_stickers_menuSelector)));
             this.deleteImageView.setImageResource(R.drawable.poll_remove);
             this.deleteImageView.setOnClickListener(onClickListener);
-            this.deleteImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));
+            this.deleteImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
             this.deleteImageView.setContentDescription(LocaleController.getString("Delete", R.string.Delete));
-            ImageView imageView3 = this.deleteImageView;
+            ImageView imageView4 = this.deleteImageView;
             boolean z3 = LocaleController.isRTL;
-            addView(imageView3, LayoutHelper.createFrame(48, 50.0f, (z3 ? 3 : 5) | 48, z3 ? 3.0f : 0.0f, 0.0f, z3 ? 0.0f : 3.0f, 0.0f));
+            addView(imageView4, LayoutHelper.createFrame(48, 50.0f, (z3 ? 3 : 5) | 48, z3 ? 3.0f : 0.0f, 0.0f, z3 ? 0.0f : 3.0f, 0.0f));
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.textView2 = simpleTextView;
             simpleTextView.setTextSize(13);
@@ -180,7 +181,7 @@ public class PollEditTextCell extends FrameLayout {
             addView(simpleTextView2, LayoutHelper.createFrame(48, 24.0f, (z4 ? 3 : 5) | 48, z4 ? 20.0f : 0.0f, 43.0f, z4 ? 0.0f : 20.0f, 0.0f));
             CheckBox2 checkBox2 = new CheckBox2(context, 21);
             this.checkBox = checkBox2;
-            checkBox2.setColor(null, "windowBackgroundWhiteGrayIcon", "checkboxCheck");
+            checkBox2.setColor(-1, i, Theme.key_checkboxCheck);
             this.checkBox.setContentDescription(LocaleController.getString("AccDescrQuizCorrectAnswer", R.string.AccDescrQuizCorrectAnswer));
             this.checkBox.setDrawUnchecked(true);
             this.checkBox.setChecked(true, false);

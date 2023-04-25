@@ -36,7 +36,6 @@ import android.media.AudioManager;
 import android.media.AudioTrack;
 import android.media.MediaPlayer;
 import android.media.MediaRouter;
-import android.media.RingtoneManager;
 import android.media.SoundPool;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -78,6 +77,7 @@ import java.util.Objects;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -93,7 +93,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.NotificationsController;
-import org.telegram.messenger.NotificationsSettingsFacade;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.StatsController;
@@ -2541,7 +2540,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         tLRPC$TL_upload_getFile.location = tLRPC$TL_inputGroupCallStream;
         if (i2 == 0) {
             sb = new StringBuilder();
-            sb.append("");
+            sb.append(BuildConfig.APP_CENTER_HASH);
             sb.append(j);
         } else {
             sb = new StringBuilder();
@@ -2621,7 +2620,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     public void lambda$createGroupInstance$46(int i, long j, int i2) {
         String str;
         if (i == 0) {
-            str = "" + j;
+            str = BuildConfig.APP_CENTER_HASH + j;
         } else {
             str = i + "_" + j + "_" + i2;
         }
@@ -3298,7 +3297,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
     public String getDebugString() {
         NativeInstance[] nativeInstanceArr = this.tgVoip;
-        return nativeInstanceArr[0] != null ? nativeInstanceArr[0].getDebugInfo() : "";
+        return nativeInstanceArr[0] != null ? nativeInstanceArr[0].getDebugInfo() : BuildConfig.APP_CENTER_HASH;
     }
 
     public long getCallDuration() {
@@ -3309,11 +3308,13 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     }
 
     public void stopRinging() {
-        MediaPlayer mediaPlayer = this.ringtonePlayer;
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
-            this.ringtonePlayer.release();
-            this.ringtonePlayer = null;
+        synchronized (sync) {
+            MediaPlayer mediaPlayer = this.ringtonePlayer;
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+                this.ringtonePlayer.release();
+                this.ringtonePlayer = null;
+            }
         }
         Vibrator vibrator = this.vibrator;
         if (vibrator != null) {
@@ -3391,63 +3392,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         }
     }
 
-    private void startRingtoneAndVibration(long j) {
-        int i;
-        String string;
-        SharedPreferences notificationsSettings = MessagesController.getNotificationsSettings(this.currentAccount);
-        AudioManager audioManager = (AudioManager) getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
-        if (audioManager.getRingerMode() != 0) {
-            MediaPlayer mediaPlayer = new MediaPlayer();
-            this.ringtonePlayer = mediaPlayer;
-            mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                @Override
-                public final void onPrepared(MediaPlayer mediaPlayer2) {
-                    VoIPService.this.lambda$startRingtoneAndVibration$63(mediaPlayer2);
-                }
-            });
-            this.ringtonePlayer.setLooping(true);
-            if (this.isHeadsetPlugged) {
-                this.ringtonePlayer.setAudioStreamType(0);
-            } else {
-                this.ringtonePlayer.setAudioStreamType(2);
-                if (!USE_CONNECTION_SERVICE) {
-                    audioManager.requestAudioFocus(this, 2, 1);
-                }
-            }
-            try {
-                if (notificationsSettings.getBoolean(NotificationsSettingsFacade.PROPERTY_CUSTOM + j, false)) {
-                    string = notificationsSettings.getString("ringtone_path_" + j, RingtoneManager.getDefaultUri(1).toString());
-                } else {
-                    string = notificationsSettings.getString("CallsRingtonePath", RingtoneManager.getDefaultUri(1).toString());
-                }
-                this.ringtonePlayer.setDataSource(this, Uri.parse(string));
-                this.ringtonePlayer.prepareAsync();
-            } catch (Exception e) {
-                FileLog.e(e);
-                MediaPlayer mediaPlayer2 = this.ringtonePlayer;
-                if (mediaPlayer2 != null) {
-                    mediaPlayer2.release();
-                    this.ringtonePlayer = null;
-                }
-            }
-            if (notificationsSettings.getBoolean(NotificationsSettingsFacade.PROPERTY_CUSTOM + j, false)) {
-                i = notificationsSettings.getInt("calls_vibrate_" + j, 0);
-            } else {
-                i = notificationsSettings.getInt("vibrate_calls", 0);
-            }
-            if ((i == 2 || i == 4 || !(audioManager.getRingerMode() == 1 || audioManager.getRingerMode() == 2)) && !(i == 4 && audioManager.getRingerMode() == 1)) {
-                return;
-            }
-            Vibrator vibrator = (Vibrator) getSystemService("vibrator");
-            this.vibrator = vibrator;
-            long j2 = 700;
-            if (i == 1) {
-                j2 = 350;
-            } else if (i == 3) {
-                j2 = 1400;
-            }
-            vibrator.vibrate(new long[]{0, j2, 500}, 0);
-        }
+    private void startRingtoneAndVibration(long r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPService.startRingtoneAndVibration(long):void");
     }
 
     public void lambda$startRingtoneAndVibration$63(MediaPlayer mediaPlayer) {
@@ -3911,7 +3857,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         dispatchStateChanged(15);
         if (!this.notificationsDisabled && Build.VERSION.SDK_INT >= 21) {
             TLRPC$User tLRPC$User = this.user;
-            showIncomingNotification(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name), null, this.user, this.privateCall.video, 0);
+            showIncomingNotification(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name), this.user, this.privateCall.video, 0);
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("Showing incoming call notification");
                 return;
@@ -4563,8 +4509,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return bitmap;
     }
 
-    private void showIncomingNotification(java.lang.String r19, java.lang.CharSequence r20, org.telegram.tgnet.TLObject r21, boolean r22, int r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPService.showIncomingNotification(java.lang.String, java.lang.CharSequence, org.telegram.tgnet.TLObject, boolean, int):void");
+    private void showIncomingNotification(java.lang.String r20, org.telegram.tgnet.TLObject r21, boolean r22, int r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.VoIPService.showIncomingNotification(java.lang.String, org.telegram.tgnet.TLObject, boolean, int):void");
     }
 
     private void callFailed(String str) {
@@ -4988,7 +4934,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
     private PhoneAccountHandle addAccountToTelecomManager() {
         TLRPC$User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
         ComponentName componentName = new ComponentName(this, TelegramConnectionService.class);
-        PhoneAccountHandle phoneAccountHandle = new PhoneAccountHandle(componentName, "" + currentUser.id);
+        PhoneAccountHandle phoneAccountHandle = new PhoneAccountHandle(componentName, BuildConfig.APP_CENTER_HASH + currentUser.id);
         ((TelecomManager) getSystemService("telecom")).registerPhoneAccount(new PhoneAccount.Builder(phoneAccountHandle, ContactsController.formatName(currentUser.first_name, currentUser.last_name)).setCapabilities(LiteMode.FLAG_AUTOPLAY_GIFS).setIcon(Icon.createWithResource(this, R.drawable.ic_launcher_dr)).setHighlightColor(-13851168).addSupportedUriScheme("sip").build());
         return phoneAccountHandle;
     }

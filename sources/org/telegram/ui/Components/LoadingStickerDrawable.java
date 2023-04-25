@@ -47,9 +47,9 @@ public class LoadingStickerDrawable extends Drawable {
         this.parentView = view;
     }
 
-    public void setColors(String str, String str2) {
-        int color = Theme.getColor(str);
-        int color2 = Theme.getColor(str2);
+    public void setColors(int i, int i2) {
+        int color = Theme.getColor(i);
+        int color2 = Theme.getColor(i2);
         if (this.currentColor0 == color && this.currentColor1 == color2) {
             return;
         }
@@ -72,7 +72,7 @@ public class LoadingStickerDrawable extends Drawable {
         if (this.bitmap == null) {
             return;
         }
-        setColors("dialogBackground", "dialogBackgroundGray");
+        setColors(Theme.key_dialogBackground, Theme.key_dialogBackgroundGray);
         android.graphics.Rect bounds = getBounds();
         canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, this.placeholderPaint);
         long elapsedRealtime = SystemClock.elapsedRealtime();

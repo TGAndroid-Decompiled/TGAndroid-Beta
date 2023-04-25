@@ -9,6 +9,6 @@ public final class LPhotoPaintView$$ExternalSyntheticLambda18 implements View.On
 
     @Override
     public final void onClick(View view) {
-        LPhotoPaintView.lambda$new$3(view);
+        LPhotoPaintView.lambda$new$2(view);
     }
 }

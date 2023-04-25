@@ -11,6 +11,7 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.PhotoEditorSeekBar;
@@ -55,7 +56,7 @@ public class PhotoEditToolCell extends FrameLayout {
         addView(this.nameTextView, LayoutHelper.createFrame(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
-        textView2.setTextColor(getThemedColor("dialogFloatingButton"));
+        textView2.setTextColor(getThemedColor(Theme.key_dialogFloatingButton));
         this.valueTextView.setTextSize(1, 12.0f);
         this.valueTextView.setGravity(5);
         this.valueTextView.setSingleLine(true);
@@ -81,7 +82,7 @@ public class PhotoEditToolCell extends FrameLayout {
             textView.setText("+" + i2);
         } else {
             TextView textView2 = this.valueTextView;
-            textView2.setText("" + i2);
+            textView2.setText(BuildConfig.APP_CENTER_HASH + i2);
         }
         if (this.valueTextView.getTag() == null) {
             AnimatorSet animatorSet = this.valueAnimation;
@@ -133,7 +134,7 @@ public class PhotoEditToolCell extends FrameLayout {
             textView2.setText("+" + ((int) f));
         } else {
             TextView textView3 = this.valueTextView;
-            textView3.setText("" + ((int) f));
+            textView3.setText(BuildConfig.APP_CENTER_HASH + ((int) f));
         }
         this.valueTextView.setAlpha(0.0f);
         this.nameTextView.setAlpha(1.0f);
@@ -141,9 +142,7 @@ public class PhotoEditToolCell extends FrameLayout {
         this.seekBar.setProgress((int) f, false);
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

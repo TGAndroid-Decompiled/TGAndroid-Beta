@@ -248,7 +248,8 @@ public class FilesMigrationService extends Service {
             linearLayout.addView(stickerImageView, LayoutHelper.createLinear(144, 144, 1, 0, 16, 0, 0));
             TextView textView = new TextView(parentActivity);
             textView.setGravity(8388611);
-            textView.setTextColor(Theme.getColor("dialogTextBlack"));
+            int i = Theme.key_dialogTextBlack;
+            textView.setTextColor(Theme.getColor(i));
             textView.setTextSize(1, 20.0f);
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView.setText(LocaleController.getString("MigrateOldFolderTitle", R.string.MigrateOldFolderTitle));
@@ -256,7 +257,7 @@ public class FilesMigrationService extends Service {
             TextView textView2 = new TextView(parentActivity);
             textView2.setGravity(8388611);
             textView2.setTextSize(1, 15.0f);
-            textView2.setTextColor(Theme.getColor("dialogTextBlack"));
+            textView2.setTextColor(Theme.getColor(i));
             textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString("MigrateOldFolderDescription", R.string.MigrateOldFolderDescription)));
             linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
             TextView textView3 = new TextView(parentActivity);
@@ -265,8 +266,8 @@ public class FilesMigrationService extends Service {
             textView3.setTextSize(1, 14.0f);
             textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView3.setText(LocaleController.getString("MigrateOldFolderButton", R.string.MigrateOldFolderButton));
-            textView3.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-            textView3.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 6.0f));
+            textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+            textView3.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 6.0f));
             linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override

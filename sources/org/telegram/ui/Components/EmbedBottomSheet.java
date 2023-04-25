@@ -42,6 +42,7 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BringAppForegroundService;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -549,7 +550,7 @@ public class EmbedBottomSheet extends BottomSheet {
         if (this.hasDescription) {
             TextView textView = new TextView(context);
             textView.setTextSize(1, 16.0f);
-            textView.setTextColor(Theme.getColor("dialogTextBlack"));
+            textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
             textView.setText(str2);
             textView.setSingleLine(true);
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -559,18 +560,18 @@ public class EmbedBottomSheet extends BottomSheet {
         }
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(Theme.getColor("dialogTextGray"));
+        textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray));
         textView2.setText(str);
         textView2.setSingleLine(true);
         textView2.setEllipsize(TextUtils.TruncateAt.END);
         textView2.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         this.containerLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 83, 0.0f, 0.0f, 0.0f, 57.0f));
         View view2 = new View(context);
-        view2.setBackgroundColor(Theme.getColor("dialogGrayLine"));
+        view2.setBackgroundColor(Theme.getColor(Theme.key_dialogGrayLine));
         this.containerLayout.addView(view2, new FrameLayout.LayoutParams(-1, 1, 83));
         ((FrameLayout.LayoutParams) view2.getLayoutParams()).bottomMargin = AndroidUtilities.dp(48.0f);
         FrameLayout frameLayout3 = new FrameLayout(context);
-        frameLayout3.setBackgroundColor(Theme.getColor("dialogBackground"));
+        frameLayout3.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
         this.containerLayout.addView(frameLayout3, LayoutHelper.createFrame(-1, 48, 83));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
@@ -578,11 +579,13 @@ public class EmbedBottomSheet extends BottomSheet {
         frameLayout3.addView(linearLayout, LayoutHelper.createFrame(-2, -1, 53));
         TextView textView3 = new TextView(context);
         textView3.setTextSize(1, 14.0f);
-        textView3.setTextColor(Theme.getColor("dialogTextBlue4"));
+        int i5 = Theme.key_dialogTextBlue4;
+        textView3.setTextColor(Theme.getColor(i5));
         textView3.setGravity(17);
         textView3.setSingleLine(true);
         textView3.setEllipsize(TextUtils.TruncateAt.END);
-        textView3.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
+        int i6 = Theme.key_dialogButtonSelector;
+        textView3.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i6), 0));
         textView3.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         textView3.setText(LocaleController.getString("Close", R.string.Close).toUpperCase());
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -604,8 +607,8 @@ public class EmbedBottomSheet extends BottomSheet {
         this.pipButton.setContentDescription(LocaleController.getString("AccDescrPipMode", R.string.AccDescrPipMode));
         this.pipButton.setEnabled(false);
         this.pipButton.setAlpha(0.5f);
-        this.pipButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlue4"), PorterDuff.Mode.MULTIPLY));
-        this.pipButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
+        this.pipButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i5), PorterDuff.Mode.MULTIPLY));
+        this.pipButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i6), 0));
         this.imageButtonsContainer.addView(this.pipButton, LayoutHelper.createFrame(48, 48.0f, 51, 0.0f, 0.0f, 4.0f, 0.0f));
         this.pipButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -623,18 +626,18 @@ public class EmbedBottomSheet extends BottomSheet {
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setImageResource(R.drawable.msg_copy);
         imageView2.setContentDescription(LocaleController.getString("CopyLink", R.string.CopyLink));
-        imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlue4"), PorterDuff.Mode.MULTIPLY));
-        imageView2.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
+        imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i5), PorterDuff.Mode.MULTIPLY));
+        imageView2.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i6), 0));
         this.imageButtonsContainer.addView(imageView2, LayoutHelper.createFrame(48, 48, 51));
         imageView2.setOnClickListener(onClickListener);
         TextView textView4 = new TextView(context);
         this.copyTextButton = textView4;
         textView4.setTextSize(1, 14.0f);
-        this.copyTextButton.setTextColor(Theme.getColor("dialogTextBlue4"));
+        this.copyTextButton.setTextColor(Theme.getColor(i5));
         this.copyTextButton.setGravity(17);
         this.copyTextButton.setSingleLine(true);
         this.copyTextButton.setEllipsize(TextUtils.TruncateAt.END);
-        this.copyTextButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
+        this.copyTextButton.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i6), 0));
         this.copyTextButton.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         this.copyTextButton.setText(LocaleController.getString("Copy", R.string.Copy).toUpperCase());
         this.copyTextButton.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -642,11 +645,11 @@ public class EmbedBottomSheet extends BottomSheet {
         this.copyTextButton.setOnClickListener(onClickListener);
         TextView textView5 = new TextView(context);
         textView5.setTextSize(1, 14.0f);
-        textView5.setTextColor(Theme.getColor("dialogTextBlue4"));
+        textView5.setTextColor(Theme.getColor(i5));
         textView5.setGravity(17);
         textView5.setSingleLine(true);
         textView5.setEllipsize(TextUtils.TruncateAt.END);
-        textView5.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("dialogButtonSelector"), 0));
+        textView5.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i6), 0));
         textView5.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         textView5.setText(LocaleController.getString("OpenInBrowser", R.string.OpenInBrowser).toUpperCase());
         textView5.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -699,7 +702,7 @@ public class EmbedBottomSheet extends BottomSheet {
                             try {
                                 Uri parse = Uri.parse(EmbedBottomSheet.this.openUrl);
                                 if (EmbedBottomSheet.this.seekTimeOverride > 0) {
-                                    str5 = "" + EmbedBottomSheet.this.seekTimeOverride;
+                                    str5 = BuildConfig.APP_CENTER_HASH + EmbedBottomSheet.this.seekTimeOverride;
                                 }
                                 if (str5 == null && (str5 = parse.getQueryParameter("t")) == null) {
                                     str5 = parse.getQueryParameter("time_continue");
@@ -745,13 +748,13 @@ public class EmbedBottomSheet extends BottomSheet {
         });
         this.orientationEventListener = new OrientationEventListener(ApplicationLoader.applicationContext) {
             @Override
-            public void onOrientationChanged(int i5) {
+            public void onOrientationChanged(int i7) {
                 if (EmbedBottomSheet.this.orientationEventListener != null && EmbedBottomSheet.this.videoView.getVisibility() == 0 && EmbedBottomSheet.this.parentActivity != null && EmbedBottomSheet.this.videoView.isInFullscreen() && EmbedBottomSheet.this.fullscreenedByButton) {
-                    if (i5 < 240 || i5 > 300) {
-                        if (!EmbedBottomSheet.this.wasInLandscape || i5 <= 0) {
+                    if (i7 < 240 || i7 > 300) {
+                        if (!EmbedBottomSheet.this.wasInLandscape || i7 <= 0) {
                             return;
                         }
-                        if (i5 >= 330 || i5 <= 30) {
+                        if (i7 >= 330 || i7 <= 30) {
                             EmbedBottomSheet.this.parentActivity.setRequestedOrientation(EmbedBottomSheet.this.prevOrientation);
                             EmbedBottomSheet.this.fullscreenedByButton = false;
                             EmbedBottomSheet.this.wasInLandscape = false;

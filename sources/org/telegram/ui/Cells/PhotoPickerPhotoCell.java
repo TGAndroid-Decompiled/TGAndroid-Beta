@@ -18,6 +18,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$PhotoSize;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
@@ -83,7 +84,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
         CheckBox2 checkBox2 = new CheckBox2(context, 24);
         this.checkBox = checkBox2;
         checkBox2.setDrawBackgroundAsArc(11);
-        this.checkBox.setColor("chat_attachCheckBoxBackground", "chat_attachPhotoBackground", "chat_attachCheckBoxCheck");
+        this.checkBox.setColor(Theme.key_chat_attachCheckBoxBackground, Theme.key_chat_attachPhotoBackground, Theme.key_chat_attachCheckBoxCheck);
         addView(this.checkBox, LayoutHelper.createFrame(26, 26.0f, 51, 55.0f, 4.0f, 0.0f, 0.0f));
         this.checkBox.setVisibility(0);
         setFocusable(true);
@@ -109,7 +110,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
     }
 
     public void updateColors() {
-        this.checkBox.setColor("chat_attachCheckBoxBackground", "chat_attachPhotoBackground", "chat_attachCheckBoxCheck");
+        this.checkBox.setColor(Theme.key_chat_attachCheckBoxBackground, Theme.key_chat_attachPhotoBackground, Theme.key_chat_attachCheckBoxCheck);
     }
 
     public void setNum(int i) {
@@ -122,7 +123,7 @@ public class PhotoPickerPhotoCell extends FrameLayout {
         if (str != null) {
             this.imageView.setImage(str, null, drawable);
         } else if (photoEntry.path != null) {
-            this.imageView.setOrientation(photoEntry.orientation, true);
+            this.imageView.setOrientation(photoEntry.orientation, photoEntry.invert, true);
             if (photoEntry.isVideo) {
                 this.videoInfoContainer.setVisibility(0);
                 this.videoTextView.setText(AndroidUtilities.formatShortDuration(photoEntry.duration));

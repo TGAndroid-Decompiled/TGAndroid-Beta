@@ -53,9 +53,9 @@ public class ActionBarMenuSubItem extends FrameLayout {
         this.resourcesProvider = resourcesProvider;
         this.top = z;
         this.bottom = z2;
-        this.textColor = getThemedColor("actionBarDefaultSubmenuItem");
-        this.iconColor = getThemedColor("actionBarDefaultSubmenuItemIcon");
-        this.selectorColor = getThemedColor("dialogButtonSelector");
+        this.textColor = getThemedColor(Theme.key_actionBarDefaultSubmenuItem);
+        this.iconColor = getThemedColor(Theme.key_actionBarDefaultSubmenuItemIcon);
+        this.selectorColor = getThemedColor(Theme.key_dialogButtonSelector);
         updateBackground();
         setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
@@ -76,7 +76,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
             CheckBox2 checkBox2 = new CheckBox2(context, 26, resourcesProvider);
             this.checkView = checkBox2;
             checkBox2.setDrawUnchecked(false);
-            this.checkView.setColor(null, null, "radioBackgroundChecked");
+            this.checkView.setColor(-1, -1, Theme.key_radioBackgroundChecked);
             this.checkView.setDrawBackgroundAsArc(-1);
             if (i == 1) {
                 addView(this.checkView, LayoutHelper.createFrame(26, -1, (LocaleController.isRTL ? 5 : 3) | 16));
@@ -117,8 +117,8 @@ public class ActionBarMenuSubItem extends FrameLayout {
         accessibilityNodeInfo.setClassName("android.widget.CheckBox");
     }
 
-    public void setCheckColor(String str) {
-        this.checkView.setColor(null, null, str);
+    public void setCheckColor(int i) {
+        this.checkView.setColor(-1, -1, i);
     }
 
     public void setRightIcon(int i) {
@@ -208,7 +208,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
             this.subtextView.setSingleLine(true);
             this.subtextView.setGravity(3);
             this.subtextView.setEllipsize(TextUtils.TruncateAt.END);
-            this.subtextView.setTextColor(getThemedColor("groupcreate_sectionText"));
+            this.subtextView.setTextColor(getThemedColor(Theme.key_groupcreate_sectionText));
             this.subtextView.setVisibility(8);
             this.subtextView.setTextSize(1, 13.0f);
             this.subtextView.setPadding(LocaleController.isRTL ? 0 : AndroidUtilities.dp(43.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(43.0f) : 0, 0);
@@ -252,10 +252,8 @@ public class ActionBarMenuSubItem extends FrameLayout {
         setBackground(Theme.createRadSelectorDrawable(this.selectorColor, this.top ? 6 : 0, this.bottom ? 6 : 0));
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     public CheckBox2 getCheckView() {

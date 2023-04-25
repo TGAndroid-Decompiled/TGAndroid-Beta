@@ -21,6 +21,7 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
@@ -357,7 +358,7 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
                     super.draw(canvas);
                     StickerView stickerView = StickerView.this;
                     if (stickerView.update) {
-                        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerView.document, "windowBackgroundGray", 0.5f);
+                        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerView.document, Theme.key_windowBackgroundGray, 0.5f);
                         StickerView stickerView2 = StickerView.this;
                         stickerView2.centerImage.setImage(ImageLocation.getForDocument(stickerView2.document), null, svgThumb, "webp", null, 1);
                         if (MessageObject.isPremiumSticker(StickerView.this.document)) {

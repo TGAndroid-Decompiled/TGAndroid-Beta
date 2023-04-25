@@ -53,7 +53,7 @@ public class NotificationsCheckCell extends FrameLayout {
         }
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
+        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
@@ -78,7 +78,7 @@ public class NotificationsCheckCell extends FrameLayout {
         addView(textView2, LayoutHelper.createFrame(-1, -2.0f, i3, f, f5, f2, 0.0f));
         TextView textView3 = new TextView(context);
         this.valueTextView = textView3;
-        textView3.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2", resourcesProvider));
+        textView3.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.valueTextView.setLines(1);
@@ -101,7 +101,10 @@ public class NotificationsCheckCell extends FrameLayout {
         addView(textView4, LayoutHelper.createFrame(-2, -2.0f, i4, f3, f6, f4, 0.0f));
         Switch r3 = new Switch(context, resourcesProvider);
         this.checkBox = r3;
-        r3.setColors("switchTrack", "switchTrackChecked", "windowBackgroundWhite", "windowBackgroundWhite");
+        int i5 = Theme.key_switchTrack;
+        int i6 = Theme.key_switchTrackChecked;
+        int i7 = Theme.key_windowBackgroundWhite;
+        r3.setColors(i5, i6, i7, i7);
         addView(this.checkBox, LayoutHelper.createFrame(37, 40.0f, (LocaleController.isRTL ? 3 : 5) | 16, 21.0f, 0.0f, 21.0f, 0.0f));
         this.checkBox.setFocusable(false);
     }
@@ -133,7 +136,7 @@ public class NotificationsCheckCell extends FrameLayout {
         ImageView imageView = this.imageView;
         if (imageView != null) {
             imageView.setImageResource(i);
-            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogIcon"), PorterDuff.Mode.MULTIPLY));
+            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogIcon), PorterDuff.Mode.MULTIPLY));
         }
         this.checkBox.setChecked(z, i2, this.animationsEnabled);
         this.valueTextView.setVisibility(0);

@@ -131,7 +131,7 @@ public class PacmanAnimation {
         int dp3 = AndroidUtilities.dp(SharedConfig.useThreeLinesLayout ? 78.0f : 72.0f);
         float measuredWidth = ((this.parentView.getMeasuredWidth() + dp) * this.translationProgress) - ((AndroidUtilities.dp(62.0f) * 3) + dp2);
         int i3 = dp2 / 2;
-        this.paint.setColor(Theme.getColor("windowBackgroundWhite"));
+        this.paint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         int i4 = dp3 / 2;
         float f = measuredWidth + i3;
         canvas.drawRect(0.0f, i - i4, f, i + i4 + 1, this.paint);

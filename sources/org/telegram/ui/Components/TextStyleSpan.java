@@ -58,7 +58,7 @@ public class TextStyleSpan extends MetricAffectingSpan {
                 textPaint.setFlags(textPaint.getFlags() & (-17));
             }
             if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-                textPaint.bgColor = Theme.getColor("chats_archivePullDownBackground");
+                textPaint.bgColor = Theme.getColor(Theme.key_chats_archivePullDownBackground);
             }
         }
 

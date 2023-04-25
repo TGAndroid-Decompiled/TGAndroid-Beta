@@ -352,7 +352,7 @@ public class AvatarsDrawable {
         invalidate();
     }
 
-    public void onDraw(android.graphics.Canvas r33) {
+    public void onDraw(android.graphics.Canvas r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AvatarsDrawable.onDraw(android.graphics.Canvas):void");
     }
 

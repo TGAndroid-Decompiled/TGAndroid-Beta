@@ -40,7 +40,7 @@ public class BetterRatingView extends View {
     protected void onDraw(Canvas canvas) {
         int i = 0;
         while (i < this.numStars) {
-            this.paint.setColor(Theme.getColor(i < this.selectedRating ? "dialogTextBlue" : "dialogTextHint"));
+            this.paint.setColor(Theme.getColor(i < this.selectedRating ? Theme.key_dialogTextBlue : Theme.key_dialogTextHint));
             canvas.drawBitmap(i < this.selectedRating ? this.filledStar : this.hollowStar, AndroidUtilities.dp(48.0f) * i, 0.0f, this.paint);
             i++;
         }

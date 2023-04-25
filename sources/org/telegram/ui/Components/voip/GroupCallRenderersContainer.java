@@ -2,6 +2,7 @@ package org.telegram.ui.Components.voip;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -24,6 +25,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -31,6 +33,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
 import org.telegram.tgnet.TLRPC$User;
@@ -41,6 +44,7 @@ import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AvatarsImageView;
 import org.telegram.ui.Components.CrossOutDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.GroupCallFullscreenAdapter;
 import org.telegram.ui.Components.GroupCallPip;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.TypefaceSpan;
@@ -48,7 +52,6 @@ import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.GroupCallActivity;
 @SuppressLint({"ViewConstructor"})
 public class GroupCallRenderersContainer extends FrameLayout {
-    int animationIndex;
     private LongSparseIntArray attachedPeerIds;
     private final ArrayList<GroupCallMiniTextureView> attachedRenderers;
     private final ImageView backButton;
@@ -75,6 +78,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
     public int listWidth;
     boolean maybeSwipeToBackGesture;
     private boolean notDrawRenderes;
+    AnimationNotificationsLocker notificationsLocker;
     private GroupCallMiniTextureView outFullscreenTextureView;
     private final ImageView pinButton;
     View pinContainer;
@@ -137,6 +141,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
     public GroupCallRenderersContainer(Context context, RecyclerView recyclerView, RecyclerView recyclerView2, ArrayList<GroupCallMiniTextureView> arrayList, ChatObject.Call call, final GroupCallActivity groupCallActivity) {
         super(context);
         this.attachedPeerIds = new LongSparseIntArray();
+        this.notificationsLocker = new AnimationNotificationsLocker();
         this.speakingMembersToastChangeProgress = 1.0f;
         this.uiVisible = true;
         this.hideUiRunnable = new Runnable() {
@@ -242,7 +247,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
         });
         createSimpleSelectorRoundRectDrawable.setCallback(this.pinContainer);
         addView(this.pinContainer);
-        CrossOutDrawable crossOutDrawable = new CrossOutDrawable(context, R.drawable.msg_pin_filled, null);
+        CrossOutDrawable crossOutDrawable = new CrossOutDrawable(context, R.drawable.msg_pin_filled, -1);
         this.pinDrawable = crossOutDrawable;
         crossOutDrawable.setOffsets(-AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(1.0f));
         imageView2.setImageDrawable(this.pinDrawable);
@@ -278,7 +283,7 @@ public class GroupCallRenderersContainer extends FrameLayout {
             }
         });
         addView(this.pipView, LayoutHelper.createFrame(32, 32.0f, 53, 12.0f, 12.0f, 12.0f, 12.0f));
-        final Drawable createRoundRectDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), ColorUtils.setAlphaComponent(Theme.getColor("voipgroup_listViewBackground"), 204));
+        final Drawable createRoundRectDrawable = Theme.createRoundRectDrawable(AndroidUtilities.dp(18.0f), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_voipgroup_listViewBackground), 204));
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             protected void dispatchDraw(Canvas canvas) {
@@ -438,8 +443,389 @@ public class GroupCallRenderersContainer extends FrameLayout {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.GroupCallRenderersContainer.dispatchDraw(android.graphics.Canvas):void");
     }
 
-    public void requestFullscreen(org.telegram.messenger.ChatObject.VideoParticipant r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.voip.GroupCallRenderersContainer.requestFullscreen(org.telegram.messenger.ChatObject$VideoParticipant):void");
+    public void requestFullscreen(ChatObject.VideoParticipant videoParticipant) {
+        final GroupCallMiniTextureView groupCallMiniTextureView;
+        ChatObject.VideoParticipant videoParticipant2;
+        if (videoParticipant == null && this.fullscreenParticipant == null) {
+            return;
+        }
+        if (videoParticipant == null || !videoParticipant.equals(this.fullscreenParticipant)) {
+            long peerId = videoParticipant == null ? 0L : MessageObject.getPeerId(videoParticipant.participant.peer);
+            GroupCallMiniTextureView groupCallMiniTextureView2 = this.fullscreenTextureView;
+            if (groupCallMiniTextureView2 != null) {
+                groupCallMiniTextureView2.runDelayedAnimations();
+            }
+            ValueAnimator valueAnimator = this.replaceFullscreenViewAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            VoIPService sharedInstance = VoIPService.getSharedInstance();
+            if (sharedInstance != null && (videoParticipant2 = this.fullscreenParticipant) != null) {
+                sharedInstance.requestFullScreen(videoParticipant2.participant, false, videoParticipant2.presentation);
+            }
+            this.fullscreenParticipant = videoParticipant;
+            if (sharedInstance != null && videoParticipant != null) {
+                sharedInstance.requestFullScreen(videoParticipant.participant, true, videoParticipant.presentation);
+            }
+            this.fullscreenPeerId = peerId;
+            boolean z = this.inFullscreenMode;
+            this.lastUpdateTime = System.currentTimeMillis();
+            final GroupCallMiniTextureView groupCallMiniTextureView3 = null;
+            if (videoParticipant == null) {
+                if (this.inFullscreenMode) {
+                    ValueAnimator valueAnimator2 = this.fullscreenAnimator;
+                    if (valueAnimator2 != null) {
+                        valueAnimator2.cancel();
+                    }
+                    this.inFullscreenMode = false;
+                    GroupCallMiniTextureView groupCallMiniTextureView4 = this.fullscreenTextureView;
+                    if (groupCallMiniTextureView4.primaryView != null || groupCallMiniTextureView4.secondaryView != null || groupCallMiniTextureView4.tabletGridView != null) {
+                        ChatObject.VideoParticipant videoParticipant3 = groupCallMiniTextureView4.participant;
+                        if (ChatObject.Call.videoIsActive(videoParticipant3.participant, videoParticipant3.presentation, this.call)) {
+                            this.fullscreenTextureView.setShowingInFullscreen(false, true);
+                        }
+                    }
+                    this.fullscreenTextureView.forceDetach(true);
+                    GroupCallGridCell groupCallGridCell = this.fullscreenTextureView.primaryView;
+                    if (groupCallGridCell != null) {
+                        groupCallGridCell.setRenderer(null);
+                    }
+                    GroupCallFullscreenAdapter.GroupCallUserCell groupCallUserCell = this.fullscreenTextureView.secondaryView;
+                    if (groupCallUserCell != null) {
+                        groupCallUserCell.setRenderer(null);
+                    }
+                    GroupCallGridCell groupCallGridCell2 = this.fullscreenTextureView.tabletGridView;
+                    if (groupCallGridCell2 != null) {
+                        groupCallGridCell2.setRenderer(null);
+                    }
+                    final GroupCallMiniTextureView groupCallMiniTextureView5 = this.fullscreenTextureView;
+                    groupCallMiniTextureView5.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            if (groupCallMiniTextureView5.getParent() != null) {
+                                GroupCallRenderersContainer.this.removeView(groupCallMiniTextureView5);
+                                groupCallMiniTextureView5.release();
+                            }
+                        }
+                    }).setDuration(350L).start();
+                }
+                this.backButton.setEnabled(false);
+                this.hasPinnedVideo = false;
+            } else {
+                int i = 0;
+                while (true) {
+                    if (i >= this.attachedRenderers.size()) {
+                        groupCallMiniTextureView = null;
+                        break;
+                    } else if (this.attachedRenderers.get(i).participant.equals(videoParticipant)) {
+                        groupCallMiniTextureView = this.attachedRenderers.get(i);
+                        break;
+                    } else {
+                        i++;
+                    }
+                }
+                if (groupCallMiniTextureView != null) {
+                    ValueAnimator valueAnimator3 = this.fullscreenAnimator;
+                    if (valueAnimator3 != null) {
+                        valueAnimator3.cancel();
+                    }
+                    if (!this.inFullscreenMode) {
+                        this.inFullscreenMode = true;
+                        clearCurrentFullscreenTextureView();
+                        this.fullscreenTextureView = groupCallMiniTextureView;
+                        groupCallMiniTextureView.setShowingInFullscreen(true, true);
+                        invalidate();
+                        this.pinDrawable.setCrossOut(this.hasPinnedVideo, false);
+                    } else {
+                        this.hasPinnedVideo = false;
+                        this.pinDrawable.setCrossOut(false, false);
+                        this.fullscreenTextureView.forceDetach(false);
+                        groupCallMiniTextureView.forceDetach(false);
+                        if (!this.isTablet) {
+                            GroupCallMiniTextureView groupCallMiniTextureView6 = this.fullscreenTextureView;
+                            if (groupCallMiniTextureView6.primaryView != null || groupCallMiniTextureView6.secondaryView != null || groupCallMiniTextureView6.tabletGridView != null) {
+                                groupCallMiniTextureView3 = new GroupCallMiniTextureView(this, this.attachedRenderers, this.call, this.groupCallActivity);
+                                GroupCallMiniTextureView groupCallMiniTextureView7 = this.fullscreenTextureView;
+                                groupCallMiniTextureView3.setViews(groupCallMiniTextureView7.primaryView, groupCallMiniTextureView7.secondaryView, groupCallMiniTextureView7.tabletGridView);
+                                groupCallMiniTextureView3.setFullscreenMode(this.inFullscreenMode, false);
+                                groupCallMiniTextureView3.updateAttachState(false);
+                                GroupCallGridCell groupCallGridCell3 = this.fullscreenTextureView.primaryView;
+                                if (groupCallGridCell3 != null) {
+                                    groupCallGridCell3.setRenderer(groupCallMiniTextureView3);
+                                }
+                                GroupCallFullscreenAdapter.GroupCallUserCell groupCallUserCell2 = this.fullscreenTextureView.secondaryView;
+                                if (groupCallUserCell2 != null) {
+                                    groupCallUserCell2.setRenderer(groupCallMiniTextureView3);
+                                }
+                                GroupCallGridCell groupCallGridCell4 = this.fullscreenTextureView.tabletGridView;
+                                if (groupCallGridCell4 != null) {
+                                    groupCallGridCell4.setRenderer(groupCallMiniTextureView3);
+                                }
+                            }
+                        }
+                        final GroupCallMiniTextureView groupCallMiniTextureView8 = new GroupCallMiniTextureView(this, this.attachedRenderers, this.call, this.groupCallActivity);
+                        groupCallMiniTextureView8.participant = groupCallMiniTextureView.participant;
+                        groupCallMiniTextureView8.setViews(groupCallMiniTextureView.primaryView, groupCallMiniTextureView.secondaryView, groupCallMiniTextureView.tabletGridView);
+                        groupCallMiniTextureView8.setFullscreenMode(this.inFullscreenMode, false);
+                        groupCallMiniTextureView8.updateAttachState(false);
+                        groupCallMiniTextureView8.textureView.renderer.setAlpha(1.0f);
+                        groupCallMiniTextureView8.textureView.blurRenderer.setAlpha(1.0f);
+                        GroupCallGridCell groupCallGridCell5 = groupCallMiniTextureView.primaryView;
+                        if (groupCallGridCell5 != null) {
+                            groupCallGridCell5.setRenderer(groupCallMiniTextureView8);
+                        }
+                        GroupCallFullscreenAdapter.GroupCallUserCell groupCallUserCell3 = groupCallMiniTextureView.secondaryView;
+                        if (groupCallUserCell3 != null) {
+                            groupCallUserCell3.setRenderer(groupCallMiniTextureView8);
+                        }
+                        GroupCallGridCell groupCallGridCell6 = groupCallMiniTextureView.tabletGridView;
+                        if (groupCallGridCell6 != null) {
+                            groupCallGridCell6.setRenderer(groupCallMiniTextureView8);
+                        }
+                        groupCallMiniTextureView8.animateEnter = true;
+                        groupCallMiniTextureView8.setAlpha(0.0f);
+                        this.outFullscreenTextureView = this.fullscreenTextureView;
+                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(groupCallMiniTextureView8, View.ALPHA, 0.0f, 1.0f);
+                        this.replaceFullscreenViewAnimator = ofFloat;
+                        ofFloat.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                GroupCallRenderersContainer groupCallRenderersContainer = GroupCallRenderersContainer.this;
+                                groupCallRenderersContainer.replaceFullscreenViewAnimator = null;
+                                groupCallMiniTextureView8.animateEnter = false;
+                                if (groupCallRenderersContainer.outFullscreenTextureView != null) {
+                                    if (GroupCallRenderersContainer.this.outFullscreenTextureView.getParent() != null) {
+                                        GroupCallRenderersContainer groupCallRenderersContainer2 = GroupCallRenderersContainer.this;
+                                        groupCallRenderersContainer2.removeView(groupCallRenderersContainer2.outFullscreenTextureView);
+                                        groupCallMiniTextureView.release();
+                                    }
+                                    GroupCallRenderersContainer.this.outFullscreenTextureView = null;
+                                }
+                            }
+                        });
+                        if (groupCallMiniTextureView3 != null) {
+                            groupCallMiniTextureView3.setAlpha(0.0f);
+                            groupCallMiniTextureView3.setScaleX(0.5f);
+                            groupCallMiniTextureView3.setScaleY(0.5f);
+                            groupCallMiniTextureView3.animateEnter = true;
+                        }
+                        groupCallMiniTextureView8.runOnFrameRendered(new Runnable() {
+                            @Override
+                            public final void run() {
+                                GroupCallRenderersContainer.this.lambda$requestFullscreen$3(groupCallMiniTextureView, groupCallMiniTextureView3);
+                            }
+                        });
+                        clearCurrentFullscreenTextureView();
+                        this.fullscreenTextureView = groupCallMiniTextureView8;
+                        groupCallMiniTextureView8.setShowingInFullscreen(true, false);
+                        update();
+                    }
+                } else if (this.inFullscreenMode) {
+                    GroupCallMiniTextureView groupCallMiniTextureView9 = this.fullscreenTextureView;
+                    if (groupCallMiniTextureView9.primaryView == null) {
+                        if (!((groupCallMiniTextureView9.secondaryView != null) | (groupCallMiniTextureView9.tabletGridView != null))) {
+                            groupCallMiniTextureView9.forceDetach(true);
+                            final GroupCallMiniTextureView groupCallMiniTextureView10 = new GroupCallMiniTextureView(this, this.attachedRenderers, this.call, this.groupCallActivity);
+                            groupCallMiniTextureView10.participant = videoParticipant;
+                            groupCallMiniTextureView10.setFullscreenMode(this.inFullscreenMode, false);
+                            groupCallMiniTextureView10.setShowingInFullscreen(true, false);
+                            groupCallMiniTextureView10.animateEnter = true;
+                            groupCallMiniTextureView10.setAlpha(0.0f);
+                            this.outFullscreenTextureView = this.fullscreenTextureView;
+                            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                            this.replaceFullscreenViewAnimator = ofFloat2;
+                            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                                @Override
+                                public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
+                                    GroupCallRenderersContainer.this.lambda$requestFullscreen$5(groupCallMiniTextureView10, valueAnimator4);
+                                }
+                            });
+                            this.replaceFullscreenViewAnimator.addListener(new AnimatorListenerAdapter() {
+                                @Override
+                                public void onAnimationEnd(Animator animator) {
+                                    GroupCallRenderersContainer groupCallRenderersContainer = GroupCallRenderersContainer.this;
+                                    groupCallRenderersContainer.replaceFullscreenViewAnimator = null;
+                                    groupCallMiniTextureView10.animateEnter = false;
+                                    if (groupCallRenderersContainer.outFullscreenTextureView != null) {
+                                        if (GroupCallRenderersContainer.this.outFullscreenTextureView.getParent() != null) {
+                                            GroupCallRenderersContainer groupCallRenderersContainer2 = GroupCallRenderersContainer.this;
+                                            groupCallRenderersContainer2.removeView(groupCallRenderersContainer2.outFullscreenTextureView);
+                                            GroupCallRenderersContainer.this.outFullscreenTextureView.release();
+                                        }
+                                        GroupCallRenderersContainer.this.outFullscreenTextureView = null;
+                                    }
+                                }
+                            });
+                            this.replaceFullscreenViewAnimator.start();
+                            clearCurrentFullscreenTextureView();
+                            this.fullscreenTextureView = groupCallMiniTextureView10;
+                            groupCallMiniTextureView10.setShowingInFullscreen(true, false);
+                            this.fullscreenTextureView.updateAttachState(false);
+                            update();
+                        }
+                    }
+                    groupCallMiniTextureView9.forceDetach(false);
+                    final GroupCallMiniTextureView groupCallMiniTextureView11 = new GroupCallMiniTextureView(this, this.attachedRenderers, this.call, this.groupCallActivity);
+                    GroupCallMiniTextureView groupCallMiniTextureView12 = this.fullscreenTextureView;
+                    groupCallMiniTextureView11.setViews(groupCallMiniTextureView12.primaryView, groupCallMiniTextureView12.secondaryView, groupCallMiniTextureView12.tabletGridView);
+                    groupCallMiniTextureView11.setFullscreenMode(this.inFullscreenMode, false);
+                    groupCallMiniTextureView11.updateAttachState(false);
+                    GroupCallGridCell groupCallGridCell7 = this.fullscreenTextureView.primaryView;
+                    if (groupCallGridCell7 != null) {
+                        groupCallGridCell7.setRenderer(groupCallMiniTextureView11);
+                    }
+                    GroupCallFullscreenAdapter.GroupCallUserCell groupCallUserCell4 = this.fullscreenTextureView.secondaryView;
+                    if (groupCallUserCell4 != null) {
+                        groupCallUserCell4.setRenderer(groupCallMiniTextureView11);
+                    }
+                    GroupCallGridCell groupCallGridCell8 = this.fullscreenTextureView.tabletGridView;
+                    if (groupCallGridCell8 != null) {
+                        groupCallGridCell8.setRenderer(groupCallMiniTextureView11);
+                    }
+                    groupCallMiniTextureView11.setAlpha(0.0f);
+                    groupCallMiniTextureView11.setScaleX(0.5f);
+                    groupCallMiniTextureView11.setScaleY(0.5f);
+                    groupCallMiniTextureView11.animateEnter = true;
+                    groupCallMiniTextureView11.runOnFrameRendered(new Runnable() {
+                        @Override
+                        public final void run() {
+                            GroupCallRenderersContainer.this.lambda$requestFullscreen$4(groupCallMiniTextureView11);
+                        }
+                    });
+                    final GroupCallMiniTextureView groupCallMiniTextureView102 = new GroupCallMiniTextureView(this, this.attachedRenderers, this.call, this.groupCallActivity);
+                    groupCallMiniTextureView102.participant = videoParticipant;
+                    groupCallMiniTextureView102.setFullscreenMode(this.inFullscreenMode, false);
+                    groupCallMiniTextureView102.setShowingInFullscreen(true, false);
+                    groupCallMiniTextureView102.animateEnter = true;
+                    groupCallMiniTextureView102.setAlpha(0.0f);
+                    this.outFullscreenTextureView = this.fullscreenTextureView;
+                    ValueAnimator ofFloat22 = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    this.replaceFullscreenViewAnimator = ofFloat22;
+                    ofFloat22.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
+                            GroupCallRenderersContainer.this.lambda$requestFullscreen$5(groupCallMiniTextureView102, valueAnimator4);
+                        }
+                    });
+                    this.replaceFullscreenViewAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            GroupCallRenderersContainer groupCallRenderersContainer = GroupCallRenderersContainer.this;
+                            groupCallRenderersContainer.replaceFullscreenViewAnimator = null;
+                            groupCallMiniTextureView102.animateEnter = false;
+                            if (groupCallRenderersContainer.outFullscreenTextureView != null) {
+                                if (GroupCallRenderersContainer.this.outFullscreenTextureView.getParent() != null) {
+                                    GroupCallRenderersContainer groupCallRenderersContainer2 = GroupCallRenderersContainer.this;
+                                    groupCallRenderersContainer2.removeView(groupCallRenderersContainer2.outFullscreenTextureView);
+                                    GroupCallRenderersContainer.this.outFullscreenTextureView.release();
+                                }
+                                GroupCallRenderersContainer.this.outFullscreenTextureView = null;
+                            }
+                        }
+                    });
+                    this.replaceFullscreenViewAnimator.start();
+                    clearCurrentFullscreenTextureView();
+                    this.fullscreenTextureView = groupCallMiniTextureView102;
+                    groupCallMiniTextureView102.setShowingInFullscreen(true, false);
+                    this.fullscreenTextureView.updateAttachState(false);
+                    update();
+                } else {
+                    this.inFullscreenMode = true;
+                    clearCurrentFullscreenTextureView();
+                    GroupCallMiniTextureView groupCallMiniTextureView13 = new GroupCallMiniTextureView(this, this.attachedRenderers, this.call, this.groupCallActivity);
+                    this.fullscreenTextureView = groupCallMiniTextureView13;
+                    groupCallMiniTextureView13.participant = videoParticipant;
+                    groupCallMiniTextureView13.setFullscreenMode(this.inFullscreenMode, false);
+                    this.fullscreenTextureView.setShowingInFullscreen(true, false);
+                    this.fullscreenTextureView.setShowingInFullscreen(true, false);
+                    ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(this.fullscreenTextureView, View.ALPHA, 0.0f, 1.0f);
+                    this.replaceFullscreenViewAnimator = ofFloat3;
+                    ofFloat3.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            GroupCallRenderersContainer groupCallRenderersContainer = GroupCallRenderersContainer.this;
+                            groupCallRenderersContainer.replaceFullscreenViewAnimator = null;
+                            groupCallRenderersContainer.fullscreenTextureView.animateEnter = false;
+                            if (groupCallRenderersContainer.outFullscreenTextureView != null) {
+                                if (GroupCallRenderersContainer.this.outFullscreenTextureView.getParent() != null) {
+                                    GroupCallRenderersContainer groupCallRenderersContainer2 = GroupCallRenderersContainer.this;
+                                    groupCallRenderersContainer2.removeView(groupCallRenderersContainer2.outFullscreenTextureView);
+                                    GroupCallRenderersContainer.this.outFullscreenTextureView.release();
+                                }
+                                GroupCallRenderersContainer.this.outFullscreenTextureView = null;
+                            }
+                        }
+                    });
+                    this.replaceFullscreenViewAnimator.start();
+                    invalidate();
+                    this.pinDrawable.setCrossOut(this.hasPinnedVideo, false);
+                }
+                this.backButton.setEnabled(true);
+            }
+            boolean z2 = this.inFullscreenMode;
+            if (z != z2) {
+                if (!z2) {
+                    setUiVisible(true);
+                    if (this.hideUiRunnableIsScheduled) {
+                        this.hideUiRunnableIsScheduled = false;
+                        AndroidUtilities.cancelRunOnUIThread(this.hideUiRunnable);
+                    }
+                } else {
+                    this.backButton.setVisibility(0);
+                    this.pinButton.setVisibility(0);
+                    this.unpinTextView.setVisibility(0);
+                    this.pinContainer.setVisibility(0);
+                }
+                onFullScreenModeChanged(true);
+                float[] fArr = new float[2];
+                fArr[0] = this.progressToFullscreenMode;
+                fArr[1] = this.inFullscreenMode ? 1.0f : 0.0f;
+                ValueAnimator ofFloat4 = ValueAnimator.ofFloat(fArr);
+                this.fullscreenAnimator = ofFloat4;
+                ofFloat4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator4) {
+                        GroupCallRenderersContainer.this.lambda$requestFullscreen$6(valueAnimator4);
+                    }
+                });
+                final GroupCallMiniTextureView groupCallMiniTextureView14 = this.fullscreenTextureView;
+                groupCallMiniTextureView14.animateToFullscreen = true;
+                this.groupCallActivity.getCurrentAccount();
+                this.swipedBack = this.swipeToBackGesture;
+                this.notificationsLocker.lock();
+                this.fullscreenAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator) {
+                        GroupCallRenderersContainer.this.notificationsLocker.unlock();
+                        GroupCallRenderersContainer groupCallRenderersContainer = GroupCallRenderersContainer.this;
+                        groupCallRenderersContainer.fullscreenAnimator = null;
+                        groupCallMiniTextureView14.animateToFullscreen = false;
+                        if (!groupCallRenderersContainer.inFullscreenMode) {
+                            groupCallRenderersContainer.clearCurrentFullscreenTextureView();
+                            GroupCallRenderersContainer groupCallRenderersContainer2 = GroupCallRenderersContainer.this;
+                            groupCallRenderersContainer2.fullscreenTextureView = null;
+                            groupCallRenderersContainer2.fullscreenPeerId = 0L;
+                        }
+                        GroupCallRenderersContainer groupCallRenderersContainer3 = GroupCallRenderersContainer.this;
+                        groupCallRenderersContainer3.progressToFullscreenMode = groupCallRenderersContainer3.inFullscreenMode ? 1.0f : 0.0f;
+                        groupCallRenderersContainer3.update();
+                        GroupCallRenderersContainer.this.onFullScreenModeChanged(false);
+                        GroupCallRenderersContainer groupCallRenderersContainer4 = GroupCallRenderersContainer.this;
+                        if (groupCallRenderersContainer4.inFullscreenMode) {
+                            return;
+                        }
+                        groupCallRenderersContainer4.backButton.setVisibility(8);
+                        GroupCallRenderersContainer.this.pinButton.setVisibility(8);
+                        GroupCallRenderersContainer.this.unpinTextView.setVisibility(8);
+                        GroupCallRenderersContainer.this.pinContainer.setVisibility(8);
+                    }
+                });
+                this.fullscreenAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+                this.fullscreenAnimator.setDuration(350L);
+                this.fullscreenTextureView.textureView.synchOrRunAnimation(this.fullscreenAnimator);
+            }
+            animateSwipeToBack(this.fullscreenParticipant == null);
+        }
     }
 
     public void lambda$requestFullscreen$3(final GroupCallMiniTextureView groupCallMiniTextureView, final GroupCallMiniTextureView groupCallMiniTextureView2) {

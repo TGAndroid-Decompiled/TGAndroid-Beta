@@ -43,7 +43,7 @@ public class TermsOfServiceView extends FrameLayout {
 
     public TermsOfServiceView(Context context) {
         super(context);
-        setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+        setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         int i = Build.VERSION.SDK_INT >= 21 ? AndroidUtilities.statusBarHeight : 0;
         if (i > 0) {
             View view = new View(context);
@@ -57,15 +57,16 @@ public class TermsOfServiceView extends FrameLayout {
         linearLayout.addView(imageView, LayoutHelper.createLinear(-2, -2, 3, 0, 28, 0, 0));
         TextView textView = new TextView(context);
         this.titleTextView = textView;
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        int i2 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i2));
         this.titleTextView.setTextSize(1, 17.0f);
         this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.titleTextView.setText(LocaleController.getString("PrivacyPolicyAndTerms", R.string.PrivacyPolicyAndTerms));
         linearLayout.addView(this.titleTextView, LayoutHelper.createLinear(-2, -2, 3, 0, 20, 0, 0));
         TextView textView2 = new TextView(context);
         this.textView = textView2;
-        textView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
-        this.textView.setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText"));
+        textView2.setTextColor(Theme.getColor(i2));
+        this.textView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText));
         this.textView.setTextSize(1, 15.0f);
         this.textView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
         this.textView.setGravity(51);
@@ -82,9 +83,10 @@ public class TermsOfServiceView extends FrameLayout {
         textView3.setText(LocaleController.getString("Decline", R.string.Decline).toUpperCase());
         textView3.setGravity(17);
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView3.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText"));
+        int i3 = Theme.key_windowBackgroundWhiteGrayText;
+        textView3.setTextColor(Theme.getColor(i3));
         textView3.setTextSize(1, 14.0f);
-        textView3.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor("windowBackgroundWhiteGrayText")));
+        textView3.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor(i3)));
         textView3.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(10.0f));
         addView(textView3, LayoutHelper.createFrame(-2, -2.0f, 83, 16.0f, 0.0f, 16.0f, 16.0f));
         textView3.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +111,7 @@ public class TermsOfServiceView extends FrameLayout {
             }
         });
         View view2 = new View(context);
-        view2.setBackgroundColor(Theme.getColor("divider"));
+        view2.setBackgroundColor(Theme.getColor(Theme.key_divider));
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, 1);
         layoutParams.bottomMargin = AndroidUtilities.dp(75.0f);
         layoutParams.gravity = 80;

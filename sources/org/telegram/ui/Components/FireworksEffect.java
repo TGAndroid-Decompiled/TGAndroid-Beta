@@ -45,7 +45,7 @@ public class FireworksEffect {
         Paint paint = new Paint(1);
         this.particlePaint = paint;
         paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
-        this.particlePaint.setColor(Theme.getColor("actionBarDefaultTitle") & (-1644826));
+        this.particlePaint.setColor(Theme.getColor(Theme.key_actionBarDefaultTitle) & (-1644826));
         this.particlePaint.setStrokeCap(Paint.Cap.ROUND);
         this.particlePaint.setStyle(Paint.Style.STROKE);
         for (int i = 0; i < 20; i++) {

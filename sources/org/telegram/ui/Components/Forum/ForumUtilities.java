@@ -15,6 +15,7 @@ import android.text.style.ImageSpan;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
@@ -53,13 +54,13 @@ public class ForumUtilities {
         }
         if (tLRPC$TL_forumTopic.id == 1) {
             backupImageView.setAnimatedEmojiDrawable(null);
-            backupImageView.setImageDrawable(createGeneralTopicDrawable(backupImageView.getContext(), 0.75f, Theme.getColor("actionBarDefaultIcon", resourcesProvider)));
+            backupImageView.setImageDrawable(createGeneralTopicDrawable(backupImageView.getContext(), 0.75f, Theme.getColor(Theme.key_actionBarDefaultIcon, resourcesProvider)));
         } else if (tLRPC$TL_forumTopic.icon_emoji_id != 0) {
             backupImageView.setImageDrawable(null);
             AnimatedEmojiDrawable animatedEmojiDrawable = backupImageView.animatedEmojiDrawable;
             if (animatedEmojiDrawable == null || tLRPC$TL_forumTopic.icon_emoji_id != animatedEmojiDrawable.getDocumentId()) {
                 AnimatedEmojiDrawable animatedEmojiDrawable2 = new AnimatedEmojiDrawable(z2 ? 11 : 10, UserConfig.selectedAccount, tLRPC$TL_forumTopic.icon_emoji_id);
-                animatedEmojiDrawable2.setColorFilter(z ? new PorterDuffColorFilter(Theme.getColor("actionBarDefaultTitle"), PorterDuff.Mode.SRC_IN) : Theme.chat_animatedEmojiTextColorFilter);
+                animatedEmojiDrawable2.setColorFilter(z ? new PorterDuffColorFilter(Theme.getColor(Theme.key_actionBarDefaultTitle), PorterDuff.Mode.SRC_IN) : Theme.chat_animatedEmojiTextColorFilter);
                 backupImageView.setAnimatedEmojiDrawable(animatedEmojiDrawable2);
             }
         } else {
@@ -131,7 +132,7 @@ public class ForumUtilities {
         ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(i);
         LetterDrawable letterDrawable = new LetterDrawable(null, 1);
         String upperCase = str.trim().toUpperCase();
-        letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : "");
+        letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : BuildConfig.APP_CENTER_HASH);
         CombinedDrawable combinedDrawable = new CombinedDrawable(forumBubbleDrawable, letterDrawable, 0, 0);
         combinedDrawable.setFullsize(true);
         return combinedDrawable;
@@ -141,7 +142,7 @@ public class ForumUtilities {
         ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(i);
         LetterDrawable letterDrawable = new LetterDrawable(null, 2);
         String upperCase = str.trim().toUpperCase();
-        letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : "");
+        letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : BuildConfig.APP_CENTER_HASH);
         CombinedDrawable combinedDrawable = new CombinedDrawable(forumBubbleDrawable, letterDrawable, 0, 0);
         combinedDrawable.setFullsize(true);
         return combinedDrawable;
@@ -193,7 +194,7 @@ public class ForumUtilities {
             TLRPC$TL_forumTopic tLRPC$TL_forumTopic = (TLRPC$TL_forumTopic) tLRPC$ForumTopic;
             if (tLRPC$TL_forumTopic.id == 1) {
                 try {
-                    GeneralTopicDrawable createGeneralTopicDrawable = createGeneralTopicDrawable(ApplicationLoader.applicationContext, 1.0f, paint == null ? Theme.getColor("chat_inMenu") : paint.getColor());
+                    GeneralTopicDrawable createGeneralTopicDrawable = createGeneralTopicDrawable(ApplicationLoader.applicationContext, 1.0f, paint == null ? Theme.getColor(Theme.key_chat_inMenu) : paint.getColor());
                     createGeneralTopicDrawable.setBounds(0, 0, paint == null ? AndroidUtilities.dp(14.0f) : (int) paint.getTextSize(), paint == null ? AndroidUtilities.dp(14.0f) : (int) paint.getTextSize());
                     spannableStringBuilder.append((CharSequence) " ");
                     if (drawableArr != null) {
@@ -291,7 +292,7 @@ public class ForumUtilities {
                 if ((i & 2) != 0) {
                     TLRPC$TL_forumTopic tLRPC$TL_forumTopic3 = new TLRPC$TL_forumTopic();
                     tLRPC$TL_forumTopic3.icon_emoji_id = tLRPC$TL_messageActionTopicEdit.icon_emoji_id;
-                    tLRPC$TL_forumTopic3.title = "";
+                    tLRPC$TL_forumTopic3.title = BuildConfig.APP_CENTER_HASH;
                     return AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceCharSequence("%2$s", LocaleController.getString(R.string.TopicWasIconChangedToAction), getTopicSpannedName(tLRPC$TL_forumTopic3, null)), str);
                 }
             }

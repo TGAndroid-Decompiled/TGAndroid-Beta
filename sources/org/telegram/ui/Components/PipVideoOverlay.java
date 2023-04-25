@@ -759,7 +759,7 @@ public class PipVideoOverlay {
             });
             this.contentFrameLayout.setClipToOutline(true);
         }
-        this.contentFrameLayout.setBackgroundColor(Theme.getColor("voipgroup_actionBar"));
+        this.contentFrameLayout.setBackgroundColor(Theme.getColor(Theme.key_voipgroup_actionBar));
         this.innerView = view;
         if (view.getParent() != null) {
             ((ViewGroup) this.innerView.getParent()).removeView(this.innerView);
@@ -793,8 +793,10 @@ public class PipVideoOverlay {
         int dp = AndroidUtilities.dp(8.0f);
         ImageView imageView = new ImageView(context);
         imageView.setImageResource(R.drawable.pip_video_close);
-        imageView.setColorFilter(Theme.getColor("voipgroup_actionBarItems"), PorterDuff.Mode.MULTIPLY);
-        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
+        int i5 = Theme.key_voipgroup_actionBarItems;
+        imageView.setColorFilter(Theme.getColor(i5), PorterDuff.Mode.MULTIPLY);
+        int i6 = Theme.key_listSelector;
+        imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i6)));
         imageView.setPadding(dp, dp, dp, dp);
         imageView.setOnClickListener(PipVideoOverlay$$ExternalSyntheticLambda3.INSTANCE);
         float f = 38;
@@ -802,8 +804,8 @@ public class PipVideoOverlay {
         this.controlsView.addView(imageView, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, f2, 0.0f));
         ImageView imageView2 = new ImageView(context);
         imageView2.setImageResource(R.drawable.pip_video_expand);
-        imageView2.setColorFilter(Theme.getColor("voipgroup_actionBarItems"), PorterDuff.Mode.MULTIPLY);
-        imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
+        imageView2.setColorFilter(Theme.getColor(i5), PorterDuff.Mode.MULTIPLY);
+        imageView2.setBackground(Theme.createSelectorDrawable(Theme.getColor(i6)));
         imageView2.setPadding(dp, dp, dp, dp);
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -814,8 +816,8 @@ public class PipVideoOverlay {
         this.controlsView.addView(imageView2, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, 48, 0.0f));
         ImageView imageView3 = new ImageView(context);
         this.playPauseButton = imageView3;
-        imageView3.setColorFilter(Theme.getColor("voipgroup_actionBarItems"), PorterDuff.Mode.MULTIPLY);
-        this.playPauseButton.setBackground(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
+        imageView3.setColorFilter(Theme.getColor(i5), PorterDuff.Mode.MULTIPLY);
+        this.playPauseButton.setBackground(Theme.createSelectorDrawable(Theme.getColor(i6)));
         this.playPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view3) {
@@ -834,15 +836,15 @@ public class PipVideoOverlay {
         this.windowManager = (WindowManager) (z ? activity : ApplicationLoader.applicationContext).getSystemService("window");
         WindowManager.LayoutParams createWindowLayoutParams = createWindowLayoutParams(z);
         this.windowLayoutParams = createWindowLayoutParams;
-        int i5 = this.pipWidth;
-        createWindowLayoutParams.width = i5;
+        int i7 = this.pipWidth;
+        createWindowLayoutParams.width = i7;
         createWindowLayoutParams.height = this.pipHeight;
         if (pipX != -1.0f) {
-            float dp2 = pipX + (i5 / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (i3 - i5) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
+            float dp2 = pipX + (i7 / 2.0f) >= ((float) AndroidUtilities.displaySize.x) / 2.0f ? (i3 - i7) - AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(16.0f);
             this.pipX = dp2;
             createWindowLayoutParams.x = (int) dp2;
         } else {
-            float dp3 = (AndroidUtilities.displaySize.x - i5) - AndroidUtilities.dp(16.0f);
+            float dp3 = (AndroidUtilities.displaySize.x - i7) - AndroidUtilities.dp(16.0f);
             this.pipX = dp3;
             createWindowLayoutParams.x = (int) dp3;
         }

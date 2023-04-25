@@ -207,8 +207,9 @@ public class PremiumLockIconView extends ImageView {
             fArr[2] = 0.7f;
         }
         int HSVToColor = Color.HSVToColor(fArr);
-        int blendARGB = ColorUtils.blendARGB(HSVToColor, Theme.getColor("windowBackgroundWhite", this.resourcesProvider), 0.5f);
-        int blendARGB2 = ColorUtils.blendARGB(HSVToColor, Theme.getColor("windowBackgroundWhite", this.resourcesProvider), 0.4f);
+        int i = Theme.key_windowBackgroundWhite;
+        int blendARGB = ColorUtils.blendARGB(HSVToColor, Theme.getColor(i, this.resourcesProvider), 0.5f);
+        int blendARGB2 = ColorUtils.blendARGB(HSVToColor, Theme.getColor(i, this.resourcesProvider), 0.4f);
         if (this.shader != null && this.color1 == blendARGB2 && this.color2 == blendARGB) {
             return;
         }

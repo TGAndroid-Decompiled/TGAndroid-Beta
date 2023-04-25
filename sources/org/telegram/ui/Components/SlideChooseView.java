@@ -225,7 +225,7 @@ public class SlideChooseView extends View {
             float f7 = i3;
             float f8 = f7 - f3;
             float max = Math.max(f4, f5 - Math.abs(f8));
-            int blendARGB = ColorUtils.blendARGB(getThemedColor("switchTrack"), getThemedColor("switchTrackChecked"), MathUtils.clamp((f3 - f7) + f5, f4, f5));
+            int blendARGB = ColorUtils.blendARGB(getThemedColor(Theme.key_switchTrack), getThemedColor(Theme.key_switchTrackChecked), MathUtils.clamp((f3 - f7) + f5, f4, f5));
             this.paint.setColor(blendARGB);
             this.linePaint.setColor(blendARGB);
             float f9 = measuredHeight;
@@ -264,7 +264,7 @@ public class SlideChooseView extends View {
             }
             int i12 = this.optionsSizes[i3];
             String str = this.optionsStr[i3];
-            this.textPaint.setColor(ColorUtils.blendARGB(getThemedColor("windowBackgroundWhiteGrayText"), getThemedColor("windowBackgroundWhiteBlueText"), f));
+            this.textPaint.setColor(ColorUtils.blendARGB(getThemedColor(Theme.key_windowBackgroundWhiteGrayText), getThemedColor(Theme.key_windowBackgroundWhiteBlueText), f));
             if (i3 == 0) {
                 canvas.drawText(str, AndroidUtilities.dp(22.0f), AndroidUtilities.dp(28.0f), this.textPaint);
             } else if (i3 == this.optionsStr.length - 1) {
@@ -279,10 +279,12 @@ public class SlideChooseView extends View {
         int i13 = this.lineSize + (this.gapSize * 2);
         int i14 = this.circleSize;
         float f11 = this.sideSide + ((i13 + i14) * f3) + (i14 / 2);
-        this.paint.setColor(ColorUtils.setAlphaComponent(getThemedColor("switchTrackChecked"), 80));
+        Paint paint = this.paint;
+        int i15 = Theme.key_switchTrackChecked;
+        paint.setColor(ColorUtils.setAlphaComponent(getThemedColor(i15), 80));
         float f12 = measuredHeight;
         canvas.drawCircle(f11, f12, AndroidUtilities.dp(f6 * 12.0f), this.paint);
-        this.paint.setColor(getThemedColor("switchTrackChecked"));
+        this.paint.setColor(getThemedColor(i15));
         canvas.drawCircle(f11, f12, AndroidUtilities.dp(6.0f), this.paint);
     }
 
@@ -301,9 +303,7 @@ public class SlideChooseView extends View {
         return this.selectedIndex;
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

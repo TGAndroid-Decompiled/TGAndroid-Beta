@@ -69,7 +69,7 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
         this.gridView.setItemAnimator(null);
         this.gridView.setLayoutAnimation(null);
         this.gridView.setVerticalScrollBarEnabled(false);
-        this.gridView.setGlowColor(getThemedColor("dialogScrollGlow"));
+        this.gridView.setGlowColor(getThemedColor(Theme.key_dialogScrollGlow));
         addView(this.gridView, LayoutHelper.createFrame(-1, -1.0f));
         this.gridView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

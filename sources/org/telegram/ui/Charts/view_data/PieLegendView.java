@@ -38,7 +38,7 @@ public class PieLegendView extends LegendSignatureView {
             return;
         }
         super.recolor();
-        this.signature.setTextColor(Theme.getColor("dialogTextBlack"));
+        this.signature.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
     }
 
     public void setData(String str, int i, int i2) {

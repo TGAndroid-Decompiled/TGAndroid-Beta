@@ -153,7 +153,7 @@ public class PipRoundVideoView implements NotificationCenter.NotificationCenterD
                     drawable.setAlpha((int) (getAlpha() * 255.0f));
                     Theme.chat_roundVideoShadow.setBounds(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(125.0f), AndroidUtilities.dp(125.0f));
                     Theme.chat_roundVideoShadow.draw(canvas);
-                    Theme.chat_docBackPaint.setColor(Theme.getColor("chat_inBubble"));
+                    Theme.chat_docBackPaint.setColor(Theme.getColor(Theme.key_chat_inBubble));
                     Theme.chat_docBackPaint.setAlpha((int) (getAlpha() * 255.0f));
                     canvas.drawCircle(AndroidUtilities.dp(63.0f), AndroidUtilities.dp(63.0f), AndroidUtilities.dp(59.5f), Theme.chat_docBackPaint);
                 }

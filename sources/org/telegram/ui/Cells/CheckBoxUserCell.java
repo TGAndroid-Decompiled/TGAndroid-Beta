@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC$User;
@@ -29,7 +30,7 @@ public class CheckBoxUserCell extends FrameLayout {
         super(context);
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.textView = simpleTextView;
-        simpleTextView.setTextColor(Theme.getColor(z ? "dialogTextBlack" : "windowBackgroundWhiteBlackText"));
+        simpleTextView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText));
         this.textView.setTextSize(16);
         this.textView.setEllipsizeByGradient(true);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
@@ -43,7 +44,10 @@ public class CheckBoxUserCell extends FrameLayout {
         addView(this.imageView, LayoutHelper.createFrame(36, 36.0f, (LocaleController.isRTL ? 5 : 3) | 48, 23.0f, 7.0f, 23.0f, 0.0f));
         Switch r14 = new Switch(context, null);
         this.checkBox = r14;
-        r14.setColors("switchTrack", "switchTrackChecked", "windowBackgroundWhite", "windowBackgroundWhite");
+        int i = Theme.key_switchTrack;
+        int i2 = Theme.key_switchTrackChecked;
+        int i3 = Theme.key_windowBackgroundWhite;
+        r14.setColors(i, i2, i3, i3);
         addView(this.checkBox, LayoutHelper.createFrame(37, 20.0f, (LocaleController.isRTL ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
     }
 
@@ -72,7 +76,7 @@ public class CheckBoxUserCell extends FrameLayout {
         if (tLRPC$User != null) {
             this.textView.setText(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name));
         } else {
-            this.textView.setText("");
+            this.textView.setText(BuildConfig.APP_CENTER_HASH);
         }
         this.textView.setRightDrawable((tLRPC$User == null || !tLRPC$User.verified) ? null : getVerifiedDrawable());
         this.checkBox.setChecked(z, false);

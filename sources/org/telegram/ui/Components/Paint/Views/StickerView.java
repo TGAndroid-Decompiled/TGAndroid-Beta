@@ -24,7 +24,7 @@ import org.telegram.ui.Components.Size;
 public class StickerView extends EntityView {
     private int anchor;
     private Size baseSize;
-    private ImageReceiver centerImage;
+    public final ImageReceiver centerImage;
     private FrameLayoutDrawer containerView;
     private boolean mirrored;
     private Object parentObject;

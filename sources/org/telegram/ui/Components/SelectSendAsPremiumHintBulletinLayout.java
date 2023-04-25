@@ -15,7 +15,7 @@ public class SelectSendAsPremiumHintBulletinLayout extends Bulletin.MultiLineLay
     public SelectSendAsPremiumHintBulletinLayout(Context context, Theme.ResourcesProvider resourcesProvider, Runnable runnable) {
         super(context, resourcesProvider);
         this.imageView.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.msg_premium_prolfilestar));
-        this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("undo_infoColor"), PorterDuff.Mode.SRC_IN));
+        this.imageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_undo_infoColor), PorterDuff.Mode.SRC_IN));
         this.textView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.SelectSendAsPeerPremiumHint)));
         Bulletin.UndoButton undoButton = new Bulletin.UndoButton(context, true, resourcesProvider);
         undoButton.setText(LocaleController.getString(R.string.SelectSendAsPeerPremiumOpen));

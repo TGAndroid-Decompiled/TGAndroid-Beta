@@ -40,6 +40,7 @@ public class DrawerLayoutContainer extends FrameLayout {
     private AnimatorSet currentAnimation;
     private boolean drawCurrentPreviewFragmentAbove;
     private FrameLayout drawerLayout;
+    private View drawerListView;
     private boolean drawerOpened;
     private float drawerPosition;
     private boolean firstLayout;
@@ -157,13 +158,21 @@ public class DrawerLayoutContainer extends FrameLayout {
         marginLayoutParams.bottomMargin = windowInsets.getSystemWindowInsetBottom();
     }
 
-    public void setDrawerLayout(FrameLayout frameLayout) {
+    public void setDrawerLayout(FrameLayout frameLayout, final View view) {
         this.drawerLayout = frameLayout;
+        this.drawerListView = view;
         addView(frameLayout);
         this.drawerLayout.setVisibility(4);
+        view.setVisibility(8);
         if (Build.VERSION.SDK_INT >= 21) {
             this.drawerLayout.setFitsSystemWindows(true);
         }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                view.setVisibility(0);
+            }
+        }, 2500L);
     }
 
     public void moveDrawerByX(float f) {
@@ -172,6 +181,7 @@ public class DrawerLayoutContainer extends FrameLayout {
 
     @Keep
     public void setDrawerPosition(float f) {
+        View view;
         FrameLayout frameLayout = this.drawerLayout;
         if (frameLayout == null) {
             return;
@@ -183,6 +193,9 @@ public class DrawerLayoutContainer extends FrameLayout {
             this.drawerPosition = 0.0f;
         }
         this.drawerLayout.setTranslationX(this.drawerPosition);
+        if (this.drawerPosition > 0.0f && (view = this.drawerListView) != null && view.getVisibility() != 0) {
+            this.drawerListView.setVisibility(0);
+        }
         int i = this.drawerPosition > 0.0f ? 0 : 4;
         if (this.drawerLayout.getVisibility() != i) {
             this.drawerLayout.setVisibility(i);
@@ -662,11 +675,11 @@ public class DrawerLayoutContainer extends FrameLayout {
         public PreviewForegroundDrawable() {
             GradientDrawable gradientDrawable = new GradientDrawable();
             this.topDrawable = gradientDrawable;
-            gradientDrawable.setStroke(AndroidUtilities.dp(1.0f), Theme.getColor("actionBarDefault"));
+            gradientDrawable.setStroke(AndroidUtilities.dp(1.0f), Theme.getColor(Theme.key_actionBarDefault));
             gradientDrawable.setCornerRadius(AndroidUtilities.dp(6.0f));
             GradientDrawable gradientDrawable2 = new GradientDrawable();
             this.bottomDrawable = gradientDrawable2;
-            gradientDrawable2.setStroke(1, Theme.getColor("divider"));
+            gradientDrawable2.setStroke(1, Theme.getColor(Theme.key_divider));
             gradientDrawable2.setCornerRadius(AndroidUtilities.dp(6.0f));
         }
 

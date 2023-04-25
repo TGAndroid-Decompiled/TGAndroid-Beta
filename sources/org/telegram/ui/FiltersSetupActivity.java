@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -88,8 +89,10 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.textView = simpleTextView;
             simpleTextView.setTextSize(16);
             this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
-            this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText2"));
-            this.textView.setTag("windowBackgroundWhiteBlueText2");
+            SimpleTextView simpleTextView2 = this.textView;
+            int i = Theme.key_windowBackgroundWhiteBlueText2;
+            simpleTextView2.setTextColor(Theme.getColor(i));
+            this.textView.setTag(Integer.valueOf(i));
             addView(this.textView);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
@@ -140,7 +143,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             super(context);
             TextView textView = new TextView(context);
             this.textView = textView;
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             this.textView.setTextSize(1, 16.0f);
             this.textView.setLines(1);
             this.textView.setMaxLines(1);
@@ -150,7 +153,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, LocaleController.isRTL ? 5 : 3, 22.0f, 10.0f, 22.0f, 0.0f));
             TextView textView2 = new TextView(context);
             this.valueTextView = textView2;
-            textView2.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
+            textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
             this.valueTextView.setTextSize(1, 13.0f);
             this.valueTextView.setLines(1);
             this.valueTextView.setMaxLines(1);
@@ -161,9 +164,9 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             ProgressButton progressButton = new ProgressButton(context);
             this.addButton = progressButton;
             progressButton.setText(LocaleController.getString("Add", R.string.Add));
-            this.addButton.setTextColor(Theme.getColor("featuredStickers_buttonText"));
-            this.addButton.setProgressColor(Theme.getColor("featuredStickers_buttonProgress"));
-            this.addButton.setBackgroundRoundRect(Theme.getColor("featuredStickers_addButton"), Theme.getColor("featuredStickers_addButtonPressed"));
+            this.addButton.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+            this.addButton.setProgressColor(Theme.getColor(Theme.key_featuredStickers_buttonProgress));
+            this.addButton.setBackgroundRoundRect(Theme.getColor(Theme.key_featuredStickers_addButton), Theme.getColor(Theme.key_featuredStickers_addButtonPressed));
             addView(this.addButton, LayoutHelper.createFrameRelatively(-2.0f, 28.0f, 8388661, 0.0f, 18.0f, 14.0f, 0.0f));
         }
 
@@ -228,7 +231,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             });
             TextView textView = new TextView(context);
             this.messageTextView = textView;
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText4"));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
             this.messageTextView.setTextSize(1, 14.0f);
             this.messageTextView.setGravity(17);
             this.messageTextView.setText(charSequence);
@@ -270,24 +273,25 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             imageView.setFocusable(false);
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             imageView.setImageResource(R.drawable.list_reorder);
-            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
+            int i = Theme.key_stickers_menu;
+            imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
             imageView.setContentDescription(LocaleController.getString("FilterReorder", R.string.FilterReorder));
             imageView.setClickable(true);
             addView(imageView, LayoutHelper.createFrame(48, 48.0f, (LocaleController.isRTL ? 5 : 3) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.textView = simpleTextView;
-            simpleTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             simpleTextView.setTextSize(16);
             simpleTextView.setMaxLines(1);
             simpleTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
             Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.other_lockedfolders2);
-            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
+            drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
             simpleTextView.setRightDrawable(drawable);
             boolean z = LocaleController.isRTL;
             addView(simpleTextView, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 80.0f : 64.0f, 14.0f, z ? 64.0f : 80.0f, 0.0f));
             TextView textView = new TextView(context);
             this.valueTextView = textView;
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
             textView.setTextSize(1, 13.0f);
             textView.setGravity(LocaleController.isRTL ? 5 : 3);
             textView.setLines(1);
@@ -302,7 +306,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.shareLoadingDrawable = loadingDrawable;
             loadingDrawable.setAppearByGradient(true);
             loadingDrawable.setGradientScale(2.0f);
-            int color = Theme.getColor("listSelectorSDK21");
+            int i2 = Theme.key_listSelector;
+            int color = Theme.getColor(i2);
             loadingDrawable.setColors(Theme.multAlpha(color, 0.4f), Theme.multAlpha(color, 1.0f), Theme.multAlpha(color, 0.9f), Theme.multAlpha(color, 1.7f));
             int dp = AndroidUtilities.dp(1.0f);
             loadingDrawable.strokePaint.setStrokeWidth(dp);
@@ -319,8 +324,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                     super.onDraw(canvas);
                     if (FilterCell.this.shareLoading) {
                         LoadingDrawable loadingDrawable2 = FilterCell.this.shareLoadingDrawable;
-                        int i = this.val$stroke;
-                        loadingDrawable2.setBounds(i / 2, i / 2, getWidth() - (this.val$stroke / 2), getHeight() - (this.val$stroke / 2));
+                        int i3 = this.val$stroke;
+                        loadingDrawable2.setBounds(i3 / 2, i3 / 2, getWidth() - (this.val$stroke / 2), getHeight() - (this.val$stroke / 2));
                         FilterCell.this.shareLoadingDrawable.draw(canvas);
                     }
                 }
@@ -335,11 +340,11 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             imageView2.setFocusable(false);
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             imageView2.setBackground(Theme.createSelectorDrawable(color));
-            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
+            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
             imageView2.setContentDescription(LocaleController.getString("FilterShare", R.string.FilterShare));
             imageView2.setVisibility(8);
             imageView2.setImageResource(R.drawable.msg_link_folder);
-            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
+            imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
             boolean z3 = LocaleController.isRTL;
             addView(imageView2, LayoutHelper.createFrame(40, 40.0f, (z3 ? 3 : 5) | 16, z3 ? 52.0f : 6.0f, 0.0f, z3 ? 6.0f : 52.0f, 0.0f));
             imageView2.setOnClickListener(new View.OnClickListener() {
@@ -352,8 +357,8 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             this.optionsImageView = imageView3;
             imageView3.setFocusable(false);
             imageView3.setScaleType(ImageView.ScaleType.CENTER);
-            imageView3.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor("listSelectorSDK21")));
-            imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor("stickers_menu"), PorterDuff.Mode.MULTIPLY));
+            imageView3.setBackgroundDrawable(Theme.createSelectorDrawable(Theme.getColor(i2)));
+            imageView3.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
             imageView3.setImageResource(R.drawable.msg_actions);
             imageView3.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
             addView(imageView3, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 3 : 5) | 16, 6.0f, 0.0f, 6.0f, 0.0f));
@@ -520,7 +525,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         FrameLayout frameLayout2 = frameLayout;
-        frameLayout2.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        frameLayout2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         this.listView = new AnonymousClass2(context);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator();
         defaultItemAnimator.setDurations(350L);
@@ -582,7 +587,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
         @Override
         public void dispatchDraw(Canvas canvas) {
-            drawSectionBackground(canvas, FiltersSetupActivity.this.filtersSectionStart, FiltersSetupActivity.this.filtersSectionEnd, Theme.getColor("windowBackgroundWhite"));
+            drawSectionBackground(canvas, FiltersSetupActivity.this.filtersSectionStart, FiltersSetupActivity.this.filtersSectionEnd, Theme.getColor(Theme.key_windowBackgroundWhite));
             super.dispatchDraw(canvas);
         }
     }
@@ -814,7 +819,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             FiltersSetupActivity.this.showDialog(create);
             TextView textView = (TextView) create.getButton(-1);
             if (textView != null) {
-                textView.setTextColor(Theme.getColor("text_RedBold"));
+                textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
             }
         }
 
@@ -867,15 +872,15 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             SuggestedFilterCell suggestedFilterCell;
             if (i == 0) {
                 View headerCell = new HeaderCell(this.mContext);
-                headerCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                headerCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 suggestedFilterCell = headerCell;
             } else if (i == 1) {
                 View hintInnerCell = new HintInnerCell(this.mContext, R.raw.filters, AndroidUtilities.replaceTags(LocaleController.formatString("CreateNewFilterInfo", R.string.CreateNewFilterInfo, new Object[0])));
-                hintInnerCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_top, "windowBackgroundGrayShadow"));
+                hintInnerCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
                 suggestedFilterCell = hintInnerCell;
             } else if (i == 2) {
                 final FilterCell filterCell = new FilterCell(this.mContext);
-                filterCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                filterCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 filterCell.setOnReorderButtonTouchListener(new View.OnTouchListener() {
                     @Override
                     public final boolean onTouch(View view, MotionEvent motionEvent) {
@@ -895,11 +900,11 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 suggestedFilterCell = new ShadowSectionCell(this.mContext);
             } else if (i == 4) {
                 View textCell = new TextCell(this.mContext);
-                textCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 suggestedFilterCell = textCell;
             } else {
                 final SuggestedFilterCell suggestedFilterCell2 = new SuggestedFilterCell(this.mContext);
-                suggestedFilterCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                suggestedFilterCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 suggestedFilterCell2.setAddOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -992,7 +997,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             } else if (itemViewType == 2) {
                 ((FilterCell) viewHolder.itemView).setFilter(itemInner.filter, z);
             } else if (itemViewType == 3) {
-                viewHolder.itemView.setBackground(Theme.getThemedDrawable(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                viewHolder.itemView.setBackground(Theme.getThemedDrawable(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
             } else if (itemViewType != 4) {
                 if (itemViewType != 5) {
                     return;
@@ -1001,10 +1006,10 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             } else {
                 Drawable drawable = this.mContext.getResources().getDrawable(R.drawable.poll_add_circle);
                 Drawable drawable2 = this.mContext.getResources().getDrawable(R.drawable.poll_add_plus);
-                drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("switchTrackChecked"), PorterDuff.Mode.MULTIPLY));
-                drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("checkboxCheck"), PorterDuff.Mode.MULTIPLY));
+                drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_switchTrackChecked), PorterDuff.Mode.MULTIPLY));
+                drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck), PorterDuff.Mode.MULTIPLY));
                 CombinedDrawable combinedDrawable = new CombinedDrawable(drawable, drawable2);
-                ((TextCell) viewHolder.itemView).setTextAndIcon(((Object) itemInner.text) + "", combinedDrawable, false);
+                ((TextCell) viewHolder.itemView).setTextAndIcon(((Object) itemInner.text) + BuildConfig.APP_CENTER_HASH, combinedDrawable, false);
             }
         }
 
@@ -1154,25 +1159,29 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
     @Override
     public ArrayList<ThemeDescription> getThemeDescriptions() {
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{HeaderCell.class, TextCell.class, FilterCell.class, SuggestedFilterCell.class}, null, null, null, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundGray"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "actionBarDefault"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, "actionBarDefault"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, "actionBarDefaultIcon"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, "actionBarDefaultTitle"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "actionBarDefaultSelector"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, "listSelectorSDK21"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, "divider"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueHeader"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{FilterCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlackText"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{FilterCell.class}, new String[]{"valueTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteGrayText2"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{FilterCell.class}, new String[]{"moveImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "stickers_menu"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{FilterCell.class}, new String[]{"optionsImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "stickers_menu"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, new Class[]{FilterCell.class}, new String[]{"optionsImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "stickers_menuSelector"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "windowBackgroundWhiteBlueText2"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "switchTrackChecked"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, "checkboxCheck"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, "windowBackgroundGrayShadow"));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{HeaderCell.class, TextCell.class, FilterCell.class, SuggestedFilterCell.class}, null, null, null, Theme.key_windowBackgroundWhite));
+        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundGray));
+        ActionBar actionBar = this.actionBar;
+        int i = ThemeDescription.FLAG_BACKGROUND;
+        int i2 = Theme.key_actionBarDefault;
+        arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, Theme.key_listSelector));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{HeaderCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueHeader));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{FilterCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlackText));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{FilterCell.class}, new String[]{"valueTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText2));
+        int i3 = Theme.key_stickers_menu;
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{FilterCell.class}, new String[]{"moveImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{FilterCell.class}, new String[]{"optionsImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, i3));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, new Class[]{FilterCell.class}, new String[]{"optionsImageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_stickers_menuSelector));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"textView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteBlueText2));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{TextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_switchTrackChecked));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{TextCell.class}, new String[]{"imageView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_checkboxCheck));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_BACKGROUNDFILTER, new Class[]{ShadowSectionCell.class}, null, null, null, Theme.key_windowBackgroundGrayShadow));
         return arrayList;
     }
 }

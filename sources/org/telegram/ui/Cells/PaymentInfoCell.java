@@ -31,7 +31,8 @@ public class PaymentInfoCell extends FrameLayout {
         addView(this.imageView, LayoutHelper.createFrame(100, 100.0f, LocaleController.isRTL ? 5 : 3, 10.0f, 10.0f, 10.0f, 0.0f));
         TextView textView = new TextView(context);
         this.nameTextView = textView;
-        textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        int i = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i));
         this.nameTextView.setTextSize(1, 16.0f);
         this.nameTextView.setLines(1);
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -44,7 +45,7 @@ public class PaymentInfoCell extends FrameLayout {
         addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 10.0f : 123.0f, 9.0f, z ? 123.0f : 10.0f, 0.0f));
         TextView textView3 = new TextView(context);
         this.detailTextView = textView3;
-        textView3.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        textView3.setTextColor(Theme.getColor(i));
         this.detailTextView.setTextSize(1, 14.0f);
         this.detailTextView.setMaxLines(3);
         this.detailTextView.setEllipsize(TextUtils.TruncateAt.END);
@@ -54,7 +55,7 @@ public class PaymentInfoCell extends FrameLayout {
         addView(textView4, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 10.0f : 123.0f, 33.0f, z2 ? 123.0f : 10.0f, 0.0f));
         TextView textView5 = new TextView(context);
         this.detailExTextView = textView5;
-        textView5.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2"));
+        textView5.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
         this.detailExTextView.setTextSize(1, 14.0f);
         this.detailExTextView.setLines(1);
         this.detailExTextView.setMaxLines(1);

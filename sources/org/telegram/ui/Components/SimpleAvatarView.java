@@ -49,7 +49,7 @@ public class SimpleAvatarView extends View {
         canvas.save();
         float f = (this.selectProgress * 0.1f) + 0.9f;
         canvas.scale(f, f);
-        this.selectPaint.setColor(Theme.getColor("dialogTextBlue"));
+        this.selectPaint.setColor(Theme.getColor(Theme.key_dialogTextBlue));
         Paint paint = this.selectPaint;
         paint.setAlpha((int) (Color.alpha(paint.getColor()) * this.selectProgress));
         float strokeWidth = this.selectPaint.getStrokeWidth();

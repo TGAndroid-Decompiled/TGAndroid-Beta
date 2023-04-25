@@ -67,7 +67,7 @@ public class ChartHeaderView extends FrameLayout {
         this.back.setCompoundDrawablesWithIntrinsicBounds(drawable, (Drawable) null, (Drawable) null, (Drawable) null);
         this.back.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
         this.back.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(4.0f));
-        this.back.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor("featuredStickers_removeButtonText")));
+        this.back.setBackground(Theme.getRoundRectSelectorDrawable(Theme.getColor(Theme.key_featuredStickers_removeButtonText)));
         this.datesTmp.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public final void onLayoutChange(View view, int i, int i2, int i3, int i4, int i5, int i6, int i7, int i8) {
@@ -85,11 +85,15 @@ public class ChartHeaderView extends FrameLayout {
     }
 
     public void recolor() {
-        this.title.setTextColor(Theme.getColor("dialogTextBlack"));
-        this.dates.setTextColor(Theme.getColor("dialogTextBlack"));
-        this.datesTmp.setTextColor(Theme.getColor("dialogTextBlack"));
-        this.back.setTextColor(Theme.getColor("statisticChartBackZoomColor"));
-        this.zoomIcon.setColorFilter(Theme.getColor("statisticChartBackZoomColor"), PorterDuff.Mode.SRC_IN);
+        TextView textView = this.title;
+        int i = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.getColor(i));
+        this.dates.setTextColor(Theme.getColor(i));
+        this.datesTmp.setTextColor(Theme.getColor(i));
+        TextView textView2 = this.back;
+        int i2 = Theme.key_statisticChartBackZoomColor;
+        textView2.setTextColor(Theme.getColor(i2));
+        this.zoomIcon.setColorFilter(Theme.getColor(i2), PorterDuff.Mode.SRC_IN);
     }
 
     public void setDates(long j, long j2) {

@@ -124,11 +124,11 @@ public class AboutLinkCell extends FrameLayout {
         this.container = frameLayout;
         frameLayout.setImportantForAccessibility(2);
         this.links = new LinkSpanDrawable.LinkCollector(this.container);
-        this.rippleBackground = Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21", resourcesProvider), 0, 0);
+        this.rippleBackground = Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 0, 0);
         TextView textView = new TextView(context);
         this.valueTextView = textView;
         textView.setVisibility(8);
-        this.valueTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2", resourcesProvider));
+        this.valueTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setLines(1);
         this.valueTextView.setMaxLines(1);
@@ -139,7 +139,8 @@ public class AboutLinkCell extends FrameLayout {
         this.container.addView(this.valueTextView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 80, 23.0f, 0.0f, 23.0f, 10.0f));
         this.bottomShadow = new FrameLayout(context);
         Drawable mutate = context.getResources().getDrawable(R.drawable.gradient_bottom).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite", resourcesProvider), PorterDuff.Mode.SRC_ATOP));
+        int i = Theme.key_windowBackgroundWhite;
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.SRC_ATOP));
         this.bottomShadow.setBackground(mutate);
         addView(this.bottomShadow, LayoutHelper.createFrame(-1, 12.0f, 87, 0.0f, 0.0f, 0.0f, 0.0f));
         addView(this.container, LayoutHelper.createFrame(-1, -1, 55));
@@ -171,7 +172,7 @@ public class AboutLinkCell extends FrameLayout {
             }
         };
         this.showMoreTextView = textView2;
-        textView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlueText", resourcesProvider));
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, resourcesProvider));
         this.showMoreTextView.setTextSize(1, 16.0f);
         this.showMoreTextView.setLines(1);
         this.showMoreTextView.setMaxLines(1);
@@ -187,14 +188,14 @@ public class AboutLinkCell extends FrameLayout {
         this.showMoreTextBackgroundView = new FrameLayout(context);
         Drawable mutate2 = context.getResources().getDrawable(R.drawable.gradient_left).mutate();
         this.showMoreBackgroundDrawable = mutate2;
-        mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("windowBackgroundWhite", resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, resourcesProvider), PorterDuff.Mode.MULTIPLY));
         this.showMoreTextBackgroundView.setBackground(this.showMoreBackgroundDrawable);
         FrameLayout frameLayout2 = this.showMoreTextBackgroundView;
         frameLayout2.setPadding(frameLayout2.getPaddingLeft() + AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.0f), 0, AndroidUtilities.dp(3.0f));
         this.showMoreTextBackgroundView.addView(this.showMoreTextView, LayoutHelper.createFrame(-2, -2.0f));
         FrameLayout frameLayout3 = this.showMoreTextBackgroundView;
         addView(frameLayout3, LayoutHelper.createFrame(-2, -2.0f, 85, 22.0f - (frameLayout3.getPaddingLeft() / AndroidUtilities.density), 0.0f, 22.0f - (this.showMoreTextBackgroundView.getPaddingRight() / AndroidUtilities.density), 6.0f));
-        this.backgroundPaint.setColor(Theme.getColor("windowBackgroundWhite", resourcesProvider));
+        this.backgroundPaint.setColor(Theme.getColor(i, resourcesProvider));
         setWillNotDraw(false);
     }
 
@@ -298,7 +299,7 @@ public class AboutLinkCell extends FrameLayout {
         this.textY = dp2;
         canvas.translate(0.0f, dp2);
         try {
-            Theme.profile_aboutTextPaint.linkColor = Theme.getColor("chat_messageLinkIn", this.resourcesProvider);
+            Theme.profile_aboutTextPaint.linkColor = Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider);
             staticLayout = this.firstThreeLinesLayout;
         } catch (Exception e) {
             FileLog.e(e);
@@ -574,7 +575,9 @@ public class AboutLinkCell extends FrameLayout {
             LoadingDrawable makeLoading = LinkSpanDrawable.LinkCollector.makeLoading(this.val$layout, this.val$pressedLink, this.val$yOffset);
             this.thisLoading = makeLoading;
             aboutLinkCell.currentLoading = makeLoading;
-            this.thisLoading.setColors(Theme.multAlpha(Theme.getColor("chat_linkSelectBackground", AboutLinkCell.this.resourcesProvider), 0.8f), Theme.multAlpha(Theme.getColor("chat_linkSelectBackground", AboutLinkCell.this.resourcesProvider), 1.3f), Theme.multAlpha(Theme.getColor("chat_linkSelectBackground", AboutLinkCell.this.resourcesProvider), 1.0f), Theme.multAlpha(Theme.getColor("chat_linkSelectBackground", AboutLinkCell.this.resourcesProvider), 4.0f));
+            LoadingDrawable loadingDrawable = this.thisLoading;
+            int i = Theme.key_chat_linkSelectBackground;
+            loadingDrawable.setColors(Theme.multAlpha(Theme.getColor(i, AboutLinkCell.this.resourcesProvider), 0.8f), Theme.multAlpha(Theme.getColor(i, AboutLinkCell.this.resourcesProvider), 1.3f), Theme.multAlpha(Theme.getColor(i, AboutLinkCell.this.resourcesProvider), 1.0f), Theme.multAlpha(Theme.getColor(i, AboutLinkCell.this.resourcesProvider), 4.0f));
             this.thisLoading.strokePaint.setStrokeWidth(AndroidUtilities.dpf2(1.25f));
             AboutLinkCell.this.links.addLoading(this.thisLoading);
         }

@@ -31,6 +31,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.util.Pair;
+import android.util.SparseIntArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -48,10 +49,10 @@ import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.zxing.qrcode.QRCodeWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
@@ -311,7 +312,7 @@ public class QrActivity extends BaseFragment {
 
     @Override
     public int getNavigationBarColor() {
-        return getThemedColor("windowBackgroundGray");
+        return getThemedColor(Theme.key_windowBackgroundGray);
     }
 
     @Override
@@ -661,8 +662,8 @@ public class QrActivity extends BaseFragment {
             public void onAnimationProgress(float f) {
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
-        }, "featuredStickers_addButton"));
-        themeDescriptions.add(new ThemeDescription(this.themesViewController.shareButton, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, "featuredStickers_addButtonPressed"));
+        }, Theme.key_featuredStickers_addButton));
+        themeDescriptions.add(new ThemeDescription(this.themesViewController.shareButton, ThemeDescription.FLAG_BACKGROUNDFILTER | ThemeDescription.FLAG_DRAWABLESELECTEDSTATE, null, null, null, null, Theme.key_featuredStickers_addButtonPressed));
         Iterator<ThemeDescription> it = themeDescriptions.iterator();
         while (it.hasNext()) {
             it.next().resourcesProvider = getResourceProvider();
@@ -671,11 +672,11 @@ public class QrActivity extends BaseFragment {
     }
 
     public void lambda$getThemeDescriptions$15() {
-        setNavigationBarColor(getThemedColor("windowBackgroundGray"));
+        setNavigationBarColor(getThemedColor(Theme.key_windowBackgroundGray));
     }
 
     public class ThemeResourcesProvider implements Theme.ResourcesProvider {
-        private HashMap<String, Integer> colors;
+        private SparseIntArray colors;
 
         @Override
         public void applyServiceShaderMatrix(int i, int i2, float f, float f2) {
@@ -683,14 +684,19 @@ public class QrActivity extends BaseFragment {
         }
 
         @Override
-        public int getColorOrDefault(String str) {
-            return getColor(str);
+        public boolean contains(int i) {
+            return false;
         }
 
         @Override
-        public Integer getCurrentColor(String str) {
-            Integer color;
-            color = getColor(str);
+        public int getColorOrDefault(int i) {
+            return Theme.ResourcesProvider.CC.$default$getColorOrDefault(this, i);
+        }
+
+        @Override
+        public int getCurrentColor(int i) {
+            int color;
+            color = getColor(i);
             return color;
         }
 
@@ -710,8 +716,8 @@ public class QrActivity extends BaseFragment {
         }
 
         @Override
-        public void setAnimatedColor(String str, int i) {
-            Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, str, i);
+        public void setAnimatedColor(int i, int i2) {
+            Theme.ResourcesProvider.CC.$default$setAnimatedColor(this, i, i2);
         }
 
         private ThemeResourcesProvider() {
@@ -722,12 +728,9 @@ public class QrActivity extends BaseFragment {
         }
 
         @Override
-        public Integer getColor(String str) {
-            HashMap<String, Integer> hashMap = this.colors;
-            if (hashMap != null) {
-                return hashMap.get(str);
-            }
-            return null;
+        public int getColor(int i) {
+            SparseIntArray sparseIntArray = this.colors;
+            return sparseIntArray != null ? sparseIntArray.get(i) : Theme.getColor(i);
         }
     }
 
@@ -810,7 +813,7 @@ public class QrActivity extends BaseFragment {
             this.timerTextDrawable.getPaint().setShader(bitmapShader2);
             this.timerTextDrawable.setGravity(17);
             this.timerTextDrawable.setTextSize(AndroidUtilities.dp(35.0f));
-            this.timerTextDrawable.setText("");
+            this.timerTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
             this.crossfadeFromPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(120.0f), new int[]{-1, 0}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
             this.crossfadeFromPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             this.crossfadeToPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(120.0f), new int[]{0, -1}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
@@ -828,7 +831,7 @@ public class QrActivity extends BaseFragment {
                     this.shareUsernameLayoutPaint.setTextSize(AndroidUtilities.dp(25.0f));
                     String str = this.username;
                     if (str == null) {
-                        str = "";
+                        str = BuildConfig.APP_CENTER_HASH;
                     }
                     this.shareUsernameLayout = StaticLayoutEx.createStaticLayout(Emoji.replaceEmoji(str, this.shareUsernameLayoutPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false), this.shareUsernameLayoutPaint, getWidth(), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, getWidth() - AndroidUtilities.dp(60.0f), 1);
                     return;
@@ -964,7 +967,9 @@ public class QrActivity extends BaseFragment {
                     this.loadingMatrix.setAutoRepeat(1);
                     this.loadingMatrix.start();
                 }
-                if (this.linkExpires == 0 || System.currentTimeMillis() / 1000 >= this.linkExpires) {
+                int i = this.linkExpires;
+                String str = BuildConfig.APP_CENTER_HASH;
+                if (i == 0 || System.currentTimeMillis() / 1000 >= this.linkExpires) {
                     if (this.linkExpires != 0) {
                         this.link = null;
                         final int width = getWidth();
@@ -975,7 +980,7 @@ public class QrActivity extends BaseFragment {
                                 QrActivity.QrView.this.lambda$new$2(width, height);
                             }
                         });
-                        this.timerTextDrawable.setText("");
+                        this.timerTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
                     }
                     MessagesController.getInstance(UserConfig.selectedAccount).requestContactToken(this.linkExpires == 0 ? 750L : 1750L, new Utilities.Callback() {
                         @Override
@@ -984,18 +989,21 @@ public class QrActivity extends BaseFragment {
                         }
                     });
                 }
-                int i = this.linkExpires;
-                if (i > 0 && this.link != null) {
-                    long max = Math.max(0L, (i - (System.currentTimeMillis() / 1000)) - 1);
-                    int i2 = (int) (max % 60);
+                int i2 = this.linkExpires;
+                if (i2 > 0 && this.link != null) {
+                    long max = Math.max(0L, (i2 - (System.currentTimeMillis() / 1000)) - 1);
+                    int i3 = (int) (max % 60);
                     int min = Math.min(99, (int) (max / 60));
                     AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.timerTextDrawable;
                     StringBuilder sb = new StringBuilder();
-                    sb.append(min < 10 ? "0" : "");
+                    sb.append(min < 10 ? "0" : BuildConfig.APP_CENTER_HASH);
                     sb.append(min);
                     sb.append(":");
-                    sb.append(i2 < 10 ? "0" : "");
-                    sb.append(i2);
+                    if (i3 < 10) {
+                        str = "0";
+                    }
+                    sb.append(str);
+                    sb.append(i3);
                     animatedTextDrawable.setText(sb.toString(), true, false);
                 }
                 if (isAttachedToWindow()) {
@@ -1144,7 +1152,7 @@ public class QrActivity extends BaseFragment {
             };
             Drawable mutate = parentActivity.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
             this.backgroundDrawable = mutate;
-            mutate.setColorFilter(new PorterDuffColorFilter(baseFragment.getThemedColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
+            mutate.setColorFilter(new PorterDuffColorFilter(baseFragment.getThemedColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
             FrameLayout frameLayout = new FrameLayout(parentActivity, QrActivity.this, baseFragment) {
                 private final Rect backgroundPadding;
                 final BaseFragment val$fragment;
@@ -1153,7 +1161,7 @@ public class QrActivity extends BaseFragment {
                     this.val$fragment = baseFragment;
                     Rect rect = new Rect();
                     this.backgroundPadding = rect;
-                    ThemeListViewController.this.backgroundPaint.setColor(baseFragment.getThemedColor("windowBackgroundWhite"));
+                    ThemeListViewController.this.backgroundPaint.setColor(baseFragment.getThemedColor(Theme.key_windowBackgroundWhite));
                     ThemeListViewController.this.backgroundDrawable.setCallback(this);
                     ThemeListViewController.this.backgroundDrawable.getPadding(rect);
                     setPadding(0, rect.top + AndroidUtilities.dp(8.0f), 0, rect.bottom);
@@ -1221,15 +1229,16 @@ public class QrActivity extends BaseFragment {
             textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
             textView.setLines(1);
             textView.setSingleLine(true);
-            textView.setTextColor(baseFragment.getThemedColor("dialogTextBlack"));
+            textView.setTextColor(baseFragment.getThemedColor(Theme.key_dialogTextBlack));
             textView.setTextSize(1, 20.0f);
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
             frameLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 8388659, 0.0f, 0.0f, 62.0f, 0.0f));
-            int themedColor = baseFragment.getThemedColor("featuredStickers_addButton");
+            int i = Theme.key_featuredStickers_addButton;
+            int themedColor = baseFragment.getThemedColor(i);
             int dp = AndroidUtilities.dp(28.0f);
-            int i = R.raw.sun_outline;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, dp, dp, false, null);
+            int i2 = R.raw.sun_outline;
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, dp, dp, false, null);
             this.darkThemeDrawable = rLottieDrawable;
             this.forceDark = Theme.getActiveTheme().isDark() ^ true;
             setForceDark(Theme.getActiveTheme().isDark(), false);
@@ -1278,17 +1287,17 @@ public class QrActivity extends BaseFragment {
             recyclerListView.setLayoutManager(layoutManager);
             recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                 @Override
-                public final void onItemClick(View view, int i2) {
-                    QrActivity.ThemeListViewController.this.onItemClicked(view, i2);
+                public final void onItemClick(View view, int i3) {
+                    QrActivity.ThemeListViewController.this.onItemClicked(view, i3);
                 }
             });
             recyclerListView.setOnScrollListener(new RecyclerView.OnScrollListener(QrActivity.this) {
                 private int yScroll = 0;
 
                 @Override
-                public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
-                    super.onScrolled(recyclerView, i2, i3);
-                    this.yScroll += i3;
+                public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+                    super.onScrolled(recyclerView, i3, i4);
+                    this.yScroll += i4;
                     ThemeListViewController.this.topShadow.setAlpha((this.yScroll * 1.0f) / AndroidUtilities.dp(6.0f));
                 }
             });
@@ -1296,23 +1305,23 @@ public class QrActivity extends BaseFragment {
             View view = new View(parentActivity);
             this.topShadow = view;
             view.setAlpha(0.0f);
-            int i2 = R.drawable.shadowdown;
-            view.setBackground(ContextCompat.getDrawable(parentActivity, i2));
+            int i3 = R.drawable.shadowdown;
+            view.setBackground(ContextCompat.getDrawable(parentActivity, i3));
             view.setRotation(180.0f);
             frameLayout.addView(view);
             View view2 = new View(parentActivity);
             this.bottomShadow = view2;
-            view2.setBackground(ContextCompat.getDrawable(parentActivity, i2));
+            view2.setBackground(ContextCompat.getDrawable(parentActivity, i3));
             frameLayout.addView(view2);
             TextView textView2 = new TextView(parentActivity);
             this.shareButton = textView2;
-            textView2.setBackground(Theme.AdaptiveRipple.filledRect(baseFragment.getThemedColor("featuredStickers_addButton"), 6.0f));
+            textView2.setBackground(Theme.AdaptiveRipple.filledRect(baseFragment.getThemedColor(i), 6.0f));
             textView2.setEllipsize(TextUtils.TruncateAt.END);
             textView2.setGravity(17);
             textView2.setLines(1);
             textView2.setSingleLine(true);
             textView2.setText(LocaleController.getString("ShareQrCode", R.string.ShareQrCode));
-            textView2.setTextColor(baseFragment.getThemedColor("featuredStickers_buttonText"));
+            textView2.setTextColor(baseFragment.getThemedColor(Theme.key_featuredStickers_buttonText));
             textView2.setTextSize(1, 15.0f);
             textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             frameLayout.addView(textView2);
@@ -1582,7 +1591,7 @@ public class QrActivity extends BaseFragment {
                         ThemeListViewController.this.onAnimationStart();
                         this.isAnimationStarted = true;
                     }
-                    ThemeListViewController.this.darkThemeDrawable.setColorFilter(new PorterDuffColorFilter(ThemeListViewController.this.fragment.getThemedColor("featuredStickers_addButton"), PorterDuff.Mode.MULTIPLY));
+                    ThemeListViewController.this.darkThemeDrawable.setColorFilter(new PorterDuffColorFilter(ThemeListViewController.this.fragment.getThemedColor(Theme.key_featuredStickers_addButton), PorterDuff.Mode.MULTIPLY));
                     ThemeListViewController themeListViewController = ThemeListViewController.this;
                     if (themeListViewController.isLightDarkChangeAnimation) {
                         themeListViewController.setItemsAnimationProgress(f);
@@ -1596,10 +1605,13 @@ public class QrActivity extends BaseFragment {
                 }
             };
             ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-            arrayList.add(new ThemeDescription(null, ThemeDescription.FLAG_BACKGROUND, null, this.backgroundPaint, null, null, "dialogBackground"));
-            arrayList.add(new ThemeDescription(null, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, new Drawable[]{this.backgroundDrawable}, themeDescriptionDelegate, "dialogBackground"));
-            arrayList.add(new ThemeDescription(this.titleView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "dialogTextBlack"));
-            arrayList.add(new ThemeDescription(this.recyclerView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{ThemeSmallPreviewView.class}, null, null, null, "dialogBackgroundGray"));
+            int i = ThemeDescription.FLAG_BACKGROUND;
+            Paint paint = this.backgroundPaint;
+            int i2 = Theme.key_dialogBackground;
+            arrayList.add(new ThemeDescription(null, i, null, paint, null, null, i2));
+            arrayList.add(new ThemeDescription(null, ThemeDescription.FLAG_BACKGROUNDFILTER, null, null, new Drawable[]{this.backgroundDrawable}, themeDescriptionDelegate, i2));
+            arrayList.add(new ThemeDescription(this.titleView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_dialogTextBlack));
+            arrayList.add(new ThemeDescription(this.recyclerView, ThemeDescription.FLAG_CELLBACKGROUNDCOLOR, new Class[]{ThemeSmallPreviewView.class}, null, null, null, Theme.key_dialogBackgroundGray));
             Iterator<ThemeDescription> it = arrayList.iterator();
             while (it.hasNext()) {
                 it.next().resourcesProvider = this.fragment.getResourceProvider();

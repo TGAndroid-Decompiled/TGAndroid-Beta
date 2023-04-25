@@ -188,6 +188,18 @@ public final class BulletinFactory {
     public Bulletin createSimpleBulletin(int i, CharSequence charSequence, int i2) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         lottieLayout.setAnimation(i, 36, 36, new String[0]);
+        if (charSequence != null) {
+            String charSequence2 = charSequence.toString();
+            SpannableStringBuilder spannableStringBuilder = charSequence instanceof SpannableStringBuilder ? (SpannableStringBuilder) charSequence : new SpannableStringBuilder(charSequence);
+            int i3 = 0;
+            for (int indexOf = charSequence2.indexOf(10); indexOf >= 0 && indexOf < charSequence.length(); indexOf = charSequence2.indexOf(10, indexOf + 1)) {
+                if (i3 >= i2) {
+                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) " ");
+                }
+                i3++;
+            }
+            charSequence = spannableStringBuilder;
+        }
         lottieLayout.textView.setText(charSequence);
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setMaxLines(i2);
@@ -397,7 +409,7 @@ public final class BulletinFactory {
     public Bulletin createEmojiBulletin(TLRPC$Document tLRPC$Document, CharSequence charSequence, CharSequence charSequence2, Runnable runnable) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
-            lottieLayout.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("undo_infoColor"), PorterDuff.Mode.SRC_IN));
+            lottieLayout.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_undo_infoColor), PorterDuff.Mode.SRC_IN));
         }
         lottieLayout.setAnimation(tLRPC$Document, 36, 36, new String[0]);
         if (lottieLayout.imageView.getImageReceiver() != null) {
@@ -414,7 +426,7 @@ public final class BulletinFactory {
     public Bulletin createEmojiLoadingBulletin(TLRPC$Document tLRPC$Document, CharSequence charSequence, CharSequence charSequence2, Runnable runnable) {
         Bulletin.LoadingLottieLayout loadingLottieLayout = new Bulletin.LoadingLottieLayout(getContext(), this.resourcesProvider);
         if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
-            loadingLottieLayout.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("undo_infoColor"), PorterDuff.Mode.SRC_IN));
+            loadingLottieLayout.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_undo_infoColor), PorterDuff.Mode.SRC_IN));
         }
         loadingLottieLayout.setAnimation(tLRPC$Document, 36, 36, new String[0]);
         loadingLottieLayout.textView.setTextSize(1, 14.0f);
@@ -447,7 +459,8 @@ public final class BulletinFactory {
             if (indexOf >= 0) {
                 loadingSpan = new LoadingSpan(null, AndroidUtilities.dp(100.0f));
                 spannableStringBuilder.setSpan(loadingSpan, indexOf, indexOf + 11, 33);
-                loadingSpan.setColors(ColorUtils.setAlphaComponent(Theme.getColor("undo_infoColor", this.resourcesProvider), 32), ColorUtils.setAlphaComponent(Theme.getColor("undo_infoColor", this.resourcesProvider), 72));
+                int i = Theme.key_undo_infoColor;
+                loadingSpan.setColors(ColorUtils.setAlphaComponent(Theme.getColor(i, this.resourcesProvider), 32), ColorUtils.setAlphaComponent(Theme.getColor(i, this.resourcesProvider), 72));
             } else {
                 loadingSpan = null;
             }

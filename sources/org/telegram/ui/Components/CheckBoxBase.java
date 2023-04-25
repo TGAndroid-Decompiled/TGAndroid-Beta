@@ -12,18 +12,24 @@ import android.text.TextPaint;
 import android.view.View;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.ActionBar.Theme;
 public class CheckBoxBase {
     private static Paint eraser;
     private static Paint forbidPaint;
     private static Paint paint;
+    public long animationDuration;
     private boolean attachedToWindow;
+    private int background2ColorKey;
+    private int backgroundColorKey;
     private Paint backgroundPaint;
     private int backgroundType;
     private ObjectAnimator checkAnimator;
     private Paint checkPaint;
     private String checkedText;
+    private GenericProvider<Void, Paint> circlePaintProvider;
+    private boolean drawUnchecked;
     private boolean forbidden;
     private boolean isChecked;
     private Theme.MessageDrawable messageDrawable;
@@ -40,12 +46,7 @@ public class CheckBoxBase {
     private Path path = new Path();
     private boolean enabled = true;
     private float backgroundAlpha = 1.0f;
-    private String checkColorKey = "checkboxCheck";
-    private String backgroundColorKey = "chat_serviceBackground";
-    private String background2ColorKey = "chat_serviceBackground";
-    private boolean drawUnchecked = true;
-    private GenericProvider<Void, Paint> circlePaintProvider = CheckBoxBase$$ExternalSyntheticLambda0.INSTANCE;
-    public long animationDuration = 200;
+    private int checkColorKey = Theme.key_checkboxCheck;
 
     public interface ProgressDelegate {
         void setProgress(float f);
@@ -57,6 +58,12 @@ public class CheckBoxBase {
     }
 
     public CheckBoxBase(View view, int i, Theme.ResourcesProvider resourcesProvider) {
+        int i2 = Theme.key_chat_serviceBackground;
+        this.backgroundColorKey = i2;
+        this.background2ColorKey = i2;
+        this.drawUnchecked = true;
+        this.circlePaintProvider = CheckBoxBase$$ExternalSyntheticLambda0.INSTANCE;
+        this.animationDuration = 200L;
         this.resourcesProvider = resourcesProvider;
         this.parentView = view;
         this.size = i;
@@ -194,10 +201,10 @@ public class CheckBoxBase {
         this.checkAnimator.start();
     }
 
-    public void setColor(String str, String str2, String str3) {
-        this.backgroundColorKey = str;
-        this.background2ColorKey = str2;
-        this.checkColorKey = str3;
+    public void setColor(int i, int i2, int i3) {
+        this.backgroundColorKey = i;
+        this.background2ColorKey = i2;
+        this.checkColorKey = i3;
         invalidate();
     }
 
@@ -215,7 +222,7 @@ public class CheckBoxBase {
 
     public void setNum(int i) {
         if (i >= 0) {
-            this.checkedText = "" + (i + 1);
+            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
         } else if (this.checkAnimator == null) {
             this.checkedText = null;
         }
@@ -228,7 +235,7 @@ public class CheckBoxBase {
 
     public void setChecked(int i, boolean z, boolean z2) {
         if (i >= 0) {
-            this.checkedText = "" + (i + 1);
+            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
             invalidate();
         }
         if (z == this.isChecked) {
@@ -251,9 +258,7 @@ public class CheckBoxBase {
         this.circlePaintProvider = genericProvider;
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

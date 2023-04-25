@@ -110,7 +110,7 @@ public class SharedPhotoVideoCell2 extends View {
         if (i == 1) {
             CheckBoxBase checkBoxBase = new CheckBoxBase(this, 21, null);
             this.checkBoxBase = checkBoxBase;
-            checkBoxBase.setColor(null, "sharedMedia_photoPlaceholder", "checkboxCheck");
+            checkBoxBase.setColor(-1, Theme.key_sharedMedia_photoPlaceholder, Theme.key_checkboxCheck);
             this.checkBoxBase.setDrawUnchecked(true);
             this.checkBoxBase.setBackgroundType(0);
             this.checkBoxBase.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
@@ -284,7 +284,7 @@ public class SharedPhotoVideoCell2 extends View {
         if (this.checkBoxBase == null) {
             CheckBoxBase checkBoxBase2 = new CheckBoxBase(this, 21, null);
             this.checkBoxBase = checkBoxBase2;
-            checkBoxBase2.setColor(null, "sharedMedia_photoPlaceholder", "checkboxCheck");
+            checkBoxBase2.setColor(-1, Theme.key_sharedMedia_photoPlaceholder, Theme.key_checkboxCheck);
             this.checkBoxBase.setDrawUnchecked(false);
             this.checkBoxBase.setBackgroundType(1);
             this.checkBoxBase.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
@@ -352,7 +352,7 @@ public class SharedPhotoVideoCell2 extends View {
             Drawable drawable = ContextCompat.getDrawable(context, R.drawable.play_mini_video);
             this.playDrawable = drawable;
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), this.playDrawable.getIntrinsicHeight());
-            this.backgroundPaint.setColor(Theme.getColor("sharedMedia_photoPlaceholder", resourcesProvider));
+            this.backgroundPaint.setColor(Theme.getColor(Theme.key_sharedMedia_photoPlaceholder, resourcesProvider));
         }
 
         public String getFilterString(int i) {

@@ -16,6 +16,7 @@ import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -31,6 +32,7 @@ import org.telegram.ui.Components.MotionBackgroundDrawable;
 public class ChatBackgroundDrawable extends Drawable {
     int alpha = 255;
     boolean attached;
+    private boolean colorFilterSetted;
     float dimAmount;
     ImageReceiver imageReceiver;
     boolean isPattern;
@@ -94,9 +96,8 @@ public class ChatBackgroundDrawable extends Drawable {
         this.themeIsDark = z;
         if (z && ((tLRPC$WallPaper.document != null || tLRPC$WallPaper.uploadingImage != null) && !z3 && (tLRPC$WallPaperSettings2 = tLRPC$WallPaper.settings) != null)) {
             this.dimAmount = tLRPC$WallPaperSettings2.intensity / 100.0f;
-            this.imageReceiver.setColorFilter(new PorterDuffColorFilter(ColorUtils.setAlphaComponent(-16777216, (int) (this.dimAmount * 255.0f)), PorterDuff.Mode.DARKEN));
         }
-        if ((this.isPattern || tLRPC$WallPaper.document == null) && (tLRPC$WallPaperSettings = tLRPC$WallPaper.settings) != null && tLRPC$WallPaperSettings.second_background_color != 0 && tLRPC$WallPaperSettings.third_background_color != 0) {
+        if ((z3 || tLRPC$WallPaper.document == null) && (tLRPC$WallPaperSettings = tLRPC$WallPaper.settings) != null && tLRPC$WallPaperSettings.second_background_color != 0 && tLRPC$WallPaperSettings.third_background_color != 0) {
             MotionBackgroundDrawable motionBackgroundDrawable = new MotionBackgroundDrawable();
             this.motionBackgroundDrawable = motionBackgroundDrawable;
             TLRPC$WallPaperSettings tLRPC$WallPaperSettings3 = tLRPC$WallPaper.settings;
@@ -123,10 +124,7 @@ public class ChatBackgroundDrawable extends Drawable {
         } else {
             str = ((int) (min / AndroidUtilities.density)) + "_" + ((int) (max / AndroidUtilities.density)) + "_wallpaper";
         }
-        if (tLRPC$WallPaper.pattern) {
-            str = (str + tLRPC$WallPaper.id) + hash(tLRPC$WallPaper.settings);
-        }
-        String str2 = str;
+        String str2 = (str + tLRPC$WallPaper.id) + hash(tLRPC$WallPaper.settings);
         Drawable createThumb = createThumb(tLRPC$WallPaper);
         String str3 = tLRPC$WallPaper.uploadingImage;
         if (str3 != null) {
@@ -203,9 +201,22 @@ public class ChatBackgroundDrawable extends Drawable {
             this.motionBackgroundDrawable.draw(canvas);
             return;
         }
+        boolean z = false;
+        if (!this.imageReceiver.hasImageLoaded() || this.imageReceiver.getCurrentAlpha() != 1.0f) {
+            z = true;
+        } else if (!this.colorFilterSetted) {
+            this.colorFilterSetted = true;
+            this.imageReceiver.setColorFilter(new PorterDuffColorFilter(ColorUtils.setAlphaComponent(-16777216, (int) (this.dimAmount * 255.0f)), PorterDuff.Mode.DARKEN));
+        }
         this.imageReceiver.setImageCoords(getBounds());
         this.imageReceiver.setAlpha(this.alpha / 255.0f);
         this.imageReceiver.draw(canvas);
+        if (z) {
+            float f = this.dimAmount;
+            if (f != 0.0f) {
+                canvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (f * 255.0f)));
+            }
+        }
     }
 
     @Override
@@ -246,6 +257,6 @@ public class ChatBackgroundDrawable extends Drawable {
     }
 
     public static String hash(TLRPC$WallPaperSettings tLRPC$WallPaperSettings) {
-        return tLRPC$WallPaperSettings == null ? "" : String.valueOf(Objects.hash(Boolean.valueOf(tLRPC$WallPaperSettings.blur), Boolean.valueOf(tLRPC$WallPaperSettings.motion), Integer.valueOf(tLRPC$WallPaperSettings.intensity), Integer.valueOf(tLRPC$WallPaperSettings.background_color), Integer.valueOf(tLRPC$WallPaperSettings.second_background_color), Integer.valueOf(tLRPC$WallPaperSettings.third_background_color), Integer.valueOf(tLRPC$WallPaperSettings.fourth_background_color)));
+        return tLRPC$WallPaperSettings == null ? BuildConfig.APP_CENTER_HASH : String.valueOf(Objects.hash(Boolean.valueOf(tLRPC$WallPaperSettings.blur), Boolean.valueOf(tLRPC$WallPaperSettings.motion), Integer.valueOf(tLRPC$WallPaperSettings.intensity), Integer.valueOf(tLRPC$WallPaperSettings.background_color), Integer.valueOf(tLRPC$WallPaperSettings.second_background_color), Integer.valueOf(tLRPC$WallPaperSettings.third_background_color), Integer.valueOf(tLRPC$WallPaperSettings.fourth_background_color)));
     }
 }

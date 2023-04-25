@@ -50,7 +50,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
         this.currentAccount = i;
         setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
         setFocusable(false);
-        setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+        setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         setItemAnimator(null);
         setLayoutAnimation(null);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 0, false);
@@ -67,7 +67,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
                 IconHolderView iconHolderView = (IconHolderView) viewHolder.itemView;
                 LauncherIconController.LauncherIcon launcherIcon = (LauncherIconController.LauncherIcon) AppIconsSelectorCell.this.availableIcons.get(i2);
                 iconHolderView.bind(launcherIcon);
-                iconHolderView.iconView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(18.0f), 0, Theme.getColor("listSelectorSDK21"), -16777216));
+                iconHolderView.iconView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(18.0f), 0, Theme.getColor(Theme.key_listSelector), -16777216));
                 iconHolderView.iconView.setForeground(launcherIcon.foreground);
             }
 
@@ -210,7 +210,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
             this.titleView = textView;
             textView.setSingleLine();
             this.titleView.setTextSize(1, 13.0f);
-            this.titleView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             addView(this.titleView, LayoutHelper.createLinear(-2, -2, 1, 0, 4, 0, 0));
             this.outlinePaint.setStyle(Paint.Style.STROKE);
             this.outlinePaint.setStrokeWidth(Math.max(2, AndroidUtilities.dp(0.5f)));
@@ -229,8 +229,11 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
 
         private void setProgress(float f) {
             this.progress = f;
-            this.titleView.setTextColor(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteBlackText"), Theme.getColor("windowBackgroundWhiteValueText"), f));
-            this.outlinePaint.setColor(ColorUtils.blendARGB(ColorUtils.setAlphaComponent(Theme.getColor("switchTrack"), 63), Theme.getColor("windowBackgroundWhiteValueText"), f));
+            TextView textView = this.titleView;
+            int color = Theme.getColor(Theme.key_windowBackgroundWhiteBlackText);
+            int i = Theme.key_windowBackgroundWhiteValueText;
+            textView.setTextColor(ColorUtils.blendARGB(color, Theme.getColor(i), f));
+            this.outlinePaint.setColor(ColorUtils.blendARGB(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_switchTrack), 63), Theme.getColor(i), f));
             this.outlinePaint.setStrokeWidth(Math.max(2, AndroidUtilities.dp(AndroidUtilities.lerp(0.5f, 2.0f, f))));
             invalidate();
         }

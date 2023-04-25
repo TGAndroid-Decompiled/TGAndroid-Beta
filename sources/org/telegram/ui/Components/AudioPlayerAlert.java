@@ -373,14 +373,14 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 ((BottomSheet) AudioPlayerAlert.this).shadowDrawable.setBounds(0, i, getMeasuredWidth(), measuredHeight);
                 ((BottomSheet) AudioPlayerAlert.this).shadowDrawable.draw(canvas);
                 if (f != 1.0f) {
-                    Theme.dialogs_onlineCirclePaint.setColor(AudioPlayerAlert.this.getThemedColor("dialogBackground"));
+                    Theme.dialogs_onlineCirclePaint.setColor(AudioPlayerAlert.this.getThemedColor(Theme.key_dialogBackground));
                     this.rect.set(((BottomSheet) AudioPlayerAlert.this).backgroundPaddingLeft, ((BottomSheet) AudioPlayerAlert.this).backgroundPaddingTop + i, getMeasuredWidth() - ((BottomSheet) AudioPlayerAlert.this).backgroundPaddingLeft, ((BottomSheet) AudioPlayerAlert.this).backgroundPaddingTop + i + AndroidUtilities.dp(24.0f));
                     canvas.drawRoundRect(this.rect, AndroidUtilities.dp(12.0f) * f, AndroidUtilities.dp(12.0f) * f, Theme.dialogs_onlineCirclePaint);
                 }
                 if (f != 0.0f) {
                     int dp4 = AndroidUtilities.dp(36.0f);
                     this.rect.set((getMeasuredWidth() - dp4) / 2, dp2, (getMeasuredWidth() + dp4) / 2, dp2 + AndroidUtilities.dp(4.0f));
-                    int themedColor = AudioPlayerAlert.this.getThemedColor("key_sheet_scrollUp");
+                    int themedColor = AudioPlayerAlert.this.getThemedColor(Theme.key_sheet_scrollUp);
                     int alpha = Color.alpha(themedColor);
                     Theme.dialogs_onlineCirclePaint.setColor(themedColor);
                     Theme.dialogs_onlineCirclePaint.setAlpha((int) (alpha * 1.0f * f));
@@ -443,13 +443,15 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
         };
         this.actionBar = actionBar;
-        actionBar.setBackgroundColor(getThemedColor("dialogBackground"));
+        actionBar.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setItemsColor(getThemedColor("player_actionBarTitle"), false);
-        this.actionBar.setItemsBackgroundColor(getThemedColor("player_actionBarSelector"), false);
-        this.actionBar.setTitleColor(getThemedColor("player_actionBarTitle"));
+        ActionBar actionBar2 = this.actionBar;
+        int i2 = Theme.key_player_actionBarTitle;
+        actionBar2.setItemsColor(getThemedColor(i2), false);
+        this.actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_player_actionBarSelector), false);
+        this.actionBar.setTitleColor(getThemedColor(i2));
         this.actionBar.setTitle(LocaleController.getString("AttachMusic", R.string.AttachMusic));
-        this.actionBar.setSubtitleColor(getThemedColor("player_actionBarSubtitle"));
+        this.actionBar.setSubtitleColor(getThemedColor(Theme.key_player_actionBarSubtitle));
         this.actionBar.setOccupyStatusBar(true);
         this.actionBar.setAlpha(0.0f);
         if (playingMessageObject != null && !MediaController.getInstance().currentPlaylistIsGlobalSearch()) {
@@ -504,18 +506,19 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
         });
         this.searchItem = actionBarMenuItemSearchListener;
-        int i2 = R.string.Search;
-        actionBarMenuItemSearchListener.setContentDescription(LocaleController.getString("Search", i2));
+        int i3 = R.string.Search;
+        actionBarMenuItemSearchListener.setContentDescription(LocaleController.getString("Search", i3));
         EditTextBoldCursor searchField = this.searchItem.getSearchField();
-        searchField.setHint(LocaleController.getString("Search", i2));
-        searchField.setTextColor(getThemedColor("player_actionBarTitle"));
-        searchField.setHintTextColor(getThemedColor("player_time"));
-        searchField.setCursorColor(getThemedColor("player_actionBarTitle"));
+        searchField.setHint(LocaleController.getString("Search", i3));
+        searchField.setTextColor(getThemedColor(i2));
+        int i4 = Theme.key_player_time;
+        searchField.setHintTextColor(getThemedColor(i4));
+        searchField.setCursorColor(getThemedColor(i2));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i3) {
-                if (i3 != -1) {
-                    AudioPlayerAlert.this.onSubItemClick(i3);
+            public void onItemClick(int i5) {
+                if (i5 != -1) {
+                    AudioPlayerAlert.this.onSubItemClick(i5);
                 } else {
                     AudioPlayerAlert.this.dismiss();
                 }
@@ -527,11 +530,11 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.actionBarShadow.setBackgroundResource(R.drawable.header_shadow);
         View view2 = new View(context);
         this.playerShadow = view2;
-        view2.setBackgroundColor(getThemedColor("dialogShadowLine"));
+        view2.setBackgroundColor(getThemedColor(Theme.key_dialogShadowLine));
         this.playerLayout = new FrameLayout(context) {
             @Override
-            protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
-                super.onLayout(z, i3, i4, i5, i6);
+            protected void onLayout(boolean z, int i5, int i6, int i7, int i8) {
+                super.onLayout(z, i5, i6, i7, i8);
                 if (AudioPlayerAlert.this.playbackSpeedButton == null || AudioPlayerAlert.this.durationTextView == null) {
                     return;
                 }
@@ -569,7 +572,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             @Override
             protected TextView createTextView() {
                 TextView textView = new TextView(context);
-                textView.setTextColor(AudioPlayerAlert.this.getThemedColor("player_actionBarTitle"));
+                textView.setTextColor(AudioPlayerAlert.this.getThemedColor(Theme.key_player_actionBarTitle));
                 textView.setTextSize(1, 17.0f);
                 textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 textView.setEllipsize(TextUtils.TruncateAt.END);
@@ -632,24 +635,24 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         LineProgressView lineProgressView = new LineProgressView(context);
         this.progressView = lineProgressView;
         lineProgressView.setVisibility(4);
-        this.progressView.setBackgroundColor(getThemedColor("player_progressBackground"));
-        this.progressView.setProgressColor(getThemedColor("player_progress"));
+        this.progressView.setBackgroundColor(getThemedColor(Theme.key_player_progressBackground));
+        this.progressView.setProgressColor(getThemedColor(Theme.key_player_progress));
         this.playerLayout.addView(this.progressView, LayoutHelper.createFrame(-1, 2.0f, 51, 21.0f, 90.0f, 21.0f, 0.0f));
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.timeTextView = simpleTextView;
         simpleTextView.setTextSize(12);
         this.timeTextView.setText("0:00");
-        this.timeTextView.setTextColor(getThemedColor("player_time"));
+        this.timeTextView.setTextColor(getThemedColor(i4));
         this.timeTextView.setImportantForAccessibility(2);
         this.playerLayout.addView(this.timeTextView, LayoutHelper.createFrame(100, -2.0f, 51, 20.0f, 98.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.durationTextView = textView;
         textView.setTextSize(1, 12.0f);
-        this.durationTextView.setTextColor(getThemedColor("player_time"));
+        this.durationTextView.setTextColor(getThemedColor(i4));
         this.durationTextView.setGravity(17);
         this.durationTextView.setImportantForAccessibility(2);
         this.playerLayout.addView(this.durationTextView, LayoutHelper.createFrame(-2, -2.0f, 53, 0.0f, 96.0f, 20.0f, 0.0f));
-        ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, null, 0, getThemedColor("player_time"), false, resourcesProvider);
+        ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, null, 0, getThemedColor(i4), false, resourcesProvider);
         this.playbackSpeedButton = actionBarMenuItem;
         actionBarMenuItem.setLongClickEnabled(false);
         this.playbackSpeedButton.setShowSubmenuByMove(false);
@@ -657,8 +660,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.playbackSpeedButton.setContentDescription(LocaleController.getString("AccDescrPlayerSpeed", R.string.AccDescrPlayerSpeed));
         this.playbackSpeedButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
             @Override
-            public final void onItemClick(int i3) {
-                AudioPlayerAlert.this.lambda$new$1(i3);
+            public final void onItemClick(int i5) {
+                AudioPlayerAlert.this.lambda$new$1(i5);
             }
         });
         ActionBarMenuItem actionBarMenuItem2 = this.playbackSpeedButton;
@@ -706,12 +709,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         updatePlaybackButton(false);
         FrameLayout frameLayout2 = new FrameLayout(context) {
             @Override
-            protected void onLayout(boolean z, int i3, int i4, int i5, int i6) {
-                int dp = ((i5 - i3) - AndroidUtilities.dp(248.0f)) / 4;
-                for (int i7 = 0; i7 < 5; i7++) {
-                    int dp2 = AndroidUtilities.dp((i7 * 48) + 4) + (dp * i7);
+            protected void onLayout(boolean z, int i5, int i6, int i7, int i8) {
+                int dp = ((i7 - i5) - AndroidUtilities.dp(248.0f)) / 4;
+                for (int i9 = 0; i9 < 5; i9++) {
+                    int dp2 = AndroidUtilities.dp((i9 * 48) + 4) + (dp * i9);
                     int dp3 = AndroidUtilities.dp(9.0f);
-                    AudioPlayerAlert.this.buttons[i7].layout(dp2, dp3, AudioPlayerAlert.this.buttons[i7].getMeasuredWidth() + dp2, AudioPlayerAlert.this.buttons[i7].getMeasuredHeight() + dp3);
+                    AudioPlayerAlert.this.buttons[i9].layout(dp2, dp3, AudioPlayerAlert.this.buttons[i9].getMeasuredWidth() + dp2, AudioPlayerAlert.this.buttons[i9].getMeasuredHeight() + dp3);
                 }
             }
         };
@@ -723,9 +726,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         actionBarMenuItem3.setLongClickEnabled(false);
         this.repeatButton.setShowSubmenuByMove(false);
         this.repeatButton.setAdditionalYOffset(-AndroidUtilities.dp(166.0f));
-        int i3 = Build.VERSION.SDK_INT;
-        if (i3 >= 21) {
-            this.repeatButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor("listSelectorSDK21"), 1, AndroidUtilities.dp(18.0f)));
+        int i5 = Build.VERSION.SDK_INT;
+        if (i5 >= 21) {
+            this.repeatButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 1, AndroidUtilities.dp(18.0f)));
         }
         frameLayout2.addView(this.repeatButton, LayoutHelper.createFrame(48, 48, 51));
         this.repeatButton.setOnClickListener(new View.OnClickListener() {
@@ -741,11 +744,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.repeatButton.setShowedFromBottom(true);
         this.repeatButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
             @Override
-            public final void onItemClick(int i4) {
-                AudioPlayerAlert.this.lambda$new$6(i4);
+            public final void onItemClick(int i6) {
+                AudioPlayerAlert.this.lambda$new$6(i6);
             }
         });
-        int themedColor = getThemedColor("player_button");
+        int i6 = Theme.key_player_button;
+        int themedColor = getThemedColor(i6);
         float scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         View[] viewArr2 = this.buttons;
         AnonymousClass13 anonymousClass13 = new AnonymousClass13(context, scaledTouchSlop);
@@ -753,13 +757,13 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         viewArr2[1] = anonymousClass13;
         anonymousClass13.setScaleType(ImageView.ScaleType.CENTER);
         RLottieImageView rLottieImageView = this.prevButton;
-        int i4 = R.raw.player_prev;
-        rLottieImageView.setAnimation(i4, 20, 20);
+        int i7 = R.raw.player_prev;
+        rLottieImageView.setAnimation(i7, 20, 20);
         this.prevButton.setLayerColor("Triangle 3.**", themedColor);
         this.prevButton.setLayerColor("Triangle 4.**", themedColor);
         this.prevButton.setLayerColor("Rectangle 4.**", themedColor);
-        if (i3 >= 21) {
-            this.prevButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor("listSelectorSDK21"), 1, AndroidUtilities.dp(22.0f)));
+        if (i5 >= 21) {
+            this.prevButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 1, AndroidUtilities.dp(22.0f)));
         }
         frameLayout2.addView(this.prevButton, LayoutHelper.createFrame(48, 48, 51));
         this.prevButton.setContentDescription(LocaleController.getString("AccDescrPrevious", R.string.AccDescrPrevious));
@@ -773,9 +777,9 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.playPauseDrawable = playPauseDrawable;
         imageView2.setImageDrawable(playPauseDrawable);
         this.playPauseDrawable.setPause(!MediaController.getInstance().isMessagePaused(), false);
-        this.playButton.setColorFilter(new PorterDuffColorFilter(getThemedColor("player_button"), PorterDuff.Mode.MULTIPLY));
-        if (i3 >= 21) {
-            this.playButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor("listSelectorSDK21"), 1, AndroidUtilities.dp(24.0f)));
+        this.playButton.setColorFilter(new PorterDuffColorFilter(getThemedColor(i6), PorterDuff.Mode.MULTIPLY));
+        if (i5 >= 21) {
+            this.playButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 1, AndroidUtilities.dp(24.0f)));
         }
         frameLayout2.addView(this.playButton, LayoutHelper.createFrame(48, 48, 51));
         this.playButton.setOnClickListener(AudioPlayerAlert$$ExternalSyntheticLambda3.INSTANCE);
@@ -784,13 +788,13 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.nextButton = anonymousClass14;
         viewArr4[3] = anonymousClass14;
         anonymousClass14.setScaleType(ImageView.ScaleType.CENTER);
-        this.nextButton.setAnimation(i4, 20, 20);
+        this.nextButton.setAnimation(i7, 20, 20);
         this.nextButton.setLayerColor("Triangle 3.**", themedColor);
         this.nextButton.setLayerColor("Triangle 4.**", themedColor);
         this.nextButton.setLayerColor("Rectangle 4.**", themedColor);
         this.nextButton.setRotation(180.0f);
-        if (i3 >= 21) {
-            this.nextButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor("listSelectorSDK21"), 1, AndroidUtilities.dp(22.0f)));
+        if (i5 >= 21) {
+            this.nextButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 1, AndroidUtilities.dp(22.0f)));
         }
         frameLayout2.addView(this.nextButton, LayoutHelper.createFrame(48, 48, 51));
         this.nextButton.setContentDescription(LocaleController.getString("Next", R.string.Next));
@@ -803,8 +807,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.optionsButton.setIcon(R.drawable.ic_ab_other);
         this.optionsButton.setSubMenuOpenSide(2);
         this.optionsButton.setAdditionalYOffset(-AndroidUtilities.dp(157.0f));
-        if (i3 >= 21) {
-            this.optionsButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor("listSelectorSDK21"), 1, AndroidUtilities.dp(18.0f)));
+        if (i5 >= 21) {
+            this.optionsButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 1, AndroidUtilities.dp(18.0f)));
         }
         frameLayout2.addView(this.optionsButton, LayoutHelper.createFrame(48, 48, 51));
         this.optionsButton.addSubItem(1, R.drawable.msg_forward, LocaleController.getString("Forward", R.string.Forward));
@@ -820,8 +824,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         });
         this.optionsButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
             @Override
-            public final void onItemClick(int i5) {
-                AudioPlayerAlert.this.onSubItemClick(i5);
+            public final void onItemClick(int i8) {
+                AudioPlayerAlert.this.onSubItemClick(i8);
             }
         });
         this.optionsButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));
@@ -835,11 +839,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         ImageView imageView3 = new ImageView(context);
         this.emptyImageView = imageView3;
         imageView3.setImageResource(R.drawable.music_empty);
-        this.emptyImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor("dialogEmptyImage"), PorterDuff.Mode.MULTIPLY));
+        this.emptyImageView.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_dialogEmptyImage), PorterDuff.Mode.MULTIPLY));
         this.emptyView.addView(this.emptyImageView, LayoutHelper.createLinear(-2, -2));
         TextView textView2 = new TextView(context);
         this.emptyTitleTextView = textView2;
-        textView2.setTextColor(getThemedColor("dialogEmptyText"));
+        int i8 = Theme.key_dialogEmptyText;
+        textView2.setTextColor(getThemedColor(i8));
         this.emptyTitleTextView.setGravity(17);
         this.emptyTitleTextView.setText(LocaleController.getString("NoAudioFound", R.string.NoAudioFound));
         this.emptyTitleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
@@ -848,7 +853,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.emptyView.addView(this.emptyTitleTextView, LayoutHelper.createLinear(-2, -2, 17, 0, 11, 0, 0));
         TextView textView3 = new TextView(context);
         this.emptySubtitleTextView = textView3;
-        textView3.setTextColor(getThemedColor("dialogEmptyText"));
+        textView3.setTextColor(getThemedColor(i8));
         this.emptySubtitleTextView.setGravity(17);
         this.emptySubtitleTextView.setTextSize(1, 15.0f);
         this.emptySubtitleTextView.setPadding(AndroidUtilities.dp(40.0f), 0, AndroidUtilities.dp(40.0f), 0);
@@ -857,14 +862,14 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             boolean ignoreLayout;
 
             @Override
-            public void onLayout(boolean z, int i5, int i6, int i7, int i8) {
-                super.onLayout(z, i5, i6, i7, i8);
+            public void onLayout(boolean z, int i9, int i10, int i11, int i12) {
+                super.onLayout(z, i9, i10, i11, i12);
                 if (AudioPlayerAlert.this.searchOpenPosition == -1 || AudioPlayerAlert.this.actionBar.isSearchFieldVisible()) {
                     if (AudioPlayerAlert.this.scrollToSong) {
                         AudioPlayerAlert.this.scrollToSong = false;
                         this.ignoreLayout = true;
                         if (AudioPlayerAlert.this.scrollToCurrentSong(true)) {
-                            super.onLayout(false, i5, i6, i7, i8);
+                            super.onLayout(false, i9, i10, i11, i12);
                         }
                         this.ignoreLayout = false;
                         return;
@@ -873,7 +878,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 }
                 this.ignoreLayout = true;
                 AudioPlayerAlert.this.layoutManager.scrollToPositionWithOffset(AudioPlayerAlert.this.searchOpenPosition, AudioPlayerAlert.this.searchOpenOffset - AudioPlayerAlert.this.listView.getPaddingTop());
-                super.onLayout(false, i5, i6, i7, i8);
+                super.onLayout(false, i9, i10, i11, i12);
                 this.ignoreLayout = false;
                 AudioPlayerAlert.this.searchOpenPosition = -1;
             }
@@ -904,13 +909,13 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         ListAdapter listAdapter = new ListAdapter(context);
         this.listAdapter = listAdapter;
         recyclerListView3.setAdapter(listAdapter);
-        this.listView.setGlowColor(getThemedColor("dialogScrollGlow"));
+        this.listView.setGlowColor(getThemedColor(Theme.key_dialogScrollGlow));
         this.listView.setOnItemClickListener(AudioPlayerAlert$$ExternalSyntheticLambda13.INSTANCE);
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i5) {
-                if (i5 != 0) {
-                    if (i5 == 1) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i9) {
+                if (i9 != 0) {
+                    if (i9 == 1) {
                         AndroidUtilities.hideKeyboard(AudioPlayerAlert.this.getCurrentFocus());
                         return;
                     }
@@ -928,7 +933,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             }
 
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i5, int i6) {
+            public void onScrolled(RecyclerView recyclerView, int i9, int i10) {
                 AudioPlayerAlert.this.updateLayout();
                 AudioPlayerAlert.this.updateEmptyViewPosition();
                 if (AudioPlayerAlert.this.searchWas) {
@@ -990,12 +995,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         @Override
         protected TextView createTextView() {
             final TextView textView = new TextView(this.val$context);
-            textView.setTextColor(AudioPlayerAlert.this.getThemedColor("player_time"));
+            textView.setTextColor(AudioPlayerAlert.this.getThemedColor(Theme.key_player_time));
             textView.setTextSize(1, 13.0f);
             textView.setEllipsize(TextUtils.TruncateAt.END);
             textView.setSingleLine(true);
             textView.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(1.0f));
-            textView.setBackground(Theme.createRadSelectorDrawable(AudioPlayerAlert.this.getThemedColor("listSelectorSDK21"), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
+            textView.setBackground(Theme.createRadSelectorDrawable(AudioPlayerAlert.this.getThemedColor(Theme.key_listSelector), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -1066,7 +1071,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
     public boolean lambda$new$4(Theme.ResourcesProvider resourcesProvider, View view) {
         this.speedSlider.setSpeed(MediaController.getInstance().getPlaybackSpeed(true), false);
-        this.speedSlider.setBackgroundColor(Theme.getColor("actionBarDefaultSubmenuBackground", resourcesProvider));
+        this.speedSlider.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, resourcesProvider));
         updatePlaybackButton(false);
         this.playbackSpeedButton.setDimMenu(0.15f);
         this.playbackSpeedButton.toggleSubMenu(this.speedSlider, null);
@@ -1384,12 +1389,14 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
 
     private void setMenuItemChecked(ActionBarMenuSubItem actionBarMenuSubItem, boolean z) {
         if (z) {
-            actionBarMenuSubItem.setTextColor(getThemedColor("player_buttonActive"));
-            actionBarMenuSubItem.setIconColor(getThemedColor("player_buttonActive"));
+            int i = Theme.key_player_buttonActive;
+            actionBarMenuSubItem.setTextColor(getThemedColor(i));
+            actionBarMenuSubItem.setIconColor(getThemedColor(i));
             return;
         }
-        actionBarMenuSubItem.setTextColor(getThemedColor("actionBarDefaultSubmenuItem"));
-        actionBarMenuSubItem.setIconColor(getThemedColor("actionBarDefaultSubmenuItem"));
+        int i2 = Theme.key_actionBarDefaultSubmenuItem;
+        actionBarMenuSubItem.setTextColor(getThemedColor(i2));
+        actionBarMenuSubItem.setIconColor(getThemedColor(i2));
     }
 
     private void checkSpeedHint() {
@@ -1452,16 +1459,20 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.slidingSpeed = false;
         for (int i = 0; i < this.speedItems.length; i++) {
             if (z2 && equals(playbackSpeed, speeds[i])) {
-                this.speedItems[i].setColors(getThemedColor("featuredStickers_addButtonPressed"), getThemedColor("featuredStickers_addButtonPressed"));
+                ActionBarMenuSubItem actionBarMenuSubItem = this.speedItems[i];
+                int i2 = Theme.key_featuredStickers_addButtonPressed;
+                actionBarMenuSubItem.setColors(getThemedColor(i2), getThemedColor(i2));
             } else {
-                this.speedItems[i].setColors(getThemedColor("actionBarDefaultSubmenuItem"), getThemedColor("actionBarDefaultSubmenuItem"));
+                ActionBarMenuSubItem actionBarMenuSubItem2 = this.speedItems[i];
+                int i3 = Theme.key_actionBarDefaultSubmenuItem;
+                actionBarMenuSubItem2.setColors(getThemedColor(i3), getThemedColor(i3));
             }
         }
     }
 
     public void updateColors() {
         if (this.playbackSpeedButton != null) {
-            int themedColor = getThemedColor(!equals(MediaController.getInstance().getPlaybackSpeed(true), 1.0f) ? "featuredStickers_addButtonPressed" : "inappPlayerClose");
+            int themedColor = getThemedColor(!equals(MediaController.getInstance().getPlaybackSpeed(true), 1.0f) ? Theme.key_featuredStickers_addButtonPressed : Theme.key_inappPlayerClose);
             SpeedIconDrawable speedIconDrawable = this.speedIcon;
             if (speedIconDrawable != null) {
                 speedIconDrawable.setColor(themedColor);
@@ -1725,7 +1736,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         if (this.currentSheetAnimationType == 1) {
             i = (int) (i + this.listView.getTranslationY());
         }
-        if ((this.backgroundPaddingTop + i < ActionBar.getCurrentActionBarHeight() ? 1.0f - Math.min(1.0f, ((ActionBar.getCurrentActionBarHeight() - i) - this.backgroundPaddingTop) / (dp3 + AndroidUtilities.dp(4.0f))) : 1.0f) <= 0.5f && ColorUtils.calculateLuminance(getThemedColor("dialogBackground")) > 0.699999988079071d) {
+        if ((this.backgroundPaddingTop + i < ActionBar.getCurrentActionBarHeight() ? 1.0f - Math.min(1.0f, ((ActionBar.getCurrentActionBarHeight() - i) - this.backgroundPaddingTop) / (dp3 + AndroidUtilities.dp(4.0f))) : 1.0f) <= 0.5f && ColorUtils.calculateLuminance(getThemedColor(Theme.key_dialogBackground)) > 0.699999988079071d) {
             z = true;
         }
         if (z != this.wasLight) {
@@ -1777,9 +1788,11 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         if (i != 0 && i != 1) {
             if (i == 2) {
                 this.repeatButton.setIcon(R.drawable.player_new_repeatone);
-                this.repeatButton.setTag("player_buttonActive");
-                this.repeatButton.setIconColor(getThemedColor("player_buttonActive"));
-                Theme.setSelectorDrawableColor(this.repeatButton.getBackground(), 436207615 & getThemedColor("player_buttonActive"), true);
+                ActionBarMenuItem actionBarMenuItem = this.repeatButton;
+                int i2 = Theme.key_player_buttonActive;
+                actionBarMenuItem.setTag(Integer.valueOf(i2));
+                this.repeatButton.setIconColor(getThemedColor(i2));
+                Theme.setSelectorDrawableColor(this.repeatButton.getBackground(), 436207615 & getThemedColor(i2), true);
                 this.repeatButton.setContentDescription(LocaleController.getString("AccDescrRepeatOne", R.string.AccDescrRepeatOne));
                 return;
             }
@@ -1799,15 +1812,19 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             this.repeatButton.setIcon(R.drawable.player_new_repeat_reverse);
         }
         if (i == 0 && !SharedConfig.shuffleMusic && !SharedConfig.playOrderReversed) {
-            this.repeatButton.setTag("player_button");
-            this.repeatButton.setIconColor(getThemedColor("player_button"));
-            Theme.setSelectorDrawableColor(this.repeatButton.getBackground(), getThemedColor("listSelectorSDK21"), true);
+            ActionBarMenuItem actionBarMenuItem2 = this.repeatButton;
+            int i3 = Theme.key_player_button;
+            actionBarMenuItem2.setTag(Integer.valueOf(i3));
+            this.repeatButton.setIconColor(getThemedColor(i3));
+            Theme.setSelectorDrawableColor(this.repeatButton.getBackground(), getThemedColor(Theme.key_listSelector), true);
             this.repeatButton.setContentDescription(LocaleController.getString("AccDescrRepeatOff", R.string.AccDescrRepeatOff));
             return;
         }
-        this.repeatButton.setTag("player_buttonActive");
-        this.repeatButton.setIconColor(getThemedColor("player_buttonActive"));
-        Theme.setSelectorDrawableColor(this.repeatButton.getBackground(), 436207615 & getThemedColor("player_buttonActive"), true);
+        ActionBarMenuItem actionBarMenuItem3 = this.repeatButton;
+        int i4 = Theme.key_player_buttonActive;
+        actionBarMenuItem3.setTag(Integer.valueOf(i4));
+        this.repeatButton.setIconColor(getThemedColor(i4));
+        Theme.setSelectorDrawableColor(this.repeatButton.getBackground(), 436207615 & getThemedColor(i4), true);
         if (i == 0) {
             if (SharedConfig.shuffleMusic) {
                 this.repeatButton.setContentDescription(LocaleController.getString("ShuffleList", R.string.ShuffleList));
@@ -2055,7 +2072,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         public void notifyDataSetChanged() {
             super.notifyDataSetChanged();
             if (AudioPlayerAlert.this.playlist.size() > 1) {
-                AudioPlayerAlert.this.playerLayout.setBackgroundColor(AudioPlayerAlert.this.getThemedColor("player_background"));
+                AudioPlayerAlert.this.playerLayout.setBackgroundColor(AudioPlayerAlert.this.getThemedColor(Theme.key_player_background));
                 AudioPlayerAlert.this.playerShadow.setVisibility(0);
                 AudioPlayerAlert.this.listView.setPadding(0, AudioPlayerAlert.this.listView.getPaddingTop(), 0, AndroidUtilities.dp(179.0f));
             } else {
@@ -2239,88 +2256,118 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 ThemeDescription.ThemeDescriptionDelegate.CC.$default$onAnimationProgress(this, f);
             }
         };
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, themeDescriptionDelegate, "player_actionBarTitle"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, "player_actionBarTitle"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBTITLECOLOR, null, null, null, null, "player_actionBarTitle"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "player_actionBarSelector"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCH, null, null, null, null, "player_actionBarTitle"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCHPLACEHOLDER, null, null, null, null, "player_time"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, "chat_inLoader"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, "chat_outLoader"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, "chat_inLoaderSelected"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, "chat_inMediaIcon"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, "chat_inMediaIconSelected"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, "windowBackgroundWhiteGrayText2"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, "chat_inAudioSelectedProgress"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, "chat_inAudioProgress"));
-        arrayList.add(new ThemeDescription(this.containerView, 0, null, null, new Drawable[]{this.shadowDrawable}, null, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, "player_progressBackground"));
-        arrayList.add(new ThemeDescription(this.progressView, 0, null, null, null, null, "player_progress"));
-        arrayList.add(new ThemeDescription(this.seekBarView, 0, null, null, null, null, "player_progressBackground"));
-        arrayList.add(new ThemeDescription(this.seekBarView, 0, null, null, null, null, "key_player_progressCachedBackground"));
-        arrayList.add(new ThemeDescription(this.seekBarView, ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, "player_progress"));
-        arrayList.add(new ThemeDescription(this.playbackSpeedButton, ThemeDescription.FLAG_CHECKTAG | ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, "inappPlayerPlayPause"));
-        arrayList.add(new ThemeDescription(this.playbackSpeedButton, ThemeDescription.FLAG_CHECKTAG | ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, "inappPlayerClose"));
-        arrayList.add(new ThemeDescription(this.repeatButton, 0, null, null, null, themeDescriptionDelegate, "player_button"));
-        arrayList.add(new ThemeDescription(this.repeatButton, 0, null, null, null, themeDescriptionDelegate, "player_buttonActive"));
-        arrayList.add(new ThemeDescription(this.repeatButton, 0, null, null, null, themeDescriptionDelegate, "listSelectorSDK21"));
-        arrayList.add(new ThemeDescription(this.repeatButton, 0, null, null, null, themeDescriptionDelegate, "actionBarDefaultSubmenuItem"));
-        arrayList.add(new ThemeDescription(this.repeatButton, 0, null, null, null, themeDescriptionDelegate, "actionBarDefaultSubmenuBackground"));
-        arrayList.add(new ThemeDescription(this.optionsButton, 0, null, null, null, themeDescriptionDelegate, "player_button"));
-        arrayList.add(new ThemeDescription(this.optionsButton, 0, null, null, null, themeDescriptionDelegate, "listSelectorSDK21"));
-        arrayList.add(new ThemeDescription(this.optionsButton, 0, null, null, null, themeDescriptionDelegate, "actionBarDefaultSubmenuItem"));
-        arrayList.add(new ThemeDescription(this.optionsButton, 0, null, null, null, themeDescriptionDelegate, "actionBarDefaultSubmenuBackground"));
+        ActionBar actionBar = this.actionBar;
+        int i = ThemeDescription.FLAG_BACKGROUND;
+        int i2 = Theme.key_dialogBackground;
+        arrayList.add(new ThemeDescription(actionBar, i, null, null, null, null, i2));
+        ActionBar actionBar2 = this.actionBar;
+        int i3 = ThemeDescription.FLAG_AB_ITEMSCOLOR;
+        int i4 = Theme.key_player_actionBarTitle;
+        arrayList.add(new ThemeDescription(actionBar2, i3, null, null, null, themeDescriptionDelegate, i4));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SUBTITLECOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_player_actionBarSelector));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SEARCH, null, null, null, null, i4));
+        ActionBar actionBar3 = this.actionBar;
+        int i5 = ThemeDescription.FLAG_AB_SEARCHPLACEHOLDER;
+        int i6 = Theme.key_player_time;
+        arrayList.add(new ThemeDescription(actionBar3, i5, null, null, null, null, i6));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, Theme.key_chat_inLoader));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, Theme.key_chat_outLoader));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, Theme.key_chat_inLoaderSelected));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, Theme.key_chat_inMediaIcon));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, Theme.key_chat_inMediaIconSelected));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, Theme.key_windowBackgroundWhiteGrayText2));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, Theme.key_chat_inAudioSelectedProgress));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{AudioPlayerCell.class}, null, null, null, Theme.key_chat_inAudioProgress));
+        arrayList.add(new ThemeDescription(this.containerView, 0, null, null, new Drawable[]{this.shadowDrawable}, null, i2));
+        LineProgressView lineProgressView = this.progressView;
+        int i7 = Theme.key_player_progressBackground;
+        arrayList.add(new ThemeDescription(lineProgressView, 0, null, null, null, null, i7));
+        LineProgressView lineProgressView2 = this.progressView;
+        int i8 = Theme.key_player_progress;
+        arrayList.add(new ThemeDescription(lineProgressView2, 0, null, null, null, null, i8));
+        arrayList.add(new ThemeDescription(this.seekBarView, 0, null, null, null, null, i7));
+        arrayList.add(new ThemeDescription(this.seekBarView, 0, null, null, null, null, Theme.key_player_progressCachedBackground));
+        arrayList.add(new ThemeDescription(this.seekBarView, ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, i8));
+        arrayList.add(new ThemeDescription(this.playbackSpeedButton, ThemeDescription.FLAG_CHECKTAG | ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_inappPlayerPlayPause));
+        arrayList.add(new ThemeDescription(this.playbackSpeedButton, ThemeDescription.FLAG_CHECKTAG | ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_inappPlayerClose));
+        ActionBarMenuItem actionBarMenuItem = this.repeatButton;
+        int i9 = Theme.key_player_button;
+        arrayList.add(new ThemeDescription(actionBarMenuItem, 0, null, null, null, themeDescriptionDelegate, i9));
+        arrayList.add(new ThemeDescription(this.repeatButton, 0, null, null, null, themeDescriptionDelegate, Theme.key_player_buttonActive));
+        ActionBarMenuItem actionBarMenuItem2 = this.repeatButton;
+        int i10 = Theme.key_listSelector;
+        arrayList.add(new ThemeDescription(actionBarMenuItem2, 0, null, null, null, themeDescriptionDelegate, i10));
+        ActionBarMenuItem actionBarMenuItem3 = this.repeatButton;
+        int i11 = Theme.key_actionBarDefaultSubmenuItem;
+        arrayList.add(new ThemeDescription(actionBarMenuItem3, 0, null, null, null, themeDescriptionDelegate, i11));
+        ActionBarMenuItem actionBarMenuItem4 = this.repeatButton;
+        int i12 = Theme.key_actionBarDefaultSubmenuBackground;
+        arrayList.add(new ThemeDescription(actionBarMenuItem4, 0, null, null, null, themeDescriptionDelegate, i12));
+        arrayList.add(new ThemeDescription(this.optionsButton, 0, null, null, null, themeDescriptionDelegate, i9));
+        arrayList.add(new ThemeDescription(this.optionsButton, 0, null, null, null, themeDescriptionDelegate, i10));
+        arrayList.add(new ThemeDescription(this.optionsButton, 0, null, null, null, themeDescriptionDelegate, i11));
+        arrayList.add(new ThemeDescription(this.optionsButton, 0, null, null, null, themeDescriptionDelegate, i12));
         RLottieImageView rLottieImageView = this.prevButton;
-        arrayList.add(new ThemeDescription(rLottieImageView, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView.getAnimatedDrawable()}, "Triangle 3", "player_button"));
+        arrayList.add(new ThemeDescription(rLottieImageView, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView.getAnimatedDrawable()}, "Triangle 3", i9));
         RLottieImageView rLottieImageView2 = this.prevButton;
-        arrayList.add(new ThemeDescription(rLottieImageView2, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView2.getAnimatedDrawable()}, "Triangle 4", "player_button"));
+        arrayList.add(new ThemeDescription(rLottieImageView2, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView2.getAnimatedDrawable()}, "Triangle 4", i9));
         RLottieImageView rLottieImageView3 = this.prevButton;
-        arrayList.add(new ThemeDescription(rLottieImageView3, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView3.getAnimatedDrawable()}, "Rectangle 4", "player_button"));
-        arrayList.add(new ThemeDescription(this.prevButton, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE, null, null, null, null, "listSelectorSDK21"));
-        arrayList.add(new ThemeDescription(this.playButton, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, "player_button"));
-        arrayList.add(new ThemeDescription(this.playButton, ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE | ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, "listSelectorSDK21"));
+        arrayList.add(new ThemeDescription(rLottieImageView3, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView3.getAnimatedDrawable()}, "Rectangle 4", i9));
+        arrayList.add(new ThemeDescription(this.prevButton, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE, null, null, null, null, i10));
+        arrayList.add(new ThemeDescription(this.playButton, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, i9));
+        arrayList.add(new ThemeDescription(this.playButton, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE, null, null, null, null, i10));
         RLottieImageView rLottieImageView4 = this.nextButton;
-        arrayList.add(new ThemeDescription(rLottieImageView4, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView4.getAnimatedDrawable()}, "Triangle 3", "player_button"));
+        arrayList.add(new ThemeDescription(rLottieImageView4, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView4.getAnimatedDrawable()}, "Triangle 3", i9));
         RLottieImageView rLottieImageView5 = this.nextButton;
-        arrayList.add(new ThemeDescription(rLottieImageView5, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView5.getAnimatedDrawable()}, "Triangle 4", "player_button"));
+        arrayList.add(new ThemeDescription(rLottieImageView5, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView5.getAnimatedDrawable()}, "Triangle 4", i9));
         RLottieImageView rLottieImageView6 = this.nextButton;
-        arrayList.add(new ThemeDescription(rLottieImageView6, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView6.getAnimatedDrawable()}, "Rectangle 4", "player_button"));
-        arrayList.add(new ThemeDescription(this.nextButton, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE, null, null, null, null, "listSelectorSDK21"));
-        arrayList.add(new ThemeDescription(this.playerLayout, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "player_background"));
-        arrayList.add(new ThemeDescription(this.playerShadow, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogShadowLine"));
-        arrayList.add(new ThemeDescription(this.emptyImageView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, "dialogEmptyImage"));
-        arrayList.add(new ThemeDescription(this.emptyTitleTextView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, "dialogEmptyText"));
-        arrayList.add(new ThemeDescription(this.emptySubtitleTextView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, "dialogEmptyText"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, "dialogScrollGlow"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, "listSelectorSDK21"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, "divider"));
-        arrayList.add(new ThemeDescription(this.progressView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "emptyListPlaceholder"));
-        arrayList.add(new ThemeDescription(this.progressView, ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, "progressCircle"));
-        arrayList.add(new ThemeDescription(this.durationTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "player_time"));
-        arrayList.add(new ThemeDescription(this.timeTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "player_time"));
-        arrayList.add(new ThemeDescription(this.titleTextView.getTextView(), ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "player_actionBarTitle"));
-        arrayList.add(new ThemeDescription(this.titleTextView.getNextTextView(), ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "player_actionBarTitle"));
-        arrayList.add(new ThemeDescription(this.authorTextView.getTextView(), ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "player_time"));
-        arrayList.add(new ThemeDescription(this.authorTextView.getNextTextView(), ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, "player_time"));
-        arrayList.add(new ThemeDescription(this.containerView, 0, null, null, null, null, "key_sheet_scrollUp"));
+        arrayList.add(new ThemeDescription(rLottieImageView6, 0, (Class[]) null, new RLottieDrawable[]{rLottieImageView6.getAnimatedDrawable()}, "Rectangle 4", i9));
+        arrayList.add(new ThemeDescription(this.nextButton, ThemeDescription.FLAG_IMAGECOLOR | ThemeDescription.FLAG_USEBACKGROUNDDRAWABLE, null, null, null, null, i10));
+        arrayList.add(new ThemeDescription(this.playerLayout, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_player_background));
+        arrayList.add(new ThemeDescription(this.playerShadow, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_dialogShadowLine));
+        arrayList.add(new ThemeDescription(this.emptyImageView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, Theme.key_dialogEmptyImage));
+        TextView textView = this.emptyTitleTextView;
+        int i13 = ThemeDescription.FLAG_IMAGECOLOR;
+        int i14 = Theme.key_dialogEmptyText;
+        arrayList.add(new ThemeDescription(textView, i13, null, null, null, null, i14));
+        arrayList.add(new ThemeDescription(this.emptySubtitleTextView, ThemeDescription.FLAG_IMAGECOLOR, null, null, null, null, i14));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, Theme.key_dialogScrollGlow));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_SELECTOR, null, null, null, null, i10));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, Theme.dividerPaint, null, null, Theme.key_divider));
+        arrayList.add(new ThemeDescription(this.progressView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_emptyListPlaceholder));
+        arrayList.add(new ThemeDescription(this.progressView, ThemeDescription.FLAG_PROGRESSBAR, null, null, null, null, Theme.key_progressCircle));
+        arrayList.add(new ThemeDescription(this.durationTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i6));
+        arrayList.add(new ThemeDescription(this.timeTextView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i6));
+        arrayList.add(new ThemeDescription(this.titleTextView.getTextView(), ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.titleTextView.getNextTextView(), ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.authorTextView.getTextView(), ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i6));
+        arrayList.add(new ThemeDescription(this.authorTextView.getNextTextView(), ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, i6));
+        arrayList.add(new ThemeDescription(this.containerView, 0, null, null, null, null, Theme.key_sheet_scrollUp));
         return arrayList;
     }
 
     public void lambda$getThemeDescriptions$13() {
-        this.searchItem.getSearchField().setCursorColor(getThemedColor("player_actionBarTitle"));
+        this.searchItem.getSearchField().setCursorColor(getThemedColor(Theme.key_player_actionBarTitle));
         ActionBarMenuItem actionBarMenuItem = this.repeatButton;
-        actionBarMenuItem.setIconColor(getThemedColor((String) actionBarMenuItem.getTag()));
-        Theme.setSelectorDrawableColor(this.repeatButton.getBackground(), getThemedColor("listSelectorSDK21"), true);
-        this.optionsButton.setIconColor(getThemedColor("player_button"));
-        Theme.setSelectorDrawableColor(this.optionsButton.getBackground(), getThemedColor("listSelectorSDK21"), true);
-        this.progressView.setBackgroundColor(getThemedColor("player_progressBackground"));
-        this.progressView.setProgressColor(getThemedColor("player_progress"));
+        actionBarMenuItem.setIconColor(getThemedColor(((Integer) actionBarMenuItem.getTag()).intValue()));
+        Drawable background = this.repeatButton.getBackground();
+        int i = Theme.key_listSelector;
+        Theme.setSelectorDrawableColor(background, getThemedColor(i), true);
+        this.optionsButton.setIconColor(getThemedColor(Theme.key_player_button));
+        Theme.setSelectorDrawableColor(this.optionsButton.getBackground(), getThemedColor(i), true);
+        this.progressView.setBackgroundColor(getThemedColor(Theme.key_player_progressBackground));
+        this.progressView.setProgressColor(getThemedColor(Theme.key_player_progress));
         updateSubMenu();
-        this.repeatButton.redrawPopup(getThemedColor("actionBarDefaultSubmenuBackground"));
-        this.optionsButton.setPopupItemsColor(getThemedColor("actionBarDefaultSubmenuItem"), false);
-        this.optionsButton.setPopupItemsColor(getThemedColor("actionBarDefaultSubmenuItem"), true);
-        this.optionsButton.redrawPopup(getThemedColor("actionBarDefaultSubmenuBackground"));
+        ActionBarMenuItem actionBarMenuItem2 = this.repeatButton;
+        int i2 = Theme.key_actionBarDefaultSubmenuBackground;
+        actionBarMenuItem2.redrawPopup(getThemedColor(i2));
+        ActionBarMenuItem actionBarMenuItem3 = this.optionsButton;
+        int i3 = Theme.key_actionBarDefaultSubmenuItem;
+        actionBarMenuItem3.setPopupItemsColor(getThemedColor(i3), false);
+        this.optionsButton.setPopupItemsColor(getThemedColor(i3), true);
+        this.optionsButton.redrawPopup(getThemedColor(i2));
     }
 
     public static abstract class CoverContainer extends FrameLayout {

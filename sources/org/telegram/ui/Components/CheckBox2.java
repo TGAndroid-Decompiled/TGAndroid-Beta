@@ -54,8 +54,8 @@ public class CheckBox2 extends View {
         return this.checkBoxBase.isChecked();
     }
 
-    public void setColor(String str, String str2, String str3) {
-        this.checkBoxBase.setColor(str, str2, str3);
+    public void setColor(int i, int i2, int i3) {
+        this.checkBoxBase.setColor(i, i2, i3);
     }
 
     @Override
@@ -109,7 +109,7 @@ public class CheckBox2 extends View {
             Paint paint = new Paint();
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(AndroidUtilities.dp(1.2f));
-            paint.setColor(Theme.getColor("switch2Track"));
+            paint.setColor(Theme.getColor(Theme.key_switch2Track));
             canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth - AndroidUtilities.dp(1.5f), paint);
             return;
         }
@@ -137,7 +137,7 @@ public class CheckBox2 extends View {
             }
             Drawable mutate = ContextCompat.getDrawable(getContext(), i).mutate();
             this.iconDrawable = mutate;
-            mutate.setColorFilter(Theme.getColor("switch2Track"), PorterDuff.Mode.MULTIPLY);
+            mutate.setColorFilter(Theme.getColor(Theme.key_switch2Track), PorterDuff.Mode.MULTIPLY);
         }
     }
 

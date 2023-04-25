@@ -73,21 +73,21 @@ public class TextCell extends FrameLayout {
         this.leftPadding = i;
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.textView = simpleTextView;
-        simpleTextView.setTextColor(Theme.getColor(z ? "dialogTextBlack" : "windowBackgroundWhiteBlackText", resourcesProvider));
+        simpleTextView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlack : Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         simpleTextView.setTextSize(16);
         simpleTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         simpleTextView.setImportantForAccessibility(2);
         addView(simpleTextView, LayoutHelper.createFrame(-2, -1.0f));
         SimpleTextView simpleTextView2 = new SimpleTextView(context);
         this.subtitleView = simpleTextView2;
-        simpleTextView2.setTextColor(Theme.getColor(z ? "dialogTextGray" : "windowBackgroundWhiteGrayText", resourcesProvider));
+        simpleTextView2.setTextColor(Theme.getColor(z ? Theme.key_dialogTextGray : Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
         simpleTextView2.setTextSize(13);
         simpleTextView2.setGravity(LocaleController.isRTL ? 5 : 3);
         simpleTextView2.setImportantForAccessibility(2);
         addView(simpleTextView2, LayoutHelper.createFrame(-2, -1.0f));
         AnimatedTextView animatedTextView = new AnimatedTextView(context, false, false, true);
         this.valueTextView = animatedTextView;
-        animatedTextView.setTextColor(Theme.getColor(z ? "dialogTextBlue2" : "windowBackgroundWhiteValueText", resourcesProvider));
+        animatedTextView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlue2 : Theme.key_windowBackgroundWhiteValueText, resourcesProvider));
         animatedTextView.setPadding(0, AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f));
         animatedTextView.setTextSize(AndroidUtilities.dp(16.0f));
         animatedTextView.setGravity(LocaleController.isRTL ? 3 : 5);
@@ -97,7 +97,7 @@ public class TextCell extends FrameLayout {
         SimpleTextView simpleTextView3 = new SimpleTextView(context);
         this.valueSpoilersTextView = simpleTextView3;
         simpleTextView3.setEllipsizeByGradient(18, Boolean.FALSE);
-        simpleTextView3.setTextColor(Theme.getColor(z ? "dialogTextBlue2" : "windowBackgroundWhiteValueText", resourcesProvider));
+        simpleTextView3.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlue2 : Theme.key_windowBackgroundWhiteValueText, resourcesProvider));
         simpleTextView3.setGravity(LocaleController.isRTL ? 3 : 5);
         simpleTextView3.setTextSize(16);
         simpleTextView3.setImportantForAccessibility(2);
@@ -106,7 +106,7 @@ public class TextCell extends FrameLayout {
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
-        rLottieImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(z ? "dialogIcon" : "windowBackgroundWhiteGrayIcon", resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        rLottieImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(z ? Theme.key_dialogIcon : Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
         addView(rLottieImageView);
         ImageView imageView = new ImageView(context);
         this.valueImageView = imageView;
@@ -115,7 +115,10 @@ public class TextCell extends FrameLayout {
         if (z2) {
             Switch r3 = new Switch(context, resourcesProvider);
             this.checkBox = r3;
-            r3.setColors("switchTrack", "switchTrackChecked", "windowBackgroundWhite", "windowBackgroundWhite");
+            int i2 = Theme.key_switchTrack;
+            int i3 = Theme.key_switchTrackChecked;
+            int i4 = Theme.key_windowBackgroundWhite;
+            r3.setColors(i2, i3, i4, i4);
             addView(this.checkBox, LayoutHelper.createFrame(37, 20.0f, (LocaleController.isRTL ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         }
         setFocusable(true);
@@ -261,12 +264,12 @@ public class TextCell extends FrameLayout {
         this.textView.setTextColor(i);
     }
 
-    public void setColors(String str, String str2) {
-        this.textView.setTextColor(Theme.getColor(str2, this.resourcesProvider));
-        this.textView.setTag(str2);
-        if (str != null) {
-            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(str, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-            this.imageView.setTag(str);
+    public void setColors(int i, int i2) {
+        this.textView.setTextColor(Theme.getColor(i2, this.resourcesProvider));
+        this.textView.setTag(Integer.valueOf(i2));
+        if (i >= 0) {
+            this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+            this.imageView.setTag(Integer.valueOf(i));
         }
     }
 
@@ -577,7 +580,7 @@ public class TextCell extends FrameLayout {
             if (this.paint == null) {
                 Paint paint = new Paint(1);
                 this.paint = paint;
-                paint.setColor(Theme.getColor("dialogSearchBackground", this.resourcesProvider));
+                paint.setColor(Theme.getColor(Theme.key_dialogSearchBackground, this.resourcesProvider));
             }
             if (this.incrementLoadingProgress) {
                 float f = this.loadingProgress + 0.016f;

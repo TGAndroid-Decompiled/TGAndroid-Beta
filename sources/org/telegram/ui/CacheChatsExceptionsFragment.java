@@ -86,7 +86,7 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
             }
         });
         frameLayout.addView(this.recyclerListView);
-        frameLayout.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+        frameLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
         updateRows();
         return this.fragmentView;
     }
@@ -304,28 +304,34 @@ public class CacheChatsExceptionsFragment extends BaseFragment {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            TextCell textCell = null;
+            View view;
+            View view2;
             if (i == 1) {
-                TextCell textCell2 = new TextCell(viewGroup.getContext());
-                textCell2.setTextAndIcon(LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
-                textCell2.setColors("windowBackgroundWhiteBlueIcon", "windowBackgroundWhiteBlueButton");
-                textCell2.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                textCell = textCell2;
+                TextCell textCell = new TextCell(viewGroup.getContext());
+                textCell.setTextAndIcon(LocaleController.getString("NotificationsAddAnException", R.string.NotificationsAddAnException), R.drawable.msg_contact_add, true);
+                textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
+                textCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                view = textCell;
             } else if (i == 2) {
-                UserCell userCell = new UserCell(viewGroup.getContext(), 4, 0, false, false);
-                userCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                textCell = userCell;
+                View userCell = new UserCell(viewGroup.getContext(), 4, 0, false, false);
+                userCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                view = userCell;
             } else if (i == 3) {
-                textCell = new ShadowSectionCell(viewGroup.getContext());
+                view = new ShadowSectionCell(viewGroup.getContext());
             } else if (i == 4) {
-                TextCell textCell3 = new TextCell(viewGroup.getContext());
-                textCell3.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
-                textCell3.setColors(null, "text_RedRegular");
-                textCell3.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
-                textCell = textCell3;
+                TextCell textCell2 = new TextCell(viewGroup.getContext());
+                textCell2.setText(LocaleController.getString("NotificationsDeleteAllException", R.string.NotificationsDeleteAllException), false);
+                textCell2.setColors(-1, Theme.key_text_RedRegular);
+                textCell2.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                view = textCell2;
+            } else {
+                view2 = null;
+                view2.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                return new RecyclerListView.Holder(view2);
             }
-            textCell.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-            return new RecyclerListView.Holder(textCell);
+            view2 = view;
+            view2.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+            return new RecyclerListView.Holder(view2);
         }
 
         @Override

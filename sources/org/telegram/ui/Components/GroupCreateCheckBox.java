@@ -16,15 +16,15 @@ public class GroupCreateCheckBox extends View {
     private static Paint eraser2;
     private boolean attachedToWindow;
     private Paint backgroundInnerPaint;
-    private String backgroundKey;
+    private int backgroundKey;
     private Paint backgroundPaint;
     private Canvas bitmapCanvas;
     private ObjectAnimator checkAnimator;
-    private String checkKey;
+    private int checkKey;
     private Paint checkPaint;
     private float checkScale;
     private Bitmap drawBitmap;
-    private String innerKey;
+    private int innerKey;
     private int innerRadDiff;
     private boolean isCheckAnimation;
     private boolean isChecked;
@@ -34,9 +34,10 @@ public class GroupCreateCheckBox extends View {
         super(context);
         this.isCheckAnimation = true;
         this.checkScale = 1.0f;
-        this.backgroundKey = "checkboxCheck";
-        this.checkKey = "checkboxCheck";
-        this.innerKey = "checkbox";
+        int i = Theme.key_checkboxCheck;
+        this.backgroundKey = i;
+        this.checkKey = i;
+        this.innerKey = Theme.key_checkbox;
         if (eraser == null) {
             Paint paint = new Paint(1);
             eraser = paint;
@@ -61,10 +62,10 @@ public class GroupCreateCheckBox extends View {
         updateColors();
     }
 
-    public void setColorKeysOverrides(String str, String str2, String str3) {
-        this.checkKey = str;
-        this.innerKey = str2;
-        this.backgroundKey = str3;
+    public void setColorKeysOverrides(int i, int i2, int i3) {
+        this.checkKey = i;
+        this.innerKey = i2;
+        this.backgroundKey = i3;
         updateColors();
     }
 

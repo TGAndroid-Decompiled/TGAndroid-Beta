@@ -86,7 +86,7 @@ public class VideoTimelineView extends View {
     }
 
     public void updateColors() {
-        this.backgroundGrayPaint.setColor(Theme.getColor("windowBackgroundGray"));
+        this.backgroundGrayPaint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
         this.roundCornersSize = 0;
         TimeHintView timeHintView = this.timeHintView;
         if (timeHintView != null) {
@@ -468,7 +468,7 @@ public class VideoTimelineView extends View {
             Paint paint = new Paint(1);
             paint.setColor(0);
             paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-            canvas2.drawColor(Theme.getColor("chat_messagePanelBackground"));
+            canvas2.drawColor(Theme.getColor(Theme.key_chat_messagePanelBackground));
             int i7 = this.roundCornersSize;
             canvas2.drawCircle(i7, i7, i7, paint);
         }
@@ -515,7 +515,7 @@ public class VideoTimelineView extends View {
             this.lastTime = -1L;
             textPaint.setTextSize(AndroidUtilities.dp(14.0f));
             this.tooltipBackgroundArrow = ContextCompat.getDrawable(context, R.drawable.tooltip_arrow);
-            this.tooltipBackground = Theme.createRoundRectDrawable(AndroidUtilities.dp(5.0f), Theme.getColor("chat_gifSaveHintBackground"));
+            this.tooltipBackground = Theme.createRoundRectDrawable(AndroidUtilities.dp(5.0f), Theme.getColor(Theme.key_chat_gifSaveHintBackground));
             updateColors();
             setTime(0);
         }
@@ -583,9 +583,11 @@ public class VideoTimelineView extends View {
         }
 
         public void updateColors() {
-            this.tooltipPaint.setColor(Theme.getColor("chat_gifSaveHintText"));
-            this.tooltipBackground = Theme.createRoundRectDrawable(AndroidUtilities.dp(5.0f), Theme.getColor("chat_gifSaveHintBackground"));
-            this.tooltipBackgroundArrow.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chat_gifSaveHintBackground"), PorterDuff.Mode.MULTIPLY));
+            this.tooltipPaint.setColor(Theme.getColor(Theme.key_chat_gifSaveHintText));
+            int dp = AndroidUtilities.dp(5.0f);
+            int i = Theme.key_chat_gifSaveHintBackground;
+            this.tooltipBackground = Theme.createRoundRectDrawable(dp, Theme.getColor(i));
+            this.tooltipBackgroundArrow.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
         }
 
         public void setCx(float f) {

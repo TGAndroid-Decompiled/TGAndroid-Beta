@@ -28,6 +28,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
@@ -46,19 +47,19 @@ public class UsersAlertBase extends BottomSheet {
     protected FlickerLoadingView flickerLoadingView;
     protected FrameLayout frameLayout;
     protected boolean isEmptyViewVisible;
-    protected String keyActionBarUnscrolled;
-    protected String keyInviteMembersBackground;
-    protected String keyLastSeenText;
-    protected String keyLastSeenTextUnscrolled;
-    protected String keyListSelector;
-    protected String keyListViewBackground;
-    protected String keyNameText;
-    protected String keyScrollUp;
-    protected String keySearchBackground;
-    protected String keySearchIcon;
-    protected String keySearchIconUnscrolled;
-    protected String keySearchPlaceholder;
-    protected String keySearchText;
+    protected int keyActionBarUnscrolled;
+    protected int keyInviteMembersBackground;
+    protected int keyLastSeenText;
+    protected int keyLastSeenTextUnscrolled;
+    protected int keyListSelector;
+    protected int keyListViewBackground;
+    protected int keyNameText;
+    protected int keyScrollUp;
+    protected int keySearchBackground;
+    protected int keySearchIcon;
+    protected int keySearchIconUnscrolled;
+    protected int keySearchPlaceholder;
+    protected int keySearchText;
     protected final FillLastLinearLayoutManager layoutManager;
     protected RecyclerListView listView;
     protected RecyclerView.Adapter listViewAdapter;
@@ -90,19 +91,22 @@ public class UsersAlertBase extends BottomSheet {
         this.rect = new RectF();
         this.needSnapToTop = true;
         this.isEmptyViewVisible = true;
-        this.keyScrollUp = "key_sheet_scrollUp";
-        this.keyListSelector = "listSelectorSDK21";
-        this.keySearchBackground = "dialogSearchBackground";
-        this.keyInviteMembersBackground = "windowBackgroundWhite";
-        this.keyListViewBackground = "windowBackgroundWhite";
-        this.keyActionBarUnscrolled = "windowBackgroundWhite";
-        this.keyNameText = "windowBackgroundWhiteBlackText";
-        this.keyLastSeenText = "windowBackgroundWhiteGrayText";
-        this.keyLastSeenTextUnscrolled = "windowBackgroundWhiteGrayText";
-        this.keySearchPlaceholder = "dialogSearchHint";
-        this.keySearchText = "dialogSearchText";
-        this.keySearchIcon = "dialogSearchIcon";
-        this.keySearchIconUnscrolled = "dialogSearchIcon";
+        this.keyScrollUp = Theme.key_sheet_scrollUp;
+        this.keyListSelector = Theme.key_listSelector;
+        this.keySearchBackground = Theme.key_dialogSearchBackground;
+        int i2 = Theme.key_windowBackgroundWhite;
+        this.keyInviteMembersBackground = i2;
+        this.keyListViewBackground = i2;
+        this.keyActionBarUnscrolled = i2;
+        this.keyNameText = Theme.key_windowBackgroundWhiteBlackText;
+        int i3 = Theme.key_windowBackgroundWhiteGrayText;
+        this.keyLastSeenText = i3;
+        this.keyLastSeenTextUnscrolled = i3;
+        this.keySearchPlaceholder = Theme.key_dialogSearchHint;
+        this.keySearchText = Theme.key_dialogSearchText;
+        int i4 = Theme.key_dialogSearchIcon;
+        this.keySearchIcon = i4;
+        this.keySearchIconUnscrolled = i4;
         updateColorKeys();
         setDimBehindAlpha(75);
         this.currentAccount = i;
@@ -112,8 +116,8 @@ public class UsersAlertBase extends BottomSheet {
         createContainerView.setWillNotDraw(false);
         this.containerView.setClipChildren(false);
         ViewGroup viewGroup = this.containerView;
-        int i2 = this.backgroundPaddingLeft;
-        viewGroup.setPadding(i2, 0, i2, 0);
+        int i5 = this.backgroundPaddingLeft;
+        viewGroup.setPadding(i5, 0, i5, 0);
         this.frameLayout = new FrameLayout(context);
         SearchField searchField = new SearchField(context);
         this.searchView = searchField;
@@ -161,14 +165,14 @@ public class UsersAlertBase extends BottomSheet {
         this.containerView.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+            public void onScrolled(RecyclerView recyclerView, int i6, int i7) {
                 UsersAlertBase.this.updateLayout();
             }
 
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i3) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i6) {
                 RecyclerListView.Holder holder;
-                if (i3 == 0) {
+                if (i6 == 0) {
                     UsersAlertBase usersAlertBase = UsersAlertBase.this;
                     if (!usersAlertBase.needSnapToTop || usersAlertBase.scrollOffsetY + ((BottomSheet) usersAlertBase).backgroundPaddingTop + AndroidUtilities.dp(13.0f) >= AndroidUtilities.statusBarHeight * 2 || !UsersAlertBase.this.listView.canScrollVertically(1) || (holder = (RecyclerListView.Holder) UsersAlertBase.this.listView.findViewHolderForAdapterPosition(0)) == null || holder.itemView.getTop() <= 0) {
                         return;
@@ -181,7 +185,7 @@ public class UsersAlertBase extends BottomSheet {
         layoutParams.topMargin = AndroidUtilities.dp(58.0f);
         View view = new View(context);
         this.shadow = view;
-        view.setBackgroundColor(Theme.getColor("dialogShadowLine"));
+        view.setBackgroundColor(Theme.getColor(Theme.key_dialogShadowLine));
         this.shadow.setAlpha(0.0f);
         this.shadow.setTag(1);
         this.containerView.addView(this.shadow, layoutParams);
@@ -316,7 +320,7 @@ public class UsersAlertBase extends BottomSheet {
         }
 
         public void lambda$new$0(View view) {
-            this.searchEditText.setText("");
+            this.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
             AndroidUtilities.showKeyboard(this.searchEditText);
         }
 
@@ -618,8 +622,8 @@ public class UsersAlertBase extends BottomSheet {
         private void updateLightStatusBar(boolean z) {
             Boolean bool = this.statusBarOpen;
             if (bool == null || bool.booleanValue() != z) {
-                boolean z2 = AndroidUtilities.computePerceivedBrightness(UsersAlertBase.this.getThemedColor("dialogBackground")) > 0.721f;
-                boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(UsersAlertBase.this.getThemedColor("actionBarDefault"), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
+                boolean z2 = AndroidUtilities.computePerceivedBrightness(UsersAlertBase.this.getThemedColor(Theme.key_dialogBackground)) > 0.721f;
+                boolean z3 = AndroidUtilities.computePerceivedBrightness(Theme.blendOver(UsersAlertBase.this.getThemedColor(Theme.key_actionBarDefault), AndroidUtilities.DARK_STATUS_BAR_OVERLAY)) > 0.721f;
                 Boolean valueOf = Boolean.valueOf(z);
                 this.statusBarOpen = valueOf;
                 if (!valueOf.booleanValue()) {

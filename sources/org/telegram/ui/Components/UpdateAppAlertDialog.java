@@ -59,7 +59,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
             View view = new View(context);
             this.background = view;
             if (this.hasBackground) {
-                view.setBackground(Theme.AdaptiveRipple.filledRect("featuredStickers_addButton", 4.0f));
+                view.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 4.0f));
             }
             addView(this.background, LayoutHelper.createFrame(-1, -1.0f, 0, 16.0f, z ? 0.0f : 16.0f, 16.0f, 16.0f));
             for (int i = 0; i < 2; i++) {
@@ -70,10 +70,10 @@ public class UpdateAppAlertDialog extends BottomSheet {
                 this.textView[i].setEllipsize(TextUtils.TruncateAt.END);
                 this.textView[i].setGravity(17);
                 if (this.hasBackground) {
-                    this.textView[i].setTextColor(Theme.getColor("featuredStickers_buttonText"));
+                    this.textView[i].setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
                     this.textView[i].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 } else {
-                    this.textView[i].setTextColor(Theme.getColor("featuredStickers_addButton"));
+                    this.textView[i].setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton));
                 }
                 this.textView[i].setTextSize(1, 14.0f);
                 this.textView[i].setPadding(0, 0, 0, this.hasBackground ? 0 : AndroidUtilities.dp(13.0f));
@@ -123,7 +123,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         setApplyBottomPadding(false);
         Drawable mutate = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
         this.shadowDrawable = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogBackground"), PorterDuff.Mode.MULTIPLY));
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground), PorterDuff.Mode.MULTIPLY));
         FrameLayout frameLayout = new FrameLayout(context) {
             @Override
             public void setTranslationY(float f) {
@@ -208,7 +208,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         this.scrollView.addView(this.linearLayout, LayoutHelper.createScroll(-1, -2, 51));
         if (this.appUpdate.sticker != null) {
             BackupImageView backupImageView = new BackupImageView(context);
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(this.appUpdate.sticker.thumbs, "windowBackgroundGray", 1.0f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(this.appUpdate.sticker.thumbs, Theme.key_windowBackgroundGray, 1.0f);
             ImageLocation forDocument = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(this.appUpdate.sticker.thumbs, 90), this.appUpdate.sticker);
             if (svgThumb != null) {
                 backupImageView.setImage(ImageLocation.getForDocument(this.appUpdate.sticker), "250_250", svgThumb, 0, "update");
@@ -220,26 +220,28 @@ public class UpdateAppAlertDialog extends BottomSheet {
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 20.0f);
-        textView.setTextColor(Theme.getColor("dialogTextBlack"));
+        int i2 = Theme.key_dialogTextBlack;
+        textView.setTextColor(Theme.getColor(i2));
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         textView.setText(LocaleController.getString("AppUpdate", R.string.AppUpdate));
         this.linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 49, 23, 16, 23, 0));
         TextView textView2 = new TextView(getContext());
-        textView2.setTextColor(Theme.getColor("dialogTextGray3"));
+        textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
         textView2.setTextSize(1, 14.0f);
         textView2.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-        textView2.setLinkTextColor(Theme.getColor("dialogTextLink"));
-        int i2 = R.string.AppUpdateVersionAndSize;
+        int i3 = Theme.key_dialogTextLink;
+        textView2.setLinkTextColor(Theme.getColor(i3));
+        int i4 = R.string.AppUpdateVersionAndSize;
         TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate2 = this.appUpdate;
-        textView2.setText(LocaleController.formatString("AppUpdateVersionAndSize", i2, tLRPC$TL_help_appUpdate2.version, AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate2.document.size)));
+        textView2.setText(LocaleController.formatString("AppUpdateVersionAndSize", i4, tLRPC$TL_help_appUpdate2.version, AndroidUtilities.formatFileSize(tLRPC$TL_help_appUpdate2.document.size)));
         textView2.setGravity(49);
         this.linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 49, 23, 0, 23, 5));
         TextView textView3 = new TextView(getContext());
-        textView3.setTextColor(Theme.getColor("dialogTextBlack"));
+        textView3.setTextColor(Theme.getColor(i2));
         textView3.setTextSize(1, 14.0f);
         textView3.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-        textView3.setLinkTextColor(Theme.getColor("dialogTextLink"));
+        textView3.setLinkTextColor(Theme.getColor(i3));
         if (TextUtils.isEmpty(this.appUpdate.text)) {
             textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString("AppUpdateChangelogEmpty", R.string.AppUpdateChangelogEmpty)));
         } else {
@@ -253,7 +255,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
         layoutParams.bottomMargin = AndroidUtilities.dp(130.0f);
         View view = new View(context);
         this.shadow = view;
-        view.setBackgroundColor(Theme.getColor("dialogShadowLine"));
+        view.setBackgroundColor(Theme.getColor(Theme.key_dialogShadowLine));
         this.shadow.setAlpha(0.0f);
         this.shadow.setTag(1);
         frameLayout.addView(this.shadow, layoutParams);

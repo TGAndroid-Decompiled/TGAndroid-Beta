@@ -14,7 +14,7 @@ public class HashtagSearchCell extends TextView {
         setGravity(16);
         setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
         setTextSize(1, 17.0f);
-        setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+        setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
     }
 
     public void setNeedDivider(boolean z) {

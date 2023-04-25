@@ -3,6 +3,7 @@ package org.telegram.tgnet;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.LinkedList;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public class NativeByteBuffer extends AbstractSerializedData {
@@ -220,7 +221,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
                 FileLog.e("write string null");
                 FileLog.e(new Throwable());
             }
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         }
         try {
             writeByteArray(str.getBytes("UTF-8"));
@@ -505,7 +506,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
                 FileLog.e(e);
             }
             position(position);
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 

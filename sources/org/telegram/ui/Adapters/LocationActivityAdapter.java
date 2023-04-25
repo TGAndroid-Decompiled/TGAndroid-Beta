@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Locale;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.MessageObject;
@@ -157,11 +158,11 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     }
 
     private void updateCell() {
-        String str;
         SendLocationCell sendLocationCell = this.sendLocationCell;
         if (sendLocationCell != null) {
-            str = "";
-            if (this.locationType == 4 || this.customLocation != null) {
+            int i = this.locationType;
+            String str = BuildConfig.APP_CENTER_HASH;
+            if (i == 4 || this.customLocation != null) {
                 if (!TextUtils.isEmpty(this.addressName)) {
                     str = this.addressName;
                 } else {
@@ -189,7 +190,11 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 sendLocationCell.setText(LocaleController.getString("SendLocation", R.string.SendLocation), LocaleController.formatString("AccurateTo", R.string.AccurateTo, LocaleController.formatPluralString("Meters", (int) this.gpsLocation.getAccuracy(), new Object[0])));
                 this.sendLocationCell.setHasLocation(true);
             } else {
-                sendLocationCell.setText(LocaleController.getString("SendLocation", R.string.SendLocation), this.myLocationDenied ? "" : LocaleController.getString("Loading", R.string.Loading));
+                String string = LocaleController.getString("SendLocation", R.string.SendLocation);
+                if (!this.myLocationDenied) {
+                    str = LocaleController.getString("Loading", R.string.Loading);
+                }
+                sendLocationCell.setText(string, str);
                 this.sendLocationCell.setHasLocation(!this.myLocationDenied);
             }
         }
@@ -304,7 +309,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 break;
             case 9:
                 View shadowSectionCell = new ShadowSectionCell(this.mContext);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(getThemedColor("windowBackgroundGray")), Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 combinedDrawable.setFullsize(true);
                 shadowSectionCell.setBackgroundDrawable(combinedDrawable);
                 view = shadowSectionCell;
@@ -358,7 +363,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
             if (itemViewType != 10) {
                 return;
             }
-            viewHolder.itemView.setBackgroundColor(Theme.getColor(this.myLocationDenied ? "dialogBackgroundGray" : "dialogBackground"));
+            viewHolder.itemView.setBackgroundColor(Theme.getColor(this.myLocationDenied ? Theme.key_dialogBackgroundGray : Theme.key_dialogBackground));
         } else {
             SharingLiveLocationCell sharingLiveLocationCell = (SharingLiveLocationCell) viewHolder.itemView;
             if (this.locationType == 6) {
@@ -511,9 +516,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
         return itemViewType == 6 ? (LocationController.getInstance(this.currentAccount).getSharingLocationInfo(this.dialogId) == null && this.gpsLocation == null) ? false : true : itemViewType == 1 || itemViewType == 3 || itemViewType == 7;
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

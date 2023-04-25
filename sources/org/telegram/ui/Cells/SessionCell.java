@@ -18,6 +18,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -113,10 +114,10 @@ public class SessionCell extends FrameLayout {
             }
             this.nameTextView.setText(sb);
             if ((tLRPC$TL_authorization.flags & 1) != 0) {
-                setTag("windowBackgroundWhiteValueText");
+                setTag(Integer.valueOf(Theme.key_windowBackgroundWhiteValueText));
                 stringForMessageListDate = LocaleController.getString("Online", R.string.Online);
             } else {
-                setTag("windowBackgroundWhiteGrayText3");
+                setTag(Integer.valueOf(Theme.key_windowBackgroundWhiteGrayText3));
                 stringForMessageListDate = LocaleController.stringForMessageListDate(tLRPC$TL_authorization.date_active);
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -144,11 +145,12 @@ public class SessionCell extends FrameLayout {
                 str = UserObject.getFirstName(user);
                 this.imageView.setForUserOrChat(user, this.avatarDrawable);
             } else {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
-            setTag("windowBackgroundWhiteGrayText3");
+            int i = Theme.key_windowBackgroundWhiteGrayText3;
+            setTag(Integer.valueOf(i));
             this.onlineTextView.setText(LocaleController.stringForMessageListDate(tLRPC$TL_webAuthorization.date_active));
-            this.onlineTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText3"));
+            this.onlineTextView.setTextColor(Theme.getColor(i));
             StringBuilder sb3 = new StringBuilder();
             if (tLRPC$TL_webAuthorization.ip.length() != 0) {
                 sb3.append(tLRPC$TL_webAuthorization.ip);
@@ -187,52 +189,65 @@ public class SessionCell extends FrameLayout {
 
     public static Drawable createDrawable(TLRPC$TL_authorization tLRPC$TL_authorization) {
         int i;
+        int i2;
+        int i3;
         String lowerCase = tLRPC$TL_authorization.platform.toLowerCase();
         if (lowerCase.isEmpty()) {
             lowerCase = tLRPC$TL_authorization.system_version.toLowerCase();
         }
         String lowerCase2 = tLRPC$TL_authorization.device_model.toLowerCase();
-        String str = "avatar_background2Cyan";
-        String str2 = "avatar_backgroundCyan";
         if (lowerCase2.contains("safari")) {
             i = R.drawable.device_web_safari;
+            i2 = Theme.key_avatar_backgroundPink;
+            i3 = Theme.key_avatar_background2Pink;
         } else if (lowerCase2.contains("edge")) {
             i = R.drawable.device_web_edge;
+            i2 = Theme.key_avatar_backgroundPink;
+            i3 = Theme.key_avatar_background2Pink;
         } else if (lowerCase2.contains("chrome")) {
             i = R.drawable.device_web_chrome;
+            i2 = Theme.key_avatar_backgroundPink;
+            i3 = Theme.key_avatar_background2Pink;
         } else if (lowerCase2.contains("opera")) {
             i = R.drawable.device_web_opera;
+            i2 = Theme.key_avatar_backgroundPink;
+            i3 = Theme.key_avatar_background2Pink;
         } else if (lowerCase2.contains("firefox")) {
             i = R.drawable.device_web_firefox;
+            i2 = Theme.key_avatar_backgroundPink;
+            i3 = Theme.key_avatar_background2Pink;
         } else if (lowerCase2.contains("vivaldi")) {
             i = R.drawable.device_web_other;
+            i2 = Theme.key_avatar_backgroundPink;
+            i3 = Theme.key_avatar_background2Pink;
+        } else if (lowerCase.contains("ios")) {
+            i = lowerCase2.contains("ipad") ? R.drawable.device_tablet_ios : R.drawable.device_phone_ios;
+            i2 = Theme.key_avatar_backgroundBlue;
+            i3 = Theme.key_avatar_background2Blue;
+        } else if (lowerCase.contains("windows")) {
+            i = R.drawable.device_desktop_win;
+            i2 = Theme.key_avatar_backgroundCyan;
+            i3 = Theme.key_avatar_background2Cyan;
+        } else if (lowerCase.contains("macos")) {
+            i = R.drawable.device_desktop_osx;
+            i2 = Theme.key_avatar_backgroundCyan;
+            i3 = Theme.key_avatar_background2Cyan;
+        } else if (lowerCase.contains("android")) {
+            i = lowerCase2.contains("tab") ? R.drawable.device_tablet_android : R.drawable.device_phone_android;
+            i2 = Theme.key_avatar_backgroundGreen;
+            i3 = Theme.key_avatar_background2Green;
+        } else if (tLRPC$TL_authorization.app_name.toLowerCase().contains("desktop")) {
+            i = R.drawable.device_desktop_other;
+            i2 = Theme.key_avatar_backgroundCyan;
+            i3 = Theme.key_avatar_background2Cyan;
         } else {
-            if (lowerCase.contains("ios")) {
-                i = lowerCase2.contains("ipad") ? R.drawable.device_tablet_ios : R.drawable.device_phone_ios;
-                str2 = "avatar_backgroundBlue";
-                str = "avatar_background2Blue";
-            } else if (lowerCase.contains("windows")) {
-                i = R.drawable.device_desktop_win;
-            } else if (lowerCase.contains("macos")) {
-                i = R.drawable.device_desktop_osx;
-            } else if (lowerCase.contains("android")) {
-                i = lowerCase2.contains("tab") ? R.drawable.device_tablet_android : R.drawable.device_phone_android;
-                str2 = "avatar_backgroundGreen";
-                str = "avatar_background2Green";
-            } else if (tLRPC$TL_authorization.app_name.toLowerCase().contains("desktop")) {
-                i = R.drawable.device_desktop_other;
-            } else {
-                i = R.drawable.device_web_other;
-            }
-            Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("avatar_text"), PorterDuff.Mode.SRC_IN));
-            return new CombinedDrawable(new CircleGradientDrawable(AndroidUtilities.dp(42.0f), Theme.getColor(str2), Theme.getColor(str)), mutate);
+            i = R.drawable.device_web_other;
+            i2 = Theme.key_avatar_backgroundPink;
+            i3 = Theme.key_avatar_background2Pink;
         }
-        str = "avatar_background2Pink";
-        str2 = "avatar_backgroundPink";
-        Drawable mutate2 = ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate();
-        mutate2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("avatar_text"), PorterDuff.Mode.SRC_IN));
-        return new CombinedDrawable(new CircleGradientDrawable(AndroidUtilities.dp(42.0f), Theme.getColor(str2), Theme.getColor(str)), mutate2);
+        Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, i).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_avatar_text), PorterDuff.Mode.SRC_IN));
+        return new CombinedDrawable(new CircleGradientDrawable(AndroidUtilities.dp(42.0f), Theme.getColor(i2), Theme.getColor(i3)), mutate);
     }
 
     public static class CircleGradientDrawable extends Drawable {
@@ -320,8 +335,8 @@ public class SessionCell extends FrameLayout {
         this.globalGradient = flickerLoadingView;
         this.showStub = true;
         Drawable mutate = ContextCompat.getDrawable(ApplicationLoader.applicationContext, AndroidUtilities.isTablet() ? R.drawable.device_tablet_android : R.drawable.device_phone_android).mutate();
-        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor("avatar_text"), PorterDuff.Mode.SRC_IN));
-        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), Theme.getColor("avatar_backgroundGreen")), mutate);
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_avatar_text), PorterDuff.Mode.SRC_IN));
+        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(42.0f), Theme.getColor(Theme.key_avatar_backgroundGreen)), mutate);
         BackupImageView backupImageView = this.placeholderImageView;
         if (backupImageView != null) {
             backupImageView.setImageDrawable(combinedDrawable);

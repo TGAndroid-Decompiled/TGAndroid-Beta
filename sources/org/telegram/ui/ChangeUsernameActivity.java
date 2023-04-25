@@ -40,6 +40,7 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -143,7 +144,7 @@ public class ChangeUsernameActivity extends BaseFragment {
 
     public ChangeUsernameActivity(Bundle bundle) {
         super(bundle);
-        this.username = "";
+        this.username = BuildConfig.APP_CENTER_HASH;
         this.notEditableUsernames = new ArrayList<>();
         this.usernames = new ArrayList<>();
         this.loadingUsernames = new ArrayList<>();
@@ -205,7 +206,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 this.username = str;
             }
             if (this.username == null) {
-                this.username = "";
+                this.username = BuildConfig.APP_CENTER_HASH;
             }
             this.notEditableUsernames.clear();
             this.usernames.clear();
@@ -238,19 +239,19 @@ public class ChangeUsernameActivity extends BaseFragment {
                     }
                 }
                 if (i4 < i5) {
-                    this.backgroundPaint.setColor(Theme.getColor("windowBackgroundWhite", this.resourcesProvider));
+                    this.backgroundPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhite, this.resourcesProvider));
                     canvas.drawRect(0.0f, i4, getWidth(), i5, this.backgroundPaint);
                 }
                 super.dispatchDraw(canvas);
             }
         };
-        this.fragmentView.setBackgroundColor(getThemedColor("windowBackgroundGray"));
+        this.fragmentView.setBackgroundColor(getThemedColor(Theme.key_windowBackgroundGray));
         this.listView.setLayoutManager(new LinearLayoutManager(context));
         RecyclerListView recyclerListView = this.listView;
         Adapter adapter = new Adapter();
         this.adapter = adapter;
         recyclerListView.setAdapter(adapter);
-        this.listView.setSelectorDrawableColor(getThemedColor("listSelectorSDK21"));
+        this.listView.setSelectorDrawableColor(getThemedColor(Theme.key_listSelector));
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new TouchHelperCallback());
         this.itemTouchHelper = itemTouchHelper;
         itemTouchHelper.attachToRecyclerView(this.listView);
@@ -435,7 +436,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             if (i == 0) {
                 HeaderCell headerCell = new HeaderCell(ChangeUsernameActivity.this.getContext());
-                headerCell.setBackgroundColor(ChangeUsernameActivity.this.getThemedColor("windowBackgroundWhite"));
+                headerCell.setBackgroundColor(ChangeUsernameActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
                 return new RecyclerListView.Holder(headerCell);
             } else if (i == 1) {
                 ChangeUsernameActivity changeUsernameActivity = ChangeUsernameActivity.this;
@@ -477,7 +478,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 headerCell.setText(string);
             } else if (itemViewType == 2) {
                 ((TextInfoPrivacyCell) viewHolder.itemView).setText(LocaleController.getString(ChangeUsernameActivity.this.botId != 0 ? R.string.BotUsernamesHelp : R.string.UsernamesProfileHelp));
-                ((TextInfoPrivacyCell) viewHolder.itemView).setBackgroundDrawable(Theme.getThemedDrawable(ChangeUsernameActivity.this.getContext(), R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+                ((TextInfoPrivacyCell) viewHolder.itemView).setBackgroundDrawable(Theme.getThemedDrawable(ChangeUsernameActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
             } else if (itemViewType == 3) {
                 ChangeUsernameActivity.this.ignoreCheck = true;
                 ChangeUsernameActivity.this.inputCell = (InputCell) viewHolder.itemView.field.setText(ChangeUsernameActivity.this.username);
@@ -612,17 +613,23 @@ public class ChangeUsernameActivity extends BaseFragment {
             super(context);
             ChangeUsernameActivity.this.helpCell = this;
             setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(17.0f));
-            setBackgroundDrawable(Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, "windowBackgroundGrayShadow"));
+            setBackgroundDrawable(Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
             setClipChildren(false);
             LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
             this.text1View = linksTextView;
             linksTextView.setTextSize(1, 15.0f);
-            this.text1View.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText8"));
+            LinkSpanDrawable.LinksTextView linksTextView2 = this.text1View;
+            int i = Theme.key_windowBackgroundWhiteGrayText8;
+            linksTextView2.setTextColor(Theme.getColor(i));
             this.text1View.setGravity(LocaleController.isRTL ? 5 : 3);
-            this.text1View.setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText"));
-            this.text1View.setHighlightColor(Theme.getColor("windowBackgroundWhiteLinkSelection"));
+            LinkSpanDrawable.LinksTextView linksTextView3 = this.text1View;
+            int i2 = Theme.key_windowBackgroundWhiteLinkText;
+            linksTextView3.setLinkTextColor(Theme.getColor(i2));
+            LinkSpanDrawable.LinksTextView linksTextView4 = this.text1View;
+            int i3 = Theme.key_windowBackgroundWhiteLinkSelection;
+            linksTextView4.setHighlightColor(Theme.getColor(i3));
             this.text1View.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
-            LinkSpanDrawable.LinksTextView linksTextView2 = ChangeUsernameActivity.this.statusTextView = new LinkSpanDrawable.LinksTextView(context, ChangeUsernameActivity.this) {
+            LinkSpanDrawable.LinksTextView linksTextView5 = ChangeUsernameActivity.this.statusTextView = new LinkSpanDrawable.LinksTextView(context, ChangeUsernameActivity.this) {
                 @Override
                 public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
                     if (charSequence != 0) {
@@ -630,10 +637,10 @@ public class ChangeUsernameActivity extends BaseFragment {
                         int indexOf = charSequence.toString().indexOf(10);
                         if (indexOf >= 0) {
                             charSequence.replace(indexOf, indexOf + 1, " ");
-                            charSequence.setSpan(new ForegroundColorSpan(ChangeUsernameActivity.this.getThemedColor("text_RedRegular")), 0, indexOf, 33);
+                            charSequence.setSpan(new ForegroundColorSpan(ChangeUsernameActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, indexOf, 33);
                         }
                         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
-                        for (int i = 0; i < typefaceSpanArr.length; i++) {
+                        for (int i4 = 0; i4 < typefaceSpanArr.length; i4++) {
                             charSequence.setSpan(new ClickableSpan() {
                                 @Override
                                 public void onClick(View view) {
@@ -646,19 +653,19 @@ public class ChangeUsernameActivity extends BaseFragment {
                                     super.updateDrawState(textPaint);
                                     textPaint.setUnderlineText(false);
                                 }
-                            }, charSequence.getSpanStart(typefaceSpanArr[i]), charSequence.getSpanEnd(typefaceSpanArr[i]), 33);
-                            charSequence.removeSpan(typefaceSpanArr[i]);
+                            }, charSequence.getSpanStart(typefaceSpanArr[i4]), charSequence.getSpanEnd(typefaceSpanArr[i4]), 33);
+                            charSequence.removeSpan(typefaceSpanArr[i4]);
                         }
                     }
                     super.setText(charSequence, bufferType);
                 }
             };
-            this.text2View = linksTextView2;
-            linksTextView2.setTextSize(1, 15.0f);
-            this.text2View.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText8"));
+            this.text2View = linksTextView5;
+            linksTextView5.setTextSize(1, 15.0f);
+            this.text2View.setTextColor(Theme.getColor(i));
             this.text2View.setGravity(LocaleController.isRTL ? 5 : 3);
-            this.text2View.setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText"));
-            this.text2View.setHighlightColor(Theme.getColor("windowBackgroundWhiteLinkSelection"));
+            this.text2View.setLinkTextColor(Theme.getColor(i2));
+            this.text2View.setHighlightColor(Theme.getColor(i3));
             this.text2View.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
             addView(this.text1View, LayoutHelper.createFrame(-1, -2, 48));
             addView(this.text2View, LayoutHelper.createFrame(-1, -2, 48));
@@ -668,8 +675,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                 int indexOf = string.indexOf(42);
                 int lastIndexOf = string.lastIndexOf(42);
                 if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                    spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
-                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
+                    spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
                     spannableStringBuilder.setSpan(new URLSpanNoUnderline("https://fragment.com"), indexOf, lastIndexOf - 1, 33);
                 }
                 this.text1View.setText(spannableStringBuilder);
@@ -732,8 +739,10 @@ public class ChangeUsernameActivity extends BaseFragment {
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
             this.field = editTextBoldCursor;
             editTextBoldCursor.setTextSize(1, 17.0f);
-            this.field.setHintTextColor(Theme.getColor("windowBackgroundWhiteHintText"));
-            this.field.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.field.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
+            EditTextBoldCursor editTextBoldCursor2 = this.field;
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            editTextBoldCursor2.setTextColor(Theme.getColor(i));
             this.field.setBackgroundDrawable(null);
             this.field.setMaxLines(1);
             this.field.setLines(1);
@@ -743,30 +752,30 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.field.setInputType(180224);
             this.field.setImeOptions(6);
             this.field.setHint(LocaleController.getString("UsernameLinkPlaceholder", R.string.UsernameLinkPlaceholder));
-            this.field.setCursorColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.field.setCursorColor(Theme.getColor(i));
             this.field.setCursorSize(AndroidUtilities.dp(19.0f));
             this.field.setCursorWidth(1.5f);
             this.field.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
-                public final boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                public final boolean onEditorAction(TextView textView, int i2, KeyEvent keyEvent) {
                     boolean lambda$new$0;
-                    lambda$new$0 = ChangeUsernameActivity.InputCell.this.lambda$new$0(textView, i, keyEvent);
+                    lambda$new$0 = ChangeUsernameActivity.InputCell.this.lambda$new$0(textView, i2, keyEvent);
                     return lambda$new$0;
                 }
             });
             this.field.setText(ChangeUsernameActivity.this.username);
             this.field.addTextChangedListener(new TextWatcher(ChangeUsernameActivity.this) {
                 @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     String str = ChangeUsernameActivity.this.username;
-                    ChangeUsernameActivity.this.username = charSequence == null ? "" : charSequence.toString();
+                    ChangeUsernameActivity.this.username = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
                     updateUsernameCell(str);
                 }
 
                 @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+                public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     String str = ChangeUsernameActivity.this.username;
-                    ChangeUsernameActivity.this.username = charSequence == null ? "" : charSequence.toString();
+                    ChangeUsernameActivity.this.username = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
                     updateUsernameCell(str);
                     if (ChangeUsernameActivity.this.ignoreCheck) {
                         return;
@@ -811,13 +820,13 @@ public class ChangeUsernameActivity extends BaseFragment {
             TextView textView2 = this.tme;
             textView2.setText(ChangeUsernameActivity.this.getMessagesController().linkPrefix + "/");
             this.tme.setTextSize(1, 17.0f);
-            this.tme.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            this.tme.setTextColor(Theme.getColor(i));
             this.tme.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
             this.tme.setTranslationY(-AndroidUtilities.dp(3.0f));
             linearLayout.addView(this.tme, LayoutHelper.createLinear(-2, -2, 0.0f, 16, 21, 15, 0, 15));
             linearLayout.addView(this.field, LayoutHelper.createLinear(-2, -2, 1.0f, 16, 0, 15, 21, 15));
             addView(linearLayout, LayoutHelper.createFrame(-1, -1, 48));
-            setBackgroundColor(ChangeUsernameActivity.this.getThemedColor("windowBackgroundWhite"));
+            setBackgroundColor(ChangeUsernameActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
             if (ChangeUsernameActivity.this.botId != 0) {
                 this.field.setAlpha(0.6f);
                 this.tme.setAlpha(0.6f);
@@ -869,15 +878,15 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.useDividerAlpha = new AnimatedFloat(this, 300L, CubicBezierInterpolator.DEFAULT);
             this.activeFloat = new AnimatedFloat(this, 400L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.resourcesProvider = resourcesProvider;
-            setBackgroundColor(Theme.getColor("windowBackgroundWhite", resourcesProvider));
+            setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
             SimpleTextView simpleTextView = new SimpleTextView(getContext());
             this.usernameView = simpleTextView;
             simpleTextView.setTextSize(16);
-            this.usernameView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
+            this.usernameView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
             this.usernameView.setEllipsizeByGradient(true);
             addView(this.usernameView, LayoutHelper.createFrame(-1, -2.0f, 48, 70.0f, 9.0f, 0.0f, 50.0f));
             this.loadingView = new ImageView(getContext());
-            CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(1.35f), Theme.getColor("windowBackgroundWhiteBlueText", resourcesProvider));
+            CircularProgressDrawable circularProgressDrawable = new CircularProgressDrawable(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(1.35f), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, resourcesProvider));
             this.loadingDrawable = circularProgressDrawable;
             this.loadingView.setImageDrawable(circularProgressDrawable);
             this.loadingView.setAlpha(0.0f);
@@ -886,7 +895,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             addView(this.loadingView, LayoutHelper.createFrame(14, 14.0f, 48, 70.0f, 35.0f, 0.0f, 0.0f));
             AnimatedTextView animatedTextView = new AnimatedTextView(getContext(), false, true, true);
             this.activeView = animatedTextView;
-            animatedTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText2", resourcesProvider));
+            animatedTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
             this.activeView.setAnimationProperties(0.4f, 0L, 120L, CubicBezierInterpolator.EASE_OUT);
             this.activeView.setTextSize(AndroidUtilities.dp(13.0f));
             addView(this.activeView, LayoutHelper.createFrame(-1, -2.0f, 48, 70.0f, 23.0f, 0.0f, 0.0f));
@@ -894,8 +903,8 @@ public class ChangeUsernameActivity extends BaseFragment {
             this.linkDrawables = drawableArr;
             drawableArr[0].setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
             this.linkDrawables[1].setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
-            ChangeUsernameActivity.linkBackgroundActive.setColor(Theme.getColor("featuredStickers_addButton", resourcesProvider));
-            ChangeUsernameActivity.linkBackgroundInactive.setColor(Theme.getColor("chats_unreadCounterMuted", resourcesProvider));
+            ChangeUsernameActivity.linkBackgroundActive.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
+            ChangeUsernameActivity.linkBackgroundInactive.setColor(Theme.getColor(Theme.key_chats_unreadCounterMuted, resourcesProvider));
         }
 
         public void setLoading(final boolean z) {
@@ -995,7 +1004,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             if (TextUtils.isEmpty(str)) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("@");
                 SpannableString spannableString = new SpannableString(LocaleController.getString("UsernameLinkPlaceholder", R.string.UsernameLinkPlaceholder));
-                spannableString.setSpan(new ForegroundColorSpan(Theme.getColor("windowBackgroundWhiteHintText", this.resourcesProvider)), 0, spannableString.length(), 33);
+                spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_windowBackgroundWhiteHintText, this.resourcesProvider)), 0, spannableString.length(), 33);
                 spannableStringBuilder.append((CharSequence) spannableString);
                 this.usernameView.setText(spannableStringBuilder);
                 return;
@@ -1028,14 +1037,14 @@ public class ChangeUsernameActivity extends BaseFragment {
                 return;
             }
             this.activeViewTextColorT = z ? 1.0f : 0.0f;
-            int blendARGB = ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteGrayText2", this.resourcesProvider), Theme.getColor("windowBackgroundWhiteBlueText", this.resourcesProvider), this.activeViewTextColorT);
+            int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, this.resourcesProvider), this.activeViewTextColorT);
             this.loadingDrawable.setColor(blendARGB);
             this.activeView.setTextColor(blendARGB);
         }
 
         public void lambda$animateValueTextColor$1(ValueAnimator valueAnimator) {
             this.activeViewTextColorT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-            int blendARGB = ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteGrayText2", this.resourcesProvider), Theme.getColor("windowBackgroundWhiteBlueText", this.resourcesProvider), this.activeViewTextColorT);
+            int blendARGB = ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, this.resourcesProvider), Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, this.resourcesProvider), this.activeViewTextColorT);
             this.loadingDrawable.setColor(blendARGB);
             this.activeView.setTextColor(blendARGB);
         }
@@ -1077,7 +1086,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 canvas.drawRect(AndroidUtilities.dp(70.0f), getHeight() - 1, getWidth(), getHeight(), Theme.dividerPaint);
                 Theme.dividerPaint.setAlpha(alpha);
             }
-            ChangeUsernameActivity.dragPaint.setColor(Theme.getColor("stickers_menu"));
+            ChangeUsernameActivity.dragPaint.setColor(Theme.getColor(Theme.key_stickers_menu));
             ChangeUsernameActivity.dragPaint.setAlpha((int) (ChangeUsernameActivity.dragPaint.getAlpha() * f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(getWidth() - AndroidUtilities.dp(37.0f), AndroidUtilities.dp(25.0f), getWidth() - AndroidUtilities.dp(21.0f), AndroidUtilities.dp(27.0f));
@@ -1182,8 +1191,10 @@ public class ChangeUsernameActivity extends BaseFragment {
                 LinkSpanDrawable.LinksTextView linksTextView2 = this.statusTextView;
                 if (linksTextView2 != null) {
                     linksTextView2.setText(LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
-                    this.statusTextView.setTag("text_RedRegular");
-                    this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
+                    LinkSpanDrawable.LinksTextView linksTextView3 = this.statusTextView;
+                    int i = Theme.key_text_RedRegular;
+                    linksTextView3.setTag(Integer.valueOf(i));
+                    this.statusTextView.setTextColor(Theme.getColor(i));
                     UsernameHelpCell usernameHelpCell2 = this.helpCell;
                     if (usernameHelpCell2 != null) {
                         usernameHelpCell2.update();
@@ -1191,17 +1202,19 @@ public class ChangeUsernameActivity extends BaseFragment {
                 }
                 return false;
             }
-            for (int i = 0; i < str.length(); i++) {
-                char charAt = str.charAt(i);
-                if (i == 0 && charAt >= '0' && charAt <= '9') {
+            for (int i2 = 0; i2 < str.length(); i2++) {
+                char charAt = str.charAt(i2);
+                if (i2 == 0 && charAt >= '0' && charAt <= '9') {
                     if (z) {
                         AlertsCreator.showSimpleAlert(this, LocaleController.getString("UsernameInvalidStartNumber", R.string.UsernameInvalidStartNumber));
                     } else {
-                        LinkSpanDrawable.LinksTextView linksTextView3 = this.statusTextView;
-                        if (linksTextView3 != null) {
-                            linksTextView3.setText(LocaleController.getString("UsernameInvalidStartNumber", R.string.UsernameInvalidStartNumber));
-                            this.statusTextView.setTag("text_RedRegular");
-                            this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
+                        LinkSpanDrawable.LinksTextView linksTextView4 = this.statusTextView;
+                        if (linksTextView4 != null) {
+                            linksTextView4.setText(LocaleController.getString("UsernameInvalidStartNumber", R.string.UsernameInvalidStartNumber));
+                            LinkSpanDrawable.LinksTextView linksTextView5 = this.statusTextView;
+                            int i3 = Theme.key_text_RedRegular;
+                            linksTextView5.setTag(Integer.valueOf(i3));
+                            this.statusTextView.setTextColor(Theme.getColor(i3));
                             UsernameHelpCell usernameHelpCell3 = this.helpCell;
                             if (usernameHelpCell3 != null) {
                                 usernameHelpCell3.update();
@@ -1213,11 +1226,13 @@ public class ChangeUsernameActivity extends BaseFragment {
                     if (z) {
                         AlertsCreator.showSimpleAlert(this, LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
                     } else {
-                        LinkSpanDrawable.LinksTextView linksTextView4 = this.statusTextView;
-                        if (linksTextView4 != null) {
-                            linksTextView4.setText(LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
-                            this.statusTextView.setTag("text_RedRegular");
-                            this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
+                        LinkSpanDrawable.LinksTextView linksTextView6 = this.statusTextView;
+                        if (linksTextView6 != null) {
+                            linksTextView6.setText(LocaleController.getString("UsernameInvalid", R.string.UsernameInvalid));
+                            LinkSpanDrawable.LinksTextView linksTextView7 = this.statusTextView;
+                            int i4 = Theme.key_text_RedRegular;
+                            linksTextView7.setTag(Integer.valueOf(i4));
+                            this.statusTextView.setTextColor(Theme.getColor(i4));
                             UsernameHelpCell usernameHelpCell4 = this.helpCell;
                             if (usernameHelpCell4 != null) {
                                 usernameHelpCell4.update();
@@ -1232,11 +1247,13 @@ public class ChangeUsernameActivity extends BaseFragment {
             if (z) {
                 AlertsCreator.showSimpleAlert(this, LocaleController.getString("UsernameInvalidShort", R.string.UsernameInvalidShort));
             } else {
-                LinkSpanDrawable.LinksTextView linksTextView5 = this.statusTextView;
-                if (linksTextView5 != null) {
-                    linksTextView5.setText(LocaleController.getString("UsernameInvalidShort", R.string.UsernameInvalidShort));
-                    this.statusTextView.setTag("text_RedRegular");
-                    this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
+                LinkSpanDrawable.LinksTextView linksTextView8 = this.statusTextView;
+                if (linksTextView8 != null) {
+                    linksTextView8.setText(LocaleController.getString("UsernameInvalidShort", R.string.UsernameInvalidShort));
+                    LinkSpanDrawable.LinksTextView linksTextView9 = this.statusTextView;
+                    int i5 = Theme.key_text_RedRegular;
+                    linksTextView9.setTag(Integer.valueOf(i5));
+                    this.statusTextView.setTextColor(Theme.getColor(i5));
                     UsernameHelpCell usernameHelpCell5 = this.helpCell;
                     if (usernameHelpCell5 != null) {
                         usernameHelpCell5.update();
@@ -1248,11 +1265,13 @@ public class ChangeUsernameActivity extends BaseFragment {
             if (z) {
                 AlertsCreator.showSimpleAlert(this, LocaleController.getString("UsernameInvalidLong", R.string.UsernameInvalidLong));
             } else {
-                LinkSpanDrawable.LinksTextView linksTextView6 = this.statusTextView;
-                if (linksTextView6 != null) {
-                    linksTextView6.setText(LocaleController.getString("UsernameInvalidLong", R.string.UsernameInvalidLong));
-                    this.statusTextView.setTag("text_RedRegular");
-                    this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
+                LinkSpanDrawable.LinksTextView linksTextView10 = this.statusTextView;
+                if (linksTextView10 != null) {
+                    linksTextView10.setText(LocaleController.getString("UsernameInvalidLong", R.string.UsernameInvalidLong));
+                    LinkSpanDrawable.LinksTextView linksTextView11 = this.statusTextView;
+                    int i6 = Theme.key_text_RedRegular;
+                    linksTextView11.setTag(Integer.valueOf(i6));
+                    this.statusTextView.setTextColor(Theme.getColor(i6));
                     UsernameHelpCell usernameHelpCell6 = this.helpCell;
                     if (usernameHelpCell6 != null) {
                         usernameHelpCell6.update();
@@ -1264,14 +1283,16 @@ public class ChangeUsernameActivity extends BaseFragment {
             if (!z) {
                 String str2 = getUser().username;
                 if (str2 == null) {
-                    str2 = "";
+                    str2 = BuildConfig.APP_CENTER_HASH;
                 }
                 if (str.equals(str2)) {
-                    LinkSpanDrawable.LinksTextView linksTextView7 = this.statusTextView;
-                    if (linksTextView7 != null) {
-                        linksTextView7.setText(LocaleController.formatString("UsernameAvailable", R.string.UsernameAvailable, str));
-                        this.statusTextView.setTag("windowBackgroundWhiteGreenText");
-                        this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGreenText"));
+                    LinkSpanDrawable.LinksTextView linksTextView12 = this.statusTextView;
+                    if (linksTextView12 != null) {
+                        linksTextView12.setText(LocaleController.formatString("UsernameAvailable", R.string.UsernameAvailable, str));
+                        LinkSpanDrawable.LinksTextView linksTextView13 = this.statusTextView;
+                        int i7 = Theme.key_windowBackgroundWhiteGreenText;
+                        linksTextView13.setTag(Integer.valueOf(i7));
+                        this.statusTextView.setTextColor(Theme.getColor(i7));
                         UsernameHelpCell usernameHelpCell7 = this.helpCell;
                         if (usernameHelpCell7 != null) {
                             usernameHelpCell7.update();
@@ -1279,11 +1300,13 @@ public class ChangeUsernameActivity extends BaseFragment {
                     }
                     return true;
                 }
-                LinkSpanDrawable.LinksTextView linksTextView8 = this.statusTextView;
-                if (linksTextView8 != null) {
-                    linksTextView8.setText(LocaleController.getString("UsernameChecking", R.string.UsernameChecking));
-                    this.statusTextView.setTag("windowBackgroundWhiteGrayText8");
-                    this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText8"));
+                LinkSpanDrawable.LinksTextView linksTextView14 = this.statusTextView;
+                if (linksTextView14 != null) {
+                    linksTextView14.setText(LocaleController.getString("UsernameChecking", R.string.UsernameChecking));
+                    LinkSpanDrawable.LinksTextView linksTextView15 = this.statusTextView;
+                    int i8 = Theme.key_windowBackgroundWhiteGrayText8;
+                    linksTextView15.setTag(Integer.valueOf(i8));
+                    this.statusTextView.setTextColor(Theme.getColor(i8));
                     UsernameHelpCell usernameHelpCell8 = this.helpCell;
                     if (usernameHelpCell8 != null) {
                         usernameHelpCell8.update();
@@ -1333,8 +1356,10 @@ public class ChangeUsernameActivity extends BaseFragment {
             LinkSpanDrawable.LinksTextView linksTextView = this.statusTextView;
             if (linksTextView != null) {
                 linksTextView.setText(LocaleController.formatString("UsernameAvailable", R.string.UsernameAvailable, str));
-                this.statusTextView.setTag("windowBackgroundWhiteGreenText");
-                this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGreenText"));
+                LinkSpanDrawable.LinksTextView linksTextView2 = this.statusTextView;
+                int i = Theme.key_windowBackgroundWhiteGreenText;
+                linksTextView2.setTag(Integer.valueOf(i));
+                this.statusTextView.setTextColor(Theme.getColor(i));
                 UsernameHelpCell usernameHelpCell = this.helpCell;
                 if (usernameHelpCell != null) {
                     usernameHelpCell.update();
@@ -1343,20 +1368,26 @@ public class ChangeUsernameActivity extends BaseFragment {
         } else if (this.statusTextView != null) {
             if (tLRPC$TL_error != null && "USERNAME_INVALID".equals(tLRPC$TL_error.text) && tLRPC$TL_account_checkUsername.username.length() == 4) {
                 this.statusTextView.setText(LocaleController.getString("UsernameInvalidShort", R.string.UsernameInvalidShort));
-                this.statusTextView.setTag("text_RedRegular");
-                this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
+                LinkSpanDrawable.LinksTextView linksTextView3 = this.statusTextView;
+                int i2 = Theme.key_text_RedRegular;
+                linksTextView3.setTag(Integer.valueOf(i2));
+                this.statusTextView.setTextColor(Theme.getColor(i2));
             } else if (tLRPC$TL_error != null && "USERNAME_PURCHASE_AVAILABLE".equals(tLRPC$TL_error.text)) {
                 if (tLRPC$TL_account_checkUsername.username.length() == 4) {
                     this.statusTextView.setText(LocaleController.getString("UsernameInvalidShortPurchase", R.string.UsernameInvalidShortPurchase));
                 } else {
                     this.statusTextView.setText(LocaleController.getString("UsernameInUsePurchase", R.string.UsernameInUsePurchase));
                 }
-                this.statusTextView.setTag("windowBackgroundWhiteGrayText8");
-                this.statusTextView.setTextColor(Theme.getColor("windowBackgroundWhiteGrayText8"));
+                LinkSpanDrawable.LinksTextView linksTextView4 = this.statusTextView;
+                int i3 = Theme.key_windowBackgroundWhiteGrayText8;
+                linksTextView4.setTag(Integer.valueOf(i3));
+                this.statusTextView.setTextColor(Theme.getColor(i3));
             } else {
                 this.statusTextView.setText(LocaleController.getString("UsernameInUse", R.string.UsernameInUse));
-                this.statusTextView.setTag("text_RedRegular");
-                this.statusTextView.setTextColor(Theme.getColor("text_RedRegular"));
+                LinkSpanDrawable.LinksTextView linksTextView5 = this.statusTextView;
+                int i4 = Theme.key_text_RedRegular;
+                linksTextView5.setTag(Integer.valueOf(i4));
+                this.statusTextView.setTextColor(Theme.getColor(i4));
             }
             UsernameHelpCell usernameHelpCell2 = this.helpCell;
             if (usernameHelpCell2 != null) {
@@ -1383,7 +1414,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
         String publicUsername = UserObject.getPublicUsername(user);
         if (publicUsername == null) {
-            publicUsername = "";
+            publicUsername = BuildConfig.APP_CENTER_HASH;
         }
         if (publicUsername.equals(this.username)) {
             finishFragment();
@@ -1517,11 +1548,11 @@ public class ChangeUsernameActivity extends BaseFragment {
     @Override
     public ArrayList<ThemeDescription> getThemeDescriptions() {
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "windowBackgroundWhite"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "actionBarDefault"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, "actionBarDefaultIcon"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, "actionBarDefaultTitle"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "actionBarDefaultSelector"));
+        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_windowBackgroundWhite));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, Theme.key_actionBarDefault));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, Theme.key_actionBarDefaultIcon));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, Theme.key_actionBarDefaultTitle));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_actionBarDefaultSelector));
         return arrayList;
     }
 
@@ -1532,7 +1563,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         if (iNavigationLayout == null || iNavigationLayout.getDrawerLayoutContainer() == null) {
             return;
         }
-        this.parentLayout.getDrawerLayoutContainer().setBehindKeyboardColor(getThemedColor("windowBackgroundGray"));
+        this.parentLayout.getDrawerLayoutContainer().setBehindKeyboardColor(getThemedColor(Theme.key_windowBackgroundGray));
     }
 
     @Override
@@ -1542,6 +1573,6 @@ public class ChangeUsernameActivity extends BaseFragment {
         if (iNavigationLayout == null || iNavigationLayout.getDrawerLayoutContainer() == null) {
             return;
         }
-        this.parentLayout.getDrawerLayoutContainer().setBehindKeyboardColor(Theme.getColor("windowBackgroundWhite"));
+        this.parentLayout.getDrawerLayoutContainer().setBehindKeyboardColor(Theme.getColor(Theme.key_windowBackgroundWhite));
     }
 }

@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
@@ -143,7 +144,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             baseFragment.showDialog(create);
             TextView textView = (TextView) create.getButton(-1);
             if (textView != null) {
-                textView.setTextColor(Theme.getColor("text_RedBold"));
+                textView.setTextColor(Theme.getColor(Theme.key_text_RedBold));
                 return;
             }
             return;
@@ -201,8 +202,8 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         super(baseFragment, false, false);
         TLRPC$Chat chat;
         this.filterId = -1;
-        this.title = "";
-        this.escapedTitle = "";
+        this.title = BuildConfig.APP_CENTER_HASH;
+        this.escapedTitle = BuildConfig.APP_CENTER_HASH;
         this.alreadyJoined = new ArrayList<>();
         this.selectedPeers = new ArrayList<>();
         this.reqId = -1;
@@ -254,8 +255,8 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         super(baseFragment, false, false);
         int i2 = 0;
         this.filterId = -1;
-        this.title = "";
-        this.escapedTitle = "";
+        this.title = BuildConfig.APP_CENTER_HASH;
+        this.escapedTitle = BuildConfig.APP_CENTER_HASH;
         this.alreadyJoined = new ArrayList<>();
         ArrayList<Long> arrayList = new ArrayList<>();
         this.selectedPeers = arrayList;
@@ -285,8 +286,8 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         super(baseFragment, false, false);
         int i = 0;
         this.filterId = -1;
-        this.title = "";
-        this.escapedTitle = "";
+        this.title = BuildConfig.APP_CENTER_HASH;
+        this.escapedTitle = BuildConfig.APP_CENTER_HASH;
         this.alreadyJoined = new ArrayList<>();
         ArrayList<Long> arrayList = new ArrayList<>();
         this.selectedPeers = arrayList;
@@ -792,19 +793,21 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             this.enabled = true;
             View view = new View(context);
             this.rippleView = view;
-            view.setBackground(Theme.AdaptiveRipple.rect(Theme.getColor("featuredStickers_addButton"), 8.0f));
+            int i = Theme.key_featuredStickers_addButton;
+            view.setBackground(Theme.AdaptiveRipple.rect(Theme.getColor(i), 8.0f));
             addView(this.rippleView, LayoutHelper.createFrame(-1, -1.0f));
-            setBackground((ShapeDrawable) Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor("featuredStickers_addButton")));
+            setBackground((ShapeDrawable) Theme.createRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(i)));
             Paint paint = new Paint(1);
             this.paint = paint;
-            paint.setColor(Theme.getColor("featuredStickers_buttonText"));
+            int i2 = Theme.key_featuredStickers_buttonText;
+            paint.setColor(Theme.getColor(i2));
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
             this.text = animatedTextDrawable;
             animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, cubicBezierInterpolator);
             this.text.setCallback(this);
             this.text.setTextSize(AndroidUtilities.dp(14.0f));
             this.text.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.text.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+            this.text.setTextColor(Theme.getColor(i2));
             this.text.setText(str);
             this.text.setGravity(1);
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable2 = new AnimatedTextView.AnimatedTextDrawable(false, false, true);
@@ -813,8 +816,8 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             this.countText.setCallback(this);
             this.countText.setTextSize(AndroidUtilities.dp(12.0f));
             this.countText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.countText.setTextColor(Theme.getColor("featuredStickers_addButton"));
-            this.countText.setText("");
+            this.countText.setTextColor(Theme.getColor(i));
+            this.countText.setText(BuildConfig.APP_CENTER_HASH);
             this.countText.setGravity(1);
             setWillNotDraw(false);
         }
@@ -910,7 +913,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             this.lastCount = i;
             this.countAlpha = i != 0 ? 1.0f : 0.0f;
             AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-            animatedTextDrawable.setText("" + i, z);
+            animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH + i, z);
             invalidate();
         }
 
@@ -1016,7 +1019,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             if (this.lastCount > 0) {
                 str = ", " + LocaleController.formatPluralString("Chats", this.lastCount, new Object[0]);
             } else {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             sb.append(str);
             accessibilityNodeInfo.setContentDescription(sb.toString());
@@ -1056,14 +1059,14 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                     view = folderBottomSheet.titleCell = new TitleCell(folderBottomSheet2.getContext(), ((FolderBottomSheet.this.invite instanceof TLRPC$TL_chatlists_chatlistInviteAlready) || FolderBottomSheet.this.updates != null) ? true : true, FolderBottomSheet.this.escapedTitle);
                 } else if (i == 1) {
                     view = new TextInfoPrivacyCell(FolderBottomSheet.this.getContext());
-                    view.setBackgroundColor(Theme.getColor("windowBackgroundGray"));
+                    view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
                 } else if (i == 2) {
                     GroupCreateUserCell groupCreateUserCell = new GroupCreateUserCell(FolderBottomSheet.this.getContext(), 1, 0, false);
-                    groupCreateUserCell.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    groupCreateUserCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                     view = groupCreateUserCell;
                 } else if (i == 3) {
                     view = new HeaderCell(FolderBottomSheet.this.getContext());
-                    view.setBackgroundColor(Theme.getColor("windowBackgroundWhite"));
+                    view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 } else {
                     view = null;
                 }
@@ -1103,14 +1106,16 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             this.textView = animatedTextView;
             animatedTextView.setTextSize(AndroidUtilities.dp(15.0f));
             this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
+            AnimatedTextView animatedTextView2 = this.textView;
+            int i = Theme.key_windowBackgroundWhiteBlueHeader;
+            animatedTextView2.setTextColor(Theme.getColor(i));
             this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
             addView(this.textView, LayoutHelper.createFrame(-1, 20.0f, (LocaleController.isRTL ? 5 : 3) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
-            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);
-            this.actionTextView = animatedTextView2;
-            animatedTextView2.setAnimationProperties(0.45f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
+            AnimatedTextView animatedTextView3 = new AnimatedTextView(context, true, true, true);
+            this.actionTextView = animatedTextView3;
+            animatedTextView3.setAnimationProperties(0.45f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.actionTextView.setTextSize(AndroidUtilities.dp(15.0f));
-            this.actionTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlueHeader"));
+            this.actionTextView.setTextColor(Theme.getColor(i));
             this.actionTextView.setGravity(LocaleController.isRTL ? 3 : 5);
             addView(this.actionTextView, LayoutHelper.createFrame(-2, 20.0f, (LocaleController.isRTL ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
             ViewCompat.setAccessibilityHeading(this, true);
@@ -1168,7 +1173,8 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             addView(foldersPreview, LayoutHelper.createFrame(-1, 44.0f, 55, 0.0f, 17.33f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             this.titleTextView = textView;
-            textView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            int i = Theme.key_windowBackgroundWhiteBlackText;
+            textView.setTextColor(Theme.getColor(i));
             this.titleTextView.setTextSize(1, 20.0f);
             this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleTextView.setText(FolderBottomSheet.this.getTitle());
@@ -1176,7 +1182,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             addView(this.titleTextView, LayoutHelper.createFrame(-1, -2.0f, 48, 32.0f, 78.3f, 32.0f, 0.0f));
             TextView textView2 = new TextView(context);
             this.subtitleTextView = textView2;
-            textView2.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText"));
+            textView2.setTextColor(Theme.getColor(i));
             this.subtitleTextView.setTextSize(1, 14.0f);
             this.subtitleTextView.setLines(2);
             this.subtitleTextView.setGravity(17);
@@ -1242,19 +1248,19 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                 this.rightPaint = new Paint(1);
                 this.leftMatrix = new Matrix();
                 this.rightMatrix = new Matrix();
-                this.paint.setColor(Theme.multAlpha(Theme.getColor("profile_tabText"), 0.8f));
+                this.paint.setColor(Theme.multAlpha(Theme.getColor(Theme.key_profile_tabText), 0.8f));
                 this.paint.setTextSize(AndroidUtilities.dp(15.33f));
                 this.paint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-                this.selectedTextPaint.setColor(Theme.getColor("windowBackgroundWhiteBlueText2"));
+                this.selectedTextPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText2));
                 this.selectedTextPaint.setTextSize(AndroidUtilities.dp(17.0f));
                 this.selectedTextPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-                this.selectedPaint.setColor(Theme.getColor("featuredStickers_unread"));
+                this.selectedPaint.setColor(Theme.getColor(Theme.key_featuredStickers_unread));
                 AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
                 this.countText = animatedTextDrawable;
                 animatedTextDrawable.setAnimationProperties(0.3f, 0L, 250L, CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.countText.setCallback(this);
                 this.countText.setTextSize(AndroidUtilities.dp(11.66f));
-                this.countText.setTextColor(Theme.getColor("windowBackgroundWhite"));
+                this.countText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                 this.countText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 this.countText.setGravity(1);
                 if (charSequence != null) {
@@ -1408,7 +1414,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
                 if (i > 0) {
                     str = "+" + i;
                 } else {
-                    str = "";
+                    str = BuildConfig.APP_CENTER_HASH;
                 }
                 animatedTextDrawable.setText(str, z);
                 invalidate();
@@ -1437,7 +1443,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
             });
             return;
         }
-        this.headerCell.setAction("", null);
+        this.headerCell.setAction(BuildConfig.APP_CENTER_HASH, null);
     }
 
     public void lambda$updateHeaderCell$20(boolean z) {
@@ -1449,7 +1455,7 @@ public class FolderBottomSheet extends BottomSheetWithRecyclerListView {
         StringBuilder sb = new StringBuilder();
         sb.append(LocaleController.formatPluralString("FilterInviteHeaderChats", this.selectedPeers.size(), new Object[0]));
         if (!z || this.headerCell == null) {
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         } else {
             str = ", " + ((Object) this.headerCell.actionTextView.getText());
         }

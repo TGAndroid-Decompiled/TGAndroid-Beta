@@ -109,11 +109,13 @@ public class TranslateButton extends FrameLayout {
     }
 
     public void updateColors() {
-        this.textView.setTextColor(Theme.getColor("chat_addContact", this.resourcesProvider));
-        this.textView.setBackground(Theme.createSelectorDrawable(Theme.getColor("chat_addContact", this.resourcesProvider) & 436207615, 3));
-        this.menuView.setBackground(Theme.createSelectorDrawable(Theme.getColor("chat_addContact", this.resourcesProvider) & 436207615, 7));
-        this.menuView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chat_addContact", this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
-        this.translateDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor("chat_addContact", this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        AnimatedTextView animatedTextView = this.textView;
+        int i = Theme.key_chat_addContact;
+        animatedTextView.setTextColor(Theme.getColor(i, this.resourcesProvider));
+        this.textView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i, this.resourcesProvider) & 436207615, 3));
+        this.menuView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i, this.resourcesProvider) & 436207615, 7));
+        this.menuView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        this.translateDrawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
     }
 
     protected void onMenuClick() {
@@ -122,7 +124,7 @@ public class TranslateButton extends FrameLayout {
         final TranslateController translateController = MessagesController.getInstance(this.currentAccount).getTranslateController();
         final ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(getContext(), R.drawable.popup_fixed_alert2, this.resourcesProvider, 1);
         final ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
-        actionBarPopupWindowLayout.setBackgroundColor(Theme.getColor("actionBarDefaultSubmenuBackground", this.resourcesProvider));
+        actionBarPopupWindowLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuBackground, this.resourcesProvider));
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(1);
         ScrollView scrollView = new ScrollView(this, getContext()) {

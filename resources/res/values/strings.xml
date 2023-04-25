@@ -221,6 +221,7 @@
     <string name="ActionAddUserYou">un1 added you</string>
     <string name="ActionAttachMenuBotAllowed">You allowed this bot to message you when you added it to your attachment menu.</string>
     <string name="ActionBotAllowed">You allowed this bot to message you when you logged in on %1$s.</string>
+    <string name="ActionBotAllowedApp">You allowed this bot to message you when you logged in on %1$s app.</string>
     <string name="ActionBotDocumentAddress">Address</string>
     <string name="ActionBotDocumentBankStatement">Bank Statement</string>
     <string name="ActionBotDocumentDriverLicence">Driver Licence</string>
@@ -302,7 +303,7 @@
     <string name="ActionRequestedPeerUser">You shared a user with un2</string>
     <string name="ActionRevokedInviteLinkClickable">un1 revoked invite link un2</string>
     <string name="ActionSetSameWallpaperForThisChat">%s set a same wallpaper for this chat.</string>
-    <string name="ActionSetSameWallpaperForThisChatSelf">You set a same wallpaper for this chat.</string>
+    <string name="ActionSetSameWallpaperForThisChatSelf">You set the same wallpaper for the chat.</string>
     <string name="ActionSetWallpaperForThisChat">%s set a new wallpaper for this chat.</string>
     <string name="ActionSetWallpaperForThisChatSelf">You set a new wallpaper for this chat.</string>
     <string name="ActionSkip">Skip</string>
@@ -967,6 +968,7 @@
     <string name="BotUnblock">RESTART</string>
     <string name="BotUsernameHelp">This link cannot be edited. You can acquire additional usernames on *Fragment*.</string>
     <string name="BotUsernamesHelp">Drag and drop links to change the order in which they will be displayed on the bot info page.</string>
+    <string name="BotWebAppInstantViewOpen">Open App</string>
     <string name="BotWebViewChangesMayNotBeSaved">Changes that you made may not be saved.</string>
     <string name="BotWebViewCloseAnyway">Close anyway</string>
     <string name="BotWebViewDeleteBot">Delete bot</string>
@@ -1301,9 +1303,10 @@
     <string name="ChatThemeApplyHint">Theme will also be applied for %s</string>
     <string name="ChatThemeChangedTo">%1$s changed the chat theme to %2$s</string>
     <string name="ChatThemeChangedYou">You changed the chat theme to %1$s</string>
-    <string name="ChatThemeDayNightSwitchTooltip">Tap here to view how **%s** will see this theme when using night mode.</string>
+    <string name="ChatThemeDaySwitchTooltip">Tap to view this theme in the day mode.</string>
     <string name="ChatThemeDisabled">%1$s disabled the chat theme</string>
     <string name="ChatThemeDisabledYou">You disabled the chat theme</string>
+    <string name="ChatThemeNightSwitchTooltip">Tap to view this theme in the night mode.</string>
     <string name="ChatThemeSaveDialogApply">Apply</string>
     <string name="ChatThemeSaveDialogDiscard">Discard</string>
     <string name="ChatThemeSaveDialogText">Do you want to apply the new theme for this chat?</string>
@@ -2918,6 +2921,7 @@
     <string name="InviteLinkCount_other">%1$d invite links</string>
     <string name="InviteLinkCount_two">%1$d invite links</string>
     <string name="InviteLinkCount_zero">%1$d invite links</string>
+    <string name="InviteLinkPrivate">Invite Link only works for group members</string>
     <string name="InviteLinkSentSingle">Invitation link sent to **%s**</string>
     <string name="InviteLinkSent_few">Invitation link sent to %d users</string>
     <string name="InviteLinkSent_many">Invitation link sent to %d users</string>
@@ -5273,6 +5277,7 @@
     <string name="SetUserPhotoSelfAlertMessage">Do you want to set this photo for your profile?</string>
     <string name="SetUsernameHeader">Set username</string>
     <string name="SetVideo">Set Video</string>
+    <string name="SetWallpapers">Set Wallpaper</string>
     <string name="Settings">Settings</string>
     <string name="SettingsBrowseThemes">Browse Themes</string>
     <string name="SettingsDebug">Debug</string>
@@ -6398,6 +6403,7 @@
     <string name="WaitingForNetwork">Waiting for network...</string>
     <string name="WallpaperNotification">Set a new chat Wallpaper</string>
     <string name="WallpaperPreview">Wallpaper</string>
+    <string name="WallpaperSameNotification">Set a same chat Wallpaper</string>
     <string name="WantsToSpeak">wants to speak</string>
     <string name="Warmth">Warmth</string>
     <string name="Warning">Warning</string>
@@ -6490,27 +6496,6 @@
     <string name="YourPhone">Your Phone</string>
     <string name="YourPublicCommunities">Your public communities</string>
     <string name="ZoomOut">Zoom out</string>
-    <string name="appcenter_distribute_dialog_actioned_on_disabled_toast">Distribute was disabled</string>
-    <string name="appcenter_distribute_download_progress_number_format">%1$d MB of %2$d MB</string>
-    <string name="appcenter_distribute_downloading_error">Failed to download app update</string>
-    <string name="appcenter_distribute_downloading_mandatory_update">Downloading update</string>
-    <string name="appcenter_distribute_downloading_update">@string/appcenter_distribute_downloading_mandatory_update</string>
-    <string name="appcenter_distribute_install">Install</string>
-    <string name="appcenter_distribute_install_ready_message">%1$s %2$s (%3$d) has been downloaded and is ready to be installed.</string>
-    <string name="appcenter_distribute_install_ready_title">App update downloaded</string>
-    <string name="appcenter_distribute_notification_category">App updates</string>
-    <string name="appcenter_distribute_unknown_sources_dialog_message">For security, your device is set to block installation of apps obtained from unknown sources.</string>
-    <string name="appcenter_distribute_unknown_sources_dialog_settings">Settings</string>
-    <string name="appcenter_distribute_update_dialog_download">Download</string>
-    <string name="appcenter_distribute_update_dialog_message_mandatory">The developers of this app require you to update to %1$s %2$s (%3$d).</string>
-    <string name="appcenter_distribute_update_dialog_message_optional">%1$s %2$s (%3$d) is available to download and install.</string>
-    <string name="appcenter_distribute_update_dialog_postpone">Ask me in a day</string>
-    <string name="appcenter_distribute_update_dialog_title">App update available</string>
-    <string name="appcenter_distribute_update_dialog_view_release_notes">View release notes</string>
-    <string name="appcenter_distribute_update_failed_dialog_ignore">Ignore</string>
-    <string name="appcenter_distribute_update_failed_dialog_message">This release was either side-loaded or downloaded using a browser in private mode.</string>
-    <string name="appcenter_distribute_update_failed_dialog_reinstall">Reinstall app</string>
-    <string name="appcenter_distribute_update_failed_dialog_title">In-app updates disabled</string>
     <string name="chatDate">MMMM d</string>
     <string name="chatFullDate">MMMM d, yyyy</string>
     <string name="common_google_play_services_enable_button">Enable</string>
@@ -6555,7 +6540,7 @@
     <string name="formatterYearMax">dd.MM.yyyy</string>
     <string name="gcm_defaultSenderId">760348033671</string>
     <string name="google_api_key">AIzaSyA-t0jLPjUt2FxrA8VPK2EiYHcYcboIR6k</string>
-    <string name="google_app_id">1:760348033671:android:dc022572c167a16c</string>
+    <string name="google_app_id">1:760348033671:android:7396e651423888c3f66e22</string>
     <string name="google_assistant_verification_channel_name">Assistant verifier</string>
     <string name="google_assistant_verification_notification_title">Google Assistant sending message</string>
     <string name="google_crash_reporting_api_key">AIzaSyA-t0jLPjUt2FxrA8VPK2EiYHcYcboIR6k</string>

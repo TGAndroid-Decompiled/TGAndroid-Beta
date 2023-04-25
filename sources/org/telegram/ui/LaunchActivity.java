@@ -74,6 +74,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AutoDeleteMediaTask;
 import org.telegram.messenger.BackupAgent;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -363,7 +364,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         setTheme(R.style.Theme_TMessages);
         if (Build.VERSION.SDK_INT >= 21) {
             try {
-                setTaskDescription(new ActivityManager.TaskDescription((String) null, (Bitmap) null, Theme.getColor("actionBarDefault") | (-16777216)));
+                setTaskDescription(new ActivityManager.TaskDescription((String) null, (Bitmap) null, Theme.getColor(Theme.key_actionBarDefault) | (-16777216)));
             } catch (Throwable unused) {
             }
             try {
@@ -392,6 +393,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.fillStatusBarHeight(this);
         this.actionBarLayout = INavigationLayout.CC.newLayout(this);
         FrameLayout frameLayout = new FrameLayout(this) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
@@ -408,10 +413,14 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         AnonymousClass3 anonymousClass3 = new AnonymousClass3(this);
         this.drawerLayoutContainer = anonymousClass3;
-        anonymousClass3.setBehindKeyboardColor(Theme.getColor("windowBackgroundWhite"));
+        anonymousClass3.setBehindKeyboardColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         this.frameLayout.addView(this.drawerLayoutContainer, LayoutHelper.createFrame(-1, -1.0f));
         if (i2 >= 21) {
             View view = new View(this) {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 protected void onDraw(Canvas canvas) {
                     if (LaunchActivity.this.themeSwitchSunDrawable != null) {
@@ -437,7 +446,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             @Override
-            protected void onStop() {
+            public void onStop() {
                 super.onStop();
                 setVisibility(8);
             }
@@ -447,6 +456,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         setupActionBarLayout();
         this.sideMenuContainer = new FrameLayout(this);
         RecyclerListView recyclerListView = new RecyclerListView(this) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public boolean drawChild(Canvas canvas, View view2, long j) {
                 int i3;
@@ -469,13 +482,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         SideMenultItemAnimator sideMenultItemAnimator = new SideMenultItemAnimator(recyclerListView);
         this.itemAnimator = sideMenultItemAnimator;
         this.sideMenu.setItemAnimator(sideMenultItemAnimator);
-        this.sideMenu.setBackgroundColor(Theme.getColor("chats_menuBackground"));
+        RecyclerListView recyclerListView2 = this.sideMenu;
+        int i3 = Theme.key_chats_menuBackground;
+        recyclerListView2.setBackgroundColor(Theme.getColor(i3));
+        this.sideMenuContainer.setBackgroundColor(Theme.getColor(i3));
         this.sideMenu.setLayoutManager(new LinearLayoutManager(this, 1, false));
         this.sideMenu.setAllowItemsInteractionDuringAnimation(false);
-        RecyclerListView recyclerListView2 = this.sideMenu;
+        RecyclerListView recyclerListView3 = this.sideMenu;
         DrawerLayoutAdapter drawerLayoutAdapter = new DrawerLayoutAdapter(this, this.itemAnimator, this.drawerLayoutContainer);
         this.drawerLayoutAdapter = drawerLayoutAdapter;
-        recyclerListView2.setAdapter(drawerLayoutAdapter);
+        recyclerListView3.setAdapter(drawerLayoutAdapter);
         this.drawerLayoutAdapter.setOnPremiumDrawableClick(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -483,7 +499,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         });
         this.sideMenuContainer.addView(this.sideMenu, LayoutHelper.createFrame(-1, -1.0f));
-        this.drawerLayoutContainer.setDrawerLayout(this.sideMenuContainer);
+        this.drawerLayoutContainer.setDrawerLayout(this.sideMenuContainer, this.sideMenu);
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.sideMenuContainer.getLayoutParams();
         Point realScreenSize = AndroidUtilities.getRealScreenSize();
         layoutParams.width = AndroidUtilities.isTablet() ? AndroidUtilities.dp(320.0f) : Math.min(AndroidUtilities.dp(320.0f), Math.min(realScreenSize.x, realScreenSize.y) - AndroidUtilities.dp(56.0f));
@@ -491,18 +507,18 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.sideMenuContainer.setLayoutParams(layoutParams);
         this.sideMenu.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
-            public boolean hasDoubleTap(View view2, int i3) {
-                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view2, i3);
+            public boolean hasDoubleTap(View view2, int i4) {
+                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view2, i4);
             }
 
             @Override
-            public void onDoubleTap(View view2, int i3, float f, float f2) {
-                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view2, i3, f, f2);
+            public void onDoubleTap(View view2, int i4, float f, float f2) {
+                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view2, i4, f, f2);
             }
 
             @Override
-            public final void onItemClick(View view2, int i3, float f, float f2) {
-                LaunchActivity.this.lambda$onCreate$2(view2, i3, f, f2);
+            public final void onItemClick(View view2, int i4, float f, float f2) {
+                LaunchActivity.this.lambda$onCreate$2(view2, i4, f, f2);
             }
         });
         final ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(3, 0) {
@@ -514,7 +530,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int i3) {
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int i4) {
+            }
+
+            {
+                LaunchActivity.this = this;
             }
 
             @Override
@@ -527,13 +547,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             @Override
-            public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i3) {
+            public void onSelectedChanged(RecyclerView.ViewHolder viewHolder, int i4) {
                 clearSelectedViewHolder();
-                if (i3 != 0) {
+                if (i4 != 0) {
                     this.selectedViewHolder = viewHolder;
                     View view2 = viewHolder.itemView;
                     LaunchActivity.this.sideMenu.cancelClickRunnables(false);
-                    view2.setBackgroundColor(Theme.getColor("dialogBackground"));
+                    view2.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
                     if (Build.VERSION.SDK_INT >= 21) {
                         ObjectAnimator.ofFloat(view2, "elevation", AndroidUtilities.dp(1.0f)).setDuration(150L).start();
                     }
@@ -566,7 +586,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             @Override
-            public void onChildDraw(Canvas canvas, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float f, float f2, int i3, boolean z2) {
+            public void onChildDraw(Canvas canvas, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float f, float f2, int i4, boolean z2) {
                 View view2;
                 View view3;
                 View view4 = viewHolder.itemView;
@@ -584,9 +604,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         itemTouchHelper.attachToRecyclerView(this.sideMenu);
         this.sideMenu.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
-            public final boolean onItemClick(View view2, int i3) {
+            public final boolean onItemClick(View view2, int i4) {
                 boolean lambda$onCreate$3;
-                lambda$onCreate$3 = LaunchActivity.this.lambda$onCreate$3(itemTouchHelper, view2, i3);
+                lambda$onCreate$3 = LaunchActivity.this.lambda$onCreate$3(itemTouchHelper, view2, i4);
                 return lambda$onCreate$3;
             }
         });
@@ -600,12 +620,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         });
         this.actionBarLayout.setDelegate(this);
-        Theme.loadWallpaper();
+        Theme.loadWallpaper(true);
         checkCurrentAccount();
         updateCurrentConnectionState(this.currentAccount);
         NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
-        int i3 = NotificationCenter.closeOtherAppActivities;
-        globalInstance.postNotificationName(i3, this);
+        int i4 = NotificationCenter.closeOtherAppActivities;
+        globalInstance.postNotificationName(i4, this);
         this.currentConnectionState = ConnectionsManager.getInstance(this.currentAccount).getConnectionState();
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.needShowAlert);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.reloadInterface);
@@ -613,7 +633,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewTheme);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.needSetDayNightTheme);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.needCheckSystemBarColors);
-        NotificationCenter.getGlobalInstance().addObserver(this, i3);
+        NotificationCenter.getGlobalInstance().addObserver(this, i4);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetPasscode);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewWallpapper);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.notificationsCountUpdated);
@@ -743,12 +763,15 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             String str = Build.DISPLAY;
             String str2 = Build.USER;
-            String lowerCase2 = str != null ? str.toLowerCase() : "";
-            String lowerCase3 = str2 != null ? lowerCase2.toLowerCase() : "";
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("OS name " + lowerCase2 + " " + lowerCase3);
+            String str3 = BuildConfig.APP_CENTER_HASH;
+            String lowerCase2 = str != null ? str.toLowerCase() : BuildConfig.APP_CENTER_HASH;
+            if (str2 != null) {
+                str3 = lowerCase2.toLowerCase();
             }
-            if ((lowerCase2.contains("flyme") || lowerCase3.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("OS name " + lowerCase2 + " " + str3);
+            }
+            if ((lowerCase2.contains("flyme") || str3.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
                 AndroidUtilities.incorrectDisplaySizeFix = true;
                 final View rootView = getWindow().getDecorView().getRootView();
                 ViewTreeObserver viewTreeObserver = rootView.getViewTreeObserver();
@@ -767,16 +790,20 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         MediaController.getInstance().setBaseActivity(this, true);
         ApplicationLoader.startAppCenter(this);
         updateAppUpdateViews(false);
-        int i4 = Build.VERSION.SDK_INT;
-        if (i4 >= 23) {
+        int i5 = Build.VERSION.SDK_INT;
+        if (i5 >= 23) {
             FingerprintController.checkKeyReady();
         }
-        if (i4 >= 28 && ((ActivityManager) getSystemService("activity")).isBackgroundRestricted() && System.currentTimeMillis() - SharedConfig.BackgroundActivityPrefs.getLastCheckedBackgroundActivity() >= 86400000 && SharedConfig.BackgroundActivityPrefs.getDismissedCount() < 3) {
+        if (i5 >= 28 && ((ActivityManager) getSystemService("activity")).isBackgroundRestricted() && System.currentTimeMillis() - SharedConfig.BackgroundActivityPrefs.getLastCheckedBackgroundActivity() >= 86400000 && SharedConfig.BackgroundActivityPrefs.getDismissedCount() < 3) {
             AlertsCreator.createBackgroundActivityDialog(this).show();
             SharedConfig.BackgroundActivityPrefs.setLastCheckedBackgroundActivity(System.currentTimeMillis());
         }
-        if (i4 >= 31) {
+        if (i5 >= 31) {
             getWindow().getDecorView().addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void onViewAttachedToWindow(View view2) {
                     LaunchActivity.this.getWindowManager().addCrossWindowBlurEnabledListener(C$r8$wrapper$java$util$function$Consumer$WRP.convert(LaunchActivity.this.blurListener));
@@ -797,10 +824,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         AnonymousClass3(Context context) {
             super(context);
+            LaunchActivity.this = r1;
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             setDrawerPosition(getDrawerPosition());
             boolean z2 = i4 - i2 > i3 - i;
@@ -980,6 +1008,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 return false;
             }
             DialogsActivity dialogsActivity = new DialogsActivity(null) {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void onTransitionAnimationEnd(boolean z, boolean z2) {
                     super.onTransitionAnimationEnd(z, z2);
@@ -1035,7 +1067,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (ArticleViewer.hasInstance() && ArticleViewer.getInstance().isVisible()) {
             ArticleViewer.getInstance().updateThemeColors(f);
         }
-        this.drawerLayoutContainer.setBehindKeyboardColor(Theme.getColor("windowBackgroundWhite"));
+        this.drawerLayoutContainer.setBehindKeyboardColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         if (PhotoViewer.hasInstance()) {
             PhotoViewer.getInstance().updateColors();
         }
@@ -1061,6 +1093,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 private boolean inLayout;
 
                 {
+                    LaunchActivity.this = this;
                     new Path();
                 }
 
@@ -1267,6 +1300,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         View view2 = view;
         SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(lastFragment, this, true, Integer.valueOf(i), 0, null) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void onSettings() {
                 DrawerLayoutContainer drawerLayoutContainer = LaunchActivity.this.drawerLayoutContainer;
@@ -1314,13 +1351,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                             } else {
                                 string = LocaleController.getString("SetEmojiStatus", R.string.SetEmojiStatus);
                             }
-                            drawerActionCell.updateText(string);
                             if (z2) {
-                                i3 = R.raw.emoji_status_change_to_set;
+                                i3 = R.drawable.msg_status_edit;
                             } else {
-                                i3 = R.raw.emoji_status_set_to_change;
+                                i3 = R.drawable.msg_status_set;
                             }
-                            drawerActionCell.updateIcon(i3);
+                            drawerActionCell.updateTextAndIcon(string, i3);
                         }
                     }
                 }
@@ -1340,6 +1376,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         selectAnimatedEmojiDialog.setSaveState(2);
         selectAnimatedEmojiDialog.setScrimDrawable(swapAnimatedEmojiDrawable, view2);
         SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, -2, -2) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -1402,13 +1442,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 if (baseFragment != null) {
                     z4 = baseFragment.isLightStatusBar();
                 } else {
-                    z4 = ColorUtils.calculateLuminance(Theme.getColor("actionBarDefault", null, true)) > 0.699999988079071d;
+                    z4 = ColorUtils.calculateLuminance(Theme.getColor(Theme.key_actionBarDefault, null, true)) > 0.699999988079071d;
                 }
                 AndroidUtilities.setLightStatusBar(getWindow(), z4, z5);
             }
             if (i >= 26 && z3 && (!z || baseFragment == null || !baseFragment.isInPreviewMode())) {
                 Window window = getWindow();
-                int color = (baseFragment == null || !z) ? Theme.getColor("windowBackgroundGray", null, true) : baseFragment.getNavigationBarColor();
+                int color = (baseFragment == null || !z) ? Theme.getColor(Theme.key_windowBackgroundGray, null, true) : baseFragment.getNavigationBarColor();
                 if (window.getNavigationBarColor() != color) {
                     window.setNavigationBarColor(color);
                     AndroidUtilities.setLightNavigationBar(getWindow(), AndroidUtilities.computePerceivedBrightness(color) >= 0.721f);
@@ -1636,6 +1676,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private void showUpdateActivity(int i, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, boolean z) {
         if (this.blockingUpdateView == null) {
             BlockingUpdateView blockingUpdateView = new BlockingUpdateView(this) {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void setVisibility(int i2) {
                     super.setVisibility(i2);
@@ -1671,6 +1715,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public class AnonymousClass15 implements TermsOfServiceView.TermsOfServiceViewDelegate {
         AnonymousClass15() {
+            LaunchActivity.this = r1;
         }
 
         @Override
@@ -1809,9 +1854,13 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return lambda$handleIntent$15(intent, z, z2, z3, null);
     }
 
+    public boolean lambda$handleIntent$15(Intent intent, boolean z, boolean z2, boolean z3, Browser.Progress progress) {
+        return handleIntent(intent, z, z2, z3, progress, true);
+    }
+
     @android.annotation.SuppressLint({"Range"})
-    public boolean lambda$handleIntent$15(final android.content.Intent r91, final boolean r92, final boolean r93, final boolean r94, final org.telegram.messenger.browser.Browser.Progress r95) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$handleIntent$15(android.content.Intent, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress):boolean");
+    private boolean handleIntent(final android.content.Intent r92, final boolean r93, final boolean r94, final boolean r95, final org.telegram.messenger.browser.Browser.Progress r96, boolean r97) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.handleIntent(android.content.Intent, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress, boolean):boolean");
     }
 
     public void lambda$handleIntent$11(String str) {
@@ -1977,6 +2026,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             bundle.putString("selectAlertStringGroup", LocaleController.getString("SendMessagesToGroupText", R.string.SendMessagesToGroupText));
         }
         DialogsActivity dialogsActivity = new DialogsActivity(bundle) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public boolean shouldShowNextButton(DialogsActivity dialogsActivity2, ArrayList<Long> arrayList2, CharSequence charSequence, boolean z2) {
                 if (LaunchActivity.this.exportingChatUri != null) {
@@ -2331,15 +2384,15 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    private void runLinkRequest(final int r44, final java.lang.String r45, final java.lang.String r46, final java.lang.String r47, final java.lang.String r48, final java.lang.String r49, final java.lang.String r50, final java.lang.String r51, final java.lang.String r52, final java.lang.String r53, final java.lang.String r54, final java.lang.String r55, final boolean r56, final java.lang.Integer r57, final java.lang.Long r58, final java.lang.Integer r59, final java.lang.Integer r60, final java.lang.String r61, final java.util.HashMap<java.lang.String, java.lang.String> r62, final java.lang.String r63, final java.lang.String r64, final java.lang.String r65, final java.lang.String r66, final org.telegram.tgnet.TLRPC$TL_wallPaper r67, final java.lang.String r68, final java.lang.String r69, final java.lang.String r70, final java.lang.String r71, final int r72, final int r73, final java.lang.String r74, final java.lang.String r75, final java.lang.String r76, final java.lang.String r77, final java.lang.String r78, final org.telegram.messenger.browser.Browser.Progress r79) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.runLinkRequest(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.Integer, java.lang.Long, java.lang.Integer, java.lang.Integer, java.lang.String, java.util.HashMap, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.telegram.tgnet.TLRPC$TL_wallPaper, java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.telegram.messenger.browser.Browser$Progress):void");
+    private void runLinkRequest(final int r45, final java.lang.String r46, final java.lang.String r47, final java.lang.String r48, final java.lang.String r49, final java.lang.String r50, final java.lang.String r51, final java.lang.String r52, final java.lang.String r53, final java.lang.String r54, final java.lang.String r55, final java.lang.String r56, final boolean r57, final java.lang.Integer r58, final java.lang.Long r59, final java.lang.Integer r60, final java.lang.Integer r61, final java.lang.String r62, final java.util.HashMap<java.lang.String, java.lang.String> r63, final java.lang.String r64, final java.lang.String r65, final java.lang.String r66, final java.lang.String r67, final org.telegram.tgnet.TLRPC$TL_wallPaper r68, final java.lang.String r69, final java.lang.String r70, final java.lang.String r71, final java.lang.String r72, final int r73, final int r74, final java.lang.String r75, final java.lang.String r76, final java.lang.String r77, final java.lang.String r78, final java.lang.String r79, final org.telegram.messenger.browser.Browser.Progress r80, final boolean r81) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.runLinkRequest(int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, boolean, java.lang.Integer, java.lang.Long, java.lang.Integer, java.lang.Integer, java.lang.String, java.util.HashMap, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.telegram.tgnet.TLRPC$TL_wallPaper, java.lang.String, java.lang.String, java.lang.String, java.lang.String, int, int, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, org.telegram.messenger.browser.Browser$Progress, boolean):void");
     }
 
-    public void lambda$runLinkRequest$35(int i, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, boolean z, Integer num, Long l, Integer num2, Integer num3, String str12, HashMap hashMap, String str13, String str14, String str15, String str16, TLRPC$TL_wallPaper tLRPC$TL_wallPaper, String str17, String str18, String str19, String str20, int i2, String str21, String str22, String str23, String str24, String str25, Browser.Progress progress, int i3) {
+    public void lambda$runLinkRequest$35(int i, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, boolean z, Integer num, Long l, Integer num2, Integer num3, String str12, HashMap hashMap, String str13, String str14, String str15, String str16, TLRPC$TL_wallPaper tLRPC$TL_wallPaper, String str17, String str18, String str19, String str20, int i2, String str21, String str22, String str23, String str24, String str25, Browser.Progress progress, boolean z2, int i3) {
         if (i3 != i) {
             switchToAccount(i3, true);
         }
-        runLinkRequest(i3, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, z, num, l, num2, num3, str12, hashMap, str13, str14, str15, str16, tLRPC$TL_wallPaper, str17, str18, str19, str20, 1, i2, str21, str22, str23, str24, str25, progress);
+        runLinkRequest(i3, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, z, num, l, num2, num3, str12, hashMap, str13, str14, str15, str16, tLRPC$TL_wallPaper, str17, str18, str19, str20, 1, i2, str21, str22, str23, str24, str25, progress, z2);
     }
 
     public static void lambda$runLinkRequest$36(Browser.Progress progress, AlertDialog alertDialog) {
@@ -2446,15 +2499,15 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$runLinkRequest$62(final String str, final String str2, final String str3, String str4, final int i, final String str5, final String str6, final String str7, final String str8, final String str9, final String str10, final String str11, final String str12, final String str13, final String str14, final String str15, final boolean z, final Integer num, final Long l, final Integer num2, final Integer num3, final HashMap hashMap, final String str16, final String str17, final String str18, final String str19, final TLRPC$TL_wallPaper tLRPC$TL_wallPaper, final String str20, final String str21, final int i2, final int i3, final String str22, final String str23, final String str24, final Browser.Progress progress, final Runnable runnable, final String str25, int[] iArr, final Long l2) {
+    public void lambda$runLinkRequest$62(final String str, final String str2, final String str3, String str4, final int i, final String str5, final String str6, final String str7, final String str8, final String str9, final String str10, final String str11, final String str12, final String str13, final String str14, final String str15, final boolean z, final Integer num, final Long l, final Integer num2, final Integer num3, final HashMap hashMap, final String str16, final String str17, final String str18, final String str19, final TLRPC$TL_wallPaper tLRPC$TL_wallPaper, final String str20, final String str21, final int i2, final int i3, final String str22, final String str23, final String str24, final Browser.Progress progress, final boolean z2, final Runnable runnable, final String str25, int[] iArr, final Long l2) {
         long longValue;
-        boolean z2;
+        boolean z3;
         BaseFragment baseFragment;
         final TLRPC$User user;
         if (isFinishing()) {
             return;
         }
-        boolean z3 = true;
+        boolean z4 = true;
         if (l2 != null && this.actionBarLayout != null && ((str == null && str2 == null) || ((str != null && l2.longValue() > 0) || ((str2 != null && l2.longValue() > 0) || (str3 != null && l2.longValue() < 0))))) {
             if (!TextUtils.isEmpty(str4) && (user = MessagesController.getInstance(i).getUser(l2)) != null && user.bot) {
                 TLRPC$TL_messages_getBotApp tLRPC$TL_messages_getBotApp = new TLRPC$TL_messages_getBotApp();
@@ -2465,7 +2518,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getBotApp, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        LaunchActivity.this.lambda$runLinkRequest$47(str5, str6, str7, str8, str9, str10, str11, str12, str13, str14, str15, z, num, l, num2, num3, str, hashMap, str16, str17, str18, str19, tLRPC$TL_wallPaper, str20, str21, str2, str3, i2, i3, str22, str23, str24, progress, runnable, user, str25, tLObject, tLRPC$TL_error);
+                        LaunchActivity.this.lambda$runLinkRequest$47(str5, str6, str7, str8, str9, str10, str11, str12, str13, str14, str15, z, num, l, num2, num3, str, hashMap, str16, str17, str18, str19, tLRPC$TL_wallPaper, str20, str21, str2, str3, i2, i3, str22, str23, str24, progress, z2, runnable, user, str25, tLObject, tLRPC$TL_error);
                     }
                 });
                 return;
@@ -2493,7 +2546,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 if (num != null && ((num3 != null || num2 != null) && l2.longValue() < 0)) {
                     iArr[0] = runCommentRequest(i, runnable, num, num3, num2, MessagesController.getInstance(i).getChat(Long.valueOf(-l2.longValue())));
                     if (iArr[0] != 0) {
-                        z3 = false;
+                        z4 = false;
                     }
                 } else if (str != null) {
                     Bundle bundle = new Bundle();
@@ -2506,9 +2559,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     final TLRPC$User user3 = MessagesController.getInstance(i).getUser(l2);
                     dialogsActivity.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                         @Override
-                        public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList3, CharSequence charSequence, boolean z4, TopicsFragment topicsFragment) {
+                        public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList3, CharSequence charSequence, boolean z5, TopicsFragment topicsFragment) {
                             boolean lambda$runLinkRequest$55;
-                            lambda$runLinkRequest$55 = LaunchActivity.this.lambda$runLinkRequest$55(str, i, user3, dialogsActivity2, arrayList3, charSequence, z4, topicsFragment);
+                            lambda$runLinkRequest$55 = LaunchActivity.this.lambda$runLinkRequest$55(str, i, user3, dialogsActivity2, arrayList3, charSequence, z5, topicsFragment);
                             return lambda$runLinkRequest$55;
                         }
                     });
@@ -2558,9 +2611,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     final String str27 = str26;
                     dialogsActivity2.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                         @Override
-                        public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList4, CharSequence charSequence, boolean z4, TopicsFragment topicsFragment) {
+                        public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList4, CharSequence charSequence, boolean z5, TopicsFragment topicsFragment) {
                             boolean lambda$runLinkRequest$60;
-                            lambda$runLinkRequest$60 = LaunchActivity.this.lambda$runLinkRequest$60(i, user4, str12, str27, dialogsActivity2, dialogsActivity3, arrayList4, charSequence, z4, topicsFragment);
+                            lambda$runLinkRequest$60 = LaunchActivity.this.lambda$runLinkRequest$60(i, user4, str12, str27, dialogsActivity2, dialogsActivity3, arrayList4, charSequence, z5, topicsFragment);
                             return lambda$runLinkRequest$60;
                         }
                     });
@@ -2576,10 +2629,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         longValue = l2.longValue();
                     }
                     if (str9 == null || user5 == null || !user5.bot) {
-                        z2 = false;
+                        z3 = false;
                     } else {
                         bundle3.putString("botUser", str9);
-                        z2 = true;
+                        z3 = true;
                     }
                     if (this.navigateToPremiumBot) {
                         this.navigateToPremiumBot = false;
@@ -2610,7 +2663,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         baseFragment = arrayList4.get(arrayList4.size() - 1);
                     }
                     if (baseFragment == null || MessagesController.getInstance(i).checkCanOpenChat(bundle3, baseFragment)) {
-                        if (z2 && (baseFragment instanceof ChatActivity)) {
+                        if (z3 && (baseFragment instanceof ChatActivity)) {
                             ChatActivity chatActivity = (ChatActivity) baseFragment;
                             if (chatActivity.getDialogId() == longValue) {
                                 chatActivity.setBotUser(str9);
@@ -2640,7 +2693,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         } else {
                             MessagesController.getInstance(i).ensureMessagesLoaded(longValue, num == null ? 0 : num.intValue(), new AnonymousClass18(runnable, str3, baseFragment, longValue, num, bundle3));
                         }
-                        z3 = false;
+                        z4 = false;
                     }
                 }
             }
@@ -2661,7 +2714,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 FileLog.e(e3);
             }
         }
-        if (z3) {
+        if (z4) {
             try {
                 runnable.run();
             } catch (Exception e4) {
@@ -2670,16 +2723,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$runLinkRequest$44(String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, boolean z, Integer num, Long l, Integer num2, Integer num3, String str12, HashMap hashMap, String str13, String str14, String str15, String str16, TLRPC$TL_wallPaper tLRPC$TL_wallPaper, String str17, String str18, String str19, String str20, int i, int i2, String str21, String str22, String str23, Browser.Progress progress) {
-        runLinkRequest(this.currentAccount, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, z, num, l, num2, num3, str12, hashMap, str13, str14, str15, str16, tLRPC$TL_wallPaper, str17, str18, str19, str20, i, i2, str21, str22, str23, null, null, progress);
+    public void lambda$runLinkRequest$44(String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11, boolean z, Integer num, Long l, Integer num2, Integer num3, String str12, HashMap hashMap, String str13, String str14, String str15, String str16, TLRPC$TL_wallPaper tLRPC$TL_wallPaper, String str17, String str18, String str19, String str20, int i, int i2, String str21, String str22, String str23, Browser.Progress progress, boolean z2) {
+        runLinkRequest(this.currentAccount, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, z, num, l, num2, num3, str12, hashMap, str13, str14, str15, str16, tLRPC$TL_wallPaper, str17, str18, str19, str20, i, i2, str21, str22, str23, null, null, progress, z2);
     }
 
-    public void lambda$runLinkRequest$47(final String str, final String str2, final String str3, final String str4, final String str5, final String str6, final String str7, final String str8, final String str9, final String str10, final String str11, final boolean z, final Integer num, final Long l, final Integer num2, final Integer num3, final String str12, final HashMap hashMap, final String str13, final String str14, final String str15, final String str16, final TLRPC$TL_wallPaper tLRPC$TL_wallPaper, final String str17, final String str18, final String str19, final String str20, final int i, final int i2, final String str21, final String str22, final String str23, final Browser.Progress progress, final Runnable runnable, final TLRPC$User tLRPC$User, final String str24, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$runLinkRequest$47(final String str, final String str2, final String str3, final String str4, final String str5, final String str6, final String str7, final String str8, final String str9, final String str10, final String str11, final boolean z, final Integer num, final Long l, final Integer num2, final Integer num3, final String str12, final HashMap hashMap, final String str13, final String str14, final String str15, final String str16, final TLRPC$TL_wallPaper tLRPC$TL_wallPaper, final String str17, final String str18, final String str19, final String str20, final int i, final int i2, final String str21, final String str22, final String str23, final Browser.Progress progress, final boolean z2, final Runnable runnable, final TLRPC$User tLRPC$User, final String str24, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.this.lambda$runLinkRequest$44(str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, z, num, l, num2, num3, str12, hashMap, str13, str14, str15, str16, tLRPC$TL_wallPaper, str17, str18, str19, str20, i, i2, str21, str22, str23, progress);
+                    LaunchActivity.this.lambda$runLinkRequest$44(str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, z, num, l, num2, num3, str12, hashMap, str13, str14, str15, str16, tLRPC$TL_wallPaper, str17, str18, str19, str20, i, i2, str21, str22, str23, progress, z2);
                 }
             });
             return;
@@ -2688,12 +2741,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$runLinkRequest$46(runnable, tLRPC$User, tLRPC$TL_messages_botApp, str24);
+                LaunchActivity.this.lambda$runLinkRequest$46(runnable, tLRPC$User, tLRPC$TL_messages_botApp, str24, z2);
             }
         });
     }
 
-    public void lambda$runLinkRequest$46(Runnable runnable, final TLRPC$User tLRPC$User, final TLRPC$TL_messages_botApp tLRPC$TL_messages_botApp, final String str) {
+    public void lambda$runLinkRequest$46(Runnable runnable, final TLRPC$User tLRPC$User, final TLRPC$TL_messages_botApp tLRPC$TL_messages_botApp, final String str, boolean z) {
         runnable.run();
         final AtomicBoolean atomicBoolean = new AtomicBoolean();
         ArrayList<BaseFragment> arrayList = mainFragmentsStack;
@@ -2704,8 +2757,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 LaunchActivity.this.lambda$runLinkRequest$45(baseFragment, tLRPC$User, tLRPC$TL_messages_botApp, atomicBoolean, str);
             }
         };
-        boolean z = tLRPC$TL_messages_botApp.inactive;
-        AlertsCreator.createBotLaunchAlert(baseFragment, tLRPC$TL_messages_botApp, tLRPC$User, atomicBoolean, runnable2);
+        if (tLRPC$TL_messages_botApp.inactive || z) {
+            AlertsCreator.createBotLaunchAlert(baseFragment, tLRPC$TL_messages_botApp, tLRPC$User, atomicBoolean, runnable2);
+        } else {
+            runnable2.run();
+        }
     }
 
     public void lambda$runLinkRequest$45(BaseFragment baseFragment, TLRPC$User tLRPC$User, TLRPC$TL_messages_botApp tLRPC$TL_messages_botApp, AtomicBoolean atomicBoolean, String str) {
@@ -2783,8 +2839,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 }
             }
             AttachBotIntroTopView attachBotIntroTopView = new AttachBotIntroTopView(this);
-            attachBotIntroTopView.setColor(Theme.getColor("chat_attachIcon"));
-            attachBotIntroTopView.setBackgroundColor(Theme.getColor("dialogTopBackground"));
+            attachBotIntroTopView.setColor(Theme.getColor(Theme.key_chat_attachIcon));
+            attachBotIntroTopView.setBackgroundColor(Theme.getColor(Theme.key_dialogTopBackground));
             attachBotIntroTopView.setAttachBot(tLRPC$TL_attachMenuBot);
             final AtomicBoolean atomicBoolean = new AtomicBoolean();
             AlertDialog.Builder negativeButton = new AlertDialog.Builder(this).setTopView(attachBotIntroTopView).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BotRequestAttachPermission", R.string.BotRequestAttachPermission, UserObject.getUserName(tLRPC$User)))).setPositiveButton(LocaleController.getString(R.string.BotAddToMenu), new DialogInterface.OnClickListener() {
@@ -2798,7 +2854,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 final CheckBoxCell checkBoxCell = new CheckBoxCell(this, 5, baseFragment.getResourceProvider());
                 checkBoxCell.setBackground(Theme.getSelectorDrawable(false));
                 checkBoxCell.setMultiline(true);
-                checkBoxCell.setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), "", true, false);
+                checkBoxCell.setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), BuildConfig.APP_CENTER_HASH, true, false);
                 checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
                 checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -2915,7 +2971,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             int i2 = R.string.AddBot;
             builder.setTitle(LocaleController.getString("AddBot", i2));
-            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? "" : chat.title)));
+            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? BuildConfig.APP_CENTER_HASH : chat.title)));
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
             builder.setPositiveButton(LocaleController.getString("AddBot", i2), new DialogInterface.OnClickListener() {
                 @Override
@@ -3165,6 +3221,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final Integer val$messageId;
 
         AnonymousClass18(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+            LaunchActivity.this = r1;
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -3515,7 +3572,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
             ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(tLRPC$TL_wallPaper2, null, true, false);
             TLRPC$WallPaperSettings tLRPC$WallPaperSettings3 = tLRPC$TL_wallPaper.settings;
-            themePreviewActivity.setInitialModes(tLRPC$WallPaperSettings3.blur, tLRPC$WallPaperSettings3.motion);
+            themePreviewActivity.setInitialModes(tLRPC$WallPaperSettings3.blur, tLRPC$WallPaperSettings3.motion, tLRPC$WallPaperSettings3.intensity);
             lambda$runLinkRequest$77(themePreviewActivity);
             return;
         }
@@ -3765,6 +3822,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             private Paint paint = new Paint();
             private Matrix matrix = new Matrix();
 
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void draw(Canvas canvas) {
                 if (this.updateGradient != null) {
@@ -3859,7 +3920,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     } catch (Exception unused) {
                     }
                     if (tLRPC$TL_help_getAppUpdate.source == null) {
-                        tLRPC$TL_help_getAppUpdate.source = "";
+                        tLRPC$TL_help_getAppUpdate.source = BuildConfig.APP_CENTER_HASH;
                     }
                     final int i = this.currentAccount;
                     ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_help_getAppUpdate, new RequestDelegate() {
@@ -3954,7 +4015,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 edit.putBoolean("proxy_enabled", false);
                 edit.putBoolean("proxy_enabled_calls", false);
                 edit.commit();
-                ConnectionsManager.setProxySettings(false, "", 1080, "", "", "");
+                ConnectionsManager.setProxySettings(false, BuildConfig.APP_CENTER_HASH, 1080, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
                 NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.proxySettingsChanged, new Object[0]);
                 this.proxyErrorDialog = null;
             }
@@ -4346,7 +4407,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             return;
         }
         int batteryLevel = LiteMode.getBatteryLevel();
-        BulletinFactory.of(lastFragment).createSimpleBulletin(new BatteryDrawable(batteryLevel / 100.0f, -1, lastFragment.getThemedColor("dialogSwipeRemove"), 1.3f), LocaleController.getString("LowPowerEnabledTitle", R.string.LowPowerEnabledTitle), LocaleController.formatString("LowPowerEnabledSubtitle", R.string.LowPowerEnabledSubtitle, String.format("%d%%", Integer.valueOf(batteryLevel))), LocaleController.getString("Disable", R.string.Disable), new Runnable() {
+        BulletinFactory.of(lastFragment).createSimpleBulletin(new BatteryDrawable(batteryLevel / 100.0f, -1, lastFragment.getThemedColor(Theme.key_dialogSwipeRemove), 1.3f), LocaleController.getString("LowPowerEnabledTitle", R.string.LowPowerEnabledTitle), LocaleController.formatString("LowPowerEnabledSubtitle", R.string.LowPowerEnabledSubtitle, String.format("%d%%", Integer.valueOf(batteryLevel))), LocaleController.getString("Disable", R.string.Disable), new Runnable() {
             @Override
             public final void run() {
                 LaunchActivity.this.lambda$onPowerSaver$100();
@@ -5134,7 +5195,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (UserConfig.getInstance(this.currentAccount).isClientActivated()) {
             try {
                 if (!this.loadingLocaleDialog && !ApplicationLoader.mainInterfacePaused) {
-                    String string = MessagesController.getGlobalMainSettings().getString("language_showed2", "");
+                    String string = MessagesController.getGlobalMainSettings().getString("language_showed2", BuildConfig.APP_CENTER_HASH);
                     final String str2 = MessagesController.getInstance(this.currentAccount).suggestedLangCode;
                     if (!z && string.equals(str2)) {
                         if (BuildVars.LOGS_ENABLED) {
@@ -5264,6 +5325,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (SharedConfig.passcodeHash.length() != 0) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
             Runnable runnable = new Runnable() {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void run() {
                     if (LaunchActivity.this.lockRunnable == this) {

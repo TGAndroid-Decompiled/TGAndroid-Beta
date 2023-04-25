@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 public class CodeFieldContainer extends LinearLayout {
@@ -57,7 +58,7 @@ public class CodeFieldContainer extends LinearLayout {
                     }
                 }
                 float successProgress = codeNumberField.getSuccessProgress();
-                this.paint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor("windowBackgroundWhiteInputField"), Theme.getColor("windowBackgroundWhiteInputFieldActivated"), codeNumberField.getFocusedProgress()), Theme.getColor("text_RedBold"), codeNumberField.getErrorProgress()), Theme.getColor("checkbox"), successProgress));
+                this.paint.setColor(ColorUtils.blendARGB(ColorUtils.blendARGB(ColorUtils.blendARGB(Theme.getColor(Theme.key_windowBackgroundWhiteInputField), Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated), codeNumberField.getFocusedProgress()), Theme.getColor(Theme.key_text_RedBold), codeNumberField.getErrorProgress()), Theme.getColor(Theme.key_checkbox), successProgress));
                 RectF rectF = AndroidUtilities.rectTmp;
                 rectF.set(childAt.getLeft(), childAt.getTop(), childAt.getRight(), childAt.getBottom());
                 float f = this.strokeWidth;
@@ -138,7 +139,7 @@ public class CodeFieldContainer extends LinearLayout {
                         if (keyEvent.getAction() == 1) {
                             if (keyCode == 67 && CodeFieldContainer.this.codeField[i6].length() == 1) {
                                 CodeFieldContainer.this.codeField[i6].startExitAnimation();
-                                CodeFieldContainer.this.codeField[i6].setText("");
+                                CodeFieldContainer.this.codeField[i6].setText(BuildConfig.APP_CENTER_HASH);
                                 return true;
                             } else if (keyCode != 67 || CodeFieldContainer.this.codeField[i6].length() != 0 || (i7 = i6) <= 0) {
                                 if (keyCode >= 7 && keyCode <= 16) {
@@ -165,7 +166,7 @@ public class CodeFieldContainer extends LinearLayout {
                                     int i10 = i6;
                                     if (i8 >= i10) {
                                         CodeFieldContainer.this.codeField[i10 - 1].startExitAnimation();
-                                        CodeFieldContainer.this.codeField[i6 - 1].setText("");
+                                        CodeFieldContainer.this.codeField[i6 - 1].setText(BuildConfig.APP_CENTER_HASH);
                                         return true;
                                     }
                                     if (i8 == i10 - 1) {
@@ -272,7 +273,7 @@ public class CodeFieldContainer extends LinearLayout {
             if (i5 >= codeNumberFieldArr2.length) {
                 return;
             }
-            codeNumberFieldArr2[i5].setText("");
+            codeNumberFieldArr2[i5].setText(BuildConfig.APP_CENTER_HASH);
             i5++;
         }
     }
@@ -287,7 +288,7 @@ public class CodeFieldContainer extends LinearLayout {
 
     public String getCode() {
         if (this.codeField == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         StringBuilder sb = new StringBuilder();
         int i = 0;

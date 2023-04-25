@@ -225,10 +225,10 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 }
             };
             this.actionBar = actionBar;
-            actionBar.setBackgroundColor(getThemedColor("dialogBackground"));
-            this.actionBar.setTitleColor(getThemedColor("windowBackgroundWhiteBlackText"));
-            this.actionBar.setItemsBackgroundColor(getThemedColor("actionBarActionModeDefaultSelector"), false);
-            this.actionBar.setItemsColor(getThemedColor("actionBarActionModeDefaultIcon"), false);
+            actionBar.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
+            this.actionBar.setTitleColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+            this.actionBar.setItemsBackgroundColor(getThemedColor(Theme.key_actionBarActionModeDefaultSelector), false);
+            this.actionBar.setItemsColor(getThemedColor(Theme.key_actionBarActionModeDefaultIcon), false);
             this.actionBar.setCastShadows(true);
             this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
             this.actionBar.setTitle(getTitle());
@@ -309,7 +309,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     }
 
     private boolean isLightStatusBar() {
-        return ColorUtils.calculateLuminance(Theme.getColor("dialogBackground")) > 0.699999988079071d;
+        return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_dialogBackground)) > 0.699999988079071d;
     }
 
     public void notifyDataSetChanged() {

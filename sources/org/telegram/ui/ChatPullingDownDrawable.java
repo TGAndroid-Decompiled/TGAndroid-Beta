@@ -180,18 +180,20 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         }
         float f5 = f < 0.2f ? 5.0f * f * f2 : f2;
         Theme.applyServiceShaderMatrix(this.lastWidth, view.getMeasuredHeight(), 0.0f, view.getMeasuredHeight() - dp);
-        this.textPaint.setColor(getThemedColor("chat_serviceText"));
-        this.arrowPaint.setColor(getThemedColor("chat_serviceText"));
-        this.textPaint2.setColor(getThemedColor("chat_messagePanelHint"));
+        TextPaint textPaint = this.textPaint;
+        int i4 = Theme.key_chat_serviceText;
+        textPaint.setColor(getThemedColor(i4));
+        this.arrowPaint.setColor(getThemedColor(i4));
+        this.textPaint2.setColor(getThemedColor(Theme.key_chat_messagePanelHint));
         int alpha = getThemedPaint("paintChatActionBackground").getAlpha();
         int alpha2 = Theme.chat_actionBackgroundGradientDarkenPaint.getAlpha();
         int alpha3 = this.textPaint.getAlpha();
         int alpha4 = this.arrowPaint.getAlpha();
         Theme.chat_actionBackgroundGradientDarkenPaint.setAlpha((int) (alpha2 * f5));
-        int i4 = (int) (alpha * f5);
-        getThemedPaint("paintChatActionBackground").setAlpha(i4);
-        int i5 = (int) (alpha3 * f5);
-        this.textPaint.setAlpha(i5);
+        int i5 = (int) (alpha * f5);
+        getThemedPaint("paintChatActionBackground").setAlpha(i5);
+        int i6 = (int) (alpha3 * f5);
+        this.textPaint.setAlpha(i6);
         this.imageReceiver.setAlpha(f5);
         if ((f < 1.0f || this.lastProgress >= 1.0f) && (f >= 1.0f || this.lastProgress != 1.0f)) {
             i = alpha;
@@ -260,13 +262,13 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
             i2 = alpha3;
         }
         if (this.chatNameLayout != null && this.swipeToReleaseProgress > 0.0f) {
-            getThemedPaint("paintChatActionBackground").setAlpha(i4);
-            this.textPaint.setAlpha(i5);
+            getThemedPaint("paintChatActionBackground").setAlpha(i5);
+            this.textPaint.setAlpha(i6);
             float dp6 = ((AndroidUtilities.dp(20.0f) * (1.0f - this.swipeToReleaseProgress)) - (AndroidUtilities.dp(36.0f) * this.swipeToReleaseProgress)) + f7;
             RectF rectF2 = AndroidUtilities.rectTmp;
-            int i6 = this.lastWidth;
-            int i7 = this.chatNameWidth;
-            rectF2.set((i6 - i7) / 2.0f, dp6, i6 - ((i6 - i7) / 2.0f), this.chatNameLayout.getHeight() + dp6);
+            int i7 = this.lastWidth;
+            int i8 = this.chatNameWidth;
+            rectF2.set((i7 - i8) / 2.0f, dp6, i7 - ((i7 - i8) / 2.0f), this.chatNameLayout.getHeight() + dp6);
             rectF2.inset(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(4.0f));
             canvas.drawRoundRect(rectF2, AndroidUtilities.dp(15.0f), AndroidUtilities.dp(15.0f), getThemedPaint("paintChatActionBackground"));
             if (hasGradientService()) {
@@ -679,10 +681,8 @@ public class ChatPullingDownDrawable implements NotificationCenter.NotificationC
         this.animateCheck = false;
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     private Paint getThemedPaint(String str) {

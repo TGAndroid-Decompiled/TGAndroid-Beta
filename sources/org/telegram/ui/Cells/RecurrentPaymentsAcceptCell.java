@@ -28,8 +28,8 @@ public class RecurrentPaymentsAcceptCell extends FrameLayout {
         this.links = linkCollector;
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, linkCollector, resourcesProvider);
         this.textView = linksTextView;
-        linksTextView.setTextColor(Theme.getColor("windowBackgroundWhiteBlackText", resourcesProvider));
-        this.textView.setLinkTextColor(Theme.getColor("windowBackgroundWhiteLinkText", resourcesProvider));
+        linksTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+        this.textView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, resourcesProvider));
         this.textView.setTextSize(1, 15.0f);
         this.textView.setMaxLines(2);
         this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);

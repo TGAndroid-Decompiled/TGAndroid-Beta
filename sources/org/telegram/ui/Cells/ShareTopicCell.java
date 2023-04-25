@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -37,14 +38,14 @@ public class ShareTopicCell extends FrameLayout {
         addView(this.imageView, LayoutHelper.createFrame(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.nameTextView = textView;
-        textView.setTextColor(getThemedColor("dialogTextBlack"));
+        textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         this.nameTextView.setTextSize(1, 12.0f);
         this.nameTextView.setMaxLines(2);
         this.nameTextView.setGravity(49);
         this.nameTextView.setLines(2);
         this.nameTextView.setEllipsize(TextUtils.TruncateAt.END);
         addView(this.nameTextView, LayoutHelper.createFrame(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
-        setBackground(Theme.createRadSelectorDrawable(Theme.getColor("listSelectorSDK21"), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
+        setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f)));
     }
 
     @Override
@@ -57,12 +58,13 @@ public class ShareTopicCell extends FrameLayout {
             return;
         }
         TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$Dialog.id));
+        String str = BuildConfig.APP_CENTER_HASH;
         if (charSequence != null) {
             this.nameTextView.setText(charSequence);
         } else if (chat != null) {
             this.nameTextView.setText(tLRPC$TL_forumTopic.title);
         } else {
-            this.nameTextView.setText("");
+            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
         }
         if (tLRPC$TL_forumTopic.icon_emoji_id != 0) {
             this.imageView.setImageDrawable(null);
@@ -72,7 +74,10 @@ public class ShareTopicCell extends FrameLayout {
             ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(tLRPC$TL_forumTopic.icon_color);
             LetterDrawable letterDrawable = new LetterDrawable(null, 1);
             String upperCase = tLRPC$TL_forumTopic.title.trim().toUpperCase();
-            letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : "");
+            if (upperCase.length() >= 1) {
+                str = upperCase.substring(0, 1);
+            }
+            letterDrawable.setTitle(str);
             letterDrawable.scale = 1.8f;
             CombinedDrawable combinedDrawable = new CombinedDrawable(forumBubbleDrawable, letterDrawable, 0, 0);
             combinedDrawable.setFullsize(true);
@@ -91,9 +96,7 @@ public class ShareTopicCell extends FrameLayout {
         return this.currentTopic;
     }
 
-    private int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    private int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 }

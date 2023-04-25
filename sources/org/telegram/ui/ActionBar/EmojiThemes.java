@@ -8,11 +8,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Pair;
 import android.util.SparseArray;
+import android.util.SparseIntArray;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ChatThemeController;
@@ -29,7 +28,7 @@ import org.telegram.tgnet.TLRPC$TL_theme;
 import org.telegram.tgnet.TLRPC$WallPaper;
 import org.telegram.ui.ActionBar.Theme;
 public class EmojiThemes {
-    private static final String[] previewColorKeys = {"chat_inBubble", "chat_outBubble", "featuredStickers_addButton", "chat_wallpaper", "chat_wallpaper_gradient_to", "key_chat_wallpaper_gradient_to2", "key_chat_wallpaper_gradient_to3", "chat_wallpaper_gradient_rotation"};
+    private static final int[] previewColorKeys = {Theme.key_chat_inBubble, Theme.key_chat_outBubble, Theme.key_featuredStickers_addButton, Theme.key_chat_wallpaper, Theme.key_chat_wallpaper_gradient_to1, Theme.key_chat_wallpaper_gradient_to2, Theme.key_chat_wallpaper_gradient_to3, Theme.key_chat_wallpaper_gradient_rotation};
     public String emoji;
     public ArrayList<ThemeItem> items = new ArrayList<>();
     public boolean showAsDefaultStub;
@@ -204,12 +203,14 @@ public class EmojiThemes {
         return this.items.get(i).settingsIndex;
     }
 
-    public HashMap<String, Integer> getPreviewColors(int i, int i2) {
+    public SparseIntArray getPreviewColors(int i, int i2) {
         Theme.ThemeAccent themeAccent;
+        SparseIntArray sparseIntArray;
+        int indexOfKey;
         Theme.ThemeInfo theme;
-        HashMap<String, Integer> hashMap = this.items.get(i2).currentPreviewColors;
-        if (hashMap != null) {
-            return hashMap;
+        SparseIntArray sparseIntArray2 = this.items.get(i2).currentPreviewColors;
+        if (sparseIntArray2 != null) {
+            return sparseIntArray2;
         }
         Theme.ThemeInfo themeInfo = getThemeInfo(i2);
         if (themeInfo == null) {
@@ -228,44 +229,50 @@ public class EmojiThemes {
             SparseArray<Theme.ThemeAccent> sparseArray = themeInfo.themeAccentsMap;
             themeAccent = sparseArray != null ? sparseArray.get(this.items.get(i2).accentId) : null;
         }
-        HashMap<String, Integer> hashMap2 = new HashMap<>();
         String[] strArr = new String[1];
         if (themeInfo.pathToFile != null) {
-            hashMap2.putAll(Theme.getThemeFileValues(new File(themeInfo.pathToFile), null, strArr));
+            sparseIntArray = Theme.getThemeFileValues(new File(themeInfo.pathToFile), null, strArr);
         } else {
             String str = themeInfo.assetName;
             if (str != null) {
-                hashMap2.putAll(Theme.getThemeFileValues(null, str, strArr));
+                sparseIntArray = Theme.getThemeFileValues(null, str, strArr);
+            } else {
+                sparseIntArray = new SparseIntArray();
             }
         }
         int i3 = 0;
         this.items.get(i2).wallpaperLink = strArr[0];
         if (themeAccent != null) {
-            HashMap<String, Integer> hashMap3 = new HashMap<>(hashMap2);
-            themeAccent.fillAccentColors(hashMap2, hashMap3);
-            hashMap2.clear();
-            hashMap2 = hashMap3;
+            SparseIntArray clone = sparseIntArray.clone();
+            themeAccent.fillAccentColors(sparseIntArray, clone);
+            sparseIntArray = clone;
         }
-        HashMap<String, String> fallbackKeys = Theme.getFallbackKeys();
-        this.items.get(i2).currentPreviewColors = new HashMap<>();
+        SparseIntArray fallbackKeys = Theme.getFallbackKeys();
+        this.items.get(i2).currentPreviewColors = new SparseIntArray();
         while (true) {
-            String[] strArr2 = previewColorKeys;
-            if (i3 < strArr2.length) {
-                String str2 = strArr2[i3];
-                this.items.get(i2).currentPreviewColors.put(str2, hashMap2.get(str2));
-                if (!this.items.get(i2).currentPreviewColors.containsKey(str2)) {
-                    hashMap2.put(str2, hashMap2.get(fallbackKeys.get(str2)));
+            int[] iArr = previewColorKeys;
+            if (i3 < iArr.length) {
+                int i4 = iArr[i3];
+                int indexOfKey2 = sparseIntArray.indexOfKey(i4);
+                if (indexOfKey2 >= 0) {
+                    this.items.get(i2).currentPreviewColors.put(i4, sparseIntArray.valueAt(indexOfKey2));
+                } else {
+                    int i5 = fallbackKeys.get(i4, -1);
+                    if (i5 >= 0 && (indexOfKey = sparseIntArray.indexOfKey(i5)) >= 0) {
+                        this.items.get(i2).currentPreviewColors.put(i4, sparseIntArray.valueAt(indexOfKey));
+                    }
                 }
                 i3++;
             } else {
-                hashMap2.clear();
                 return this.items.get(i2).currentPreviewColors;
             }
         }
     }
 
-    public HashMap<String, Integer> createColors(int i, int i2) {
+    public SparseIntArray createColors(int i, int i2) {
         Theme.ThemeAccent themeAccent;
+        SparseIntArray sparseIntArray;
+        int indexOfKey;
         Theme.ThemeInfo themeInfo = getThemeInfo(i2);
         if (themeInfo == null) {
             int settingsIndex = getSettingsIndex(i2);
@@ -278,35 +285,38 @@ public class EmojiThemes {
             SparseArray<Theme.ThemeAccent> sparseArray = themeInfo.themeAccentsMap;
             themeAccent = sparseArray != null ? sparseArray.get(this.items.get(i2).accentId) : null;
         }
-        HashMap<String, Integer> hashMap = new HashMap<>();
         String[] strArr = new String[1];
         if (themeInfo.pathToFile != null) {
-            hashMap.putAll(Theme.getThemeFileValues(new File(themeInfo.pathToFile), null, strArr));
+            sparseIntArray = Theme.getThemeFileValues(new File(themeInfo.pathToFile), null, strArr);
         } else {
             String str = themeInfo.assetName;
             if (str != null) {
-                hashMap.putAll(Theme.getThemeFileValues(null, str, strArr));
+                sparseIntArray = Theme.getThemeFileValues(null, str, strArr);
+            } else {
+                sparseIntArray = new SparseIntArray();
             }
         }
         this.items.get(i2).wallpaperLink = strArr[0];
         if (themeAccent != null) {
-            HashMap<String, Integer> hashMap2 = new HashMap<>(hashMap);
-            themeAccent.fillAccentColors(hashMap, hashMap2);
-            hashMap.clear();
-            hashMap = hashMap2;
+            SparseIntArray clone = sparseIntArray.clone();
+            themeAccent.fillAccentColors(sparseIntArray, clone);
+            sparseIntArray = clone;
         }
-        for (Map.Entry<String, String> entry : Theme.getFallbackKeys().entrySet()) {
-            String key = entry.getKey();
-            if (!hashMap.containsKey(key)) {
-                hashMap.put(key, hashMap.get(entry.getValue()));
+        SparseIntArray fallbackKeys = Theme.getFallbackKeys();
+        for (int i3 = 0; i3 < fallbackKeys.size(); i3++) {
+            int keyAt = fallbackKeys.keyAt(i3);
+            int valueAt = fallbackKeys.valueAt(i3);
+            if (sparseIntArray.indexOfKey(keyAt) < 0 && (indexOfKey = sparseIntArray.indexOfKey(valueAt)) >= 0) {
+                sparseIntArray.put(keyAt, sparseIntArray.valueAt(indexOfKey));
             }
         }
-        for (Map.Entry<String, Integer> entry2 : Theme.getDefaultColors().entrySet()) {
-            if (!hashMap.containsKey(entry2.getKey())) {
-                hashMap.put(entry2.getKey(), entry2.getValue());
+        int[] defaultColors = Theme.getDefaultColors();
+        for (int i4 = 0; i4 < defaultColors.length; i4++) {
+            if (sparseIntArray.indexOfKey(i4) < 0) {
+                sparseIntArray.put(i4, defaultColors[i4]);
             }
         }
-        return hashMap;
+        return sparseIntArray;
     }
 
     public Theme.ThemeInfo getThemeInfo(int i) {
@@ -507,52 +517,15 @@ public class EmojiThemes {
     public void loadPreviewColors(int i) {
         for (int i2 = 0; i2 < this.items.size(); i2++) {
             if (this.items.get(i2) != null) {
-                HashMap<String, Integer> previewColors = getPreviewColors(i, i2);
-                Integer num = previewColors.get("chat_inBubble");
-                if (num == null) {
-                    num = Integer.valueOf(Theme.getDefaultColor("chat_inBubble"));
-                }
-                this.items.get(i2).inBubbleColor = num.intValue();
-                Integer num2 = previewColors.get("chat_outBubble");
-                if (num2 == null) {
-                    num2 = Integer.valueOf(Theme.getDefaultColor("chat_outBubble"));
-                }
-                this.items.get(i2).outBubbleColor = num2.intValue();
-                Integer num3 = previewColors.get("featuredStickers_addButton");
-                if (num3 == null) {
-                    num3 = Integer.valueOf(Theme.getDefaultColor("featuredStickers_addButton"));
-                }
-                this.items.get(i2).outLineColor = num3.intValue();
-                Integer num4 = previewColors.get("chat_wallpaper");
-                if (num4 == null) {
-                    this.items.get(i2).patternBgColor = 0;
-                } else {
-                    this.items.get(i2).patternBgColor = num4.intValue();
-                }
-                Integer num5 = previewColors.get("chat_wallpaper_gradient_to");
-                if (num5 == null) {
-                    this.items.get(i2).patternBgGradientColor1 = 0;
-                } else {
-                    this.items.get(i2).patternBgGradientColor1 = num5.intValue();
-                }
-                Integer num6 = previewColors.get("key_chat_wallpaper_gradient_to2");
-                if (num6 == null) {
-                    this.items.get(i2).patternBgGradientColor2 = 0;
-                } else {
-                    this.items.get(i2).patternBgGradientColor2 = num6.intValue();
-                }
-                Integer num7 = previewColors.get("key_chat_wallpaper_gradient_to3");
-                if (num7 == null) {
-                    this.items.get(i2).patternBgGradientColor3 = 0;
-                } else {
-                    this.items.get(i2).patternBgGradientColor3 = num7.intValue();
-                }
-                Integer num8 = previewColors.get("chat_wallpaper_gradient_rotation");
-                if (num8 == null) {
-                    this.items.get(i2).patternBgRotation = 0;
-                } else {
-                    this.items.get(i2).patternBgRotation = num8.intValue();
-                }
+                SparseIntArray previewColors = getPreviewColors(i, i2);
+                this.items.get(i2).inBubbleColor = getOrDefault(previewColors, Theme.key_chat_inBubble);
+                this.items.get(i2).outBubbleColor = getOrDefault(previewColors, Theme.key_chat_outBubble);
+                this.items.get(i2).outLineColor = getOrDefault(previewColors, Theme.key_featuredStickers_addButton);
+                this.items.get(i2).patternBgColor = previewColors.get(Theme.key_chat_wallpaper, 0);
+                this.items.get(i2).patternBgGradientColor1 = previewColors.get(Theme.key_chat_wallpaper_gradient_to1, 0);
+                this.items.get(i2).patternBgGradientColor2 = previewColors.get(Theme.key_chat_wallpaper_gradient_to2, 0);
+                this.items.get(i2).patternBgGradientColor3 = previewColors.get(Theme.key_chat_wallpaper_gradient_to3, 0);
+                this.items.get(i2).patternBgRotation = previewColors.get(Theme.key_chat_wallpaper_gradient_rotation, 0);
                 if (this.items.get(i2).themeInfo != null && this.items.get(i2).themeInfo.getKey().equals("Blue")) {
                     if ((this.items.get(i2).accentId >= 0 ? this.items.get(i2).accentId : this.items.get(i2).themeInfo.currentAccentId) == 99) {
                         this.items.get(i2).patternBgColor = -2368069;
@@ -563,6 +536,14 @@ public class EmojiThemes {
                 }
             }
         }
+    }
+
+    private int getOrDefault(SparseIntArray sparseIntArray, int i) {
+        int indexOfKey = sparseIntArray.indexOfKey(i);
+        if (indexOfKey >= 0) {
+            return sparseIntArray.valueAt(indexOfKey);
+        }
+        return Theme.getDefaultColor(i);
     }
 
     public ThemeItem getThemeItem(int i) {
@@ -595,7 +576,7 @@ public class EmojiThemes {
 
     public static class ThemeItem {
         public int accentId = -1;
-        public HashMap<String, Integer> currentPreviewColors;
+        public SparseIntArray currentPreviewColors;
         public int inBubbleColor;
         public int outBubbleColor;
         public int outLineColor;

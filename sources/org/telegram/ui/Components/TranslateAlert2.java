@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -117,13 +118,15 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         this.loadingTextView = loadingTextView;
         loadingTextView.setPadding(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f));
         this.loadingTextView.setTextSize(1, SharedConfig.fontSize);
-        this.loadingTextView.setTextColor(getThemedColor("dialogTextBlack"));
-        this.loadingTextView.setLinkTextColor(Theme.multAlpha(getThemedColor("dialogTextBlack"), 0.2f));
-        this.loadingTextView.setText(Emoji.replaceEmoji(charSequence == null ? "" : charSequence.toString(), this.loadingTextView.getPaint().getFontMetricsInt(), true));
+        LoadingTextView loadingTextView2 = this.loadingTextView;
+        int i2 = Theme.key_dialogTextBlack;
+        loadingTextView2.setTextColor(getThemedColor(i2));
+        this.loadingTextView.setLinkTextColor(Theme.multAlpha(getThemedColor(i2), 0.2f));
+        this.loadingTextView.setText(Emoji.replaceEmoji(charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString(), this.loadingTextView.getPaint().getFontMetricsInt(), true));
         this.textViewContainer = new FrameLayout(this, context) {
             @Override
-            protected void onMeasure(int i2, int i3) {
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i2), 1073741824), i3);
+            protected void onMeasure(int i3, int i4) {
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i4);
             }
         };
         LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, resourcesProvider);
@@ -131,11 +134,11 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         linksTextView.setDisablePaddingsOffsetY(true);
         this.textView.setPadding(AndroidUtilities.dp(22.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f), AndroidUtilities.dp(6.0f));
         this.textView.setTextSize(1, SharedConfig.fontSize);
-        this.textView.setTextColor(getThemedColor("dialogTextBlack"));
-        this.textView.setLinkTextColor(getThemedColor("chat_messageLinkIn"));
+        this.textView.setTextColor(getThemedColor(i2));
+        this.textView.setLinkTextColor(getThemedColor(Theme.key_chat_messageLinkIn));
         this.textView.setTextIsSelectable(true);
-        this.textView.setHighlightColor(getThemedColor("chat_inTextSelectionHighlight"));
-        int themedColor = getThemedColor("chat_TextSelectionCursor");
+        this.textView.setHighlightColor(getThemedColor(Theme.key_chat_inTextSelectionHighlight));
+        int themedColor = getThemedColor(Theme.key_chat_TextSelectionCursor);
         try {
             if (Build.VERSION.SDK_INT >= 29 && !XiaomiUtilities.isMIUI()) {
                 Drawable textSelectHandleLeft = this.textView.getTextSelectHandleLeft();
@@ -150,7 +153,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         this.textViewContainer.addView(this.textView, LayoutHelper.createFrame(-1, -1.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
-            protected boolean onRequestFocusInDescendants(int i2, android.graphics.Rect rect) {
+            protected boolean onRequestFocusInDescendants(int i3, android.graphics.Rect rect) {
                 return true;
             }
 
@@ -178,18 +181,18 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         recyclerListView2.setAdapter(paddedAdapter);
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
+            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
                 ((BottomSheet) TranslateAlert2.this).containerView.invalidate();
                 TranslateAlert2 translateAlert2 = TranslateAlert2.this;
                 translateAlert2.updateButtonShadow(translateAlert2.listView.canScrollVertically(1));
             }
 
             @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int i2) {
-                if (i2 == 0) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int i3) {
+                if (i3 == 0) {
                     TranslateAlert2.this.sheetTopNotAnimate = false;
                 }
-                if ((i2 == 0 || i2 == 2) && TranslateAlert2.this.getSheetTop(false) > 0.0f && TranslateAlert2.this.getSheetTop(false) < AndroidUtilities.dp(96.0f) && TranslateAlert2.this.listView.canScrollVertically(1) && TranslateAlert2.this.hasEnoughHeight()) {
+                if ((i3 == 0 || i3 == 2) && TranslateAlert2.this.getSheetTop(false) > 0.0f && TranslateAlert2.this.getSheetTop(false) < AndroidUtilities.dp(96.0f) && TranslateAlert2.this.listView.canScrollVertically(1) && TranslateAlert2.this.hasEnoughHeight()) {
                     TranslateAlert2.this.sheetTopNotAnimate = true;
                     TranslateAlert2.this.listView.smoothScrollBy(0, (int) TranslateAlert2.this.getSheetTop(false));
                 }
@@ -215,10 +218,10 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         this.containerView.addView(headerView, LayoutHelper.createFrame(-1, 78, 55));
         FrameLayout frameLayout = new FrameLayout(context);
         this.buttonView = frameLayout;
-        frameLayout.setBackgroundColor(getThemedColor("dialogBackground"));
+        frameLayout.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));
         View view = new View(context);
         this.buttonShadowView = view;
-        view.setBackgroundColor(getThemedColor("dialogShadowLine"));
+        view.setBackgroundColor(getThemedColor(Theme.key_dialogShadowLine));
         this.buttonShadowView.setAlpha(0.0f);
         this.buttonView.addView(this.buttonShadowView, LayoutHelper.createFrame(-1.0f, AndroidUtilities.getShadowHeight() / AndroidUtilities.dpf2(1.0f), 55));
         TextView textView = new TextView(context);
@@ -228,11 +231,11 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         this.buttonTextView.setGravity(1);
         this.buttonTextView.setEllipsize(TextUtils.TruncateAt.END);
         this.buttonTextView.setGravity(17);
-        this.buttonTextView.setTextColor(Theme.getColor("featuredStickers_buttonText"));
+        this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setText(LocaleController.getString("CloseTranslation", R.string.CloseTranslation));
-        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor("featuredStickers_addButton"), 6.0f));
+        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(Theme.key_featuredStickers_addButton), 6.0f));
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -267,7 +270,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
         TLRPC$TL_messages_translateText tLRPC$TL_messages_translateText = new TLRPC$TL_messages_translateText();
         final TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = new TLRPC$TL_textWithEntities();
         CharSequence charSequence = this.reqText;
-        tLRPC$TL_textWithEntities.text = charSequence == null ? "" : charSequence.toString();
+        tLRPC$TL_textWithEntities.text = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
         ArrayList<TLRPC$MessageEntity> arrayList = this.reqMessageEntities;
         if (arrayList != null) {
             tLRPC$TL_textWithEntities.entities = arrayList;
@@ -473,7 +476,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                             if (!(uRLSpan instanceof URLSpanNoUnderline)) {
                                 textPaint.setUnderlineText(true);
                             }
-                            textPaint.setColor(Theme.getColor("dialogTextLink"));
+                            textPaint.setColor(Theme.getColor(Theme.key_dialogTextLink));
                             textPaint.setAlpha(min);
                         }
                     }, spanStart, spanEnd, 33);
@@ -652,14 +655,16 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             super(context);
             View view = new View(context);
             this.backgroundView = view;
-            view.setBackgroundColor(TranslateAlert2.this.getThemedColor("dialogBackground"));
+            view.setBackgroundColor(TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground));
             addView(this.backgroundView, LayoutHelper.createFrame(-1, 44.0f, 55, 0.0f, 12.0f, 0.0f, 0.0f));
             ImageView imageView = new ImageView(context);
             this.backButton = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
             this.backButton.setImageResource(R.drawable.ic_ab_back);
-            this.backButton.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor("dialogTextBlack"), PorterDuff.Mode.MULTIPLY));
-            this.backButton.setBackground(Theme.createSelectorDrawable(TranslateAlert2.this.getThemedColor("listSelectorSDK21")));
+            ImageView imageView2 = this.backButton;
+            int i = Theme.key_dialogTextBlack;
+            imageView2.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor(i), PorterDuff.Mode.MULTIPLY));
+            this.backButton.setBackground(Theme.createSelectorDrawable(TranslateAlert2.this.getThemedColor(Theme.key_listSelector)));
             this.backButton.setAlpha(0.0f);
             this.backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -670,15 +675,15 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             addView(this.backButton, LayoutHelper.createFrame(54, 54.0f, 48, 1.0f, 1.0f, 1.0f, 1.0f));
             TextView textView = new TextView(context, TranslateAlert2.this) {
                 @Override
-                protected void onMeasure(int i, int i2) {
-                    super.onMeasure(i, i2);
+                protected void onMeasure(int i2, int i3) {
+                    super.onMeasure(i2, i3);
                     if (LocaleController.isRTL) {
                         HeaderView.this.titleTextView.setPivotX(getMeasuredWidth());
                     }
                 }
             };
             this.titleTextView = textView;
-            textView.setTextColor(TranslateAlert2.this.getThemedColor("dialogTextBlack"));
+            textView.setTextColor(TranslateAlert2.this.getThemedColor(i));
             this.titleTextView.setTextSize(1, 20.0f);
             this.titleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.titleTextView.setText(LocaleController.getString("AutomaticTranslation", R.string.AutomaticTranslation));
@@ -687,8 +692,8 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             addView(this.titleTextView, LayoutHelper.createFrame(-1, -2.0f, 55, 22.0f, 20.0f, 22.0f, 0.0f));
             LinearLayout linearLayout = new LinearLayout(context, TranslateAlert2.this) {
                 @Override
-                protected void onMeasure(int i, int i2) {
-                    super.onMeasure(i, i2);
+                protected void onMeasure(int i2, int i3) {
+                    super.onMeasure(i2, i3);
                     if (LocaleController.isRTL) {
                         HeaderView.this.subtitleView.setPivotX(getMeasuredWidth());
                     }
@@ -704,15 +709,17 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                 TextView textView2 = new TextView(context);
                 this.fromLanguageTextView = textView2;
                 textView2.setLines(1);
-                this.fromLanguageTextView.setTextColor(TranslateAlert2.this.getThemedColor("player_actionBarSubtitle"));
+                this.fromLanguageTextView.setTextColor(TranslateAlert2.this.getThemedColor(Theme.key_player_actionBarSubtitle));
                 this.fromLanguageTextView.setTextSize(1, 14.0f);
                 this.fromLanguageTextView.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(TranslateAlert2.this.fromLanguage)));
                 this.fromLanguageTextView.setPadding(0, AndroidUtilities.dp(2.0f), 0, AndroidUtilities.dp(2.0f));
             }
-            ImageView imageView2 = new ImageView(context);
-            this.arrowView = imageView2;
-            imageView2.setImageResource(R.drawable.search_arrow);
-            this.arrowView.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor("player_actionBarSubtitle"), PorterDuff.Mode.MULTIPLY));
+            ImageView imageView3 = new ImageView(context);
+            this.arrowView = imageView3;
+            imageView3.setImageResource(R.drawable.search_arrow);
+            ImageView imageView4 = this.arrowView;
+            int i2 = Theme.key_player_actionBarSubtitle;
+            imageView4.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor(i2), PorterDuff.Mode.MULTIPLY));
             if (LocaleController.isRTL) {
                 this.arrowView.setScaleX(-1.0f);
             }
@@ -727,7 +734,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                     } else {
                         AndroidUtilities.rectTmp.set(0.0f, (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, width(), (getHeight() + AndroidUtilities.dp(18.0f)) / 2.0f);
                     }
-                    this.bgPaint.setColor(Theme.multAlpha(TranslateAlert2.this.getThemedColor("player_actionBarSubtitle"), 0.1175f));
+                    this.bgPaint.setColor(Theme.multAlpha(TranslateAlert2.this.getThemedColor(Theme.key_player_actionBarSubtitle), 0.1175f));
                     canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), this.bgPaint);
                     if (this.links.draw(canvas)) {
                         invalidate();
@@ -739,7 +746,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                 public boolean onTouchEvent(MotionEvent motionEvent) {
                     if (motionEvent.getAction() == 0) {
                         LinkSpanDrawable linkSpanDrawable = new LinkSpanDrawable(null, ((BottomSheet) TranslateAlert2.this).resourcesProvider, motionEvent.getX(), motionEvent.getY());
-                        linkSpanDrawable.setColor(Theme.multAlpha(TranslateAlert2.this.getThemedColor("player_actionBarSubtitle"), 0.1175f));
+                        linkSpanDrawable.setColor(Theme.multAlpha(TranslateAlert2.this.getThemedColor(Theme.key_player_actionBarSubtitle), 0.1175f));
                         LinkPath obtainNewPath = linkSpanDrawable.obtainNewPath();
                         if (LocaleController.isRTL) {
                             AndroidUtilities.rectTmp.set(getWidth() - width(), (getHeight() - AndroidUtilities.dp(18.0f)) / 2.0f, getWidth(), (getHeight() + AndroidUtilities.dp(18.0f)) / 2.0f);
@@ -766,7 +773,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                 animatedTextView.setGravity(5);
             }
             this.toLanguageTextView.setAnimationProperties(0.25f, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
-            this.toLanguageTextView.setTextColor(TranslateAlert2.this.getThemedColor("player_actionBarSubtitle"));
+            this.toLanguageTextView.setTextColor(TranslateAlert2.this.getThemedColor(i2));
             this.toLanguageTextView.setTextSize(AndroidUtilities.dp(14.0f));
             this.toLanguageTextView.setText(TranslateAlert2.capitalFirst(TranslateAlert2.languageName(TranslateAlert2.this.toLanguage)));
             this.toLanguageTextView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
@@ -793,7 +800,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             addView(this.subtitleView, LayoutHelper.createFrame(-1, -2.0f, 55, 22.0f, 43.0f, 22.0f, 0.0f));
             View view2 = new View(context);
             this.shadow = view2;
-            view2.setBackgroundColor(TranslateAlert2.this.getThemedColor("dialogShadowLine"));
+            view2.setBackgroundColor(TranslateAlert2.this.getThemedColor(Theme.key_dialogShadowLine));
             this.shadow.setAlpha(0.0f);
             addView(this.shadow, LayoutHelper.createFrame(-1, AndroidUtilities.getShadowHeight() / AndroidUtilities.dpf2(1.0f), 55, 0.0f, 56.0f, 0.0f, 0.0f));
         }
@@ -814,7 +821,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                 }
             };
             Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.popup_fixed_alert).mutate();
-            mutate.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor("actionBarDefaultSubmenuBackground"), PorterDuff.Mode.MULTIPLY));
+            mutate.setColorFilter(new PorterDuffColorFilter(TranslateAlert2.this.getThemedColor(Theme.key_actionBarDefaultSubmenuBackground), PorterDuff.Mode.MULTIPLY));
             actionBarPopupWindowLayout.setBackground(mutate);
             final Runnable[] runnableArr = new Runnable[1];
             ArrayList<LocaleController.LocaleInfo> locales = TranslateController.getLocales();
@@ -913,7 +920,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
             this.bgPath = new Path();
             Paint paint = new Paint(1);
             this.bgPaint = paint;
-            paint.setColor(TranslateAlert2.this.getThemedColor("dialogBackground"));
+            paint.setColor(TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground));
             Theme.applyDefaultShadow(this.bgPaint);
         }
 
@@ -938,9 +945,9 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                 this.lightStatusBarFull = Boolean.valueOf(z);
                 Window window = TranslateAlert2.this.getWindow();
                 if (z) {
-                    blendOver = TranslateAlert2.this.getThemedColor("dialogBackground");
+                    blendOver = TranslateAlert2.this.getThemedColor(Theme.key_dialogBackground);
                 } else {
-                    blendOver = Theme.blendOver(TranslateAlert2.this.getThemedColor("actionBarDefault"), AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+                    blendOver = Theme.blendOver(TranslateAlert2.this.getThemedColor(Theme.key_actionBarDefault), AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
                 }
                 AndroidUtilities.setLightStatusBar(window, AndroidUtilities.computePerceivedBrightness(blendOver) > 0.721f);
             }

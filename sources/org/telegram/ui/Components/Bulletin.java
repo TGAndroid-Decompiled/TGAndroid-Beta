@@ -78,6 +78,7 @@ public class Bulletin {
     private final Layout layout;
     private Layout.Transition layoutTransition;
     private boolean loaded;
+    private Runnable onHideListener;
     private final ParentLayout parentLayout;
     private boolean showing;
     public int tag;
@@ -407,6 +408,11 @@ public class Bulletin {
         }
     }
 
+    public Bulletin setOnHideListener(Runnable runnable) {
+        this.onHideListener = runnable;
+        return this;
+    }
+
     public void ensureLayoutTransitionCreated() {
         Layout layout = this.layout;
         if (layout == null || this.layoutTransition != null) {
@@ -484,6 +490,10 @@ public class Bulletin {
                 });
             }
             this.layout.onDetach();
+            Runnable runnable = this.onHideListener;
+            if (runnable != null) {
+                runnable.run();
+            }
         }
     }
 
@@ -499,6 +509,10 @@ public class Bulletin {
         this.containerLayout.removeView(this.parentLayout);
         this.containerLayout.removeOnLayoutChangeListener(this.containerLayoutListener);
         this.layout.onDetach();
+        Runnable runnable = this.onHideListener;
+        if (runnable != null) {
+            runnable.run();
+        }
     }
 
     public void lambda$hide$4(Float f) {
@@ -828,7 +842,7 @@ public class Bulletin {
             this.wideScreenGravity = 1;
             this.resourcesProvider = resourcesProvider;
             setMinimumHeight(AndroidUtilities.dp(48.0f));
-            setBackground(getThemedColor("undo_background"));
+            setBackground(getThemedColor(Theme.key_undo_background));
             updateSize();
             setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
             setWillNotDraw(false);
@@ -1195,10 +1209,8 @@ public class Bulletin {
             super.dispatchDraw(canvas);
         }
 
-        public int getThemedColor(String str) {
-            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-            Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-            return color != null ? color.intValue() : Theme.getColor(str);
+        public int getThemedColor(int i) {
+            return Theme.getColor(i, this.resourcesProvider);
         }
     }
 
@@ -1268,7 +1280,7 @@ public class Bulletin {
 
         public SimpleLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
-            int themedColor = getThemedColor("undo_infoColor");
+            int themedColor = getThemedColor(Theme.key_undo_infoColor);
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
@@ -1302,7 +1314,7 @@ public class Bulletin {
             addView(backupImageView, LayoutHelper.createFrameRelatively(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
             textView.setGravity(8388611);
             textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-            textView.setTextColor(getThemedColor("undo_infoColor"));
+            textView.setTextColor(getThemedColor(Theme.key_undo_infoColor));
             textView.setTextSize(1, 15.0f);
             textView.setTypeface(Typeface.SANS_SERIF);
             addView(textView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
@@ -1323,7 +1335,7 @@ public class Bulletin {
 
         public TwoLineLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
-            int themedColor = getThemedColor("undo_infoColor");
+            int themedColor = getThemedColor(Theme.key_undo_infoColor);
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
             addView(backupImageView, LayoutHelper.createFrameRelatively(29.0f, 29.0f, 8388627, 12.0f, 12.0f, 12.0f, 12.0f));
@@ -1342,7 +1354,7 @@ public class Bulletin {
             this.subtitleTextView = textView2;
             textView2.setMaxLines(2);
             textView2.setTextColor(themedColor);
-            textView2.setLinkTextColor(getThemedColor("undo_cancelColor"));
+            textView2.setLinkTextColor(getThemedColor(Theme.key_undo_cancelColor));
             textView2.setMovementMethod(new LinkMovementMethod());
             textView2.setTypeface(Typeface.SANS_SERIF);
             textView2.setTextSize(1, 13.0f);
@@ -1364,14 +1376,15 @@ public class Bulletin {
 
         public TwoLineLottieLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
-            this.textColor = getThemedColor("undo_infoColor");
-            setBackground(getThemedColor("undo_background"));
+            int i = Theme.key_undo_infoColor;
+            this.textColor = getThemedColor(i);
+            setBackground(getThemedColor(Theme.key_undo_background));
             RLottieImageView rLottieImageView = new RLottieImageView(context);
             this.imageView = rLottieImageView;
             rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
             addView(rLottieImageView, LayoutHelper.createFrameRelatively(56.0f, 48.0f, 8388627));
-            int themedColor = getThemedColor("undo_infoColor");
-            int themedColor2 = getThemedColor("undo_cancelColor");
+            int themedColor = getThemedColor(i);
+            int themedColor2 = getThemedColor(Theme.key_undo_cancelColor);
             LinearLayout linearLayout = new LinearLayout(context);
             this.linearLayout = linearLayout;
             linearLayout.setOrientation(1);
@@ -1443,9 +1456,9 @@ public class Bulletin {
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
             this.textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
             addView(this.textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 8.0f, 0.0f));
-            this.textView.setLinkTextColor(getThemedColor("undo_cancelColor"));
-            setTextColor(getThemedColor("undo_infoColor"));
-            setBackground(getThemedColor("undo_background"));
+            this.textView.setLinkTextColor(getThemedColor(Theme.key_undo_cancelColor));
+            setTextColor(getThemedColor(Theme.key_undo_infoColor));
+            setBackground(getThemedColor(Theme.key_undo_background));
         }
 
         public LottieLayout(Context context, Theme.ResourcesProvider resourcesProvider, int i, int i2) {
@@ -1509,7 +1522,7 @@ public class Bulletin {
             this.textLoadingView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
             this.textView.setVisibility(8);
             addView(this.textLoadingView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 8.0f, 0.0f));
-            setTextColor(getThemedColor("undo_infoColor"));
+            setTextColor(getThemedColor(Theme.key_undo_infoColor));
         }
 
         @Override
@@ -1581,12 +1594,12 @@ public class Bulletin {
                 this.subtitleView.setTextSize(1, 13.0f);
                 this.subtitleView.setEllipsize(TextUtils.TruncateAt.END);
                 this.subtitleView.setMaxLines(1);
-                this.subtitleView.setLinkTextColor(getThemedColor("undo_cancelColor"));
+                this.subtitleView.setLinkTextColor(getThemedColor(Theme.key_undo_cancelColor));
                 this.linearLayout.addView(this.subtitleView, LayoutHelper.createLinear(-2, -2, 0, 0, 0, 0, 0));
             }
-            this.textView.setLinkTextColor(getThemedColor("undo_cancelColor"));
-            setTextColor(getThemedColor("undo_infoColor"));
-            setBackground(getThemedColor("undo_background"));
+            this.textView.setLinkTextColor(getThemedColor(Theme.key_undo_cancelColor));
+            setTextColor(getThemedColor(Theme.key_undo_infoColor));
+            setBackground(getThemedColor(Theme.key_undo_background));
         }
 
         public void setTextColor(int i) {
@@ -1655,7 +1668,7 @@ public class Bulletin {
         public UndoButton(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.resourcesProvider = resourcesProvider;
-            int themedColor = getThemedColor("undo_cancelColor");
+            int themedColor = getThemedColor(Theme.key_undo_cancelColor);
             if (z) {
                 TextView textView = new TextView(context);
                 this.undoTextView = textView;
@@ -1741,10 +1754,12 @@ public class Bulletin {
             return this;
         }
 
-        private int getThemedColor(String str) {
+        protected int getThemedColor(int i) {
             Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-            Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-            return color != null ? color.intValue() : Theme.getColor(str);
+            if (resourcesProvider != null) {
+                return resourcesProvider.getColor(i);
+            }
+            return Theme.getColor(i);
         }
     }
 
@@ -1790,13 +1805,15 @@ public class Bulletin {
             this.textPaint = textPaint;
             textPaint.setTextSize(AndroidUtilities.dp(12.0f));
             this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            this.textPaint.setColor(Theme.getColor("undo_infoColor", resourcesProvider));
+            TextPaint textPaint2 = this.textPaint;
+            int i = Theme.key_undo_infoColor;
+            textPaint2.setColor(Theme.getColor(i, resourcesProvider));
             Paint paint = new Paint(1);
             this.progressPaint = paint;
             paint.setStyle(Paint.Style.STROKE);
             paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
             paint.setStrokeCap(Paint.Cap.ROUND);
-            paint.setColor(Theme.getColor("undo_infoColor", resourcesProvider));
+            paint.setColor(Theme.getColor(i, resourcesProvider));
         }
 
         @Override
@@ -1972,7 +1989,7 @@ public class Bulletin {
                     attributes.layoutInDisplayCutoutMode = 1;
                 }
                 window.setAttributes(attributes);
-                if (AndroidUtilities.computePerceivedBrightness(Theme.getColor("windowBackgroundGray")) <= 0.721f) {
+                if (AndroidUtilities.computePerceivedBrightness(Theme.getColor(Theme.key_windowBackgroundGray)) <= 0.721f) {
                     z = false;
                 }
                 AndroidUtilities.setLightNavigationBar(window, z);

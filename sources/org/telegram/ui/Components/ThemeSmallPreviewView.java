@@ -96,7 +96,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         this.currentType = i2;
         this.currentAccount = i;
         this.resourcesProvider = resourcesProvider;
-        setBackgroundColor(getThemedColor("dialogBackgroundGray"));
+        setBackgroundColor(getThemedColor(Theme.key_dialogBackgroundGray));
         BackupImageView backupImageView = new BackupImageView(context);
         this.backupImageView = backupImageView;
         backupImageView.getImageReceiver().setCrossfadeWithOldImage(true);
@@ -211,7 +211,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
             this.backupImageView.setScaleY(1.0f);
         }
         if (z2) {
-            Drawable svgThumb = emojiAnimatedSticker != null ? DocumentObject.getSvgThumb(emojiAnimatedSticker, "emptyListPlaceholder", 0.2f) : null;
+            Drawable svgThumb = emojiAnimatedSticker != null ? DocumentObject.getSvgThumb(emojiAnimatedSticker, Theme.key_emptyListPlaceholder, 0.2f) : null;
             if (svgThumb == null) {
                 Emoji.preloadEmoji(chatThemeItem.chatTheme.getEmoticon());
                 svgThumb = Emoji.getEmojiDrawable(chatThemeItem.chatTheme.getEmoticon());
@@ -429,10 +429,10 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
 
     @Override
     public void setBackgroundColor(int i) {
-        this.backgroundFillPaint.setColor(getThemedColor("dialogBackgroundGray"));
+        this.backgroundFillPaint.setColor(getThemedColor(Theme.key_dialogBackgroundGray));
         TextPaint textPaint = this.noThemeTextPaint;
         if (textPaint != null) {
-            textPaint.setColor(getThemedColor("chat_emojiPanelTrendingDescription"));
+            textPaint.setColor(getThemedColor(Theme.key_chat_emojiPanelTrendingDescription));
         }
         invalidate();
     }
@@ -461,7 +461,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         themeDrawable.inBubblePaint.setColor(themeItem.inBubbleColor);
         themeDrawable.outBubblePaintSecond.setColor(themeItem.outBubbleColor);
         if (this.chatThemeItem.chatTheme.showAsDefaultStub) {
-            i = getThemedColor("featuredStickers_addButton");
+            i = getThemedColor(Theme.key_featuredStickers_addButton);
         } else {
             i = themeItem.outLineColor;
         }
@@ -569,7 +569,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         }
         TextPaint textPaint = new TextPaint(129);
         this.noThemeTextPaint = textPaint;
-        textPaint.setColor(getThemedColor("chat_emojiPanelTrendingDescription"));
+        textPaint.setColor(getThemedColor(Theme.key_chat_emojiPanelTrendingDescription));
         this.noThemeTextPaint.setTextSize(AndroidUtilities.dp(14.0f));
         this.noThemeTextPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         StaticLayout createStaticLayout2 = StaticLayoutEx.createStaticLayout2(LocaleController.getString("ChatNoTheme", R.string.ChatNoTheme), this.noThemeTextPaint, AndroidUtilities.dp(52.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, true, TextUtils.TruncateAt.END, AndroidUtilities.dp(52.0f), 3);
@@ -577,10 +577,8 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         return createStaticLayout2;
     }
 
-    public int getThemedColor(String str) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        Integer color = resourcesProvider != null ? resourcesProvider.getColor(str) : null;
-        return color != null ? color.intValue() : Theme.getColor(str);
+    public int getThemedColor(int i) {
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     public void playEmojiAnimation() {
@@ -677,7 +675,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
                 EmojiThemes.ThemeItem themeItem = chatThemeItem.chatTheme.getThemeItem(chatThemeItem.themeIndex);
                 ThemeSmallPreviewView themeSmallPreviewView2 = ThemeSmallPreviewView.this;
                 if (themeSmallPreviewView2.chatThemeItem.chatTheme.showAsDefaultStub) {
-                    i = themeSmallPreviewView2.getThemedColor("featuredStickers_addButton");
+                    i = themeSmallPreviewView2.getThemedColor(Theme.key_featuredStickers_addButton);
                 } else {
                     i = themeItem.outLineColor;
                 }

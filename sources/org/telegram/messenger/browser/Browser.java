@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
@@ -161,7 +162,7 @@ public class Browser {
         }
         StringBuilder sb = new StringBuilder();
         sb.append("^(https");
-        sb.append(z2 ? "" : "?");
+        sb.append(z2 ? BuildConfig.APP_CENTER_HASH : "?");
         sb.append("://)?(te\\.?legra\\.ph|graph\\.org)(/.*|$)");
         return str.matches(sb.toString());
     }
@@ -225,11 +226,15 @@ public class Browser {
     }
 
     public static void openUrl(Context context, Uri uri, boolean z, boolean z2) {
-        openUrl(context, uri, z, z2, null);
+        openUrl(context, uri, z, z2, false, null);
     }
 
-    public static void openUrl(final android.content.Context r18, final android.net.Uri r19, final boolean r20, boolean r21, final org.telegram.messenger.browser.Browser.Progress r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, org.telegram.messenger.browser.Browser$Progress):void");
+    public static void openUrl(Context context, Uri uri, boolean z, boolean z2, Progress progress) {
+        openUrl(context, uri, z, z2, false, progress);
+    }
+
+    public static void openUrl(final android.content.Context r18, final android.net.Uri r19, final boolean r20, boolean r21, boolean r22, final org.telegram.messenger.browser.Browser.Progress r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.browser.Browser.openUrl(android.content.Context, android.net.Uri, boolean, boolean, boolean, org.telegram.messenger.browser.Browser$Progress):void");
     }
 
     public static void lambda$openUrl$1(final Progress progress, final AlertDialog[] alertDialogArr, final int i, final Uri uri, final Context context, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -301,7 +306,8 @@ public class Browser {
         String str;
         String str2;
         String hostAuthority = AndroidUtilities.getHostAuthority(uri);
-        String lowerCase = hostAuthority != null ? hostAuthority.toLowerCase() : "";
+        String str3 = BuildConfig.APP_CENTER_HASH;
+        String lowerCase = hostAuthority != null ? hostAuthority.toLowerCase() : BuildConfig.APP_CENTER_HASH;
         if (MessagesController.getInstance(UserConfig.selectedAccount).authDomains.contains(lowerCase)) {
             if (zArr != null) {
                 zArr[0] = true;
@@ -314,20 +320,23 @@ public class Browser {
             sb.append("https://t.me/");
             sb.append(matcher.group(1));
             if (TextUtils.isEmpty(uri.getPath())) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             } else {
                 str = "/" + uri.getPath();
             }
             sb.append(str);
             if (TextUtils.isEmpty(uri.getQuery())) {
-                str2 = "";
+                str2 = BuildConfig.APP_CENTER_HASH;
             } else {
                 str2 = "?" + uri.getQuery();
             }
             sb.append(str2);
             uri = Uri.parse(sb.toString());
             String host = uri.getHost();
-            lowerCase = host != null ? host.toLowerCase() : "";
+            if (host != null) {
+                str3 = host.toLowerCase();
+            }
+            lowerCase = str3;
         }
         if ("ton".equals(uri.getScheme())) {
             try {
@@ -377,5 +386,36 @@ public class Browser {
             }
             return false;
         }
+    }
+
+    public static String replaceHostname(Uri uri, String str) {
+        String scheme = uri.getScheme();
+        String userInfo = uri.getUserInfo();
+        int port = uri.getPort();
+        String path = uri.getPath();
+        String query = uri.getQuery();
+        String fragment = uri.getFragment();
+        StringBuilder sb = new StringBuilder();
+        sb.append(scheme);
+        sb.append("://");
+        if (userInfo != null) {
+            sb.append(userInfo);
+            sb.append("@");
+        }
+        sb.append(str);
+        if (port != -1) {
+            sb.append(":");
+            sb.append(port);
+        }
+        sb.append(path);
+        if (query != null) {
+            sb.append("?");
+            sb.append(query);
+        }
+        if (fragment != null) {
+            sb.append("#");
+            sb.append(fragment);
+        }
+        return sb.toString();
     }
 }

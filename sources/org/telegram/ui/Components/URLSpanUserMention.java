@@ -28,13 +28,13 @@ public class URLSpanUserMention extends URLSpanNoUnderline {
         super.updateDrawState(textPaint);
         int i = this.currentType;
         if (i == 3) {
-            textPaint.setColor(Theme.getColor("windowBackgroundWhiteLinkText"));
+            textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText));
         } else if (i == 2) {
             textPaint.setColor(-1);
         } else if (i == 1) {
-            textPaint.setColor(Theme.getColor("chat_messageLinkOut"));
+            textPaint.setColor(Theme.getColor(Theme.key_chat_messageLinkOut));
         } else {
-            textPaint.setColor(Theme.getColor("chat_messageLinkIn"));
+            textPaint.setColor(Theme.getColor(Theme.key_chat_messageLinkIn));
         }
         TextStyleSpan.TextStyleRun textStyleRun = this.style;
         if (textStyleRun != null) {

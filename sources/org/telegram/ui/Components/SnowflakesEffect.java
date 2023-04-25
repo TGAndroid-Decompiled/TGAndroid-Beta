@@ -18,7 +18,7 @@ public class SnowflakesEffect {
     private Paint particleThinPaint;
     private int viewType;
     private Paint bitmapPaint = new Paint();
-    private String colorKey = "actionBarDefaultTitle";
+    private int colorKey = Theme.key_actionBarDefaultTitle;
     private ArrayList<Particle> particles = new ArrayList<>();
     private ArrayList<Particle> freeParticles = new ArrayList<>();
 
@@ -118,8 +118,8 @@ public class SnowflakesEffect {
         }
     }
 
-    public void setColorKey(String str) {
-        this.colorKey = str;
+    public void setColorKey(int i) {
+        this.colorKey = i;
         updateColors();
     }
 

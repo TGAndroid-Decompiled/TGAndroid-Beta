@@ -552,7 +552,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                     tLRPC$InputDocument.file_reference = tLRPC$Document.file_reference;
                     String str = importingSticker.emoji;
                     if (str == null) {
-                        str = "";
+                        str = BuildConfig.APP_CENTER_HASH;
                     }
                     tLRPC$TL_inputStickerSetItem.emoji = str;
                     importingSticker.mimeType = tLRPC$Document.mime_type;
@@ -1942,7 +1942,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_document_layer822.dc_id = tLRPC$Document.dc_id;
             tLRPC$TL_document_layer822.attributes = new ArrayList<>(tLRPC$Document.attributes);
             if (tLRPC$TL_document_layer822.mime_type == null) {
-                tLRPC$TL_document_layer822.mime_type = "";
+                tLRPC$TL_document_layer822.mime_type = BuildConfig.APP_CENTER_HASH;
             }
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 10);
             if ((closestPhotoSizeWithSize instanceof TLRPC$TL_photoSize) || (closestPhotoSizeWithSize instanceof TLRPC$TL_photoSizeProgressive) || (closestPhotoSizeWithSize instanceof TLRPC$TL_photoStrippedSize)) {
@@ -2014,7 +2014,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         if ("video/mp4".equals(tLRPC$Document.mime_type)) {
             str = ".mp4";
         } else {
-            str = "video/x-matroska".equals(tLRPC$Document.mime_type) ? ".mkv" : "";
+            str = "video/x-matroska".equals(tLRPC$Document.mime_type) ? ".mkv" : BuildConfig.APP_CENTER_HASH;
         }
         File directory = FileLoader.getDirectory(3);
         File file = new File(directory, key + str);
@@ -2162,12 +2162,16 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$MessageMedia.serializeToStream(serializedData);
         }
         String str = tLRPC$Message.message;
+        String str2 = BuildConfig.APP_CENTER_HASH;
         if (str == null) {
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         }
         serializedData.writeString(str);
-        String str2 = tLRPC$Message.attachPath;
-        serializedData.writeString(str2 != null ? str2 : "");
+        String str3 = tLRPC$Message.attachPath;
+        if (str3 != null) {
+            str2 = str3;
+        }
+        serializedData.writeString(str2);
         int size = tLRPC$Message.entities.size();
         serializedData.writeInt32(size);
         for (int i = 0; i < size; i++) {
@@ -2626,7 +2630,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 linearLayout.setOrientation(1);
                 builder3.setView(linearLayout);
                 TextView textView = new TextView(chatActivity.getParentActivity());
-                textView.setTextColor(Theme.getColor("dialogTextBlack"));
+                int i = Theme.key_dialogTextBlack;
+                textView.setTextColor(Theme.getColor(i));
                 textView.setTextSize(1, 16.0f);
                 textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
                 textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BotOwnershipTransferAlertText", R.string.BotOwnershipTransferAlertText, new Object[0])));
@@ -2635,12 +2640,12 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 linearLayout2.setOrientation(0);
                 linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
                 ImageView imageView = new ImageView(chatActivity.getParentActivity());
-                int i = R.drawable.list_circle;
-                imageView.setImageResource(i);
+                int i2 = R.drawable.list_circle;
+                imageView.setImageResource(i2);
                 imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlack"), PorterDuff.Mode.MULTIPLY));
+                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
                 TextView textView2 = new TextView(chatActivity.getParentActivity());
-                textView2.setTextColor(Theme.getColor("dialogTextBlack"));
+                textView2.setTextColor(Theme.getColor(i));
                 textView2.setTextSize(1, 16.0f);
                 textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
                 textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString("EditAdminTransferAlertText1", R.string.EditAdminTransferAlertText1)));
@@ -2655,11 +2660,11 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 linearLayout3.setOrientation(0);
                 linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
                 ImageView imageView2 = new ImageView(chatActivity.getParentActivity());
-                imageView2.setImageResource(i);
+                imageView2.setImageResource(i2);
                 imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogTextBlack"), PorterDuff.Mode.MULTIPLY));
+                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
                 TextView textView3 = new TextView(chatActivity.getParentActivity());
-                textView3.setTextColor(Theme.getColor("dialogTextBlack"));
+                textView3.setTextColor(Theme.getColor(i));
                 textView3.setTextSize(1, 16.0f);
                 textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
                 textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString("EditAdminTransferAlertText2", R.string.EditAdminTransferAlertText2)));
@@ -2673,14 +2678,14 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 if ("PASSWORD_MISSING".equals(tLRPC$TL_error.text)) {
                     builder3.setPositiveButton(LocaleController.getString("EditAdminTransferSetPassword", R.string.EditAdminTransferSetPassword), new DialogInterface.OnClickListener() {
                         @Override
-                        public final void onClick(DialogInterface dialogInterface, int i2) {
-                            SendMessagesHelper.lambda$sendCallback$26(ChatActivity.this, dialogInterface, i2);
+                        public final void onClick(DialogInterface dialogInterface, int i3) {
+                            SendMessagesHelper.lambda$sendCallback$26(ChatActivity.this, dialogInterface, i3);
                         }
                     });
                     builder3.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
                 } else {
                     TextView textView4 = new TextView(chatActivity.getParentActivity());
-                    textView4.setTextColor(Theme.getColor("dialogTextBlack"));
+                    textView4.setTextColor(Theme.getColor(i));
                     textView4.setTextSize(1, 16.0f);
                     textView4.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
                     textView4.setText(LocaleController.getString("EditAdminTransferAlertText3", R.string.EditAdminTransferAlertText3));
@@ -2768,7 +2773,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_messages_sendMedia.silent = notificationsSettings3.getBoolean(NotificationsSettingsFacade.PROPERTY_SILENT + tLRPC$InputPeer.user_id, false);
         }
         tLRPC$TL_messages_sendMedia.random_id = j != 0 ? j : getNextRandomId();
-        tLRPC$TL_messages_sendMedia.message = "";
+        tLRPC$TL_messages_sendMedia.message = BuildConfig.APP_CENTER_HASH;
         tLRPC$TL_messages_sendMedia.media = tLRPC$TL_inputMediaGame;
         long sendAsPeerId = ChatObject.getSendAsPeerId(getMessagesController().getChat(Long.valueOf(tLRPC$InputPeer.chat_id)), getMessagesController().getChatFull(tLRPC$InputPeer.chat_id));
         if (sendAsPeerId != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
@@ -2778,26 +2783,26 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             NativeByteBuffer nativeByteBuffer2 = null;
             try {
                 nativeByteBuffer = new NativeByteBuffer(tLRPC$InputPeer.getObjectSize() + tLRPC$TL_inputMediaGame.getObjectSize() + 4 + 8);
-            } catch (Exception e) {
-                e = e;
-            }
-            try {
-                nativeByteBuffer.writeInt32(3);
-                nativeByteBuffer.writeInt64(j);
-                tLRPC$InputPeer.serializeToStream(nativeByteBuffer);
-                tLRPC$TL_inputMediaGame.serializeToStream(nativeByteBuffer);
+                try {
+                    nativeByteBuffer.writeInt32(3);
+                    nativeByteBuffer.writeInt64(j);
+                    tLRPC$InputPeer.serializeToStream(nativeByteBuffer);
+                    tLRPC$TL_inputMediaGame.serializeToStream(nativeByteBuffer);
+                } catch (Exception e) {
+                    e = e;
+                    nativeByteBuffer2 = nativeByteBuffer;
+                    FileLog.e(e);
+                    nativeByteBuffer = nativeByteBuffer2;
+                    j2 = getMessagesStorage().createPendingTask(nativeByteBuffer);
+                    getConnectionsManager().sendRequest(tLRPC$TL_messages_sendMedia, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                            SendMessagesHelper.this.lambda$sendGame$31(j2, tLObject, tLRPC$TL_error);
+                        }
+                    });
+                }
             } catch (Exception e2) {
                 e = e2;
-                nativeByteBuffer2 = nativeByteBuffer;
-                FileLog.e(e);
-                nativeByteBuffer = nativeByteBuffer2;
-                j2 = getMessagesStorage().createPendingTask(nativeByteBuffer);
-                getConnectionsManager().sendRequest(tLRPC$TL_messages_sendMedia, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        SendMessagesHelper.this.lambda$sendGame$31(j2, tLObject, tLRPC$TL_error);
-                    }
-                });
             }
             j2 = getMessagesStorage().createPendingTask(nativeByteBuffer);
         }
@@ -4931,7 +4936,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_messageMediaVenue.venue_id = str2;
             tLRPC$TL_messageMediaVenue.venue_type = str2;
             if (str2 == null) {
-                tLRPC$TL_messageMediaVenue.venue_type = "";
+                tLRPC$TL_messageMediaVenue.venue_type = BuildConfig.APP_CENTER_HASH;
             }
             accountInstance.getSendMessagesHelper().sendMessage(tLRPC$TL_messageMediaVenue, j, messageObject, messageObject2, tLRPC$BotInlineResult.send_message.reply_markup, hashMap, z, i);
         } else if (tLRPC$BotInlineMessage instanceof TLRPC$TL_botInlineMessageMediaGeo) {
@@ -4962,8 +4967,8 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_user.last_name = tLRPC$BotInlineMessage6.last_name;
             TLRPC$TL_restrictionReason tLRPC$TL_restrictionReason = new TLRPC$TL_restrictionReason();
             tLRPC$TL_restrictionReason.text = tLRPC$BotInlineResult.send_message.vcard;
-            tLRPC$TL_restrictionReason.platform = "";
-            tLRPC$TL_restrictionReason.reason = "";
+            tLRPC$TL_restrictionReason.platform = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_restrictionReason.reason = BuildConfig.APP_CENTER_HASH;
             tLRPC$TL_user.restriction_reason.add(tLRPC$TL_restrictionReason);
             accountInstance.getSendMessagesHelper().sendMessage(tLRPC$TL_user, j, messageObject, messageObject2, tLRPC$BotInlineResult.send_message.reply_markup, hashMap, z, i);
         } else if (!(tLRPC$BotInlineMessage instanceof TLRPC$TL_botInlineMessageMediaInvoice) || DialogObject.isEncryptedDialog(j)) {
@@ -4981,7 +4986,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }
             tLRPC$TL_messageMediaInvoice.currency = tLRPC$TL_botInlineMessageMediaInvoice.currency;
             tLRPC$TL_messageMediaInvoice.total_amount = tLRPC$TL_botInlineMessageMediaInvoice.total_amount;
-            tLRPC$TL_messageMediaInvoice.start_param = "";
+            tLRPC$TL_messageMediaInvoice.start_param = BuildConfig.APP_CENTER_HASH;
             accountInstance.getSendMessagesHelper().sendMessage(tLRPC$TL_messageMediaInvoice, j, messageObject, messageObject2, tLRPC$BotInlineResult.send_message.reply_markup, hashMap, z, i);
         }
     }

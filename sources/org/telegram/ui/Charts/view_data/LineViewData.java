@@ -57,11 +57,11 @@ public class LineViewData {
     }
 
     public void updateColors() {
-        String str = this.line.colorKey;
-        if (str != null && Theme.hasThemeKey(str)) {
+        int i = this.line.colorKey;
+        if (i >= 0 && Theme.hasThemeKey(i)) {
             this.lineColor = Theme.getColor(this.line.colorKey);
         } else {
-            this.lineColor = (ColorUtils.calculateLuminance(Theme.getColor("windowBackgroundWhite")) > 0.5d ? 1 : (ColorUtils.calculateLuminance(Theme.getColor("windowBackgroundWhite")) == 0.5d ? 0 : -1)) < 0 ? this.line.colorDark : this.line.color;
+            this.lineColor = (ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite)) > 0.5d ? 1 : (ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite)) == 0.5d ? 0 : -1)) < 0 ? this.line.colorDark : this.line.color;
         }
         this.paint.setColor(this.lineColor);
         this.bottomLinePaint.setColor(this.lineColor);

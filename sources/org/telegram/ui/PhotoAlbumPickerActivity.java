@@ -152,18 +152,22 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
     @Override
     public View createView(Context context) {
         ArrayList<MediaController.AlbumEntry> arrayList;
-        this.actionBar.setBackgroundColor(Theme.getColor("dialogBackground"));
-        this.actionBar.setTitleColor(Theme.getColor("dialogTextBlack"));
-        this.actionBar.setItemsColor(Theme.getColor("dialogTextBlack"), false);
-        this.actionBar.setItemsBackgroundColor(Theme.getColor("dialogButtonSelector"), false);
+        ActionBar actionBar = this.actionBar;
+        int i = Theme.key_dialogBackground;
+        actionBar.setBackgroundColor(Theme.getColor(i));
+        ActionBar actionBar2 = this.actionBar;
+        int i2 = Theme.key_dialogTextBlack;
+        actionBar2.setTitleColor(Theme.getColor(i2));
+        this.actionBar.setItemsColor(Theme.getColor(i2), false);
+        this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_dialogButtonSelector), false);
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
+            public void onItemClick(int i3) {
+                if (i3 == -1) {
                     PhotoAlbumPickerActivity.this.finishFragment();
-                } else if (i != 1) {
-                    if (i == 2) {
+                } else if (i3 != 1) {
+                    if (i3 == 2) {
                         PhotoAlbumPickerActivity.this.openPhotoPicker(null, 0);
                     }
                 } else if (PhotoAlbumPickerActivity.this.delegate != null) {
@@ -184,14 +188,14 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             private int lastNotifyWidth;
 
             @Override
-            protected void onMeasure(int i, int i2) {
-                int size = View.MeasureSpec.getSize(i);
-                int size2 = View.MeasureSpec.getSize(i2);
+            protected void onMeasure(int i3, int i4) {
+                int size = View.MeasureSpec.getSize(i3);
+                int size2 = View.MeasureSpec.getSize(i4);
                 setMeasuredDimension(size, size2);
                 if (AndroidUtilities.dp(20.0f) >= 0) {
                     if (!AndroidUtilities.isInMultiwindow) {
                         size2 -= PhotoAlbumPickerActivity.this.commentTextView.getEmojiPadding();
-                        i2 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
+                        i4 = View.MeasureSpec.makeMeasureSpec(size2, 1073741824);
                     }
                 } else {
                     this.ignoreLayout = true;
@@ -199,8 +203,8 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                     this.ignoreLayout = false;
                 }
                 int childCount = getChildCount();
-                for (int i3 = 0; i3 < childCount; i3++) {
-                    View childAt = getChildAt(i3);
+                for (int i5 = 0; i5 < childCount; i5++) {
+                    View childAt = getChildAt(i5);
                     if (childAt != null && childAt.getVisibility() != 8) {
                         if (PhotoAlbumPickerActivity.this.commentTextView != null && PhotoAlbumPickerActivity.this.commentTextView.isPopupView(childAt)) {
                             if (AndroidUtilities.isInMultiwindow || AndroidUtilities.isTablet()) {
@@ -213,14 +217,14 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                                 childAt.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(childAt.getLayoutParams().height, 1073741824));
                             }
                         } else {
-                            measureChildWithMargins(childAt, i, 0, i2, 0);
+                            measureChildWithMargins(childAt, i3, 0, i4, 0);
                         }
                     }
                 }
             }
 
             @Override
-            public void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
+            protected void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoAlbumPickerActivity.AnonymousClass2.onLayout(boolean, int, int, int, int):void");
             }
 
@@ -233,7 +237,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             }
         };
         this.sizeNotifierFrameLayout = sizeNotifierFrameLayout;
-        sizeNotifierFrameLayout.setBackgroundColor(Theme.getColor("dialogBackground"));
+        sizeNotifierFrameLayout.setBackgroundColor(Theme.getColor(i));
         this.fragmentView = this.sizeNotifierFrameLayout;
         this.actionBar.setTitle(LocaleController.getString("Gallery", R.string.Gallery));
         RecyclerListView recyclerListView = new RecyclerListView(context);
@@ -249,7 +253,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         ListAdapter listAdapter = new ListAdapter(context);
         this.listAdapter = listAdapter;
         recyclerListView2.setAdapter(listAdapter);
-        this.listView.setGlowColor(Theme.getColor("dialogBackground"));
+        this.listView.setGlowColor(Theme.getColor(i));
         TextView textView = new TextView(context);
         this.emptyView = textView;
         textView.setTextColor(-8355712);
@@ -273,7 +277,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.sizeNotifierFrameLayout.addView(this.shadow, LayoutHelper.createFrame(-1, 3.0f, 83, 0.0f, 0.0f, 0.0f, 48.0f));
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.frameLayout2 = frameLayout2;
-        frameLayout2.setBackgroundColor(Theme.getColor("dialogBackground"));
+        frameLayout2.setBackgroundColor(Theme.getColor(i));
         this.frameLayout2.setVisibility(4);
         this.frameLayout2.setTranslationY(AndroidUtilities.dp(48.0f));
         this.sizeNotifierFrameLayout.addView(this.frameLayout2, LayoutHelper.createFrame(-1, 48, 83));
@@ -313,10 +317,14 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.sizeNotifierFrameLayout.addView(this.writeButtonContainer, LayoutHelper.createFrame(60, 60.0f, 85, 0.0f, 0.0f, 12.0f, 10.0f));
         this.writeButton = new ImageView(context);
         int dp = AndroidUtilities.dp(56.0f);
-        int color = Theme.getColor("dialogFloatingButton");
-        int i = Build.VERSION.SDK_INT;
-        this.writeButtonDrawable = Theme.createSimpleSelectorCircleDrawable(dp, color, Theme.getColor(i >= 21 ? "dialogFloatingButtonPressed" : "dialogFloatingButton"));
-        if (i < 21) {
+        int i3 = Theme.key_dialogFloatingButton;
+        int color = Theme.getColor(i3);
+        int i4 = Build.VERSION.SDK_INT;
+        if (i4 >= 21) {
+            i3 = Theme.key_dialogFloatingButtonPressed;
+        }
+        this.writeButtonDrawable = Theme.createSimpleSelectorCircleDrawable(dp, color, Theme.getColor(i3));
+        if (i4 < 21) {
             Drawable mutate = context.getResources().getDrawable(R.drawable.floating_shadow_profile).mutate();
             mutate.setColorFilter(new PorterDuffColorFilter(-16777216, PorterDuff.Mode.MULTIPLY));
             CombinedDrawable combinedDrawable = new CombinedDrawable(mutate, this.writeButtonDrawable, 0, 0);
@@ -326,9 +334,9 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.writeButton.setBackgroundDrawable(this.writeButtonDrawable);
         this.writeButton.setImageResource(R.drawable.attach_send);
         this.writeButton.setImportantForAccessibility(2);
-        this.writeButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor("dialogFloatingIcon"), PorterDuff.Mode.MULTIPLY));
+        this.writeButton.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogFloatingIcon), PorterDuff.Mode.MULTIPLY));
         this.writeButton.setScaleType(ImageView.ScaleType.CENTER);
-        if (i >= 21) {
+        if (i4 >= 21) {
             this.writeButton.setOutlineProvider(new ViewOutlineProvider(this) {
                 @Override
                 @SuppressLint({"NewApi"})
@@ -337,7 +345,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 }
             });
         }
-        this.writeButtonContainer.addView(this.writeButton, LayoutHelper.createFrame(i >= 21 ? 56 : 60, i >= 21 ? 56.0f : 60.0f, 51, i >= 21 ? 2.0f : 0.0f, 0.0f, 0.0f, 0.0f));
+        this.writeButtonContainer.addView(this.writeButton, LayoutHelper.createFrame(i4 >= 21 ? 56 : 60, i4 >= 21 ? 56.0f : 60.0f, 51, i4 >= 21 ? 2.0f : 0.0f, 0.0f, 0.0f, 0.0f));
         this.writeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
@@ -362,15 +370,15 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                 int max = Math.max(AndroidUtilities.dp(16.0f) + ceil, AndroidUtilities.dp(24.0f));
                 int measuredWidth = getMeasuredWidth() / 2;
                 int measuredHeight = getMeasuredHeight() / 2;
-                PhotoAlbumPickerActivity.this.textPaint.setColor(Theme.getColor("dialogRoundCheckBoxCheck"));
-                PhotoAlbumPickerActivity.this.paint.setColor(Theme.getColor("dialogBackground"));
-                int i2 = max / 2;
-                int i3 = measuredWidth - i2;
-                int i4 = i2 + measuredWidth;
-                PhotoAlbumPickerActivity.this.rect.set(i3, 0.0f, i4, getMeasuredHeight());
+                PhotoAlbumPickerActivity.this.textPaint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBoxCheck));
+                PhotoAlbumPickerActivity.this.paint.setColor(Theme.getColor(Theme.key_dialogBackground));
+                int i5 = max / 2;
+                int i6 = measuredWidth - i5;
+                int i7 = i5 + measuredWidth;
+                PhotoAlbumPickerActivity.this.rect.set(i6, 0.0f, i7, getMeasuredHeight());
                 canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), PhotoAlbumPickerActivity.this.paint);
-                PhotoAlbumPickerActivity.this.paint.setColor(Theme.getColor("dialogRoundCheckBox"));
-                PhotoAlbumPickerActivity.this.rect.set(i3 + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), i4 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
+                PhotoAlbumPickerActivity.this.paint.setColor(Theme.getColor(Theme.key_dialogRoundCheckBox));
+                PhotoAlbumPickerActivity.this.rect.set(i6 + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), i7 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
                 canvas.drawRoundRect(PhotoAlbumPickerActivity.this.rect, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), PhotoAlbumPickerActivity.this.paint);
                 canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.dp(16.2f), PhotoAlbumPickerActivity.this.textPaint);
             }
@@ -470,7 +478,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
                     }
                     i++;
                 }
-                this.sendPopupLayout.setupRadialSelectors(Theme.getColor("dialogButtonSelector"));
+                this.sendPopupLayout.setupRadialSelectors(Theme.getColor(Theme.key_dialogButtonSelector));
                 ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(this.sendPopupLayout, -2, -2);
                 this.sendPopupWindow = actionBarPopupWindow;
                 actionBarPopupWindow.setAnimationEnabled(false);
@@ -896,14 +904,20 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
     @Override
     public ArrayList<ThemeDescription> getThemeDescriptions() {
         ArrayList<ThemeDescription> arrayList = new ArrayList<>();
-        arrayList.add(new ThemeDescription(this.fragmentView, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_ITEMSCOLOR, null, null, null, null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, "dialogTextBlack"));
-        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, "dialogButtonSelector"));
-        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, "dialogBackground"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, null, new Drawable[]{Theme.chat_attachEmptyDrawable}, null, "chat_attachEmptyImage"));
-        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, null, null, null, "chat_attachPhotoBackground"));
+        View view = this.fragmentView;
+        int i = ThemeDescription.FLAG_BACKGROUND;
+        int i2 = Theme.key_dialogBackground;
+        arrayList.add(new ThemeDescription(view, i, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_BACKGROUND, null, null, null, null, i2));
+        ActionBar actionBar = this.actionBar;
+        int i3 = ThemeDescription.FLAG_AB_ITEMSCOLOR;
+        int i4 = Theme.key_dialogTextBlack;
+        arrayList.add(new ThemeDescription(actionBar, i3, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_TITLECOLOR, null, null, null, null, i4));
+        arrayList.add(new ThemeDescription(this.actionBar, ThemeDescription.FLAG_AB_SELECTORCOLOR, null, null, null, null, Theme.key_dialogButtonSelector));
+        arrayList.add(new ThemeDescription(this.listView, ThemeDescription.FLAG_LISTGLOWCOLOR, null, null, null, null, i2));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, null, new Drawable[]{Theme.chat_attachEmptyDrawable}, null, Theme.key_chat_attachEmptyImage));
+        arrayList.add(new ThemeDescription(this.listView, 0, new Class[]{View.class}, null, null, null, Theme.key_chat_attachPhotoBackground));
         return arrayList;
     }
 }

@@ -33,7 +33,7 @@ public class UnreadCounterTextView extends View {
     private int rippleColor;
     Drawable selectableBackground;
     int textColor;
-    String textColorKey;
+    int textColorKey;
     private StaticLayout textLayout;
     private StaticLayout textLayoutOut;
     private TextPaint textPaint;
@@ -58,7 +58,7 @@ public class UnreadCounterTextView extends View {
         this.rect = new RectF();
         this.layoutPaint = new TextPaint(1);
         this.replaceProgress = 1.0f;
-        this.textColorKey = "chat_fieldOverlayText";
+        this.textColorKey = Theme.key_chat_fieldOverlayText;
         this.textPaint.setTextSize(AndroidUtilities.dp(13.0f));
         this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.layoutPaint.setTextSize(AndroidUtilities.dp(15.0f));
@@ -209,19 +209,19 @@ public class UnreadCounterTextView extends View {
         Drawable drawable2;
         Drawable drawable3;
         StaticLayout staticLayout = this.textLayout;
-        int color = Theme.getColor(isEnabled() ? this.textColorKey : "windowBackgroundWhiteGrayText", getResourceProvider());
+        int color = Theme.getColor(isEnabled() ? this.textColorKey : Theme.key_windowBackgroundWhiteGrayText, getResourceProvider());
         if (this.textColor != color) {
             TextPaint textPaint = this.layoutPaint;
             this.textColor = color;
             textPaint.setColor(color);
         }
-        int color2 = Theme.getColor("chat_messagePanelBackground", getResourceProvider());
+        int color2 = Theme.getColor(Theme.key_chat_messagePanelBackground, getResourceProvider());
         if (this.panelBackgroundColor != color2) {
             TextPaint textPaint2 = this.textPaint;
             this.panelBackgroundColor = color2;
             textPaint2.setColor(color2);
         }
-        int color3 = Theme.getColor("chat_goDownButtonCounterBackground", getResourceProvider());
+        int color3 = Theme.getColor(Theme.key_chat_goDownButtonCounterBackground, getResourceProvider());
         if (this.counterColor != color3) {
             Paint paint = this.paint;
             this.counterColor = color3;
@@ -299,8 +299,8 @@ public class UnreadCounterTextView extends View {
         canvas.drawText(this.currentCounterString, this.rect.centerX() - (this.textWidth / 2.0f), this.rect.top + AndroidUtilities.dp(14.5f), this.textPaint);
     }
 
-    public void setTextColorKey(String str) {
-        this.textColorKey = str;
+    public void setTextColorKey(int i) {
+        this.textColorKey = i;
         invalidate();
     }
 }

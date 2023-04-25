@@ -136,13 +136,13 @@ public class FragmentContextViewWavesDrawable {
         private float targetX = -1.0f;
         private float targetY = -1.0f;
         private final Matrix matrix = new Matrix();
-        String greenKey1 = "voipgroup_topPanelGreen1";
-        String greenKey2 = "voipgroup_topPanelGreen2";
-        String blueKey1 = "voipgroup_topPanelBlue1";
-        String blueKey2 = "voipgroup_topPanelBlue2";
-        String mutedByAdmin = "voipgroup_mutedByAdminGradient";
-        String mutedByAdmin2 = "voipgroup_mutedByAdminGradient2";
-        String mutedByAdmin3 = "voipgroup_mutedByAdminGradient3";
+        int greenKey1 = Theme.key_voipgroup_topPanelGreen1;
+        int greenKey2 = Theme.key_voipgroup_topPanelGreen2;
+        int blueKey1 = Theme.key_voipgroup_topPanelBlue1;
+        int blueKey2 = Theme.key_voipgroup_topPanelBlue2;
+        int mutedByAdmin = Theme.key_voipgroup_mutedByAdminGradient;
+        int mutedByAdmin2 = Theme.key_voipgroup_mutedByAdminGradient2;
+        int mutedByAdmin3 = Theme.key_voipgroup_mutedByAdminGradient3;
 
         public WeavingState(int i) {
             this.currentState = i;
@@ -268,7 +268,7 @@ public class FragmentContextViewWavesDrawable {
                 return;
             }
             paint.setShader(null);
-            paint.setColor(Theme.getColor("voipgroup_topPanelGray"));
+            paint.setColor(Theme.getColor(Theme.key_voipgroup_topPanelGray));
         }
     }
 }

@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -82,7 +83,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         setWillNotDraw(false);
         setOrientation(1);
         setPadding(0, AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f));
-        this.shadowDrawable = Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, "windowBackgroundGrayShadow");
+        this.shadowDrawable = Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow);
         int currentTimeMillis = ((int) (System.currentTimeMillis() / 1000)) - 3600;
         if (i == 2) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
@@ -148,8 +149,8 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 int indexOf2 = string.indexOf(42);
                 int lastIndexOf = string.lastIndexOf(42);
                 if (indexOf2 != -1 && lastIndexOf != -1) {
-                    sb.replace(lastIndexOf, lastIndexOf + 1, "");
-                    sb.replace(indexOf2, indexOf2 + 1, "");
+                    sb.replace(lastIndexOf, lastIndexOf + 1, BuildConfig.APP_CENTER_HASH);
+                    sb.replace(indexOf2, indexOf2 + 1, BuildConfig.APP_CENTER_HASH);
                     TLRPC$TL_messageEntityTextUrl tLRPC$TL_messageEntityTextUrl = new TLRPC$TL_messageEntityTextUrl();
                     tLRPC$TL_messageEntityTextUrl.offset = indexOf2;
                     tLRPC$TL_messageEntityTextUrl.length = (lastIndexOf - indexOf2) - 1;
@@ -224,8 +225,8 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                 final int val$currentAccount;
                 final int val$type;
 
-                public class C00121 extends GestureDetector.SimpleOnGestureListener {
-                    C00121() {
+                public class C00091 extends GestureDetector.SimpleOnGestureListener {
+                    C00091() {
                     }
 
                     @Override
@@ -243,12 +244,12 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                             ReactionsEffectOverlay.show(themePreviewMessagesCell.fragment, null, themePreviewMessagesCell.cells[1], null, motionEvent.getX(), motionEvent.getY(), ReactionsLayoutInBubble.VisibleReaction.fromEmojicon(MediaDataController.getInstance(AnonymousClass1.this.val$currentAccount).getDoubleTapReaction()), AnonymousClass1.this.val$currentAccount, 0);
                             ReactionsEffectOverlay.startAnimation();
                         }
-                        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC00131());
+                        getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver$OnPreDrawListenerC00101());
                         return true;
                     }
 
-                    public class ViewTreeObserver$OnPreDrawListenerC00131 implements ViewTreeObserver.OnPreDrawListener {
-                        ViewTreeObserver$OnPreDrawListenerC00131() {
+                    public class ViewTreeObserver$OnPreDrawListenerC00101 implements ViewTreeObserver.OnPreDrawListener {
+                        ViewTreeObserver$OnPreDrawListenerC00101() {
                         }
 
                         @Override
@@ -262,7 +263,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                                 @Override
                                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                    ThemePreviewMessagesCell.AnonymousClass1.C00121.ViewTreeObserver$OnPreDrawListenerC00131.this.lambda$onPreDraw$0(valueAnimator);
+                                    ThemePreviewMessagesCell.AnonymousClass1.C00091.ViewTreeObserver$OnPreDrawListenerC00101.this.lambda$onPreDraw$0(valueAnimator);
                                 }
                             });
                             ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -289,7 +290,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
                     this.val$context = context;
                     this.val$currentAccount = i2;
                     this.val$type = i;
-                    this.gestureDetector = new GestureDetector(context, new C00121());
+                    this.gestureDetector = new GestureDetector(context, new C00091());
                 }
 
                 @Override

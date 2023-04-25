@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -101,7 +102,7 @@ public class PhonebookShareAlert extends BottomSheet {
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView.setTextSize(1, 17.0f);
-            textView.setTextColor(phonebookShareAlert.getThemedColor("dialogTextBlack"));
+            textView.setTextColor(phonebookShareAlert.getThemedColor(Theme.key_dialogTextBlack));
             textView.setSingleLine(true);
             textView.setEllipsize(TextUtils.TruncateAt.END);
             textView.setText(ContactsController.formatName(phonebookShareAlert.currentUser.first_name, phonebookShareAlert.currentUser.last_name));
@@ -109,7 +110,7 @@ public class PhonebookShareAlert extends BottomSheet {
             if (formatUserStatus != null) {
                 TextView textView2 = new TextView(context);
                 textView2.setTextSize(1, 14.0f);
-                textView2.setTextColor(phonebookShareAlert.getThemedColor("dialogTextGray3"));
+                textView2.setTextColor(phonebookShareAlert.getThemedColor(Theme.key_dialogTextGray3));
                 textView2.setSingleLine(true);
                 textView2.setEllipsize(TextUtils.TruncateAt.END);
                 textView2.setText(formatUserStatus);
@@ -133,7 +134,7 @@ public class PhonebookShareAlert extends BottomSheet {
             float f4;
             TextView textView = new TextView(context);
             this.textView = textView;
-            textView.setTextColor(phonebookShareAlert.getThemedColor("windowBackgroundWhiteBlackText"));
+            textView.setTextColor(phonebookShareAlert.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
             this.textView.setTextSize(1, 16.0f);
             this.textView.setSingleLine(false);
             this.textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
@@ -154,7 +155,7 @@ public class PhonebookShareAlert extends BottomSheet {
             addView(textView2, LayoutHelper.createFrame(-1, -1.0f, i, f, 10.0f, f2, 0.0f));
             TextView textView3 = new TextView(context);
             this.valueTextView = textView3;
-            textView3.setTextColor(phonebookShareAlert.getThemedColor("windowBackgroundWhiteGrayText2"));
+            textView3.setTextColor(phonebookShareAlert.getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
             this.valueTextView.setTextSize(1, 13.0f);
             this.valueTextView.setLines(1);
             this.valueTextView.setMaxLines(1);
@@ -177,7 +178,7 @@ public class PhonebookShareAlert extends BottomSheet {
             ImageView imageView = new ImageView(context);
             this.imageView = imageView;
             imageView.setScaleType(ImageView.ScaleType.CENTER);
-            this.imageView.setColorFilter(new PorterDuffColorFilter(phonebookShareAlert.getThemedColor("windowBackgroundWhiteGrayIcon"), PorterDuff.Mode.MULTIPLY));
+            this.imageView.setColorFilter(new PorterDuffColorFilter(phonebookShareAlert.getThemedColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.MULTIPLY));
             ImageView imageView2 = this.imageView;
             boolean z3 = LocaleController.isRTL;
             addView(imageView2, LayoutHelper.createFrame(-2, -2.0f, (z3 ? 5 : 3) | 48, z3 ? 0.0f : 20.0f, 20.0f, z3 ? 20.0f : 0.0f, 0.0f));
@@ -186,7 +187,10 @@ public class PhonebookShareAlert extends BottomSheet {
             }
             Switch r1 = new Switch(context);
             this.checkBox = r1;
-            r1.setColors("switchTrack", "switchTrackChecked", "windowBackgroundWhite", "windowBackgroundWhite");
+            int i3 = Theme.key_switchTrack;
+            int i4 = Theme.key_switchTrackChecked;
+            int i5 = Theme.key_windowBackgroundWhite;
+            r1.setColors(i3, i4, i5, i5);
             addView(this.checkBox, LayoutHelper.createFrame(37, 40.0f, (LocaleController.isRTL ? 3 : 5) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         }
 
@@ -330,7 +334,7 @@ public class PhonebookShareAlert extends BottomSheet {
                     i5++;
                 }
             }
-            int themedColor = getThemedColor("featuredStickers_buttonText");
+            int themedColor = getThemedColor(Theme.key_featuredStickers_buttonText);
             this.buttonTextView.setEnabled(z);
             TextView textView = this.buttonTextView;
             if (!z) {
@@ -690,8 +694,8 @@ public class PhonebookShareAlert extends BottomSheet {
             this.currentUser.restriction_reason.clear();
             TLRPC$TL_restrictionReason tLRPC$TL_restrictionReason = new TLRPC$TL_restrictionReason();
             tLRPC$TL_restrictionReason.text = sb.toString();
-            tLRPC$TL_restrictionReason.reason = "";
-            tLRPC$TL_restrictionReason.platform = "";
+            tLRPC$TL_restrictionReason.reason = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_restrictionReason.platform = BuildConfig.APP_CENTER_HASH;
             this.currentUser.restriction_reason.add(tLRPC$TL_restrictionReason);
         }
         BaseFragment baseFragment = this.parentFragment;
