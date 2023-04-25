@@ -211,7 +211,7 @@ public class TopicCreateFragment extends BaseFragment {
         FrameLayout frameLayout2 = new FrameLayout(context);
         int i2 = R.drawable.greydivider_top;
         int i3 = Theme.key_windowBackgroundGrayShadow;
-        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(context, i2, Theme.getColor(i3)), 0, 0);
+        CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(context, i2, Theme.getColor(i3)), 0, 0);
         combinedDrawable.setFullsize(true);
         frameLayout2.setBackgroundDrawable(combinedDrawable);
         frameLayout2.setClipChildren(false);

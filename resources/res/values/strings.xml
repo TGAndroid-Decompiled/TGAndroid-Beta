@@ -4961,6 +4961,8 @@
     <string name="RestorePasswordResetPassword">RESET PASSWORD</string>
     <string name="RestorePasswordResetPasswordOk">Your 2-Step Verification password was reset.</string>
     <string name="RestorePasswordResetPasswordText">Are you sure you want to reset your 2-Step Verification password?</string>
+    <string name="RestorePremiumHintMessage">Your Telegram Premium has recently expired. Tap here to extend it.</string>
+    <string name="RestorePremiumHintTitle">Get Premium back with up to **%1$d%%** off</string>
     <string name="RestrictSavingContent">Restrict saving content</string>
     <string name="RestrictSavingContentInfoChannel">Subscribers won\'t be able to forward messages from this group or save media files.</string>
     <string name="RestrictSavingContentInfoGroup">Members won\'t be able to forward messages from this group or save media files.</string>

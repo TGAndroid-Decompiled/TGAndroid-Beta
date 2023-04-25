@@ -7398,6 +7398,9 @@ public class MessagesStorage extends BaseController {
     public static void addUsersAndChatsFromMessage(TLRPC$Message tLRPC$Message, ArrayList<Long> arrayList, ArrayList<Long> arrayList2, ArrayList<Long> arrayList3) {
         String str;
         TLRPC$Peer tLRPC$Peer;
+        TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll;
+        TLRPC$PollResults tLRPC$PollResults;
+        ArrayList<Long> arrayList4;
         long fromChatId = MessageObject.getFromChatId(tLRPC$Message);
         if (DialogObject.isUserDialog(fromChatId)) {
             if (!arrayList.contains(Long.valueOf(fromChatId))) {
@@ -7481,12 +7484,8 @@ public class MessagesStorage extends BaseController {
                 arrayList.add(Long.valueOf(tLRPC$Message.media.user_id));
             }
             TLRPC$MessageMedia tLRPC$MessageMedia2 = tLRPC$Message.media;
-            if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaPoll) {
-                TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia2;
-                ArrayList<Long> arrayList4 = tLRPC$TL_messageMediaPoll.results.recent_voters;
-                if (arrayList4 != null && !arrayList4.isEmpty()) {
-                    arrayList.addAll(tLRPC$TL_messageMediaPoll.results.recent_voters);
-                }
+            if ((tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaPoll) && (tLRPC$PollResults = (tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia2).results) != null && (arrayList4 = tLRPC$PollResults.recent_voters) != null && !arrayList4.isEmpty()) {
+                arrayList.addAll(tLRPC$TL_messageMediaPoll.results.recent_voters);
             }
         }
         TLRPC$MessageReplies tLRPC$MessageReplies = tLRPC$Message.replies;

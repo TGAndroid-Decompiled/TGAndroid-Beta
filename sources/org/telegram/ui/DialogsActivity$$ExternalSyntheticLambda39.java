@@ -1,16 +1,17 @@
 package org.telegram.ui;
 
-import android.view.animation.Interpolator;
-public final class DialogsActivity$$ExternalSyntheticLambda39 implements Interpolator {
+import android.view.MotionEvent;
+import android.view.View;
+public final class DialogsActivity$$ExternalSyntheticLambda39 implements View.OnTouchListener {
     public static final DialogsActivity$$ExternalSyntheticLambda39 INSTANCE = new DialogsActivity$$ExternalSyntheticLambda39();
 
     private DialogsActivity$$ExternalSyntheticLambda39() {
     }
 
     @Override
-    public final float getInterpolation(float f) {
-        float lambda$static$0;
-        lambda$static$0 = DialogsActivity.lambda$static$0(f);
-        return lambda$static$0;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        boolean lambda$createActionMode$35;
+        lambda$createActionMode$35 = DialogsActivity.lambda$createActionMode$35(view, motionEvent);
+        return lambda$createActionMode$35;
     }
 }

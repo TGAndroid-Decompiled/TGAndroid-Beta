@@ -1092,7 +1092,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        protected void drawList(Canvas canvas, boolean z) {
+        public void drawList(Canvas canvas, boolean z) {
             super.drawList(canvas, z);
             canvas.save();
             canvas.translate(0.0f, ProfileActivity.this.listView.getY());
@@ -3574,7 +3574,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             ProfileActivity profileActivity = ProfileActivity.this;
             profileActivity.savedScrollPosition = -1;
@@ -3596,7 +3596,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        protected void dispatchDraw(Canvas canvas) {
+        public void dispatchDraw(Canvas canvas) {
             int top;
             FragmentContextView fragmentContextView;
             boolean z;
@@ -3718,7 +3718,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        protected void onAttachedToWindow() {
+        public void onAttachedToWindow() {
             super.onAttachedToWindow();
             ProfileActivity.this.fragmentViewAttached = true;
             for (int i = 0; i < ProfileActivity.this.emojiStatusDrawable.length; i++) {
@@ -3729,7 +3729,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        protected void onDetachedFromWindow() {
+        public void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             ProfileActivity.this.fragmentViewAttached = false;
             for (int i = 0; i < ProfileActivity.this.emojiStatusDrawable.length; i++) {
