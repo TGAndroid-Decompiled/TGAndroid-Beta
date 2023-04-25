@@ -240,7 +240,6 @@ public class FileLoader extends BaseController {
         this.uploadSmallOperationQueue = new LinkedList<>();
         this.uploadOperationPaths = new ConcurrentHashMap<>();
         this.uploadOperationPathsEnc = new ConcurrentHashMap<>();
-        int i2 = 0;
         this.currentUploadOperationsCount = 0;
         this.currentUploadSmallOperationsCount = 0;
         this.loadOperationPaths = new ConcurrentHashMap<>();
@@ -256,6 +255,7 @@ public class FileLoader extends BaseController {
             }
         };
         this.filePathDatabase = new FilePathDatabase(i);
+        int i2 = 0;
         while (true) {
             FileLoaderPriorityQueue[] fileLoaderPriorityQueueArr = this.smallFilesQueue;
             if (i2 < fileLoaderPriorityQueueArr.length) {
@@ -263,9 +263,9 @@ public class FileLoader extends BaseController {
                 sb.append("smallFilesQueue dc");
                 int i3 = i2 + 1;
                 sb.append(i3);
-                fileLoaderPriorityQueueArr[i2] = new FileLoaderPriorityQueue(sb.toString(), 5);
+                fileLoaderPriorityQueueArr[i2] = new FileLoaderPriorityQueue(i, sb.toString(), 0);
                 FileLoaderPriorityQueue[] fileLoaderPriorityQueueArr2 = this.largeFilesQueue;
-                fileLoaderPriorityQueueArr2[i2] = new FileLoaderPriorityQueue("largeFilesQueue dc" + i3, 2);
+                fileLoaderPriorityQueueArr2[i2] = new FileLoaderPriorityQueue(i, "largeFilesQueue dc" + i3, 1);
                 i2 = i3;
             } else {
                 dumpFilesQueue();

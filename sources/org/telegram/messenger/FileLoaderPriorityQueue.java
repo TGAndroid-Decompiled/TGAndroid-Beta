@@ -2,16 +2,20 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public class FileLoaderPriorityQueue {
-    private final int maxActiveOperationsCount;
+    public static final int TYPE_LARGE = 1;
+    public static final int TYPE_SMALL = 0;
+    int currentAccount;
     String name;
+    int type;
     private ArrayList<FileLoadOperation> allOperations = new ArrayList<>();
     private int PRIORITY_VALUE_MAX = 1048576;
     private int PRIORITY_VALUE_NORMAL = CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT;
     private int PRIORITY_VALUE_LOW = 0;
 
-    public FileLoaderPriorityQueue(String str, int i) {
+    public FileLoaderPriorityQueue(int i, String str, int i2) {
+        this.currentAccount = i;
         this.name = str;
-        this.maxActiveOperationsCount = i;
+        this.type = i2;
     }
 
     public void add(FileLoadOperation fileLoadOperation) {
@@ -51,7 +55,7 @@ public class FileLoaderPriorityQueue {
     }
 
     public void checkLoadingOperations() {
-        int i = this.maxActiveOperationsCount;
+        int i = this.type == 1 ? MessagesController.getInstance(this.currentAccount).largeQueueMaxActiveOperations : MessagesController.getInstance(this.currentAccount).smallQueueMaxActiveOperations;
         boolean z = false;
         int i2 = 0;
         for (int i3 = 0; i3 < this.allOperations.size(); i3++) {

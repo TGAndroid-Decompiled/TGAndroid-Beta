@@ -573,6 +573,7 @@
     <string name="ArchiveStickerSetsAlertTitle">Archive %1$s</string>
     <string name="ArchiveStickersAlertMessage">Are you sure you want to archive the selected sticker sets?</string>
     <string name="ArchivedChats">Archived Chats</string>
+    <string name="ArchivedEmojiInfo">You can add up to 200 emoji packs.\nUnused packs are archived when you add more.</string>
     <string name="ArchivedEmojiPacks">Archived Emoji Packs</string>
     <string name="ArchivedEmojiPacksEmpty">No archived emoji packs</string>
     <string name="ArchivedMasks">Archived Masks</string>

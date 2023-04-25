@@ -9883,7 +9883,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void drawList(Canvas canvas, boolean z) {
+        protected void drawList(Canvas canvas, boolean z) {
             float dp = (ChatActivity.this.chatListViewPaddingTop - ChatActivity.this.chatListViewPaddingVisibleOffset) - AndroidUtilities.dp(4.0f);
             for (int i = 0; i < ChatActivity.this.chatListView.getChildCount(); i++) {
                 View childAt = ChatActivity.this.chatListView.getChildAt(i);
@@ -9932,7 +9932,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onAttachedToWindow() {
+        protected void onAttachedToWindow() {
             super.onAttachedToWindow();
             this.adjustPanLayoutHelper.onAttach();
             ChatActivity.this.chatActivityEnterView.setAdjustPanLayoutHelper(this.adjustPanLayoutHelper);
@@ -9947,7 +9947,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onDetachedFromWindow() {
+        protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
             this.adjustPanLayoutHelper.onDetach();
             if (ChatActivity.this.pullingDownDrawable != null) {
@@ -10010,7 +10010,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void dispatchDraw(Canvas canvas) {
+        protected void dispatchDraw(Canvas canvas) {
             int i;
             int i2;
             int top;
@@ -10473,7 +10473,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void onLayout(boolean r16, int r17, int r18, int r19, int r20) {
+        protected void onLayout(boolean r16, int r17, int r18, int r19, int r20) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatActivityFragmentView.onLayout(boolean, int, int, int, int):void");
         }
 
@@ -10512,13 +10512,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public Drawable getNewDrawable() {
+        protected Drawable getNewDrawable() {
             Drawable wallpaperDrawable = ChatActivity.this.themeDelegate.getWallpaperDrawable();
             return wallpaperDrawable != null ? wallpaperDrawable : super.getNewDrawable();
         }
 
         @Override
-        public boolean getNewDrawableMotion() {
+        protected boolean getNewDrawableMotion() {
             if (ChatActivity.this.themeDelegate.wallpaper == null) {
                 return super.getNewDrawableMotion();
             }

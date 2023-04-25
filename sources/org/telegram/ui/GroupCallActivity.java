@@ -2627,7 +2627,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
 
                 @Override
-                protected boolean createLayout(int i9) {
+                public boolean createLayout(int i9) {
                     boolean createLayout = super.createLayout(i9);
                     int textWidth = getTextWidth();
                     if (textWidth != this.lastTextWidth) {
@@ -2642,7 +2642,7 @@ public class GroupCallActivity extends BottomSheet implements NotificationCenter
                 }
 
                 @Override
-                protected void onDraw(android.graphics.Canvas r9) {
+                public void onDraw(android.graphics.Canvas r9) {
                     throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCallActivity.AnonymousClass8.onDraw(android.graphics.Canvas):void");
                 }
             };

@@ -83,15 +83,18 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
     public View createView(Context context) {
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         this.actionBar.setAllowOverlayTitle(true);
-        if (this.currentType == 0) {
+        int i = this.currentType;
+        if (i == 0) {
             this.actionBar.setTitle(LocaleController.getString("ArchivedStickers", R.string.ArchivedStickers));
+        } else if (i == 5) {
+            this.actionBar.setTitle(LocaleController.getString("ArchivedEmojiPacks", R.string.ArchivedEmojiPacks));
         } else {
             this.actionBar.setTitle(LocaleController.getString("ArchivedMasks", R.string.ArchivedMasks));
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
-            public void onItemClick(int i) {
-                if (i == -1) {
+            public void onItemClick(int i2) {
+                if (i2 == -1) {
                     ArchivedStickersActivity.this.finishFragment();
                 }
             }
@@ -126,13 +129,13 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
         this.listView.setAdapter(this.listAdapter);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
-            public final void onItemClick(View view, int i) {
-                ArchivedStickersActivity.this.lambda$createView$0(view, i);
+            public final void onItemClick(View view, int i2) {
+                ArchivedStickersActivity.this.lambda$createView$0(view, i2);
             }
         });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int i, int i2) {
+            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
                 if (ArchivedStickersActivity.this.loadingStickers || ArchivedStickersActivity.this.endReached || ArchivedStickersActivity.this.layoutManager.findLastVisibleItemPosition() <= ArchivedStickersActivity.this.stickersLoadingRow - 2) {
                     return;
                 }
@@ -178,16 +181,17 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
         int i;
         this.rowCount = 0;
         if (!this.sets.isEmpty()) {
-            if (this.currentType == 0) {
+            int i2 = this.currentType;
+            if (i2 == 0 || i2 == 5) {
                 i = this.rowCount;
                 this.rowCount = i + 1;
             } else {
                 i = -1;
             }
             this.archiveInfoRow = i;
-            int i2 = this.rowCount;
-            this.stickersStartRow = i2;
-            this.stickersEndRow = i2 + this.sets.size();
+            int i3 = this.rowCount;
+            this.stickersStartRow = i3;
+            this.stickersEndRow = i3 + this.sets.size();
             int size = this.rowCount + this.sets.size();
             this.rowCount = size;
             if (!this.endReached) {
@@ -367,11 +371,13 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            int i2;
+            String str;
             if (getItemViewType(i) == 0) {
-                int i2 = i - ArchivedStickersActivity.this.stickersStartRow;
+                int i3 = i - ArchivedStickersActivity.this.stickersStartRow;
                 ArchivedStickerSetCell archivedStickerSetCell = (ArchivedStickerSetCell) viewHolder.itemView;
-                final TLRPC$StickerSetCovered tLRPC$StickerSetCovered = (TLRPC$StickerSetCovered) ArchivedStickersActivity.this.sets.get(i2);
-                archivedStickerSetCell.setStickersSet(tLRPC$StickerSetCovered, i2 != ArchivedStickersActivity.this.sets.size() - 1);
+                final TLRPC$StickerSetCovered tLRPC$StickerSetCovered = (TLRPC$StickerSetCovered) ArchivedStickersActivity.this.sets.get(i3);
+                archivedStickerSetCell.setStickersSet(tLRPC$StickerSetCovered, i3 != ArchivedStickersActivity.this.sets.size() - 1);
                 boolean isStickerPackInstalled = MediaDataController.getInstance(((BaseFragment) ArchivedStickersActivity.this).currentAccount).isStickerPackInstalled(tLRPC$StickerSetCovered.set.id);
                 archivedStickerSetCell.setChecked(isStickerPackInstalled, false, false);
                 if (isStickerPackInstalled) {
@@ -391,7 +397,14 @@ public class ArchivedStickersActivity extends BaseFragment implements Notificati
                 if (i == ArchivedStickersActivity.this.archiveInfoRow) {
                     textInfoPrivacyCell.setTopPadding(17);
                     textInfoPrivacyCell.setBottomPadding(10);
-                    textInfoPrivacyCell.setText(LocaleController.getString("ArchivedStickersInfo", R.string.ArchivedStickersInfo));
+                    if (ArchivedStickersActivity.this.currentType == 5) {
+                        i2 = R.string.ArchivedEmojiInfo;
+                        str = "ArchivedEmojiInfo";
+                    } else {
+                        i2 = R.string.ArchivedStickersInfo;
+                        str = "ArchivedStickersInfo";
+                    }
+                    textInfoPrivacyCell.setText(LocaleController.getString(str, i2));
                     return;
                 }
                 textInfoPrivacyCell.setTopPadding(10);
