@@ -65,7 +65,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.gap = frameLayout;
         frameLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator));
         View view = new View(context);
-        view.setBackground(Theme.getThemedDrawable(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow, null));
+        view.setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow, null));
         this.gap.addView(view, LayoutHelper.createFrame(-1, -1.0f));
         this.gap.setTag(R.id.fit_width_tag, 1);
         addView(this.gap, LayoutHelper.createLinear(-1, 8));

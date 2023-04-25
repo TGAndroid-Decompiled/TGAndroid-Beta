@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBar;
@@ -19,7 +18,7 @@ public class MemberRequestsActivity extends BaseFragment {
             @Override
             protected void onImportersChanged(String str, boolean z, boolean z2) {
                 if (z2) {
-                    ((BaseFragment) MemberRequestsActivity.this).actionBar.setSearchFieldText(BuildConfig.APP_CENTER_HASH);
+                    ((BaseFragment) MemberRequestsActivity.this).actionBar.setSearchFieldText("");
                 } else {
                     super.onImportersChanged(str, z, z2);
                 }

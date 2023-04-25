@@ -401,7 +401,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
         } else if (view instanceof LinkActionView) {
             ((LinkActionView) view).updateColors();
         } else if (view instanceof TextInfoPrivacyCell) {
-            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(view.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(view.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
             combinedDrawable.setFullsize(true);
             view.setBackground(combinedDrawable);
             ((TextInfoPrivacyCell) view).setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText4));
@@ -411,11 +411,11 @@ public class InviteLinkBottomSheet extends BottomSheet {
         RecyclerView.ViewHolder childViewHolder = this.listView.getChildViewHolder(view);
         if (childViewHolder != null) {
             if (childViewHolder.getItemViewType() == 7) {
-                CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(view.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow), 0, 0);
+                CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(view.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow), 0, 0);
                 combinedDrawable2.setFullsize(true);
                 view.setBackgroundDrawable(combinedDrawable2);
             } else if (childViewHolder.getItemViewType() == 2) {
-                CombinedDrawable combinedDrawable3 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(view.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow), 0, 0);
+                CombinedDrawable combinedDrawable3 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(view.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow), 0, 0);
                 combinedDrawable3.setFullsize(true);
                 view.setBackgroundDrawable(combinedDrawable3);
             }
@@ -510,7 +510,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     break;
                 case 4:
                     View timerPrivacyCell = new TimerPrivacyCell(context);
-                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     combinedDrawable.setFullsize(true);
                     timerPrivacyCell.setBackground(combinedDrawable);
                     headerCell = timerPrivacyCell;
@@ -533,7 +533,7 @@ public class InviteLinkBottomSheet extends BottomSheet {
                     break;
                 case 7:
                     View shadowSectionCell = new ShadowSectionCell(context, 12);
-                    CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow), 0, 0);
+                    CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow), 0, 0);
                     combinedDrawable2.setFullsize(true);
                     shadowSectionCell.setBackgroundDrawable(combinedDrawable2);
                     headerCell = shadowSectionCell;

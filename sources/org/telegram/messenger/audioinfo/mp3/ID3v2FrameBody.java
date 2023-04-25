@@ -2,7 +2,6 @@ package org.telegram.messenger.audioinfo.mp3;
 
 import java.io.IOException;
 import java.io.InputStream;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.audioinfo.util.RangeInputStream;
 public class ID3v2FrameBody {
@@ -85,7 +84,7 @@ public class ID3v2FrameBody {
             String str = new String(bArr, i, i2, iD3v2Encoding.getCharset().name());
             return (str.length() <= 0 || str.charAt(0) != 65279) ? str : str.substring(1);
         } catch (Exception unused) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 

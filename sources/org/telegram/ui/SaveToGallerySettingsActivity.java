@@ -512,7 +512,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                     break;
                 case 10:
                     ShadowSectionCell shadowSectionCell2 = new ShadowSectionCell(viewGroup.getContext());
-                    shadowSectionCell2.setBackgroundDrawable(Theme.getThemedDrawable(SaveToGallerySettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.getColor(Theme.key_windowBackgroundGrayShadow, SaveToGallerySettingsActivity.this.getResourceProvider())));
+                    shadowSectionCell2.setBackgroundDrawable(Theme.getThemedDrawableByKey(SaveToGallerySettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.getColor(Theme.key_windowBackgroundGrayShadow, SaveToGallerySettingsActivity.this.getResourceProvider())));
                     shadowSectionCell = shadowSectionCell2;
                     break;
             }

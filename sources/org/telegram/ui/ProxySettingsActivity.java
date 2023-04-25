@@ -30,7 +30,6 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -95,7 +94,7 @@ public class ProxySettingsActivity extends BaseFragment {
                 ProxySettingsActivity.this.updatePasteCell();
             }
         };
-        this.currentProxyInfo = new SharedConfig.ProxyInfo(BuildConfig.APP_CENTER_HASH, 1080, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
+        this.currentProxyInfo = new SharedConfig.ProxyInfo("", 1080, "", "", "");
         this.addingNewProxy = true;
     }
 
@@ -150,13 +149,13 @@ public class ProxySettingsActivity extends BaseFragment {
                     ProxySettingsActivity.this.currentProxyInfo.address = ProxySettingsActivity.this.inputFields[0].getText().toString();
                     ProxySettingsActivity.this.currentProxyInfo.port = Utilities.parseInt((CharSequence) ProxySettingsActivity.this.inputFields[1].getText().toString()).intValue();
                     if (ProxySettingsActivity.this.currentType == 0) {
-                        ProxySettingsActivity.this.currentProxyInfo.secret = BuildConfig.APP_CENTER_HASH;
+                        ProxySettingsActivity.this.currentProxyInfo.secret = "";
                         ProxySettingsActivity.this.currentProxyInfo.username = ProxySettingsActivity.this.inputFields[2].getText().toString();
                         ProxySettingsActivity.this.currentProxyInfo.password = ProxySettingsActivity.this.inputFields[3].getText().toString();
                     } else {
                         ProxySettingsActivity.this.currentProxyInfo.secret = ProxySettingsActivity.this.inputFields[4].getText().toString();
-                        ProxySettingsActivity.this.currentProxyInfo.username = BuildConfig.APP_CENTER_HASH;
-                        ProxySettingsActivity.this.currentProxyInfo.password = BuildConfig.APP_CENTER_HASH;
+                        ProxySettingsActivity.this.currentProxyInfo.username = "";
+                        ProxySettingsActivity.this.currentProxyInfo.password = "";
                     }
                     SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
                     SharedPreferences.Editor edit = globalMainSettings.edit();
@@ -328,7 +327,7 @@ public class ProxySettingsActivity extends BaseFragment {
             } else if (i2 == 1) {
                 this.inputFields[i2].setHintText(LocaleController.getString("UseProxyPort", R.string.UseProxyPort));
                 EditTextBoldCursor editTextBoldCursor2 = this.inputFields[i2];
-                editTextBoldCursor2.setText(BuildConfig.APP_CENTER_HASH + this.currentProxyInfo.port);
+                editTextBoldCursor2.setText("" + this.currentProxyInfo.port);
             } else if (i2 == 2) {
                 this.inputFields[i2].setHintText(LocaleController.getString("UseProxyUsername", R.string.UseProxyUsername));
                 this.inputFields[i2].setText(this.currentProxyInfo.username);
@@ -355,7 +354,7 @@ public class ProxySettingsActivity extends BaseFragment {
         }
         for (int i5 = 0; i5 < 2; i5++) {
             this.bottomCells[i5] = new TextInfoPrivacyCell(context);
-            this.bottomCells[i5].setBackground(Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+            this.bottomCells[i5].setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
             if (i5 == 0) {
                 this.bottomCells[i5].setText(LocaleController.getString("UseProxyInfo", R.string.UseProxyInfo));
             } else {
@@ -385,7 +384,7 @@ public class ProxySettingsActivity extends BaseFragment {
         Context context2 = this.fragmentView.getContext();
         int i7 = R.drawable.greydivider_bottom;
         int i8 = Theme.key_windowBackgroundGrayShadow;
-        shadowSectionCell.setBackground(Theme.getThemedDrawable(context2, i7, i8));
+        shadowSectionCell.setBackground(Theme.getThemedDrawableByKey(context2, i7, i8));
         this.linearLayout2.addView(this.sectionCell[2], 1, LayoutHelper.createLinear(-1, -2));
         this.sectionCell[2].setVisibility(8);
         TextSettingsCell textSettingsCell3 = new TextSettingsCell(context);
@@ -401,7 +400,7 @@ public class ProxySettingsActivity extends BaseFragment {
             }
         });
         this.sectionCell[1] = new ShadowSectionCell(context);
-        this.sectionCell[1].setBackgroundDrawable(Theme.getThemedDrawable(context, i7, i8));
+        this.sectionCell[1].setBackgroundDrawable(Theme.getThemedDrawableByKey(context, i7, i8));
         this.linearLayout2.addView(this.sectionCell[1], LayoutHelper.createLinear(-1, -2));
         this.clipboardManager = (ClipboardManager) context.getSystemService("clipboard");
         this.shareDoneEnabled = true;

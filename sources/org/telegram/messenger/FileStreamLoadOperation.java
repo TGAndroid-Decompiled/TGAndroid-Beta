@@ -5,6 +5,7 @@ import com.google.android.exoplayer2.upstream.BaseDataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.TransferListener;
 import java.io.EOFException;
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.Collections;
@@ -21,6 +22,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     private long bytesRemaining;
     private CountDownLatch countDownLatch;
     private int currentAccount;
+    File currentFile;
     private long currentOffset;
     private TLRPC$Document document;
     private RandomAccessFile file;
@@ -88,7 +90,9 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         this.opened = true;
         transferStarted(dataSpec);
         if (this.loadOperation != null) {
-            RandomAccessFile randomAccessFile = new RandomAccessFile(this.loadOperation.getCurrentFile(), "r");
+            File currentFile = this.loadOperation.getCurrentFile();
+            this.currentFile = currentFile;
+            RandomAccessFile randomAccessFile = new RandomAccessFile(currentFile, "r");
             this.file = randomAccessFile;
             randomAccessFile.seek(this.currentOffset);
         }
@@ -115,15 +119,18 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
                 }
                 i3 = (int) this.loadOperation.getDownloadedLengthFromOffset(this.currentOffset, i2)[0];
                 if (i3 == 0) {
+                    this.countDownLatch = new CountDownLatch(1);
                     FileLoadOperation loadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false, 3);
                     FileLoadOperation fileLoadOperation = this.loadOperation;
                     if (fileLoadOperation != loadStreamFile) {
                         fileLoadOperation.removeStreamListener(this);
                         this.loadOperation = loadStreamFile;
                     }
-                    CountDownLatch countDownLatch = new CountDownLatch(1);
-                    this.countDownLatch = countDownLatch;
-                    countDownLatch.await();
+                    CountDownLatch countDownLatch = this.countDownLatch;
+                    if (countDownLatch != null) {
+                        countDownLatch.await();
+                        this.countDownLatch = null;
+                    }
                 }
             } catch (Exception e) {
                 throw new IOException(e);
@@ -168,6 +175,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         CountDownLatch countDownLatch = this.countDownLatch;
         if (countDownLatch != null) {
             countDownLatch.countDown();
+            this.countDownLatch = null;
         }
     }
 
@@ -176,6 +184,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         CountDownLatch countDownLatch = this.countDownLatch;
         if (countDownLatch != null) {
             countDownLatch.countDown();
+            this.countDownLatch = null;
         }
     }
 }

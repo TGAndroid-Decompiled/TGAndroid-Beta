@@ -4,7 +4,6 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.CharacterCompat;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$Message extends TLObject {
@@ -68,7 +67,7 @@ public class TLRPC$Message extends TLObject {
     public ArrayList<TLRPC$TL_restrictionReason> restriction_reason = new ArrayList<>();
     public int send_state = 0;
     public int fwd_msg_id = 0;
-    public String attachPath = BuildConfig.APP_CENTER_HASH;
+    public String attachPath = "";
     public int local_id = 0;
     public int stickerVerified = 1;
 
@@ -1820,7 +1819,7 @@ public class TLRPC$Message extends TLObject {
                             this.reactions.serializeToStream(abstractSerializedData2);
                         }
                         if ((this.flags & 4194304) != 0) {
-                            abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
+                            abstractSerializedData2.writeString("");
                         }
                         writeAttachPath(abstractSerializedData2);
                     }
@@ -2783,7 +2782,7 @@ public class TLRPC$Message extends TLObject {
         if ((this instanceof TLRPC$TL_message_secret) || (this instanceof TLRPC$TL_message_secret_layer72)) {
             String str = this.attachPath;
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             if (this.send_state == 1 && (hashMap = this.params) != null && hashMap.size() > 0) {
                 for (Map.Entry<String, String> entry : this.params.entrySet()) {
@@ -2799,8 +2798,8 @@ public class TLRPC$Message extends TLObject {
             if (this.params == null) {
                 this.params = new HashMap<>();
             }
-            this.layer = 158;
-            this.params.put("legacy_layer", "158");
+            this.layer = 159;
+            this.params.put("legacy_layer", "159");
         }
         if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
             for (Map.Entry<String, String> entry2 : this.params.entrySet()) {

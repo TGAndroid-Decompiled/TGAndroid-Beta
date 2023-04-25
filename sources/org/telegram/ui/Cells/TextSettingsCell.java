@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -333,7 +332,7 @@ public class TextSettingsCell extends FrameLayout {
         sb.append((Object) this.textView.getText());
         AnimatedTextView animatedTextView = this.valueTextView;
         if (animatedTextView == null || animatedTextView.getVisibility() != 0) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         } else {
             str = "\n" + ((Object) this.valueTextView.getText());
         }

@@ -13,7 +13,6 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -201,7 +200,7 @@ public class SwipeGestureSettingsView extends FrameLayout {
                 i2 = R.raw.swipe_disabled;
             }
             int i3 = i2;
-            rLottieDrawableArr[i] = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            rLottieDrawableArr[i] = new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
             updateIconColor(i);
         }
         return this.icons[i];

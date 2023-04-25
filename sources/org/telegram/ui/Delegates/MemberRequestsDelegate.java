@@ -637,7 +637,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
             MemberRequestCell memberRequestCell;
             if (i == 1) {
                 View view = new View(viewGroup.getContext());
-                view.setBackground(Theme.getThemedDrawable(viewGroup.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                view.setBackground(Theme.getThemedDrawableByKey(viewGroup.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 memberRequestCell = view;
             } else if (i == 2) {
                 memberRequestCell = new View(this, viewGroup.getContext()) {

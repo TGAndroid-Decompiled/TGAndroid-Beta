@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -255,22 +254,22 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         }
         LetterSectionCell letterSectionCell = (LetterSectionCell) view;
         if (this.sortType == 2 || this.disableSections || this.isEmpty) {
-            letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
+            letterSectionCell.setLetter("");
         } else if (this.onlyUsers == 0 || this.isAdmin) {
             if (i == 0) {
-                letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
+                letterSectionCell.setLetter("");
             } else {
                 int i2 = i - 1;
                 if (i2 < arrayList.size()) {
                     letterSectionCell.setLetter(arrayList.get(i2));
                 } else {
-                    letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
+                    letterSectionCell.setLetter("");
                 }
             }
         } else if (i < arrayList.size()) {
             letterSectionCell.setLetter(arrayList.get(i));
         } else {
-            letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
+            letterSectionCell.setLetter("");
         }
         return view;
     }
@@ -313,7 +312,7 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
             userCell = frameLayout;
         } else {
             userCell = new ShadowSectionCell(this.mContext);
-            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+            CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
             combinedDrawable.setFullsize(true);
             userCell.setBackgroundDrawable(combinedDrawable);
         }

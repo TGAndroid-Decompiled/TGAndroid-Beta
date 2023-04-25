@@ -28,7 +28,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -271,7 +270,7 @@ public class LiteModeSettingsActivity extends BaseFragment {
         this.items.add(Item.asSwitch(R.drawable.msg2_call_earpiece, LocaleController.getString("LiteOptionsCalls"), LiteMode.FLAG_CALLS_ANIMATIONS));
         this.items.add(Item.asSwitch(R.drawable.msg2_videocall, LocaleController.getString("LiteOptionsAutoplayVideo"), 1024));
         this.items.add(Item.asSwitch(R.drawable.msg2_gif, LocaleController.getString("LiteOptionsAutoplayGifs"), LiteMode.FLAG_AUTOPLAY_GIFS));
-        this.items.add(Item.asInfo(BuildConfig.APP_CENTER_HASH));
+        this.items.add(Item.asInfo(""));
         this.items.add(Item.asSwitch(LocaleController.getString("LiteSmoothTransitions"), 1));
         this.items.add(Item.asInfo(LocaleController.getString("LiteSmoothTransitionsInfo")));
         this.adapter.setItems(this.oldItems, this.items);
@@ -399,11 +398,11 @@ public class LiteModeSettingsActivity extends BaseFragment {
                 int i3 = i + 1;
                 z = (i3 >= LiteModeSettingsActivity.this.items.size() || ((Item) LiteModeSettingsActivity.this.items.get(i3)).viewType == 2) ? false : false;
                 if (z2 && z) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 } else if (z2) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 } else if (z) {
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(LiteModeSettingsActivity.this.getContext(), R.drawable.greydivider_top, Theme.key_windowBackgroundGrayShadow));
                 } else {
                     textInfoPrivacyCell.setBackground(null);
                 }

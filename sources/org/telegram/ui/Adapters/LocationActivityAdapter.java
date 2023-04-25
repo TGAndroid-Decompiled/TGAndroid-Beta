@@ -10,7 +10,6 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Locale;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
 import org.telegram.messenger.MessageObject;
@@ -158,11 +157,11 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
     }
 
     private void updateCell() {
+        String str;
         SendLocationCell sendLocationCell = this.sendLocationCell;
         if (sendLocationCell != null) {
-            int i = this.locationType;
-            String str = BuildConfig.APP_CENTER_HASH;
-            if (i == 4 || this.customLocation != null) {
+            str = "";
+            if (this.locationType == 4 || this.customLocation != null) {
                 if (!TextUtils.isEmpty(this.addressName)) {
                     str = this.addressName;
                 } else {
@@ -190,11 +189,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 sendLocationCell.setText(LocaleController.getString("SendLocation", R.string.SendLocation), LocaleController.formatString("AccurateTo", R.string.AccurateTo, LocaleController.formatPluralString("Meters", (int) this.gpsLocation.getAccuracy(), new Object[0])));
                 this.sendLocationCell.setHasLocation(true);
             } else {
-                String string = LocaleController.getString("SendLocation", R.string.SendLocation);
-                if (!this.myLocationDenied) {
-                    str = LocaleController.getString("Loading", R.string.Loading);
-                }
-                sendLocationCell.setText(string, str);
+                sendLocationCell.setText(LocaleController.getString("SendLocation", R.string.SendLocation), this.myLocationDenied ? "" : LocaleController.getString("Loading", R.string.Loading));
                 this.sendLocationCell.setHasLocation(!this.myLocationDenied);
             }
         }
@@ -309,7 +304,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 break;
             case 9:
                 View shadowSectionCell = new ShadowSectionCell(this.mContext);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 combinedDrawable.setFullsize(true);
                 shadowSectionCell.setBackgroundDrawable(combinedDrawable);
                 view = shadowSectionCell;

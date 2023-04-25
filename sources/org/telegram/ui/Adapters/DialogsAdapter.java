@@ -24,7 +24,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -550,7 +549,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 };
                 flickerLoadingView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundGray));
                 View view3 = new View(this.mContext);
-                view3.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                view3.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 flickerLoadingView.addView(view3, LayoutHelper.createFrame(-1, -1.0f));
                 break;
             case 4:
@@ -568,7 +567,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 break;
             case 8:
                 flickerLoadingView = new ShadowSectionCell(this.mContext);
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 combinedDrawable.setFullsize(true);
                 flickerLoadingView.setBackgroundDrawable(combinedDrawable);
                 break;
@@ -630,7 +629,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                         }
                     }
                 };
-                CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                CombinedDrawable combinedDrawable2 = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 combinedDrawable2.setFullsize(true);
                 flickerLoadingView.setBackgroundDrawable(combinedDrawable2);
                 break;
@@ -736,7 +735,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                         String userName = UserObject.getUserName(user);
                         if (UserObject.isReplyUser(user)) {
                             str = userName;
-                            str2 = BuildConfig.APP_CENTER_HASH;
+                            str2 = "";
                             tLRPC$User = user;
                         } else {
                             if (user.bot) {
@@ -750,7 +749,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                         }
                     } else {
                         str = null;
-                        str2 = BuildConfig.APP_CENTER_HASH;
+                        str2 = "";
                         tLRPC$User = null;
                     }
                 }

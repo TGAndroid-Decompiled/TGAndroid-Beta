@@ -25,7 +25,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -737,26 +736,26 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                         if (i != ProfileNotificationsActivity.this.ledInfoRow) {
                             if (i == ProfileNotificationsActivity.this.priorityInfoRow) {
                                 if (ProfileNotificationsActivity.this.priorityRow == -1) {
-                                    textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
+                                    textInfoPrivacyCell.setText("");
                                 } else {
                                     textInfoPrivacyCell.setText(LocaleController.getString("PriorityInfo", R.string.PriorityInfo));
                                 }
-                                textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(this.context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                                textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                                 return;
                             } else if (i == ProfileNotificationsActivity.this.ringtoneInfoRow) {
                                 textInfoPrivacyCell.setText(LocaleController.getString("VoipRingtoneInfo", R.string.VoipRingtoneInfo));
-                                textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(this.context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                                textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                                 return;
                             } else {
                                 return;
                             }
                         }
                         textInfoPrivacyCell.setText(LocaleController.getString("NotificationsLedInfo", R.string.NotificationsLedInfo));
-                        textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(this.context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                        textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                         return;
                     }
                     textInfoPrivacyCell.setText(LocaleController.getString("ProfilePopupNotificationInfo", R.string.ProfilePopupNotificationInfo));
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(this.context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     return;
                 case 3:
                     TextColorCell textColorCell = (TextColorCell) viewHolder.itemView;

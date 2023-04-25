@@ -74,7 +74,6 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AutoDeleteMediaTask;
 import org.telegram.messenger.BackupAgent;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -763,15 +762,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             String str = Build.DISPLAY;
             String str2 = Build.USER;
-            String str3 = BuildConfig.APP_CENTER_HASH;
-            String lowerCase2 = str != null ? str.toLowerCase() : BuildConfig.APP_CENTER_HASH;
-            if (str2 != null) {
-                str3 = lowerCase2.toLowerCase();
-            }
+            String lowerCase2 = str != null ? str.toLowerCase() : "";
+            String lowerCase3 = str2 != null ? lowerCase2.toLowerCase() : "";
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("OS name " + lowerCase2 + " " + str3);
+                FileLog.d("OS name " + lowerCase2 + " " + lowerCase3);
             }
-            if ((lowerCase2.contains("flyme") || str3.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
+            if ((lowerCase2.contains("flyme") || lowerCase3.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
                 AndroidUtilities.incorrectDisplaySizeFix = true;
                 final View rootView = getWindow().getDecorView().getRootView();
                 ViewTreeObserver viewTreeObserver = rootView.getViewTreeObserver();
@@ -2854,7 +2850,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 final CheckBoxCell checkBoxCell = new CheckBoxCell(this, 5, baseFragment.getResourceProvider());
                 checkBoxCell.setBackground(Theme.getSelectorDrawable(false));
                 checkBoxCell.setMultiline(true);
-                checkBoxCell.setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), BuildConfig.APP_CENTER_HASH, true, false);
+                checkBoxCell.setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), "", true, false);
                 checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
                 checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -2971,7 +2967,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             int i2 = R.string.AddBot;
             builder.setTitle(LocaleController.getString("AddBot", i2));
-            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? BuildConfig.APP_CENTER_HASH : chat.title)));
+            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? "" : chat.title)));
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
             builder.setPositiveButton(LocaleController.getString("AddBot", i2), new DialogInterface.OnClickListener() {
                 @Override
@@ -3920,7 +3916,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     } catch (Exception unused) {
                     }
                     if (tLRPC$TL_help_getAppUpdate.source == null) {
-                        tLRPC$TL_help_getAppUpdate.source = BuildConfig.APP_CENTER_HASH;
+                        tLRPC$TL_help_getAppUpdate.source = "";
                     }
                     final int i = this.currentAccount;
                     ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_help_getAppUpdate, new RequestDelegate() {
@@ -4015,7 +4011,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 edit.putBoolean("proxy_enabled", false);
                 edit.putBoolean("proxy_enabled_calls", false);
                 edit.commit();
-                ConnectionsManager.setProxySettings(false, BuildConfig.APP_CENTER_HASH, 1080, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
+                ConnectionsManager.setProxySettings(false, "", 1080, "", "", "");
                 NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.proxySettingsChanged, new Object[0]);
                 this.proxyErrorDialog = null;
             }
@@ -5195,7 +5191,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (UserConfig.getInstance(this.currentAccount).isClientActivated()) {
             try {
                 if (!this.loadingLocaleDialog && !ApplicationLoader.mainInterfacePaused) {
-                    String string = MessagesController.getGlobalMainSettings().getString("language_showed2", BuildConfig.APP_CENTER_HASH);
+                    String string = MessagesController.getGlobalMainSettings().getString("language_showed2", "");
                     final String str2 = MessagesController.getInstance(this.currentAccount).suggestedLangCode;
                     if (!z && string.equals(str2)) {
                         if (BuildVars.LOGS_ENABLED) {

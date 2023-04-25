@@ -91,7 +91,6 @@ import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AuthTokensHelper;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.CallReceiver;
 import org.telegram.messenger.ContactsController;
@@ -576,7 +575,7 @@ public class LoginActivity extends BaseFragment {
             Context context = ApplicationLoader.applicationContext;
             StringBuilder sb = new StringBuilder();
             sb.append("logininfo2");
-            sb.append(z ? "_" + i : BuildConfig.APP_CENTER_HASH);
+            sb.append(z ? "_" + i : "");
             for (Map.Entry<String, ?> entry : context.getSharedPreferences(sb.toString(), 0).getAll().entrySet()) {
                 String key = entry.getKey();
                 Object value = entry.getValue();
@@ -619,7 +618,7 @@ public class LoginActivity extends BaseFragment {
         if (this.newAccount) {
             str = "_" + this.currentAccount;
         } else {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
         sb.append(str);
         SharedPreferences.Editor edit = context.getSharedPreferences(sb.toString(), 0).edit();
@@ -839,7 +838,7 @@ public class LoginActivity extends BaseFragment {
         } else {
             int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
             for (String str2 : phoneInputData.patterns) {
-                int length = str2.replace(" ", BuildConfig.APP_CENTER_HASH).length();
+                int length = str2.replace(" ", "").length();
                 if (length < i) {
                     i = length;
                 }
@@ -1325,7 +1324,7 @@ public class LoginActivity extends BaseFragment {
             Context context = ApplicationLoader.applicationContext;
             StringBuilder sb = new StringBuilder();
             sb.append("logininfo2");
-            sb.append(this.newAccount ? "_" + this.currentAccount : BuildConfig.APP_CENTER_HASH);
+            sb.append(this.newAccount ? "_" + this.currentAccount : "");
             SharedPreferences.Editor edit = context.getSharedPreferences(sb.toString(), 0).edit();
             edit.clear();
             putBundleToEditor(bundle2, edit, null);
@@ -2065,7 +2064,7 @@ public class LoginActivity extends BaseFragment {
             if (LoginActivity.this.newAccount && LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell = new CheckBoxCell(context, 2);
                 this.syncContactsBox = checkBoxCell;
-                checkBoxCell.setText(LocaleController.getString("SyncContacts", R.string.SyncContacts), BuildConfig.APP_CENTER_HASH, LoginActivity.this.syncContacts, false);
+                checkBoxCell.setText(LocaleController.getString("SyncContacts", R.string.SyncContacts), "", LoginActivity.this.syncContacts, false);
                 addView(this.syncContactsBox, LayoutHelper.createLinear(-2, -1, 51, 16, 0, 16 + ((LocaleController.isRTL && AndroidUtilities.isSmallScreen()) ? i3 >= 21 ? 56 : 60 : 0), 0));
                 i4 = 48;
                 this.syncContactsBox.setOnClickListener(new View.OnClickListener() {
@@ -2078,7 +2077,7 @@ public class LoginActivity extends BaseFragment {
             if (BuildVars.DEBUG_VERSION && LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell2 = new CheckBoxCell(context, 2);
                 this.testBackendCheckBox = checkBoxCell2;
-                checkBoxCell2.setText(LocaleController.getString(R.string.DebugTestBackend), BuildConfig.APP_CENTER_HASH, LoginActivity.this.testBackend, false);
+                checkBoxCell2.setText(LocaleController.getString(R.string.DebugTestBackend), "", LoginActivity.this.testBackend, false);
                 View view = this.testBackendCheckBox;
                 if (!LocaleController.isRTL || !AndroidUtilities.isSmallScreen()) {
                     i5 = 0;
@@ -2486,13 +2485,13 @@ public class LoginActivity extends BaseFragment {
         public void invalidateCountryHint() {
             int i;
             String str = this.countryCodeForHint;
-            String replace = this.phoneField.getText() != null ? this.phoneField.getText().toString().replace(" ", BuildConfig.APP_CENTER_HASH) : BuildConfig.APP_CENTER_HASH;
+            String replace = this.phoneField.getText() != null ? this.phoneField.getText().toString().replace(" ", "") : "";
             if (this.phoneFormatMap.get(str) != null && !this.phoneFormatMap.get(str).isEmpty()) {
                 List<String> list = this.phoneFormatMap.get(str);
                 if (!replace.isEmpty()) {
                     i = 0;
                     while (i < list.size()) {
-                        if (replace.startsWith(list.get(i).replace(" ", BuildConfig.APP_CENTER_HASH).replace("X", BuildConfig.APP_CENTER_HASH).replace("0", BuildConfig.APP_CENTER_HASH))) {
+                        if (replace.startsWith(list.get(i).replace(" ", "").replace("X", "").replace("0", ""))) {
                             break;
                         }
                         i++;
@@ -3831,7 +3830,7 @@ public class LoginActivity extends BaseFragment {
                 if (i >= codeNumberFieldArr.length) {
                     break;
                 }
-                codeNumberFieldArr[i].setText(BuildConfig.APP_CENTER_HASH);
+                codeNumberFieldArr[i].setText("");
                 this.codeFieldContainer.codeField[i].animateErrorProgress(1.0f);
                 i++;
             }
@@ -3988,10 +3987,10 @@ public class LoginActivity extends BaseFragment {
                     return;
                 }
                 if (i == NotificationCenter.didReceiveSmsCode) {
-                    codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH + objArr[0]);
+                    codeFieldContainer.setText("" + objArr[0]);
                     onNextPressed(null);
                 } else if (i == NotificationCenter.didReceiveCall) {
-                    String str = BuildConfig.APP_CENTER_HASH + objArr[0];
+                    String str = "" + objArr[0];
                     if (AndroidUtilities.checkPhonePattern(this.pattern, str)) {
                         if (!this.pattern.equals("*")) {
                             this.catchedPhone = str;
@@ -4224,7 +4223,7 @@ public class LoginActivity extends BaseFragment {
                 AndroidUtilities.hideKeyboard(this.codeField);
                 return;
             }
-            this.codeField.setText(BuildConfig.APP_CENTER_HASH);
+            this.codeField.setText("");
             this.currentParams = bundle;
             String string = bundle.getString("password");
             this.passwordString = string;
@@ -4248,7 +4247,7 @@ public class LoginActivity extends BaseFragment {
                 return;
             }
             if (z) {
-                this.codeField.setText(BuildConfig.APP_CENTER_HASH);
+                this.codeField.setText("");
             }
             LoginActivity.this.onFieldError(this.outlineCodeField, true);
         }
@@ -4753,7 +4752,7 @@ public class LoginActivity extends BaseFragment {
             if (bundle == null) {
                 return;
             }
-            this.emailField.setText(BuildConfig.APP_CENTER_HASH);
+            this.emailField.setText("");
             this.currentParams = bundle;
             this.phone = bundle.getString("phone");
             this.emailPhone = this.currentParams.getString("ephone");
@@ -4775,7 +4774,7 @@ public class LoginActivity extends BaseFragment {
             } catch (Exception unused) {
             }
             if (z) {
-                this.emailField.setText(BuildConfig.APP_CENTER_HASH);
+                this.emailField.setText("");
             }
             this.emailField.requestFocus();
             LoginActivity.this.onFieldError(this.emailOutlineView, true);
@@ -5323,7 +5322,7 @@ public class LoginActivity extends BaseFragment {
                     }
                 });
             }
-            this.codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH);
+            this.codeFieldContainer.setText("");
             if (!this.isFromSetup && LoginActivity.this.activityMode != 3) {
                 String string = this.currentParams.getString("emailPattern");
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
@@ -5383,7 +5382,7 @@ public class LoginActivity extends BaseFragment {
                 return LocaleController.formatString(R.string.LoginEmailResetInSinglePattern, LocaleController.formatPluralString("Days", i2, new Object[0]));
             }
             StringBuilder sb = new StringBuilder();
-            sb.append(i4 != 0 ? String.format(Locale.ROOT, "%02d:", Integer.valueOf(i4)) : BuildConfig.APP_CENTER_HASH);
+            sb.append(i4 != 0 ? String.format(Locale.ROOT, "%02d:", Integer.valueOf(i4)) : "");
             Locale locale = Locale.ROOT;
             sb.append(String.format(locale, "%02d:", Integer.valueOf(i6)));
             sb.append(String.format(locale, "%02d", Integer.valueOf(i7)));
@@ -5419,8 +5418,8 @@ public class LoginActivity extends BaseFragment {
             int indexOf = formatString.indexOf(42);
             int lastIndexOf = formatString.lastIndexOf(42);
             if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
-                valueOf.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
-                valueOf.replace(indexOf, indexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                valueOf.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
+                valueOf.replace(indexOf, indexOf + 1, (CharSequence) "");
                 valueOf.setSpan(new ForegroundColorSpan(LoginActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlueText4)), indexOf, lastIndexOf - 1, 33);
             }
             this.emailResetInView.setText(valueOf);
@@ -5437,7 +5436,7 @@ public class LoginActivity extends BaseFragment {
             }
             if (z) {
                 for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
-                    codeNumberField.setText(BuildConfig.APP_CENTER_HASH);
+                    codeNumberField.setText("");
                 }
             }
             for (CodeNumberField codeNumberField2 : this.codeFieldContainer.codeField) {
@@ -5676,7 +5675,7 @@ public class LoginActivity extends BaseFragment {
                 if (i >= codeNumberFieldArr.length) {
                     break;
                 }
-                codeNumberFieldArr[i].setText(BuildConfig.APP_CENTER_HASH);
+                codeNumberFieldArr[i].setText("");
                 this.codeFieldContainer.codeField[i].animateErrorProgress(1.0f);
                 i++;
             }
@@ -5742,7 +5741,7 @@ public class LoginActivity extends BaseFragment {
             if (codeFieldContainer == null || codeFieldContainer.codeField == null) {
                 return;
             }
-            codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH);
+            codeFieldContainer.setText("");
             this.codeFieldContainer.codeField[0].requestFocus();
         }
 
@@ -5876,7 +5875,7 @@ public class LoginActivity extends BaseFragment {
             if (bundle == null) {
                 return;
             }
-            this.codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH);
+            this.codeFieldContainer.setText("");
             this.currentParams = bundle;
             this.passwordString = bundle.getString("password");
             this.requestPhone = this.currentParams.getString("requestPhone");
@@ -5909,7 +5908,7 @@ public class LoginActivity extends BaseFragment {
             }
             if (z) {
                 for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
-                    codeNumberField.setText(BuildConfig.APP_CENTER_HASH);
+                    codeNumberField.setText("");
                 }
             }
             for (CodeNumberField codeNumberField2 : this.codeFieldContainer.codeField) {
@@ -6317,7 +6316,7 @@ public class LoginActivity extends BaseFragment {
                 if (i >= editTextBoldCursorArr.length) {
                     break;
                 }
-                editTextBoldCursorArr[i].setText(BuildConfig.APP_CENTER_HASH);
+                editTextBoldCursorArr[i].setText("");
                 i++;
             }
             this.currentParams = bundle;
@@ -6379,7 +6378,7 @@ public class LoginActivity extends BaseFragment {
                 TLRPC$TL_account_passwordInputSettings tLRPC$TL_account_passwordInputSettings = new TLRPC$TL_account_passwordInputSettings();
                 tLRPC$TL_auth_recoverPassword.new_settings = tLRPC$TL_account_passwordInputSettings;
                 tLRPC$TL_account_passwordInputSettings.flags |= 1;
-                tLRPC$TL_account_passwordInputSettings.hint = str2 != null ? str2 : BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_account_passwordInputSettings.hint = str2 != null ? str2 : "";
                 tLRPC$TL_account_passwordInputSettings.new_algo = this.currentPassword.new_algo;
             }
             Utilities.globalQueue.postRunnable(new Runnable() {
@@ -6887,8 +6886,8 @@ public class LoginActivity extends BaseFragment {
             int indexOf = string.indexOf(42);
             int lastIndexOf = string.lastIndexOf(42);
             if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
-                spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
+                spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
                 spannableStringBuilder.setSpan(new LinkSpan(), indexOf, lastIndexOf - 1, 33);
             }
             this.privacyView.setText(spannableStringBuilder);
@@ -7234,8 +7233,8 @@ public class LoginActivity extends BaseFragment {
             if (bundle == null) {
                 return;
             }
-            this.firstNameField.setText(BuildConfig.APP_CENTER_HASH);
-            this.lastNameField.setText(BuildConfig.APP_CENTER_HASH);
+            this.firstNameField.setText("");
+            this.lastNameField.setText("");
             this.requestPhone = bundle.getString("phoneFormated");
             this.phoneHash = bundle.getString("phoneHash");
             this.currentParams = bundle;
@@ -7596,7 +7595,7 @@ public class LoginActivity extends BaseFragment {
             bundle2.putString("phoneHash", str2);
             bundle2.putString("code", str3);
             bundle2.putInt("startTime", ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-            bundle2.putInt("waitTime", Utilities.parseInt((CharSequence) tLRPC$TL_error.text.replace("2FA_CONFIRM_WAIT_", BuildConfig.APP_CENTER_HASH)).intValue());
+            bundle2.putInt("waitTime", Utilities.parseInt((CharSequence) tLRPC$TL_error.text.replace("2FA_CONFIRM_WAIT_", "")).intValue());
             setPage(8, true, bundle2, false);
         } else {
             needShowAlert(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);

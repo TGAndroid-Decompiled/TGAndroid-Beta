@@ -3,7 +3,6 @@ package org.telegram.ui.Adapters;
 import android.location.Location;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.MessagesController;
@@ -170,9 +169,9 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
                 }
                 TLRPC$User tLRPC$User = (TLRPC$User) userOrChat;
                 TLRPC$TL_messages_getInlineBotResults tLRPC$TL_messages_getInlineBotResults = new TLRPC$TL_messages_getInlineBotResults();
-                tLRPC$TL_messages_getInlineBotResults.query = str == null ? BuildConfig.APP_CENTER_HASH : str;
+                tLRPC$TL_messages_getInlineBotResults.query = str == null ? "" : str;
                 tLRPC$TL_messages_getInlineBotResults.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tLRPC$User);
-                tLRPC$TL_messages_getInlineBotResults.offset = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_messages_getInlineBotResults.offset = "";
                 TLRPC$TL_inputGeoPoint tLRPC$TL_inputGeoPoint = new TLRPC$TL_inputGeoPoint();
                 tLRPC$TL_messages_getInlineBotResults.geo_point = tLRPC$TL_inputGeoPoint;
                 tLRPC$TL_inputGeoPoint.lat = AndroidUtilities.fixLocationCoord(location.getLatitude());

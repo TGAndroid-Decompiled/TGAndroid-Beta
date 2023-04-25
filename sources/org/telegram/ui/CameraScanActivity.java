@@ -58,7 +58,6 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LiteMode;
@@ -1464,7 +1463,7 @@ public class CameraScanActivity extends BaseFragment {
                 return null;
             }
             if (this.needGalleryButton) {
-                Uri.parse(str).getPath().replace("/", BuildConfig.APP_CENTER_HASH);
+                Uri.parse(str).getPath().replace("/", "");
             } else if (!str.startsWith("tg://login?token=") && this.currentType != 3) {
                 onNoQrFound();
                 return null;

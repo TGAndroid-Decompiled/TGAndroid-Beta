@@ -40,7 +40,6 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -156,8 +155,8 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         public String title;
 
         private ListItem() {
-            this.subtitle = BuildConfig.APP_CENTER_HASH;
-            this.ext = BuildConfig.APP_CENTER_HASH;
+            this.subtitle = "";
+            this.ext = "";
         }
 
         ListItem(AnonymousClass1 anonymousClass1) {
@@ -1332,7 +1331,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                     sharedDocumentCell = new SharedDocumentCell(this.mContext, 1, ChatAttachAlertDocumentLayout.this.resourcesProvider);
                 } else if (i == 2) {
                     sharedDocumentCell = new ShadowSectionCell(this.mContext);
-                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(ChatAttachAlertDocumentLayout.this.getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                    CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(ChatAttachAlertDocumentLayout.this.getThemedColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                     combinedDrawable.setFullsize(true);
                     sharedDocumentCell.setBackgroundDrawable(combinedDrawable);
                 } else {
@@ -1556,7 +1555,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
             this.currentSearchFilters.add(mediaFilterData);
             ChatAttachAlertDocumentLayout.this.parentAlert.actionBar.setSearchFilter(mediaFilterData);
-            ChatAttachAlertDocumentLayout.this.parentAlert.actionBar.setSearchFieldText(BuildConfig.APP_CENTER_HASH);
+            ChatAttachAlertDocumentLayout.this.parentAlert.actionBar.setSearchFieldText("");
             updateFiltersView(true, null, null, true);
         }
 

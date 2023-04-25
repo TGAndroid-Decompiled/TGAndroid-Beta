@@ -93,7 +93,7 @@ public class AutoDeletePopupWrapper {
             FrameLayout frameLayout = new FrameLayout(context);
             frameLayout.setBackgroundColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuSeparator, resourcesProvider));
             View view = new View(context);
-            view.setBackground(Theme.getThemedDrawable(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow, resourcesProvider));
+            view.setBackground(Theme.getThemedDrawableByKey(context, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow, resourcesProvider));
             frameLayout.addView(view, LayoutHelper.createFrame(-1, -1.0f));
             int i3 = R.id.fit_width_tag;
             frameLayout.setTag(i3, 1);

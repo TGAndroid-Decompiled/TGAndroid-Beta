@@ -199,7 +199,7 @@ public class FileRefController extends BaseController {
         } else if (obj instanceof TLRPC$TL_theme) {
             return "theme" + ((TLRPC$TL_theme) obj).id;
         } else if (obj != null) {
-            return BuildConfig.APP_CENTER_HASH + obj;
+            return "" + obj;
         } else {
             return null;
         }
@@ -418,7 +418,7 @@ public class FileRefController extends BaseController {
                 } catch (Exception unused) {
                 }
                 if (tLRPC$TL_help_getAppUpdate.source == null) {
-                    tLRPC$TL_help_getAppUpdate.source = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$TL_help_getAppUpdate.source = "";
                 }
                 getConnectionsManager().sendRequest(tLRPC$TL_help_getAppUpdate, new RequestDelegate() {
                     @Override
@@ -446,7 +446,7 @@ public class FileRefController extends BaseController {
                 tLRPC$TL_messages_search.filter = new TLRPC$TL_inputMessagesFilterChatPhotos();
                 tLRPC$TL_messages_search.limit = 80;
                 tLRPC$TL_messages_search.offset_id = 0;
-                tLRPC$TL_messages_search.q = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_messages_search.q = "";
                 tLRPC$TL_messages_search.peer = getMessagesController().getInputPeer(longValue);
                 getConnectionsManager().sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
                     @Override

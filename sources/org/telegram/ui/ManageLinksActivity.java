@@ -32,7 +32,6 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
@@ -839,7 +838,7 @@ public class ManageLinksActivity extends BaseFragment {
                     break;
                 case 7:
                     View shadowSectionCell = new ShadowSectionCell(this.mContext);
-                    shadowSectionCell.setBackground(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    shadowSectionCell.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     textInfoPrivacyCell = shadowSectionCell;
                     break;
                 case 8:
@@ -852,7 +851,7 @@ public class ManageLinksActivity extends BaseFragment {
                 case 9:
                     TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(this.mContext);
                     textInfoPrivacyCell2.setText(LocaleController.getString("CreateNewLinkHelp", R.string.CreateNewLinkHelp));
-                    textInfoPrivacyCell2.setBackground(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    textInfoPrivacyCell2.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     textInfoPrivacyCell = textInfoPrivacyCell2;
                     break;
                 case 10:
@@ -862,7 +861,7 @@ public class ManageLinksActivity extends BaseFragment {
                     break;
                 default:
                     View hintInnerCell = new HintInnerCell(ManageLinksActivity.this, this.mContext);
-                    hintInnerCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundWhite));
+                    hintInnerCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundWhite));
                     textInfoPrivacyCell = hintInnerCell;
                     break;
             }
@@ -1174,7 +1173,7 @@ public class ManageLinksActivity extends BaseFragment {
                 } else if (i5 > 0 && tLRPC$TL_chatInviteExported.expired && tLRPC$TL_chatInviteExported.revoked) {
                     formatPluralString = LocaleController.formatPluralString("PeopleJoined", tLRPC$TL_chatInviteExported.usage, new Object[0]) + ", " + LocaleController.formatPluralString("PeopleJoinedRemaining", tLRPC$TL_chatInviteExported.usage_limit - tLRPC$TL_chatInviteExported.usage, new Object[0]);
                 } else {
-                    formatPluralString = i4 > 0 ? LocaleController.formatPluralString("PeopleJoined", i4, new Object[0]) : BuildConfig.APP_CENTER_HASH;
+                    formatPluralString = i4 > 0 ? LocaleController.formatPluralString("PeopleJoined", i4, new Object[0]) : "";
                     if (tLRPC$TL_chatInviteExported.requested > 0) {
                         if (tLRPC$TL_chatInviteExported.usage > 0) {
                             formatPluralString = formatPluralString + ", ";

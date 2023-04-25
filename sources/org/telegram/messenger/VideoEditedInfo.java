@@ -159,7 +159,7 @@ public class VideoEditedInfo {
             serializedData.writeInt32(this.viewHeight);
             serializedData.writeInt32(this.textAlign);
             PaintTypeface paintTypeface = this.textTypeface;
-            serializedData.writeString(paintTypeface == null ? BuildConfig.APP_CENTER_HASH : paintTypeface.getKey());
+            serializedData.writeString(paintTypeface == null ? "" : paintTypeface.getKey());
         }
 
         public MediaEntity copy() {
@@ -194,7 +194,7 @@ public class VideoEditedInfo {
         PhotoFilterView.CurvesValue curvesValue;
         ArrayList<MediaEntity> arrayList;
         if (this.avatarStartTime == -1 && this.filterState == null && this.paintPath == null && (((arrayList = this.mediaEntities) == null || arrayList.isEmpty()) && this.cropState == null)) {
-            bytesToHex = BuildConfig.APP_CENTER_HASH;
+            bytesToHex = "";
         } else {
             int i = this.filterState != null ? 170 : 10;
             String str = this.paintPath;

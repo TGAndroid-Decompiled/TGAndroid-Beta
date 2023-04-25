@@ -1027,15 +1027,15 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
                 if (i != PeopleNearbyActivity.this.usersSectionRow) {
                     if (i != PeopleNearbyActivity.this.chatsSectionRow) {
                         if (i == PeopleNearbyActivity.this.helpSectionRow) {
-                            shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                            shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                             return;
                         }
                         return;
                     }
-                    shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     return;
                 }
-                shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
             } else if (itemViewType != 2) {
                 if (itemViewType != 3) {
                     return;

@@ -12,7 +12,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
@@ -246,8 +245,8 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             this.currentStatus = null;
             this.currentName = null;
             this.currentObject = null;
-            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
-            this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.nameTextView.setText("");
+            this.statusTextView.setText("");
             this.avatarImageView.setImageDrawable(null);
             return;
         }

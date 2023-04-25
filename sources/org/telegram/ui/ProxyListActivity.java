@@ -793,10 +793,10 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
             switch (viewHolder.getItemViewType()) {
                 case 0:
                     if (i == ProxyListActivity.this.proxyShadowRow && ProxyListActivity.this.callsRow == -1) {
-                        viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                        viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                         return;
                     } else {
-                        viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                        viewHolder.itemView.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                         return;
                     }
                 case 1:
@@ -838,13 +838,13 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
                     if (i != ProxyListActivity.this.callsDetailRow) {
                         if (i == ProxyListActivity.this.rotationTimeoutInfoRow) {
                             textInfoPrivacyCell.setText(LocaleController.getString(R.string.ProxyRotationTimeoutInfo));
-                            textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                            textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                             return;
                         }
                         return;
                     }
                     textInfoPrivacyCell.setText(LocaleController.getString("UseProxyForCallsInfo", R.string.UseProxyForCallsInfo));
-                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     return;
                 case 5:
                     TextDetailProxyCell textDetailProxyCell = (TextDetailProxyCell) viewHolder.itemView;
@@ -938,7 +938,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
                 shadowSectionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 4) {
                 shadowSectionCell = new TextInfoPrivacyCell(this.mContext);
-                shadowSectionCell.setBackground(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                shadowSectionCell.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
             } else if (i == 6) {
                 shadowSectionCell = new SlideChooseView(this.mContext);
                 shadowSectionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));

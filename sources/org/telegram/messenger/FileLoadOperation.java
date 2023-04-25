@@ -677,6 +677,13 @@ public class FileLoadOperation {
         countDownLatch.countDown();
     }
 
+    protected File getCurrentFileFast() {
+        if (this.state == 3) {
+            return this.cacheFileFinal;
+        }
+        return this.cacheFileTemp;
+    }
+
     private long getDownloadedLengthFromOffsetInternal(ArrayList<Range> arrayList, long j, long j2) {
         long j3;
         if (arrayList == null || this.state == 3 || arrayList.isEmpty()) {

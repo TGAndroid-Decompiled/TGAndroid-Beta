@@ -1141,7 +1141,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 view = manageChatUserCell;
             } else if (i == 1) {
                 view = new TextInfoPrivacyCell(this.mContext);
-                view.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                view.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
             } else if (i == 2) {
                 view = new ManageChatTextCell(this.mContext);
                 view.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));

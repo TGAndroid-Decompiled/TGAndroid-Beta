@@ -306,7 +306,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         this.listView.setTag(7);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
-            public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+            protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                 super.onMoveAnimationUpdate(viewHolder);
                 StickersActivity.this.listView.invalidate();
             }
@@ -1289,7 +1289,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                 featuredStickerSetCell2 = stickerSetCell;
             } else if (i == 1) {
                 View textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
-                textInfoPrivacyCell.setBackground(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                textInfoPrivacyCell.setBackground(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 featuredStickerSetCell2 = textInfoPrivacyCell;
             } else if (i == 2) {
                 View textCell = new TextCell(this.mContext);

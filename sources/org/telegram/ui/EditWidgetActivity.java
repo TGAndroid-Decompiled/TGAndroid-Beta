@@ -210,7 +210,7 @@ public class EditWidgetActivity extends BaseFragment {
                 EditWidgetActivity.this.previewImageView.setImageResource(R.drawable.contacts_widget_preview);
             }
             updateDialogs();
-            this.shadowDrawable = Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow);
+            this.shadowDrawable = Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow);
         }
 
         public void updateDialogs() {
@@ -529,7 +529,7 @@ public class EditWidgetActivity extends BaseFragment {
             GroupCreateUserCell groupCreateUserCell;
             if (i == 0) {
                 FrameLayout textInfoPrivacyCell = new TextInfoPrivacyCell(this.mContext);
-                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 groupCreateUserCell = textInfoPrivacyCell;
             } else if (i == 1) {
                 FrameLayout textCell = new TextCell(this.mContext);

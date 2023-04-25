@@ -906,7 +906,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 if (tLRPC$TL_error != null) {
                     str = tLRPC$TL_error.code + " " + tLRPC$TL_error.text;
                 } else {
-                    str = BuildConfig.APP_CENTER_HASH;
+                    str = "";
                 }
                 sb.append(str);
                 FileLog.e(sb.toString());
@@ -3647,7 +3647,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         for (int i15 = 0; i15 < size3; i15++) {
                             TLRPC$JSONValue tLRPC$JSONValue19 = tLRPC$TL_jsonArray2.value.get(i15);
                             if (tLRPC$JSONValue19 instanceof TLRPC$TL_jsonString) {
-                                hashSet2.add(((TLRPC$TL_jsonString) tLRPC$JSONValue19).value.replace("️", BuildConfig.APP_CENTER_HASH));
+                                hashSet2.add(((TLRPC$TL_jsonString) tLRPC$JSONValue19).value.replace("️", ""));
                             }
                         }
                     }
@@ -4063,7 +4063,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                     }
                                     z4 = z6;
                                     if (i29 != Integer.MAX_VALUE && i30 != Integer.MAX_VALUE) {
-                                        hashMap.put(tLRPC$TL_jsonObjectValue2.key.replace("️", BuildConfig.APP_CENTER_HASH), new DiceFrameSuccess(i29, i30));
+                                        hashMap.put(tLRPC$TL_jsonObjectValue2.key.replace("️", ""), new DiceFrameSuccess(i29, i30));
                                     }
                                 } else {
                                     tLRPC$TL_jsonObject3 = tLRPC$TL_jsonObject6;
@@ -4248,7 +4248,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         for (int i36 = 0; i36 < size8; i36++) {
                             TLRPC$JSONValue tLRPC$JSONValue48 = tLRPC$TL_jsonArray5.value.get(i36);
                             if (tLRPC$JSONValue48 instanceof TLRPC$TL_jsonString) {
-                                arrayList.add(((TLRPC$TL_jsonString) tLRPC$JSONValue48).value.replace("️", BuildConfig.APP_CENTER_HASH));
+                                arrayList.add(((TLRPC$TL_jsonString) tLRPC$JSONValue48).value.replace("️", ""));
                             }
                         }
                     }
@@ -5021,7 +5021,7 @@ public class MessagesController extends BaseController implements NotificationCe
                                     }
                                     i2 = size;
                                     if (j != 0 && j2 != 0 && str8 != null) {
-                                        hashMap2.put(tLRPC$TL_jsonObjectValue5.key.replace("️", BuildConfig.APP_CENTER_HASH), new EmojiSound(j, j2, str8));
+                                        hashMap2.put(tLRPC$TL_jsonObjectValue5.key.replace("️", ""), new EmojiSound(j, j2, str8));
                                     }
                                 } else {
                                     i2 = size;
@@ -5389,7 +5389,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tLRPC$TL_userForeign_old2.phone = "333";
         tLRPC$TL_userForeign_old2.id = 333000L;
         tLRPC$TL_userForeign_old2.first_name = "Telegram";
-        tLRPC$TL_userForeign_old2.last_name = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_userForeign_old2.last_name = "";
         tLRPC$TL_userForeign_old2.status = null;
         tLRPC$TL_userForeign_old2.photo = new TLRPC$TL_userProfilePhotoEmpty();
         putUser(tLRPC$TL_userForeign_old2, true);
@@ -5900,7 +5900,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 TLRPC$TL_account_createTheme tLRPC$TL_account_createTheme = new TLRPC$TL_account_createTheme();
                 tLRPC$TL_account_createTheme.document = tLRPC$TL_inputDocument;
                 tLRPC$TL_account_createTheme.flags |= 4;
-                tLRPC$TL_account_createTheme.slug = (tLRPC$TL_theme == null || TextUtils.isEmpty(tLRPC$TL_theme.slug)) ? BuildConfig.APP_CENTER_HASH : tLRPC$TL_theme.slug;
+                tLRPC$TL_account_createTheme.slug = (tLRPC$TL_theme == null || TextUtils.isEmpty(tLRPC$TL_theme.slug)) ? "" : tLRPC$TL_theme.slug;
                 tLRPC$TL_account_createTheme.title = name;
                 if (tLRPC$TL_inputThemeSettings != null) {
                     tLRPC$TL_account_createTheme.settings = tLRPC$TL_inputThemeSettings;
@@ -6846,14 +6846,14 @@ public class MessagesController extends BaseController implements NotificationCe
     public String getAdminRank(long j, long j2) {
         TLRPC$ChannelParticipant tLRPC$ChannelParticipant;
         if (j == j2) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         LongSparseArray<TLRPC$ChannelParticipant> longSparseArray = this.channelAdmins.get(j);
         if (longSparseArray == null || (tLRPC$ChannelParticipant = longSparseArray.get(j2)) == null) {
             return null;
         }
         String str = tLRPC$ChannelParticipant.rank;
-        return str != null ? str : BuildConfig.APP_CENTER_HASH;
+        return str != null ? str : "";
     }
 
     public boolean isChannelAdminsLoaded(long j) {
@@ -7315,7 +7315,7 @@ public class MessagesController extends BaseController implements NotificationCe
             } else if (tLRPC$User != null) {
                 tLRPC$TL_account_reportPeer.peer = getInputPeer(tLRPC$User.id);
             }
-            tLRPC$TL_account_reportPeer.message = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_account_reportPeer.message = "";
             tLRPC$TL_account_reportPeer.reason = new TLRPC$ReportReason() {
                 public static int constructor = -606798099;
 
@@ -7691,7 +7691,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tLRPC$TL_messages_search.filter = new TLRPC$TL_inputMessagesFilterChatPhotos();
             tLRPC$TL_messages_search.limit = i;
             tLRPC$TL_messages_search.offset_id = i2;
-            tLRPC$TL_messages_search.q = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_messages_search.q = "";
             tLRPC$TL_messages_search.peer = getInputPeer(j);
             getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
                 @Override
@@ -9662,8 +9662,8 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             SharedPreferences globalMainSettings = getGlobalMainSettings();
             globalMainSettings.getBoolean("proxy_enabled", false);
-            final String string = globalMainSettings.getString("proxy_ip", BuildConfig.APP_CENTER_HASH);
-            final String string2 = globalMainSettings.getString("proxy_secret", BuildConfig.APP_CENTER_HASH);
+            final String string = globalMainSettings.getString("proxy_ip", "");
+            final String string2 = globalMainSettings.getString("proxy_secret", "");
             if (this.promoDialogId != 0 && this.promoDialogType == PROMO_TYPE_PROXY && (str = this.proxyDialogAddress) != null) {
                 if (!str.equals(string + string2)) {
                     z2 = true;
@@ -9907,14 +9907,14 @@ public class MessagesController extends BaseController implements NotificationCe
 
     private String getUserNameForTyping(TLRPC$User tLRPC$User) {
         if (tLRPC$User == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         String str = tLRPC$User.first_name;
         if (str != null && str.length() > 0) {
             return tLRPC$User.first_name;
         }
         String str2 = tLRPC$User.last_name;
-        return (str2 == null || str2.length() <= 0) ? BuildConfig.APP_CENTER_HASH : tLRPC$User.last_name;
+        return (str2 == null || str2.length() <= 0) ? "" : tLRPC$User.last_name;
     }
 
     private void updatePrintingStrings() {
@@ -12258,7 +12258,7 @@ public class MessagesController extends BaseController implements NotificationCe
             final TLRPC$TL_channels_createChannel tLRPC$TL_channels_createChannel = new TLRPC$TL_channels_createChannel();
             tLRPC$TL_channels_createChannel.title = str;
             if (str2 == null) {
-                str2 = BuildConfig.APP_CENTER_HASH;
+                str2 = "";
             }
             tLRPC$TL_channels_createChannel.about = str2;
             tLRPC$TL_channels_createChannel.for_import = z;

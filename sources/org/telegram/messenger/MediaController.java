@@ -1771,7 +1771,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if ((this.accelerometerSensor == null && (this.gravitySensor == null || this.linearAcceleration == null)) || this.proximitySensor == null) {
                 return;
             }
-            if (!SharedConfig.enabledRaiseTo(true)) {
+            if (!SharedConfig.enabledRaiseTo(false)) {
                 MessageObject messageObject = this.playingMessageObject;
                 if (messageObject == null) {
                     return;
@@ -4218,7 +4218,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public static String getFileName(Uri uri) {
         if (uri == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         try {
             if (uri.getScheme().equals("content")) {
@@ -4238,7 +4238,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return r2;
         } catch (Exception e2) {
             FileLog.e(e2);
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 

@@ -646,7 +646,10 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
             if (i == Theme.key_divider) {
                 return -16777216;
             }
-            return i == Theme.key_dialogFloatingButton ? -10177041 : 0;
+            if (i == Theme.key_dialogFloatingButton) {
+                return -10177041;
+            }
+            return i == Theme.key_dialogFloatingIcon ? -1 : 0;
         }
 
         @Override

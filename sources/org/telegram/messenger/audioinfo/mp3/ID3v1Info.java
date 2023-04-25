@@ -3,7 +3,6 @@ package org.telegram.messenger.audioinfo.mp3;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.audioinfo.AudioInfo;
 public class ID3v1Info extends AudioInfo {
     public static boolean isID3v1StartPosition(InputStream inputStream) throws IOException {
@@ -66,7 +65,7 @@ public class ID3v1Info extends AudioInfo {
             int indexOf = str.indexOf(0);
             return indexOf < 0 ? str : str.substring(0, indexOf);
         } catch (Exception unused) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 }

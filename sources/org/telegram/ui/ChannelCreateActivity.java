@@ -33,7 +33,6 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -513,7 +512,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                 }
             });
             int i6 = R.raw.camera;
-            this.cameraDrawable = new RLottieDrawable(i6, BuildConfig.APP_CENTER_HASH + i6, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
+            this.cameraDrawable = new RLottieDrawable(i6, "" + i6, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
             RLottieImageView rLottieImageView = new RLottieImageView(context) {
                 @Override
                 public void invalidate(int i7, int i8, int i9, int i10) {
@@ -796,7 +795,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                             charSequence.setSpan(new ForegroundColorSpan(ChannelCreateActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, indexOf, 33);
                         }
                         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
-                        final String obj = (ChannelCreateActivity.this.descriptionTextView == null || ChannelCreateActivity.this.descriptionTextView.getText() == null) ? BuildConfig.APP_CENTER_HASH : ChannelCreateActivity.this.descriptionTextView.getText().toString();
+                        final String obj = (ChannelCreateActivity.this.descriptionTextView == null || ChannelCreateActivity.this.descriptionTextView.getText() == null) ? "" : ChannelCreateActivity.this.descriptionTextView.getText().toString();
                         for (int i12 = 0; i12 < typefaceSpanArr.length; i12++) {
                             charSequence.setSpan(new ClickableSpan() {
                                 @Override
@@ -829,7 +828,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.typeInfoCell = textInfoPrivacyCell;
             int i12 = R.drawable.greydivider_bottom;
             int i13 = Theme.key_windowBackgroundGrayShadow;
-            textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawable(context, i12, i13));
+            textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(context, i12, i13));
             this.linearLayout.addView(this.typeInfoCell, LayoutHelper.createLinear(-1, -2));
             LoadingCell loadingCell = new LoadingCell(context);
             this.loadingAdminedCell = loadingCell;
@@ -841,7 +840,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.linearLayout.addView(this.adminnedChannelsLayout, LayoutHelper.createLinear(-1, -2));
             TextInfoPrivacyCell textInfoPrivacyCell2 = new TextInfoPrivacyCell(context);
             this.adminedInfoCell = textInfoPrivacyCell2;
-            textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawable(context, i12, i13));
+            textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawableByKey(context, i12, i13));
             this.linearLayout.addView(this.adminedInfoCell, LayoutHelper.createLinear(-1, -2));
             updatePrivatePublic();
         }
@@ -1090,11 +1089,11 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                 this.loadingAdminedCell.setVisibility(0);
                 this.adminnedChannelsLayout.setVisibility(8);
                 TextInfoPrivacyCell textInfoPrivacyCell2 = this.typeInfoCell;
-                textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawable(textInfoPrivacyCell2.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawableByKey(textInfoPrivacyCell2.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 this.adminedInfoCell.setVisibility(8);
             } else {
                 TextInfoPrivacyCell textInfoPrivacyCell3 = this.typeInfoCell;
-                textInfoPrivacyCell3.setBackgroundDrawable(Theme.getThemedDrawable(textInfoPrivacyCell3.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                textInfoPrivacyCell3.setBackgroundDrawable(Theme.getThemedDrawableByKey(textInfoPrivacyCell3.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 this.loadingAdminedCell.setVisibility(8);
                 this.adminnedChannelsLayout.setVisibility(0);
                 this.adminedInfoCell.setVisibility(0);
@@ -1108,7 +1107,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
             this.adminedInfoCell.setVisibility(8);
             this.adminnedChannelsLayout.setVisibility(8);
             TextInfoPrivacyCell textInfoPrivacyCell5 = this.typeInfoCell;
-            textInfoPrivacyCell5.setBackgroundDrawable(Theme.getThemedDrawable(textInfoPrivacyCell5.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+            textInfoPrivacyCell5.setBackgroundDrawable(Theme.getThemedDrawableByKey(textInfoPrivacyCell5.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
             this.linkContainer.setVisibility(0);
             this.loadingAdminedCell.setVisibility(8);
             if (this.isGroup) {
@@ -1446,7 +1445,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
     public void lambda$loadAdminedChannels$18(TLRPC$Chat tLRPC$Chat, DialogInterface dialogInterface, int i) {
         TLRPC$TL_channels_updateUsername tLRPC$TL_channels_updateUsername = new TLRPC$TL_channels_updateUsername();
         tLRPC$TL_channels_updateUsername.channel = MessagesController.getInputChannel(tLRPC$Chat);
-        tLRPC$TL_channels_updateUsername.username = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_channels_updateUsername.username = "";
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_updateUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

@@ -34,7 +34,6 @@ import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -184,7 +183,7 @@ public class FilterCreateActivity extends BaseFragment {
             while (getMessagesController().dialogFiltersById.get(this.filter.id) != null) {
                 this.filter.id++;
             }
-            this.filter.name = BuildConfig.APP_CENTER_HASH;
+            this.filter.name = "";
             this.creatingNew = true;
         }
         MessagesController.DialogFilter dialogFilter3 = this.filter;
@@ -587,7 +586,7 @@ public class FilterCreateActivity extends BaseFragment {
             tLRPC$TL_chatlists_exportChatlistInvite.chatlist = tLRPC$TL_inputChatlistDialogFilter;
             tLRPC$TL_inputChatlistDialogFilter.filter_id = this.filter.id;
             tLRPC$TL_chatlists_exportChatlistInvite.peers = arrayList;
-            tLRPC$TL_chatlists_exportChatlistInvite.title = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_chatlists_exportChatlistInvite.title = "";
             getConnectionsManager().sendRequest(tLRPC$TL_chatlists_exportChatlistInvite, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -891,51 +890,50 @@ public class FilterCreateActivity extends BaseFragment {
                 int i = this.newFilterFlags;
                 int i2 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
                 int i3 = i & i2;
-                int i4 = i3 & i2;
-                String str = BuildConfig.APP_CENTER_HASH;
-                if (i4 == i2) {
+                String str = "";
+                if ((i3 & i2) == i2) {
                     if ((MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ & i) != 0) {
                         string = LocaleController.getString("FilterNameUnread", R.string.FilterNameUnread);
                     } else {
                         if ((i & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) != 0) {
                             string = LocaleController.getString("FilterNameNonMuted", R.string.FilterNameNonMuted);
                         }
-                        string = BuildConfig.APP_CENTER_HASH;
+                        string = "";
                     }
                 } else {
-                    int i5 = MessagesController.DIALOG_FILTER_FLAG_CONTACTS;
-                    if ((i3 & i5) != 0) {
-                        if (((i5 ^ (-1)) & i3) == 0) {
+                    int i4 = MessagesController.DIALOG_FILTER_FLAG_CONTACTS;
+                    if ((i3 & i4) != 0) {
+                        if (((i4 ^ (-1)) & i3) == 0) {
                             string = LocaleController.getString("FilterContacts", R.string.FilterContacts);
                         }
-                        string = BuildConfig.APP_CENTER_HASH;
+                        string = "";
                     } else {
-                        int i6 = MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS;
-                        if ((i3 & i6) != 0) {
-                            if (((i6 ^ (-1)) & i3) == 0) {
+                        int i5 = MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS;
+                        if ((i3 & i5) != 0) {
+                            if (((i5 ^ (-1)) & i3) == 0) {
                                 string = LocaleController.getString("FilterNonContacts", R.string.FilterNonContacts);
                             }
-                            string = BuildConfig.APP_CENTER_HASH;
+                            string = "";
                         } else {
-                            int i7 = MessagesController.DIALOG_FILTER_FLAG_GROUPS;
-                            if ((i3 & i7) != 0) {
-                                if (((i7 ^ (-1)) & i3) == 0) {
+                            int i6 = MessagesController.DIALOG_FILTER_FLAG_GROUPS;
+                            if ((i3 & i6) != 0) {
+                                if (((i6 ^ (-1)) & i3) == 0) {
                                     string = LocaleController.getString("FilterGroups", R.string.FilterGroups);
                                 }
-                                string = BuildConfig.APP_CENTER_HASH;
+                                string = "";
                             } else {
-                                int i8 = MessagesController.DIALOG_FILTER_FLAG_BOTS;
-                                if ((i3 & i8) != 0) {
-                                    if (((i8 ^ (-1)) & i3) == 0) {
+                                int i7 = MessagesController.DIALOG_FILTER_FLAG_BOTS;
+                                if ((i3 & i7) != 0) {
+                                    if (((i7 ^ (-1)) & i3) == 0) {
                                         string = LocaleController.getString("FilterBots", R.string.FilterBots);
                                     }
-                                    string = BuildConfig.APP_CENTER_HASH;
+                                    string = "";
                                 } else {
-                                    int i9 = MessagesController.DIALOG_FILTER_FLAG_CHANNELS;
-                                    if ((i3 & i9) != 0 && ((i9 ^ (-1)) & i3) == 0) {
+                                    int i8 = MessagesController.DIALOG_FILTER_FLAG_CHANNELS;
+                                    if ((i3 & i8) != 0 && ((i8 ^ (-1)) & i3) == 0) {
                                         string = LocaleController.getString("FilterChannels", R.string.FilterChannels);
                                     }
-                                    string = BuildConfig.APP_CENTER_HASH;
+                                    string = "";
                                 }
                             }
                         }
@@ -1337,7 +1335,7 @@ public class FilterCreateActivity extends BaseFragment {
                 textView2.setAlpha((pollEditTextCell.getTextView().isFocused() || length < 0) ? 1.0f : 0.0f);
                 return;
             }
-            pollEditTextCell.setText2(BuildConfig.APP_CENTER_HASH);
+            pollEditTextCell.setText2("");
         }
     }
 
@@ -1589,7 +1587,7 @@ public class FilterCreateActivity extends BaseFragment {
                 FilterCreateActivity.this.setTextLeft(viewHolder.itemView);
                 PollEditTextCell pollEditTextCell = (PollEditTextCell) viewHolder.itemView;
                 pollEditTextCell.setTag(1);
-                pollEditTextCell.setTextAndHint(FilterCreateActivity.this.newFilterName != null ? FilterCreateActivity.this.newFilterName : BuildConfig.APP_CENTER_HASH, LocaleController.getString("FilterNameHint", R.string.FilterNameHint), false);
+                pollEditTextCell.setTextAndHint(FilterCreateActivity.this.newFilterName != null ? FilterCreateActivity.this.newFilterName : "", LocaleController.getString("FilterNameHint", R.string.FilterNameHint), false);
                 pollEditTextCell.setTag(null);
             }
         }
@@ -1625,14 +1623,14 @@ public class FilterCreateActivity extends BaseFragment {
                 }
             } else if (itemViewType != 1) {
                 if (itemViewType == 3) {
-                    viewHolder.itemView.setBackground(Theme.getThemedDrawable(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    viewHolder.itemView.setBackground(Theme.getThemedDrawableByKey(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 } else if (itemViewType == 4) {
                     ButtonCell buttonCell = (ButtonCell) viewHolder.itemView;
                     buttonCell.setRed(itemInner.isRed);
                     buttonCell.set(itemInner.iconResId, itemInner.text, z);
                 } else if (itemViewType == 6) {
                     ((TextInfoPrivacyCell) viewHolder.itemView).setText(itemInner.text);
-                    viewHolder.itemView.setBackground(Theme.getThemedDrawable(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    viewHolder.itemView.setBackground(Theme.getThemedDrawableByKey(this.mContext, z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 } else if (itemViewType == 7) {
                     ((LinkCell) viewHolder.itemView).setInvite(itemInner.link, z);
                 } else if (itemViewType != 8) {
@@ -2177,9 +2175,9 @@ public class FilterCreateActivity extends BaseFragment {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             StringBuilder sb = new StringBuilder();
             TLRPC$TL_exportedChatlistInvite tLRPC$TL_exportedChatlistInvite = this.lastInvite;
-            String str2 = BuildConfig.APP_CENTER_HASH;
+            String str2 = "";
             if (tLRPC$TL_exportedChatlistInvite == null || TextUtils.isEmpty(tLRPC$TL_exportedChatlistInvite.title)) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             } else {
                 str = this.lastInvite.title + "\n ";
             }
@@ -2376,7 +2374,7 @@ public class FilterCreateActivity extends BaseFragment {
             int i = R.string.FolderLinkShareTitle;
             Object[] objArr = new Object[1];
             MessagesController.DialogFilter dialogFilter = this.filter;
-            objArr[0] = dialogFilter == null ? BuildConfig.APP_CENTER_HASH : dialogFilter.name;
+            objArr[0] = dialogFilter == null ? "" : dialogFilter.name;
             return LocaleController.formatString("FolderLinkShareTitle", i, objArr);
         }
 
@@ -2466,7 +2464,7 @@ public class FilterCreateActivity extends BaseFragment {
                         textInfoPrivacyCell = new CreateLinkCell(FilterInvitesBottomSheet.this.getContext());
                         textInfoPrivacyCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
                     } else if (i == 7) {
-                        textInfoPrivacyCell = new C00361(FilterInvitesBottomSheet.this.getContext(), null, ((BottomSheet) FilterInvitesBottomSheet.this).currentAccount, FilterInvitesBottomSheet.this.filter.id);
+                        textInfoPrivacyCell = new C00391(FilterInvitesBottomSheet.this.getContext(), null, ((BottomSheet) FilterInvitesBottomSheet.this).currentAccount, FilterInvitesBottomSheet.this.filter.id);
                         textInfoPrivacyCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
                     } else if (i == 6 || i == 3) {
                         textInfoPrivacyCell = new TextInfoPrivacyCell(FilterInvitesBottomSheet.this.getContext());
@@ -2478,8 +2476,8 @@ public class FilterCreateActivity extends BaseFragment {
                     return new RecyclerListView.Holder(textInfoPrivacyCell);
                 }
 
-                public class C00361 extends LinkCell {
-                    C00361(Context context, BaseFragment baseFragment, int i, int i2) {
+                public class C00391 extends LinkCell {
+                    C00391(Context context, BaseFragment baseFragment, int i, int i2) {
                         super(context, baseFragment, i, i2);
                         AnonymousClass1.this = r1;
                     }
@@ -2490,19 +2488,19 @@ public class FilterCreateActivity extends BaseFragment {
                         makeOptions.add(R.drawable.msg_copy, LocaleController.getString("CopyLink", R.string.CopyLink), new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00361.this.copy();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00391.this.copy();
                             }
                         });
                         makeOptions.add(R.drawable.msg_qrcode, LocaleController.getString("GetQRCode", R.string.GetQRCode), new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00361.this.qrcode();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00391.this.qrcode();
                             }
                         });
                         makeOptions.add(R.drawable.msg_delete, LocaleController.getString("DeleteLink", R.string.DeleteLink), true, new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00361.this.deleteLink();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00391.this.deleteLink();
                             }
                         });
                         if (LocaleController.isRTL) {
@@ -2553,9 +2551,9 @@ public class FilterCreateActivity extends BaseFragment {
                             textInfoPrivacyCell.setText(itemInner.text);
                         } else {
                             textInfoPrivacyCell.setFixedSize(12);
-                            textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
+                            textInfoPrivacyCell.setText("");
                         }
-                        textInfoPrivacyCell.setForeground(Theme.getThemedDrawable(FilterInvitesBottomSheet.this.getContext(), z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                        textInfoPrivacyCell.setForeground(Theme.getThemedDrawableByKey(FilterInvitesBottomSheet.this.getContext(), z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     }
                 }
 
@@ -2649,7 +2647,7 @@ public class FilterCreateActivity extends BaseFragment {
             tLRPC$TL_chatlists_exportChatlistInvite.chatlist = tLRPC$TL_inputChatlistDialogFilter;
             tLRPC$TL_inputChatlistDialogFilter.filter_id = this.filter.id;
             tLRPC$TL_chatlists_exportChatlistInvite.peers = arrayList;
-            tLRPC$TL_chatlists_exportChatlistInvite.title = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_chatlists_exportChatlistInvite.title = "";
             getBaseFragment().getConnectionsManager().sendRequest(tLRPC$TL_chatlists_exportChatlistInvite, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

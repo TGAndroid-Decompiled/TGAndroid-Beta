@@ -497,7 +497,7 @@ public class TooManyCommunitiesActivity extends BaseFragment {
                 headerCell = view;
             } else if (i == 2) {
                 View shadowSectionCell = new ShadowSectionCell(viewGroup.getContext());
-                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawable(viewGroup.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                CombinedDrawable combinedDrawable = new CombinedDrawable(new ColorDrawable(Theme.getColor(Theme.key_windowBackgroundGray)), Theme.getThemedDrawableByKey(viewGroup.getContext(), R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
                 combinedDrawable.setFullsize(true);
                 shadowSectionCell.setBackground(combinedDrawable);
                 headerCell = shadowSectionCell;

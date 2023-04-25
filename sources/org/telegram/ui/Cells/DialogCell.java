@@ -32,7 +32,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -1770,19 +1769,19 @@ public class DialogCell extends BaseCell {
         }
         MessageObject messageObject2 = this.message;
         if (messageObject2 != null && (tLRPC$Message2 = messageObject2.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
-            return UserObject.getFirstName(user).replace("\n", BuildConfig.APP_CENTER_HASH);
+            return UserObject.getFirstName(user).replace("\n", "");
         }
         MessageObject messageObject3 = this.message;
         if (messageObject3 == null || (tLRPC$Message = messageObject3.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) {
             if (tLRPC$User == null) {
-                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", BuildConfig.APP_CENTER_HASH);
+                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", "");
             } else if (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) {
                 if (UserObject.isDeleted(tLRPC$User)) {
                     return LocaleController.getString("HiddenName", R.string.HiddenName);
                 }
-                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", BuildConfig.APP_CENTER_HASH);
+                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", "");
             } else {
-                return UserObject.getFirstName(tLRPC$User).replace("\n", BuildConfig.APP_CENTER_HASH);
+                return UserObject.getFirstName(tLRPC$User).replace("\n", "");
             }
         }
         return str2;
@@ -1824,7 +1823,7 @@ public class DialogCell extends BaseCell {
             }
             return valueOf;
         }
-        String str3 = BuildConfig.APP_CENTER_HASH;
+        String str3 = "";
         if (captionMessage != null && (charSequence3 = captionMessage.caption) != null) {
             CharSequence charSequence6 = charSequence3.toString();
             if (this.needEmoji) {
@@ -1856,6 +1855,7 @@ public class DialogCell extends BaseCell {
                 charSequence6 = charSequence6.subSequence(0, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence6);
+            captionMessage.spoilLoginCode();
             MediaDataController.addTextStyleRuns(captionMessage.messageOwner.entities, charSequence6, spannableStringBuilder, 264);
             TLRPC$Message tLRPC$Message3 = captionMessage.messageOwner;
             if (tLRPC$Message3 != null) {
@@ -1935,9 +1935,13 @@ public class DialogCell extends BaseCell {
                     charSequence7 = AndroidUtilities.replaceNewLines(charSequence7);
                 }
                 ?? spannableStringBuilder2 = new SpannableStringBuilder(charSequence7);
-                MediaDataController.addTextStyleRuns(this.message, (Spannable) spannableStringBuilder2, 264);
                 MessageObject messageObject5 = this.message;
-                if (messageObject5 != null && (tLRPC$Message = messageObject5.messageOwner) != null) {
+                if (messageObject5 != null) {
+                    messageObject5.spoilLoginCode();
+                }
+                MediaDataController.addTextStyleRuns(this.message, (Spannable) spannableStringBuilder2, 264);
+                MessageObject messageObject6 = this.message;
+                if (messageObject6 != null && (tLRPC$Message = messageObject6.messageOwner) != null) {
                     ArrayList<TLRPC$MessageEntity> arrayList4 = tLRPC$Message.entities;
                     TextPaint textPaint2 = this.currentMessagePaint;
                     MediaDataController.addAnimatedEmojiSpans(arrayList4, spannableStringBuilder2, textPaint2 != null ? textPaint2.getFontMetricsInt() : null);
@@ -1947,7 +1951,7 @@ public class DialogCell extends BaseCell {
                 }
                 return AndroidUtilities.formatSpannable(str, new CharSequence[]{spannableStringBuilder2, charSequence});
             }
-            return SpannableStringBuilder.valueOf(BuildConfig.APP_CENTER_HASH);
+            return SpannableStringBuilder.valueOf("");
         }
     }
 

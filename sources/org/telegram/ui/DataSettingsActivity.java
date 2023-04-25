@@ -579,7 +579,7 @@ public class DataSettingsActivity extends BaseFragment {
                 shadowSectionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
             } else if (i == 4) {
                 shadowSectionCell = new TextInfoPrivacyCell(this.mContext);
-                shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
             } else if (i == 5) {
                 shadowSectionCell = new NotificationsCheckCell(this.mContext);
                 shadowSectionCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));

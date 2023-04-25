@@ -17,7 +17,6 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 public class JNIUtilities {
     public static int getMaxVideoResolution() {
@@ -25,7 +24,7 @@ public class JNIUtilities {
     }
 
     public static String getSupportedVideoCodecs() {
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     @TargetApi(23)
@@ -102,9 +101,9 @@ public class JNIUtilities {
             return null;
         }
         String networkOperator = telephonyManager.getNetworkOperator();
-        String str2 = BuildConfig.APP_CENTER_HASH;
+        String str2 = "";
         if (networkOperator == null || networkOperator.length() <= 3) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         } else {
             str2 = networkOperator.substring(0, 3);
             str = networkOperator.substring(3);

@@ -30,7 +30,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -450,7 +449,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         this.privateContainer.addView(this.permanentLinkView);
         AnonymousClass6 anonymousClass6 = new AnonymousClass6(context);
         this.checkTextView = anonymousClass6;
-        anonymousClass6.setBackgroundDrawable(Theme.getThemedDrawable(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+        anonymousClass6.setBackgroundDrawable(Theme.getThemedDrawableByKey(context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
         this.checkTextView.setBottomPadding(6);
         this.linearLayout.addView(this.checkTextView, LayoutHelper.createLinear(-2, -2));
         TextInfoPrivacyCell textInfoPrivacyCell = new TextInfoPrivacyCell(context);
@@ -569,7 +568,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                     charSequence.setSpan(new ForegroundColorSpan(ChatEditTypeActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, indexOf, 33);
                 }
                 TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
-                final String obj = (ChatEditTypeActivity.this.usernameTextView == null || ChatEditTypeActivity.this.usernameTextView.getText() == null) ? BuildConfig.APP_CENTER_HASH : ChatEditTypeActivity.this.usernameTextView.getText().toString();
+                final String obj = (ChatEditTypeActivity.this.usernameTextView == null || ChatEditTypeActivity.this.usernameTextView.getText() == null) ? "" : ChatEditTypeActivity.this.usernameTextView.getText().toString();
                 for (int i = 0; i < typefaceSpanArr.length; i++) {
                     charSequence.setSpan(new ClickableSpan() {
                         @Override
@@ -1156,7 +1155,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                         return;
                     }
                     ((TextInfoPrivacyCell) viewHolder.itemView).setText(LocaleController.getString("UsernamesChannelHelp", R.string.UsernamesChannelHelp));
-                    ((TextInfoPrivacyCell) viewHolder.itemView).setBackgroundDrawable(Theme.getThemedDrawable(UsernamesListView.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                    ((TextInfoPrivacyCell) viewHolder.itemView).setBackgroundDrawable(Theme.getThemedDrawableByKey(UsernamesListView.this.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     return;
                 }
                 TLRPC$TL_username tLRPC$TL_username = (TLRPC$TL_username) ChatEditTypeActivity.this.usernames.get(i - 1);
@@ -1224,15 +1223,11 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             updateDoneProgress(false);
             return false;
         }
-        String str = BuildConfig.APP_CENTER_HASH;
         if (publicUsername == null) {
-            publicUsername = BuildConfig.APP_CENTER_HASH;
+            publicUsername = "";
         }
-        if (!this.isPrivate) {
-            str = this.usernameTextView.getText().toString();
-        }
-        String str2 = str;
-        if (publicUsername.equals(str2)) {
+        String obj = this.isPrivate ? "" : this.usernameTextView.getText().toString();
+        if (publicUsername.equals(obj)) {
             return tryDeactivateAllLinks();
         } else if (!ChatObject.isChannel(this.currentChat)) {
             getMessagesController().convertToMegaGroup(getParentActivity(), this.chatId, this, new MessagesStorage.LongCallback() {
@@ -1243,7 +1238,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             });
             return false;
         } else {
-            getMessagesController().updateChannelUserName(this, this.chatId, str2, new Runnable() {
+            getMessagesController().updateChannelUserName(this, this.chatId, obj, new Runnable() {
                 @Override
                 public final void run() {
                     ChatEditTypeActivity.this.lambda$trySetUsername$11();
@@ -1397,7 +1392,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
     public void lambda$loadAdminedChannels$17(TLRPC$Chat tLRPC$Chat, DialogInterface dialogInterface, int i) {
         TLRPC$TL_channels_updateUsername tLRPC$TL_channels_updateUsername = new TLRPC$TL_channels_updateUsername();
         tLRPC$TL_channels_updateUsername.channel = MessagesController.getInputChannel(tLRPC$Chat);
-        tLRPC$TL_channels_updateUsername.username = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_channels_updateUsername.username = "";
         getConnectionsManager().sendRequest(tLRPC$TL_channels_updateUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1447,16 +1442,16 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             if (this.loadingAdminedChannels) {
                 this.loadingAdminedCell.setVisibility(0);
                 this.adminnedChannelsLayout.setVisibility(8);
-                this.typeInfoCell.setBackgroundDrawable(this.checkTextView.getVisibility() == 0 ? null : Theme.getThemedDrawable(this.typeInfoCell.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                this.typeInfoCell.setBackgroundDrawable(this.checkTextView.getVisibility() == 0 ? null : Theme.getThemedDrawableByKey(this.typeInfoCell.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 this.adminedInfoCell.setBackgroundDrawable(null);
             } else {
                 ShadowSectionCell shadowSectionCell = this.adminedInfoCell;
                 Context context = shadowSectionCell.getContext();
                 int i5 = R.drawable.greydivider_bottom;
                 int i6 = Theme.key_windowBackgroundGrayShadow;
-                shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawable(context, i5, i6));
+                shadowSectionCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(context, i5, i6));
                 TextInfoPrivacyCell textInfoPrivacyCell2 = this.typeInfoCell;
-                textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawable(textInfoPrivacyCell2.getContext(), R.drawable.greydivider_top, i6));
+                textInfoPrivacyCell2.setBackgroundDrawable(Theme.getThemedDrawableByKey(textInfoPrivacyCell2.getContext(), R.drawable.greydivider_top, i6));
                 this.loadingAdminedCell.setVisibility(8);
                 this.adminnedChannelsLayout.setVisibility(0);
             }
@@ -1475,7 +1470,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             Context context2 = textInfoPrivacyCell4.getContext();
             int i8 = R.drawable.greydivider_bottom;
             int i9 = Theme.key_windowBackgroundGrayShadow;
-            textInfoPrivacyCell4.setBackgroundDrawable(Theme.getThemedDrawable(context2, i8, i9));
+            textInfoPrivacyCell4.setBackgroundDrawable(Theme.getThemedDrawableByKey(context2, i8, i9));
             this.adminnedChannelsLayout.setVisibility(8);
             this.linkContainer.setVisibility(0);
             this.loadingAdminedCell.setVisibility(8);
@@ -1517,10 +1512,10 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             this.manageLinksInfoCell.setText(LocaleController.getString("ManageLinksInfoHelp", R.string.ManageLinksInfoHelp));
             if (this.isPrivate) {
                 TextInfoPrivacyCell textInfoPrivacyCell8 = this.typeInfoCell;
-                textInfoPrivacyCell8.setBackgroundDrawable(Theme.getThemedDrawable(textInfoPrivacyCell8.getContext(), R.drawable.greydivider, i9));
-                this.manageLinksInfoCell.setBackground(Theme.getThemedDrawable(this.typeInfoCell.getContext(), i8, i9));
+                textInfoPrivacyCell8.setBackgroundDrawable(Theme.getThemedDrawableByKey(textInfoPrivacyCell8.getContext(), R.drawable.greydivider, i9));
+                this.manageLinksInfoCell.setBackground(Theme.getThemedDrawableByKey(this.typeInfoCell.getContext(), i8, i9));
             } else {
-                this.typeInfoCell.setBackgroundDrawable(this.checkTextView.getVisibility() != 0 ? Theme.getThemedDrawable(this.typeInfoCell.getContext(), i8, i9) : null);
+                this.typeInfoCell.setBackgroundDrawable(this.checkTextView.getVisibility() != 0 ? Theme.getThemedDrawableByKey(this.typeInfoCell.getContext(), i8, i9) : null);
             }
         }
         boolean z = true;
@@ -1573,7 +1568,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         } else {
             this.checkTextView.setVisibility(8);
         }
-        this.typeInfoCell.setBackgroundDrawable(this.checkTextView.getVisibility() == 0 ? null : Theme.getThemedDrawable(this.typeInfoCell.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+        this.typeInfoCell.setBackgroundDrawable(this.checkTextView.getVisibility() == 0 ? null : Theme.getThemedDrawableByKey(this.typeInfoCell.getContext(), R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
         Runnable runnable = this.checkRunnable;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
