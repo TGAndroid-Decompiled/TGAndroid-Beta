@@ -5217,7 +5217,7 @@ public class MessageObject {
     }
 
     public boolean equals(MessageObject messageObject) {
-        return getId() == messageObject.getId() && getDialogId() == messageObject.getDialogId();
+        return messageObject != null && getId() == messageObject.getId() && getDialogId() == messageObject.getDialogId();
     }
 
     public boolean isReactionsAvailable() {

@@ -499,14 +499,18 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         if (str == null) {
             return null;
         }
-        RingtoneManager ringtoneManager = new RingtoneManager(ApplicationLoader.applicationContext);
-        ringtoneManager.setType(2);
-        Cursor cursor = ringtoneManager.getCursor();
-        while (cursor.moveToNext()) {
-            String str2 = cursor.getString(2) + "/" + cursor.getString(0);
-            if (str.equalsIgnoreCase(cursor.getString(1))) {
-                return str2;
+        try {
+            RingtoneManager ringtoneManager = new RingtoneManager(ApplicationLoader.applicationContext);
+            ringtoneManager.setType(2);
+            Cursor cursor = ringtoneManager.getCursor();
+            while (cursor.moveToNext()) {
+                String str2 = cursor.getString(2) + "/" + cursor.getString(0);
+                if (str.equalsIgnoreCase(cursor.getString(1))) {
+                    return str2;
+                }
             }
+        } catch (Throwable th) {
+            FileLog.e(th);
         }
         return null;
     }

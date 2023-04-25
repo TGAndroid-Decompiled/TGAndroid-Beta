@@ -64,7 +64,7 @@ public class ShadowSectionCell extends View {
             if (!this.top && !this.bottom) {
                 setBackground(null);
             } else {
-                setBackground(Theme.getThemedDrawableByKey(getContext(), getBackgroundResId(), Theme.getColor(Theme.key_windowBackgroundGrayShadow, this.resourcesProvider)));
+                setBackground(Theme.getThemedDrawable(getContext(), getBackgroundResId(), Theme.getColor(Theme.key_windowBackgroundGrayShadow, this.resourcesProvider)));
             }
         } else if (!this.top && !this.bottom) {
             setBackgroundColor(i);
