@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -52,7 +53,7 @@ public class JoinSheetUserCell extends FrameLayout {
     }
 
     public void setCount(int i) {
-        this.nameTextView.setText("");
+        this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
         AvatarDrawable avatarDrawable = this.avatarDrawable;
         avatarDrawable.setInfo(0L, null, null, "+" + LocaleController.formatShortNumber(i, this.result));
         this.imageView.setImage((ImageLocation) null, "50_50", this.avatarDrawable, (Object) null);

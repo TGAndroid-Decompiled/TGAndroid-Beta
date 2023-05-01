@@ -401,7 +401,7 @@ public class TopicsController extends BaseController {
         if (i == 0) {
             i = tLRPC$TL_messageReplyHeader.reply_to_msg_id;
         }
-        return (i == 0 || (findTopic = findTopic(tLRPC$Chat.id, i)) == null) ? "" : findTopic.title;
+        return (i == 0 || (findTopic = findTopic(tLRPC$Chat.id, i)) == null) ? BuildConfig.APP_CENTER_HASH : findTopic.title;
     }
 
     public CharSequence getTopicIconName(TLRPC$Chat tLRPC$Chat, MessageObject messageObject, TextPaint textPaint) {

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -156,7 +157,7 @@ public class SearchField extends FrameLayout {
     }
 
     public void lambda$new$0(View view) {
-        this.searchEditText.setText("");
+        this.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
         AndroidUtilities.showKeyboard(this.searchEditText);
     }
 

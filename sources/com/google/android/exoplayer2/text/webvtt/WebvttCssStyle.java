@@ -6,14 +6,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import org.telegram.messenger.BuildConfig;
 public final class WebvttCssStyle {
     private int backgroundColor;
     private int fontColor;
     private float fontSize;
-    private String targetId = "";
-    private String targetTag = "";
+    private String targetId = BuildConfig.APP_CENTER_HASH;
+    private String targetTag = BuildConfig.APP_CENTER_HASH;
     private Set<String> targetClasses = Collections.emptySet();
-    private String targetVoice = "";
+    private String targetVoice = BuildConfig.APP_CENTER_HASH;
     private String fontFamily = null;
     private boolean hasFontColor = false;
     private boolean hasBackgroundColor = false;

@@ -43,6 +43,7 @@ import android.widget.Toast;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -909,6 +910,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         }
         this.fragmentView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         int i7 = this.currentType;
+        String str = BuildConfig.APP_CENTER_HASH;
         switch (i7) {
             case 0:
             case 1:
@@ -938,25 +940,25 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 RLottieDrawable[] rLottieDrawableArr = new RLottieDrawable[7];
                 this.animationDrawables = rLottieDrawableArr;
                 int i9 = R.raw.tsv_setup_monkey_idle1;
-                rLottieDrawableArr[0] = new RLottieDrawable(i9, "" + i9, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr[0] = new RLottieDrawable(i9, BuildConfig.APP_CENTER_HASH + i9, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr2 = this.animationDrawables;
                 int i10 = R.raw.tsv_setup_monkey_idle2;
-                rLottieDrawableArr2[1] = new RLottieDrawable(i10, "" + i10, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr2[1] = new RLottieDrawable(i10, BuildConfig.APP_CENTER_HASH + i10, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr3 = this.animationDrawables;
                 int i11 = R.raw.tsv_monkey_close;
-                rLottieDrawableArr3[2] = new RLottieDrawable(i11, "" + i11, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr3[2] = new RLottieDrawable(i11, BuildConfig.APP_CENTER_HASH + i11, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr4 = this.animationDrawables;
                 int i12 = R.raw.tsv_setup_monkey_peek;
-                rLottieDrawableArr4[3] = new RLottieDrawable(i12, "" + i12, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr4[3] = new RLottieDrawable(i12, BuildConfig.APP_CENTER_HASH + i12, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr5 = this.animationDrawables;
                 int i13 = R.raw.tsv_setup_monkey_close_and_peek_to_idle;
-                rLottieDrawableArr5[4] = new RLottieDrawable(i13, "" + i13, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr5[4] = new RLottieDrawable(i13, BuildConfig.APP_CENTER_HASH + i13, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr6 = this.animationDrawables;
                 int i14 = R.raw.tsv_setup_monkey_close_and_peek;
-                rLottieDrawableArr6[5] = new RLottieDrawable(i14, "" + i14, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr6[5] = new RLottieDrawable(i14, BuildConfig.APP_CENTER_HASH + i14, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr7 = this.animationDrawables;
                 int i15 = R.raw.tsv_setup_monkey_tracking;
-                rLottieDrawableArr7[6] = new RLottieDrawable(i15, "" + i15, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr7[6] = new RLottieDrawable(i15, BuildConfig.APP_CENTER_HASH + i15, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 this.animationDrawables[6].setPlayInDirectionOfCustomEndFrame(true);
                 this.animationDrawables[6].setCustomEndFrame(19);
                 this.animationDrawables[2].setOnFinishCallback(this.finishCallback, 97);
@@ -1010,11 +1012,13 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 this.titleTextView.setText(LocaleController.getString("PasswordRecovery", i20));
                 this.keyboardView.setVisibility(0);
                 this.outlineTextFirstRow.setVisibility(8);
-                String str = this.currentPassword.email_unconfirmed_pattern;
-                String str2 = str != null ? str : "";
-                SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str2);
-                int indexOf = str2.indexOf(42);
-                int lastIndexOf = str2.lastIndexOf(42);
+                String str2 = this.currentPassword.email_unconfirmed_pattern;
+                if (str2 != null) {
+                    str = str2;
+                }
+                SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);
+                int indexOf = str.indexOf(42);
+                int lastIndexOf = str.lastIndexOf(42);
                 if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                     TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
                     textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
@@ -1042,7 +1046,10 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 int i23 = R.string.EmailPasswordConfirmText2;
                 Object[] objArr = new Object[1];
                 String str3 = this.currentPassword.email_unconfirmed_pattern;
-                objArr[0] = str3 != null ? str3 : "";
+                if (str3 != null) {
+                    str = str3;
+                }
+                objArr[0] = str;
                 textView6.setText(LocaleController.formatString("EmailPasswordConfirmText2", i23, objArr));
                 this.descriptionText.setVisibility(0);
                 this.floatingButtonContainer.setVisibility(8);
@@ -1313,7 +1320,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     }
 
     public void lambda$createView$6(DialogInterface dialogInterface, int i) {
-        this.email = "";
+        this.email = BuildConfig.APP_CENTER_HASH;
         setNewPassword(false);
     }
 
@@ -1880,7 +1887,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
         tLRPC$account_Password.has_password = true;
         tLRPC$account_Password.has_recovery = true;
-        tLRPC$account_Password.email_unconfirmed_pattern = "";
+        tLRPC$account_Password.email_unconfirmed_pattern = BuildConfig.APP_CENTER_HASH;
         TwoStepVerificationSetupActivity twoStepVerificationSetupActivity = new TwoStepVerificationSetupActivity(7, tLRPC$account_Password);
         twoStepVerificationSetupActivity.fromRegistration = this.fromRegistration;
         twoStepVerificationSetupActivity.setCurrentPasswordParams(this.currentPasswordHash, this.currentSecretId, this.currentSecret, this.emailOnly);
@@ -1908,7 +1915,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         TLRPC$account_Password tLRPC$account_Password2 = this.currentPassword;
         tLRPC$account_Password2.has_password = true;
         tLRPC$account_Password2.has_recovery = true;
-        tLRPC$account_Password2.email_unconfirmed_pattern = "";
+        tLRPC$account_Password2.email_unconfirmed_pattern = BuildConfig.APP_CENTER_HASH;
         twoStepVerificationActivity.setCurrentPasswordParams(tLRPC$account_Password2, this.currentPasswordHash, this.currentSecretId, this.currentSecret);
         twoStepVerificationActivity.setBlockingAlert(this.otherwiseReloginDays);
         presentFragment(twoStepVerificationActivity, true);
@@ -1919,7 +1926,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         CodeNumberField[] codeNumberFieldArr;
         for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
             if (z) {
-                codeNumberField.setText("");
+                codeNumberField.setText(BuildConfig.APP_CENTER_HASH);
             }
             codeNumberField.animateErrorProgress(1.0f);
         }
@@ -1970,7 +1977,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             presentFragment(twoStepVerificationSetupActivity);
             return;
         }
-        this.email = "";
+        this.email = BuildConfig.APP_CENTER_HASH;
         setNewPassword(false);
     }
 
@@ -2109,7 +2116,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     String str = tLRPC$account_Password2.has_recovery ? "1" : null;
                     String str2 = tLRPC$account_Password2.hint;
                     if (str2 == null) {
-                        str2 = "";
+                        str2 = BuildConfig.APP_CENTER_HASH;
                     }
                     if (!this.waitingForEmail && tLRPC$PasswordKdfAlgo != null) {
                         NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.twoStepPasswordChanged, null, tLRPC$PasswordKdfAlgo, tLRPC$SecurePasswordKdfAlgo, bArr, str, str2, null, null);
@@ -2202,20 +2209,20 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             this.currentSecret = null;
             if (this.waitingForEmail) {
                 tLRPC$TL_account_passwordInputSettings.flags = 2;
-                tLRPC$TL_account_passwordInputSettings.email = "";
+                tLRPC$TL_account_passwordInputSettings.email = BuildConfig.APP_CENTER_HASH;
             } else {
                 tLRPC$TL_account_passwordInputSettings.flags = 3;
-                tLRPC$TL_account_passwordInputSettings.hint = "";
+                tLRPC$TL_account_passwordInputSettings.hint = BuildConfig.APP_CENTER_HASH;
                 tLRPC$TL_account_passwordInputSettings.new_password_hash = new byte[0];
                 tLRPC$TL_account_passwordInputSettings.new_algo = new TLRPC$TL_passwordKdfAlgoUnknown();
-                tLRPC$TL_account_passwordInputSettings.email = "";
+                tLRPC$TL_account_passwordInputSettings.email = BuildConfig.APP_CENTER_HASH;
             }
         } else {
             if (this.hint == null && (tLRPC$account_Password = this.currentPassword) != null) {
                 this.hint = tLRPC$account_Password.hint;
             }
             if (this.hint == null) {
-                this.hint = "";
+                this.hint = BuildConfig.APP_CENTER_HASH;
             }
             if (str != null) {
                 tLRPC$TL_account_passwordInputSettings.flags |= 1;
@@ -2267,7 +2274,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
             TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
             tLRPC$account_Password.has_recovery = false;
-            tLRPC$account_Password.email_unconfirmed_pattern = "";
+            tLRPC$account_Password.email_unconfirmed_pattern = BuildConfig.APP_CENTER_HASH;
             twoStepVerificationActivity.setCurrentPasswordParams(tLRPC$account_Password, this.currentPasswordHash, this.currentSecretId, this.currentSecret);
             twoStepVerificationActivity.setBlockingAlert(this.otherwiseReloginDays);
             presentFragment(twoStepVerificationActivity, true);
@@ -2523,7 +2530,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         } catch (Exception unused) {
         }
         if (z) {
-            textView.setText("");
+            textView.setText(BuildConfig.APP_CENTER_HASH);
         }
         AndroidUtilities.shakeViewSpring(view, 5.0f);
     }

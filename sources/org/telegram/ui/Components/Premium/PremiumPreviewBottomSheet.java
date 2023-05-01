@@ -28,6 +28,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -374,7 +375,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     int i5 = R.string.TelegramPremiumUserGiftedPremiumOutboundDialogTitleWithPlural;
                     Object[] objArr = new Object[2];
                     TLRPC$User tLRPC$User4 = this.user;
-                    objArr[0] = tLRPC$User4 != null ? tLRPC$User4.first_name : "";
+                    String str = BuildConfig.APP_CENTER_HASH;
+                    objArr[0] = tLRPC$User4 != null ? tLRPC$User4.first_name : BuildConfig.APP_CENTER_HASH;
                     objArr[1] = LocaleController.formatPluralString("GiftMonths", giftTier.getMonths(), new Object[0]);
                     String formatString = LocaleController.formatString(i5, objArr);
                     int i6 = Theme.key_windowBackgroundWhiteBlueButton;
@@ -383,7 +385,10 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     int i7 = R.string.TelegramPremiumUserGiftedPremiumOutboundDialogSubtitle;
                     Object[] objArr2 = new Object[1];
                     TLRPC$User tLRPC$User5 = this.user;
-                    objArr2[0] = tLRPC$User5 != null ? tLRPC$User5.first_name : "";
+                    if (tLRPC$User5 != null) {
+                        str = tLRPC$User5.first_name;
+                    }
+                    objArr2[0] = str;
                     textView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(i7, objArr2), i6, 0, null));
                     return;
                 }

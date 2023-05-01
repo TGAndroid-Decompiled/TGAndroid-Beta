@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
@@ -1398,7 +1399,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         this.searchResult.clear();
         this.searchResultKeys.clear();
         this.imageSearchEndReached = true;
-        searchImages(this.type == 1, obj, "", true);
+        searchImages(this.type == 1, obj, BuildConfig.APP_CENTER_HASH, true);
         this.lastSearchString = obj;
         if (obj.length() == 0) {
             this.lastSearchString = null;
@@ -1700,7 +1701,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(tLRPC$TL_contacts_resolvedPeer.users, tLRPC$TL_contacts_resolvedPeer.chats, true, true);
         String str = this.lastSearchImageString;
         this.lastSearchImageString = null;
-        searchImages(z, str, "", false);
+        searchImages(z, str, BuildConfig.APP_CENTER_HASH, false);
     }
 
     public void searchImages(final boolean z, final String str, String str2, boolean z2) {
@@ -1725,7 +1726,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
         final TLRPC$User tLRPC$User = (TLRPC$User) userOrChat;
         TLRPC$TL_messages_getInlineBotResults tLRPC$TL_messages_getInlineBotResults = new TLRPC$TL_messages_getInlineBotResults();
-        tLRPC$TL_messages_getInlineBotResults.query = str == null ? "" : str;
+        tLRPC$TL_messages_getInlineBotResults.query = str == null ? BuildConfig.APP_CENTER_HASH : str;
         tLRPC$TL_messages_getInlineBotResults.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tLRPC$User);
         tLRPC$TL_messages_getInlineBotResults.offset = str2;
         ChatActivity chatActivity = this.chatActivity;
@@ -1834,7 +1835,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                     HashMap<String, String> hashMap = new HashMap<>();
                     searchImage.params = hashMap;
                     hashMap.put("id", tLRPC$BotInlineResult.id);
-                    searchImage.params.put("query_id", "" + tLRPC$messages_BotResults.query_id);
+                    searchImage.params.put("query_id", BuildConfig.APP_CENTER_HASH + tLRPC$messages_BotResults.query_id);
                     searchImage.params.put("bot_name", UserObject.getPublicUsername(tLRPC$User));
                     this.searchResult.add(searchImage);
                     this.searchResultKeys.put(searchImage.id, searchImage);

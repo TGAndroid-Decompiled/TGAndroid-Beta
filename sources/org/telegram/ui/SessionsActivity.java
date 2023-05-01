@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -328,10 +329,10 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 CharSequence string2 = LocaleController.getString("Disconnect", R.string.Disconnect);
                 FrameLayout frameLayout = new FrameLayout(getParentActivity());
                 TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$TL_webAuthorization.bot_id));
-                String firstName = user != null ? UserObject.getFirstName(user) : "";
+                String firstName = user != null ? UserObject.getFirstName(user) : BuildConfig.APP_CENTER_HASH;
                 CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 1);
                 checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                checkBoxCell.setText(LocaleController.formatString("TerminateWebSessionStop", R.string.TerminateWebSessionStop, firstName), "", false, false);
+                checkBoxCell.setText(LocaleController.formatString("TerminateWebSessionStop", R.string.TerminateWebSessionStop, firstName), BuildConfig.APP_CENTER_HASH, false, false);
                 checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
                 frameLayout.addView(checkBoxCell, LayoutHelper.createFrame(-1, 48.0f, 51, 0.0f, 0.0f, 0.0f, 0.0f));
                 checkBoxCell.setOnClickListener(new View.OnClickListener() {
@@ -1011,7 +1012,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 } else if (i == SessionsActivity.this.otherSessionsTerminateDetail) {
                     if (SessionsActivity.this.currentType == 0) {
                         if (SessionsActivity.this.sessions.isEmpty()) {
-                            textInfoPrivacyCell.setText("");
+                            textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
                         } else {
                             textInfoPrivacyCell.setText(LocaleController.getString("SessionsListInfo", R.string.SessionsListInfo));
                         }
@@ -1022,7 +1023,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
                 } else if (i != SessionsActivity.this.passwordSessionsDetailRow) {
                     if (i == SessionsActivity.this.qrCodeDividerRow || i == SessionsActivity.this.ttlDivideRow || i == SessionsActivity.this.noOtherSessionsRow) {
                         textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                        textInfoPrivacyCell.setText("");
+                        textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
                         textInfoPrivacyCell.setFixedSize(12);
                     }
                 } else {
@@ -1224,8 +1225,8 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             int indexOf2 = string.indexOf(42, i4);
             if (indexOf != -1 && indexOf2 != -1 && indexOf != indexOf2) {
                 this.textView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-                spannableStringBuilder.replace(indexOf2, indexOf2 + 1, (CharSequence) "");
-                spannableStringBuilder.replace(indexOf, i4, (CharSequence) "");
+                spannableStringBuilder.replace(indexOf2, indexOf2 + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                spannableStringBuilder.replace(indexOf, i4, (CharSequence) BuildConfig.APP_CENTER_HASH);
                 spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("AuthAnotherClientDownloadClientUrl", R.string.AuthAnotherClientDownloadClientUrl)), indexOf, indexOf2 - 1, 33);
             }
             String spannableStringBuilder2 = spannableStringBuilder.toString();
@@ -1234,8 +1235,8 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             int indexOf4 = spannableStringBuilder2.indexOf(42, i5);
             if (indexOf3 != -1 && indexOf4 != -1 && indexOf3 != indexOf4) {
                 this.textView.setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-                spannableStringBuilder.replace(indexOf4, indexOf4 + 1, (CharSequence) "");
-                spannableStringBuilder.replace(indexOf3, i5, (CharSequence) "");
+                spannableStringBuilder.replace(indexOf4, indexOf4 + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                spannableStringBuilder.replace(indexOf3, i5, (CharSequence) BuildConfig.APP_CENTER_HASH);
                 spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("AuthAnotherWebClientUrl", R.string.AuthAnotherWebClientUrl)), indexOf3, indexOf4 - 1, 33);
             }
             this.textView.setText(spannableStringBuilder);

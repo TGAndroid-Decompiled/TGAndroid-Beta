@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -148,7 +149,7 @@ public class DataUsage2Activity extends BaseFragment {
             if (i != 0) {
                 if (i != 1) {
                     if (i != 2) {
-                        return i != 3 ? "" : LocaleController.getString("NetworkUsageRoamingTab", R.string.NetworkUsageRoamingTab);
+                        return i != 3 ? BuildConfig.APP_CENTER_HASH : LocaleController.getString("NetworkUsageRoamingTab", R.string.NetworkUsageRoamingTab);
                     }
                     return LocaleController.getString("NetworkUsageWiFiTab", R.string.NetworkUsageWiFiTab);
                 }

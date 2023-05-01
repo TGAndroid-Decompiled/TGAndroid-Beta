@@ -27,6 +27,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
@@ -339,7 +340,7 @@ public class StickerSetCell extends FrameLayout {
             boolean isEnabled = LiteMode.isEnabled(this.emojis ? LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD : 1);
             StringBuilder sb = new StringBuilder();
             sb.append("50_50");
-            sb.append(!isEnabled ? "_firstframe" : "");
+            sb.append(!isEnabled ? "_firstframe" : BuildConfig.APP_CENTER_HASH);
             String sb2 = sb.toString();
             if ((z4 && MessageObject.isAnimatedStickerDocument(tLRPC$Document, true)) || MessageObject.isVideoSticker(tLRPC$Document)) {
                 if (svgThumb != null) {

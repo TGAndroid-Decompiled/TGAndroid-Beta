@@ -438,7 +438,7 @@ public class AdminLogFilterAlert extends BottomSheet {
         }
     }
 
-    private class ListAdapter extends RecyclerListView.SelectionAdapter {
+    public class ListAdapter extends RecyclerListView.SelectionAdapter {
         private Context context;
 
         public ListAdapter(Context context) {
