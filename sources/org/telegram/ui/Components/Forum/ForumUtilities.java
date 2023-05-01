@@ -15,7 +15,6 @@ import android.text.style.ImageSpan;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
@@ -132,7 +131,7 @@ public class ForumUtilities {
         ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(i);
         LetterDrawable letterDrawable = new LetterDrawable(null, 1);
         String upperCase = str.trim().toUpperCase();
-        letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : BuildConfig.APP_CENTER_HASH);
+        letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : "");
         CombinedDrawable combinedDrawable = new CombinedDrawable(forumBubbleDrawable, letterDrawable, 0, 0);
         combinedDrawable.setFullsize(true);
         return combinedDrawable;
@@ -142,7 +141,7 @@ public class ForumUtilities {
         ForumBubbleDrawable forumBubbleDrawable = new ForumBubbleDrawable(i);
         LetterDrawable letterDrawable = new LetterDrawable(null, 2);
         String upperCase = str.trim().toUpperCase();
-        letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : BuildConfig.APP_CENTER_HASH);
+        letterDrawable.setTitle(upperCase.length() >= 1 ? upperCase.substring(0, 1) : "");
         CombinedDrawable combinedDrawable = new CombinedDrawable(forumBubbleDrawable, letterDrawable, 0, 0);
         combinedDrawable.setFullsize(true);
         return combinedDrawable;
@@ -292,7 +291,7 @@ public class ForumUtilities {
                 if ((i & 2) != 0) {
                     TLRPC$TL_forumTopic tLRPC$TL_forumTopic3 = new TLRPC$TL_forumTopic();
                     tLRPC$TL_forumTopic3.icon_emoji_id = tLRPC$TL_messageActionTopicEdit.icon_emoji_id;
-                    tLRPC$TL_forumTopic3.title = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$TL_forumTopic3.title = "";
                     return AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceCharSequence("%2$s", LocaleController.getString(R.string.TopicWasIconChangedToAction), getTopicSpannedName(tLRPC$TL_forumTopic3, null)), str);
                 }
             }

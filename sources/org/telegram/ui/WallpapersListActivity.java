@@ -33,7 +33,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -179,7 +178,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             sb.append(this.intensity);
             String str = this.slug;
             if (str == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
             sb.append(str);
             return Utilities.MD5(sb.toString());
@@ -277,7 +276,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
     public WallpapersListActivity(int i, long j) {
         this.actionModeViews = new ArrayList<>();
         this.columnsCount = 3;
-        this.selectedBackgroundSlug = BuildConfig.APP_CENTER_HASH;
+        this.selectedBackgroundSlug = "";
         this.allWallPapers = new ArrayList<>();
         this.allWallPapersDict = new HashMap<>();
         this.localDict = new HashMap<>();
@@ -348,7 +347,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
 
             @Override
             public void didSelectWallpaper(File file, Bitmap bitmap, boolean z) {
-                ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(new FileWallpaper(BuildConfig.APP_CENTER_HASH, file, file), bitmap);
+                ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(new FileWallpaper("", file, file), bitmap);
                 themePreviewActivity.setDialogId(WallpapersListActivity.this.dialogId);
                 if (WallpapersListActivity.this.dialogId != 0) {
                     themePreviewActivity.setDelegate(new WallpapersListActivity$$ExternalSyntheticLambda8(WallpapersListActivity.this));
@@ -762,7 +761,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 String str = tLRPC$WallPaper.slug;
                 this.selectedBackgroundSlug = str;
                 if (str == null) {
-                    this.selectedBackgroundSlug = BuildConfig.APP_CENTER_HASH;
+                    this.selectedBackgroundSlug = "";
                 }
                 TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$WallPaper.settings;
                 if (tLRPC$WallPaperSettings != null) {
@@ -782,7 +781,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
                 String str2 = overrideWallpaperInfo.slug;
                 this.selectedBackgroundSlug = str2;
                 if (str2 == null) {
-                    this.selectedBackgroundSlug = BuildConfig.APP_CENTER_HASH;
+                    this.selectedBackgroundSlug = "";
                 }
                 this.selectedColor = overrideWallpaperInfo.color;
                 this.selectedGradientColor1 = overrideWallpaperInfo.gradientColor1;
@@ -1225,7 +1224,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             Theme.OverrideWallpaperInfo overrideWallpaperInfo = Theme.getActiveTheme().overrideWallpaper;
             TLRPC$WallPaperSettings tLRPC$WallPaperSettings = tLRPC$TL_wallPaper3.settings;
             if (tLRPC$WallPaperSettings == null || !(tLRPC$WallPaperSettings == null || (this.selectedColor == Theme.getWallpaperColor(tLRPC$WallPaperSettings.background_color) && this.selectedGradientColor1 == Theme.getWallpaperColor(tLRPC$TL_wallPaper3.settings.second_background_color) && this.selectedGradientColor2 == Theme.getWallpaperColor(tLRPC$TL_wallPaper3.settings.third_background_color) && this.selectedGradientColor3 == Theme.getWallpaperColor(tLRPC$TL_wallPaper3.settings.fourth_background_color) && (this.selectedGradientColor1 == 0 || this.selectedGradientColor2 != 0 || this.selectedGradientRotation == AndroidUtilities.getWallpaperRotation(tLRPC$TL_wallPaper3.settings.rotation, false) || Math.abs(Theme.getThemeIntensity(tLRPC$TL_wallPaper3.settings.intensity / 100.0f) - this.selectedIntensity) <= 0.001f)))) {
-                str2 = BuildConfig.APP_CENTER_HASH;
+                str2 = "";
                 tLRPC$TL_wallPaper2 = tLRPC$TL_wallPaper3;
                 obj2 = null;
             } else {
@@ -1563,7 +1562,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             this.searchResult.clear();
             this.searchResultKeys.clear();
             this.bingSearchEndReached = true;
-            searchImages(str, BuildConfig.APP_CENTER_HASH, true);
+            searchImages(str, "", true);
             this.lastSearchString = str;
             notifyDataSetChanged();
         }
@@ -1601,7 +1600,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             WallpapersListActivity.this.getMessagesStorage().putUsersAndChats(tLRPC$TL_contacts_resolvedPeer.users, tLRPC$TL_contacts_resolvedPeer.chats, true, true);
             String str = this.lastSearchImageString;
             this.lastSearchImageString = null;
-            searchImages(str, BuildConfig.APP_CENTER_HASH, false);
+            searchImages(str, "", false);
         }
 
         public void loadMoreResults() {
@@ -1744,9 +1743,9 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             spannableString.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_actionBarDefaultSubtitle)), string.length(), spannableString.length(), 33);
             WallpapersListActivity.this.searchItem.setSearchFieldCaption(spannableString);
             WallpapersListActivity.this.searchItem.setSearchFieldHint(null);
-            WallpapersListActivity.this.searchItem.setSearchFieldText(BuildConfig.APP_CENTER_HASH, true);
+            WallpapersListActivity.this.searchItem.setSearchFieldText("", true);
             this.selectedColor = WallpapersListActivity.searchColorsNames[i];
-            processSearch(BuildConfig.APP_CENTER_HASH, true);
+            processSearch("", true);
         }
 
         @Override
@@ -1815,7 +1814,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
             wallpaperCell.setParams(WallpapersListActivity.this.columnsCount, i2 == 0, i2 / WallpapersListActivity.this.columnsCount == ((int) Math.ceil((double) (((float) this.searchResult.size()) / ((float) WallpapersListActivity.this.columnsCount)))) - 1);
             for (int i3 = 0; i3 < WallpapersListActivity.this.columnsCount; i3++) {
                 int i4 = i2 + i3;
-                wallpaperCell.setWallpaper(WallpapersListActivity.this.currentType, i3, i4 < this.searchResult.size() ? this.searchResult.get(i4) : null, BuildConfig.APP_CENTER_HASH, null, false);
+                wallpaperCell.setWallpaper(WallpapersListActivity.this.currentType, i3, i4 < this.searchResult.size() ? this.searchResult.get(i4) : null, "", null, false);
             }
         }
 

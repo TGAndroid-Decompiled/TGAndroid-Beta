@@ -171,7 +171,7 @@ public class NotificationsSettingsFacade {
         } else if (tLRPC$NotificationSound instanceof TLRPC$TL_notificationSoundRingtone) {
             TLRPC$TL_notificationSoundRingtone tLRPC$TL_notificationSoundRingtone = (TLRPC$TL_notificationSoundRingtone) tLRPC$NotificationSound;
             editor.putLong(str2, tLRPC$TL_notificationSoundRingtone.id);
-            MediaDataController.getInstance(this.currentAccount).checkRingtones();
+            MediaDataController.getInstance(this.currentAccount).checkRingtones(true);
             if (z && j != 0) {
                 editor.putBoolean(PROPERTY_CUSTOM + j, true);
             }

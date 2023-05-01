@@ -805,7 +805,7 @@ public class DatabaseMigrationHelper {
                                     TLdeserialize2.params = hashMap;
                                     StringBuilder sb = new StringBuilder();
                                     nativeByteBuffer = byteBufferValue7;
-                                    sb.append(BuildConfig.APP_CENTER_HASH);
+                                    sb.append("");
                                     sb.append(intValue23);
                                     hashMap.put("fwd_peer", sb.toString());
                                 } else {

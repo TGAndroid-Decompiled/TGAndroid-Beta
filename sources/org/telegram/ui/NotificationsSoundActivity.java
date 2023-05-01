@@ -423,7 +423,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     private void loadTones() {
         TLRPC$Document tLRPC$Document;
         TLRPC$Document tLRPC$Document2;
-        getMediaDataController().ringtoneDataStore.lambda$new$0();
+        getMediaDataController().ringtoneDataStore.loadUserRingtones(false);
         this.serverTones.clear();
         this.systemTones.clear();
         for (int i = 0; i < getMediaDataController().ringtoneDataStore.userRingtones.size(); i++) {

@@ -214,17 +214,17 @@ public class FileLog {
             try {
                 File logsDir = AndroidUtilities.getLogsDir();
                 if (logsDir == null) {
-                    return BuildConfig.APP_CENTER_HASH;
+                    return "";
                 }
                 FileLog fileLog = getInstance();
                 fileLog.networkFile = new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_net.txt");
                 return getInstance().networkFile.getAbsolutePath();
             } catch (Throwable th) {
                 th.printStackTrace();
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public static String getTonlibLogPath() {
@@ -232,17 +232,17 @@ public class FileLog {
             try {
                 File logsDir = AndroidUtilities.getLogsDir();
                 if (logsDir == null) {
-                    return BuildConfig.APP_CENTER_HASH;
+                    return "";
                 }
                 FileLog fileLog = getInstance();
                 fileLog.tonlibFile = new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_tonlib.txt");
                 return getInstance().tonlibFile.getAbsolutePath();
             } catch (Throwable th) {
                 th.printStackTrace();
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public static void e(final String str, final Throwable th) {

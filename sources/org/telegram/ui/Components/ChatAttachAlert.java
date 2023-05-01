@@ -58,7 +58,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -4256,7 +4255,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
         updateCountButton(0);
         this.buttonsAdapter.notifyDataSetChanged();
-        this.commentTextView.setText(BuildConfig.APP_CENTER_HASH);
+        this.commentTextView.setText("");
         this.buttonsLayoutManager.scrollToPositionWithOffset(0, MediaController.VIDEO_BITRATE_480);
     }
 

@@ -1929,7 +1929,8 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             } else {
                 this.optionsButton.setVisibility(0);
             }
-            if (MessagesController.getInstance(this.currentAccount).isChatNoForwards(playingMessageObject.getChatId())) {
+            long dialogId = playingMessageObject.getDialogId();
+            if ((dialogId < 0 && MessagesController.getInstance(this.currentAccount).isChatNoForwards(-dialogId)) || MessagesController.getInstance(this.currentAccount).isChatNoForwards(playingMessageObject.getChatId()) || playingMessageObject.messageOwner.noforwards) {
                 this.optionsButton.hideSubItem(1);
                 this.optionsButton.hideSubItem(2);
                 this.optionsButton.hideSubItem(5);

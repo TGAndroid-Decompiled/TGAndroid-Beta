@@ -59,13 +59,13 @@ public class DrawerActionCell extends FrameLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         int dp;
-        int measuredWidth;
         super.onDraw(canvas);
         if (this.currentId == 8) {
             Set<String> set = MessagesController.getInstance(UserConfig.selectedAccount).pendingSuggestions;
             if (set.contains("VALIDATE_PHONE_NUMBER") || set.contains("VALIDATE_PASSWORD")) {
                 int dp2 = AndroidUtilities.dp(12.5f);
-                this.rect.set(((getMeasuredWidth() - AndroidUtilities.dp(9.0f)) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(5.5f), dp2, measuredWidth + dp + AndroidUtilities.dp(14.0f), dp2 + AndroidUtilities.dp(23.0f));
+                int dp3 = AndroidUtilities.dp(9.0f);
+                this.rect.set((LocaleController.isRTL ? AndroidUtilities.dp(25.0f) + dp3 : (getMeasuredWidth() - dp3) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(5.5f), dp2, dp + dp3 + AndroidUtilities.dp(14.0f), dp2 + AndroidUtilities.dp(23.0f));
                 Theme.chat_docBackPaint.setColor(Theme.getColor(Theme.key_chats_archiveBackground));
                 RectF rectF = this.rect;
                 float f = AndroidUtilities.density;

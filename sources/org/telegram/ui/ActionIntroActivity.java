@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
@@ -497,67 +496,65 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
             this.descriptionText.setPadding(AndroidUtilities.dp(32.0f), 0, AndroidUtilities.dp(32.0f), 0);
         }
         viewGroup2.addView(this.descriptionText);
-        int i6 = this.currentType;
-        String str = BuildConfig.APP_CENTER_HASH;
-        if (i6 == 5) {
+        if (this.currentType == 5) {
             LinearLayout linearLayout = new LinearLayout(context);
             this.descriptionLayout = linearLayout;
             linearLayout.setOrientation(1);
             this.descriptionLayout.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
             this.descriptionLayout.setGravity(LocaleController.isRTL ? 5 : 3);
             viewGroup2.addView(this.descriptionLayout);
-            int i7 = 0;
-            for (int i8 = 3; i7 < i8; i8 = 3) {
+            int i6 = 0;
+            for (int i7 = 3; i6 < i7; i7 = 3) {
                 LinearLayout linearLayout2 = new LinearLayout(context);
                 linearLayout2.setOrientation(i2);
-                this.descriptionLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 0.0f, i7 != i4 ? 7.0f : 0.0f));
-                int i9 = i7 * 2;
-                this.desctiptionLines[i9] = new TextView(context);
-                TextView textView4 = this.desctiptionLines[i9];
-                int i10 = Theme.key_windowBackgroundWhiteBlackText;
-                textView4.setTextColor(Theme.getColor(i10));
-                this.desctiptionLines[i9].setGravity(LocaleController.isRTL ? 5 : 3);
-                this.desctiptionLines[i9].setTextSize(1, f);
-                TextView textView5 = this.desctiptionLines[i9];
-                String str2 = LocaleController.isRTL ? ".%d" : "%d.";
+                this.descriptionLayout.addView(linearLayout2, LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 0.0f, i6 != i4 ? 7.0f : 0.0f));
+                int i8 = i6 * 2;
+                this.desctiptionLines[i8] = new TextView(context);
+                TextView textView4 = this.desctiptionLines[i8];
+                int i9 = Theme.key_windowBackgroundWhiteBlackText;
+                textView4.setTextColor(Theme.getColor(i9));
+                this.desctiptionLines[i8].setGravity(LocaleController.isRTL ? 5 : 3);
+                this.desctiptionLines[i8].setTextSize(1, f);
+                TextView textView5 = this.desctiptionLines[i8];
+                String str = LocaleController.isRTL ? ".%d" : "%d.";
                 Object[] objArr = new Object[1];
-                int i11 = i7 + 1;
-                objArr[i2] = Integer.valueOf(i11);
-                textView5.setText(String.format(str2, objArr));
-                this.desctiptionLines[i9].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-                int i12 = i9 + 1;
-                this.desctiptionLines[i12] = new TextView(context);
-                this.desctiptionLines[i12].setTextColor(Theme.getColor(i10));
-                this.desctiptionLines[i12].setGravity(LocaleController.isRTL ? 5 : 3);
-                this.desctiptionLines[i12].setTextSize(1, f);
-                if (i7 == 0) {
-                    this.desctiptionLines[i12].setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText));
-                    this.desctiptionLines[i12].setHighlightColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkSelection));
+                int i10 = i6 + 1;
+                objArr[i2] = Integer.valueOf(i10);
+                textView5.setText(String.format(str, objArr));
+                this.desctiptionLines[i8].setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                int i11 = i8 + 1;
+                this.desctiptionLines[i11] = new TextView(context);
+                this.desctiptionLines[i11].setTextColor(Theme.getColor(i9));
+                this.desctiptionLines[i11].setGravity(LocaleController.isRTL ? 5 : 3);
+                this.desctiptionLines[i11].setTextSize(1, f);
+                if (i6 == 0) {
+                    this.desctiptionLines[i11].setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText));
+                    this.desctiptionLines[i11].setHighlightColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkSelection));
                     String string = LocaleController.getString("AuthAnotherClientInfo1", R.string.AuthAnotherClientInfo1);
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
                     int indexOf = string.indexOf(42);
                     int lastIndexOf = string.lastIndexOf(42);
                     if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                        this.desctiptionLines[i12].setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
-                        spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
-                        spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                        this.desctiptionLines[i11].setMovementMethod(new AndroidUtilities.LinkMovementMethodMy());
+                        spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
+                        spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
                         spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("AuthAnotherClientDownloadClientUrl", R.string.AuthAnotherClientDownloadClientUrl)), indexOf, lastIndexOf - 1, 33);
                     }
-                    this.desctiptionLines[i12].setText(spannableStringBuilder);
-                } else if (i7 == 1) {
-                    this.desctiptionLines[i12].setText(LocaleController.getString("AuthAnotherClientInfo2", R.string.AuthAnotherClientInfo2));
+                    this.desctiptionLines[i11].setText(spannableStringBuilder);
+                } else if (i6 == 1) {
+                    this.desctiptionLines[i11].setText(LocaleController.getString("AuthAnotherClientInfo2", R.string.AuthAnotherClientInfo2));
                 } else {
-                    this.desctiptionLines[i12].setText(LocaleController.getString("AuthAnotherClientInfo3", R.string.AuthAnotherClientInfo3));
+                    this.desctiptionLines[i11].setText(LocaleController.getString("AuthAnotherClientInfo3", R.string.AuthAnotherClientInfo3));
                 }
                 if (LocaleController.isRTL) {
                     linearLayout2.setGravity(5);
-                    linearLayout2.addView(this.desctiptionLines[i12], LayoutHelper.createLinear(0, -2, 1.0f));
-                    linearLayout2.addView(this.desctiptionLines[i9], LayoutHelper.createLinear(-2, -2, 4.0f, 0.0f, 0.0f, 0.0f));
+                    linearLayout2.addView(this.desctiptionLines[i11], LayoutHelper.createLinear(0, -2, 1.0f));
+                    linearLayout2.addView(this.desctiptionLines[i8], LayoutHelper.createLinear(-2, -2, 4.0f, 0.0f, 0.0f, 0.0f));
                 } else {
-                    linearLayout2.addView(this.desctiptionLines[i9], LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 4.0f, 0.0f));
-                    linearLayout2.addView(this.desctiptionLines[i12], LayoutHelper.createLinear(-2, -2));
+                    linearLayout2.addView(this.desctiptionLines[i8], LayoutHelper.createLinear(-2, -2, 0.0f, 0.0f, 4.0f, 0.0f));
+                    linearLayout2.addView(this.desctiptionLines[i11], LayoutHelper.createLinear(-2, -2));
                 }
-                i7 = i11;
+                i6 = i10;
                 i2 = 0;
                 f = 15.0f;
                 i4 = 2;
@@ -606,8 +603,8 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
         this.buttonTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
         this.buttonTextView.setTextSize(1, 14.0f);
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        int i13 = this.currentType;
-        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, (i13 == 6 || i13 == 3 || i13 == 0) ? 6 : 4));
+        int i12 = this.currentType;
+        this.buttonTextView.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, (i12 == 6 || i12 == 3 || i12 == 0) ? 6 : 4));
         viewGroup2.addView(this.buttonTextView);
         this.buttonTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -640,11 +637,8 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                 this.imageView.setImageResource(Theme.getCurrentTheme().isDark() ? R.drawable.groupsintro2 : R.drawable.groupsintro);
                 this.imageView.setScaleType(ImageView.ScaleType.CENTER);
                 TextView textView8 = this.subtitleTextView;
-                String str3 = this.currentGroupCreateDisplayAddress;
-                if (str3 != null) {
-                    str = str3;
-                }
-                textView8.setText(str);
+                String str2 = this.currentGroupCreateDisplayAddress;
+                textView8.setText(str2 != null ? str2 : "");
                 this.titleTextView.setText(LocaleController.getString("NearbyCreateGroup", R.string.NearbyCreateGroup));
                 this.descriptionText.setText(LocaleController.getString("NearbyCreateGroupInfo", R.string.NearbyCreateGroupInfo));
                 this.descriptionText2.setText(LocaleController.getString("NearbyCreateGroupInfo2", R.string.NearbyCreateGroupInfo2));
@@ -667,9 +661,9 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                 }
                 if (user != null) {
                     TextView textView9 = this.subtitleTextView;
-                    int i14 = R.string.PhoneNumberKeepButton;
+                    int i13 = R.string.PhoneNumberKeepButton;
                     PhoneFormat phoneFormat = PhoneFormat.getInstance();
-                    textView9.setText(LocaleController.formatString("PhoneNumberKeepButton", i14, phoneFormat.format("+" + user.phone)));
+                    textView9.setText(LocaleController.formatString("PhoneNumberKeepButton", i13, phoneFormat.format("+" + user.phone)));
                 }
                 this.subtitleTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -678,10 +672,10 @@ public class ActionIntroActivity extends BaseFragment implements LocationControl
                     }
                 });
                 TextView textView10 = this.titleTextView;
-                int i15 = R.string.PhoneNumberChange2;
-                textView10.setText(LocaleController.getString("PhoneNumberChange2", i15));
+                int i14 = R.string.PhoneNumberChange2;
+                textView10.setText(LocaleController.getString("PhoneNumberChange2", i14));
                 this.descriptionText.setText(AndroidUtilities.replaceTags(LocaleController.getString("PhoneNumberHelp", R.string.PhoneNumberHelp)));
-                this.buttonTextView.setText(LocaleController.getString("PhoneNumberChange2", i15));
+                this.buttonTextView.setText(LocaleController.getString("PhoneNumberChange2", i14));
                 this.imageView.playAnimation();
                 this.flickerButton = true;
                 break;

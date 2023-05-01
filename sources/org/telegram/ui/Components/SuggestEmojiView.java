@@ -26,7 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -178,7 +177,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 return;
             }
             SuggestEmojiView.this.enterView.getParentFragment().sendAnimatedEmoji(tLRPC$Document, true, 0);
-            SuggestEmojiView.this.enterView.setFieldText(BuildConfig.APP_CENTER_HASH);
+            SuggestEmojiView.this.enterView.setFieldText("");
         }
 
         @Override

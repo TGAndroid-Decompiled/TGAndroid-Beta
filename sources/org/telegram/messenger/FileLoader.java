@@ -112,25 +112,25 @@ public class FileLoader extends BaseController {
         File getFile();
     }
 
-    static int access$1108(FileLoader fileLoader) {
+    static int access$1008(FileLoader fileLoader) {
         int i = fileLoader.currentUploadOperationsCount;
         fileLoader.currentUploadOperationsCount = i + 1;
         return i;
     }
 
-    static int access$1110(FileLoader fileLoader) {
+    static int access$1010(FileLoader fileLoader) {
         int i = fileLoader.currentUploadOperationsCount;
         fileLoader.currentUploadOperationsCount = i - 1;
         return i;
     }
 
-    static int access$908(FileLoader fileLoader) {
+    static int access$808(FileLoader fileLoader) {
         int i = fileLoader.currentUploadSmallOperationsCount;
         fileLoader.currentUploadSmallOperationsCount = i + 1;
         return i;
     }
 
-    static int access$910(FileLoader fileLoader) {
+    static int access$810(FileLoader fileLoader) {
         int i = fileLoader.currentUploadSmallOperationsCount;
         fileLoader.currentUploadSmallOperationsCount = i - 1;
         return i;
@@ -313,7 +313,7 @@ public class FileLoader extends BaseController {
         String attachFileName = getAttachFileName(tLRPC$Document);
         StringBuilder sb = new StringBuilder();
         sb.append(attachFileName);
-        sb.append(z ? "p" : BuildConfig.APP_CENTER_HASH);
+        sb.append(z ? "p" : "");
         this.loadingVideos.put(sb.toString(), Boolean.TRUE);
         getNotificationCenter().postNotificationName(NotificationCenter.videoLoadingStateChanged, attachFileName);
     }
@@ -342,16 +342,12 @@ public class FileLoader extends BaseController {
         HashMap<String, Boolean> hashMap = this.loadingVideos;
         StringBuilder sb = new StringBuilder();
         sb.append(attachFileName);
-        String str = BuildConfig.APP_CENTER_HASH;
-        sb.append(z ? BuildConfig.APP_CENTER_HASH : "p");
+        sb.append(z ? "" : "p");
         if (hashMap.containsKey(sb.toString())) {
             HashMap<String, Boolean> hashMap2 = this.loadingVideos;
             StringBuilder sb2 = new StringBuilder();
             sb2.append(attachFileName);
-            if (z) {
-                str = "p";
-            }
-            sb2.append(str);
+            sb2.append(z ? "p" : "");
             hashMap2.put(sb2.toString(), Boolean.TRUE);
         }
     }
@@ -360,7 +356,7 @@ public class FileLoader extends BaseController {
         String attachFileName = getAttachFileName(tLRPC$Document);
         StringBuilder sb = new StringBuilder();
         sb.append(attachFileName);
-        sb.append(z ? "p" : BuildConfig.APP_CENTER_HASH);
+        sb.append(z ? "p" : "");
         if (this.loadingVideos.remove(sb.toString()) != null) {
             getNotificationCenter().postNotificationName(NotificationCenter.videoLoadingStateChanged, attachFileName);
         }
@@ -387,7 +383,7 @@ public class FileLoader extends BaseController {
             HashMap<String, Boolean> hashMap = this.loadingVideos;
             StringBuilder sb = new StringBuilder();
             sb.append(getAttachFileName(tLRPC$Document));
-            sb.append(z ? "p" : BuildConfig.APP_CENTER_HASH);
+            sb.append(z ? "p" : "");
             if (hashMap.containsKey(sb.toString())) {
                 return true;
             }
@@ -563,15 +559,15 @@ public class FileLoader extends BaseController {
                 FileLoader.this.uploadOperationPaths.remove(str);
             }
             if (z2) {
-                FileLoader.access$910(FileLoader.this);
+                FileLoader.access$810(FileLoader.this);
                 if (FileLoader.this.currentUploadSmallOperationsCount < 1 && (fileUploadOperation3 = (FileUploadOperation) FileLoader.this.uploadSmallOperationQueue.poll()) != null) {
-                    FileLoader.access$908(FileLoader.this);
+                    FileLoader.access$808(FileLoader.this);
                     fileUploadOperation3.start();
                 }
             } else {
-                FileLoader.access$1110(FileLoader.this);
+                FileLoader.access$1010(FileLoader.this);
                 if (FileLoader.this.currentUploadOperationsCount < 1 && (fileUploadOperation2 = (FileUploadOperation) FileLoader.this.uploadOperationQueue.poll()) != null) {
-                    FileLoader.access$1108(FileLoader.this);
+                    FileLoader.access$1008(FileLoader.this);
                     fileUploadOperation2.start();
                 }
             }
@@ -606,19 +602,19 @@ public class FileLoader extends BaseController {
                 FileLoader.this.delegate.fileDidFailedUpload(str, z);
             }
             if (z2) {
-                FileLoader.access$910(FileLoader.this);
+                FileLoader.access$810(FileLoader.this);
                 if (FileLoader.this.currentUploadSmallOperationsCount >= 1 || (fileUploadOperation2 = (FileUploadOperation) FileLoader.this.uploadSmallOperationQueue.poll()) == null) {
                     return;
                 }
-                FileLoader.access$908(FileLoader.this);
+                FileLoader.access$808(FileLoader.this);
                 fileUploadOperation2.start();
                 return;
             }
-            FileLoader.access$1110(FileLoader.this);
+            FileLoader.access$1010(FileLoader.this);
             if (FileLoader.this.currentUploadOperationsCount >= 1 || (fileUploadOperation = (FileUploadOperation) FileLoader.this.uploadOperationQueue.poll()) == null) {
                 return;
             }
-            FileLoader.access$1108(FileLoader.this);
+            FileLoader.access$1008(FileLoader.this);
             fileUploadOperation.start();
         }
 
@@ -807,7 +803,7 @@ public class FileLoader extends BaseController {
         loadFile(null, null, webFile, null, null, null, null, 0L, i, i2);
     }
 
-    private org.telegram.messenger.FileLoadOperation loadFileInternal(org.telegram.tgnet.TLRPC$Document r34, org.telegram.messenger.SecureDocument r35, org.telegram.messenger.WebFile r36, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated r37, org.telegram.messenger.ImageLocation r38, java.lang.Object r39, java.lang.String r40, long r41, int r43, org.telegram.messenger.FileLoadOperationStream r44, long r45, boolean r47, int r48) {
+    private org.telegram.messenger.FileLoadOperation loadFileInternal(org.telegram.tgnet.TLRPC$Document r36, org.telegram.messenger.SecureDocument r37, org.telegram.messenger.WebFile r38, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated r39, org.telegram.messenger.ImageLocation r40, java.lang.Object r41, java.lang.String r42, long r43, int r45, org.telegram.messenger.FileLoadOperationStream r46, long r47, boolean r49, int r50) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.loadFileInternal(org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.SecureDocument, org.telegram.messenger.WebFile, org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated, org.telegram.messenger.ImageLocation, java.lang.Object, java.lang.String, long, int, org.telegram.messenger.FileLoadOperationStream, long, boolean, int):org.telegram.messenger.FileLoadOperation");
     }
 
@@ -817,32 +813,27 @@ public class FileLoader extends BaseController {
         final int val$finalType;
         final Object val$parentObject;
 
-        AnonymousClass2(String str, Object obj, TLRPC$Document tLRPC$Document, int i) {
-            this.val$fileName = str;
+        AnonymousClass2(Object obj, TLRPC$Document tLRPC$Document, String str, int i) {
             this.val$parentObject = obj;
             this.val$document = tLRPC$Document;
+            this.val$fileName = str;
             this.val$finalType = i;
         }
 
         @Override
-        public void didPreFinishLoading(FileLoadOperation fileLoadOperation, File file) {
+        public void didPreFinishLoading(final FileLoadOperation fileLoadOperation, File file) {
             final FileLoaderPriorityQueue queue = fileLoadOperation.getQueue();
-            DispatchQueue dispatchQueue = FileLoader.fileLoaderQueue;
-            final String str = this.val$fileName;
-            dispatchQueue.postRunnable(new Runnable() {
+            FileLoader.fileLoaderQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    FileLoader.AnonymousClass2.this.lambda$didPreFinishLoading$0(str, queue);
+                    FileLoader.AnonymousClass2.lambda$didPreFinishLoading$0(FileLoadOperation.this, queue);
                 }
             });
         }
 
-        public void lambda$didPreFinishLoading$0(String str, FileLoaderPriorityQueue fileLoaderPriorityQueue) {
-            FileLoadOperation fileLoadOperation = (FileLoadOperation) FileLoader.this.loadOperationPaths.get(str);
-            if (fileLoadOperation != null) {
-                fileLoadOperation.preFinished = true;
-                fileLoaderPriorityQueue.checkLoadingOperations();
-            }
+        public static void lambda$didPreFinishLoading$0(FileLoadOperation fileLoadOperation, FileLoaderPriorityQueue fileLoaderPriorityQueue) {
+            fileLoadOperation.preFinished = true;
+            fileLoaderPriorityQueue.checkLoadingOperations();
         }
 
         @Override
@@ -865,14 +856,14 @@ public class FileLoader extends BaseController {
                         FileLoader.this.delegate.fileDidLoaded(this.val$fileName, file, this.val$parentObject, this.val$finalType);
                     }
                 }
-                FileLoader.this.checkDownloadQueue(fileLoadOperation.getQueue(), this.val$fileName, 100L);
+                FileLoader.this.checkDownloadQueue(fileLoadOperation, fileLoadOperation.getQueue(), 100L);
             }
         }
 
         @Override
         public void didFailedLoadingFile(FileLoadOperation fileLoadOperation, int i) {
             FileLoader.this.loadOperationPathsUI.remove(this.val$fileName);
-            FileLoader.this.checkDownloadQueue(fileLoadOperation.getQueue(), this.val$fileName);
+            FileLoader.this.checkDownloadQueue(fileLoadOperation, fileLoadOperation.getQueue());
             if (FileLoader.this.delegate != null) {
                 FileLoader.this.delegate.fileDidFailedLoad(this.val$fileName, i);
             }
@@ -998,22 +989,24 @@ public class FileLoader extends BaseController {
         countDownLatch.countDown();
     }
 
-    public void checkDownloadQueue(FileLoaderPriorityQueue fileLoaderPriorityQueue, String str) {
-        checkDownloadQueue(fileLoaderPriorityQueue, str, 0L);
+    public void checkDownloadQueue(FileLoadOperation fileLoadOperation, FileLoaderPriorityQueue fileLoaderPriorityQueue) {
+        checkDownloadQueue(fileLoadOperation, fileLoaderPriorityQueue, 0L);
     }
 
-    public void checkDownloadQueue(final FileLoaderPriorityQueue fileLoaderPriorityQueue, final String str, long j) {
+    public void checkDownloadQueue(final FileLoadOperation fileLoadOperation, final FileLoaderPriorityQueue fileLoaderPriorityQueue, long j) {
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileLoader.this.lambda$checkDownloadQueue$12(str, fileLoaderPriorityQueue);
+                FileLoader.this.lambda$checkDownloadQueue$12(fileLoaderPriorityQueue, fileLoadOperation);
             }
         }, j);
     }
 
-    public void lambda$checkDownloadQueue$12(String str, FileLoaderPriorityQueue fileLoaderPriorityQueue) {
-        fileLoaderPriorityQueue.remove(this.loadOperationPaths.remove(str));
-        fileLoaderPriorityQueue.checkLoadingOperations();
+    public void lambda$checkDownloadQueue$12(FileLoaderPriorityQueue fileLoaderPriorityQueue, FileLoadOperation fileLoadOperation) {
+        if (fileLoaderPriorityQueue.remove(fileLoadOperation)) {
+            this.loadOperationPaths.remove(fileLoadOperation.getFileName());
+            fileLoaderPriorityQueue.checkLoadingOperations();
+        }
     }
 
     public void setDelegate(FileLoaderDelegate fileLoaderDelegate) {
@@ -1026,7 +1019,7 @@ public class FileLoader extends BaseController {
         TLRPC$PhotoSize closestPhotoSizeWithSize2;
         TLRPC$PhotoSize closestPhotoSizeWithSize3;
         if (tLRPC$Message == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         if (tLRPC$Message instanceof TLRPC$TL_messageService) {
             TLRPC$Photo tLRPC$Photo = tLRPC$Message.action.photo;
@@ -1058,7 +1051,7 @@ public class FileLoader extends BaseController {
                 return Utilities.MD5(tLRPC$WebDocument.url) + "." + ImageLoader.getHttpUrlExtension(tLRPC$WebDocument.url, getMimeTypePart(tLRPC$WebDocument.mime_type));
             }
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public File getPathToMessage(TLRPC$Message tLRPC$Message) {
@@ -1070,7 +1063,7 @@ public class FileLoader extends BaseController {
         TLRPC$PhotoSize closestPhotoSizeWithSize2;
         TLRPC$PhotoSize closestPhotoSizeWithSize3;
         if (tLRPC$Message == null) {
-            return new File(BuildConfig.APP_CENTER_HASH);
+            return new File("");
         }
         if (tLRPC$Message instanceof TLRPC$TL_messageService) {
             TLRPC$Photo tLRPC$Photo = tLRPC$Message.action.photo;
@@ -1100,7 +1093,7 @@ public class FileLoader extends BaseController {
         } else if (MessageObject.getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaInvoice) {
             return getPathToAttach(((TLRPC$TL_messageMediaInvoice) MessageObject.getMedia(tLRPC$Message)).photo, null, true, z);
         }
-        return new File(BuildConfig.APP_CENTER_HASH);
+        return new File("");
     }
 
     public File getPathToAttach(TLObject tLObject) {
@@ -1168,12 +1161,12 @@ public class FileLoader extends BaseController {
         try {
             return name.substring(name.lastIndexOf(46) + 1);
         } catch (Exception unused) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 
     public static String fixFileName(String str) {
-        return str != null ? str.replaceAll("[\u0001-\u001f<>\u202e:\"/\\\\|?*\u007f]+", BuildConfig.APP_CENTER_HASH).trim() : str;
+        return str != null ? str.replaceAll("[\u0001-\u001f<>\u202e:\"/\\\\|?*\u007f]+", "").trim() : str;
     }
 
     public static String getDocumentFileName(TLRPC$Document tLRPC$Document) {
@@ -1196,12 +1189,12 @@ public class FileLoader extends BaseController {
             str3 = str;
         }
         String fixFileName = fixFileName(str3);
-        return fixFileName != null ? fixFileName : BuildConfig.APP_CENTER_HASH;
+        return fixFileName != null ? fixFileName : "";
     }
 
     public static String getMimeTypePart(String str) {
         int lastIndexOf = str.lastIndexOf(47);
-        return lastIndexOf != -1 ? str.substring(lastIndexOf + 1) : BuildConfig.APP_CENTER_HASH;
+        return lastIndexOf != -1 ? str.substring(lastIndexOf + 1) : "";
     }
 
     public static String getExtensionByMimeType(String str) {
@@ -1235,10 +1228,10 @@ public class FileLoader extends BaseController {
                 case 2:
                     return ".mkv";
                 default:
-                    return BuildConfig.APP_CENTER_HASH;
+                    return "";
             }
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public static File getInternalCacheDir() {
@@ -1253,7 +1246,7 @@ public class FileLoader extends BaseController {
             substring = tLRPC$Document.mime_type;
         }
         if (substring == null) {
-            substring = BuildConfig.APP_CENTER_HASH;
+            substring = "";
         }
         return substring.toUpperCase();
     }
@@ -1267,20 +1260,16 @@ public class FileLoader extends BaseController {
     }
 
     public static String getAttachFileName(TLObject tLObject, String str, String str2) {
-        boolean z = tLObject instanceof TLRPC$Document;
-        String str3 = BuildConfig.APP_CENTER_HASH;
-        if (z) {
+        if (tLObject instanceof TLRPC$Document) {
             TLRPC$Document tLRPC$Document = (TLRPC$Document) tLObject;
             String documentFileName = getDocumentFileName(tLRPC$Document);
             int lastIndexOf = documentFileName.lastIndexOf(46);
-            if (lastIndexOf != -1) {
-                str3 = documentFileName.substring(lastIndexOf);
+            String substring = lastIndexOf != -1 ? documentFileName.substring(lastIndexOf) : "";
+            if (substring.length() <= 1) {
+                substring = getExtensionByMimeType(tLRPC$Document.mime_type);
             }
-            if (str3.length() <= 1) {
-                str3 = getExtensionByMimeType(tLRPC$Document.mime_type);
-            }
-            if (str3.length() > 1) {
-                return tLRPC$Document.dc_id + "_" + tLRPC$Document.id + str3;
+            if (substring.length() > 1) {
+                return tLRPC$Document.dc_id + "_" + tLRPC$Document.id + substring;
             }
             return tLRPC$Document.dc_id + "_" + tLRPC$Document.id;
         } else if (tLObject instanceof SecureDocument) {
@@ -1296,7 +1285,7 @@ public class FileLoader extends BaseController {
             TLRPC$PhotoSize tLRPC$PhotoSize = (TLRPC$PhotoSize) tLObject;
             TLRPC$FileLocation tLRPC$FileLocation = tLRPC$PhotoSize.location;
             if (tLRPC$FileLocation == null || (tLRPC$FileLocation instanceof TLRPC$TL_fileLocationUnavailable)) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             StringBuilder sb = new StringBuilder();
             sb.append(tLRPC$PhotoSize.location.volume_id);
@@ -1312,7 +1301,7 @@ public class FileLoader extends BaseController {
             TLRPC$TL_videoSize tLRPC$TL_videoSize = (TLRPC$TL_videoSize) tLObject;
             TLRPC$FileLocation tLRPC$FileLocation2 = tLRPC$TL_videoSize.location;
             if (tLRPC$FileLocation2 == null || (tLRPC$FileLocation2 instanceof TLRPC$TL_fileLocationUnavailable)) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             StringBuilder sb2 = new StringBuilder();
             sb2.append(tLRPC$TL_videoSize.location.volume_id);
@@ -1326,7 +1315,7 @@ public class FileLoader extends BaseController {
             return sb2.toString();
         } else if (tLObject instanceof TLRPC$FileLocation) {
             if (tLObject instanceof TLRPC$TL_fileLocationUnavailable) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             TLRPC$FileLocation tLRPC$FileLocation3 = (TLRPC$FileLocation) tLObject;
             StringBuilder sb3 = new StringBuilder();
@@ -1379,7 +1368,7 @@ public class FileLoader extends BaseController {
             sb5.append(str2);
             return sb5.toString();
         } else {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 

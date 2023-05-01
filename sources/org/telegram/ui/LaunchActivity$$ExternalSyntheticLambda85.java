@@ -10,6 +10,6 @@ public final class LaunchActivity$$ExternalSyntheticLambda85 implements Utilitie
 
     @Override
     public final void run(Object obj) {
-        LaunchActivity.$r8$lambda$Zy9PYJl5Ye6TxdSL1s_aPFjCo40(this.f$0, ((Boolean) obj).booleanValue());
+        this.f$0.onPowerSaver(((Boolean) obj).booleanValue());
     }
 }

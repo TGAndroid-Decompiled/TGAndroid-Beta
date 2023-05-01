@@ -26,7 +26,7 @@ public class BlurredRecyclerView extends RecyclerListView {
     }
 
     @Override
-    public void onAttachedToWindow() {
+    protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         updateTopPadding();
     }

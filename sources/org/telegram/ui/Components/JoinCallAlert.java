@@ -26,7 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -701,7 +700,7 @@ public class JoinCallAlert extends BottomSheet {
         BottomSheetCell bottomSheetCell = this.doneButton;
         int i = R.string.VoipGroupContinueAs;
         Object[] objArr = new Object[1];
-        objArr[0] = chat != null ? chat.title : BuildConfig.APP_CENTER_HASH;
+        objArr[0] = chat != null ? chat.title : "";
         bottomSheetCell.setText(LocaleController.formatString("VoipGroupContinueAs", i, objArr), z);
     }
 

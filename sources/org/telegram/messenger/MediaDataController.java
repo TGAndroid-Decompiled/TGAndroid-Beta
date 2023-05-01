@@ -1978,9 +1978,9 @@ public class MediaDataController extends BaseController {
             executeFast.requery();
             executeFast.bindString(1, "s_" + tLRPC$TL_messages_stickerSet.set.id);
             executeFast.bindInteger(2, 6);
-            executeFast.bindString(3, BuildConfig.APP_CENTER_HASH);
-            executeFast.bindString(4, BuildConfig.APP_CENTER_HASH);
-            executeFast.bindString(5, BuildConfig.APP_CENTER_HASH);
+            executeFast.bindString(3, "");
+            executeFast.bindString(4, "");
+            executeFast.bindString(5, "");
             executeFast.bindInteger(6, 0);
             executeFast.bindInteger(7, 0);
             executeFast.bindInteger(8, 0);
@@ -2008,7 +2008,7 @@ public class MediaDataController extends BaseController {
         if (charSequence == null) {
             return null;
         }
-        String replace = charSequence.toString().replace("️", BuildConfig.APP_CENTER_HASH);
+        String replace = charSequence.toString().replace("️", "");
         ArrayList<TLRPC$TL_messages_stickerSet> stickerSets = getStickerSets(4);
         int size = stickerSets.size();
         for (int i = 0; i < size; i++) {
@@ -2084,7 +2084,7 @@ public class MediaDataController extends BaseController {
 
     public String getEmojiForSticker(long j) {
         String str = this.stickersByEmoji.get(j);
-        return str != null ? str : BuildConfig.APP_CENTER_HASH;
+        return str != null ? str : "";
     }
 
     public static boolean canShowAttachMenuBotForTarget(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, String str) {
@@ -2332,11 +2332,11 @@ public class MediaDataController extends BaseController {
             while (i7 < size && i7 != i3) {
                 TLRPC$Document tLRPC$Document = (TLRPC$Document) arrayList.get(i7);
                 executeFast.requery();
-                executeFast.bindString(1, BuildConfig.APP_CENTER_HASH + tLRPC$Document.id);
+                executeFast.bindString(1, "" + tLRPC$Document.id);
                 executeFast.bindInteger(i4, i6);
-                executeFast.bindString(i5, BuildConfig.APP_CENTER_HASH);
-                executeFast.bindString(4, BuildConfig.APP_CENTER_HASH);
-                executeFast.bindString(5, BuildConfig.APP_CENTER_HASH);
+                executeFast.bindString(i5, "");
+                executeFast.bindString(4, "");
+                executeFast.bindString(5, "");
                 executeFast.bindInteger(6, 0);
                 executeFast.bindInteger(7, 0);
                 executeFast.bindInteger(8, 0);
@@ -2454,7 +2454,7 @@ public class MediaDataController extends BaseController {
         }
         for (int i3 = 0; i3 < tLRPC$TL_messages_stickerSet.packs.size(); i3++) {
             TLRPC$TL_stickerPack tLRPC$TL_stickerPack = tLRPC$TL_messages_stickerSet.packs.get(i3);
-            String replace = tLRPC$TL_stickerPack.emoticon.replace("️", BuildConfig.APP_CENTER_HASH);
+            String replace = tLRPC$TL_stickerPack.emoticon.replace("️", "");
             tLRPC$TL_stickerPack.emoticon = replace;
             ArrayList<TLRPC$Document> arrayList = this.allStickers.get(replace);
             if (arrayList == null) {
@@ -3765,7 +3765,7 @@ public class MediaDataController extends BaseController {
                         while (i7 < tLRPC$TL_messages_stickerSet.packs.size()) {
                             TLRPC$TL_stickerPack tLRPC$TL_stickerPack = tLRPC$TL_messages_stickerSet.packs.get(i7);
                             if (tLRPC$TL_stickerPack != null && (str = tLRPC$TL_stickerPack.emoticon) != null) {
-                                String replace = str.replace("️", BuildConfig.APP_CENTER_HASH);
+                                String replace = str.replace("️", "");
                                 tLRPC$TL_stickerPack.emoticon = replace;
                                 ArrayList arrayList4 = (ArrayList) hashMap2.get(replace);
                                 if (arrayList4 == null) {
@@ -5815,7 +5815,7 @@ public class MediaDataController extends BaseController {
         tLRPC$TL_messages_search.peer = getMessagesController().getInputPeer(j);
         tLRPC$TL_messages_search.limit = 40;
         tLRPC$TL_messages_search.offset_id = i;
-        tLRPC$TL_messages_search.q = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_messages_search.q = "";
         tLRPC$TL_messages_search.filter = new TLRPC$TL_inputMessagesFilterPinned();
         getConnectionsManager().sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
             @Override
@@ -6904,7 +6904,7 @@ public class MediaDataController extends BaseController {
         }
         TLRPC$DraftMessage tLRPC$DraftMessage = tLRPC$TL_draftMessage;
         tLRPC$DraftMessage.date = (int) (System.currentTimeMillis() / 1000);
-        tLRPC$DraftMessage.message = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
+        tLRPC$DraftMessage.message = charSequence == null ? "" : charSequence.toString();
         tLRPC$DraftMessage.no_webpage = z;
         if (tLRPC$Message2 != null) {
             tLRPC$DraftMessage.reply_to_msg_id = tLRPC$Message2.id;
@@ -6973,7 +6973,7 @@ public class MediaDataController extends BaseController {
                 }
             }
             if (i == 0) {
-                this.draftPreferences.edit().remove(BuildConfig.APP_CENTER_HASH + j).remove("r_" + j).commit();
+                this.draftPreferences.edit().remove("" + j).remove("r_" + j).commit();
             } else {
                 this.draftPreferences.edit().remove("t_" + j + "_" + i).remove("rt_" + j + "_" + i).commit();
             }
@@ -6992,7 +6992,7 @@ public class MediaDataController extends BaseController {
                 SerializedData serializedData = new SerializedData(tLRPC$DraftMessage.getObjectSize());
                 tLRPC$DraftMessage.serializeToStream(serializedData);
                 if (i == 0) {
-                    str = BuildConfig.APP_CENTER_HASH + j;
+                    str = "" + j;
                 } else {
                     str = "t_" + j + "_" + i;
                 }
@@ -7193,7 +7193,7 @@ public class MediaDataController extends BaseController {
                 }
             }
             if (i == 0) {
-                this.draftPreferences.edit().remove(BuildConfig.APP_CENTER_HASH + j).remove("r_" + j).commit();
+                this.draftPreferences.edit().remove("" + j).remove("r_" + j).commit();
                 getMessagesController().sortDialogs(null);
                 getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, new Object[0]);
                 return;
@@ -7554,8 +7554,8 @@ public class MediaDataController extends BaseController {
         this.ringtoneDataStore.onRingtoneUploaded(str, tLRPC$Document, z);
     }
 
-    public void checkRingtones() {
-        this.ringtoneDataStore.lambda$new$0();
+    public void checkRingtones(boolean z) {
+        this.ringtoneDataStore.loadUserRingtones(z);
     }
 
     public boolean saveToRingtones(final TLRPC$Document tLRPC$Document) {
@@ -7997,7 +7997,7 @@ public class MediaDataController extends BaseController {
                     if (!z5) {
                         KeywordResult keywordResult = new KeywordResult();
                         keywordResult.emoji = charSequence;
-                        keywordResult.keyword = BuildConfig.APP_CENTER_HASH;
+                        keywordResult.keyword = "";
                         arrayList2.add(keywordResult);
                     }
                 }
@@ -8035,7 +8035,7 @@ public class MediaDataController extends BaseController {
                 queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT emoji, keyword FROM emoji_keywords_v2 WHERE keyword LIKE ?", lowerCase);
             }
             while (queryFinalized.next()) {
-                String replace = queryFinalized.stringValue(0).replace("️", BuildConfig.APP_CENTER_HASH);
+                String replace = queryFinalized.stringValue(0).replace("️", "");
                 if (hashMap.get(replace) == null) {
                     hashMap.put(replace, Boolean.TRUE);
                     KeywordResult keywordResult2 = new KeywordResult();
@@ -8193,7 +8193,7 @@ public class MediaDataController extends BaseController {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme()));
         for (int i2 = 0; i2 < i; i2++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, BuildConfig.APP_CENTER_HASH)));
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
             try {
                 EmojiThemes createPreviewFullTheme = EmojiThemes.createPreviewFullTheme(TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true));
                 if (createPreviewFullTheme.items.size() >= 4) {
@@ -8555,7 +8555,7 @@ public class MediaDataController extends BaseController {
         ArrayList<TLRPC$Reaction> arrayList = new ArrayList<>(i);
         if (i > 0) {
             for (int i2 = 0; i2 < i; i2++) {
-                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("object_" + i2, BuildConfig.APP_CENTER_HASH)));
+                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("object_" + i2, "")));
                 try {
                     arrayList.add(TLRPC$Reaction.TLdeserialize(serializedData, serializedData.readInt32(true), true));
                 } catch (Throwable th) {

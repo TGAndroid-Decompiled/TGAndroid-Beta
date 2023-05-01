@@ -10,7 +10,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationBadge;
@@ -56,10 +55,14 @@ public class RingtoneDataStore {
     }
 
     public void lambda$new$0() {
-        boolean z = System.currentTimeMillis() - lastReloadTimeMs > 86400000;
+        loadUserRingtones(false);
+    }
+
+    public void loadUserRingtones(boolean z) {
+        boolean z2 = z || System.currentTimeMillis() - lastReloadTimeMs > 86400000;
         TLRPC$TL_account_getSavedRingtones tLRPC$TL_account_getSavedRingtones = new TLRPC$TL_account_getSavedRingtones();
         tLRPC$TL_account_getSavedRingtones.hash = queryHash;
-        if (z) {
+        if (z2) {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_getSavedRingtones, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -109,8 +112,8 @@ public class RingtoneDataStore {
         int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
         this.userRingtones.clear();
         for (int i2 = 0; i2 < i; i2++) {
-            String string = sharedPreferences.getString("tone_document" + i2, BuildConfig.APP_CENTER_HASH);
-            String string2 = sharedPreferences.getString("tone_local_path" + i2, BuildConfig.APP_CENTER_HASH);
+            String string = sharedPreferences.getString("tone_document" + i2, "");
+            String string2 = sharedPreferences.getString("tone_local_path" + i2, "");
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(string));
             try {
                 TLRPC$Document TLdeserialize = TLRPC$Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);

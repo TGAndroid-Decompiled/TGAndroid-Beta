@@ -148,7 +148,7 @@ class ContactsRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactor
                                 tLRPC$User = null;
                             }
                         } else {
-                            str = BuildConfig.APP_CENTER_HASH;
+                            str = "";
                         }
                         tLRPC$Chat = chat;
                         tLRPC$User = null;

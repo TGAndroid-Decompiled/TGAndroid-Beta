@@ -1,6 +1,4 @@
 package org.telegram.tgnet;
-
-import org.telegram.messenger.BuildConfig;
 public abstract class TLRPC$MessageMedia extends TLObject {
     public String address;
     public TLRPC$Audio audio_unused;
@@ -454,7 +452,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
                 tLRPC$TL_documentAttributeVideo.duration = tLRPC$Video3.duration;
                 tLRPC$TL_messageMediaDocument.document.attributes.add(tLRPC$TL_documentAttributeVideo);
                 if (tLRPC$TL_messageMediaDocument.captionLegacy == null) {
-                    tLRPC$TL_messageMediaDocument.captionLegacy = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$TL_messageMediaDocument.captionLegacy = "";
                 }
             } else if (tLRPC$MessageMedia.audio_unused == null) {
                 return tLRPC$MessageMedia;
@@ -493,7 +491,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
                 tLRPC$TL_documentAttributeAudio.voice = true;
                 tLRPC$TL_messageMediaDocument.document.attributes.add(tLRPC$TL_documentAttributeAudio);
                 if (tLRPC$TL_messageMediaDocument.captionLegacy == null) {
-                    tLRPC$TL_messageMediaDocument.captionLegacy = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$TL_messageMediaDocument.captionLegacy = "";
                 }
             }
             return tLRPC$TL_messageMediaDocument;

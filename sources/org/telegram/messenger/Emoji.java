@@ -642,7 +642,7 @@ public class Emoji {
         try {
             emojiUseHistory.clear();
             if (globalEmojiSettings.contains("emojis")) {
-                String string = globalEmojiSettings.getString("emojis", BuildConfig.APP_CENTER_HASH);
+                String string = globalEmojiSettings.getString("emojis", "");
                 if (string != null && string.length() > 0) {
                     for (String str : string.split(",")) {
                         String[] split = str.split("=");
@@ -663,7 +663,7 @@ public class Emoji {
                 globalEmojiSettings.edit().remove("emojis").commit();
                 saveRecentEmoji();
             } else {
-                String string2 = globalEmojiSettings.getString("emojis2", BuildConfig.APP_CENTER_HASH);
+                String string2 = globalEmojiSettings.getString("emojis2", "");
                 if (string2 != null && string2.length() > 0) {
                     for (String str2 : string2.split(",")) {
                         String[] split2 = str2.split("=");
@@ -689,7 +689,7 @@ public class Emoji {
             FileLog.e(e);
         }
         try {
-            String string3 = globalEmojiSettings.getString("color", BuildConfig.APP_CENTER_HASH);
+            String string3 = globalEmojiSettings.getString("color", "");
             if (string3 == null || string3.length() <= 0) {
                 return;
             }
