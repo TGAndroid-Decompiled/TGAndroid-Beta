@@ -64,6 +64,7 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -3603,7 +3604,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             currentSearchFilters.add(mediaFilterData);
             this.actionBar.setSearchFilter(mediaFilterData);
-            this.actionBar.setSearchFieldText("");
+            this.actionBar.setSearchFieldText(BuildConfig.APP_CENTER_HASH);
             updateFiltersView(true, null, null, false, true);
         }
     }
@@ -6654,7 +6655,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     this.downloadsItemVisible = false;
                 }
                 SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-                String string = sharedPreferences.getString("proxy_ip", "");
+                String string = sharedPreferences.getString("proxy_ip", BuildConfig.APP_CENTER_HASH);
                 boolean z5 = sharedPreferences.getBoolean("proxy_enabled", false);
                 if ((!this.downloadsItemVisible && !this.searching && z5 && !TextUtils.isEmpty(string)) || (getMessagesController().blockedCountry && !SharedConfig.proxyList.isEmpty())) {
                     if (!this.actionBar.isSearchFieldVisible() && ((actionBarMenuItem = this.doneItem) == null || actionBarMenuItem.getVisibility() != 0)) {
@@ -6763,7 +6764,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void updateSelectedCount() {
-        if (this.commentView != null) {
+        ChatActivityEnterView chatActivityEnterView = this.commentView;
+        CharSequence charSequence = BuildConfig.APP_CENTER_HASH;
+        if (chatActivityEnterView != null) {
             if (this.selectedDialogs.isEmpty()) {
                 if (this.initialDialogsType == 3 && this.selectAlertString == null) {
                     this.actionBar.setTitle(LocaleController.getString("ForwardTo", R.string.ForwardTo));
@@ -6780,8 +6783,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     this.commentViewAnimator = new AnimatorSet();
                     this.commentView.setTranslationY(0.0f);
                     AnimatorSet animatorSet2 = this.commentViewAnimator;
-                    ChatActivityEnterView chatActivityEnterView = this.commentView;
-                    animatorSet2.playTogether(ObjectAnimator.ofFloat(chatActivityEnterView, View.TRANSLATION_Y, chatActivityEnterView.getMeasuredHeight()), ObjectAnimator.ofFloat(this.writeButtonContainer, View.SCALE_X, 0.2f), ObjectAnimator.ofFloat(this.writeButtonContainer, View.SCALE_Y, 0.2f), ObjectAnimator.ofFloat(this.writeButtonContainer, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.selectedCountView, View.SCALE_X, 0.2f), ObjectAnimator.ofFloat(this.selectedCountView, View.SCALE_Y, 0.2f), ObjectAnimator.ofFloat(this.selectedCountView, View.ALPHA, 0.0f));
+                    ChatActivityEnterView chatActivityEnterView2 = this.commentView;
+                    animatorSet2.playTogether(ObjectAnimator.ofFloat(chatActivityEnterView2, View.TRANSLATION_Y, chatActivityEnterView2.getMeasuredHeight()), ObjectAnimator.ofFloat(this.writeButtonContainer, View.SCALE_X, 0.2f), ObjectAnimator.ofFloat(this.writeButtonContainer, View.SCALE_Y, 0.2f), ObjectAnimator.ofFloat(this.writeButtonContainer, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(this.selectedCountView, View.SCALE_X, 0.2f), ObjectAnimator.ofFloat(this.selectedCountView, View.SCALE_Y, 0.2f), ObjectAnimator.ofFloat(this.selectedCountView, View.ALPHA, 0.0f));
                     this.commentViewAnimator.setDuration(180L);
                     this.commentViewAnimator.setInterpolator(new DecelerateInterpolator());
                     this.commentViewAnimator.addListener(new AnimatorListenerAdapter() {
@@ -6798,7 +6801,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             } else {
                 this.selectedCountView.invalidate();
                 if (this.commentView.getTag() == null) {
-                    this.commentView.setFieldText("");
+                    this.commentView.setFieldText(BuildConfig.APP_CENTER_HASH);
                     AnimatorSet animatorSet3 = this.commentViewAnimator;
                     if (animatorSet3 != null) {
                         animatorSet3.cancel();
@@ -6807,8 +6810,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     this.writeButtonContainer.setVisibility(0);
                     AnimatorSet animatorSet4 = new AnimatorSet();
                     this.commentViewAnimator = animatorSet4;
-                    ChatActivityEnterView chatActivityEnterView2 = this.commentView;
-                    animatorSet4.playTogether(ObjectAnimator.ofFloat(chatActivityEnterView2, View.TRANSLATION_Y, chatActivityEnterView2.getMeasuredHeight(), 0.0f), ObjectAnimator.ofFloat(this.writeButtonContainer, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.writeButtonContainer, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.writeButtonContainer, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.selectedCountView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.selectedCountView, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.selectedCountView, View.ALPHA, 1.0f));
+                    ChatActivityEnterView chatActivityEnterView3 = this.commentView;
+                    animatorSet4.playTogether(ObjectAnimator.ofFloat(chatActivityEnterView3, View.TRANSLATION_Y, chatActivityEnterView3.getMeasuredHeight(), 0.0f), ObjectAnimator.ofFloat(this.writeButtonContainer, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.writeButtonContainer, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.writeButtonContainer, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.selectedCountView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.selectedCountView, View.SCALE_Y, 1.0f), ObjectAnimator.ofFloat(this.selectedCountView, View.ALPHA, 1.0f));
                     this.commentViewAnimator.setDuration(180L);
                     this.commentViewAnimator.setInterpolator(new DecelerateInterpolator());
                     this.commentViewAnimator.addListener(new AnimatorListenerAdapter() {
@@ -6827,8 +6830,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             hideFloatingButton(this.selectedDialogs.isEmpty());
         }
         ArrayList<Long> arrayList = this.selectedDialogs;
-        ChatActivityEnterView chatActivityEnterView3 = this.commentView;
-        boolean shouldShowNextButton = shouldShowNextButton(this, arrayList, chatActivityEnterView3 != null ? chatActivityEnterView3.getFieldText() : "", false);
+        ChatActivityEnterView chatActivityEnterView4 = this.commentView;
+        if (chatActivityEnterView4 != null) {
+            charSequence = chatActivityEnterView4.getFieldText();
+        }
+        boolean shouldShowNextButton = shouldShowNextButton(this, arrayList, charSequence, false);
         this.isNextButton = shouldShowNextButton;
         AndroidUtilities.updateViewVisibilityAnimated(this.writeButton[0], !shouldShowNextButton, 0.5f, true);
         AndroidUtilities.updateViewVisibilityAnimated(this.writeButton[1], this.isNextButton, 0.5f, true);
@@ -8281,7 +8287,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         charSequenceArr[0] = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.AreYouSureSendChatToBotMessage, tLRPC$Chat.title, UserObject.getFirstName(user)));
         Boolean bool = this.requestPeerType.bot_participant;
         if ((bool == null || !bool.booleanValue() || getMessagesController().isInChatCached(tLRPC$Chat, user)) && this.requestPeerType.bot_admin_rights == null) {
-            charSequence = "";
+            charSequence = BuildConfig.APP_CENTER_HASH;
         } else {
             CharSequence[] charSequenceArr2 = new CharSequence[2];
             charSequenceArr2[0] = "\n\n";

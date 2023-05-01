@@ -12,6 +12,7 @@ import android.text.TextPaint;
 import android.view.View;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.ActionBar.Theme;
 public class CheckBoxBase {
@@ -221,7 +222,7 @@ public class CheckBoxBase {
 
     public void setNum(int i) {
         if (i >= 0) {
-            this.checkedText = "" + (i + 1);
+            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
         } else if (this.checkAnimator == null) {
             this.checkedText = null;
         }
@@ -234,7 +235,7 @@ public class CheckBoxBase {
 
     public void setChecked(int i, boolean z, boolean z2) {
         if (i >= 0) {
-            this.checkedText = "" + (i + 1);
+            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
             invalidate();
         }
         if (z == this.isChecked) {

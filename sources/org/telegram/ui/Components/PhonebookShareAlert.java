@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -693,8 +694,8 @@ public class PhonebookShareAlert extends BottomSheet {
             this.currentUser.restriction_reason.clear();
             TLRPC$TL_restrictionReason tLRPC$TL_restrictionReason = new TLRPC$TL_restrictionReason();
             tLRPC$TL_restrictionReason.text = sb.toString();
-            tLRPC$TL_restrictionReason.reason = "";
-            tLRPC$TL_restrictionReason.platform = "";
+            tLRPC$TL_restrictionReason.reason = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_restrictionReason.platform = BuildConfig.APP_CENTER_HASH;
             this.currentUser.restriction_reason.add(tLRPC$TL_restrictionReason);
         }
         BaseFragment baseFragment = this.parentFragment;

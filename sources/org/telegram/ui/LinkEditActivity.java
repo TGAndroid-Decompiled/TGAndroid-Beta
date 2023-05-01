@@ -21,6 +21,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -411,7 +412,7 @@ public class LinkEditActivity extends BaseFragment {
                     return;
                 }
                 if (editable.toString().equals("0")) {
-                    LinkEditActivity.this.usesEditText.setText("");
+                    LinkEditActivity.this.usesEditText.setText(BuildConfig.APP_CENTER_HASH);
                     return;
                 }
                 try {
@@ -552,7 +553,7 @@ public class LinkEditActivity extends BaseFragment {
             this.timeEditText.setText(LocaleController.formatDateAudio(this.dispalyedDates.get(i).intValue() + getConnectionsManager().getCurrentTime(), false));
             return;
         }
-        this.timeEditText.setText("");
+        this.timeEditText.setText(BuildConfig.APP_CENTER_HASH);
     }
 
     public void lambda$createView$4(int i) {
@@ -561,7 +562,7 @@ public class LinkEditActivity extends BaseFragment {
         if (i < this.dispalyedUses.size()) {
             this.usesEditText.setText(this.dispalyedUses.get(i).toString());
         } else {
-            this.usesEditText.setText("");
+            this.usesEditText.setText(BuildConfig.APP_CENTER_HASH);
         }
         this.ignoreSet = false;
     }

@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -568,7 +569,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
                     charSequence.setSpan(new ForegroundColorSpan(ChatEditTypeActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, indexOf, 33);
                 }
                 TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
-                final String obj = (ChatEditTypeActivity.this.usernameTextView == null || ChatEditTypeActivity.this.usernameTextView.getText() == null) ? "" : ChatEditTypeActivity.this.usernameTextView.getText().toString();
+                final String obj = (ChatEditTypeActivity.this.usernameTextView == null || ChatEditTypeActivity.this.usernameTextView.getText() == null) ? BuildConfig.APP_CENTER_HASH : ChatEditTypeActivity.this.usernameTextView.getText().toString();
                 for (int i = 0; i < typefaceSpanArr.length; i++) {
                     charSequence.setSpan(new ClickableSpan() {
                         @Override
@@ -1223,11 +1224,15 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             updateDoneProgress(false);
             return false;
         }
+        String str = BuildConfig.APP_CENTER_HASH;
         if (publicUsername == null) {
-            publicUsername = "";
+            publicUsername = BuildConfig.APP_CENTER_HASH;
         }
-        String obj = this.isPrivate ? "" : this.usernameTextView.getText().toString();
-        if (publicUsername.equals(obj)) {
+        if (!this.isPrivate) {
+            str = this.usernameTextView.getText().toString();
+        }
+        String str2 = str;
+        if (publicUsername.equals(str2)) {
             return tryDeactivateAllLinks();
         } else if (!ChatObject.isChannel(this.currentChat)) {
             getMessagesController().convertToMegaGroup(getParentActivity(), this.chatId, this, new MessagesStorage.LongCallback() {
@@ -1238,7 +1243,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
             });
             return false;
         } else {
-            getMessagesController().updateChannelUserName(this, this.chatId, obj, new Runnable() {
+            getMessagesController().updateChannelUserName(this, this.chatId, str2, new Runnable() {
                 @Override
                 public final void run() {
                     ChatEditTypeActivity.this.lambda$trySetUsername$11();
@@ -1392,7 +1397,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
     public void lambda$loadAdminedChannels$17(TLRPC$Chat tLRPC$Chat, DialogInterface dialogInterface, int i) {
         TLRPC$TL_channels_updateUsername tLRPC$TL_channels_updateUsername = new TLRPC$TL_channels_updateUsername();
         tLRPC$TL_channels_updateUsername.channel = MessagesController.getInputChannel(tLRPC$Chat);
-        tLRPC$TL_channels_updateUsername.username = "";
+        tLRPC$TL_channels_updateUsername.username = BuildConfig.APP_CENTER_HASH;
         getConnectionsManager().sendRequest(tLRPC$TL_channels_updateUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

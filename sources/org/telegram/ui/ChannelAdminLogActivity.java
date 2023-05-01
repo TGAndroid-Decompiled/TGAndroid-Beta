@@ -53,6 +53,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -209,7 +210,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
     private HashMap<String, ArrayList<MessageObject>> messagesByDays = new HashMap<>();
     protected ArrayList<MessageObject> messages = new ArrayList<>();
     private TLRPC$TL_channelAdminLogEventsFilter currentFilter = null;
-    private String searchQuery = "";
+    private String searchQuery = BuildConfig.APP_CENTER_HASH;
     private AnimationNotificationsLocker notificationsLocker = new AnimationNotificationsLocker(new int[]{NotificationCenter.chatInfoDidLoad, NotificationCenter.dialogsNeedReload, NotificationCenter.closeChats, NotificationCenter.messagesDidLoad, NotificationCenter.botKeyboardDidLoad});
     private HashMap<String, Object> invitesCache = new HashMap<>();
     private PhotoViewer.PhotoViewerProvider provider = new PhotoViewer.EmptyPhotoViewerProvider() {
@@ -588,7 +589,7 @@ public class ChannelAdminLogActivity extends BaseFragment implements Notificatio
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchCollapse() {
-                ChannelAdminLogActivity.this.searchQuery = "";
+                ChannelAdminLogActivity.this.searchQuery = BuildConfig.APP_CENTER_HASH;
                 ChannelAdminLogActivity.this.avatarContainer.setVisibility(0);
                 if (ChannelAdminLogActivity.this.searchWas) {
                     ChannelAdminLogActivity.this.searchWas = false;

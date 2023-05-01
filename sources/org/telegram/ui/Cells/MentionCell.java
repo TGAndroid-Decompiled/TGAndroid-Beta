@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MediaDataController;
@@ -77,8 +78,8 @@ public class MentionCell extends LinearLayout {
     public void setUser(TLRPC$User tLRPC$User) {
         resetEmojiSuggestion();
         if (tLRPC$User == null) {
-            this.nameTextView.setText("");
-            this.usernameTextView.setText("");
+            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
             this.imageView.setImageDrawable(null);
             return;
         }
@@ -94,7 +95,7 @@ public class MentionCell extends LinearLayout {
             TextView textView = this.usernameTextView;
             textView.setText("@" + UserObject.getPublicUsername(tLRPC$User));
         } else {
-            this.usernameTextView.setText("");
+            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
         }
         this.imageView.setVisibility(0);
         this.usernameTextView.setVisibility(0);
@@ -119,8 +120,8 @@ public class MentionCell extends LinearLayout {
     public void setChat(TLRPC$Chat tLRPC$Chat) {
         resetEmojiSuggestion();
         if (tLRPC$Chat == null) {
-            this.nameTextView.setText("");
-            this.usernameTextView.setText("");
+            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
             this.imageView.setImageDrawable(null);
             return;
         }
@@ -137,7 +138,7 @@ public class MentionCell extends LinearLayout {
             TextView textView = this.usernameTextView;
             textView.setText("@" + publicUsername);
         } else {
-            this.usernameTextView.setText("");
+            this.usernameTextView.setText(BuildConfig.APP_CENTER_HASH);
         }
         this.imageView.setVisibility(0);
         this.usernameTextView.setVisibility(0);

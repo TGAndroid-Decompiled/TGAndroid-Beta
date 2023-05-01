@@ -91,9 +91,14 @@ public class CompoundEmoji {
             String[] split = str2.split("\u200d");
             StringBuilder sb = new StringBuilder();
             sb.append("\u1faf1");
-            sb.append(split.length >= 1 ? split[0] : "");
+            int length = split.length;
+            String str3 = BuildConfig.APP_CENTER_HASH;
+            sb.append(length >= 1 ? split[0] : BuildConfig.APP_CENTER_HASH);
             sb.append("\u200d\u1faf2");
-            sb.append(split.length >= 2 ? split[1] : "");
+            if (split.length >= 2) {
+                str3 = split[1];
+            }
+            sb.append(str3);
             return sb.toString();
         }
         return "🤝" + str2;

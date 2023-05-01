@@ -668,7 +668,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
             int blackoutColor = ColorUtils.setAlphaComponent(-16777216, 76);
 
             @Override
-            public void onDraw(Canvas canvas) {
+            protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
                 canvas.drawColor(this.blackoutColor);
             }

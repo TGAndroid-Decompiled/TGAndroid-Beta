@@ -304,7 +304,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         this.listView.setTag(7);
         DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
             @Override
-            public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+            protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                 super.onMoveAnimationUpdate(viewHolder);
                 StickersActivity.this.listView.invalidate();
             }

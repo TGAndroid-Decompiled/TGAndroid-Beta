@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageReceiver;
@@ -150,8 +151,8 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
-                DialogOrContactPickerActivity.this.dialogsActivity.getActionBar().openSearchField("", false);
-                DialogOrContactPickerActivity.this.contactsActivity.getActionBar().openSearchField("", false);
+                DialogOrContactPickerActivity.this.dialogsActivity.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
+                DialogOrContactPickerActivity.this.contactsActivity.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
                 DialogOrContactPickerActivity.this.searchItem.getSearchField().requestFocus();
             }
 

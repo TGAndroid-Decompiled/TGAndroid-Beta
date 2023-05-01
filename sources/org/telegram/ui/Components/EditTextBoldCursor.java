@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
@@ -220,7 +221,7 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     public void dispatchTextWatchersTextChanged() {
         for (TextWatcher textWatcher : this.registeredTextWatchers) {
-            textWatcher.beforeTextChanged("", 0, length(), length());
+            textWatcher.beforeTextChanged(BuildConfig.APP_CENTER_HASH, 0, length(), length());
             textWatcher.onTextChanged(getText(), 0, length(), length());
             textWatcher.afterTextChanged(getText());
         }
@@ -240,7 +241,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         for (TextWatcher textWatcher2 : this.registeredTextWatchers) {
             super.addTextChangedListener(textWatcher2);
             if (z2) {
-                textWatcher2.beforeTextChanged("", 0, length(), length());
+                textWatcher2.beforeTextChanged(BuildConfig.APP_CENTER_HASH, 0, length(), length());
                 textWatcher2.onTextChanged(getText(), 0, length(), length());
                 textWatcher2.afterTextChanged(getText());
             }
@@ -544,7 +545,7 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     public void setHintText(CharSequence charSequence, boolean z) {
         if (charSequence == null) {
-            charSequence = "";
+            charSequence = BuildConfig.APP_CENTER_HASH;
         }
         if (getMeasuredWidth() == 0) {
             z = false;

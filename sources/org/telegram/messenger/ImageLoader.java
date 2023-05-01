@@ -738,7 +738,7 @@ public class ImageLoader {
     public static String decompressGzip(File file) {
         StringBuilder sb = new StringBuilder();
         if (file == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         try {
             GZIPInputStream gZIPInputStream = new GZIPInputStream(new FileInputStream(file));
@@ -764,7 +764,7 @@ public class ImageLoader {
                 }
             }
         } catch (Exception unused) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 
