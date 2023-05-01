@@ -34,7 +34,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
@@ -208,7 +207,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         }
 
         public void lambda$new$0(View view) {
-            this.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
+            this.searchEditText.setText("");
             AndroidUtilities.showKeyboard(this.searchEditText);
         }
 
@@ -1954,7 +1953,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                     }
                 } else {
                     int size3 = this.emojiArrays.size();
-                    String str = BuildConfig.APP_CENTER_HASH;
+                    String str = "";
                     int i13 = 0;
                     for (int i14 = 0; i14 < size3; i14++) {
                         ArrayList<TLRPC$Document> arrayList2 = this.emojiArrays.get(i14);

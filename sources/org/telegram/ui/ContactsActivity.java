@@ -37,7 +37,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -460,9 +459,9 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                                     EditText editText2 = editTextBoldCursor;
                                     editText2.setSelection(editText2.length());
                                 } else {
-                                    if (!obj.equals(BuildConfig.APP_CENTER_HASH + intValue)) {
+                                    if (!obj.equals("" + intValue)) {
                                         EditText editText3 = editTextBoldCursor;
-                                        editText3.setText(BuildConfig.APP_CENTER_HASH + intValue);
+                                        editText3.setText("" + intValue);
                                         EditText editText4 = editTextBoldCursor;
                                         editText4.setSelection(editText4.length());
                                     }

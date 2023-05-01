@@ -6,7 +6,6 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.voip.NativeInstance;
@@ -364,7 +363,7 @@ public final class Instance {
         }
 
         public String getString(String str) {
-            return getString(str, BuildConfig.APP_CENTER_HASH);
+            return getString(str, "");
         }
 
         public String getString(String str, String str2) {

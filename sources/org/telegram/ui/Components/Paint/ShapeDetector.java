@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
@@ -282,12 +281,12 @@ public class ShapeDetector {
                 sb.append("took ");
                 sb.append(System.currentTimeMillis() - currentTimeMillis);
                 sb.append("ms to ");
-                sb.append(constructShape != null ? BuildConfig.APP_CENTER_HASH : "not ");
+                sb.append(constructShape != null ? "" : "not ");
                 sb.append("detect a shape");
                 if (constructShape != null) {
                     str = " (template#" + i6 + " shape#" + i7 + ")";
                 } else {
-                    str = BuildConfig.APP_CENTER_HASH;
+                    str = "";
                 }
                 sb.append(str);
                 Log.i("shapedetector", sb.toString());
@@ -628,7 +627,7 @@ public class ShapeDetector {
         template2.points = arrayList;
         this.templates.add(template2);
         String string = this.preferences.getString("moretemplates", null);
-        String str = string == null ? BuildConfig.APP_CENTER_HASH + template2.shapeType : string + "|" + template2.shapeType;
+        String str = string == null ? "" + template2.shapeType : string + "|" + template2.shapeType;
         for (int i4 = 0; i4 < arrayList.size(); i4++) {
             str = str + "," + Math.round(((Point) arrayList.get(i4)).x) + "," + Math.round(((Point) arrayList.get(i4)).y);
         }

@@ -149,10 +149,9 @@ public class NotificationsSettingsFacade {
             } else {
                 String findRingtonePathByName = NotificationsSoundActivity.findRingtonePathByName(tLRPC$TL_notificationSoundLocal.title);
                 if (findRingtonePathByName == null) {
-                    tLRPC$NotificationSound = new TLRPC$TL_notificationSoundDefault();
-                } else {
-                    tLRPC$TL_notificationSoundLocal.data = findRingtonePathByName;
+                    return;
                 }
+                tLRPC$TL_notificationSoundLocal.data = findRingtonePathByName;
             }
         }
         if (tLRPC$NotificationSound instanceof TLRPC$TL_notificationSoundDefault) {

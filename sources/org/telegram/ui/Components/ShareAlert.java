@@ -59,7 +59,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -473,7 +472,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
         public void lambda$new$0(View view) {
             ShareAlert.this.updateSearchAdapter = true;
-            this.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
+            this.searchEditText.setText("");
             AndroidUtilities.showKeyboard(this.searchEditText);
         }
 
@@ -1446,7 +1445,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
             this.listAdapter.notifyDataSetChanged();
             this.updateSearchAdapter = false;
-            this.searchView.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
+            this.searchView.searchEditText.setText("");
             checkCurrentList(false);
         }
         for (int i2 = 0; i2 < getMainGridView().getChildCount(); i2++) {
@@ -1741,7 +1740,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 }
                 this.listAdapter.notifyDataSetChanged();
                 this.updateSearchAdapter = false;
-                this.searchView.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
+                this.searchView.searchEditText.setText("");
                 checkCurrentList(false);
                 this.searchView.hideKeyboard();
             }
@@ -3203,7 +3202,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                         if (tLRPC$User != null) {
                             str = UserObject.getFirstName(tLRPC$User);
                         } else {
-                            str = tLRPC$Chat != null ? tLRPC$Chat.title : BuildConfig.APP_CENTER_HASH;
+                            str = tLRPC$Chat != null ? tLRPC$Chat.title : "";
                         }
                         hintDialogCell.setDialog(j, true, str);
                         hintDialogCell.setChecked(ShareAlert.this.selectedDialogs.indexOfKey(j) >= 0, z);

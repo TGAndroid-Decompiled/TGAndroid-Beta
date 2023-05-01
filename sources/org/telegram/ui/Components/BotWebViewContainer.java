@@ -46,7 +46,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -166,7 +165,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         this.flickerDrawable = new CellFlickerDrawable();
         this.lastButtonColor = getColor(Theme.key_featuredStickers_addButton);
         this.lastButtonTextColor = getColor(Theme.key_featuredStickers_buttonText);
-        this.lastButtonText = BuildConfig.APP_CENTER_HASH;
+        this.lastButtonText = "";
         this.resourcesProvider = resourcesProvider;
         if (context instanceof Activity) {
             this.parentActivity = (Activity) context;
@@ -176,11 +175,11 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         cellFlickerDrawable.setColors(i, 153, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
-                this.imageReceiver = new C00151(this);
+                this.imageReceiver = new C00181(this);
             }
 
-            public class C00151 extends ImageReceiver {
-                C00151(View view) {
+            public class C00181 extends ImageReceiver {
+                C00181(View view) {
                     super(view);
                 }
 
@@ -191,7 +190,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                     duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            BotWebViewContainer.AnonymousClass1.C00151.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                            BotWebViewContainer.AnonymousClass1.C00181.this.lambda$setImageBitmapByKey$0(valueAnimator);
                         }
                     });
                     duration.start();

@@ -49,7 +49,7 @@ public class XiaomiUtilities {
         String systemProperty = AndroidUtilities.getSystemProperty("ro.miui.ui.version.name");
         if (systemProperty != null) {
             try {
-                return Integer.parseInt(systemProperty.replace("V", BuildConfig.APP_CENTER_HASH));
+                return Integer.parseInt(systemProperty.replace("V", ""));
             } catch (NumberFormatException unused) {
                 return -1;
             }

@@ -29,7 +29,6 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
@@ -470,7 +469,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         TLRPC$TL_forumTopic findTopic;
         TLRPC$TL_forumTopic findTopic2;
         if (messageObject == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         if (arrowSpan == null) {
             arrowSpan = new SpannableStringBuilder(">");
@@ -511,7 +510,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
             }
             charSequence = Emoji.replaceEmoji(charSequence3, null, AndroidUtilities.dp(12.0f), false);
         }
-        return charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence;
+        return charSequence == null ? "" : charSequence;
     }
 
     public void search(final long j, final long j2, final long j3, final FiltersView.MediaFilterData mediaFilterData, final boolean z, final String str, boolean z2) {

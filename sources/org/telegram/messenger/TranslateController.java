@@ -312,7 +312,7 @@ public class TranslateController extends BaseController {
                 sb.append(" ");
                 String str2 = language.ownDisplayName;
                 if (str2 == null) {
-                    str2 = BuildConfig.APP_CENTER_HASH;
+                    str2 = "";
                 }
                 sb.append(str2);
                 language.q = sb.toString().toLowerCase();
@@ -1115,7 +1115,7 @@ public class TranslateController extends BaseController {
         Iterator<Long> it = this.hideTranslateDialogs.iterator();
         while (it.hasNext()) {
             try {
-                hashSet.add(BuildConfig.APP_CENTER_HASH + it.next());
+                hashSet.add("" + it.next());
             } catch (Exception e) {
                 FileLog.e(e);
             }

@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -307,7 +306,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
                     GroupStickersActivity.this.layoutManager.scrollToPositionWithOffset(findFirstVisibleItemPosition + 1, top);
                 }
                 if (GroupStickersActivity.this.searching) {
-                    GroupStickersActivity.this.searchItem.setSearchFieldText(BuildConfig.APP_CENTER_HASH, false);
+                    GroupStickersActivity.this.searchItem.setSearchFieldText("", false);
                     ((BaseFragment) GroupStickersActivity.this).actionBar.closeSearchField(true);
                 }
                 return true;
@@ -593,7 +592,7 @@ public class GroupStickersActivity extends BaseFragment implements NotificationC
             TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = list.get(i);
             stickerSetCell.setStickersSet(tLRPC$TL_messages_stickerSet, i != list.size() - 1, !z);
             String str = this.lastQuery;
-            stickerSetCell.setSearchQuery(tLRPC$TL_messages_stickerSet, str != null ? str.toLowerCase(Locale.ROOT) : BuildConfig.APP_CENTER_HASH, GroupStickersActivity.this.getResourceProvider());
+            stickerSetCell.setSearchQuery(tLRPC$TL_messages_stickerSet, str != null ? str.toLowerCase(Locale.ROOT) : "", GroupStickersActivity.this.getResourceProvider());
             stickerSetCell.setChecked(tLRPC$TL_messages_stickerSet.set.id == (GroupStickersActivity.this.selectedStickerSet != null ? GroupStickersActivity.this.selectedStickerSet.set.id : (GroupStickersActivity.this.info == null || GroupStickersActivity.this.info.stickerset == null) ? 0L : GroupStickersActivity.this.info.stickerset.id), false);
         }
 

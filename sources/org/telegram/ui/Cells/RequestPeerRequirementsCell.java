@@ -14,7 +14,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC$RequestPeerType;
@@ -167,7 +166,7 @@ public class RequestPeerRequirementsCell extends LinearLayout {
             return ((Requirement) arrayList.get(0)).text.toString().toLowerCase();
         }
         if (arrayList.isEmpty()) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
