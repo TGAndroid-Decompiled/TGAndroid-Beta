@@ -3843,12 +3843,6 @@
     <string name="NotificationsOffUntil">Off until %1$s</string>
     <string name="NotificationsOn">On</string>
     <string name="NotificationsOther">Other</string>
-    <string name="NotificationsPermissionAlert1">Get notified about new messages</string>
-    <string name="NotificationsPermissionAlert2">Learn when you are mentioned in groups</string>
-    <string name="NotificationsPermissionAlert3">Mute specific chats and types of chats</string>
-    <string name="NotificationsPermissionAlertSubtitle">Please allow Telegram to send you notifications to stay in touch with your friends and family.</string>
-    <string name="NotificationsPermissionAlertTitle">Turn on notifications</string>
-    <string name="NotificationsPermissionContinue">Continue</string>
     <string name="NotificationsPriorityHigh">High</string>
     <string name="NotificationsPriorityLow">Low</string>
     <string name="NotificationsPriorityMedium">Medium</string>

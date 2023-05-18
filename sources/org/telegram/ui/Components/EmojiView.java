@@ -4768,12 +4768,12 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
         LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(this, getContext()) {
             @Override
-            public int getVerticalSnapPreference() {
+            protected int getVerticalSnapPreference() {
                 return -1;
             }
 
             @Override
-            public int calculateTimeForDeceleration(int i3) {
+            protected int calculateTimeForDeceleration(int i3) {
                 return super.calculateTimeForDeceleration(i3) * 16;
             }
 

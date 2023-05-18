@@ -20,6 +20,7 @@ public class ProxyDrawable extends Drawable {
     private Paint outerPaint = new Paint(1);
     private RectF cicleRect = new RectF();
     private int radOffset = 0;
+    private int colorKey = -1;
 
     @Override
     public int getOpacity() {
@@ -31,10 +32,10 @@ public class ProxyDrawable extends Drawable {
     }
 
     public ProxyDrawable(Context context) {
-        this.emptyDrawable = context.getResources().getDrawable(R.drawable.proxy_off);
-        this.fullDrawable = context.getResources().getDrawable(R.drawable.proxy_on);
+        this.emptyDrawable = context.getResources().getDrawable(R.drawable.msg2_proxy_off).mutate();
+        this.fullDrawable = context.getResources().getDrawable(R.drawable.msg2_proxy_on).mutate();
         this.outerPaint.setStyle(Paint.Style.STROKE);
-        this.outerPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        this.outerPaint.setStrokeWidth(AndroidUtilities.dp(1.66f));
         this.outerPaint.setStrokeCap(Paint.Cap.ROUND);
         this.lastUpdateTime = SystemClock.elapsedRealtime();
     }
@@ -55,25 +56,31 @@ public class ProxyDrawable extends Drawable {
         long j = elapsedRealtime - this.lastUpdateTime;
         this.lastUpdateTime = elapsedRealtime;
         if (!this.isEnabled) {
-            this.emptyDrawable.setBounds(getBounds());
+            setBounds(this.emptyDrawable);
             this.emptyDrawable.draw(canvas);
         } else if (!this.connected || this.connectedAnimationProgress != 1.0f) {
-            this.emptyDrawable.setBounds(getBounds());
+            setBounds(this.emptyDrawable);
             this.emptyDrawable.draw(canvas);
-            this.outerPaint.setColor(Theme.getColor(Theme.key_contextProgressOuter2));
+            Paint paint = this.outerPaint;
+            int i = this.colorKey;
+            if (i < 0) {
+                i = Theme.key_contextProgressOuter2;
+            }
+            paint.setColor(Theme.getColor(i));
             this.outerPaint.setAlpha((int) ((1.0f - this.connectedAnimationProgress) * 255.0f));
             this.radOffset = (int) (this.radOffset + (((float) (360 * j)) / 1000.0f));
             int width = getBounds().width();
             int height = getBounds().height();
-            int dp = (width / 2) - AndroidUtilities.dp(3.0f);
-            int dp2 = (height / 2) - AndroidUtilities.dp(3.0f);
-            this.cicleRect.set(dp, dp2, dp + AndroidUtilities.dp(6.0f), dp2 + AndroidUtilities.dp(6.0f));
+            int dp = AndroidUtilities.dp(4.0f);
+            int i2 = (width / 2) - dp;
+            int i3 = (height / 2) - dp;
+            this.cicleRect.set(i2, i3, i2 + dp + dp, i3 + dp + dp);
             canvas.drawArc(this.cicleRect, this.radOffset - 90, 90.0f, false, this.outerPaint);
             invalidateSelf();
         }
         if (this.isEnabled && (this.connected || this.connectedAnimationProgress != 0.0f)) {
             this.fullDrawable.setAlpha((int) (this.connectedAnimationProgress * 255.0f));
-            this.fullDrawable.setBounds(getBounds());
+            setBounds(this.fullDrawable);
             this.fullDrawable.draw(canvas);
         }
         boolean z = this.connected;
@@ -103,10 +110,19 @@ public class ProxyDrawable extends Drawable {
         }
     }
 
+    private void setBounds(Drawable drawable) {
+        android.graphics.Rect bounds = getBounds();
+        drawable.setBounds(bounds.centerX() - (drawable.getIntrinsicWidth() / 2), bounds.centerY() - (drawable.getIntrinsicHeight() / 2), bounds.centerX() + (drawable.getIntrinsicWidth() / 2), bounds.centerY() + (drawable.getIntrinsicHeight() / 2));
+    }
+
     @Override
     public void setColorFilter(ColorFilter colorFilter) {
         this.emptyDrawable.setColorFilter(colorFilter);
         this.fullDrawable.setColorFilter(colorFilter);
+    }
+
+    public void setColorKey(int i) {
+        this.colorKey = i;
     }
 
     @Override

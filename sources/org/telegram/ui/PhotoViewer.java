@@ -2131,7 +2131,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             setTranslationY(-AndroidUtilities.dp(10.0f));
             DefaultItemAnimator defaultItemAnimator = new DefaultItemAnimator() {
                 @Override
-                public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     SelectedPhotosListView.this.invalidate();
                 }
             };
@@ -4610,7 +4610,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int i10) {
                 LinearSmoothScrollerEnd linearSmoothScrollerEnd = new LinearSmoothScrollerEnd(this, recyclerView.getContext()) {
                     @Override
-                    public int calculateTimeForDeceleration(int i11) {
+                    protected int calculateTimeForDeceleration(int i11) {
                         return Math.max(180, super.calculateTimeForDeceleration(i11));
                     }
                 };
@@ -6011,7 +6011,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void onSizeChanged(int i, int i2, int i3, int i4) {
+        protected void onSizeChanged(int i, int i2, int i3, int i4) {
             super.onSizeChanged(i, i2, i3, i4);
             if (PhotoViewer.this.mentionListViewVisible && getVisibility() == 0 && PhotoViewer.this.mentionListAnimation == null) {
                 int i5 = i2 - i4;

@@ -1178,7 +1178,7 @@ public class BottomSheet extends Dialog {
         this.applyBottomPadding = z;
     }
 
-    public void onDismissWithTouchOutside() {
+    protected void onDismissWithTouchOutside() {
         dismiss();
     }
 

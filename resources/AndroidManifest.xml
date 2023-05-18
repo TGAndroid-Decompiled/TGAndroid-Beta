@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="33479" android:versionName="9.6.4" android:installLocation="auto" android:compileSdkVersion="33" android:compileSdkVersionCodename="13" package="org.telegram.messenger.beta" platformBuildVersionCode="33" platformBuildVersionName="13">
-    <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="33"/>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="33599" android:versionName="9.6.5" android:installLocation="auto" android:compileSdkVersion="33" android:compileSdkVersionCodename="13" package="org.telegram.messenger.beta" platformBuildVersionCode="33" platformBuildVersionName="13">
+    <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="31"/>
     <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
     <uses-feature android:name="android.hardware.location.network" android:required="false"/>
     <uses-feature android:name="android.hardware.location" android:required="false"/>
@@ -54,7 +54,6 @@
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
     <uses-permission android:name="android.permission.READ_PHONE_NUMBERS"/>
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="com.sec.android.provider.badge.permission.READ"/>
     <uses-permission android:name="com.sec.android.provider.badge.permission.WRITE"/>
     <uses-permission android:name="com.htc.launcher.permission.READ_SETTINGS"/>
