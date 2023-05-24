@@ -217,6 +217,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 return false;
             }
 
+            {
+                PhotoPickerActivity.this = this;
+            }
+
             @Override
             public PhotoViewer.PlaceProviderObject getPlaceForPhoto(MessageObject messageObject, TLRPC$FileLocation tLRPC$FileLocation, int i3, boolean z3) {
                 PhotoAttachPhotoCell cellForIndex = PhotoPickerActivity.this.getCellForIndex(i3);
@@ -495,6 +499,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             }
         }
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
+            {
+                PhotoPickerActivity.this = this;
+            }
+
             @Override
             public void onItemClick(int i3) {
                 if (i3 == -1) {
@@ -525,6 +533,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             addItem.setSubMenuDelegate(new ActionBarMenuItem.ActionBarSubMenuItemDelegate() {
                 @Override
                 public void onHideSubMenu() {
+                }
+
+                {
+                    PhotoPickerActivity.this = this;
                 }
 
                 @Override
@@ -584,6 +596,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         this.layoutManager = gridLayoutManager;
         recyclerListView2.setLayoutManager(gridLayoutManager);
         this.layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            {
+                PhotoPickerActivity.this = this;
+            }
+
             @Override
             public int getSpanSize(int i4) {
                 if (PhotoPickerActivity.this.listAdapter.getItemViewType(i4) == 1 || PhotoPickerActivity.this.listSort || (PhotoPickerActivity.this.selectedAlbum == null && TextUtils.isEmpty(PhotoPickerActivity.this.lastSearchString))) {
@@ -615,6 +631,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             });
         }
         RecyclerViewItemRangeSelector recyclerViewItemRangeSelector = new RecyclerViewItemRangeSelector(new RecyclerViewItemRangeSelector.RecyclerViewItemRangeSelectorDelegate() {
+            {
+                PhotoPickerActivity.this = this;
+            }
+
             @Override
             public void setSelected(View view, int i4, boolean z) {
                 if (z == PhotoPickerActivity.this.shouldSelect && (view instanceof PhotoAttachPhotoCell)) {
@@ -680,6 +700,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         this.emptyView.showProgress(false, false);
         this.sizeNotifierFrameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 126.0f, 0.0f, 0.0f));
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            {
+                PhotoPickerActivity.this = this;
+            }
+
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i4) {
                 if (i4 == 1) {
@@ -741,6 +765,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 public void onTextChanged(CharSequence charSequence2, int i4, int i5, int i6) {
                 }
 
+                {
+                    PhotoPickerActivity.this = this;
+                }
+
                 @Override
                 public void afterTextChanged(Editable editable) {
                     if (PhotoPickerActivity.this.delegate != null) {
@@ -749,6 +777,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 }
             });
             FrameLayout frameLayout2 = new FrameLayout(context) {
+                {
+                    PhotoPickerActivity.this = this;
+                }
+
                 @Override
                 public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                     super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -814,6 +846,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
             this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             View view2 = new View(context) {
+                {
+                    PhotoPickerActivity.this = this;
+                }
+
                 @Override
                 protected void onDraw(Canvas canvas) {
                     String format = String.format("%d", Integer.valueOf(Math.max(1, PhotoPickerActivity.this.selectedPhotosOrder.size())));
@@ -863,6 +899,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
 
         AnonymousClass4() {
+            PhotoPickerActivity.this = r1;
         }
 
         @Override
@@ -910,6 +947,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
 
         AnonymousClass5(Context context) {
             super(context);
+            PhotoPickerActivity.this = r1;
         }
 
         @Override
@@ -1125,6 +1163,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
                 actionBarPopupWindowLayout.setAnimationEnabled(false);
                 this.sendPopupLayout.setOnTouchListener(new View.OnTouchListener() {
                     private Rect popupRect = new Rect();
+
+                    {
+                        PhotoPickerActivity.this = this;
+                    }
 
                     @Override
                     public boolean onTouch(View view2, MotionEvent motionEvent) {
@@ -1434,6 +1476,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             this.animatorSet.setInterpolator(new DecelerateInterpolator());
             this.animatorSet.setDuration(180L);
             this.animatorSet.addListener(new AnimatorListenerAdapter() {
+                {
+                    PhotoPickerActivity.this = this;
+                }
+
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     if (animator.equals(PhotoPickerActivity.this.animatorSet)) {
@@ -1842,6 +1888,7 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
         }
 
         public ListAdapter(Context context) {
+            PhotoPickerActivity.this = r1;
             this.mContext = context;
         }
 
@@ -1899,6 +1946,10 @@ public class PhotoPickerActivity extends BaseFragment implements NotificationCen
             } else {
                 PhotoAttachPhotoCell photoAttachPhotoCell = new PhotoAttachPhotoCell(this.mContext, null);
                 photoAttachPhotoCell.setDelegate(new PhotoAttachPhotoCell.PhotoAttachPhotoCellDelegate() {
+                    {
+                        ListAdapter.this = this;
+                    }
+
                     private void checkSlowMode() {
                         TLRPC$Chat currentChat;
                         if (!PhotoPickerActivity.this.allowOrder || PhotoPickerActivity.this.chatActivity == null || (currentChat = PhotoPickerActivity.this.chatActivity.getCurrentChat()) == null || ChatObject.hasAdminRights(currentChat) || !currentChat.slowmode_enabled || PhotoPickerActivity.this.alertOnlyOnce == 2) {

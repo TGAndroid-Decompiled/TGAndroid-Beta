@@ -489,14 +489,14 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     @Override
-    public void onHidden() {
+    void onHidden() {
         super.onHidden();
         this.parentAlert.setFocusable(false);
         this.parentAlert.getWindow().setSoftInputMode(48);
     }
 
     @Override
-    public int getCurrentItemTop() {
+    int getCurrentItemTop() {
         return (int) (this.swipeContainer.getSwipeOffsetY() + this.swipeContainer.getOffsetY());
     }
 
@@ -595,7 +595,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     @Override
-    public void onHide() {
+    void onHide() {
         super.onHide();
         this.otherItem.setVisibility(8);
         this.isBotButtonAvailable = false;
@@ -618,7 +618,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     @Override
-    public int getListTopPadding() {
+    int getListTopPadding() {
         return (int) this.swipeContainer.getOffsetY();
     }
 
@@ -628,7 +628,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     @Override
-    public void onPreMeasure(int r3, int r4) {
+    void onPreMeasure(int r3, int r4) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertBotWebViewLayout.onPreMeasure(int, int):void");
     }
 
@@ -638,7 +638,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     @Override
-    public boolean onBackPressed() {
+    boolean onBackPressed() {
         if (this.webViewContainer.onBackPressed()) {
             return true;
         }

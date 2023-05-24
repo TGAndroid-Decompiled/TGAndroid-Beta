@@ -1413,7 +1413,7 @@ public class GroupCreateActivity extends BaseFragment implements NotificationCen
                 } else if (i == 3) {
                     StickerEmptyView stickerEmptyView = new StickerEmptyView(this, this.context, null, 0) {
                         @Override
-                        public void onAttachedToWindow() {
+                        protected void onAttachedToWindow() {
                             super.onAttachedToWindow();
                             this.stickerView.getImageReceiver().startAnimation();
                         }

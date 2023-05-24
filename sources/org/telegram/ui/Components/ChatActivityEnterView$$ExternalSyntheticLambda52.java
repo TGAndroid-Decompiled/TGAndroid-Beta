@@ -10,6 +10,6 @@ public final class ChatActivityEnterView$$ExternalSyntheticLambda52 implements A
 
     @Override
     public final void didSelectDate(boolean z, int i) {
-        this.f$0.sendMessageInternal(z, i);
+        ChatActivityEnterView.$r8$lambda$geXurMl91jjjry8T4CEUL1_Emck(this.f$0, z, i);
     }
 }

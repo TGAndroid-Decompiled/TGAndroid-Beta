@@ -188,10 +188,6 @@ public class Bulletin {
         this.layout = layout;
         this.loaded = true ^ (layout instanceof LoadingLayout);
         this.parentLayout = new ParentLayout(layout) {
-            {
-                Bulletin.this = this;
-            }
-
             @Override
             protected void onPressedStateChanged(boolean z) {
                 Bulletin.this.setCanHide(!z);
@@ -262,10 +258,6 @@ public class Bulletin {
                 public void onViewAttachedToWindow(View view) {
                 }
 
-                {
-                    Bulletin.this = this;
-                }
-
                 @Override
                 public void onViewDetachedFromWindow(View view) {
                     Bulletin.this.layout.removeOnAttachStateChangeListener(this);
@@ -322,7 +314,6 @@ public class Bulletin {
         final boolean val$top;
 
         AnonymousClass2(boolean z) {
-            Bulletin.this = r1;
             this.val$top = z;
         }
 
@@ -580,7 +571,6 @@ public class Bulletin {
             final Layout val$layout;
 
             AnonymousClass1(Layout layout) {
-                ParentLayout.this = r1;
                 this.val$layout = layout;
             }
 
@@ -1783,7 +1773,7 @@ public class Bulletin {
         }
     }
 
-    public static class TimerView extends View {
+    private static class TimerView extends View {
         private long lastUpdateTime;
         private int prevSeconds;
         private final Paint progressPaint;
@@ -1892,10 +1882,6 @@ public class Bulletin {
         private BulletinWindow(Context context) {
             super(context);
             FrameLayout frameLayout = new FrameLayout(context) {
-                {
-                    BulletinWindow.this = this;
-                }
-
                 @Override
                 public void addView(View view) {
                     super.addView(view);

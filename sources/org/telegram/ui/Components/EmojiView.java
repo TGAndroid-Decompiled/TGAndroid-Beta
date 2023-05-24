@@ -4768,12 +4768,12 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         }
         LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(this, getContext()) {
             @Override
-            protected int getVerticalSnapPreference() {
+            public int getVerticalSnapPreference() {
                 return -1;
             }
 
             @Override
-            protected int calculateTimeForDeceleration(int i3) {
+            public int calculateTimeForDeceleration(int i3) {
                 return super.calculateTimeForDeceleration(i3) * 16;
             }
 
@@ -6060,7 +6060,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
             BackupImageView backupImageView = new BackupImageView(EmojiView.this.getContext()) {
                 @Override
-                protected void onDraw(Canvas canvas) {
+                public void onDraw(Canvas canvas) {
                     super.onDraw(canvas);
                     if (TrendingAdapter.this.emoji || !MediaDataController.getInstance(EmojiView.this.currentAccount).isStickerPackUnread(TrendingAdapter.this.emoji, ((TLRPC$StickerSetCovered) getTag()).set.id) || EmojiView.this.dotPaint == null) {
                         return;

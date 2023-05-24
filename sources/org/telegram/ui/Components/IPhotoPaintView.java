@@ -39,6 +39,8 @@ public interface IPhotoPaintView {
 
     void maybeShowDismissalAlert(PhotoViewer photoViewer, Activity activity, Runnable runnable);
 
+    void onAnimationStateChanged(boolean z);
+
     void onBackPressed();
 
     void onCleanupEntities();
@@ -46,6 +48,8 @@ public interface IPhotoPaintView {
     void onResume();
 
     boolean onTouch(MotionEvent motionEvent);
+
+    void setOffsetTranslationX(float f);
 
     void setOffsetTranslationY(float f, float f2, int i, boolean z);
 

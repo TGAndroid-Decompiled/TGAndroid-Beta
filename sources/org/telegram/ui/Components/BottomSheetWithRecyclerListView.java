@@ -68,7 +68,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         if (z3) {
             NestedSizeNotifierLayout nestedSizeNotifierLayout = new NestedSizeNotifierLayout(parentActivity) {
                 @Override
-                protected void onMeasure(int i, int i2) {
+                public void onMeasure(int i, int i2) {
                     BottomSheetWithRecyclerListView.this.contentHeight = View.MeasureSpec.getSize(i2);
                     BottomSheetWithRecyclerListView.this.onPreMeasure(i, i2);
                     super.onMeasure(i, i2);

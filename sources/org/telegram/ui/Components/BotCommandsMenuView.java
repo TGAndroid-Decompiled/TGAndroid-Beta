@@ -70,7 +70,7 @@ public class BotCommandsMenuView extends View {
             }
 
             @Override
-            protected void invalidateInternal() {
+            public void invalidateInternal() {
                 super.invalidateInternal();
                 BotCommandsMenuView.this.invalidate();
             }

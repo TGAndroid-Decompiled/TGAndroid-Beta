@@ -1249,7 +1249,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         private int y;
 
         private BotButton() {
-            ChatMessageCell.this = r1;
         }
 
         static int access$3576(BotButton botButton, int i) {
@@ -1281,10 +1280,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         }
                     });
                     this.pressAnimator.addListener(new AnimatorListenerAdapter() {
-                        {
-                            BotButton.this = this;
-                        }
-
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             super.onAnimationEnd(animator);
@@ -1408,10 +1403,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         this.transitionParams = new TransitionParams();
         this.roundVideoPlayPipFloat = new AnimatedFloat(this, 200L, CubicBezierInterpolator.EASE_OUT);
         this.diceFinishCallback = new Runnable() {
-            {
-                ChatMessageCell.this = this;
-            }
-
             @Override
             public void run() {
                 if (ChatMessageCell.this.delegate != null) {
@@ -1420,10 +1411,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
         };
         this.invalidateRunnable = new Runnable() {
-            {
-                ChatMessageCell.this = this;
-            }
-
             @Override
             public void run() {
                 ChatMessageCell.this.checkLocationExpired();
@@ -1493,10 +1480,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         radialProgress2.setDrawBackground(false);
         this.videoRadialProgress.setCircleRadius(AndroidUtilities.dp(15.0f));
         SeekBar seekBar = new SeekBar(this) {
-            {
-                ChatMessageCell.this = this;
-            }
-
             @Override
             protected void onTimestampUpdate(URLSpanNoUnderline uRLSpanNoUnderline) {
                 ChatMessageCell.this.highlightCaptionLink(uRLSpanNoUnderline);
@@ -1509,10 +1492,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         seekBarWaveform.setDelegate(this);
         this.seekBarWaveform.setParentView(this);
         this.seekBarAccessibilityDelegate = new FloatSeekBarAccessibilityDelegate() {
-            {
-                ChatMessageCell.this = this;
-            }
-
             @Override
             public float getProgress() {
                 if (ChatMessageCell.this.currentMessageObject.isMusic()) {
@@ -2064,10 +2043,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         }
                     });
                     this.instantButtonPressAnimator.addListener(new AnimatorListenerAdapter() {
-                        {
-                            ChatMessageCell.this = this;
-                        }
-
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             super.onAnimationEnd(animator);
@@ -2355,7 +2330,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         invalidate();
     }
 
-    public void lambda$checkSpoilersMotionEvent$7(ChatMessageCell chatMessageCell) {
+    public void lambda$checkSpoilersMotionEvent$7(final ChatMessageCell chatMessageCell) {
         post(new Runnable() {
             @Override
             public final void run() {
@@ -3496,10 +3471,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             if (this.videoPlayerRewinder == null) {
                 this.videoForwardDrawable = new VideoForwardDrawable(true);
                 this.videoPlayerRewinder = new VideoPlayerRewinder() {
-                    {
-                        ChatMessageCell.this = this;
-                    }
-
                     @Override
                     protected void onRewindCanceled() {
                         ChatMessageCell.this.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
@@ -3520,10 +3491,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         ChatMessageCell.this.videoForwardDrawable.setDelegate(new VideoForwardDrawable.VideoForwardDrawableDelegate() {
                             @Override
                             public void onAnimationEnd() {
-                            }
-
-                            {
-                                AnonymousClass6.this = this;
                             }
 
                             @Override
@@ -4290,10 +4257,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 public void setColorFilter(ColorFilter colorFilter) {
                 }
 
-                {
-                    ChatMessageCell.this = this;
-                }
-
                 @Override
                 public void draw(Canvas canvas) {
                     Rect bounds = getBounds();
@@ -4913,10 +4876,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
         });
         duration.addListener(new AnimatorListenerAdapter() {
-            {
-                ChatMessageCell.this = this;
-            }
-
             @Override
             public void onAnimationEnd(Animator animator) {
                 ChatMessageCell.this.currentMessageObject.isMediaSpoilersRevealed = true;
@@ -5681,6 +5640,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.drawRadialCheckBackground = true;
             getIconForCurrentState();
             this.radialProgress.setIcon(6, false, true);
+        }
+        long j3 = this.lastLoadingSizeTotal;
+        if (j3 > 0 && Math.abs(j3 - j2) > 1048576) {
+            this.lastLoadingSizeTotal = j2;
         }
         createLoadingProgressLayout(j, j2);
     }
@@ -8118,10 +8081,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 }
             });
             this.statusDrawableAnimator.addListener(new AnimatorListenerAdapter() {
-                {
-                    ChatMessageCell.this = this;
-                }
-
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     int createStatusDrawableParams = ChatMessageCell.this.transitionParams.createStatusDrawableParams();
@@ -8653,7 +8612,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         private RectF rectF;
 
         private MessageAccessibilityNodeProvider() {
-            ChatMessageCell.this = r1;
             this.linkPath = new Path();
             this.rectF = new RectF();
             this.rect = new Rect();
@@ -8663,7 +8621,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             private TLRPC$User user;
 
             public ProfileSpan(TLRPC$User tLRPC$User) {
-                MessageAccessibilityNodeProvider.this = r1;
                 this.user = tLRPC$User;
             }
 
@@ -8905,10 +8862,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         int spanEnd = spannableStringBuilder.getSpanEnd(characterStyle);
                         spannableStringBuilder.removeSpan(characterStyle);
                         spannableStringBuilder.setSpan(new ClickableSpan() {
-                            {
-                                MessageAccessibilityNodeProvider.this = this;
-                            }
-
                             @Override
                             public void onClick(View view) {
                                 CharacterStyle characterStyle2 = characterStyle;
@@ -9763,7 +9716,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
 
         public TransitionParams() {
-            ChatMessageCell.this = r2;
         }
 
         public void recordDrawingState() {

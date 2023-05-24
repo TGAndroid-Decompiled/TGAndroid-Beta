@@ -45,14 +45,17 @@ public class DialogsHintCell extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.chevronView = imageView;
         imageView.setImageResource(R.drawable.arrow_newchat);
-        this.chevronView.setColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText), PorterDuff.Mode.SRC_IN);
         addView(this.chevronView, LayoutHelper.createFrame(16, 16, (LocaleController.isRTL ? 3 : 5) | 16));
         updateColors();
     }
 
     public void updateColors() {
         this.titleView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-        this.messageView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+        TextView textView = this.messageView;
+        int i = Theme.key_windowBackgroundWhiteGrayText;
+        textView.setTextColor(Theme.getColor(i));
+        this.chevronView.setColorFilter(Theme.getColor(i), PorterDuff.Mode.SRC_IN);
+        setBackground(Theme.AdaptiveRipple.filledRect());
     }
 
     public void setText(CharSequence charSequence, CharSequence charSequence2) {

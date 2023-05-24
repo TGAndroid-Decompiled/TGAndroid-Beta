@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
@@ -249,6 +250,9 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         voIPFragment3.activity = activity;
         instance = voIPFragment3;
         VoIPWindowView voIPWindowView = new VoIPWindowView(activity, !z2) {
+            private Path clipPath = new Path();
+            private RectF rectF = new RectF();
+
             @Override
             public boolean dispatchKeyEvent(KeyEvent keyEvent) {
                 VoIPService sharedInstance;
@@ -265,6 +269,27 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                 }
                 voIPFragment3.onBackPressed();
                 return true;
+            }
+
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                if (voIPFragment3.switchingToPip && getAlpha() != 0.0f) {
+                    float width = voIPFragment3.callingUserTextureView.getWidth() * voIPFragment3.callingUserTextureView.getScaleX();
+                    float height = voIPFragment3.callingUserTextureView.getHeight() * voIPFragment3.callingUserTextureView.getScaleY();
+                    float x = voIPFragment3.callingUserTextureView.getX() + ((voIPFragment3.callingUserTextureView.getWidth() - width) / 2.0f);
+                    float y = voIPFragment3.callingUserTextureView.getY() + ((voIPFragment3.callingUserTextureView.getHeight() - height) / 2.0f);
+                    canvas.save();
+                    this.clipPath.rewind();
+                    this.rectF.set(x, y, width + x, height + y);
+                    float dp = AndroidUtilities.dp(4.0f);
+                    this.clipPath.addRoundRect(this.rectF, dp, dp, Path.Direction.CW);
+                    this.clipPath.close();
+                    canvas.clipPath(this.clipPath);
+                    super.dispatchDraw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                super.dispatchDraw(canvas);
             }
         };
         instance.deviceIsLocked = ((KeyguardManager) activity.getSystemService("keyguard")).inKeyguardRestrictedInputMode();
@@ -1234,6 +1259,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
 
     public void lambda$startTransitionFromPiP$14() {
         this.windowView.setAlpha(1.0f);
+        this.windowView.invalidate();
         final Animator createPiPTransition = createPiPTransition(true);
         this.backIcon.setAlpha(0.0f);
         this.emojiLayout.setAlpha(0.0f);
@@ -1400,6 +1426,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         if (!this.currentUserCameraFloatingLayout.measuredAsFloatingMode) {
             this.currentUserTextureView.setScreenshareMiniProgress(floatValue, false);
         }
+        this.windowView.invalidate();
         this.callingUserPhotoView.setScaleX(f19);
         this.callingUserPhotoView.setScaleY(f19);
         this.callingUserPhotoView.setTranslationX(f20);

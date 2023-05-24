@@ -1389,7 +1389,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
                 }
                 long longValue = ((Long) objArr[2]).longValue();
                 long longValue2 = ((Long) objArr[3]).longValue();
-                getFileLoader().checkUploadNewDataAvailable((String) objArr[1], DialogObject.isEncryptedDialog(messageObject7.getDialogId()), longValue, longValue2);
+                getFileLoader().checkUploadNewDataAvailable((String) objArr[1], DialogObject.isEncryptedDialog(messageObject7.getDialogId()), longValue, longValue2, (Float) objArr[4]);
                 if (longValue2 != 0) {
                     stopVideoService(messageObject7.messageOwner.attachPath);
                     ArrayList<DelayedMessage> arrayList7 = this.delayedMessages.get(messageObject7.messageOwner.attachPath);
@@ -5299,7 +5299,6 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
 
     private static VideoEditedInfo createCompressionSettings(String str) {
         MediaCodecInfo selectCodec;
-        boolean z;
         int[] iArr = new int[11];
         AnimatedFileDrawable.getVideoInfo(str, iArr);
         if (iArr[0] == 0) {
@@ -5308,6 +5307,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             }
             return null;
         }
+        long length = new File(str).length();
         int videoBitrate = MediaController.getVideoBitrate(str);
         if (videoBitrate == -1) {
             videoBitrate = iArr[3];
@@ -5348,6 +5348,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         videoEditedInfo.originalPath = str;
         videoEditedInfo.framerate = i2;
         videoEditedInfo.estimatedDuration = (long) Math.ceil(f);
+        boolean z = true;
         int i3 = iArr[1];
         videoEditedInfo.originalWidth = i3;
         videoEditedInfo.resultWidth = i3;
@@ -5357,25 +5358,19 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         videoEditedInfo.rotationValue = iArr[8];
         videoEditedInfo.originalDuration = f * 1000.0f;
         float max = Math.max(i3, i4);
-        float f2 = 640.0f;
-        int i5 = max <= 1280.0f ? max > 854.0f ? 3 : max > 640.0f ? 2 : 1 : 4;
+        int i5 = max > 1280.0f ? 4 : max > 854.0f ? 3 : max > 640.0f ? 2 : 1;
         int round = Math.round(DownloadController.getInstance(UserConfig.selectedAccount).getMaxVideoBitrate() / (100.0f / i5));
         if (round > i5) {
             round = i5;
         }
         if (new File(str).length() < 1048576000) {
             if (round != i5 || Math.max(videoEditedInfo.originalWidth, videoEditedInfo.originalHeight) > 1280) {
-                if (round == 1) {
-                    f2 = 432.0f;
-                } else if (round != 2) {
-                    f2 = round != 3 ? 1280.0f : 848.0f;
-                }
+                float f2 = round != 1 ? round != 2 ? round != 3 ? 1280.0f : 848.0f : 640.0f : 432.0f;
                 int i6 = videoEditedInfo.originalWidth;
                 int i7 = videoEditedInfo.originalHeight;
                 float f3 = f2 / (i6 > i7 ? i6 : i7);
                 videoEditedInfo.resultWidth = Math.round((i6 * f3) / 2.0f) * 2;
                 videoEditedInfo.resultHeight = Math.round((videoEditedInfo.originalHeight * f3) / 2.0f) * 2;
-                z = true;
             } else {
                 z = false;
             }
@@ -5387,12 +5382,12 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             videoEditedInfo.resultWidth = videoEditedInfo.originalWidth;
             videoEditedInfo.resultHeight = videoEditedInfo.originalHeight;
             videoEditedInfo.bitrate = videoBitrate;
+            videoEditedInfo.estimatedSize = length;
         } else {
             videoEditedInfo.bitrate = videoBitrate;
+            videoEditedInfo.estimatedSize = ((float) j) + (((f / 1000.0f) * MediaController.extractRealEncoderBitrate(videoEditedInfo.resultWidth, videoEditedInfo.resultHeight, videoBitrate)) / 8.0f);
         }
-        long j2 = ((float) j) + (((f / 1000.0f) * videoBitrate) / 8.0f);
-        videoEditedInfo.estimatedSize = j2;
-        if (j2 == 0) {
+        if (videoEditedInfo.estimatedSize == 0) {
             videoEditedInfo.estimatedSize = 1L;
         }
         return videoEditedInfo;

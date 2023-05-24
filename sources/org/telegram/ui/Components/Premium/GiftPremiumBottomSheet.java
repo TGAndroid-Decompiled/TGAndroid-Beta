@@ -441,7 +441,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView {
                 final AtomicReference atomicReference = new AtomicReference(Float.valueOf(0.0f));
                 final PremiumGiftTierCell premiumGiftTierCell2 = new PremiumGiftTierCell(GiftPremiumBottomSheet.this.getContext()) {
                     @Override
-                    public void dispatchDraw(Canvas canvas) {
+                    protected void dispatchDraw(Canvas canvas) {
                         if (this.discountView.getVisibility() == 0) {
                             RectF rectF = AndroidUtilities.rectTmp;
                             rectF.set(this.discountView.getLeft(), this.discountView.getTop(), this.discountView.getRight(), this.discountView.getBottom());

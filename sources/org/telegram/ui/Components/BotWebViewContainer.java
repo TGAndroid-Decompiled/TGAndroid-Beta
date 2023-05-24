@@ -204,7 +204,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             }
 
             @Override
-            protected void onDraw(Canvas canvas) {
+            public void onDraw(Canvas canvas) {
                 if (BotWebViewContainer.this.isFlickeringCenter) {
                     super.onDraw(canvas);
                     return;

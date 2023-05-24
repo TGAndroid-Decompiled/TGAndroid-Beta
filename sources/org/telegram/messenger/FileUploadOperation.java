@@ -56,6 +56,7 @@ public class FileUploadOperation {
     private int uploadChunkSize = CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT;
     private SparseIntArray requestTokens = new SparseIntArray();
     private SparseArray<UploadCachedResult> cachedResults = new SparseArray<>();
+    private boolean[] recalculatedEstimatedSize = {false, false};
 
     public interface FileUploadOperationDelegate {
         void didChangedUploadProgress(FileUploadOperation fileUploadOperation, long j, long j2);
@@ -212,31 +213,17 @@ public class FileUploadOperation {
         AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
     }
 
-    public void checkNewDataAvailable(final long j, final long j2) {
+    public void checkNewDataAvailable(final long j, final long j2, final Float f) {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FileUploadOperation.this.lambda$checkNewDataAvailable$3(j2, j);
+                FileUploadOperation.this.lambda$checkNewDataAvailable$3(f, j2, j);
             }
         });
     }
 
-    public void lambda$checkNewDataAvailable$3(long j, long j2) {
-        if (this.estimatedSize != 0 && j != 0) {
-            this.estimatedSize = 0L;
-            this.totalFileSize = j;
-            calcTotalPartsCount();
-            if (!this.uploadFirstPartLater && this.started) {
-                storeFileUploadInfo();
-            }
-        }
-        if (j <= 0) {
-            j = j2;
-        }
-        this.availableSize = j;
-        if (this.currentUploadRequetsCount < this.maxRequestsCount) {
-            startUploadRequest();
-        }
+    public void lambda$checkNewDataAvailable$3(java.lang.Float r7, long r8, long r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileUploadOperation.lambda$checkNewDataAvailable$3(java.lang.Float, long, long):void");
     }
 
     private void storeFileUploadInfo() {

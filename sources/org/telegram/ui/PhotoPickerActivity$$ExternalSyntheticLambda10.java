@@ -10,6 +10,6 @@ public final class PhotoPickerActivity$$ExternalSyntheticLambda10 implements Ale
 
     @Override
     public final void didSelectDate(boolean z, int i) {
-        this.f$0.sendSelectedPhotos(z, i);
+        PhotoPickerActivity.$r8$lambda$uKv6JgDVevorJjf8F57V8a8huvo(this.f$0, z, i);
     }
 }

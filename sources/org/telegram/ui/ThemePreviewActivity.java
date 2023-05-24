@@ -3617,32 +3617,33 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             messageObject11.eventId = 1L;
             messageObject11.resetLayout();
             this.messages.add(messageObject11);
-            if (ThemePreviewActivity.this.dialogId != 0) {
-                TLRPC$TL_message tLRPC$TL_message17 = new TLRPC$TL_message();
-                tLRPC$TL_message17.message = "";
-                MessageObject messageObject12 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message17, true, false);
-                messageObject12.eventId = 1L;
-                messageObject12.contentType = 5;
-                this.messages.add(messageObject12);
-                TLRPC$TL_message tLRPC$TL_message18 = new TLRPC$TL_message();
-                TLRPC$User user = ThemePreviewActivity.this.getMessagesController().getUser(Long.valueOf(ThemePreviewActivity.this.dialogId));
-                tLRPC$TL_message18.message = LocaleController.formatString("ChatBackgroundHint", R.string.ChatBackgroundHint, user == null ? "DELETED" : user.first_name);
-                tLRPC$TL_message18.date = i4;
-                tLRPC$TL_message18.dialog_id = 1L;
-                tLRPC$TL_message18.flags = 265;
-                tLRPC$TL_message18.from_id = new TLRPC$TL_peerUser();
-                tLRPC$TL_message18.id = 1;
-                tLRPC$TL_message18.media = new TLRPC$TL_messageMediaEmpty();
-                tLRPC$TL_message18.out = false;
-                TLRPC$TL_peerUser tLRPC$TL_peerUser24 = new TLRPC$TL_peerUser();
-                tLRPC$TL_message18.peer_id = tLRPC$TL_peerUser24;
-                tLRPC$TL_peerUser24.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
-                MessageObject messageObject13 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message18, true, false);
-                messageObject13.eventId = 1L;
-                messageObject13.resetLayout();
-                messageObject13.contentType = 1;
-                this.messages.add(messageObject13);
+            if (ThemePreviewActivity.this.dialogId == 0 || ThemePreviewActivity.this.serverWallpaper != null) {
+                return;
             }
+            TLRPC$TL_message tLRPC$TL_message17 = new TLRPC$TL_message();
+            tLRPC$TL_message17.message = "";
+            MessageObject messageObject12 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message17, true, false);
+            messageObject12.eventId = 1L;
+            messageObject12.contentType = 5;
+            this.messages.add(messageObject12);
+            TLRPC$TL_message tLRPC$TL_message18 = new TLRPC$TL_message();
+            TLRPC$User user = ThemePreviewActivity.this.getMessagesController().getUser(Long.valueOf(ThemePreviewActivity.this.dialogId));
+            tLRPC$TL_message18.message = LocaleController.formatString("ChatBackgroundHint", R.string.ChatBackgroundHint, user == null ? "DELETED" : user.first_name);
+            tLRPC$TL_message18.date = i4;
+            tLRPC$TL_message18.dialog_id = 1L;
+            tLRPC$TL_message18.flags = 265;
+            tLRPC$TL_message18.from_id = new TLRPC$TL_peerUser();
+            tLRPC$TL_message18.id = 1;
+            tLRPC$TL_message18.media = new TLRPC$TL_messageMediaEmpty();
+            tLRPC$TL_message18.out = false;
+            TLRPC$TL_peerUser tLRPC$TL_peerUser24 = new TLRPC$TL_peerUser();
+            tLRPC$TL_message18.peer_id = tLRPC$TL_peerUser24;
+            tLRPC$TL_peerUser24.user_id = UserConfig.getInstance(((BaseFragment) ThemePreviewActivity.this).currentAccount).getClientUserId();
+            MessageObject messageObject13 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message18, true, false);
+            messageObject13.eventId = 1L;
+            messageObject13.resetLayout();
+            messageObject13.contentType = 1;
+            this.messages.add(messageObject13);
         }
 
         private boolean hasButtons() {

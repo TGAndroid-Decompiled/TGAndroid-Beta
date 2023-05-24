@@ -184,7 +184,7 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
         this.adapter.notifyDataSetChanged();
     }
 
-    private class Adapter extends RecyclerListView.SelectionAdapter {
+    public class Adapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
         private final ArrayList<Object> wallpapers = new ArrayList<>();
 

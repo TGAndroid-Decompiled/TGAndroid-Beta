@@ -1448,7 +1448,7 @@ public class ActionBarMenuItem extends FrameLayout {
             this.searchFieldCaption.setGravity(LocaleController.isRTL ? 5 : 3);
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
                 @Override
-                public void onMeasure(int i2, int i3) {
+                protected void onMeasure(int i2, int i3) {
                     super.onMeasure(i2, i3);
                     setMeasuredDimension(Math.max(View.MeasureSpec.getSize(i2), getMeasuredWidth()) + AndroidUtilities.dp(3.0f), getMeasuredHeight());
                 }

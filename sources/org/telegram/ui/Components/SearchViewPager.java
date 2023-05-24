@@ -154,7 +154,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         this.fragmentView = (SizeNotifierFrameLayout) dialogsActivity.getFragmentView();
         BlurredRecyclerView blurredRecyclerView = new BlurredRecyclerView(context) {
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 SearchViewPager searchViewPager = SearchViewPager.this;
                 if (searchViewPager.dialogsSearchAdapter != null && searchViewPager.itemAnimator != null && SearchViewPager.this.searchLayoutManager != null && SearchViewPager.this.dialogsSearchAdapter.showMoreAnimation) {
                     canvas.save();

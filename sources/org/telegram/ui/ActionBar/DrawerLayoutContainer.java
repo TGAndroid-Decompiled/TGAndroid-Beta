@@ -659,7 +659,7 @@ public class DrawerLayoutContainer extends FrameLayout {
         return false;
     }
 
-    public static class PreviewForegroundDrawable extends Drawable {
+    private static class PreviewForegroundDrawable extends Drawable {
         private final GradientDrawable bottomDrawable;
         private final GradientDrawable topDrawable;
 
