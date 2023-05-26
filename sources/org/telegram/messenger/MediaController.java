@@ -1470,11 +1470,11 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         AudioDeviceInfo[] devices;
         try {
             if (Build.VERSION.SDK_INT < 23) {
-                return NotificationsController.audioManager.isWiredHeadsetOn() || NotificationsController.audioManager.isBluetoothA2dpOn() || NotificationsController.audioManager.isBluetoothScoOn();
+                return NotificationsController.audioManager.isWiredHeadsetOn() || NotificationsController.audioManager.isBluetoothA2dpOn();
             }
             for (AudioDeviceInfo audioDeviceInfo : NotificationsController.audioManager.getDevices(2)) {
                 int type = audioDeviceInfo.getType();
-                if ((type == 8 || type == 7 || type == 26 || type == 27 || type == 4 || type == 3) && audioDeviceInfo.isSink()) {
+                if ((type == 8 || type == 26 || type == 27 || type == 4 || type == 3) && audioDeviceInfo.isSink()) {
                     return true;
                 }
             }

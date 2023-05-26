@@ -6704,7 +6704,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void onDraw(Canvas canvas) {
+        public void onDraw(Canvas canvas) {
             canvas.save();
             canvas.translate(getPaddingLeft(), 0.0f);
             if (this.links.draw(canvas)) {
@@ -6725,7 +6725,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
             super.onTextChanged(charSequence, i, i2, i3);
             this.animatedEmojiDrawables = AnimatedEmojiSpan.update(0, this, this.animatedEmojiDrawables, getLayout());
         }
@@ -9616,7 +9616,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
                                 @Override
                                 public void onAnimationEnd(Animator animator2) {
-                                    if (PhotoViewer.this.videoConvertSupported) {
+                                    if (PhotoViewer.this.videoConvertSupported && PhotoViewer.this.isCurrentVideo) {
                                         PhotoViewer.this.updateVideoInfo();
                                     }
                                 }

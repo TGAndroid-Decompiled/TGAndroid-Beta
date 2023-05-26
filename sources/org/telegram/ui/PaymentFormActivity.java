@@ -816,7 +816,10 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public void lambda$createView$23(String str, final View view) {
         TLRPC$TL_paymentRequestedInfo tLRPC$TL_paymentRequestedInfo;
+        TLRPC$TL_paymentRequestedInfo tLRPC$TL_paymentRequestedInfo2;
+        TLRPC$TL_paymentRequestedInfo tLRPC$TL_paymentRequestedInfo3;
         int i;
+        TLRPC$TL_paymentRequestedInfo tLRPC$TL_paymentRequestedInfo4;
         TLRPC$TL_payments_paymentForm tLRPC$TL_payments_paymentForm = this.paymentForm;
         TLRPC$TL_invoice tLRPC$TL_invoice = tLRPC$TL_payments_paymentForm.invoice;
         if (tLRPC$TL_invoice.recurring && !this.recurrentAccepted) {
@@ -828,8 +831,9 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                 return;
             }
         }
-        boolean z = this.isCheckoutPreview;
-        if (z && tLRPC$TL_payments_paymentForm.saved_info != null && this.validateRequest == null) {
+        boolean z = (tLRPC$TL_invoice.shipping_address_requested && ((tLRPC$TL_paymentRequestedInfo4 = tLRPC$TL_payments_paymentForm.saved_info) == null || tLRPC$TL_paymentRequestedInfo4.shipping_address == null)) || (tLRPC$TL_invoice.email_requested && ((tLRPC$TL_paymentRequestedInfo3 = tLRPC$TL_payments_paymentForm.saved_info) == null || tLRPC$TL_paymentRequestedInfo3.email == null)) || ((tLRPC$TL_invoice.name_requested && ((tLRPC$TL_paymentRequestedInfo2 = tLRPC$TL_payments_paymentForm.saved_info) == null || tLRPC$TL_paymentRequestedInfo2.name == null)) || (tLRPC$TL_invoice.phone_requested && ((tLRPC$TL_paymentRequestedInfo = tLRPC$TL_payments_paymentForm.saved_info) == null || tLRPC$TL_paymentRequestedInfo.phone == null)));
+        boolean z2 = this.isCheckoutPreview;
+        if (z2 && !z && this.validateRequest == null) {
             setDonePressed(true);
             sendSavedForm(new Runnable() {
                 @Override
@@ -837,8 +841,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
                     PaymentFormActivity.this.lambda$createView$21(view);
                 }
             });
-        } else if (z && (((tLRPC$TL_paymentRequestedInfo = tLRPC$TL_payments_paymentForm.saved_info) == null && (tLRPC$TL_invoice.shipping_address_requested || tLRPC$TL_invoice.email_requested || tLRPC$TL_invoice.name_requested || tLRPC$TL_invoice.phone_requested)) || ((this.savedCredentialsCard == null && this.paymentJson == null && this.googlePayCredentials == null) || (this.shippingOption == null && tLRPC$TL_invoice.flexible)))) {
-            if (tLRPC$TL_paymentRequestedInfo == null && (tLRPC$TL_invoice.shipping_address_requested || tLRPC$TL_invoice.email_requested || tLRPC$TL_invoice.name_requested || tLRPC$TL_invoice.phone_requested)) {
+        } else if (z2 && (z || ((this.savedCredentialsCard == null && this.paymentJson == null && this.googlePayCredentials == null) || (this.shippingOption == null && tLRPC$TL_invoice.flexible)))) {
+            if (z) {
                 i = 0;
             } else {
                 i = (this.savedCredentialsCard == null && this.paymentJson == null && this.googlePayCredentials == null) ? 2 : 1;
@@ -1142,7 +1146,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     private void createGooglePayButton(Context context) {
         FrameLayout frameLayout = new FrameLayout(context);
         this.googlePayContainer = frameLayout;
-        frameLayout.setBackgroundDrawable(Theme.getSelectorDrawable(true));
+        frameLayout.setBackground(Theme.getSelectorDrawableByColor(getThemedColor(Theme.key_listSelector), getThemedColor(Theme.key_windowBackgroundGray)));
         this.googlePayContainer.setVisibility(8);
         FrameLayout frameLayout2 = new FrameLayout(context);
         this.googlePayButton = frameLayout2;
@@ -2186,12 +2190,12 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             showEditDoneProgress(true, true);
             try {
                 if ("stripe".equals(this.paymentForm.native_provider)) {
-                    new Stripe(this.providerApiKey).createToken(card, new AnonymousClass25());
+                    new Stripe(this.providerApiKey).createToken(card, new AnonymousClass26());
                 } else if ("smartglocal".equals(this.paymentForm.native_provider)) {
                     new AsyncTask<Object, Object, String>() {
                         @Override
                         public java.lang.String doInBackground(java.lang.Object... r13) {
-                            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.AnonymousClass26.doInBackground(java.lang.Object[]):java.lang.String");
+                            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PaymentFormActivity.AnonymousClass27.doInBackground(java.lang.Object[]):java.lang.String");
                         }
 
                         @Override
@@ -2218,8 +2222,8 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
     }
 
-    public class AnonymousClass25 implements TokenCallback {
-        AnonymousClass25() {
+    public class AnonymousClass26 implements TokenCallback {
+        AnonymousClass26() {
         }
 
         @Override
@@ -2231,7 +2235,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    PaymentFormActivity.AnonymousClass25.this.lambda$onSuccess$0();
+                    PaymentFormActivity.AnonymousClass26.this.lambda$onSuccess$0();
                 }
             });
         }
@@ -3119,6 +3123,10 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         arrayList.add(new ThemeDescription(this.paymentInfoCell, 0, new Class[]{PaymentInfoCell.class}, new String[]{"detailExTextView"}, (Paint[]) null, (Drawable[]) null, (ThemeDescription.ThemeDescriptionDelegate) null, Theme.key_windowBackgroundWhiteGrayText2));
         arrayList.add(new ThemeDescription(this.bottomLayout, ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, i20));
         arrayList.add(new ThemeDescription(this.bottomLayout, ThemeDescription.FLAG_SELECTORWHITE, null, null, null, null, Theme.key_listSelector));
+        Iterator<ThemeDescription> it = arrayList.iterator();
+        while (it.hasNext()) {
+            it.next().resourcesProvider = this.resourcesProvider;
+        }
         return arrayList;
     }
 

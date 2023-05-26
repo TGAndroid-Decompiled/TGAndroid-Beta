@@ -11,11 +11,13 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
 public class TextPriceCell extends FrameLayout {
+    private Theme.ResourcesProvider resourcesProvider;
     private TextView textView;
     private TextView valueTextView;
 
-    public TextPriceCell(Context context) {
+    public TextPriceCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         setWillNotDraw(false);
         TextView textView = new TextView(context);
         this.textView = textView;
@@ -65,15 +67,15 @@ public class TextPriceCell extends FrameLayout {
         if (z) {
             int i = Theme.key_windowBackgroundWhiteBlackText;
             setTag(Integer.valueOf(i));
-            this.textView.setTextColor(Theme.getColor(i));
-            this.valueTextView.setTextColor(Theme.getColor(i));
+            this.textView.setTextColor(Theme.getColor(i, this.resourcesProvider));
+            this.valueTextView.setTextColor(Theme.getColor(i, this.resourcesProvider));
             this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.valueTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         } else {
             int i2 = Theme.key_windowBackgroundWhiteGrayText2;
             setTag(Integer.valueOf(i2));
-            this.textView.setTextColor(Theme.getColor(i2));
-            this.valueTextView.setTextColor(Theme.getColor(i2));
+            this.textView.setTextColor(Theme.getColor(i2, this.resourcesProvider));
+            this.valueTextView.setTextColor(Theme.getColor(i2, this.resourcesProvider));
             this.textView.setTypeface(Typeface.DEFAULT);
             this.valueTextView.setTypeface(Typeface.DEFAULT);
         }

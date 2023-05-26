@@ -3149,13 +3149,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$updateDialogsHint$20(View view) {
-        presentFragment(new PremiumPreviewFragment("dialogs_hint").setSelectAnnualByDefault());
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                DialogsActivity.this.lambda$updateDialogsHint$19();
-            }
-        }, 250L);
+        RightSlidingDialogContainer rightSlidingDialogContainer = this.rightSlidingDialogContainer;
+        if (rightSlidingDialogContainer == null || !rightSlidingDialogContainer.hasFragment()) {
+            presentFragment(new PremiumPreviewFragment("dialogs_hint").setSelectAnnualByDefault());
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    DialogsActivity.this.lambda$updateDialogsHint$19();
+                }
+            }, 250L);
+        }
     }
 
     public void lambda$updateDialogsHint$19() {
@@ -3164,13 +3167,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$updateDialogsHint$22(View view) {
-        presentFragment(new PremiumPreviewFragment("dialogs_hint").setSelectAnnualByDefault());
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                DialogsActivity.this.lambda$updateDialogsHint$21();
-            }
-        }, 250L);
+        RightSlidingDialogContainer rightSlidingDialogContainer = this.rightSlidingDialogContainer;
+        if (rightSlidingDialogContainer == null || !rightSlidingDialogContainer.hasFragment()) {
+            presentFragment(new PremiumPreviewFragment("dialogs_hint").setSelectAnnualByDefault());
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    DialogsActivity.this.lambda$updateDialogsHint$21();
+                }
+            }, 250L);
+        }
     }
 
     public void lambda$updateDialogsHint$21() {
@@ -3179,13 +3185,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$updateDialogsHint$24(View view) {
-        presentFragment(new CacheControlActivity());
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                DialogsActivity.this.lambda$updateDialogsHint$23();
-            }
-        }, 250L);
+        RightSlidingDialogContainer rightSlidingDialogContainer = this.rightSlidingDialogContainer;
+        if (rightSlidingDialogContainer == null || !rightSlidingDialogContainer.hasFragment()) {
+            presentFragment(new CacheControlActivity());
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    DialogsActivity.this.lambda$updateDialogsHint$23();
+                }
+            }, 250L);
+        }
     }
 
     public void lambda$updateDialogsHint$23() {
@@ -5726,6 +5735,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void setScrollY(float f) {
+        FilterTabsView filterTabsView;
         if (this.fragmentView == null) {
             return;
         }
@@ -5734,13 +5744,17 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (bulletin != null) {
             bulletin.updatePosition();
         }
-        FilterTabsView filterTabsView = this.filterTabsView;
-        if (filterTabsView != null) {
-            filterTabsView.setTranslationY(f);
+        FilterTabsView filterTabsView2 = this.filterTabsView;
+        if (filterTabsView2 != null) {
+            filterTabsView2.setTranslationY(f);
         }
-        DialogsHintCell dialogsHintCell = this.dialogsHintCell;
-        if (dialogsHintCell != null) {
-            dialogsHintCell.setTranslationY(f);
+        if (this.dialogsHintCell != null) {
+            RightSlidingDialogContainer rightSlidingDialogContainer = this.rightSlidingDialogContainer;
+            if (rightSlidingDialogContainer != null && rightSlidingDialogContainer.hasFragment() && (filterTabsView = this.filterTabsView) != null && filterTabsView.getVisibility() == 0) {
+                this.dialogsHintCell.setTranslationY(f - ((1.0f - this.filterTabsProgress) * this.filterTabsView.getMeasuredHeight()));
+            } else {
+                this.dialogsHintCell.setTranslationY(f);
+            }
         }
         DrawerProfileCell.AnimatedStatusView animatedStatusView = this.animatedStatusView;
         if (animatedStatusView != null) {

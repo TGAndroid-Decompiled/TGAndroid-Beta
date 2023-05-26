@@ -860,7 +860,7 @@ public class StickerCategoriesListView extends RecyclerListView {
         }
     }
 
-    private static class EmojiGroupFetcher extends Fetcher<Integer, TLRPC$TL_messages_emojiGroups> {
+    public static class EmojiGroupFetcher extends Fetcher<Integer, TLRPC$TL_messages_emojiGroups> {
         private EmojiGroupFetcher() {
         }
 

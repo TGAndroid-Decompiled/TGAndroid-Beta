@@ -4077,6 +4077,17 @@ public class Theme {
         return createSelectorDrawable(i, 2);
     }
 
+    public static Drawable getSelectorDrawableByColor(int i, int i2) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            return new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), new ColorDrawable(i2), new ColorDrawable(-1));
+        }
+        StateListDrawable stateListDrawable = new StateListDrawable();
+        stateListDrawable.addState(new int[]{16842919}, new ColorDrawable(i));
+        stateListDrawable.addState(new int[]{16842913}, new ColorDrawable(i));
+        stateListDrawable.addState(StateSet.WILD_CARD, new ColorDrawable(i2));
+        return stateListDrawable;
+    }
+
     public static Drawable createSelectorDrawable(int i) {
         return createSelectorDrawable(i, 1, -1);
     }
