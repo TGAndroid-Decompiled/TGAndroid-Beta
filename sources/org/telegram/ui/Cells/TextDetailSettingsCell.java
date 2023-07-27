@@ -22,14 +22,10 @@ public class TextDetailSettingsCell extends FrameLayout {
     private TextView valueTextView;
 
     public TextDetailSettingsCell(Context context) {
-        this(context, null);
-    }
-
-    public TextDetailSettingsCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         TextView textView = new TextView(context);
         this.textView = textView;
-        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.textView.setTextSize(1, 16.0f);
         this.textView.setLines(1);
         this.textView.setMaxLines(1);
@@ -39,7 +35,7 @@ public class TextDetailSettingsCell extends FrameLayout {
         addView(this.textView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 21.0f, 10.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
-        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
         this.valueTextView.setTextSize(1, 13.0f);
         this.valueTextView.setGravity(LocaleController.isRTL ? 5 : 3);
         this.valueTextView.setLines(1);
@@ -50,7 +46,7 @@ public class TextDetailSettingsCell extends FrameLayout {
         ImageView imageView = new ImageView(context);
         this.imageView = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon, resourcesProvider), PorterDuff.Mode.MULTIPLY));
+        this.imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteGrayIcon), PorterDuff.Mode.MULTIPLY));
         this.imageView.setVisibility(8);
         addView(this.imageView, LayoutHelper.createFrame(52, 52.0f, (LocaleController.isRTL ? 5 : 3) | 48, 8.0f, 6.0f, 8.0f, 0.0f));
     }

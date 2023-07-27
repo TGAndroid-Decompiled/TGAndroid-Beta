@@ -14,14 +14,18 @@ import com.googlecode.mp4parser.boxes.mp4.objectdescriptors.DecoderConfigDescrip
 import com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor;
 import com.googlecode.mp4parser.boxes.mp4.objectdescriptors.SLConfigDescriptor;
 import com.mp4parser.iso14496.part15.AvcConfigurationBox;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import org.telegram.messenger.MediaController;
+import org.telegram.messenger.video.Track;
 public class Track {
     private static Map<Integer, Integer> samplingFrequencyIndexMap;
     private String handler;
@@ -190,8 +194,57 @@ public class Track {
                 visualSampleEntry2.setHeight(this.height);
                 this.sampleDescriptionBox.addBox(visualSampleEntry2);
                 return;
-            } else {
+            } else if (!string.equals("video/hevc") || mediaFormat.getByteBuffer("csd-0") == null) {
                 return;
+            } else {
+                byte[] array = mediaFormat.getByteBuffer("csd-0").array();
+                int i2 = 0;
+                int i3 = -1;
+                int i4 = -1;
+                int i5 = -1;
+                for (int i6 = 0; i6 < array.length; i6++) {
+                    if (i2 == 3 && array[i6] == 1) {
+                        if (i5 == -1) {
+                            i5 = i6 - 3;
+                        } else if (i3 == -1) {
+                            i3 = i6 - 3;
+                        } else if (i4 == -1) {
+                            i4 = i6 - 3;
+                        }
+                    }
+                    i2 = array[i6] == 0 ? i2 + 1 : 0;
+                }
+                byte[] bArr3 = new byte[i3 - 4];
+                byte[] bArr4 = new byte[(i4 - i3) - 4];
+                byte[] bArr5 = new byte[(array.length - i4) - 4];
+                for (int i7 = 0; i7 < array.length; i7++) {
+                    if (i7 < i3) {
+                        int i8 = i7 - 4;
+                        if (i8 >= 0) {
+                            bArr3[i8] = array[i7];
+                        }
+                    } else if (i7 < i4) {
+                        int i9 = (i7 - i3) - 4;
+                        if (i9 >= 0) {
+                            bArr4[i9] = array[i7];
+                        }
+                    } else {
+                        int i10 = (i7 - i4) - 4;
+                        if (i10 >= 0) {
+                            bArr5[i10] = array[i7];
+                        }
+                    }
+                }
+                try {
+                    VisualSampleEntry parseFromCsd = HevcDecoderConfigurationRecord.parseFromCsd(Arrays.asList(ByteBuffer.wrap(bArr3), ByteBuffer.wrap(bArr5), ByteBuffer.wrap(bArr4)));
+                    parseFromCsd.setWidth(this.width);
+                    parseFromCsd.setHeight(this.height);
+                    this.sampleDescriptionBox.addBox(parseFromCsd);
+                    return;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return;
+                }
             }
         }
         this.volume = 1.0f;
@@ -231,9 +284,7 @@ public class Track {
         audioSpecificConfig.setChannelConfiguration(audioSampleEntry.getChannelCount());
         decoderConfigDescriptor.setAudioSpecificInfo(audioSpecificConfig);
         eSDescriptor.setDecoderConfigDescriptor(decoderConfigDescriptor);
-        ByteBuffer serialize = eSDescriptor.serialize();
-        eSDescriptorBox.setEsDescriptor(eSDescriptor);
-        eSDescriptorBox.setData(serialize);
+        eSDescriptorBox.setData(eSDescriptor.serialize());
         audioSampleEntry.addBox(eSDescriptorBox);
         this.sampleDescriptionBox.addBox(audioSampleEntry);
     }
@@ -257,7 +308,14 @@ public class Track {
     public void prepare() {
         int i;
         ArrayList arrayList = new ArrayList(this.samplePresentationTimes);
-        Collections.sort(this.samplePresentationTimes, Track$$ExternalSyntheticLambda0.INSTANCE);
+        Collections.sort(this.samplePresentationTimes, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$prepare$0;
+                lambda$prepare$0 = Track.lambda$prepare$0((Track.SamplePresentationTime) obj, (Track.SamplePresentationTime) obj2);
+                return lambda$prepare$0;
+            }
+        });
         this.sampleDurations = new long[this.samplePresentationTimes.size()];
         long j = Long.MAX_VALUE;
         long j2 = 0;

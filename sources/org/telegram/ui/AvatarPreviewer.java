@@ -240,7 +240,7 @@ public class AvatarPreviewer {
         }
     }
 
-    public static class UserInfoLoadTask extends InfoLoadTask<TLRPC$User, TLRPC$UserFull> {
+    private static class UserInfoLoadTask extends InfoLoadTask<TLRPC$User, TLRPC$UserFull> {
         public UserInfoLoadTask(TLRPC$User tLRPC$User, int i) {
             super(tLRPC$User, i, NotificationCenter.userInfoDidLoad);
         }
@@ -258,7 +258,7 @@ public class AvatarPreviewer {
         }
     }
 
-    public static class ChatInfoLoadTask extends InfoLoadTask<TLRPC$Chat, TLRPC$ChatFull> {
+    private static class ChatInfoLoadTask extends InfoLoadTask<TLRPC$Chat, TLRPC$ChatFull> {
         public ChatInfoLoadTask(TLRPC$Chat tLRPC$Chat, int i) {
             super(tLRPC$Chat, i, NotificationCenter.chatInfoDidLoad);
         }

@@ -16,7 +16,7 @@ public class SpoilerEffectBitmapFactory {
     private static SpoilerEffectBitmapFactory factory;
     Bitmap backgroundBitmap;
     Bitmap bufferBitmap;
-    final DispatchQueue dispatchQueue = new DispatchQueue("SpoilerEffectBitmapFactory");
+    final DispatchQueue dispatchQueue = new DispatchQueue("SpoilerEffectBitmapFactory", true, 3);
     boolean isRunning;
     long lastUpdateTime;
     private Bitmap shaderBitmap;

@@ -16,6 +16,7 @@ import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_account_updateNotifySettings;
 import org.telegram.tgnet.TLRPC$TL_error;
@@ -204,7 +205,12 @@ public class TopicsNotifySettingsFragments extends BaseFragment {
         tLRPC$TL_inputNotifyForumTopic.peer = getMessagesController().getInputPeer(this.dialogId);
         tLRPC$TL_inputNotifyForumTopic.top_msg_id = i;
         tLRPC$TL_account_updateNotifySettings.peer = tLRPC$TL_inputNotifyForumTopic;
-        getConnectionsManager().sendRequest(tLRPC$TL_account_updateNotifySettings, TopicsNotifySettingsFragments$$ExternalSyntheticLambda0.INSTANCE);
+        getConnectionsManager().sendRequest(tLRPC$TL_account_updateNotifySettings, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                TopicsNotifySettingsFragments.lambda$removeException$0(tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     @Override

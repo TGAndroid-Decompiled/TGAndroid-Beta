@@ -493,7 +493,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
         int i = NotificationCenter.chatInfoDidLoad;
         Boolean bool = Boolean.FALSE;
-        notificationCenter.postNotificationName(i, this.info, 0, bool, bool);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, this.info, 0, bool, bool);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -678,7 +678,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
         int i = NotificationCenter.chatInfoDidLoad;
         Boolean bool = Boolean.FALSE;
-        notificationCenter.postNotificationName(i, this.info, 0, bool, bool);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, this.info, 0, bool, bool);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {

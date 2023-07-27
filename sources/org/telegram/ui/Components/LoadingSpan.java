@@ -17,10 +17,14 @@ public class LoadingSpan extends ReplacementSpan {
     }
 
     public LoadingSpan(View view, int i, int i2) {
+        this(view, i, i2, null);
+    }
+
+    public LoadingSpan(View view, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
         this.view = view;
         this.size = i;
         this.yOffset = i2;
-        LoadingDrawable loadingDrawable = new LoadingDrawable(null);
+        LoadingDrawable loadingDrawable = new LoadingDrawable(resourcesProvider);
         this.drawable = loadingDrawable;
         loadingDrawable.setRadiiDp(4.0f);
     }
@@ -37,7 +41,12 @@ public class LoadingSpan extends ReplacementSpan {
     @Override
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
         if (paint != null) {
-            this.drawable.setColors(Theme.multAlpha(paint.getColor(), 0.1f), Theme.multAlpha(paint.getColor(), 0.25f));
+            LoadingDrawable loadingDrawable = this.drawable;
+            if (loadingDrawable.color1 == null && loadingDrawable.color2 == null) {
+                loadingDrawable.setColors(Theme.multAlpha(paint.getColor(), 0.1f), Theme.multAlpha(paint.getColor(), 0.25f));
+            }
+        }
+        if (paint != null) {
             this.drawable.setAlpha(paint.getAlpha());
         }
         return this.size;

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Răspunde</string>
+    <string name="call_notification_answer_video_action">Video</string>
+    <string name="call_notification_decline_action">Respinge</string>
+    <string name="call_notification_hang_up_action">Închide</string>
+    <string name="call_notification_incoming_text">Apel primit</string>
+    <string name="call_notification_ongoing_text">Apel în desfășurare</string>
+    <string name="call_notification_screening_text">Se filtrează un apel primit</string>
     <string name="common_google_play_services_enable_button">Activați</string>
     <string name="common_google_play_services_enable_text">%1$s nu va funcționa decât dacă activați serviciile Google Play.</string>
     <string name="common_google_play_services_enable_title">Activați serviciile Google Play</string>

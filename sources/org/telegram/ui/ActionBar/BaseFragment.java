@@ -42,10 +42,13 @@ import org.telegram.messenger.SecretChatHelper;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.Stories.StoryViewer;
 public abstract class BaseFragment {
     protected ActionBar actionBar;
     protected Bundle arguments;
@@ -56,11 +59,13 @@ public abstract class BaseFragment {
     protected boolean inMenuMode;
     protected boolean inPreviewMode;
     private boolean isFinished;
+    public StoryViewer overlayStoryViewer;
     protected Dialog parentDialog;
     protected INavigationLayout parentLayout;
     private PreviewDelegate previewDelegate;
     private boolean removingFromStack;
     private Theme.ResourcesProvider resourceProvider;
+    public StoryViewer storyViewer;
     protected Dialog visibleDialog;
     protected int currentAccount = UserConfig.selectedAccount;
     protected boolean hasOwnBackground = false;
@@ -132,10 +137,6 @@ public abstract class BaseFragment {
     }
 
     public void onActivityResultFragment(int i, int i2, Intent intent) {
-    }
-
-    public boolean onBackPressed() {
-        return true;
     }
 
     public void onBecomeFullyHidden() {
@@ -296,6 +297,16 @@ public abstract class BaseFragment {
             }
             this.actionBar = null;
         }
+        StoryViewer storyViewer = this.storyViewer;
+        if (storyViewer != null) {
+            storyViewer.release();
+            this.storyViewer = null;
+        }
+        StoryViewer storyViewer2 = this.overlayStoryViewer;
+        if (storyViewer2 != null) {
+            storyViewer2.release();
+            this.overlayStoryViewer = null;
+        }
         this.parentLayout = null;
     }
 
@@ -324,6 +335,16 @@ public abstract class BaseFragment {
                 INavigationLayout iNavigationLayout2 = this.parentLayout;
                 if (iNavigationLayout2 != null && iNavigationLayout2.getView().getContext() != this.fragmentView.getContext()) {
                     this.fragmentView = null;
+                    StoryViewer storyViewer = this.storyViewer;
+                    if (storyViewer != null) {
+                        storyViewer.release();
+                        this.storyViewer = null;
+                    }
+                    StoryViewer storyViewer2 = this.overlayStoryViewer;
+                    if (storyViewer2 != null) {
+                        storyViewer2.release();
+                        this.overlayStoryViewer = null;
+                    }
                 }
             }
             if (this.actionBar != null) {
@@ -450,6 +471,14 @@ public abstract class BaseFragment {
         if (actionBar != null) {
             actionBar.onResume();
         }
+        StoryViewer storyViewer = this.storyViewer;
+        if (storyViewer != null) {
+            storyViewer.updatePlayingMode();
+        }
+        StoryViewer storyViewer2 = this.overlayStoryViewer;
+        if (storyViewer2 != null) {
+            storyViewer2.updatePlayingMode();
+        }
     }
 
     public void onPause() {
@@ -467,11 +496,39 @@ public abstract class BaseFragment {
         } catch (Exception e) {
             FileLog.e(e);
         }
+        StoryViewer storyViewer = this.storyViewer;
+        if (storyViewer != null) {
+            storyViewer.updatePlayingMode();
+        }
+        StoryViewer storyViewer2 = this.overlayStoryViewer;
+        if (storyViewer2 != null) {
+            storyViewer2.updatePlayingMode();
+        }
+    }
+
+    public boolean isPaused() {
+        return this.isPaused;
     }
 
     public BaseFragment getFragmentForAlert(int i) {
         INavigationLayout iNavigationLayout = this.parentLayout;
         return (iNavigationLayout == null || iNavigationLayout.getFragmentStack().size() <= i + 1) ? this : this.parentLayout.getFragmentStack().get((this.parentLayout.getFragmentStack().size() - 2) - i);
+    }
+
+    public boolean onBackPressed() {
+        return !closeStoryViewer();
+    }
+
+    public boolean closeStoryViewer() {
+        StoryViewer storyViewer = this.overlayStoryViewer;
+        if (storyViewer != null && storyViewer.isShown()) {
+            return this.overlayStoryViewer.onBackPressed();
+        }
+        StoryViewer storyViewer2 = this.storyViewer;
+        if (storyViewer2 == null || !storyViewer2.isShown()) {
+            return false;
+        }
+        return this.storyViewer.onBackPressed();
     }
 
     public boolean isLastFragment() {
@@ -609,6 +666,16 @@ public abstract class BaseFragment {
     public Dialog showDialog(Dialog dialog, boolean z, final DialogInterface.OnDismissListener onDismissListener) {
         INavigationLayout iNavigationLayout;
         if (dialog != null && (iNavigationLayout = this.parentLayout) != null && !iNavigationLayout.isTransitionAnimationInProgress() && !this.parentLayout.isSwipeInProgress() && (z || !this.parentLayout.checkTransitionAnimation())) {
+            StoryViewer storyViewer = this.overlayStoryViewer;
+            if (storyViewer != null && storyViewer.isShown()) {
+                this.overlayStoryViewer.showDialog(dialog);
+                return dialog;
+            }
+            StoryViewer storyViewer2 = this.storyViewer;
+            if (storyViewer2 != null && storyViewer2.isShown()) {
+                this.storyViewer.showDialog(dialog);
+                return dialog;
+            }
             try {
                 Dialog dialog2 = this.visibleDialog;
                 if (dialog2 != null) {
@@ -848,12 +915,16 @@ public abstract class BaseFragment {
     }
 
     public int getNavigationBarColor() {
-        return Theme.getColor(Theme.key_windowBackgroundGray, this.resourceProvider);
+        int color = Theme.getColor(Theme.key_windowBackgroundGray, this.resourceProvider);
+        StoryViewer storyViewer = this.storyViewer;
+        return (storyViewer == null || !storyViewer.attachedToParent()) ? color : this.storyViewer.getNavigationBarColor(color);
     }
 
     public void setNavigationBarColor(int i) {
         Activity parentActivity = getParentActivity();
-        if (parentActivity != null) {
+        if (parentActivity instanceof LaunchActivity) {
+            ((LaunchActivity) parentActivity).setNavigationBarColor(i, true);
+        } else if (parentActivity != null) {
             Window window = parentActivity.getWindow();
             if (Build.VERSION.SDK_INT < 26 || window == null || window.getNavigationBarColor() == i) {
                 return;
@@ -916,5 +987,65 @@ public abstract class BaseFragment {
 
     public void setResourceProvider(Theme.ResourcesProvider resourcesProvider) {
         this.resourceProvider = resourcesProvider;
+    }
+
+    public void attachStoryViewer(ActionBarLayout.LayoutContainer layoutContainer) {
+        StoryViewer storyViewer = this.storyViewer;
+        if (storyViewer != null && storyViewer.attachedToParent()) {
+            AndroidUtilities.removeFromParent(this.storyViewer.windowView);
+            layoutContainer.addView(this.storyViewer.windowView);
+        }
+        StoryViewer storyViewer2 = this.overlayStoryViewer;
+        if (storyViewer2 == null || !storyViewer2.attachedToParent()) {
+            return;
+        }
+        AndroidUtilities.removeFromParent(this.overlayStoryViewer.windowView);
+        layoutContainer.addView(this.overlayStoryViewer.windowView);
+    }
+
+    public void detachStoryViewer() {
+        StoryViewer storyViewer = this.storyViewer;
+        if (storyViewer != null && storyViewer.attachedToParent()) {
+            AndroidUtilities.removeFromParent(this.storyViewer.windowView);
+        }
+        StoryViewer storyViewer2 = this.overlayStoryViewer;
+        if (storyViewer2 == null || !storyViewer2.attachedToParent()) {
+            return;
+        }
+        AndroidUtilities.removeFromParent(this.overlayStoryViewer.windowView);
+    }
+
+    public boolean isStoryViewer(View view) {
+        StoryViewer storyViewer = this.storyViewer;
+        if (storyViewer == null || view != storyViewer.windowView) {
+            StoryViewer storyViewer2 = this.overlayStoryViewer;
+            return storyViewer2 != null && view == storyViewer2.windowView;
+        }
+        return true;
+    }
+
+    public void setKeyboardHeightFromParent(int i) {
+        StoryViewer storyViewer = this.storyViewer;
+        if (storyViewer != null) {
+            storyViewer.setKeyboardHeightFromParent(i);
+        }
+        StoryViewer storyViewer2 = this.overlayStoryViewer;
+        if (storyViewer2 != null) {
+            storyViewer2.setKeyboardHeightFromParent(i);
+        }
+    }
+
+    public StoryViewer getOrCreateStoryViewer() {
+        if (this.storyViewer == null) {
+            this.storyViewer = new StoryViewer(this);
+        }
+        return this.storyViewer;
+    }
+
+    public StoryViewer getOrCreateOverlayStoryViewer() {
+        if (this.overlayStoryViewer == null) {
+            this.overlayStoryViewer = new StoryViewer(this);
+        }
+        return this.overlayStoryViewer;
     }
 }

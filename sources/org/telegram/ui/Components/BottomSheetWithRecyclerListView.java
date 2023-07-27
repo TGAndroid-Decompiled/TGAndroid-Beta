@@ -265,7 +265,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
                 this.shadowAlpha = Utilities.clamp(this.shadowAlpha, 1.0f, 0.0f);
                 actionBar = this.actionBar;
                 if (actionBar != null && actionBar.getVisibility() == 0 && this.actionBar.getAlpha() != 0.0f && this.shadowAlpha != 0.0f) {
-                    this.headerShadowDrawable.setBounds(0, this.actionBar.getBottom(), view.getMeasuredWidth(), this.actionBar.getBottom() + this.headerShadowDrawable.getIntrinsicHeight());
+                    this.headerShadowDrawable.setBounds(this.backgroundPaddingLeft, this.actionBar.getBottom(), view.getMeasuredWidth() - this.backgroundPaddingLeft, this.actionBar.getBottom() + this.headerShadowDrawable.getIntrinsicHeight());
                     this.headerShadowDrawable.setAlpha((int) (this.actionBar.getAlpha() * 255.0f * this.shadowAlpha));
                     this.headerShadowDrawable.draw(canvas);
                 }
@@ -282,7 +282,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
         this.shadowAlpha = Utilities.clamp(this.shadowAlpha, 1.0f, 0.0f);
         actionBar = this.actionBar;
         if (actionBar != null) {
-            this.headerShadowDrawable.setBounds(0, this.actionBar.getBottom(), view.getMeasuredWidth(), this.actionBar.getBottom() + this.headerShadowDrawable.getIntrinsicHeight());
+            this.headerShadowDrawable.setBounds(this.backgroundPaddingLeft, this.actionBar.getBottom(), view.getMeasuredWidth() - this.backgroundPaddingLeft, this.actionBar.getBottom() + this.headerShadowDrawable.getIntrinsicHeight());
             this.headerShadowDrawable.setAlpha((int) (this.actionBar.getAlpha() * 255.0f * this.shadowAlpha));
             this.headerShadowDrawable.draw(canvas);
         }

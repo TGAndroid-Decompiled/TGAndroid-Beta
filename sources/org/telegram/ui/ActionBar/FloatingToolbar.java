@@ -54,7 +54,14 @@ import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
 @TargetApi(23)
 public final class FloatingToolbar {
-    private static final MenuItem.OnMenuItemClickListener NO_OP_MENUITEM_CLICK_LISTENER = FloatingToolbar$$ExternalSyntheticLambda0.INSTANCE;
+    private static final MenuItem.OnMenuItemClickListener NO_OP_MENUITEM_CLICK_LISTENER = new MenuItem.OnMenuItemClickListener() {
+        @Override
+        public final boolean onMenuItemClick(MenuItem menuItem) {
+            boolean lambda$static$0;
+            lambda$static$0 = FloatingToolbar.lambda$static$0(menuItem);
+            return lambda$static$0;
+        }
+    };
     private int currentStyle;
     private Menu mMenu;
     private final FloatingToolbarPopup mPopup;
@@ -81,7 +88,14 @@ public final class FloatingToolbar {
             FloatingToolbar.this.updateLayout();
         }
     };
-    private final Comparator<MenuItem> mMenuItemComparator = FloatingToolbar$$ExternalSyntheticLambda1.INSTANCE;
+    private final Comparator<MenuItem> mMenuItemComparator = new Comparator() {
+        @Override
+        public final int compare(Object obj, Object obj2) {
+            int lambda$new$1;
+            lambda$new$1 = FloatingToolbar.lambda$new$1((MenuItem) obj, (MenuItem) obj2);
+            return lambda$new$1;
+        }
+    };
 
     public static boolean lambda$static$0(MenuItem menuItem) {
         return false;
@@ -1158,20 +1172,20 @@ public final class FloatingToolbar {
         textView.setFocusable(false);
         textView.setImportantForAccessibility(2);
         textView.setFocusableInTouchMode(false);
-        int color = Theme.getColor(Theme.key_listSelector);
+        int themedColor = getThemedColor(Theme.key_listSelector);
         int i2 = this.currentStyle;
         if (i2 == 0) {
             textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         } else if (i2 == 2) {
             textView.setTextColor(-328966);
-            color = 1090519039;
+            themedColor = 1090519039;
         } else if (i2 == 1) {
             textView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
         }
         if (z || z2) {
-            linearLayout.setBackgroundDrawable(Theme.createRadSelectorDrawable(color, z ? 6 : 0, z2 ? 6 : 0, z2 ? 6 : 0, z ? 6 : 0));
+            linearLayout.setBackgroundDrawable(Theme.createRadSelectorDrawable(themedColor, z ? 6 : 0, z2 ? 6 : 0, z2 ? 6 : 0, z ? 6 : 0));
         } else {
-            linearLayout.setBackgroundDrawable(Theme.getSelectorDrawable(color, false));
+            linearLayout.setBackgroundDrawable(Theme.getSelectorDrawable(themedColor, false));
         }
         textView.setPaddingRelative(AndroidUtilities.dp(11.0f), 0, 0, 0);
         linearLayout.addView(textView, new LinearLayout.LayoutParams(-2, AndroidUtilities.dp(48.0f)));

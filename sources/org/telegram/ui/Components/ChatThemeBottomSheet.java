@@ -44,6 +44,7 @@ import java.util.List;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -178,7 +179,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         int themedColor = getThemedColor(i2);
         int dp2 = AndroidUtilities.dp(28.0f);
         int i3 = R.raw.sun_outline;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, "" + i3, dp2, dp2, false, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, dp2, dp2, false, null);
         this.darkThemeDrawable = rLottieDrawable;
         this.forceDark = Theme.getActiveTheme().isDark() ^ true;
         setForceDark(Theme.getActiveTheme().isDark(), false);
@@ -725,7 +726,14 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
             }
         };
         this.changeDayNightView = view;
-        view.setOnTouchListener(ChatThemeBottomSheet$$ExternalSyntheticLambda7.INSTANCE);
+        view.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                boolean lambda$setupLightDarkTheme$9;
+                lambda$setupLightDarkTheme$9 = ChatThemeBottomSheet.lambda$setupLightDarkTheme$9(view2, motionEvent);
+                return lambda$setupLightDarkTheme$9;
+            }
+        });
         this.changeDayNightViewProgress = 0.0f;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.changeDayNightViewAnimator = ofFloat;
@@ -1280,7 +1288,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
 
         @Override
         public void doOnIdle(Runnable runnable) {
-            runnable.run();
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$doOnIdle(this, runnable);
         }
 
         @Override
@@ -1296,6 +1304,11 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
         @Override
         public void openAvatarsSearch() {
             ChatAttachAlert.ChatAttachViewDelegate.CC.$default$openAvatarsSearch(this);
+        }
+
+        @Override
+        public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i) {
+            ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i);
         }
 
         AnonymousClass10() {
@@ -1319,7 +1332,7 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
                     android.graphics.Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(new WallpapersListActivity.FileWallpaper("", file, file), loadBitmap);
+                    ThemePreviewActivity themePreviewActivity = new ThemePreviewActivity(new WallpapersListActivity.FileWallpaper(BuildConfig.APP_CENTER_HASH, file, file), loadBitmap);
                     themePreviewActivity.setDialogId(ChatThemeBottomSheet.this.chatActivity.getDialogId());
                     themePreviewActivity.setDelegate(new ThemePreviewActivity.WallpaperActivityDelegate() {
                         @Override
@@ -1428,7 +1441,12 @@ public class ChatThemeBottomSheet extends BottomSheet implements NotificationCen
                 }
             }
         });
-        bottomSheetParams.onOpenAnimationFinished = ChatThemeBottomSheet$$ExternalSyntheticLambda13.INSTANCE;
+        bottomSheetParams.onOpenAnimationFinished = new Runnable() {
+            @Override
+            public final void run() {
+                ChatThemeBottomSheet.lambda$showAsSheet$12();
+            }
+        };
         bottomSheetParams.onPreFinished = new Runnable() {
             @Override
             public final void run() {

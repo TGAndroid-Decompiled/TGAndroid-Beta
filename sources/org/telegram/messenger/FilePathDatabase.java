@@ -450,7 +450,7 @@ public class FilePathDatabase {
     }
 
     private String shield(String str) {
-        return str.replace("'", "").replace("\"", "");
+        return str.replace("'", BuildConfig.APP_CENTER_HASH).replace("\"", BuildConfig.APP_CENTER_HASH);
     }
 
     public DispatchQueue getQueue() {
@@ -513,6 +513,7 @@ public class FilePathDatabase {
                             arrayList2 = new ArrayList();
                             longSparseArray.put(fileDialogId.dialogId, arrayList2);
                         }
+                        ((CacheByChatsController.KeepMediaFile) arrayList.get(i)).isStory = fileDialogId.messageType == 23;
                         arrayList2.add((CacheByChatsController.KeepMediaFile) arrayList.get(i));
                     }
                 }
@@ -533,7 +534,9 @@ public class FilePathDatabase {
         if (this.dispatchQueue == null) {
             synchronized (this) {
                 if (this.dispatchQueue == null) {
-                    this.dispatchQueue = new DispatchQueue("files_database_queue_" + this.currentAccount);
+                    DispatchQueue dispatchQueue = new DispatchQueue("files_database_queue_" + this.currentAccount);
+                    this.dispatchQueue = dispatchQueue;
+                    dispatchQueue.setPriority(10);
                 }
             }
         }

@@ -75,7 +75,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     private int paddingTop;
     private ChatAttachAlertPhotoLayout photoLayout;
     private boolean shown;
-    private ChatActivity.ThemeDelegate themeDelegate;
+    private Theme.ResourcesProvider themeDelegate;
     private UndoView undoView;
     private Drawable videoPlayImage;
 
@@ -100,8 +100,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         return point.y > point.x ? 0.8f : 0.45f;
     }
 
-    public ChatAttachAlertPhotoLayoutPreview(ChatAttachAlert chatAttachAlert, Context context, ChatActivity.ThemeDelegate themeDelegate) {
-        super(chatAttachAlert, context, themeDelegate);
+    public ChatAttachAlertPhotoLayoutPreview(ChatAttachAlert chatAttachAlert, Context context, Theme.ResourcesProvider resourcesProvider) {
+        super(chatAttachAlert, context, resourcesProvider);
         this.draggingCellTouchX = 0.0f;
         this.draggingCellTouchY = 0.0f;
         this.draggingCellTop = 0.0f;
@@ -115,7 +115,7 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
         this.ignoreLayout = false;
         android.graphics.Point point = AndroidUtilities.displaySize;
         this.isPortrait = point.y > point.x;
-        this.themeDelegate = themeDelegate;
+        this.themeDelegate = resourcesProvider;
         setWillNotDraw(false);
         ActionBarMenu createMenu = this.parentAlert.actionBar.createMenu();
         this.header = new TextView(context);
@@ -1868,7 +1868,8 @@ public class ChatAttachAlertPhotoLayoutPreview extends ChatAttachAlert.AttachAle
     }
 
     public Drawable getThemedDrawable(String str) {
-        Drawable drawable = this.themeDelegate.getDrawable(str);
+        Theme.ResourcesProvider resourcesProvider = this.themeDelegate;
+        Drawable drawable = resourcesProvider != null ? resourcesProvider.getDrawable(str) : null;
         return drawable != null ? drawable : Theme.getThemeDrawable(str);
     }
 }

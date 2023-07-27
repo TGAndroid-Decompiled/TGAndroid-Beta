@@ -20,7 +20,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.Components.FilterShaders;
+import org.telegram.ui.Stories.recorder.StoryEntry;
 public class FilterGLThread extends DispatchQueue {
     private boolean blurred;
     private Bitmap currentBitmap;
@@ -30,6 +32,7 @@ public class FilterGLThread extends DispatchQueue {
     private EGLDisplay eglDisplay;
     private EGLSurface eglSurface;
     private FilterShaders filterShaders;
+    private boolean filterTextureAvailable;
     private boolean initied;
     private long lastRenderCallTime;
     private int orientation;
@@ -57,7 +60,7 @@ public class FilterGLThread extends DispatchQueue {
         void onVideoSurfaceCreated(SurfaceTexture surfaceTexture);
     }
 
-    public FilterGLThread(SurfaceTexture surfaceTexture, Bitmap bitmap, int i, boolean z) {
+    public FilterGLThread(SurfaceTexture surfaceTexture, Bitmap bitmap, int i, boolean z, StoryEntry.HDRInfo hDRInfo, boolean z2) {
         super("PhotoFilterGLThread", false);
         this.videoTextureMatrix = new float[16];
         this.videoTexture = new int[1];
@@ -65,27 +68,29 @@ public class FilterGLThread extends DispatchQueue {
             @Override
             public void run() {
                 if (FilterGLThread.this.initied) {
-                    if ((FilterGLThread.this.eglContext.equals(FilterGLThread.this.egl10.eglGetCurrentContext()) && FilterGLThread.this.eglSurface.equals(FilterGLThread.this.egl10.eglGetCurrentSurface(12377))) || FilterGLThread.this.egl10.eglMakeCurrent(FilterGLThread.this.eglDisplay, FilterGLThread.this.eglSurface, FilterGLThread.this.eglSurface, FilterGLThread.this.eglContext)) {
-                        if (FilterGLThread.this.updateSurface) {
-                            FilterGLThread.this.videoSurfaceTexture.updateTexImage();
-                            FilterGLThread.this.videoSurfaceTexture.getTransformMatrix(FilterGLThread.this.videoTextureMatrix);
-                            FilterGLThread.this.setRenderData();
-                            FilterGLThread.this.updateSurface = false;
-                            FilterGLThread.this.filterShaders.onVideoFrameUpdate(FilterGLThread.this.videoTextureMatrix);
-                            FilterGLThread.this.videoFrameAvailable = true;
-                        }
-                        if (FilterGLThread.this.renderDataSet) {
-                            if (FilterGLThread.this.videoDelegate == null || FilterGLThread.this.videoFrameAvailable) {
-                                GLES20.glViewport(0, 0, FilterGLThread.this.renderBufferWidth, FilterGLThread.this.renderBufferHeight);
-                                FilterGLThread.this.filterShaders.drawSkinSmoothPass();
-                                FilterGLThread.this.filterShaders.drawEnhancePass();
-                                if (FilterGLThread.this.videoDelegate == null) {
-                                    FilterGLThread.this.filterShaders.drawSharpenPass();
-                                }
-                                FilterGLThread.this.filterShaders.drawCustomParamsPass();
-                                FilterGLThread filterGLThread = FilterGLThread.this;
-                                filterGLThread.blurred = filterGLThread.filterShaders.drawBlurPass();
+                    FilterGLThread.this.makeCurrentContext();
+                    if (FilterGLThread.this.updateSurface) {
+                        FilterGLThread.this.videoSurfaceTexture.updateTexImage();
+                        FilterGLThread.this.videoSurfaceTexture.getTransformMatrix(FilterGLThread.this.videoTextureMatrix);
+                        FilterGLThread.this.setRenderData();
+                        FilterGLThread.this.updateSurface = false;
+                        FilterGLThread.this.filterShaders.onVideoFrameUpdate(FilterGLThread.this.videoTextureMatrix);
+                        FilterGLThread.this.videoFrameAvailable = true;
+                    }
+                    if (FilterGLThread.this.renderDataSet) {
+                        if (FilterGLThread.this.videoDelegate == null || FilterGLThread.this.videoFrameAvailable) {
+                            GLES20.glViewport(0, 0, FilterGLThread.this.renderBufferWidth, FilterGLThread.this.renderBufferHeight);
+                            FilterGLThread.this.filterShaders.drawSkinSmoothPass();
+                            FilterGLThread.this.filterShaders.drawEnhancePass();
+                            if (FilterGLThread.this.videoDelegate == null) {
+                                FilterGLThread.this.filterShaders.drawSharpenPass();
                             }
+                            FilterGLThread.this.filterShaders.drawCustomParamsPass();
+                            FilterGLThread filterGLThread = FilterGLThread.this;
+                            filterGLThread.blurred = filterGLThread.filterShaders.drawBlurPass();
+                            FilterGLThread.this.filterTextureAvailable = true;
+                        }
+                        if (FilterGLThread.this.filterTextureAvailable) {
                             GLES20.glViewport(0, 0, FilterGLThread.this.surfaceWidth, FilterGLThread.this.surfaceHeight);
                             GLES20.glBindFramebuffer(36160, 0);
                             GLES20.glUseProgram(FilterGLThread.this.simpleShaderProgram);
@@ -99,8 +104,6 @@ public class FilterGLThread extends DispatchQueue {
                             GLES20.glDrawArrays(5, 0, 4);
                             FilterGLThread.this.egl10.eglSwapBuffers(FilterGLThread.this.eglDisplay, FilterGLThread.this.eglSurface);
                         }
-                    } else if (BuildVars.LOGS_ENABLED) {
-                        FileLog.e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(FilterGLThread.this.egl10.eglGetError()));
                     }
                 }
             }
@@ -108,7 +111,9 @@ public class FilterGLThread extends DispatchQueue {
         this.surfaceTexture = surfaceTexture;
         this.currentBitmap = bitmap;
         this.orientation = i;
-        this.filterShaders = new FilterShaders(false);
+        FilterShaders filterShaders = new FilterShaders(false, hDRInfo);
+        this.filterShaders = filterShaders;
+        filterShaders.setScaleBitmap(z2);
         float[] fArr = {0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f};
         if (z) {
             float f = fArr[2];
@@ -127,7 +132,7 @@ public class FilterGLThread extends DispatchQueue {
         start();
     }
 
-    public FilterGLThread(SurfaceTexture surfaceTexture, FilterGLThreadVideoDelegate filterGLThreadVideoDelegate) {
+    public FilterGLThread(SurfaceTexture surfaceTexture, FilterGLThreadVideoDelegate filterGLThreadVideoDelegate, StoryEntry.HDRInfo hDRInfo) {
         super("VideoFilterGLThread", false);
         this.videoTextureMatrix = new float[16];
         this.videoTexture = new int[1];
@@ -135,27 +140,29 @@ public class FilterGLThread extends DispatchQueue {
             @Override
             public void run() {
                 if (FilterGLThread.this.initied) {
-                    if ((FilterGLThread.this.eglContext.equals(FilterGLThread.this.egl10.eglGetCurrentContext()) && FilterGLThread.this.eglSurface.equals(FilterGLThread.this.egl10.eglGetCurrentSurface(12377))) || FilterGLThread.this.egl10.eglMakeCurrent(FilterGLThread.this.eglDisplay, FilterGLThread.this.eglSurface, FilterGLThread.this.eglSurface, FilterGLThread.this.eglContext)) {
-                        if (FilterGLThread.this.updateSurface) {
-                            FilterGLThread.this.videoSurfaceTexture.updateTexImage();
-                            FilterGLThread.this.videoSurfaceTexture.getTransformMatrix(FilterGLThread.this.videoTextureMatrix);
-                            FilterGLThread.this.setRenderData();
-                            FilterGLThread.this.updateSurface = false;
-                            FilterGLThread.this.filterShaders.onVideoFrameUpdate(FilterGLThread.this.videoTextureMatrix);
-                            FilterGLThread.this.videoFrameAvailable = true;
-                        }
-                        if (FilterGLThread.this.renderDataSet) {
-                            if (FilterGLThread.this.videoDelegate == null || FilterGLThread.this.videoFrameAvailable) {
-                                GLES20.glViewport(0, 0, FilterGLThread.this.renderBufferWidth, FilterGLThread.this.renderBufferHeight);
-                                FilterGLThread.this.filterShaders.drawSkinSmoothPass();
-                                FilterGLThread.this.filterShaders.drawEnhancePass();
-                                if (FilterGLThread.this.videoDelegate == null) {
-                                    FilterGLThread.this.filterShaders.drawSharpenPass();
-                                }
-                                FilterGLThread.this.filterShaders.drawCustomParamsPass();
-                                FilterGLThread filterGLThread = FilterGLThread.this;
-                                filterGLThread.blurred = filterGLThread.filterShaders.drawBlurPass();
+                    FilterGLThread.this.makeCurrentContext();
+                    if (FilterGLThread.this.updateSurface) {
+                        FilterGLThread.this.videoSurfaceTexture.updateTexImage();
+                        FilterGLThread.this.videoSurfaceTexture.getTransformMatrix(FilterGLThread.this.videoTextureMatrix);
+                        FilterGLThread.this.setRenderData();
+                        FilterGLThread.this.updateSurface = false;
+                        FilterGLThread.this.filterShaders.onVideoFrameUpdate(FilterGLThread.this.videoTextureMatrix);
+                        FilterGLThread.this.videoFrameAvailable = true;
+                    }
+                    if (FilterGLThread.this.renderDataSet) {
+                        if (FilterGLThread.this.videoDelegate == null || FilterGLThread.this.videoFrameAvailable) {
+                            GLES20.glViewport(0, 0, FilterGLThread.this.renderBufferWidth, FilterGLThread.this.renderBufferHeight);
+                            FilterGLThread.this.filterShaders.drawSkinSmoothPass();
+                            FilterGLThread.this.filterShaders.drawEnhancePass();
+                            if (FilterGLThread.this.videoDelegate == null) {
+                                FilterGLThread.this.filterShaders.drawSharpenPass();
                             }
+                            FilterGLThread.this.filterShaders.drawCustomParamsPass();
+                            FilterGLThread filterGLThread = FilterGLThread.this;
+                            filterGLThread.blurred = filterGLThread.filterShaders.drawBlurPass();
+                            FilterGLThread.this.filterTextureAvailable = true;
+                        }
+                        if (FilterGLThread.this.filterTextureAvailable) {
                             GLES20.glViewport(0, 0, FilterGLThread.this.surfaceWidth, FilterGLThread.this.surfaceHeight);
                             GLES20.glBindFramebuffer(36160, 0);
                             GLES20.glUseProgram(FilterGLThread.this.simpleShaderProgram);
@@ -169,19 +176,31 @@ public class FilterGLThread extends DispatchQueue {
                             GLES20.glDrawArrays(5, 0, 4);
                             FilterGLThread.this.egl10.eglSwapBuffers(FilterGLThread.this.eglDisplay, FilterGLThread.this.eglSurface);
                         }
-                    } else if (BuildVars.LOGS_ENABLED) {
-                        FileLog.e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(FilterGLThread.this.egl10.eglGetError()));
                     }
                 }
             }
         };
         this.surfaceTexture = surfaceTexture;
         this.videoDelegate = filterGLThreadVideoDelegate;
-        this.filterShaders = new FilterShaders(true);
+        this.filterShaders = new FilterShaders(true, hDRInfo);
         start();
     }
 
-    public void lambda$setFilterGLThreadDelegate$0(FilterShaders.FilterShadersDelegate filterShadersDelegate) {
+    public void updateHDRInfo(final StoryEntry.HDRInfo hDRInfo) {
+        postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                FilterGLThread.this.lambda$updateHDRInfo$0(hDRInfo);
+            }
+        });
+    }
+
+    public void lambda$updateHDRInfo$0(StoryEntry.HDRInfo hDRInfo) {
+        makeCurrentContext();
+        this.filterShaders.updateHDRInfo(hDRInfo);
+    }
+
+    public void lambda$setFilterGLThreadDelegate$1(FilterShaders.FilterShadersDelegate filterShadersDelegate) {
         this.filterShaders.setDelegate(filterShadersDelegate);
     }
 
@@ -189,7 +208,7 @@ public class FilterGLThread extends DispatchQueue {
         postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FilterGLThread.this.lambda$setFilterGLThreadDelegate$0(filterShadersDelegate);
+                FilterGLThread.this.lambda$setFilterGLThreadDelegate$1(filterShadersDelegate);
             }
         });
     }
@@ -251,8 +270,8 @@ public class FilterGLThread extends DispatchQueue {
                     finish();
                     return false;
                 } else {
-                    int loadShader = FilterShaders.loadShader(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 texCoord;void main() {gl_Position = position;texCoord = inputTexCoord;}");
-                    int loadShader2 = FilterShaders.loadShader(35632, "varying highp vec2 texCoord;uniform sampler2D sourceImage;void main() {gl_FragColor = texture2D(sourceImage, texCoord);}");
+                    int loadShader = FilterShaders.loadShader(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
+                    int loadShader2 = FilterShaders.loadShader(35632, "varying highp vec2 vTextureCoord;uniform sampler2D sTexture;void main() {gl_FragColor = texture2D(sTexture, vTextureCoord);}");
                     if (loadShader == 0 || loadShader2 == 0) {
                         return false;
                     }
@@ -291,7 +310,7 @@ public class FilterGLThread extends DispatchQueue {
                         surfaceTexture2.setOnFrameAvailableListener(new SurfaceTexture.OnFrameAvailableListener() {
                             @Override
                             public final void onFrameAvailable(SurfaceTexture surfaceTexture3) {
-                                FilterGLThread.this.lambda$initGL$1(surfaceTexture3);
+                                FilterGLThread.this.lambda$initGL$2(surfaceTexture3);
                             }
                         });
                         GLES20.glBindTexture(36197, this.videoTexture[0]);
@@ -302,7 +321,7 @@ public class FilterGLThread extends DispatchQueue {
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                FilterGLThread.this.lambda$initGL$2();
+                                FilterGLThread.this.lambda$initGL$3();
                             }
                         });
                     }
@@ -330,11 +349,11 @@ public class FilterGLThread extends DispatchQueue {
         }
     }
 
-    public void lambda$initGL$1(SurfaceTexture surfaceTexture) {
+    public void lambda$initGL$2(SurfaceTexture surfaceTexture) {
         requestRender(false, true, true);
     }
 
-    public void lambda$initGL$2() {
+    public void lambda$initGL$3() {
         this.videoDelegate.onVideoSurfaceCreated(this.videoSurfaceTexture);
     }
 
@@ -342,20 +361,37 @@ public class FilterGLThread extends DispatchQueue {
         postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FilterGLThread.this.lambda$setVideoSize$3(i, i2);
+                FilterGLThread.this.lambda$setVideoSize$4(i, i2);
             }
         });
     }
 
-    public void lambda$setVideoSize$3(int i, int i2) {
+    public void lambda$setVideoSize$4(int i, int i2) {
         if (this.videoWidth == i && this.videoHeight == i2) {
             return;
         }
         this.videoWidth = i;
         this.videoHeight = i2;
-        if (i > 1280 || i2 > 1280) {
-            this.videoWidth = i / 2;
-            this.videoHeight = i2 / 2;
+        int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+        int i3 = 1920;
+        if (devicePerformanceClass != 1) {
+            if (devicePerformanceClass != 2) {
+                i3 = 1280;
+            } else {
+                android.graphics.Point point = AndroidUtilities.displaySize;
+                i3 = Math.min(1920, Math.max(point.x, point.y));
+            }
+        }
+        int i4 = this.videoWidth;
+        if (i4 > i3 || this.videoHeight > i3) {
+            int i5 = this.videoHeight;
+            if (i4 > i5) {
+                this.videoHeight = (int) (i5 / (i3 / i4));
+                this.videoWidth = i3;
+            } else {
+                this.videoWidth = (int) (i4 / (i3 / i5));
+                this.videoHeight = i3;
+            }
         }
         this.renderDataSet = false;
         setRenderData();
@@ -400,6 +436,19 @@ public class FilterGLThread extends DispatchQueue {
         this.renderBufferHeight = this.filterShaders.getRenderBufferHeight();
     }
 
+    public void makeCurrentContext() {
+        if (this.eglContext.equals(this.egl10.eglGetCurrentContext()) && this.eglSurface.equals(this.egl10.eglGetCurrentSurface(12377))) {
+            return;
+        }
+        EGL10 egl10 = this.egl10;
+        EGLDisplay eGLDisplay = this.eglDisplay;
+        EGLSurface eGLSurface = this.eglSurface;
+        if (egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.eglContext) || !BuildVars.LOGS_ENABLED) {
+            return;
+        }
+        FileLog.e("eglMakeCurrent failed " + GLUtils.getEGLErrorString(this.egl10.eglGetError()));
+    }
+
     private Bitmap getRenderBufferBitmap() {
         int i;
         int i2 = this.renderBufferWidth;
@@ -421,7 +470,7 @@ public class FilterGLThread extends DispatchQueue {
                 if (postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FilterGLThread.this.lambda$getTexture$4(bitmapArr, countDownLatch);
+                        FilterGLThread.this.lambda$getTexture$5(bitmapArr, countDownLatch);
                     }
                 })) {
                     countDownLatch.await();
@@ -434,7 +483,7 @@ public class FilterGLThread extends DispatchQueue {
         return null;
     }
 
-    public void lambda$getTexture$4(Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
+    public void lambda$getTexture$5(Bitmap[] bitmapArr, CountDownLatch countDownLatch) {
         GLES20.glBindFramebuffer(36160, this.filterShaders.getRenderFrameBuffer());
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, this.filterShaders.getRenderTexture(!this.blurred ? 1 : 0), 0);
         GLES20.glClear(0);
@@ -448,12 +497,12 @@ public class FilterGLThread extends DispatchQueue {
         postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FilterGLThread.this.lambda$shutdown$5();
+                FilterGLThread.this.lambda$shutdown$6();
             }
         });
     }
 
-    public void lambda$shutdown$5() {
+    public void lambda$shutdown$6() {
         finish();
         Looper myLooper = Looper.myLooper();
         if (myLooper != null) {
@@ -465,12 +514,12 @@ public class FilterGLThread extends DispatchQueue {
         postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FilterGLThread.this.lambda$setSurfaceTextureSize$6(i, i2);
+                FilterGLThread.this.lambda$setSurfaceTextureSize$7(i, i2);
             }
         });
     }
 
-    public void lambda$setSurfaceTextureSize$6(int i, int i2) {
+    public void lambda$setSurfaceTextureSize$7(int i, int i2) {
         this.surfaceWidth = i;
         this.surfaceHeight = i2;
     }
@@ -489,12 +538,12 @@ public class FilterGLThread extends DispatchQueue {
         postRunnable(new Runnable() {
             @Override
             public final void run() {
-                FilterGLThread.this.lambda$requestRender$7(z, z3, z2);
+                FilterGLThread.this.lambda$requestRender$8(z, z3, z2);
             }
         });
     }
 
-    public void lambda$requestRender$7(boolean z, boolean z2, boolean z3) {
+    public void lambda$requestRender$8(boolean z, boolean z2, boolean z3) {
         if (z) {
             this.filterShaders.requestUpdateBlurTexture();
         }

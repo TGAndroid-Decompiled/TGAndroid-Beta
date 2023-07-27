@@ -812,7 +812,7 @@ public class ThemesHorizontalListCell extends RecyclerListView implements Notifi
         } else if (themeInfo == Theme.getCurrentTheme()) {
             return;
         } else {
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.FALSE, null, -1);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.FALSE, null, -1);
         }
         updateRows();
         int childCount = getChildCount();

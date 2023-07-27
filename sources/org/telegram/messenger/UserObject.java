@@ -21,6 +21,10 @@ public class UserObject {
         return j == 708513 || j == 1271266957;
     }
 
+    public static boolean isService(long j) {
+        return j == 333000 || j == 777000 || j == 42777;
+    }
+
     public static boolean isDeleted(TLRPC$User tLRPC$User) {
         return tLRPC$User == null || (tLRPC$User instanceof TLRPC$TL_userDeleted_old2) || (tLRPC$User instanceof TLRPC$TL_userEmpty) || tLRPC$User.deleted;
     }

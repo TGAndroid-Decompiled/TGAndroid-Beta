@@ -13,6 +13,16 @@ public abstract class TLRPC$PrivacyKey extends TLObject {
                     }
                 };
                 break;
+            case -1534675103:
+                tLRPC$PrivacyKey = new TLRPC$PrivacyKey() {
+                    public static int constructor = -1534675103;
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                    }
+                };
+                break;
             case -1137792208:
                 tLRPC$PrivacyKey = new TLRPC$PrivacyKey() {
                     public static int constructor = -1137792208;

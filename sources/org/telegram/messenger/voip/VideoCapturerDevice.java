@@ -232,7 +232,12 @@ public class VideoCapturerDevice {
 
         @Override
         public void onStop() {
-            AndroidUtilities.runOnUIThread(VideoCapturerDevice$1$$ExternalSyntheticLambda0.INSTANCE);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    VideoCapturerDevice.AnonymousClass1.lambda$onStop$0();
+                }
+            });
         }
 
         public static void lambda$onStop$0() {
@@ -284,7 +289,12 @@ public class VideoCapturerDevice {
 
         @Override
         public void onFirstFrameAvailable() {
-            AndroidUtilities.runOnUIThread(VideoCapturerDevice$2$$ExternalSyntheticLambda0.INSTANCE);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    VideoCapturerDevice.AnonymousClass2.lambda$onFirstFrameAvailable$0();
+                }
+            });
         }
 
         public static void lambda$onFirstFrameAvailable$0() {

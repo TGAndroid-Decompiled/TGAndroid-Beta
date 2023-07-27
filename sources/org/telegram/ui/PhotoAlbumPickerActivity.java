@@ -224,7 +224,7 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
             }
 
             @Override
-            protected void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
+            public void onLayout(boolean r10, int r11, int r12, int r13, int r14) {
                 throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoAlbumPickerActivity.AnonymousClass2.onLayout(boolean, int, int, int, int):void");
             }
 
@@ -262,7 +262,14 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.emptyView.setVisibility(8);
         this.emptyView.setText(LocaleController.getString("NoPhotos", R.string.NoPhotos));
         this.sizeNotifierFrameLayout.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 48.0f));
-        this.emptyView.setOnTouchListener(PhotoAlbumPickerActivity$$ExternalSyntheticLambda3.INSTANCE);
+        this.emptyView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$createView$0;
+                lambda$createView$0 = PhotoAlbumPickerActivity.lambda$createView$0(view, motionEvent);
+                return lambda$createView$0;
+            }
+        });
         FrameLayout frameLayout = new FrameLayout(context);
         this.progressView = frameLayout;
         frameLayout.setVisibility(8);
@@ -281,7 +288,14 @@ public class PhotoAlbumPickerActivity extends BaseFragment implements Notificati
         this.frameLayout2.setVisibility(4);
         this.frameLayout2.setTranslationY(AndroidUtilities.dp(48.0f));
         this.sizeNotifierFrameLayout.addView(this.frameLayout2, LayoutHelper.createFrame(-1, 48, 83));
-        this.frameLayout2.setOnTouchListener(PhotoAlbumPickerActivity$$ExternalSyntheticLambda4.INSTANCE);
+        this.frameLayout2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                boolean lambda$createView$1;
+                lambda$createView$1 = PhotoAlbumPickerActivity.lambda$createView$1(view2, motionEvent);
+                return lambda$createView$1;
+            }
+        });
         EditTextEmoji editTextEmoji = this.commentTextView;
         if (editTextEmoji != null) {
             editTextEmoji.onDestroy();

@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.ImageReceiver;
@@ -43,7 +44,14 @@ import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.ContactsActivity;
 import org.telegram.ui.DialogsActivity;
 public class DialogOrContactPickerActivity extends BaseFragment {
-    private static final Interpolator interpolator = DialogOrContactPickerActivity$$ExternalSyntheticLambda1.INSTANCE;
+    private static final Interpolator interpolator = new Interpolator() {
+        @Override
+        public final float getInterpolation(float f) {
+            float lambda$static$0;
+            lambda$static$0 = DialogOrContactPickerActivity.lambda$static$0(f);
+            return lambda$static$0;
+        }
+    };
     private boolean animatingForward;
     private boolean backAnimation;
     private ContactsActivity contactsActivity;
@@ -150,8 +158,8 @@ public class DialogOrContactPickerActivity extends BaseFragment {
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
-                DialogOrContactPickerActivity.this.dialogsActivity.getActionBar().openSearchField("", false);
-                DialogOrContactPickerActivity.this.contactsActivity.getActionBar().openSearchField("", false);
+                DialogOrContactPickerActivity.this.dialogsActivity.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
+                DialogOrContactPickerActivity.this.contactsActivity.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
                 DialogOrContactPickerActivity.this.searchItem.getSearchField().requestFocus();
             }
 
@@ -493,6 +501,7 @@ public class DialogOrContactPickerActivity extends BaseFragment {
             viewPageArr3[i].actionBar = viewPageArr3[i].parentFragment.getActionBar();
             ViewPage[] viewPageArr4 = this.viewPages;
             viewPageArr4[i].addView(viewPageArr4[i].fragmentView, LayoutHelper.createFrame(-1, -1.0f));
+            AndroidUtilities.removeFromParent(this.viewPages[i].actionBar);
             ViewPage[] viewPageArr5 = this.viewPages;
             viewPageArr5[i].addView(viewPageArr5[i].actionBar, LayoutHelper.createFrame(-1, -2.0f));
             this.viewPages[i].actionBar.setVisibility(8);

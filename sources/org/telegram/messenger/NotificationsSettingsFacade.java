@@ -16,6 +16,7 @@ public class NotificationsSettingsFacade {
     public static final String PROPERTY_NOTIFY = "notify2_";
     public static final String PROPERTY_NOTIFY_UNTIL = "notifyuntil_";
     public static final String PROPERTY_SILENT = "silent_";
+    public static final String PROPERTY_STORIES_NOTIFY = "stories_";
     private final int currentAccount;
 
     public NotificationsSettingsFacade(int i) {
@@ -34,7 +35,8 @@ public class NotificationsSettingsFacade {
         SharedPreferences.Editor remove2 = remove.remove(PROPERTY_CUSTOM + sharedPrefKey);
         SharedPreferences.Editor remove3 = remove2.remove(PROPERTY_NOTIFY_UNTIL + sharedPrefKey);
         SharedPreferences.Editor remove4 = remove3.remove(PROPERTY_CONTENT_PREVIEW + sharedPrefKey);
-        remove4.remove(PROPERTY_SILENT + sharedPrefKey).apply();
+        SharedPreferences.Editor remove5 = remove4.remove(PROPERTY_SILENT + sharedPrefKey);
+        remove5.remove(PROPERTY_STORIES_NOTIFY + sharedPrefKey).apply();
     }
 
     public int getProperty(String str, long j, int i, int i2) {
@@ -112,7 +114,7 @@ public class NotificationsSettingsFacade {
     }
 
     public void lambda$applyDialogNotificationsSettings$0() {
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
     }
 
     public void applySoundSettings(TLRPC$NotificationSound tLRPC$NotificationSound, SharedPreferences.Editor editor, long j, int i, int i2, boolean z) {
@@ -131,6 +133,10 @@ public class NotificationsSettingsFacade {
             str = "GroupSound";
             str2 = "GroupSoundDocId";
             str3 = "GroupSoundPath";
+        } else if (i2 == 3) {
+            str = "StoriesSound";
+            str2 = "StoriesSoundDocId";
+            str3 = "StoriesSoundPath";
         } else if (i2 == 1) {
             str = "GlobalSound";
             str2 = "GlobalSoundDocId";

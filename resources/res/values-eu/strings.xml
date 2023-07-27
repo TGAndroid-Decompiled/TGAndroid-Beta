@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Erantzun</string>
+    <string name="call_notification_answer_video_action">Bideoa</string>
+    <string name="call_notification_decline_action">Baztertu</string>
+    <string name="call_notification_hang_up_action">Amaitu deia</string>
+    <string name="call_notification_incoming_text">Jasotako deia</string>
+    <string name="call_notification_ongoing_text">Deia abian da</string>
+    <string name="call_notification_screening_text">Jasotako dei bat bistaratzen</string>
     <string name="common_google_play_services_enable_button">Gaitu</string>
     <string name="common_google_play_services_enable_text">%1$s aplikazioak ez du funtzionatuko Google Play Services gaitzen ez baduzu.</string>
     <string name="common_google_play_services_enable_title">Gaitu Google Play Services</string>

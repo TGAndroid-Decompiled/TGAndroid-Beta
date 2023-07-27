@@ -14,11 +14,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -223,7 +225,7 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
             if (tLRPC$User != null) {
                 str = UserObject.getFirstName(tLRPC$User);
             } else {
-                str = tLRPC$Chat != null ? tLRPC$Chat.title : "";
+                str = tLRPC$Chat != null ? tLRPC$Chat.title : BuildConfig.APP_CENTER_HASH;
             }
             hintDialogCell.setDialog(j, true, str);
         }
@@ -743,7 +745,14 @@ public class DialogsSearchAdapter extends RecyclerListView.SelectionAdapter {
                     }
                 }
             }
-            Collections.sort(arrayList4, DialogsSearchAdapter$$ExternalSyntheticLambda20.INSTANCE);
+            Collections.sort(arrayList4, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    int lambda$loadRecentSearch$5;
+                    lambda$loadRecentSearch$5 = DialogsSearchAdapter.lambda$loadRecentSearch$5((DialogsSearchAdapter.RecentSearchObject) obj, (DialogsSearchAdapter.RecentSearchObject) obj2);
+                    return lambda$loadRecentSearch$5;
+                }
+            });
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

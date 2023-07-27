@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -76,7 +77,14 @@ public class ChangeBioActivity extends BaseFragment {
         this.fragmentView = linearLayout;
         LinearLayout linearLayout2 = linearLayout;
         linearLayout2.setOrientation(1);
-        this.fragmentView.setOnTouchListener(ChangeBioActivity$$ExternalSyntheticLambda1.INSTANCE);
+        this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$createView$0;
+                lambda$createView$0 = ChangeBioActivity.lambda$createView$0(view, motionEvent);
+                return lambda$createView$0;
+            }
+        });
         FrameLayout frameLayout = new FrameLayout(context);
         linearLayout2.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 24.0f, 24.0f, 20.0f, 0.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context) {
@@ -107,7 +115,7 @@ public class ChangeBioActivity extends BaseFragment {
             public CharSequence filter(CharSequence charSequence, int i3, int i4, Spanned spanned, int i5, int i6) {
                 if (charSequence != null && charSequence.length() > 0 && TextUtils.indexOf(charSequence, '\n') == charSequence.length() - 1) {
                     ChangeBioActivity.this.doneButton.performClick();
-                    return "";
+                    return BuildConfig.APP_CENTER_HASH;
                 }
                 CharSequence filter = super.filter(charSequence, i3, i4, spanned, i5, i6);
                 if (filter != null && charSequence != null && filter.length() != charSequence.length()) {
@@ -199,9 +207,9 @@ public class ChangeBioActivity extends BaseFragment {
         }
         String str = userFull.about;
         if (str == null) {
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         }
-        final String replace = this.firstNameField.getText().toString().replace("\n", "");
+        final String replace = this.firstNameField.getText().toString().replace("\n", BuildConfig.APP_CENTER_HASH);
         if (str.equals(replace)) {
             finishFragment();
             return;
@@ -252,7 +260,7 @@ public class ChangeBioActivity extends BaseFragment {
             FileLog.e(e);
         }
         tLRPC$UserFull.about = str;
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(tLRPC$User.id), tLRPC$UserFull);
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(tLRPC$User.id), tLRPC$UserFull);
         finishFragment();
     }
 

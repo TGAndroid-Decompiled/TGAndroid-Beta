@@ -14,7 +14,7 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public class CameraSession {
     public static final int ORIENTATION_HYSTERESIS = 5;
-    protected CameraInfo cameraInfo;
+    public CameraInfo cameraInfo;
     private String currentFlashMode;
     private int currentOrientation;
     private float currentZoom;
@@ -37,9 +37,15 @@ public class CameraSession {
     private int lastOrientation = -1;
     private int lastDisplayOrientation = -1;
     private boolean flipFront = true;
+    protected ArrayList<String> availableFlashModes = new ArrayList<>();
     private int infoCameraId = -1;
     Camera.CameraInfo info = new Camera.CameraInfo();
-    private Camera.AutoFocusCallback autoFocusCallback = CameraSession$$ExternalSyntheticLambda0.INSTANCE;
+    private Camera.AutoFocusCallback autoFocusCallback = new Camera.AutoFocusCallback() {
+        @Override
+        public final void onAutoFocus(boolean z, Camera camera) {
+            CameraSession.lambda$new$0(z, camera);
+        }
+    };
 
     public static void lambda$new$0(boolean z, Camera camera) {
     }
@@ -105,7 +111,7 @@ public class CameraSession {
     }
 
     public void checkFlashMode(String str) {
-        if (CameraController.getInstance().availableFlashModes.contains(this.currentFlashMode)) {
+        if (this.availableFlashModes.contains(this.currentFlashMode)) {
             return;
         }
         this.currentFlashMode = str;
@@ -133,7 +139,7 @@ public class CameraSession {
     }
 
     public String getNextFlashMode() {
-        ArrayList<String> arrayList = CameraController.getInstance().availableFlashModes;
+        ArrayList<String> arrayList = this.availableFlashModes;
         for (int i = 0; i < arrayList.size(); i++) {
             if (arrayList.get(i).equals(this.currentFlashMode)) {
                 if (i < arrayList.size() - 1) {

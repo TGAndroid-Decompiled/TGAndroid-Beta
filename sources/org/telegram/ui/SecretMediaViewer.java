@@ -849,7 +849,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 }
                 this.isVideo = true;
                 this.centerImage.setImage((ImageLocation) null, (String) null, this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null, -1L, (String) null, messageObject, 2);
-                if (messageObject.getDuration() * 1000 > (messageObject.messageOwner.destroyTime * 1000) - (System.currentTimeMillis() + (ConnectionsManager.getInstance(this.currentAccount).getTimeDifference() * 1000))) {
+                if (((long) (messageObject.getDuration() * 1000.0d)) > (messageObject.messageOwner.destroyTime * 1000) - (System.currentTimeMillis() + (ConnectionsManager.getInstance(this.currentAccount).getTimeDifference() * 1000))) {
                     this.secretDeleteTimer.setDestroyTime(-1L, -1L, true);
                 } else {
                     SecretDeleteTimer secretDeleteTimer2 = this.secretDeleteTimer;

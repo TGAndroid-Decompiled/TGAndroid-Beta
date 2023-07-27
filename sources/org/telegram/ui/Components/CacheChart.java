@@ -20,16 +20,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import com.google.zxing.common.detector.MathUtils;
 import java.util.Arrays;
+import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.CacheChart;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 public class CacheChart extends View {
-    private static final int[] DEFAULT_COLORS = {Theme.key_statisticChartLine_lightblue, Theme.key_statisticChartLine_blue, Theme.key_statisticChartLine_green, Theme.key_statisticChartLine_red, Theme.key_statisticChartLine_lightgreen, Theme.key_statisticChartLine_orange, Theme.key_statisticChartLine_cyan, Theme.key_statisticChartLine_purple, Theme.key_statisticChartLine_golden};
+    private static final int[] DEFAULT_COLORS = {Theme.key_statisticChartLine_lightblue, Theme.key_statisticChartLine_blue, Theme.key_statisticChartLine_green, Theme.key_statisticChartLine_red, Theme.key_statisticChartLine_lightgreen, Theme.key_statisticChartLine_indigo, Theme.key_statisticChartLine_orange, Theme.key_statisticChartLine_cyan, Theme.key_statisticChartLine_purple, Theme.key_statisticChartLine_golden};
     private static final int[] DEFAULT_PARTICLES;
     private static Long loadedStart;
     private static long particlesStart;
@@ -85,7 +88,7 @@ public class CacheChart extends View {
     static {
         int i = R.raw.cache_videos;
         int i2 = R.raw.cache_other;
-        DEFAULT_PARTICLES = new int[]{R.raw.cache_photos, i, R.raw.cache_documents, R.raw.cache_music, i, R.raw.cache_stickers, R.raw.cache_profile_photos, i2, i2};
+        DEFAULT_PARTICLES = new int[]{R.raw.cache_photos, i, R.raw.cache_documents, R.raw.cache_music, i, i2, R.raw.cache_stickers, R.raw.cache_profile_photos, i2, i2};
         particlesStart = -1L;
     }
 
@@ -713,7 +716,14 @@ public class CacheChart extends View {
                 }
                 AndroidUtilities.roundPercents(this.tempFloat, this.tempPercents);
                 if (this.type == 0) {
-                    Arrays.sort(segmentSizeArr2, CacheChart$$ExternalSyntheticLambda0.INSTANCE);
+                    Arrays.sort(segmentSizeArr2, new Comparator() {
+                        @Override
+                        public final int compare(Object obj, Object obj2) {
+                            int lambda$setSegments$0;
+                            lambda$setSegments$0 = CacheChart.lambda$setSegments$0((CacheChart.SegmentSize) obj, (CacheChart.SegmentSize) obj2);
+                            return lambda$setSegments$0;
+                        }
+                    });
                     int i7 = 0;
                     while (true) {
                         if (i7 >= segmentSizeArr2.length - 1) {
@@ -794,18 +804,24 @@ public class CacheChart extends View {
                 }
                 long j4 = j2;
                 String[] split = AndroidUtilities.formatFileSize(j4).split(" ");
-                if (split.length > 0) {
+                int length2 = split.length;
+                String str2 = BuildConfig.APP_CENTER_HASH;
+                if (length2 > 0) {
                     c = 0;
                     str = split[0];
                 } else {
                     c = 0;
-                    str = "";
+                    str = BuildConfig.APP_CENTER_HASH;
                 }
                 if (str.length() >= 4 && j4 < 1073741824) {
                     str = str.split("\\.")[c];
                 }
                 this.topText.setText(str, z);
-                this.bottomText.setText(split.length > 1 ? split[1] : "", z);
+                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.bottomText;
+                if (split.length > 1) {
+                    str2 = split[1];
+                }
+                animatedTextDrawable.setText(str2, z);
                 if (this.completeFloat.get() > 0.0f) {
                     this.topCompleteText.setText(this.topText.getText(), z);
                     this.bottomCompleteText.setText(this.bottomText.getText(), z);

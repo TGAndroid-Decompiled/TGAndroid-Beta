@@ -60,8 +60,32 @@ import org.telegram.ui.Components.voip.RTMPStreamPipOverlay;
 import org.telegram.ui.LaunchActivity;
 import org.webrtc.RendererCommon;
 public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCenterDelegate {
-    private static final FloatPropertyCompat<RTMPStreamPipOverlay> PIP_X_PROPERTY = new SimpleFloatPropertyCompat("pipX", RTMPStreamPipOverlay$$ExternalSyntheticLambda6.INSTANCE, RTMPStreamPipOverlay$$ExternalSyntheticLambda8.INSTANCE);
-    private static final FloatPropertyCompat<RTMPStreamPipOverlay> PIP_Y_PROPERTY = new SimpleFloatPropertyCompat("pipY", RTMPStreamPipOverlay$$ExternalSyntheticLambda5.INSTANCE, RTMPStreamPipOverlay$$ExternalSyntheticLambda7.INSTANCE);
+    private static final FloatPropertyCompat<RTMPStreamPipOverlay> PIP_X_PROPERTY = new SimpleFloatPropertyCompat("pipX", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((RTMPStreamPipOverlay) obj).pipX;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            RTMPStreamPipOverlay.lambda$static$1((RTMPStreamPipOverlay) obj, f);
+        }
+    });
+    private static final FloatPropertyCompat<RTMPStreamPipOverlay> PIP_Y_PROPERTY = new SimpleFloatPropertyCompat("pipY", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((RTMPStreamPipOverlay) obj).pipY;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            RTMPStreamPipOverlay.lambda$static$3((RTMPStreamPipOverlay) obj, f);
+        }
+    });
     @SuppressLint({"StaticFieldLeak"})
     private static RTMPStreamPipOverlay instance = new RTMPStreamPipOverlay();
     private AccountInstance accountInstance;
@@ -196,7 +220,12 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
     private void dismissInternal() {
         if (this.isVisible) {
             this.isVisible = false;
-            AndroidUtilities.runOnUIThread(RTMPStreamPipOverlay$$ExternalSyntheticLambda4.INSTANCE, 100L);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    RTMPStreamPipOverlay.lambda$dismissInternal$6();
+                }
+            }, 100L);
             this.accountInstance.getNotificationCenter().removeObserver(this, NotificationCenter.groupCallUpdated);
             this.accountInstance.getNotificationCenter().removeObserver(this, NotificationCenter.applyGroupCallVisibleParticipants);
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didEndCall);
@@ -229,7 +258,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
     }
 
     public static void lambda$dismissInternal$6() {
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
     }
 
     public static void show() {
@@ -474,7 +503,12 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         int i3 = Theme.key_listSelector;
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i3)));
         imageView.setPadding(dp, dp, dp, dp);
-        imageView.setOnClickListener(RTMPStreamPipOverlay$$ExternalSyntheticLambda2.INSTANCE);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view3) {
+                RTMPStreamPipOverlay.dismiss();
+            }
+        });
         float f = 38;
         float f2 = 4;
         this.controlsView.addView(imageView, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, f2, 0.0f));
@@ -517,7 +551,7 @@ public class RTMPStreamPipOverlay implements NotificationCenter.NotificationCent
         animatorSet.playTogether(ObjectAnimator.ofFloat(this.contentView, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(this.contentView, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(this.contentView, View.SCALE_Y, 1.0f));
         animatorSet.start();
         bindTextureView();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
     }
 
     public class AnonymousClass3 implements ScaleGestureDetector.OnScaleGestureListener {

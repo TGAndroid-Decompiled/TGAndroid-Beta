@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.CharacterCompat;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_channelForbidden extends TLRPC$Chat {
     public static int constructor = 399807445;
@@ -14,7 +13,7 @@ public class TLRPC$TL_channelForbidden extends TLRPC$Chat {
         this.id = abstractSerializedData.readInt64(z);
         this.access_hash = abstractSerializedData.readInt64(z);
         this.title = abstractSerializedData.readString(z);
-        if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {
+        if ((this.flags & 65536) != 0) {
             this.until_date = abstractSerializedData.readInt32(z);
         }
     }
@@ -30,7 +29,7 @@ public class TLRPC$TL_channelForbidden extends TLRPC$Chat {
         abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeString(this.title);
-        if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {
+        if ((this.flags & 65536) != 0) {
             abstractSerializedData.writeInt32(this.until_date);
         }
     }

@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 public class PaintTypeface {
     public static final List<PaintTypeface> BUILT_IN_FONTS;
@@ -24,42 +25,143 @@ public class PaintTypeface {
     public static final PaintTypeface ROBOTO_MEDIUM;
     public static final PaintTypeface ROBOTO_MONO;
     public static final PaintTypeface ROBOTO_SERIF;
+    public static boolean loadingTypefaces;
     private static final List<String> preferable;
     private static List<PaintTypeface> typefaces;
     private final String key;
+    private final LazyTypeface lazyTypeface;
     private final String name;
     private final String nameKey;
     private final Typeface typeface;
 
     static {
-        PaintTypeface paintTypeface = new PaintTypeface("roboto", "PhotoEditorTypefaceRoboto", AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        PaintTypeface paintTypeface = new PaintTypeface("roboto", "PhotoEditorTypefaceRoboto", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+            @Override
+            public final Typeface load() {
+                Typeface lambda$static$0;
+                lambda$static$0 = PaintTypeface.lambda$static$0();
+                return lambda$static$0;
+            }
+        }));
         ROBOTO_MEDIUM = paintTypeface;
-        PaintTypeface paintTypeface2 = new PaintTypeface("italic", "PhotoEditorTypefaceItalic", AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM_ITALIC));
+        PaintTypeface paintTypeface2 = new PaintTypeface("italic", "PhotoEditorTypefaceItalic", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+            @Override
+            public final Typeface load() {
+                Typeface lambda$static$1;
+                lambda$static$1 = PaintTypeface.lambda$static$1();
+                return lambda$static$1;
+            }
+        }));
         ROBOTO_ITALIC = paintTypeface2;
-        PaintTypeface paintTypeface3 = new PaintTypeface("serif", "PhotoEditorTypefaceSerif", Typeface.create("serif", 1));
+        PaintTypeface paintTypeface3 = new PaintTypeface("serif", "PhotoEditorTypefaceSerif", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+            @Override
+            public final Typeface load() {
+                Typeface lambda$static$2;
+                lambda$static$2 = PaintTypeface.lambda$static$2();
+                return lambda$static$2;
+            }
+        }));
         ROBOTO_SERIF = paintTypeface3;
-        PaintTypeface paintTypeface4 = new PaintTypeface("mono", "PhotoEditorTypefaceMono", AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MONO));
+        PaintTypeface paintTypeface4 = new PaintTypeface("mono", "PhotoEditorTypefaceMono", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+            @Override
+            public final Typeface load() {
+                Typeface lambda$static$3;
+                lambda$static$3 = PaintTypeface.lambda$static$3();
+                return lambda$static$3;
+            }
+        }));
         ROBOTO_MONO = paintTypeface4;
-        PaintTypeface paintTypeface5 = new PaintTypeface("mw_bold", "PhotoEditorTypefaceMerriweather", AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_MERRIWEATHER_BOLD));
+        PaintTypeface paintTypeface5 = new PaintTypeface("mw_bold", "PhotoEditorTypefaceMerriweather", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+            @Override
+            public final Typeface load() {
+                Typeface lambda$static$4;
+                lambda$static$4 = PaintTypeface.lambda$static$4();
+                return lambda$static$4;
+            }
+        }));
         MW_BOLD = paintTypeface5;
-        PaintTypeface paintTypeface6 = new PaintTypeface("courier_new_bold", "PhotoEditorTypefaceCourierNew", AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_COURIER_NEW_BOLD));
+        PaintTypeface paintTypeface6 = new PaintTypeface("courier_new_bold", "PhotoEditorTypefaceCourierNew", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+            @Override
+            public final Typeface load() {
+                Typeface lambda$static$5;
+                lambda$static$5 = PaintTypeface.lambda$static$5();
+                return lambda$static$5;
+            }
+        }));
         COURIER_NEW_BOLD = paintTypeface6;
         BUILT_IN_FONTS = Arrays.asList(paintTypeface, paintTypeface2, paintTypeface3, paintTypeface4, paintTypeface5, paintTypeface6);
         preferable = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
     }
 
-    PaintTypeface(String str, String str2, Typeface typeface) {
+    public static Typeface lambda$static$0() {
+        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM);
+    }
+
+    public static Typeface lambda$static$1() {
+        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM_ITALIC);
+    }
+
+    public static Typeface lambda$static$2() {
+        return Typeface.create("serif", 1);
+    }
+
+    public static Typeface lambda$static$3() {
+        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MONO);
+    }
+
+    public static Typeface lambda$static$4() {
+        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_MERRIWEATHER_BOLD);
+    }
+
+    public static Typeface lambda$static$5() {
+        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_COURIER_NEW_BOLD);
+    }
+
+    private static class LazyTypeface {
+        private final LazyTypefaceLoader loader;
+        private Typeface typeface;
+
+        public interface LazyTypefaceLoader {
+            Typeface load();
+        }
+
+        public LazyTypeface(LazyTypefaceLoader lazyTypefaceLoader) {
+            this.loader = lazyTypefaceLoader;
+        }
+
+        public Typeface get() {
+            if (this.typeface == null) {
+                this.typeface = this.loader.load();
+            }
+            return this.typeface;
+        }
+    }
+
+    PaintTypeface(String str, String str2, LazyTypeface lazyTypeface) {
         this.key = str;
         this.nameKey = str2;
         this.name = null;
-        this.typeface = typeface;
+        this.typeface = null;
+        this.lazyTypeface = lazyTypeface;
     }
 
-    PaintTypeface(Font font, String str) {
+    PaintTypeface(final Font font, String str) {
         this.key = str;
         this.name = str;
         this.nameKey = null;
-        this.typeface = Typeface.createFromFile(font.getFile());
+        this.typeface = null;
+        this.lazyTypeface = new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+            @Override
+            public final Typeface load() {
+                Typeface lambda$new$6;
+                lambda$new$6 = PaintTypeface.lambda$new$6(font);
+                return lambda$new$6;
+            }
+        });
+    }
+
+    public static Typeface lambda$new$6(Font font) {
+        return Typeface.createFromFile(font.getFile());
     }
 
     public String getKey() {
@@ -67,6 +169,10 @@ public class PaintTypeface {
     }
 
     public Typeface getTypeface() {
+        LazyTypeface lazyTypeface = this.lazyTypeface;
+        if (lazyTypeface != null) {
+            return lazyTypeface.get();
+        }
         return this.typeface;
     }
 
@@ -75,68 +181,81 @@ public class PaintTypeface {
         return str != null ? str : LocaleController.getString(this.nameKey);
     }
 
-    public static List<PaintTypeface> get() {
+    private static void load() {
+        if (typefaces != null || loadingTypefaces) {
+            return;
+        }
+        loadingTypefaces = true;
+        Utilities.themeQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                PaintTypeface.lambda$load$8();
+            }
+        });
+    }
+
+    public static void lambda$load$8() {
         FontData parseFont;
-        if (typefaces == null) {
-            typefaces = new ArrayList(BUILT_IN_FONTS);
-            if (Build.VERSION.SDK_INT >= 29) {
-                HashMap hashMap = new HashMap();
-                for (Font font : SystemFonts.getAvailableFonts()) {
-                    if (!font.getFile().getName().contains("Noto") && (parseFont = parseFont(font)) != null) {
-                        Family family = (Family) hashMap.get(parseFont.family);
-                        if (family == null) {
-                            family = new Family();
-                            hashMap.put(parseFont.family, family);
-                        }
-                        family.fonts.add(parseFont);
+        final ArrayList arrayList = new ArrayList(BUILT_IN_FONTS);
+        if (Build.VERSION.SDK_INT >= 29) {
+            HashMap hashMap = new HashMap();
+            for (Font font : SystemFonts.getAvailableFonts()) {
+                if (!font.getFile().getName().contains("Noto") && (parseFont = parseFont(font)) != null) {
+                    Family family = (Family) hashMap.get(parseFont.family);
+                    if (family == null) {
+                        family = new Family();
+                        hashMap.put(parseFont.family, family);
                     }
+                    family.fonts.add(parseFont);
                 }
-                for (String str : preferable) {
-                    Family family2 = (Family) hashMap.get(str);
-                    if (family2 != null) {
-                        FontData regular = family2.getRegular();
-                        typefaces.add(new PaintTypeface(regular.font, regular.getName()));
+            }
+            for (String str : preferable) {
+                Family family2 = (Family) hashMap.get(str);
+                if (family2 != null) {
+                    FontData bold = family2.getBold();
+                    if (bold == null) {
+                        bold = family2.getRegular();
+                    }
+                    if (bold != null) {
+                        arrayList.add(new PaintTypeface(bold.font, bold.getName()));
                     }
                 }
             }
         }
-        return typefaces;
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                PaintTypeface.lambda$load$7(arrayList);
+            }
+        });
+    }
+
+    public static void lambda$load$7(ArrayList arrayList) {
+        typefaces = arrayList;
+        loadingTypefaces = false;
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.customTypefacesLoaded, new Object[0]);
+    }
+
+    public static List<PaintTypeface> get() {
+        List<PaintTypeface> list = typefaces;
+        if (list == null) {
+            load();
+            return BUILT_IN_FONTS;
+        }
+        return list;
     }
 
     public static PaintTypeface find(String str) {
         if (str != null && !TextUtils.isEmpty(str)) {
-            if (typefaces == null) {
-                get();
-            }
-            if (typefaces == null) {
-                return null;
-            }
-            for (int i = 0; i < typefaces.size(); i++) {
-                PaintTypeface paintTypeface = typefaces.get(i);
+            List<PaintTypeface> list = get();
+            for (int i = 0; i < list.size(); i++) {
+                PaintTypeface paintTypeface = list.get(i);
                 if (paintTypeface != null && TextUtils.equals(str, paintTypeface.key)) {
                     return paintTypeface;
                 }
             }
         }
         return null;
-    }
-
-    public static boolean fetched(final Runnable runnable) {
-        if (typefaces != null || runnable == null) {
-            return true;
-        }
-        Utilities.themeQueue.postRunnable(new Runnable() {
-            @Override
-            public final void run() {
-                PaintTypeface.lambda$fetched$0(runnable);
-            }
-        });
-        return false;
-    }
-
-    public static void lambda$fetched$0(Runnable runnable) {
-        get();
-        AndroidUtilities.runOnUIThread(runnable);
     }
 
     public static class Family {
@@ -160,6 +279,15 @@ public class PaintTypeface {
                 }
             }
             return (fontData != null || this.fonts.isEmpty()) ? fontData : this.fonts.get(0);
+        }
+
+        public FontData getBold() {
+            for (int i = 0; i < this.fonts.size(); i++) {
+                if ("Bold".equalsIgnoreCase(this.fonts.get(i).subfamily)) {
+                    return this.fonts.get(i);
+                }
+            }
+            return null;
         }
     }
 

@@ -12,8 +12,10 @@ import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Locale;
 import org.telegram.SQLite.SQLiteCursor;
+import org.telegram.messenger.SecretChatHelper;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.AbstractSerializedData;
@@ -317,7 +319,7 @@ public class SecretChatHelper extends BaseController {
         getMessagesController().dialogs_dict.put(tLRPC$Dialog.id, tLRPC$Dialog);
         getMessagesController().allDialogs.add(tLRPC$Dialog);
         getMessagesController().sortDialogs(null);
-        getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
     }
 
     public void lambda$processUpdateEncryption$2(TLRPC$EncryptedChat tLRPC$EncryptedChat, TLRPC$EncryptedChat tLRPC$EncryptedChat2) {
@@ -325,7 +327,7 @@ public class SecretChatHelper extends BaseController {
             getMessagesController().putEncryptedChat(tLRPC$EncryptedChat2, false);
         }
         getMessagesStorage().updateEncryptedChat(tLRPC$EncryptedChat2);
-        getNotificationCenter().postNotificationName(NotificationCenter.encryptedChatUpdated, tLRPC$EncryptedChat2);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.encryptedChatUpdated, tLRPC$EncryptedChat2);
     }
 
     public void lambda$processUpdateEncryption$3(long j) {
@@ -513,7 +515,7 @@ public class SecretChatHelper extends BaseController {
                 ArrayList<MessageObject> arrayList = new ArrayList<>();
                 arrayList.add(messageObject);
                 getMessagesController().updateInterfaceWithMessages(tLRPC$Message.dialog_id, arrayList, false);
-                getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, new Object[0]);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
             }
             TLRPC$Message tLRPC$Message2 = tLRPC$Message;
             tLRPC$TL_decryptedMessageService.random_id = tLRPC$Message2.random_id;
@@ -537,7 +539,7 @@ public class SecretChatHelper extends BaseController {
                 ArrayList<MessageObject> arrayList2 = new ArrayList<>();
                 arrayList2.add(messageObject);
                 getMessagesController().updateInterfaceWithMessages(tLRPC$Message.dialog_id, arrayList2, false);
-                getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, new Object[0]);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
             }
             TLRPC$Message tLRPC$Message2 = tLRPC$Message;
             tLRPC$TL_decryptedMessageService.random_id = tLRPC$Message2.random_id;
@@ -594,7 +596,7 @@ public class SecretChatHelper extends BaseController {
                 if (str3 != null && str3.startsWith(FileLoader.getDirectory(4).getAbsolutePath()) && new File(tLRPC$Message.attachPath).renameTo(getFileLoader().getPathToAttach(tLRPC$Message.media.document))) {
                     messageObject.mediaExists = messageObject.attachPathExists;
                     messageObject.attachPathExists = false;
-                    tLRPC$Message.attachPath = "";
+                    tLRPC$Message.attachPath = BuildConfig.APP_CENTER_HASH;
                 }
                 ArrayList<TLRPC$Message> arrayList4 = new ArrayList<>();
                 arrayList4.add(tLRPC$Message);
@@ -849,7 +851,7 @@ public class SecretChatHelper extends BaseController {
 
     public void lambda$performSendEncryptedRequest$4(TLRPC$Message tLRPC$Message, int i, String str) {
         tLRPC$Message.send_state = 0;
-        getNotificationCenter().postNotificationName(NotificationCenter.messageReceivedByServer, Integer.valueOf(tLRPC$Message.id), Integer.valueOf(tLRPC$Message.id), tLRPC$Message, Long.valueOf(tLRPC$Message.dialog_id), 0L, Integer.valueOf(i), Boolean.FALSE);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer, Integer.valueOf(tLRPC$Message.id), Integer.valueOf(tLRPC$Message.id), tLRPC$Message, Long.valueOf(tLRPC$Message.dialog_id), 0L, Integer.valueOf(i), Boolean.FALSE);
         getSendMessagesHelper().processSentMessage(tLRPC$Message.id);
         if (MessageObject.isVideoMessage(tLRPC$Message) || MessageObject.isNewGifMessage(tLRPC$Message) || MessageObject.isRoundVideoMessage(tLRPC$Message)) {
             getSendMessagesHelper().stopVideoService(str);
@@ -859,7 +861,7 @@ public class SecretChatHelper extends BaseController {
 
     public void lambda$performSendEncryptedRequest$6(TLRPC$Message tLRPC$Message) {
         tLRPC$Message.send_state = 2;
-        getNotificationCenter().postNotificationName(NotificationCenter.messageSendError, Integer.valueOf(tLRPC$Message.id));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageSendError, Integer.valueOf(tLRPC$Message.id));
         getSendMessagesHelper().processSentMessage(tLRPC$Message.id);
         if (MessageObject.isVideoMessage(tLRPC$Message) || MessageObject.isNewGifMessage(tLRPC$Message) || MessageObject.isRoundVideoMessage(tLRPC$Message)) {
             getSendMessagesHelper().stopVideoService(tLRPC$Message.attachPath);
@@ -899,10 +901,10 @@ public class SecretChatHelper extends BaseController {
     }
 
     public void lambda$applyPeerLayer$9(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
-        getNotificationCenter().postNotificationName(NotificationCenter.encryptedChatUpdated, tLRPC$EncryptedChat);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.encryptedChatUpdated, tLRPC$EncryptedChat);
     }
 
-    public org.telegram.tgnet.TLRPC$Message processDecryptedObject(org.telegram.tgnet.TLRPC$EncryptedChat r18, org.telegram.tgnet.TLRPC$EncryptedFile r19, int r20, org.telegram.tgnet.TLObject r21, boolean r22) {
+    public org.telegram.tgnet.TLRPC$Message processDecryptedObject(org.telegram.tgnet.TLRPC$EncryptedChat r19, org.telegram.tgnet.TLRPC$EncryptedFile r20, int r21, org.telegram.tgnet.TLObject r22, boolean r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SecretChatHelper.processDecryptedObject(org.telegram.tgnet.TLRPC$EncryptedChat, org.telegram.tgnet.TLRPC$EncryptedFile, int, org.telegram.tgnet.TLObject, boolean):org.telegram.tgnet.TLRPC$Message");
     }
 
@@ -919,8 +921,8 @@ public class SecretChatHelper extends BaseController {
             }
         });
         getMessagesStorage().deleteDialog(j, 1);
-        getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, new Object[0]);
-        getNotificationCenter().postNotificationName(NotificationCenter.removeAllMessagesFromDialog, Long.valueOf(j), Boolean.FALSE, null);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.removeAllMessagesFromDialog, Long.valueOf(j), Boolean.FALSE, null);
     }
 
     public void lambda$processDecryptedObject$11(final long j) {
@@ -1052,7 +1054,14 @@ public class SecretChatHelper extends BaseController {
                 }
                 getUserConfig().saveConfig(false);
             }
-            Collections.sort(arrayList3, SecretChatHelper$$ExternalSyntheticLambda25.INSTANCE);
+            Collections.sort(arrayList3, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    int lambda$resendMessages$13;
+                    lambda$resendMessages$13 = SecretChatHelper.lambda$resendMessages$13((TLRPC$Message) obj, (TLRPC$Message) obj2);
+                    return lambda$resendMessages$13;
+                }
+            });
             ArrayList<TLRPC$EncryptedChat> arrayList4 = new ArrayList<>();
             arrayList4.add(tLRPC$EncryptedChat);
             try {
@@ -1094,7 +1103,14 @@ public class SecretChatHelper extends BaseController {
         if (arrayList2 == null) {
             return;
         }
-        Collections.sort(arrayList2, SecretChatHelper$$ExternalSyntheticLambda24.INSTANCE);
+        Collections.sort(arrayList2, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$checkSecretHoles$16;
+                lambda$checkSecretHoles$16 = SecretChatHelper.lambda$checkSecretHoles$16((SecretChatHelper.TL_decryptedMessageHolder) obj, (SecretChatHelper.TL_decryptedMessageHolder) obj2);
+                return lambda$checkSecretHoles$16;
+            }
+        });
         boolean z = false;
         while (arrayList2.size() > 0 && ((i = (tLRPC$TL_decryptedMessageLayer = (tL_decryptedMessageHolder = arrayList2.get(0)).layer).out_seq_no) == (i2 = tLRPC$EncryptedChat.seq_in) || i2 == i - 2)) {
             applyPeerLayer(tLRPC$EncryptedChat, tLRPC$TL_decryptedMessageLayer.layer);
@@ -1139,7 +1155,7 @@ public class SecretChatHelper extends BaseController {
     public void lambda$decryptMessage$17(TLRPC$TL_encryptedChatDiscarded tLRPC$TL_encryptedChatDiscarded) {
         getMessagesController().putEncryptedChat(tLRPC$TL_encryptedChatDiscarded, false);
         getMessagesStorage().updateEncryptedChat(tLRPC$TL_encryptedChatDiscarded);
-        getNotificationCenter().postNotificationName(NotificationCenter.encryptedChatUpdated, tLRPC$TL_encryptedChatDiscarded);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.encryptedChatUpdated, tLRPC$TL_encryptedChatDiscarded);
     }
 
     public void requestNewSecretChatKey(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
@@ -1163,13 +1179,13 @@ public class SecretChatHelper extends BaseController {
     }
 
     public void lambda$processAcceptedSecretChat$18(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
-        getNotificationCenter().postNotificationName(NotificationCenter.encryptedChatUpdated, tLRPC$EncryptedChat);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.encryptedChatUpdated, tLRPC$EncryptedChat);
         sendNotifyLayerMessage(tLRPC$EncryptedChat, null);
     }
 
     public void lambda$processAcceptedSecretChat$19(TLRPC$TL_encryptedChatDiscarded tLRPC$TL_encryptedChatDiscarded) {
         getMessagesController().putEncryptedChat(tLRPC$TL_encryptedChatDiscarded, false);
-        getNotificationCenter().postNotificationName(NotificationCenter.encryptedChatUpdated, tLRPC$TL_encryptedChatDiscarded);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.encryptedChatUpdated, tLRPC$TL_encryptedChatDiscarded);
     }
 
     public void declineSecretChat(int i, boolean z) {
@@ -1354,7 +1370,7 @@ public class SecretChatHelper extends BaseController {
     }
 
     public void lambda$acceptSecretChat$21(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
-        getNotificationCenter().postNotificationName(NotificationCenter.encryptedChatUpdated, tLRPC$EncryptedChat);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.encryptedChatUpdated, tLRPC$EncryptedChat);
         sendNotifyLayerMessage(tLRPC$EncryptedChat, null);
     }
 
@@ -1488,8 +1504,8 @@ public class SecretChatHelper extends BaseController {
         getMessagesController().allDialogs.add(tLRPC$TL_dialog);
         getMessagesController().sortDialogs(null);
         getMessagesStorage().putEncryptedChat(tLRPC$EncryptedChat, tLRPC$User, tLRPC$TL_dialog);
-        getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, new Object[0]);
-        getNotificationCenter().postNotificationName(NotificationCenter.encryptedChatCreated, tLRPC$EncryptedChat);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.encryptedChatCreated, tLRPC$EncryptedChat);
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {

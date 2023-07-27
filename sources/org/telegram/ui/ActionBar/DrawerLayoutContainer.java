@@ -51,6 +51,8 @@ public class DrawerLayoutContainer extends FrameLayout {
     private Object lastInsets;
     private boolean maybeStartTracking;
     private int minDrawerMargin;
+    private View navigationBar;
+    private Paint navigationBarPaint;
     private INavigationLayout parentActionBarLayout;
     private BitmapDrawable previewBlurDrawable;
     private PreviewForegroundDrawable previewForegroundDrawable;
@@ -72,6 +74,7 @@ public class DrawerLayoutContainer extends FrameLayout {
 
     public DrawerLayoutContainer(Context context) {
         super(context);
+        this.navigationBarPaint = new Paint();
         this.rect = new Rect();
         this.scrimPaint = new Paint();
         this.backgroundPaint = new Paint();
@@ -547,12 +550,27 @@ public class DrawerLayoutContainer extends FrameLayout {
                     if (i6 <= 0) {
                         i6 = View.MeasureSpec.makeMeasureSpec((size2 - layoutParams.topMargin) - layoutParams.bottomMargin, 1073741824);
                     }
+                    if ((childAt instanceof ActionBarLayout) && ((ActionBarLayout) childAt).storyViewerAttached()) {
+                        childAt.forceLayout();
+                    }
                     childAt.measure(makeMeasureSpec, i6);
                 } else {
                     childAt.setPadding(0, 0, 0, 0);
                     childAt.measure(FrameLayout.getChildMeasureSpec(i, this.minDrawerMargin + layoutParams.leftMargin + layoutParams.rightMargin, layoutParams.width), FrameLayout.getChildMeasureSpec(i2, layoutParams.topMargin + layoutParams.bottomMargin, layoutParams.height));
                 }
             }
+        }
+        View view = this.navigationBar;
+        if (view != null) {
+            if (view.getParent() == null) {
+                ((FrameLayout) AndroidUtilities.findActivity(getContext()).getWindow().getDecorView()).addView(this.navigationBar);
+            }
+            if (this.navigationBar.getLayoutParams().height == AndroidUtilities.navigationBarHeight && ((FrameLayout.LayoutParams) this.navigationBar.getLayoutParams()).topMargin == View.MeasureSpec.getSize(i2)) {
+                return;
+            }
+            this.navigationBar.getLayoutParams().height = AndroidUtilities.navigationBarHeight;
+            ((FrameLayout.LayoutParams) this.navigationBar.getLayoutParams()).topMargin = View.MeasureSpec.getSize(i2);
+            this.navigationBar.requestLayout();
         }
     }
 
@@ -657,6 +675,29 @@ public class DrawerLayoutContainer extends FrameLayout {
             return super.onRequestSendAccessibilityEvent(view, accessibilityEvent);
         }
         return false;
+    }
+
+    public void setNavigationBarColor(int i) {
+        this.navigationBarPaint.setColor(i);
+        View view = this.navigationBar;
+        if (view != null) {
+            view.invalidate();
+        }
+    }
+
+    public int getNavigationBarColor() {
+        return this.navigationBarPaint.getColor();
+    }
+
+    public View createNavigationBar() {
+        this.navigationBar = new View(getContext()) {
+            @Override
+            protected void onDraw(Canvas canvas) {
+                canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), DrawerLayoutContainer.this.navigationBarPaint);
+            }
+        };
+        this.navigationBarPaint.setColor(-16777216);
+        return this.navigationBar;
     }
 
     private static class PreviewForegroundDrawable extends Drawable {

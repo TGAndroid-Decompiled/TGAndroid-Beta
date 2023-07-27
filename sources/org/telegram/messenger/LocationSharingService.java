@@ -42,7 +42,12 @@ public class LocationSharingService extends Service implements NotificationCente
 
     public void lambda$onCreate$1() {
         this.handler.postDelayed(this.runnable, 1000L);
-        Utilities.stageQueue.postRunnable(LocationSharingService$$ExternalSyntheticLambda2.INSTANCE);
+        Utilities.stageQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                LocationSharingService.lambda$onCreate$0();
+            }
+        });
     }
 
     public static void lambda$onCreate$0() {
@@ -112,7 +117,7 @@ public class LocationSharingService extends Service implements NotificationCente
                 string = LocaleController.getString("AttachLiveLocationIsSharing", R.string.AttachLiveLocationIsSharing);
             } else {
                 TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-dialogId));
-                formatPluralString = chat != null ? chat.title : "";
+                formatPluralString = chat != null ? chat.title : BuildConfig.APP_CENTER_HASH;
                 string = LocaleController.getString("AttachLiveLocationIsSharingChat", R.string.AttachLiveLocationIsSharingChat);
             }
         } else {

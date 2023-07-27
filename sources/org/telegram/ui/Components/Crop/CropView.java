@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -448,6 +449,9 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     }
 
     public void updateMatrix(boolean z) {
+        if (this.state == null) {
+            return;
+        }
         this.overlayMatrix.reset();
         if (this.state.getBaseRotation() == 90.0f || this.state.getBaseRotation() == 270.0f) {
             this.overlayMatrix.postTranslate((-this.state.getHeight()) / 2.0f, (-this.state.getWidth()) / 2.0f);
@@ -1010,7 +1014,7 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
                 } else if (b == 1) {
                     mediaEntity.fontSize = bitmap2.getWidth() / 9;
                     if (textPaintView == null) {
-                        textPaintView = new TextPaintView(context, new Point(0.0f, 0.0f), mediaEntity.fontSize, "", new Swatch(-16777216, 0.85f, 0.1f), 0);
+                        textPaintView = new TextPaintView(context, new Point(0.0f, 0.0f), mediaEntity.fontSize, BuildConfig.APP_CENTER_HASH, new Swatch(-16777216, 0.85f, 0.1f), 0);
                         textPaintView.setMaxWidth(bitmap2.getWidth() - 20);
                     }
                     byte b2 = mediaEntity.subType;

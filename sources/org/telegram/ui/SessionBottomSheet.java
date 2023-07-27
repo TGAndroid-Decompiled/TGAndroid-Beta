@@ -23,6 +23,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_account_changeAuthorizationSettings;
 import org.telegram.tgnet.TLRPC$TL_authorization;
@@ -278,7 +279,12 @@ public class SessionBottomSheet extends BottomSheet {
         tLRPC$TL_account_changeAuthorizationSettings.call_requests_disabled = tLRPC$TL_authorization.call_requests_disabled;
         tLRPC$TL_account_changeAuthorizationSettings.flags = 3;
         tLRPC$TL_account_changeAuthorizationSettings.hash = tLRPC$TL_authorization.hash;
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_changeAuthorizationSettings, SessionBottomSheet$$ExternalSyntheticLambda1.INSTANCE);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_changeAuthorizationSettings, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                SessionBottomSheet.lambda$uploadSessionSettings$0(tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     public void copyText(final String str) {

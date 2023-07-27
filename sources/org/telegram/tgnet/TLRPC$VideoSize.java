@@ -19,36 +19,7 @@ public abstract class TLRPC$VideoSize extends TLObject {
                 tLRPC$TL_videoSize = new TLRPC$TL_videoSize();
                 break;
             case -399391402:
-                tLRPC$TL_videoSize = new TLRPC$TL_videoSize() {
-                    public static int constructor = -399391402;
-
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.flags = abstractSerializedData2.readInt32(z2);
-                        this.type = abstractSerializedData2.readString(z2);
-                        this.location = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
-                        this.w = abstractSerializedData2.readInt32(z2);
-                        this.h = abstractSerializedData2.readInt32(z2);
-                        this.size = abstractSerializedData2.readInt32(z2);
-                        if ((this.flags & 1) != 0) {
-                            this.video_start_ts = abstractSerializedData2.readDouble(z2);
-                        }
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
-                        abstractSerializedData2.writeInt32(this.flags);
-                        abstractSerializedData2.writeString(this.type);
-                        this.location.serializeToStream(abstractSerializedData2);
-                        abstractSerializedData2.writeInt32(this.w);
-                        abstractSerializedData2.writeInt32(this.h);
-                        abstractSerializedData2.writeInt32(this.size);
-                        if ((this.flags & 1) != 0) {
-                            abstractSerializedData2.writeDouble(this.video_start_ts);
-                        }
-                    }
-                };
+                tLRPC$TL_videoSize = new TLRPC$TL_videoSize_layer127();
                 break;
             case -128171716:
                 tLRPC$TL_videoSize = new TLRPC$TL_videoSizeEmojiMarkup();

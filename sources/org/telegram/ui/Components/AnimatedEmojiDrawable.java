@@ -22,6 +22,7 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
@@ -32,6 +33,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
@@ -46,7 +48,6 @@ import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
-import org.telegram.ui.Components.Premium.PremiumLockIconView;
 import org.telegram.ui.SelectAnimatedEmojiDialog;
 public class AnimatedEmojiDrawable extends Drawable {
     private static boolean LOG_MEMORY_LEAK = false;
@@ -179,9 +180,14 @@ public class AnimatedEmojiDrawable extends Drawable {
         private Runnable fetchRunnable;
         private HashMap<Long, ArrayList<ReceivedDocument>> loadingDocuments;
         private HashSet<Long> toFetchDocuments;
+        private Runnable uiDbCallback;
 
         public EmojiDocumentFetcher(int i) {
             this.currentAccount = i;
+        }
+
+        public void setUiDbCallback(Runnable runnable) {
+            this.uiDbCallback = runnable;
         }
 
         public void fetchDocument(long j, ReceivedDocument receivedDocument) {
@@ -226,7 +232,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         public void lambda$fetchDocument$0() {
             ArrayList<Long> arrayList = new ArrayList<>(this.toFetchDocuments);
             this.toFetchDocuments.clear();
-            loadFromDatabase(arrayList);
+            loadFromDatabase(arrayList, this.uiDbCallback == null);
             this.fetchRunnable = null;
         }
 
@@ -241,25 +247,29 @@ public class AnimatedEmojiDrawable extends Drawable {
             return true;
         }
 
-        private void loadFromDatabase(final ArrayList<Long> arrayList) {
-            final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-            messagesStorage.getStorageQueue().postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromDatabase$2(messagesStorage, arrayList);
-                }
-            });
+        private void loadFromDatabase(final ArrayList<Long> arrayList, boolean z) {
+            if (z) {
+                MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromDatabase$1(arrayList);
+                    }
+                });
+            } else {
+                lambda$loadFromDatabase$1(arrayList);
+            }
         }
 
-        public void lambda$loadFromDatabase$2(MessagesStorage messagesStorage, ArrayList arrayList) {
+        public void lambda$loadFromDatabase$1(ArrayList<Long> arrayList) {
+            MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             SQLiteDatabase database = messagesStorage.getDatabase();
             if (database == null) {
                 return;
             }
             try {
                 SQLiteCursor queryFinalized = database.queryFinalized(String.format(Locale.US, "SELECT data FROM animated_emoji WHERE document_id IN (%s)", TextUtils.join(",", arrayList)), new Object[0]);
-                final ArrayList arrayList2 = new ArrayList();
-                final HashSet hashSet = new HashSet(arrayList);
+                ArrayList<Object> arrayList2 = new ArrayList<>();
+                HashSet<Long> hashSet = new HashSet<>(arrayList);
                 while (queryFinalized.next()) {
                     NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
                     try {
@@ -275,24 +285,46 @@ public class AnimatedEmojiDrawable extends Drawable {
                         byteBufferValue.reuse();
                     }
                 }
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromDatabase$1(arrayList2, hashSet);
-                    }
-                });
+                processDatabaseResult(arrayList2, hashSet);
                 queryFinalized.dispose();
+                Runnable runnable = this.uiDbCallback;
+                if (runnable != null) {
+                    runnable.run();
+                    this.uiDbCallback = null;
+                }
             } catch (SQLiteException e2) {
                 messagesStorage.checkSQLException(e2);
             }
         }
 
-        public void lambda$loadFromDatabase$1(ArrayList arrayList, HashSet hashSet) {
+        public void lambda$processDatabaseResult$2(ArrayList<Object> arrayList, HashSet<Long> hashSet) {
             processDocuments(arrayList);
             if (hashSet.isEmpty()) {
                 return;
             }
             loadFromServer(new ArrayList<>(hashSet));
+        }
+
+        private void processDatabaseResult(final ArrayList<Object> arrayList, final HashSet<Long> hashSet) {
+            if (Thread.currentThread() == Looper.getMainLooper().getThread()) {
+                lambda$processDatabaseResult$2(arrayList, hashSet);
+            } else {
+                NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
+                    @Override
+                    public final void run() {
+                        AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$processDatabaseResult$3(arrayList, hashSet);
+                    }
+                });
+            }
+        }
+
+        public void lambda$processDatabaseResult$3(final ArrayList arrayList, final HashSet hashSet) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$processDatabaseResult$2(arrayList, hashSet);
+                }
+            });
         }
 
         private void loadFromServer(final ArrayList<Long> arrayList) {
@@ -301,21 +333,30 @@ public class AnimatedEmojiDrawable extends Drawable {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getCustomEmojiDocuments, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromServer$4(arrayList, tLObject, tLRPC$TL_error);
+                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromServer$6(arrayList, tLObject, tLRPC$TL_error);
                 }
             });
         }
 
-        public void lambda$loadFromServer$4(final ArrayList arrayList, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$loadFromServer$5(final ArrayList arrayList, final TLObject tLObject) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromServer$3(arrayList, tLObject);
+                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromServer$4(arrayList, tLObject);
                 }
             });
         }
 
-        public void lambda$loadFromServer$3(ArrayList arrayList, TLObject tLObject) {
+        public void lambda$loadFromServer$6(final ArrayList arrayList, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+            NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
+                @Override
+                public final void run() {
+                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$loadFromServer$5(arrayList, tLObject);
+                }
+            });
+        }
+
+        public void lambda$loadFromServer$4(ArrayList arrayList, TLObject tLObject) {
             HashSet hashSet = new HashSet(arrayList);
             if (tLObject instanceof TLRPC$Vector) {
                 ArrayList<Object> arrayList2 = ((TLRPC$Vector) tLObject).objects;
@@ -337,13 +378,13 @@ public class AnimatedEmojiDrawable extends Drawable {
             MessagesStorage.getInstance(this.currentAccount).getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$putToStorage$5(arrayList);
+                    AnimatedEmojiDrawable.EmojiDocumentFetcher.this.lambda$putToStorage$7(arrayList);
                 }
             });
         }
 
-        public void lambda$putToStorage$5(java.util.ArrayList r7) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedEmojiDrawable.EmojiDocumentFetcher.lambda$putToStorage$5(java.util.ArrayList):void");
+        public void lambda$putToStorage$7(java.util.ArrayList r7) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedEmojiDrawable.EmojiDocumentFetcher.lambda$putToStorage$7(java.util.ArrayList):void");
         }
 
         public void processDocuments(ArrayList<?> arrayList) {
@@ -533,7 +574,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                     if (this.cacheType != 0) {
                         str = this.cacheType + "_";
                     } else {
-                        str = "";
+                        str = BuildConfig.APP_CENTER_HASH;
                     }
                     sb.append(str);
                     sb.append(this.documentId);
@@ -841,7 +882,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         if (num == null && animatedEmojiDrawable.getImageReceiver() != null && animatedEmojiDrawable.getImageReceiver().getBitmap() != null) {
             HashMap<Long, Integer> hashMap = dominantColors;
             Long valueOf = Long.valueOf(documentId);
-            Integer valueOf2 = Integer.valueOf(PremiumLockIconView.getDominantColor(animatedEmojiDrawable.getImageReceiver().getBitmap()));
+            Integer valueOf2 = Integer.valueOf(AndroidUtilities.getDominantColor(animatedEmojiDrawable.getImageReceiver().getBitmap()));
             hashMap.put(valueOf, valueOf2);
             num = valueOf2;
         }
@@ -1085,7 +1126,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                     attach();
                 }
             }
-            this.lastColor = -1;
+            this.lastColor = null;
             this.colorFilter = null;
             play();
             invalidate();
@@ -1134,7 +1175,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                     attach();
                 }
             }
-            this.lastColor = -1;
+            this.lastColor = null;
             this.colorFilter = null;
             play();
             invalidate();
@@ -1167,7 +1208,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                     attach();
                 }
             }
-            this.lastColor = -1;
+            this.lastColor = null;
             this.colorFilter = null;
             play();
             invalidate();

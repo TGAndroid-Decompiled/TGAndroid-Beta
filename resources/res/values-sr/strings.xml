@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Одговори</string>
+    <string name="call_notification_answer_video_action">Видео</string>
+    <string name="call_notification_decline_action">Одбиј</string>
+    <string name="call_notification_hang_up_action">Прекини везу</string>
+    <string name="call_notification_incoming_text">Долазни позив</string>
+    <string name="call_notification_ongoing_text">Позив је у току</string>
+    <string name="call_notification_screening_text">Проверава се долазни позив</string>
     <string name="common_google_play_services_enable_button">Омогући</string>
     <string name="common_google_play_services_enable_text">%1$s неће функционисати ако не омогућите Google Play услуге.</string>
     <string name="common_google_play_services_enable_title">Омогућите Google Play услуге</string>

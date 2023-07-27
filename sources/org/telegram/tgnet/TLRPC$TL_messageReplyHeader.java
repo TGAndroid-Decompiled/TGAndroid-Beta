@@ -1,25 +1,6 @@
 package org.telegram.tgnet;
-public class TLRPC$TL_messageReplyHeader extends TLObject {
+public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
     public static int constructor = -1495959709;
-    public int flags;
-    public boolean forum_topic;
-    public int reply_to_msg_id;
-    public TLRPC$Peer reply_to_peer_id;
-    public long reply_to_random_id;
-    public boolean reply_to_scheduled;
-    public int reply_to_top_id;
-
-    public static TLRPC$TL_messageReplyHeader TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
-            if (z) {
-                throw new RuntimeException(String.format("can't parse magic %x in TL_messageReplyHeader", Integer.valueOf(i)));
-            }
-            return null;
-        }
-        TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
-        tLRPC$TL_messageReplyHeader.readParams(abstractSerializedData, z);
-        return tLRPC$TL_messageReplyHeader;
-    }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {

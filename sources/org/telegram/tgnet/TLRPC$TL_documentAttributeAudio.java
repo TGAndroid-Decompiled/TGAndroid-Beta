@@ -25,7 +25,7 @@ public class TLRPC$TL_documentAttributeAudio extends TLRPC$DocumentAttribute {
         int i = this.voice ? this.flags | 1024 : this.flags & (-1025);
         this.flags = i;
         abstractSerializedData.writeInt32(i);
-        abstractSerializedData.writeInt32(this.duration);
+        abstractSerializedData.writeInt32((int) this.duration);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.title);
         }

@@ -25,6 +25,7 @@ import java.util.Locale;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -496,7 +497,7 @@ public class VoIPHelper {
                 String[] split = str.split(" ");
                 if (split.length >= 2) {
                     String str2 = split[0];
-                    if (str2.equals(tLRPC$TL_messageActionPhoneCall.call_id + "")) {
+                    if (str2.equals(tLRPC$TL_messageActionPhoneCall.call_id + BuildConfig.APP_CENTER_HASH)) {
                         return true;
                     }
                 }
@@ -510,7 +511,7 @@ public class VoIPHelper {
             String[] split = str.split(" ");
             if (split.length >= 2) {
                 String str2 = split[0];
-                if (str2.equals(tLRPC$TL_messageActionPhoneCall.call_id + "")) {
+                if (str2.equals(tLRPC$TL_messageActionPhoneCall.call_id + BuildConfig.APP_CENTER_HASH)) {
                     try {
                         showRateAlert(context, null, tLRPC$TL_messageActionPhoneCall.video, tLRPC$TL_messageActionPhoneCall.call_id, Long.parseLong(split[1]), UserConfig.selectedAccount, true);
                         return;
@@ -541,7 +542,12 @@ public class VoIPHelper {
         linearLayout.addView(betterRatingView, LayoutHelper.createLinear(-2, -2, 1, 0, 16, 0, 0));
         final LinearLayout linearLayout2 = new LinearLayout(context);
         linearLayout2.setOrientation(1);
-        VoIPHelper$$ExternalSyntheticLambda14 voIPHelper$$ExternalSyntheticLambda14 = VoIPHelper$$ExternalSyntheticLambda14.INSTANCE;
+        VoIPHelper$$ExternalSyntheticLambda14 voIPHelper$$ExternalSyntheticLambda14 = new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                VoIPHelper.lambda$showRateAlert$9(view);
+            }
+        };
         String[] strArr = new String[9];
         strArr[0] = z ? "distorted_video" : null;
         strArr[1] = z ? "pixelated_video" : null;
@@ -635,7 +641,12 @@ public class VoIPHelper {
         if (!logFile.exists()) {
             zArr[0] = false;
         }
-        final AlertDialog create = new AlertDialog.Builder(context).setTitle(LocaleController.getString("CallMessageReportProblem", R.string.CallMessageReportProblem)).setView(linearLayout).setPositiveButton(LocaleController.getString("Send", R.string.Send), VoIPHelper$$ExternalSyntheticLambda6.INSTANCE).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
+        final AlertDialog create = new AlertDialog.Builder(context).setTitle(LocaleController.getString("CallMessageReportProblem", R.string.CallMessageReportProblem)).setView(linearLayout).setPositiveButton(LocaleController.getString("Send", R.string.Send), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i5) {
+                VoIPHelper.lambda$showRateAlert$11(dialogInterface, i5);
+            }
+        }).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 VoIPHelper.lambda$showRateAlert$12(runnable, dialogInterface);
@@ -720,7 +731,7 @@ public class VoIPHelper {
             if (tLRPC$TL_phone_setCallRating.rating < 5) {
                 tLRPC$TL_phone_setCallRating.comment = editTextBoldCursor.getText().toString();
             } else {
-                tLRPC$TL_phone_setCallRating.comment = "";
+                tLRPC$TL_phone_setCallRating.comment = BuildConfig.APP_CENTER_HASH;
             }
             if (!arrayList.isEmpty() && !zArr[0]) {
                 tLRPC$TL_phone_setCallRating.comment += " " + TextUtils.join(" ", arrayList);
@@ -757,7 +768,7 @@ public class VoIPHelper {
             MessagesController.getInstance(i).processUpdates((TLRPC$TL_updates) tLObject, false);
         }
         if (zArr[0] && file.exists() && tLRPC$TL_phone_setCallRating.rating < 4) {
-            SendMessagesHelper.prepareSendingDocument(AccountInstance.getInstance(UserConfig.selectedAccount), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, true, 0);
+            SendMessagesHelper.prepareSendingDocument(AccountInstance.getInstance(UserConfig.selectedAccount), file.getAbsolutePath(), file.getAbsolutePath(), null, TextUtils.join(" ", arrayList), "text/plain", 4244000L, null, null, null, null, true, 0, null);
             Toast.makeText(context, LocaleController.getString("CallReportSent", R.string.CallReportSent), 1).show();
         }
     }

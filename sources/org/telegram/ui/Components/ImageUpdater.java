@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -135,7 +136,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         if (photoEntry.isVideo || photoEntry.editedInfo != null) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.id = 0;
-            tLRPC$TL_message.message = "";
+            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
             tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
             tLRPC$TL_message.dialog_id = 0L;
@@ -353,10 +354,6 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             public void selectedPhotosChanged() {
             }
 
-            {
-                ImageUpdater.this = this;
-            }
-
             @Override
             public void actionButtonPressed(boolean z, boolean z2, int i) {
                 if (hashMap.isEmpty() || ImageUpdater.this.delegate == null || this.sendPressed || z) {
@@ -450,8 +447,9 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     ChatAttachAlert.ChatAttachViewDelegate.CC.$default$onWallpaperSelected(this, obj);
                 }
 
-                {
-                    ImageUpdater.this = this;
+                @Override
+                public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i) {
+                    ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i);
                 }
 
                 @Override
@@ -561,7 +559,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         if (sendingMediaInfo.isVideo || sendingMediaInfo.videoEditedInfo != null) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.id = 0;
-            tLRPC$TL_message.message = "";
+            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
             tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
             tLRPC$TL_message.dialog_id = 0L;
@@ -708,10 +706,6 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         PhotoAlbumPickerActivity photoAlbumPickerActivity = new PhotoAlbumPickerActivity(this.canSelectVideo ? PhotoAlbumPickerActivity.SELECT_TYPE_AVATAR_VIDEO : PhotoAlbumPickerActivity.SELECT_TYPE_AVATAR, false, false, null);
         photoAlbumPickerActivity.setAllowSearchImages(this.searchAvailable);
         photoAlbumPickerActivity.setDelegate(new PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate() {
-            {
-                ImageUpdater.this = this;
-            }
-
             @Override
             public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i) {
                 ImageUpdater.this.didSelectPhotos(arrayList);
@@ -754,7 +748,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             }
             PhotoCropActivity photoCropActivity = new PhotoCropActivity(bundle);
             photoCropActivity.setDelegate(this);
-            launchActivity.lambda$runLinkRequest$77(photoCropActivity);
+            launchActivity.lambda$runLinkRequest$80(photoCropActivity);
         } catch (Exception e) {
             FileLog.e(e);
             processBitmap(ImageLoader.loadBitmap(str, uri, 800.0f, 800.0f, true), null);
@@ -781,10 +775,6 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             @Override
             public boolean canScrollAway() {
                 return false;
-            }
-
-            {
-                ImageUpdater.this = this;
             }
 
             @Override
@@ -873,7 +863,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingStarted);
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingFailed);
                     NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileNewChunkAvailable);
-                    MediaController.getInstance().scheduleVideoConvert(messageObject, true);
+                    MediaController.getInstance().scheduleVideoConvert(messageObject, true, true);
                     this.uploadingImage = null;
                     ImageUpdaterDelegate imageUpdaterDelegate3 = this.delegate;
                     if (imageUpdaterDelegate3 != null) {

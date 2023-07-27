@@ -44,6 +44,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
@@ -78,13 +79,26 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BotWebViewContainer;
 import org.telegram.ui.Components.BotWebViewSheet;
 import org.telegram.ui.Components.ChatAttachAlertBotWebViewLayout;
+import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PaymentFormActivity;
 import org.telegram.ui.TopicsFragment;
 public class BotWebViewSheet extends Dialog implements NotificationCenter.NotificationCenterDelegate {
-    private static final SimpleFloatPropertyCompat<BotWebViewSheet> ACTION_BAR_TRANSITION_PROGRESS_VALUE = new SimpleFloatPropertyCompat("actionBarTransitionProgress", BotWebViewSheet$$ExternalSyntheticLambda21.INSTANCE, BotWebViewSheet$$ExternalSyntheticLambda22.INSTANCE).setMultiplier(100.0f);
+    private static final SimpleFloatPropertyCompat<BotWebViewSheet> ACTION_BAR_TRANSITION_PROGRESS_VALUE = new SimpleFloatPropertyCompat("actionBarTransitionProgress", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((BotWebViewSheet) obj).actionBarTransitionProgress;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            BotWebViewSheet.lambda$static$1((BotWebViewSheet) obj, f);
+        }
+    }).setMultiplier(100.0f);
     private ActionBar actionBar;
     private int actionBarColor;
     private Paint actionBarPaint;
@@ -140,7 +154,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         tLRPC$TL_messages_prolongWebView.silent = this.silent;
         int i = this.replyToMsgId;
         if (i != 0) {
-            tLRPC$TL_messages_prolongWebView.reply_to_msg_id = i;
+            tLRPC$TL_messages_prolongWebView.reply_to = SendMessagesHelper.creteReplyInput(i);
             tLRPC$TL_messages_prolongWebView.flags |= 1;
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_prolongWebView, new RequestDelegate() {
@@ -562,6 +576,8 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             bundle.putInt("dialogsType", 14);
             bundle.putBoolean("onlySelect", true);
             bundle.putBoolean("allowGroups", list.contains("groups"));
+            bundle.putBoolean("allowMegagroups", list.contains("groups"));
+            bundle.putBoolean("allowLegacyGroups", list.contains("groups"));
             bundle.putBoolean("allowUsers", list.contains("users"));
             bundle.putBoolean("allowChannels", list.contains("channels"));
             bundle.putBoolean("allowBots", list.contains("bots"));
@@ -804,7 +820,14 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
         this.frameLayout.setSystemUiVisibility(1280);
         if (i >= 21) {
-            this.frameLayout.setOnApplyWindowInsetsListener(BotWebViewSheet$$ExternalSyntheticLambda2.INSTANCE);
+            this.frameLayout.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
+                @Override
+                public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+                    WindowInsets lambda$onCreate$13;
+                    lambda$onCreate$13 = BotWebViewSheet.lambda$onCreate$13(view, windowInsets);
+                    return lambda$onCreate$13;
+                }
+            });
         }
         if (i >= 26) {
             AndroidUtilities.setLightNavigationBar(window, ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) >= 0.9d);
@@ -875,7 +898,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                     Bundle bundle = new Bundle();
                     bundle.putLong("user_id", j2);
                     if (BotWebViewSheet.this.parentActivity instanceof LaunchActivity) {
-                        ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$77(new ChatActivity(bundle));
+                        ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$80(new ChatActivity(bundle));
                     }
                     BotWebViewSheet.this.dismiss();
                 } else if (i5 == R.id.menu_reload_page) {
@@ -922,7 +945,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 tLRPC$TL_messages_requestWebView.flags |= 2;
             }
             if (i3 != 0) {
-                tLRPC$TL_messages_requestWebView.reply_to_msg_id = i3;
+                tLRPC$TL_messages_requestWebView.reply_to = SendMessagesHelper.creteReplyInput(i3);
                 tLRPC$TL_messages_requestWebView.flags |= 1;
             }
             if (z3) {
@@ -1085,11 +1108,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     public int getColor(int i) {
-        Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
-        if (resourcesProvider != null && resourcesProvider.contains(i)) {
-            return this.resourcesProvider.getColor(i);
-        }
-        return Theme.getColor(i);
+        return Theme.getColor(i, this.resourcesProvider);
     }
 
     @Override

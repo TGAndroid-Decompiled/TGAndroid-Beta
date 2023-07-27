@@ -11,6 +11,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_help_saveAppLog;
@@ -80,7 +81,12 @@ public class PushListenerController {
                     tLRPC$TL_inputAppEvent2.peer = SharedConfig.pushStringGetTimeEnd - SharedConfig.pushStringGetTimeStart;
                     tLRPC$TL_inputAppEvent2.data = new TLRPC$TL_jsonNull();
                     tLRPC$TL_help_saveAppLog.events.add(tLRPC$TL_inputAppEvent2);
-                    ConnectionsManager.getInstance(i2).sendRequest(tLRPC$TL_help_saveAppLog, PushListenerController$$ExternalSyntheticLambda8.INSTANCE);
+                    ConnectionsManager.getInstance(i2).sendRequest(tLRPC$TL_help_saveAppLog, new RequestDelegate() {
+                        @Override
+                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                            PushListenerController.lambda$sendRegistrationToServer$1(tLObject, tLRPC$TL_error);
+                        }
+                    });
                     z = false;
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -150,7 +156,7 @@ public class PushListenerController {
         });
     }
 
-    public static void lambda$processRemoteMessage$7(java.lang.String r52, java.lang.String r53, long r54) {
+    public static void lambda$processRemoteMessage$7(java.lang.String r55, java.lang.String r56, long r57) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$7(java.lang.String, java.lang.String, long):void");
     }
 

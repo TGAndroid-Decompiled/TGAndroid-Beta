@@ -46,6 +46,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -106,6 +107,7 @@ public class ActionBarMenuItem extends FrameLayout {
     private CharSequence searchFieldText;
     private LinearLayout searchFilterLayout;
     public int searchItemPaddingStart;
+    public int searchRightMargin;
     private int selectedFilterIndex;
     private View selectedMenuView;
     private Runnable showMenuRunnable;
@@ -581,7 +583,7 @@ public class ActionBarMenuItem extends FrameLayout {
     }
 
     public ActionBarMenuSubItem addSubItem(int i, int i2, Drawable drawable, CharSequence charSequence, boolean z, boolean z2) {
-        return addSubItem(i, i2, drawable, charSequence, z, z2, null);
+        return addSubItem(i, i2, drawable, charSequence, z, z2, this.resourcesProvider);
     }
 
     public ActionBarMenuSubItem addSubItem(int i, int i2, Drawable drawable, CharSequence charSequence, final boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
@@ -924,7 +926,8 @@ public class ActionBarMenuItem extends FrameLayout {
     }
 
     public boolean isSearchFieldVisible() {
-        return this.searchContainer.getVisibility() == 0;
+        FrameLayout frameLayout = this.searchContainer;
+        return frameLayout != null && frameLayout.getVisibility() == 0;
     }
 
     public boolean toggleSearch(boolean z) {
@@ -1025,7 +1028,7 @@ public class ActionBarMenuItem extends FrameLayout {
         this.searchContainerAnimator.start();
         setVisibility(8);
         clearSearchFilters();
-        this.searchField.setText("");
+        this.searchField.setText(BuildConfig.APP_CENTER_HASH);
         this.searchField.requestFocus();
         if (z) {
             AndroidUtilities.showKeyboard(this.searchField);
@@ -1433,7 +1436,7 @@ public class ActionBarMenuItem extends FrameLayout {
                 this.wrappedSearchFrameLayout.addView(horizontalScrollView, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 0.0f, 48.0f, 0.0f));
                 this.parentMenu.addView(this.wrappedSearchFrameLayout, 0, LayoutHelper.createLinear(0, -1, 1.0f, this.searchItemPaddingStart, 0, 0, 0));
             } else {
-                this.parentMenu.addView(this.searchContainer, 0, LayoutHelper.createLinear(0, -1, 1.0f, this.searchItemPaddingStart + 6, 0, 0, 0));
+                this.parentMenu.addView(this.searchContainer, 0, LayoutHelper.createLinear(0, -1, 1.0f, this.searchItemPaddingStart + 6, 0, this.searchRightMargin, 0));
             }
             this.searchContainer.setVisibility(8);
             TextView textView = new TextView(getContext());
@@ -1448,13 +1451,13 @@ public class ActionBarMenuItem extends FrameLayout {
             this.searchFieldCaption.setGravity(LocaleController.isRTL ? 5 : 3);
             EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext()) {
                 @Override
-                protected void onMeasure(int i2, int i3) {
+                public void onMeasure(int i2, int i3) {
                     super.onMeasure(i2, i3);
                     setMeasuredDimension(Math.max(View.MeasureSpec.getSize(i2), getMeasuredWidth()) + AndroidUtilities.dp(3.0f), getMeasuredHeight());
                 }
 
                 @Override
-                protected void onSelectionChanged(int i2, int i3) {
+                public void onSelectionChanged(int i2, int i3) {
                     super.onSelectionChanged(i2, i3);
                 }
 
@@ -1655,7 +1658,7 @@ public class ActionBarMenuItem extends FrameLayout {
 
     public void lambda$checkCreateSearchField$13(View view) {
         if (this.searchField.length() != 0) {
-            this.searchField.setText("");
+            this.searchField.setText(BuildConfig.APP_CENTER_HASH);
         } else if (hasRemovableFilters()) {
             this.searchField.hideActionMode();
             for (int i = 0; i < this.currentSearchFilters.size(); i++) {
@@ -1831,7 +1834,7 @@ public class ActionBarMenuItem extends FrameLayout {
         if (editTextBoldCursor == null) {
             return;
         }
-        editTextBoldCursor.setText("");
+        editTextBoldCursor.setText(BuildConfig.APP_CENTER_HASH);
     }
 
     public ActionBarMenuItem setActionBarMenuItemSearchListener(ActionBarMenuItemSearchListener actionBarMenuItemSearchListener) {
@@ -2296,6 +2299,10 @@ public class ActionBarMenuItem extends FrameLayout {
         private int visibility = 0;
         private int rightIconVisibility = 0;
 
+        static Item access$2900() {
+            return asColoredGap();
+        }
+
         private Item(int i) {
             this.viewType = i;
         }
@@ -2311,7 +2318,7 @@ public class ActionBarMenuItem extends FrameLayout {
             return item;
         }
 
-        public static Item asColoredGap() {
+        private static Item asColoredGap() {
             return new Item(1);
         }
 
@@ -2503,7 +2510,7 @@ public class ActionBarMenuItem extends FrameLayout {
     }
 
     public Item lazilyAddColoredGap() {
-        return putLazyItem(Item.asColoredGap());
+        return putLazyItem(Item.access$2900());
     }
 
     private Item putLazyItem(Item item) {

@@ -22,7 +22,11 @@ public class EglBase10Impl implements EglBase10 {
     private EGLDisplay eglDisplay;
     private EGLSurface eglSurface;
 
-    public static native long nativeGetCurrentNativeEGLContext();
+    private static native long nativeGetCurrentNativeEGLContext();
+
+    static long access$000() {
+        return nativeGetCurrentNativeEGLContext();
+    }
 
     private static class Context implements EglBase10.Context {
         private final EGL10 egl;
@@ -51,7 +55,7 @@ public class EglBase10Impl implements EglBase10 {
                         throw new RuntimeException("Failed to make temporary EGL surface active: " + this.egl.eglGetError());
                     }
                 }
-                return EglBase10Impl.nativeGetCurrentNativeEGLContext();
+                return EglBase10Impl.access$000();
             } finally {
                 if (0 != 0) {
                     this.egl.eglMakeCurrent(eglGetCurrentDisplay, eglGetCurrentSurface, eglGetCurrentSurface2, eglGetCurrentContext);

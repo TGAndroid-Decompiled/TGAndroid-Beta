@@ -15,7 +15,7 @@
     </style>
     <style name="Base.TMessages.AppWidget.Badge" parent="@android:style/Widget">
         <item name="android:textSize">13dp</item>
-        <item name="android:gravity">0x11</item>
+        <item name="android:gravity">center</item>
         <item name="android:background">@drawable/widget_badge_background</item>
         <item name="android:paddingLeft">7dp</item>
         <item name="android:paddingRight">7dp</item>
@@ -27,7 +27,7 @@
     </style>
     <style name="Base.Theme.TMessages.AppWidget" parent="@style/Theme.TMessages">
     </style>
-    <style name="DialogNoAnimation">
+    <style name="DialogNoAnimation" parent="">
         <item name="android:windowEnterAnimation">@anim/no_animation</item>
         <item name="android:windowExitAnimation">@anim/no_animation</item>
     </style>
@@ -127,7 +127,7 @@
         <item name="widgetPreviewTitle">Nick</item>
     </style>
     <style name="Theme.TMessages.ListView" parent="@android:style/Widget.ListView">
-        <item name="android:fadingEdge">0x0</item>
+        <item name="android:fadingEdge">none</item>
         <item name="android:listSelector">@drawable/list_selector_ex</item>
         <item name="android:divider">@color/divider</item>
         <item name="android:dividerHeight">1dp</item>
@@ -186,52 +186,52 @@
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
-    <style name="WalletFragmentDefaultButtonTextAppearance">
+    <style name="WalletFragmentDefaultButtonTextAppearance" parent="">
         <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">0x0</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/wallet_primary_text_holo_light</item>
         <item name="android:textColorHighlight">@color/wallet_highlighted_text_holo_light</item>
         <item name="android:textColorHint">@color/wallet_hint_foreground_holo_light</item>
         <item name="android:textColorLink">@color/wallet_link_text_light</item>
     </style>
     <style name="WalletFragmentDefaultDetailsHeaderTextAppearance" parent="@style/WalletFragmentDefaultDetailsTextAppearance">
-        <item name="android:textStyle">0x1</item>
+        <item name="android:textStyle">bold</item>
     </style>
-    <style name="WalletFragmentDefaultDetailsTextAppearance">
+    <style name="WalletFragmentDefaultDetailsTextAppearance" parent="">
         <item name="android:textSize">14sp</item>
-        <item name="android:textStyle">0x0</item>
+        <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/wallet_secondary_text_holo_dark</item>
         <item name="android:textColorHighlight">@color/wallet_highlighted_text_holo_dark</item>
         <item name="android:textColorHint">@color/wallet_hint_foreground_holo_dark</item>
         <item name="android:textColorLink">@color/wallet_holo_blue_light</item>
     </style>
-    <style name="WalletFragmentDefaultStyle">
-        <item name="buyButtonAppearance">4</item>
+    <style name="WalletFragmentDefaultStyle" parent="">
+        <item name="buyButtonAppearance">android_pay_dark</item>
         <item name="buyButtonHeight">48dp</item>
-        <item name="buyButtonText">5</item>
-        <item name="buyButtonWidth">-1</item>
+        <item name="buyButtonText">buy_with</item>
+        <item name="buyButtonWidth">match_parent</item>
         <item name="maskedWalletDetailsBackground">@color/wallet_bright_foreground_holo_light</item>
         <item name="maskedWalletDetailsButtonBackground">@android:drawable/btn_default</item>
         <item name="maskedWalletDetailsButtonTextAppearance">@style/WalletFragmentDefaultButtonTextAppearance</item>
         <item name="maskedWalletDetailsHeaderTextAppearance">@style/WalletFragmentDefaultDetailsHeaderTextAppearance</item>
-        <item name="maskedWalletDetailsLogoImageType">3</item>
+        <item name="maskedWalletDetailsLogoImageType">android_pay</item>
         <item name="maskedWalletDetailsLogoTextColor">@color/wallet_bright_foreground_holo_dark</item>
         <item name="maskedWalletDetailsTextAppearance">@style/WalletFragmentDefaultDetailsTextAppearance</item>
     </style>
-    <style name="Widget.Compat.NotificationActionContainer">
+    <style name="Widget.Compat.NotificationActionContainer" parent="">
     </style>
-    <style name="Widget.Compat.NotificationActionText">
+    <style name="Widget.Compat.NotificationActionText" parent="">
     </style>
     <style name="Widget.Support.CoordinatorLayout" parent="@android:style/Widget">
         <item name="statusBarBackground">#000000</item>
     </style>
-    <style name="scrollbarShapeStyle">
+    <style name="scrollbarShapeStyle" parent="">
         <item name="android:scrollbarSize">8dp</item>
         <item name="android:scrollbarThumbVertical">@drawable/scrollbar_vertical_thumb_inset</item>
         <item name="android:scrollbarTrackVertical">@null</item>
         <item name="android:scrollbarAlwaysDrawVerticalTrack">true</item>
-        <item name="android:scrollbarStyle">0x1000000</item>
-        <item name="android:scrollbars">0x200</item>
+        <item name="android:scrollbarStyle">insideInset</item>
+        <item name="android:scrollbars">vertical</item>
         <item name="android:scrollbarFadeDuration">250</item>
         <item name="android:scrollbarDefaultDelayBeforeFade">400</item>
         <item name="android:fadeScrollbars">true</item>

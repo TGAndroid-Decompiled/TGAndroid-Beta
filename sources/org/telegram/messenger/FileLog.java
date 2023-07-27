@@ -18,6 +18,7 @@ import org.telegram.messenger.time.FastDateFormat;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.LaunchActivity;
 public class FileLog {
     private static volatile FileLog Instance = null;
@@ -29,6 +30,7 @@ public class FileLog {
     private boolean initied;
     private OutputStreamWriter streamWriter = null;
     private FastDateFormat dateFormat = null;
+    private FastDateFormat fileDateFormat = null;
     private DispatchQueue logQueue = null;
     private File currentFile = null;
     private File networkFile = null;
@@ -57,32 +59,31 @@ public class FileLog {
     }
 
     public static void dumpResponseAndRequest(TLObject tLObject, TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error, final long j, final long j2, final int i) {
-        if (!BuildVars.DEBUG_PRIVATE_VERSION || !BuildVars.LOGS_ENABLED || tLObject == null || SharedConfig.getDevicePerformanceClass() == 0) {
-            return;
-        }
-        String simpleName = tLObject.getClass().getSimpleName();
-        checkGson();
-        if (excludeRequests.contains(simpleName) && tLRPC$TL_error == null) {
-            return;
-        }
-        try {
-            final String str = "req -> " + simpleName + " : " + gson.toJson(tLObject);
-            String str2 = "null";
-            if (tLObject2 != null) {
-                str2 = "res -> " + tLObject2.getClass().getSimpleName() + " : " + gson.toJson(tLObject2);
-            } else if (tLRPC$TL_error != null) {
-                str2 = "err -> " + TLRPC$TL_error.class.getSimpleName() + " : " + gson.toJson(tLRPC$TL_error);
+        if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
+            String simpleName = tLObject.getClass().getSimpleName();
+            checkGson();
+            if (excludeRequests.contains(simpleName) && tLRPC$TL_error == null) {
+                return;
             }
-            final String str3 = str2;
-            final long currentTimeMillis = System.currentTimeMillis();
-            getInstance().logQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    FileLog.lambda$dumpResponseAndRequest$0(j, j2, i, currentTimeMillis, str, str3);
+            try {
+                final String str = "req -> " + simpleName + " : " + gson.toJson(tLObject);
+                String str2 = "null";
+                if (tLObject2 != null) {
+                    str2 = "res -> " + tLObject2.getClass().getSimpleName() + " : " + gson.toJson(tLObject2);
+                } else if (tLRPC$TL_error != null) {
+                    str2 = "err -> " + TLRPC$TL_error.class.getSimpleName() + " : " + gson.toJson(tLRPC$TL_error);
                 }
-            });
-        } catch (Throwable th) {
-            e(th, BuildVars.DEBUG_PRIVATE_VERSION);
+                final String str3 = str2;
+                final long currentTimeMillis = System.currentTimeMillis();
+                getInstance().logQueue.postRunnable(new Runnable() {
+                    @Override
+                    public final void run() {
+                        FileLog.lambda$dumpResponseAndRequest$0(j, j2, i, currentTimeMillis, str, str3);
+                    }
+                });
+            } catch (Throwable th) {
+                e(th, BuildVars.DEBUG_PRIVATE_VERSION);
+            }
         }
     }
 
@@ -106,7 +107,7 @@ public class FileLog {
     }
 
     public static void dumpUnparsedMessage(TLObject tLObject, final long j) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null && SharedConfig.getDevicePerformanceClass() != 0) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
             try {
                 checkGson();
                 getInstance().dateFormat.format(System.currentTimeMillis());
@@ -155,8 +156,8 @@ public class FileLog {
             HashSet<String> hashSet2 = new HashSet<>();
             excludeRequests = hashSet2;
             hashSet2.add("TL_upload_getFile");
-            excludeRequests.add("TL_upload_getWebFile");
-            gson = new GsonBuilder().addSerializationExclusionStrategy(new ExclusionStrategy() {
+            excludeRequests.add("TL_upload_a");
+            ExclusionStrategy exclusionStrategy = new ExclusionStrategy() {
                 @Override
                 public boolean shouldSkipField(FieldAttributes fieldAttributes) {
                     return hashSet.contains(fieldAttributes.getName());
@@ -164,9 +165,10 @@ public class FileLog {
 
                 @Override
                 public boolean shouldSkipClass(Class<?> cls) {
-                    return cls.isInstance(ColorStateList.class) || cls.isInstance(Context.class);
+                    return cls.isInstance(AnimatedFileDrawable.class) || cls.isInstance(ColorStateList.class) || cls.isInstance(Context.class);
                 }
-            }).registerTypeAdapterFactory(RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_")).create();
+            };
+            gson = new GsonBuilder().addSerializationExclusionStrategy(exclusionStrategy).registerTypeAdapterFactory(RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy)).create();
         }
     }
 
@@ -175,8 +177,10 @@ public class FileLog {
         if (this.initied) {
             return;
         }
-        FastDateFormat fastDateFormat = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss", Locale.US);
-        this.dateFormat = fastDateFormat;
+        Locale locale = Locale.US;
+        this.dateFormat = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss.SSS", locale);
+        FastDateFormat fastDateFormat = FastDateFormat.getInstance("dd_MM_yyyy_HH_mm_ss", locale);
+        this.fileDateFormat = fastDateFormat;
         String format = fastDateFormat.format(System.currentTimeMillis());
         try {
             logsDir = AndroidUtilities.getLogsDir();
@@ -214,17 +218,17 @@ public class FileLog {
             try {
                 File logsDir = AndroidUtilities.getLogsDir();
                 if (logsDir == null) {
-                    return "";
+                    return BuildConfig.APP_CENTER_HASH;
                 }
                 FileLog fileLog = getInstance();
-                fileLog.networkFile = new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_net.txt");
+                fileLog.networkFile = new File(logsDir, getInstance().fileDateFormat.format(System.currentTimeMillis()) + "_net.txt");
                 return getInstance().networkFile.getAbsolutePath();
             } catch (Throwable th) {
                 th.printStackTrace();
-                return "";
+                return BuildConfig.APP_CENTER_HASH;
             }
         }
-        return "";
+        return BuildConfig.APP_CENTER_HASH;
     }
 
     public static String getTonlibLogPath() {
@@ -232,17 +236,17 @@ public class FileLog {
             try {
                 File logsDir = AndroidUtilities.getLogsDir();
                 if (logsDir == null) {
-                    return "";
+                    return BuildConfig.APP_CENTER_HASH;
                 }
                 FileLog fileLog = getInstance();
                 fileLog.tonlibFile = new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_tonlib.txt");
                 return getInstance().tonlibFile.getAbsolutePath();
             } catch (Throwable th) {
                 th.printStackTrace();
-                return "";
+                return BuildConfig.APP_CENTER_HASH;
             }
         }
-        return "";
+        return BuildConfig.APP_CENTER_HASH;
     }
 
     public static void e(final String str, final Throwable th) {

@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
@@ -349,7 +350,14 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         };
         this.fragmentView = sizeNotifierFrameLayout2;
         sizeNotifierFrameLayout2.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
-        this.fragmentView.setOnTouchListener(GroupCreateFinalActivity$$ExternalSyntheticLambda3.INSTANCE);
+        this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$createView$1;
+                lambda$createView$1 = GroupCreateFinalActivity.lambda$createView$1(view, motionEvent);
+                return lambda$createView$1;
+            }
+        });
         this.shadowDrawable = context.getResources().getDrawable(R.drawable.greydivider_top).mutate();
         LinearLayout linearLayout = new LinearLayout(context) {
             @Override
@@ -416,7 +424,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             }
         });
         int i2 = R.raw.camera;
-        this.cameraDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
+        this.cameraDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
         RLottieImageView rLottieImageView = new RLottieImageView(context) {
             @Override
             public void invalidate(int i3, int i4, int i5, int i6) {
@@ -886,7 +894,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             if (groupCreateFinalActivityDelegate2 != null) {
                 groupCreateFinalActivityDelegate2.didFinishChatCreation(this, longValue);
             } else {
-                NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.closeChats, new Object[0]);
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
                 Bundle bundle = new Bundle();
                 bundle.putLong("chat_id", longValue);
                 bundle.putBoolean("just_created_chat", true);

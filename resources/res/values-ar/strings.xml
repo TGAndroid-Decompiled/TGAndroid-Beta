@@ -4378,6 +4378,13 @@
     <string name="YourPasswordSuccessText">تم تفعيل كلمة المرور الخاصة بالتحقق بخطوتين.</string>
     <string name="YourPhone">رقمك</string>
     <string name="ZoomOut">تصغير</string>
+    <string name="call_notification_answer_action">ردّ</string>
+    <string name="call_notification_answer_video_action">فيديو</string>
+    <string name="call_notification_decline_action">رفض</string>
+    <string name="call_notification_hang_up_action">قطع الاتصال</string>
+    <string name="call_notification_incoming_text">مكالمة واردة</string>
+    <string name="call_notification_ongoing_text">مكالمة جارية</string>
+    <string name="call_notification_screening_text">يتم فحص المكالمة الواردة</string>
     <string name="chatDate">d MMMM</string>
     <string name="chatFullDate">d MMMM yyyy</string>
     <string name="common_google_play_services_enable_button">تفعيل</string>

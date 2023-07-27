@@ -136,7 +136,7 @@ public class ChatThemeController extends BaseController {
         int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
         ArrayList arrayList = new ArrayList(i);
         for (int i2 = 0; i2 < i; i2++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, BuildConfig.APP_CENTER_HASH)));
             try {
                 TLRPC$TL_theme TLdeserialize = TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true);
                 if (TLdeserialize != null) {
@@ -238,7 +238,7 @@ public class ChatThemeController extends BaseController {
         if (z) {
             TLRPC$TL_messages_setChatTheme tLRPC$TL_messages_setChatTheme = new TLRPC$TL_messages_setChatTheme();
             if (str == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             tLRPC$TL_messages_setChatTheme.emoticon = str;
             tLRPC$TL_messages_setChatTheme.peer = getMessagesController().getInputPeer(j);
@@ -314,7 +314,17 @@ public class ChatThemeController extends BaseController {
             TLRPC$TL_theme tlTheme = emojiThemes.getTlTheme(z ? 1 : 0);
             if (tlTheme != null) {
                 if (!themeIdWallpaperThumbMap.containsKey(Long.valueOf(tlTheme.id))) {
-                    emojiThemes.loadWallpaperThumb(z ? 1 : 0, ChatThemeController$$ExternalSyntheticLambda10.INSTANCE);
+                    emojiThemes.loadWallpaperThumb(z ? 1 : 0, new ResultCallback() {
+                        @Override
+                        public final void onComplete(Object obj) {
+                            ChatThemeController.lambda$preloadAllWallpaperThumbs$4((Pair) obj);
+                        }
+
+                        @Override
+                        public void onError(TLRPC$TL_error tLRPC$TL_error) {
+                            ResultCallback.CC.$default$onError(this, tLRPC$TL_error);
+                        }
+                    });
                 }
             }
         }
@@ -409,12 +419,17 @@ public class ChatThemeController extends BaseController {
             }
             saveChatWallpaper(j, null);
             if (z) {
-                NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
             }
         } else {
             tLRPC$TL_messages_setChatWallPaper.peer = MessagesController.getInputPeer(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)));
         }
-        getConnectionsManager().sendRequest(tLRPC$TL_messages_setChatWallPaper, ChatThemeController$$ExternalSyntheticLambda9.INSTANCE);
+        getConnectionsManager().sendRequest(tLRPC$TL_messages_setChatWallPaper, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                ChatThemeController.lambda$clearWallpaper$8(tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     public int setWallpaperToUser(final long j, final String str, Theme.OverrideWallpaperInfo overrideWallpaperInfo, MessageObject messageObject, final Runnable runnable) {
@@ -479,7 +494,7 @@ public class ChatThemeController extends BaseController {
                 tLRPC$TL_wallPaper2.flags = i5 | 4;
                 userFull.flags |= ConnectionsManager.FileTypePhoto;
                 getMessagesStorage().updateUserInfo(userFull, false);
-                NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
                 if (runnable != null) {
                     runnable.run();
                 }
@@ -534,7 +549,7 @@ public class ChatThemeController extends BaseController {
                                 userFull.flags |= ConnectionsManager.FileTypePhoto;
                                 saveChatWallpaper(j, tLRPC$WallPaper2);
                                 getMessagesStorage().updateUserInfo(userFull, false);
-                                NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
+                                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j), userFull);
                             }
                         }
                     }
@@ -545,7 +560,7 @@ public class ChatThemeController extends BaseController {
             if (runnable != null) {
                 runnable.run();
             }
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.wallpaperSettedToUser, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.wallpaperSettedToUser, new Object[0]);
         }
     }
 }

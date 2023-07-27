@@ -80,6 +80,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
     AnimatedEmojiSpan.EmojiGroupedSpans titleLayoutEmojis;
     private float titleLayoutLeft;
     private float titleLayoutWidth;
+    TextPaint titlePaint;
     private int titleY;
     private int viewType;
 
@@ -137,6 +138,13 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         TextPaint textPaint2 = new TextPaint(1);
         this.captionTextPaint = textPaint2;
         textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
+        if (resourcesProvider != null) {
+            TextPaint textPaint3 = new TextPaint(1);
+            this.titlePaint = textPaint3;
+            textPaint3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.titlePaint.setTextSize(AndroidUtilities.dp(15.0f));
+            this.titlePaint.setColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
+        }
     }
 
     @Override
@@ -159,7 +167,7 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         }
         try {
             if (this.viewType == 1 && (this.currentMessageObject.isVoice() || this.currentMessageObject.isRoundVideo())) {
-                replace = FilteredSearchView.createFromInfoString(this.currentMessageObject);
+                replace = FilteredSearchView.createFromInfoString(this.currentMessageObject, 1);
             } else {
                 replace = this.currentMessageObject.getMusicTitle().replace('\n', ' ');
             }
@@ -167,7 +175,12 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
             if (highlightText != null) {
                 replace = highlightText;
             }
-            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(replace, Theme.chat_contextResult_titleTextPaint, size - i3, TextUtils.TruncateAt.END), Theme.chat_contextResult_titleTextPaint, (AndroidUtilities.dp(4.0f) + size) - i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            TextPaint textPaint = this.titlePaint;
+            if (textPaint == null) {
+                textPaint = Theme.chat_contextResult_titleTextPaint;
+            }
+            TextPaint textPaint2 = textPaint;
+            StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(replace, textPaint2, size - i3, TextUtils.TruncateAt.END), textPaint2, (AndroidUtilities.dp(4.0f) + size) - i3, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.titleLayout = staticLayout;
             this.titleLayoutLeft = staticLayout.getLineCount() > 0 ? this.titleLayout.getLineLeft(0) : 0.0f;
             this.titleLayoutWidth = this.titleLayout.getLineCount() > 0 ? this.titleLayout.getLineWidth(0) : 0.0f;
@@ -187,9 +200,9 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         }
         try {
             if (this.viewType == 1 && (this.currentMessageObject.isVoice() || this.currentMessageObject.isRoundVideo())) {
-                String formatDuration = AndroidUtilities.formatDuration(this.currentMessageObject.getDuration(), false);
-                TextPaint textPaint = this.viewType == 1 ? this.description2TextPaint : Theme.chat_contextResult_descriptionTextPaint;
-                this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(formatDuration, textPaint, size, TextUtils.TruncateAt.END), textPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                String formatDuration = AndroidUtilities.formatDuration((int) this.currentMessageObject.getDuration(), false);
+                TextPaint textPaint3 = this.viewType == 1 ? this.description2TextPaint : Theme.chat_contextResult_descriptionTextPaint;
+                this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(formatDuration, textPaint3, size, TextUtils.TruncateAt.END), textPaint3, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             } else {
                 String replace2 = this.currentMessageObject.getMusicAuthor().replace('\n', ' ');
                 ?? highlightText3 = AndroidUtilities.highlightText(replace2, this.currentMessageObject.highlightedWords, this.resourcesProvider);
@@ -199,10 +212,10 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
                 }
                 SpannableStringBuilder spannableStringBuilder = str;
                 if (this.viewType == 1) {
-                    spannableStringBuilder = new SpannableStringBuilder(str).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject));
+                    spannableStringBuilder = new SpannableStringBuilder(str).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject, 1));
                 }
-                TextPaint textPaint2 = this.viewType == 1 ? this.description2TextPaint : Theme.chat_contextResult_descriptionTextPaint;
-                this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, textPaint2, size, TextUtils.TruncateAt.END), textPaint2, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                TextPaint textPaint4 = this.viewType == 1 ? this.description2TextPaint : Theme.chat_contextResult_descriptionTextPaint;
+                this.descriptionLayout = new StaticLayout(TextUtils.ellipsize(spannableStringBuilder, textPaint4, size, TextUtils.TruncateAt.END), textPaint4, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             }
             this.descriptionLayoutLeft = this.descriptionLayout.getLineCount() > 0 ? this.descriptionLayout.getLineLeft(0) : 0.0f;
             this.descriptionLayoutWidth = this.descriptionLayout.getLineCount() > 0 ? this.descriptionLayout.getLineWidth(0) : 0.0f;
@@ -665,9 +678,9 @@ public class SharedAudioCell extends FrameLayout implements DownloadController.F
         this.radialProgress.draw(canvas);
         if (this.needDivider) {
             if (LocaleController.isRTL) {
-                canvas.drawLine(0.0f, getHeight() - 1, (getWidth() - AndroidUtilities.dp(72.0f)) - getPaddingRight(), getHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(0.0f, getHeight() - 1, (getWidth() - AndroidUtilities.dp(72.0f)) - getPaddingRight(), getHeight() - 1, Theme.getThemePaint("paintDivider", this.resourcesProvider));
             } else {
-                canvas.drawLine(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, Theme.dividerPaint);
+                canvas.drawLine(AndroidUtilities.dp(72.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, Theme.getThemePaint("paintDivider", this.resourcesProvider));
             }
         }
     }

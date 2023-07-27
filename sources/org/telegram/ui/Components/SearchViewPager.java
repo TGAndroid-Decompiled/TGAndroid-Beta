@@ -32,6 +32,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -154,7 +155,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         this.fragmentView = (SizeNotifierFrameLayout) dialogsActivity.getFragmentView();
         BlurredRecyclerView blurredRecyclerView = new BlurredRecyclerView(context) {
             @Override
-            protected void dispatchDraw(Canvas canvas) {
+            public void dispatchDraw(Canvas canvas) {
                 SearchViewPager searchViewPager = SearchViewPager.this;
                 if (searchViewPager.dialogsSearchAdapter != null && searchViewPager.itemAnimator != null && SearchViewPager.this.searchLayoutManager != null && SearchViewPager.this.dialogsSearchAdapter.showMoreAnimation) {
                     canvas.save();
@@ -417,7 +418,14 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             int i = Theme.key_actionBarActionModeDefaultIcon;
             numberTextView2.setTextColor(Theme.getColor(i));
             this.actionMode.addView(this.selectedMessagesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
-            this.selectedMessagesCountTextView.setOnTouchListener(SearchViewPager$$ExternalSyntheticLambda2.INSTANCE);
+            this.selectedMessagesCountTextView.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public final boolean onTouch(View view, MotionEvent motionEvent) {
+                    boolean lambda$showActionMode$0;
+                    lambda$showActionMode$0 = SearchViewPager.lambda$showActionMode$0(view, motionEvent);
+                    return lambda$showActionMode$0;
+                }
+            });
             ActionBarMenuItem addItemWithWidth = this.actionMode.addItemWithWidth(203, R.drawable.avd_speed, AndroidUtilities.dp(54.0f), LocaleController.getString("AccDescrPremiumSpeed", R.string.AccDescrPremiumSpeed));
             this.speedItem = addItemWithWidth;
             addItemWithWidth.getIconView().setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.SRC_IN));
@@ -493,7 +501,12 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("RemoveDocumentsMessage", this.selectedFiles.size(), new Object[0]))).append((CharSequence) "\n\n").append((CharSequence) LocaleController.getString("RemoveDocumentsAlertMessage", R.string.RemoveDocumentsAlertMessage));
             builder.setMessage(spannableStringBuilder);
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), SearchViewPager$$ExternalSyntheticLambda1.INSTANCE);
+            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i2) {
+                    dialogInterface.dismiss();
+                }
+            });
             builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
@@ -547,7 +560,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
             for (int i = 0; i < arrayList.size(); i++) {
                 long j = ((MessagesStorage.TopicKey) arrayList.get(i)).dialogId;
                 if (charSequence != null) {
-                    AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, null, false);
+                    AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, null, null, null, true, null, null, null, true, 0, null, false));
                 }
                 AccountInstance.getInstance(this.currentAccount).getSendMessagesHelper().sendMessage(arrayList2, j, false, false, true, 0);
             }

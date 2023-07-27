@@ -61,11 +61,24 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BotWebViewContainer;
 import org.telegram.ui.Components.BotWebViewMenuContainer;
 import org.telegram.ui.Components.ChatAttachAlertBotWebViewLayout;
+import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.PaymentFormActivity;
 import org.telegram.ui.TopicsFragment;
 public class BotWebViewMenuContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    private static final SimpleFloatPropertyCompat<BotWebViewMenuContainer> ACTION_BAR_TRANSITION_PROGRESS_VALUE = new SimpleFloatPropertyCompat("actionBarTransitionProgress", BotWebViewMenuContainer$$ExternalSyntheticLambda21.INSTANCE, BotWebViewMenuContainer$$ExternalSyntheticLambda22.INSTANCE).setMultiplier(100.0f);
+    private static final SimpleFloatPropertyCompat<BotWebViewMenuContainer> ACTION_BAR_TRANSITION_PROGRESS_VALUE = new SimpleFloatPropertyCompat("actionBarTransitionProgress", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((BotWebViewMenuContainer) obj).actionBarTransitionProgress;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            BotWebViewMenuContainer.lambda$static$1((BotWebViewMenuContainer) obj, f);
+        }
+    }).setMultiplier(100.0f);
     private ActionBar.ActionBarMenuOnItemClick actionBarOnItemClick;
     private Paint actionBarPaint;
     private float actionBarTransitionProgress;
@@ -891,11 +904,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
     }
 
     public int getColor(int i) {
-        Theme.ResourcesProvider resourceProvider = this.parentEnterView.getParentFragment().getResourceProvider();
-        if (resourceProvider != null && resourceProvider.contains(i)) {
-            return resourceProvider.getColor(i);
-        }
-        return Theme.getColor(i);
+        return Theme.getColor(i, this.parentEnterView.getParentFragment().getResourceProvider());
     }
 
     public void setOnDismissGlobalListener(Runnable runnable) {

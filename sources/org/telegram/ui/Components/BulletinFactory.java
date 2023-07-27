@@ -36,10 +36,16 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.Stories.StoryViewer;
 public final class BulletinFactory {
     private final FrameLayout containerLayout;
     private final BaseFragment fragment;
     private final Theme.ResourcesProvider resourcesProvider;
+
+    public static class UndoObject {
+        public Runnable onAction;
+        public Runnable onUndo;
+    }
 
     public static BulletinFactory of(BaseFragment baseFragment) {
         return new BulletinFactory(baseFragment);
@@ -165,6 +171,13 @@ public final class BulletinFactory {
     }
 
     private BulletinFactory(BaseFragment baseFragment) {
+        StoryViewer storyViewer;
+        if (baseFragment != null && (storyViewer = baseFragment.storyViewer) != null && storyViewer.attachedToParent()) {
+            this.fragment = null;
+            this.containerLayout = baseFragment.storyViewer.getContainerForBulletin();
+            this.resourcesProvider = baseFragment.storyViewer.getResourceProvider();
+            return;
+        }
         this.fragment = baseFragment;
         this.containerLayout = null;
         this.resourcesProvider = baseFragment != null ? baseFragment.getResourceProvider() : null;
@@ -229,7 +242,12 @@ public final class BulletinFactory {
 
     public Bulletin createSimpleBulletin(int i, CharSequence charSequence, CharSequence charSequence2, int i2, Runnable runnable) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
-        lottieLayout.setAnimation(i, 36, 36, new String[0]);
+        if (i != 0) {
+            lottieLayout.setAnimation(i, 36, 36, new String[0]);
+        } else {
+            lottieLayout.imageView.setVisibility(4);
+            ((ViewGroup.MarginLayoutParams) lottieLayout.textView.getLayoutParams()).leftMargin = AndroidUtilities.dp(16.0f);
+        }
         lottieLayout.textView.setTextSize(1, 14.0f);
         lottieLayout.textView.setTextDirection(5);
         lottieLayout.textView.setSingleLine(false);
@@ -268,10 +286,10 @@ public final class BulletinFactory {
     }
 
     public Bulletin createUsersBulletin(List<TLRPC$User> list, CharSequence charSequence) {
-        return createUsersBulletin(list, charSequence, null);
+        return createUsersBulletin(list, charSequence, null, null);
     }
 
-    public Bulletin createUsersBulletin(List<TLRPC$User> list, CharSequence charSequence, CharSequence charSequence2) {
+    public Bulletin createUsersBulletin(List<TLRPC$User> list, CharSequence charSequence, CharSequence charSequence2, UndoObject undoObject) {
         int i;
         Bulletin.UsersLayout usersLayout = new Bulletin.UsersLayout(getContext(), charSequence2 != null, this.resourcesProvider);
         if (list != null) {
@@ -305,6 +323,9 @@ public final class BulletinFactory {
             usersLayout.subtitleView.setMaxLines(1);
             if (usersLayout.linearLayout.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
                 int dp = AndroidUtilities.dp(70 - ((3 - i) * 12));
+                if (i == 1) {
+                    dp += AndroidUtilities.dp(4.0f);
+                }
                 if (LocaleController.isRTL) {
                     ((ViewGroup.MarginLayoutParams) usersLayout.linearLayout.getLayoutParams()).rightMargin = dp;
                 } else {
@@ -317,12 +338,19 @@ public final class BulletinFactory {
             usersLayout.textView.setText(charSequence);
             if (usersLayout.textView.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
                 int dp2 = AndroidUtilities.dp(70 - ((3 - i) * 12));
+                if (i == 1) {
+                    usersLayout.textView.setTranslationY(-AndroidUtilities.dp(1.0f));
+                    dp2 += AndroidUtilities.dp(4.0f);
+                }
                 if (LocaleController.isRTL) {
                     ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).rightMargin = dp2;
                 } else {
                     ((ViewGroup.MarginLayoutParams) usersLayout.textView.getLayoutParams()).leftMargin = dp2;
                 }
             }
+        }
+        if (undoObject != null) {
+            usersLayout.setButton(new Bulletin.UndoButton(getContext(), true, this.resourcesProvider).setText(LocaleController.getString("Undo", R.string.Undo)).setUndoAction(undoObject.onUndo).setDelayedAction(undoObject.onAction));
         }
         return create(usersLayout, 5000);
     }
@@ -440,7 +468,7 @@ public final class BulletinFactory {
         return create(loadingLottieLayout, 2750);
     }
 
-    public Bulletin createContainsEmojiBulletin(TLRPC$Document tLRPC$Document, final boolean z, final Utilities.Callback<TLRPC$InputStickerSet> callback) {
+    public Bulletin createContainsEmojiBulletin(TLRPC$Document tLRPC$Document, final int i, final Utilities.Callback<TLRPC$InputStickerSet> callback) {
         SpannableStringBuilder spannableStringBuilder;
         LoadingSpan loadingSpan;
         TLRPC$StickerSet tLRPC$StickerSet;
@@ -450,39 +478,41 @@ public final class BulletinFactory {
         }
         TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(UserConfig.selectedAccount).getStickerSet(inputStickerSet, true);
         if (stickerSet == null || (tLRPC$StickerSet = stickerSet.set) == null) {
-            if (z) {
+            if (i == 1) {
                 spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, "<{LOADING}>")));
+            } else if (i == 2) {
+                spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, "<{LOADING}>")));
             } else {
                 spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, "<{LOADING}>")));
             }
             int indexOf = spannableStringBuilder.toString().indexOf("<{LOADING}>");
             if (indexOf >= 0) {
-                loadingSpan = new LoadingSpan(null, AndroidUtilities.dp(100.0f));
+                loadingSpan = new LoadingSpan(null, AndroidUtilities.dp(100.0f), AndroidUtilities.dp(2.0f), this.resourcesProvider);
                 spannableStringBuilder.setSpan(loadingSpan, indexOf, indexOf + 11, 33);
-                int i = Theme.key_undo_infoColor;
-                loadingSpan.setColors(ColorUtils.setAlphaComponent(Theme.getColor(i, this.resourcesProvider), 32), ColorUtils.setAlphaComponent(Theme.getColor(i, this.resourcesProvider), 72));
+                int i2 = Theme.key_undo_infoColor;
+                loadingSpan.setColors(ColorUtils.setAlphaComponent(Theme.getColor(i2, this.resourcesProvider), 32), ColorUtils.setAlphaComponent(Theme.getColor(i2, this.resourcesProvider), 72));
             } else {
                 loadingSpan = null;
             }
             final long currentTimeMillis = System.currentTimeMillis();
-            final Bulletin show = createEmojiLoadingBulletin(tLRPC$Document, spannableStringBuilder, LocaleController.getString("ViewAction", R.string.ViewAction), new Runnable() {
+            final Bulletin createEmojiLoadingBulletin = createEmojiLoadingBulletin(tLRPC$Document, spannableStringBuilder, LocaleController.getString("ViewAction", R.string.ViewAction), new Runnable() {
                 @Override
                 public final void run() {
                     Utilities.Callback.this.run(inputStickerSet);
                 }
-            }).show();
-            if (loadingSpan != null && (show.getLayout() instanceof Bulletin.LoadingLottieLayout)) {
-                loadingSpan.setView(((Bulletin.LoadingLottieLayout) show.getLayout()).textLoadingView);
+            });
+            if (loadingSpan != null && (createEmojiLoadingBulletin.getLayout() instanceof Bulletin.LoadingLottieLayout)) {
+                loadingSpan.setView(((Bulletin.LoadingLottieLayout) createEmojiLoadingBulletin.getLayout()).textLoadingView);
             }
             MediaDataController.getInstance(UserConfig.selectedAccount).getStickerSet(inputStickerSet, null, false, new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
-                    BulletinFactory.lambda$createContainsEmojiBulletin$2(z, show, currentTimeMillis, (TLRPC$TL_messages_stickerSet) obj);
+                    BulletinFactory.lambda$createContainsEmojiBulletin$2(i, createEmojiLoadingBulletin, currentTimeMillis, (TLRPC$TL_messages_stickerSet) obj);
                 }
             });
-            return show;
+            return createEmojiLoadingBulletin;
         }
-        return createEmojiBulletin(tLRPC$Document, z ? AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, tLRPC$StickerSet.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, tLRPC$StickerSet.title)), LocaleController.getString("ViewAction", R.string.ViewAction), new Runnable() {
+        return createEmojiBulletin(tLRPC$Document, i == 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, tLRPC$StickerSet.title)) : i == 2 ? AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, tLRPC$StickerSet.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, tLRPC$StickerSet.title)), LocaleController.getString("ViewAction", R.string.ViewAction), new Runnable() {
             @Override
             public final void run() {
                 Utilities.Callback.this.run(inputStickerSet);
@@ -490,13 +520,13 @@ public final class BulletinFactory {
         });
     }
 
-    public static void lambda$createContainsEmojiBulletin$2(boolean z, final Bulletin bulletin, long j, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
+    public static void lambda$createContainsEmojiBulletin$2(int i, final Bulletin bulletin, long j, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
         final CharSequence string;
         TLRPC$StickerSet tLRPC$StickerSet;
         if (tLRPC$TL_messages_stickerSet == null || (tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set) == null) {
             string = LocaleController.getString("AddEmojiNotFound", R.string.AddEmojiNotFound);
         } else {
-            string = z ? AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, tLRPC$StickerSet.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, tLRPC$StickerSet.title));
+            string = i == 1 ? AndroidUtilities.replaceTags(LocaleController.formatString("TopicContainsEmojiPackSingle", R.string.TopicContainsEmojiPackSingle, tLRPC$StickerSet.title)) : i == 2 ? AndroidUtilities.replaceTags(LocaleController.formatString("StoryContainsEmojiPackSingle", R.string.StoryContainsEmojiPackSingle, tLRPC$StickerSet.title)) : AndroidUtilities.replaceTags(LocaleController.formatString("MessageContainsEmojiPackSingle", R.string.MessageContainsEmojiPackSingle, tLRPC$StickerSet.title));
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -758,6 +788,10 @@ public final class BulletinFactory {
 
     public static Bulletin createSaveToGalleryBulletin(BaseFragment baseFragment, boolean z, Theme.ResourcesProvider resourcesProvider) {
         return of(baseFragment).createDownloadBulletin(z ? FileType.VIDEO : FileType.PHOTO, resourcesProvider);
+    }
+
+    public static Bulletin createSaveToGalleryBulletin(FrameLayout frameLayout, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        return of(frameLayout, resourcesProvider).createDownloadBulletin(z ? FileType.VIDEO : FileType.PHOTO, resourcesProvider);
     }
 
     public static Bulletin createSaveToGalleryBulletin(FrameLayout frameLayout, boolean z, int i, int i2) {

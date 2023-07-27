@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -51,6 +52,21 @@ public class MessageContainsEmojiButton extends FrameLayout implements Notificat
             textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, MessageContainsEmojiButton.this.resourcesProvider));
             textPaint.setAlpha(alpha);
         }
+    }
+
+    private MessageContainsEmojiButton(int i, Context context, Theme.ResourcesProvider resourcesProvider, int i2) {
+        super(context);
+        this.emojiDrawableBounds = new android.graphics.Rect();
+        this.loadingDrawableBoundsSet = false;
+        this.lastWidth = -1;
+        this.checkWidth = true;
+        this.loadT = 0.0f;
+        this.currentAccount = i;
+        setBackground(Theme.createRadSelectorDrawable(Theme.getColor(Theme.key_listSelector, resourcesProvider), 0, 6));
+        TextPaint textPaint = new TextPaint(1);
+        this.textPaint = textPaint;
+        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
+        this.textPaint.setColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem, resourcesProvider));
     }
 
     public MessageContainsEmojiButton(int r11, android.content.Context r12, org.telegram.ui.ActionBar.Theme.ResourcesProvider r13, java.util.ArrayList<org.telegram.tgnet.TLRPC$InputStickerSet> r14, int r15) {

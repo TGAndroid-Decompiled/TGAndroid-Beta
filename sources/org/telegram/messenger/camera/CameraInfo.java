@@ -11,9 +11,9 @@ public class CameraInfo {
     public CameraCaptureSession cameraCaptureSession;
     CameraCharacteristics cameraCharacteristics;
     protected CameraDevice cameraDevice;
-    protected int cameraId;
+    public int cameraId;
     CaptureRequest.Builder captureRequestBuilder;
-    protected final int frontCamera;
+    public final int frontCamera;
     protected ArrayList<Size> pictureSizes = new ArrayList<>();
     protected ArrayList<Size> previewSizes = new ArrayList<>();
 

@@ -35,6 +35,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -182,7 +183,14 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             this.imageView.setAlpha(0.0f);
             this.emptyTextView1.setAlpha(0.0f);
             this.emptyTextView2.setAlpha(0.0f);
-            setOnTouchListener(CallLogActivity$EmptyTextProgressView$$ExternalSyntheticLambda1.INSTANCE);
+            setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                    boolean lambda$new$1;
+                    lambda$new$1 = CallLogActivity.EmptyTextProgressView.lambda$new$1(view2, motionEvent);
+                    return lambda$new$1;
+                }
+            });
         }
 
         public void lambda$new$0(View view) {
@@ -557,7 +565,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
             if (view instanceof GroupCallCell) {
                 Bundle bundle = new Bundle();
                 bundle.putLong("chat_id", ((GroupCallCell) view).currentChat.id);
-                getNotificationCenter().postNotificationName(NotificationCenter.closeChats, new Object[0]);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
                 presentFragment(new ChatActivity(bundle), true);
                 return;
             }
@@ -571,7 +579,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         Bundle bundle2 = new Bundle();
         bundle2.putLong("user_id", callLogRow.user.id);
         bundle2.putInt("message_id", callLogRow.calls.get(0).id);
-        getNotificationCenter().postNotificationName(NotificationCenter.closeChats, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
         presentFragment(new ChatActivity(bundle2), true);
     }
 
@@ -634,7 +642,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         FrameLayout frameLayout = new FrameLayout(getParentActivity());
         CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 1);
         checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-        checkBoxCell.setText(LocaleController.getString("DeleteCallsForEveryone", R.string.DeleteCallsForEveryone), "", false, false);
+        checkBoxCell.setText(LocaleController.getString("DeleteCallsForEveryone", R.string.DeleteCallsForEveryone), BuildConfig.APP_CENTER_HASH, false, false);
         checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(8.0f), 0);
         frameLayout.addView(checkBoxCell, LayoutHelper.createFrame(-1, 48.0f, 51, 8.0f, 0.0f, 8.0f, 0.0f));
         checkBoxCell.setOnClickListener(new View.OnClickListener() {
@@ -738,7 +746,14 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         this.selectedDialogsCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.selectedDialogsCountTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));
         createActionMode.addView(this.selectedDialogsCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
-        this.selectedDialogsCountTextView.setOnTouchListener(CallLogActivity$$ExternalSyntheticLambda3.INSTANCE);
+        this.selectedDialogsCountTextView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$createActionMode$7;
+                lambda$createActionMode$7 = CallLogActivity.lambda$createActionMode$7(view, motionEvent);
+                return lambda$createActionMode$7;
+            }
+        });
         this.actionModeViews.add(createActionMode.addItemWithWidth(2, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString("Delete", R.string.Delete)));
     }
 
@@ -824,7 +839,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         tLRPC$TL_messages_search.limit = i2;
         tLRPC$TL_messages_search.peer = new TLRPC$TL_inputPeerEmpty();
         tLRPC$TL_messages_search.filter = new TLRPC$TL_inputMessagesFilterPhoneCalls();
-        tLRPC$TL_messages_search.q = "";
+        tLRPC$TL_messages_search.q = BuildConfig.APP_CENTER_HASH;
         tLRPC$TL_messages_search.offset_id = i;
         getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
             @Override
@@ -1049,12 +1064,6 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void notifyItemRemoved(int i) {
-            updateRows();
-            super.notifyItemRemoved(i);
-        }
-
-        @Override
         public void notifyItemRangeRemoved(int i, int i2) {
             updateRows();
             super.notifyItemRangeRemoved(i, i2);
@@ -1116,7 +1125,7 @@ public class CallLogActivity extends BaseFragment implements NotificationCenter.
                 CallCell callCell = (CallCell) viewHolder.itemView;
                 callCell.imageView.setImageResource(callLogRow.video ? R.drawable.profile_video : R.drawable.profile_phone);
                 TLRPC$Message tLRPC$Message = callLogRow.calls.get(0);
-                String str = LocaleController.isRTL ? "\u202b" : "";
+                String str = LocaleController.isRTL ? "\u202b" : BuildConfig.APP_CENTER_HASH;
                 if (callLogRow.calls.size() == 1) {
                     spannableString = new SpannableString(str + "  " + LocaleController.formatDateCallLog(tLRPC$Message.date));
                 } else {

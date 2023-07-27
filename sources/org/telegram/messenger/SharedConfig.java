@@ -3,6 +3,8 @@ package org.telegram.messenger;
 import android.app.ActivityManager;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.media.MediaCodecInfo;
+import android.media.MediaCodecList;
 import android.os.Build;
 import android.os.Environment;
 import android.os.SystemClock;
@@ -18,10 +20,13 @@ import java.lang.annotation.RetentionPolicy;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Locale;
 import org.json.JSONObject;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
@@ -41,11 +46,12 @@ public class SharedConfig {
     public static final int SAVE_TO_GALLERY_FLAG_GROUP = 2;
     public static final int SAVE_TO_GALLERY_FLAG_PEER = 1;
     public static boolean allowBigEmoji = false;
+    static Boolean allowPreparingHevcPlayers = null;
     public static boolean allowScreenCapture = false;
     private static Boolean animationsEnabled = null;
     public static boolean appLocked = false;
     public static boolean archiveHidden = false;
-    public static int autoLockIn = 3600;
+    public static int autoLockIn = 0;
     public static int badPasscodeTries = 0;
     public static boolean bigCameraForRound = false;
     public static int bubbleRadius = 0;
@@ -70,13 +76,17 @@ public class SharedConfig {
     public static boolean fontSizeIsDefault = false;
     public static boolean forceDisableTabletMode = false;
     public static boolean forwardingOptionsHintShown = false;
+    private static String goodHevcEncoder = null;
     public static boolean hasCameraCache = false;
     public static boolean hasEmailLogin = false;
+    private static HashSet<String> hevcEncoderWhitelist = null;
     public static boolean inappCamera = false;
     public static boolean isFloatingDebugActive = false;
     public static boolean isWaitingForPasscodeEnter = false;
     public static int ivFontSize = 0;
+    public static int keepMedia = 0;
     public static int lastKeepMediaCheckTime = 0;
+    private static int lastLocalId = 0;
     public static int lastLogsCheckTime = 0;
     public static int lastPauseTime = 0;
     public static long lastUpdateCheckTime = 0;
@@ -84,71 +94,71 @@ public class SharedConfig {
     public static long lastUptimeMillis = 0;
     private static int legacyDevicePerformanceClass = -1;
     public static LiteMode liteMode = null;
+    private static final Object localIdSync;
     public static int lockRecordAudioVideoHint = 0;
+    public static int mapPreviewType = 0;
     public static int mediaColumnsCount = 0;
     public static int messageSeenHintCount = 0;
     public static boolean nextMediaTap = false;
     public static boolean noSoundHintShowed = false;
     public static final boolean noStatusBar = true;
-    public static boolean noiseSupression = false;
-    private static int overrideDevicePerformanceClass = 0;
-    public static String passcodeHash = "";
-    public static long passcodeRetryInMs = 0;
-    public static int passcodeType = 0;
-    public static int passportConfigHash = 0;
-    private static HashMap<String, String> passportConfigMap = null;
-    public static boolean pauseMusicOnMedia = false;
-    public static boolean pauseMusicOnRecord = false;
-    public static TLRPC$TL_help_appUpdate pendingAppUpdate = null;
-    public static int pendingAppUpdateBuildVersion = 0;
-    public static boolean playOrderReversed = false;
-    public static ArrayList<ProxyInfo> proxyList = null;
-    private static boolean proxyListLoaded = false;
-    public static boolean proxyRotationEnabled = false;
-    public static int proxyRotationTimeout = 0;
-    public static byte[] pushAuthKey = null;
-    public static byte[] pushAuthKeyId = null;
-    public static boolean pushStatSent = false;
-    public static String pushString = "";
-    public static long pushStringGetTimeEnd = 0;
-    public static long pushStringGetTimeStart = 0;
-    public static String pushStringStatus = "";
-    public static int pushType = 2;
-    public static boolean raiseToListen = false;
-    public static boolean raiseToSpeak = false;
-    public static boolean readOnlyStorageDirAlertShowed = false;
-    public static boolean recordViaSco = false;
-    public static int repeatMode = 0;
-    public static boolean roundCamera16to9 = false;
-    public static boolean saveIncomingPhotos = false;
-    public static boolean saveStreamMedia = false;
-    public static int scheduledOrNoSoundHintShows = 0;
-    public static int searchMessagesAsListHintShows = 0;
-    public static boolean searchMessagesAsListUsed = false;
-    public static boolean showNotificationsForAllAccounts = false;
-    public static boolean shuffleMusic = false;
-    public static boolean sortContactsByName = false;
-    public static boolean sortFilesByName = false;
-    public static boolean stickersReorderingHintUsed = false;
-    public static String storageCacheDir = null;
-    public static boolean streamAllVideo = false;
-    public static boolean streamMedia = false;
-    public static boolean streamMkv = false;
-    public static boolean suggestAnimatedEmoji = false;
-    public static int suggestStickers = 0;
-    public static int textSelectionHintShows = 0;
-    public static boolean translateChats = false;
-    public static boolean useFingerprint = true;
+    public static boolean noiseSupression;
+    private static int overrideDevicePerformanceClass;
+    public static String passcodeHash;
+    public static long passcodeRetryInMs;
+    public static byte[] passcodeSalt;
+    public static int passcodeType;
+    public static int passportConfigHash;
+    private static String passportConfigJson;
+    private static HashMap<String, String> passportConfigMap;
+    public static boolean pauseMusicOnMedia;
+    public static boolean pauseMusicOnRecord;
+    public static TLRPC$TL_help_appUpdate pendingAppUpdate;
+    public static int pendingAppUpdateBuildVersion;
+    public static boolean playOrderReversed;
+    public static ArrayList<ProxyInfo> proxyList;
+    private static boolean proxyListLoaded;
+    public static boolean proxyRotationEnabled;
+    public static int proxyRotationTimeout;
+    public static byte[] pushAuthKey;
+    public static byte[] pushAuthKeyId;
+    public static boolean pushStatSent;
+    public static String pushString;
+    public static long pushStringGetTimeEnd;
+    public static long pushStringGetTimeStart;
+    public static String pushStringStatus;
+    public static int pushType;
+    public static boolean raiseToListen;
+    public static boolean raiseToSpeak;
+    public static boolean readOnlyStorageDirAlertShowed;
+    public static boolean recordViaSco;
+    public static int repeatMode;
+    public static boolean roundCamera16to9;
+    public static boolean saveIncomingPhotos;
+    public static boolean saveStreamMedia;
+    public static int scheduledOrNoSoundHintShows;
+    public static int searchMessagesAsListHintShows;
+    public static boolean searchMessagesAsListUsed;
+    public static boolean showNotificationsForAllAccounts;
+    public static boolean shuffleMusic;
+    public static boolean sortContactsByName;
+    public static boolean sortFilesByName;
+    public static boolean stickersReorderingHintUsed;
+    public static String storageCacheDir;
+    public static int storiesColumnsCount;
+    public static boolean streamAllVideo;
+    public static boolean streamMedia;
+    public static boolean streamMkv;
+    public static boolean suggestAnimatedEmoji;
+    public static int suggestStickers;
+    private static final Object sync;
+    public static int textSelectionHintShows;
+    public static boolean translateChats;
+    public static boolean updateStickersOrderOnSend;
+    public static boolean useFingerprint;
+    public static boolean useSurfaceInStories;
     public static boolean useSystemEmoji;
     public static boolean useThreeLinesLayout;
-    public static byte[] passcodeSalt = new byte[0];
-    public static int keepMedia = CacheByChatsController.KEEP_MEDIA_ONE_MONTH;
-    public static boolean updateStickersOrderOnSend = true;
-    private static int lastLocalId = -210000;
-    private static String passportConfigJson = "";
-    private static final Object sync = new Object();
-    private static final Object localIdSync = new Object();
-    public static int mapPreviewType = 2;
 
     @Retention(RetentionPolicy.SOURCE)
     public @interface PasscodeType {
@@ -176,7 +186,12 @@ public class SharedConfig {
         if (file == null || storageCacheDir == null || readOnlyStorageDirAlertShowed || !file.getPath().startsWith(storageCacheDir)) {
             return;
         }
-        AndroidUtilities.runOnUIThread(SharedConfig$$ExternalSyntheticLambda3.INSTANCE);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                SharedConfig.lambda$checkSdCard$2();
+            }
+        });
     }
 
     public static void lambda$checkSdCard$2() {
@@ -186,18 +201,89 @@ public class SharedConfig {
         }
         storageCacheDir = null;
         saveConfig();
-        ImageLoader.getInstance().checkMediaPaths(SharedConfig$$ExternalSyntheticLambda2.INSTANCE);
+        ImageLoader.getInstance().checkMediaPaths(new Runnable() {
+            @Override
+            public final void run() {
+                SharedConfig.lambda$checkSdCard$0();
+            }
+        });
         readOnlyStorageDirAlertShowed = true;
         AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getParentActivity());
         builder.setTitle(LocaleController.getString("SdCardError", R.string.SdCardError));
         builder.setSubtitle(LocaleController.getString("SdCardErrorDescription", R.string.SdCardErrorDescription));
-        builder.setPositiveButton(LocaleController.getString("DoNotUseSDCard", R.string.DoNotUseSDCard), SharedConfig$$ExternalSyntheticLambda0.INSTANCE);
+        builder.setPositiveButton(LocaleController.getString("DoNotUseSDCard", R.string.DoNotUseSDCard), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                SharedConfig.lambda$checkSdCard$1(dialogInterface, i);
+            }
+        });
         AlertDialog create = builder.create();
         create.setCanceledOnTouchOutside(false);
         create.show();
     }
 
+    public static boolean allowPreparingHevcPlayers() {
+        int maxSupportedInstances;
+        if (Build.VERSION.SDK_INT < 23) {
+            return false;
+        }
+        if (allowPreparingHevcPlayers == null) {
+            int codecCount = MediaCodecList.getCodecCount();
+            int i = 0;
+            int i2 = 0;
+            while (true) {
+                boolean z = true;
+                if (i >= codecCount) {
+                    break;
+                }
+                MediaCodecInfo codecInfoAt = MediaCodecList.getCodecInfoAt(i);
+                if (!codecInfoAt.isEncoder()) {
+                    int i3 = 0;
+                    while (true) {
+                        if (i3 >= codecInfoAt.getSupportedTypes().length) {
+                            z = false;
+                            break;
+                        } else if (codecInfoAt.getSupportedTypes()[i3].contains("video/hevc")) {
+                            break;
+                        } else {
+                            i3++;
+                        }
+                    }
+                    if (z && (maxSupportedInstances = codecInfoAt.getCapabilitiesForType("video/hevc").getMaxSupportedInstances()) > i2) {
+                        i2 = maxSupportedInstances;
+                    }
+                }
+                i++;
+            }
+            allowPreparingHevcPlayers = Boolean.valueOf(i2 >= 8);
+        }
+        return allowPreparingHevcPlayers.booleanValue();
+    }
+
+    public static void toggleSurfaceInStories() {
+        useSurfaceInStories = !useSurfaceInStories;
+        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("useSurfaceInStories", useSurfaceInStories).apply();
+    }
+
     static {
+        HashSet<String> hashSet = new HashSet<>();
+        hevcEncoderWhitelist = hashSet;
+        hashSet.add("c2.exynos.hevc.encoder");
+        hevcEncoderWhitelist.add("OMX.Exynos.HEVC.Encoder".toLowerCase());
+        pushType = 2;
+        pushString = BuildConfig.APP_CENTER_HASH;
+        pushStringStatus = BuildConfig.APP_CENTER_HASH;
+        passcodeHash = BuildConfig.APP_CENTER_HASH;
+        passcodeSalt = new byte[0];
+        autoLockIn = 3600;
+        useFingerprint = true;
+        keepMedia = CacheByChatsController.KEEP_MEDIA_ONE_MONTH;
+        updateStickersOrderOnSend = true;
+        lastLocalId = -210000;
+        passportConfigJson = BuildConfig.APP_CENTER_HASH;
+        sync = new Object();
+        localIdSync = new Object();
+        mapPreviewType = 2;
         chatBubbles = Build.VERSION.SDK_INT >= 30;
         raiseToSpeak = false;
         raiseToListen = true;
@@ -219,11 +305,43 @@ public class SharedConfig {
         bubbleRadius = 17;
         ivFontSize = 16;
         mediaColumnsCount = 3;
+        storiesColumnsCount = 3;
         fastScrollHintCount = 3;
         translateChats = true;
         LOW_SOC = new int[]{-1775228513, 802464304, 802464333, 802464302, 2067362118, 2067362060, 2067362084, 2067362241, 2067362117, 2067361998, -1853602818};
         loadConfig();
         proxyList = new ArrayList<>();
+    }
+
+    public static String findGoodHevcEncoder() {
+        if (goodHevcEncoder == null) {
+            int codecCount = MediaCodecList.getCodecCount();
+            for (int i = 0; i < codecCount; i++) {
+                MediaCodecInfo codecInfoAt = MediaCodecList.getCodecInfoAt(i);
+                if (codecInfoAt.isEncoder()) {
+                    for (int i2 = 0; i2 < codecInfoAt.getSupportedTypes().length; i2++) {
+                        if (codecInfoAt.getSupportedTypes()[i2].contains("video/hevc") && codecInfoAt.isHardwareAccelerated() && isWhitelisted(codecInfoAt)) {
+                            String name = codecInfoAt.getName();
+                            goodHevcEncoder = name;
+                            return name;
+                        }
+                    }
+                    continue;
+                }
+            }
+            goodHevcEncoder = BuildConfig.APP_CENTER_HASH;
+        }
+        if (TextUtils.isEmpty(goodHevcEncoder)) {
+            return null;
+        }
+        return goodHevcEncoder;
+    }
+
+    private static boolean isWhitelisted(MediaCodecInfo mediaCodecInfo) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            return true;
+        }
+        return hevcEncoderWhitelist.contains(mediaCodecInfo.getName().toLowerCase());
     }
 
     public static class ProxyInfo {
@@ -245,16 +363,16 @@ public class SharedConfig {
             this.password = str3;
             this.secret = str4;
             if (str == null) {
-                this.address = "";
+                this.address = BuildConfig.APP_CENTER_HASH;
             }
             if (str3 == null) {
-                this.password = "";
+                this.password = BuildConfig.APP_CENTER_HASH;
             }
             if (str2 == null) {
-                this.username = "";
+                this.username = BuildConfig.APP_CENTER_HASH;
             }
             if (str4 == null) {
-                this.secret = "";
+                this.secret = BuildConfig.APP_CENTER_HASH;
             }
         }
 
@@ -291,7 +409,7 @@ public class SharedConfig {
                 edit.putBoolean("saveIncomingPhotos", saveIncomingPhotos);
                 edit.putString("passcodeHash1", passcodeHash);
                 byte[] bArr = passcodeSalt;
-                edit.putString("passcodeSalt", bArr.length > 0 ? Base64.encodeToString(bArr, 0) : "");
+                edit.putString("passcodeSalt", bArr.length > 0 ? Base64.encodeToString(bArr, 0) : BuildConfig.APP_CENTER_HASH);
                 edit.putBoolean("appLocked", appLocked);
                 edit.putInt("passcodeType", passcodeType);
                 edit.putLong("passcodeRetryInMs", passcodeRetryInMs);
@@ -306,7 +424,7 @@ public class SharedConfig {
                 edit.putInt("pushType", pushType);
                 edit.putBoolean("pushStatSent", pushStatSent);
                 byte[] bArr2 = pushAuthKey;
-                edit.putString("pushAuthKey", bArr2 != null ? Base64.encodeToString(bArr2, 0) : "");
+                edit.putString("pushAuthKey", bArr2 != null ? Base64.encodeToString(bArr2, 0) : BuildConfig.APP_CENTER_HASH);
                 edit.putInt("lastLocalId", lastLocalId);
                 edit.putString("passportConfigJson", passportConfigJson);
                 edit.putInt("passportConfigHash", passportConfigHash);
@@ -316,7 +434,7 @@ public class SharedConfig {
                 edit.putInt("scheduledOrNoSoundHintShows", scheduledOrNoSoundHintShows);
                 edit.putBoolean("forwardingOptionsHintShown", forwardingOptionsHintShown);
                 edit.putInt("lockRecordAudioVideoHint", lockRecordAudioVideoHint);
-                edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : "");
+                edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : BuildConfig.APP_CENTER_HASH);
                 edit.putBoolean("proxyRotationEnabled", proxyRotationEnabled);
                 edit.putInt("proxyRotationTimeout", proxyRotationTimeout);
                 TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = pendingAppUpdate;
@@ -487,7 +605,7 @@ public class SharedConfig {
         passcodeRetryInMs = 0L;
         lastUptimeMillis = 0L;
         badPasscodeTries = 0;
-        passcodeHash = "";
+        passcodeHash = BuildConfig.APP_CENTER_HASH;
         passcodeSalt = new byte[0];
         autoLockIn = 3600;
         lastPauseTime = 0;
@@ -729,7 +847,7 @@ public class SharedConfig {
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("useThreeLinesLayout", useThreeLinesLayout);
         edit.apply();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.dialogsNeedReload, Boolean.TRUE);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, Boolean.TRUE);
     }
 
     public static void toggleArchiveHidden() {
@@ -899,10 +1017,10 @@ public class SharedConfig {
             return;
         }
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-        String string = sharedPreferences.getString("proxy_ip", "");
-        String string2 = sharedPreferences.getString("proxy_user", "");
-        String string3 = sharedPreferences.getString("proxy_pass", "");
-        String string4 = sharedPreferences.getString("proxy_secret", "");
+        String string = sharedPreferences.getString("proxy_ip", BuildConfig.APP_CENTER_HASH);
+        String string2 = sharedPreferences.getString("proxy_user", BuildConfig.APP_CENTER_HASH);
+        String string3 = sharedPreferences.getString("proxy_pass", BuildConfig.APP_CENTER_HASH);
+        String string4 = sharedPreferences.getString("proxy_secret", BuildConfig.APP_CENTER_HASH);
         int i = sharedPreferences.getInt("proxy_port", 1080);
         proxyListLoaded = true;
         proxyList.clear();
@@ -948,7 +1066,14 @@ public class SharedConfig {
 
     public static void saveProxyList() {
         ArrayList arrayList = new ArrayList(proxyList);
-        Collections.sort(arrayList, SharedConfig$$ExternalSyntheticLambda6.INSTANCE);
+        Collections.sort(arrayList, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$saveProxyList$4;
+                lambda$saveProxyList$4 = SharedConfig.lambda$saveProxyList$4((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
+                return lambda$saveProxyList$4;
+            }
+        });
         SerializedData serializedData = new SerializedData();
         serializedData.writeInt32(-1);
         serializedData.writeByte(2);
@@ -957,20 +1082,20 @@ public class SharedConfig {
         for (int i = size - 1; i >= 0; i--) {
             ProxyInfo proxyInfo = (ProxyInfo) arrayList.get(i);
             String str = proxyInfo.address;
-            String str2 = "";
+            String str2 = BuildConfig.APP_CENTER_HASH;
             if (str == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             serializedData.writeString(str);
             serializedData.writeInt32(proxyInfo.port);
             String str3 = proxyInfo.username;
             if (str3 == null) {
-                str3 = "";
+                str3 = BuildConfig.APP_CENTER_HASH;
             }
             serializedData.writeString(str3);
             String str4 = proxyInfo.password;
             if (str4 == null) {
-                str4 = "";
+                str4 = BuildConfig.APP_CENTER_HASH;
             }
             serializedData.writeString(str4);
             String str5 = proxyInfo.secret;
@@ -1022,16 +1147,16 @@ public class SharedConfig {
             SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
             boolean z = globalMainSettings.getBoolean("proxy_enabled", false);
             SharedPreferences.Editor edit = globalMainSettings.edit();
-            edit.putString("proxy_ip", "");
-            edit.putString("proxy_pass", "");
-            edit.putString("proxy_user", "");
-            edit.putString("proxy_secret", "");
+            edit.putString("proxy_ip", BuildConfig.APP_CENTER_HASH);
+            edit.putString("proxy_pass", BuildConfig.APP_CENTER_HASH);
+            edit.putString("proxy_user", BuildConfig.APP_CENTER_HASH);
+            edit.putString("proxy_secret", BuildConfig.APP_CENTER_HASH);
             edit.putInt("proxy_port", 1080);
             edit.putBoolean("proxy_enabled", false);
             edit.putBoolean("proxy_enabled_calls", false);
             edit.apply();
             if (z) {
-                ConnectionsManager.setProxySettings(false, "", 0, "", "", "");
+                ConnectionsManager.setProxySettings(false, BuildConfig.APP_CENTER_HASH, 0, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
             }
         }
         proxyList.remove(proxyInfo);
@@ -1039,7 +1164,12 @@ public class SharedConfig {
     }
 
     public static void checkSaveToGalleryFiles() {
-        Utilities.globalQueue.postRunnable(SharedConfig$$ExternalSyntheticLambda4.INSTANCE);
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                SharedConfig.lambda$checkSaveToGalleryFiles$5();
+            }
+        });
     }
 
     public static void lambda$checkSaveToGalleryFiles$5() {
@@ -1168,6 +1298,13 @@ public class SharedConfig {
         if (mediaColumnsCount != i) {
             mediaColumnsCount = i;
             ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putInt("mediaColumnsCount", mediaColumnsCount).apply();
+        }
+    }
+
+    public static void setStoriesColumnsCount(int i) {
+        if (storiesColumnsCount != i) {
+            storiesColumnsCount = i;
+            ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putInt("storiesColumnsCount", storiesColumnsCount).apply();
         }
     }
 

@@ -6,12 +6,14 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
@@ -24,6 +26,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
@@ -32,12 +35,16 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CheckBox;
 import org.telegram.ui.Components.CheckBoxSquare;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsSettingsActivity;
+import org.telegram.ui.Stories.StoriesListPlaceProvider;
+import org.telegram.ui.Stories.StoriesUtilities;
 public class UserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private TextView addButton;
     private TextView adminTextView;
     private AvatarDrawable avatarDrawable;
-    private BackupImageView avatarImageView;
+    public BackupImageView avatarImageView;
     private CheckBox checkBox;
     private CheckBoxSquare checkBoxBig;
     private int currentAccount;
@@ -46,23 +53,34 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     private CharSequence currentName;
     private Object currentObject;
     private CharSequence currentStatus;
+    protected long dialogId;
     private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emojiStatus;
     private ImageView imageView;
     private TLRPC$FileLocation lastAvatar;
     private String lastName;
     private int lastStatus;
     private SimpleTextView nameTextView;
-    private boolean needDivider;
+    public boolean needDivider;
     private Drawable premiumDrawable;
     private Theme.ResourcesProvider resourcesProvider;
     private boolean selfAsSavedMessages;
     private int statusColor;
     private int statusOnlineColor;
     private SimpleTextView statusTextView;
+    private boolean storiable;
+    public StoriesUtilities.AvatarStoryParams storyParams;
 
     @Override
     public boolean hasOverlappingRendering() {
         return false;
+    }
+
+    public void openStory(long j, Runnable runnable) {
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment != null) {
+            lastFragment.getOrCreateStoryViewer().doOnAnimationReady(runnable);
+            lastFragment.getOrCreateStoryViewer().open(getContext(), j, StoriesListPlaceProvider.of((RecyclerListView) getParent()));
+        }
     }
 
     public UserCell(Context context, int i, int i2, boolean z) {
@@ -83,6 +101,12 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         int i4;
         int i5;
         this.currentAccount = UserConfig.selectedAccount;
+        this.storyParams = new StoriesUtilities.AvatarStoryParams(false) {
+            @Override
+            public void openStory(long j, Runnable runnable) {
+                UserCell.this.openStory(j, runnable);
+            }
+        };
         this.resourcesProvider = resourcesProvider;
         if (z2) {
             TextView textView = new TextView(context);
@@ -104,12 +128,32 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         this.statusColor = Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider);
         this.statusOnlineColor = Theme.getColor(Theme.key_windowBackgroundWhiteBlueText, resourcesProvider);
         this.avatarDrawable = new AvatarDrawable();
-        BackupImageView backupImageView = new BackupImageView(context);
+        BackupImageView backupImageView = new BackupImageView(context) {
+            @Override
+            public void onDraw(Canvas canvas) {
+                if (UserCell.this.storiable) {
+                    UserCell.this.storyParams.originalAvatarRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                    UserCell userCell = UserCell.this;
+                    StoriesUtilities.drawAvatarWithStory(userCell.dialogId, canvas, this.imageReceiver, userCell.storyParams);
+                    return;
+                }
+                super.onDraw(canvas);
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if (UserCell.this.storyParams.checkOnTouchEvent(motionEvent, this)) {
+                    return true;
+                }
+                return super.onTouchEvent(motionEvent);
+            }
+        };
         this.avatarImageView = backupImageView;
         backupImageView.setRoundRadius(AndroidUtilities.dp(24.0f));
         View view2 = this.avatarImageView;
         boolean z4 = LocaleController.isRTL;
         addView(view2, LayoutHelper.createFrame(46, 46.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : i + 7, 6.0f, z4 ? i + 7 : 0.0f, 0.0f));
+        setClipChildren(false);
         SimpleTextView simpleTextView = new SimpleTextView(context);
         this.nameTextView = simpleTextView;
         simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
@@ -244,9 +288,10 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         if (obj == null && charSequence == null && charSequence2 == null) {
             this.currentStatus = null;
             this.currentName = null;
+            this.storiable = false;
             this.currentObject = null;
-            this.nameTextView.setText("");
-            this.statusTextView.setText("");
+            this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+            this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
             this.avatarImageView.setImageDrawable(null);
             return;
         }
@@ -261,6 +306,7 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
             }
         }
         this.currentName = charSequence;
+        this.storiable = !(obj instanceof String);
         this.currentObject = obj;
         this.currentDrawable = i;
         this.needDivider = z;
@@ -275,37 +321,51 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     public void setException(NotificationsSettingsActivity.NotificationException notificationException, CharSequence charSequence, boolean z) {
         String string;
         TLRPC$User user;
-        boolean z2 = notificationException.hasCustom;
-        int i = notificationException.notify;
-        int i2 = notificationException.muteUntil;
-        boolean z3 = true;
-        if (i != 3 || i2 == Integer.MAX_VALUE) {
-            if (i != 0 && i != 1) {
-                z3 = false;
-            }
-            if (z3 && z2) {
-                string = LocaleController.getString("NotificationsCustom", R.string.NotificationsCustom);
+        if (notificationException.story) {
+            int i = notificationException.notify;
+            if (i <= 0 && notificationException.auto) {
+                string = LocaleController.getString("NotificationEnabledAutomatically");
+            } else if (i <= 0) {
+                string = LocaleController.getString("NotificationEnabled");
             } else {
-                string = z3 ? LocaleController.getString("NotificationsUnmuted", R.string.NotificationsUnmuted) : LocaleController.getString("NotificationsMuted", R.string.NotificationsMuted);
+                string = LocaleController.getString("NotificationDisabled");
             }
         } else {
-            int currentTime = i2 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
-            if (currentTime <= 0) {
-                if (z2) {
+            boolean z2 = notificationException.hasCustom;
+            int i2 = notificationException.notify;
+            int i3 = notificationException.muteUntil;
+            boolean z3 = true;
+            if (i2 != 3 || i3 == Integer.MAX_VALUE) {
+                if (i2 != 0 && i2 != 1) {
+                    z3 = false;
+                }
+                if (z3 && z2) {
                     string = LocaleController.getString("NotificationsCustom", R.string.NotificationsCustom);
                 } else {
-                    string = LocaleController.getString("NotificationsUnmuted", R.string.NotificationsUnmuted);
+                    string = z3 ? LocaleController.getString("NotificationsUnmuted", R.string.NotificationsUnmuted) : LocaleController.getString("NotificationsMuted", R.string.NotificationsMuted);
                 }
-            } else if (currentTime < 3600) {
-                string = LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Minutes", currentTime / 60, new Object[0]));
-            } else if (currentTime < 86400) {
-                string = LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Hours", (int) Math.ceil((currentTime / 60.0f) / 60.0f), new Object[0]));
             } else {
-                string = currentTime < 31536000 ? LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Days", (int) Math.ceil(((currentTime / 60.0f) / 60.0f) / 24.0f), new Object[0])) : null;
+                int currentTime = i3 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime();
+                if (currentTime <= 0) {
+                    if (z2) {
+                        string = LocaleController.getString("NotificationsCustom", R.string.NotificationsCustom);
+                    } else {
+                        string = LocaleController.getString("NotificationsUnmuted", R.string.NotificationsUnmuted);
+                    }
+                } else if (currentTime < 3600) {
+                    string = LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Minutes", currentTime / 60, new Object[0]));
+                } else if (currentTime < 86400) {
+                    string = LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Hours", (int) Math.ceil((currentTime / 60.0f) / 60.0f), new Object[0]));
+                } else {
+                    string = currentTime < 31536000 ? LocaleController.formatString("WillUnmuteIn", R.string.WillUnmuteIn, LocaleController.formatPluralString("Days", (int) Math.ceil(((currentTime / 60.0f) / 60.0f) / 24.0f), new Object[0])) : null;
+                }
             }
-        }
-        if (string == null) {
-            string = LocaleController.getString("NotificationsOff", R.string.NotificationsOff);
+            if (string == null) {
+                string = LocaleController.getString("NotificationsOff", R.string.NotificationsOff);
+            }
+            if (notificationException.auto) {
+                string = string + ", Auto";
+            }
         }
         String str = string;
         if (DialogObject.isEncryptedDialog(notificationException.did)) {
@@ -427,5 +487,10 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
         super.onDetachedFromWindow();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
         this.emojiStatus.detach();
+        this.storyParams.onDetachFromWindow();
+    }
+
+    public long getDialogId() {
+        return this.dialogId;
     }
 }

@@ -896,7 +896,14 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         this.emptyView.setPadding(0, AndroidUtilities.dp(160.0f), 0, 0);
         this.emptyView.setVisibility(8);
         frameLayout2.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
-        this.emptyView.setOnTouchListener(LocationActivity$$ExternalSyntheticLambda9.INSTANCE);
+        this.emptyView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$createView$7;
+                lambda$createView$7 = LocationActivity.lambda$createView$7(view, motionEvent);
+                return lambda$createView$7;
+            }
+        });
         ImageView imageView4 = new ImageView(context);
         this.emptyImageView = imageView4;
         imageView4.setImageResource(R.drawable.location_empty);
@@ -2798,7 +2805,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         getMessagesController().putUsers(tLRPC$messages_Messages.users, false);
         getMessagesController().putChats(tLRPC$messages_Messages.chats, false);
         getLocationController().locationsCache.put(j, tLRPC$messages_Messages.messages);
-        getNotificationCenter().postNotificationName(NotificationCenter.liveLocationsCacheChanged, Long.valueOf(j));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsCacheChanged, Long.valueOf(j));
         fetchRecentLocations(tLRPC$messages_Messages.messages);
         getLocationController().markLiveLoactionsAsRead(this.dialogId);
         if (this.markAsReadRunnable == null) {

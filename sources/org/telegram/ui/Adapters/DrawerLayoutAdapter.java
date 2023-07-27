@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
@@ -212,7 +213,14 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
                 this.accountNumbers.add(Integer.valueOf(i9));
             }
         }
-        Collections.sort(this.accountNumbers, DrawerLayoutAdapter$$ExternalSyntheticLambda0.INSTANCE);
+        Collections.sort(this.accountNumbers, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$resetItems$0;
+                lambda$resetItems$0 = DrawerLayoutAdapter.lambda$resetItems$0((Integer) obj, (Integer) obj2);
+                return lambda$resetItems$0;
+            }
+        });
         this.items.clear();
         if (UserConfig.getInstance(UserConfig.selectedAccount).isClientActivated()) {
             int eventType = Theme.getEventType();
@@ -260,6 +268,11 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
                 } else {
                     this.items.add(new Item(15, LocaleController.getString("SetEmojiStatus", R.string.SetEmojiStatus), R.drawable.msg_status_set));
                 }
+            }
+            if (MessagesController.getInstance(UserConfig.selectedAccount).storiesEnabled()) {
+                this.items.add(new Item(16, LocaleController.getString("ProfileMyStories", R.string.ProfileMyStories), R.drawable.msg_menu_stories));
+                this.items.add(null);
+            } else if (userConfig != null && userConfig.isPremium()) {
                 this.items.add(null);
             }
             this.items.add(new Item(2, LocaleController.getString("NewGroup", R.string.NewGroup), i));

@@ -63,7 +63,8 @@ public class PremiumButtonView extends FrameLayout {
         linearLayout.setOrientation(0);
         AnimatedTextView animatedTextView = new AnimatedTextView(context);
         this.buttonTextView = animatedTextView;
-        animatedTextView.setGravity(17);
+        animatedTextView.setAnimationProperties(0.35f, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.buttonTextView.setGravity(17);
         this.buttonTextView.setTextColor(-1);
         this.buttonTextView.setTextSize(AndroidUtilities.dp(14.0f));
         this.buttonTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));

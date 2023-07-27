@@ -21,6 +21,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Stories.recorder.HintView2;
 import org.telegram.ui.TopicsFragment;
 public class PullForegroundDrawable {
     private ValueAnimator accentRevalAnimatorIn;
@@ -41,6 +42,7 @@ public class PullForegroundDrawable {
     private final Path circleClipPath;
     private Drawable generalTopicDrawable;
     private boolean isOut;
+    private int lastWidth;
     private RecyclerListView listView;
     private AnimatorSet outAnimator;
     public float outCx;
@@ -51,10 +53,14 @@ public class PullForegroundDrawable {
     public float pullProgress;
     private StaticLayout pullTooltipLayout;
     private float pullTooltipLayoutLeft;
+    private float pullTooltipLayoutScale;
     private float pullTooltipLayoutWidth;
+    private final CharSequence pullTooltipText;
     private StaticLayout releaseTooltipLayout;
     private float releaseTooltipLayoutLeft;
+    private float releaseTooltipLayoutScale;
     private float releaseTooltipLayoutWidth;
+    private final CharSequence releaseTooltipText;
     public int scrollDy;
     private float textInProgress;
     Runnable textInRunnable;
@@ -106,6 +112,8 @@ public class PullForegroundDrawable {
         this.arrowRotateProgress = 1.0f;
         this.accentRevalProgress = 1.0f;
         this.accentRevalProgressOut = 1.0f;
+        this.pullTooltipLayoutScale = 1.0f;
+        this.releaseTooltipLayoutScale = 1.0f;
         this.textSwappingUpdateListener = new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
@@ -137,17 +145,54 @@ public class PullForegroundDrawable {
         textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textPaint.setTextSize(AndroidUtilities.dp(16.0f));
         this.touchSlop = ViewConfiguration.get(ApplicationLoader.applicationContext).getScaledTouchSlop();
-        StaticLayout staticLayout = new StaticLayout(charSequence, 0, charSequence.length(), textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.pullTooltipLayout = staticLayout;
-        this.pullTooltipLayoutLeft = staticLayout.getLineCount() > 0 ? this.pullTooltipLayout.getLineLeft(0) : 0.0f;
-        this.pullTooltipLayoutWidth = this.pullTooltipLayout.getLineCount() > 0 ? this.pullTooltipLayout.getLineWidth(0) : 0.0f;
-        StaticLayout staticLayout2 = new StaticLayout(charSequence2, 0, charSequence2.length(), textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-        this.releaseTooltipLayout = staticLayout2;
-        this.releaseTooltipLayoutLeft = staticLayout2.getLineCount() > 0 ? this.releaseTooltipLayout.getLineLeft(0) : 0.0f;
-        this.releaseTooltipLayoutWidth = this.releaseTooltipLayout.getLineCount() > 0 ? this.releaseTooltipLayout.getLineWidth(0) : 0.0f;
+        this.pullTooltipText = charSequence;
+        this.releaseTooltipText = charSequence2;
         try {
             this.generalTopicDrawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.msg_filled_general).mutate();
         } catch (Exception unused) {
+        }
+    }
+
+    private void checkTextLayouts(int i) {
+        if (i != this.lastWidth) {
+            this.pullTooltipLayout = new StaticLayout(this.pullTooltipText, this.tooltipTextPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            float f = 0.0f;
+            for (int i2 = 0; i2 < this.pullTooltipLayout.getLineCount(); i2++) {
+                f = Math.max(f, this.pullTooltipLayout.getLineWidth(i2));
+            }
+            float f2 = i;
+            this.pullTooltipLayoutScale = Math.min(1.0f, f2 / f);
+            int ceil = (int) Math.ceil(f);
+            if (this.pullTooltipLayoutScale < 0.8f) {
+                this.pullTooltipLayoutScale = 0.8f;
+                ceil = HintView2.cutInFancyHalf(this.pullTooltipText, this.tooltipTextPaint);
+            }
+            this.pullTooltipLayout = new StaticLayout(this.pullTooltipText, this.tooltipTextPaint, ceil, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            this.pullTooltipLayoutLeft = ceil;
+            this.pullTooltipLayoutWidth = 0.0f;
+            for (int i3 = 0; i3 < this.pullTooltipLayout.getLineCount(); i3++) {
+                this.pullTooltipLayoutLeft = Math.min(this.pullTooltipLayoutLeft, this.pullTooltipLayout.getLineLeft(i3));
+                this.pullTooltipLayoutWidth = Math.max(this.pullTooltipLayoutWidth, this.pullTooltipLayout.getLineWidth(i3));
+            }
+            this.releaseTooltipLayout = new StaticLayout(this.releaseTooltipText, this.tooltipTextPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            float f3 = 0.0f;
+            for (int i4 = 0; i4 < this.releaseTooltipLayout.getLineCount(); i4++) {
+                f3 = Math.max(f3, this.releaseTooltipLayout.getLineWidth(i4));
+            }
+            this.releaseTooltipLayoutScale = Math.min(1.0f, f2 / f3);
+            int ceil2 = (int) Math.ceil(f3);
+            if (this.releaseTooltipLayoutScale < 0.8f) {
+                this.releaseTooltipLayoutScale = 0.8f;
+                ceil2 = HintView2.cutInFancyHalf(this.releaseTooltipText, this.tooltipTextPaint);
+            }
+            this.releaseTooltipLayout = new StaticLayout(this.releaseTooltipText, this.tooltipTextPaint, ceil2, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
+            this.releaseTooltipLayoutLeft = ceil2;
+            this.releaseTooltipLayoutWidth = 0.0f;
+            for (int i5 = 0; i5 < this.releaseTooltipLayout.getLineCount(); i5++) {
+                this.releaseTooltipLayoutLeft = Math.min(this.releaseTooltipLayoutLeft, this.releaseTooltipLayout.getLineLeft(i5));
+                this.releaseTooltipLayoutWidth = Math.max(this.releaseTooltipLayoutWidth, this.releaseTooltipLayout.getLineWidth(i5));
+            }
+            this.lastWidth = i;
         }
     }
 
@@ -188,12 +233,14 @@ public class PullForegroundDrawable {
         float f;
         int i2;
         int i3;
-        float f2;
         int i4;
+        float f2;
         int i5;
         int i6;
         float f3;
         float f4;
+        int i7;
+        float f5;
         if (!this.willDraw || this.isOut || (view = this.cell) == null || this.listView == null) {
             return;
         }
@@ -203,10 +250,10 @@ public class PullForegroundDrawable {
         int dp3 = AndroidUtilities.dp(9.0f);
         int dp4 = AndroidUtilities.dp(18.0f);
         int viewOffset = (int) getViewOffset();
-        float f5 = this.pullProgress;
-        int height = (int) (this.cell.getHeight() * f5);
+        int height = (int) (this.cell.getHeight() * this.pullProgress);
         float f6 = this.bounceIn ? (this.bounceProgress * 0.07f) - 0.05f : this.bounceProgress * 0.02f;
-        updateTextProgress(f5);
+        checkTextLayouts((this.cell.getWidth() - (dp * 4)) - AndroidUtilities.dp(16.0f));
+        updateTextProgress(this.pullProgress);
         float f7 = this.outProgress * 2.0f;
         if (f7 > 1.0f) {
             f7 = 1.0f;
@@ -216,88 +263,87 @@ public class PullForegroundDrawable {
         if (z) {
             f9 += viewOffset;
         }
-        float f10 = f9;
-        int i7 = dp + dp3;
+        int i8 = dp + dp3;
         int measuredHeight = (this.cell.getMeasuredHeight() - dp2) - dp3;
         if (z) {
             measuredHeight += viewOffset;
         }
-        int i8 = dp4 + (dp2 * 2);
-        if (height > i8) {
+        int i9 = dp4 + (dp2 * 2);
+        if (height > i9) {
             i = dp3;
             f = 1.0f;
         } else {
             i = dp3;
-            f = height / i8;
+            f = height / i9;
         }
         canvas.save();
         if (z) {
             i2 = dp4;
+            i4 = dp2;
             i3 = viewOffset;
-            canvas.clipRect(0, 0, this.listView.getMeasuredWidth(), viewOffset + 1);
+            canvas.clipRect(0, -AndroidUtilities.dp(4.0f), this.listView.getMeasuredWidth(), viewOffset + 1);
         } else {
             i2 = dp4;
             i3 = viewOffset;
+            i4 = dp2;
         }
         if (this.outProgress == 0.0f) {
             if (this.accentRevalProgress != 1.0f && this.accentRevalProgressOut != 1.0f) {
                 canvas.drawPaint(this.backgroundPaint);
             }
-            i4 = dp2;
             f2 = f6;
         } else {
-            float f11 = this.outRadius;
-            float width = f11 + (f11 * f6) + ((this.cell.getWidth() - this.outRadius) * (1.0f - this.outProgress));
+            float f10 = this.outRadius;
+            float width = f10 + (f10 * f6) + ((this.cell.getWidth() - this.outRadius) * (1.0f - this.outProgress));
             if (this.accentRevalProgress != 1.0f && this.accentRevalProgressOut != 1.0f) {
-                canvas.drawCircle(f8, f10, width, this.backgroundPaint);
+                canvas.drawCircle(f8, f9, width, this.backgroundPaint);
             }
             this.circleClipPath.reset();
             f2 = f6;
-            i4 = dp2;
-            this.rectF.set(f8 - width, f10 - width, f8 + width, width + f10);
+            this.rectF.set(f8 - width, f9 - width, f8 + width, width + f9);
             this.circleClipPath.addOval(this.rectF, Path.Direction.CW);
             canvas.clipPath(this.circleClipPath);
         }
         if (this.animateToColorize) {
             if (this.accentRevalProgressOut > this.accentRevalProgress) {
                 canvas.save();
-                float f12 = i7;
-                float f13 = this.outProgress;
-                float f14 = measuredHeight;
-                canvas.translate((f8 - f12) * f13, (f10 - f14) * f13);
-                canvas.drawCircle(f12, f14, this.cell.getWidth() * this.accentRevalProgressOut, this.backgroundPaint);
+                float f11 = i8;
+                float f12 = this.outProgress;
+                float f13 = measuredHeight;
+                canvas.translate((f8 - f11) * f12, (f9 - f13) * f12);
+                canvas.drawCircle(f11, f13, this.cell.getWidth() * this.accentRevalProgressOut, this.backgroundPaint);
                 canvas.restore();
             }
             if (this.accentRevalProgress > 0.0f) {
                 canvas.save();
-                float f15 = i7;
-                float f16 = this.outProgress;
-                float f17 = measuredHeight;
-                canvas.translate((f8 - f15) * f16, (f10 - f17) * f16);
-                canvas.drawCircle(f15, f17, this.cell.getWidth() * this.accentRevalProgress, this.paintBackgroundAccent);
+                float f14 = i8;
+                float f15 = this.outProgress;
+                float f16 = measuredHeight;
+                canvas.translate((f8 - f14) * f15, (f9 - f16) * f15);
+                canvas.drawCircle(f14, f16, this.cell.getWidth() * this.accentRevalProgress, this.paintBackgroundAccent);
                 canvas.restore();
             }
         } else {
             if (this.accentRevalProgress > this.accentRevalProgressOut) {
                 canvas.save();
-                float f18 = i7;
-                float f19 = this.outProgress;
-                float f20 = measuredHeight;
-                canvas.translate((f8 - f18) * f19, (f10 - f20) * f19);
-                canvas.drawCircle(f18, f20, this.cell.getWidth() * this.accentRevalProgress, this.paintBackgroundAccent);
+                float f17 = i8;
+                float f18 = this.outProgress;
+                float f19 = measuredHeight;
+                canvas.translate((f8 - f17) * f18, (f9 - f19) * f18);
+                canvas.drawCircle(f17, f19, this.cell.getWidth() * this.accentRevalProgress, this.paintBackgroundAccent);
                 canvas.restore();
             }
             if (this.accentRevalProgressOut > 0.0f) {
                 canvas.save();
-                float f21 = i7;
-                float f22 = this.outProgress;
-                float f23 = measuredHeight;
-                canvas.translate((f8 - f21) * f22, (f10 - f23) * f22);
-                canvas.drawCircle(f21, f23, this.cell.getWidth() * this.accentRevalProgressOut, this.backgroundPaint);
+                float f20 = i8;
+                float f21 = this.outProgress;
+                float f22 = measuredHeight;
+                canvas.translate((f8 - f20) * f21, (f9 - f22) * f21);
+                canvas.drawCircle(f20, f22, this.cell.getWidth() * this.accentRevalProgressOut, this.backgroundPaint);
                 canvas.restore();
             }
         }
-        if (height > i8) {
+        if (height > i9) {
             this.paintSecondary.setAlpha((int) ((1.0f - f7) * 0.4f * f * 255.0f));
             if (z) {
                 i6 = i4;
@@ -307,8 +353,8 @@ public class PullForegroundDrawable {
                 this.rectF.set(dp, ((this.cell.getHeight() - height) + i6) - i3, dp + i2, this.cell.getHeight() - i6);
             }
             i5 = i;
-            float f24 = i5;
-            canvas.drawRoundRect(this.rectF, f24, f24, this.paintSecondary);
+            float f23 = i5;
+            canvas.drawRoundRect(this.rectF, f23, f23, this.paintSecondary);
         } else {
             i5 = i;
             i6 = i4;
@@ -320,70 +366,79 @@ public class PullForegroundDrawable {
         if (z2) {
             measuredHeight = (int) (measuredHeight - ((this.cell.getMeasuredHeight() - AndroidUtilities.dp(41.0f)) * this.outProgress));
         }
-        float f25 = this.outProgress;
-        if (f25 == 0.0f || z2) {
-            this.paintWhite.setAlpha((int) (f * 255.0f * (1.0f - f25)));
-            float f26 = i7;
-            float f27 = measuredHeight;
-            canvas.drawCircle(f26, f27, i5, this.paintWhite);
+        float f24 = this.outProgress;
+        if (f24 == 0.0f || z2) {
+            this.paintWhite.setAlpha((int) (f * 255.0f * (1.0f - f24)));
+            float f25 = i8;
+            float f26 = measuredHeight;
+            canvas.drawCircle(f25, f26, i5, this.paintWhite);
             int intrinsicHeight = this.arrowDrawable.getIntrinsicHeight();
             int intrinsicWidth = this.arrowDrawable.getIntrinsicWidth() >> 1;
-            int i9 = intrinsicHeight >> 1;
             f3 = f8;
-            this.arrowDrawable.setBounds(i7 - intrinsicWidth, measuredHeight - i9, intrinsicWidth + i7, measuredHeight + i9);
-            float f28 = 1.0f - this.arrowRotateProgress;
-            if (f28 < 0.0f) {
-                f28 = 0.0f;
+            int i10 = intrinsicHeight >> 1;
+            f4 = f9;
+            this.arrowDrawable.setBounds(i8 - intrinsicWidth, measuredHeight - i10, intrinsicWidth + i8, measuredHeight + i10);
+            float f27 = 1.0f - this.arrowRotateProgress;
+            if (f27 < 0.0f) {
+                f27 = 0.0f;
             }
-            float f29 = 1.0f - f28;
+            float f28 = 1.0f - f27;
             canvas.save();
-            canvas.rotate(180.0f * f29, f26, f27);
-            canvas.translate(0.0f, (AndroidUtilities.dpf2(1.0f) * 1.0f) - f29);
+            canvas.rotate(180.0f * f28, f25, f26);
+            canvas.translate(0.0f, (AndroidUtilities.dpf2(1.0f) * 1.0f) - f28);
             this.arrowDrawable.setColor(this.animateToColorize ? this.paintBackgroundAccent.getColor() : Theme.getColor(this.backgroundColorKey));
             this.arrowDrawable.setAlpha((int) ((1.0f - this.outProgress) * 255.0f));
             this.arrowDrawable.draw(canvas);
             canvas.restore();
         } else {
             f3 = f8;
+            f4 = f9;
         }
         if (this.pullProgress > 0.0f) {
             textIn();
         }
-        float height2 = (this.cell.getHeight() - (i8 / 2.0f)) + AndroidUtilities.dp(6.0f);
-        float width2 = (this.cell.getWidth() / 2.0f) - AndroidUtilities.dp(2.0f);
-        float f30 = this.textSwappingProgress;
-        if (f30 > 0.0f && f30 < 1.0f) {
-            canvas.save();
-            float f31 = (this.textSwappingProgress * 0.2f) + 0.8f;
-            canvas.scale(f31, f31, width2, (AndroidUtilities.dp(16.0f) * (1.0f - this.textSwappingProgress)) + height2);
-        }
-        float f32 = f3;
-        canvas.saveLayerAlpha(0.0f, 0.0f, this.cell.getMeasuredWidth(), this.cell.getMeasuredHeight(), (int) (this.textSwappingProgress * 255.0f * f * this.textInProgress), 31);
-        canvas.translate((width2 - this.pullTooltipLayoutLeft) - (this.pullTooltipLayoutWidth / 2.0f), ((AndroidUtilities.dp(8.0f) * (1.0f - this.textSwappingProgress)) + height2) - this.tooltipTextPaint.getTextSize());
-        this.pullTooltipLayout.draw(canvas);
-        canvas.restore();
-        float f33 = this.textSwappingProgress;
-        if (f33 > 0.0f) {
-            f4 = 1.0f;
-            if (f33 < 1.0f) {
+        float height2 = (this.cell.getHeight() - (i9 / 2.0f)) + AndroidUtilities.dp(6.0f);
+        float width2 = (this.cell.getWidth() + (z2 ? dp * 2 : 0)) / 2.0f;
+        if (this.pullTooltipLayout != null) {
+            float f29 = this.textSwappingProgress;
+            if (f29 > 0.0f && f29 < 1.0f) {
+                canvas.save();
+                float f30 = (this.textSwappingProgress * 0.2f) + 0.8f;
+                canvas.scale(f30, f30, width2, (AndroidUtilities.dp(16.0f) * (1.0f - this.textSwappingProgress)) + height2);
+            }
+            i7 = i8;
+            f5 = f3;
+            canvas.saveLayerAlpha(0.0f, 0.0f, this.cell.getMeasuredWidth(), this.cell.getMeasuredHeight(), (int) (this.textSwappingProgress * 255.0f * f * this.textInProgress), 31);
+            canvas.translate((width2 - this.pullTooltipLayoutLeft) - (this.pullTooltipLayoutWidth / 2.0f), ((AndroidUtilities.dp(8.0f) * (1.0f - this.textSwappingProgress)) + height2) - this.pullTooltipLayout.getHeight());
+            float f31 = this.pullTooltipLayoutScale;
+            canvas.scale(f31, f31, this.pullTooltipLayoutLeft + (this.pullTooltipLayoutWidth / 2.0f), this.pullTooltipLayout.getHeight());
+            this.pullTooltipLayout.draw(canvas);
+            canvas.restore();
+            float f32 = this.textSwappingProgress;
+            if (f32 > 0.0f && f32 < 1.0f) {
                 canvas.restore();
             }
         } else {
-            f4 = 1.0f;
+            i7 = i8;
+            f5 = f3;
         }
-        float f34 = this.textSwappingProgress;
-        if (f34 > 0.0f && f34 < f4) {
-            canvas.save();
-            float f35 = ((f4 - this.textSwappingProgress) * 0.1f) + 0.9f;
-            canvas.scale(f35, f35, width2, height2 - (AndroidUtilities.dp(8.0f) * this.textSwappingProgress));
-        }
-        canvas.saveLayerAlpha(0.0f, 0.0f, this.cell.getMeasuredWidth(), this.cell.getMeasuredHeight(), (int) ((1.0f - this.textSwappingProgress) * 255.0f * f * this.textInProgress), 31);
-        canvas.translate((width2 - this.releaseTooltipLayoutLeft) - (this.releaseTooltipLayoutWidth / 2.0f), (height2 + (AndroidUtilities.dp(8.0f) * this.textSwappingProgress)) - this.tooltipTextPaint.getTextSize());
-        this.releaseTooltipLayout.draw(canvas);
-        canvas.restore();
-        float f36 = this.textSwappingProgress;
-        if (f36 > 0.0f && f36 < 1.0f) {
+        if (this.releaseTooltipLayout != null) {
+            float f33 = this.textSwappingProgress;
+            if (f33 > 0.0f && f33 < 1.0f) {
+                canvas.save();
+                float f34 = ((1.0f - this.textSwappingProgress) * 0.1f) + 0.9f;
+                canvas.scale(f34, f34, width2, height2 - (AndroidUtilities.dp(8.0f) * this.textSwappingProgress));
+            }
+            canvas.saveLayerAlpha(0.0f, 0.0f, this.cell.getMeasuredWidth(), this.cell.getMeasuredHeight(), (int) ((1.0f - this.textSwappingProgress) * 255.0f * f * this.textInProgress), 31);
+            canvas.translate((width2 - this.releaseTooltipLayoutLeft) - (this.releaseTooltipLayoutWidth / 2.0f), (height2 + (AndroidUtilities.dp(8.0f) * this.textSwappingProgress)) - this.releaseTooltipLayout.getHeight());
+            float f35 = this.releaseTooltipLayoutScale;
+            canvas.scale(f35, f35, this.releaseTooltipLayoutLeft + (this.releaseTooltipLayoutWidth / 2.0f), this.releaseTooltipLayout.getHeight());
+            this.releaseTooltipLayout.draw(canvas);
             canvas.restore();
+            float f36 = this.textSwappingProgress;
+            if (f36 > 0.0f && f36 < 1.0f) {
+                canvas.restore();
+            }
         }
         canvas.restore();
         if (z2 || !this.changeAvatarColor || this.outProgress <= 0.0f) {
@@ -394,8 +449,10 @@ public class PullForegroundDrawable {
         float dp5 = AndroidUtilities.dp(24.0f) / intrinsicWidth2;
         float f37 = this.outProgress;
         float f38 = dp5 + ((1.0f - dp5) * f37) + f2;
-        canvas.translate((i7 - f32) * (1.0f - f37), (((this.cell.getHeight() - i6) - i5) - f10) * (1.0f - f37));
-        canvas.scale(f38, f38, f32, f10);
+        float f39 = f5;
+        canvas.translate((i7 - f39) * (1.0f - f37), (((this.cell.getHeight() - i6) - i5) - f4) * (1.0f - f37));
+        float f40 = f4;
+        canvas.scale(f38, f38, f39, f40);
         Theme.dialogs_archiveAvatarDrawable.setProgress(0.0f);
         if (!Theme.dialogs_archiveAvatarDrawableRecolored) {
             Theme.dialogs_archiveAvatarDrawable.beginApplyLayerColors();
@@ -404,8 +461,8 @@ public class PullForegroundDrawable {
             Theme.dialogs_archiveAvatarDrawable.commitApplyLayerColors();
             Theme.dialogs_archiveAvatarDrawableRecolored = true;
         }
-        float f39 = intrinsicWidth2 / 2.0f;
-        Theme.dialogs_archiveAvatarDrawable.setBounds((int) (f32 - f39), (int) (f10 - f39), (int) (f32 + f39), (int) (f10 + f39));
+        float f41 = intrinsicWidth2 / 2.0f;
+        Theme.dialogs_archiveAvatarDrawable.setBounds((int) (f39 - f41), (int) (f40 - f41), (int) (f39 + f41), (int) (f40 + f41));
         Theme.dialogs_archiveAvatarDrawable.draw(canvas);
         canvas.restore();
     }

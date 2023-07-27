@@ -188,7 +188,12 @@ public class BitmapsCache {
         taskCounter = i;
         if (i <= 0) {
             taskCounter = 0;
-            RLottieDrawable.lottieCacheGenerateQueue.postRunnable(BitmapsCache$$ExternalSyntheticLambda1.INSTANCE);
+            RLottieDrawable.lottieCacheGenerateQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    BitmapsCache.lambda$decrementTaskCounter$0();
+                }
+            });
         }
     }
 

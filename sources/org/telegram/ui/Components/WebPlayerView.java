@@ -44,6 +44,7 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Bitmaps;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
@@ -213,7 +214,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                             interpretExpression(group, hashMap, i);
                             return;
                         } else {
-                            hashMap.put(matcher2.group(1), "");
+                            hashMap.put(matcher2.group(1), BuildConfig.APP_CENTER_HASH);
                             return;
                         }
                     }
@@ -248,7 +249,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                                 if (TextUtils.isEmpty(group3)) {
                                     group3 = group4;
                                 }
-                                group3.replace("\"", "");
+                                group3.replace("\"", BuildConfig.APP_CENTER_HASH);
                                 String group5 = matcher4.group(4);
                                 if (hashMap.get(group2) == null) {
                                     extractObject(group2);
@@ -354,7 +355,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         private void buildFunction(String[] strArr, String str) throws Exception {
             HashMap<String, String> hashMap = new HashMap<>();
             for (String str2 : strArr) {
-                hashMap.put(str2, "");
+                hashMap.put(str2, BuildConfig.APP_CENTER_HASH);
             }
             String[] split = str.split(";");
             boolean[] zArr = new boolean[1];
@@ -382,7 +383,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
                 this.codeLines.clear();
                 FileLog.e(e);
             }
-            return TextUtils.join("", this.codeLines);
+            return TextUtils.join(BuildConfig.APP_CENTER_HASH, this.codeLines);
         }
     }
 
@@ -481,7 +482,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public class VimeoVideoTask extends AsyncTask<Void, Void, String> {
+    private class VimeoVideoTask extends AsyncTask<Void, Void, String> {
         private String[] results = new String[2];
         private String videoId;
 
@@ -536,7 +537,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public class AparatVideoTask extends AsyncTask<Void, Void, String> {
+    private class AparatVideoTask extends AsyncTask<Void, Void, String> {
         private String[] results = new String[2];
         private String videoId;
 
@@ -592,7 +593,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public class TwitchClipVideoTask extends AsyncTask<Void, Void, String> {
+    private class TwitchClipVideoTask extends AsyncTask<Void, Void, String> {
         private String currentUrl;
         private String[] results = new String[2];
 
@@ -639,7 +640,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public class TwitchStreamVideoTask extends AsyncTask<Void, Void, String> {
+    private class TwitchStreamVideoTask extends AsyncTask<Void, Void, String> {
         private String[] results = new String[2];
         private String videoId;
 
@@ -698,7 +699,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    public class CoubVideoTask extends AsyncTask<Void, Void, String> {
+    private class CoubVideoTask extends AsyncTask<Void, Void, String> {
         private String[] results = new String[4];
         private String videoId;
 

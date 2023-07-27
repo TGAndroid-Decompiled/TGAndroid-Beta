@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -704,7 +705,14 @@ public class InviteContactsActivity extends BaseFragment implements Notification
     private void fetchContacts() {
         ArrayList<ContactsController.Contact> arrayList = new ArrayList<>(ContactsController.getInstance(this.currentAccount).phoneBookContacts);
         this.phoneBookContacts = arrayList;
-        Collections.sort(arrayList, InviteContactsActivity$$ExternalSyntheticLambda1.INSTANCE);
+        Collections.sort(arrayList, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$fetchContacts$2;
+                lambda$fetchContacts$2 = InviteContactsActivity.lambda$fetchContacts$2((ContactsController.Contact) obj, (ContactsController.Contact) obj2);
+                return lambda$fetchContacts$2;
+            }
+        });
         EmptyTextProgressView emptyTextProgressView = this.emptyView;
         if (emptyTextProgressView != null) {
             emptyTextProgressView.showTextView();

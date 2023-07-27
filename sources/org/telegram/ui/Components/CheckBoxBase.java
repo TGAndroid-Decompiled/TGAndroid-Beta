@@ -12,6 +12,7 @@ import android.text.TextPaint;
 import android.view.View;
 import androidx.annotation.Keep;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.ui.ActionBar.Theme;
 public class CheckBoxBase {
@@ -56,12 +57,23 @@ public class CheckBoxBase {
         invalidate();
     }
 
+    public static Paint lambda$new$0(Void r0) {
+        return paint;
+    }
+
     public CheckBoxBase(View view, int i, Theme.ResourcesProvider resourcesProvider) {
         int i2 = Theme.key_chat_serviceBackground;
         this.backgroundColorKey = i2;
         this.background2ColorKey = i2;
         this.drawUnchecked = true;
-        this.circlePaintProvider = CheckBoxBase$$ExternalSyntheticLambda0.INSTANCE;
+        this.circlePaintProvider = new GenericProvider() {
+            @Override
+            public final Object provide(Object obj) {
+                Paint lambda$new$0;
+                lambda$new$0 = CheckBoxBase.lambda$new$0((Void) obj);
+                return lambda$new$0;
+            }
+        };
         this.animationDuration = 200L;
         this.resourcesProvider = resourcesProvider;
         this.parentView = view;
@@ -221,7 +233,7 @@ public class CheckBoxBase {
 
     public void setNum(int i) {
         if (i >= 0) {
-            this.checkedText = "" + (i + 1);
+            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
         } else if (this.checkAnimator == null) {
             this.checkedText = null;
         }
@@ -234,7 +246,7 @@ public class CheckBoxBase {
 
     public void setChecked(int i, boolean z, boolean z2) {
         if (i >= 0) {
-            this.checkedText = "" + (i + 1);
+            this.checkedText = BuildConfig.APP_CENTER_HASH + (i + 1);
             invalidate();
         }
         if (z == this.isChecked) {

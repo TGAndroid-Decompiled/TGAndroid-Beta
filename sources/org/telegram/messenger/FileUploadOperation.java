@@ -53,7 +53,7 @@ public class FileUploadOperation {
     private int uploadStartTime;
     private long uploadedBytesCount;
     private String uploadingFilePath;
-    private int uploadChunkSize = CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT;
+    private int uploadChunkSize = 65536;
     private SparseIntArray requestTokens = new SparseIntArray();
     private SparseArray<UploadCachedResult> cachedResults = new SparseArray<>();
     private boolean[] recalculatedEstimatedSize = {false, false};

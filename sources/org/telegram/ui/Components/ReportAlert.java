@@ -24,7 +24,7 @@ public class ReportAlert extends BottomSheet {
         private View background;
         private TextView textView;
 
-        public BottomSheetCell(Context context) {
+        public BottomSheetCell(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             View view = new View(context);
             this.background = view;
@@ -37,7 +37,7 @@ public class ReportAlert extends BottomSheet {
             this.textView.setGravity(1);
             this.textView.setEllipsize(TextUtils.TruncateAt.END);
             this.textView.setGravity(17);
-            this.textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+            this.textView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
             this.textView.setTextSize(1, 14.0f);
             this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));
@@ -53,8 +53,8 @@ public class ReportAlert extends BottomSheet {
         }
     }
 
-    public ReportAlert(Context context, final int i) {
-        super(context, true);
+    public ReportAlert(Context context, final int i, Theme.ResourcesProvider resourcesProvider) {
+        super(context, true, resourcesProvider);
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
         ScrollView scrollView = new ScrollView(context);
@@ -69,7 +69,7 @@ public class ReportAlert extends BottomSheet {
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setTextSize(1, 24.0f);
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+        textView.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
         if (i == 0) {
             textView.setText(LocaleController.getString("ReportTitleSpam", R.string.ReportTitleSpam));
         } else if (i == 6) {
@@ -86,17 +86,17 @@ public class ReportAlert extends BottomSheet {
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 49, 17.0f, 197.0f, 17.0f, 0.0f));
         TextView textView2 = new TextView(context);
         textView2.setTextSize(1, 14.0f);
-        textView2.setTextColor(Theme.getColor(Theme.key_dialogTextGray3));
+        textView2.setTextColor(getThemedColor(Theme.key_dialogTextGray3));
         textView2.setGravity(1);
         textView2.setText(LocaleController.getString("ReportInfo", R.string.ReportInfo));
         frameLayout.addView(textView2, LayoutHelper.createFrame(-2, -2.0f, 49, 30.0f, 235.0f, 30.0f, 44.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
         this.editText = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 18.0f);
-        this.editText.setHintTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteHintText));
+        this.editText.setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
         EditTextBoldCursor editTextBoldCursor2 = this.editText;
         int i2 = Theme.key_windowBackgroundWhiteBlackText;
-        editTextBoldCursor2.setTextColor(Theme.getColor(i2));
+        editTextBoldCursor2.setTextColor(getThemedColor(i2));
         this.editText.setBackgroundDrawable(null);
         this.editText.setLineColors(getThemedColor(Theme.key_windowBackgroundWhiteInputField), getThemedColor(Theme.key_windowBackgroundWhiteInputFieldActivated), getThemedColor(Theme.key_text_RedRegular));
         this.editText.setMaxLines(1);
@@ -107,7 +107,7 @@ public class ReportAlert extends BottomSheet {
         this.editText.setInputType(180224);
         this.editText.setImeOptions(6);
         this.editText.setHint(LocaleController.getString("ReportHint", R.string.ReportHint));
-        this.editText.setCursorColor(Theme.getColor(i2));
+        this.editText.setCursorColor(getThemedColor(i2));
         this.editText.setCursorSize(AndroidUtilities.dp(20.0f));
         this.editText.setCursorWidth(1.5f);
         this.editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -119,7 +119,7 @@ public class ReportAlert extends BottomSheet {
             }
         });
         frameLayout.addView(this.editText, LayoutHelper.createFrame(-1, 36.0f, 51, 17.0f, 305.0f, 17.0f, 0.0f));
-        BottomSheetCell bottomSheetCell = new BottomSheetCell(context);
+        BottomSheetCell bottomSheetCell = new BottomSheetCell(context, resourcesProvider);
         this.clearButton = bottomSheetCell;
         bottomSheetCell.setBackground(null);
         this.clearButton.setText(LocaleController.getString("ReportSend", R.string.ReportSend));

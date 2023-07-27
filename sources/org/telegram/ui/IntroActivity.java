@@ -296,7 +296,7 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         rLottieImageView.playAnimation();
         rLottieImageView.getLocationInWindow(r4);
         int[] iArr = {iArr[0] + (rLottieImageView.getMeasuredWidth() / 2), iArr[1] + (rLottieImageView.getMeasuredHeight() / 2)};
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, theme, Boolean.FALSE, iArr, -1, Boolean.valueOf(z), rLottieImageView);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, theme, Boolean.FALSE, iArr, -1, Boolean.valueOf(z), rLottieImageView);
         rLottieImageView.setContentDescription(LocaleController.getString(R.string.AccDescrSwitchToDayTheme));
     }
 
@@ -630,7 +630,14 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
         public EGLThread(SurfaceTexture surfaceTexture) {
             super("EGLThread");
             this.textures = new int[24];
-            this.telegramMaskProvider = IntroActivity$EGLThread$$ExternalSyntheticLambda2.INSTANCE;
+            this.telegramMaskProvider = new GenericProvider() {
+                @Override
+                public final Object provide(Object obj) {
+                    Bitmap lambda$new$0;
+                    lambda$new$0 = IntroActivity.EGLThread.lambda$new$0((Void) obj);
+                    return lambda$new$0;
+                }
+            };
             this.drawRunnable = new Runnable() {
                 @Override
                 public void run() {
@@ -748,7 +755,14 @@ public class IntroActivity extends BaseFragment implements NotificationCenter.No
                         loadTexture(R.drawable.intro_private_door, 19);
                         loadTexture(R.drawable.intro_private_screw, 20);
                         loadTexture(R.drawable.intro_tg_plane, 21);
-                        loadTexture(IntroActivity$EGLThread$$ExternalSyntheticLambda1.INSTANCE, 22);
+                        loadTexture(new GenericProvider() {
+                            @Override
+                            public final Object provide(Object obj) {
+                                Bitmap lambda$initGL$1;
+                                lambda$initGL$1 = IntroActivity.EGLThread.lambda$initGL$1((Void) obj);
+                                return lambda$initGL$1;
+                            }
+                        }, 22);
                         loadTexture(this.telegramMaskProvider, 23);
                         updateTelegramTextures();
                         updatePowerfulTextures();

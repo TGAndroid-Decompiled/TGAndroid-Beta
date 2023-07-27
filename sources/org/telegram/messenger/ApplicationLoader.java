@@ -59,6 +59,9 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
+    protected void logDualCameraInternal(boolean z, boolean z2) {
+    }
+
     protected String onGetApplicationId() {
         return null;
     }
@@ -202,7 +205,7 @@ public class ApplicationLoader extends Application {
             DownloadController.getInstance(i2);
         }
         ChatThemeController.init();
-        BillingController.getInstance().startConnection();
+        BillingController.getInstance().lambda$onBillingServiceDisconnected$5();
     }
 
     @Override
@@ -242,7 +245,12 @@ public class ApplicationLoader extends Application {
                 FileLog.d("load libs time = " + (SystemClock.elapsedRealtime() - startTime));
             }
             applicationHandler = new Handler(applicationContext.getMainLooper());
-            AndroidUtilities.runOnUIThread(ApplicationLoader$$ExternalSyntheticLambda1.INSTANCE);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    ApplicationLoader.startPushService();
+                }
+            });
             LauncherIconController.tryFixLauncherIconIfNeeded();
             ProxyRotationController.init();
         } catch (UnsatisfiedLinkError unused2) {
@@ -283,7 +291,12 @@ public class ApplicationLoader extends Application {
     }
 
     private void initPushServices() {
-        AndroidUtilities.runOnUIThread(ApplicationLoader$$ExternalSyntheticLambda0.INSTANCE, 1000L);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ApplicationLoader.lambda$initPushServices$0();
+            }
+        }, 1000L);
     }
 
     public static void lambda$initPushServices$0() {
@@ -489,5 +502,9 @@ public class ApplicationLoader extends Application {
 
     public static void appCenterLog(Throwable th) {
         applicationLoaderInstance.appCenterLogInternal(th);
+    }
+
+    public static void logDualCamera(boolean z, boolean z2) {
+        applicationLoaderInstance.logDualCameraInternal(z, z2);
     }
 }

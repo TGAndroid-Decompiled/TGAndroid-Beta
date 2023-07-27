@@ -278,7 +278,14 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
         this.selectedCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.selectedCountTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));
         createActionMode.addView(this.selectedCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
-        this.selectedCountTextView.setOnTouchListener(StickersActivity$$ExternalSyntheticLambda1.INSTANCE);
+        this.selectedCountTextView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$createView$0;
+                lambda$createView$0 = StickersActivity.lambda$createView$0(view, motionEvent);
+                return lambda$createView$0;
+            }
+        });
         createActionMode.addItemWithWidth(2, R.drawable.msg_share, AndroidUtilities.dp(54.0f));
         createActionMode.addItemWithWidth(0, R.drawable.msg_archive, AndroidUtilities.dp(54.0f));
         this.deleteMenuItem = createActionMode.addItemWithWidth(1, R.drawable.msg_delete, AndroidUtilities.dp(54.0f));
@@ -534,7 +541,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                     StickersActivity.this.lambda$sendReorder$5(tLObject, tLRPC$TL_error);
                 }
             });
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.stickersDidLoad, Integer.valueOf(this.currentType), Boolean.TRUE);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(this.currentType), Boolean.TRUE);
             if (!SharedConfig.updateStickersOrderOnSend || this.dynamicPackOrder == -1) {
                 return;
             }
@@ -1190,7 +1197,7 @@ public class StickersActivity extends BaseFragment implements NotificationCenter
                         StickersActivity.ListAdapter.this.lambda$onCreateViewHolder$7(stickersSet);
                     }
                 });
-                makeOptions.add(R.drawable.msg_delete, LocaleController.getString("StickersRemove", R.string.StickersRemove), true, new Runnable() {
+                makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("StickersRemove", R.string.StickersRemove), true, new Runnable() {
                     @Override
                     public final void run() {
                         StickersActivity.ListAdapter.this.lambda$onCreateViewHolder$8(stickersSet);

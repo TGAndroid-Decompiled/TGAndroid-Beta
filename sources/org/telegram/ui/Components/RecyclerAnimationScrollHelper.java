@@ -19,6 +19,8 @@ import org.telegram.ui.Components.RecyclerListView;
 public class RecyclerAnimationScrollHelper {
     private AnimationCallback animationCallback;
     private ValueAnimator animator;
+    public boolean forceUseStableId;
+    public boolean isDialogs;
     private LinearLayoutManager layoutManager;
     private RecyclerListView recyclerView;
     private int scrollDirection;
@@ -54,6 +56,7 @@ public class RecyclerAnimationScrollHelper {
     }
 
     public void scrollToPosition(int i, int i2, boolean z, boolean z2) {
+        long itemId;
         RecyclerListView recyclerListView = this.recyclerView;
         if (recyclerListView.fastScrollAnimationRunning) {
             return;
@@ -78,8 +81,16 @@ public class RecyclerAnimationScrollHelper {
                 View childAt = this.recyclerView.getChildAt(i3);
                 arrayList.add(childAt);
                 this.positionToOldView.put(this.layoutManager.getPosition(childAt), childAt);
-                if (adapter != null && adapter.hasStableIds()) {
-                    this.oldStableIds.put(Long.valueOf(((RecyclerView.LayoutParams) childAt.getLayoutParams()).mViewHolder.getItemId()), childAt);
+                if (adapter != null && (adapter.hasStableIds() || this.forceUseStableId)) {
+                    if (this.forceUseStableId) {
+                        int adapterPosition = ((RecyclerView.LayoutParams) childAt.getLayoutParams()).mViewHolder.getAdapterPosition();
+                        if (adapterPosition >= 0) {
+                            itemId = adapter.getItemId(adapterPosition);
+                        }
+                    } else {
+                        itemId = ((RecyclerView.LayoutParams) childAt.getLayoutParams()).mViewHolder.getItemId();
+                    }
+                    this.oldStableIds.put(Long.valueOf(itemId), childAt);
                 }
                 if (childAt instanceof ChatMessageCell) {
                     ((ChatMessageCell) childAt).setAnimationRunning(true, true);
@@ -123,6 +134,7 @@ public class RecyclerAnimationScrollHelper {
             int height;
             long min;
             View view2;
+            RecyclerAnimationScrollHelper.this.recyclerView.removeOnLayoutChangeListener(this);
             final ArrayList arrayList = new ArrayList();
             RecyclerAnimationScrollHelper.this.recyclerView.stopScroll();
             int childCount = RecyclerAnimationScrollHelper.this.recyclerView.getChildCount();
@@ -143,7 +155,7 @@ public class RecyclerAnimationScrollHelper {
                     ((ChatMessageCell) childAt).setAnimationRunning(true, false);
                 }
                 RecyclerView.Adapter adapter = this.val$adapter;
-                if (adapter != null && adapter.hasStableIds()) {
+                if (adapter != null && (adapter.hasStableIds() || RecyclerAnimationScrollHelper.this.forceUseStableId)) {
                     long itemId = this.val$adapter.getItemId(RecyclerAnimationScrollHelper.this.recyclerView.getChildAdapterPosition(childAt));
                     if (RecyclerAnimationScrollHelper.this.oldStableIds.containsKey(Long.valueOf(itemId)) && (view2 = (View) RecyclerAnimationScrollHelper.this.oldStableIds.get(Long.valueOf(itemId))) != null) {
                         if (view2 instanceof ChatMessageCell) {
@@ -272,18 +284,24 @@ public class RecyclerAnimationScrollHelper {
                     RecyclerAnimationScrollHelper.this.animator = null;
                 }
             });
-            RecyclerAnimationScrollHelper.this.recyclerView.removeOnLayoutChangeListener(this);
-            if (z) {
-                min = 600;
-            } else {
-                long measuredHeight = ((i16 / RecyclerAnimationScrollHelper.this.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
-                if (measuredHeight < 300) {
-                    measuredHeight = 300;
+            RecyclerAnimationScrollHelper recyclerAnimationScrollHelper = RecyclerAnimationScrollHelper.this;
+            if (!recyclerAnimationScrollHelper.isDialogs) {
+                if (z) {
+                    min = 600;
+                } else {
+                    long measuredHeight = ((i16 / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
+                    min = Math.min(measuredHeight >= 300 ? measuredHeight : 300L, 1300L);
                 }
-                min = Math.min(measuredHeight, 1300L);
+                RecyclerAnimationScrollHelper.this.animator.setDuration(min);
+                RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            } else if (z) {
+                recyclerAnimationScrollHelper.animator.setDuration(150L);
+                RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
+            } else {
+                long measuredHeight2 = ((i16 / recyclerAnimationScrollHelper.recyclerView.getMeasuredHeight()) + 1.0f) * 200.0f;
+                RecyclerAnimationScrollHelper.this.animator.setDuration(Math.min(measuredHeight2 >= 300 ? measuredHeight2 : 300L, 1300L));
+                RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             }
-            RecyclerAnimationScrollHelper.this.animator.setDuration(min);
-            RecyclerAnimationScrollHelper.this.animator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
             RecyclerAnimationScrollHelper.this.animator.start();
         }
 

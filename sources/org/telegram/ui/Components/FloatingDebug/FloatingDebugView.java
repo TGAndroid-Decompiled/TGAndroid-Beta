@@ -506,7 +506,12 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
                 }
             }));
         }
-        arrayList.add(new FloatingDebugController.DebugItem(Theme.isCurrentThemeDark() ? "Switch to day theme" : "Switch to dark theme", FloatingDebugView$$ExternalSyntheticLambda7.INSTANCE));
+        arrayList.add(new FloatingDebugController.DebugItem(Theme.isCurrentThemeDark() ? "Switch to day theme" : "Switch to dark theme", new Runnable() {
+            @Override
+            public final void run() {
+                FloatingDebugView.lambda$getBuiltInDebugItems$6();
+            }
+        }));
         arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(R.string.DebugSendLogs), new Runnable() {
             @Override
             public final void run() {
@@ -526,7 +531,7 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
     }
 
     public static void lambda$getBuiltInDebugItems$5(Theme.ThemeInfo themeInfo) {
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.TRUE, null, -1);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.TRUE, null, -1);
     }
 
     public void lambda$getBuiltInDebugItems$7() {

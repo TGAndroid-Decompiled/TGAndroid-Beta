@@ -5,15 +5,11 @@ import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.util.Base64;
 import android.util.LongSparseArray;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 import org.telegram.messenger.SaveToGallerySettingsHelper;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
 import org.telegram.tgnet.TLRPC$TL_account_tmpPassword;
 import org.telegram.tgnet.TLRPC$TL_defaultHistoryTTL;
 import org.telegram.tgnet.TLRPC$TL_error;
@@ -31,8 +27,6 @@ public class UserConfig extends BaseController {
     public static final int i_dialogsLoadOffsetUserId = 2;
     public static int selectedAccount;
     public long autoDownloadConfigLoadTime;
-    public List<String> awaitBillingProductIds;
-    public TLRPC$InputStorePaymentPurpose billingPaymentPurpose;
     public int botRatingLoadTime;
     LongSparseArray<SaveToGallerySettingsHelper.DialogException> chanelSaveGalleryExceptions;
     public long clientUserId;
@@ -122,7 +116,6 @@ public class UserConfig extends BaseController {
         this.migrateOffsetAccess = -1L;
         this.syncContacts = true;
         this.suggestContacts = true;
-        this.awaitBillingProductIds = new ArrayList();
         this.globalTtl = 0;
         this.ttlIsLoading = false;
     }
@@ -188,16 +181,6 @@ public class UserConfig extends BaseController {
                     edit.putInt("sharingMyLocationUntil", this.sharingMyLocationUntil);
                     edit.putInt("lastMyLocationShareTime", this.lastMyLocationShareTime);
                     edit.putBoolean("filtersLoaded", this.filtersLoaded);
-                    edit.putStringSet("awaitBillingProductIds", new HashSet(this.awaitBillingProductIds));
-                    TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose = this.billingPaymentPurpose;
-                    if (tLRPC$InputStorePaymentPurpose != null) {
-                        SerializedData serializedData = new SerializedData(tLRPC$InputStorePaymentPurpose.getObjectSize());
-                        this.billingPaymentPurpose.serializeToStream(serializedData);
-                        edit.putString("billingPaymentPurpose", Base64.encodeToString(serializedData.toByteArray(), 0));
-                        serializedData.cleanup();
-                    } else {
-                        edit.remove("billingPaymentPurpose");
-                    }
                     edit.putString("premiumGiftsStickerPack", this.premiumGiftsStickerPack);
                     edit.putLong("lastUpdatedPremiumGiftsStickerPack", this.lastUpdatedPremiumGiftsStickerPack);
                     edit.putString("genericAnimationsStickerPack", this.genericAnimationsStickerPack);
@@ -213,10 +196,10 @@ public class UserConfig extends BaseController {
                     TLRPC$TL_help_termsOfService tLRPC$TL_help_termsOfService = this.unacceptedTermsOfService;
                     if (tLRPC$TL_help_termsOfService != null) {
                         try {
-                            SerializedData serializedData2 = new SerializedData(tLRPC$TL_help_termsOfService.getObjectSize());
-                            this.unacceptedTermsOfService.serializeToStream(serializedData2);
-                            edit.putString("terms", Base64.encodeToString(serializedData2.toByteArray(), 0));
-                            serializedData2.cleanup();
+                            SerializedData serializedData = new SerializedData(tLRPC$TL_help_termsOfService.getObjectSize());
+                            this.unacceptedTermsOfService.serializeToStream(serializedData);
+                            edit.putString("terms", Base64.encodeToString(serializedData.toByteArray(), 0));
+                            serializedData.cleanup();
                         } catch (Exception unused) {
                         }
                     } else {
@@ -224,22 +207,22 @@ public class UserConfig extends BaseController {
                     }
                     SharedConfig.saveConfig();
                     if (this.tmpPassword != null) {
-                        SerializedData serializedData3 = new SerializedData();
-                        this.tmpPassword.serializeToStream(serializedData3);
-                        edit.putString("tmpPassword", Base64.encodeToString(serializedData3.toByteArray(), 0));
-                        serializedData3.cleanup();
+                        SerializedData serializedData2 = new SerializedData();
+                        this.tmpPassword.serializeToStream(serializedData2);
+                        edit.putString("tmpPassword", Base64.encodeToString(serializedData2.toByteArray(), 0));
+                        serializedData2.cleanup();
                     } else {
                         edit.remove("tmpPassword");
                     }
                     if (this.currentUser == null) {
                         edit.remove("user");
                     } else if (z) {
-                        SerializedData serializedData4 = new SerializedData();
-                        this.currentUser.serializeToStream(serializedData4);
-                        edit.putString("user", Base64.encodeToString(serializedData4.toByteArray(), 0));
-                        serializedData4.cleanup();
+                        SerializedData serializedData3 = new SerializedData();
+                        this.currentUser.serializeToStream(serializedData3);
+                        edit.putString("user", Base64.encodeToString(serializedData3.toByteArray(), 0));
+                        serializedData3.cleanup();
                     }
-                    edit.commit();
+                    edit.apply();
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -273,7 +256,7 @@ public class UserConfig extends BaseController {
         synchronized (this.sync) {
             TLRPC$User tLRPC$User = this.currentUser;
             if (tLRPC$User == null || (str = tLRPC$User.phone) == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
         }
         return str;
@@ -309,8 +292,8 @@ public class UserConfig extends BaseController {
 
     public void lambda$checkPremiumSelf$1(TLRPC$User tLRPC$User) {
         getMessagesController().updatePremium(tLRPC$User.premium);
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.currentUserPremiumStatusChanged, new Object[0]);
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.premiumStatusChangedGlobal, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.currentUserPremiumStatusChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumStatusChangedGlobal, new Object[0]);
         getMediaDataController().loadPremiumPromo(false);
         getMediaDataController().loadReactions(false, true);
     }
@@ -470,7 +453,7 @@ public class UserConfig extends BaseController {
         SharedPreferences preferences = getPreferences();
         StringBuilder sb = new StringBuilder();
         sb.append("2totalDialogsLoadCount");
-        sb.append(i == 0 ? "" : Integer.valueOf(i));
+        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         return preferences.getInt(sb.toString(), 0);
     }
 
@@ -478,7 +461,7 @@ public class UserConfig extends BaseController {
         SharedPreferences.Editor edit = getPreferences().edit();
         StringBuilder sb = new StringBuilder();
         sb.append("2totalDialogsLoadCount");
-        sb.append(i == 0 ? "" : Integer.valueOf(i));
+        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         edit.putInt(sb.toString(), i2).commit();
     }
 
@@ -486,27 +469,31 @@ public class UserConfig extends BaseController {
         SharedPreferences preferences = getPreferences();
         StringBuilder sb = new StringBuilder();
         sb.append("2dialogsLoadOffsetId");
-        sb.append(i == 0 ? "" : Integer.valueOf(i));
+        Object obj = BuildConfig.APP_CENTER_HASH;
+        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         int i2 = preferences.getInt(sb.toString(), this.hasValidDialogLoadIds ? 0 : -1);
         StringBuilder sb2 = new StringBuilder();
         sb2.append("2dialogsLoadOffsetDate");
-        sb2.append(i == 0 ? "" : Integer.valueOf(i));
+        sb2.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         int i3 = preferences.getInt(sb2.toString(), this.hasValidDialogLoadIds ? 0 : -1);
         StringBuilder sb3 = new StringBuilder();
         sb3.append("2dialogsLoadOffsetUserId");
-        sb3.append(i == 0 ? "" : Integer.valueOf(i));
+        sb3.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         long prefIntOrLong = AndroidUtilities.getPrefIntOrLong(preferences, sb3.toString(), this.hasValidDialogLoadIds ? 0L : -1L);
         StringBuilder sb4 = new StringBuilder();
         sb4.append("2dialogsLoadOffsetChatId");
-        sb4.append(i == 0 ? "" : Integer.valueOf(i));
+        sb4.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         long prefIntOrLong2 = AndroidUtilities.getPrefIntOrLong(preferences, sb4.toString(), this.hasValidDialogLoadIds ? 0L : -1L);
         StringBuilder sb5 = new StringBuilder();
         sb5.append("2dialogsLoadOffsetChannelId");
-        sb5.append(i == 0 ? "" : Integer.valueOf(i));
+        sb5.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         long prefIntOrLong3 = AndroidUtilities.getPrefIntOrLong(preferences, sb5.toString(), this.hasValidDialogLoadIds ? 0L : -1L);
         StringBuilder sb6 = new StringBuilder();
         sb6.append("2dialogsLoadOffsetAccess");
-        sb6.append(i != 0 ? Integer.valueOf(i) : "");
+        if (i != 0) {
+            obj = Integer.valueOf(i);
+        }
+        sb6.append(obj);
         return new long[]{i2, i3, prefIntOrLong, prefIntOrLong2, prefIntOrLong3, preferences.getLong(sb6.toString(), this.hasValidDialogLoadIds ? 0L : -1L)};
     }
 
@@ -514,27 +501,31 @@ public class UserConfig extends BaseController {
         SharedPreferences.Editor edit = getPreferences().edit();
         StringBuilder sb = new StringBuilder();
         sb.append("2dialogsLoadOffsetId");
-        sb.append(i == 0 ? "" : Integer.valueOf(i));
+        Object obj = BuildConfig.APP_CENTER_HASH;
+        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         edit.putInt(sb.toString(), i2);
         StringBuilder sb2 = new StringBuilder();
         sb2.append("2dialogsLoadOffsetDate");
-        sb2.append(i == 0 ? "" : Integer.valueOf(i));
+        sb2.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         edit.putInt(sb2.toString(), i3);
         StringBuilder sb3 = new StringBuilder();
         sb3.append("2dialogsLoadOffsetUserId");
-        sb3.append(i == 0 ? "" : Integer.valueOf(i));
+        sb3.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         edit.putLong(sb3.toString(), j);
         StringBuilder sb4 = new StringBuilder();
         sb4.append("2dialogsLoadOffsetChatId");
-        sb4.append(i == 0 ? "" : Integer.valueOf(i));
+        sb4.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         edit.putLong(sb4.toString(), j2);
         StringBuilder sb5 = new StringBuilder();
         sb5.append("2dialogsLoadOffsetChannelId");
-        sb5.append(i == 0 ? "" : Integer.valueOf(i));
+        sb5.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
         edit.putLong(sb5.toString(), j3);
         StringBuilder sb6 = new StringBuilder();
         sb6.append("2dialogsLoadOffsetAccess");
-        sb6.append(i != 0 ? Integer.valueOf(i) : "");
+        if (i != 0) {
+            obj = Integer.valueOf(i);
+        }
+        sb6.append(obj);
         edit.putLong(sb6.toString(), j4);
         edit.putBoolean("hasValidDialogLoadIds", true);
         edit.commit();
@@ -593,7 +584,7 @@ public class UserConfig extends BaseController {
     public void lambda$loadGlobalTTl$2(TLObject tLObject) {
         if (tLObject != null) {
             this.globalTtl = ((TLRPC$TL_defaultHistoryTTL) tLObject).period / 60;
-            getNotificationCenter().postNotificationName(NotificationCenter.didUpdateGlobalAutoDeleteTimer, new Object[0]);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateGlobalAutoDeleteTimer, new Object[0]);
             this.ttlIsLoading = false;
             this.lastLoadingTime = System.currentTimeMillis();
         }

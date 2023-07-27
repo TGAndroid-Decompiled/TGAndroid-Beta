@@ -40,6 +40,7 @@ import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -155,8 +156,8 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         public String title;
 
         private ListItem() {
-            this.subtitle = "";
-            this.ext = "";
+            this.subtitle = BuildConfig.APP_CENTER_HASH;
+            this.ext = BuildConfig.APP_CENTER_HASH;
         }
 
         ListItem(AnonymousClass1 anonymousClass1) {
@@ -310,7 +311,14 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
         this.emptyView = stickerEmptyView;
         addView(stickerEmptyView, LayoutHelper.createFrame(-1, -1.0f));
         this.emptyView.setVisibility(8);
-        this.emptyView.setOnTouchListener(ChatAttachAlertDocumentLayout$$ExternalSyntheticLambda1.INSTANCE);
+        this.emptyView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$new$0;
+                lambda$new$0 = ChatAttachAlertDocumentLayout.lambda$new$0(view, motionEvent);
+                return lambda$new$0;
+            }
+        });
         RecyclerListView recyclerListView = new RecyclerListView(context, resourcesProvider) {
             Paint paint = new Paint();
 
@@ -541,7 +549,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
                         }
                     });
                     photoPickerActivity.setMaxSelectedPhotos(this.maxSelectedFiles, false);
-                    this.parentAlert.baseFragment.presentFragment(photoPickerActivity);
+                    this.parentAlert.presentFragment(photoPickerActivity);
                     this.parentAlert.dismiss(true);
                     return;
                 } else if (i3 == R.drawable.files_music) {
@@ -1001,11 +1009,12 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
 
     private void checkDirectory(File file) {
         File[] listFiles = file.listFiles();
+        File checkDirectory = FileLoader.checkDirectory(6);
         if (listFiles != null) {
             for (File file2 : listFiles) {
                 if (file2.isDirectory() && file2.getName().equals("Telegram")) {
                     checkDirectory(file2);
-                } else {
+                } else if (!file2.equals(checkDirectory)) {
                     ListItem listItem = new ListItem(null);
                     listItem.title = file2.getName();
                     listItem.file = file2;
@@ -1213,8 +1222,9 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
             this.currentDir = file;
             this.listAdapter.items.clear();
+            File checkDirectory = FileLoader.checkDirectory(6);
             for (File file2 : listFiles) {
-                if (file2.getName().indexOf(46) != 0) {
+                if (file2.getName().indexOf(46) != 0 && !file2.equals(checkDirectory)) {
                     ListItem listItem = new ListItem(null);
                     listItem.title = file2.getName();
                     listItem.file = file2;
@@ -1555,7 +1565,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             }
             this.currentSearchFilters.add(mediaFilterData);
             ChatAttachAlertDocumentLayout.this.parentAlert.actionBar.setSearchFilter(mediaFilterData);
-            ChatAttachAlertDocumentLayout.this.parentAlert.actionBar.setSearchFieldText("");
+            ChatAttachAlertDocumentLayout.this.parentAlert.actionBar.setSearchFieldText(BuildConfig.APP_CENTER_HASH);
             updateFiltersView(true, null, null, true);
         }
 

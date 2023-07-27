@@ -441,8 +441,7 @@ public class TextCell extends FrameLayout {
             r3.setVisibility(0);
             this.checkBox.setChecked(z, false);
         }
-        this.needDivider = z2;
-        setWillNotDraw(!z2);
+        setWillNotDraw(!this.needDivider);
     }
 
     public void setTextAndCheckAndIcon(CharSequence charSequence, boolean z, int i, boolean z2) {
@@ -491,6 +490,12 @@ public class TextCell extends FrameLayout {
         float dp;
         int i;
         if (this.needDivider) {
+            Theme.ResourcesProvider resourcesProvider = this.resourcesProvider;
+            Paint paint = resourcesProvider != null ? resourcesProvider.getPaint("paintDivider") : null;
+            if (paint == null) {
+                paint = Theme.dividerPaint;
+            }
+            Paint paint2 = paint;
             float f2 = 20.0f;
             if (LocaleController.isRTL) {
                 dp = 0.0f;
@@ -512,7 +517,7 @@ public class TextCell extends FrameLayout {
             } else {
                 i = 0;
             }
-            canvas.drawLine(dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, Theme.dividerPaint);
+            canvas.drawLine(dp, measuredHeight, measuredWidth - i, getMeasuredHeight() - 1, paint2);
         }
     }
 

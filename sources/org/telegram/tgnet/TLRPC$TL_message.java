@@ -1,7 +1,7 @@
 package org.telegram.tgnet;
 
 import android.text.TextUtils;
-import org.telegram.messenger.CharacterCompat;
+import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_message extends TLRPC$Message {
     public static int constructor = 940666592;
@@ -33,7 +33,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
             this.via_bot_id = abstractSerializedData.readInt64(z);
         }
         if ((this.flags & 8) != 0) {
-            this.reply_to = TLRPC$TL_messageReplyHeader.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.reply_to = TLRPC$MessageReplyHeader.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         this.date = abstractSerializedData.readInt32(z);
         this.message = abstractSerializedData.readString(z);
@@ -79,13 +79,13 @@ public class TLRPC$TL_message extends TLRPC$Message {
         if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
             this.edit_date = abstractSerializedData.readInt32(z);
         }
-        if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {
+        if ((this.flags & 65536) != 0) {
             this.post_author = abstractSerializedData.readString(z);
         }
         if ((this.flags & 131072) != 0) {
             this.grouped_id = abstractSerializedData.readInt64(z);
         }
-        if ((this.flags & 1048576) != 0) {
+        if ((this.flags & FileLoaderPriorityQueue.PRIORITY_VALUE_MAX) != 0) {
             this.reactions = TLRPC$MessageReactions.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 4194304) != 0) {
@@ -178,13 +178,13 @@ public class TLRPC$TL_message extends TLRPC$Message {
         if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
             abstractSerializedData.writeInt32(this.edit_date);
         }
-        if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {
+        if ((this.flags & 65536) != 0) {
             abstractSerializedData.writeString(this.post_author);
         }
         if ((this.flags & 131072) != 0) {
             abstractSerializedData.writeInt64(this.grouped_id);
         }
-        if ((this.flags & 1048576) != 0) {
+        if ((this.flags & FileLoaderPriorityQueue.PRIORITY_VALUE_MAX) != 0) {
             this.reactions.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 4194304) != 0) {

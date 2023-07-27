@@ -9,10 +9,14 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
+import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -73,6 +77,7 @@ public class Bulletin {
     private Delegate currentDelegate;
     private int duration;
     public int hash;
+    public boolean hideAfterBottomSheet;
     private final Runnable hideRunnable;
     public int lastBottomOffset;
     private final Layout layout;
@@ -88,6 +93,10 @@ public class Bulletin {
         public final class CC {
             public static boolean $default$allowLayoutChanges(Delegate delegate) {
                 return true;
+            }
+
+            public static boolean $default$clipWithGradient(Delegate delegate, int i) {
+                return false;
             }
 
             public static int $default$getBottomOffset(Delegate delegate, int i) {
@@ -110,6 +119,8 @@ public class Bulletin {
 
         boolean allowLayoutChanges();
 
+        boolean clipWithGradient(int i);
+
         int getBottomOffset(int i);
 
         int getTopOffset(int i);
@@ -123,6 +134,10 @@ public class Bulletin {
 
     public interface LoadingLayout {
         void onTextLoaded(CharSequence charSequence);
+    }
+
+    static boolean access$900() {
+        return isTransitionsEnabled();
     }
 
     public static Bulletin make(FrameLayout frameLayout, Layout layout, int i) {
@@ -171,6 +186,7 @@ public class Bulletin {
             }
         };
         this.loaded = true;
+        this.hideAfterBottomSheet = true;
         this.layout = null;
         this.parentLayout = null;
         this.containerFragment = null;
@@ -185,9 +201,14 @@ public class Bulletin {
             }
         };
         this.loaded = true;
+        this.hideAfterBottomSheet = true;
         this.layout = layout;
         this.loaded = true ^ (layout instanceof LoadingLayout);
         this.parentLayout = new ParentLayout(layout) {
+            {
+                Bulletin.this = this;
+            }
+
             @Override
             protected void onPressedStateChanged(boolean z) {
                 Bulletin.this.setCanHide(!z);
@@ -219,6 +240,11 @@ public class Bulletin {
 
     public Bulletin setDuration(int i) {
         this.duration = i;
+        return this;
+    }
+
+    public Bulletin hideAfterBottomSheet(boolean z) {
+        this.hideAfterBottomSheet = z;
         return this;
     }
 
@@ -256,6 +282,10 @@ public class Bulletin {
             this.layout.addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
                 @Override
                 public void onViewAttachedToWindow(View view) {
+                }
+
+                {
+                    Bulletin.this = this;
                 }
 
                 @Override
@@ -314,6 +344,7 @@ public class Bulletin {
         final boolean val$top;
 
         AnonymousClass2(boolean z) {
+            Bulletin.this = r1;
             this.val$top = z;
         }
 
@@ -331,7 +362,7 @@ public class Bulletin {
                 if (Bulletin.this.currentDelegate != null) {
                     Bulletin.this.currentDelegate.onShow(Bulletin.this);
                 }
-                if (Bulletin.isTransitionsEnabled()) {
+                if (Bulletin.access$900()) {
                     Bulletin.this.ensureLayoutTransitionCreated();
                     Bulletin.this.layout.transitionRunningEnter = true;
                     Bulletin.this.layout.delegate = Bulletin.this.currentDelegate;
@@ -526,7 +557,7 @@ public class Bulletin {
         return this.layout;
     }
 
-    public static boolean isTransitionsEnabled() {
+    private static boolean isTransitionsEnabled() {
         return MessagesController.getGlobalMainSettings().getBoolean("view_animations", true) && Build.VERSION.SDK_INT >= 18;
     }
 
@@ -571,6 +602,7 @@ public class Bulletin {
             final Layout val$layout;
 
             AnonymousClass1(Layout layout) {
+                ParentLayout.this = r1;
                 this.val$layout = layout;
             }
 
@@ -629,7 +661,12 @@ public class Bulletin {
                                 Bulletin.ParentLayout.AnonymousClass1.this.lambda$onFling$2(dynamicAnimation, z2, f3, f4);
                             }
                         });
-                        springAnimation2.addUpdateListener(Bulletin$ParentLayout$1$$ExternalSyntheticLambda3.INSTANCE);
+                        springAnimation2.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f3, float f4) {
+                                Bulletin.ParentLayout.AnonymousClass1.lambda$onFling$3(dynamicAnimation, f3, f4);
+                            }
+                        });
                         springAnimation.getSpring().setDampingRatio(1.0f);
                         springAnimation.getSpring().setStiffness(10.0f);
                         springAnimation.setStartVelocity(f);
@@ -763,6 +800,9 @@ public class Bulletin {
         Drawable background;
         protected Bulletin bulletin;
         private final List<Callback> callbacks;
+        private LinearGradient clipGradient;
+        private Matrix clipMatrix;
+        private Paint clipPaint;
         Delegate delegate;
         public float inOutOffset;
         private final Theme.ResourcesProvider resourcesProvider;
@@ -1182,15 +1222,45 @@ public class Bulletin {
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
+            Delegate delegate;
             if (this.bulletin == null) {
                 return;
             }
             this.background.setBounds(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), getMeasuredHeight() - AndroidUtilities.dp(8.0f));
-            if (isTransitionRunning() && this.delegate != null) {
+            if (isTransitionRunning() && (delegate = this.delegate) != null) {
+                float topOffset = delegate.getTopOffset(this.bulletin.tag) - getY();
+                float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();
+                boolean clipWithGradient = this.delegate.clipWithGradient(this.bulletin.tag);
                 canvas.save();
-                canvas.clipRect(0.0f, this.delegate.getTopOffset(this.bulletin.tag) - getY(), getMeasuredWidth(), (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY());
+                canvas.clipRect(0.0f, topOffset, getMeasuredWidth(), measuredHeight);
+                if (clipWithGradient) {
+                    canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+                }
                 this.background.draw(canvas);
                 super.dispatchDraw(canvas);
+                if (clipWithGradient) {
+                    if (this.clipPaint == null) {
+                        Paint paint = new Paint(1);
+                        this.clipPaint = paint;
+                        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+                        this.clipGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), this.top ? new int[]{-16777216, 0} : new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP);
+                        Matrix matrix = new Matrix();
+                        this.clipMatrix = matrix;
+                        this.clipGradient.setLocalMatrix(matrix);
+                        this.clipPaint.setShader(this.clipGradient);
+                    }
+                    canvas.save();
+                    this.clipMatrix.reset();
+                    this.clipMatrix.postTranslate(0.0f, this.top ? topOffset : measuredHeight - AndroidUtilities.dp(8.0f));
+                    this.clipGradient.setLocalMatrix(this.clipMatrix);
+                    if (this.top) {
+                        canvas.drawRect(0.0f, topOffset, getWidth(), topOffset + AndroidUtilities.dp(8.0f), this.clipPaint);
+                    } else {
+                        canvas.drawRect(0.0f, measuredHeight - AndroidUtilities.dp(8.0f), getWidth(), measuredHeight, this.clipPaint);
+                    }
+                    canvas.restore();
+                    canvas.restore();
+                }
                 canvas.restore();
                 invalidate();
                 return;
@@ -1266,7 +1336,7 @@ public class Bulletin {
 
     public static class SimpleLayout extends ButtonLayout {
         public final ImageView imageView;
-        public final TextView textView;
+        public final LinkSpanDrawable.LinksTextView textView;
 
         public SimpleLayout(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
@@ -1275,13 +1345,14 @@ public class Bulletin {
             this.imageView = imageView;
             imageView.setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
             addView(imageView, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388627, 16.0f, 12.0f, 16.0f, 12.0f));
-            TextView textView = new TextView(context);
-            this.textView = textView;
-            textView.setSingleLine();
-            textView.setTextColor(themedColor);
-            textView.setTypeface(Typeface.SANS_SERIF);
-            textView.setTextSize(1, 15.0f);
-            addView(textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+            LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+            this.textView = linksTextView;
+            linksTextView.setDisablePaddingsOffsetY(true);
+            linksTextView.setSingleLine();
+            linksTextView.setTextColor(themedColor);
+            linksTextView.setTypeface(Typeface.SANS_SERIF);
+            linksTextView.setTextSize(1, 15.0f);
+            addView(linksTextView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
         }
 
         @Override
@@ -1559,12 +1630,12 @@ public class Bulletin {
                 this.textView.setEllipsize(TextUtils.TruncateAt.END);
                 this.textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
                 this.textView.setGravity(LocaleController.isRTL ? 5 : 3);
-                addView(this.textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 70.0f, 0.0f, 8.0f, 0.0f));
+                addView(this.textView, LayoutHelper.createFrameRelatively(-2.0f, -2.0f, 8388627, 70.0f, 0.0f, 12.0f, 0.0f));
             } else {
                 LinearLayout linearLayout = new LinearLayout(getContext());
                 this.linearLayout = linearLayout;
                 linearLayout.setOrientation(1);
-                addView(this.linearLayout, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 76.0f, 0.0f, 8.0f, 0.0f));
+                addView(this.linearLayout, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 8388627, 76.0f, 0.0f, 12.0f, 0.0f));
                 LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(this, context) {
                     @Override
                     public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
@@ -1715,7 +1786,10 @@ public class Bulletin {
                 if (runnable != null) {
                     runnable.run();
                 }
-                this.bulletin.hide();
+                Bulletin bulletin = this.bulletin;
+                if (bulletin != null) {
+                    bulletin.hide();
+                }
             }
         }
 
@@ -1773,7 +1847,7 @@ public class Bulletin {
         }
     }
 
-    private static class TimerView extends View {
+    public static class TimerView extends View {
         private long lastUpdateTime;
         private int prevSeconds;
         private final Paint progressPaint;
@@ -1882,6 +1956,10 @@ public class Bulletin {
         private BulletinWindow(Context context) {
             super(context);
             FrameLayout frameLayout = new FrameLayout(context) {
+                {
+                    BulletinWindow.this = this;
+                }
+
                 @Override
                 public void addView(View view) {
                     super.addView(view);
@@ -1922,6 +2000,11 @@ public class Bulletin {
                 @Override
                 public boolean allowLayoutChanges() {
                     return Delegate.CC.$default$allowLayoutChanges(this);
+                }
+
+                @Override
+                public boolean clipWithGradient(int i2) {
+                    return Delegate.CC.$default$clipWithGradient(this, i2);
                 }
 
                 @Override
@@ -1998,5 +2081,10 @@ public class Bulletin {
                 frameLayout.setPadding(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
             }
         }
+    }
+
+    public Bulletin setTag(int i) {
+        this.tag = i;
+        return this;
     }
 }

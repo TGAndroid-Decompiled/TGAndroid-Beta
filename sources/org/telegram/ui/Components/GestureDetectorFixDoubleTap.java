@@ -19,7 +19,7 @@ public class GestureDetectorFixDoubleTap {
     }
 
     public static class OnGestureListener extends GestureDetector.SimpleOnGestureListener {
-        public boolean hasDoubleTap() {
+        public boolean hasDoubleTap(MotionEvent motionEvent) {
             throw null;
         }
     }

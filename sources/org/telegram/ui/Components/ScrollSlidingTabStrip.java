@@ -24,6 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -229,7 +230,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         }
     }
 
-    public static class AnonymousClass7 {
+    static class AnonymousClass7 {
         static final int[] $SwitchMap$org$telegram$ui$Components$ScrollSlidingTabStrip$Type;
 
         static {
@@ -832,7 +833,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
             float lerp3 = AndroidUtilities.lerp(abs, textWidth + AndroidUtilities.dp(10.0f), interpolation) / 2.0f;
             float abs2 = ((dp * (((Math.abs(0.5f - this.currentPositionAnimated.getTransitionProgressInterpolated()) * 0.1f) * 2.0f) + 0.9f)) * AndroidUtilities.lerp(1.0f, 0.55f, interpolation)) / 2.0f;
             this.tabBounds.set(f - lerp3, lerp2 - abs2, f + lerp3, lerp2 + abs2);
-            this.selectorPaint.setColor(788529151 & getThemedColor(Theme.key_chat_emojiPanelIcon));
+            this.selectorPaint.setColor(ColorUtils.setAlphaComponent(getThemedColor(Theme.key_chat_emojiPanelIcon), 46));
             this.selectorPaint.setAlpha((int) (paint.getAlpha() * f5));
             canvas.drawRoundRect(this.tabBounds, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.selectorPaint);
         }

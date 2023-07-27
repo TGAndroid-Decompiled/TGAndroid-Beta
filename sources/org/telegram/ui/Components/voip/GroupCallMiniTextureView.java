@@ -40,6 +40,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
@@ -214,7 +215,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             }
 
             @Override
-            public void updateRendererSize() {
+            protected void updateRendererSize() {
                 super.updateRendererSize();
                 ImageView imageView = GroupCallMiniTextureView.this.blurredFlippingStub;
                 if (imageView == null || imageView.getParent() == null) {
@@ -225,7 +226,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             }
 
             @Override
-            public void dispatchDraw(Canvas canvas) {
+            protected void dispatchDraw(Canvas canvas) {
                 float f;
                 float dp;
                 float f2;
@@ -443,7 +444,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             }
 
             @Override
-            public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 int i5;
                 ChatObject.VideoParticipant videoParticipant;
                 GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;
@@ -1118,7 +1119,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             this.bigWaveDrawable.generateBlob();
             this.paint.setColor(ColorUtils.blendARGB(Theme.getColor(Theme.key_voipgroup_listeningText), Theme.getColor(Theme.key_voipgroup_speakingText), this.speakingProgress));
             this.paint.setAlpha(102);
-            this.backgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, 127));
+            this.backgroundPaint.setColor(ColorUtils.setAlphaComponent(-16777216, MessagesStorage.LAST_DB_VERSION));
         }
 
         @Override

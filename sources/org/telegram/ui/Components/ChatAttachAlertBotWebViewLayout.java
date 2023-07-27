@@ -37,6 +37,7 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -61,6 +62,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BotWebViewContainer;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertBotWebViewLayout;
+import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private long botId;
     private int currentAccount;
@@ -109,7 +111,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         tLRPC$TL_messages_prolongWebView.silent = this.silent;
         int i = this.replyToMsgId;
         if (i != 0) {
-            tLRPC$TL_messages_prolongWebView.reply_to_msg_id = i;
+            tLRPC$TL_messages_prolongWebView.reply_to = SendMessagesHelper.creteReplyInput(i);
             tLRPC$TL_messages_prolongWebView.flags |= 1;
         }
         if (this.peerId < 0 && (chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-this.peerId)) != null && (tLRPC$Peer = chatFull.default_send_as) != null) {
@@ -535,7 +537,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             tLRPC$TL_messages_requestWebView.flags |= 8;
         }
         if (i2 != 0) {
-            tLRPC$TL_messages_requestWebView.reply_to_msg_id = i2;
+            tLRPC$TL_messages_requestWebView.reply_to = SendMessagesHelper.creteReplyInput(i2);
             tLRPC$TL_messages_requestWebView.flags |= 1;
         }
         try {
@@ -686,7 +688,17 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public static class WebViewSwipeContainer extends FrameLayout {
-        public static final SimpleFloatPropertyCompat<WebViewSwipeContainer> SWIPE_OFFSET_Y = new SimpleFloatPropertyCompat<>("swipeOffsetY", ChatAttachAlertBotWebViewLayout$WebViewSwipeContainer$$ExternalSyntheticLambda4.INSTANCE, ChatAttachAlertBotWebViewLayout$WebViewSwipeContainer$$ExternalSyntheticLambda5.INSTANCE);
+        public static final SimpleFloatPropertyCompat<WebViewSwipeContainer> SWIPE_OFFSET_Y = new SimpleFloatPropertyCompat<>("swipeOffsetY", new SimpleFloatPropertyCompat.Getter() {
+            @Override
+            public final float get(Object obj) {
+                return ((ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) obj).getSwipeOffsetY();
+            }
+        }, new SimpleFloatPropertyCompat.Setter() {
+            @Override
+            public final void set(Object obj, float f) {
+                ((ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) obj).setSwipeOffsetY(f);
+            }
+        });
         private Delegate delegate;
         private boolean flingInProgress;
         private GestureDetectorCompat gestureDetector;
@@ -716,13 +728,24 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             return f2;
         }
 
+        public static Boolean lambda$new$0(Void r0) {
+            return Boolean.FALSE;
+        }
+
         public WebViewSwipeContainer(Context context) {
             super(context);
             this.topActionBarOffsetY = ActionBar.getCurrentActionBarHeight();
             this.offsetY = 0.0f;
             this.pendingOffsetY = -1.0f;
             this.pendingSwipeOffsetY = -2.14748365E9f;
-            this.isKeyboardVisible = ChatAttachAlertBotWebViewLayout$WebViewSwipeContainer$$ExternalSyntheticLambda3.INSTANCE;
+            this.isKeyboardVisible = new GenericProvider() {
+                @Override
+                public final Object provide(Object obj) {
+                    Boolean lambda$new$0;
+                    lambda$new$0 = ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer.lambda$new$0((Void) obj);
+                    return lambda$new$0;
+                }
+            };
             final int scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
             this.gestureDetector = new GestureDetectorCompat(context, new GestureDetector.SimpleOnGestureListener() {
                 @Override
@@ -1003,7 +1026,19 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
         public WebProgressView(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
-            this.LOAD_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("loadProgress", ChatAttachAlertBotWebViewLayout$WebProgressView$$ExternalSyntheticLambda0.INSTANCE, ChatAttachAlertBotWebViewLayout$WebProgressView$$ExternalSyntheticLambda1.INSTANCE).setMultiplier(100.0f);
+            this.LOAD_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("loadProgress", new SimpleFloatPropertyCompat.Getter() {
+                @Override
+                public final float get(Object obj) {
+                    float f;
+                    f = ((ChatAttachAlertBotWebViewLayout.WebProgressView) obj).loadProgress;
+                    return f;
+                }
+            }, new SimpleFloatPropertyCompat.Setter() {
+                @Override
+                public final void set(Object obj, float f) {
+                    ((ChatAttachAlertBotWebViewLayout.WebProgressView) obj).setLoadProgress(f);
+                }
+            }).setMultiplier(100.0f);
             Paint paint = new Paint(1);
             this.bluePaint = paint;
             this.resourcesProvider = resourcesProvider;

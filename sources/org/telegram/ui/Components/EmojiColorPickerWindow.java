@@ -21,7 +21,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 public class EmojiColorPickerWindow extends PopupWindow {
-    private static final ViewTreeObserver.OnScrollChangedListener NOP = EmojiColorPickerWindow$$ExternalSyntheticLambda1.INSTANCE;
+    private static final ViewTreeObserver.OnScrollChangedListener NOP = new ViewTreeObserver.OnScrollChangedListener() {
+        @Override
+        public final void onScrollChanged() {
+            EmojiColorPickerWindow.lambda$static$0();
+        }
+    };
     private static Field superListenerField;
     private final int emojiSize;
     private boolean isCompound;

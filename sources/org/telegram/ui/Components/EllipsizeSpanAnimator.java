@@ -10,6 +10,7 @@ import android.text.style.CharacterStyle;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.Reactions.HwEmojis;
 public class EllipsizeSpanAnimator {
     boolean attachedToWindow;
     private final AnimatorSet ellAnimator;
@@ -91,7 +92,9 @@ public class EllipsizeSpanAnimator {
     public void lambda$createEllipsizeAnimator$0(TextAlphaSpan textAlphaSpan, ValueAnimator valueAnimator) {
         textAlphaSpan.setAlpha(((Integer) valueAnimator.getAnimatedValue()).intValue());
         for (int i = 0; i < this.ellipsizedViews.size(); i++) {
-            this.ellipsizedViews.get(i).invalidate();
+            if (!HwEmojis.isHwEnabled()) {
+                this.ellipsizedViews.get(i).invalidate();
+            }
         }
     }
 
@@ -121,7 +124,7 @@ public class EllipsizeSpanAnimator {
 
         @Override
         public void updateDrawState(TextPaint textPaint) {
-            textPaint.setAlpha(this.alpha);
+            textPaint.setAlpha((int) (textPaint.getAlpha() * (this.alpha / 255.0f)));
         }
     }
 }

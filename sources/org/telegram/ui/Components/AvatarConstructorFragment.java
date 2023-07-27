@@ -306,7 +306,7 @@ public class AvatarConstructorFragment extends BaseFragment {
 
             @Override
             public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-                if (AvatarConstructorFragment.this.keyboardVisibleProgress == 0.0f && AndroidUtilities.findClickableView(this, motionEvent.getX(), motionEvent.getY())) {
+                if (AvatarConstructorFragment.this.keyboardVisibleProgress == 0.0f) {
                     return false;
                 }
                 return onTouchEvent(motionEvent);
@@ -602,7 +602,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         if (z2) {
             this.previewView.overrideExpandProgress = this.progressToExpand;
             if (Build.VERSION.SDK_INT >= 23) {
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             }
         }
         this.expandAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -772,7 +772,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                 this.backupImageView.imageReceiver.startAnimation();
             }
             if (Build.VERSION.SDK_INT >= 23) {
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             }
             invalidate();
         }
@@ -878,7 +878,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             }
             this.backgroundGradient = backgroundGradient;
             if (Build.VERSION.SDK_INT >= 23) {
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             }
             invalidate();
         }
@@ -1226,7 +1226,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             this.colorPickerGradient.color4 = i;
         }
         if (Build.VERSION.SDK_INT >= 23) {
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         }
         this.previewView.invalidate();
     }

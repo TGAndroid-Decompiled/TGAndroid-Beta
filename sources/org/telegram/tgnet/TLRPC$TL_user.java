@@ -1,9 +1,9 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.CharacterCompat;
+import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_user extends TLRPC$User {
-    public static int constructor = -1885878744;
+    public static int constructor = -1414139616;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -30,6 +30,9 @@ public class TLRPC$TL_user extends TLRPC$User {
         int readInt322 = abstractSerializedData.readInt32(z);
         this.flags2 = readInt322;
         this.bot_can_edit = (readInt322 & 2) != 0;
+        this.close_friend = (readInt322 & 4) != 0;
+        this.stories_hidden = (readInt322 & 8) != 0;
+        this.stories_unavailable = (readInt322 & 16) != 0;
         this.id = abstractSerializedData.readInt64(z);
         if ((this.flags & 1) != 0) {
             this.access_hash = abstractSerializedData.readInt64(z);
@@ -98,6 +101,9 @@ public class TLRPC$TL_user extends TLRPC$User {
                 this.usernames.add(TLdeserialize2);
             }
         }
+        if ((this.flags2 & 32) != 0) {
+            this.stories_max_id = abstractSerializedData.readInt32(z);
+        }
     }
 
     @Override
@@ -118,13 +124,13 @@ public class TLRPC$TL_user extends TLRPC$User {
         this.flags = i5;
         int i6 = this.bot_chat_history ? i5 | LiteMode.FLAG_CHAT_SCALE : i5 & (-32769);
         this.flags = i6;
-        int i7 = this.bot_nochats ? i6 | CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT : i6 & (-65537);
+        int i7 = this.bot_nochats ? i6 | 65536 : i6 & (-65537);
         this.flags = i7;
         int i8 = this.verified ? i7 | 131072 : i7 & (-131073);
         this.flags = i8;
         int i9 = this.restricted ? i8 | 262144 : i8 & (-262145);
         this.flags = i9;
-        int i10 = this.min ? i9 | 1048576 : i9 & (-1048577);
+        int i10 = this.min ? i9 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i9 & (-1048577);
         this.flags = i10;
         int i11 = this.bot_inline_geo ? i10 | 2097152 : i10 & (-2097153);
         this.flags = i11;
@@ -142,9 +148,16 @@ public class TLRPC$TL_user extends TLRPC$User {
         this.flags = i17;
         int i18 = this.attach_menu_enabled ? i17 | 536870912 : i17 & (-536870913);
         this.flags = i18;
-        this.flags2 = this.bot_can_edit ? this.flags2 | 2 : this.flags2 & (-3);
         abstractSerializedData.writeInt32(i18);
-        abstractSerializedData.writeInt32(this.flags2);
+        int i19 = this.bot_can_edit ? this.flags2 | 2 : this.flags2 & (-3);
+        this.flags2 = i19;
+        int i20 = this.close_friend ? i19 | 4 : i19 & (-5);
+        this.flags2 = i20;
+        int i21 = this.stories_hidden ? i20 | 8 : i20 & (-9);
+        this.flags2 = i21;
+        int i22 = this.stories_unavailable ? i21 | 16 : i21 & (-17);
+        this.flags2 = i22;
+        abstractSerializedData.writeInt32(i22);
         abstractSerializedData.writeInt64(this.id);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt64(this.access_hash);
@@ -174,8 +187,8 @@ public class TLRPC$TL_user extends TLRPC$User {
             abstractSerializedData.writeInt32(481674261);
             int size = this.restriction_reason.size();
             abstractSerializedData.writeInt32(size);
-            for (int i19 = 0; i19 < size; i19++) {
-                this.restriction_reason.get(i19).serializeToStream(abstractSerializedData);
+            for (int i23 = 0; i23 < size; i23++) {
+                this.restriction_reason.get(i23).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 524288) != 0) {
@@ -191,9 +204,12 @@ public class TLRPC$TL_user extends TLRPC$User {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.usernames.size();
             abstractSerializedData.writeInt32(size2);
-            for (int i20 = 0; i20 < size2; i20++) {
-                this.usernames.get(i20).serializeToStream(abstractSerializedData);
+            for (int i24 = 0; i24 < size2; i24++) {
+                this.usernames.get(i24).serializeToStream(abstractSerializedData);
             }
+        }
+        if ((this.flags2 & 32) != 0) {
+            abstractSerializedData.writeInt32(this.stories_max_id);
         }
     }
 }

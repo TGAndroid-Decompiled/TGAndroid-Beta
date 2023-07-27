@@ -42,6 +42,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$KeyboardButton;
 import org.telegram.tgnet.TLRPC$ReplyMarkup;
+import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_channels_sendAsPeers;
 import org.telegram.tgnet.TLRPC$TL_keyboardButtonCallback;
 import org.telegram.tgnet.TLRPC$TL_keyboardButtonRow;
@@ -234,6 +235,11 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             @Override
             public int getContentViewHeight() {
                 return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$getContentViewHeight(this);
+            }
+
+            @Override
+            public TLRPC$StoryItem getReplyToStory() {
+                return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$getReplyToStory(this);
             }
 
             @Override
@@ -672,7 +678,14 @@ public class PopupNotificationActivity extends Activity implements NotificationC
                                 linearLayout.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
                                 linearLayout.setWeightSum(100.0f);
                                 linearLayout.setTag("b");
-                                linearLayout.setOnTouchListener(PopupNotificationActivity$$ExternalSyntheticLambda5.INSTANCE);
+                                linearLayout.setOnTouchListener(new View.OnTouchListener() {
+                                    @Override
+                                    public final boolean onTouch(View view, MotionEvent motionEvent) {
+                                        boolean lambda$getButtonsViewForMessage$4;
+                                        lambda$getButtonsViewForMessage$4 = PopupNotificationActivity.lambda$getButtonsViewForMessage$4(view, motionEvent);
+                                        return lambda$getButtonsViewForMessage$4;
+                                    }
+                                });
                             }
                             TextView textView = new TextView(this);
                             textView.setTextSize(1, 16.0f);

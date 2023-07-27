@@ -127,6 +127,10 @@ public class TextCheckCell extends FrameLayout {
         this.checkBox.setIcon(i);
     }
 
+    public Switch getCheckBox() {
+        return this.checkBox;
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         if (this.isMultiline) {
@@ -147,8 +151,8 @@ public class TextCheckCell extends FrameLayout {
         setWillNotDraw(!z);
     }
 
-    public void setTextAndCheck(String str, boolean z, boolean z2) {
-        this.textView.setText(str);
+    public void setTextAndCheck(CharSequence charSequence, boolean z, boolean z2) {
+        this.textView.setText(charSequence);
         this.isMultiline = false;
         this.checkBox.setVisibility(0);
         this.checkBox.setChecked(z, this.attached);

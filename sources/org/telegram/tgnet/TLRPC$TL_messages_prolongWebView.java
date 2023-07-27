@@ -2,12 +2,12 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_prolongWebView extends TLObject {
-    public static int constructor = -362824498;
+    public static int constructor = -1328014717;
     public TLRPC$InputUser bot;
     public int flags;
     public TLRPC$InputPeer peer;
     public long query_id;
-    public int reply_to_msg_id;
+    public TLRPC$InputReplyTo reply_to;
     public TLRPC$InputPeer send_as;
     public boolean silent;
 
@@ -26,7 +26,7 @@ public class TLRPC$TL_messages_prolongWebView extends TLObject {
         this.bot.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt64(this.query_id);
         if ((this.flags & 1) != 0) {
-            abstractSerializedData.writeInt32(this.reply_to_msg_id);
+            this.reply_to.serializeToStream(abstractSerializedData);
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
             this.send_as.serializeToStream(abstractSerializedData);

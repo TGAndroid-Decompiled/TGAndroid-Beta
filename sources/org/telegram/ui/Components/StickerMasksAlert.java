@@ -34,6 +34,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
@@ -207,7 +208,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         }
 
         public void lambda$new$0(View view) {
-            this.searchEditText.setText("");
+            this.searchEditText.setText(BuildConfig.APP_CENTER_HASH);
             AndroidUtilities.showKeyboard(this.searchEditText);
         }
 
@@ -266,8 +267,8 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
             }
 
             @Override
-            public boolean needCopy() {
-                return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$needCopy(this);
+            public boolean needCopy(TLRPC$Document tLRPC$Document) {
+                return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$needCopy(this, tLRPC$Document);
             }
 
             @Override
@@ -1362,7 +1363,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                 imageViewEmoji.getImageReceiver().setLayerNum(((BottomSheet) StickerMasksAlert.this).playingImagesLayerNum);
                 stickerEmojiCell = imageViewEmoji;
             } else if (i == 0) {
-                StickerEmojiCell stickerEmojiCell2 = new StickerEmojiCell(this.context, false) {
+                StickerEmojiCell stickerEmojiCell2 = new StickerEmojiCell(this.context, false, ((BottomSheet) StickerMasksAlert.this).resourcesProvider) {
                     @Override
                     public void onMeasure(int i2, int i3) {
                         if (StickerMasksAlert.this.currentType == 5) {
@@ -1615,7 +1616,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
         private ArrayList<ArrayList<TLRPC$Document>> emojiArrays = new ArrayList<>();
         private Runnable searchRunnable = new AnonymousClass1();
 
-        static int access$5804(StickersSearchGridAdapter stickersSearchGridAdapter) {
+        static int access$5904(StickersSearchGridAdapter stickersSearchGridAdapter) {
             int i = stickersSearchGridAdapter.emojiSearchId + 1;
             stickersSearchGridAdapter.emojiSearchId = i;
             return i;
@@ -1776,7 +1777,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                 imageViewEmoji.getImageReceiver().setLayerNum(((BottomSheet) StickerMasksAlert.this).playingImagesLayerNum);
                 stickerEmojiCell = imageViewEmoji;
             } else if (i == 0) {
-                StickerEmojiCell stickerEmojiCell2 = new StickerEmojiCell(this.context, false) {
+                StickerEmojiCell stickerEmojiCell2 = new StickerEmojiCell(this.context, false, ((BottomSheet) StickerMasksAlert.this).resourcesProvider) {
                     @Override
                     public void onMeasure(int i2, int i3) {
                         if (StickerMasksAlert.this.currentType == 5) {
@@ -1953,7 +1954,7 @@ public class StickerMasksAlert extends BottomSheet implements NotificationCenter
                     }
                 } else {
                     int size3 = this.emojiArrays.size();
-                    String str = "";
+                    String str = BuildConfig.APP_CENTER_HASH;
                     int i13 = 0;
                     for (int i14 = 0; i14 < size3; i14++) {
                         ArrayList<TLRPC$Document> arrayList2 = this.emojiArrays.get(i14);

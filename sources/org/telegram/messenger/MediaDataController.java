@@ -36,7 +36,6 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
 import org.telegram.SQLite.SQLitePreparedStatement;
-import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationBadge;
@@ -62,8 +61,8 @@ import org.telegram.tgnet.TLRPC$InputStickerSet;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageAction;
 import org.telegram.tgnet.TLRPC$MessageEntity;
+import org.telegram.tgnet.TLRPC$MessageReplyHeader;
 import org.telegram.tgnet.TLRPC$MessagesFilter;
-import org.telegram.tgnet.TLRPC$Peer;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$Reaction;
 import org.telegram.tgnet.TLRPC$StickerSet;
@@ -232,6 +231,7 @@ public class MediaDataController extends BaseController {
     public static final int MEDIA_MUSIC = 4;
     public static final int MEDIA_PHOTOS_ONLY = 6;
     public static final int MEDIA_PHOTOVIDEO = 0;
+    public static final int MEDIA_STORIES = 8;
     public static final int MEDIA_TYPES_COUNT = 8;
     public static final int MEDIA_URL = 3;
     public static final int MEDIA_VIDEOS_ONLY = 7;
@@ -382,14 +382,21 @@ public class MediaDataController extends BaseController {
     public static void lambda$removePeer$143(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
-    public static void lambda$saveDraft$176(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$saveDraft$177(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
     static {
         for (int i = 0; i < 4; i++) {
             lockObjects[i] = new Object();
         }
-        entityComparator = MediaDataController$$ExternalSyntheticLambda158.INSTANCE;
+        entityComparator = new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$static$149;
+                lambda$static$149 = MediaDataController.lambda$static$149((TLRPC$MessageEntity) obj, (TLRPC$MessageEntity) obj2);
+                return lambda$static$149;
+            }
+        };
     }
 
     public static MediaDataController getInstance(int i) {
@@ -583,7 +590,12 @@ public class MediaDataController extends BaseController {
         this.recentGifsLoaded = false;
         this.currentFetchingEmoji.clear();
         if (Build.VERSION.SDK_INT >= 25) {
-            Utilities.globalQueue.postRunnable(MediaDataController$$ExternalSyntheticLambda155.INSTANCE);
+            Utilities.globalQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    MediaDataController.lambda$cleanup$0();
+                }
+            });
         }
         this.verifyingMessages.clear();
         this.loading = false;
@@ -613,8 +625,8 @@ public class MediaDataController extends BaseController {
     }
 
     public void lambda$cleanup$1() {
-        getNotificationCenter().postNotificationName(NotificationCenter.reloadHints, new Object[0]);
-        getNotificationCenter().postNotificationName(NotificationCenter.reloadInlineHints, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadHints, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadInlineHints, new Object[0]);
     }
 
     public boolean areStickersLoaded(int i) {
@@ -907,7 +919,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void lambda$processLoadedMenuBots$4() {
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.attachMenuBotsDidLoad, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.attachMenuBotsDidLoad, new Object[0]);
     }
 
     private void putMenuBotsToCache(final TLRPC$TL_attachMenuBots tLRPC$TL_attachMenuBots, final long j, final int i) {
@@ -993,7 +1005,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void lambda$processLoadedPremiumPromo$8() {
-        getNotificationCenter().postNotificationName(NotificationCenter.premiumPromoUpdated, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumPromoUpdated, new Object[0]);
     }
 
     private void putPremiumPromoToCache(final TLRPC$TL_help_premiumPromo tLRPC$TL_help_premiumPromo, final int i) {
@@ -1116,7 +1128,7 @@ public class MediaDataController extends BaseController {
 
     public void lambda$processLoadedReactions$14() {
         preloadDefaultReactions();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.reactionsDidLoad, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reactionsDidLoad, new Object[0]);
     }
 
     public void preloadDefaultReactions() {
@@ -1278,7 +1290,7 @@ public class MediaDataController extends BaseController {
                 }
             });
             this.recentStickers[0].clear();
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.recentDocumentsDidLoad, Boolean.FALSE, 0);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.recentDocumentsDidLoad, Boolean.FALSE, 0);
         }
     }
 
@@ -1318,7 +1330,7 @@ public class MediaDataController extends BaseController {
                 }
                 if (i == 2) {
                     if (z) {
-                        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 0, tLRPC$Document, 4);
+                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 0, tLRPC$Document, 4);
                     } else {
                         boolean z3 = this.recentStickers[i].size() > getMessagesController().maxFaveStickersCount;
                         NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
@@ -1327,7 +1339,7 @@ public class MediaDataController extends BaseController {
                         objArr[0] = 0;
                         objArr[1] = tLRPC$Document;
                         objArr[2] = Integer.valueOf(z3 ? 6 : 5);
-                        globalInstance.postNotificationName(i5, objArr);
+                        globalInstance.lambda$postNotificationNameOnUIThread$1(i5, objArr);
                     }
                     final TLRPC$TL_messages_faveSticker tLRPC$TL_messages_faveSticker = new TLRPC$TL_messages_faveSticker();
                     TLRPC$TL_inputDocument tLRPC$TL_inputDocument = new TLRPC$TL_inputDocument();
@@ -1349,7 +1361,7 @@ public class MediaDataController extends BaseController {
                     i3 = getMessagesController().maxFaveStickersCount;
                 } else {
                     if (i == 0 && z) {
-                        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 0, tLRPC$Document, 3);
+                        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 0, tLRPC$Document, 3);
                         final TLRPC$TL_messages_saveRecentSticker tLRPC$TL_messages_saveRecentSticker = new TLRPC$TL_messages_saveRecentSticker();
                         TLRPC$TL_inputDocument tLRPC$TL_inputDocument2 = new TLRPC$TL_inputDocument();
                         tLRPC$TL_messages_saveRecentSticker.id = tLRPC$TL_inputDocument2;
@@ -1390,7 +1402,7 @@ public class MediaDataController extends BaseController {
                     processLoadedRecentDocuments(i, arrayList, false, i2, false);
                 }
                 if (i == 2 || (i == 0 && z)) {
-                    getNotificationCenter().postNotificationName(NotificationCenter.recentDocumentsDidLoad, Boolean.FALSE, Integer.valueOf(i));
+                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.recentDocumentsDidLoad, Boolean.FALSE, Integer.valueOf(i));
                 }
             }
         }
@@ -1563,7 +1575,7 @@ public class MediaDataController extends BaseController {
     }
 
     public static void lambda$addRecentGif$26(TLRPC$Document tLRPC$Document) {
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 0, tLRPC$Document, 7);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 0, tLRPC$Document, 7);
     }
 
     public boolean isLoadingStickers(int i) {
@@ -1746,7 +1758,7 @@ public class MediaDataController extends BaseController {
                 this.stickerSetsById.put(tLRPC$StickerSet.id, tLRPC$TL_messages_stickerSet);
                 this.stickerSetsByName.put(tLRPC$TL_messages_stickerSet.set.short_name.toLowerCase(), tLRPC$TL_messages_stickerSet);
             }
-            getNotificationCenter().postNotificationName(NotificationCenter.groupStickersDidLoad, Long.valueOf(tLRPC$TL_messages_stickerSet.set.id), tLRPC$TL_messages_stickerSet);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupStickersDidLoad, Long.valueOf(tLRPC$TL_messages_stickerSet.set.id), tLRPC$TL_messages_stickerSet);
             return;
         }
         fetchStickerSetInternal(tLRPC$InputStickerSet, new Utilities.Callback2() {
@@ -1768,7 +1780,7 @@ public class MediaDataController extends BaseController {
         this.stickerSetsById.put(tLRPC$StickerSet.id, tLRPC$TL_messages_stickerSet);
         this.stickerSetsByName.put(tLRPC$TL_messages_stickerSet.set.short_name.toLowerCase(), tLRPC$TL_messages_stickerSet);
         saveStickerSetIntoCache(tLRPC$TL_messages_stickerSet);
-        getNotificationCenter().postNotificationName(NotificationCenter.groupStickersDidLoad, Long.valueOf(tLRPC$TL_messages_stickerSet.set.id), tLRPC$TL_messages_stickerSet);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupStickersDidLoad, Long.valueOf(tLRPC$TL_messages_stickerSet.set.id), tLRPC$TL_messages_stickerSet);
     }
 
     public void lambda$getStickerSet$31(Utilities.Callback callback, TLRPC$InputStickerSet tLRPC$InputStickerSet, Boolean bool, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
@@ -1785,7 +1797,7 @@ public class MediaDataController extends BaseController {
                 }
             }
             saveStickerSetIntoCache(tLRPC$TL_messages_stickerSet);
-            getNotificationCenter().postNotificationName(NotificationCenter.groupStickersDidLoad, Long.valueOf(tLRPC$TL_messages_stickerSet.set.id), tLRPC$TL_messages_stickerSet);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupStickersDidLoad, Long.valueOf(tLRPC$TL_messages_stickerSet.set.id), tLRPC$TL_messages_stickerSet);
         }
     }
 
@@ -1943,7 +1955,7 @@ public class MediaDataController extends BaseController {
 
     public void lambda$loadGroupStickerSet$37(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
         this.groupStickerSets.put(tLRPC$TL_messages_stickerSet.set.id, tLRPC$TL_messages_stickerSet);
-        getNotificationCenter().postNotificationName(NotificationCenter.groupStickersDidLoad, Long.valueOf(tLRPC$TL_messages_stickerSet.set.id), tLRPC$TL_messages_stickerSet);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupStickersDidLoad, Long.valueOf(tLRPC$TL_messages_stickerSet.set.id), tLRPC$TL_messages_stickerSet);
     }
 
     public void lambda$loadGroupStickerSet$40(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1960,7 +1972,7 @@ public class MediaDataController extends BaseController {
 
     public void lambda$loadGroupStickerSet$39(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
         this.groupStickerSets.put(tLRPC$TL_messages_stickerSet.set.id, tLRPC$TL_messages_stickerSet);
-        getNotificationCenter().postNotificationName(NotificationCenter.groupStickersDidLoad, Long.valueOf(tLRPC$TL_messages_stickerSet.set.id), tLRPC$TL_messages_stickerSet);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupStickersDidLoad, Long.valueOf(tLRPC$TL_messages_stickerSet.set.id), tLRPC$TL_messages_stickerSet);
     }
 
     private void putSetToCache(final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
@@ -1978,9 +1990,9 @@ public class MediaDataController extends BaseController {
             executeFast.requery();
             executeFast.bindString(1, "s_" + tLRPC$TL_messages_stickerSet.set.id);
             executeFast.bindInteger(2, 6);
-            executeFast.bindString(3, "");
-            executeFast.bindString(4, "");
-            executeFast.bindString(5, "");
+            executeFast.bindString(3, BuildConfig.APP_CENTER_HASH);
+            executeFast.bindString(4, BuildConfig.APP_CENTER_HASH);
+            executeFast.bindString(5, BuildConfig.APP_CENTER_HASH);
             executeFast.bindInteger(6, 0);
             executeFast.bindInteger(7, 0);
             executeFast.bindInteger(8, 0);
@@ -2008,7 +2020,7 @@ public class MediaDataController extends BaseController {
         if (charSequence == null) {
             return null;
         }
-        String replace = charSequence.toString().replace("️", "");
+        String replace = charSequence.toString().replace("️", BuildConfig.APP_CENTER_HASH);
         ArrayList<TLRPC$TL_messages_stickerSet> stickerSets = getStickerSets(4);
         int size = stickerSets.size();
         for (int i = 0; i < size; i++) {
@@ -2084,7 +2096,7 @@ public class MediaDataController extends BaseController {
 
     public String getEmojiForSticker(long j) {
         String str = this.stickersByEmoji.get(j);
-        return str != null ? str : "";
+        return str != null ? str : BuildConfig.APP_CENTER_HASH;
     }
 
     public static boolean canShowAttachMenuBotForTarget(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, String str) {
@@ -2240,7 +2252,7 @@ public class MediaDataController extends BaseController {
         if (i == 3) {
             preloadNextGreetingsSticker();
         }
-        getNotificationCenter().postNotificationName(NotificationCenter.recentDocumentsDidLoad, Boolean.valueOf(z), Integer.valueOf(i));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.recentDocumentsDidLoad, Boolean.valueOf(z), Integer.valueOf(i));
         loadRecents(i, z, false, false);
     }
 
@@ -2332,11 +2344,11 @@ public class MediaDataController extends BaseController {
             while (i7 < size && i7 != i3) {
                 TLRPC$Document tLRPC$Document = (TLRPC$Document) arrayList.get(i7);
                 executeFast.requery();
-                executeFast.bindString(1, "" + tLRPC$Document.id);
+                executeFast.bindString(1, BuildConfig.APP_CENTER_HASH + tLRPC$Document.id);
                 executeFast.bindInteger(i4, i6);
-                executeFast.bindString(i5, "");
-                executeFast.bindString(4, "");
-                executeFast.bindString(5, "");
+                executeFast.bindString(i5, BuildConfig.APP_CENTER_HASH);
+                executeFast.bindString(4, BuildConfig.APP_CENTER_HASH);
+                executeFast.bindString(5, BuildConfig.APP_CENTER_HASH);
                 executeFast.bindInteger(6, 0);
                 executeFast.bindInteger(7, 0);
                 executeFast.bindInteger(8, 0);
@@ -2397,7 +2409,7 @@ public class MediaDataController extends BaseController {
             if (i == 3) {
                 preloadNextGreetingsSticker();
             }
-            getNotificationCenter().postNotificationName(NotificationCenter.recentDocumentsDidLoad, Boolean.valueOf(z), Integer.valueOf(i));
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.recentDocumentsDidLoad, Boolean.valueOf(z), Integer.valueOf(i));
         }
     }
 
@@ -2411,7 +2423,7 @@ public class MediaDataController extends BaseController {
             }
         });
         this.loadHash[i] = calcStickersHash(this.stickerSets[i]);
-        getNotificationCenter().postNotificationName(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.valueOf(z));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.valueOf(z));
     }
 
     public static int lambda$reorderStickers$48(ArrayList arrayList, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet2) {
@@ -2454,7 +2466,7 @@ public class MediaDataController extends BaseController {
         }
         for (int i3 = 0; i3 < tLRPC$TL_messages_stickerSet.packs.size(); i3++) {
             TLRPC$TL_stickerPack tLRPC$TL_stickerPack = tLRPC$TL_messages_stickerSet.packs.get(i3);
-            String replace = tLRPC$TL_stickerPack.emoticon.replace("️", "");
+            String replace = tLRPC$TL_stickerPack.emoticon.replace("️", BuildConfig.APP_CENTER_HASH);
             tLRPC$TL_stickerPack.emoticon = replace;
             ArrayList<TLRPC$Document> arrayList = this.allStickers.get(replace);
             if (arrayList == null) {
@@ -2473,7 +2485,7 @@ public class MediaDataController extends BaseController {
             }
         }
         this.loadHash[i] = calcStickersHash(this.stickerSets[i]);
-        getNotificationCenter().postNotificationName(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
         loadStickers(i, false, true);
     }
 
@@ -2620,7 +2632,7 @@ public class MediaDataController extends BaseController {
         this.loadFeaturedDate[z ? 1 : 0] = i;
         this.loadFeaturedPremium = z2;
         loadStickers(z ? 6 : 3, true, false);
-        getNotificationCenter().postNotificationName(z ? NotificationCenter.featuredEmojiDidLoad : NotificationCenter.featuredStickersDidLoad, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(z ? NotificationCenter.featuredEmojiDidLoad : NotificationCenter.featuredStickersDidLoad, new Object[0]);
     }
 
     public void lambda$processLoadedFeaturedStickers$55(boolean z, int i) {
@@ -2705,10 +2717,15 @@ public class MediaDataController extends BaseController {
         }
         this.unreadStickerSets[z ? 1 : 0].clear();
         this.loadFeaturedHash[z ? 1 : 0] = calcFeaturedStickersHash(z, this.featuredStickerSets[z ? 1 : 0]);
-        getNotificationCenter().postNotificationName(z ? NotificationCenter.featuredEmojiDidLoad : NotificationCenter.featuredStickersDidLoad, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(z ? NotificationCenter.featuredEmojiDidLoad : NotificationCenter.featuredStickersDidLoad, new Object[0]);
         putFeaturedStickersToCache(z, this.featuredStickerSets[z ? 1 : 0], this.unreadStickerSets[z ? 1 : 0], this.loadFeaturedDate[z ? 1 : 0], this.loadFeaturedHash[z ? 1 : 0], this.loadFeaturedPremium);
         if (z2) {
-            getConnectionsManager().sendRequest(new TLRPC$TL_messages_readFeaturedStickers(), MediaDataController$$ExternalSyntheticLambda219.INSTANCE);
+            getConnectionsManager().sendRequest(new TLRPC$TL_messages_readFeaturedStickers(), new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    MediaDataController.lambda$markFeaturedStickersAsRead$58(tLObject, tLRPC$TL_error);
+                }
+            });
         }
     }
 
@@ -2730,7 +2747,12 @@ public class MediaDataController extends BaseController {
         this.readingStickerSets[z ? 1 : 0].add(Long.valueOf(j));
         TLRPC$TL_messages_readFeaturedStickers tLRPC$TL_messages_readFeaturedStickers = new TLRPC$TL_messages_readFeaturedStickers();
         tLRPC$TL_messages_readFeaturedStickers.id.add(Long.valueOf(j));
-        getConnectionsManager().sendRequest(tLRPC$TL_messages_readFeaturedStickers, MediaDataController$$ExternalSyntheticLambda220.INSTANCE);
+        getConnectionsManager().sendRequest(tLRPC$TL_messages_readFeaturedStickers, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                MediaDataController.lambda$markFeaturedStickersByIdAsRead$59(tLObject, tLRPC$TL_error);
+            }
+        });
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
@@ -2743,7 +2765,7 @@ public class MediaDataController extends BaseController {
         this.unreadStickerSets[z ? 1 : 0].remove(Long.valueOf(j));
         this.readingStickerSets[z ? 1 : 0].remove(Long.valueOf(j));
         this.loadFeaturedHash[z ? 1 : 0] = calcFeaturedStickersHash(z, this.featuredStickerSets[z ? 1 : 0]);
-        getNotificationCenter().postNotificationName(z ? NotificationCenter.featuredEmojiDidLoad : NotificationCenter.featuredStickersDidLoad, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(z ? NotificationCenter.featuredEmojiDidLoad : NotificationCenter.featuredStickersDidLoad, new Object[0]);
         putFeaturedStickersToCache(z, this.featuredStickerSets[z ? 1 : 0], this.unreadStickerSets[z ? 1 : 0], this.loadFeaturedDate[z ? 1 : 0], this.loadFeaturedHash[z ? 1 : 0], this.loadFeaturedPremium);
     }
 
@@ -2847,7 +2869,7 @@ public class MediaDataController extends BaseController {
                 arrayList.get(i3).stickerVerified = 2;
             }
         }
-        getNotificationCenter().postNotificationName(NotificationCenter.didVerifyMessagesStickers, arrayList);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didVerifyMessagesStickers, arrayList);
         getMessagesStorage().updateMessageVerifyFlags(arrayList);
     }
 
@@ -2860,7 +2882,7 @@ public class MediaDataController extends BaseController {
                 return;
             }
             this.archivedStickersCount[i] = i2;
-            getNotificationCenter().postNotificationName(NotificationCenter.archivedStickersCountDidLoad, Integer.valueOf(i));
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.archivedStickersCountDidLoad, Integer.valueOf(i));
             return;
         }
         TLRPC$TL_messages_getArchivedStickers tLRPC$TL_messages_getArchivedStickers = new TLRPC$TL_messages_getArchivedStickers();
@@ -2890,7 +2912,7 @@ public class MediaDataController extends BaseController {
             this.archivedStickersCount[i] = tLRPC$TL_messages_archivedStickers.count;
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
             edit.putInt("archivedStickersCount" + i, tLRPC$TL_messages_archivedStickers.count).commit();
-            getNotificationCenter().postNotificationName(NotificationCenter.archivedStickersCountDidLoad, Integer.valueOf(i));
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.archivedStickersCountDidLoad, Integer.valueOf(i));
         }
     }
 
@@ -3013,7 +3035,7 @@ public class MediaDataController extends BaseController {
             getUserConfig().lastUpdatedPremiumGiftsStickerPack = System.currentTimeMillis();
             getUserConfig().saveConfig(false);
             processLoadedDiceStickers(getUserConfig().premiumGiftsStickerPack, false, tLRPC$TL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
-            getNotificationCenter().postNotificationName(NotificationCenter.didUpdatePremiumGiftStickers, new Object[0]);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdatePremiumGiftStickers, new Object[0]);
         }
     }
 
@@ -3263,7 +3285,7 @@ public class MediaDataController extends BaseController {
     public void lambda$processLoadedDiceStickers$79(String str, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet) {
         this.diceStickerSetsByEmoji.put(str, tLRPC$TL_messages_stickerSet);
         this.diceEmojiStickerSetsById.put(tLRPC$TL_messages_stickerSet.set.id, str);
-        getNotificationCenter().postNotificationName(NotificationCenter.diceStickersDidLoad, str);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.diceStickersDidLoad, str);
     }
 
     private void putDiceStickersToCache(final String str, final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, final int i) {
@@ -3765,7 +3787,7 @@ public class MediaDataController extends BaseController {
                         while (i7 < tLRPC$TL_messages_stickerSet.packs.size()) {
                             TLRPC$TL_stickerPack tLRPC$TL_stickerPack = tLRPC$TL_messages_stickerSet.packs.get(i7);
                             if (tLRPC$TL_stickerPack != null && (str = tLRPC$TL_stickerPack.emoticon) != null) {
-                                String replace = str.replace("️", "");
+                                String replace = str.replace("️", BuildConfig.APP_CENTER_HASH);
                                 tLRPC$TL_stickerPack.emoticon = replace;
                                 ArrayList arrayList4 = (ArrayList) hashMap2.get(replace);
                                 if (arrayList4 == null) {
@@ -3853,7 +3875,7 @@ public class MediaDataController extends BaseController {
         } else if (i == 3) {
             this.allStickersFeatured = hashMap2;
         }
-        getNotificationCenter().postNotificationName(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
         if (runnable != null) {
             runnable.run();
         }
@@ -3915,7 +3937,6 @@ public class MediaDataController extends BaseController {
         final TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet2;
         int i2;
         int i3;
-        char c;
         if (tLObject instanceof TLRPC$TL_messages_stickerSet) {
             TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet3 = (TLRPC$TL_messages_stickerSet) tLObject;
             tLRPC$TL_messages_stickerSet2 = tLRPC$TL_messages_stickerSet3;
@@ -3968,18 +3989,15 @@ public class MediaDataController extends BaseController {
             if (!cancelRemovingStickerSet(tLRPC$StickerSet.id)) {
                 toggleStickerSetInternal(context, i, baseFragment, z, tLObject, tLRPC$StickerSet, i2, z2);
             }
-            c = 0;
         } else if (!z2 || baseFragment == null) {
-            c = 0;
             toggleStickerSetInternal(context, i, baseFragment, z, tLObject, tLRPC$StickerSet, i2, false);
         } else {
-            StickerSetBulletinLayout stickerSetBulletinLayout = new StickerSetBulletinLayout(context, tLObject, i);
+            StickerSetBulletinLayout stickerSetBulletinLayout = new StickerSetBulletinLayout(context, tLObject, i, null, baseFragment.getResourceProvider());
             final boolean[] zArr = new boolean[1];
             markSetUninstalling(tLRPC$StickerSet.id, true);
             final TLRPC$StickerSet tLRPC$StickerSet3 = tLRPC$StickerSet;
             final int i5 = i2;
             final int i6 = i3;
-            c = 0;
             final TLRPC$StickerSet tLRPC$StickerSet4 = tLRPC$StickerSet;
             final int i7 = i2;
             Bulletin.UndoButton delayedAction = new Bulletin.UndoButton(context, false).setUndoAction(new Runnable() {
@@ -4000,12 +4018,7 @@ public class MediaDataController extends BaseController {
             longSparseArray.put(j, new MediaDataController$$ExternalSyntheticLambda153(delayedAction));
             Bulletin.make(baseFragment, stickerSetBulletinLayout, 2750).show();
         }
-        NotificationCenter notificationCenter = getNotificationCenter();
-        int i8 = NotificationCenter.stickersDidLoad;
-        Object[] objArr = new Object[2];
-        objArr[c] = Integer.valueOf(i2);
-        objArr[1] = Boolean.TRUE;
-        notificationCenter.postNotificationName(i8, objArr);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i2), Boolean.TRUE);
     }
 
     public void lambda$toggleStickerSet$99(boolean[] zArr, TLRPC$StickerSet tLRPC$StickerSet, int i, int i2, TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, Runnable runnable) {
@@ -4025,7 +4038,7 @@ public class MediaDataController extends BaseController {
         if (runnable != null) {
             runnable.run();
         }
-        getNotificationCenter().postNotificationName(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
     }
 
     public void lambda$toggleStickerSet$100(boolean[] zArr, Context context, int i, BaseFragment baseFragment, boolean z, TLObject tLObject, TLRPC$StickerSet tLRPC$StickerSet, int i2) {
@@ -4077,7 +4090,7 @@ public class MediaDataController extends BaseController {
         long calcStickersHash = calcStickersHash(arrayListArr[i]);
         jArr[i] = calcStickersHash;
         putStickersToCache(i, arrayList2, i5, calcStickersHash);
-        getNotificationCenter().postNotificationName(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
         for (int i6 = 0; i6 < arrayList.size(); i6++) {
             markSetUninstalling(arrayList.get(i6).set.id, true);
         }
@@ -4127,7 +4140,7 @@ public class MediaDataController extends BaseController {
         long calcStickersHash = calcStickersHash(arrayListArr[i]);
         jArr[i] = calcStickersHash;
         putStickersToCache(i, arrayList2, i3, calcStickersHash);
-        getNotificationCenter().postNotificationName(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
     }
 
     public void lambda$removeMultipleStickerSets$102(boolean[] zArr, ArrayList arrayList, Context context, BaseFragment baseFragment, int i) {
@@ -4190,7 +4203,7 @@ public class MediaDataController extends BaseController {
             }
         });
         if (tLRPC$TL_error == null && z2 && baseFragment != null) {
-            Bulletin.make(baseFragment, new StickerSetBulletinLayout(context, tLObject2, 2), 1500).show();
+            Bulletin.make(baseFragment, new StickerSetBulletinLayout(context, tLObject2, 2, null, baseFragment.getResourceProvider()), 1500).show();
         }
     }
 
@@ -4260,7 +4273,7 @@ public class MediaDataController extends BaseController {
         }
         this.loadHash[i] = calcStickersHash(this.stickerSets[i]);
         putStickersToCache(i, this.stickerSets[i], this.loadDate[i], this.loadHash[i]);
-        getNotificationCenter().postNotificationName(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.TRUE);
         TLRPC$TL_messages_toggleStickerSets tLRPC$TL_messages_toggleStickerSets = new TLRPC$TL_messages_toggleStickerSets();
         tLRPC$TL_messages_toggleStickerSets.stickersets = arrayList2;
         if (i2 == 0) {
@@ -4304,7 +4317,7 @@ public class MediaDataController extends BaseController {
             this.installedStickerSetsById.remove(tLRPC$TL_messages_stickerSetInstallResultArchive.sets.get(i2).set.id);
         }
         loadArchivedStickersCount(i, false);
-        getNotificationCenter().postNotificationName(NotificationCenter.needAddArchivedStickers, tLRPC$TL_messages_stickerSetInstallResultArchive.sets);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needAddArchivedStickers, tLRPC$TL_messages_stickerSetInstallResultArchive.sets);
         if (baseFragment == null || baseFragment.getParentActivity() == null) {
             return;
         }
@@ -4347,7 +4360,7 @@ public class MediaDataController extends BaseController {
         NotificationCenter notificationCenter = getNotificationCenter();
         int i3 = NotificationCenter.chatSearchResultsAvailable;
         int[] iArr = this.messagesSearchCount;
-        notificationCenter.postNotificationName(i3, Integer.valueOf(i), Integer.valueOf(messageObject.getId()), Integer.valueOf(getMask()), Long.valueOf(messageObject.getDialogId()), Integer.valueOf(this.lastReturnedNum), Integer.valueOf(iArr[0] + iArr[1]), Boolean.TRUE);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i3, Integer.valueOf(i), Integer.valueOf(messageObject.getId()), Integer.valueOf(getMask()), Long.valueOf(messageObject.getDialogId()), Integer.valueOf(this.lastReturnedNum), Integer.valueOf(iArr[0] + iArr[1]), Boolean.TRUE);
     }
 
     public void loadMoreSearchMessages() {
@@ -4439,7 +4452,7 @@ public class MediaDataController extends BaseController {
                     this.searchResultMessagesMap[0].clear();
                     this.searchResultMessagesMap[1].clear();
                     this.messagesSearchCount[0] = 0;
-                    getNotificationCenter().postNotificationName(NotificationCenter.chatSearchResultsLoading, Integer.valueOf(i2));
+                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.chatSearchResultsLoading, Integer.valueOf(i2));
                 }
                 int min = Math.min(tLRPC$messages_Messages.messages.size(), 20);
                 int i5 = 0;
@@ -4455,7 +4468,7 @@ public class MediaDataController extends BaseController {
                 this.messagesSearchEndReached[j == j2 ? (char) 0 : (char) 1] = tLRPC$messages_Messages.messages.size() < 21;
                 this.messagesSearchCount[j == j2 ? (char) 0 : (char) 1] = ((tLRPC$messages_Messages instanceof TLRPC$TL_messages_messagesSlice) || (tLRPC$messages_Messages instanceof TLRPC$TL_messages_channelMessages)) ? tLRPC$messages_Messages.count : tLRPC$messages_Messages.messages.size();
                 if (this.searchResultMessages.isEmpty()) {
-                    getNotificationCenter().postNotificationName(NotificationCenter.chatSearchResultsAvailable, Integer.valueOf(i2), 0, Integer.valueOf(getMask()), 0L, 0, 0, Boolean.valueOf(z));
+                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.chatSearchResultsAvailable, Integer.valueOf(i2), 0, Integer.valueOf(getMask()), 0L, 0, 0, Boolean.valueOf(z));
                 } else if (z2) {
                     if (this.lastReturnedNum >= this.searchResultMessages.size()) {
                         this.lastReturnedNum = this.searchResultMessages.size() - 1;
@@ -4464,7 +4477,7 @@ public class MediaDataController extends BaseController {
                     NotificationCenter notificationCenter = getNotificationCenter();
                     int i6 = NotificationCenter.chatSearchResultsAvailable;
                     int[] iArr = this.messagesSearchCount;
-                    notificationCenter.postNotificationName(i6, Integer.valueOf(i2), Integer.valueOf(messageObject2.getId()), Integer.valueOf(getMask()), Long.valueOf(messageObject2.getDialogId()), Integer.valueOf(this.lastReturnedNum), Integer.valueOf(iArr[0] + iArr[1]), Boolean.valueOf(z));
+                    notificationCenter.lambda$postNotificationNameOnUIThread$1(i6, Integer.valueOf(i2), Integer.valueOf(messageObject2.getId()), Integer.valueOf(getMask()), Long.valueOf(messageObject2.getDialogId()), Integer.valueOf(this.lastReturnedNum), Integer.valueOf(iArr[0] + iArr[1]), Boolean.valueOf(z));
                 }
                 if (j == j2) {
                     boolean[] zArr = this.messagesSearchEndReached;
@@ -4511,7 +4524,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void lambda$getMediaCounts$116(long j, int i, int[] iArr) {
-        getNotificationCenter().postNotificationName(NotificationCenter.mediaCountsDidLoad, Long.valueOf(j), Integer.valueOf(i), iArr);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mediaCountsDidLoad, Long.valueOf(j), Integer.valueOf(i), iArr);
     }
 
     public void lambda$getMediaCounts$118(final int[] iArr, final long j, final int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -4557,11 +4570,11 @@ public class MediaDataController extends BaseController {
     }
 
     public void lambda$getMediaCounts$117(long j, int i, int[] iArr) {
-        getNotificationCenter().postNotificationName(NotificationCenter.mediaCountsDidLoad, Long.valueOf(j), Integer.valueOf(i), iArr);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mediaCountsDidLoad, Long.valueOf(j), Integer.valueOf(i), iArr);
     }
 
     public void lambda$getMediaCounts$119(long j, int i, int[] iArr) {
-        getNotificationCenter().postNotificationName(NotificationCenter.mediaCountsDidLoad, Long.valueOf(j), Integer.valueOf(i), iArr);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.mediaCountsDidLoad, Long.valueOf(j), Integer.valueOf(i), iArr);
     }
 
     public void getMediaCount(final long j, final int i, final int i2, final int i3, boolean z) {
@@ -4761,7 +4774,7 @@ public class MediaDataController extends BaseController {
         objArr[5] = Boolean.valueOf(z);
         objArr[6] = Boolean.valueOf(i4 != 0);
         objArr[7] = Integer.valueOf(i5);
-        notificationCenter.postNotificationName(i7, objArr);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i7, objArr);
     }
 
     public void lambda$processLoadedMedia$124(ArrayList arrayList, Runnable runnable) {
@@ -5204,6 +5217,7 @@ public class MediaDataController extends BaseController {
             TLRPC$Message tLRPC$Message = (TLRPC$Message) it.next();
             if (canAddMessageToMedia(tLRPC$Message)) {
                 executeFast.requery();
+                MessageObject.normalizeFlags(tLRPC$Message);
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$Message.getObjectSize());
                 tLRPC$Message.serializeToStream(nativeByteBuffer);
                 executeFast.bindInteger(1, tLRPC$Message.id);
@@ -5313,7 +5327,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void lambda$loadMusic$130(long j, ArrayList arrayList, ArrayList arrayList2) {
-        getNotificationCenter().postNotificationName(NotificationCenter.musicDidLoad, Long.valueOf(j), arrayList, arrayList2);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.musicDidLoad, Long.valueOf(j), arrayList, arrayList2);
     }
 
     public void buildShortcuts() {
@@ -5445,8 +5459,8 @@ public class MediaDataController extends BaseController {
         this.hints = arrayList3;
         this.inlineBots = arrayList4;
         buildShortcuts();
-        getNotificationCenter().postNotificationName(NotificationCenter.reloadHints, new Object[0]);
-        getNotificationCenter().postNotificationName(NotificationCenter.reloadInlineHints, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadHints, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadInlineHints, new Object[0]);
         if (Math.abs(getUserConfig().lastHintsSyncTime - ((int) (System.currentTimeMillis() / 1000))) >= 86400) {
             loadHints(false);
         }
@@ -5498,8 +5512,8 @@ public class MediaDataController extends BaseController {
         }
         getUserConfig().saveConfig(false);
         buildShortcuts();
-        getNotificationCenter().postNotificationName(NotificationCenter.reloadHints, new Object[0]);
-        getNotificationCenter().postNotificationName(NotificationCenter.reloadInlineHints, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadHints, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadInlineHints, new Object[0]);
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -5556,8 +5570,8 @@ public class MediaDataController extends BaseController {
     public void clearTopPeers() {
         this.hints.clear();
         this.inlineBots.clear();
-        getNotificationCenter().postNotificationName(NotificationCenter.reloadHints, new Object[0]);
-        getNotificationCenter().postNotificationName(NotificationCenter.reloadInlineHints, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadHints, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadInlineHints, new Object[0]);
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -5598,13 +5612,20 @@ public class MediaDataController extends BaseController {
                 this.inlineBots.add(tLRPC$TL_topPeer);
             }
             tLRPC$TL_topPeer.rating += Math.exp(max / getMessagesController().ratingDecay);
-            Collections.sort(this.inlineBots, MediaDataController$$ExternalSyntheticLambda161.INSTANCE);
+            Collections.sort(this.inlineBots, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    int lambda$increaseInlineRaiting$141;
+                    lambda$increaseInlineRaiting$141 = MediaDataController.lambda$increaseInlineRaiting$141((TLRPC$TL_topPeer) obj, (TLRPC$TL_topPeer) obj2);
+                    return lambda$increaseInlineRaiting$141;
+                }
+            });
             if (this.inlineBots.size() > 20) {
                 ArrayList<TLRPC$TL_topPeer> arrayList = this.inlineBots;
                 arrayList.remove(arrayList.size() - 1);
             }
             savePeer(j, 1, tLRPC$TL_topPeer.rating);
-            getNotificationCenter().postNotificationName(NotificationCenter.reloadInlineHints, new Object[0]);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadInlineHints, new Object[0]);
         }
     }
 
@@ -5624,9 +5645,14 @@ public class MediaDataController extends BaseController {
                 TLRPC$TL_contacts_resetTopPeerRating tLRPC$TL_contacts_resetTopPeerRating = new TLRPC$TL_contacts_resetTopPeerRating();
                 tLRPC$TL_contacts_resetTopPeerRating.category = new TLRPC$TL_topPeerCategoryBotsInline();
                 tLRPC$TL_contacts_resetTopPeerRating.peer = getMessagesController().getInputPeer(j);
-                getConnectionsManager().sendRequest(tLRPC$TL_contacts_resetTopPeerRating, MediaDataController$$ExternalSyntheticLambda221.INSTANCE);
+                getConnectionsManager().sendRequest(tLRPC$TL_contacts_resetTopPeerRating, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        MediaDataController.lambda$removeInline$142(tLObject, tLRPC$TL_error);
+                    }
+                });
                 deletePeer(j, 1);
-                getNotificationCenter().postNotificationName(NotificationCenter.reloadInlineHints, new Object[0]);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadInlineHints, new Object[0]);
                 return;
             }
         }
@@ -5636,12 +5662,17 @@ public class MediaDataController extends BaseController {
         for (int i = 0; i < this.hints.size(); i++) {
             if (this.hints.get(i).peer.user_id == j) {
                 this.hints.remove(i);
-                getNotificationCenter().postNotificationName(NotificationCenter.reloadHints, new Object[0]);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadHints, new Object[0]);
                 TLRPC$TL_contacts_resetTopPeerRating tLRPC$TL_contacts_resetTopPeerRating = new TLRPC$TL_contacts_resetTopPeerRating();
                 tLRPC$TL_contacts_resetTopPeerRating.category = new TLRPC$TL_topPeerCategoryCorrespondents();
                 tLRPC$TL_contacts_resetTopPeerRating.peer = getMessagesController().getInputPeer(j);
                 deletePeer(j, 0);
-                getConnectionsManager().sendRequest(tLRPC$TL_contacts_resetTopPeerRating, MediaDataController$$ExternalSyntheticLambda222.INSTANCE);
+                getConnectionsManager().sendRequest(tLRPC$TL_contacts_resetTopPeerRating, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        MediaDataController.lambda$removePeer$143(tLObject, tLRPC$TL_error);
+                    }
+                });
                 return;
             }
         }
@@ -5713,9 +5744,16 @@ public class MediaDataController extends BaseController {
         double d3 = getMessagesController().ratingDecay;
         Double.isNaN(d3);
         tLRPC$TL_topPeer.rating = d2 + Math.exp(d / d3);
-        Collections.sort(this.hints, MediaDataController$$ExternalSyntheticLambda160.INSTANCE);
+        Collections.sort(this.hints, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$increasePeerRaiting$144;
+                lambda$increasePeerRaiting$144 = MediaDataController.lambda$increasePeerRaiting$144((TLRPC$TL_topPeer) obj, (TLRPC$TL_topPeer) obj2);
+                return lambda$increasePeerRaiting$144;
+            }
+        });
         savePeer(j, 0, tLRPC$TL_topPeer.rating);
-        getNotificationCenter().postNotificationName(NotificationCenter.reloadHints, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadHints, new Object[0]);
     }
 
     public static int lambda$increasePeerRaiting$144(TLRPC$TL_topPeer tLRPC$TL_topPeer, TLRPC$TL_topPeer tLRPC$TL_topPeer2) {
@@ -5815,7 +5853,7 @@ public class MediaDataController extends BaseController {
         tLRPC$TL_messages_search.peer = getMessagesController().getInputPeer(j);
         tLRPC$TL_messages_search.limit = 40;
         tLRPC$TL_messages_search.offset_id = i;
-        tLRPC$TL_messages_search.q = "";
+        tLRPC$TL_messages_search.q = BuildConfig.APP_CENTER_HASH;
         tLRPC$TL_messages_search.filter = new TLRPC$TL_inputMessagesFilterPinned();
         getConnectionsManager().sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
             @Override
@@ -5931,6 +5969,7 @@ public class MediaDataController extends BaseController {
             int size = arrayList.size();
             for (int i = 0; i < size; i++) {
                 TLRPC$Message tLRPC$Message = (TLRPC$Message) arrayList.get(i);
+                MessageObject.normalizeFlags(tLRPC$Message);
                 NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$Message.getObjectSize());
                 tLRPC$Message.serializeToStream(nativeByteBuffer);
                 executeFast.requery();
@@ -6019,7 +6058,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void lambda$broadcastPinnedMessage$157(ArrayList arrayList) {
-        getNotificationCenter().postNotificationName(NotificationCenter.didLoadPinnedMessages, Long.valueOf(((MessageObject) arrayList.get(0)).getDialogId()), null, Boolean.TRUE, arrayList, 0, 0, -1, Boolean.FALSE);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(((MessageObject) arrayList.get(0)).getDialogId()), null, Boolean.TRUE, arrayList, 0, 0, -1, Boolean.FALSE);
     }
 
     private static void removeEmptyMessages(ArrayList<TLRPC$Message> arrayList) {
@@ -6034,7 +6073,7 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void loadReplyMessagesForMessages(java.util.ArrayList<org.telegram.messenger.MessageObject> r16, final long r17, final boolean r19, int r20, final java.lang.Runnable r21) {
+    public void loadReplyMessagesForMessages(java.util.ArrayList<org.telegram.messenger.MessageObject> r18, final long r19, final boolean r21, int r22, final java.lang.Runnable r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.loadReplyMessagesForMessages(java.util.ArrayList, long, boolean, int, java.lang.Runnable):void");
     }
 
@@ -6060,6 +6099,7 @@ public class MediaDataController extends BaseController {
                         for (int i = 0; i < arrayList3.size(); i++) {
                             MessageObject messageObject2 = (MessageObject) arrayList3.get(i);
                             messageObject2.replyMessageObject = messageObject;
+                            messageObject2.applyTimestampsHighlightForReplyMsg();
                             messageObject2.messageOwner.reply_to = new TLRPC$TL_messageReplyHeader();
                             messageObject2.messageOwner.reply_to.reply_to_msg_id = messageObject.getId();
                         }
@@ -6071,9 +6111,9 @@ public class MediaDataController extends BaseController {
                 for (int i2 = 0; i2 < longSparseArray.size(); i2++) {
                     ArrayList arrayList4 = (ArrayList) longSparseArray.valueAt(i2);
                     for (int i3 = 0; i3 < arrayList4.size(); i3++) {
-                        TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = ((MessageObject) arrayList4.get(i3)).messageOwner.reply_to;
-                        if (tLRPC$TL_messageReplyHeader != null) {
-                            tLRPC$TL_messageReplyHeader.reply_to_random_id = 0L;
+                        TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader = ((MessageObject) arrayList4.get(i3)).messageOwner.reply_to;
+                        if (tLRPC$MessageReplyHeader != null) {
+                            tLRPC$MessageReplyHeader.reply_to_random_id = 0L;
                         }
                     }
                 }
@@ -6093,168 +6133,22 @@ public class MediaDataController extends BaseController {
     }
 
     public void lambda$loadReplyMessagesForMessages$159(long j, ArrayList arrayList) {
-        getNotificationCenter().postNotificationName(NotificationCenter.replyMessagesDidLoad, Long.valueOf(j), arrayList, 0);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replyMessagesDidLoad, Long.valueOf(j), arrayList, 0);
     }
 
-    public void lambda$loadReplyMessagesForMessages$165(final LongSparseArray longSparseArray, LongSparseArray longSparseArray2, final boolean z, final long j, final Runnable runnable) {
-        ArrayList<TLRPC$User> arrayList;
-        ArrayList<TLRPC$Chat> arrayList2;
-        int i;
-        ArrayList<TLRPC$User> arrayList3;
-        ArrayList<TLRPC$Chat> arrayList4;
-        int i2;
-        ?? r15;
-        SQLiteCursor queryFinalized;
-        ArrayList arrayList5;
-        ArrayList arrayList6;
-        LongSparseArray longSparseArray3 = longSparseArray;
-        long j2 = j;
-        try {
-            ArrayList<TLRPC$Message> arrayList7 = new ArrayList<>();
-            ArrayList<TLRPC$User> arrayList8 = new ArrayList<>();
-            ArrayList<TLRPC$Chat> arrayList9 = new ArrayList<>();
-            ArrayList arrayList10 = new ArrayList();
-            ArrayList arrayList11 = new ArrayList();
-            int size = longSparseArray.size();
-            int i3 = 0;
-            while (i3 < size) {
-                long keyAt = longSparseArray3.keyAt(i3);
-                SparseArray sparseArray = (SparseArray) longSparseArray3.valueAt(i3);
-                ArrayList arrayList12 = (ArrayList) longSparseArray2.get(keyAt);
-                if (arrayList12 != null) {
-                    int i4 = 0;
-                    while (i4 < 2) {
-                        if (i4 != 1 || z) {
-                            if (i4 == 1) {
-                                arrayList4 = arrayList9;
-                                i2 = size;
-                                arrayList3 = arrayList8;
-                                queryFinalized = getMessagesStorage().getDatabase().queryFinalized(String.format(Locale.US, "SELECT data, mid, date, uid FROM scheduled_messages_v2 WHERE mid IN(%s) AND uid = %d", TextUtils.join(",", arrayList12), Long.valueOf(j)), new Object[0]);
-                                r15 = 0;
-                            } else {
-                                arrayList3 = arrayList8;
-                                arrayList4 = arrayList9;
-                                i2 = size;
-                                r15 = 0;
-                                queryFinalized = getMessagesStorage().getDatabase().queryFinalized(String.format(Locale.US, "SELECT data, mid, date, uid FROM messages_v2 WHERE mid IN(%s) AND uid = %d", TextUtils.join(",", arrayList12), Long.valueOf(j)), new Object[0]);
-                            }
-                            while (queryFinalized.next()) {
-                                NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(r15);
-                                if (byteBufferValue != null) {
-                                    TLRPC$Message TLdeserialize = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(r15), r15);
-                                    arrayList6 = arrayList12;
-                                    TLdeserialize.readAttachPath(byteBufferValue, getUserConfig().clientUserId);
-                                    byteBufferValue.reuse();
-                                    TLdeserialize.id = queryFinalized.intValue(1);
-                                    TLdeserialize.date = queryFinalized.intValue(2);
-                                    TLdeserialize.dialog_id = j2;
-                                    MessagesStorage.addUsersAndChatsFromMessage(TLdeserialize, arrayList10, arrayList11, null);
-                                    arrayList7.add(TLdeserialize);
-                                    TLRPC$Peer tLRPC$Peer = TLdeserialize.peer_id;
-                                    long j3 = tLRPC$Peer != null ? tLRPC$Peer.channel_id : 0L;
-                                    ArrayList arrayList13 = (ArrayList) longSparseArray2.get(j3);
-                                    if (arrayList13 != null) {
-                                        arrayList13.remove(Integer.valueOf(TLdeserialize.id));
-                                        if (arrayList13.isEmpty()) {
-                                            longSparseArray2.remove(j3);
-                                        }
-                                    }
-                                } else {
-                                    arrayList6 = arrayList12;
-                                }
-                                arrayList12 = arrayList6;
-                            }
-                            arrayList5 = arrayList12;
-                            queryFinalized.dispose();
-                        } else {
-                            arrayList3 = arrayList8;
-                            arrayList4 = arrayList9;
-                            i2 = size;
-                            arrayList5 = arrayList12;
-                        }
-                        i4++;
-                        arrayList12 = arrayList5;
-                        size = i2;
-                        arrayList9 = arrayList4;
-                        arrayList8 = arrayList3;
-                    }
-                }
-                i3++;
-                longSparseArray3 = longSparseArray;
-                size = size;
-                arrayList9 = arrayList9;
-                arrayList8 = arrayList8;
-            }
-            ArrayList<TLRPC$User> arrayList14 = arrayList8;
-            ArrayList<TLRPC$Chat> arrayList15 = arrayList9;
-            int i5 = 0;
-            if (arrayList10.isEmpty()) {
-                arrayList = arrayList14;
-            } else {
-                arrayList = arrayList14;
-                getMessagesStorage().getUsersInternal(TextUtils.join(",", arrayList10), arrayList);
-            }
-            if (arrayList11.isEmpty()) {
-                arrayList2 = arrayList15;
-            } else {
-                arrayList2 = arrayList15;
-                getMessagesStorage().getChatsInternal(TextUtils.join(",", arrayList11), arrayList2);
-            }
-            broadcastReplyMessages(arrayList7, longSparseArray, arrayList, arrayList2, j, true);
-            if (longSparseArray2.isEmpty()) {
-                if (runnable != null) {
-                    AndroidUtilities.runOnUIThread(runnable);
-                    return;
-                }
-                return;
-            }
-            int size2 = longSparseArray2.size();
-            while (i5 < size2) {
-                final long keyAt2 = longSparseArray2.keyAt(i5);
-                if (z) {
-                    final TLRPC$TL_messages_getScheduledMessages tLRPC$TL_messages_getScheduledMessages = new TLRPC$TL_messages_getScheduledMessages();
-                    tLRPC$TL_messages_getScheduledMessages.peer = getMessagesController().getInputPeer(j2);
-                    tLRPC$TL_messages_getScheduledMessages.id = (ArrayList) longSparseArray2.valueAt(i5);
-                    i = size2;
-                    getConnectionsManager().sendRequest(tLRPC$TL_messages_getScheduledMessages, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            MediaDataController.this.lambda$loadReplyMessagesForMessages$162(tLRPC$TL_messages_getScheduledMessages, keyAt2, j, longSparseArray, z, runnable, tLObject, tLRPC$TL_error);
-                        }
-                    });
-                } else {
-                    i = size2;
-                    if (keyAt2 != 0) {
-                        TLRPC$TL_channels_getMessages tLRPC$TL_channels_getMessages = new TLRPC$TL_channels_getMessages();
-                        tLRPC$TL_channels_getMessages.channel = getMessagesController().getInputChannel(keyAt2);
-                        tLRPC$TL_channels_getMessages.id = (ArrayList) longSparseArray2.valueAt(i5);
-                        getConnectionsManager().sendRequest(tLRPC$TL_channels_getMessages, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                MediaDataController.this.lambda$loadReplyMessagesForMessages$163(j, keyAt2, longSparseArray, z, runnable, tLObject, tLRPC$TL_error);
-                            }
-                        });
-                    } else {
-                        TLRPC$TL_messages_getMessages tLRPC$TL_messages_getMessages = new TLRPC$TL_messages_getMessages();
-                        tLRPC$TL_messages_getMessages.id = (ArrayList) longSparseArray2.valueAt(i5);
-                        getConnectionsManager().sendRequest(tLRPC$TL_messages_getMessages, new RequestDelegate() {
-                            @Override
-                            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                                MediaDataController.this.lambda$loadReplyMessagesForMessages$164(j, longSparseArray, z, runnable, tLObject, tLRPC$TL_error);
-                            }
-                        });
-                    }
-                }
-                i5++;
-                j2 = j;
-                size2 = i;
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
+    public void lambda$loadReplyMessagesForMessages$166(androidx.collection.LongSparseArray r22, final int[] r23, final java.lang.Runnable r24, final androidx.collection.LongSparseArray r25, androidx.collection.LongSparseArray r26, final boolean r27, final long r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$loadReplyMessagesForMessages$166(androidx.collection.LongSparseArray, int[], java.lang.Runnable, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, boolean, long):void");
+    }
+
+    public static void lambda$loadReplyMessagesForMessages$161(int[] iArr, Runnable runnable) {
+        iArr[0] = iArr[0] - 1;
+        if (iArr[0] != 0 || runnable == null) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public void lambda$loadReplyMessagesForMessages$162(TLRPC$TL_messages_getScheduledMessages tLRPC$TL_messages_getScheduledMessages, final long j, final long j2, final LongSparseArray longSparseArray, final boolean z, Runnable runnable, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadReplyMessagesForMessages$163(TLRPC$TL_messages_getScheduledMessages tLRPC$TL_messages_getScheduledMessages, final long j, final long j2, final LongSparseArray longSparseArray, final boolean z, int[] iArr, Runnable runnable, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         TLRPC$TL_messages_getMessages tLRPC$TL_messages_getMessages;
         if (tLRPC$TL_error == null) {
             final TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
@@ -6280,7 +6174,7 @@ public class MediaDataController extends BaseController {
                 getConnectionsManager().sendRequest(tLRPC$TL_messages_getMessages, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                        MediaDataController.this.lambda$loadReplyMessagesForMessages$161(tLRPC$TL_error, tLRPC$messages_Messages, j2, j, longSparseArray, z, tLObject2, tLRPC$TL_error2);
+                        MediaDataController.this.lambda$loadReplyMessagesForMessages$162(tLRPC$TL_error, tLRPC$messages_Messages, j2, j, longSparseArray, z, tLObject2, tLRPC$TL_error2);
                     }
                 });
             } else {
@@ -6297,12 +6191,14 @@ public class MediaDataController extends BaseController {
                 saveReplyMessages(longSparseArray, tLRPC$messages_Messages.messages, z);
             }
         }
-        if (runnable != null) {
-            AndroidUtilities.runOnUIThread(runnable);
+        iArr[0] = iArr[0] - 1;
+        if (iArr[0] != 0 || runnable == null) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public void lambda$loadReplyMessagesForMessages$161(TLRPC$TL_error tLRPC$TL_error, TLRPC$messages_Messages tLRPC$messages_Messages, long j, long j2, LongSparseArray longSparseArray, boolean z, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error2) {
+    public void lambda$loadReplyMessagesForMessages$162(TLRPC$TL_error tLRPC$TL_error, TLRPC$messages_Messages tLRPC$messages_Messages, long j, long j2, LongSparseArray longSparseArray, boolean z, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error2) {
         if (tLRPC$TL_error == null) {
             TLRPC$messages_Messages tLRPC$messages_Messages2 = (TLRPC$messages_Messages) tLObject;
             tLRPC$messages_Messages.messages.addAll(tLRPC$messages_Messages2.messages);
@@ -6322,7 +6218,7 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void lambda$loadReplyMessagesForMessages$163(long j, long j2, LongSparseArray longSparseArray, boolean z, Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadReplyMessagesForMessages$164(long j, long j2, LongSparseArray longSparseArray, boolean z, int[] iArr, Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
             for (int i = 0; i < tLRPC$messages_Messages.messages.size(); i++) {
@@ -6337,12 +6233,14 @@ public class MediaDataController extends BaseController {
             getMessagesStorage().putUsersAndChats(tLRPC$messages_Messages.users, tLRPC$messages_Messages.chats, true, true);
             saveReplyMessages(longSparseArray, tLRPC$messages_Messages.messages, z);
         }
-        if (runnable != null) {
-            AndroidUtilities.runOnUIThread(runnable);
+        iArr[0] = iArr[0] - 1;
+        if (iArr[0] != 0 || runnable == null) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(runnable);
     }
 
-    public void lambda$loadReplyMessagesForMessages$164(long j, LongSparseArray longSparseArray, boolean z, Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadReplyMessagesForMessages$165(long j, LongSparseArray longSparseArray, boolean z, int[] iArr, Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
             for (int i = 0; i < tLRPC$messages_Messages.messages.size(); i++) {
@@ -6356,21 +6254,23 @@ public class MediaDataController extends BaseController {
             getMessagesStorage().putUsersAndChats(tLRPC$messages_Messages.users, tLRPC$messages_Messages.chats, true, true);
             saveReplyMessages(longSparseArray, tLRPC$messages_Messages.messages, z);
         }
-        if (runnable != null) {
-            AndroidUtilities.runOnUIThread(runnable);
+        iArr[0] = iArr[0] - 1;
+        if (iArr[0] != 0 || runnable == null) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(runnable);
     }
 
     private void saveReplyMessages(final LongSparseArray<SparseArray<ArrayList<MessageObject>>> longSparseArray, final ArrayList<TLRPC$Message> arrayList, final boolean z) {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$saveReplyMessages$166(z, arrayList, longSparseArray);
+                MediaDataController.this.lambda$saveReplyMessages$167(z, arrayList, longSparseArray);
             }
         });
     }
 
-    public void lambda$saveReplyMessages$166(boolean z, ArrayList arrayList, LongSparseArray longSparseArray) {
+    public void lambda$saveReplyMessages$167(boolean z, ArrayList arrayList, LongSparseArray longSparseArray) {
         SQLitePreparedStatement executeFast;
         ArrayList arrayList2;
         try {
@@ -6386,6 +6286,7 @@ public class MediaDataController extends BaseController {
                 TLRPC$Message tLRPC$Message = (TLRPC$Message) arrayList.get(i);
                 SparseArray sparseArray = (SparseArray) longSparseArray.get(MessageObject.getDialogId(tLRPC$Message));
                 if (sparseArray != null && (arrayList2 = (ArrayList) sparseArray.get(tLRPC$Message.id)) != null) {
+                    MessageObject.normalizeFlags(tLRPC$Message);
                     NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$Message.getObjectSize());
                     tLRPC$Message.serializeToStream(nativeByteBuffer);
                     for (int i2 = 0; i2 < arrayList2.size(); i2++) {
@@ -6436,12 +6337,12 @@ public class MediaDataController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$broadcastReplyMessages$167(arrayList2, z, arrayList3, arrayList4, longSparseArray, j);
+                MediaDataController.this.lambda$broadcastReplyMessages$168(arrayList2, z, arrayList3, arrayList4, longSparseArray, j);
             }
         });
     }
 
-    public void lambda$broadcastReplyMessages$167(ArrayList arrayList, boolean z, ArrayList arrayList2, ArrayList arrayList3, LongSparseArray longSparseArray, long j) {
+    public void lambda$broadcastReplyMessages$168(ArrayList arrayList, boolean z, ArrayList arrayList2, ArrayList arrayList3, LongSparseArray longSparseArray, long j) {
         ArrayList arrayList4;
         getMessagesController().putUsers(arrayList, z);
         getMessagesController().putChats(arrayList2, z);
@@ -6454,6 +6355,7 @@ public class MediaDataController extends BaseController {
                 for (int i2 = 0; i2 < arrayList4.size(); i2++) {
                     MessageObject messageObject2 = (MessageObject) arrayList4.get(i2);
                     messageObject2.replyMessageObject = messageObject;
+                    messageObject2.applyTimestampsHighlightForReplyMsg();
                     TLRPC$MessageAction tLRPC$MessageAction = messageObject2.messageOwner.action;
                     if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionPinMessage) {
                         messageObject2.generatePinMessageText(null, null);
@@ -6467,7 +6369,7 @@ public class MediaDataController extends BaseController {
             }
         }
         if (z2) {
-            getNotificationCenter().postNotificationName(NotificationCenter.replyMessagesDidLoad, Long.valueOf(j), arrayList3, longSparseArray);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replyMessagesDidLoad, Long.valueOf(j), arrayList3, longSparseArray);
         }
     }
 
@@ -6586,7 +6488,14 @@ public class MediaDataController extends BaseController {
         int i2;
         ArrayList<TextStyleSpan.TextStyleRun> arrayList2 = new ArrayList<>();
         ArrayList arrayList3 = new ArrayList(arrayList);
-        Collections.sort(arrayList3, MediaDataController$$ExternalSyntheticLambda159.INSTANCE);
+        Collections.sort(arrayList3, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$getTextStyleRuns$169;
+                lambda$getTextStyleRuns$169 = MediaDataController.lambda$getTextStyleRuns$169((TLRPC$MessageEntity) obj, (TLRPC$MessageEntity) obj2);
+                return lambda$getTextStyleRuns$169;
+            }
+        });
         int size = arrayList3.size();
         for (int i3 = 0; i3 < size; i3++) {
             TLRPC$MessageEntity tLRPC$MessageEntity = (TLRPC$MessageEntity) arrayList3.get(i3);
@@ -6694,7 +6603,7 @@ public class MediaDataController extends BaseController {
         return arrayList2;
     }
 
-    public static int lambda$getTextStyleRuns$168(TLRPC$MessageEntity tLRPC$MessageEntity, TLRPC$MessageEntity tLRPC$MessageEntity2) {
+    public static int lambda$getTextStyleRuns$169(TLRPC$MessageEntity tLRPC$MessageEntity, TLRPC$MessageEntity tLRPC$MessageEntity2) {
         int i = tLRPC$MessageEntity.offset;
         int i2 = tLRPC$MessageEntity2.offset;
         if (i > i2) {
@@ -6737,19 +6646,19 @@ public class MediaDataController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.getEntities(java.lang.CharSequence[], boolean):java.util.ArrayList");
     }
 
-    public static TLRPC$MessageEntity lambda$getEntities$169(Void r0) {
+    public static TLRPC$MessageEntity lambda$getEntities$170(Void r0) {
         return new TLRPC$TL_messageEntityBold();
     }
 
-    public static TLRPC$MessageEntity lambda$getEntities$170(Void r0) {
+    public static TLRPC$MessageEntity lambda$getEntities$171(Void r0) {
         return new TLRPC$TL_messageEntityItalic();
     }
 
-    public static TLRPC$MessageEntity lambda$getEntities$171(Void r0) {
+    public static TLRPC$MessageEntity lambda$getEntities$172(Void r0) {
         return new TLRPC$TL_messageEntitySpoiler();
     }
 
-    public static TLRPC$MessageEntity lambda$getEntities$172(Void r0) {
+    public static TLRPC$MessageEntity lambda$getEntities$173(Void r0) {
         return new TLRPC$TL_messageEntityStrike();
     }
 
@@ -6811,21 +6720,21 @@ public class MediaDataController extends BaseController {
         }, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MediaDataController.this.lambda$loadDraftsIfNeed$175(tLObject, tLRPC$TL_error);
+                MediaDataController.this.lambda$loadDraftsIfNeed$176(tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$loadDraftsIfNeed$173() {
+    public void lambda$loadDraftsIfNeed$174() {
         this.loadingDrafts = false;
     }
 
-    public void lambda$loadDraftsIfNeed$175(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadDraftsIfNeed$176(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.this.lambda$loadDraftsIfNeed$173();
+                    MediaDataController.this.lambda$loadDraftsIfNeed$174();
                 }
             });
             return;
@@ -6834,12 +6743,12 @@ public class MediaDataController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$loadDraftsIfNeed$174();
+                MediaDataController.this.lambda$loadDraftsIfNeed$175();
             }
         });
     }
 
-    public void lambda$loadDraftsIfNeed$174() {
+    public void lambda$loadDraftsIfNeed$175() {
         this.loadingDrafts = false;
         UserConfig userConfig = getUserConfig();
         userConfig.draftsLoaded = true;
@@ -6904,7 +6813,7 @@ public class MediaDataController extends BaseController {
         }
         TLRPC$DraftMessage tLRPC$DraftMessage = tLRPC$TL_draftMessage;
         tLRPC$DraftMessage.date = (int) (System.currentTimeMillis() / 1000);
-        tLRPC$DraftMessage.message = charSequence == null ? "" : charSequence.toString();
+        tLRPC$DraftMessage.message = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
         tLRPC$DraftMessage.no_webpage = z;
         if (tLRPC$Message2 != null) {
             tLRPC$DraftMessage.reply_to_msg_id = tLRPC$Message2.id;
@@ -6941,10 +6850,15 @@ public class MediaDataController extends BaseController {
                 tLRPC$TL_messages_saveDraft.reply_to_msg_id = tLRPC$DraftMessage.reply_to_msg_id;
                 tLRPC$TL_messages_saveDraft.entities = tLRPC$DraftMessage.entities;
                 tLRPC$TL_messages_saveDraft.flags = tLRPC$DraftMessage.flags;
-                getConnectionsManager().sendRequest(tLRPC$TL_messages_saveDraft, MediaDataController$$ExternalSyntheticLambda223.INSTANCE);
+                getConnectionsManager().sendRequest(tLRPC$TL_messages_saveDraft, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        MediaDataController.lambda$saveDraft$177(tLObject, tLRPC$TL_error);
+                    }
+                });
             }
             getMessagesController().sortDialogs(null);
-            getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, new Object[0]);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
         }
     }
 
@@ -6973,7 +6887,7 @@ public class MediaDataController extends BaseController {
                 }
             }
             if (i == 0) {
-                this.draftPreferences.edit().remove("" + j).remove("r_" + j).commit();
+                this.draftPreferences.edit().remove(BuildConfig.APP_CENTER_HASH + j).remove("r_" + j).commit();
             } else {
                 this.draftPreferences.edit().remove("t_" + j + "_" + i).remove("rt_" + j + "_" + i).commit();
             }
@@ -6992,7 +6906,7 @@ public class MediaDataController extends BaseController {
                 SerializedData serializedData = new SerializedData(tLRPC$DraftMessage.getObjectSize());
                 tLRPC$DraftMessage.serializeToStream(serializedData);
                 if (i == 0) {
-                    str = "" + j;
+                    str = BuildConfig.APP_CENTER_HASH + j;
                 } else {
                     str = "t_" + j + "_" + i;
                 }
@@ -7054,17 +6968,17 @@ public class MediaDataController extends BaseController {
                         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                             @Override
                             public final void run() {
-                                MediaDataController.this.lambda$saveDraft$179(i2, j, j2, i);
+                                MediaDataController.this.lambda$saveDraft$180(i2, j, j2, i);
                             }
                         });
                     }
                 }
-                getNotificationCenter().postNotificationName(NotificationCenter.newDraftReceived, Long.valueOf(j));
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newDraftReceived, Long.valueOf(j));
             }
         }
     }
 
-    public void lambda$saveDraft$179(int i, final long j, long j2, final int i2) {
+    public void lambda$saveDraft$180(int i, final long j, long j2, final int i2) {
         NativeByteBuffer byteBufferValue;
         TLRPC$Message tLRPC$Message = null;
         try {
@@ -7084,7 +6998,7 @@ public class MediaDataController extends BaseController {
                 getConnectionsManager().sendRequest(tLRPC$TL_channels_getMessages, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        MediaDataController.this.lambda$saveDraft$177(j, i2, tLObject, tLRPC$TL_error);
+                        MediaDataController.this.lambda$saveDraft$178(j, i2, tLObject, tLRPC$TL_error);
                     }
                 });
             } else {
@@ -7093,7 +7007,7 @@ public class MediaDataController extends BaseController {
                 getConnectionsManager().sendRequest(tLRPC$TL_messages_getMessages, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        MediaDataController.this.lambda$saveDraft$178(j, i2, tLObject, tLRPC$TL_error);
+                        MediaDataController.this.lambda$saveDraft$179(j, i2, tLObject, tLRPC$TL_error);
                     }
                 });
             }
@@ -7102,7 +7016,7 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void lambda$saveDraft$177(long j, int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$saveDraft$178(long j, int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
             if (tLRPC$messages_Messages.messages.isEmpty()) {
@@ -7112,7 +7026,7 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void lambda$saveDraft$178(long j, int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$saveDraft$179(long j, int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
             if (tLRPC$messages_Messages.messages.isEmpty()) {
@@ -7129,12 +7043,12 @@ public class MediaDataController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$saveDraftReplyMessage$180(j, i, tLRPC$Message);
+                MediaDataController.this.lambda$saveDraftReplyMessage$181(j, i, tLRPC$Message);
             }
         });
     }
 
-    public void lambda$saveDraftReplyMessage$180(long j, int i, TLRPC$Message tLRPC$Message) {
+    public void lambda$saveDraftReplyMessage$181(long j, int i, TLRPC$Message tLRPC$Message) {
         String str;
         SparseArray<TLRPC$DraftMessage> sparseArray = this.drafts.get(j);
         TLRPC$DraftMessage tLRPC$DraftMessage = sparseArray != null ? sparseArray.get(i) : null;
@@ -7156,7 +7070,7 @@ public class MediaDataController extends BaseController {
             str = "rt_" + j + "_" + i;
         }
         edit.putString(str, Utilities.bytesToHex(serializedData.toByteArray())).commit();
-        getNotificationCenter().postNotificationName(NotificationCenter.newDraftReceived, Long.valueOf(j));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newDraftReceived, Long.valueOf(j));
         serializedData.cleanup();
     }
 
@@ -7167,7 +7081,7 @@ public class MediaDataController extends BaseController {
         this.draftPreferences.edit().clear().commit();
         if (z) {
             getMessagesController().sortDialogs(null);
-            getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, new Object[0]);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
         }
     }
 
@@ -7193,9 +7107,9 @@ public class MediaDataController extends BaseController {
                 }
             }
             if (i == 0) {
-                this.draftPreferences.edit().remove("" + j).remove("r_" + j).commit();
+                this.draftPreferences.edit().remove(BuildConfig.APP_CENTER_HASH + j).remove("r_" + j).commit();
                 getMessagesController().sortDialogs(null);
-                getNotificationCenter().postNotificationName(NotificationCenter.dialogsNeedReload, new Object[0]);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogsNeedReload, new Object[0]);
                 return;
             }
             this.draftPreferences.edit().remove("t_" + j + "_" + i).remove("rt_" + j + "_" + i).commit();
@@ -7218,17 +7132,17 @@ public class MediaDataController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$clearBotKeyboard$181(arrayList, topicKey);
+                MediaDataController.this.lambda$clearBotKeyboard$182(arrayList, topicKey);
             }
         });
     }
 
-    public void lambda$clearBotKeyboard$181(ArrayList arrayList, MessagesStorage.TopicKey topicKey) {
+    public void lambda$clearBotKeyboard$182(ArrayList arrayList, MessagesStorage.TopicKey topicKey) {
         if (arrayList == null) {
             if (topicKey != null) {
                 this.botKeyboards.remove(topicKey);
                 this.botDialogKeyboards.remove(topicKey.dialogId);
-                getNotificationCenter().postNotificationName(NotificationCenter.botKeyboardDidLoad, null, topicKey);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botKeyboardDidLoad, null, topicKey);
                 return;
             }
             return;
@@ -7255,7 +7169,7 @@ public class MediaDataController extends BaseController {
                     }
                 }
                 this.botKeyboardsByMids.remove(j);
-                getNotificationCenter().postNotificationName(NotificationCenter.botKeyboardDidLoad, null, topicKey2);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botKeyboardDidLoad, null, topicKey2);
             }
         }
     }
@@ -7264,18 +7178,18 @@ public class MediaDataController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$clearBotKeyboard$182(j);
+                MediaDataController.this.lambda$clearBotKeyboard$183(j);
             }
         });
     }
 
-    public void lambda$clearBotKeyboard$182(long j) {
+    public void lambda$clearBotKeyboard$183(long j) {
         ArrayList<TLRPC$Message> arrayList = this.botDialogKeyboards.get(j);
         if (arrayList != null) {
             for (int i = 0; i < arrayList.size(); i++) {
                 MessagesStorage.TopicKey of = MessagesStorage.TopicKey.of(j, MessageObject.getTopicId(arrayList.get(i), ChatObject.isForum(this.currentAccount, j)));
                 this.botKeyboards.remove(of);
-                getNotificationCenter().postNotificationName(NotificationCenter.botKeyboardDidLoad, null, of);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botKeyboardDidLoad, null, of);
             }
         }
         this.botDialogKeyboards.remove(j);
@@ -7284,18 +7198,18 @@ public class MediaDataController extends BaseController {
     public void loadBotKeyboard(final MessagesStorage.TopicKey topicKey) {
         TLRPC$Message tLRPC$Message = this.botKeyboards.get(topicKey);
         if (tLRPC$Message != null) {
-            getNotificationCenter().postNotificationName(NotificationCenter.botKeyboardDidLoad, tLRPC$Message, topicKey);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botKeyboardDidLoad, tLRPC$Message, topicKey);
         } else {
             getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.this.lambda$loadBotKeyboard$184(topicKey);
+                    MediaDataController.this.lambda$loadBotKeyboard$185(topicKey);
                 }
             });
         }
     }
 
-    public void lambda$loadBotKeyboard$184(final MessagesStorage.TopicKey topicKey) {
+    public void lambda$loadBotKeyboard$185(final MessagesStorage.TopicKey topicKey) {
         SQLiteCursor queryFinalized;
         NativeByteBuffer byteBufferValue;
         final TLRPC$Message tLRPC$Message = null;
@@ -7314,7 +7228,7 @@ public class MediaDataController extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MediaDataController.this.lambda$loadBotKeyboard$183(tLRPC$Message, topicKey);
+                        MediaDataController.this.lambda$loadBotKeyboard$184(tLRPC$Message, topicKey);
                     }
                 });
             }
@@ -7323,8 +7237,8 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void lambda$loadBotKeyboard$183(TLRPC$Message tLRPC$Message, MessagesStorage.TopicKey topicKey) {
-        getNotificationCenter().postNotificationName(NotificationCenter.botKeyboardDidLoad, tLRPC$Message, topicKey);
+    public void lambda$loadBotKeyboard$184(TLRPC$Message tLRPC$Message, MessagesStorage.TopicKey topicKey) {
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botKeyboardDidLoad, tLRPC$Message, topicKey);
     }
 
     private TLRPC$BotInfo loadBotInfoInternal(long j, long j2) throws SQLiteException {
@@ -7346,26 +7260,26 @@ public class MediaDataController extends BaseController {
             HashMap<String, TLRPC$BotInfo> hashMap = this.botInfos;
             TLRPC$BotInfo tLRPC$BotInfo = hashMap.get(j + "_" + j2);
             if (tLRPC$BotInfo != null) {
-                getNotificationCenter().postNotificationName(NotificationCenter.botInfoDidLoad, tLRPC$BotInfo, Integer.valueOf(i));
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botInfoDidLoad, tLRPC$BotInfo, Integer.valueOf(i));
                 return;
             }
         }
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$loadBotInfo$186(j, j2, i);
+                MediaDataController.this.lambda$loadBotInfo$187(j, j2, i);
             }
         });
     }
 
-    public void lambda$loadBotInfo$186(long j, long j2, final int i) {
+    public void lambda$loadBotInfo$187(long j, long j2, final int i) {
         try {
             final TLRPC$BotInfo loadBotInfoInternal = loadBotInfoInternal(j, j2);
             if (loadBotInfoInternal != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MediaDataController.this.lambda$loadBotInfo$185(loadBotInfoInternal, i);
+                        MediaDataController.this.lambda$loadBotInfo$186(loadBotInfoInternal, i);
                     }
                 });
             }
@@ -7374,8 +7288,8 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void lambda$loadBotInfo$185(TLRPC$BotInfo tLRPC$BotInfo, int i) {
-        getNotificationCenter().postNotificationName(NotificationCenter.botInfoDidLoad, tLRPC$BotInfo, Integer.valueOf(i));
+    public void lambda$loadBotInfo$186(TLRPC$BotInfo tLRPC$BotInfo, int i) {
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botInfoDidLoad, tLRPC$BotInfo, Integer.valueOf(i));
     }
 
     public void putBotKeyboard(final MessagesStorage.TopicKey topicKey, final TLRPC$Message tLRPC$Message) {
@@ -7401,6 +7315,7 @@ public class MediaDataController extends BaseController {
                 executeFast = getMessagesStorage().getDatabase().executeFast("REPLACE INTO bot_keyboard VALUES(?, ?, ?)");
             }
             executeFast.requery();
+            MessageObject.normalizeFlags(tLRPC$Message);
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$Message.getObjectSize());
             tLRPC$Message.serializeToStream(nativeByteBuffer);
             if (topicKey.topicId != 0) {
@@ -7419,7 +7334,7 @@ public class MediaDataController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.this.lambda$putBotKeyboard$187(topicKey, tLRPC$Message);
+                    MediaDataController.this.lambda$putBotKeyboard$188(topicKey, tLRPC$Message);
                 }
             });
         } catch (Exception e) {
@@ -7427,7 +7342,7 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void lambda$putBotKeyboard$187(MessagesStorage.TopicKey topicKey, TLRPC$Message tLRPC$Message) {
+    public void lambda$putBotKeyboard$188(MessagesStorage.TopicKey topicKey, TLRPC$Message tLRPC$Message) {
         TLRPC$Message tLRPC$Message2 = this.botKeyboards.get(topicKey);
         this.botKeyboards.put(topicKey, tLRPC$Message);
         ArrayList<TLRPC$Message> arrayList = this.botDialogKeyboards.get(topicKey.dialogId);
@@ -7442,7 +7357,7 @@ public class MediaDataController extends BaseController {
             }
             this.botKeyboardsByMids.put(tLRPC$Message.id, topicKey);
         }
-        getNotificationCenter().postNotificationName(NotificationCenter.botKeyboardDidLoad, tLRPC$Message, topicKey);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botKeyboardDidLoad, tLRPC$Message, topicKey);
     }
 
     public void putBotInfo(final long j, final TLRPC$BotInfo tLRPC$BotInfo) {
@@ -7454,12 +7369,12 @@ public class MediaDataController extends BaseController {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$putBotInfo$188(tLRPC$BotInfo, j);
+                MediaDataController.this.lambda$putBotInfo$189(tLRPC$BotInfo, j);
             }
         });
     }
 
-    public void lambda$putBotInfo$188(TLRPC$BotInfo tLRPC$BotInfo, long j) {
+    public void lambda$putBotInfo$189(TLRPC$BotInfo tLRPC$BotInfo, long j) {
         try {
             SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("REPLACE INTO bot_info_v2 VALUES(?, ?, ?)");
             executeFast.requery();
@@ -7481,17 +7396,17 @@ public class MediaDataController extends BaseController {
         TLRPC$BotInfo tLRPC$BotInfo = hashMap.get(tLRPC$TL_updateBotCommands.bot_id + "_" + j);
         if (tLRPC$BotInfo != null) {
             tLRPC$BotInfo.commands = tLRPC$TL_updateBotCommands.commands;
-            getNotificationCenter().postNotificationName(NotificationCenter.botInfoDidLoad, tLRPC$BotInfo, 0);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.botInfoDidLoad, tLRPC$BotInfo, 0);
         }
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$updateBotInfo$189(tLRPC$TL_updateBotCommands, j);
+                MediaDataController.this.lambda$updateBotInfo$190(tLRPC$TL_updateBotCommands, j);
             }
         });
     }
 
-    public void lambda$updateBotInfo$189(TLRPC$TL_updateBotCommands tLRPC$TL_updateBotCommands, long j) {
+    public void lambda$updateBotInfo$190(TLRPC$TL_updateBotCommands tLRPC$TL_updateBotCommands, long j) {
         try {
             TLRPC$BotInfo loadBotInfoInternal = loadBotInfoInternal(tLRPC$TL_updateBotCommands.bot_id, j);
             if (loadBotInfoInternal != null) {
@@ -7566,13 +7481,13 @@ public class MediaDataController extends BaseController {
             return true;
         }
         if (tLRPC$Document.size > MessagesController.getInstance(this.currentAccount).ringtoneSizeMax) {
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 4, LocaleController.formatString("TooLargeError", R.string.TooLargeError, new Object[0]), LocaleController.formatString("ErrorRingtoneSizeTooBig", R.string.ErrorRingtoneSizeTooBig, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax / 1024)));
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 4, LocaleController.formatString("TooLargeError", R.string.TooLargeError, new Object[0]), LocaleController.formatString("ErrorRingtoneSizeTooBig", R.string.ErrorRingtoneSizeTooBig, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneSizeMax / 1024)));
             return false;
         }
         for (int i = 0; i < tLRPC$Document.attributes.size(); i++) {
             TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i);
             if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeAudio) && tLRPC$DocumentAttribute.duration > MessagesController.getInstance(this.currentAccount).ringtoneDurationMax) {
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 4, LocaleController.formatString("TooLongError", R.string.TooLongError, new Object[0]), LocaleController.formatString("ErrorRingtoneDurationTooLong", R.string.ErrorRingtoneDurationTooLong, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax)));
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 4, LocaleController.formatString("TooLongError", R.string.TooLongError, new Object[0]), LocaleController.formatString("ErrorRingtoneDurationTooLong", R.string.ErrorRingtoneDurationTooLong, Integer.valueOf(MessagesController.getInstance(UserConfig.selectedAccount).ringtoneDurationMax)));
                 return false;
             }
         }
@@ -7585,22 +7500,22 @@ public class MediaDataController extends BaseController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_saveRingtone, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MediaDataController.this.lambda$saveToRingtones$191(tLRPC$Document, tLObject, tLRPC$TL_error);
+                MediaDataController.this.lambda$saveToRingtones$192(tLRPC$Document, tLObject, tLRPC$TL_error);
             }
         });
         return true;
     }
 
-    public void lambda$saveToRingtones$191(final TLRPC$Document tLRPC$Document, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$saveToRingtones$192(final TLRPC$Document tLRPC$Document, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$saveToRingtones$190(tLObject, tLRPC$Document);
+                MediaDataController.this.lambda$saveToRingtones$191(tLObject, tLRPC$Document);
             }
         });
     }
 
-    public void lambda$saveToRingtones$190(TLObject tLObject, TLRPC$Document tLRPC$Document) {
+    public void lambda$saveToRingtones$191(TLObject tLObject, TLRPC$Document tLRPC$Document) {
         if (tLObject != null) {
             if (tLObject instanceof TLRPC$TL_account_savedRingtoneConverted) {
                 this.ringtoneDataStore.addTone(((TLRPC$TL_account_savedRingtoneConverted) tLObject).document);
@@ -7637,28 +7552,28 @@ public class MediaDataController extends BaseController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getStickers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MediaDataController.this.lambda$preloadPremiumPreviewStickers$193(tLObject, tLRPC$TL_error);
+                MediaDataController.this.lambda$preloadPremiumPreviewStickers$194(tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$preloadPremiumPreviewStickers$193(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$preloadPremiumPreviewStickers$194(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$preloadPremiumPreviewStickers$192(tLRPC$TL_error, tLObject);
+                MediaDataController.this.lambda$preloadPremiumPreviewStickers$193(tLRPC$TL_error, tLObject);
             }
         });
     }
 
-    public void lambda$preloadPremiumPreviewStickers$192(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
+    public void lambda$preloadPremiumPreviewStickers$193(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject) {
         if (tLRPC$TL_error != null) {
             return;
         }
         this.previewStickersLoading = false;
         this.premiumPreviewStickers.clear();
         this.premiumPreviewStickers.addAll(((TLRPC$TL_messages_stickers) tLObject).stickers);
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.premiumStickersPreviewLoaded, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumStickersPreviewLoaded, new Object[0]);
     }
 
     public void chekAllMedia(boolean z) {
@@ -7688,7 +7603,7 @@ public class MediaDataController extends BaseController {
                 if (stickerSets.get(i2).set.id == j) {
                     stickerSets.remove(i2);
                     stickerSets.add(0, stickerSets.get(i2));
-                    getNotificationCenter().postNotificationName(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.FALSE);
+                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stickersDidLoad, Integer.valueOf(i), Boolean.FALSE);
                     return;
                 }
             }
@@ -7720,28 +7635,28 @@ public class MediaDataController extends BaseController {
             getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.this.lambda$fetchNewEmojiKeywords$199(str);
+                    MediaDataController.this.lambda$fetchNewEmojiKeywords$200(str);
                 }
             });
         }
     }
 
-    public void lambda$fetchNewEmojiKeywords$199(final java.lang.String r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$fetchNewEmojiKeywords$199(java.lang.String):void");
+    public void lambda$fetchNewEmojiKeywords$200(final java.lang.String r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$fetchNewEmojiKeywords$200(java.lang.String):void");
     }
 
-    public void lambda$fetchNewEmojiKeywords$194(String str) {
+    public void lambda$fetchNewEmojiKeywords$195(String str) {
         this.currentFetchingEmoji.remove(str);
     }
 
-    public void lambda$fetchNewEmojiKeywords$198(int i, String str, final String str2, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$fetchNewEmojiKeywords$199(int i, String str, final String str2, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLObject != null) {
             TLRPC$TL_emojiKeywordsDifference tLRPC$TL_emojiKeywordsDifference = (TLRPC$TL_emojiKeywordsDifference) tLObject;
             if (i != -1 && !tLRPC$TL_emojiKeywordsDifference.lang_code.equals(str)) {
                 getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        MediaDataController.this.lambda$fetchNewEmojiKeywords$196(str2);
+                        MediaDataController.this.lambda$fetchNewEmojiKeywords$197(str2);
                     }
                 });
                 return;
@@ -7753,12 +7668,12 @@ public class MediaDataController extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$fetchNewEmojiKeywords$197(str2);
+                MediaDataController.this.lambda$fetchNewEmojiKeywords$198(str2);
             }
         });
     }
 
-    public void lambda$fetchNewEmojiKeywords$196(final String str) {
+    public void lambda$fetchNewEmojiKeywords$197(final String str) {
         try {
             SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("DELETE FROM emoji_keywords_info_v2 WHERE lang = ?");
             executeFast.bindString(1, str);
@@ -7767,7 +7682,7 @@ public class MediaDataController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.this.lambda$fetchNewEmojiKeywords$195(str);
+                    MediaDataController.this.lambda$fetchNewEmojiKeywords$196(str);
                 }
             });
         } catch (Exception e) {
@@ -7775,12 +7690,12 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void lambda$fetchNewEmojiKeywords$195(String str) {
+    public void lambda$fetchNewEmojiKeywords$196(String str) {
         this.currentFetchingEmoji.remove(str);
         fetchNewEmojiKeywords(new String[]{str});
     }
 
-    public void lambda$fetchNewEmojiKeywords$197(String str) {
+    public void lambda$fetchNewEmojiKeywords$198(String str) {
         this.currentFetchingEmoji.remove(str);
     }
 
@@ -7791,12 +7706,12 @@ public class MediaDataController extends BaseController {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$putEmojiKeywords$201(tLRPC$TL_emojiKeywordsDifference, str);
+                MediaDataController.this.lambda$putEmojiKeywords$202(tLRPC$TL_emojiKeywordsDifference, str);
             }
         });
     }
 
-    public void lambda$putEmojiKeywords$201(TLRPC$TL_emojiKeywordsDifference tLRPC$TL_emojiKeywordsDifference, final String str) {
+    public void lambda$putEmojiKeywords$202(TLRPC$TL_emojiKeywordsDifference tLRPC$TL_emojiKeywordsDifference, final String str) {
         try {
             if (!tLRPC$TL_emojiKeywordsDifference.keywords.isEmpty()) {
                 SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("REPLACE INTO emoji_keywords_v2 VALUES(?, ?, ?)");
@@ -7843,7 +7758,7 @@ public class MediaDataController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.this.lambda$putEmojiKeywords$200(str);
+                    MediaDataController.this.lambda$putEmojiKeywords$201(str);
                 }
             });
         } catch (Exception e) {
@@ -7851,9 +7766,9 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void lambda$putEmojiKeywords$200(String str) {
+    public void lambda$putEmojiKeywords$201(String str) {
         this.currentFetchingEmoji.remove(str);
-        getNotificationCenter().postNotificationName(NotificationCenter.newEmojiSuggestionsAvailable, str);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newEmojiSuggestionsAvailable, str);
     }
 
     public void getAnimatedEmojiByKeywords(final String str, final Utilities.Callback<ArrayList<Long>> callback) {
@@ -7869,12 +7784,12 @@ public class MediaDataController extends BaseController {
         Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.lambda$getAnimatedEmojiByKeywords$202(str, stickerSets, featuredEmojiSets, callback);
+                MediaDataController.lambda$getAnimatedEmojiByKeywords$203(str, stickerSets, featuredEmojiSets, callback);
             }
         });
     }
 
-    public static void lambda$getAnimatedEmojiByKeywords$202(String str, ArrayList arrayList, ArrayList arrayList2, Utilities.Callback callback) {
+    public static void lambda$getAnimatedEmojiByKeywords$203(String str, ArrayList arrayList, ArrayList arrayList2, Utilities.Callback callback) {
         ArrayList arrayList3 = new ArrayList();
         ArrayList arrayList4 = new ArrayList();
         String lowerCase = str.toLowerCase();
@@ -7922,7 +7837,11 @@ public class MediaDataController extends BaseController {
         getEmojiSuggestions(strArr, str, z, keywordResultCallback, countDownLatch, z2, false, false, null);
     }
 
-    public void getEmojiSuggestions(final String[] strArr, final String str, final boolean z, final KeywordResultCallback keywordResultCallback, final CountDownLatch countDownLatch, final boolean z2, final boolean z3, final boolean z4, final Integer num) {
+    public void getEmojiSuggestions(String[] strArr, String str, boolean z, KeywordResultCallback keywordResultCallback, CountDownLatch countDownLatch, boolean z2, boolean z3, boolean z4, Integer num) {
+        getEmojiSuggestions(strArr, str, z, keywordResultCallback, countDownLatch, z2, z3, z4, false, num);
+    }
+
+    public void getEmojiSuggestions(final String[] strArr, final String str, final boolean z, final KeywordResultCallback keywordResultCallback, final CountDownLatch countDownLatch, final boolean z2, final boolean z3, final boolean z4, final boolean z5, final Integer num) {
         if (keywordResultCallback == null) {
             return;
         }
@@ -7934,7 +7853,7 @@ public class MediaDataController extends BaseController {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$getEmojiSuggestions$208(strArr, keywordResultCallback, z4, str, z, arrayList, z2, num, z3, countDownLatch);
+                MediaDataController.this.lambda$getEmojiSuggestions$209(strArr, keywordResultCallback, z4, str, z, arrayList, z2, num, z3, z5, countDownLatch);
             }
         });
         if (countDownLatch != null) {
@@ -7945,136 +7864,11 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void lambda$getEmojiSuggestions$208(final String[] strArr, final KeywordResultCallback keywordResultCallback, boolean z, String str, boolean z2, final ArrayList arrayList, boolean z3, Integer num, boolean z4, final CountDownLatch countDownLatch) {
-        String str2;
-        SQLiteCursor queryFinalized;
-        boolean z5;
-        final ArrayList<KeywordResult> arrayList2 = new ArrayList<>();
-        HashMap hashMap = new HashMap();
-        final String str3 = null;
-        boolean z6 = false;
-        for (int i = 0; i < strArr.length; i++) {
-            try {
-                SQLiteCursor queryFinalized2 = getMessagesStorage().getDatabase().queryFinalized("SELECT alias FROM emoji_keywords_info_v2 WHERE lang = ?", strArr[i]);
-                if (queryFinalized2.next()) {
-                    str3 = queryFinalized2.stringValue(0);
-                }
-                queryFinalized2.dispose();
-                if (str3 != null) {
-                    z6 = true;
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-        }
-        if (!z6) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    MediaDataController.this.lambda$getEmojiSuggestions$203(strArr, keywordResultCallback, arrayList2);
-                }
-            });
-            return;
-        }
-        if (z) {
-            int[] iArr = new int[1];
-            ArrayList<Emoji.EmojiSpanRange> parseEmojis = Emoji.parseEmojis(str, iArr);
-            if (iArr[0] > 0) {
-                for (int i2 = 0; i2 < parseEmojis.size(); i2++) {
-                    String charSequence = parseEmojis.get(i2).code.toString();
-                    int i3 = 0;
-                    while (true) {
-                        if (i3 >= arrayList2.size()) {
-                            z5 = false;
-                            break;
-                        } else if (TextUtils.equals(arrayList2.get(i3).emoji, charSequence)) {
-                            z5 = true;
-                            break;
-                        } else {
-                            i3++;
-                        }
-                    }
-                    if (!z5) {
-                        KeywordResult keywordResult = new KeywordResult();
-                        keywordResult.emoji = charSequence;
-                        keywordResult.keyword = "";
-                        arrayList2.add(keywordResult);
-                    }
-                }
-            }
-        }
-        String lowerCase = str.toLowerCase();
-        for (int i4 = 0; i4 < 2; i4++) {
-            if (i4 == 1) {
-                String translitString = LocaleController.getInstance().getTranslitString(lowerCase, false, false);
-                if (!translitString.equals(lowerCase)) {
-                    lowerCase = translitString;
-                }
-            }
-            StringBuilder sb = new StringBuilder(lowerCase);
-            int length = sb.length();
-            while (true) {
-                if (length <= 0) {
-                    str2 = null;
-                    break;
-                }
-                length--;
-                char charAt = (char) (sb.charAt(length) + 1);
-                sb.setCharAt(length, charAt);
-                if (charAt != 0) {
-                    str2 = sb.toString();
-                    break;
-                }
-            }
-            if (z2) {
-                queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT emoji, keyword FROM emoji_keywords_v2 WHERE keyword = ?", lowerCase);
-            } else if (str2 != null) {
-                queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT emoji, keyword FROM emoji_keywords_v2 WHERE keyword >= ? AND keyword < ?", lowerCase, str2);
-            } else {
-                lowerCase = lowerCase + "%";
-                queryFinalized = getMessagesStorage().getDatabase().queryFinalized("SELECT emoji, keyword FROM emoji_keywords_v2 WHERE keyword LIKE ?", lowerCase);
-            }
-            while (queryFinalized.next()) {
-                String replace = queryFinalized.stringValue(0).replace("️", "");
-                if (hashMap.get(replace) == null) {
-                    hashMap.put(replace, Boolean.TRUE);
-                    KeywordResult keywordResult2 = new KeywordResult();
-                    keywordResult2.emoji = replace;
-                    keywordResult2.keyword = queryFinalized.stringValue(1);
-                    arrayList2.add(keywordResult2);
-                }
-            }
-            queryFinalized.dispose();
-        }
-        Collections.sort(arrayList2, new Comparator() {
-            @Override
-            public final int compare(Object obj, Object obj2) {
-                int lambda$getEmojiSuggestions$204;
-                lambda$getEmojiSuggestions$204 = MediaDataController.lambda$getEmojiSuggestions$204(arrayList, (MediaDataController.KeywordResult) obj, (MediaDataController.KeywordResult) obj2);
-                return lambda$getEmojiSuggestions$204;
-            }
-        });
-        if (z3 && SharedConfig.suggestAnimatedEmoji) {
-            fillWithAnimatedEmoji(arrayList2, num, z4, new Runnable() {
-                @Override
-                public final void run() {
-                    MediaDataController.lambda$getEmojiSuggestions$206(countDownLatch, keywordResultCallback, arrayList2, str3);
-                }
-            });
-        } else if (countDownLatch != null) {
-            keywordResultCallback.run(arrayList2, str3);
-            countDownLatch.countDown();
-        } else {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    MediaDataController.KeywordResultCallback.this.run(arrayList2, str3);
-                }
-            });
-        }
+    public void lambda$getEmojiSuggestions$209(final java.lang.String[] r17, final org.telegram.messenger.MediaDataController.KeywordResultCallback r18, boolean r19, java.lang.String r20, boolean r21, final java.util.ArrayList r22, boolean r23, java.lang.Integer r24, boolean r25, boolean r26, final java.util.concurrent.CountDownLatch r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$getEmojiSuggestions$209(java.lang.String[], org.telegram.messenger.MediaDataController$KeywordResultCallback, boolean, java.lang.String, boolean, java.util.ArrayList, boolean, java.lang.Integer, boolean, boolean, java.util.concurrent.CountDownLatch):void");
     }
 
-    public void lambda$getEmojiSuggestions$203(String[] strArr, KeywordResultCallback keywordResultCallback, ArrayList arrayList) {
+    public void lambda$getEmojiSuggestions$204(String[] strArr, KeywordResultCallback keywordResultCallback, ArrayList arrayList) {
         for (String str : strArr) {
             if (this.currentFetchingEmoji.get(str) != null) {
                 return;
@@ -8083,7 +7877,7 @@ public class MediaDataController extends BaseController {
         keywordResultCallback.run(arrayList, null);
     }
 
-    public static int lambda$getEmojiSuggestions$204(ArrayList arrayList, KeywordResult keywordResult, KeywordResult keywordResult2) {
+    public static int lambda$getEmojiSuggestions$205(ArrayList arrayList, KeywordResult keywordResult, KeywordResult keywordResult2) {
         int indexOf = arrayList.indexOf(keywordResult.emoji);
         int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
         if (indexOf < 0) {
@@ -8107,7 +7901,7 @@ public class MediaDataController extends BaseController {
         return length > length2 ? 1 : 0;
     }
 
-    public static void lambda$getEmojiSuggestions$206(CountDownLatch countDownLatch, final KeywordResultCallback keywordResultCallback, final ArrayList arrayList, final String str) {
+    public static void lambda$getEmojiSuggestions$207(CountDownLatch countDownLatch, final KeywordResultCallback keywordResultCallback, final ArrayList arrayList, final String str) {
         if (countDownLatch != null) {
             keywordResultCallback.run(arrayList, str);
             countDownLatch.countDown();
@@ -8121,7 +7915,7 @@ public class MediaDataController extends BaseController {
         });
     }
 
-    public void fillWithAnimatedEmoji(final ArrayList<KeywordResult> arrayList, final Integer num, final boolean z, final Runnable runnable) {
+    public void fillWithAnimatedEmoji(final ArrayList<KeywordResult> arrayList, final Integer num, final boolean z, final boolean z2, final Runnable runnable) {
         if (arrayList == null || arrayList.isEmpty()) {
             if (runnable != null) {
                 runnable.run();
@@ -8133,7 +7927,7 @@ public class MediaDataController extends BaseController {
         final Runnable runnable2 = new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$fillWithAnimatedEmoji$209(num, arrayList, z, arrayListArr, runnable);
+                MediaDataController.this.lambda$fillWithAnimatedEmoji$210(num, arrayList, z2, z, arrayListArr, runnable);
             }
         };
         if ((arrayListArr[0] == null || arrayListArr[0].isEmpty()) && !this.triedLoadingEmojipacks) {
@@ -8142,13 +7936,13 @@ public class MediaDataController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.this.lambda$fillWithAnimatedEmoji$211(zArr, arrayListArr, runnable2);
+                    MediaDataController.this.lambda$fillWithAnimatedEmoji$212(zArr, arrayListArr, runnable2);
                 }
             });
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.lambda$fillWithAnimatedEmoji$212(zArr, runnable2);
+                    MediaDataController.lambda$fillWithAnimatedEmoji$213(zArr, runnable2);
                 }
             }, 900L);
             return;
@@ -8156,20 +7950,20 @@ public class MediaDataController extends BaseController {
         runnable2.run();
     }
 
-    public void lambda$fillWithAnimatedEmoji$209(java.lang.Integer r23, java.util.ArrayList r24, boolean r25, java.util.ArrayList[] r26, java.lang.Runnable r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$fillWithAnimatedEmoji$209(java.lang.Integer, java.util.ArrayList, boolean, java.util.ArrayList[], java.lang.Runnable):void");
+    public void lambda$fillWithAnimatedEmoji$210(java.lang.Integer r22, java.util.ArrayList r23, boolean r24, boolean r25, java.util.ArrayList[] r26, java.lang.Runnable r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$fillWithAnimatedEmoji$210(java.lang.Integer, java.util.ArrayList, boolean, boolean, java.util.ArrayList[], java.lang.Runnable):void");
     }
 
-    public void lambda$fillWithAnimatedEmoji$211(final boolean[] zArr, final ArrayList[] arrayListArr, final Runnable runnable) {
+    public void lambda$fillWithAnimatedEmoji$212(final boolean[] zArr, final ArrayList[] arrayListArr, final Runnable runnable) {
         loadStickers(5, true, false, false, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                MediaDataController.lambda$fillWithAnimatedEmoji$210(zArr, arrayListArr, runnable, (ArrayList) obj);
+                MediaDataController.lambda$fillWithAnimatedEmoji$211(zArr, arrayListArr, runnable, (ArrayList) obj);
             }
         });
     }
 
-    public static void lambda$fillWithAnimatedEmoji$210(boolean[] zArr, ArrayList[] arrayListArr, Runnable runnable, ArrayList arrayList) {
+    public static void lambda$fillWithAnimatedEmoji$211(boolean[] zArr, ArrayList[] arrayListArr, Runnable runnable, ArrayList arrayList) {
         if (zArr[0]) {
             return;
         }
@@ -8178,7 +7972,7 @@ public class MediaDataController extends BaseController {
         zArr[0] = true;
     }
 
-    public static void lambda$fillWithAnimatedEmoji$212(boolean[] zArr, Runnable runnable) {
+    public static void lambda$fillWithAnimatedEmoji$213(boolean[] zArr, Runnable runnable) {
         if (zArr[0]) {
             return;
         }
@@ -8193,7 +7987,7 @@ public class MediaDataController extends BaseController {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme()));
         for (int i2 = 0; i2 < i; i2++) {
-            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
+            SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, BuildConfig.APP_CENTER_HASH)));
             try {
                 EmojiThemes createPreviewFullTheme = EmojiThemes.createPreviewFullTheme(TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true));
                 if (createPreviewFullTheme.items.size() >= 4) {
@@ -8260,7 +8054,7 @@ public class MediaDataController extends BaseController {
             return;
         }
         this.defaultEmojiThemes.clear();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.emojiPreviewThemesChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.emojiPreviewThemesChanged, new Object[0]);
     }
 
     public class AnonymousClass3 implements Runnable {
@@ -8289,7 +8083,7 @@ public class MediaDataController extends BaseController {
         public void lambda$run$0(ArrayList arrayList) {
             MediaDataController.this.defaultEmojiThemes.clear();
             MediaDataController.this.defaultEmojiThemes.addAll(arrayList);
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.emojiPreviewThemesChanged, new Object[0]);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.emojiPreviewThemesChanged, new Object[0]);
         }
     }
 
@@ -8320,13 +8114,13 @@ public class MediaDataController extends BaseController {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$clearRecentEmojiStatuses$213();
+                MediaDataController.this.lambda$clearRecentEmojiStatuses$214();
             }
         });
         return this.emojiStatuses[0];
     }
 
-    public void lambda$clearRecentEmojiStatuses$213() {
+    public void lambda$clearRecentEmojiStatuses$214() {
         try {
             getMessagesStorage().getDatabase().executeFast("DELETE FROM emoji_statuses WHERE type = 0").stepThis().dispose();
         } catch (Exception unused) {
@@ -8369,7 +8163,7 @@ public class MediaDataController extends BaseController {
             getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.this.lambda$fetchEmojiStatuses$215(i);
+                    MediaDataController.this.lambda$fetchEmojiStatuses$216(i);
                 }
             });
             return;
@@ -8386,20 +8180,20 @@ public class MediaDataController extends BaseController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_getDefaultEmojiStatuses, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MediaDataController.this.lambda$fetchEmojiStatuses$217(i, tLObject, tLRPC$TL_error);
+                MediaDataController.this.lambda$fetchEmojiStatuses$218(i, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$fetchEmojiStatuses$215(int r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$fetchEmojiStatuses$215(int):void");
+    public void lambda$fetchEmojiStatuses$216(int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$fetchEmojiStatuses$216(int):void");
     }
 
-    public void lambda$fetchEmojiStatuses$214() {
-        getNotificationCenter().postNotificationName(NotificationCenter.recentEmojiStatusesUpdate, new Object[0]);
+    public void lambda$fetchEmojiStatuses$215() {
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.recentEmojiStatusesUpdate, new Object[0]);
     }
 
-    public void lambda$fetchEmojiStatuses$217(int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$fetchEmojiStatuses$218(int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         this.emojiStatusesFetchDate[i] = Long.valueOf(System.currentTimeMillis() / 1000);
         if (tLObject instanceof TLRPC$TL_account_emojiStatusesNotModified) {
             this.emojiStatusesFetching[i] = false;
@@ -8411,26 +8205,26 @@ public class MediaDataController extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MediaDataController.this.lambda$fetchEmojiStatuses$216();
+                    MediaDataController.this.lambda$fetchEmojiStatuses$217();
                 }
             });
         }
     }
 
-    public void lambda$fetchEmojiStatuses$216() {
-        getNotificationCenter().postNotificationName(NotificationCenter.recentEmojiStatusesUpdate, new Object[0]);
+    public void lambda$fetchEmojiStatuses$217() {
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.recentEmojiStatusesUpdate, new Object[0]);
     }
 
     private void updateEmojiStatuses(final int i, final TLRPC$TL_account_emojiStatuses tLRPC$TL_account_emojiStatuses) {
         getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$updateEmojiStatuses$218(i, tLRPC$TL_account_emojiStatuses);
+                MediaDataController.this.lambda$updateEmojiStatuses$219(i, tLRPC$TL_account_emojiStatuses);
             }
         });
     }
 
-    public void lambda$updateEmojiStatuses$218(int i, TLRPC$TL_account_emojiStatuses tLRPC$TL_account_emojiStatuses) {
+    public void lambda$updateEmojiStatuses$219(int i, TLRPC$TL_account_emojiStatuses tLRPC$TL_account_emojiStatuses) {
         try {
             SQLiteDatabase database = getMessagesStorage().getDatabase();
             database.executeFast("DELETE FROM emoji_statuses WHERE type = " + i).stepThis().dispose();
@@ -8499,7 +8293,7 @@ public class MediaDataController extends BaseController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getRecentReactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MediaDataController.this.lambda$loadRecentAndTopReactions$219(sharedPreferences, tLObject, tLRPC$TL_error);
+                MediaDataController.this.lambda$loadRecentAndTopReactions$220(sharedPreferences, tLObject, tLRPC$TL_error);
             }
         });
         TLRPC$TL_messages_getTopReactions tLRPC$TL_messages_getTopReactions = new TLRPC$TL_messages_getTopReactions();
@@ -8508,12 +8302,12 @@ public class MediaDataController extends BaseController {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getTopReactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MediaDataController.this.lambda$loadRecentAndTopReactions$220(sharedPreferences2, tLObject, tLRPC$TL_error);
+                MediaDataController.this.lambda$loadRecentAndTopReactions$221(sharedPreferences2, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$loadRecentAndTopReactions$219(SharedPreferences sharedPreferences, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadRecentAndTopReactions$220(SharedPreferences sharedPreferences, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             if (tLObject instanceof TLRPC$TL_messages_reactions) {
                 TLRPC$TL_messages_reactions tLRPC$TL_messages_reactions = (TLRPC$TL_messages_reactions) tLObject;
@@ -8525,7 +8319,7 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void lambda$loadRecentAndTopReactions$220(SharedPreferences sharedPreferences, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadRecentAndTopReactions$221(SharedPreferences sharedPreferences, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             if (tLObject instanceof TLRPC$TL_messages_reactions) {
                 TLRPC$TL_messages_reactions tLRPC$TL_messages_reactions = (TLRPC$TL_messages_reactions) tLObject;
@@ -8555,7 +8349,7 @@ public class MediaDataController extends BaseController {
         ArrayList<TLRPC$Reaction> arrayList = new ArrayList<>(i);
         if (i > 0) {
             for (int i2 = 0; i2 < i; i2++) {
-                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("object_" + i2, "")));
+                SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("object_" + i2, BuildConfig.APP_CENTER_HASH)));
                 try {
                     arrayList.add(TLRPC$Reaction.TLdeserialize(serializedData, serializedData.readInt32(true), true));
                 } catch (Throwable th) {
@@ -8570,16 +8364,16 @@ public class MediaDataController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.loadAvatarConstructor(boolean):void");
     }
 
-    public void lambda$loadAvatarConstructor$222(final SharedPreferences sharedPreferences, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadAvatarConstructor$223(final SharedPreferences sharedPreferences, final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$loadAvatarConstructor$221(tLObject, sharedPreferences, z);
+                MediaDataController.this.lambda$loadAvatarConstructor$222(tLObject, sharedPreferences, z);
             }
         });
     }
 
-    public void lambda$loadAvatarConstructor$221(TLObject tLObject, SharedPreferences sharedPreferences, boolean z) {
+    public void lambda$loadAvatarConstructor$222(TLObject tLObject, SharedPreferences sharedPreferences, boolean z) {
         if (tLObject instanceof TLRPC$TL_emojiList) {
             SerializedData serializedData = new SerializedData(tLObject.getObjectSize());
             tLObject.serializeToStream(serializedData);

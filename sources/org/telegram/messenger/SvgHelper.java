@@ -26,6 +26,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.xml.parsers.SAXParserFactory;
+import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.ActionBar.Theme;
 import org.xml.sax.Attributes;
@@ -197,7 +198,12 @@ public class SvgHelper {
                         if (runnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        SvgHelper$SvgDrawable$$ExternalSyntheticLambda0 svgHelper$SvgDrawable$$ExternalSyntheticLambda0 = SvgHelper$SvgDrawable$$ExternalSyntheticLambda0.INSTANCE;
+                        SvgHelper$SvgDrawable$$ExternalSyntheticLambda0 svgHelper$SvgDrawable$$ExternalSyntheticLambda0 = new Runnable() {
+                            @Override
+                            public final void run() {
+                                SvgHelper.SvgDrawable.shiftRunnable = null;
+                            }
+                        };
                         shiftRunnable = svgHelper$SvgDrawable$$ExternalSyntheticLambda0;
                         AndroidUtilities.runOnUIThread(svgHelper$SvgDrawable$$ExternalSyntheticLambda0, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
                     }
@@ -1479,7 +1485,7 @@ public class SvgHelper {
                     if (sb != null) {
                         String[] split = sb.toString().split("\\}");
                         for (int i = 0; i < split.length; i++) {
-                            split[i] = split[i].trim().replace("\t", "").replace("\n", "");
+                            split[i] = split[i].trim().replace("\t", BuildConfig.APP_CENTER_HASH).replace("\n", BuildConfig.APP_CENTER_HASH);
                             if (split[i].length() != 0 && split[i].charAt(0) == '.' && (indexOf = split[i].indexOf(123)) >= 0) {
                                 this.globalStyles.put(split[i].substring(1, indexOf).trim(), new StyleSet(split[i].substring(indexOf + 1)));
                             }
@@ -1633,7 +1639,7 @@ public class SvgHelper {
             return sb.toString();
         } catch (Exception e) {
             FileLog.e(e);
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 }

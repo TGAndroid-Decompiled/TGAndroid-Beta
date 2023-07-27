@@ -135,12 +135,12 @@ public class ChatAttachAlertColorsLayout extends ChatAttachAlert.AttachAlertLayo
     }
 
     @Override
-    public int getListTopPadding() {
+    int getListTopPadding() {
         return this.gridView.getPaddingTop();
     }
 
     @Override
-    public int getCurrentItemTop() {
+    int getCurrentItemTop() {
         if (this.gridView.getChildCount() <= 0) {
             RecyclerListView recyclerListView = this.gridView;
             recyclerListView.setTopGlowOffset(recyclerListView.getPaddingTop());

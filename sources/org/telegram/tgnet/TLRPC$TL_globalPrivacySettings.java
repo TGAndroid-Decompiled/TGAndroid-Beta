@@ -1,8 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_globalPrivacySettings extends TLObject {
-    public static int constructor = -1096616924;
+    public static int constructor = 1934380235;
     public boolean archive_and_mute_new_noncontact_peers;
     public int flags;
+    public boolean keep_archived_folders;
+    public boolean keep_archived_unmuted;
 
     public static TLRPC$TL_globalPrivacySettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (constructor != i) {
@@ -20,17 +22,20 @@ public class TLRPC$TL_globalPrivacySettings extends TLObject {
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
-        if ((readInt32 & 1) != 0) {
-            this.archive_and_mute_new_noncontact_peers = abstractSerializedData.readBool(z);
-        }
+        this.archive_and_mute_new_noncontact_peers = (readInt32 & 1) != 0;
+        this.keep_archived_unmuted = (readInt32 & 2) != 0;
+        this.keep_archived_folders = (readInt32 & 4) != 0;
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt32(this.flags);
-        if ((this.flags & 1) != 0) {
-            abstractSerializedData.writeBool(this.archive_and_mute_new_noncontact_peers);
-        }
+        int i = this.archive_and_mute_new_noncontact_peers ? this.flags | 1 : this.flags & (-2);
+        this.flags = i;
+        int i2 = this.keep_archived_unmuted ? i | 2 : i & (-3);
+        this.flags = i2;
+        int i3 = this.keep_archived_folders ? i2 | 4 : i2 & (-5);
+        this.flags = i3;
+        abstractSerializedData.writeInt32(i3);
     }
 }

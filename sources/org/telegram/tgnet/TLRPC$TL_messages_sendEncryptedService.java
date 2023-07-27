@@ -11,19 +11,19 @@ public class TLRPC$TL_messages_sendEncryptedService extends TLObject {
     }
 
     @Override
-    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
-        this.peer.serializeToStream(abstractSerializedData);
-        abstractSerializedData.writeInt64(this.random_id);
-        abstractSerializedData.writeByteBuffer(this.data);
-    }
-
-    @Override
     public void freeResources() {
         NativeByteBuffer nativeByteBuffer = this.data;
         if (nativeByteBuffer != null) {
             nativeByteBuffer.reuse();
             this.data = null;
         }
+    }
+
+    @Override
+    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+        abstractSerializedData.writeInt32(constructor);
+        this.peer.serializeToStream(abstractSerializedData);
+        abstractSerializedData.writeInt64(this.random_id);
+        abstractSerializedData.writeByteBuffer(this.data);
     }
 }

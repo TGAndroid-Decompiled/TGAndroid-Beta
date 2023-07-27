@@ -35,11 +35,11 @@ public class MessageSeenCheckDrawable {
         this.oy = f;
     }
 
-    public CharSequence getSpanned(Context context) {
+    public CharSequence getSpanned(Context context, Theme.ResourcesProvider resourcesProvider) {
         if (this.lastSpanned != null && this.drawable != null && AndroidUtilities.density == this.lastDensity) {
-            if (this.lastColor != Theme.getColor(this.colorKey)) {
+            if (this.lastColor != Theme.getColor(this.colorKey, resourcesProvider)) {
                 Drawable drawable = this.drawable;
-                int color = Theme.getColor(this.colorKey);
+                int color = Theme.getColor(this.colorKey, resourcesProvider);
                 this.lastColor = color;
                 drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN));
             }
@@ -51,7 +51,7 @@ public class MessageSeenCheckDrawable {
             this.lastDensity = AndroidUtilities.density;
             Drawable mutate = context.getResources().getDrawable(this.resId).mutate();
             this.drawable = mutate;
-            int color2 = Theme.getColor(this.colorKey);
+            int color2 = Theme.getColor(this.colorKey, resourcesProvider);
             this.lastColor = color2;
             mutate.setColorFilter(new PorterDuffColorFilter(color2, PorterDuff.Mode.SRC_IN));
             int i = this.w;

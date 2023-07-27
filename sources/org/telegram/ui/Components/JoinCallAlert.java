@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -313,6 +314,10 @@ public class JoinCallAlert extends BottomSheet {
     }
 
     private static void showAlert(Context context, long j, ArrayList<TLRPC$Peer> arrayList, BaseFragment baseFragment, int i, TLRPC$Peer tLRPC$Peer, JoinCallAlertDelegate joinCallAlertDelegate) {
+        if (i == 0) {
+            CreateGroupCallBottomSheet.show(arrayList, baseFragment, j, joinCallAlertDelegate);
+            return;
+        }
         JoinCallAlert joinCallAlert = new JoinCallAlert(context, j, arrayList, i, tLRPC$Peer, joinCallAlertDelegate);
         if (baseFragment != null) {
             if (baseFragment.getParentActivity() != null) {
@@ -700,7 +705,7 @@ public class JoinCallAlert extends BottomSheet {
         BottomSheetCell bottomSheetCell = this.doneButton;
         int i = R.string.VoipGroupContinueAs;
         Object[] objArr = new Object[1];
-        objArr[0] = chat != null ? chat.title : "";
+        objArr[0] = chat != null ? chat.title : BuildConfig.APP_CENTER_HASH;
         bottomSheetCell.setText(LocaleController.formatString("VoipGroupContinueAs", i, objArr), z);
     }
 
@@ -771,7 +776,7 @@ public class JoinCallAlert extends BottomSheet {
                 groupCreateUserCell = new ShareDialogCell(this.context, 2, null);
                 groupCreateUserCell.setLayoutParams(new RecyclerView.LayoutParams(AndroidUtilities.dp(80.0f), AndroidUtilities.dp(100.0f)));
             } else {
-                groupCreateUserCell = new GroupCreateUserCell(this.context, 2, 0, false, JoinCallAlert.this.currentType == 2);
+                groupCreateUserCell = new GroupCreateUserCell(this.context, 2, 0, false, JoinCallAlert.this.currentType == 2, null);
             }
             return new RecyclerListView.Holder(groupCreateUserCell);
         }

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Відповісти</string>
+    <string name="call_notification_answer_video_action">Відео</string>
+    <string name="call_notification_decline_action">Відхилити</string>
+    <string name="call_notification_hang_up_action">Завершити</string>
+    <string name="call_notification_incoming_text">Вхідний виклик</string>
+    <string name="call_notification_ongoing_text">Активний виклик</string>
+    <string name="call_notification_screening_text">Вхідний виклик (Фільтр)</string>
     <string name="common_google_play_services_enable_button">Увімкнути</string>
     <string name="common_google_play_services_enable_text">Додаток %1$s не працюватиме, якщо не ввімкнути сервіси Google Play.</string>
     <string name="common_google_play_services_enable_title">Увімкнути сервіси Google Play</string>

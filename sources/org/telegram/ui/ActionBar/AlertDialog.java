@@ -125,6 +125,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     private Drawable shadowDrawable;
     private boolean[] shadowVisibility;
     private Runnable showRunnable;
+    private long shownAt;
     private CharSequence subtitle;
     private TextView subtitleTextView;
     private CharSequence title;
@@ -292,12 +293,12 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     public void show() {
         super.show();
         FrameLayout frameLayout = this.progressViewContainer;
-        if (frameLayout == null || this.progressViewStyle != 3) {
-            return;
+        if (frameLayout != null && this.progressViewStyle == 3) {
+            frameLayout.setScaleX(0.0f);
+            this.progressViewContainer.setScaleY(0.0f);
+            this.progressViewContainer.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.3f)).setDuration(190L).start();
         }
-        frameLayout.setScaleX(0.0f);
-        this.progressViewContainer.setScaleY(0.0f);
-        this.progressViewContainer.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(new OvershootInterpolator(1.3f)).setDuration(190L).start();
+        this.shownAt = System.currentTimeMillis();
     }
 
     @Override
@@ -1111,7 +1112,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
 
     public void showCancelAlert() {
         if (this.canCacnel && this.cancelDialog == null) {
-            Builder builder = new Builder(getContext());
+            Builder builder = new Builder(getContext(), this.resourcesProvider);
             builder.setTitle(LocaleController.getString("StopLoadingTitle", R.string.StopLoadingTitle));
             builder.setMessage(LocaleController.getString("StopLoading", R.string.StopLoading));
             builder.setPositiveButton(LocaleController.getString("WaitMore", R.string.WaitMore), null);
@@ -1233,6 +1234,15 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             return;
         }
         textView.invalidate();
+    }
+
+    public void dismissUnless(long j) {
+        long currentTimeMillis = System.currentTimeMillis() - this.shownAt;
+        if (currentTimeMillis < j) {
+            AndroidUtilities.runOnUIThread(new AlertDialog$$ExternalSyntheticLambda6(this), currentTimeMillis - j);
+        } else {
+            dismiss();
+        }
     }
 
     @Override

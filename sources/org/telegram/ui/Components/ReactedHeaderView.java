@@ -104,12 +104,18 @@ public class ReactedHeaderView extends FrameLayout {
 
     public static class UserSeen {
         public int date;
-        public TLRPC$User user;
+        long dialogId;
+        public TLObject user;
 
-        public UserSeen(TLRPC$User tLRPC$User, int i) {
+        public UserSeen(TLObject tLObject, int i) {
             this.date = 0;
-            this.user = tLRPC$User;
+            this.user = tLObject;
             this.date = i;
+            if (tLObject instanceof TLRPC$User) {
+                this.dialogId = ((TLRPC$User) tLObject).id;
+            } else if (tLObject instanceof TLRPC$Chat) {
+                this.dialogId = -((TLRPC$Chat) tLObject).id;
+            }
         }
     }
 
@@ -206,7 +212,7 @@ public class ReactedHeaderView extends FrameLayout {
             while (true) {
                 if (i >= this.users.size()) {
                     break;
-                } else if (this.users.get(i).user.id == userSeen.user.id) {
+                } else if (MessageObject.getObjectPeerId(this.users.get(i).user) == MessageObject.getObjectPeerId(userSeen.user)) {
                     if (userSeen.date > 0) {
                         this.users.get(i).date = userSeen.date;
                     }
@@ -308,6 +314,7 @@ public class ReactedHeaderView extends FrameLayout {
         String formatPluralString;
         boolean z;
         boolean z2;
+        boolean z3;
         if (this.seenUsers.isEmpty() || this.seenUsers.size() < i) {
             formatPluralString = LocaleController.formatPluralString("ReactionsCount", i, new Object[0]);
         } else {
@@ -345,17 +352,39 @@ public class ReactedHeaderView extends FrameLayout {
                 int i2 = 0;
                 while (true) {
                     if (i2 >= this.users.size()) {
-                        z2 = false;
+                        z3 = false;
                         break;
-                    } else if (this.users.get(i2).user.id == next.id) {
-                        z2 = true;
+                    } else if (this.users.get(i2).dialogId == next.id) {
+                        z3 = true;
                         break;
                     } else {
                         i2++;
                     }
                 }
-                if (!z2) {
+                if (!z3) {
                     this.users.add(new UserSeen(next, 0));
+                }
+            }
+        }
+        Iterator<TLRPC$Chat> it2 = tLRPC$TL_messages_messageReactionsList.chats.iterator();
+        while (it2.hasNext()) {
+            TLRPC$Chat next2 = it2.next();
+            TLRPC$Peer tLRPC$Peer2 = this.message.messageOwner.from_id;
+            if (tLRPC$Peer2 != null && next2.id != tLRPC$Peer2.user_id) {
+                int i3 = 0;
+                while (true) {
+                    if (i3 >= this.users.size()) {
+                        z2 = false;
+                        break;
+                    } else if (this.users.get(i3).dialogId == (-next2.id)) {
+                        z2 = true;
+                        break;
+                    } else {
+                        i3++;
+                    }
+                }
+                if (!z2) {
+                    this.users.add(new UserSeen(next2, 0));
                 }
             }
         }

@@ -61,7 +61,7 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
 
     abstract boolean getOccupyStatusbar();
 
-    public void openAnimationFinished() {
+    public void openAnimationFinished(boolean z) {
     }
 
     public void openAnimationStarted(boolean z) {
@@ -122,7 +122,7 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
                     baseFragment.onTransitionAnimationEnd(true, false);
                     this.openedProgress = 1.0f;
                     updateOpenAnimationProgress();
-                    openAnimationFinished();
+                    openAnimationFinished(false);
                     return;
                 }
                 this.notificationsLocker.lock();
@@ -150,7 +150,7 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
                         RightSlidingDialogContainer rightSlidingDialogContainer2 = RightSlidingDialogContainer.this;
                         rightSlidingDialogContainer2.openedProgress = 1.0f;
                         rightSlidingDialogContainer2.updateOpenAnimationProgress();
-                        RightSlidingDialogContainer.this.openAnimationFinished();
+                        RightSlidingDialogContainer.this.openAnimationFinished(false);
                     }
                 });
                 this.openAnimator.setDuration(250L);
@@ -324,9 +324,9 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
                 this.currentFragment.onFragmentDestroy();
                 removeAllViews();
                 this.currentFragment = null;
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             }
-            openAnimationFinished();
+            openAnimationFinished(false);
             return;
         }
         this.notificationsLocker.lock();
@@ -355,9 +355,9 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
                     RightSlidingDialogContainer.this.currentFragment.onFragmentDestroy();
                     RightSlidingDialogContainer.this.removeAllViews();
                     RightSlidingDialogContainer.this.currentFragment = null;
-                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
                 }
-                RightSlidingDialogContainer.this.openAnimationFinished();
+                RightSlidingDialogContainer.this.openAnimationFinished(false);
             }
         });
         this.openAnimator.setDuration(250L);
@@ -434,7 +434,7 @@ public abstract class RightSlidingDialogContainer extends FrameLayout {
                                     return;
                                 }
                                 rightSlidingDialogContainer.openAnimator = null;
-                                rightSlidingDialogContainer.openAnimationFinished();
+                                rightSlidingDialogContainer.openAnimationFinished(true);
                             }
                         });
                         this.openAnimator.setDuration(250L);

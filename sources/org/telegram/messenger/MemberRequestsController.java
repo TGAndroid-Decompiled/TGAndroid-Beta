@@ -92,7 +92,7 @@ public class MemberRequestsController extends BaseController {
             NotificationCenter notificationCenter = getNotificationCenter();
             int i = NotificationCenter.chatInfoDidLoad;
             Boolean bool = Boolean.FALSE;
-            notificationCenter.postNotificationName(i, chatFull, 0, bool, bool);
+            notificationCenter.lambda$postNotificationNameOnUIThread$1(i, chatFull, 0, bool, bool);
         }
     }
 }

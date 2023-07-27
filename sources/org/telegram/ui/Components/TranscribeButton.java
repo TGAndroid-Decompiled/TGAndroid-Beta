@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -673,14 +674,15 @@ public class TranscribeButton {
         NotificationCenter notificationCenter = NotificationCenter.getInstance(i);
         int i2 = NotificationCenter.voiceTranscriptionUpdate;
         Boolean bool = Boolean.TRUE;
-        notificationCenter.postNotificationName(i2, messageObject, null, null, bool, bool);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, messageObject, null, null, bool, bool);
     }
 
     public static void lambda$transcribePressed$4(final MessageObject messageObject, long j, int i, long j2, int i2, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         final long j3;
         boolean z;
-        final String str = "";
-        if (tLObject instanceof TLRPC$TL_messages_transcribedAudio) {
+        boolean z2 = tLObject instanceof TLRPC$TL_messages_transcribedAudio;
+        final String str = BuildConfig.APP_CENTER_HASH;
+        if (z2) {
             TLRPC$TL_messages_transcribedAudio tLRPC$TL_messages_transcribedAudio = (TLRPC$TL_messages_transcribedAudio) tLObject;
             String str2 = tLRPC$TL_messages_transcribedAudio.text;
             long j4 = tLRPC$TL_messages_transcribedAudio.transcription_id;
@@ -720,7 +722,7 @@ public class TranscribeButton {
     }
 
     public static void lambda$transcribePressed$5(int i, MessageObject messageObject) {
-        NotificationCenter.getInstance(i).postNotificationName(NotificationCenter.voiceTranscriptionUpdate, messageObject, null, null, Boolean.FALSE, null);
+        NotificationCenter.getInstance(i).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject, null, null, Boolean.FALSE, null);
     }
 
     public static boolean finishTranscription(final MessageObject messageObject, final long j, final String str) {
@@ -757,7 +759,7 @@ public class TranscribeButton {
         NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
         int i = NotificationCenter.voiceTranscriptionUpdate;
         Boolean bool = Boolean.TRUE;
-        notificationCenter.postNotificationName(i, messageObject, Long.valueOf(j), str, bool, bool);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i, messageObject, Long.valueOf(j), str, bool, bool);
     }
 
     public static void showOffTranscribe(MessageObject messageObject) {
@@ -782,6 +784,6 @@ public class TranscribeButton {
     }
 
     public static void lambda$showOffTranscribe$7(MessageObject messageObject) {
-        NotificationCenter.getInstance(messageObject.currentAccount).postNotificationName(NotificationCenter.voiceTranscriptionUpdate, messageObject);
+        NotificationCenter.getInstance(messageObject.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.voiceTranscriptionUpdate, messageObject);
     }
 }

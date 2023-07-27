@@ -185,7 +185,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
         int i2;
         String str2;
         if (this.emptyView == null) {
-            StickerEmptyView stickerEmptyView = new StickerEmptyView(this.fragment.getParentActivity(), null, 2, this.fragment.getResourceProvider());
+            StickerEmptyView stickerEmptyView = new StickerEmptyView(this.fragment.getParentActivity(), null, 16, this.fragment.getResourceProvider());
             this.emptyView = stickerEmptyView;
             TextView textView = stickerEmptyView.title;
             if (this.isChannel) {

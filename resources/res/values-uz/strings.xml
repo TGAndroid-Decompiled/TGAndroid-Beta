@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Javob berish</string>
+    <string name="call_notification_answer_video_action">Video</string>
+    <string name="call_notification_decline_action">Rad etish</string>
+    <string name="call_notification_hang_up_action">Tugatish</string>
+    <string name="call_notification_incoming_text">Kiruvchi chaqiruv</string>
+    <string name="call_notification_ongoing_text">Joriy chaqiruv</string>
+    <string name="call_notification_screening_text">Kiruvchi chaqiruvni filtrlash</string>
     <string name="common_google_play_services_enable_button">Yoqish</string>
     <string name="common_google_play_services_enable_text">Google Play xizmatlari yoqilmaguncha, %1$s ishlamaydi.</string>
     <string name="common_google_play_services_enable_title">Google Play xizmatlarini yoqish</string>

@@ -534,7 +534,7 @@ public class LinkSpanDrawable<S extends CharacterStyle> {
             int lineForVertical = layout.getLineForVertical(paddingTop);
             float f = paddingLeft;
             int offsetForHorizontal = layout.getOffsetForHorizontal(lineForVertical, f);
-            float lineLeft = getLayout().getLineLeft(lineForVertical);
+            float lineLeft = layout.getLineLeft(lineForVertical);
             if (lineLeft <= f && lineLeft + layout.getLineWidth(lineForVertical) >= f && paddingTop >= 0 && paddingTop <= layout.getHeight()) {
                 ClickableSpan[] clickableSpanArr = (ClickableSpan[]) new SpannableString(layout.getText()).getSpans(offsetForHorizontal, offsetForHorizontal, ClickableSpan.class);
                 if (clickableSpanArr.length != 0 && !AndroidUtilities.isAccessibilityScreenReaderEnabled()) {

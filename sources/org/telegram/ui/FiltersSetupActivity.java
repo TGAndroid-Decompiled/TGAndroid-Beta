@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -495,7 +496,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
         notificationCenter.removeObserver(this, i);
         getNotificationCenter().removeObserver(this, NotificationCenter.suggestedFiltersLoaded);
         if (this.orderChanged) {
-            getNotificationCenter().postNotificationName(i, new Object[0]);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
             getMessagesStorage().saveDialogFiltersOrder();
             TLRPC$TL_messages_updateDialogFiltersOrder tLRPC$TL_messages_updateDialogFiltersOrder = new TLRPC$TL_messages_updateDialogFiltersOrder();
             ArrayList<MessagesController.DialogFilter> dialogFilters = getMessagesController().getDialogFilters();
@@ -503,7 +504,12 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             for (int i2 = 0; i2 < size; i2++) {
                 tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(dialogFilters.get(i2).id));
             }
-            getConnectionsManager().sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, FiltersSetupActivity$$ExternalSyntheticLambda1.INSTANCE);
+            getConnectionsManager().sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    FiltersSetupActivity.lambda$onFragmentDestroy$0(tLObject, tLRPC$TL_error);
+                }
+            });
         }
         super.onFragmentDestroy();
     }
@@ -772,7 +778,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                     FiltersSetupActivity.ListAdapter.this.lambda$onCreateViewHolder$1(currentFilter);
                 }
             });
-            makeOptions.add(R.drawable.msg_delete, LocaleController.getString("FilterDeleteItem", R.string.FilterDeleteItem), true, new Runnable() {
+            makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("FilterDeleteItem", R.string.FilterDeleteItem), true, new Runnable() {
                 @Override
                 public final void run() {
                     FiltersSetupActivity.ListAdapter.this.lambda$onCreateViewHolder$6(currentFilter);
@@ -978,7 +984,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
 
         public void lambda$onCreateViewHolder$8(TLRPC$TL_dialogFilterSuggested tLRPC$TL_dialogFilterSuggested) {
             FiltersSetupActivity.this.getMessagesController().suggestedFilters.remove(tLRPC$TL_dialogFilterSuggested);
-            FiltersSetupActivity.this.getNotificationCenter().postNotificationName(NotificationCenter.dialogFiltersUpdated, new Object[0]);
+            FiltersSetupActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogFiltersUpdated, new Object[0]);
         }
 
         @Override
@@ -1008,7 +1014,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_switchTrackChecked), PorterDuff.Mode.MULTIPLY));
                 drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck), PorterDuff.Mode.MULTIPLY));
                 CombinedDrawable combinedDrawable = new CombinedDrawable(drawable, drawable2);
-                ((TextCell) viewHolder.itemView).setTextAndIcon(((Object) itemInner.text) + "", combinedDrawable, false);
+                ((TextCell) viewHolder.itemView).setTextAndIcon(((Object) itemInner.text) + BuildConfig.APP_CENTER_HASH, combinedDrawable, false);
             }
         }
 

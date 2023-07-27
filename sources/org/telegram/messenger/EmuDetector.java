@@ -144,7 +144,7 @@ public class EmuDetector {
             PackageManager packageManager = this.mContext.getPackageManager();
             for (String str : this.mListPackageName) {
                 Intent launchIntentForPackage = packageManager.getLaunchIntentForPackage(str);
-                if (launchIntentForPackage != null && !packageManager.queryIntentActivities(launchIntentForPackage, CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT).isEmpty()) {
+                if (launchIntentForPackage != null && !packageManager.queryIntentActivities(launchIntentForPackage, 65536).isEmpty()) {
                     return true;
                 }
             }

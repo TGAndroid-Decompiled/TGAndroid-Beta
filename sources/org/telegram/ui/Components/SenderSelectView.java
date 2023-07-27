@@ -13,6 +13,7 @@ import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -22,8 +23,21 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatInvite;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 public class SenderSelectView extends View {
-    private static final FloatPropertyCompat<SenderSelectView> MENU_PROGRESS = new SimpleFloatPropertyCompat("menuProgress", SenderSelectView$$ExternalSyntheticLambda3.INSTANCE, SenderSelectView$$ExternalSyntheticLambda4.INSTANCE).setMultiplier(100.0f);
+    private static final FloatPropertyCompat<SenderSelectView> MENU_PROGRESS = new SimpleFloatPropertyCompat("menuProgress", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((SenderSelectView) obj).menuProgress;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            SenderSelectView.lambda$static$1((SenderSelectView) obj, f);
+        }
+    }).setMultiplier(100.0f);
     private AvatarDrawable avatarDrawable;
     private ImageReceiver avatarImage;
     private Paint backgroundPaint;
@@ -51,7 +65,7 @@ public class SenderSelectView extends View {
         this.menuPaint.setStrokeCap(Paint.Cap.ROUND);
         this.menuPaint.setStyle(Paint.Style.STROKE);
         updateColors();
-        setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, ""));
+        setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, BuildConfig.APP_CENTER_HASH));
     }
 
     private void updateColors() {
@@ -113,7 +127,7 @@ public class SenderSelectView extends View {
         } else if (tLObject instanceof TLRPC$Chat) {
             str = ((TLRPC$Chat) tLObject).title;
         } else {
-            str = tLObject instanceof TLRPC$ChatInvite ? ((TLRPC$ChatInvite) tLObject).title : "";
+            str = tLObject instanceof TLRPC$ChatInvite ? ((TLRPC$ChatInvite) tLObject).title : BuildConfig.APP_CENTER_HASH;
         }
         setContentDescription(LocaleController.formatString("AccDescrSendAsPeer", R.string.AccDescrSendAsPeer, str));
         this.avatarDrawable.setInfo(tLObject);

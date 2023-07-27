@@ -34,6 +34,7 @@ public class StickerCell extends FrameLayout {
     private long lastUpdateTime;
     private Object parentObject;
     private PremiumLockIconView premiumIconView;
+    Theme.ResourcesProvider resourcesProvider;
     private float scale;
     private boolean scaled;
     private boolean showPremiumLock;
@@ -43,8 +44,9 @@ public class StickerCell extends FrameLayout {
         new AccelerateInterpolator(0.5f);
     }
 
-    public StickerCell(Context context) {
+    public StickerCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.resourcesProvider = resourcesProvider;
         BackupImageView backupImageView = new BackupImageView(context);
         this.imageView = backupImageView;
         backupImageView.setAspectFit(true);
@@ -90,7 +92,7 @@ public class StickerCell extends FrameLayout {
         }
         if (tLRPC$Document != null) {
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundGray, 1.0f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundGray, 1.0f, 1.0f, this.resourcesProvider);
             if (MessageObject.canAutoplayAnimatedSticker(tLRPC$Document)) {
                 if (svgThumb != null) {
                     this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), "80_80", (String) null, svgThumb, this.parentObject);

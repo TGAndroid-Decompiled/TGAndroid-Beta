@@ -24,7 +24,7 @@ public class AutoDeleteMediaTask {
         });
     }
 
-    public static void lambda$run$1(int r27, java.io.File r28) {
+    public static void lambda$run$1(int r29, java.io.File r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.AutoDeleteMediaTask.lambda$run$1(int, java.io.File):void");
     }
 

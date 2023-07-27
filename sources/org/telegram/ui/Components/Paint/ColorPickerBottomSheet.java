@@ -631,7 +631,14 @@ public class ColorPickerBottomSheet extends BottomSheet {
                     ColorPickerBottomSheet.SlidersPickerView.this.lambda$new$0(view, z);
                 }
             });
-            this.hexEdit.setOnEditorActionListener(ColorPickerBottomSheet$SlidersPickerView$$ExternalSyntheticLambda1.INSTANCE);
+            this.hexEdit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public final boolean onEditorAction(TextView textView2, int i, KeyEvent keyEvent) {
+                    boolean lambda$new$1;
+                    lambda$new$1 = ColorPickerBottomSheet.SlidersPickerView.lambda$new$1(textView2, i, keyEvent);
+                    return lambda$new$1;
+                }
+            });
             linearLayout.addView(this.hexEdit, LayoutHelper.createLinear(72, 36));
         }
 
@@ -728,7 +735,14 @@ public class ColorPickerBottomSheet extends BottomSheet {
                     ColorPickerBottomSheet.SliderCell.this.lambda$new$0(view, z);
                 }
             });
-            this.valueView.setOnEditorActionListener(ColorPickerBottomSheet$SliderCell$$ExternalSyntheticLambda1.INSTANCE);
+            this.valueView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public final boolean onEditorAction(TextView textView2, int i, KeyEvent keyEvent) {
+                    boolean lambda$new$1;
+                    lambda$new$1 = ColorPickerBottomSheet.SliderCell.lambda$new$1(textView2, i, keyEvent);
+                    return lambda$new$1;
+                }
+            });
             addView(this.valueView, LayoutHelper.createFrame(72, 36, 85));
         }
 

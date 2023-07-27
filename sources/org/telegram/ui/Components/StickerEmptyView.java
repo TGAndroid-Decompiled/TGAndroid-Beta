@@ -13,7 +13,6 @@ import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
@@ -26,7 +25,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
     int currentAccount;
     int keyboardSize;
     private int lastH;
-    private LinearLayout linearLayout;
+    public LinearLayout linearLayout;
     boolean preventMoving;
     private RadialProgressView progressBar;
     private boolean progressShowing;
@@ -105,7 +104,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         textView2.setTextColor(getThemedColor(i3));
         textView2.setTextSize(1, 14.0f);
         textView2.setGravity(17);
-        this.linearLayout.addView(this.stickerView, LayoutHelper.createLinear((int) MessagesStorage.LAST_DB_VERSION, (int) MessagesStorage.LAST_DB_VERSION, 1));
+        this.linearLayout.addView(this.stickerView, LayoutHelper.createLinear(117, 117, 1));
         this.linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 12, 0, 0));
         this.linearLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 0, 8, 0, 0));
         addView(this.linearLayout, LayoutHelper.createFrame(-2, -2.0f, 17, 46.0f, 0.0f, 46.0f, 30.0f));
@@ -158,6 +157,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         if (getVisibility() != i && i == 0) {
             if (this.progressShowing) {
                 this.linearLayout.animate().alpha(0.0f).scaleY(0.8f).scaleX(0.8f).setDuration(150L).start();
+                this.progressView.animate().setListener(null).cancel();
                 this.progressView.setVisibility(0);
                 this.progressView.setAlpha(1.0f);
             } else {
@@ -227,7 +227,7 @@ public class StickerEmptyView extends FrameLayout implements NotificationCenter.
         String str = null;
         tLRPC$Document2 = null;
         tLRPC$Document2 = null;
-        if (this.stickerType == 2) {
+        if (this.stickerType == 16) {
             tLRPC$Document = MediaDataController.getInstance(this.currentAccount).getEmojiAnimatedSticker("👍");
             tLRPC$TL_messages_stickerSet = null;
         } else {

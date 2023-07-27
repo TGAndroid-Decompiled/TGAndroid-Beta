@@ -1,6 +1,7 @@
 package org.telegram.messenger.video;
 
 import android.graphics.SurfaceTexture;
+import android.opengl.GLES20;
 import android.view.Surface;
 import java.util.ArrayList;
 import javax.microedition.khronos.egl.EGL10;
@@ -8,8 +9,10 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.egl.EGLContext;
 import javax.microedition.khronos.egl.EGLDisplay;
 import javax.microedition.khronos.egl.EGLSurface;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.ui.Stories.recorder.StoryEntry;
 public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private static final int EGL_CONTEXT_CLIENT_VERSION = 12440;
     private static final int EGL_OPENGL_ES2_BIT = 4;
@@ -23,8 +26,8 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
     private EGLSurface mEGLSurface = null;
     private final Object mFrameSyncObject = new Object();
 
-    public OutputSurface(MediaController.SavedFilterState savedFilterState, String str, String str2, ArrayList<VideoEditedInfo.MediaEntity> arrayList, MediaController.CropState cropState, int i, int i2, int i3, int i4, int i5, float f, boolean z) {
-        TextureRenderer textureRenderer = new TextureRenderer(savedFilterState, str, str2, arrayList, cropState, i, i2, i3, i4, i5, f, z);
+    public OutputSurface(MediaController.SavedFilterState savedFilterState, String str, String str2, ArrayList<VideoEditedInfo.MediaEntity> arrayList, MediaController.CropState cropState, int i, int i2, int i3, int i4, int i5, float f, boolean z, Integer num, Integer num2, StoryEntry.HDRInfo hDRInfo, ArrayList<StoryEntry.Part> arrayList2) {
+        TextureRenderer textureRenderer = new TextureRenderer(savedFilterState, str, str2, arrayList, cropState, i, i2, i3, i4, i5, f, z, num, num2, hDRInfo, arrayList2);
         this.mTextureRender = textureRenderer;
         textureRenderer.surfaceCreated();
         SurfaceTexture surfaceTexture = new SurfaceTexture(this.mTextureRender.getTextureId());
@@ -142,7 +145,16 @@ public class OutputSurface implements SurfaceTexture.OnFrameAvailableListener {
         }
     }
 
-    public void changeFragmentShader(String str, String str2) {
-        this.mTextureRender.changeFragmentShader(str, str2);
+    public void changeFragmentShader(String str, String str2, boolean z) {
+        this.mTextureRender.changeFragmentShader(str, str2, z);
+    }
+
+    public boolean supportsEXTYUV() {
+        try {
+            return GLES20.glGetString(7939).contains("GL_EXT_YUV_target");
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
     }
 }

@@ -43,6 +43,7 @@ public class GroupCreateUserCell extends FrameLayout {
     private SimpleTextView nameTextView;
     private int padding;
     private Paint paint;
+    Theme.ResourcesProvider resourcesProvider;
     private boolean showSelfAsSaved;
     private SimpleTextView statusTextView;
 
@@ -52,12 +53,13 @@ public class GroupCreateUserCell extends FrameLayout {
     }
 
     public GroupCreateUserCell(Context context, int i, int i2, boolean z) {
-        this(context, i, i2, z, false);
+        this(context, i, i2, z, false, null);
     }
 
-    public GroupCreateUserCell(Context context, int i, int i2, boolean z, boolean z2) {
+    public GroupCreateUserCell(Context context, int i, int i2, boolean z, boolean z2, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
+        this.resourcesProvider = resourcesProvider;
         this.checkBoxType = i;
         this.forceDarkTheme = z2;
         this.drawDivider = false;
@@ -78,7 +80,7 @@ public class GroupCreateUserCell extends FrameLayout {
         };
         this.nameTextView = simpleTextView;
         NotificationCenter.listenEmojiLoading(simpleTextView);
-        this.nameTextView.setTextColor(Theme.getColor(this.forceDarkTheme ? Theme.key_voipgroup_nameText : Theme.key_windowBackgroundWhiteBlackText));
+        this.nameTextView.setTextColor(Theme.getColor(this.forceDarkTheme ? Theme.key_voipgroup_nameText : Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setTextSize(16);
         this.nameTextView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
@@ -228,14 +230,14 @@ public class GroupCreateUserCell extends FrameLayout {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.checkBoxType == 2 && (this.isChecked || this.checkProgress > 0.0f)) {
-            this.paint.setColor(Theme.getColor(Theme.key_checkboxSquareBackground));
+            this.paint.setColor(Theme.getColor(Theme.key_checkboxSquareBackground, this.resourcesProvider));
             canvas.drawCircle(this.avatarImageView.getLeft() + (this.avatarImageView.getMeasuredWidth() / 2), this.avatarImageView.getTop() + (this.avatarImageView.getMeasuredHeight() / 2), AndroidUtilities.dp(18.0f) + (AndroidUtilities.dp(4.0f) * this.checkProgress), this.paint);
         }
         if (this.drawDivider) {
             int dp = AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : this.padding + 72);
             int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(LocaleController.isRTL ? this.padding + 72 : 0.0f);
             if (this.forceDarkTheme) {
-                Theme.dividerExtraPaint.setColor(Theme.getColor(Theme.key_voipgroup_actionBar));
+                Theme.dividerExtraPaint.setColor(Theme.getColor(Theme.key_voipgroup_actionBar, this.resourcesProvider));
                 canvas.drawRect(dp, getMeasuredHeight() - 1, measuredWidth, getMeasuredHeight(), Theme.dividerExtraPaint);
                 return;
             }

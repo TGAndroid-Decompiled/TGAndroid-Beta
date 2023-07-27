@@ -21,17 +21,20 @@ import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.GroupCallUserCell;
+import org.telegram.ui.Stories.StoriesGradientTools;
 public class AvatarsDrawable {
     private boolean attached;
     boolean centered;
     public int count;
     int currentStyle;
+    public boolean drawStoriesCircle;
     public int height;
     private boolean isInCall;
     private int overrideSize;
     View parent;
     Random random;
     private boolean showSavedMessages;
+    StoriesGradientTools storiesTools;
     private boolean transitionInProgress;
     ValueAnimator transitionProgressAnimator;
     boolean updateAfterTransition;
@@ -43,6 +46,7 @@ public class AvatarsDrawable {
     float transitionProgress = 1.0f;
     private Paint paint = new Paint(1);
     private Paint xRefP = new Paint(1);
+    private float overrideSizeStepFactor = 0.8f;
     private float overrideAlpha = 1.0f;
     public long transitionDuration = 220;
 
@@ -116,7 +120,8 @@ public class AvatarsDrawable {
         }
         ValueAnimator valueAnimator = this.transitionProgressAnimator;
         if (valueAnimator != null) {
-            valueAnimator.cancel();
+            valueAnimator.removeAllListeners();
+            this.transitionProgressAnimator.cancel();
             if (this.transitionInProgress) {
                 swapStates();
                 this.transitionInProgress = false;
@@ -198,6 +203,10 @@ public class AvatarsDrawable {
 
     public void setSize(int i) {
         this.overrideSize = i;
+    }
+
+    public void setStepFactor(float f) {
+        this.overrideSizeStepFactor = f;
     }
 
     public void animateFromState(AvatarsDrawable avatarsDrawable, int i, boolean z) {
@@ -290,7 +299,6 @@ public class AvatarsDrawable {
         }
         drawingStateArr[i].lastSpeakTime = -1L;
         this.animatingStates[i].object = tLObject;
-        boolean z = true;
         if (tLObject instanceof TLRPC$TL_groupCallParticipant) {
             TLRPC$TL_groupCallParticipant tLRPC$TL_groupCallParticipant = (TLRPC$TL_groupCallParticipant) tLObject;
             this.animatingStates[i].participant = tLRPC$TL_groupCallParticipant;
@@ -304,12 +312,14 @@ public class AvatarsDrawable {
                 chat = MessagesController.getInstance(i2).getChat(Long.valueOf(-peerId));
                 this.animatingStates[i].avatarDrawable.setInfo(chat);
             }
-            if (this.currentStyle != 4) {
-                this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.active_date;
-            } else if (peerId == AccountInstance.getInstance(i2).getUserConfig().getClientUserId()) {
-                this.animatingStates[i].lastSpeakTime = 0L;
-            } else if (this.isInCall) {
-                this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.lastActiveDate;
+            if (this.currentStyle == 4) {
+                if (peerId == AccountInstance.getInstance(i2).getUserConfig().getClientUserId()) {
+                    this.animatingStates[i].lastSpeakTime = 0L;
+                } else if (this.isInCall) {
+                    this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.lastActiveDate;
+                } else {
+                    this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.active_date;
+                }
             } else {
                 this.animatingStates[i].lastSpeakTime = tLRPC$TL_groupCallParticipant.active_date;
             }
@@ -342,21 +352,18 @@ public class AvatarsDrawable {
         } else {
             this.animatingStates[i].imageReceiver.setImageBitmap(this.animatingStates[i].avatarDrawable);
         }
-        int i3 = this.currentStyle;
-        if (i3 != 4 && i3 != 10) {
-            z = false;
-        }
-        this.animatingStates[i].imageReceiver.setRoundRadius(AndroidUtilities.dp(z ? 16.0f : 12.0f));
-        float size = getSize();
-        this.animatingStates[i].imageReceiver.setImageCoords(0.0f, 0.0f, size, size);
+        int size = getSize();
+        this.animatingStates[i].imageReceiver.setRoundRadius(size / 2);
+        float f = size;
+        this.animatingStates[i].imageReceiver.setImageCoords(0.0f, 0.0f, f, f);
         invalidate();
     }
 
-    public void onDraw(android.graphics.Canvas r34) {
+    public void onDraw(android.graphics.Canvas r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AvatarsDrawable.onDraw(android.graphics.Canvas):void");
     }
 
-    private int getSize() {
+    public int getSize() {
         int i = this.overrideSize;
         if (i != 0) {
             return i;

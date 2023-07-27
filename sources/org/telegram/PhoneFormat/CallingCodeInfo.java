@@ -2,6 +2,7 @@ package org.telegram.PhoneFormat;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import org.telegram.messenger.BuildConfig;
 public class CallingCodeInfo {
     public String callingCode;
     public ArrayList<String> intlPrefixes;
@@ -10,7 +11,7 @@ public class CallingCodeInfo {
 
     public CallingCodeInfo() {
         new ArrayList();
-        this.callingCode = "";
+        this.callingCode = BuildConfig.APP_CENTER_HASH;
         this.trunkPrefixes = new ArrayList<>();
         this.intlPrefixes = new ArrayList<>();
         this.ruleSets = new ArrayList<>();

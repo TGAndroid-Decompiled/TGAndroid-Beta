@@ -39,6 +39,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
@@ -72,7 +73,9 @@ import org.telegram.ui.Components.HintView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
-public class CalendarActivity extends BaseFragment {
+import org.telegram.ui.Stories.StoriesController;
+import org.telegram.ui.Stories.StoryViewer;
+public class CalendarActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     TextPaint activeTextPaint;
     CalendarAdapter adapter;
     BackDrawable backDrawable;
@@ -114,6 +117,10 @@ public class CalendarActivity extends BaseFragment {
     int startFromMonth;
     int startFromYear;
     int startOffset;
+    private StoriesController.StoriesList storiesList;
+    private int storiesPlaceDay;
+    private StoryViewer.HolderDrawAbove storiesPlaceDrawAbove;
+    private StoryViewer.PlaceProvider storiesPlaceProvider;
     TextPaint textPaint;
     TextPaint textPaint2;
 
@@ -154,13 +161,107 @@ public class CalendarActivity extends BaseFragment {
     public boolean onFragmentCreate() {
         this.dialogId = getArguments().getLong("dialog_id");
         getArguments().getInt("topic_id");
-        this.calendarType = getArguments().getInt("type");
+        int i = getArguments().getInt("type");
+        this.calendarType = i;
+        if (i == 2) {
+            this.storiesList = MessagesController.getInstance(this.currentAccount).getStoriesController().getStoriesList(this.dialogId, 0);
+        } else if (i == 3) {
+            this.storiesList = MessagesController.getInstance(this.currentAccount).getStoriesController().getStoriesList(getUserConfig().clientUserId, 1);
+        }
+        if (this.storiesList != null) {
+            this.storiesPlaceProvider = new AnonymousClass1();
+        }
         if (this.dialogId >= 0) {
             this.canClearHistory = true;
         } else {
             this.canClearHistory = false;
         }
+        if (this.storiesList != null) {
+            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesListUpdated);
+        }
         return super.onFragmentCreate();
+    }
+
+    public class AnonymousClass1 implements StoryViewer.PlaceProvider {
+        AnonymousClass1() {
+        }
+
+        @Override
+        public boolean findView(long j, int i, int i2, int i3, StoryViewer.TransitionViewHolder transitionViewHolder) {
+            if (CalendarActivity.this.listView == null) {
+                return false;
+            }
+            for (int i4 = 0; i4 < CalendarActivity.this.listView.getChildCount(); i4++) {
+                View childAt = CalendarActivity.this.listView.getChildAt(i4);
+                if (childAt instanceof MonthView) {
+                    MonthView monthView = (MonthView) childAt;
+                    if (monthView.messagesByDays == null) {
+                        continue;
+                    } else {
+                        for (int i5 = 0; i5 < monthView.messagesByDays.size(); i5++) {
+                            ArrayList<Integer> arrayList = monthView.messagesByDays.valueAt(i5).storyItems;
+                            if (arrayList != null && arrayList.contains(Integer.valueOf(i2))) {
+                                ImageReceiver imageReceiver = monthView.imagesByDays.get(CalendarActivity.this.storiesPlaceDay = monthView.messagesByDays.keyAt(i5));
+                                if (imageReceiver == null) {
+                                    return false;
+                                }
+                                transitionViewHolder.storyImage = imageReceiver;
+                                if (CalendarActivity.this.storiesPlaceDrawAbove == null) {
+                                    CalendarActivity.this.storiesPlaceDrawAbove = new StoryViewer.HolderDrawAbove() {
+                                        @Override
+                                        public final void draw(Canvas canvas, RectF rectF, float f) {
+                                            CalendarActivity.AnonymousClass1.this.lambda$findView$0(canvas, rectF, f);
+                                        }
+                                    };
+                                }
+                                transitionViewHolder.drawAbove = CalendarActivity.this.storiesPlaceDrawAbove;
+                                transitionViewHolder.view = monthView;
+                                transitionViewHolder.clipParent = ((BaseFragment) CalendarActivity.this).fragmentView;
+                                transitionViewHolder.clipTop = AndroidUtilities.dp(36.0f);
+                                transitionViewHolder.clipBottom = ((BaseFragment) CalendarActivity.this).fragmentView.getBottom();
+                                transitionViewHolder.avatarImage = null;
+                                return true;
+                            }
+                        }
+                        continue;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public void lambda$findView$0(Canvas canvas, RectF rectF, float f) {
+            CalendarActivity.this.blackoutPaint.setAlpha((int) (80.0f * f));
+            float lerp = AndroidUtilities.lerp(0.0f, Math.min(rectF.width(), rectF.height()) / 2.0f, f);
+            canvas.drawRoundRect(rectF, lerp, lerp, CalendarActivity.this.blackoutPaint);
+            float clamp = Utilities.clamp((f - 0.5f) / 0.5f, 1.0f, 0.0f);
+            if (clamp > 0.0f) {
+                int alpha = CalendarActivity.this.activeTextPaint.getAlpha();
+                CalendarActivity.this.activeTextPaint.setAlpha((int) (alpha * clamp));
+                canvas.save();
+                float min = Math.min(2.0f, Math.min(rectF.height(), rectF.width()) / AndroidUtilities.dp(44.0f));
+                canvas.scale(min, min, rectF.centerX(), rectF.centerY());
+                canvas.drawText(Integer.toString(CalendarActivity.this.storiesPlaceDay + 1), rectF.centerX(), rectF.centerY() + AndroidUtilities.dp(5.0f), CalendarActivity.this.activeTextPaint);
+                canvas.restore();
+                CalendarActivity.this.activeTextPaint.setAlpha(alpha);
+            }
+        }
+
+        @Override
+        public void preLayout(long j, int i, Runnable runnable) {
+            if (CalendarActivity.this.listView == null) {
+                runnable.run();
+            }
+            CalendarActivity.this.listView.post(runnable);
+        }
+    }
+
+    @Override
+    public void onFragmentDestroy() {
+        super.onFragmentDestroy();
+        if (this.storiesList != null) {
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesListUpdated);
+        }
     }
 
     @Override
@@ -203,7 +304,7 @@ public class CalendarActivity extends BaseFragment {
         recyclerListView.setLayoutManager(linearLayoutManager);
         this.layoutManager.setReverseLayout(true);
         RecyclerListView recyclerListView2 = this.listView;
-        CalendarAdapter calendarAdapter = new CalendarAdapter();
+        CalendarAdapter calendarAdapter = new CalendarAdapter(this, null);
         this.adapter = calendarAdapter;
         recyclerListView2.setAdapter(calendarAdapter);
         this.listView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -368,6 +469,12 @@ public class CalendarActivity extends BaseFragment {
         if (this.loading || this.endReached) {
             return;
         }
+        if (this.storiesList != null) {
+            updateFromStoriesList();
+            this.storiesList.load(false, 100);
+            this.loading = this.storiesList.isLoading();
+            return;
+        }
         this.loading = true;
         TLRPC$TL_messages_getSearchResultsCalendar tLRPC$TL_messages_getSearchResultsCalendar = new TLRPC$TL_messages_getSearchResultsCalendar();
         int i = this.photosVideosTypeFilter;
@@ -418,7 +525,7 @@ public class CalendarActivity extends BaseFragment {
                     sparseArray = new SparseArray<>();
                     this.messagesByYearMounth.put(i4, sparseArray);
                 }
-                PeriodDay periodDay = new PeriodDay();
+                PeriodDay periodDay = new PeriodDay(this, null);
                 periodDay.messageObject = new MessageObject(this.currentAccount, tLRPC$TL_messages_searchResultsCalendar.messages.get(i3), false, false);
                 periodDay.date = (int) (calendar.getTimeInMillis() / 1000);
                 int i5 = this.startOffset + tLRPC$TL_messages_searchResultsCalendar.periods.get(i3).count;
@@ -451,7 +558,7 @@ public class CalendarActivity extends BaseFragment {
                 }
                 int i10 = calendar.get(i) - 1;
                 if (sparseArray2.get(i10, null) == null) {
-                    PeriodDay periodDay2 = new PeriodDay();
+                    PeriodDay periodDay2 = new PeriodDay(this, null);
                     periodDay2.hasImage = false;
                     periodDay2.date = (int) (calendar.getTimeInMillis() / 1000);
                     sparseArray2.put(i10, periodDay2);
@@ -507,8 +614,87 @@ public class CalendarActivity extends BaseFragment {
         }
     }
 
+    private void updateFromStoriesList() {
+        this.loading = this.storiesList.isLoading();
+        Calendar calendar = Calendar.getInstance();
+        this.messagesByYearMounth.clear();
+        this.minDate = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        for (int i = 0; i < this.storiesList.messageObjects.size(); i++) {
+            MessageObject messageObject = this.storiesList.messageObjects.get(i);
+            this.minDate = Math.min(this.minDate, messageObject.messageOwner.date);
+            calendar.setTimeInMillis(messageObject.messageOwner.date * 1000);
+            int i2 = (calendar.get(1) * 100) + calendar.get(2);
+            SparseArray<PeriodDay> sparseArray = this.messagesByYearMounth.get(i2);
+            if (sparseArray == null) {
+                sparseArray = new SparseArray<>();
+                this.messagesByYearMounth.put(i2, sparseArray);
+            }
+            int i3 = calendar.get(5) - 1;
+            PeriodDay periodDay = sparseArray.get(i3);
+            if (periodDay == null) {
+                periodDay = new PeriodDay(this, null);
+                periodDay.storyItems = new ArrayList<>();
+            }
+            periodDay.storyItems.add(Integer.valueOf(messageObject.getId()));
+            periodDay.messageObject = messageObject;
+            periodDay.date = (int) (calendar.getTimeInMillis() / 1000);
+            sparseArray.put(i3, periodDay);
+            int i4 = this.minMontYear;
+            if (i2 < i4 || i4 == 0) {
+                this.minMontYear = i2;
+            }
+        }
+        int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
+        for (int i5 = this.minDate; i5 < currentTimeMillis; i5 += 86400) {
+            calendar.setTimeInMillis(i5 * 1000);
+            calendar.set(11, 0);
+            calendar.set(12, 0);
+            calendar.set(13, 0);
+            calendar.set(14, 0);
+            int i6 = (calendar.get(1) * 100) + calendar.get(2);
+            SparseArray<PeriodDay> sparseArray2 = this.messagesByYearMounth.get(i6);
+            if (sparseArray2 == null) {
+                sparseArray2 = new SparseArray<>();
+                this.messagesByYearMounth.put(i6, sparseArray2);
+            }
+            int i7 = calendar.get(5) - 1;
+            if (sparseArray2.get(i7, null) == null) {
+                PeriodDay periodDay2 = new PeriodDay(this, null);
+                periodDay2.hasImage = false;
+                periodDay2.date = (int) (calendar.getTimeInMillis() / 1000);
+                sparseArray2.put(i7, periodDay2);
+            }
+        }
+        this.endReached = this.storiesList.isFull();
+        if (this.isOpened) {
+            this.checkEnterItems = true;
+        }
+        this.listView.invalidate();
+        int timeInMillis = ((int) (((calendar.getTimeInMillis() / 1000) - this.minDate) / 2629800)) + 1;
+        this.adapter.notifyItemRangeChanged(0, this.monthCount);
+        int i8 = this.monthCount;
+        if (timeInMillis > i8) {
+            this.adapter.notifyItemRangeInserted(i8 + 1, timeInMillis);
+            this.monthCount = timeInMillis;
+        }
+        if (this.endReached) {
+            resumeDelayedFragmentAnimation();
+        }
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        if (i == NotificationCenter.storiesListUpdated && this.storiesList == ((StoriesController.StoriesList) objArr[0])) {
+            updateFromStoriesList();
+        }
+    }
+
     public class CalendarAdapter extends RecyclerView.Adapter {
         private CalendarAdapter() {
+        }
+
+        CalendarAdapter(CalendarActivity calendarActivity, AnonymousClass1 anonymousClass1) {
+            this();
         }
 
         @Override
@@ -661,14 +847,22 @@ public class CalendarActivity extends BaseFragment {
             @SuppressLint({"NotifyDataSetChanged"})
             public boolean onSingleTapUp(MotionEvent motionEvent) {
                 PeriodDay dayAtCoord;
-                MessageObject messageObject;
-                Callback callback;
                 if (((BaseFragment) CalendarActivity.this).parentLayout == null) {
                     return false;
                 }
-                if (CalendarActivity.this.calendarType == 1 && MonthView.this.messagesByDays != null && (dayAtCoord = getDayAtCoord(motionEvent.getX(), motionEvent.getY())) != null && (messageObject = dayAtCoord.messageObject) != null && (callback = CalendarActivity.this.callback) != null) {
-                    callback.onDateSelected(messageObject.getId(), dayAtCoord.startOffset);
-                    CalendarActivity.this.finishFragment();
+                if (((CalendarActivity.this.calendarType == 1 && MonthView.this.messagesByDays != null) || CalendarActivity.this.storiesList != null) && (dayAtCoord = getDayAtCoord(motionEvent.getX(), motionEvent.getY())) != null && dayAtCoord.messageObject != null) {
+                    CalendarActivity calendarActivity = CalendarActivity.this;
+                    if (calendarActivity.callback != null) {
+                        if (calendarActivity.storiesList != null) {
+                            StoryViewer orCreateStoryViewer = CalendarActivity.this.getOrCreateStoryViewer();
+                            Context context = MonthView.this.getContext();
+                            MessageObject messageObject = dayAtCoord.messageObject;
+                            orCreateStoryViewer.open(context, messageObject.storyItem, messageObject.getId(), CalendarActivity.this.storiesList, true, CalendarActivity.this.storiesPlaceProvider);
+                        } else {
+                            CalendarActivity.this.callback.onDateSelected(dayAtCoord.messageObject.getId(), dayAtCoord.startOffset);
+                            CalendarActivity.this.finishFragment();
+                        }
+                    }
                 }
                 MonthView monthView = MonthView.this;
                 if (monthView.messagesByDays != null) {
@@ -690,24 +884,24 @@ public class CalendarActivity extends BaseFragment {
                                                     CalendarActivity.this.dateSelectedStart = dayAtCoord2.date;
                                                 }
                                             } else {
-                                                CalendarActivity calendarActivity = CalendarActivity.this;
-                                                calendarActivity.dateSelectedStart = calendarActivity.dateSelectedEnd = dayAtCoord2.date;
+                                                CalendarActivity calendarActivity2 = CalendarActivity.this;
+                                                calendarActivity2.dateSelectedStart = calendarActivity2.dateSelectedEnd = dayAtCoord2.date;
                                             }
                                         } else {
-                                            CalendarActivity calendarActivity2 = CalendarActivity.this;
-                                            calendarActivity2.dateSelectedEnd = calendarActivity2.dateSelectedStart;
+                                            CalendarActivity calendarActivity3 = CalendarActivity.this;
+                                            calendarActivity3.dateSelectedEnd = calendarActivity3.dateSelectedStart;
                                         }
                                     } else {
-                                        CalendarActivity calendarActivity3 = CalendarActivity.this;
-                                        calendarActivity3.dateSelectedStart = calendarActivity3.dateSelectedEnd;
+                                        CalendarActivity calendarActivity4 = CalendarActivity.this;
+                                        calendarActivity4.dateSelectedStart = calendarActivity4.dateSelectedEnd;
                                     }
                                 } else {
-                                    CalendarActivity calendarActivity4 = CalendarActivity.this;
-                                    calendarActivity4.dateSelectedStart = calendarActivity4.dateSelectedEnd = 0;
+                                    CalendarActivity calendarActivity5 = CalendarActivity.this;
+                                    calendarActivity5.dateSelectedStart = calendarActivity5.dateSelectedEnd = 0;
                                 }
                             } else {
-                                CalendarActivity calendarActivity5 = CalendarActivity.this;
-                                calendarActivity5.dateSelectedStart = calendarActivity5.dateSelectedEnd = dayAtCoord2.date;
+                                CalendarActivity calendarActivity6 = CalendarActivity.this;
+                                calendarActivity6.dateSelectedStart = calendarActivity6.dateSelectedEnd = dayAtCoord2.date;
                             }
                             CalendarActivity.this.updateTitle();
                             CalendarActivity.this.animateSelection();
@@ -1410,6 +1604,7 @@ public class CalendarActivity extends BaseFragment {
         float selectStartEndProgress;
         float startEnterDelay;
         int startOffset;
+        ArrayList<Integer> storyItems;
         float toSelProgress;
         float toSelSEProgress;
         boolean wasDrawn;
@@ -1418,6 +1613,10 @@ public class CalendarActivity extends BaseFragment {
             this.enterAlpha = 1.0f;
             this.startEnterDelay = 1.0f;
             this.hasImage = true;
+        }
+
+        PeriodDay(CalendarActivity calendarActivity, AnonymousClass1 anonymousClass1) {
+            this(calendarActivity);
         }
     }
 

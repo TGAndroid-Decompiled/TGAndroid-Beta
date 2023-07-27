@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.CharacterCompat;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
     public static int constructor = -908914376;
@@ -53,7 +52,7 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
         if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
             this.groupcall_default_join_as = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {
+        if ((this.flags & 65536) != 0) {
             this.theme_emoticon = abstractSerializedData.readString(z);
         }
         if ((this.flags & 131072) != 0) {
@@ -118,7 +117,7 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
         if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
             this.groupcall_default_join_as.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {
+        if ((this.flags & 65536) != 0) {
             abstractSerializedData.writeString(this.theme_emoticon);
         }
         if ((this.flags & 131072) != 0) {

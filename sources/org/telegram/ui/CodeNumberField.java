@@ -25,6 +25,7 @@ import androidx.dynamicanimation.animation.FloatPropertyCompat;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.SimpleFloatPropertyCompat;
@@ -46,10 +47,58 @@ public class CodeNumberField extends EditTextBoldCursor {
     private float successScaleProgress;
     private SpringAnimation successScaleSpringAnimation;
     private SpringAnimation successSpringAnimation;
-    private static final FloatPropertyCompat<CodeNumberField> FOCUSED_PROGRESS = new SimpleFloatPropertyCompat("focusedProgress", CodeNumberField$$ExternalSyntheticLambda4.INSTANCE, CodeNumberField$$ExternalSyntheticLambda6.INSTANCE).setMultiplier(100.0f);
-    private static final FloatPropertyCompat<CodeNumberField> ERROR_PROGRESS = new SimpleFloatPropertyCompat("errorProgress", CodeNumberField$$ExternalSyntheticLambda3.INSTANCE, CodeNumberField$$ExternalSyntheticLambda9.INSTANCE).setMultiplier(100.0f);
-    private static final FloatPropertyCompat<CodeNumberField> SUCCESS_PROGRESS = new SimpleFloatPropertyCompat("successProgress", CodeNumberField$$ExternalSyntheticLambda2.INSTANCE, CodeNumberField$$ExternalSyntheticLambda7.INSTANCE).setMultiplier(100.0f);
-    private static final FloatPropertyCompat<CodeNumberField> SUCCESS_SCALE_PROGRESS = new SimpleFloatPropertyCompat("successScaleProgress", CodeNumberField$$ExternalSyntheticLambda5.INSTANCE, CodeNumberField$$ExternalSyntheticLambda8.INSTANCE).setMultiplier(100.0f);
+    private static final FloatPropertyCompat<CodeNumberField> FOCUSED_PROGRESS = new SimpleFloatPropertyCompat("focusedProgress", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((CodeNumberField) obj).focusedProgress;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            CodeNumberField.lambda$static$1((CodeNumberField) obj, f);
+        }
+    }).setMultiplier(100.0f);
+    private static final FloatPropertyCompat<CodeNumberField> ERROR_PROGRESS = new SimpleFloatPropertyCompat("errorProgress", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((CodeNumberField) obj).errorProgress;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            CodeNumberField.lambda$static$3((CodeNumberField) obj, f);
+        }
+    }).setMultiplier(100.0f);
+    private static final FloatPropertyCompat<CodeNumberField> SUCCESS_PROGRESS = new SimpleFloatPropertyCompat("successProgress", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((CodeNumberField) obj).successProgress;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            CodeNumberField.lambda$static$5((CodeNumberField) obj, f);
+        }
+    }).setMultiplier(100.0f);
+    private static final FloatPropertyCompat<CodeNumberField> SUCCESS_SCALE_PROGRESS = new SimpleFloatPropertyCompat("successScaleProgress", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((CodeNumberField) obj).successScaleProgress;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            CodeNumberField.lambda$static$7((CodeNumberField) obj, f);
+        }
+    }).setMultiplier(100.0f);
 
     public static void lambda$static$1(CodeNumberField codeNumberField, float f) {
         codeNumberField.focusedProgress = f;
@@ -159,7 +208,7 @@ public class CodeNumberField extends EditTextBoldCursor {
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.focusedSpringAnimation.cancel();
         this.errorSpringAnimation.cancel();
@@ -260,7 +309,7 @@ public class CodeNumberField extends EditTextBoldCursor {
                     ClipData.Item itemAt = clipboardManager.getPrimaryClip().getItemAt(0);
                     int i = -1;
                     try {
-                        i = Integer.parseInt((itemAt == null || itemAt.getText() == null) ? "" : itemAt.getText().toString());
+                        i = Integer.parseInt((itemAt == null || itemAt.getText() == null) ? BuildConfig.APP_CENTER_HASH : itemAt.getText().toString());
                     } catch (Exception unused) {
                     }
                     if (i > 0) {
@@ -323,7 +372,7 @@ public class CodeNumberField extends EditTextBoldCursor {
     }
 
     @Override
-    protected void onFocusChanged(boolean z, int i, Rect rect) {
+    public void onFocusChanged(boolean z, int i, Rect rect) {
         super.onFocusChanged(z, i, rect);
         if (isFocused()) {
             return;

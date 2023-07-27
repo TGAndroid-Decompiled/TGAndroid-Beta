@@ -4,9 +4,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.media.MediaMetadataRetriever;
 import android.os.AsyncTask;
@@ -38,6 +40,7 @@ public class VideoTimelineView extends View {
     private MediaMetadataRetriever mediaMetadataRetriever;
     private float minProgressDiff;
     private final Paint paint2;
+    Path path;
     private float pressDx;
     private boolean pressedLeft;
     private boolean pressedRight;
@@ -49,6 +52,7 @@ public class VideoTimelineView extends View {
     private int roundCornersSize;
     Paint thumbPaint;
     private TimeHintView timeHintView;
+    boolean useClip;
     private long videoLength;
 
     public interface VideoTimelineViewDelegate {
@@ -417,7 +421,29 @@ public class VideoTimelineView extends View {
     }
 
     @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        if (this.useClip) {
+            if (this.path == null) {
+                this.path = new Path();
+            }
+            this.path.rewind();
+            int measuredHeight = (getMeasuredHeight() - AndroidUtilities.dp(32.0f)) >> 1;
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, measuredHeight, getMeasuredWidth(), getMeasuredHeight() - measuredHeight);
+            this.path.addRoundRect(rectF, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), Path.Direction.CCW);
+        }
+    }
+
+    @Override
     protected void onDraw(Canvas canvas) {
+        if (this.useClip) {
+            canvas.save();
+            Path path = this.path;
+            if (path != null) {
+                canvas.clipPath(path);
+            }
+        }
         float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(24.0f);
         int dp = ((int) (this.progressLeft * measuredWidth)) + AndroidUtilities.dp(12.0f);
         int dp2 = ((int) (measuredWidth * this.progressRight)) + AndroidUtilities.dp(12.0f);
@@ -425,37 +451,42 @@ public class VideoTimelineView extends View {
         if (this.frames.isEmpty() && this.currentTask == null) {
             reloadFrames(0);
         }
-        if (this.frames.isEmpty()) {
-            return;
-        }
-        if (!this.framesLoaded) {
-            canvas.drawRect(0.0f, measuredHeight, getMeasuredWidth(), getMeasuredHeight() - measuredHeight, this.backgroundGrayPaint);
-        }
-        int i = 0;
-        for (int i2 = 0; i2 < this.frames.size(); i2++) {
-            Bitmap bitmap = this.frames.get(i2);
-            if (bitmap != null) {
-                boolean z = this.isRoundFrames;
-                int i3 = this.frameWidth;
-                if (z) {
-                    i3 /= 2;
-                }
-                int i4 = i3 * i;
-                if (z) {
-                    this.rect2.set(i4, measuredHeight, AndroidUtilities.dp(28.0f) + i4, AndroidUtilities.dp(32.0f) + measuredHeight);
-                    canvas.drawBitmap(bitmap, this.rect1, this.rect2, (Paint) null);
-                } else {
-                    canvas.drawBitmap(bitmap, i4, measuredHeight, (Paint) null);
-                }
+        if (!this.frames.isEmpty()) {
+            if (!this.framesLoaded) {
+                canvas.drawRect(0.0f, measuredHeight, getMeasuredWidth(), getMeasuredHeight() - measuredHeight, this.backgroundGrayPaint);
             }
-            i++;
+            int i = 0;
+            for (int i2 = 0; i2 < this.frames.size(); i2++) {
+                Bitmap bitmap = this.frames.get(i2);
+                if (bitmap != null) {
+                    boolean z = this.isRoundFrames;
+                    int i3 = this.frameWidth;
+                    if (z) {
+                        i3 /= 2;
+                    }
+                    int i4 = i3 * i;
+                    if (z) {
+                        this.rect2.set(i4, measuredHeight, AndroidUtilities.dp(28.0f) + i4, AndroidUtilities.dp(32.0f) + measuredHeight);
+                        canvas.drawBitmap(bitmap, this.rect1, this.rect2, (Paint) null);
+                    } else {
+                        canvas.drawBitmap(bitmap, i4, measuredHeight, (Paint) null);
+                    }
+                }
+                i++;
+            }
+            float f = measuredHeight;
+            canvas.drawRect(0.0f, f, dp, getMeasuredHeight() - measuredHeight, this.paint2);
+            canvas.drawRect(dp2, f, getMeasuredWidth(), getMeasuredHeight() - measuredHeight, this.paint2);
+            canvas.drawLine(dp - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f) + measuredHeight, dp - AndroidUtilities.dp(4.0f), (getMeasuredHeight() - AndroidUtilities.dp(10.0f)) - measuredHeight, this.thumbPaint);
+            canvas.drawLine(AndroidUtilities.dp(4.0f) + dp2, AndroidUtilities.dp(10.0f) + measuredHeight, dp2 + AndroidUtilities.dp(4.0f), (getMeasuredHeight() - AndroidUtilities.dp(10.0f)) - measuredHeight, this.thumbPaint);
+            if (this.useClip) {
+                canvas.restore();
+            } else {
+                drawCorners(canvas, getMeasuredHeight() - (measuredHeight * 2), getMeasuredWidth(), 0, measuredHeight);
+            }
+        } else if (this.useClip) {
+            canvas.restore();
         }
-        float f = measuredHeight;
-        canvas.drawRect(0.0f, f, dp, getMeasuredHeight() - measuredHeight, this.paint2);
-        canvas.drawRect(dp2, f, getMeasuredWidth(), getMeasuredHeight() - measuredHeight, this.paint2);
-        canvas.drawLine(dp - AndroidUtilities.dp(4.0f), AndroidUtilities.dp(10.0f) + measuredHeight, dp - AndroidUtilities.dp(4.0f), (getMeasuredHeight() - AndroidUtilities.dp(10.0f)) - measuredHeight, this.thumbPaint);
-        canvas.drawLine(AndroidUtilities.dp(4.0f) + dp2, AndroidUtilities.dp(10.0f) + measuredHeight, dp2 + AndroidUtilities.dp(4.0f), (getMeasuredHeight() - AndroidUtilities.dp(10.0f)) - measuredHeight, this.thumbPaint);
-        drawCorners(canvas, getMeasuredHeight() - (measuredHeight * 2), getMeasuredWidth(), 0, measuredHeight);
     }
 
     private void drawCorners(Canvas canvas, int i, int i2, int i3, int i4) {

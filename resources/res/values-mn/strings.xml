@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Хариулах</string>
+    <string name="call_notification_answer_video_action">Видео</string>
+    <string name="call_notification_decline_action">Татгалзах</string>
+    <string name="call_notification_hang_up_action">Таслах</string>
+    <string name="call_notification_incoming_text">Ирсэн дуудлага</string>
+    <string name="call_notification_ongoing_text">Дуудлага хийгдэж байна</string>
+    <string name="call_notification_screening_text">Ирсэн дуудлагыг харуулж байна</string>
     <string name="common_google_play_services_enable_button">Идэвхжүүлэх</string>
     <string name="common_google_play_services_enable_text">%1$s нь Google Play үйлчилгээг идэвхжүүлэх хүртэл ажиллахгүй.</string>
     <string name="common_google_play_services_enable_title">Google Play үйлчилгээг идэвхжүүлэх</string>

@@ -93,7 +93,7 @@ public class AudioPlayerCell extends View implements DownloadController.FileDown
         try {
             CharSequence replace = this.currentMessageObject.getMusicAuthor().replace('\n', ' ');
             if (this.viewType == 1) {
-                replace = new SpannableStringBuilder(replace).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject));
+                replace = new SpannableStringBuilder(replace).append(' ').append((CharSequence) this.dotSpan).append(' ').append(FilteredSearchView.createFromInfoString(this.currentMessageObject, 2));
             }
             StaticLayout staticLayout2 = new StaticLayout(TextUtils.ellipsize(replace, Theme.chat_contextResult_descriptionTextPaint, size, TextUtils.TruncateAt.END), Theme.chat_contextResult_descriptionTextPaint, size + AndroidUtilities.dp(4.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.descriptionLayout = staticLayout2;

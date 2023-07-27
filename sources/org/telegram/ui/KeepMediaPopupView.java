@@ -37,6 +37,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
     ActionBarMenuSubItem oneMonth;
     ActionBarMenuSubItem oneWeek;
     BaseFragment parentFragment;
+    ActionBarMenuSubItem twoDay;
 
     public interface Callback {
         void onKeepMediaChange(int i, int i2);
@@ -49,6 +50,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         this.cacheByChatsController = baseFragment.getMessagesController().getCacheByChatsController();
         setFitItems(true);
         this.oneDay = ActionBarMenuItem.addItem(this, R.drawable.msg_autodelete_1d, LocaleController.formatPluralString("Days", 1, new Object[0]), false, null);
+        this.twoDay = ActionBarMenuItem.addItem(this, R.drawable.msg_autodelete_2d, LocaleController.formatPluralString("Days", 2, new Object[0]), false, null);
         this.oneWeek = ActionBarMenuItem.addItem(this, R.drawable.msg_autodelete_1w, LocaleController.formatPluralString("Weeks", 1, new Object[0]), false, null);
         this.oneMonth = ActionBarMenuItem.addItem(this, R.drawable.msg_autodelete_1m, LocaleController.formatPluralString("Months", 1, new Object[0]), false, null);
         this.forever = ActionBarMenuItem.addItem(this, R.drawable.msg_cancel, LocaleController.getString("AutoDeleteMediaNever", R.string.AutoDeleteMediaNever), false, null);
@@ -57,6 +59,7 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
         int i = Theme.key_text_RedRegular;
         addItem.setColors(Theme.getColor(i), Theme.getColor(i));
         this.checkItems.add(new CheckItem(this.oneDay, CacheByChatsController.KEEP_MEDIA_ONE_DAY));
+        this.checkItems.add(new CheckItem(this.twoDay, CacheByChatsController.KEEP_MEDIA_TWO_DAY));
         this.checkItems.add(new CheckItem(this.oneWeek, CacheByChatsController.KEEP_MEDIA_ONE_WEEK));
         this.checkItems.add(new CheckItem(this.oneMonth, CacheByChatsController.KEEP_MEDIA_ONE_MONTH));
         this.checkItems.add(new CheckItem(this.forever, CacheByChatsController.KEEP_MEDIA_FOREVER));
@@ -188,6 +191,19 @@ public class KeepMediaPopupView extends ActionBarPopupWindow.ActionBarPopupWindo
 
     public void update(int i) {
         this.currentType = i;
+        if (i == 3) {
+            this.twoDay.setVisibility(0);
+            this.oneMonth.setVisibility(8);
+            this.gap.setVisibility(8);
+            this.exceptionsView.setVisibility(8);
+            this.description.setVisibility(8);
+        } else {
+            this.twoDay.setVisibility(8);
+            this.oneMonth.setVisibility(0);
+            this.gap.setVisibility(0);
+            this.exceptionsView.setVisibility(0);
+            this.description.setVisibility(0);
+        }
         ArrayList<CacheByChatsController.KeepMediaException> keepMediaExceptions = this.cacheByChatsController.getKeepMediaExceptions(i);
         this.exceptions = keepMediaExceptions;
         if (keepMediaExceptions.isEmpty()) {

@@ -268,7 +268,7 @@ public class AvatarDrawable extends Drawable {
         return this.needApplyColorAccent ? Theme.changeColorAccent(this.color2) : this.color2;
     }
 
-    private String takeFirstCharacter(String str) {
+    private static String takeFirstCharacter(String str) {
         ArrayList<Emoji.EmojiSpanRange> parseEmojis = Emoji.parseEmojis(str);
         if (parseEmojis != null && !parseEmojis.isEmpty() && parseEmojis.get(0).start == 0) {
             return str.substring(0, parseEmojis.get(0).end);
@@ -288,13 +288,17 @@ public class AvatarDrawable extends Drawable {
             str = str2;
             str2 = null;
         }
-        this.stringBuilder.setLength(0);
+        getAvatarSymbols(str, str2, str3, this.stringBuilder);
+    }
+
+    public static void getAvatarSymbols(String str, String str2, String str3, StringBuilder sb) {
+        sb.setLength(0);
         if (str3 != null) {
-            this.stringBuilder.append(str3);
+            sb.append(str3);
             return;
         }
         if (str != null && str.length() > 0) {
-            this.stringBuilder.append(takeFirstCharacter(str));
+            sb.append(takeFirstCharacter(str));
         }
         if (str2 != null && str2.length() > 0) {
             int lastIndexOf = str2.lastIndexOf(32);
@@ -302,17 +306,17 @@ public class AvatarDrawable extends Drawable {
                 str2 = str2.substring(lastIndexOf + 1);
             }
             if (Build.VERSION.SDK_INT > 17) {
-                this.stringBuilder.append("\u200c");
+                sb.append("\u200c");
             }
-            this.stringBuilder.append(takeFirstCharacter(str2));
+            sb.append(takeFirstCharacter(str2));
         } else if (str != null && str.length() > 0) {
             for (int length = str.length() - 1; length >= 0; length--) {
                 if (str.charAt(length) == ' ' && length != str.length() - 1 && str.charAt(length + 1) != ' ') {
-                    int length2 = this.stringBuilder.length();
+                    int length2 = sb.length();
                     if (Build.VERSION.SDK_INT > 17) {
-                        this.stringBuilder.append("\u200c");
+                        sb.append("\u200c");
                     }
-                    this.stringBuilder.append(takeFirstCharacter(str.substring(length2)));
+                    sb.append(takeFirstCharacter(str.substring(length2)));
                     return;
                 }
             }
@@ -408,6 +412,8 @@ public class AvatarDrawable extends Drawable {
                 drawable = Theme.avatarDrawables[11];
             } else if (i2 == 14) {
                 drawable = Theme.avatarDrawables[12];
+            } else if (i2 == 15) {
+                drawable = Theme.avatarDrawables[13];
             } else {
                 drawable = Theme.avatarDrawables[9];
             }

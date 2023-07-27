@@ -71,7 +71,14 @@ public class EmptyTextProgressView extends FrameLayout {
         addView(this.textViewLayout, LayoutHelper.createFrame(-2, -2.0f));
         AndroidUtilities.updateViewVisibilityAnimated(this.textView, false, 2.0f, false);
         AndroidUtilities.updateViewVisibilityAnimated(view2, false, 1.0f, false);
-        setOnTouchListener(EmptyTextProgressView$$ExternalSyntheticLambda0.INSTANCE);
+        setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view3, MotionEvent motionEvent) {
+                boolean lambda$new$0;
+                lambda$new$0 = EmptyTextProgressView.lambda$new$0(view3, motionEvent);
+                return lambda$new$0;
+            }
+        });
     }
 
     public void showProgress() {

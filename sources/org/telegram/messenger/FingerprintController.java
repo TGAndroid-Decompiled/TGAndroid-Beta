@@ -75,7 +75,7 @@ public class FingerprintController {
     }
 
     public static void lambda$generateNewKey$0(boolean z) {
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.didGenerateFingerprintKeyPair, Boolean.valueOf(z));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didGenerateFingerprintKeyPair, Boolean.valueOf(z));
     }
 
     public static void deleteInvalidKey() {

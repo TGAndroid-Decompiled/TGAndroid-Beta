@@ -256,7 +256,7 @@ public class LocationController extends BaseController implements NotificationCe
                     }
                 }
                 if (z2) {
-                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.liveLocationsCacheChanged, Long.valueOf(longValue), Integer.valueOf(this.currentAccount));
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsCacheChanged, Long.valueOf(longValue), Integer.valueOf(this.currentAccount));
                 }
             }
         } else if (i == NotificationCenter.messagesDeleted) {
@@ -305,7 +305,7 @@ public class LocationController extends BaseController implements NotificationCe
                     }
                 }
                 if (z3) {
-                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.liveLocationsCacheChanged, Long.valueOf(longValue3), Integer.valueOf(this.currentAccount));
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsCacheChanged, Long.valueOf(longValue3), Integer.valueOf(this.currentAccount));
                 }
             }
         }
@@ -364,7 +364,7 @@ public class LocationController extends BaseController implements NotificationCe
     }
 
     public void lambda$onConnected$1(Integer num) {
-        getNotificationCenter().postNotificationName(NotificationCenter.needShowPlayServicesAlert, num);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShowPlayServicesAlert, num);
     }
 
     public void lambda$onConnected$3() {
@@ -502,7 +502,12 @@ public class LocationController extends BaseController implements NotificationCe
             tLRPC$TL_inputGeoPoint.lat = this.lastKnownLocation.getLatitude();
             tLRPC$TL_contacts_getLocated.geo_point._long = this.lastKnownLocation.getLongitude();
             tLRPC$TL_contacts_getLocated.background = true;
-            getConnectionsManager().sendRequest(tLRPC$TL_contacts_getLocated, LocationController$$ExternalSyntheticLambda32.INSTANCE);
+            getConnectionsManager().sendRequest(tLRPC$TL_contacts_getLocated, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    LocationController.lambda$broadcastLastKnownLocation$8(tLObject, tLRPC$TL_error);
+                }
+            });
         }
         getConnectionsManager().resumeNetworkMaybe();
         if (shouldStopGps() || this.shareMyCurrentLocation) {
@@ -554,7 +559,7 @@ public class LocationController extends BaseController implements NotificationCe
         if (this.sharingLocationsUI.isEmpty()) {
             stopService();
         }
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.liveLocationsChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsChanged, new Object[0]);
     }
 
     private boolean shouldStopGps() {
@@ -617,7 +622,7 @@ public class LocationController extends BaseController implements NotificationCe
         if (this.sharingLocationsUI.isEmpty()) {
             stopService();
         }
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.liveLocationsChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsChanged, new Object[0]);
     }
 
     private boolean shouldSendLocationNow() {
@@ -654,13 +659,18 @@ public class LocationController extends BaseController implements NotificationCe
         if (location == null || Build.VERSION.SDK_INT < 17 || (SystemClock.elapsedRealtimeNanos() - location.getElapsedRealtimeNanos()) / 1000000000 <= 300) {
             this.lastKnownLocation = location;
             if (location != null) {
-                AndroidUtilities.runOnUIThread(LocationController$$ExternalSyntheticLambda26.INSTANCE);
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        LocationController.lambda$setLastKnownLocation$11();
+                    }
+                });
             }
         }
     }
 
     public static void lambda$setLastKnownLocation$11() {
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.newLocationAvailable, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newLocationAvailable, new Object[0]);
     }
 
     public void setCachedNearbyUsersAndChats(ArrayList<TLRPC$TL_peerLocated> arrayList, ArrayList<TLRPC$TL_peerLocated> arrayList2) {
@@ -711,7 +721,7 @@ public class LocationController extends BaseController implements NotificationCe
         this.sharingLocationsUI.add(sharingLocationInfo2);
         this.sharingLocationsMapUI.put(sharingLocationInfo2.did, sharingLocationInfo2);
         startService();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.liveLocationsChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsChanged, new Object[0]);
     }
 
     public boolean isSharingLocation(long j) {
@@ -860,7 +870,7 @@ public class LocationController extends BaseController implements NotificationCe
             this.sharingLocationsMapUI.put(sharingLocationInfo.did, sharingLocationInfo);
         }
         startService();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.liveLocationsChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsChanged, new Object[0]);
     }
 
     private void saveSharingLocation(final SharingLocationInfo sharingLocationInfo, final int i) {
@@ -957,7 +967,7 @@ public class LocationController extends BaseController implements NotificationCe
         if (this.sharingLocationsUI.isEmpty()) {
             stopService();
         }
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.liveLocationsChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsChanged, new Object[0]);
     }
 
     private void startService() {
@@ -1022,7 +1032,7 @@ public class LocationController extends BaseController implements NotificationCe
         this.sharingLocationsUI.clear();
         this.sharingLocationsMapUI.clear();
         stopService();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.liveLocationsChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsChanged, new Object[0]);
     }
 
     public void setMapLocation(Location location, boolean z) {
@@ -1131,7 +1141,7 @@ public class LocationController extends BaseController implements NotificationCe
         getMessagesController().putUsers(tLRPC$messages_Messages.users, false);
         getMessagesController().putChats(tLRPC$messages_Messages.chats, false);
         this.locationsCache.put(j, tLRPC$messages_Messages.messages);
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.liveLocationsCacheChanged, Long.valueOf(j), Integer.valueOf(this.currentAccount));
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveLocationsCacheChanged, Long.valueOf(j), Integer.valueOf(this.currentAccount));
     }
 
     public void markLiveLoactionsAsRead(long j) {

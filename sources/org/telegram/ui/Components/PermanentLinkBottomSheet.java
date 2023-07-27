@@ -1,13 +1,18 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.os.Build;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.widget.NestedScrollView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -29,13 +34,13 @@ import org.telegram.ui.ActionBar.ThemeDescription;
 import org.telegram.ui.Components.LinkActionView;
 import org.telegram.ui.ManageLinksActivity;
 public class PermanentLinkBottomSheet extends BottomSheet {
-    private long chatId;
+    private final long chatId;
     private BaseFragment fragment;
     private final RLottieImageView imageView;
     TLRPC$TL_chatInviteExported invite;
     private final LinkActionView linkActionView;
     boolean linkGenerating;
-    RLottieDrawable linkIcon;
+    private final RLottieDrawable linkIcon;
     private final TextView manage;
     private final TextView subtitle;
     private final TextView titleView;
@@ -48,16 +53,35 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         this.chatId = j;
         setAllowNestedScroll(true);
         setApplyBottomPadding(false);
+        setApplyTopPadding(false);
+        fixNavigationBar(getThemedColor(Theme.key_windowBackgroundWhite));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        FrameLayout frameLayout = new FrameLayout(context);
+        frameLayout.addView(linearLayout);
+        ImageView imageView = new ImageView(context);
+        imageView.setBackground(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector)));
+        imageView.setColorFilter(getThemedColor(Theme.key_sheet_other));
+        imageView.setImageResource(R.drawable.ic_layer_close);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                PermanentLinkBottomSheet.this.lambda$new$0(view);
+            }
+        });
+        int dp = AndroidUtilities.dp(8.0f);
+        imageView.setPadding(dp, dp, dp, dp);
+        frameLayout.addView(imageView, LayoutHelper.createFrame(36, 36.0f, 8388661, 6.0f, 8.0f, 8.0f, 0.0f));
         LinkActionView linkActionView = new LinkActionView(context, baseFragment, this, j, true, z2);
         this.linkActionView = linkActionView;
         linkActionView.setPermanent(true);
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         int i2 = R.raw.shared_link_enter;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f), false, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f), false, null);
         this.linkIcon = rLottieDrawable;
         rLottieDrawable.setCustomEndFrame(42);
-        rLottieImageView.setAnimation(this.linkIcon);
+        rLottieImageView.setAnimation(rLottieDrawable);
         linkActionView.setUsers(0, null);
         linkActionView.hideRevokeOption(true);
         linkActionView.setDelegate(new LinkActionView.Delegate() {
@@ -73,7 +97,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
 
             @Override
             public final void revokeLink() {
-                PermanentLinkBottomSheet.this.lambda$new$0();
+                PermanentLinkBottomSheet.this.lambda$new$1();
             }
 
             @Override
@@ -84,7 +108,8 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         TextView textView = new TextView(context);
         this.titleView = textView;
         textView.setText(LocaleController.getString("InviteLink", R.string.InviteLink));
-        textView.setTextSize(24.0f);
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setTextSize(1, 20.0f);
         textView.setGravity(1);
         textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         TextView textView2 = new TextView(context);
@@ -97,33 +122,38 @@ public class PermanentLinkBottomSheet extends BottomSheet {
             str = "LinkInfo";
         }
         textView2.setText(LocaleController.getString(str, i));
-        textView2.setTextSize(14.0f);
+        textView2.setTextSize(1, 14.0f);
         textView2.setGravity(1);
-        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+        textView2.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+        textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
         TextView textView3 = new TextView(context);
         this.manage = textView3;
         textView3.setText(LocaleController.getString("ManageInviteLinks", R.string.ManageInviteLinks));
-        textView3.setTextSize(14.0f);
-        int i3 = Theme.key_windowBackgroundWhiteBlueText;
+        textView3.setGravity(17);
+        textView3.setEllipsize(TextUtils.TruncateAt.END);
+        textView3.setSingleLine(true);
+        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setTextSize(1, 14.0f);
+        int i3 = Theme.key_featuredStickers_addButton;
         textView3.setTextColor(Theme.getColor(i3));
-        textView3.setBackground(Theme.createRadSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor(i3), 76), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
-        textView3.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(4.0f));
+        textView3.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i3), 120)));
+        if (Build.VERSION.SDK_INT >= 21) {
+            textView3.setLetterSpacing(0.025f);
+        }
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PermanentLinkBottomSheet.this.lambda$new$1(tLRPC$ChatFull, baseFragment, view);
+                PermanentLinkBottomSheet.this.lambda$new$2(tLRPC$ChatFull, baseFragment, view);
             }
         });
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(90, 90, 1, 0, 24, 0, 0));
-        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 60, 16, 60, 0));
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 60, 16, 60, 0));
+        linearLayout.addView(rLottieImageView, LayoutHelper.createLinear(90, 90, 1, 0, 33, 0, 0));
+        linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 1, 60, 10, 60, 0));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 1, 28, 7, 28, 2));
         linearLayout.addView(linkActionView, LayoutHelper.createLinear(-1, -2));
-        linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 1, 60, 26, 60, 26));
+        linearLayout.addView(textView3, LayoutHelper.createLinear(-1, 48, 1, 14, -2, 14, 6));
         NestedScrollView nestedScrollView = new NestedScrollView(context);
         nestedScrollView.setVerticalScrollBarEnabled(false);
-        nestedScrollView.addView(linearLayout);
+        nestedScrollView.addView(frameLayout);
         setCustomView(nestedScrollView);
         TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(j));
         if (chat != null && ChatObject.isPublic(chat)) {
@@ -137,11 +167,15 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         updateColors();
     }
 
-    public void lambda$new$0() {
+    public void lambda$new$0(View view) {
+        dismiss();
+    }
+
+    public void lambda$new$1() {
         generateLink(true);
     }
 
-    public void lambda$new$1(TLRPC$ChatFull tLRPC$ChatFull, BaseFragment baseFragment, View view) {
+    public void lambda$new$2(TLRPC$ChatFull tLRPC$ChatFull, BaseFragment baseFragment, View view) {
         ManageLinksActivity manageLinksActivity = new ManageLinksActivity(tLRPC$ChatFull.id, 0L, 0);
         manageLinksActivity.setInfo(tLRPC$ChatFull, tLRPC$ChatFull.exported_invite);
         baseFragment.presentFragment(manageLinksActivity);
@@ -159,21 +193,21 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_exportChatInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                PermanentLinkBottomSheet.this.lambda$generateLink$3(z, tLObject, tLRPC$TL_error);
+                PermanentLinkBottomSheet.this.lambda$generateLink$4(z, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$generateLink$3(final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$generateLink$4(final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PermanentLinkBottomSheet.this.lambda$generateLink$2(tLRPC$TL_error, tLObject, z);
+                PermanentLinkBottomSheet.this.lambda$generateLink$3(tLRPC$TL_error, tLObject, z);
             }
         });
     }
 
-    public void lambda$generateLink$2(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, boolean z) {
+    public void lambda$generateLink$3(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, boolean z) {
         if (tLRPC$TL_error == null) {
             this.invite = (TLRPC$TL_chatInviteExported) tLObject;
             TLRPC$ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(this.chatId);
@@ -198,12 +232,12 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PermanentLinkBottomSheet.this.lambda$show$4();
+                PermanentLinkBottomSheet.this.lambda$show$5();
             }
         }, 50L);
     }
 
-    public void lambda$show$4() {
+    public void lambda$show$5() {
         this.linkIcon.start();
     }
 
@@ -222,20 +256,23 @@ public class PermanentLinkBottomSheet extends BottomSheet {
             }
         };
         arrayList.add(new ThemeDescription(this.titleView, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteBlackText));
-        arrayList.add(new ThemeDescription(this.subtitle, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_windowBackgroundWhiteGrayText));
+        arrayList.add(new ThemeDescription(this.subtitle, ThemeDescription.FLAG_TEXTCOLOR, null, null, null, null, Theme.key_dialogTextBlack));
         TextView textView = this.manage;
         int i = ThemeDescription.FLAG_TEXTCOLOR;
-        int i2 = Theme.key_windowBackgroundWhiteBlueText;
+        int i2 = Theme.key_featuredStickers_addButton;
         arrayList.add(new ThemeDescription(textView, i, null, null, null, null, i2));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_addButton));
-        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_buttonText));
         arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, i2));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_featuredStickers_buttonText));
+        arrayList.add(new ThemeDescription(null, 0, null, null, null, themeDescriptionDelegate, Theme.key_windowBackgroundWhiteBlueText));
         return arrayList;
     }
 
     public void updateColors() {
-        this.imageView.setBackground(Theme.createCircleDrawable(AndroidUtilities.dp(90.0f), Theme.getColor(Theme.key_featuredStickers_addButton)));
-        this.manage.setBackground(Theme.createRadSelectorDrawable(ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText), 76), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f)));
+        RLottieImageView rLottieImageView = this.imageView;
+        int dp = AndroidUtilities.dp(90.0f);
+        int i = Theme.key_featuredStickers_addButton;
+        rLottieImageView.setBackground(Theme.createCircleDrawable(dp, Theme.getColor(i)));
+        this.manage.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
         int color = Theme.getColor(Theme.key_featuredStickers_buttonText);
         this.linkIcon.setLayerColor("Top.**", color);
         this.linkIcon.setLayerColor("Bottom.**", color);

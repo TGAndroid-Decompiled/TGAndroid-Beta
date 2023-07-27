@@ -1,5 +1,6 @@
 package org.telegram.tgnet;
 
+import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_channel extends TLRPC$Chat {
     public static int constructor = -2094689180;
@@ -112,7 +113,7 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         this.flags = i8;
         int i9 = this.scam ? i8 | 524288 : i8 & (-524289);
         this.flags = i9;
-        int i10 = this.has_link ? i9 | 1048576 : i9 & (-1048577);
+        int i10 = this.has_link ? i9 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i9 & (-1048577);
         this.flags = i10;
         int i11 = this.has_geo ? i10 | 2097152 : i10 & (-2097153);
         this.flags = i11;

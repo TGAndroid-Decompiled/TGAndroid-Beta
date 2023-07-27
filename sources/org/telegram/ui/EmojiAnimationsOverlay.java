@@ -141,7 +141,7 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
                         arrayList.add((TLRPC$Document) hashMap.get(tLRPC$TL_stickerPack.documents.get(i3)));
                     }
                     if (tLRPC$TL_stickerPack.emoticon.equals("❤")) {
-                        String[] strArr = {"🧡", "💛", "💚", "💙", "💜", "🖤", "\u1f90d", "\u1f90e"};
+                        String[] strArr = {"🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎"};
                         for (int i4 = 0; i4 < 8; i4++) {
                             String str = strArr[i4];
                             supportedEmoji.add(str);

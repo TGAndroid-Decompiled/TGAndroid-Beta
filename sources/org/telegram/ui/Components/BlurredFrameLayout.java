@@ -65,7 +65,7 @@ public class BlurredFrameLayout extends FrameLayout {
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         SizeNotifierFrameLayout sizeNotifierFrameLayout;
         if (SharedConfig.chatBlurEnabled() && (sizeNotifierFrameLayout = this.sizeNotifierFrameLayout) != null) {
             sizeNotifierFrameLayout.blurBehindViews.add(this);
@@ -74,7 +74,7 @@ public class BlurredFrameLayout extends FrameLayout {
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         SizeNotifierFrameLayout sizeNotifierFrameLayout = this.sizeNotifierFrameLayout;
         if (sizeNotifierFrameLayout != null) {
             sizeNotifierFrameLayout.blurBehindViews.remove(this);

@@ -38,6 +38,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_updateDialogFiltersOrder;
@@ -1129,7 +1130,12 @@ public class FilterTabsView extends FrameLayout {
             }
         }
         MessagesController.getInstance(UserConfig.selectedAccount).lockFiltersInternal();
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, FilterTabsView$$ExternalSyntheticLambda0.INSTANCE);
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                FilterTabsView.lambda$setIsEditing$2(tLObject, tLRPC$TL_error);
+            }
+        });
         this.orderChanged = false;
     }
 

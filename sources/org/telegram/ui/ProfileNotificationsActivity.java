@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -78,6 +79,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     private long dialogId;
     private int enableRow;
     private int generalRow;
+    private boolean isInTop5Peers;
     private int ledInfoRow;
     private int ledRow;
     private RecyclerListView listView;
@@ -96,6 +98,7 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
     private int rowCount;
     private int smartRow;
     private int soundRow;
+    private int storiesRow;
     private int topicId;
     private int vibrateRow;
 
@@ -363,6 +366,18 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                     if (findViewWithTag2 != null) {
                         ((RadioCell) findViewWithTag2).setChecked(false, true);
                     }
+                } else if (i == this.storiesRow) {
+                    TextCheckCell textCheckCell3 = (TextCheckCell) view;
+                    boolean z2 = !textCheckCell3.isChecked();
+                    textCheckCell3.setChecked(z2);
+                    SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(this.currentAccount).edit();
+                    if (this.isInTop5Peers && z2) {
+                        edit.remove(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str);
+                    } else {
+                        edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, z2);
+                    }
+                    edit.apply();
+                    getNotificationsController().updateServerNotificationsSettings(this.dialogId, this.topicId);
                 }
             }
         }
@@ -732,11 +747,12 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                     return;
                 case 2:
                     TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+                    textInfoPrivacyCell.setFixedSize(0);
                     if (i != ProfileNotificationsActivity.this.popupInfoRow) {
                         if (i != ProfileNotificationsActivity.this.ledInfoRow) {
                             if (i == ProfileNotificationsActivity.this.priorityInfoRow) {
                                 if (ProfileNotificationsActivity.this.priorityRow == -1) {
-                                    textInfoPrivacyCell.setText("");
+                                    textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
                                 } else {
                                     textInfoPrivacyCell.setText(LocaleController.getString("PriorityInfo", R.string.PriorityInfo));
                                 }
@@ -816,6 +832,13 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                         String sharedPrefKey3 = NotificationsController.getSharedPrefKey(ProfileNotificationsActivity.this.dialogId, ProfileNotificationsActivity.this.topicId);
                         textCheckCell.setTextAndCheck(LocaleController.getString("MessagePreview", R.string.MessagePreview), notificationsSettings4.getBoolean(NotificationsSettingsFacade.PROPERTY_CONTENT_PREVIEW + sharedPrefKey3, true), true);
                         return;
+                    } else if (i == ProfileNotificationsActivity.this.storiesRow) {
+                        String str = NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + NotificationsController.getSharedPrefKey(ProfileNotificationsActivity.this.dialogId, ProfileNotificationsActivity.this.topicId);
+                        if (ProfileNotificationsActivity.this.isInTop5Peers || (notificationsSettings4.contains("EnableAllStories") && notificationsSettings4.getBoolean("EnableAllStories", true))) {
+                            r6 = true;
+                        }
+                        textCheckCell.setTextAndCheck(LocaleController.getString("StoriesSoundEnabled", R.string.StoriesSoundEnabled), notificationsSettings4.getBoolean(str, r6), true);
+                        return;
                     } else {
                         return;
                     }
@@ -847,6 +870,8 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
                 TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
                 if (viewHolder.getAdapterPosition() == ProfileNotificationsActivity.this.previewRow) {
                     textCheckCell.setEnabled(ProfileNotificationsActivity.this.notificationsEnabled, null);
+                } else if (viewHolder.getAdapterPosition() == ProfileNotificationsActivity.this.storiesRow) {
+                    textCheckCell.setEnabled(ProfileNotificationsActivity.this.notificationsEnabled, null);
                 } else {
                     textCheckCell.setEnabled(true, null);
                 }
@@ -876,13 +901,8 @@ public class ProfileNotificationsActivity extends BaseFragment implements Notifi
             if (i == ProfileNotificationsActivity.this.avatarSectionRow || i == ProfileNotificationsActivity.this.customResetShadowRow) {
                 return 6;
             }
-            return (i == ProfileNotificationsActivity.this.enableRow || i == ProfileNotificationsActivity.this.previewRow) ? 7 : 0;
+            return (i == ProfileNotificationsActivity.this.enableRow || i == ProfileNotificationsActivity.this.previewRow || i == ProfileNotificationsActivity.this.storiesRow) ? 7 : 0;
         }
-    }
-
-    @Override
-    public int getNavigationBarColor() {
-        return getThemedColor(Theme.key_windowBackgroundGray);
     }
 
     @Override

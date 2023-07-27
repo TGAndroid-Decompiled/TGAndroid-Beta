@@ -12,7 +12,9 @@ import androidx.collection.LongSparseArray;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
@@ -26,6 +28,7 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -76,6 +79,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private Runnable cancelDelayRunnable;
     private int channelLastReqId;
     private int channelReqId;
+    private TLRPC$Chat chat;
     private boolean contextMedia;
     private int contextQueryReqid;
     private Runnable contextQueryRunnable;
@@ -121,11 +125,16 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private ArrayList<StickerResult> stickers;
     private HashMap<String, TLRPC$Document> stickersMap;
     private int threadMessageId;
+    private TLRPC$User user;
     private boolean visibleByStickersSearch;
+    private boolean allowStickers = true;
+    private boolean allowBots = true;
+    private boolean allowChats = true;
     private int currentAccount = UserConfig.selectedAccount;
     private boolean needUsernames = true;
     private boolean needBotContext = true;
     private boolean inlineMediaEnabled = true;
+    private boolean searchInDailogs = false;
     private ArrayList<String> stickersToLoad = new ArrayList<>();
     private SendMessagesHelper.LocationProvider locationProvider = new SendMessagesHelper.LocationProvider(new SendMessagesHelper.LocationProvider.LocationProviderDelegate() {
         @Override
@@ -135,7 +144,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             }
             MentionsAdapter.this.lastKnownLocation = location;
             MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-            mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, MentionsAdapter.this.searchingContextQuery, "");
+            mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, MentionsAdapter.this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
         }
 
         @Override
@@ -562,7 +571,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     public String getContextBotName() {
         TLRPC$User tLRPC$User = this.foundContextBot;
-        return tLRPC$User != null ? tLRPC$User.username : "";
+        return tLRPC$User != null ? tLRPC$User.username : BuildConfig.APP_CENTER_HASH;
     }
 
     public void processFoundUser(TLRPC$User tLRPC$User) {
@@ -624,7 +633,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         if (mentionsAdapterDelegate != null) {
             mentionsAdapterDelegate.onContextSearch(true);
         }
-        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
+        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
     }
 
     public void lambda$processFoundUser$2(boolean[] zArr, TLRPC$User tLRPC$User, DialogInterface dialogInterface, int i) {
@@ -743,7 +752,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     return;
                 }
                 MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-                mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, this.val$query, "");
+                mentionsAdapter.searchForContextBotResults(true, mentionsAdapter.foundContextBot, this.val$query, BuildConfig.APP_CENTER_HASH);
                 return;
             }
             MentionsAdapter.this.searchingContextUsername = this.val$username;
@@ -804,7 +813,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.lastKnownLocation = location;
         location.setLatitude(-1000.0d);
         this.lastKnownLocation.setLongitude(-1000.0d);
-        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, "");
+        searchForContextBotResults(true, this.foundContextBot, this.searchingContextQuery, BuildConfig.APP_CENTER_HASH);
     }
 
     private void checkLocationPermissionsOrStart() {
@@ -855,7 +864,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.contextQueryReqid, true);
             this.contextQueryReqid = 0;
         }
-        if (!this.inlineMediaEnabled) {
+        if (!this.inlineMediaEnabled || !this.allowBots) {
             MentionsAdapterDelegate mentionsAdapterDelegate = this.delegate;
             if (mentionsAdapterDelegate != null) {
                 mentionsAdapterDelegate.onContextSearch(false);
@@ -875,7 +884,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             sb.append("_");
             sb.append(tLRPC$User.id);
             sb.append("_");
-            sb.append((!tLRPC$User.bot_inline_geo || this.lastKnownLocation.getLatitude() == -1000.0d) ? "" : Double.valueOf(this.lastKnownLocation.getLatitude() + this.lastKnownLocation.getLongitude()));
+            sb.append((!tLRPC$User.bot_inline_geo || this.lastKnownLocation.getLatitude() == -1000.0d) ? BuildConfig.APP_CENTER_HASH : Double.valueOf(this.lastKnownLocation.getLatitude() + this.lastKnownLocation.getLongitude()));
             final String sb2 = sb.toString();
             final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
             RequestDelegate requestDelegate = new RequestDelegate() {
@@ -957,7 +966,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 } else {
                     this.searchResultBotContext.addAll(tLRPC$TL_messages_botResults.results);
                     if (tLRPC$TL_messages_botResults.results.isEmpty()) {
-                        this.nextQueryOffset = "";
+                        this.nextQueryOffset = BuildConfig.APP_CENTER_HASH;
                     }
                     z2 = true;
                 }
@@ -986,7 +995,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public void searchUsernameOrHashtag(java.lang.CharSequence r21, int r22, java.util.ArrayList<org.telegram.messenger.MessageObject> r23, boolean r24, boolean r25) {
+    public void searchUsernameOrHashtag(java.lang.CharSequence r27, int r28, java.util.ArrayList<org.telegram.messenger.MessageObject> r29, boolean r30, boolean r31) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.searchUsernameOrHashtag(java.lang.CharSequence, int, java.util.ArrayList, boolean, boolean):void");
     }
 
@@ -1121,6 +1130,20 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     public void showUsersResult(ArrayList<TLObject> arrayList, LongSparseArray<TLObject> longSparseArray, boolean z) {
         this.searchResultUsernames = arrayList;
+        if ((!this.allowBots || !this.allowChats) && arrayList != null) {
+            Iterator<TLObject> it = arrayList.iterator();
+            while (it.hasNext()) {
+                TLObject next = it.next();
+                if ((next instanceof TLRPC$Chat) && !this.allowChats) {
+                    it.remove();
+                } else if (next instanceof TLRPC$User) {
+                    TLRPC$User tLRPC$User = (TLRPC$User) next;
+                    if (tLRPC$User.bot || UserObject.isService(tLRPC$User.id)) {
+                        it.remove();
+                    }
+                }
+            }
+        }
         this.searchResultUsernamesMap = longSparseArray;
         Runnable runnable = this.cancelDelayRunnable;
         if (runnable != null) {
@@ -1287,7 +1310,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             if (arrayList7.get(i) != null) {
                 Object[] objArr = new Object[2];
                 objArr[0] = this.searchResultCommands.get(i);
-                objArr[1] = this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : "";
+                objArr[1] = this.searchResultCommandsUsers.get(i) != null ? this.searchResultCommandsUsers.get(i).username : BuildConfig.APP_CENTER_HASH;
                 return String.format("%s@%s", objArr);
             }
             return String.format("%s", this.searchResultCommands.get(i));
@@ -1353,7 +1376,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             textView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteGrayText2));
             contextLinkCell = textView;
         } else {
-            contextLinkCell = new StickerCell(this.mContext);
+            contextLinkCell = new StickerCell(this.mContext, this.resourcesProvider);
         }
         return new RecyclerListView.Holder(contextLinkCell);
     }
@@ -1392,26 +1415,26 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                 botSwitchCell.setText(tLRPC$TL_inlineBotSwitchPM != null ? tLRPC$TL_inlineBotSwitchPM.text : this.searchResultBotWebViewSwitch.text);
             }
         } else {
+            MentionCell mentionCell = (MentionCell) viewHolder.itemView;
             ArrayList<TLObject> arrayList = this.searchResultUsernames;
             if (arrayList != null) {
                 TLObject tLObject = arrayList.get(i);
                 if (tLObject instanceof TLRPC$User) {
-                    ((MentionCell) viewHolder.itemView).setUser((TLRPC$User) tLObject);
+                    mentionCell.setUser((TLRPC$User) tLObject);
                 } else if (tLObject instanceof TLRPC$Chat) {
-                    ((MentionCell) viewHolder.itemView).setChat((TLRPC$Chat) tLObject);
+                    mentionCell.setChat((TLRPC$Chat) tLObject);
                 }
             } else {
                 ArrayList<String> arrayList2 = this.searchResultHashtags;
                 if (arrayList2 != null) {
-                    ((MentionCell) viewHolder.itemView).setText(arrayList2.get(i));
+                    mentionCell.setText(arrayList2.get(i));
                 } else {
                     ArrayList<MediaDataController.KeywordResult> arrayList3 = this.searchResultSuggestions;
                     if (arrayList3 != null) {
-                        ((MentionCell) viewHolder.itemView).setEmojiSuggestion(arrayList3.get(i));
+                        mentionCell.setEmojiSuggestion(arrayList3.get(i));
                     } else {
                         ArrayList<String> arrayList4 = this.searchResultCommands;
                         if (arrayList4 != null) {
-                            MentionCell mentionCell = (MentionCell) viewHolder.itemView;
                             String str = arrayList4.get(i);
                             String str2 = this.searchResultCommandsHelp.get(i);
                             ArrayList<TLRPC$User> arrayList5 = this.searchResultCommandsUsers;
@@ -1420,7 +1443,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
                     }
                 }
             }
-            ((MentionCell) viewHolder.itemView).setDivider(false);
+            mentionCell.setDivider(false);
         }
     }
 
@@ -1453,5 +1476,30 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     private int getThemedColor(int i) {
         return Theme.getColor(i, this.resourcesProvider);
+    }
+
+    public void setDialogId(long j) {
+        this.dialog_id = j;
+    }
+
+    public void setUserOrChar(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat) {
+        this.user = tLRPC$User;
+        this.chat = tLRPC$Chat;
+    }
+
+    public void setSearchInDailogs(boolean z) {
+        this.searchInDailogs = z;
+    }
+
+    public void setAllowStickers(boolean z) {
+        this.allowStickers = z;
+    }
+
+    public void setAllowBots(boolean z) {
+        this.allowBots = z;
+    }
+
+    public void setAllowChats(boolean z) {
+        this.allowChats = z;
     }
 }

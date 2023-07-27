@@ -10,7 +10,12 @@ public class KeepAliveJob extends JobIntentService {
     private static Runnable finishJobByTimeoutRunnable = KeepAliveJob$$ExternalSyntheticLambda0.INSTANCE;
 
     public static void startJob() {
-        Utilities.globalQueue.postRunnable(KeepAliveJob$$ExternalSyntheticLambda1.INSTANCE);
+        Utilities.globalQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                KeepAliveJob.lambda$startJob$0();
+            }
+        });
     }
 
     public static void lambda$startJob$0() {

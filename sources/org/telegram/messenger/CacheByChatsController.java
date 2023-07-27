@@ -15,15 +15,17 @@ public class CacheByChatsController {
     public static int KEEP_MEDIA_ONE_MINUTE = 5;
     public static int KEEP_MEDIA_ONE_MONTH = 1;
     public static int KEEP_MEDIA_ONE_WEEK = 0;
+    public static int KEEP_MEDIA_TWO_DAY = 6;
     public static final int KEEP_MEDIA_TYPE_CHANNEL = 2;
     public static final int KEEP_MEDIA_TYPE_GROUP = 1;
+    public static final int KEEP_MEDIA_TYPE_STORIES = 3;
     public static final int KEEP_MEDIA_TYPE_USER = 0;
     private final int currentAccount;
-    int[] keepMediaByTypes = {-1, -1, -1};
+    int[] keepMediaByTypes = {-1, -1, -1, -1};
 
     public CacheByChatsController(int i) {
         this.currentAccount = i;
-        for (int i2 = 0; i2 < 3; i2++) {
+        for (int i2 = 0; i2 < 4; i2++) {
             int[] iArr = this.keepMediaByTypes;
             SharedPreferences preferences = SharedConfig.getPreferences();
             iArr[i2] = preferences.getInt("keep_media_type_" + i2, getDefault(i2));
@@ -40,6 +42,9 @@ public class CacheByChatsController {
         if (i == 2) {
             return KEEP_MEDIA_ONE_WEEK;
         }
+        if (i == 3) {
+            return KEEP_MEDIA_TWO_DAY;
+        }
         return SharedConfig.keepMedia;
     }
 
@@ -49,6 +54,9 @@ public class CacheByChatsController {
         }
         if (i == KEEP_MEDIA_ONE_DAY) {
             return LocaleController.formatPluralString("Days", 1, new Object[0]);
+        }
+        if (i == KEEP_MEDIA_TWO_DAY) {
+            return LocaleController.formatPluralString("Days", 2, new Object[0]);
         }
         if (i == KEEP_MEDIA_ONE_WEEK) {
             return LocaleController.formatPluralString("Weeks", 1, new Object[0]);
@@ -69,6 +77,9 @@ public class CacheByChatsController {
         if (i == KEEP_MEDIA_ONE_DAY) {
             return 86400L;
         }
+        if (i == KEEP_MEDIA_TWO_DAY) {
+            return 172800L;
+        }
         return (i == KEEP_MEDIA_ONE_MINUTE && BuildVars.DEBUG_PRIVATE_VERSION) ? 60L : Long.MAX_VALUE;
     }
 
@@ -76,7 +87,7 @@ public class CacheByChatsController {
         ArrayList<KeepMediaException> arrayList = new ArrayList<>();
         HashSet hashSet = new HashSet();
         SharedPreferences preferences = UserConfig.getInstance(this.currentAccount).getPreferences();
-        String string = preferences.getString("keep_media_exceptions_" + i, "");
+        String string = preferences.getString("keep_media_exceptions_" + i, BuildConfig.APP_CENTER_HASH);
         if (TextUtils.isEmpty(string)) {
             return arrayList;
         }
@@ -183,6 +194,7 @@ public class CacheByChatsController {
 
     public static class KeepMediaFile {
         final File file;
+        boolean isStory;
         int keepMedia = -1;
         int dialogType = 2;
 

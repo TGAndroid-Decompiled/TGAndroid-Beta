@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Respon</string>
+    <string name="call_notification_answer_video_action">Vídeo</string>
+    <string name="call_notification_decline_action">Rebutja</string>
+    <string name="call_notification_hang_up_action">Penja</string>
+    <string name="call_notification_incoming_text">Trucada entrant</string>
+    <string name="call_notification_ongoing_text">Trucada en curs</string>
+    <string name="call_notification_screening_text">S\'està filtrant una trucada entrant</string>
     <string name="common_google_play_services_enable_button">Activa</string>
     <string name="common_google_play_services_enable_text">%1$s no funcionarà si no actives Serveis de Google Play.</string>
     <string name="common_google_play_services_enable_title">Activa Serveis de Google Play</string>

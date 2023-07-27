@@ -6,6 +6,7 @@ import android.media.MediaCodecList;
 import android.os.Build;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.FileLog;
@@ -41,7 +42,14 @@ class MediaCodecUtils {
                     Logging.e(TAG, "Cannot retrieve codec info", e);
                 }
             }
-            Collections.sort(arrayList, MediaCodecUtils$$ExternalSyntheticLambda0.INSTANCE);
+            Collections.sort(arrayList, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    int lambda$getSortedCodecsList$0;
+                    lambda$getSortedCodecsList$0 = MediaCodecUtils.lambda$getSortedCodecsList$0((MediaCodecInfo) obj, (MediaCodecInfo) obj2);
+                    return lambda$getSortedCodecsList$0;
+                }
+            });
         } catch (Exception e2) {
             FileLog.e(e2);
         }

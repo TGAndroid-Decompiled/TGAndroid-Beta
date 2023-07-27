@@ -316,7 +316,12 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
             this.enlargeIcon.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
             this.enlargeIcon.setContentDescription(LocaleController.getString("Open", R.string.Open));
             this.floatingView.addView(this.enlargeIcon, LayoutHelper.createFrame(40, 40.0f, 51, 4.0f, 4.0f, 4.0f, 0.0f));
-            this.closeIcon.setOnClickListener(VoIPPiPView$$ExternalSyntheticLambda2.INSTANCE);
+            this.closeIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view2) {
+                    VoIPPiPView.lambda$new$1(view2);
+                }
+            });
             this.enlargeIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
@@ -375,7 +380,12 @@ public class VoIPPiPView implements VoIPService.StateListener, NotificationCente
     @Override
     public void onStateChanged(int i) {
         if (i == 11 || i == 17 || i == 4 || i == 10) {
-            AndroidUtilities.runOnUIThread(VoIPPiPView$$ExternalSyntheticLambda3.INSTANCE, 200L);
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    VoIPPiPView.finish();
+                }
+            }, 200L);
         }
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance == null) {

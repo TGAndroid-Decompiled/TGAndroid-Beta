@@ -84,7 +84,14 @@ public final class Format implements Bundleable {
     private static final String FIELD_CRYPTO_TYPE = Util.intToStringMaxRadix(29);
     private static final String FIELD_TILE_COUNT_HORIZONTAL = Util.intToStringMaxRadix(30);
     private static final String FIELD_TILE_COUNT_VERTICAL = Util.intToStringMaxRadix(31);
-    public static final Bundleable.Creator<Format> CREATOR = Format$$ExternalSyntheticLambda0.INSTANCE;
+    public static final Bundleable.Creator<Format> CREATOR = new Bundleable.Creator() {
+        @Override
+        public final Bundleable fromBundle(Bundle bundle) {
+            Format fromBundle;
+            fromBundle = Format.fromBundle(bundle);
+            return fromBundle;
+        }
+    };
 
     private static <T> T defaultIfNull(T t, T t2) {
         return t != null ? t : t2;

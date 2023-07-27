@@ -86,7 +86,7 @@ public class TrendingStickersAlert extends BottomSheet {
     }
 
     public void setHeavyOperationsEnabled(boolean z) {
-        NotificationCenter.getGlobalInstance().postNotificationName(z ? NotificationCenter.startAllHeavyOperations : NotificationCenter.stopAllHeavyOperations, 2);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(z ? NotificationCenter.startAllHeavyOperations : NotificationCenter.stopAllHeavyOperations, 2);
     }
 
     public TrendingStickersLayout getLayout() {

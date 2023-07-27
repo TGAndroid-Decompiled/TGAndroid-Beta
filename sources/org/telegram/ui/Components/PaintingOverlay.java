@@ -22,6 +22,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Paint.Views.EditTextOutline;
 public class PaintingOverlay extends FrameLayout {
     private Drawable backgroundDrawable;
@@ -152,17 +153,17 @@ public class PaintingOverlay extends FrameLayout {
     }
 
     public void setEntities(ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z, boolean z2) {
+        int i;
         reset();
         this.mediaEntityViews = new HashMap<>();
         if (arrayList == null || arrayList.isEmpty()) {
             return;
         }
         int size = arrayList.size();
-        for (int i = 0; i < size; i++) {
-            VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i);
+        for (int i2 = 0; i2 < size; i2++) {
+            VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i2);
             BackupImageView backupImageView = null;
             byte b = mediaEntity.type;
-            int i2 = 2;
             if (b == 0) {
                 BackupImageView backupImageView2 = new BackupImageView(getContext());
                 backupImageView2.setLayerNum(8);
@@ -172,7 +173,17 @@ public class PaintingOverlay extends FrameLayout {
                     imageReceiver.setAllowDecodeSingleFrame(true);
                     imageReceiver.setAllowStartLottieAnimation(false);
                     if (z2) {
-                        imageReceiver.setDelegate(PaintingOverlay$$ExternalSyntheticLambda0.INSTANCE);
+                        imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
+                            @Override
+                            public final void didSetImage(ImageReceiver imageReceiver2, boolean z3, boolean z4, boolean z5) {
+                                PaintingOverlay.lambda$setEntities$0(imageReceiver2, z3, z4, z5);
+                            }
+
+                            @Override
+                            public void onAnimationReady(ImageReceiver imageReceiver2) {
+                                ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver2);
+                            }
+                        });
                     }
                 }
                 imageReceiver.setImage(ImageLocation.getForDocument(mediaEntity.document), (String) null, ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(mediaEntity.document.thumbs, 90), mediaEntity.document), (String) null, "webp", mediaEntity.parentObject, 1);
@@ -191,10 +202,6 @@ public class PaintingOverlay extends FrameLayout {
                     @Override
                     public boolean onTouchEvent(MotionEvent motionEvent) {
                         return false;
-                    }
-
-                    {
-                        this.animatedEmojiOffsetX = AndroidUtilities.dp(8.0f);
                     }
                 };
                 editTextOutline.setBackgroundColor(0);
@@ -216,12 +223,15 @@ public class PaintingOverlay extends FrameLayout {
                 int i5 = Build.VERSION.SDK_INT;
                 if (i5 >= 17) {
                     int i6 = mediaEntity.textAlign;
-                    if (i6 == 1) {
-                        i2 = 4;
-                    } else if (i6 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) {
-                        i2 = 3;
+                    if (i6 != 1) {
+                        i = 3;
+                        if (i6 == 2 ? LocaleController.isRTL : !LocaleController.isRTL) {
+                            i = 2;
+                        }
+                    } else {
+                        i = 4;
                     }
-                    editTextOutline.setTextAlignment(i2);
+                    editTextOutline.setTextAlignment(i);
                 }
                 editTextOutline.setHorizontallyScrolling(false);
                 editTextOutline.setImeOptions(268435456);
@@ -231,23 +241,23 @@ public class PaintingOverlay extends FrameLayout {
                 if (i5 >= 23) {
                     editTextOutline.setBreakStrategy(0);
                 }
+                editTextOutline.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                int i7 = mediaEntity.color;
                 byte b2 = mediaEntity.subType;
-                if ((b2 & 1) != 0) {
-                    editTextOutline.setTextColor(-1);
-                    editTextOutline.setStrokeColor(mediaEntity.color);
-                    editTextOutline.setFrameColor(0);
-                    editTextOutline.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-                } else if ((b2 & 4) != 0) {
-                    editTextOutline.setTextColor(-16777216);
-                    editTextOutline.setStrokeColor(0);
-                    editTextOutline.setFrameColor(mediaEntity.color);
-                    editTextOutline.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
+                if (b2 == 0) {
+                    editTextOutline.setFrameColor(i7);
+                    i7 = AndroidUtilities.computePerceivedBrightness(mediaEntity.color) >= 0.721f ? -16777216 : -1;
+                } else if (b2 == 1) {
+                    editTextOutline.setFrameColor(AndroidUtilities.computePerceivedBrightness(i7) >= 0.25f ? -1728053248 : -1711276033);
+                } else if (b2 == 2) {
+                    editTextOutline.setFrameColor(AndroidUtilities.computePerceivedBrightness(i7) < 0.25f ? -1 : -16777216);
                 } else {
-                    editTextOutline.setTextColor(mediaEntity.color);
-                    editTextOutline.setStrokeColor(0);
                     editTextOutline.setFrameColor(0);
-                    editTextOutline.setShadowLayer(5.0f, 0.0f, 1.0f, 1711276032);
                 }
+                editTextOutline.setTextColor(i7);
+                editTextOutline.setCursorColor(i7);
+                editTextOutline.setHandlesColor(i7);
+                editTextOutline.setHighlightColor(Theme.multAlpha(i7, 0.4f));
                 mediaEntity.view = editTextOutline;
                 backupImageView = editTextOutline;
             }

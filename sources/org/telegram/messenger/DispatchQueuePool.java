@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.os.SystemClock;
 import android.util.SparseIntArray;
 import java.util.LinkedList;
+import org.telegram.ui.Components.Reactions.HwEmojis;
 public class DispatchQueuePool {
     private boolean cleanupScheduled;
     private int createdCount;
@@ -68,6 +69,11 @@ public class DispatchQueuePool {
         this.totalTasksCount++;
         this.busyQueues.add(remove);
         this.busyQueuesMap.put(remove.index, this.busyQueuesMap.get(remove.index, 0) + 1);
+        if (HwEmojis.isHwEnabled()) {
+            remove.setPriority(1);
+        } else if (remove.getPriority() != 10) {
+            remove.setPriority(10);
+        }
         remove.postRunnable(new Runnable() {
             @Override
             public final void run() {

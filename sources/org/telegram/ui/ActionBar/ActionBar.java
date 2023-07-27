@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -100,7 +101,7 @@ public class ActionBar extends FrameLayout {
     private CharSequence lastTitle;
     private boolean manualStart;
     public ActionBarMenu menu;
-    private boolean occupyStatusBar;
+    protected boolean occupyStatusBar;
     private boolean overlayTitleAnimation;
     boolean overlayTitleAnimationInProgress;
     private Object[] overlayTitleToSet;
@@ -122,6 +123,8 @@ public class ActionBar extends FrameLayout {
     private boolean titleOverlayShown;
     private int titleRightMargin;
     private SimpleTextView[] titleTextView;
+    private FrameLayout titlesContainer;
+    private boolean useContainerForTitles;
 
     public static class ActionBarMenuOnItemClick {
         public boolean canOpenMenu() {
@@ -303,7 +306,7 @@ public class ActionBar extends FrameLayout {
     public boolean shouldClipChild(View view) {
         if (this.clipContent) {
             SimpleTextView[] simpleTextViewArr = this.titleTextView;
-            if (view == simpleTextViewArr[0] || view == simpleTextViewArr[1] || view == this.subtitleTextView || view == this.menu || view == this.backButtonImageView || view == this.additionalSubtitleTextView) {
+            if (view == simpleTextViewArr[0] || view == simpleTextViewArr[1] || view == this.subtitleTextView || view == this.menu || view == this.backButtonImageView || view == this.additionalSubtitleTextView || view == this.titlesContainer) {
                 return true;
             }
         }
@@ -461,7 +464,11 @@ public class ActionBar extends FrameLayout {
         this.titleTextView[i].setDrawablePadding(AndroidUtilities.dp(4.0f));
         this.titleTextView[i].setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
         this.titleTextView[i].setRightDrawableTopPadding(-AndroidUtilities.dp(1.0f));
-        addView(this.titleTextView[i], 0, LayoutHelper.createFrame(-2, -2, 51));
+        if (this.useContainerForTitles) {
+            this.titlesContainer.addView(this.titleTextView[i], 0, LayoutHelper.createFrame(-2, -2, 51));
+        } else {
+            addView(this.titleTextView[i], 0, LayoutHelper.createFrame(-2, -2, 51));
+        }
     }
 
     public void setTitleRightMargin(int i) {
@@ -765,8 +772,9 @@ public class ActionBar extends FrameLayout {
                 @Override
                 public void onAnimationStart(Animator animator) {
                     ActionBar.this.actionMode.setVisibility(0);
-                    if (ActionBar.this.occupyStatusBar) {
-                        View unused = ActionBar.this.actionModeTop;
+                    ActionBar actionBar = ActionBar.this;
+                    if (actionBar.occupyStatusBar) {
+                        View unused = actionBar.actionModeTop;
                     }
                 }
 
@@ -915,7 +923,7 @@ public class ActionBar extends FrameLayout {
         }
         int i2 = this.actionBarColor;
         if (i2 == 0) {
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         } else if (ColorUtils.calculateLuminance(i2) < 0.699999988079071d) {
             AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);
         } else {
@@ -947,8 +955,9 @@ public class ActionBar extends FrameLayout {
                 }
                 ActionBar.this.actionModeAnimation = null;
                 ActionBar.this.actionMode.setVisibility(4);
-                if (ActionBar.this.occupyStatusBar) {
-                    View unused = ActionBar.this.actionModeTop;
+                ActionBar actionBar = ActionBar.this;
+                if (actionBar.occupyStatusBar) {
+                    View unused = actionBar.actionModeTop;
                 }
                 if (ActionBar.this.actionModeExtraView != null) {
                     ActionBar.this.actionModeExtraView.setVisibility(4);
@@ -1234,7 +1243,7 @@ public class ActionBar extends FrameLayout {
         if (actionBarMenu == null) {
             return;
         }
-        actionBarMenu.openSearchField(!this.isSearchFieldVisible, false, "", z);
+        actionBarMenu.openSearchField(!this.isSearchFieldVisible, false, BuildConfig.APP_CENTER_HASH, z);
     }
 
     public void setSearchFilter(FiltersView.MediaFilterData mediaFilterData) {
@@ -1406,7 +1415,7 @@ public class ActionBar extends FrameLayout {
     }
 
     @Override
-    protected void onLayout(boolean r15, int r16, int r17, int r18, int r19) {
+    public void onLayout(boolean r15, int r16, int r17, int r18, int r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBar.onLayout(boolean, int, int, int, int):void");
     }
 
@@ -1646,7 +1655,7 @@ public class ActionBar extends FrameLayout {
         if (this.actionModeVisible) {
             int i = this.actionBarColor;
             if (i == 0) {
-                NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             } else if (ColorUtils.calculateLuminance(i) < 0.699999988079071d) {
                 AndroidUtilities.setLightStatusBar(((Activity) getContext()).getWindow(), false);
             } else {
@@ -1775,5 +1784,27 @@ public class ActionBar extends FrameLayout {
         if (imageView != null) {
             imageView.invalidate();
         }
+    }
+
+    public void setUseContainerForTitles() {
+        this.useContainerForTitles = true;
+        if (this.titlesContainer == null) {
+            FrameLayout frameLayout = new FrameLayout(this, getContext()) {
+                @Override
+                protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                }
+
+                @Override
+                protected void onMeasure(int i, int i2) {
+                    setMeasuredDimension(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
+                }
+            };
+            this.titlesContainer = frameLayout;
+            addView(frameLayout);
+        }
+    }
+
+    public FrameLayout getTitlesContainer() {
+        return this.titlesContainer;
     }
 }

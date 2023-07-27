@@ -28,6 +28,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -299,8 +300,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
         if (this.statusStickerSet != null) {
             int i = R.string.TelegramPremiumUserStatusDialogTitle;
             TLRPC$User tLRPC$User = this.user;
-            CharSequence replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.formatString(i, ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name), "<STICKERSET>"), Theme.key_windowBackgroundWhiteBlueButton, 0, null);
-            SpannableStringBuilder spannableStringBuilder2 = replaceSingleTag instanceof SpannableStringBuilder ? (SpannableStringBuilder) replaceSingleTag : new SpannableStringBuilder(replaceSingleTag);
+            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.formatString(i, ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name), "<STICKERSET>"), Theme.key_windowBackgroundWhiteBlueButton, 0, null);
+            SpannableStringBuilder spannableStringBuilder2 = replaceSingleTag instanceof SpannableStringBuilder ? replaceSingleTag : new SpannableStringBuilder(replaceSingleTag);
             int indexOf = replaceSingleTag.toString().indexOf("<STICKERSET>");
             if (indexOf >= 0) {
                 TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSet(this.statusStickerSet, false);
@@ -374,7 +375,8 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     int i5 = R.string.TelegramPremiumUserGiftedPremiumOutboundDialogTitleWithPlural;
                     Object[] objArr = new Object[2];
                     TLRPC$User tLRPC$User4 = this.user;
-                    objArr[0] = tLRPC$User4 != null ? tLRPC$User4.first_name : "";
+                    String str = BuildConfig.APP_CENTER_HASH;
+                    objArr[0] = tLRPC$User4 != null ? tLRPC$User4.first_name : BuildConfig.APP_CENTER_HASH;
                     objArr[1] = LocaleController.formatPluralString("GiftMonths", giftTier.getMonths(), new Object[0]);
                     String formatString = LocaleController.formatString(i5, objArr);
                     int i6 = Theme.key_windowBackgroundWhiteBlueButton;
@@ -383,7 +385,10 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     int i7 = R.string.TelegramPremiumUserGiftedPremiumOutboundDialogSubtitle;
                     Object[] objArr2 = new Object[1];
                     TLRPC$User tLRPC$User5 = this.user;
-                    objArr2[0] = tLRPC$User5 != null ? tLRPC$User5.first_name : "";
+                    if (tLRPC$User5 != null) {
+                        str = tLRPC$User5.first_name;
+                    }
+                    objArr2[0] = str;
                     textView2.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(i7, objArr2), i6, 0, null));
                     return;
                 }
@@ -711,7 +716,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
     @Override
     public void show() {
         super.show();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.stopAllHeavyOperations, 4);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, 4);
         if (this.animateConfetti) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -733,7 +738,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
     @Override
     public void dismiss() {
         super.dismiss();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.startAllHeavyOperations, 4);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 4);
         ValueAnimator valueAnimator = this.enterAnimator;
         if (valueAnimator != null) {
             valueAnimator.cancel();

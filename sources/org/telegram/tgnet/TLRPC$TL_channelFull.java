@@ -1,6 +1,6 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.CharacterCompat;
+import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
     public static int constructor = -231385849;
@@ -157,11 +157,11 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
         this.flags = i3;
         int i4 = this.hidden_prehistory ? i3 | 1024 : i3 & (-1025);
         this.flags = i4;
-        int i5 = this.can_set_location ? i4 | CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT : i4 & (-65537);
+        int i5 = this.can_set_location ? i4 | 65536 : i4 & (-65537);
         this.flags = i5;
         int i6 = this.has_scheduled ? i5 | 524288 : i5 & (-524289);
         this.flags = i6;
-        int i7 = this.can_view_stats ? i6 | 1048576 : i6 & (-1048577);
+        int i7 = this.can_view_stats ? i6 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i6 & (-1048577);
         this.flags = i7;
         int i8 = this.blocked ? i7 | 4194304 : i7 & (-4194305);
         this.flags = i8;

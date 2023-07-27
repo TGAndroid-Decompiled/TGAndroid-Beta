@@ -29,6 +29,7 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -145,7 +146,14 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         this.emptyView.setGravity(17);
         this.emptyView.setVisibility(8);
         addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
-        this.emptyView.setOnTouchListener(ChatAttachAlertAudioLayout$$ExternalSyntheticLambda0.INSTANCE);
+        this.emptyView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$new$0;
+                lambda$new$0 = ChatAttachAlertAudioLayout.lambda$new$0(view, motionEvent);
+                return lambda$new$0;
+            }
+        });
         ImageView imageView = new ImageView(context);
         this.emptyImageView = imageView;
         imageView.setImageResource(R.drawable.music_empty);
@@ -257,7 +265,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void onHide() {
+    void onHide() {
         if (this.playingAudio != null && MediaController.getInstance().isPlayingMessage(this.playingAudio)) {
             MediaController.getInstance().cleanupPlayer(true, true);
         }
@@ -308,7 +316,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public int getCurrentItemTop() {
+    int getCurrentItemTop() {
         if (this.listView.getChildCount() <= 0) {
             return ConnectionsManager.DEFAULT_DATACENTER_ID;
         }
@@ -338,7 +346,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public boolean onDismiss() {
+    boolean onDismiss() {
         if (this.playingAudio != null && MediaController.getInstance().isPlayingMessage(this.playingAudio)) {
             MediaController.getInstance().cleanupPlayer(true, true);
         }
@@ -346,7 +354,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public int getListTopPadding() {
+    int getListTopPadding() {
         return this.listView.getPaddingTop();
     }
 
@@ -357,7 +365,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void onPreMeasure(int i, int i2) {
+    void onPreMeasure(int i, int i2) {
         int i3;
         if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
             i3 = AndroidUtilities.dp(8.0f);
@@ -387,7 +395,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void onHidden() {
+    void onHidden() {
         this.selectedAudios.clear();
         this.selectedAudiosOrder.clear();
     }
@@ -564,7 +572,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                 tLRPC$TL_peerUser.user_id = clientUserId;
                 tLRPC$Peer.user_id = clientUserId;
                 tLRPC$TL_message.date = (int) (System.currentTimeMillis() / 1000);
-                tLRPC$TL_message.message = "";
+                tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
                 tLRPC$TL_message.attachPath = audioEntry.path;
                 TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = new TLRPC$TL_messageMediaDocument();
                 tLRPC$TL_message.media = tLRPC$TL_messageMediaDocument;
@@ -861,7 +869,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    public void onContainerTranslationUpdated(float f) {
+    void onContainerTranslationUpdated(float f) {
         this.currentPanTranslationProgress = f;
         super.onContainerTranslationUpdated(f);
         updateEmptyViewPosition();

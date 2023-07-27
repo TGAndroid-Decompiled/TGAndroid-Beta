@@ -16,7 +16,16 @@ public class Intrinsics {
     }
 
     private static String createParameterIsNullExceptionMessage(String str) {
-        StackTraceElement stackTraceElement = Thread.currentThread().getStackTrace()[4];
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        String name = Intrinsics.class.getName();
+        int i = 0;
+        while (!stackTrace[i].getClassName().equals(name)) {
+            i++;
+        }
+        while (stackTrace[i].getClassName().equals(name)) {
+            i++;
+        }
+        StackTraceElement stackTraceElement = stackTrace[i];
         String className = stackTraceElement.getClassName();
         String methodName = stackTraceElement.getMethodName();
         return "Parameter specified as non-null is null: method " + className + "." + methodName + ", parameter " + str;

@@ -108,7 +108,14 @@ public class SpoilerEffect extends Drawable {
         this.rippleProgress = -1.0f;
         this.spaces = new ArrayList();
         this.mAlpha = 255;
-        this.rippleInterpolator = SpoilerEffect$$ExternalSyntheticLambda0.INSTANCE;
+        this.rippleInterpolator = new TimeInterpolator() {
+            @Override
+            public final float getInterpolation(float f) {
+                float lambda$new$0;
+                lambda$new$0 = SpoilerEffect.lambda$new$0(f);
+                return lambda$new$0;
+            }
+        };
         for (int i = 0; i < ALPHAS.length; i++) {
             this.particlePaints[i] = new Paint();
             if (i == 0) {
@@ -541,8 +548,8 @@ public class SpoilerEffect extends Drawable {
 
     public static void clipOutCanvas(Canvas canvas, List<SpoilerEffect> list) {
         tempPath.rewind();
-        for (SpoilerEffect spoilerEffect : list) {
-            Rect bounds = spoilerEffect.getBounds();
+        for (int i = 0; i < list.size(); i++) {
+            Rect bounds = list.get(i).getBounds();
             tempPath.addRect(bounds.left, bounds.top, bounds.right, bounds.bottom, Path.Direction.CW);
         }
         canvas.clipPath(tempPath, Region.Op.DIFFERENCE);

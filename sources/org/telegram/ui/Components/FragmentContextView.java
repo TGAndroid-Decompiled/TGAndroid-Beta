@@ -42,6 +42,7 @@ import java.util.HashMap;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -491,7 +492,12 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
             this.silentButton.setBackground(Theme.createSelectorDrawable(getThemedColor(i3) & 436207615, 1, AndroidUtilities.dp(14.0f)));
         }
         this.silentButton.setContentDescription(LocaleController.getString("Unmute", R.string.Unmute));
-        this.silentButton.setOnClickListener(FragmentContextView$$ExternalSyntheticLambda8.INSTANCE);
+        this.silentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view3) {
+                FragmentContextView.lambda$checkCreateView$2(view3);
+            }
+        });
         this.silentButton.setVisibility(8);
         addView(this.silentButton, LayoutHelper.createFrame(36, 36.0f, 53, 0.0f, 0.0f, 36.0f, 0.0f));
         if (!this.isLocation) {
@@ -509,7 +515,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         this.avatars.setVisibility(8);
         addView(this.avatars, LayoutHelper.createFrame(108, 36, 51));
         int i4 = R.raw.voice_muted;
-        this.muteDrawable = new RLottieDrawable(i4, "" + i4, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), true, null);
+        this.muteDrawable = new RLottieDrawable(i4, BuildConfig.APP_CENTER_HASH + i4, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(20.0f), true, null);
         AnonymousClass7 anonymousClass7 = new AnonymousClass7(context);
         this.muteButton = anonymousClass7;
         anonymousClass7.setColorFilter(new PorterDuffColorFilter(getThemedColor(Theme.key_returnToCallText), PorterDuff.Mode.MULTIPLY));
@@ -1089,11 +1095,11 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                 FragmentContextView.lambda$openSharingLocation$14(LocationController.SharingLocationInfo.this, dialogId, tLRPC$MessageMedia, i, z, i2);
             }
         });
-        launchActivity.lambda$runLinkRequest$77(locationActivity);
+        launchActivity.lambda$runLinkRequest$80(locationActivity);
     }
 
     public static void lambda$openSharingLocation$14(LocationController.SharingLocationInfo sharingLocationInfo, long j, TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-        SendMessagesHelper.getInstance(sharingLocationInfo.messageObject.currentAccount).sendMessage(tLRPC$MessageMedia, j, (MessageObject) null, (MessageObject) null, (TLRPC$ReplyMarkup) null, (HashMap<String, String>) null, z, i2);
+        SendMessagesHelper.getInstance(sharingLocationInfo.messageObject.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(tLRPC$MessageMedia, j, (MessageObject) null, (MessageObject) null, (TLRPC$ReplyMarkup) null, (HashMap<String, String>) null, z, i2));
     }
 
     @Keep
@@ -1666,7 +1672,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
                     string = LocaleController.getString("AttachLiveLocationIsSharing", R.string.AttachLiveLocationIsSharing);
                 } else {
                     TLRPC$Chat chat = MessagesController.getInstance(sharingLocationInfo.messageObject.currentAccount).getChat(Long.valueOf(-dialogId));
-                    formatPluralString = chat != null ? chat.title : "";
+                    formatPluralString = chat != null ? chat.title : BuildConfig.APP_CENTER_HASH;
                     string = LocaleController.getString("AttachLiveLocationIsSharingChat", R.string.AttachLiveLocationIsSharingChat);
                 }
             } else {
@@ -1946,7 +1952,7 @@ public class FragmentContextView extends FrameLayout implements NotificationCent
         } else {
             this.isMusic = true;
             if (this.playbackSpeedButton != null) {
-                if (playingMessageObject.getDuration() >= 600) {
+                if (playingMessageObject.getDuration() >= 600.0d) {
                     this.playbackSpeedButton.setAlpha(1.0f);
                     this.playbackSpeedButton.setEnabled(true);
                     this.titleTextView.setPadding(0, 0, AndroidUtilities.dp(44.0f) + this.joinButtonWidth, 0);

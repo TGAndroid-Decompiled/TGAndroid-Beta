@@ -4378,6 +4378,13 @@
     <string name="YourPasswordSuccessText">Je wachtwoord voor twee-staps-verificatie is nu actief.</string>
     <string name="YourPhone">Je telefoon</string>
     <string name="ZoomOut">Uitzoomen</string>
+    <string name="call_notification_answer_action">Beantwoorden</string>
+    <string name="call_notification_answer_video_action">Video</string>
+    <string name="call_notification_decline_action">Weigeren</string>
+    <string name="call_notification_hang_up_action">Ophangen</string>
+    <string name="call_notification_incoming_text">Inkomend gesprek</string>
+    <string name="call_notification_ongoing_text">Actief gesprek</string>
+    <string name="call_notification_screening_text">Een inkomend gesprek screenen</string>
     <string name="chatDate">d MMMM</string>
     <string name="chatFullDate">d MMMM yyyy</string>
     <string name="common_google_play_services_enable_button">Aanzetten</string>

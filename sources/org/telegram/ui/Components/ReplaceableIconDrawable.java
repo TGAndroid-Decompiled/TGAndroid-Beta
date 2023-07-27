@@ -193,6 +193,9 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
     }
 
     public void addView(View view) {
+        if (this.parentViews.contains(view)) {
+            return;
+        }
         this.parentViews.add(view);
     }
 

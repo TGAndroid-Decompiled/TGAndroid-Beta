@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Svara</string>
+    <string name="call_notification_answer_video_action">Myndsímtal</string>
+    <string name="call_notification_decline_action">Hafna</string>
+    <string name="call_notification_hang_up_action">Leggja á</string>
+    <string name="call_notification_incoming_text">Símtal berst</string>
+    <string name="call_notification_ongoing_text">Símtal í gangi</string>
+    <string name="call_notification_screening_text">Síar símtal sem berst</string>
     <string name="common_google_play_services_enable_button">Kveikja</string>
     <string name="common_google_play_services_enable_text">%1$s virkar ekki nema þú gerir þjónustu Google Play virka.</string>
     <string name="common_google_play_services_enable_title">Virkja þjónustu Google Play</string>

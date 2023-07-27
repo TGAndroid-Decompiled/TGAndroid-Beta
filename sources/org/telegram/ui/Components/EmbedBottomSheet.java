@@ -36,12 +36,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.arch.core.util.Function;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BringAppForegroundService;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -185,7 +187,14 @@ public class EmbedBottomSheet extends BottomSheet {
         if (i4 >= 21) {
             this.fullscreenVideoContainer.setFitsSystemWindows(true);
         }
-        this.fullscreenVideoContainer.setOnTouchListener(EmbedBottomSheet$$ExternalSyntheticLambda4.INSTANCE);
+        this.fullscreenVideoContainer.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$new$0;
+                lambda$new$0 = EmbedBottomSheet.lambda$new$0(view, motionEvent);
+                return lambda$new$0;
+            }
+        });
         this.container.addView(this.fullscreenVideoContainer, LayoutHelper.createFrame(-1, -1.0f));
         this.fullscreenVideoContainer.setVisibility(4);
         FrameLayout frameLayout2 = new FrameLayout(context) {
@@ -217,7 +226,14 @@ public class EmbedBottomSheet extends BottomSheet {
             }
         };
         this.containerLayout = frameLayout2;
-        frameLayout2.setOnTouchListener(EmbedBottomSheet$$ExternalSyntheticLambda5.INSTANCE);
+        frameLayout2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$new$1;
+                lambda$new$1 = EmbedBottomSheet.lambda$new$1(view, motionEvent);
+                return lambda$new$1;
+            }
+        });
         setCustomView(this.containerLayout);
         WebView webView = new WebView(context) {
             @Override
@@ -701,7 +717,7 @@ public class EmbedBottomSheet extends BottomSheet {
                             try {
                                 Uri parse = Uri.parse(EmbedBottomSheet.this.openUrl);
                                 if (EmbedBottomSheet.this.seekTimeOverride > 0) {
-                                    str5 = "" + EmbedBottomSheet.this.seekTimeOverride;
+                                    str5 = BuildConfig.APP_CENTER_HASH + EmbedBottomSheet.this.seekTimeOverride;
                                 }
                                 if (str5 == null && (str5 = parse.getQueryParameter("t")) == null) {
                                     str5 = parse.getQueryParameter("time_continue");
@@ -826,7 +842,12 @@ public class EmbedBottomSheet extends BottomSheet {
         }
         Activity activity = this.parentActivity;
         if (activity instanceof LaunchActivity) {
-            ((LaunchActivity) activity).showBulletin(EmbedBottomSheet$$ExternalSyntheticLambda6.INSTANCE);
+            ((LaunchActivity) activity).showBulletin(new Function() {
+                @Override
+                public final Object apply(Object obj) {
+                    return ((BulletinFactory) obj).createCopyLinkBulletin();
+                }
+            });
         }
         dismiss();
     }

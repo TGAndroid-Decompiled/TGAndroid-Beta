@@ -16,8 +16,6 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.util.StateSet;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -55,7 +53,6 @@ public class Switch extends View {
     private Theme.ResourcesProvider resourcesProvider;
     private RippleDrawable rippleDrawable;
     private Paint ripplePaint;
-    private boolean semHaptics;
     private int thumbCheckedColorKey;
     private int thumbColorKey;
     private int trackCheckedColorKey;
@@ -78,7 +75,6 @@ public class Switch extends View {
         this.thumbColorKey = i;
         this.thumbCheckedColorKey = i;
         this.pressedState = new int[]{16842910, 16842919};
-        this.semHaptics = false;
         this.resourcesProvider = resourcesProvider;
         this.rectF = new RectF();
         this.paint = new Paint(1);
@@ -204,7 +200,7 @@ public class Switch extends View {
         fArr[0] = z ? 1.0f : 0.0f;
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", fArr);
         this.checkAnimator = ofFloat;
-        ofFloat.setDuration(this.semHaptics ? 150L : 250L);
+        ofFloat.setDuration(200L);
         this.checkAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
@@ -219,7 +215,7 @@ public class Switch extends View {
         fArr[0] = z ? 1.0f : 0.0f;
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "iconProgress", fArr);
         this.iconAnimator = ofFloat;
-        ofFloat.setDuration(this.semHaptics ? 150L : 250L);
+        ofFloat.setDuration(200L);
         this.iconAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animator) {
@@ -253,7 +249,6 @@ public class Switch extends View {
         if (z != this.isChecked) {
             this.isChecked = z;
             if (this.attachedToWindow && z2) {
-                vibrateChecked(z);
                 animateToCheckedState(z);
             } else {
                 cancelCheckAnimator();
@@ -354,19 +349,5 @@ public class Switch extends View {
         accessibilityNodeInfo.setClassName("android.widget.Switch");
         accessibilityNodeInfo.setCheckable(true);
         accessibilityNodeInfo.setChecked(this.isChecked);
-    }
-
-    private void vibrateChecked(boolean z) {
-        try {
-            if (!isHapticFeedbackEnabled() || Build.VERSION.SDK_INT < 28) {
-                return;
-            }
-            Vibrator vibrator = AndroidUtilities.getVibrator();
-            VibrationEffect createWaveform = VibrationEffect.createWaveform(new long[]{75, 10, 5, 10}, new int[]{5, 20, 110, 20}, -1);
-            vibrator.cancel();
-            vibrator.vibrate(createWaveform);
-            this.semHaptics = true;
-        } catch (Exception unused) {
-        }
     }
 }

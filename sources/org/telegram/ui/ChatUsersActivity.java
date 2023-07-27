@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
@@ -673,7 +674,12 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 public final void accept(Object obj) {
                     ChatUsersActivity.AnonymousClass9.this.lambda$didSelectUsers$0((TLRPC$User) obj);
                 }
-            }, ChatUsersActivity$9$$ExternalSyntheticLambda1.INSTANCE, null);
+            }, new Consumer() {
+                @Override
+                public final void accept(Object obj) {
+                    ChatUsersActivity.AnonymousClass9.lambda$didSelectUsers$1((TLRPC$User) obj);
+                }
+            }, null);
         }
 
         public void lambda$didSelectUsers$0(TLRPC$User tLRPC$User) {
@@ -707,7 +713,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
         @Override
         public void needAddBot(TLRPC$User tLRPC$User) {
-            ChatUsersActivity.this.openRightsEdit(tLRPC$User.id, null, null, null, "", true, 0, false);
+            ChatUsersActivity.this.openRightsEdit(tLRPC$User.id, null, null, null, BuildConfig.APP_CENTER_HASH, true, 0, false);
         }
     }
 
@@ -1288,7 +1294,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
             int i4 = tLRPC$ChatParticipant.date;
             j = j2;
             z2 = ChatObject.canAddAdmins(this.currentChat);
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
             i = i4;
             tLRPC$TL_chatAdminRights = null;
             tLRPC$TL_chatBannedRights = null;
@@ -1348,7 +1354,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 i3 = R.string.KickFromGroup;
                 str3 = "KickFromGroup";
             }
-            addIf.addIf(z12, i5, LocaleController.getString(str3, i3), true, new Runnable() {
+            addIf.addIf(z12, i5, (CharSequence) LocaleController.getString(str3, i3), true, new Runnable() {
                 @Override
                 public final void run() {
                     ChatUsersActivity.this.lambda$createMenuForParticipant$13(user, j4);
@@ -1367,7 +1373,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     ChatUsersActivity.this.lambda$createMenuForParticipant$14(j5, tLRPC$TL_chatBannedRights3, str4, tLObject);
                 }
             });
-            makeOptions.add(R.drawable.msg_delete, LocaleController.getString("ChannelDeleteFromList", R.string.ChannelDeleteFromList), true, new Runnable() {
+            makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("ChannelDeleteFromList", R.string.ChannelDeleteFromList), true, new Runnable() {
                 @Override
                 public final void run() {
                     ChatUsersActivity.this.lambda$createMenuForParticipant$15(j5);
@@ -1390,7 +1396,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     }
                 });
             }
-            makeOptions.add(R.drawable.msg_delete, LocaleController.getString("ChannelDeleteFromList", R.string.ChannelDeleteFromList), true, new Runnable() {
+            makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("ChannelDeleteFromList", R.string.ChannelDeleteFromList), true, new Runnable() {
                 @Override
                 public final void run() {
                     ChatUsersActivity.this.lambda$createMenuForParticipant$17(j5);
@@ -1407,7 +1413,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                     }
                 });
             }
-            makeOptions.add(R.drawable.msg_remove, LocaleController.getString("ChannelRemoveUserAdmin", R.string.ChannelRemoveUserAdmin), true, new Runnable() {
+            makeOptions.add(R.drawable.msg_remove, (CharSequence) LocaleController.getString("ChannelRemoveUserAdmin", R.string.ChannelRemoveUserAdmin), true, new Runnable() {
                 @Override
                 public final void run() {
                     ChatUsersActivity.this.lambda$createMenuForParticipant$19(j5);
@@ -1509,7 +1515,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
     }
 
     public void lambda$createMenuForParticipant$19(long j) {
-        getMessagesController().setUserAdminRole(this.chatId, getMessagesController().getUser(Long.valueOf(j)), new TLRPC$TL_chatAdminRights(), "", !this.isChannel, this, false, false, null, null);
+        getMessagesController().setUserAdminRole(this.chatId, getMessagesController().getUser(Long.valueOf(j)), new TLRPC$TL_chatAdminRights(), BuildConfig.APP_CENTER_HASH, !this.isChannel, this, false, false, null, null);
         removeParticipants(j);
     }
 
@@ -1660,7 +1666,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
 
     public String formatUserPermissions(TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights) {
         if (tLRPC$TL_chatBannedRights == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         StringBuilder sb = new StringBuilder();
         boolean z = tLRPC$TL_chatBannedRights.view_messages;
@@ -1882,7 +1888,7 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         } else if (i3 == 3) {
             tLRPC$TL_channels_getParticipants.filter = new TLRPC$TL_channelParticipantsBanned();
         }
-        tLRPC$TL_channels_getParticipants.filter.q = "";
+        tLRPC$TL_channels_getParticipants.filter.q = BuildConfig.APP_CENTER_HASH;
         tLRPC$TL_channels_getParticipants.offset = i;
         tLRPC$TL_channels_getParticipants.limit = i2;
         return arrayList;

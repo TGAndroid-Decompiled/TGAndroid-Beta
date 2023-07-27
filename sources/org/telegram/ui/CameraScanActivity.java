@@ -58,6 +58,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.LiteMode;
@@ -497,7 +498,14 @@ public class CameraScanActivity extends BaseFragment {
                 return rectF;
             }
         };
-        viewGroup.setOnTouchListener(CameraScanActivity$$ExternalSyntheticLambda4.INSTANCE);
+        viewGroup.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$createView$1;
+                lambda$createView$1 = CameraScanActivity.lambda$createView$1(view, motionEvent);
+                return lambda$createView$1;
+            }
+        });
         this.fragmentView = viewGroup;
         if (isQr()) {
             this.fragmentView.postDelayed(new Runnable() {
@@ -1463,7 +1471,7 @@ public class CameraScanActivity extends BaseFragment {
                 return null;
             }
             if (this.needGalleryButton) {
-                Uri.parse(str).getPath().replace("/", "");
+                Uri.parse(str).getPath().replace("/", BuildConfig.APP_CENTER_HASH);
             } else if (!str.startsWith("tg://login?token=") && this.currentType != 3) {
                 onNoQrFound();
                 return null;

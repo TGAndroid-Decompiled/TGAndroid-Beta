@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
@@ -202,7 +203,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         this.iconView = rLottieImageView;
         rLottieImageView.setScaleType(ImageView.ScaleType.CENTER);
         int i2 = R.raw.group_pip_delete_icon;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f), true, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f), true, null);
         this.deleteIcon = rLottieDrawable;
         rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
         rLottieImageView.setAnimation(this.deleteIcon);
@@ -275,7 +276,12 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
                     }
                 }
             };
-            this.micRunnable = GroupCallPip$3$$ExternalSyntheticLambda0.INSTANCE;
+            this.micRunnable = new Runnable() {
+                @Override
+                public final void run() {
+                    GroupCallPip.AnonymousClass3.lambda$$0();
+                }
+            };
         }
 
         public static void lambda$$0() {
@@ -479,7 +485,12 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
         ofFloat3.setStartDelay(0.7f * f);
         ofFloat3.setDuration(f * 0.3f);
         animatorSet.playTogether(ofFloat3);
-        AndroidUtilities.runOnUIThread(GroupCallPip$$ExternalSyntheticLambda3.INSTANCE, 370L);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                GroupCallPip.lambda$remove$2();
+            }
+        }, 370L);
         long j = 350 + currentFrame + 180;
         ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(this.removeTooltipView, View.SCALE_X, 1.0f, 1.05f);
         ofFloat4.setDuration(j);
@@ -519,7 +530,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
     }
 
     public static void lambda$remove$2() {
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
     }
 
     public class AnonymousClass9 extends AnimatorListenerAdapter {
@@ -681,7 +692,7 @@ public class GroupCallPip implements NotificationCenter.NotificationCenterDelega
             }).start();
             instance.onDestroy();
             instance = null;
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallVisibilityChanged, new Object[0]);
         }
     }
 

@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_sendMessage extends TLObject {
-    public static int constructor = 482476935;
+    public static int constructor = 671943023;
     public boolean background;
     public boolean clear_draft;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
@@ -14,11 +14,10 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
     public TLRPC$InputPeer peer;
     public long random_id;
     public TLRPC$ReplyMarkup reply_markup;
-    public int reply_to_msg_id;
+    public TLRPC$InputReplyTo reply_to;
     public int schedule_date;
     public TLRPC$InputPeer send_as;
     public boolean silent;
-    public int top_msg_id;
     public boolean update_stickersets_order;
 
     @Override
@@ -44,10 +43,7 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
         abstractSerializedData.writeInt32(i6);
         this.peer.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {
-            abstractSerializedData.writeInt32(this.reply_to_msg_id);
-        }
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-            abstractSerializedData.writeInt32(this.top_msg_id);
+            this.reply_to.serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeString(this.message);
         abstractSerializedData.writeInt64(this.random_id);

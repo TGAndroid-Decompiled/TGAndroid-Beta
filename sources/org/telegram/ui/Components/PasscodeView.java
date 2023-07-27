@@ -43,10 +43,12 @@ import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FingerprintController;
 import org.telegram.messenger.GenericProvider;
@@ -691,7 +693,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 frameLayout5.setContentDescription(LocaleController.getString("AccDescrBackspace", R.string.AccDescrBackspace));
                 setNextFocus(frameLayout5, R.id.passcode_btn_1);
             } else {
-                frameLayout5.setContentDescription(i4 + "");
+                frameLayout5.setContentDescription(i4 + BuildConfig.APP_CENTER_HASH);
                 if (i4 == 0) {
                     setNextFocus(frameLayout5, R.id.passcode_btn_backspace);
                 } else if (i4 == 9) {
@@ -810,7 +812,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
     }
 
     public boolean lambda$new$3(View view) {
-        this.passwordEditText.setText("");
+        this.passwordEditText.setText(BuildConfig.APP_CENTER_HASH);
         this.passwordEditText2.eraseAllCharacters(true);
         Drawable drawable = this.backgroundDrawable;
         if (drawable instanceof MotionBackgroundDrawable) {
@@ -923,7 +925,14 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 for (Runnable runnable2 : arrayList) {
                     this.backgroundSpringQueue.remove(runnable2);
                 }
-                Collections.sort(arrayList2, PasscodeView$$ExternalSyntheticLambda12.INSTANCE);
+                Collections.sort(arrayList2, new Comparator() {
+                    @Override
+                    public final int compare(Object obj, Object obj2) {
+                        int lambda$new$5;
+                        lambda$new$5 = PasscodeView.lambda$new$5((Integer) obj, (Integer) obj2);
+                        return lambda$new$5;
+                    }
+                });
                 for (Integer num : arrayList2) {
                     this.backgroundSpringNextQueue.remove(num.intValue());
                 }
@@ -1014,7 +1023,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             if (i == 0) {
                 obj = this.passwordEditText2.getString();
             } else {
-                obj = i == 1 ? this.passwordEditText.getText().toString() : "";
+                obj = i == 1 ? this.passwordEditText.getText().toString() : BuildConfig.APP_CENTER_HASH;
             }
             if (obj.length() == 0) {
                 onPasscodeError();
@@ -1024,7 +1033,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 if (SharedConfig.passcodeRetryInMs > 0) {
                     checkRetryTextView();
                 }
-                this.passwordEditText.setText("");
+                this.passwordEditText.setText(BuildConfig.APP_CENTER_HASH);
                 this.passwordEditText2.eraseAllCharacters(true);
                 onPasscodeError();
                 Drawable drawable = this.backgroundDrawable;
@@ -1052,7 +1061,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
         SharedConfig.appLocked = false;
         SharedConfig.saveConfig();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.didSetPasscode, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetPasscode, new Object[0]);
         setOnTouchListener(null);
         PasscodeViewDelegate passcodeViewDelegate = this.delegate;
         if (passcodeViewDelegate != null) {
@@ -1475,7 +1484,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
         }
         setVisibility(0);
         this.passwordEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
-        this.passwordEditText.setText("");
+        this.passwordEditText.setText(BuildConfig.APP_CENTER_HASH);
         this.passwordEditText2.eraseAllCharacters(false);
         if (z2) {
             setAlpha(0.0f);
@@ -1491,7 +1500,14 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
                 runnable.run();
             }
         }
-        setOnTouchListener(PasscodeView$$ExternalSyntheticLambda5.INSTANCE);
+        setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$onShow$13;
+                lambda$onShow$13 = PasscodeView.lambda$onShow$13(view, motionEvent);
+                return lambda$onShow$13;
+            }
+        });
     }
 
     public class AnonymousClass9 implements ViewTreeObserver.OnGlobalLayoutListener {

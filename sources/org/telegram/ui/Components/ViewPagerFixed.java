@@ -37,11 +37,14 @@ import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_updateDialogFiltersOrder;
@@ -49,7 +52,14 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ViewPagerFixed;
 public class ViewPagerFixed extends FrameLayout {
-    private static final Interpolator interpolator = ViewPagerFixed$$ExternalSyntheticLambda2.INSTANCE;
+    private static final Interpolator interpolator = new Interpolator() {
+        @Override
+        public final float getInterpolation(float f) {
+            float lambda$static$0;
+            lambda$static$0 = ViewPagerFixed.lambda$static$0(f);
+            return lambda$static$0;
+        }
+    };
     private Adapter adapter;
     private float additionalOffset;
     private boolean allowDisallowInterceptTouch;
@@ -57,6 +67,7 @@ public class ViewPagerFixed extends FrameLayout {
     private boolean backAnimation;
     private float backProgress;
     int currentPosition;
+    private ValueAnimator manualScrolling;
     private int maximumVelocity;
     private boolean maybeStartTracking;
     int nextPosition;
@@ -87,7 +98,9 @@ public class ViewPagerFixed extends FrameLayout {
             return i;
         }
 
-        public abstract String getItemTitle(int i);
+        public String getItemTitle(int i) {
+            return BuildConfig.APP_CENTER_HASH;
+        }
 
         public int getItemViewType(int i) {
             return 0;
@@ -103,6 +116,10 @@ public class ViewPagerFixed extends FrameLayout {
         return (f2 * f2 * f2 * f2 * f2) + 1.0f;
     }
 
+    protected boolean canScroll(MotionEvent motionEvent) {
+        return true;
+    }
+
     protected void invalidateBlur() {
     }
 
@@ -116,11 +133,32 @@ public class ViewPagerFixed extends FrameLayout {
     protected void onItemSelected(View view, View view2, int i, int i2) {
     }
 
+    protected void onScrollEnd() {
+    }
+
+    protected void onTabAnimationUpdate() {
+    }
+
     protected void onTabPageSelected(int i) {
     }
 
     protected int tabMarginDp() {
         return 16;
+    }
+
+    public float getPositionAnimated() {
+        float f;
+        View[] viewArr = this.viewPages;
+        if (viewArr[0] == null || viewArr[0].getVisibility() != 0) {
+            f = 0.0f;
+        } else {
+            f = (this.currentPosition * Utilities.clamp(1.0f - Math.abs(this.viewPages[0].getTranslationX() / AndroidUtilities.displaySize.x), 1.0f, 0.0f)) + 0.0f;
+        }
+        View[] viewArr2 = this.viewPages;
+        if (viewArr2[1] == null || viewArr2[1].getVisibility() != 0) {
+            return f;
+        }
+        return f + (this.nextPosition * Utilities.clamp(1.0f - Math.abs(this.viewPages[1].getTranslationX() / AndroidUtilities.displaySize.x), 1.0f, 0.0f));
     }
 
     public ViewPagerFixed(Context context) {
@@ -141,6 +179,7 @@ public class ViewPagerFixed extends FrameLayout {
                         tabsView.selectTab(viewPagerFixed.nextPosition, viewPagerFixed.currentPosition, 1.0f - abs);
                     }
                 }
+                ViewPagerFixed.this.onTabAnimationUpdate();
             }
         };
         this.rect = new android.graphics.Rect();
@@ -161,6 +200,77 @@ public class ViewPagerFixed extends FrameLayout {
         addView(this.viewPages[0]);
         this.viewPages[0].setVisibility(0);
         fillTabs(false);
+    }
+
+    public boolean isManualScrolling() {
+        ValueAnimator valueAnimator = this.manualScrolling;
+        return valueAnimator != null && valueAnimator.isRunning();
+    }
+
+    public void scrollToPosition(int i) {
+        boolean z = this.currentPosition < i;
+        this.animatingForward = z;
+        this.nextPosition = i;
+        updateViewForIndex(1);
+        onTabPageSelected(i);
+        View[] viewArr = this.viewPages;
+        int measuredWidth = viewArr[0] != null ? viewArr[0].getMeasuredWidth() : 0;
+        if (z) {
+            this.viewPages[1].setTranslationX(measuredWidth);
+        } else {
+            this.viewPages[1].setTranslationX(-measuredWidth);
+        }
+        ValueAnimator valueAnimator = this.manualScrolling;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.manualScrolling = null;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.manualScrolling = ofFloat;
+        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                ViewPagerFixed.this.lambda$scrollToPosition$1(valueAnimator2);
+            }
+        });
+        this.manualScrolling.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                ViewPagerFixed viewPagerFixed = ViewPagerFixed.this;
+                if (viewPagerFixed.viewPages[1] != null) {
+                    viewPagerFixed.swapViews();
+                    ViewPagerFixed viewPagerFixed2 = ViewPagerFixed.this;
+                    viewPagerFixed2.viewsByType.put(viewPagerFixed2.viewTypes[1], ViewPagerFixed.this.viewPages[1]);
+                    ViewPagerFixed viewPagerFixed3 = ViewPagerFixed.this;
+                    viewPagerFixed3.removeView(viewPagerFixed3.viewPages[1]);
+                    ViewPagerFixed.this.viewPages[0].setTranslationX(0.0f);
+                    ViewPagerFixed.this.viewPages[1] = null;
+                }
+                ViewPagerFixed.this.manualScrolling = null;
+                ViewPagerFixed.this.onTabAnimationUpdate();
+            }
+        });
+        this.manualScrolling.setDuration(540L);
+        this.manualScrolling.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.manualScrolling.start();
+    }
+
+    public void lambda$scrollToPosition$1(ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        View[] viewArr = this.viewPages;
+        if (viewArr[1] == null) {
+            return;
+        }
+        if (this.animatingForward) {
+            viewArr[1].setTranslationX(viewArr[0].getMeasuredWidth() * (1.0f - floatValue));
+            View[] viewArr2 = this.viewPages;
+            viewArr2[0].setTranslationX((-viewArr2[0].getMeasuredWidth()) * floatValue);
+        } else {
+            viewArr[1].setTranslationX((-viewArr[0].getMeasuredWidth()) * (1.0f - floatValue));
+            View[] viewArr3 = this.viewPages;
+            viewArr3[0].setTranslationX(viewArr3[0].getMeasuredWidth() * floatValue);
+        }
+        onTabAnimationUpdate();
     }
 
     public TabsView createTabsView(boolean z, int i) {
@@ -334,7 +444,7 @@ public class ViewPagerFixed extends FrameLayout {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ViewPagerFixed.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
-    public void lambda$onTouchEvent$1(ValueAnimator valueAnimator) {
+    public void lambda$onTouchEvent$2(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.backProgress = floatValue;
         onBackProgress(floatValue);
@@ -504,7 +614,7 @@ public class ViewPagerFixed extends FrameLayout {
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ViewPagerFixed.this.lambda$rebuild$2(valueAnimator);
+                    ViewPagerFixed.this.lambda$rebuild$3(valueAnimator);
                 }
             });
             this.tabsAnimation.playTogether(ofFloat);
@@ -543,7 +653,7 @@ public class ViewPagerFixed extends FrameLayout {
         }
     }
 
-    public void lambda$rebuild$2(ValueAnimator valueAnimator) {
+    public void lambda$rebuild$3(ValueAnimator valueAnimator) {
         this.updateTabProgress.onAnimationUpdate(valueAnimator);
         this.tabsView.indicatorProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.tabsView.listView.invalidateViews();
@@ -643,7 +753,7 @@ public class ViewPagerFixed extends FrameLayout {
         public void saveFromValues() {
         }
 
-        static float access$3116(TabsView tabsView, float f) {
+        static float access$3216(TabsView tabsView, float f) {
             float f2 = tabsView.animationTime + f;
             tabsView.animationTime = f2;
             return f2;
@@ -863,7 +973,7 @@ public class ViewPagerFixed extends FrameLayout {
                         if (elapsedRealtime > 17) {
                             elapsedRealtime = 17;
                         }
-                        TabsView.access$3116(TabsView.this, ((float) elapsedRealtime) / 200.0f);
+                        TabsView.access$3216(TabsView.this, ((float) elapsedRealtime) / 200.0f);
                         TabsView tabsView = TabsView.this;
                         tabsView.setAnimationIdicatorProgress(tabsView.interpolator.getInterpolation(TabsView.this.animationTime));
                         if (TabsView.this.animationTime > 1.0f) {
@@ -1301,7 +1411,12 @@ public class ViewPagerFixed extends FrameLayout {
                 arrayList.get(i);
                 tLRPC$TL_messages_updateDialogFiltersOrder.order.add(Integer.valueOf(arrayList.get(i).id));
             }
-            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, ViewPagerFixed$TabsView$$ExternalSyntheticLambda0.INSTANCE);
+            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_messages_updateDialogFiltersOrder, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    ViewPagerFixed.TabsView.lambda$setIsEditing$1(tLObject, tLRPC$TL_error);
+                }
+            });
             this.orderChanged = false;
         }
 

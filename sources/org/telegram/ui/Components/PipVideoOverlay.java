@@ -39,16 +39,42 @@ import java.util.List;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.GestureDetectorFixDoubleTap;
 import org.telegram.ui.Components.PipVideoOverlay;
+import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 import org.telegram.ui.Components.VideoForwardDrawable;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public class PipVideoOverlay {
-    private static final FloatPropertyCompat<PipVideoOverlay> PIP_X_PROPERTY = new SimpleFloatPropertyCompat("pipX", PipVideoOverlay$$ExternalSyntheticLambda11.INSTANCE, PipVideoOverlay$$ExternalSyntheticLambda13.INSTANCE);
-    private static final FloatPropertyCompat<PipVideoOverlay> PIP_Y_PROPERTY = new SimpleFloatPropertyCompat("pipY", PipVideoOverlay$$ExternalSyntheticLambda10.INSTANCE, PipVideoOverlay$$ExternalSyntheticLambda12.INSTANCE);
+    private static final FloatPropertyCompat<PipVideoOverlay> PIP_X_PROPERTY = new SimpleFloatPropertyCompat("pipX", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((PipVideoOverlay) obj).pipX;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            PipVideoOverlay.lambda$static$1((PipVideoOverlay) obj, f);
+        }
+    });
+    private static final FloatPropertyCompat<PipVideoOverlay> PIP_Y_PROPERTY = new SimpleFloatPropertyCompat("pipY", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((PipVideoOverlay) obj).pipY;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            PipVideoOverlay.lambda$static$3((PipVideoOverlay) obj, f);
+        }
+    });
     @SuppressLint({"StaticFieldLeak"})
     private static PipVideoOverlay instance = new PipVideoOverlay();
     private Float aspectRatio;
@@ -355,7 +381,7 @@ public class PipVideoOverlay {
         this.controlsView.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
-    public static void dimissAndDestroy() {
+    public static void dismissAndDestroy() {
         PipVideoOverlay pipVideoOverlay = instance;
         EmbedBottomSheet embedBottomSheet = pipVideoOverlay.parentSheet;
         if (embedBottomSheet != null) {
@@ -364,6 +390,7 @@ public class PipVideoOverlay {
             PhotoViewer photoViewer = pipVideoOverlay.photoViewer;
             if (photoViewer != null) {
                 photoViewer.destroyPhotoViewer();
+                MediaController.getInstance().tryResumePausedAudio();
             }
         }
         dismiss();
@@ -666,7 +693,7 @@ public class PipVideoOverlay {
                     PipVideoOverlay.this.isScrollDisallowed = false;
                     if (PipVideoOverlay.this.onSideToDismiss) {
                         PipVideoOverlay.this.onSideToDismiss = false;
-                        PipVideoOverlay.dimissAndDestroy();
+                        PipVideoOverlay.dismissAndDestroy();
                     } else {
                         if (!PipVideoOverlay.this.pipXSpring.isRunning()) {
                             SpringForce spring = PipVideoOverlay.this.pipXSpring.setStartValue(PipVideoOverlay.this.pipX).getSpring();
@@ -798,7 +825,12 @@ public class PipVideoOverlay {
         int i6 = Theme.key_listSelector;
         imageView.setBackground(Theme.createSelectorDrawable(Theme.getColor(i6)));
         imageView.setPadding(dp, dp, dp, dp);
-        imageView.setOnClickListener(PipVideoOverlay$$ExternalSyntheticLambda3.INSTANCE);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view3) {
+                PipVideoOverlay.dismissAndDestroy();
+            }
+        });
         float f = 38;
         float f2 = 4;
         this.controlsView.addView(imageView, LayoutHelper.createFrame(38, f, 5, 0.0f, f2, f2, 0.0f));
@@ -1043,14 +1075,14 @@ public class PipVideoOverlay {
 
         @Override
         public boolean onSingleTapUp(MotionEvent motionEvent) {
-            if (!hasDoubleTap()) {
+            if (!hasDoubleTap(motionEvent)) {
                 return onSingleTapConfirmed(motionEvent);
             }
             return super.onSingleTapUp(motionEvent);
         }
 
         @Override
-        public boolean hasDoubleTap() {
+        public boolean hasDoubleTap(MotionEvent motionEvent) {
             if (PipVideoOverlay.this.photoViewer != null) {
                 if ((PipVideoOverlay.this.photoViewer.getVideoPlayer() == null && PipVideoOverlay.this.photoViewerWebView == null) || PipVideoOverlay.this.isDismissing || PipVideoOverlay.this.isVideoCompleted || PipVideoOverlay.this.isScrolling || PipVideoOverlay.this.scaleGestureDetector.isInProgress() || !PipVideoOverlay.this.canLongClick) {
                     return false;

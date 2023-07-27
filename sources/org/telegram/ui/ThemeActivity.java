@@ -36,11 +36,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -262,7 +264,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         @Override
         protected void onDraw(Canvas canvas) {
             this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText));
-            canvas.drawText("" + SharedConfig.fontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), this.textPaint);
+            canvas.drawText(BuildConfig.APP_CENTER_HASH + SharedConfig.fontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), this.textPaint);
         }
 
         @Override
@@ -343,7 +345,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         @Override
         protected void onDraw(Canvas canvas) {
             this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText));
-            canvas.drawText("" + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), this.textPaint);
+            canvas.drawText(BuildConfig.APP_CENTER_HASH + SharedConfig.bubbleRadius, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), this.textPaint);
         }
 
         @Override
@@ -546,7 +548,14 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             }
             i10++;
         }
-        Collections.sort(this.defaultThemes, ThemeActivity$$ExternalSyntheticLambda10.INSTANCE);
+        Collections.sort(this.defaultThemes, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$updateRows$0;
+                lambda$updateRows$0 = ThemeActivity.lambda$updateRows$0((Theme.ThemeInfo) obj, (Theme.ThemeInfo) obj2);
+                return lambda$updateRows$0;
+            }
+        });
         int i12 = this.currentType;
         if (i12 == 3) {
             int i13 = this.rowCount;
@@ -1013,7 +1022,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             this.actionBar.setTitle(LocaleController.getString("BrowseThemes", R.string.BrowseThemes));
             ActionBarMenu createMenu = this.actionBar.createMenu();
             int i2 = R.raw.sun;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
             this.sunDrawable = rLottieDrawable;
             if (this.lastIsDarkTheme) {
                 rLottieDrawable.setCurrentFrame(rLottieDrawable.getFramesCount() - 1);
@@ -1116,7 +1125,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     objArr[1] = Boolean.valueOf(ThemeActivity.this.currentType == 1);
                     objArr[2] = null;
                     objArr[3] = Integer.valueOf(Theme.DEFALT_THEME_ACCENT_ID);
-                    globalInstance.postNotificationName(i2, objArr);
+                    globalInstance.lambda$postNotificationNameOnUIThread$1(i2, objArr);
                     ThemeActivity.this.listAdapter.notifyItemChanged(ThemeActivity.this.themeAccentListRow);
                 } else {
                     Theme.reloadWallpaper(true);
@@ -1928,7 +1937,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             if (Theme.deleteTheme(themeInfo)) {
                 ((BaseFragment) ThemeActivity.this).parentLayout.rebuildAllFragmentViews(true, true);
             }
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.themeListUpdated, new Object[0]);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.themeListUpdated, new Object[0]);
         }
 
         public void lambda$onCreateViewHolder$2(ThemeAccentsListAdapter themeAccentsListAdapter, RecyclerListView recyclerListView, View view, int i) {
@@ -1948,7 +1957,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     objArr[1] = Boolean.valueOf(ThemeActivity.this.currentType == 1);
                     objArr[2] = null;
                     objArr[3] = Integer.valueOf(themeAccent.id);
-                    globalInstance.postNotificationName(i4, objArr);
+                    globalInstance.lambda$postNotificationNameOnUIThread$1(i4, objArr);
                     EmojiThemes.saveCustomTheme(currentNightTheme, themeAccent.id);
                     Theme.turnOffAutoNight(ThemeActivity.this);
                 } else {
@@ -2015,7 +2024,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
             } else if (i == 1) {
                 if (themeAccent.info == null) {
                     ThemeActivity.this.getMessagesController().saveThemeToServer(themeAccent.parentTheme, themeAccent);
-                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needShareTheme, themeAccent.parentTheme, themeAccent);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needShareTheme, themeAccent.parentTheme, themeAccent);
                     return;
                 }
                 String str = "https://" + ThemeActivity.this.getMessagesController().linkPrefix + "/addtheme/" + themeAccent.info.slug;
@@ -2053,7 +2062,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 objArr[1] = Boolean.valueOf(ThemeActivity.this.currentType == 1);
                 objArr[2] = null;
                 objArr[3] = -1;
-                globalInstance.postNotificationName(i2, objArr);
+                globalInstance.lambda$postNotificationNameOnUIThread$1(i2, objArr);
             }
         }
 
@@ -2314,7 +2323,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                             return;
                         }
                         textInfoPrivacyCell.setFixedSize(12);
-                        textInfoPrivacyCell.setText("");
+                        textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
                         return;
                     } else {
                         textInfoPrivacyCell.setText(LocaleController.getString("ChatListSwipeGestureInfo", R.string.ChatListSwipeGestureInfo));
@@ -2554,10 +2563,10 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                 case 19:
                     RadioButtonCell radioButtonCell = (RadioButtonCell) viewHolder.itemView;
                     if (i == ThemeActivity.this.saveToGalleryOption1Row) {
-                        radioButtonCell.setTextAndValue("save media only from peer chats", "", true, false);
+                        radioButtonCell.setTextAndValue("save media only from peer chats", BuildConfig.APP_CENTER_HASH, true, false);
                         return;
                     } else {
-                        radioButtonCell.setTextAndValue("save media from all chats", "", true, false);
+                        radioButtonCell.setTextAndValue("save media from all chats", BuildConfig.APP_CENTER_HASH, true, false);
                         return;
                     }
             }

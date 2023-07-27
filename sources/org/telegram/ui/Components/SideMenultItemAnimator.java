@@ -82,7 +82,14 @@ public class SideMenultItemAnimator extends SimpleItemAnimator {
 
     public SideMenultItemAnimator(RecyclerListView recyclerListView) {
         this.parentRecyclerView = recyclerListView;
-        recyclerListView.setChildDrawingOrderCallback(SideMenultItemAnimator$$ExternalSyntheticLambda0.INSTANCE);
+        recyclerListView.setChildDrawingOrderCallback(new RecyclerView.ChildDrawingOrderCallback() {
+            @Override
+            public final int onGetChildDrawingOrder(int i, int i2) {
+                int lambda$new$0;
+                lambda$new$0 = SideMenultItemAnimator.lambda$new$0(i, i2);
+                return lambda$new$0;
+            }
+        });
     }
 
     @Override

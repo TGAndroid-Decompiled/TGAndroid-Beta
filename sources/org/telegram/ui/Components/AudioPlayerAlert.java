@@ -19,6 +19,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -395,6 +396,11 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                     @Override
                     public boolean allowLayoutChanges() {
                         return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+                    }
+
+                    @Override
+                    public boolean clipWithGradient(int i) {
+                        return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
                     }
 
                     @Override
@@ -782,7 +788,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             this.playButton.setBackgroundDrawable(Theme.createSelectorDrawable(getThemedColor(Theme.key_listSelector), 1, AndroidUtilities.dp(24.0f)));
         }
         frameLayout2.addView(this.playButton, LayoutHelper.createFrame(48, 48, 51));
-        this.playButton.setOnClickListener(AudioPlayerAlert$$ExternalSyntheticLambda3.INSTANCE);
+        this.playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view3) {
+                AudioPlayerAlert.lambda$new$7(view3);
+            }
+        });
         View[] viewArr4 = this.buttons;
         AnonymousClass14 anonymousClass14 = new AnonymousClass14(context, scaledTouchSlop);
         this.nextButton = anonymousClass14;
@@ -835,7 +846,14 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.emptyView.setGravity(17);
         this.emptyView.setVisibility(8);
         this.containerView.addView(this.emptyView, LayoutHelper.createFrame(-1, -1.0f));
-        this.emptyView.setOnTouchListener(AudioPlayerAlert$$ExternalSyntheticLambda5.INSTANCE);
+        this.emptyView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view3, MotionEvent motionEvent) {
+                boolean lambda$new$9;
+                lambda$new$9 = AudioPlayerAlert.lambda$new$9(view3, motionEvent);
+                return lambda$new$9;
+            }
+        });
         ImageView imageView3 = new ImageView(context);
         this.emptyImageView = imageView3;
         imageView3.setImageResource(R.drawable.music_empty);
@@ -910,7 +928,12 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         this.listAdapter = listAdapter;
         recyclerListView3.setAdapter(listAdapter);
         this.listView.setGlowColor(getThemedColor(Theme.key_dialogScrollGlow));
-        this.listView.setOnItemClickListener(AudioPlayerAlert$$ExternalSyntheticLambda13.INSTANCE);
+        this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+            @Override
+            public final void onItemClick(View view3, int i9) {
+                AudioPlayerAlert.lambda$new$10(view3, i9);
+            }
+        });
         this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int i9) {
@@ -1494,7 +1517,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                 long j2 = ((MessagesStorage.TopicKey) arrayList2.get(i)).dialogId;
                 if (charSequence != null) {
                     j = j2;
-                    SendMessagesHelper.getInstance(this.currentAccount).sendMessage(charSequence.toString(), j2, null, null, null, true, null, null, null, true, 0, null, false);
+                    SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j2, null, null, null, true, null, null, null, true, 0, null, false));
                 } else {
                     j = j2;
                 }
@@ -1529,7 +1552,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         return true;
     }
 
-    public void lambda$onSubItemClick$12() {
+    public void lambda$onSubItemClick$12(Uri uri) {
         BulletinFactory.of((FrameLayout) this.containerView, this.resourcesProvider).createDownloadBulletin(BulletinFactory.FileType.AUDIO).show();
     }
 
@@ -1847,7 +1870,10 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
         SeekBarView seekBarView = this.seekBarView;
         if (seekBarView != null) {
             if (seekBarView.isDragging()) {
-                i = (int) (messageObject.getDuration() * this.seekBarView.getProgress());
+                double duration = messageObject.getDuration();
+                double progress = this.seekBarView.getProgress();
+                Double.isNaN(progress);
+                i = (int) (duration * progress);
             } else {
                 boolean z2 = true;
                 if (this.rewindingProgress < 0.0f || ((i2 = this.rewindingState) != -1 && (i2 != 1 || !MediaController.getInstance().isMessagePaused()))) {
@@ -1872,7 +1898,10 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
                     this.seekBarBufferSpring.start();
                 }
                 if (z2) {
-                    i = (int) (messageObject.getDuration() * this.seekBarView.getProgress());
+                    double duration2 = messageObject.getDuration();
+                    double progress2 = this.seekBarView.getProgress();
+                    Double.isNaN(progress2);
+                    i = (int) (duration2 * progress2);
                     messageObject.audioProgressSec = i;
                 } else {
                     i = messageObject.audioProgressSec;
@@ -1955,7 +1984,7 @@ public class AudioPlayerAlert extends BottomSheet implements NotificationCenter.
             String musicAuthor = playingMessageObject.getMusicAuthor();
             this.titleTextView.setText(musicTitle);
             this.authorTextView.setText(musicAuthor);
-            int duration = playingMessageObject.getDuration();
+            int duration = (int) playingMessageObject.getDuration();
             this.lastDuration = duration;
             TextView textView = this.durationTextView;
             if (textView != null) {

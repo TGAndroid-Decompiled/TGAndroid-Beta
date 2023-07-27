@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Besvar</string>
+    <string name="call_notification_answer_video_action">Video</string>
+    <string name="call_notification_decline_action">Afvis</string>
+    <string name="call_notification_hang_up_action">Læg på</string>
+    <string name="call_notification_incoming_text">Indgående opkald</string>
+    <string name="call_notification_ongoing_text">Igangværende opkald</string>
+    <string name="call_notification_screening_text">Et indgående opkald screenes</string>
     <string name="common_google_play_services_enable_button">Aktivér</string>
     <string name="common_google_play_services_enable_text">Du skal aktivere Google Play-tjenester, for at %1$s kan fungere.</string>
     <string name="common_google_play_services_enable_title">Aktivér Google Play-tjenester</string>

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Vasta</string>
+    <string name="call_notification_answer_video_action">Video</string>
+    <string name="call_notification_decline_action">Keeldu</string>
+    <string name="call_notification_hang_up_action">Lõpeta kõne</string>
+    <string name="call_notification_incoming_text">Sissetulev kõne</string>
+    <string name="call_notification_ongoing_text">Käimasolev kõne</string>
+    <string name="call_notification_screening_text">Sissetuleva kõne filtreerimine</string>
     <string name="common_google_play_services_enable_button">Luba</string>
     <string name="common_google_play_services_enable_text">Rakendus %1$s töötab ainult siis, kui lubate Google Play teenused.</string>
     <string name="common_google_play_services_enable_title">Google Play teenuste lubamine</string>

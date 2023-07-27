@@ -3,18 +3,17 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
-    public static int constructor = -1225713124;
+    public static int constructor = 1164872071;
     public boolean background;
     public boolean clear_draft;
     public int flags;
     public ArrayList<TLRPC$TL_inputSingleMedia> multi_media = new ArrayList<>();
     public boolean noforwards;
     public TLRPC$InputPeer peer;
-    public int reply_to_msg_id;
+    public TLRPC$InputReplyTo reply_to;
     public int schedule_date;
     public TLRPC$InputPeer send_as;
     public boolean silent;
-    public int top_msg_id;
     public boolean update_stickersets_order;
 
     @Override
@@ -38,10 +37,7 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
         abstractSerializedData.writeInt32(i5);
         this.peer.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {
-            abstractSerializedData.writeInt32(this.reply_to_msg_id);
-        }
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-            abstractSerializedData.writeInt32(this.top_msg_id);
+            this.reply_to.serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size = this.multi_media.size();

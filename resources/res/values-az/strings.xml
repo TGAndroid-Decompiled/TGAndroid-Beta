@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Cavab verin</string>
+    <string name="call_notification_answer_video_action">Video</string>
+    <string name="call_notification_decline_action">İmtina edin</string>
+    <string name="call_notification_hang_up_action">Dəstəyi asın</string>
+    <string name="call_notification_incoming_text">Gələn zəng</string>
+    <string name="call_notification_ongoing_text">Davam edən zəng</string>
+    <string name="call_notification_screening_text">Gələn zəng göstərilir</string>
     <string name="common_google_play_services_enable_button">Aktiv edin</string>
     <string name="common_google_play_services_enable_text">%1$s Google Play xidmətlərini aktiv edənə kimi işləməyəcək.</string>
     <string name="common_google_play_services_enable_title">Google Play xidmətlərini aktiv edin</string>

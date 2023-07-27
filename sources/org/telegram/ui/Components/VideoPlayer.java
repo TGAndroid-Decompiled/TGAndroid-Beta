@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Surface;
+import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.ViewGroup;
 import com.google.android.exoplayer2.DefaultLoadControl;
@@ -52,17 +53,21 @@ import com.google.android.exoplayer2.video.VideoListener;
 import com.google.android.exoplayer2.video.VideoSize;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.CharacterCompat;
+import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FourierTransform;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory;
 import org.telegram.ui.Components.VideoPlayer;
+import org.telegram.ui.Stories.recorder.StoryEntry;
 @SuppressLint({"NewApi"})
 public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsListener, NotificationCenter.NotificationCenterDelegate {
+    static int playerCounter;
+    boolean audioDisabled;
     private ExoPlayer audioPlayer;
     private boolean audioPlayerReady;
     private String audioType;
@@ -74,6 +79,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     MediaSource.Factory dashMediaSourceFactory;
     private VideoPlayerDelegate delegate;
     HlsMediaSource.Factory hlsMediaSourceFactory;
+    private boolean isStory;
     private boolean isStreaming;
     private boolean lastReportedPlayWhenReady;
     private int lastReportedPlaybackState;
@@ -82,18 +88,20 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     private DataSource.Factory mediaDataSourceFactory;
     private boolean mixedAudio;
     private boolean mixedPlayWhenReady;
-    private ExoPlayer player;
+    public ExoPlayer player;
     ProgressiveMediaSource.Factory progressiveMediaSourceFactory;
     private int repeatCount;
     private boolean shouldPauseOther;
     SsMediaSource.Factory ssMediaSourceFactory;
     private Surface surface;
+    private SurfaceView surfaceView;
     private TextureView textureView;
     private MappingTrackSelector trackSelector;
     private boolean triedReinit;
     private boolean videoPlayerReady;
     private String videoType;
     private Uri videoUri;
+    private DispatchQueue workerQueue;
 
     public interface AudioVisualizerDelegate {
         boolean needUpdate();
@@ -610,19 +618,29 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         AnalyticsListener.CC.$default$onVolumeChanged(this, eventTime, f);
     }
 
-    public VideoPlayer() {
-        this(true);
+    public boolean createdWithAudioTrack() {
+        return !this.audioDisabled;
     }
 
-    public VideoPlayer(boolean z) {
+    public VideoPlayer() {
+        this(true, false);
+    }
+
+    public VideoPlayer(boolean z, boolean z2) {
         this.audioUpdateHandler = new Handler(Looper.getMainLooper());
+        this.audioDisabled = z2;
         this.mediaDataSourceFactory = new ExtendedDefaultDataSourceFactory(ApplicationLoader.applicationContext, "Mozilla/5.0 (X11; Linux x86_64; rv:10.0) Gecko/20150101 Firefox/47.0 (Chrome)");
-        this.trackSelector = new DefaultTrackSelector(ApplicationLoader.applicationContext);
+        DefaultTrackSelector defaultTrackSelector = new DefaultTrackSelector(ApplicationLoader.applicationContext);
+        this.trackSelector = defaultTrackSelector;
+        if (z2) {
+            defaultTrackSelector.setParameters(defaultTrackSelector.getParameters().buildUpon().setTrackTypeDisabled(1, true).build());
+        }
         this.lastReportedPlaybackState = 1;
         this.shouldPauseOther = z;
         if (z) {
             NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.playerDidStartPlaying);
         }
+        playerCounter++;
     }
 
     @Override
@@ -633,8 +651,13 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     private void ensurePlayerCreated() {
+        DefaultLoadControl defaultLoadControl;
         DefaultRenderersFactory defaultRenderersFactory;
-        DefaultLoadControl defaultLoadControl = new DefaultLoadControl(new DefaultAllocator(true, CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT), 50000, 50000, 100, 5000, -1, false, 0, false);
+        if (this.isStory) {
+            defaultLoadControl = new DefaultLoadControl(new DefaultAllocator(true, 65536), 50000, 50000, 1000, 1000, -1, false, 0, false);
+        } else {
+            defaultLoadControl = new DefaultLoadControl(new DefaultAllocator(true, 65536), 50000, 50000, 100, 5000, -1, false, 0, false);
+        }
         if (this.player == null) {
             if (this.audioVisualizerDelegate != null) {
                 defaultRenderersFactory = new AudioVisualizerRenderersFactory(ApplicationLoader.applicationContext);
@@ -914,6 +937,10 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     }
 
     public void preparePlayer(Uri uri, String str) {
+        preparePlayer(uri, str, 3);
+    }
+
+    public void preparePlayer(Uri uri, String str, int i) {
         this.videoUri = uri;
         this.videoType = str;
         this.audioUri = null;
@@ -951,6 +978,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         if (this.shouldPauseOther) {
             NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.playerDidStartPlaying);
         }
+        playerCounter--;
     }
 
     @Override
@@ -987,6 +1015,18 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             return;
         }
         exoPlayer.setVideoTextureView(textureView);
+    }
+
+    public void setSurfaceView(SurfaceView surfaceView) {
+        if (this.surfaceView == surfaceView) {
+            return;
+        }
+        this.surfaceView = surfaceView;
+        ExoPlayer exoPlayer = this.player;
+        if (exoPlayer == null) {
+            return;
+        }
+        exoPlayer.setVideoSurfaceView(surfaceView);
     }
 
     public void setSurface(Surface surface) {
@@ -1195,7 +1235,7 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
     public void onPlayerStateChanged(boolean z, int i) {
         maybeReportPlayerState();
         if (z && i == 3 && !isMuted() && this.shouldPauseOther) {
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.playerDidStartPlaying, this);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.playerDidStartPlaying, this);
         }
         if (!this.videoPlayerReady && i == 3) {
             this.videoPlayerReady = true;
@@ -1222,12 +1262,12 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoPlayer.this.lambda$onPlayerError$0(playbackException);
+                VideoPlayer.this.lambda$onPlayerError$1(playbackException);
             }
         });
     }
 
-    public void lambda$onPlayerError$0(PlaybackException playbackException) {
+    public void lambda$onPlayerError$1(PlaybackException playbackException) {
         Throwable cause = playbackException.getCause();
         TextureView textureView = this.textureView;
         if (textureView != null && ((!this.triedReinit && (cause instanceof MediaCodecRenderer.DecoderInitializationException)) || (cause instanceof SurfaceNotValidException))) {
@@ -1238,6 +1278,16 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
                     int indexOfChild = viewGroup.indexOfChild(this.textureView);
                     viewGroup.removeView(this.textureView);
                     viewGroup.addView(this.textureView, indexOfChild);
+                }
+                DispatchQueue dispatchQueue = this.workerQueue;
+                if (dispatchQueue != null) {
+                    dispatchQueue.postRunnable(new Runnable() {
+                        @Override
+                        public final void run() {
+                            VideoPlayer.this.lambda$onPlayerError$0();
+                        }
+                    });
+                    return;
                 }
                 this.player.clearVideoTextureView(this.textureView);
                 this.player.setVideoTextureView(this.textureView);
@@ -1252,6 +1302,20 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             return;
         }
         this.delegate.onError(this, playbackException);
+    }
+
+    public void lambda$onPlayerError$0() {
+        ExoPlayer exoPlayer = this.player;
+        if (exoPlayer != null) {
+            exoPlayer.clearVideoTextureView(this.textureView);
+            this.player.setVideoTextureView(this.textureView);
+            if (this.loopingMediaSource) {
+                preparePlayerLoop(this.videoUri, this.videoType, this.audioUri, this.audioType);
+            } else {
+                preparePlayer(this.videoUri, this.videoType);
+            }
+            play();
+        }
     }
 
     @Override
@@ -1433,5 +1497,32 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
         } catch (Exception unused) {
             return false;
         }
+    }
+
+    public StoryEntry.HDRInfo getHDRStaticInfo(StoryEntry.HDRInfo hDRInfo) {
+        if (hDRInfo == null) {
+            hDRInfo = new StoryEntry.HDRInfo();
+        }
+        try {
+            ByteBuffer byteBuffer = ((MediaCodecRenderer) this.player.getRenderer(0)).codecOutputMediaFormat.getByteBuffer("hdr-static-info");
+            byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
+            if (byteBuffer.get() == 0) {
+                hDRInfo.maxlum = byteBuffer.getShort(17);
+                hDRInfo.minlum = byteBuffer.getShort(19) * 1.0E-4f;
+            }
+        } catch (Exception unused) {
+            hDRInfo.minlum = 0.0f;
+            hDRInfo.maxlum = 0.0f;
+        }
+        return hDRInfo;
+    }
+
+    public void setWorkerQueue(DispatchQueue dispatchQueue) {
+        this.workerQueue = dispatchQueue;
+        this.player.setWorkerQueue(dispatchQueue);
+    }
+
+    public void setIsStory() {
+        this.isStory = true;
     }
 }

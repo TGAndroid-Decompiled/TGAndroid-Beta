@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -46,6 +47,7 @@ import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.Reactions.AnimatedEmojiEffect;
+import org.telegram.ui.Components.Reactions.HwEmojis;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.SnowflakesEffect;
 import org.telegram.ui.ThemeActivity;
@@ -111,6 +113,38 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
                     DrawerProfileCell.this.animatedStatus.translate(rect.centerX(), rect.centerY());
                 }
             }
+
+            @Override
+            public void invalidate() {
+                if (HwEmojis.grab(this)) {
+                    return;
+                }
+                super.invalidate();
+            }
+
+            @Override
+            public void invalidate(int i, int i2, int i3, int i4) {
+                if (HwEmojis.grab(this)) {
+                    return;
+                }
+                super.invalidate(i, i2, i3, i4);
+            }
+
+            @Override
+            public void invalidateDrawable(Drawable drawable) {
+                if (HwEmojis.grab(this)) {
+                    return;
+                }
+                super.invalidateDrawable(drawable);
+            }
+
+            @Override
+            public void invalidate(Rect rect) {
+                if (HwEmojis.grab(this)) {
+                    return;
+                }
+                super.invalidate(rect);
+            }
         };
         this.nameTextView = simpleTextView;
         simpleTextView.setRightDrawableOnClick(new View.OnClickListener() {
@@ -143,7 +177,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
         boolean z = sunDrawable == null;
         if (z) {
             int i = R.raw.sun;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
             sunDrawable = rLottieDrawable;
             rLottieDrawable.setPlayInDirectionOfCustomEndFrame(true);
             if (Theme.isCurrentThemeDay()) {
@@ -399,12 +433,13 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     private void switchTheme(Theme.ThemeInfo themeInfo, boolean z) {
         this.darkThemeView.getLocationInWindow(r1);
         int[] iArr = {iArr[0] + (this.darkThemeView.getMeasuredWidth() / 2), iArr[1] + (this.darkThemeView.getMeasuredHeight() / 2)};
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.FALSE, iArr, -1, Boolean.valueOf(z), this.darkThemeView);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.FALSE, iArr, -1, Boolean.valueOf(z), this.darkThemeView);
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
+        this.status.attach();
         updateColors();
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
         for (int i = 0; i < 4; i++) {
@@ -415,6 +450,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        this.status.detach();
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
         for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).removeObserver(this, NotificationCenter.currentUserPremiumStatusChanged);

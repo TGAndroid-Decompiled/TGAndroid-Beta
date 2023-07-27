@@ -22,6 +22,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$StickerSetCovered;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -170,7 +171,12 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
         } else {
             this.nameTextView.setText(tLRPC$StickerSetCovered.set.title);
         }
-        this.infoTextView.setText(LocaleController.formatPluralString("Stickers", tLRPC$StickerSetCovered.set.count, new Object[0]));
+        TLRPC$StickerSet tLRPC$StickerSet = tLRPC$StickerSetCovered.set;
+        if (tLRPC$StickerSet.emojis) {
+            this.infoTextView.setText(LocaleController.formatPluralString("EmojiCount", tLRPC$StickerSet.count, new Object[0]));
+        } else {
+            this.infoTextView.setText(LocaleController.formatPluralString("Stickers", tLRPC$StickerSet.count, new Object[0]));
+        }
         this.isUnread = z;
         if (this.canAddRemove) {
             if (this.hasOnClick) {
@@ -335,7 +341,7 @@ public class FeaturedStickerSetInfoCell extends FrameLayout {
             canvas.drawCircle(this.nameTextView.getRight() + AndroidUtilities.dp(12.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(4.0f) * this.unreadProgress, this.paint);
         }
         if (this.needDivider) {
-            canvas.drawLine(0.0f, 0.0f, getWidth(), 0.0f, Theme.dividerPaint);
+            canvas.drawLine(0.0f, 0.0f, getWidth(), 0.0f, Theme.getThemePaint("paintDivider", this.resourcesProvider));
         }
     }
 

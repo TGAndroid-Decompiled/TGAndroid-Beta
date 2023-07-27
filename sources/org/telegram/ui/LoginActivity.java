@@ -71,6 +71,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import j$.util.Comparator$CC;
+import j$.util.function.Function;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -91,6 +92,7 @@ import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AuthTokensHelper;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.CallReceiver;
 import org.telegram.messenger.ContactsController;
@@ -173,7 +175,6 @@ import org.telegram.tgnet.TLRPC$TL_help_termsOfService;
 import org.telegram.tgnet.TLRPC$TL_inputCheckPasswordSRP;
 import org.telegram.tgnet.TLRPC$TL_nearestDc;
 import org.telegram.tgnet.TLRPC$TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow;
-import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.tgnet.TLRPC$account_Password;
 import org.telegram.tgnet.TLRPC$auth_Authorization;
@@ -592,7 +593,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             Context context = ApplicationLoader.applicationContext;
             StringBuilder sb = new StringBuilder();
             sb.append("logininfo2");
-            sb.append(z ? "_" + i : "");
+            sb.append(z ? "_" + i : BuildConfig.APP_CENTER_HASH);
             for (Map.Entry<String, ?> entry : context.getSharedPreferences(sb.toString(), 0).getAll().entrySet()) {
                 String key = entry.getKey();
                 Object value = entry.getValue();
@@ -635,7 +636,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         if (this.newAccount) {
             str = "_" + this.currentAccount;
         } else {
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         }
         sb.append(str);
         SharedPreferences.Editor edit = context.getSharedPreferences(sb.toString(), 0).edit();
@@ -855,7 +856,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         } else {
             int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
             for (String str2 : phoneInputData.patterns) {
-                int length = str2.replace(" ", "").length();
+                int length = str2.replace(" ", BuildConfig.APP_CENTER_HASH).length();
                 if (length < i) {
                     i = length;
                 }
@@ -1341,7 +1342,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             Context context = ApplicationLoader.applicationContext;
             StringBuilder sb = new StringBuilder();
             sb.append("logininfo2");
-            sb.append(this.newAccount ? "_" + this.currentAccount : "");
+            sb.append(this.newAccount ? "_" + this.currentAccount : BuildConfig.APP_CENTER_HASH);
             SharedPreferences.Editor edit = context.getSharedPreferences(sb.toString(), 0).edit();
             edit.clear();
             putBundleToEditor(bundle2, edit, null);
@@ -1380,7 +1381,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 bundle.putBoolean("afterSignup", z);
                 presentFragment(new DialogsActivity(bundle), true);
             }
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.mainUserInfoChanged, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.mainUserInfoChanged, new Object[0]);
             LocaleController.getInstance().loadRemoteLanguages(this.currentAccount);
             RestrictedLanguagesSelectActivity.checkRestrictedLanguages(true);
         } else if (getParentActivity() instanceof ExternalActionActivity) {
@@ -1407,7 +1408,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         UserConfig.getInstance(this.currentAccount).setCurrentUser(tLRPC$TL_auth_authorization.user);
         UserConfig.getInstance(this.currentAccount).saveConfig(true);
         MessagesStorage.getInstance(this.currentAccount).cleanup(true);
-        ArrayList<TLRPC$User> arrayList = new ArrayList<>();
+        ArrayList arrayList = new ArrayList();
         arrayList.add(tLRPC$TL_auth_authorization.user);
         MessagesStorage.getInstance(this.currentAccount).putUsersAndChats(arrayList, null, true, true);
         MessagesController.getInstance(this.currentAccount).putUser(tLRPC$TL_auth_authorization.user, false);
@@ -2081,7 +2082,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (LoginActivity.this.newAccount && LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell = new CheckBoxCell(context, 2);
                 this.syncContactsBox = checkBoxCell;
-                checkBoxCell.setText(LocaleController.getString("SyncContacts", R.string.SyncContacts), "", LoginActivity.this.syncContacts, false);
+                checkBoxCell.setText(LocaleController.getString("SyncContacts", R.string.SyncContacts), BuildConfig.APP_CENTER_HASH, LoginActivity.this.syncContacts, false);
                 addView(this.syncContactsBox, LayoutHelper.createLinear(-2, -1, 51, 16, 0, 16 + ((LocaleController.isRTL && AndroidUtilities.isSmallScreen()) ? i3 >= 21 ? 56 : 60 : 0), 0));
                 i4 = 48;
                 this.syncContactsBox.setOnClickListener(new View.OnClickListener() {
@@ -2094,7 +2095,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (BuildVars.DEBUG_VERSION && LoginActivity.this.activityMode == 0) {
                 CheckBoxCell checkBoxCell2 = new CheckBoxCell(context, 2);
                 this.testBackendCheckBox = checkBoxCell2;
-                checkBoxCell2.setText(LocaleController.getString(R.string.DebugTestBackend), "", LoginActivity.this.testBackend, false);
+                checkBoxCell2.setText(LocaleController.getString(R.string.DebugTestBackend), BuildConfig.APP_CENTER_HASH, LoginActivity.this.testBackend, false);
                 View view = this.testBackendCheckBox;
                 if (!LocaleController.isRTL || !AndroidUtilities.isSmallScreen()) {
                     i5 = 0;
@@ -2147,7 +2148,24 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             } catch (Exception e) {
                 FileLog.e(e);
             }
-            Collections.sort(this.countriesArray, Comparator$CC.comparing(LoginActivity$PhoneView$$ExternalSyntheticLambda17.INSTANCE));
+            Collections.sort(this.countriesArray, Comparator$CC.comparing(new Function() {
+                @Override
+                public Function andThen(Function function) {
+                    return Function.CC.$default$andThen(this, function);
+                }
+
+                @Override
+                public final Object apply(Object obj) {
+                    String str2;
+                    str2 = ((CountrySelectActivity.Country) obj).name;
+                    return str2;
+                }
+
+                @Override
+                public Function compose(Function function) {
+                    return Function.CC.$default$compose(this, function);
+                }
+            }));
             try {
                 TelephonyManager telephonyManager = (TelephonyManager) ApplicationLoader.applicationContext.getSystemService("phone");
             } catch (Exception e2) {
@@ -2502,13 +2520,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         public void invalidateCountryHint() {
             int i;
             String str = this.countryCodeForHint;
-            String replace = this.phoneField.getText() != null ? this.phoneField.getText().toString().replace(" ", "") : "";
+            String replace = this.phoneField.getText() != null ? this.phoneField.getText().toString().replace(" ", BuildConfig.APP_CENTER_HASH) : BuildConfig.APP_CENTER_HASH;
             if (this.phoneFormatMap.get(str) != null && !this.phoneFormatMap.get(str).isEmpty()) {
                 List<String> list = this.phoneFormatMap.get(str);
                 if (!replace.isEmpty()) {
                     i = 0;
                     while (i < list.size()) {
-                        if (replace.startsWith(list.get(i).replace(" ", "").replace("X", "").replace("0", ""))) {
+                        if (replace.startsWith(list.get(i).replace(" ", BuildConfig.APP_CENTER_HASH).replace("X", BuildConfig.APP_CENTER_HASH).replace("0", BuildConfig.APP_CENTER_HASH))) {
                             break;
                         }
                         i++;
@@ -3847,7 +3865,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 if (i >= codeNumberFieldArr.length) {
                     break;
                 }
-                codeNumberFieldArr[i].setText("");
+                codeNumberFieldArr[i].setText(BuildConfig.APP_CENTER_HASH);
                 this.codeFieldContainer.codeField[i].animateErrorProgress(1.0f);
                 i++;
             }
@@ -3916,7 +3934,12 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 TLRPC$TL_auth_cancelCode tLRPC$TL_auth_cancelCode = new TLRPC$TL_auth_cancelCode();
                 tLRPC$TL_auth_cancelCode.phone_number = this.requestPhone;
                 tLRPC$TL_auth_cancelCode.phone_code_hash = this.phoneHash;
-                ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(tLRPC$TL_auth_cancelCode, LoginActivity$LoginActivitySmsView$$ExternalSyntheticLambda43.INSTANCE, 10);
+                ConnectionsManager.getInstance(((BaseFragment) LoginActivity.this).currentAccount).sendRequest(tLRPC$TL_auth_cancelCode, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        LoginActivity.LoginActivitySmsView.lambda$onBackPressed$42(tLObject, tLRPC$TL_error);
+                    }
+                }, 10);
                 destroyTimer();
                 destroyCodeTimer();
                 this.currentParams = null;
@@ -4004,10 +4027,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     return;
                 }
                 if (i == NotificationCenter.didReceiveSmsCode) {
-                    codeFieldContainer.setText("" + objArr[0]);
+                    codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH + objArr[0]);
                     onNextPressed(null);
                 } else if (i == NotificationCenter.didReceiveCall) {
-                    String str = "" + objArr[0];
+                    String str = BuildConfig.APP_CENTER_HASH + objArr[0];
                     if (AndroidUtilities.checkPhonePattern(this.pattern, str)) {
                         if (!this.pattern.equals("*")) {
                             this.catchedPhone = str;
@@ -4240,7 +4263,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 AndroidUtilities.hideKeyboard(this.codeField);
                 return;
             }
-            this.codeField.setText("");
+            this.codeField.setText(BuildConfig.APP_CENTER_HASH);
             this.currentParams = bundle;
             String string = bundle.getString("password");
             this.passwordString = string;
@@ -4264,7 +4287,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 return;
             }
             if (z) {
-                this.codeField.setText("");
+                this.codeField.setText(BuildConfig.APP_CENTER_HASH);
             }
             LoginActivity.this.onFieldError(this.outlineCodeField, true);
         }
@@ -4769,7 +4792,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (bundle == null) {
                 return;
             }
-            this.emailField.setText("");
+            this.emailField.setText(BuildConfig.APP_CENTER_HASH);
             this.currentParams = bundle;
             this.phone = bundle.getString("phone");
             this.emailPhone = this.currentParams.getString("ephone");
@@ -4791,7 +4814,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             } catch (Exception unused) {
             }
             if (z) {
-                this.emailField.setText("");
+                this.emailField.setText(BuildConfig.APP_CENTER_HASH);
             }
             this.emailField.requestFocus();
             LoginActivity.this.onFieldError(this.emailOutlineView, true);
@@ -5339,7 +5362,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                 });
             }
-            this.codeFieldContainer.setText("");
+            this.codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH);
             if (!this.isFromSetup && LoginActivity.this.activityMode != 3) {
                 String string = this.currentParams.getString("emailPattern");
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
@@ -5399,7 +5422,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 return LocaleController.formatString(R.string.LoginEmailResetInSinglePattern, LocaleController.formatPluralString("Days", i2, new Object[0]));
             }
             StringBuilder sb = new StringBuilder();
-            sb.append(i4 != 0 ? String.format(Locale.ROOT, "%02d:", Integer.valueOf(i4)) : "");
+            sb.append(i4 != 0 ? String.format(Locale.ROOT, "%02d:", Integer.valueOf(i4)) : BuildConfig.APP_CENTER_HASH);
             Locale locale = Locale.ROOT;
             sb.append(String.format(locale, "%02d:", Integer.valueOf(i6)));
             sb.append(String.format(locale, "%02d", Integer.valueOf(i7)));
@@ -5435,8 +5458,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             int indexOf = formatString.indexOf(42);
             int lastIndexOf = formatString.lastIndexOf(42);
             if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
-                valueOf.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
-                valueOf.replace(indexOf, indexOf + 1, (CharSequence) "");
+                valueOf.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                valueOf.replace(indexOf, indexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
                 valueOf.setSpan(new ForegroundColorSpan(LoginActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlueText4)), indexOf, lastIndexOf - 1, 33);
             }
             this.emailResetInView.setText(valueOf);
@@ -5453,7 +5476,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
             if (z) {
                 for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
-                    codeNumberField.setText("");
+                    codeNumberField.setText(BuildConfig.APP_CENTER_HASH);
                 }
             }
             for (CodeNumberField codeNumberField2 : this.codeFieldContainer.codeField) {
@@ -5692,7 +5715,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 if (i >= codeNumberFieldArr.length) {
                     break;
                 }
-                codeNumberFieldArr[i].setText("");
+                codeNumberFieldArr[i].setText(BuildConfig.APP_CENTER_HASH);
                 this.codeFieldContainer.codeField[i].animateErrorProgress(1.0f);
                 i++;
             }
@@ -5758,7 +5781,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (codeFieldContainer == null || codeFieldContainer.codeField == null) {
                 return;
             }
-            codeFieldContainer.setText("");
+            codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH);
             this.codeFieldContainer.codeField[0].requestFocus();
         }
 
@@ -5892,7 +5915,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (bundle == null) {
                 return;
             }
-            this.codeFieldContainer.setText("");
+            this.codeFieldContainer.setText(BuildConfig.APP_CENTER_HASH);
             this.currentParams = bundle;
             this.passwordString = bundle.getString("password");
             this.requestPhone = this.currentParams.getString("requestPhone");
@@ -5925,7 +5948,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
             if (z) {
                 for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
-                    codeNumberField.setText("");
+                    codeNumberField.setText(BuildConfig.APP_CENTER_HASH);
                 }
             }
             for (CodeNumberField codeNumberField2 : this.codeFieldContainer.codeField) {
@@ -6333,7 +6356,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 if (i >= editTextBoldCursorArr.length) {
                     break;
                 }
-                editTextBoldCursorArr[i].setText("");
+                editTextBoldCursorArr[i].setText(BuildConfig.APP_CENTER_HASH);
                 i++;
             }
             this.currentParams = bundle;
@@ -6395,7 +6418,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 TLRPC$TL_account_passwordInputSettings tLRPC$TL_account_passwordInputSettings = new TLRPC$TL_account_passwordInputSettings();
                 tLRPC$TL_auth_recoverPassword.new_settings = tLRPC$TL_account_passwordInputSettings;
                 tLRPC$TL_account_passwordInputSettings.flags |= 1;
-                tLRPC$TL_account_passwordInputSettings.hint = str2 != null ? str2 : "";
+                tLRPC$TL_account_passwordInputSettings.hint = str2 != null ? str2 : BuildConfig.APP_CENTER_HASH;
                 tLRPC$TL_account_passwordInputSettings.new_algo = this.currentPassword.new_algo;
             }
             Utilities.globalQueue.postRunnable(new Runnable() {
@@ -6903,8 +6926,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             int indexOf = string.indexOf(42);
             int lastIndexOf = string.lastIndexOf(42);
             if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
-                spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
+                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
                 spannableStringBuilder.setSpan(new LinkSpan(), indexOf, lastIndexOf - 1, 33);
             }
             this.privacyView.setText(spannableStringBuilder);
@@ -7250,8 +7273,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (bundle == null) {
                 return;
             }
-            this.firstNameField.setText("");
-            this.lastNameField.setText("");
+            this.firstNameField.setText(BuildConfig.APP_CENTER_HASH);
+            this.lastNameField.setText(BuildConfig.APP_CENTER_HASH);
             this.requestPhone = bundle.getString("phoneFormated");
             this.phoneHash = bundle.getString("phoneHash");
             this.currentParams = bundle;
@@ -7619,7 +7642,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             bundle2.putString("phoneHash", str2);
             bundle2.putString("code", str3);
             bundle2.putInt("startTime", ConnectionsManager.getInstance(this.currentAccount).getCurrentTime());
-            bundle2.putInt("waitTime", Utilities.parseInt((CharSequence) tLRPC$TL_error.text.replace("2FA_CONFIRM_WAIT_", "")).intValue());
+            bundle2.putInt("waitTime", Utilities.parseInt((CharSequence) tLRPC$TL_error.text.replace("2FA_CONFIRM_WAIT_", BuildConfig.APP_CENTER_HASH)).intValue());
             setPage(8, true, bundle2, false);
         } else {
             needShowAlert(LocaleController.getString(R.string.RestorePasswordNoEmailTitle), tLRPC$TL_error.text);
@@ -7951,18 +7974,18 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         if (this.currentConnectionState != connectionState || z2) {
             this.currentConnectionState = connectionState;
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-            boolean z3 = sharedPreferences.getBoolean("proxy_enabled", false) && !TextUtils.isEmpty(sharedPreferences.getString("proxy_ip", ""));
+            String string = sharedPreferences.getString("proxy_ip", BuildConfig.APP_CENTER_HASH);
+            boolean z3 = sharedPreferences.getBoolean("proxy_enabled", false);
             int i = this.currentConnectionState;
             boolean z4 = i == 3 || i == 5;
-            boolean z5 = i == 1 || i == 2 || i == 4;
-            if (z3) {
-                this.proxyDrawable.setConnected(true, z4, z);
-                showProxyButton(true, z);
-            } else if ((getMessagesController().blockedCountry && !SharedConfig.proxyList.isEmpty()) || z5) {
-                this.proxyDrawable.setConnected(true, z4, z);
+            boolean z5 = (z3 && !TextUtils.isEmpty(string)) || (getMessagesController().blockedCountry && !SharedConfig.proxyList.isEmpty()) || (i == 1 || i == 2 || i == 4);
+            if (z5) {
                 showProxyButtonDelayed();
             } else {
-                showProxyButton(false, z);
+                showProxyButton(z5, z);
+            }
+            if (z5) {
+                this.proxyDrawable.setConnected(true, z4, z);
             }
         }
     }

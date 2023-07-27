@@ -45,7 +45,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("apply channel " + stringExtra + " state");
+                    FileLog.d("apply channel{channel} " + stringExtra + " state");
                 }
                 notificationsSettings.edit().putInt(NotificationsController.getGlobalNotificationsKey(2), booleanExtra ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0).commit();
                 AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(2);
@@ -54,7 +54,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("apply channel " + stringExtra + " state");
+                    FileLog.d("apply channel{groups} " + stringExtra + " state");
                 }
                 SharedPreferences.Editor edit = notificationsSettings.edit();
                 String globalNotificationsKey = NotificationsController.getGlobalNotificationsKey(0);
@@ -68,9 +68,18 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("apply channel " + stringExtra + " state");
+                    FileLog.d("apply channel{private} " + stringExtra + " state");
                 }
                 notificationsSettings.edit().putInt(NotificationsController.getGlobalNotificationsKey(1), booleanExtra ? ConnectionsManager.DEFAULT_DATACENTER_ID : 0).commit();
+                AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(1);
+            } else if (split[1].startsWith("stories")) {
+                if (!stringExtra.equals(notificationsSettings.getString("stories", null))) {
+                    return;
+                }
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("apply channel{stories} " + stringExtra + " state");
+                }
+                notificationsSettings.edit().putBoolean(NotificationsController.getGlobalNotificationsKey(3), !booleanExtra).commit();
                 AccountInstance.getInstance(intValue).getNotificationsController().updateServerNotificationsSettings(1);
             } else {
                 long longValue = Utilities.parseLong(split[1]).longValue();
@@ -82,7 +91,7 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                     return;
                 }
                 if (BuildVars.LOGS_ENABLED) {
-                    FileLog.d("apply channel " + stringExtra + " state");
+                    FileLog.d("apply channel{else} " + stringExtra + " state");
                 }
                 SharedPreferences.Editor edit2 = notificationsSettings.edit();
                 edit2.putInt(NotificationsSettingsFacade.PROPERTY_NOTIFY + sharedPrefKey, booleanExtra ? 2 : 0);

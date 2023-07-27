@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">जवाफ दिनुहोस्</string>
+    <string name="call_notification_answer_video_action">भिडियो</string>
+    <string name="call_notification_decline_action">काट्नुहोस्</string>
+    <string name="call_notification_hang_up_action">फोन राख्नुहोस्</string>
+    <string name="call_notification_incoming_text">आगमन कल</string>
+    <string name="call_notification_ongoing_text">भइरहेको कल</string>
+    <string name="call_notification_screening_text">आगमन कल जाँचिँदै छ</string>
     <string name="common_google_play_services_enable_button">अन गर्नुहोस्</string>
     <string name="common_google_play_services_enable_text">%1$s ले तपाईँले Google Play सेवाहरू सक्षम नगरेसम्म काम गर्दैन।</string>
     <string name="common_google_play_services_enable_title">Google Play सेवाहरू सक्षम पार्नुहोस्</string>

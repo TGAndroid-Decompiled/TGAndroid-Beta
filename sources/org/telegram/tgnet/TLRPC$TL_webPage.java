@@ -60,7 +60,7 @@ public class TLRPC$TL_webPage extends TLRPC$WebPage {
             }
             int readInt322 = abstractSerializedData.readInt32(z);
             for (int i = 0; i < readInt322; i++) {
-                TLRPC$TL_webPageAttributeTheme TLdeserialize = TLRPC$TL_webPageAttributeTheme.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TLRPC$WebPageAttribute TLdeserialize = TLRPC$WebPageAttribute.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize == null) {
                     return;
                 }

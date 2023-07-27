@@ -3,16 +3,11 @@ package org.telegram.ui.Components;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.os.Build;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import androidx.core.graphics.ColorUtils;
-import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -37,9 +32,6 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.ui.ActionBar.BaseFragment;
-import org.telegram.ui.ActionBar.BottomSheet;
-import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.CacheControlActivity;
 import org.telegram.ui.Cells.GraySectionCell;
 import org.telegram.ui.Cells.SharedAudioCell;
 import org.telegram.ui.Cells.SharedDocumentCell;
@@ -552,6 +544,11 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SearchDownloadsContainer.DownloadsAdapter.onBindViewHolder(androidx.recyclerview.widget.RecyclerView$ViewHolder, int):void");
         }
 
+        public void lambda$onBindViewHolder$0(View view) {
+            SearchDownloadsContainer searchDownloadsContainer = SearchDownloadsContainer.this;
+            DownloadsInfoBottomSheet.show(searchDownloadsContainer.parentActivity, searchDownloadsContainer.parentFragment);
+        }
+
         @Override
         public int getItemViewType(int i) {
             SearchDownloadsContainer searchDownloadsContainer = SearchDownloadsContainer.this;
@@ -584,85 +581,6 @@ public class SearchDownloadsContainer extends FrameLayout implements Notificatio
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             return viewHolder.getItemViewType() == 1 || viewHolder.getItemViewType() == 2;
         }
-    }
-
-    public void showSettingsDialog() {
-        if (this.parentFragment == null || this.parentActivity == null) {
-            return;
-        }
-        final BottomSheet bottomSheet = new BottomSheet(this.parentActivity, false);
-        Activity parentActivity = this.parentFragment.getParentActivity();
-        LinearLayout linearLayout = new LinearLayout(parentActivity);
-        linearLayout.setOrientation(1);
-        StickerImageView stickerImageView = new StickerImageView(parentActivity, this.currentAccount);
-        stickerImageView.setStickerNum(9);
-        stickerImageView.getImageReceiver().setAutoRepeat(1);
-        linearLayout.addView(stickerImageView, LayoutHelper.createLinear(144, 144, 1, 0, 16, 0, 0));
-        TextView textView = new TextView(parentActivity);
-        textView.setGravity(1);
-        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
-        textView.setTextSize(1, 24.0f);
-        textView.setText(LocaleController.getString("DownloadedFiles", R.string.DownloadedFiles));
-        linearLayout.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
-        TextView textView2 = new TextView(parentActivity);
-        textView2.setGravity(1);
-        textView2.setTextSize(1, 15.0f);
-        textView2.setTextColor(Theme.getColor(Theme.key_dialogTextHint));
-        textView2.setText(LocaleController.formatString("DownloadedFilesMessage", R.string.DownloadedFilesMessage, new Object[0]));
-        linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 0, 21.0f, 15.0f, 21.0f, 16.0f));
-        TextView textView3 = new TextView(parentActivity);
-        textView3.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        textView3.setGravity(17);
-        textView3.setTextSize(1, 14.0f);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView3.setText(LocaleController.getString("ManageDeviceStorage", R.string.ManageDeviceStorage));
-        textView3.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
-        int dp = AndroidUtilities.dp(6.0f);
-        int i = Theme.key_featuredStickers_addButton;
-        textView3.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(dp, Theme.getColor(i), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
-        linearLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
-        TextView textView4 = new TextView(parentActivity);
-        textView4.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        textView4.setGravity(17);
-        textView4.setTextSize(1, 14.0f);
-        textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView4.setText(LocaleController.getString("ClearDownloadsList", R.string.ClearDownloadsList));
-        textView4.setTextColor(Theme.getColor(i));
-        textView4.setBackgroundDrawable(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), 0, ColorUtils.setAlphaComponent(Theme.getColor(i), 120)));
-        linearLayout.addView(textView4, LayoutHelper.createFrame(-1, 48.0f, 0, 16.0f, 0.0f, 16.0f, 16.0f));
-        NestedScrollView nestedScrollView = new NestedScrollView(parentActivity);
-        nestedScrollView.addView(linearLayout);
-        bottomSheet.setCustomView(nestedScrollView);
-        bottomSheet.show();
-        if (Build.VERSION.SDK_INT >= 23) {
-            AndroidUtilities.setLightStatusBar(bottomSheet.getWindow(), !Theme.isCurrentThemeDark());
-            AndroidUtilities.setLightNavigationBar(bottomSheet.getWindow(), !Theme.isCurrentThemeDark());
-        }
-        textView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                SearchDownloadsContainer.this.lambda$showSettingsDialog$6(bottomSheet, view);
-            }
-        });
-        textView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                SearchDownloadsContainer.this.lambda$showSettingsDialog$7(bottomSheet, view);
-            }
-        });
-    }
-
-    public void lambda$showSettingsDialog$6(BottomSheet bottomSheet, View view) {
-        bottomSheet.dismiss();
-        BaseFragment baseFragment = this.parentFragment;
-        if (baseFragment != null) {
-            baseFragment.presentFragment(new CacheControlActivity());
-        }
-    }
-
-    public void lambda$showSettingsDialog$7(BottomSheet bottomSheet, View view) {
-        bottomSheet.dismiss();
-        DownloadController.getInstance(this.currentAccount).clearRecentDownloadedFiles();
     }
 
     @Override

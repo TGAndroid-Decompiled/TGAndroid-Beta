@@ -60,7 +60,7 @@ public class CreateTopicEmptyView extends LinearLayout {
     }
 
     private void setSticker() {
-        TLRPC$Document emojiAnimatedSticker = MediaDataController.getInstance(UserConfig.selectedAccount).getEmojiAnimatedSticker("\u1f973");
+        TLRPC$Document emojiAnimatedSticker = MediaDataController.getInstance(UserConfig.selectedAccount).getEmojiAnimatedSticker("🥳");
         if (emojiAnimatedSticker != null) {
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(emojiAnimatedSticker.thumbs, Theme.key_emptyListPlaceholder, 0.2f);
             if (svgThumb != null) {

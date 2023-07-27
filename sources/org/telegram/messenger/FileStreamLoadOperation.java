@@ -4,6 +4,8 @@ import android.net.Uri;
 import com.google.android.exoplayer2.upstream.BaseDataSource;
 import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.TransferListener;
+import j$.util.concurrent.ConcurrentHashMap;
+import j$.util.concurrent.ConcurrentMap$EL;
 import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
@@ -19,6 +21,7 @@ import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 import org.webrtc.MediaStreamTrack;
 public class FileStreamLoadOperation extends BaseDataSource implements FileLoadOperationStream {
+    private static final ConcurrentHashMap<Long, Integer> priorityMap = new ConcurrentHashMap<>();
     private long bytesRemaining;
     private CountDownLatch countDownLatch;
     private int currentAccount;
@@ -50,6 +53,14 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         }
     }
 
+    public static int getStreamPrioriy(TLRPC$Document tLRPC$Document) {
+        Integer num;
+        if (tLRPC$Document == null || (num = priorityMap.get(Long.valueOf(tLRPC$Document.id))) == null) {
+            return 3;
+        }
+        return num.intValue();
+    }
+
     @Override
     public long open(DataSpec dataSpec) throws IOException {
         Uri uri = dataSpec.uri;
@@ -78,7 +89,7 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         Object obj = this.parentObject;
         long j = dataSpec.position;
         this.currentOffset = j;
-        this.loadOperation = fileLoader.loadStreamFile(this, tLRPC$Document, null, obj, j, false, 3);
+        this.loadOperation = fileLoader.loadStreamFile(this, tLRPC$Document, null, obj, j, false, getCurrentPriority());
         long j2 = dataSpec.length;
         if (j2 == -1) {
             j2 = this.document.size - dataSpec.position;
@@ -89,62 +100,33 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         }
         this.opened = true;
         transferStarted(dataSpec);
-        if (this.loadOperation != null) {
-            File currentFile = this.loadOperation.getCurrentFile();
+        FileLoadOperation fileLoadOperation = this.loadOperation;
+        if (fileLoadOperation != null) {
+            File currentFile = fileLoadOperation.getCurrentFile();
             this.currentFile = currentFile;
-            RandomAccessFile randomAccessFile = new RandomAccessFile(currentFile, "r");
-            this.file = randomAccessFile;
-            randomAccessFile.seek(this.currentOffset);
+            if (currentFile != null) {
+                try {
+                    RandomAccessFile randomAccessFile = new RandomAccessFile(this.currentFile, "r");
+                    this.file = randomAccessFile;
+                    randomAccessFile.seek(this.currentOffset);
+                } catch (Throwable unused) {
+                }
+            }
         }
         return this.bytesRemaining;
     }
 
+    private int getCurrentPriority() {
+        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(priorityMap, Long.valueOf(this.document.id), null);
+        if (num != null) {
+            return num.intValue();
+        }
+        return 3;
+    }
+
     @Override
-    public int read(byte[] bArr, int i, int i2) throws IOException {
-        if (i2 == 0) {
-            return 0;
-        }
-        long j = this.bytesRemaining;
-        if (j == 0) {
-            return -1;
-        }
-        if (j < i2) {
-            i2 = (int) j;
-        }
-        int i3 = 0;
-        while (i3 == 0) {
-            try {
-                if (!this.opened) {
-                    break;
-                }
-                i3 = (int) this.loadOperation.getDownloadedLengthFromOffset(this.currentOffset, i2)[0];
-                if (i3 == 0) {
-                    this.countDownLatch = new CountDownLatch(1);
-                    FileLoadOperation loadStreamFile = FileLoader.getInstance(this.currentAccount).loadStreamFile(this, this.document, null, this.parentObject, this.currentOffset, false, 3);
-                    FileLoadOperation fileLoadOperation = this.loadOperation;
-                    if (fileLoadOperation != loadStreamFile) {
-                        fileLoadOperation.removeStreamListener(this);
-                        this.loadOperation = loadStreamFile;
-                    }
-                    CountDownLatch countDownLatch = this.countDownLatch;
-                    if (countDownLatch != null) {
-                        countDownLatch.await();
-                        this.countDownLatch = null;
-                    }
-                }
-            } catch (Exception e) {
-                throw new IOException(e);
-            }
-        }
-        if (this.opened) {
-            this.file.readFully(bArr, i, i3);
-            long j2 = i3;
-            this.currentOffset += j2;
-            this.bytesRemaining -= j2;
-            bytesTransferred(i3);
-            return i3;
-        }
-        return 0;
+    public int read(byte[] r13, int r14, int r15) throws java.io.IOException {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileStreamLoadOperation.read(byte[], int, int):int");
     }
 
     @Override
@@ -185,6 +167,12 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
         if (countDownLatch != null) {
             countDownLatch.countDown();
             this.countDownLatch = null;
+        }
+    }
+
+    public static void setPriorityForDocument(TLRPC$Document tLRPC$Document, int i) {
+        if (tLRPC$Document != null) {
+            priorityMap.put(Long.valueOf(tLRPC$Document.id), Integer.valueOf(i));
         }
     }
 }

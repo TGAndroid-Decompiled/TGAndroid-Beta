@@ -49,6 +49,7 @@ import java.util.List;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.GenericProvider;
@@ -1453,7 +1454,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                         }
                     }, z);
                 } else if (!BuildVars.useInvoiceBilling() && (!BillingController.getInstance().isReady() || this.subscriptionTiers.isEmpty() || this.selectedTierIndex >= this.subscriptionTiers.size() || this.subscriptionTiers.get(this.selectedTierIndex).googlePlayProductDetails == null)) {
-                    this.premiumButtonView.setButton(LocaleController.getString(R.string.Loading), PremiumPreviewFragment$$ExternalSyntheticLambda2.INSTANCE, z);
+                    this.premiumButtonView.setButton(LocaleController.getString(R.string.Loading), new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            PremiumPreviewFragment.lambda$updateButtonText$12(view);
+                        }
+                    }, z);
                     this.premiumButtonView.setFlickerDisabled(true);
                 } else if (this.subscriptionTiers.isEmpty()) {
                 } else {
@@ -1595,7 +1601,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         tLRPC$TL_jsonObjectValue.value = tLRPC$TL_jsonNull;
         tLRPC$TL_jsonObject.value.add(tLRPC$TL_jsonObjectValue);
         tLRPC$TL_help_saveAppLog.events.add(tLRPC$TL_inputAppEvent);
-        connectionsManager.sendRequest(tLRPC$TL_help_saveAppLog, PremiumPreviewFragment$$ExternalSyntheticLambda16.INSTANCE);
+        connectionsManager.sendRequest(tLRPC$TL_help_saveAppLog, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                PremiumPreviewFragment.lambda$sentShowScreenStat$14(tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     public static void sentPremiumButtonClick() {
@@ -1605,7 +1616,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         tLRPC$TL_inputAppEvent.type = "premium.promo_screen_accept";
         tLRPC$TL_inputAppEvent.data = new TLRPC$TL_jsonNull();
         tLRPC$TL_help_saveAppLog.events.add(tLRPC$TL_inputAppEvent);
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_help_saveAppLog, PremiumPreviewFragment$$ExternalSyntheticLambda13.INSTANCE);
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_help_saveAppLog, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                PremiumPreviewFragment.lambda$sentPremiumButtonClick$15(tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     public static void sentPremiumBuyCanceled() {
@@ -1615,7 +1631,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         tLRPC$TL_inputAppEvent.type = "premium.promo_screen_fail";
         tLRPC$TL_inputAppEvent.data = new TLRPC$TL_jsonNull();
         tLRPC$TL_help_saveAppLog.events.add(tLRPC$TL_inputAppEvent);
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_help_saveAppLog, PremiumPreviewFragment$$ExternalSyntheticLambda15.INSTANCE);
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_help_saveAppLog, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                PremiumPreviewFragment.lambda$sentPremiumBuyCanceled$16(tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     public static void sentShowFeaturePreview(int i, int i2) {
@@ -1637,7 +1658,12 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         tLRPC$TL_jsonObjectValue.key = "item";
         tLRPC$TL_jsonObject.value.add(tLRPC$TL_jsonObjectValue);
         tLRPC$TL_help_saveAppLog.events.add(tLRPC$TL_inputAppEvent);
-        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_help_saveAppLog, PremiumPreviewFragment$$ExternalSyntheticLambda14.INSTANCE);
+        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_help_saveAppLog, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                PremiumPreviewFragment.lambda$sentShowFeaturePreview$17(tLObject, tLRPC$TL_error);
+            }
+        });
     }
 
     public static final class SubscriptionTier {
@@ -1723,21 +1749,21 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             if (BuildVars.useInvoiceBilling() || this.subscriptionOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(this.pricePerYearRegular, getCurrency());
             }
-            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(this.pricePerYearRegular, getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(this.pricePerYearRegular, getCurrency(), 6);
         }
 
         public String getFormattedPricePerYear() {
             if (BuildVars.useInvoiceBilling() || this.subscriptionOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPricePerYear(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerYear(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPricePerYear(), getCurrency(), 6);
         }
 
         public String getFormattedPricePerMonth() {
             if (BuildVars.useInvoiceBilling() || this.subscriptionOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
         }
 
         public long getPrice() {
@@ -1760,11 +1786,11 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return this.subscriptionOption.currency;
             }
             if (this.googlePlayProductDetails == null) {
-                return "";
+                return BuildConfig.APP_CENTER_HASH;
             }
             checkOfferDetails();
             ProductDetails.SubscriptionOfferDetails subscriptionOfferDetails = this.offerDetails;
-            return subscriptionOfferDetails == null ? "" : subscriptionOfferDetails.getPricingPhases().getPricingPhaseList().get(0).getPriceCurrencyCode();
+            return subscriptionOfferDetails == null ? BuildConfig.APP_CENTER_HASH : subscriptionOfferDetails.getPricingPhases().getPricingPhaseList().get(0).getPriceCurrencyCode();
         }
 
         private void checkOfferDetails() {

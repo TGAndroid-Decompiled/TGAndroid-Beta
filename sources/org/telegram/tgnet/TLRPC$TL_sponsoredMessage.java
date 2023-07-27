@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_sponsoredMessage extends TLObject {
-    public static int constructor = -64636888;
+    public static int constructor = -626000021;
     public String additional_info;
     public int channel_post;
     public TLRPC$ChatInvite chat_invite;
@@ -17,6 +17,7 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
     public boolean show_peer_photo;
     public String sponsor_info;
     public String start_param;
+    public TLRPC$TL_sponsoredWebPage webpage;
 
     public static TLRPC$TL_sponsoredMessage TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (constructor != i) {
@@ -51,6 +52,9 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
         }
         if ((this.flags & 1) != 0) {
             this.start_param = abstractSerializedData.readString(z);
+        }
+        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+            this.webpage = TLRPC$TL_sponsoredWebPage.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         this.message = abstractSerializedData.readString(z);
         if ((this.flags & 2) != 0) {
@@ -101,6 +105,9 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
         }
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.start_param);
+        }
+        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
+            this.webpage.serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeString(this.message);
         if ((this.flags & 2) != 0) {

@@ -5,7 +5,7 @@
         <item name="android:title" />
         <item name="android:logo">@drawable/transparent</item>
     </style>
-    <style name="DialogNoAnimation">
+    <style name="DialogNoAnimation" parent="">
         <item name="android:windowEnterAnimation">@null</item>
         <item name="android:windowExitAnimation">@null</item>
     </style>
@@ -62,7 +62,7 @@
         <item name="android:colorAccent">#4991cc</item>
     </style>
     <style name="Theme.TMessages.ListView" parent="@android:style/Widget.Material.Light.ListView">
-        <item name="android:fadingEdge">0x0</item>
+        <item name="android:fadingEdge">none</item>
         <item name="android:divider">@color/divider</item>
         <item name="android:dividerHeight">1dp</item>
     </style>
@@ -106,10 +106,10 @@
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
-    <style name="Widget.Compat.NotificationActionContainer">
+    <style name="Widget.Compat.NotificationActionContainer" parent="">
         <item name="android:background">@drawable/notification_action_background</item>
     </style>
-    <style name="Widget.Compat.NotificationActionText">
+    <style name="Widget.Compat.NotificationActionText" parent="">
         <item name="android:textAppearance">?android:attr/textAppearanceButton</item>
         <item name="android:textSize">@dimen/notification_action_text_size</item>
         <item name="android:textColor">@color/androidx_core_secondary_text_default_material_light</item>

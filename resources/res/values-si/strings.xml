@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">පිළිතුරු දෙ.</string>
+    <string name="call_notification_answer_video_action">වීඩියෝ</string>
+    <string name="call_notification_decline_action">ප්‍රතික්ෂේප ක</string>
+    <string name="call_notification_hang_up_action">විසන්ධි කරන්න</string>
+    <string name="call_notification_incoming_text">එන ඇමතුම</string>
+    <string name="call_notification_ongoing_text">කරගෙන යන ඇමතුම</string>
+    <string name="call_notification_screening_text">එන ඇමතුමක් පරීක්ෂා කරන්න</string>
     <string name="common_google_play_services_enable_button">සබල කරන්න</string>
     <string name="common_google_play_services_enable_text">ඔබ Google Play සේවා සබල කරන්නේ නම් මිස %1$s වැඩ නොකරනු ඇත.</string>
     <string name="common_google_play_services_enable_title">Google Play සේවා සබල කරන්න</string>

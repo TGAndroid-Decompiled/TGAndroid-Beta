@@ -6,10 +6,10 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Space;
 import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import java.util.Arrays;
@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ChatActivityEnterViewAnimatedIconView;
@@ -24,17 +25,20 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.PaintTypeface;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
-public class PaintTextOptionsView extends LinearLayout {
+public class PaintTextOptionsView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static final List<AlignFramePair> ALIGN_PAIRS = Arrays.asList(new AlignFramePair(0, 1, 20, 0), new AlignFramePair(0, 2, 20, 40), new AlignFramePair(1, 0, 0, 20), new AlignFramePair(1, 2, 60, 40), new AlignFramePair(2, 0, 40, 20), new AlignFramePair(2, 1, 40, 60));
     private RLottieImageView alignView;
     private View colorClickableView;
     private int currentAlign;
     private Delegate delegate;
     private ChatActivityEnterViewAnimatedIconView emojiButton;
+    private String lastTypefaceKey;
     private int outlineType;
     private ImageView outlineView;
+    private int plusIcon;
     private ImageView plusView;
     private TypefaceCell typefaceCell;
+    private int x;
 
     public interface Delegate {
         void onColorPickerSelected();
@@ -54,8 +58,6 @@ public class PaintTextOptionsView extends LinearLayout {
     public PaintTextOptionsView(Context context) {
         super(context);
         this.currentAlign = 0;
-        setOrientation(0);
-        setGravity(16);
         setWillNotDraw(false);
         View view = new View(context);
         this.colorClickableView = view;
@@ -65,7 +67,7 @@ public class PaintTextOptionsView extends LinearLayout {
                 PaintTextOptionsView.this.lambda$new$0(view2);
             }
         });
-        addView(this.colorClickableView, LayoutHelper.createLinear(24, -1, 48, 0, 0, 16, 0));
+        addView(this.colorClickableView, LayoutHelper.createFrame(24, 24.0f, 48, 0.0f, 0.0f, 16.0f, 0.0f));
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.alignView = rLottieImageView;
         rLottieImageView.setAnimation(R.raw.photo_text_allign, 24, 24);
@@ -81,7 +83,7 @@ public class PaintTextOptionsView extends LinearLayout {
             }
         });
         this.alignView.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
-        addView(this.alignView, LayoutHelper.createLinear(28, 28, 16, 0, 0, 16, 0));
+        addView(this.alignView, LayoutHelper.createFrame(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.outlineView = imageView;
         imageView.setImageResource(R.drawable.msg_text_outlined);
@@ -92,7 +94,7 @@ public class PaintTextOptionsView extends LinearLayout {
                 PaintTextOptionsView.this.lambda$new$2(view2);
             }
         });
-        addView(this.outlineView, LayoutHelper.createLinear(28, 28, 16, 0, 0, 16, 0));
+        addView(this.outlineView, LayoutHelper.createFrame(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         this.plusView = imageView2;
         imageView2.setImageResource(R.drawable.msg_add);
@@ -105,8 +107,7 @@ public class PaintTextOptionsView extends LinearLayout {
             }
         });
         this.plusView.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
-        addView(this.plusView, LayoutHelper.createLinear(28, 28, 16, 0, 0, 16, 0));
-        addView(new Space(context), LayoutHelper.createLinear(0, 0, 1.0f));
+        addView(this.plusView, LayoutHelper.createFrame(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
         TypefaceCell typefaceCell = new TypefaceCell(context);
         this.typefaceCell = typefaceCell;
         typefaceCell.setCurrent(true);
@@ -116,7 +117,7 @@ public class PaintTextOptionsView extends LinearLayout {
                 PaintTextOptionsView.this.lambda$new$4(view2);
             }
         });
-        addView(this.typefaceCell, LayoutHelper.createLinear(-2, -2));
+        addView(this.typefaceCell, LayoutHelper.createLinear(-2, -2, 0.0f, 21));
     }
 
     public void lambda$new$0(View view) {
@@ -139,6 +140,45 @@ public class PaintTextOptionsView extends LinearLayout {
         this.delegate.onTypefaceButtonClicked();
     }
 
+    @Override
+    protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        this.x = getPaddingLeft();
+        layoutChild(this.colorClickableView);
+        layoutChild(this.alignView);
+        layoutChild(this.outlineView);
+        layoutChild(this.plusView);
+        this.typefaceCell.layout((getMeasuredWidth() - getPaddingRight()) - this.typefaceCell.getMeasuredWidth(), (getMeasuredHeight() - this.typefaceCell.getMeasuredHeight()) / 2, getMeasuredWidth() - getPaddingRight(), (getMeasuredHeight() + this.typefaceCell.getMeasuredHeight()) / 2);
+    }
+
+    private void layoutChild(View view) {
+        if (view.getVisibility() != 8) {
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
+            int i = this.x + layoutParams.leftMargin;
+            this.x = i;
+            view.layout(i, (getMeasuredHeight() - layoutParams.height) / 2, this.x + layoutParams.width, (getMeasuredHeight() + layoutParams.height) / 2);
+            this.x += layoutParams.width + layoutParams.rightMargin;
+        }
+    }
+
+    @Override
+    protected void onMeasure(int i, int i2) {
+        int size = View.MeasureSpec.getSize(i);
+        int size2 = View.MeasureSpec.getSize(i2);
+        int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
+        for (int i3 = 0; i3 < getChildCount(); i3++) {
+            View childAt = getChildAt(i3);
+            TypefaceCell typefaceCell = this.typefaceCell;
+            if (childAt == typefaceCell) {
+                typefaceCell.measure(View.MeasureSpec.makeMeasureSpec(paddingLeft, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
+            } else {
+                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
+                childAt.measure(View.MeasureSpec.makeMeasureSpec(layoutParams.width, 1073741824), View.MeasureSpec.makeMeasureSpec(layoutParams.height, 1073741824));
+                paddingLeft -= (childAt.getMeasuredWidth() + layoutParams.leftMargin) + layoutParams.rightMargin;
+            }
+        }
+        setMeasuredDimension(size, size2);
+    }
+
     public TypefaceCell getTypefaceCell() {
         return this.typefaceCell;
     }
@@ -155,7 +195,11 @@ public class PaintTextOptionsView extends LinearLayout {
         if (i == 0) {
             i = R.drawable.msg_add;
         }
-        AndroidUtilities.updateImageViewImageAnimated(this.plusView, i);
+        if (this.plusIcon != i) {
+            ImageView imageView = this.plusView;
+            this.plusIcon = i;
+            AndroidUtilities.updateImageViewImageAnimated(imageView, i);
+        }
     }
 
     public ChatActivityEnterViewAnimatedIconView getEmojiButton() {
@@ -173,11 +217,13 @@ public class PaintTextOptionsView extends LinearLayout {
         }
         this.outlineType = i;
         if (i == 1) {
-            i2 = R.drawable.msg_text_regular;
-        } else if (i != 2) {
-            i2 = R.drawable.msg_text_outlined;
+            i2 = R.drawable.msg_photo_text_framed2;
+        } else if (i == 2) {
+            i2 = R.drawable.msg_photo_text_framed3;
+        } else if (i != 3) {
+            i2 = R.drawable.msg_photo_text_framed;
         } else {
-            i2 = R.drawable.msg_text_framed;
+            i2 = R.drawable.msg_photo_text_regular;
         }
         if (z) {
             AndroidUtilities.updateImageViewImageAnimated(this.outlineView, i2);
@@ -186,27 +232,15 @@ public class PaintTextOptionsView extends LinearLayout {
         }
     }
 
-    public void lambda$setTypeface$5(final String str) {
+    public void setTypeface(String str) {
+        this.lastTypefaceKey = str;
         if (this.typefaceCell == null) {
             return;
         }
-        for (PaintTypeface paintTypeface : PaintTypeface.BUILT_IN_FONTS) {
+        for (PaintTypeface paintTypeface : PaintTypeface.get()) {
             if (paintTypeface.getKey().equals(str)) {
                 this.typefaceCell.bind(paintTypeface);
                 return;
-            }
-        }
-        if (PaintTypeface.fetched(new Runnable() {
-            @Override
-            public final void run() {
-                PaintTextOptionsView.this.lambda$setTypeface$5(str);
-            }
-        })) {
-            for (PaintTypeface paintTypeface2 : PaintTypeface.get()) {
-                if (paintTypeface2.getKey().equals(str)) {
-                    this.typefaceCell.bind(paintTypeface2);
-                    return;
-                }
             }
         }
     }
@@ -276,17 +310,22 @@ public class PaintTextOptionsView extends LinearLayout {
             setTextColor(-1);
             setTextSize(1, 14.0f);
             setCurrent(false);
+            setEllipsize(TextUtils.TruncateAt.END);
+            setSingleLine();
         }
 
         @Override
         protected void onDraw(Canvas canvas) {
+            canvas.save();
+            canvas.translate(0.0f, AndroidUtilities.dp(-1.0f));
             super.onDraw(canvas);
+            canvas.restore();
             if (this.isCurrent) {
                 int height = (getHeight() - AndroidUtilities.dp(16.0f)) / 2;
                 if (LocaleController.isRTL) {
-                    this.expandDrawable.setBounds(AndroidUtilities.dp(12.0f), height, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(16.0f) + height);
+                    this.expandDrawable.setBounds(AndroidUtilities.dp(7.0f), height, AndroidUtilities.dp(23.0f), AndroidUtilities.dp(16.0f) + height);
                 } else {
-                    this.expandDrawable.setBounds(getWidth() - AndroidUtilities.dp(28.0f), height, getWidth() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(16.0f) + height);
+                    this.expandDrawable.setBounds(getWidth() - AndroidUtilities.dp(23.0f), height, getWidth() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(16.0f) + height);
                 }
                 this.expandDrawable.draw(canvas);
             }
@@ -295,7 +334,7 @@ public class PaintTextOptionsView extends LinearLayout {
         public void setCurrent(boolean z) {
             this.isCurrent = z;
             if (z) {
-                setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 38.0f : 14.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(LocaleController.isRTL ? 14.0f : 38.0f), AndroidUtilities.dp(6.0f));
+                setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 27.0f : 12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(LocaleController.isRTL ? 12.0f : 27.0f), AndroidUtilities.dp(6.0f));
                 setBackground(Theme.AdaptiveRipple.rect(1090519039, AndroidUtilities.dp(32.0f)));
             } else {
                 setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f));
@@ -304,7 +343,7 @@ public class PaintTextOptionsView extends LinearLayout {
             if (this.isCurrent && this.expandDrawable == null) {
                 Drawable drawable = ContextCompat.getDrawable(getContext(), R.drawable.photo_expand);
                 this.expandDrawable = drawable;
-                drawable.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
+                drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             }
             invalidate();
         }
@@ -327,5 +366,27 @@ public class PaintTextOptionsView extends LinearLayout {
             this.fromFrame = i3;
             this.toFrame = i4;
         }
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
+    }
+
+    @Override
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        String str;
+        if (i != NotificationCenter.customTypefacesLoaded || (str = this.lastTypefaceKey) == null) {
+            return;
+        }
+        setTypeface(str);
+        this.lastTypefaceKey = null;
     }
 }

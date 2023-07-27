@@ -46,6 +46,7 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
     private float premiumAlpha;
     private PremiumLockIconView premiumIconView;
     private boolean recent;
+    private Theme.ResourcesProvider resourceProvider;
     private float scale;
     private boolean scaled;
     private boolean showPremiumLock;
@@ -53,11 +54,12 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
     private SendMessagesHelper.ImportingSticker stickerPath;
     private long time;
 
-    public StickerEmojiCell(Context context, boolean z) {
+    public StickerEmojiCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.alpha = 1.0f;
         this.currentAccount = UserConfig.selectedAccount;
         this.premiumAlpha = 1.0f;
+        this.resourceProvider = resourcesProvider;
         this.fromEmojiPanel = z;
         ImageReceiver imageReceiver = new ImageReceiver();
         this.imageView = imageReceiver;
@@ -144,11 +146,16 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
         if (importingSticker != null) {
             this.stickerPath = importingSticker;
             if (importingSticker.validated) {
+                ImageReceiver imageReceiver = this.imageView;
+                ImageLocation forPath = ImageLocation.getForPath(importingSticker.path);
+                SvgHelper.SvgDrawable svgRectThumb = DocumentObject.getSvgRectThumb(Theme.key_dialogBackgroundGray, 1.0f);
                 i = 4;
-                this.imageView.setImage(ImageLocation.getForPath(importingSticker.path), "80_80", null, null, DocumentObject.getSvgRectThumb(Theme.key_dialogBackgroundGray, 1.0f), 0L, importingSticker.animated ? "tgs" : null, 0, 1);
+                imageReceiver.setImage(forPath, "80_80", null, null, svgRectThumb, 0L, importingSticker.animated ? "tgs" : null, 0, 1);
             } else {
+                ImageReceiver imageReceiver2 = this.imageView;
+                SvgHelper.SvgDrawable svgRectThumb2 = DocumentObject.getSvgRectThumb(Theme.key_dialogBackgroundGray, 1.0f);
                 i = 4;
-                this.imageView.setImage(null, null, null, null, DocumentObject.getSvgRectThumb(Theme.key_dialogBackgroundGray, 1.0f), 0L, importingSticker.animated ? "tgs" : null, 0, 1);
+                imageReceiver2.setImage(null, null, null, null, svgRectThumb2, 0L, importingSticker.animated ? "tgs" : null, 0, 1);
             }
             if (str != null) {
                 TextView textView = this.emojiTextView;
@@ -165,10 +172,10 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
                 this.parentObject = obj;
                 TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90);
                 boolean z4 = this.fromEmojiPanel;
-                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, z4 ? Theme.key_emptyListPlaceholder : Theme.key_windowBackgroundGray, z4 ? 0.2f : 1.0f);
+                SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, z4 ? Theme.key_emptyListPlaceholder : Theme.key_windowBackgroundGray, z4 ? 0.2f : 1.0f, 1.0f, this.resourceProvider);
                 String str2 = this.fromEmojiPanel ? "66_66_pcache_compress" : "66_66";
                 if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
-                    this.imageView.setColorFilter(Theme.chat_animatedEmojiTextColorFilter);
+                    this.imageView.setColorFilter(Theme.getAnimatedEmojiColorFilter(this.resourceProvider));
                 }
                 if (MessageObject.canAutoplayAnimatedSticker(tLRPC$Document)) {
                     if (this.fromEmojiPanel) {

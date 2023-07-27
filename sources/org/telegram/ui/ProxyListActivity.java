@@ -413,7 +413,14 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         this.selectedCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.selectedCountTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));
         createActionMode.addView(this.selectedCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
-        this.selectedCountTextView.setOnTouchListener(ProxyListActivity$$ExternalSyntheticLambda1.INSTANCE);
+        this.selectedCountTextView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$createView$3;
+                lambda$createView$3 = ProxyListActivity.lambda$createView$3(view, motionEvent);
+                return lambda$createView$3;
+            }
+        });
         createActionMode.addItemWithWidth(1, R.drawable.msg_share, AndroidUtilities.dp(54.0f));
         createActionMode.addItemWithWidth(0, R.drawable.msg_delete, AndroidUtilities.dp(54.0f));
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass3(context));
@@ -460,7 +467,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
             NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
             int i2 = NotificationCenter.proxySettingsChanged;
             globalInstance.removeObserver(this, i2);
-            NotificationCenter.getGlobalInstance().postNotificationName(i2, new Object[0]);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(i2, new Object[0]);
             NotificationCenter.getGlobalInstance().addObserver(this, i2);
             for (int i3 = this.proxyStartRow; i3 < this.proxyEndRow; i3++) {
                 RecyclerListView.Holder holder2 = (RecyclerListView.Holder) this.listView.findViewHolderForAdapterPosition(i3);
@@ -548,7 +555,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
         NotificationCenter globalInstance = NotificationCenter.getGlobalInstance();
         int i2 = NotificationCenter.proxySettingsChanged;
         globalInstance.removeObserver(this, i2);
-        NotificationCenter.getGlobalInstance().postNotificationName(i2, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(i2, new Object[0]);
         NotificationCenter.getGlobalInstance().addObserver(this, i2);
         updateRows(true);
         ListAdapter listAdapter = this.listAdapter;
@@ -586,7 +593,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
             ProxyListActivity proxyListActivity = ProxyListActivity.this;
             int i2 = NotificationCenter.proxySettingsChanged;
             globalInstance.removeObserver(proxyListActivity, i2);
-            NotificationCenter.getGlobalInstance().postNotificationName(i2, new Object[0]);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(i2, new Object[0]);
             NotificationCenter.getGlobalInstance().addObserver(ProxyListActivity.this, i2);
             ProxyListActivity.this.updateRows(true);
             if (ProxyListActivity.this.listAdapter != null) {
@@ -705,7 +712,7 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
             proxyInfo.ping = j;
             proxyInfo.available = true;
         }
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.proxyCheckDone, proxyInfo);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyCheckDone, proxyInfo);
     }
 
     @Override
@@ -862,7 +869,17 @@ public class ProxyListActivity extends BaseFragment implements NotificationCente
                         for (int i2 = 0; i2 < arrayList.size(); i2++) {
                             strArr[i2] = LocaleController.formatString(R.string.ProxyRotationTimeoutSeconds, arrayList.get(i2));
                         }
-                        slideChooseView.setCallback(ProxyListActivity$ListAdapter$$ExternalSyntheticLambda0.INSTANCE);
+                        slideChooseView.setCallback(new SlideChooseView.Callback() {
+                            @Override
+                            public final void onOptionSelected(int i3) {
+                                ProxyListActivity.ListAdapter.lambda$onBindViewHolder$0(i3);
+                            }
+
+                            @Override
+                            public void onTouchEnd() {
+                                SlideChooseView.Callback.CC.$default$onTouchEnd(this);
+                            }
+                        });
                         slideChooseView.setOptions(SharedConfig.proxyRotationTimeout, strArr);
                         return;
                     }

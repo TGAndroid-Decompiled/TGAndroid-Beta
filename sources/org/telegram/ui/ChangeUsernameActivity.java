@@ -40,6 +40,7 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -143,7 +144,7 @@ public class ChangeUsernameActivity extends BaseFragment {
 
     public ChangeUsernameActivity(Bundle bundle) {
         super(bundle);
-        this.username = "";
+        this.username = BuildConfig.APP_CENTER_HASH;
         this.notEditableUsernames = new ArrayList<>();
         this.usernames = new ArrayList<>();
         this.loadingUsernames = new ArrayList<>();
@@ -205,7 +206,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 this.username = str;
             }
             if (this.username == null) {
-                this.username = "";
+                this.username = BuildConfig.APP_CENTER_HASH;
             }
             this.notEditableUsernames.clear();
             this.usernames.clear();
@@ -255,7 +256,14 @@ public class ChangeUsernameActivity extends BaseFragment {
         this.itemTouchHelper = itemTouchHelper;
         itemTouchHelper.attachToRecyclerView(this.listView);
         ((FrameLayout) this.fragmentView).addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
-        this.fragmentView.setOnTouchListener(ChangeUsernameActivity$$ExternalSyntheticLambda1.INSTANCE);
+        this.fragmentView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$createView$0;
+                lambda$createView$0 = ChangeUsernameActivity.lambda$createView$0(view, motionEvent);
+                return lambda$createView$0;
+            }
+        });
         this.listView.setOnItemClickListener(new AnonymousClass3());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
@@ -321,7 +329,12 @@ public class ChangeUsernameActivity extends BaseFragment {
                     public final void onClick(DialogInterface dialogInterface, int i5) {
                         ChangeUsernameActivity.AnonymousClass3.this.lambda$onItemClick$3(tLRPC$TL_username, i, view, dialogInterface, i5);
                     }
-                }).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), ChangeUsernameActivity$3$$ExternalSyntheticLambda2.INSTANCE).show();
+                }).setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i5) {
+                        dialogInterface.dismiss();
+                    }
+                }).show();
             } else if (view instanceof InputCell) {
                 ChangeUsernameActivity.this.focusUsernameField(true);
             }
@@ -584,7 +597,12 @@ public class ChangeUsernameActivity extends BaseFragment {
                 tLRPC$TL_bots_reorderUsernames2.order = arrayList;
                 tLRPC$TL_bots_reorderUsernames = tLRPC$TL_bots_reorderUsernames2;
             }
-            getConnectionsManager().sendRequest(tLRPC$TL_bots_reorderUsernames, ChangeUsernameActivity$$ExternalSyntheticLambda11.INSTANCE);
+            getConnectionsManager().sendRequest(tLRPC$TL_bots_reorderUsernames, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    ChangeUsernameActivity.lambda$sendReorder$2(tLObject, tLRPC$TL_error);
+                }
+            });
             updateUser();
         }
     }
@@ -674,8 +692,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                 int indexOf = string.indexOf(42);
                 int lastIndexOf = string.lastIndexOf(42);
                 if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                    spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
-                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
+                    spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
                     spannableStringBuilder.setSpan(new URLSpanNoUnderline("https://fragment.com"), indexOf, lastIndexOf - 1, 33);
                 }
                 this.text1View.setText(spannableStringBuilder);
@@ -767,14 +785,14 @@ public class ChangeUsernameActivity extends BaseFragment {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     String str = ChangeUsernameActivity.this.username;
-                    ChangeUsernameActivity.this.username = charSequence == null ? "" : charSequence.toString();
+                    ChangeUsernameActivity.this.username = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
                     updateUsernameCell(str);
                 }
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     String str = ChangeUsernameActivity.this.username;
-                    ChangeUsernameActivity.this.username = charSequence == null ? "" : charSequence.toString();
+                    ChangeUsernameActivity.this.username = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
                     updateUsernameCell(str);
                     if (ChangeUsernameActivity.this.ignoreCheck) {
                         return;
@@ -1282,7 +1300,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             if (!z) {
                 String str2 = getUser().username;
                 if (str2 == null) {
-                    str2 = "";
+                    str2 = BuildConfig.APP_CENTER_HASH;
                 }
                 if (str.equals(str2)) {
                     LinkSpanDrawable.LinksTextView linksTextView12 = this.statusTextView;
@@ -1413,7 +1431,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
         String publicUsername = UserObject.getPublicUsername(user);
         if (publicUsername == null) {
-            publicUsername = "";
+            publicUsername = BuildConfig.APP_CENTER_HASH;
         }
         if (publicUsername.equals(this.username)) {
             finishFragment();
@@ -1422,7 +1440,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         final AlertDialog alertDialog = new AlertDialog(getParentActivity(), 3);
         final TLRPC$TL_account_updateUsername tLRPC$TL_account_updateUsername = new TLRPC$TL_account_updateUsername();
         tLRPC$TL_account_updateUsername.username = this.username;
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
         final int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_updateUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

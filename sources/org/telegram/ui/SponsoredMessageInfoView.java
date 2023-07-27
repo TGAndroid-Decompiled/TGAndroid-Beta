@@ -15,6 +15,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
 public class SponsoredMessageInfoView extends FrameLayout {
     public SponsoredMessageInfoView(final Activity activity, Theme.ResourcesProvider resourcesProvider) {
         super(activity);
@@ -26,27 +27,28 @@ public class SponsoredMessageInfoView extends FrameLayout {
         int i = Theme.key_windowBackgroundWhiteBlackText;
         textView.setTextColor(Theme.getColor(i, resourcesProvider));
         textView.setTextSize(1, 20.0f);
-        TextView textView2 = new TextView(activity);
-        textView2.setText(LocaleController.getString("SponsoredMessageInfoDescription1", R.string.SponsoredMessageInfoDescription1));
-        textView2.setTextColor(Theme.getColor(i, resourcesProvider));
-        textView2.setTextSize(1, 14.0f);
-        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        TextView textView3 = new TextView(activity);
-        textView3.setText(LocaleController.getString("SponsoredMessageInfoDescription2", R.string.SponsoredMessageInfoDescription2));
-        textView3.setTextColor(Theme.getColor(i, resourcesProvider));
-        textView3.setTextSize(1, 14.0f);
-        textView3.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        TextView textView4 = new TextView(activity);
-        textView4.setText(LocaleController.getString("SponsoredMessageInfoDescription3", R.string.SponsoredMessageInfoDescription3));
-        textView4.setTextColor(Theme.getColor(i, resourcesProvider));
-        textView4.setTextSize(1, 14.0f);
-        textView4.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(activity, resourcesProvider);
+        linksTextView.setText(AndroidUtilities.replaceLinks(LocaleController.getString("SponsoredMessageInfo2Description1"), resourcesProvider));
+        linksTextView.setLinkTextColor(Theme.getColor(Theme.key_chat_messageLinkIn, resourcesProvider));
+        linksTextView.setTextColor(Theme.getColor(i, resourcesProvider));
+        linksTextView.setTextSize(1, 14.0f);
+        linksTextView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        LinkSpanDrawable.LinksTextView linksTextView2 = new LinkSpanDrawable.LinksTextView(activity);
+        linksTextView2.setText(AndroidUtilities.replaceLinks(LocaleController.getString("SponsoredMessageInfo2Description2"), resourcesProvider));
+        linksTextView2.setTextColor(Theme.getColor(i, resourcesProvider));
+        linksTextView2.setTextSize(1, 14.0f);
+        linksTextView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        LinkSpanDrawable.LinksTextView linksTextView3 = new LinkSpanDrawable.LinksTextView(activity);
+        linksTextView3.setText(AndroidUtilities.replaceLinks(LocaleController.getString("SponsoredMessageInfo2Description3"), resourcesProvider));
+        linksTextView3.setTextColor(Theme.getColor(i, resourcesProvider));
+        linksTextView3.setTextSize(1, 14.0f);
+        linksTextView3.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         final Paint paint = new Paint(1);
         paint.setStyle(Paint.Style.STROKE);
         int i2 = Theme.key_featuredStickers_addButton;
         paint.setColor(Theme.getColor(i2, resourcesProvider));
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-        TextView textView5 = new TextView(this, activity) {
+        TextView textView2 = new TextView(this, activity) {
             @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
@@ -55,31 +57,36 @@ public class SponsoredMessageInfoView extends FrameLayout {
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
             }
         };
-        textView5.setOnClickListener(new View.OnClickListener(this) {
+        textView2.setOnClickListener(new View.OnClickListener(this) {
             @Override
             public void onClick(View view) {
                 Browser.openUrl(activity, LocaleController.getString("SponsoredMessageAlertLearnMoreUrl", R.string.SponsoredMessageAlertLearnMoreUrl));
             }
         });
-        textView5.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        textView5.setText(LocaleController.getString("SponsoredMessageAlertLearnMoreUrl", R.string.SponsoredMessageAlertLearnMoreUrl));
-        textView5.setTextColor(Theme.getColor(i2, resourcesProvider));
-        textView5.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(Theme.key_dialogBackground, resourcesProvider), 4.0f));
-        textView5.setTextSize(1, 14.0f);
-        textView5.setGravity(16);
-        TextView textView6 = new TextView(activity);
-        textView6.setText(LocaleController.getString("SponsoredMessageInfoDescription4", R.string.SponsoredMessageInfoDescription4));
-        textView6.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        textView6.setTextColor(Theme.getColor(i, resourcesProvider));
-        textView6.setTextSize(1, 14.0f);
+        textView2.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+        textView2.setText(LocaleController.getString("SponsoredMessageAlertLearnMoreUrl", R.string.SponsoredMessageAlertLearnMoreUrl));
+        textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
+        textView2.setBackground(Theme.AdaptiveRipple.filledRect(Theme.getColor(Theme.key_dialogBackground, resourcesProvider), 4.0f));
+        textView2.setTextSize(1, 14.0f);
+        textView2.setGravity(16);
+        LinkSpanDrawable.LinksTextView linksTextView4 = new LinkSpanDrawable.LinksTextView(activity);
+        linksTextView4.setText(AndroidUtilities.replaceLinks(LocaleController.getString("SponsoredMessageInfo2Description4"), resourcesProvider));
+        linksTextView4.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        linksTextView4.setTextColor(Theme.getColor(i, resourcesProvider));
+        linksTextView4.setTextSize(1, 14.0f);
+        textView.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
         linearLayout.addView(textView);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(-1, -2, 0, 0, 18, 0, 0));
-        linearLayout.addView(textView3, LayoutHelper.createLinear(-1, -2, 0, 0, 24, 0, 0));
-        linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 0, 0, 24, 0, 0));
-        linearLayout.addView(textView5, LayoutHelper.createLinear(-2, 34, 1, 0, 14, 0, 0));
-        linearLayout.addView(textView6, LayoutHelper.createLinear(-1, -2, 0, 0, 14, 0, 0));
+        linksTextView.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
+        linearLayout.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 0, 0, 18, 0, 0));
+        linksTextView2.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
+        linearLayout.addView(linksTextView2, LayoutHelper.createLinear(-1, -2, 0, 0, 24, 0, 0));
+        linksTextView3.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
+        linearLayout.addView(linksTextView3, LayoutHelper.createLinear(-1, -2, 0, 0, 24, 0, 0));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(-2, 34, 1, 22, 14, 22, 0));
+        linksTextView4.setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
+        linearLayout.addView(linksTextView4, LayoutHelper.createLinear(-1, -2, 0, 0, 14, 0, 0));
         ScrollView scrollView = new ScrollView(getContext());
         scrollView.addView(linearLayout);
-        addView(scrollView, LayoutHelper.createFrame(-1, -2.0f, 0, 22.0f, 12.0f, 22.0f, 22.0f));
+        addView(scrollView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 12.0f, 0.0f, 22.0f));
     }
 }

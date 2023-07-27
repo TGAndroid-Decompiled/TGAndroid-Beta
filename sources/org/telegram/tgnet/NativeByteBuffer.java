@@ -3,6 +3,7 @@ package org.telegram.tgnet;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.LinkedList;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 public class NativeByteBuffer extends AbstractSerializedData {
@@ -150,6 +151,22 @@ public class NativeByteBuffer extends AbstractSerializedData {
     }
 
     @Override
+    public void writeFloat(float f) {
+        try {
+            if (!this.justCalc) {
+                this.buffer.putInt(Float.floatToIntBits(f));
+            } else {
+                this.len += 4;
+            }
+        } catch (Exception e) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("write float error");
+                FileLog.e(e);
+            }
+        }
+    }
+
+    @Override
     public void writeBool(boolean z) {
         if (this.justCalc) {
             this.len += 4;
@@ -220,7 +237,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
                 FileLog.e("write string null");
                 FileLog.e(new Throwable());
             }
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         }
         try {
             writeByteArray(str.getBytes("UTF-8"));
@@ -390,6 +407,23 @@ public class NativeByteBuffer extends AbstractSerializedData {
     }
 
     @Override
+    public byte readByte(boolean z) {
+        try {
+            return this.buffer.get();
+        } catch (Exception e) {
+            if (z) {
+                throw new RuntimeException("read byte error", e);
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("read byte error");
+                FileLog.e(e);
+                return (byte) 0;
+            }
+            return (byte) 0;
+        }
+    }
+
+    @Override
     public int readInt32(boolean z) {
         try {
             return this.buffer.getInt();
@@ -403,6 +437,23 @@ public class NativeByteBuffer extends AbstractSerializedData {
                 return 0;
             }
             return 0;
+        }
+    }
+
+    @Override
+    public float readFloat(boolean z) {
+        try {
+            return Float.intBitsToFloat(this.buffer.getInt());
+        } catch (Exception e) {
+            if (z) {
+                throw new RuntimeException("read float error", e);
+            }
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.e("read float error");
+                FileLog.e(e);
+                return 0.0f;
+            }
+            return 0.0f;
         }
     }
 
@@ -505,7 +556,7 @@ public class NativeByteBuffer extends AbstractSerializedData {
                 FileLog.e(e);
             }
             position(position);
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 

@@ -28,7 +28,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -148,7 +150,7 @@ public class DataUsage2Activity extends BaseFragment {
             if (i != 0) {
                 if (i != 1) {
                     if (i != 2) {
-                        return i != 3 ? "" : LocaleController.getString("NetworkUsageRoamingTab", R.string.NetworkUsageRoamingTab);
+                        return i != 3 ? BuildConfig.APP_CENTER_HASH : LocaleController.getString("NetworkUsageRoamingTab", R.string.NetworkUsageRoamingTab);
                     }
                     return LocaleController.getString("NetworkUsageWiFiTab", R.string.NetworkUsageWiFiTab);
                 }
@@ -285,7 +287,14 @@ public class DataUsage2Activity extends BaseFragment {
                 sizeArr[i] = size;
                 this.tempSizes[i] = ((float) bytesCount) / ((float) this.totalSize);
             }
-            Arrays.sort(this.segments, DataUsage2Activity$ListView$$ExternalSyntheticLambda1.INSTANCE);
+            Arrays.sort(this.segments, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    int lambda$setup$2;
+                    lambda$setup$2 = DataUsage2Activity.ListView.lambda$setup$2((DataUsage2Activity.ListView.Size) obj, (DataUsage2Activity.ListView.Size) obj2);
+                    return lambda$setup$2;
+                }
+            });
             AndroidUtilities.roundPercents(this.tempSizes, this.tempPercents);
             Arrays.fill(this.collapsed, true);
         }
@@ -967,7 +976,7 @@ public class DataUsage2Activity extends BaseFragment {
     public void onTransitionAnimationProgress(boolean z, float f) {
         if (f > 0.5f && !this.changeStatusBar) {
             this.changeStatusBar = true;
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
         }
         super.onTransitionAnimationProgress(z, f);
     }

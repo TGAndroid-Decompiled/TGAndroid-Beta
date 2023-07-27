@@ -22,6 +22,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -184,11 +185,13 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                     TLRPC$User user = ContactAddActivity.this.getMessagesController().getUser(Long.valueOf(ContactAddActivity.this.user_id));
                     user.first_name = ContactAddActivity.this.firstNameField.getText().toString();
                     user.last_name = ContactAddActivity.this.lastNameField.getText().toString();
+                    user.contact = true;
+                    ContactAddActivity.this.getMessagesController().putUser(user, false);
                     ContactAddActivity.this.getContactsController().addContact(user, ContactAddActivity.this.checkBoxCell != null && ContactAddActivity.this.checkBoxCell.isChecked());
                     SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ContactAddActivity.this).currentAccount).edit();
                     edit.putInt("dialog_bar_vis3" + ContactAddActivity.this.user_id, 3).commit();
-                    ContactAddActivity.this.getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
-                    ContactAddActivity.this.getNotificationCenter().postNotificationName(NotificationCenter.peerSettingsDidLoad, Long.valueOf(ContactAddActivity.this.user_id));
+                    ContactAddActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_NAME));
+                    ContactAddActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(ContactAddActivity.this.user_id));
                     ContactAddActivity.this.finishFragment();
                     if (ContactAddActivity.this.delegate != null) {
                         ContactAddActivity.this.delegate.didAddToContacts();
@@ -205,7 +208,14 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(1);
         ((ScrollView) this.fragmentView).addView(this.linearLayout, LayoutHelper.createScroll(-1, -2, 51));
-        this.linearLayout.setOnTouchListener(ContactAddActivity$$ExternalSyntheticLambda6.INSTANCE);
+        this.linearLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$createView$0;
+                lambda$createView$0 = ContactAddActivity.lambda$createView$0(view, motionEvent);
+                return lambda$createView$0;
+            }
+        });
         FrameLayout frameLayout = new FrameLayout(context);
         this.linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, -2, 24.0f, 24.0f, 24.0f, 0.0f));
         BackupImageView backupImageView = new BackupImageView(context);
@@ -365,7 +375,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 CheckBoxCell checkBoxCell = new CheckBoxCell(getParentActivity(), 0);
                 this.checkBoxCell = checkBoxCell;
                 checkBoxCell.setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                this.checkBoxCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString("SharePhoneNumberWith", R.string.SharePhoneNumberWith)), Emoji.replaceEmoji(UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false)), "", true, false);
+                this.checkBoxCell.setText(AndroidUtilities.replaceCharSequence("%1$s", AndroidUtilities.replaceTags(LocaleController.getString("SharePhoneNumberWith", R.string.SharePhoneNumberWith)), Emoji.replaceEmoji(UserObject.getFirstName(user), this.infoTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false)), BuildConfig.APP_CENTER_HASH, true, false);
                 this.checkBoxCell.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), 0);
                 this.checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -385,7 +395,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             int i8 = Theme.key_windowBackgroundWhiteBlueButton;
             textCell.setColors(i7, i8);
             int i9 = R.raw.photo_suggest_icon;
-            final RLottieDrawable rLottieDrawable = new RLottieDrawable(i9, "" + i9, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+            final RLottieDrawable rLottieDrawable = new RLottieDrawable(i9, BuildConfig.APP_CENTER_HASH + i9, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
             textCell.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
             textCell.imageView.setAnimation(rLottieDrawable);
             textCell.setOnClickListener(new View.OnClickListener() {
@@ -400,7 +410,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             textCell2.setBackgroundDrawable(Theme.getSelectorDrawable(false));
             textCell2.setColors(i7, i8);
             int i10 = R.raw.camera_outline;
-            final RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i10, "" + i10, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
+            final RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i10, BuildConfig.APP_CENTER_HASH + i10, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
             textCell2.imageView.setTranslationX((float) (-AndroidUtilities.dp(8.0f)));
             textCell2.imageView.setAnimation(rLottieDrawable2);
             textCell2.setOnClickListener(new View.OnClickListener() {
@@ -484,7 +494,12 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto;
         this.photoSelectedType = 1;
         this.imageUpdater.setUser(tLRPC$User);
-        this.imageUpdater.openMenu(((tLRPC$User == null || (tLRPC$UserProfilePhoto = tLRPC$User.photo) == null) ? null : tLRPC$UserProfilePhoto.photo_small) != null, ContactAddActivity$$ExternalSyntheticLambda13.INSTANCE, new DialogInterface.OnDismissListener() {
+        this.imageUpdater.openMenu(((tLRPC$User == null || (tLRPC$UserProfilePhoto = tLRPC$User.photo) == null) ? null : tLRPC$UserProfilePhoto.photo_small) != null, new Runnable() {
+            @Override
+            public final void run() {
+                ContactAddActivity.lambda$createView$4();
+            }
+        }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 ContactAddActivity.this.lambda$createView$5(rLottieDrawable, textCell, dialogInterface);
@@ -508,7 +523,12 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         TLRPC$UserProfilePhoto tLRPC$UserProfilePhoto;
         this.photoSelectedType = 2;
         this.imageUpdater.setUser(tLRPC$User);
-        this.imageUpdater.openMenu(((tLRPC$User == null || (tLRPC$UserProfilePhoto = tLRPC$User.photo) == null) ? null : tLRPC$UserProfilePhoto.photo_small) != null, ContactAddActivity$$ExternalSyntheticLambda14.INSTANCE, new DialogInterface.OnDismissListener() {
+        this.imageUpdater.openMenu(((tLRPC$User == null || (tLRPC$UserProfilePhoto = tLRPC$User.photo) == null) ? null : tLRPC$UserProfilePhoto.photo_small) != null, new Runnable() {
+            @Override
+            public final void run() {
+                ContactAddActivity.lambda$createView$7();
+            }
+        }, new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 ContactAddActivity.this.lambda$createView$8(rLottieDrawable, textCell, dialogInterface);
@@ -564,12 +584,12 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             user.photo = null;
             user.flags &= -33;
         }
-        ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
+        ArrayList arrayList2 = new ArrayList();
         arrayList2.add(tLRPC$User);
         getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
         updateCustomPhotoInfo();
-        getNotificationCenter().postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
-        getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
     }
 
     private void showAvatarProgress(final boolean z, boolean z2) {
@@ -772,11 +792,11 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             TLRPC$User user = getMessagesController().getUser(Long.valueOf(this.user_id));
             if (this.suggestPhotoMessageFinal == null && user != null) {
                 PhotoUtilities.applyPhotoToUser(tLRPC$PhotoSize, tLRPC$PhotoSize2, tLRPC$InputFile2 != null, user, true);
-                ArrayList<TLRPC$User> arrayList = new ArrayList<>();
+                ArrayList arrayList = new ArrayList();
                 arrayList.add(user);
                 getMessagesStorage().putUsersAndChats(arrayList, null, false, true);
-                getNotificationCenter().postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
-                getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
+                getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
             }
             sendPhotoChangedRequest(this.avatar, tLRPC$PhotoSize2.location, tLRPC$InputFile, tLRPC$InputFile2, tLRPC$VideoSize, d, this.photoSelectedTypeFinal);
             showAvatarProgress(false, true);
@@ -817,7 +837,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
         if (this.suggestPhotoMessageFinal != null) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(Integer.valueOf(this.suggestPhotoMessageFinal.getId()));
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.messagesDeleted, arrayList, 0L, Boolean.FALSE);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDeleted, arrayList, 0L, Boolean.FALSE);
         }
     }
 
@@ -924,12 +944,12 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 FileLoader.getInstance(this.currentAccount).getPathToAttach(tLRPC$FileLocation2, true).renameTo(FileLoader.getInstance(this.currentAccount).getPathToAttach(closestPhotoSizeWithSize2, true));
             }
             PhotoUtilities.applyPhotoToUser(tLRPC$TL_photos_photo.photo, user, true);
-            ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
+            ArrayList arrayList2 = new ArrayList();
             arrayList2.add(user);
             getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
             getMessagesStorage().addDialogPhoto(this.user_id, tLRPC$TL_photos_photo.photo);
-            getNotificationCenter().postNotificationName(NotificationCenter.reloadDialogPhotos, new Object[0]);
-            getNotificationCenter().postNotificationName(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
+            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
             if (getParentActivity() != null) {
                 if (i == 2) {
                     BulletinFactory.of(this).createUsersBulletin(arrayList2, AndroidUtilities.replaceTags(LocaleController.formatString("UserCustomPhotoSeted", R.string.UserCustomPhotoSeted, user.first_name))).show();

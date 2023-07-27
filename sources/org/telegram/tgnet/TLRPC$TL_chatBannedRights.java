@@ -1,5 +1,6 @@
 package org.telegram.tgnet;
 
+import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_chatBannedRights extends TLObject {
     public static int constructor = -1626209256;
@@ -117,7 +118,7 @@ public class TLRPC$TL_chatBannedRights extends TLObject {
         this.flags = i13;
         int i14 = z ? 524288 | i13 : (-524289) & i13;
         this.flags = i14;
-        int i15 = this.send_videos ? i14 | 1048576 : i14 & (-1048577);
+        int i15 = this.send_videos ? i14 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i14 & (-1048577);
         this.flags = i15;
         int i16 = this.send_roundvideos ? i15 | 2097152 : i15 & (-2097153);
         this.flags = i16;

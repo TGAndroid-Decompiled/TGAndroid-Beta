@@ -43,7 +43,12 @@ public class PremiumNotAvailableBottomSheet extends BottomSheet {
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView3.setBackground(Theme.AdaptiveRipple.filledRectByKey(Theme.key_featuredStickers_addButton, 8.0f));
         textView3.setText(LocaleController.getString(R.string.InstallOfficialApp));
-        textView3.setOnClickListener(PremiumNotAvailableBottomSheet$$ExternalSyntheticLambda0.INSTANCE);
+        textView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                PremiumNotAvailableBottomSheet.lambda$new$0(view);
+            }
+        });
         FrameLayout frameLayout = new FrameLayout(parentActivity);
         frameLayout.addView(textView3, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
         frameLayout.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));

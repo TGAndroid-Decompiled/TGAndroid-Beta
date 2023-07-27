@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
@@ -82,7 +83,7 @@ public class MaxFileSizeCell extends FrameLayout {
                 } else {
                     f -= 0.25f;
                     if (f < 0.25f) {
-                        f2 = 1048576;
+                        f2 = (float) FileLoaderPriorityQueue.PRIORITY_VALUE_MAX;
                         f3 = 9437184.0f;
                     } else {
                         f -= 0.25f;

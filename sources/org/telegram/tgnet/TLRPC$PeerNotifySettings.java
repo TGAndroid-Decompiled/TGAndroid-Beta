@@ -9,6 +9,11 @@ public abstract class TLRPC$PeerNotifySettings extends TLObject {
     public boolean show_previews;
     public boolean silent;
     public String sound;
+    public TLRPC$NotificationSound stories_android_sound;
+    public boolean stories_hide_sender;
+    public TLRPC$NotificationSound stories_ios_sound;
+    public boolean stories_muted;
+    public TLRPC$NotificationSound stories_other_sound;
 
     public static TLRPC$PeerNotifySettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$PeerNotifySettings tLRPC$PeerNotifySettings;
@@ -34,6 +39,9 @@ public abstract class TLRPC$PeerNotifySettings extends TLObject {
                         abstractSerializedData2.writeInt32(this.events_mask);
                     }
                 };
+                break;
+            case -1721619444:
+                tLRPC$PeerNotifySettings = new TLRPC$TL_peerNotifySettings();
                 break;
             case -1697798976:
                 tLRPC$PeerNotifySettings = new TLRPC$TL_peerNotifySettings() {
@@ -63,7 +71,57 @@ public abstract class TLRPC$PeerNotifySettings extends TLObject {
                 };
                 break;
             case -1472527322:
-                tLRPC$PeerNotifySettings = new TLRPC$TL_peerNotifySettings();
+                tLRPC$PeerNotifySettings = new TLRPC$TL_peerNotifySettings() {
+                    public static int constructor = -1472527322;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        if ((readInt32 & 1) != 0) {
+                            this.show_previews = abstractSerializedData2.readBool(z2);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            this.silent = abstractSerializedData2.readBool(z2);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            this.mute_until = abstractSerializedData2.readInt32(z2);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            this.ios_sound = TLRPC$NotificationSound.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 16) != 0) {
+                            this.android_sound = TLRPC$NotificationSound.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        if ((this.flags & 32) != 0) {
+                            this.other_sound = TLRPC$NotificationSound.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(this.flags);
+                        if ((this.flags & 1) != 0) {
+                            abstractSerializedData2.writeBool(this.show_previews);
+                        }
+                        if ((this.flags & 2) != 0) {
+                            abstractSerializedData2.writeBool(this.silent);
+                        }
+                        if ((this.flags & 4) != 0) {
+                            abstractSerializedData2.writeInt32(this.mute_until);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            this.ios_sound.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 16) != 0) {
+                            this.android_sound.serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & 32) != 0) {
+                            this.other_sound.serializeToStream(abstractSerializedData2);
+                        }
+                    }
+                };
                 break;
             case -1353671392:
                 tLRPC$PeerNotifySettings = new TLRPC$TL_peerNotifySettings() {

@@ -43,6 +43,7 @@ import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.ringtone.RingtoneDataStore;
 import org.telegram.messenger.ringtone.RingtoneUploader;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
@@ -150,11 +151,14 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             } else if (i == 0) {
                 str = "GroupSoundPath";
                 str2 = "GroupSoundDocId";
-            } else if (i != 2) {
-                throw new RuntimeException("Unsupported type");
-            } else {
+            } else if (i == 2) {
                 str = "ChannelSoundPath";
                 str2 = "ChannelSoundDocId";
+            } else if (i != 3) {
+                throw new RuntimeException("Unsupported type");
+            } else {
+                str = "StoriesSoundPath";
+                str2 = "StoriesSoundDocId";
             }
         }
         SharedPreferences notificationsSettings = getNotificationsSettings();
@@ -191,6 +195,8 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 this.actionBar.setTitle(LocaleController.getString("NotificationsSoundGroup", R.string.NotificationsSoundGroup));
             } else if (i == 2) {
                 this.actionBar.setTitle(LocaleController.getString("NotificationsSoundChannels", R.string.NotificationsSoundChannels));
+            } else if (i == 3) {
+                this.actionBar.setTitle(LocaleController.getString("NotificationsSoundStories", R.string.NotificationsSoundStories));
             }
         } else {
             ChatAvatarContainer chatAvatarContainer = new ChatAvatarContainer(context, null, false, this.resourcesProvider);
@@ -223,7 +229,14 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         this.selectedTonesCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.selectedTonesCountTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon, this.resourcesProvider));
         createActionMode.addView(this.selectedTonesCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
-        this.selectedTonesCountTextView.setOnTouchListener(NotificationsSoundActivity$$ExternalSyntheticLambda0.INSTANCE);
+        this.selectedTonesCountTextView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$createView$0;
+                lambda$createView$0 = NotificationsSoundActivity.lambda$createView$0(view, motionEvent);
+                return lambda$createView$0;
+            }
+        });
         createActionMode.addItemWithWidth(2, R.drawable.msg_forward, AndroidUtilities.dp(54.0f), LocaleController.getString("ShareFile", R.string.ShareFile));
         createActionMode.addItemWithWidth(1, R.drawable.msg_delete, AndroidUtilities.dp(54.0f), LocaleController.getString("Delete", R.string.Delete));
         FrameLayout frameLayout = new FrameLayout(context);
@@ -284,7 +297,12 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 AlertDialog.Builder builder = new AlertDialog.Builder(NotificationsSoundActivity.this.getParentActivity(), NotificationsSoundActivity.this.resourcesProvider);
                 builder.setTitle(LocaleController.formatPluralString("DeleteTones", NotificationsSoundActivity.this.selectedTones.size(), new Object[0]));
                 builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", NotificationsSoundActivity.this.selectedTones.size(), new Object[0])));
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), NotificationsSoundActivity$1$$ExternalSyntheticLambda1.INSTANCE);
+                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i2) {
+                        dialogInterface.dismiss();
+                    }
+                });
                 builder.setPositiveButton(LocaleController.getString("Delete", R.string.Delete), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i2) {
@@ -367,7 +385,12 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                     tLRPC$TL_inputDocument.file_reference = new byte[0];
                 }
                 tLRPC$TL_account_saveRingtone.unsave = true;
-                NotificationsSoundActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_account_saveRingtone, NotificationsSoundActivity$1$$ExternalSyntheticLambda2.INSTANCE);
+                NotificationsSoundActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_account_saveRingtone, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        NotificationsSoundActivity.AnonymousClass1.lambda$deleteSelectedMessages$2(tLObject, tLRPC$TL_error);
+                    }
+                });
             }
             NotificationsSoundActivity.this.hideActionMode();
             NotificationsSoundActivity.this.updateRows();
@@ -560,7 +583,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             getMediaDataController().uploadRingtone(arrayList.get(i2));
         }
-        getNotificationCenter().postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
     }
 
     public class Adapter extends RecyclerListView.SelectionAdapter {
@@ -788,11 +811,6 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
     }
 
     @Override
-    public int getNavigationBarColor() {
-        return getThemedColor(Theme.key_windowBackgroundGray);
-    }
-
-    @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         TLRPC$Document tLRPC$Document;
         TLRPC$Document tLRPC$Document2;
@@ -881,12 +899,16 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 str = "GroupSound";
                 str2 = "GroupSoundPath";
                 str3 = "GroupSoundDocId";
-            } else if (i != 2) {
-                throw new RuntimeException("Unsupported type");
-            } else {
+            } else if (i == 2) {
                 str = "ChannelSound";
                 str2 = "ChannelSoundPath";
                 str3 = "ChannelSoundDocId";
+            } else if (i != 3) {
+                throw new RuntimeException("Unsupported type");
+            } else {
+                str = "StoriesSound";
+                str2 = "StoriesSoundPath";
+                str3 = "StoriesSoundDocId";
             }
         }
         Tone tone = this.selectedTone;
@@ -913,7 +935,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             return;
         }
         getNotificationsController().updateServerNotificationsSettings(this.currentType);
-        getNotificationCenter().postNotificationName(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.notificationsSettingsUpdated, new Object[0]);
     }
 
     @Override
@@ -942,7 +964,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
             if (path != null) {
                 if (this.chatAttachAlert.getDocumentLayout().isRingtone(new File(path))) {
                     getMediaDataController().uploadRingtone(path);
-                    getNotificationCenter().postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
                     z2 = z;
                 }
             }
@@ -955,7 +977,7 @@ public class NotificationsSoundActivity extends BaseFragment implements ChatAtta
                 String uri = clipData.getItemAt(i3).getUri().toString();
                 if (this.chatAttachAlert.getDocumentLayout().isRingtone(new File(uri))) {
                     getMediaDataController().uploadRingtone(uri);
-                    getNotificationCenter().postNotificationName(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
+                    getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onUserRingtonesUpdated, new Object[0]);
                     z3 = true;
                 }
             }

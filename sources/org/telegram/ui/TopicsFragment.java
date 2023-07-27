@@ -52,6 +52,7 @@ import java.util.Iterator;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -458,7 +459,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 @Override
                 public void onSearchExpand() {
                     TopicsFragment.this.animateToSearchView(true);
-                    TopicsFragment.this.searchContainer.setSearchString("");
+                    TopicsFragment.this.searchContainer.setSearchString(BuildConfig.APP_CENTER_HASH);
                     TopicsFragment.this.searchContainer.setAlpha(0.0f);
                     TopicsFragment.this.searchContainer.emptyView.showProgress(true, false);
                 }
@@ -1061,9 +1062,9 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             TopicsFragment topicsFragment = TopicsFragment.this;
             int i = NotificationCenter.closeChats;
             notificationCenter.removeObserver(topicsFragment, i);
-            TopicsFragment.this.getNotificationCenter().postNotificationName(i, new Object[0]);
+            TopicsFragment.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i, new Object[0]);
             TopicsFragment.this.finishFragment();
-            TopicsFragment.this.getNotificationCenter().postNotificationName(NotificationCenter.needDeleteDialog, Long.valueOf(-tLRPC$Chat.id), null, tLRPC$Chat, Boolean.valueOf(z));
+            TopicsFragment.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-tLRPC$Chat.id), null, tLRPC$Chat, Boolean.valueOf(z));
         }
 
         public void lambda$onItemClick$4() {
@@ -1721,7 +1722,12 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.dialogRemoveFinished = 0;
         this.dialogInsertFinished = 0;
         this.dialogChangeFinished = 0;
-        AndroidUtilities.runOnUIThread(TopicsFragment$$ExternalSyntheticLambda15.INSTANCE);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                TopicsFragment.lambda$onDialogAnimationFinished$7();
+            }
+        });
     }
 
     public void deleteTopics(HashSet<Integer> hashSet, Runnable runnable) {
@@ -2064,7 +2070,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.searchAnimator.setDuration(200L);
         this.searchAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
         this.searchAnimator.start();
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, Boolean.TRUE);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, Boolean.TRUE);
     }
 
     public void lambda$animateToSearchView$13(ValueAnimator valueAnimator) {
@@ -2128,7 +2134,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 return lambda$joinToGroup$15;
             }
         });
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.closeSearchByActiveAction, new Object[0]);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeSearchByActiveAction, new Object[0]);
         updateChatInfo();
     }
 
@@ -2177,7 +2183,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
             this.actionBar.showActionMode(true);
             int i4 = 0;
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.needCheckSystemBarColors, new Object[0]);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
             Iterator<Integer> it = this.selectedTopics.iterator();
             int i5 = 0;
             int i6 = 0;
@@ -2315,7 +2321,14 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.selectedDialogsCountTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.selectedDialogsCountTextView.setTextColor(Theme.getColor(Theme.key_actionBarActionModeDefaultIcon));
         createActionMode.addView(this.selectedDialogsCountTextView, LayoutHelper.createLinear(0, -1, 1.0f, 72, 0, 0, 0));
-        this.selectedDialogsCountTextView.setOnTouchListener(TopicsFragment$$ExternalSyntheticLambda11.INSTANCE);
+        this.selectedDialogsCountTextView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public final boolean onTouch(View view, MotionEvent motionEvent) {
+                boolean lambda$chekActionMode$16;
+                lambda$chekActionMode$16 = TopicsFragment.lambda$chekActionMode$16(view, motionEvent);
+                return lambda$chekActionMode$16;
+            }
+        });
         this.pinItem = createActionMode.addItemWithWidth(4, R.drawable.msg_pin, AndroidUtilities.dp(54.0f));
         this.unpinItem = createActionMode.addItemWithWidth(5, R.drawable.msg_unpin, AndroidUtilities.dp(54.0f));
         this.muteItem = createActionMode.addItemWithWidth(6, R.drawable.msg_mute, AndroidUtilities.dp(54.0f));
@@ -3692,6 +3705,11 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             @Override
             public boolean allowLayoutChanges() {
                 return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean clipWithGradient(int i) {
+                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
             }
 
             @Override

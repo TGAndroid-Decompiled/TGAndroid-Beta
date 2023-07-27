@@ -805,7 +805,7 @@ public class DatabaseMigrationHelper {
                                     TLdeserialize2.params = hashMap;
                                     StringBuilder sb = new StringBuilder();
                                     nativeByteBuffer = byteBufferValue7;
-                                    sb.append("");
+                                    sb.append(BuildConfig.APP_CENTER_HASH);
                                     sb.append(intValue23);
                                     hashMap.put("fwd_peer", sb.toString());
                                 } else {
@@ -1195,6 +1195,58 @@ public class DatabaseMigrationHelper {
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_scheduled_messages_v2 ON scheduled_messages_v2(reply_to_message_id, mid);").stepThis().dispose();
             sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS idx_to_reply_messages_topics ON messages_topics(reply_to_message_id, mid);").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 117").stepThis().dispose();
+            i7 = 117;
+        }
+        if (i7 == 116 || i7 == 117 || i7 == 118) {
+            sQLiteDatabase.executeFast("DROP TABLE IF EXISTS stories").stepThis().dispose();
+            sQLiteDatabase.executeFast("DROP TABLE IF EXISTS stories_counter").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE TABLE stories (dialog_id INTEGER, story_id INTEGER, data BLOB, local_path TEXT, local_thumb_path TEXT, PRIMARY KEY (dialog_id, story_id));").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE TABLE stories_counter (dialog_id INTEGER PRIMARY KEY, count INTEGER, max_read INTEGER);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 119").stepThis().dispose();
+            messagesStorage.getMessagesController().getStoriesController().cleanup();
+            i7 = 119;
+        }
+        if (i7 == 119) {
+            sQLiteDatabase.executeFast("ALTER TABLE messages_v2 ADD COLUMN reply_to_story_id INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("ALTER TABLE messages_topics ADD COLUMN reply_to_story_id INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 120").stepThis().dispose();
+            i7 = 120;
+        }
+        if (i7 == 120) {
+            sQLiteDatabase.executeFast("CREATE TABLE profile_stories (dialog_id INTEGER, story_id INTEGER, data BLOB, PRIMARY KEY(dialog_id, story_id));").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE TABLE archived_stories (story_id INTEGER PRIMARY KEY, data BLOB);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 121").stepThis().dispose();
+            i7 = 121;
+        }
+        if (i7 == 121) {
+            sQLiteDatabase.executeFast("CREATE TABLE story_drafts (id INTEGER PRIMARY KEY, date INTEGER, data BLOB);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 122").stepThis().dispose();
+            i7 = 122;
+        }
+        if (i7 == 122) {
+            sQLiteDatabase.executeFast("ALTER TABLE chat_settings_v2 ADD COLUMN participants_count INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 123").stepThis().dispose();
+            i7 = 123;
+        }
+        if (i7 == 123) {
+            sQLiteDatabase.executeFast("CREATE TABLE story_pushes (uid INTEGER PRIMARY KEY, minId INTEGER, maxId INTEGER, date INTEGER, localName TEXT);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 124").stepThis().dispose();
+            i7 = 124;
+        }
+        if (i7 == 124) {
+            sQLiteDatabase.executeFast("DROP TABLE IF EXISTS story_pushes;").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE TABLE story_pushes (uid INTEGER, sid INTEGER, date INTEGER, localName TEXT, PRIMARY KEY(uid, sid));").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 125").stepThis().dispose();
+            i7 = 125;
+        }
+        if (i7 == 125) {
+            sQLiteDatabase.executeFast("ALTER TABLE story_pushes ADD COLUMN flags INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 126").stepThis().dispose();
+            i7 = 126;
+        }
+        if (i7 == 126) {
+            sQLiteDatabase.executeFast("ALTER TABLE story_pushes ADD COLUMN expire_date INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 127").stepThis().dispose();
             return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
@@ -1239,7 +1291,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 117) {
+        if (intValue != 127) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }

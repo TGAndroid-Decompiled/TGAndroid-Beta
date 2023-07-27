@@ -178,6 +178,7 @@ public class LoadingDrawable extends Drawable {
 
     public void setBounds(RectF rectF) {
         super.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        this.lastBounds = null;
     }
 
     public void reset() {

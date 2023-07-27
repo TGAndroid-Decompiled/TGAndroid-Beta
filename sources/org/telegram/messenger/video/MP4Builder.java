@@ -54,12 +54,12 @@ public class MP4Builder {
     protected void createSidx(Track track, SampleTableBox sampleTableBox) {
     }
 
-    public MP4Builder createMovie(Mp4Movie mp4Movie, boolean z) throws Exception {
+    public MP4Builder createMovie(Mp4Movie mp4Movie, boolean z, boolean z2) throws Exception {
         this.currentMp4Movie = mp4Movie;
         FileOutputStream fileOutputStream = new FileOutputStream(mp4Movie.getCacheFile());
         this.fos = fileOutputStream;
         this.fc = fileOutputStream.getChannel();
-        FileTypeBox createFileTypeBox = createFileTypeBox();
+        FileTypeBox createFileTypeBox = createFileTypeBox(z2);
         createFileTypeBox.getBox(this.fc);
         long size = this.dataOffset + createFileTypeBox.getSize();
         this.dataOffset = size;
@@ -155,11 +155,11 @@ public class MP4Builder {
         this.fos.close();
     }
 
-    protected FileTypeBox createFileTypeBox() {
+    protected FileTypeBox createFileTypeBox(boolean z) {
         LinkedList linkedList = new LinkedList();
         linkedList.add("isom");
         linkedList.add("iso2");
-        linkedList.add("avc1");
+        linkedList.add(z ? "hvc1" : "avc1");
         linkedList.add("mp41");
         return new FileTypeBox("isom", 512L, linkedList);
     }
@@ -173,6 +173,7 @@ public class MP4Builder {
             return j + 8 < 4294967296L;
         }
 
+        @Override
         public String getType() {
             return "mdat";
         }
@@ -185,6 +186,7 @@ public class MP4Builder {
             this.dataOffset = 0L;
         }
 
+        @Override
         public Container getParent() {
             return this.parent;
         }

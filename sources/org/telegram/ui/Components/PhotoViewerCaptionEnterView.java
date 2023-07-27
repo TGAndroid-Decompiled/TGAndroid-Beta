@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
@@ -168,7 +169,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
         this.lengthTextPaint.setColor(-2500135);
         EditTextCaption editTextCaption = new EditTextCaption(context, null) {
             @Override
-            protected int getActionModeStyle() {
+            public int getActionModeStyle() {
                 return 2;
             }
 
@@ -198,7 +199,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
             }
 
             @Override
-            protected void extendActionMode(ActionMode actionMode, Menu menu) {
+            public void extendActionMode(ActionMode actionMode, Menu menu) {
                 PhotoViewerCaptionEnterView.this.extendActionMode(actionMode, menu);
             }
 
@@ -568,8 +569,17 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
         }
 
         @Override
+        public ColorFilter getAnimatedEmojiColorFilter() {
+            ColorFilter colorFilter;
+            colorFilter = Theme.chat_animatedEmojiTextColorFilter;
+            return colorFilter;
+        }
+
+        @Override
         public int getColorOrDefault(int i) {
-            return Theme.ResourcesProvider.CC.$default$getColorOrDefault(this, i);
+            int color;
+            color = getColor(i);
+            return color;
         }
 
         @Override
@@ -586,7 +596,9 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
 
         @Override
         public Paint getPaint(String str) {
-            return Theme.ResourcesProvider.CC.$default$getPaint(this, str);
+            Paint themePaint;
+            themePaint = Theme.getThemePaint(str);
+            return themePaint;
         }
 
         @Override
@@ -649,12 +661,10 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
             if (i == Theme.key_dialogFloatingButton) {
                 return -10177041;
             }
-            return i == Theme.key_dialogFloatingIcon ? -1 : 0;
-        }
-
-        @Override
-        public boolean contains(int i) {
-            return getColor(i) != 0;
+            if (i == Theme.key_dialogFloatingIcon) {
+                return -1;
+            }
+            return i == Theme.key_chat_emojiPanelStickerSetName ? 1946157055 : 0;
         }
     }
 
@@ -667,8 +677,9 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
         if (this.emojiView != null) {
             return;
         }
-        EmojiView emojiView2 = new EmojiView(null, true, false, false, getContext(), false, null, null, this.resourcesProvider);
+        EmojiView emojiView2 = new EmojiView(null, true, false, false, getContext(), false, null, null, true, this.resourcesProvider);
         this.emojiView = emojiView2;
+        emojiView2.emojiCacheType = 3;
         emojiView2.setDelegate(new EmojiView.EmojiViewDelegate() {
             @Override
             public boolean canSchedule() {
@@ -854,6 +865,7 @@ public class PhotoViewerCaptionEnterView extends FrameLayout implements Notifica
                         }
                         if (!z) {
                             animatedEmojiSpan.fromEmojiKeyboard = true;
+                            animatedEmojiSpan.cacheType = 3;
                         }
                         spannableString.setSpan(animatedEmojiSpan, 0, spannableString.length(), 33);
                         PhotoViewerCaptionEnterView.this.messageEditText.setText(PhotoViewerCaptionEnterView.this.messageEditText.getText().insert(selectionEnd, spannableString));

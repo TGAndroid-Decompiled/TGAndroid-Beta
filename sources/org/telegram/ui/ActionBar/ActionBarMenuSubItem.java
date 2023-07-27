@@ -19,6 +19,7 @@ import org.telegram.ui.Components.RLottieImageView;
 public class ActionBarMenuSubItem extends FrameLayout {
     boolean bottom;
     private CheckBox2 checkView;
+    boolean expandIfMultiline;
     private int iconColor;
     private RLottieImageView imageView;
     private int itemHeight;
@@ -90,6 +91,10 @@ public class ActionBarMenuSubItem extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.itemHeight), 1073741824));
+        if (!this.expandIfMultiline || this.textView.getLayout().getLineCount() <= 1) {
+            return;
+        }
+        super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.itemHeight + 8), 1073741824));
     }
 
     public void setItemHeight(int i) {
@@ -138,6 +143,17 @@ public class ActionBarMenuSubItem extends FrameLayout {
 
     public void setTextAndIcon(CharSequence charSequence, int i) {
         setTextAndIcon(charSequence, i, null);
+    }
+
+    public void setMultiline(boolean z) {
+        this.textView.setLines(2);
+        if (z) {
+            this.textView.setTextSize(1, 14.0f);
+        } else {
+            this.expandIfMultiline = true;
+        }
+        this.textView.setSingleLine(false);
+        this.textView.setGravity(16);
     }
 
     public void setTextAndIcon(CharSequence charSequence, int i, Drawable drawable) {

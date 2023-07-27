@@ -1,7 +1,6 @@
 package org.telegram.ui.Components.Premium;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -106,7 +105,7 @@ public class PremiumLockIconView extends ImageView {
             ImageReceiver imageReceiver = this.imageReceiver;
             if (imageReceiver != null && imageReceiver.getBitmap() != null) {
                 this.waitingImage = false;
-                setColor(getDominantColor(this.imageReceiver.getBitmap()));
+                setColor(AndroidUtilities.getDominantColor(this.imageReceiver.getBitmap()));
             } else {
                 invalidate();
             }
@@ -167,33 +166,6 @@ public class PremiumLockIconView extends ImageView {
 
     public ImageReceiver getImageReceiver() {
         return this.imageReceiver;
-    }
-
-    public static int getDominantColor(Bitmap bitmap) {
-        if (bitmap == null) {
-            return -1;
-        }
-        float height = (bitmap.getHeight() - 1) / 10.0f;
-        float width = (bitmap.getWidth() - 1) / 10.0f;
-        int i = 0;
-        int i2 = 0;
-        int i3 = 0;
-        int i4 = 0;
-        for (int i5 = 0; i5 < 10; i5++) {
-            for (int i6 = 0; i6 < 10; i6++) {
-                int pixel = bitmap.getPixel((int) (i5 * width), (int) (i6 * height));
-                if (Color.alpha(pixel) > 200) {
-                    i2 += Color.red(pixel);
-                    i3 += Color.green(pixel);
-                    i4 += Color.blue(pixel);
-                    i++;
-                }
-            }
-        }
-        if (i == 0) {
-            return 0;
-        }
-        return Color.argb(255, i2 / i, i3 / i, i4 / i);
     }
 
     private void updateGradient() {

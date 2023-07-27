@@ -238,7 +238,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
                 }
                 MessageObject messageObject = arrayList.get(0);
                 MediaMetadata.Builder builder = new MediaMetadata.Builder();
-                builder.putLong("android.media.metadata.DURATION", messageObject.getDuration() * 1000);
+                builder.putLong("android.media.metadata.DURATION", (long) (messageObject.getDuration() * 1000.0d));
                 builder.putString("android.media.metadata.ARTIST", messageObject.getMusicAuthor());
                 builder.putString("android.media.metadata.TITLE", messageObject.getMusicTitle());
                 this.mediaSession.setMetadata(builder.build());
@@ -308,7 +308,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
         public void onSeekTo(long j) {
             MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
             if (playingMessageObject != null) {
-                MediaController.getInstance().seekToProgress(playingMessageObject, ((float) (j / 1000)) / playingMessageObject.getDuration());
+                MediaController.getInstance().seekToProgress(playingMessageObject, ((float) (j / 1000)) / ((float) playingMessageObject.getDuration()));
             }
         }
 
@@ -467,7 +467,7 @@ public class MusicBrowserService extends MediaBrowserService implements Notifica
             return;
         }
         MediaMetadata.Builder builder = new MediaMetadata.Builder();
-        builder.putLong("android.media.metadata.DURATION", playingMessageObject.getDuration() * 1000);
+        builder.putLong("android.media.metadata.DURATION", (long) (playingMessageObject.getDuration() * 1000.0d));
         builder.putString("android.media.metadata.ARTIST", playingMessageObject.getMusicAuthor());
         builder.putString("android.media.metadata.TITLE", playingMessageObject.getMusicTitle());
         AudioInfo audioInfo = MediaController.getInstance().getAudioInfo();

@@ -15,7 +15,7 @@ public abstract class TLRPC$Updates extends TLObject {
     public boolean out;
     public int pts;
     public int pts_count;
-    public TLRPC$TL_messageReplyHeader reply_to;
+    public TLRPC$MessageReplyHeader reply_to;
     public int seq;
     public int seq_start;
     public boolean silent;

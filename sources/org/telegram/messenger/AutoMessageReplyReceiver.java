@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import androidx.core.app.RemoteInput;
+import org.telegram.messenger.SendMessagesHelper;
 public class AutoMessageReplyReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -24,7 +25,7 @@ public class AutoMessageReplyReceiver extends BroadcastReceiver {
         if (longExtra == 0 || intExtra == 0 || !UserConfig.isValidAccount(intExtra2)) {
             return;
         }
-        SendMessagesHelper.getInstance(intExtra2).sendMessage(charSequence.toString(), longExtra, null, null, null, true, null, null, null, true, 0, null, false);
+        SendMessagesHelper.getInstance(intExtra2).sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), longExtra, null, null, null, true, null, null, null, true, 0, null, false));
         MessagesController.getInstance(intExtra2).markDialogAsRead(longExtra, intExtra, intExtra, 0, false, 0, 0, true, 0);
     }
 }

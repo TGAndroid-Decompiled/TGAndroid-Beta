@@ -13,6 +13,15 @@ public class TLRPC$TL_messages_sendEncrypted extends TLObject {
     }
 
     @Override
+    public void freeResources() {
+        NativeByteBuffer nativeByteBuffer = this.data;
+        if (nativeByteBuffer != null) {
+            nativeByteBuffer.reuse();
+            this.data = null;
+        }
+    }
+
+    @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         int i = this.silent ? this.flags | 1 : this.flags & (-2);
@@ -21,14 +30,5 @@ public class TLRPC$TL_messages_sendEncrypted extends TLObject {
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt64(this.random_id);
         abstractSerializedData.writeByteBuffer(this.data);
-    }
-
-    @Override
-    public void freeResources() {
-        NativeByteBuffer nativeByteBuffer = this.data;
-        if (nativeByteBuffer != null) {
-            nativeByteBuffer.reuse();
-            this.data = null;
-        }
     }
 }

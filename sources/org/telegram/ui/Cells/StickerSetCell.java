@@ -27,6 +27,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
@@ -280,6 +281,7 @@ public class StickerSetCell extends FrameLayout {
 
     @SuppressLint({"SetTextI18n"})
     public void setStickersSet(TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet, boolean z, boolean z2) {
+        TLRPC$Document tLRPC$Document;
         ImageLocation forSticker;
         this.needDivider = z;
         this.stickersSet = tLRPC$TL_messages_stickerSet;
@@ -303,57 +305,57 @@ public class StickerSetCell extends FrameLayout {
         this.emojis = z3;
         this.sideButtons.setVisibility(z3 ? 0 : 8);
         this.optionsButton.setVisibility(this.emojis ? 8 : 0);
-        TLRPC$Document tLRPC$Document = null;
         this.imageView.setColorFilter(null);
         ArrayList<TLRPC$Document> arrayList = tLRPC$TL_messages_stickerSet.documents;
         if (arrayList != null && !arrayList.isEmpty()) {
             this.valueTextView.setText(LocaleController.formatPluralString(this.emojis ? "EmojiCount" : "Stickers", arrayList.size(), new Object[0]));
             int i = 0;
             while (true) {
-                if (i < arrayList.size()) {
-                    TLRPC$Document tLRPC$Document2 = arrayList.get(i);
-                    if (tLRPC$Document2 != null && tLRPC$Document2.id == tLRPC$TL_messages_stickerSet.set.thumb_document_id) {
-                        tLRPC$Document = tLRPC$Document2;
-                        break;
-                    }
-                    i++;
-                } else {
+                if (i >= arrayList.size()) {
+                    tLRPC$Document = null;
                     break;
                 }
+                tLRPC$Document = arrayList.get(i);
+                if (tLRPC$Document != null && tLRPC$Document.id == tLRPC$TL_messages_stickerSet.set.thumb_document_id) {
+                    break;
+                }
+                i++;
             }
             if (tLRPC$Document == null) {
                 tLRPC$Document = arrayList.get(0);
             }
+            TLRPC$Document tLRPC$Document2 = tLRPC$Document;
             LiteMode.isEnabled(1);
             TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$TL_messages_stickerSet.set.thumbs, 90);
             if (closestPhotoSizeWithSize == null) {
-                closestPhotoSizeWithSize = tLRPC$Document;
+                closestPhotoSizeWithSize = tLRPC$Document2;
             }
             SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$TL_messages_stickerSet.set.thumbs, Theme.key_windowBackgroundGray, 1.0f);
             boolean z4 = closestPhotoSizeWithSize instanceof TLRPC$Document;
             if (z4) {
-                forSticker = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document.thumbs, 90), tLRPC$Document);
+                forSticker = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Document2.thumbs, 90), tLRPC$Document2);
             } else {
-                forSticker = ImageLocation.getForSticker((TLRPC$PhotoSize) closestPhotoSizeWithSize, tLRPC$Document, tLRPC$TL_messages_stickerSet.set.thumb_version);
+                forSticker = ImageLocation.getForSticker((TLRPC$PhotoSize) closestPhotoSizeWithSize, tLRPC$Document2, tLRPC$TL_messages_stickerSet.set.thumb_version);
             }
+            ImageLocation imageLocation = forSticker;
             boolean isEnabled = LiteMode.isEnabled(this.emojis ? LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD : 1);
             StringBuilder sb = new StringBuilder();
             sb.append("50_50");
-            sb.append(!isEnabled ? "_firstframe" : "");
+            sb.append(!isEnabled ? "_firstframe" : BuildConfig.APP_CENTER_HASH);
             String sb2 = sb.toString();
-            if ((z4 && MessageObject.isAnimatedStickerDocument(tLRPC$Document, true)) || MessageObject.isVideoSticker(tLRPC$Document)) {
+            if ((z4 && MessageObject.isAnimatedStickerDocument(tLRPC$Document2, true)) || MessageObject.isVideoSticker(tLRPC$Document2)) {
                 if (svgThumb != null) {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), sb2, svgThumb, 0, tLRPC$TL_messages_stickerSet);
+                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document2), sb2, svgThumb, 0, tLRPC$TL_messages_stickerSet);
                 } else {
-                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document), sb2, forSticker, (String) null, 0, tLRPC$TL_messages_stickerSet);
+                    this.imageView.setImage(ImageLocation.getForDocument(tLRPC$Document2), sb2, imageLocation, (String) null, 0, tLRPC$TL_messages_stickerSet);
                 }
-                if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
-                    this.imageView.setColorFilter(Theme.chat_animatedEmojiTextColorFilter);
+                if (MessageObject.isTextColorEmoji(tLRPC$Document2)) {
+                    this.imageView.setColorFilter(Theme.getAnimatedEmojiColorFilter(null));
                 }
-            } else if (forSticker != null && forSticker.imageType == 1) {
-                this.imageView.setImage(forSticker, sb2, "tgs", svgThumb, tLRPC$TL_messages_stickerSet);
+            } else if (imageLocation != null && imageLocation.imageType == 1) {
+                this.imageView.setImage(imageLocation, sb2, "tgs", svgThumb, tLRPC$TL_messages_stickerSet);
             } else {
-                this.imageView.setImage(forSticker, sb2, "webp", svgThumb, tLRPC$TL_messages_stickerSet);
+                this.imageView.setImage(imageLocation, sb2, "webp", svgThumb, tLRPC$TL_messages_stickerSet);
             }
         } else {
             this.valueTextView.setText(LocaleController.formatPluralString(tLRPC$TL_messages_stickerSet.set.emojis ? "EmojiCount" : "Stickers", 0, new Object[0]));

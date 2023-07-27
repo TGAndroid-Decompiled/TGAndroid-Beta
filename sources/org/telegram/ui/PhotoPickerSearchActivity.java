@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -41,7 +42,14 @@ import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.PhotoPickerActivity;
 public class PhotoPickerSearchActivity extends BaseFragment {
-    private static final Interpolator interpolator = PhotoPickerSearchActivity$$ExternalSyntheticLambda0.INSTANCE;
+    private static final Interpolator interpolator = new Interpolator() {
+        @Override
+        public final float getInterpolation(float f) {
+            float lambda$static$0;
+            lambda$static$0 = PhotoPickerSearchActivity.lambda$static$0(f);
+            return lambda$static$0;
+        }
+    };
     private boolean animatingForward;
     private boolean backAnimation;
     private EditTextEmoji commentTextView;
@@ -109,8 +117,8 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
-                PhotoPickerSearchActivity.this.imagesSearch.getActionBar().openSearchField("", false);
-                PhotoPickerSearchActivity.this.gifsSearch.getActionBar().openSearchField("", false);
+                PhotoPickerSearchActivity.this.imagesSearch.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
+                PhotoPickerSearchActivity.this.gifsSearch.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
                 PhotoPickerSearchActivity.this.searchItem.getSearchField().requestFocus();
             }
 

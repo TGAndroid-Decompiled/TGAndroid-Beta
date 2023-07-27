@@ -2,7 +2,7 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_sendInlineBotResult extends TLObject {
-    public static int constructor = -738468661;
+    public static int constructor = -138647366;
     public boolean background;
     public boolean clear_draft;
     public int flags;
@@ -11,11 +11,10 @@ public class TLRPC$TL_messages_sendInlineBotResult extends TLObject {
     public TLRPC$InputPeer peer;
     public long query_id;
     public long random_id;
-    public int reply_to_msg_id;
+    public TLRPC$InputReplyTo reply_to;
     public int schedule_date;
     public TLRPC$InputPeer send_as;
     public boolean silent;
-    public int top_msg_id;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -36,10 +35,7 @@ public class TLRPC$TL_messages_sendInlineBotResult extends TLObject {
         abstractSerializedData.writeInt32(i4);
         this.peer.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {
-            abstractSerializedData.writeInt32(this.reply_to_msg_id);
-        }
-        if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-            abstractSerializedData.writeInt32(this.top_msg_id);
+            this.reply_to.serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt64(this.random_id);
         abstractSerializedData.writeInt64(this.query_id);

@@ -1,12 +1,14 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_autoDownloadSettings extends TLObject {
-    public static int constructor = -1896171181;
+    public static int constructor = -1163561432;
     public boolean audio_preload_next;
     public boolean disabled;
     public long file_size_max;
     public int flags;
+    public int large_queue_active_operations_max;
     public boolean phonecalls_less_data;
     public int photo_size_max;
+    public int small_queue_active_operations_max;
     public boolean video_preload_large;
     public long video_size_max;
     public int video_upload_maxbitrate;
@@ -35,6 +37,8 @@ public class TLRPC$TL_autoDownloadSettings extends TLObject {
         this.video_size_max = abstractSerializedData.readInt64(z);
         this.file_size_max = abstractSerializedData.readInt64(z);
         this.video_upload_maxbitrate = abstractSerializedData.readInt32(z);
+        this.small_queue_active_operations_max = abstractSerializedData.readInt32(z);
+        this.large_queue_active_operations_max = abstractSerializedData.readInt32(z);
     }
 
     @Override
@@ -53,5 +57,7 @@ public class TLRPC$TL_autoDownloadSettings extends TLObject {
         abstractSerializedData.writeInt64(this.video_size_max);
         abstractSerializedData.writeInt64(this.file_size_max);
         abstractSerializedData.writeInt32(this.video_upload_maxbitrate);
+        abstractSerializedData.writeInt32(this.small_queue_active_operations_max);
+        abstractSerializedData.writeInt32(this.large_queue_active_operations_max);
     }
 }

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">ಉತ್ತರಿಸಿ</string>
+    <string name="call_notification_answer_video_action">ವೀಡಿಯೊ</string>
+    <string name="call_notification_decline_action">ನಿರಾಕರಿಸಿ</string>
+    <string name="call_notification_hang_up_action">ಕರೆ ಕೊನೆಗೊಳಿಸಿ</string>
+    <string name="call_notification_incoming_text">ಒಳಬರುವ ಕರೆ</string>
+    <string name="call_notification_ongoing_text">ಚಾಲ್ತಿಯಲ್ಲಿರುವ ಕರೆ</string>
+    <string name="call_notification_screening_text">ಒಳಬರುವ ಕರೆಯನ್ನು ಸ್ಕ್ರೀನ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
     <string name="common_google_play_services_enable_button">ಸಕ್ರಿಯಗೊಳಿಸು</string>
     <string name="common_google_play_services_enable_text">Google Play ಸೇವೆಗಳನ್ನು ನೀವು ಸಕ್ರಿಯಗೊಳಿಸದ ಹೊರತು %1$s ಕಾರ್ಯನಿರ್ವಹಿಸುವುದಿಲ್ಲ.</string>
     <string name="common_google_play_services_enable_title">Google Play ಸೇವೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ</string>

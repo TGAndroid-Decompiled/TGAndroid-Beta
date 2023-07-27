@@ -24,6 +24,7 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.PremiumStickersPreviewRecycler;
 import org.telegram.ui.Components.RecyclerListView;
 public class PremiumStickersPreviewRecycler extends RecyclerListView implements NotificationCenter.NotificationCenterDelegate, PagerHeaderView {
     boolean autoPlayEnabled;
@@ -82,7 +83,14 @@ public class PremiumStickersPreviewRecycler extends RecyclerListView implements 
         };
         this.interpolator = new CubicBezierInterpolator(0.0f, 0.5f, 0.5f, 1.0f);
         this.sortedView = new ArrayList<>();
-        this.comparator = PremiumStickersPreviewRecycler$$ExternalSyntheticLambda1.INSTANCE;
+        this.comparator = new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$new$0;
+                lambda$new$0 = PremiumStickersPreviewRecycler.lambda$new$0((PremiumStickersPreviewRecycler.StickerView) obj, (PremiumStickersPreviewRecycler.StickerView) obj2);
+                return lambda$new$0;
+            }
+        };
         this.selectStickerOnNextLayout = -1;
         this.currentAccount = i;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);

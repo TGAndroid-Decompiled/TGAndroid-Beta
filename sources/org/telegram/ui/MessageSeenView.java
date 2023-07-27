@@ -66,7 +66,7 @@ public class MessageSeenView extends FrameLayout {
     private RecyclerListView listView;
     ArrayList<Long> peerIds;
     SimpleTextView titleView;
-    public ArrayList<TLRPC$User> users;
+    public ArrayList<TLObject> users;
 
     public MessageSeenView(Context context, final int i, MessageObject messageObject, final TLRPC$Chat tLRPC$Chat) {
         super(context);
@@ -129,8 +129,9 @@ public class MessageSeenView extends FrameLayout {
         if (tLRPC$TL_error == null) {
             TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
             ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
             final HashMap hashMap = new HashMap();
-            final ArrayList arrayList2 = new ArrayList();
+            final ArrayList arrayList3 = new ArrayList();
             int size = tLRPC$Vector.objects.size();
             for (int i2 = 0; i2 < size; i2++) {
                 Object obj = tLRPC$Vector.objects.get(i2);
@@ -140,24 +141,30 @@ public class MessageSeenView extends FrameLayout {
                     Long valueOf = Long.valueOf(tLRPC$TL_readParticipantDate.user_id);
                     if (j != valueOf.longValue()) {
                         MessagesController.getInstance(i).getUser(valueOf);
-                        arrayList2.add(new Pair(valueOf, Integer.valueOf(i3)));
+                        arrayList3.add(new Pair(valueOf, Integer.valueOf(i3)));
                         arrayList.add(valueOf);
                     }
                 } else if (obj instanceof Long) {
                     Long l = (Long) obj;
                     if (j != l.longValue()) {
-                        MessagesController.getInstance(i).getUser(l);
-                        arrayList2.add(new Pair(l, 0));
-                        arrayList.add(l);
+                        if (l.longValue() > 0) {
+                            MessagesController.getInstance(i).getUser(l);
+                            arrayList3.add(new Pair(l, 0));
+                            arrayList.add(l);
+                        } else {
+                            MessagesController.getInstance(i).getChat(Long.valueOf(-l.longValue()));
+                            arrayList3.add(new Pair(l, 0));
+                            arrayList2.add(l);
+                        }
                     }
                 }
             }
             if (arrayList.isEmpty()) {
-                for (int i4 = 0; i4 < arrayList2.size(); i4++) {
-                    Pair pair = (Pair) arrayList2.get(i4);
+                for (int i4 = 0; i4 < arrayList3.size(); i4++) {
+                    Pair pair = (Pair) arrayList3.get(i4);
                     this.peerIds.add((Long) pair.first);
                     this.dates.add((Integer) pair.second);
-                    this.users.add((TLRPC$User) hashMap.get(pair.first));
+                    this.users.add((TLObject) hashMap.get(pair.first));
                 }
                 updateView();
                 return;
@@ -170,7 +177,7 @@ public class MessageSeenView extends FrameLayout {
                 ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_channels_getParticipants, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                        MessageSeenView.this.lambda$new$1(i, hashMap, arrayList2, tLObject2, tLRPC$TL_error2);
+                        MessageSeenView.this.lambda$new$1(i, hashMap, arrayList3, tLObject2, tLRPC$TL_error2);
                     }
                 });
                 return;
@@ -180,7 +187,7 @@ public class MessageSeenView extends FrameLayout {
                 ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getFullChat, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                        MessageSeenView.this.lambda$new$3(i, hashMap, arrayList2, tLObject2, tLRPC$TL_error2);
+                        MessageSeenView.this.lambda$new$3(i, hashMap, arrayList3, tLObject2, tLRPC$TL_error2);
                     }
                 });
                 return;
@@ -210,7 +217,7 @@ public class MessageSeenView extends FrameLayout {
                 Pair pair = (Pair) arrayList.get(i3);
                 this.peerIds.add((Long) pair.first);
                 this.dates.add((Integer) pair.second);
-                this.users.add((TLRPC$User) hashMap.get(pair.first));
+                this.users.add((TLObject) hashMap.get(pair.first));
             }
         }
         updateView();
@@ -237,7 +244,7 @@ public class MessageSeenView extends FrameLayout {
                 Pair pair = (Pair) arrayList.get(i3);
                 this.peerIds.add((Long) pair.first);
                 this.dates.add((Integer) pair.second);
-                this.users.add((TLRPC$User) hashMap.get(pair.first));
+                this.users.add((TLObject) hashMap.get(pair.first));
             }
         }
         updateView();
@@ -293,7 +300,7 @@ public class MessageSeenView extends FrameLayout {
         this.titleView.setRightPadding(AndroidUtilities.dp((Math.min(2, this.users.size() - 1) * 12) + 32 + 6));
         this.avatarsImageView.commitTransition(false);
         if (this.peerIds.size() == 1 && this.users.get(0) != null) {
-            this.titleView.setText(ContactsController.formatName(this.users.get(0).first_name, this.users.get(0).last_name));
+            this.titleView.setText(ContactsController.formatName(this.users.get(0)));
         } else if (this.peerIds.size() == 0) {
             this.titleView.setText(LocaleController.getString("NobodyViewed", R.string.NobodyViewed));
         } else {
@@ -366,9 +373,9 @@ public class MessageSeenView extends FrameLayout {
         BackupImageView avatarImageView;
         private int currentAccount;
         SimpleTextView nameView;
+        TLObject object;
         TextView readView;
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable rightDrawable;
-        TLRPC$User user;
 
         public UserCell(Context context) {
             super(context);
@@ -410,20 +417,20 @@ public class MessageSeenView extends FrameLayout {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         }
 
-        public void setUser(TLRPC$User tLRPC$User, int i) {
-            this.user = tLRPC$User;
+        public void setUser(TLObject tLObject, int i) {
+            this.object = tLObject;
             updateStatus(false);
-            if (tLRPC$User != null) {
-                this.avatarDrawable.setInfo(tLRPC$User);
-                this.avatarImageView.setImage(ImageLocation.getForUser(tLRPC$User, 1), "50_50", this.avatarDrawable, tLRPC$User);
-                this.nameView.setText(ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name));
+            if (tLObject != null) {
+                this.avatarDrawable.setInfo(tLObject);
+                this.avatarImageView.setImage(ImageLocation.getForUserOrChat(tLObject, 1), "50_50", this.avatarDrawable, tLObject);
+                this.nameView.setText(ContactsController.formatName(tLObject));
             }
             if (i <= 0) {
                 this.readView.setVisibility(8);
                 this.nameView.setTranslationY(AndroidUtilities.dp(9.0f));
                 return;
             }
-            this.readView.setText(TextUtils.concat(seenDrawable.getSpanned(getContext()), LocaleController.formatSeenDate(i)));
+            this.readView.setText(TextUtils.concat(seenDrawable.getSpanned(getContext(), null), LocaleController.formatSeenDate(i)));
             this.readView.setVisibility(0);
             this.nameView.setTranslationY(0.0f);
         }
@@ -442,17 +449,23 @@ public class MessageSeenView extends FrameLayout {
         public void didReceivedNotification(int i, int i2, Object... objArr) {
             if (i == NotificationCenter.userEmojiStatusUpdated) {
                 TLRPC$User tLRPC$User = (TLRPC$User) objArr[0];
-                TLRPC$User tLRPC$User2 = this.user;
+                TLObject tLObject = this.object;
+                TLRPC$User tLRPC$User2 = tLObject instanceof TLRPC$User ? (TLRPC$User) tLObject : null;
                 if (tLRPC$User2 == null || tLRPC$User == null || tLRPC$User2.id != tLRPC$User.id) {
                     return;
                 }
-                this.user = tLRPC$User;
+                this.object = tLRPC$User;
                 updateStatus(true);
             }
         }
 
         private void updateStatus(boolean z) {
-            Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(this.user);
+            TLObject tLObject = this.object;
+            TLRPC$User tLRPC$User = tLObject instanceof TLRPC$User ? (TLRPC$User) tLObject : null;
+            if (tLRPC$User == null) {
+                return;
+            }
+            Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(tLRPC$User);
             if (emojiStatusDocumentId == null) {
                 this.nameView.setRightDrawable((Drawable) null);
                 this.rightDrawable.set((Drawable) null, z);

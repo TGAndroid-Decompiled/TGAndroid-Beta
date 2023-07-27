@@ -131,7 +131,7 @@ public class AppIconsSelectorCell extends RecyclerListView implements Notificati
                     iconHolderView2.setSelected(false, true);
                 }
             }
-            NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.showBulletin, 5, launcherIcon);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.showBulletin, 5, launcherIcon);
         }
     }
 

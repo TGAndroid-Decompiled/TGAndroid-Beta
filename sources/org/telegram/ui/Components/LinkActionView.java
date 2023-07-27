@@ -56,14 +56,14 @@ public class LinkActionView extends LinearLayout {
     BaseFragment fragment;
     private final FrameLayout frameLayout;
     private boolean hideRevokeOption;
-    private boolean isChannel;
+    private final boolean isChannel;
     String link;
     TextView linkView;
     private String loadedInviteLink;
     boolean loadingImporters;
     ImageView optionsView;
     private boolean permanent;
-    float[] point;
+    private final float[] point;
     private QRCodeBottomSheet qrCodeBottomSheet;
     private String qrText;
     private final TextView removeView;
@@ -104,7 +104,7 @@ public class LinkActionView extends LinearLayout {
         this.frameLayout = frameLayout;
         TextView textView = new TextView(context);
         this.linkView = textView;
-        textView.setPadding(AndroidUtilities.dp(20.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(18.0f));
+        textView.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(13.0f));
         this.linkView.setTextSize(1, 16.0f);
         this.linkView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
         this.linkView.setSingleLine(true);
@@ -120,52 +120,50 @@ public class LinkActionView extends LinearLayout {
         linearLayout.setOrientation(0);
         TextView textView2 = new TextView(context);
         this.copyView = textView2;
-        textView2.setGravity(1);
+        textView2.setGravity(17);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "..").setSpan(new ColoredImageSpan(ContextCompat.getDrawable(context, R.drawable.msg_copy_filled)), 0, 1, 0);
-        spannableStringBuilder.setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(8.0f)), 1, 2, 0);
+        spannableStringBuilder.setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(6.0f)), 1, 2, 0);
         int i = R.string.LinkActionCopy;
         spannableStringBuilder.append((CharSequence) LocaleController.getString("LinkActionCopy", i));
-        spannableStringBuilder.append((CharSequence) ".").setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(5.0f)), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         textView2.setText(spannableStringBuilder);
         textView2.setContentDescription(LocaleController.getString("LinkActionCopy", i));
-        textView2.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+        textView2.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView2.setSingleLine(true);
-        linearLayout.addView(textView2, LayoutHelper.createLinear(0, 40, 1.0f, 0, 4, 0, 4, 0));
+        linearLayout.addView(textView2, LayoutHelper.createLinear(0, 42, 1.0f, 0, 4, 0, 4, 0));
         TextView textView3 = new TextView(context);
         this.shareView = textView3;
-        textView3.setGravity(1);
+        textView3.setGravity(17);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
         spannableStringBuilder2.append((CharSequence) "..").setSpan(new ColoredImageSpan(ContextCompat.getDrawable(context, R.drawable.msg_share_filled)), 0, 1, 0);
-        spannableStringBuilder2.setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(8.0f)), 1, 2, 0);
+        spannableStringBuilder2.setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(6.0f)), 1, 2, 0);
         int i2 = R.string.LinkActionShare;
         spannableStringBuilder2.append((CharSequence) LocaleController.getString("LinkActionShare", i2));
-        spannableStringBuilder2.append((CharSequence) ".").setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(5.0f)), spannableStringBuilder2.length() - 1, spannableStringBuilder2.length(), 0);
         textView3.setText(spannableStringBuilder2);
         textView3.setContentDescription(LocaleController.getString("LinkActionShare", i2));
-        textView3.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+        textView3.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         textView3.setTextSize(1, 14.0f);
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView3.setSingleLine(true);
-        linearLayout.addView(textView3, LayoutHelper.createLinear(0, 40, 1.0f, 4, 0, 4, 0));
+        linearLayout.addView(textView3, LayoutHelper.createLinear(0, 42, 1.0f, 4, 0, 4, 0));
         TextView textView4 = new TextView(context);
         this.removeView = textView4;
-        textView4.setGravity(1);
+        textView4.setGravity(17);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
         spannableStringBuilder3.append((CharSequence) "..").setSpan(new ColoredImageSpan(ContextCompat.getDrawable(context, R.drawable.msg_delete_filled)), 0, 1, 0);
         spannableStringBuilder3.setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(8.0f)), 1, 2, 0);
         spannableStringBuilder3.append((CharSequence) LocaleController.getString("DeleteLink", R.string.DeleteLink));
         spannableStringBuilder3.append((CharSequence) ".").setSpan(new DialogCell.FixedWidthSpan(AndroidUtilities.dp(5.0f)), spannableStringBuilder3.length() - 1, spannableStringBuilder3.length(), 0);
         textView4.setText(spannableStringBuilder3);
-        textView4.setPadding(AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f));
+        textView4.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
         textView4.setTextSize(1, 14.0f);
         textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView4.setSingleLine(true);
-        linearLayout.addView(textView4, LayoutHelper.createLinear(0, -2, 1.0f, 4, 0, 4, 0));
+        linearLayout.addView(textView4, LayoutHelper.createLinear(0, 42, 1.0f, 4, 0, 4, 0));
         textView4.setVisibility(8);
-        addView(linearLayout, LayoutHelper.createLinear(-1, -2, 0.0f, 20.0f, 0.0f, 0.0f));
+        addView(linearLayout, LayoutHelper.createLinear(-1, -2, 0.0f, 12.0f, 0.0f, 0.0f));
         AvatarsContainer avatarsContainer = new AvatarsContainer(context);
         this.avatarsContainer = avatarsContainer;
         avatarsContainer.avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
@@ -203,10 +201,6 @@ public class LinkActionView extends LinearLayout {
             }
         });
         frameLayout.setOnClickListener(new View.OnClickListener() {
-            {
-                LinkActionView.this = this;
-            }
-
             @Override
             public void onClick(View view) {
                 LinkActionView.this.copyView.callOnClick();
@@ -318,10 +312,6 @@ public class LinkActionView extends LinearLayout {
             getPointOnScreen(this.frameLayout, container, this.point);
             float f = this.point[1];
             final View view2 = new View(context) {
-                {
-                    LinkActionView.this = this;
-                }
-
                 @Override
                 protected void onDraw(Canvas canvas) {
                     canvas.drawColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
@@ -332,8 +322,7 @@ public class LinkActionView extends LinearLayout {
                     if (y < 1.0f) {
                         canvas.clipRect(0.0f, (LinkActionView.this.point[1] - y) + 1.0f, getMeasuredWidth(), getMeasuredHeight());
                     }
-                    float[] fArr = LinkActionView.this.point;
-                    canvas.translate(fArr[0], fArr[1]);
+                    canvas.translate(LinkActionView.this.point[0], LinkActionView.this.point[1]);
                     LinkActionView.this.frameLayout.draw(canvas);
                     canvas.restore();
                 }
@@ -354,19 +343,11 @@ public class LinkActionView extends LinearLayout {
             ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
             this.actionBarPopupWindow = actionBarPopupWindow;
             actionBarPopupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
-                {
-                    LinkActionView.this = this;
-                }
-
                 @Override
                 public void onDismiss() {
                     LinkActionView.this.actionBarPopupWindow = null;
                     view2.animate().cancel();
                     view2.animate().alpha(0.0f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
-                        {
-                            AnonymousClass3.this = this;
-                        }
-
                         @Override
                         public void onAnimationEnd(Animator animator) {
                             if (view2.getParent() != null) {
@@ -470,10 +451,6 @@ public class LinkActionView extends LinearLayout {
             str3 = LocaleController.getString(str, i);
         }
         QRCodeBottomSheet qRCodeBottomSheet = new QRCodeBottomSheet(context, string, str2, str3, false) {
-            {
-                LinkActionView.this = this;
-            }
-
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -496,14 +473,14 @@ public class LinkActionView extends LinearLayout {
         this.shareView.setTextColor(Theme.getColor(i));
         this.removeView.setTextColor(Theme.getColor(i));
         TextView textView2 = this.copyView;
-        int dp = AndroidUtilities.dp(6.0f);
+        int dp = AndroidUtilities.dp(8.0f);
         int i2 = Theme.key_featuredStickers_addButton;
         int color = Theme.getColor(i2);
         int i3 = Theme.key_featuredStickers_addButtonPressed;
         textView2.setBackground(Theme.createSimpleSelectorRoundRectDrawable(dp, color, Theme.getColor(i3)));
-        this.shareView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(i2), Theme.getColor(i3)));
-        this.removeView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_chat_attachAudioBackground), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
-        this.frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(6.0f), Theme.getColor(Theme.key_graySection), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_listSelector), 76)));
+        this.shareView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(i2), Theme.getColor(i3)));
+        this.removeView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_chat_attachAudioBackground), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_windowBackgroundWhite), 120)));
+        this.frameLayout.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_graySection), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_listSelector), 76)));
         this.linkView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
         this.optionsView.setColorFilter(Theme.getColor(Theme.key_dialogTextGray3));
         TextView textView3 = this.avatarsContainer.countTextView;
@@ -556,12 +533,7 @@ public class LinkActionView extends LinearLayout {
 
         public AvatarsContainer(Context context) {
             super(context);
-            LinkActionView.this = r6;
-            this.avatarsImageView = new AvatarsImageView(context, false, r6) {
-                {
-                    AvatarsContainer.this = this;
-                }
-
+            this.avatarsImageView = new AvatarsImageView(context, false, LinkActionView.this) {
                 @Override
                 public void onMeasure(int i, int i2) {
                     int min = Math.min(3, LinkActionView.this.usersCount);

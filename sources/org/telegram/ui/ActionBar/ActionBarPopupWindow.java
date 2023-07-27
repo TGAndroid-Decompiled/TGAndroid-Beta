@@ -7,6 +7,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
@@ -76,7 +77,12 @@ public class ActionBarPopupWindow extends PopupWindow {
         } catch (NoSuchFieldException unused) {
         }
         superListenerField = field;
-        NOP = ActionBarPopupWindow$$ExternalSyntheticLambda2.INSTANCE;
+        NOP = new ViewTreeObserver.OnScrollChangedListener() {
+            @Override
+            public final void onScrollChanged() {
+                ActionBarPopupWindow.lambda$static$0();
+            }
+        };
     }
 
     public void setScaleOut(boolean z) {
@@ -99,6 +105,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         protected LinearLayout linearLayout;
         private OnDispatchKeyEventListener mOnDispatchKeyEventListener;
         private onSizeChangedListener onSizeChangedListener;
+        Path path;
         private HashMap<View, Integer> positions;
         private float reactionsEnterProgress;
         Rect rect;
@@ -161,7 +168,13 @@ public class ActionBarPopupWindow extends PopupWindow {
             try {
                 ScrollView scrollView = new ScrollView(context);
                 this.scrollView = scrollView;
-                scrollView.setVerticalScrollBarEnabled(false);
+                scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
+                    @Override
+                    public void onScrollChanged() {
+                        ActionBarPopupWindowLayout.this.invalidate();
+                    }
+                });
+                this.scrollView.setVerticalScrollBarEnabled(false);
                 PopupSwipeBackLayout popupSwipeBackLayout2 = this.swipeBackLayout;
                 if (popupSwipeBackLayout2 != null) {
                     popupSwipeBackLayout2.addView(this.scrollView, LayoutHelper.createFrame(-2, -2, this.shownFromBottom ? 80 : 48));

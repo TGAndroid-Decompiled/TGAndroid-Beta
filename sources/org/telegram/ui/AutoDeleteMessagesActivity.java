@@ -225,7 +225,12 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             builder.setTitle(LocaleController.getString("MessageLifetime", R.string.MessageLifetime));
             builder.setMessage(LocaleController.formatString("AutoDeleteConfirmMessage", R.string.AutoDeleteConfirmMessage, LocaleController.formatTTLString(i * 60)));
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), AutoDeleteMessagesActivity$$ExternalSyntheticLambda1.INSTANCE);
+            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i2) {
+                    dialogInterface.dismiss();
+                }
+            });
             builder.setPositiveButton(LocaleController.getString("Enable", R.string.Enable), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
@@ -338,7 +343,7 @@ public class AutoDeleteMessagesActivity extends BaseFragment implements Notifica
                         }
                     });
                     getUserConfig().setGlobalTtl(this.startFromTtl);
-                    NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didUpdateGlobalAutoDeleteTimer, new Object[0]);
+                    NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdateGlobalAutoDeleteTimer, new Object[0]);
                     return;
                 }
                 return;

@@ -13,7 +13,9 @@ import androidx.core.graphics.ColorUtils;
 import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 public class OutlineTextContainerView extends FrameLayout {
     private EditText attachedEditText;
     private float errorProgress;
@@ -27,8 +29,32 @@ public class OutlineTextContainerView extends FrameLayout {
     private float strokeWidthRegular;
     private float strokeWidthSelected;
     private TextPaint textPaint;
-    private static final SimpleFloatPropertyCompat<OutlineTextContainerView> SELECTION_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("selectionProgress", OutlineTextContainerView$$ExternalSyntheticLambda0.INSTANCE, OutlineTextContainerView$$ExternalSyntheticLambda2.INSTANCE).setMultiplier(100.0f);
-    private static final SimpleFloatPropertyCompat<OutlineTextContainerView> ERROR_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("errorProgress", OutlineTextContainerView$$ExternalSyntheticLambda1.INSTANCE, OutlineTextContainerView$$ExternalSyntheticLambda3.INSTANCE).setMultiplier(100.0f);
+    private static final SimpleFloatPropertyCompat<OutlineTextContainerView> SELECTION_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("selectionProgress", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((OutlineTextContainerView) obj).selectionProgress;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            OutlineTextContainerView.lambda$static$1((OutlineTextContainerView) obj, f);
+        }
+    }).setMultiplier(100.0f);
+    private static final SimpleFloatPropertyCompat<OutlineTextContainerView> ERROR_PROGRESS_PROPERTY = new SimpleFloatPropertyCompat("errorProgress", new SimpleFloatPropertyCompat.Getter() {
+        @Override
+        public final float get(Object obj) {
+            float f;
+            f = ((OutlineTextContainerView) obj).errorProgress;
+            return f;
+        }
+    }, new SimpleFloatPropertyCompat.Setter() {
+        @Override
+        public final void set(Object obj, float f) {
+            OutlineTextContainerView.lambda$static$3((OutlineTextContainerView) obj, f);
+        }
+    }).setMultiplier(100.0f);
 
     public static void lambda$static$1(OutlineTextContainerView outlineTextContainerView, float f) {
         outlineTextContainerView.selectionProgress = f;
@@ -49,7 +75,7 @@ public class OutlineTextContainerView extends FrameLayout {
     public OutlineTextContainerView(Context context) {
         super(context);
         this.rect = new RectF();
-        this.mText = "";
+        this.mText = BuildConfig.APP_CENTER_HASH;
         this.outlinePaint = new Paint(1);
         this.textPaint = new TextPaint(1);
         this.selectionSpring = new SpringAnimation(this, SELECTION_PROGRESS_PROPERTY);

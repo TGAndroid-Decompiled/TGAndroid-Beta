@@ -17,6 +17,7 @@ public class ZoomControlView extends View {
     private float animatingToZoom;
     private AnimatorSet animatorSet;
     private ZoomControlViewDelegate delegate;
+    public boolean enabledTouch;
     private Drawable filledProgressDrawable;
     private Drawable knobDrawable;
     private boolean knobPressed;
@@ -43,6 +44,7 @@ public class ZoomControlView extends View {
 
     public ZoomControlView(Context context) {
         super(context);
+        this.enabledTouch = true;
         this.ZOOM_PROPERTY = new AnimationProperties.FloatProperty<ZoomControlView>("clipProgress") {
             @Override
             public void setValue(ZoomControlView zoomControlView, float f) {
@@ -97,6 +99,10 @@ public class ZoomControlView extends View {
     @Override
     public boolean onTouchEvent(android.view.MotionEvent r15) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ZoomControlView.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    public boolean isTouch() {
+        return this.pressed || this.knobPressed;
     }
 
     private boolean animateToZoom(float f) {

@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.os.SystemClock;
 import android.util.SparseIntArray;
 import java.util.ArrayList;
+import org.telegram.ui.Components.Reactions.HwEmojis;
 public class DispatchQueuePoolBackground {
     public static final String THREAD_PREFIX = "DispatchQueuePoolThreadSafety_";
     private static DispatchQueuePoolBackground backgroundQueue;
@@ -79,6 +80,11 @@ public class DispatchQueuePoolBackground {
                 this.totalTasksCount++;
                 this.busyQueues.add(remove);
                 this.busyQueuesMap.put(remove.index, this.busyQueuesMap.get(remove.index, 0) + 1);
+                if (HwEmojis.isHwEnabled()) {
+                    remove.setPriority(1);
+                } else if (remove.getPriority() != 10) {
+                    remove.setPriority(10);
+                }
                 remove.postRunnable(new Runnable() {
                     @Override
                     public final void run() {

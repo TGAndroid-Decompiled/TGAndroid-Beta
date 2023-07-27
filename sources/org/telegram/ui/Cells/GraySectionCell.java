@@ -70,8 +70,8 @@ public class GraySectionCell extends FrameLayout {
         return this.textView.getText();
     }
 
-    public void setText(String str) {
-        this.textView.setText(str);
+    public void setText(CharSequence charSequence) {
+        this.textView.setText(charSequence);
         this.rightTextView.setVisibility(8);
         this.rightTextView.setOnClickListener(null);
     }
@@ -89,6 +89,18 @@ public class GraySectionCell extends FrameLayout {
 
     public void setRightText(String str, boolean z) {
         this.rightTextView.setText(str, true, z);
+        this.rightTextView.setVisibility(0);
+    }
+
+    public void setRightText(String str, View.OnClickListener onClickListener) {
+        this.rightTextView.setText(str, false);
+        this.rightTextView.setOnClickListener(onClickListener);
+        this.rightTextView.setVisibility(0);
+    }
+
+    public void setRightText(String str, boolean z, View.OnClickListener onClickListener) {
+        this.rightTextView.setText(str, true, z);
+        this.rightTextView.setOnClickListener(onClickListener);
         this.rightTextView.setVisibility(0);
     }
 

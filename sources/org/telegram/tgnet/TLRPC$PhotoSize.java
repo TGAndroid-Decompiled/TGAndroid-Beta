@@ -4,6 +4,8 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 public abstract class TLRPC$PhotoSize extends TLObject {
     public byte[] bytes;
+    public int gradientBottomColor;
+    public int gradientTopColor;
     public int h;
     public TLRPC$FileLocation location;
     public int size;

@@ -1,9 +1,9 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.CharacterCompat;
+import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_userFull extends TLRPC$UserFull {
-    public static int constructor = -1813324973;
+    public static int constructor = 1340198022;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -16,7 +16,8 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         this.has_scheduled = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
         this.video_calls_available = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
         this.voice_messages_forbidden = (1048576 & readInt32) != 0;
-        this.translations_disabled = (readInt32 & 8388608) != 0;
+        this.translations_disabled = (8388608 & readInt32) != 0;
+        this.stories_pinned_available = (readInt32 & ConnectionsManager.FileTypeFile) != 0;
         this.id = abstractSerializedData.readInt64(z);
         if ((this.flags & 2) != 0) {
             this.about = abstractSerializedData.readString(z);
@@ -48,7 +49,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
             this.theme_emoticon = abstractSerializedData.readString(z);
         }
-        if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {
+        if ((this.flags & 65536) != 0) {
             this.private_forward_name = abstractSerializedData.readString(z);
         }
         if ((this.flags & 131072) != 0) {
@@ -77,6 +78,9 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
             this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
+        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+            this.stories = TLRPC$TL_userStories.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
     }
 
     @Override
@@ -94,11 +98,13 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         this.flags = i5;
         int i6 = this.video_calls_available ? i5 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i5 & (-8193);
         this.flags = i6;
-        int i7 = this.voice_messages_forbidden ? i6 | 1048576 : i6 & (-1048577);
+        int i7 = this.voice_messages_forbidden ? i6 | FileLoaderPriorityQueue.PRIORITY_VALUE_MAX : i6 & (-1048577);
         this.flags = i7;
         int i8 = this.translations_disabled ? i7 | 8388608 : i7 & (-8388609);
         this.flags = i8;
-        abstractSerializedData.writeInt32(i8);
+        int i9 = this.stories_pinned_available ? i8 | ConnectionsManager.FileTypeFile : i8 & (-67108865);
+        this.flags = i9;
+        abstractSerializedData.writeInt32(i9);
         abstractSerializedData.writeInt64(this.id);
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeString(this.about);
@@ -130,7 +136,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
         if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
             abstractSerializedData.writeString(this.theme_emoticon);
         }
-        if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {
+        if ((this.flags & 65536) != 0) {
             abstractSerializedData.writeString(this.private_forward_name);
         }
         if ((this.flags & 131072) != 0) {
@@ -143,12 +149,15 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
             abstractSerializedData.writeInt32(481674261);
             int size = this.premium_gifts.size();
             abstractSerializedData.writeInt32(size);
-            for (int i9 = 0; i9 < size; i9++) {
-                this.premium_gifts.get(i9).serializeToStream(abstractSerializedData);
+            for (int i10 = 0; i10 < size; i10++) {
+                this.premium_gifts.get(i10).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & ConnectionsManager.FileTypePhoto) != 0) {
             this.wallpaper.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
+            this.stories.serializeToStream(abstractSerializedData);
         }
     }
 }

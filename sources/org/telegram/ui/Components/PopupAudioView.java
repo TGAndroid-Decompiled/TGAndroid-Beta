@@ -226,7 +226,7 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
                 }
                 TLRPC$DocumentAttribute tLRPC$DocumentAttribute = this.currentMessageObject.getDocument().attributes.get(i2);
                 if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeAudio) {
-                    i = tLRPC$DocumentAttribute.duration;
+                    i = (int) tLRPC$DocumentAttribute.duration;
                     break;
                 }
                 i2++;

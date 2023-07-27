@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Vastaa</string>
+    <string name="call_notification_answer_video_action">Video</string>
+    <string name="call_notification_decline_action">Hylkää</string>
+    <string name="call_notification_hang_up_action">Lopeta puhelu</string>
+    <string name="call_notification_incoming_text">Saapuva puhelu</string>
+    <string name="call_notification_ongoing_text">Käynnissä oleva puhelu</string>
+    <string name="call_notification_screening_text">Seulotaan saapuvaa puhelua</string>
     <string name="common_google_play_services_enable_button">Ota käyttöön</string>
     <string name="common_google_play_services_enable_text">%1$s ei toimi, ellet ota Google Play Palveluita käyttöön.</string>
     <string name="common_google_play_services_enable_title">Ota Google Play Palvelut käyttöön</string>

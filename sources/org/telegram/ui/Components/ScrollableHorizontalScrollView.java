@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
@@ -118,5 +119,13 @@ public class ScrollableHorizontalScrollView extends HorizontalScrollView {
                 emojiTabButton.updateVisibilityInbounds(z2, z);
             }
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() != 0 && motionEvent.getAction() != 1) {
+            motionEvent.getAction();
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

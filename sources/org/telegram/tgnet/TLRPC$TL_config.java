@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.CharacterCompat;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_config extends TLObject {
     public static int constructor = -870702050;
@@ -150,7 +149,7 @@ public class TLRPC$TL_config extends TLObject {
         if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
             this.reactions_default = TLRPC$Reaction.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
-        if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {
+        if ((this.flags & 65536) != 0) {
             this.autologin_token = abstractSerializedData.readString(z);
         }
     }
@@ -235,7 +234,7 @@ public class TLRPC$TL_config extends TLObject {
         if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
             this.reactions_default.serializeToStream(abstractSerializedData);
         }
-        if ((this.flags & CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT) != 0) {
+        if ((this.flags & 65536) != 0) {
             abstractSerializedData.writeString(this.autologin_token);
         }
     }

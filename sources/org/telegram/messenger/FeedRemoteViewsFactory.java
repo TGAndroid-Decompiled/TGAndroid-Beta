@@ -72,7 +72,7 @@ public class FeedRemoteViewsFactory implements RemoteViewsService.RemoteViewsFac
     protected void grantUriAccessToWidget(Context context, Uri uri) {
         Intent intent = new Intent("android.intent.action.MAIN");
         intent.addCategory("android.intent.category.HOME");
-        for (ResolveInfo resolveInfo : context.getPackageManager().queryIntentActivities(intent, CharacterCompat.MIN_SUPPLEMENTARY_CODE_POINT)) {
+        for (ResolveInfo resolveInfo : context.getPackageManager().queryIntentActivities(intent, 65536)) {
             context.grantUriPermission(resolveInfo.activityInfo.packageName, uri, 1);
         }
     }

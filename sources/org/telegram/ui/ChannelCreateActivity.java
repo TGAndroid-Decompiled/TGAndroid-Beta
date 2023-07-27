@@ -33,6 +33,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -453,7 +454,14 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                     super.requestLayout();
                 }
             };
-            sizeNotifierFrameLayout.setOnTouchListener(ChannelCreateActivity$$ExternalSyntheticLambda8.INSTANCE);
+            sizeNotifierFrameLayout.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public final boolean onTouch(View view, MotionEvent motionEvent) {
+                    boolean lambda$createView$5;
+                    lambda$createView$5 = ChannelCreateActivity.lambda$createView$5(view, motionEvent);
+                    return lambda$createView$5;
+                }
+            });
             this.fragmentView = sizeNotifierFrameLayout;
             int i5 = Theme.key_windowBackgroundWhite;
             sizeNotifierFrameLayout.setTag(Integer.valueOf(i5));
@@ -512,7 +520,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                 }
             });
             int i6 = R.raw.camera;
-            this.cameraDrawable = new RLottieDrawable(i6, "" + i6, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
+            this.cameraDrawable = new RLottieDrawable(i6, BuildConfig.APP_CENTER_HASH + i6, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null);
             RLottieImageView rLottieImageView = new RLottieImageView(context) {
                 @Override
                 public void invalidate(int i7, int i8, int i9, int i10) {
@@ -795,7 +803,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
                             charSequence.setSpan(new ForegroundColorSpan(ChannelCreateActivity.this.getThemedColor(Theme.key_text_RedRegular)), 0, indexOf, 33);
                         }
                         TypefaceSpan[] typefaceSpanArr = (TypefaceSpan[]) charSequence.getSpans(0, charSequence.length(), TypefaceSpan.class);
-                        final String obj = (ChannelCreateActivity.this.descriptionTextView == null || ChannelCreateActivity.this.descriptionTextView.getText() == null) ? "" : ChannelCreateActivity.this.descriptionTextView.getText().toString();
+                        final String obj = (ChannelCreateActivity.this.descriptionTextView == null || ChannelCreateActivity.this.descriptionTextView.getText() == null) ? BuildConfig.APP_CENTER_HASH : ChannelCreateActivity.this.descriptionTextView.getText().toString();
                         for (int i12 = 0; i12 < typefaceSpanArr.length; i12++) {
                             charSequence.setSpan(new ClickableSpan() {
                                 @Override
@@ -1445,7 +1453,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
     public void lambda$loadAdminedChannels$18(TLRPC$Chat tLRPC$Chat, DialogInterface dialogInterface, int i) {
         TLRPC$TL_channels_updateUsername tLRPC$TL_channels_updateUsername = new TLRPC$TL_channels_updateUsername();
         tLRPC$TL_channels_updateUsername.channel = MessagesController.getInputChannel(tLRPC$Chat);
-        tLRPC$TL_channels_updateUsername.username = "";
+        tLRPC$TL_channels_updateUsername.username = BuildConfig.APP_CENTER_HASH;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_updateUsername, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

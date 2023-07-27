@@ -26,7 +26,7 @@ public class TLRPC$TL_updateShortChatMessage extends TLRPC$Updates {
             this.via_bot_id = abstractSerializedData.readInt64(z);
         }
         if ((this.flags & 8) != 0) {
-            this.reply_to = TLRPC$TL_messageReplyHeader.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.reply_to = TLRPC$MessageReplyHeader.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & 128) != 0) {
             int readInt322 = abstractSerializedData.readInt32(z);

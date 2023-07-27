@@ -60,7 +60,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
 
     private void checkCreateReactionsLayout() {
         if (this.reactionsContainerLayout == null) {
-            ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout(this, this.parentFragment, getContext(), this.parentFragment.getCurrentAccount(), this.parentFragment.getResourceProvider()) {
+            ReactionsContainerLayout reactionsContainerLayout = new ReactionsContainerLayout(this, 0, this.parentFragment, getContext(), this.parentFragment.getCurrentAccount(), this.parentFragment.getResourceProvider()) {
                 float enabledAlpha = 1.0f;
                 long lastUpdate;
 
@@ -117,6 +117,21 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
     }
 
     public class AnonymousClass3 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+        @Override
+        public void drawRoundRect(Canvas canvas, RectF rectF, float f, float f2, float f3) {
+            ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawRoundRect(this, canvas, rectF, f, f2, f3);
+        }
+
+        @Override
+        public boolean needEnterText() {
+            return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$needEnterText(this);
+        }
+
+        @Override
+        public void onEmojiWindowDismissed() {
+            ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$onEmojiWindowDismissed(this);
+        }
+
         AnonymousClass3() {
         }
 

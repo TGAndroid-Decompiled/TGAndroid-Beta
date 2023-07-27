@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import androidx.core.app.RemoteInput;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.tgnet.TLRPC$TL_messageActionTopicCreate;
@@ -86,17 +87,17 @@ public class WearReplyReceiver extends BroadcastReceiver {
         MessageObject messageObject;
         if (i != 0) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
-            tLRPC$TL_message.message = "";
+            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
             tLRPC$TL_message.id = i;
             tLRPC$TL_message.peer_id = accountInstance.getMessagesController().getPeer(j);
             TLRPC$TL_messageActionTopicCreate tLRPC$TL_messageActionTopicCreate = new TLRPC$TL_messageActionTopicCreate();
             tLRPC$TL_message.action = tLRPC$TL_messageActionTopicCreate;
-            tLRPC$TL_messageActionTopicCreate.title = "";
+            tLRPC$TL_messageActionTopicCreate.title = BuildConfig.APP_CENTER_HASH;
             messageObject = new MessageObject(accountInstance.getCurrentAccount(), tLRPC$TL_message, false, false);
         } else {
             messageObject = null;
         }
-        accountInstance.getSendMessagesHelper().sendMessage(charSequence.toString(), j, messageObject, null, null, true, null, null, null, true, 0, null, false);
+        accountInstance.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of(charSequence.toString(), j, messageObject, null, null, true, null, null, null, true, 0, null, false));
         if (i == 0) {
             accountInstance.getMessagesController().markDialogAsRead(j, i2, i2, 0, false, i, 0, true, 0);
         }

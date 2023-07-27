@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.LocaleController;
@@ -51,6 +52,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
     private RecyclerListView listView;
     private int photosRow;
     private int rowCount;
+    private int storiesRow;
     private int typeHeaderRow;
     private DownloadController.Preset typePreset;
     private int typeSectionRow;
@@ -150,7 +152,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
         return this.fragmentView;
     }
 
-    public void lambda$createView$4(final android.view.View r30, final int r31, float r32, float r33) {
+    public void lambda$createView$4(final android.view.View r29, final int r30, float r31, float r32) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataAutoDownloadActivity.lambda$createView$4(android.view.View, int, float, float):void");
     }
 
@@ -286,7 +288,14 @@ public class DataAutoDownloadActivity extends BaseFragment {
         if (!this.typePreset.equals(this.lowPreset) && !this.typePreset.equals(this.mediumPreset) && !this.typePreset.equals(this.highPreset)) {
             this.presets.add(this.typePreset);
         }
-        Collections.sort(this.presets, DataAutoDownloadActivity$$ExternalSyntheticLambda4.INSTANCE);
+        Collections.sort(this.presets, new Comparator() {
+            @Override
+            public final int compare(Object obj, Object obj2) {
+                int lambda$fillPresets$5;
+                lambda$fillPresets$5 = DataAutoDownloadActivity.lambda$fillPresets$5((DownloadController.Preset) obj, (DownloadController.Preset) obj2);
+                return lambda$fillPresets$5;
+            }
+        });
         int i = this.currentPresetNum;
         if (i == 0 || (i == 3 && this.typePreset.equals(this.lowPreset))) {
             this.selectedPreset = this.presets.indexOf(this.lowPreset);
@@ -360,8 +369,8 @@ public class DataAutoDownloadActivity extends BaseFragment {
                 break;
             }
         }
-        long j = (z ? preset.sizes[typeToIndex] : 0L) + (z2 ? preset.sizes[typeToIndex2] : 0L);
-        long j2 = (z3 ? preset2.sizes[typeToIndex] : 0L) + (z4 ? preset2.sizes[typeToIndex2] : 0L);
+        long j = (z ? preset.sizes[typeToIndex] : 0L) + (z2 ? preset.sizes[typeToIndex2] : 0L) + (preset.preloadStories ? 1L : 0L);
+        long j2 = (z3 ? preset2.sizes[typeToIndex] : 0L) + (z4 ? preset2.sizes[typeToIndex2] : 0L) + (preset2.preloadStories ? 1L : 0L);
         if (j > j2) {
             return 1;
         }
@@ -398,8 +407,11 @@ public class DataAutoDownloadActivity extends BaseFragment {
             int i9 = i8 + 1;
             this.rowCount = i9;
             this.filesRow = i8;
-            this.rowCount = i9 + 1;
-            this.typeSectionRow = i9;
+            int i10 = i9 + 1;
+            this.rowCount = i10;
+            this.storiesRow = i9;
+            this.rowCount = i10 + 1;
+            this.typeSectionRow = i10;
             return;
         }
         this.usageHeaderRow = -1;
@@ -409,6 +421,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
         this.photosRow = -1;
         this.videosRow = -1;
         this.filesRow = -1;
+        this.storiesRow = -1;
         this.typeSectionRow = -1;
     }
 
@@ -426,10 +439,12 @@ public class DataAutoDownloadActivity extends BaseFragment {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            int i2;
             String string;
+            String str;
             StringBuilder sb;
+            StringBuilder sb2;
             int itemViewType = viewHolder.getItemViewType();
+            int i2 = 0;
             if (itemViewType == 0) {
                 TextCheckCell textCheckCell = (TextCheckCell) viewHolder.itemView;
                 if (i == DataAutoDownloadActivity.this.autoDownloadRow) {
@@ -450,115 +465,133 @@ public class DataAutoDownloadActivity extends BaseFragment {
                 headerCell.setText(LocaleController.getString("AutoDownloadDataUsage", R.string.AutoDownloadDataUsage));
             } else if (itemViewType == 3) {
                 DataAutoDownloadActivity.this.updatePresetChoseView((SlideChooseView) viewHolder.itemView);
-            } else if (itemViewType != 4) {
-                if (itemViewType != 5) {
-                    return;
-                }
-                TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
-                if (i != DataAutoDownloadActivity.this.typeSectionRow) {
-                    if (i == DataAutoDownloadActivity.this.autoDownloadSectionRow) {
-                        if (DataAutoDownloadActivity.this.usageHeaderRow == -1) {
-                            textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
-                            if (DataAutoDownloadActivity.this.currentType != 0) {
-                                if (DataAutoDownloadActivity.this.currentType != 1) {
-                                    if (DataAutoDownloadActivity.this.currentType == 2) {
-                                        textInfoPrivacyCell.setText(LocaleController.getString("AutoDownloadOnRoamingDataInfo", R.string.AutoDownloadOnRoamingDataInfo));
+            } else {
+                int i3 = -1;
+                if (itemViewType != 4) {
+                    if (itemViewType != 5) {
+                        return;
+                    }
+                    TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
+                    if (i != DataAutoDownloadActivity.this.typeSectionRow) {
+                        if (i == DataAutoDownloadActivity.this.autoDownloadSectionRow) {
+                            if (DataAutoDownloadActivity.this.usageHeaderRow == -1) {
+                                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
+                                if (DataAutoDownloadActivity.this.currentType != 0) {
+                                    if (DataAutoDownloadActivity.this.currentType != 1) {
+                                        if (DataAutoDownloadActivity.this.currentType == 2) {
+                                            textInfoPrivacyCell.setText(LocaleController.getString("AutoDownloadOnRoamingDataInfo", R.string.AutoDownloadOnRoamingDataInfo));
+                                        }
+                                    } else {
+                                        textInfoPrivacyCell.setText(LocaleController.getString("AutoDownloadOnWiFiDataInfo", R.string.AutoDownloadOnWiFiDataInfo));
                                     }
                                 } else {
-                                    textInfoPrivacyCell.setText(LocaleController.getString("AutoDownloadOnWiFiDataInfo", R.string.AutoDownloadOnWiFiDataInfo));
+                                    textInfoPrivacyCell.setText(LocaleController.getString("AutoDownloadOnMobileDataInfo", R.string.AutoDownloadOnMobileDataInfo));
                                 }
-                            } else {
-                                textInfoPrivacyCell.setText(LocaleController.getString("AutoDownloadOnMobileDataInfo", R.string.AutoDownloadOnMobileDataInfo));
+                                textInfoPrivacyCell.setImportantForAccessibility(1);
+                                return;
                             }
-                            textInfoPrivacyCell.setImportantForAccessibility(1);
-                            return;
+                            textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                            textInfoPrivacyCell.setText(null);
+                            textInfoPrivacyCell.setFixedSize(12);
+                            if (Build.VERSION.SDK_INT >= 19) {
+                                textInfoPrivacyCell.setImportantForAccessibility(4);
+                                return;
+                            } else {
+                                textInfoPrivacyCell.setImportantForAccessibility(2);
+                                return;
+                            }
                         }
-                        textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                        textInfoPrivacyCell.setText(null);
-                        textInfoPrivacyCell.setFixedSize(12);
-                        if (Build.VERSION.SDK_INT >= 19) {
-                            textInfoPrivacyCell.setImportantForAccessibility(4);
-                            return;
-                        } else {
-                            textInfoPrivacyCell.setImportantForAccessibility(2);
-                            return;
-                        }
+                        return;
                     }
+                    textInfoPrivacyCell.setText(LocaleController.getString("AutoDownloadAudioInfo", R.string.AutoDownloadAudioInfo));
+                    textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
+                    textInfoPrivacyCell.setFixedSize(0);
+                    textInfoPrivacyCell.setImportantForAccessibility(1);
                     return;
                 }
-                textInfoPrivacyCell.setText(LocaleController.getString("AutoDownloadAudioInfo", R.string.AutoDownloadAudioInfo));
-                textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider, Theme.key_windowBackgroundGrayShadow));
-                textInfoPrivacyCell.setFixedSize(0);
-                textInfoPrivacyCell.setImportantForAccessibility(1);
-            } else {
                 NotificationsCheckCell notificationsCheckCell = (NotificationsCheckCell) viewHolder.itemView;
+                notificationsCheckCell.setDrawLine(true);
                 if (i != DataAutoDownloadActivity.this.photosRow) {
-                    if (i == DataAutoDownloadActivity.this.videosRow) {
-                        string = LocaleController.getString("AutoDownloadVideos", R.string.AutoDownloadVideos);
-                        i2 = 4;
+                    if (i != DataAutoDownloadActivity.this.videosRow) {
+                        if (i == DataAutoDownloadActivity.this.storiesRow) {
+                            string = LocaleController.getString("AutoDownloadStories", R.string.AutoDownloadStories);
+                            notificationsCheckCell.setDrawLine(false);
+                        } else {
+                            string = LocaleController.getString("AutoDownloadFiles", R.string.AutoDownloadFiles);
+                            i3 = 8;
+                        }
+                        str = string;
                     } else {
-                        i2 = 8;
-                        string = LocaleController.getString("AutoDownloadFiles", R.string.AutoDownloadFiles);
+                        str = LocaleController.getString("AutoDownloadVideos", R.string.AutoDownloadVideos);
+                        i3 = 4;
                     }
                 } else {
-                    string = LocaleController.getString("AutoDownloadPhotos", R.string.AutoDownloadPhotos);
-                    i2 = 1;
+                    str = LocaleController.getString("AutoDownloadPhotos", R.string.AutoDownloadPhotos);
+                    i3 = 1;
                 }
                 DownloadController.Preset currentMobilePreset = DataAutoDownloadActivity.this.currentType == 0 ? DownloadController.getInstance(((BaseFragment) DataAutoDownloadActivity.this).currentAccount).getCurrentMobilePreset() : DataAutoDownloadActivity.this.currentType == 1 ? DownloadController.getInstance(((BaseFragment) DataAutoDownloadActivity.this).currentAccount).getCurrentWiFiPreset() : DownloadController.getInstance(((BaseFragment) DataAutoDownloadActivity.this).currentAccount).getCurrentRoamingPreset();
-                long j = currentMobilePreset.sizes[DownloadController.typeToIndex(i2)];
-                StringBuilder sb2 = new StringBuilder();
-                int i3 = 0;
-                int i4 = 0;
-                while (true) {
-                    int[] iArr = currentMobilePreset.mask;
-                    if (i3 >= iArr.length) {
-                        break;
-                    }
-                    if ((iArr[i3] & i2) != 0) {
-                        if (sb2.length() != 0) {
-                            sb2.append(", ");
+                long j = currentMobilePreset.sizes[DownloadController.typeToIndex(i3)];
+                StringBuilder sb3 = new StringBuilder();
+                if (i != DataAutoDownloadActivity.this.storiesRow) {
+                    int i4 = 0;
+                    while (true) {
+                        int[] iArr = currentMobilePreset.mask;
+                        if (i4 >= iArr.length) {
+                            break;
                         }
-                        if (i3 == 0) {
-                            sb2.append(LocaleController.getString("AutoDownloadContacts", R.string.AutoDownloadContacts));
-                        } else if (i3 == 1) {
-                            sb2.append(LocaleController.getString("AutoDownloadPm", R.string.AutoDownloadPm));
-                        } else if (i3 == 2) {
-                            sb2.append(LocaleController.getString("AutoDownloadGroups", R.string.AutoDownloadGroups));
-                        } else if (i3 == 3) {
-                            sb2.append(LocaleController.getString("AutoDownloadChannels", R.string.AutoDownloadChannels));
+                        if ((iArr[i4] & i3) != 0) {
+                            if (sb3.length() != 0) {
+                                sb3.append(", ");
+                            }
+                            if (i4 == 0) {
+                                sb3.append(LocaleController.getString("AutoDownloadContacts", R.string.AutoDownloadContacts));
+                            } else if (i4 == 1) {
+                                sb3.append(LocaleController.getString("AutoDownloadPm", R.string.AutoDownloadPm));
+                            } else if (i4 == 2) {
+                                sb3.append(LocaleController.getString("AutoDownloadGroups", R.string.AutoDownloadGroups));
+                            } else if (i4 == 3) {
+                                sb3.append(LocaleController.getString("AutoDownloadChannels", R.string.AutoDownloadChannels));
+                            }
+                            i2++;
                         }
                         i4++;
                     }
-                    i3++;
-                }
-                if (i4 == 4) {
-                    sb2.setLength(0);
-                    if (i == DataAutoDownloadActivity.this.photosRow) {
-                        sb2.append(LocaleController.getString("AutoDownloadOnAllChats", R.string.AutoDownloadOnAllChats));
+                    if (i2 == 4) {
+                        sb3.setLength(0);
+                        if (i == DataAutoDownloadActivity.this.photosRow) {
+                            sb3.append(LocaleController.getString("AutoDownloadOnAllChats", R.string.AutoDownloadOnAllChats));
+                        } else {
+                            sb3.append(LocaleController.formatString("AutoDownloadUpToOnAllChats", R.string.AutoDownloadUpToOnAllChats, AndroidUtilities.formatFileSize(j)));
+                        }
+                    } else if (i2 != 0) {
+                        if (i == DataAutoDownloadActivity.this.photosRow) {
+                            sb = new StringBuilder(LocaleController.formatString("AutoDownloadOnFor", R.string.AutoDownloadOnFor, sb3.toString()));
+                        } else {
+                            sb = new StringBuilder(LocaleController.formatString("AutoDownloadOnUpToFor", R.string.AutoDownloadOnUpToFor, AndroidUtilities.formatFileSize(j), sb3.toString()));
+                        }
+                        sb2 = sb;
                     } else {
-                        sb2.append(LocaleController.formatString("AutoDownloadUpToOnAllChats", R.string.AutoDownloadUpToOnAllChats, AndroidUtilities.formatFileSize(j)));
+                        sb3.append(LocaleController.getString("AutoDownloadOff", R.string.AutoDownloadOff));
                     }
-                } else if (i4 != 0) {
-                    if (i == DataAutoDownloadActivity.this.photosRow) {
-                        sb = new StringBuilder(LocaleController.formatString("AutoDownloadOnFor", R.string.AutoDownloadOnFor, sb2.toString()));
-                    } else {
-                        sb = new StringBuilder(LocaleController.formatString("AutoDownloadOnUpToFor", R.string.AutoDownloadOnUpToFor, AndroidUtilities.formatFileSize(j), sb2.toString()));
-                    }
-                    sb2 = sb;
+                    sb2 = sb3;
+                } else if (currentMobilePreset.preloadStories) {
+                    sb2 = new StringBuilder(LocaleController.formatString("AutoDownloadOn", R.string.AutoDownloadOn, sb3.toString()));
+                    i2 = 1;
                 } else {
-                    sb2.append(LocaleController.getString("AutoDownloadOff", R.string.AutoDownloadOff));
+                    sb = new StringBuilder(LocaleController.formatString("AutoDownloadOff", R.string.AutoDownloadOff, sb3.toString()));
+                    sb2 = sb;
                 }
                 if (DataAutoDownloadActivity.this.animateChecked) {
-                    notificationsCheckCell.setChecked(i4 != 0);
+                    notificationsCheckCell.setChecked(i2 != 0);
                 }
-                notificationsCheckCell.setTextAndValueAndCheck(string, sb2, i4 != 0, 0, true, i != DataAutoDownloadActivity.this.filesRow);
+                notificationsCheckCell.setTextAndValueAndCheck(str, sb2, i2 != 0, 0, true, i != DataAutoDownloadActivity.this.storiesRow);
             }
         }
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
             int adapterPosition = viewHolder.getAdapterPosition();
-            return adapterPosition == DataAutoDownloadActivity.this.photosRow || adapterPosition == DataAutoDownloadActivity.this.videosRow || adapterPosition == DataAutoDownloadActivity.this.filesRow;
+            return adapterPosition == DataAutoDownloadActivity.this.photosRow || adapterPosition == DataAutoDownloadActivity.this.videosRow || adapterPosition == DataAutoDownloadActivity.this.filesRow || adapterPosition == DataAutoDownloadActivity.this.storiesRow;
         }
 
         public void lambda$onCreateViewHolder$0(int i) {
@@ -583,7 +616,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
             edit.putInt(DataAutoDownloadActivity.this.key2, DataAutoDownloadActivity.this.currentPresetNum);
             edit.commit();
             DownloadController.getInstance(((BaseFragment) DataAutoDownloadActivity.this).currentAccount).checkAutodownloadSettings();
-            for (int i2 = 0; i2 < 3; i2++) {
+            for (int i2 = 0; i2 < 4; i2++) {
                 RecyclerView.ViewHolder findViewHolderForAdapterPosition = DataAutoDownloadActivity.this.listView.findViewHolderForAdapterPosition(DataAutoDownloadActivity.this.photosRow + i2);
                 if (findViewHolderForAdapterPosition != null) {
                     DataAutoDownloadActivity.this.listAdapter.onBindViewHolder(findViewHolderForAdapterPosition, DataAutoDownloadActivity.this.photosRow + i2);
@@ -649,7 +682,7 @@ public class DataAutoDownloadActivity extends BaseFragment {
             if (i == DataAutoDownloadActivity.this.usageProgressRow) {
                 return 3;
             }
-            return (i == DataAutoDownloadActivity.this.photosRow || i == DataAutoDownloadActivity.this.videosRow || i == DataAutoDownloadActivity.this.filesRow) ? 4 : 5;
+            return (i == DataAutoDownloadActivity.this.photosRow || i == DataAutoDownloadActivity.this.videosRow || i == DataAutoDownloadActivity.this.filesRow || i == DataAutoDownloadActivity.this.storiesRow) ? 4 : 5;
         }
     }
 

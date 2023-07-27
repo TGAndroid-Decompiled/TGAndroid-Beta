@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">Jibu</string>
+    <string name="call_notification_answer_video_action">Video</string>
+    <string name="call_notification_decline_action">Kataa</string>
+    <string name="call_notification_hang_up_action">Kata simu</string>
+    <string name="call_notification_incoming_text">Simu uliyopigiwa</string>
+    <string name="call_notification_ongoing_text">Simu inayoendelea</string>
+    <string name="call_notification_screening_text">Inachuja simu unayopigiwa</string>
     <string name="common_google_play_services_enable_button">Washa</string>
     <string name="common_google_play_services_enable_text">%1$s haitafanya kazi isipokuwa uwashe huduma za Google Play.</string>
     <string name="common_google_play_services_enable_title">Washa huduma za Google Play</string>

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="call_notification_answer_action">മറുപടി നൽകുക</string>
+    <string name="call_notification_answer_video_action">വീഡിയോ</string>
+    <string name="call_notification_decline_action">നിരസിക്കുക</string>
+    <string name="call_notification_hang_up_action">കോൾ നിർത്തുക</string>
+    <string name="call_notification_incoming_text">ഇൻകമിംഗ് കോൾ</string>
+    <string name="call_notification_ongoing_text">സജീവമായ കോൾ</string>
+    <string name="call_notification_screening_text">ഇൻകമിംഗ് കോൾ സ്‌ക്രീൻ ചെയ്യുന്നു</string>
     <string name="common_google_play_services_enable_button">പ്രവർത്തനക്ഷമമാക്കുക</string>
     <string name="common_google_play_services_enable_text">നിങ്ങൾ Google Play സേവനങ്ങൾ പ്രവർത്തനക്ഷമമാക്കുന്നില്ലെങ്കിൽ %1$s പ്രവർത്തിക്കില്ല.</string>
     <string name="common_google_play_services_enable_title">Google Play സേവനങ്ങൾ പ്രവർത്തനക്ഷമമാക്കുക</string>

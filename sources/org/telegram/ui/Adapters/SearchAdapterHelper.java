@@ -4,6 +4,7 @@ import android.util.Pair;
 import androidx.collection.LongSparseArray;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
@@ -29,6 +30,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_groupCallParticipant;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.Adapters.DialogsSearchAdapter;
+import org.telegram.ui.Adapters.SearchAdapterHelper;
 import org.telegram.ui.Components.ShareAlert;
 public class SearchAdapterHelper {
     private boolean allResultsAreGlobal;
@@ -321,7 +323,14 @@ public class SearchAdapterHelper {
                 hashMap.put(hashtagObject.hashtag, hashtagObject);
             }
             queryFinalized.dispose();
-            Collections.sort(arrayList, SearchAdapterHelper$$ExternalSyntheticLambda5.INSTANCE);
+            Collections.sort(arrayList, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    int lambda$loadRecentHashtags$4;
+                    lambda$loadRecentHashtags$4 = SearchAdapterHelper.lambda$loadRecentHashtags$4((SearchAdapterHelper.HashtagObject) obj, (SearchAdapterHelper.HashtagObject) obj2);
+                    return lambda$loadRecentHashtags$4;
+                }
+            });
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

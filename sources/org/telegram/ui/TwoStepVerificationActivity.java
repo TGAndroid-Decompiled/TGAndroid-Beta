@@ -20,6 +20,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -387,7 +388,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     }
 
     public void lambda$resetPassword$11(DialogInterface dialogInterface) {
-        getNotificationCenter().postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
         finishFragment();
     }
 
@@ -587,7 +588,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
                 this.passwordEntered = (bArr != null && bArr.length > 0) || !this.currentPassword.has_password;
             }
             initPasswordNewAlgo(this.currentPassword);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
         }
         updateRows();
     }
@@ -794,10 +795,10 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         this.currentSecret = null;
         TLRPC$TL_account_passwordInputSettings tLRPC$TL_account_passwordInputSettings = tLRPC$TL_account_updatePasswordSettings.new_settings;
         tLRPC$TL_account_passwordInputSettings.flags = 3;
-        tLRPC$TL_account_passwordInputSettings.hint = "";
+        tLRPC$TL_account_passwordInputSettings.hint = BuildConfig.APP_CENTER_HASH;
         tLRPC$TL_account_passwordInputSettings.new_password_hash = new byte[0];
         tLRPC$TL_account_passwordInputSettings.new_algo = new TLRPC$TL_passwordKdfAlgoUnknown();
-        tLRPC$TL_account_updatePasswordSettings.new_settings.email = "";
+        tLRPC$TL_account_updatePasswordSettings.new_settings.email = BuildConfig.APP_CENTER_HASH;
         needShowProgress();
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
@@ -842,7 +843,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             this.currentPassword = tLRPC$account_Password;
             initPasswordNewAlgo(tLRPC$account_Password);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
             clearPassword();
         }
     }
@@ -871,8 +872,8 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         if (tLRPC$TL_error == null && (tLObject instanceof TLRPC$TL_boolTrue)) {
             this.currentPassword = null;
             this.currentPasswordHash = new byte[0];
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
             finishFragment();
         } else if (tLRPC$TL_error != null) {
             if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
@@ -903,7 +904,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             this.currentPassword = tLRPC$account_Password;
             initPasswordNewAlgo(tLRPC$account_Password);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
             clearPassword();
         }
     }
@@ -953,7 +954,12 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             TLRPC$TL_account_passwordInputSettings tLRPC$TL_account_passwordInputSettings2 = tLRPC$TL_account_updatePasswordSettings.new_settings;
             tLRPC$TL_account_passwordInputSettings2.new_secure_settings.secure_secret_id = 0L;
             tLRPC$TL_account_passwordInputSettings2.flags |= 4;
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_updatePasswordSettings, TwoStepVerificationActivity$$ExternalSyntheticLambda37.INSTANCE);
+            ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_account_updatePasswordSettings, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    TwoStepVerificationActivity.lambda$checkSecretValues$28(tLObject, tLRPC$TL_error);
+                }
+            });
             this.currentSecret = null;
             this.currentSecretId = 0L;
             return true;
@@ -1111,7 +1117,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
             TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             this.currentPassword = tLRPC$account_Password;
             initPasswordNewAlgo(tLRPC$account_Password);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
             processDone();
         }
     }
@@ -1125,7 +1131,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
         } catch (Exception unused) {
         }
         if (z) {
-            textView.setText("");
+            textView.setText(BuildConfig.APP_CENTER_HASH);
         }
         outlineTextContainerView.animateError(1.0f);
         AndroidUtilities.shakeViewSpring(outlineTextContainerView, 5.0f, new Runnable() {

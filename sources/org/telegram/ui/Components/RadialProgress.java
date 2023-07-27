@@ -16,6 +16,7 @@ public class RadialProgress {
     private Drawable currentMiniDrawable;
     private boolean currentMiniWithRound;
     private boolean currentWithRound;
+    private boolean disableUpdate;
     private boolean drawMiniProgress;
     private boolean hideCurrentDrawable;
     private Bitmap miniDrawBitmap;
@@ -42,6 +43,19 @@ public class RadialProgress {
     private boolean alphaForPrevious = true;
     private boolean alphaForMiniPrevious = true;
     private float overrideAlpha = 1.0f;
+    private Paint overridePaint = null;
+
+    public float getAnimatedProgress() {
+        return this.animatedProgressValue;
+    }
+
+    public void copyParams(RadialProgress radialProgress) {
+        this.currentProgress = radialProgress.currentProgress;
+        this.animatedProgressValue = radialProgress.animatedProgressValue;
+        this.radOffset = radialProgress.radOffset;
+        this.lastUpdateTime = System.currentTimeMillis();
+        invalidateParent();
+    }
 
     public RadialProgress(View view) {
         if (decelerateInterpolator == null) {
@@ -66,6 +80,9 @@ public class RadialProgress {
     }
 
     private void updateAnimation(boolean z) {
+        if (this.disableUpdate) {
+            return;
+        }
         long currentTimeMillis = System.currentTimeMillis();
         long j = currentTimeMillis - this.lastUpdateTime;
         this.lastUpdateTime = currentTimeMillis;
@@ -134,6 +151,10 @@ public class RadialProgress {
             }
             invalidateParent();
         }
+    }
+
+    public void setDiff(int i) {
+        this.diff = i;
     }
 
     public void setProgressColor(int i) {
@@ -310,21 +331,30 @@ public class RadialProgress {
             this.currentDrawable.draw(canvas);
         }
         if (this.currentWithRound || this.previousWithRound) {
-            this.progressPaint.setColor(this.progressColor);
-            if (this.previousWithRound) {
-                this.progressPaint.setAlpha((int) (this.animatedAlphaValue * 255.0f * this.overrideAlpha));
-            } else {
-                this.progressPaint.setAlpha((int) (this.overrideAlpha * 255.0f));
+            Paint paint = this.overridePaint;
+            if (paint == null) {
+                this.progressPaint.setColor(this.progressColor);
+                if (this.previousWithRound) {
+                    this.progressPaint.setAlpha((int) (this.animatedAlphaValue * 255.0f * this.overrideAlpha));
+                } else {
+                    this.progressPaint.setAlpha((int) (this.overrideAlpha * 255.0f));
+                }
+                paint = this.progressPaint;
             }
+            Paint paint2 = paint;
             RectF rectF5 = this.cicleRect;
             RectF rectF6 = this.progressRect;
             float f7 = rectF6.left;
             int i4 = this.diff;
             rectF5.set(f7 + i4, rectF6.top + i4, rectF6.right - i4, rectF6.bottom - i4);
-            canvas.drawArc(this.cicleRect, this.radOffset - 90.0f, Math.max(4.0f, this.animatedProgressValue * 360.0f), false, this.progressPaint);
+            canvas.drawArc(this.cicleRect, this.radOffset - 90.0f, Math.max(4.0f, this.animatedProgressValue * 360.0f), false, paint2);
             updateAnimation(true);
             return;
         }
         updateAnimation(false);
+    }
+
+    public void setPaint(Paint paint) {
+        this.overridePaint = paint;
     }
 }

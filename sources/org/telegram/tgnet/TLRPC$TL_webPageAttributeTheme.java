@@ -1,23 +1,9 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-public class TLRPC$TL_webPageAttributeTheme extends TLObject {
-    public static int constructor = 1421174295;
+public class TLRPC$TL_webPageAttributeTheme extends TLRPC$WebPageAttribute {
     public ArrayList<TLRPC$Document> documents = new ArrayList<>();
-    public int flags;
     public TLRPC$ThemeSettings settings;
-
-    public static TLRPC$TL_webPageAttributeTheme TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
-            if (z) {
-                throw new RuntimeException(String.format("can't parse magic %x in TL_webPageAttributeTheme", Integer.valueOf(i)));
-            }
-            return null;
-        }
-        TLRPC$TL_webPageAttributeTheme tLRPC$TL_webPageAttributeTheme = new TLRPC$TL_webPageAttributeTheme();
-        tLRPC$TL_webPageAttributeTheme.readParams(abstractSerializedData, z);
-        return tLRPC$TL_webPageAttributeTheme;
-    }
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -47,7 +33,7 @@ public class TLRPC$TL_webPageAttributeTheme extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1421174295);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(481674261);

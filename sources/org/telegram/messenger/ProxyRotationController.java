@@ -5,6 +5,7 @@ import android.os.SystemClock;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
@@ -65,7 +66,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
             proxyInfo.ping = j;
             proxyInfo.available = true;
         }
-        NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.proxyCheckDone, proxyInfo);
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyCheckDone, proxyInfo);
     }
 
     public static void init() {
@@ -76,7 +77,14 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
         this.isCurrentlyChecking = false;
         if (SharedConfig.proxyRotationEnabled) {
             ArrayList<SharedConfig.ProxyInfo> arrayList = new ArrayList(SharedConfig.proxyList);
-            Collections.sort(arrayList, ProxyRotationController$$ExternalSyntheticLambda2.INSTANCE);
+            Collections.sort(arrayList, new Comparator() {
+                @Override
+                public final int compare(Object obj, Object obj2) {
+                    int lambda$switchToAvailable$3;
+                    lambda$switchToAvailable$3 = ProxyRotationController.lambda$switchToAvailable$3((SharedConfig.ProxyInfo) obj, (SharedConfig.ProxyInfo) obj2);
+                    return lambda$switchToAvailable$3;
+                }
+            });
             for (SharedConfig.ProxyInfo proxyInfo : arrayList) {
                 if (proxyInfo != SharedConfig.currentProxy && !proxyInfo.checking && proxyInfo.available) {
                     SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
@@ -91,8 +99,8 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
                     }
                     edit.apply();
                     SharedConfig.currentProxy = proxyInfo;
-                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.proxySettingsChanged, new Object[0]);
-                    NotificationCenter.getGlobalInstance().postNotificationName(NotificationCenter.proxyChangedByRotation, new Object[0]);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
+                    NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxyChangedByRotation, new Object[0]);
                     SharedConfig.ProxyInfo proxyInfo2 = SharedConfig.currentProxy;
                     ConnectionsManager.setProxySettings(true, proxyInfo2.address, proxyInfo2.port, proxyInfo2.username, proxyInfo2.password, proxyInfo2.secret);
                     return;

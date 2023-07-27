@@ -9,7 +9,12 @@ public class AppStartReceiver extends BroadcastReceiver {
         if (intent == null || !"android.intent.action.BOOT_COMPLETED".equals(intent.getAction())) {
             return;
         }
-        AndroidUtilities.runOnUIThread(AppStartReceiver$$ExternalSyntheticLambda0.INSTANCE);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                AppStartReceiver.lambda$onReceive$0();
+            }
+        });
     }
 
     public static void lambda$onReceive$0() {

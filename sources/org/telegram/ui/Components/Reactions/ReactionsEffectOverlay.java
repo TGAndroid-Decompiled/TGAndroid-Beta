@@ -35,19 +35,21 @@ public class ReactionsEffectOverlay {
     private final AnimationView effectImageView;
     private final AnimationView emojiImageView;
     private final AnimationView emojiStaticImageView;
-    private boolean finished;
     private final long groupId;
     private ReactionsContainerLayout.ReactionHolderView holderView;
+    boolean isFinished;
+    public boolean isStories;
     private float lastDrawnToX;
     private float lastDrawnToY;
     private final int messageId;
+    private ReactionsEffectOverlay nextReactionOverlay;
     private final ReactionsLayoutInBubble.VisibleReaction reaction;
-    long startTime;
-    private boolean started;
+    public long startTime;
+    public boolean started;
     private boolean useWindow;
     private boolean wasScrolled;
     private WindowManager windowManager;
-    FrameLayout windowView;
+    public FrameLayout windowView;
     int[] loc = new int[2];
     ArrayList<AvatarParticle> avatars = new ArrayList<>();
 
@@ -57,8 +59,8 @@ public class ReactionsEffectOverlay {
         return f2;
     }
 
-    private ReactionsEffectOverlay(android.content.Context r35, org.telegram.ui.ActionBar.BaseFragment r36, org.telegram.ui.Components.ReactionsContainerLayout r37, org.telegram.ui.Cells.ChatMessageCell r38, android.view.View r39, float r40, float r41, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r42, int r43, int r44) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsEffectOverlay.<init>(android.content.Context, org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.ReactionsContainerLayout, org.telegram.ui.Cells.ChatMessageCell, android.view.View, float, float, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, int, int):void");
+    public ReactionsEffectOverlay(android.content.Context r36, org.telegram.ui.ActionBar.BaseFragment r37, org.telegram.ui.Components.ReactionsContainerLayout r38, org.telegram.ui.Cells.ChatMessageCell r39, android.view.View r40, float r41, float r42, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r43, int r44, int r45, boolean r46) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsEffectOverlay.<init>(android.content.Context, org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.ReactionsContainerLayout, org.telegram.ui.Cells.ChatMessageCell, android.view.View, float, float, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, int, int, boolean):void");
     }
 
     public class AnonymousClass1 extends FrameLayout {
@@ -71,16 +73,18 @@ public class ReactionsEffectOverlay {
         final float val$fromScale;
         final float val$fromX;
         final float val$fromY;
+        final boolean val$isStories;
         final ReactionsLayoutInBubble.VisibleReaction val$visibleReaction;
 
-        AnonymousClass1(Context context, BaseFragment baseFragment, ChatMessageCell chatMessageCell, ChatActivity chatActivity, int i, int i2, boolean z, float f, float f2, float f3, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        AnonymousClass1(Context context, BaseFragment baseFragment, ChatMessageCell chatMessageCell, boolean z, ChatActivity chatActivity, int i, int i2, boolean z2, float f, float f2, float f3, ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
             super(context);
             this.val$fragment = baseFragment;
             this.val$cell = chatMessageCell;
+            this.val$isStories = z;
             this.val$chatActivity = chatActivity;
             this.val$emojiSize = i;
             this.val$animationType = i2;
-            this.val$fromHolder = z;
+            this.val$fromHolder = z2;
             this.val$fromScale = f;
             this.val$fromX = f2;
             this.val$fromY = f3;
@@ -126,13 +130,13 @@ public class ReactionsEffectOverlay {
             if (this.useWindow) {
                 this.windowManager.removeView(this.windowView);
             } else {
-                this.decorView.removeView(this.windowView);
+                AndroidUtilities.removeFromParent(this.windowView);
             }
         } catch (Exception unused) {
         }
     }
 
-    public static void show(org.telegram.ui.ActionBar.BaseFragment r16, org.telegram.ui.Components.ReactionsContainerLayout r17, org.telegram.ui.Cells.ChatMessageCell r18, android.view.View r19, float r20, float r21, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r22, int r23, int r24) {
+    public static void show(org.telegram.ui.ActionBar.BaseFragment r17, org.telegram.ui.Components.ReactionsContainerLayout r18, org.telegram.ui.Cells.ChatMessageCell r19, android.view.View r20, float r21, float r22, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble.VisibleReaction r23, int r24, int r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Reactions.ReactionsEffectOverlay.show(org.telegram.ui.ActionBar.BaseFragment, org.telegram.ui.Components.ReactionsContainerLayout, org.telegram.ui.Cells.ChatMessageCell, android.view.View, float, float, org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble$VisibleReaction, int, int):void");
     }
 
@@ -231,7 +235,7 @@ public class ReactionsEffectOverlay {
                 this.wasPlaying = true;
             }
             if (!this.wasPlaying && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().isRunning()) {
-                if (ReactionsEffectOverlay.this.animationType == 2) {
+                if (ReactionsEffectOverlay.this.animationType == 2 && !ReactionsEffectOverlay.this.isStories) {
                     getImageReceiver().getLottieAnimation().setCurrentFrame(getImageReceiver().getLottieAnimation().getFramesCount() - 1, false);
                 } else {
                     getImageReceiver().getLottieAnimation().setCurrentFrame(0, false);

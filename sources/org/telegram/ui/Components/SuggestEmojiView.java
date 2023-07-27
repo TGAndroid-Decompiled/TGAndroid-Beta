@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -178,11 +179,11 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 return;
             }
             SuggestEmojiView.this.enterView.getParentFragment().sendAnimatedEmoji(tLRPC$Document, true, 0);
-            SuggestEmojiView.this.enterView.setFieldText("");
+            SuggestEmojiView.this.enterView.setFieldText(BuildConfig.APP_CENTER_HASH);
         }
 
         @Override
-        public boolean needCopy() {
+        public boolean needCopy(TLRPC$Document tLRPC$Document) {
             return UserConfig.getInstance(UserConfig.selectedAccount).isPremium();
         }
 
@@ -671,7 +672,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
     public void lambda$searchAnimated$6(final String str, final int i) {
         final ArrayList<MediaDataController.KeywordResult> arrayList = new ArrayList<>(1);
         arrayList.add(new MediaDataController.KeywordResult(str, null));
-        MediaDataController.getInstance(this.currentAccount).fillWithAnimatedEmoji(arrayList, 15, false, new Runnable() {
+        MediaDataController.getInstance(this.currentAccount).fillWithAnimatedEmoji(arrayList, 15, false, false, new Runnable() {
             @Override
             public final void run() {
                 SuggestEmojiView.this.lambda$searchAnimated$5(i, str, arrayList);

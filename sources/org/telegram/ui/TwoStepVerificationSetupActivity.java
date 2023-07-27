@@ -43,6 +43,7 @@ import android.widget.Toast;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -898,7 +899,14 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                         TwoStepVerificationSetupActivity.this.buttonTextView.layout(measuredWidth3, measuredHeight4, TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredWidth() + measuredWidth3, TwoStepVerificationSetupActivity.this.buttonTextView.getMeasuredHeight() + measuredHeight4);
                     }
                 };
-                viewGroup2.setOnTouchListener(TwoStepVerificationSetupActivity$$ExternalSyntheticLambda16.INSTANCE);
+                viewGroup2.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public final boolean onTouch(View view2, MotionEvent motionEvent) {
+                        boolean lambda$createView$10;
+                        lambda$createView$10 = TwoStepVerificationSetupActivity.lambda$createView$10(view2, motionEvent);
+                        return lambda$createView$10;
+                    }
+                });
                 viewGroup2.addView(this.actionBar);
                 viewGroup2.addView(this.imageView);
                 viewGroup2.addView(this.titleTextView);
@@ -909,6 +917,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         }
         this.fragmentView.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         int i7 = this.currentType;
+        String str = BuildConfig.APP_CENTER_HASH;
         switch (i7) {
             case 0:
             case 1:
@@ -938,25 +947,25 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 RLottieDrawable[] rLottieDrawableArr = new RLottieDrawable[7];
                 this.animationDrawables = rLottieDrawableArr;
                 int i9 = R.raw.tsv_setup_monkey_idle1;
-                rLottieDrawableArr[0] = new RLottieDrawable(i9, "" + i9, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr[0] = new RLottieDrawable(i9, BuildConfig.APP_CENTER_HASH + i9, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr2 = this.animationDrawables;
                 int i10 = R.raw.tsv_setup_monkey_idle2;
-                rLottieDrawableArr2[1] = new RLottieDrawable(i10, "" + i10, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr2[1] = new RLottieDrawable(i10, BuildConfig.APP_CENTER_HASH + i10, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr3 = this.animationDrawables;
                 int i11 = R.raw.tsv_monkey_close;
-                rLottieDrawableArr3[2] = new RLottieDrawable(i11, "" + i11, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr3[2] = new RLottieDrawable(i11, BuildConfig.APP_CENTER_HASH + i11, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr4 = this.animationDrawables;
                 int i12 = R.raw.tsv_setup_monkey_peek;
-                rLottieDrawableArr4[3] = new RLottieDrawable(i12, "" + i12, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr4[3] = new RLottieDrawable(i12, BuildConfig.APP_CENTER_HASH + i12, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr5 = this.animationDrawables;
                 int i13 = R.raw.tsv_setup_monkey_close_and_peek_to_idle;
-                rLottieDrawableArr5[4] = new RLottieDrawable(i13, "" + i13, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr5[4] = new RLottieDrawable(i13, BuildConfig.APP_CENTER_HASH + i13, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr6 = this.animationDrawables;
                 int i14 = R.raw.tsv_setup_monkey_close_and_peek;
-                rLottieDrawableArr6[5] = new RLottieDrawable(i14, "" + i14, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr6[5] = new RLottieDrawable(i14, BuildConfig.APP_CENTER_HASH + i14, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 RLottieDrawable[] rLottieDrawableArr7 = this.animationDrawables;
                 int i15 = R.raw.tsv_setup_monkey_tracking;
-                rLottieDrawableArr7[6] = new RLottieDrawable(i15, "" + i15, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
+                rLottieDrawableArr7[6] = new RLottieDrawable(i15, BuildConfig.APP_CENTER_HASH + i15, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), true, null);
                 this.animationDrawables[6].setPlayInDirectionOfCustomEndFrame(true);
                 this.animationDrawables[6].setCustomEndFrame(19);
                 this.animationDrawables[2].setOnFinishCallback(this.finishCallback, 97);
@@ -1010,11 +1019,13 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 this.titleTextView.setText(LocaleController.getString("PasswordRecovery", i20));
                 this.keyboardView.setVisibility(0);
                 this.outlineTextFirstRow.setVisibility(8);
-                String str = this.currentPassword.email_unconfirmed_pattern;
-                String str2 = str != null ? str : "";
-                SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str2);
-                int indexOf = str2.indexOf(42);
-                int lastIndexOf = str2.lastIndexOf(42);
+                String str2 = this.currentPassword.email_unconfirmed_pattern;
+                if (str2 != null) {
+                    str = str2;
+                }
+                SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(str);
+                int indexOf = str.indexOf(42);
+                int lastIndexOf = str.lastIndexOf(42);
                 if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                     TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
                     textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
@@ -1042,7 +1053,10 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 int i23 = R.string.EmailPasswordConfirmText2;
                 Object[] objArr = new Object[1];
                 String str3 = this.currentPassword.email_unconfirmed_pattern;
-                objArr[0] = str3 != null ? str3 : "";
+                if (str3 != null) {
+                    str = str3;
+                }
+                objArr[0] = str;
                 textView6.setText(LocaleController.formatString("EmailPasswordConfirmText2", i23, objArr));
                 this.descriptionText.setVisibility(0);
                 this.floatingButtonContainer.setVisibility(8);
@@ -1308,12 +1322,12 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         for (int i2 = 0; i2 < size; i2++) {
             this.fragmentsToClose.get(i2).removeSelfFromStack();
         }
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.twoStepPasswordChanged, new Object[0]);
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.twoStepPasswordChanged, new Object[0]);
         finishFragment();
     }
 
     public void lambda$createView$6(DialogInterface dialogInterface, int i) {
-        this.email = "";
+        this.email = BuildConfig.APP_CENTER_HASH;
         setNewPassword(false);
     }
 
@@ -1420,7 +1434,12 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
     }
 
     public void lambda$createView$20(View view) {
-        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC$TL_account_resendPasswordEmail(), TwoStepVerificationSetupActivity$$ExternalSyntheticLambda51.INSTANCE);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLRPC$TL_account_resendPasswordEmail(), new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                TwoStepVerificationSetupActivity.lambda$createView$19(tLObject, tLRPC$TL_error);
+            }
+        });
         showDialog(new AlertDialog.Builder(getParentActivity()).setMessage(LocaleController.getString("ResendCodeInfo", R.string.ResendCodeInfo)).setTitle(LocaleController.getString("TwoStepVerificationTitle", R.string.TwoStepVerificationTitle)).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).create());
     }
 
@@ -1765,7 +1784,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             TLRPC$account_Password tLRPC$account_Password = (TLRPC$account_Password) tLObject;
             this.currentPassword = tLRPC$account_Password;
             TwoStepVerificationActivity.initPasswordNewAlgo(tLRPC$account_Password);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
             processNext();
         }
     }
@@ -1880,7 +1899,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
         tLRPC$account_Password.has_password = true;
         tLRPC$account_Password.has_recovery = true;
-        tLRPC$account_Password.email_unconfirmed_pattern = "";
+        tLRPC$account_Password.email_unconfirmed_pattern = BuildConfig.APP_CENTER_HASH;
         TwoStepVerificationSetupActivity twoStepVerificationSetupActivity = new TwoStepVerificationSetupActivity(7, tLRPC$account_Password);
         twoStepVerificationSetupActivity.fromRegistration = this.fromRegistration;
         twoStepVerificationSetupActivity.setCurrentPasswordParams(this.currentPasswordHash, this.currentSecretId, this.currentSecret, this.emailOnly);
@@ -1891,8 +1910,8 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
         int i2 = NotificationCenter.twoStepPasswordChanged;
         TLRPC$account_Password tLRPC$account_Password2 = this.currentPassword;
-        notificationCenter.postNotificationName(i2, this.currentPasswordHash, tLRPC$account_Password2.new_algo, tLRPC$account_Password2.new_secure_algo, tLRPC$account_Password2.secure_random, this.email, this.hint, null, this.firstPassword);
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, this.currentPasswordHash, tLRPC$account_Password2.new_algo, tLRPC$account_Password2.new_secure_algo, tLRPC$account_Password2.secure_random, this.email, this.hint, null, this.firstPassword);
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
     }
 
     public void lambda$processNext$32(DialogInterface dialogInterface, int i) {
@@ -1903,23 +1922,23 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         NotificationCenter notificationCenter = NotificationCenter.getInstance(this.currentAccount);
         int i3 = NotificationCenter.twoStepPasswordChanged;
         TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
-        notificationCenter.postNotificationName(i3, this.currentPasswordHash, tLRPC$account_Password.new_algo, tLRPC$account_Password.new_secure_algo, tLRPC$account_Password.secure_random, this.email, this.hint, null, this.firstPassword);
+        notificationCenter.lambda$postNotificationNameOnUIThread$1(i3, this.currentPasswordHash, tLRPC$account_Password.new_algo, tLRPC$account_Password.new_secure_algo, tLRPC$account_Password.secure_random, this.email, this.hint, null, this.firstPassword);
         TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
         TLRPC$account_Password tLRPC$account_Password2 = this.currentPassword;
         tLRPC$account_Password2.has_password = true;
         tLRPC$account_Password2.has_recovery = true;
-        tLRPC$account_Password2.email_unconfirmed_pattern = "";
+        tLRPC$account_Password2.email_unconfirmed_pattern = BuildConfig.APP_CENTER_HASH;
         twoStepVerificationActivity.setCurrentPasswordParams(tLRPC$account_Password2, this.currentPasswordHash, this.currentSecretId, this.currentSecret);
         twoStepVerificationActivity.setBlockingAlert(this.otherwiseReloginDays);
         presentFragment(twoStepVerificationActivity, true);
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
     }
 
     private void onCodeFieldError(boolean z) {
         CodeNumberField[] codeNumberFieldArr;
         for (CodeNumberField codeNumberField : this.codeFieldContainer.codeField) {
             if (z) {
-                codeNumberField.setText("");
+                codeNumberField.setText(BuildConfig.APP_CENTER_HASH);
             }
             codeNumberField.animateErrorProgress(1.0f);
         }
@@ -1970,7 +1989,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             presentFragment(twoStepVerificationSetupActivity);
             return;
         }
-        this.email = "";
+        this.email = BuildConfig.APP_CENTER_HASH;
         setNewPassword(false);
     }
 
@@ -2109,10 +2128,10 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     String str = tLRPC$account_Password2.has_recovery ? "1" : null;
                     String str2 = tLRPC$account_Password2.hint;
                     if (str2 == null) {
-                        str2 = "";
+                        str2 = BuildConfig.APP_CENTER_HASH;
                     }
                     if (!this.waitingForEmail && tLRPC$PasswordKdfAlgo != null) {
-                        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.twoStepPasswordChanged, null, tLRPC$PasswordKdfAlgo, tLRPC$SecurePasswordKdfAlgo, bArr, str, str2, null, null);
+                        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.twoStepPasswordChanged, null, tLRPC$PasswordKdfAlgo, tLRPC$SecurePasswordKdfAlgo, bArr, str, str2, null, null);
                         finishFragment();
                     }
                 }
@@ -2121,7 +2140,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 needHideProgress();
                 processNext();
             }
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
         }
     }
 
@@ -2202,20 +2221,20 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             this.currentSecret = null;
             if (this.waitingForEmail) {
                 tLRPC$TL_account_passwordInputSettings.flags = 2;
-                tLRPC$TL_account_passwordInputSettings.email = "";
+                tLRPC$TL_account_passwordInputSettings.email = BuildConfig.APP_CENTER_HASH;
             } else {
                 tLRPC$TL_account_passwordInputSettings.flags = 3;
-                tLRPC$TL_account_passwordInputSettings.hint = "";
+                tLRPC$TL_account_passwordInputSettings.hint = BuildConfig.APP_CENTER_HASH;
                 tLRPC$TL_account_passwordInputSettings.new_password_hash = new byte[0];
                 tLRPC$TL_account_passwordInputSettings.new_algo = new TLRPC$TL_passwordKdfAlgoUnknown();
-                tLRPC$TL_account_passwordInputSettings.email = "";
+                tLRPC$TL_account_passwordInputSettings.email = BuildConfig.APP_CENTER_HASH;
             }
         } else {
             if (this.hint == null && (tLRPC$account_Password = this.currentPassword) != null) {
                 this.hint = tLRPC$account_Password.hint;
             }
             if (this.hint == null) {
-                this.hint = "";
+                this.hint = BuildConfig.APP_CENTER_HASH;
             }
             if (str != null) {
                 tLRPC$TL_account_passwordInputSettings.flags |= 1;
@@ -2267,11 +2286,11 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             TwoStepVerificationActivity twoStepVerificationActivity = new TwoStepVerificationActivity();
             TLRPC$account_Password tLRPC$account_Password = this.currentPassword;
             tLRPC$account_Password.has_recovery = false;
-            tLRPC$account_Password.email_unconfirmed_pattern = "";
+            tLRPC$account_Password.email_unconfirmed_pattern = BuildConfig.APP_CENTER_HASH;
             twoStepVerificationActivity.setCurrentPasswordParams(tLRPC$account_Password, this.currentPasswordHash, this.currentSecretId, this.currentSecret);
             twoStepVerificationActivity.setBlockingAlert(this.otherwiseReloginDays);
             presentFragment(twoStepVerificationActivity, true);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
         }
     }
 
@@ -2373,7 +2392,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         if (tLRPC$TL_error != null || (!(tLObject instanceof TLRPC$TL_boolTrue) && !(tLObject instanceof TLRPC$auth_Authorization))) {
             if (tLRPC$TL_error != null) {
                 if ("EMAIL_UNCONFIRMED".equals(tLRPC$TL_error.text) || tLRPC$TL_error.text.startsWith("EMAIL_UNCONFIRMED_")) {
-                    NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.twoStepPasswordChanged, new Object[0]);
+                    NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.twoStepPasswordChanged, new Object[0]);
                     int size = this.fragmentsToClose.size();
                     for (int i = 0; i < size; i++) {
                         this.fragmentsToClose.get(i).removeSelfFromStack();
@@ -2382,7 +2401,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                     int i2 = NotificationCenter.twoStepPasswordChanged;
                     TLRPC$account_Password tLRPC$account_Password2 = this.currentPassword;
                     String str2 = this.email;
-                    notificationCenter.postNotificationName(i2, bArr, tLRPC$TL_account_passwordInputSettings.new_algo, tLRPC$account_Password2.new_secure_algo, tLRPC$account_Password2.secure_random, str2, this.hint, str2, this.firstPassword);
+                    notificationCenter.lambda$postNotificationNameOnUIThread$1(i2, bArr, tLRPC$TL_account_passwordInputSettings.new_algo, tLRPC$account_Password2.new_secure_algo, tLRPC$account_Password2.secure_random, str2, this.hint, str2, this.firstPassword);
                     TLRPC$account_Password tLRPC$account_Password3 = this.currentPassword;
                     tLRPC$account_Password3.email_unconfirmed_pattern = this.email;
                     TwoStepVerificationSetupActivity twoStepVerificationSetupActivity = new TwoStepVerificationSetupActivity(5, tLRPC$account_Password3);
@@ -2417,8 +2436,8 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             for (int i3 = 0; i3 < size2; i3++) {
                 this.fragmentsToClose.get(i3).removeSelfFromStack();
             }
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didRemoveTwoStepPassword, new Object[0]);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, new Object[0]);
             finishFragment();
         } else if (getParentActivity() != null) {
             if (this.currentPassword.has_password) {
@@ -2453,7 +2472,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 tLRPC$account_Password4.has_recovery = !TextUtils.isEmpty(tLRPC$account_Password4.email_unconfirmed_pattern);
             }
             if (this.closeAfterSet) {
-                NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.twoStepPasswordChanged, new Object[0]);
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.twoStepPasswordChanged, new Object[0]);
             }
             TwoStepVerificationSetupActivity twoStepVerificationSetupActivity2 = new TwoStepVerificationSetupActivity(7, this.currentPassword);
             twoStepVerificationSetupActivity2.fromRegistration = this.fromRegistration;
@@ -2461,7 +2480,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             twoStepVerificationSetupActivity2.closeAfterSet = this.closeAfterSet;
             twoStepVerificationSetupActivity2.setBlockingAlert(this.otherwiseReloginDays);
             presentFragment(twoStepVerificationSetupActivity2, true);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
         }
     }
 
@@ -2480,7 +2499,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
             this.currentPassword = tLRPC$account_Password;
             TwoStepVerificationActivity.initPasswordNewAlgo(tLRPC$account_Password);
             setNewPassword(z);
-            NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
         }
     }
 
@@ -2502,7 +2521,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         twoStepVerificationActivity.setCurrentPasswordParams(tLRPC$account_Password2, bArr, this.currentSecretId, this.currentSecret);
         twoStepVerificationActivity.setBlockingAlert(this.otherwiseReloginDays);
         presentFragment(twoStepVerificationActivity, true);
-        NotificationCenter.getInstance(this.currentAccount).postNotificationName(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetOrRemoveTwoStepPassword, this.currentPassword);
     }
 
     protected TLRPC$TL_inputCheckPasswordSRP getNewSrpPassword() {
@@ -2523,7 +2542,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         } catch (Exception unused) {
         }
         if (z) {
-            textView.setText("");
+            textView.setText(BuildConfig.APP_CENTER_HASH);
         }
         AndroidUtilities.shakeViewSpring(view, 5.0f);
     }
