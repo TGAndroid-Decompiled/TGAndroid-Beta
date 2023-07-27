@@ -13,7 +13,6 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import org.telegram.messenger.BuildConfig;
 public class HevcDecoderConfigurationRecord {
     int avgFrameRate;
     int bitDepthChromaMinus8;
@@ -197,12 +196,11 @@ public class HevcDecoderConfigurationRecord {
         sb.append(this.general_constraint_indicator_flags);
         sb.append(", general_level_idc=");
         sb.append(this.general_level_idc);
-        int i = this.reserved1;
-        String str5 = BuildConfig.APP_CENTER_HASH;
-        if (i != 15) {
+        String str5 = "";
+        if (this.reserved1 != 15) {
             str = ", reserved1=" + this.reserved1;
         } else {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
         sb.append(str);
         sb.append(", min_spatial_segmentation_idc=");
@@ -210,7 +208,7 @@ public class HevcDecoderConfigurationRecord {
         if (this.reserved2 != 63) {
             str2 = ", reserved2=" + this.reserved2;
         } else {
-            str2 = BuildConfig.APP_CENTER_HASH;
+            str2 = "";
         }
         sb.append(str2);
         sb.append(", parallelismType=");
@@ -218,7 +216,7 @@ public class HevcDecoderConfigurationRecord {
         if (this.reserved3 != 63) {
             str3 = ", reserved3=" + this.reserved3;
         } else {
-            str3 = BuildConfig.APP_CENTER_HASH;
+            str3 = "";
         }
         sb.append(str3);
         sb.append(", chromaFormat=");
@@ -226,7 +224,7 @@ public class HevcDecoderConfigurationRecord {
         if (this.reserved4 != 31) {
             str4 = ", reserved4=" + this.reserved4;
         } else {
-            str4 = BuildConfig.APP_CENTER_HASH;
+            str4 = "";
         }
         sb.append(str4);
         sb.append(", bitDepthLumaMinus8=");

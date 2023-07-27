@@ -889,7 +889,7 @@ public class MessagesStorage extends BaseController {
                 if (key.startsWith(NotificationsSettingsFacade.PROPERTY_NOTIFY)) {
                     Integer num = (Integer) entry.getValue();
                     if (num.intValue() == 2 || num.intValue() == 3) {
-                        String replace = key.replace(NotificationsSettingsFacade.PROPERTY_NOTIFY, BuildConfig.APP_CENTER_HASH);
+                        String replace = key.replace(NotificationsSettingsFacade.PROPERTY_NOTIFY, "");
                         long j = 1;
                         if (num.intValue() != 2) {
                             Integer num2 = (Integer) all.get(NotificationsSettingsFacade.PROPERTY_NOTIFY_UNTIL + replace);
@@ -1461,7 +1461,7 @@ public class MessagesStorage extends BaseController {
                 executeFast.bindInteger(2, intValue);
                 executeFast.bindLong(3, longValue);
                 if (storyNotification.localName == null) {
-                    storyNotification.localName = BuildConfig.APP_CENTER_HASH;
+                    storyNotification.localName = "";
                 }
                 executeFast.bindString(4, storyNotification.localName);
                 if (!storyNotification.hidden) {
@@ -5164,8 +5164,8 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public java.lang.Runnable getMessagesInternal(long r53, long r55, int r57, int r58, int r59, int r60, int r61, int r62, boolean r63, int r64, int r65, boolean r66, boolean r67) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.getMessagesInternal(long, long, int, int, int, int, int, int, boolean, int, int, boolean, boolean):java.lang.Runnable");
+    public java.lang.Runnable getMessagesInternal(long r54, long r56, int r58, int r59, int r60, int r61, int r62, int r63, boolean r64, int r65, int r66, boolean r67, boolean r68, org.telegram.messenger.MessageLoaderLogger r69) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.getMessagesInternal(long, long, int, int, int, int, int, int, boolean, int, int, boolean, boolean, org.telegram.messenger.MessageLoaderLogger):java.lang.Runnable");
     }
 
     public static int lambda$getMessagesInternal$141(TLRPC$Message tLRPC$Message, TLRPC$Message tLRPC$Message2) {
@@ -5192,8 +5192,8 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$getMessagesInternal$142(TLRPC$TL_messages_messages tLRPC$TL_messages_messages, int i, long j, long j2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, boolean z, boolean z2, int i11, int i12, boolean z3, int i13, boolean z4, boolean z5) {
-        getMessagesController().processLoadedMessages(tLRPC$TL_messages_messages, i, j, j2, i2, i3, i4, true, i5, i6, i7, i8, i9, i10, z, z2 ? 1 : 0, i11, i12, z3, i13, z4, z5);
+    public void lambda$getMessagesInternal$142(TLRPC$TL_messages_messages tLRPC$TL_messages_messages, int i, long j, long j2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, boolean z, boolean z2, int i11, int i12, boolean z3, int i13, boolean z4, boolean z5, MessageLoaderLogger messageLoaderLogger) {
+        getMessagesController().processLoadedMessages(tLRPC$TL_messages_messages, i, j, j2, i2, i3, i4, true, i5, i6, i7, i8, i9, i10, z, z2 ? 1 : 0, i11, i12, z3, i13, z4, z5, messageLoaderLogger);
     }
 
     private void getAnimatedEmoji(String str, ArrayList<TLRPC$Document> arrayList) {
@@ -5230,23 +5230,36 @@ public class MessagesStorage extends BaseController {
         sQLiteCursor.dispose();
     }
 
-    public void getMessages(final long j, final long j2, boolean z, final int i, final int i2, final int i3, final int i4, final int i5, final int i6, final boolean z2, final int i7, final int i8, final boolean z3, final boolean z4) {
+    public void getMessages(final long j, final long j2, boolean z, final int i, final int i2, final int i3, final int i4, final int i5, final int i6, final boolean z2, final int i7, final int i8, final boolean z3, final boolean z4, final MessageLoaderLogger messageLoaderLogger) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getMessages$144(j, j2, i, i2, i3, i4, i5, i6, z2, i7, i8, z3, z4);
+                MessagesStorage.this.lambda$getMessages$144(messageLoaderLogger, j, j2, i, i2, i3, i4, i5, i6, z2, i7, i8, z3, z4);
             }
         });
     }
 
-    public void lambda$getMessages$144(long j, long j2, int i, int i2, int i3, int i4, int i5, int i6, boolean z, int i7, int i8, boolean z2, boolean z3) {
-        final Runnable messagesInternal = getMessagesInternal(j, j2, i, i2, i3, i4, i5, i6, z, i7, i8, z2, z3);
+    public void lambda$getMessages$144(final MessageLoaderLogger messageLoaderLogger, long j, long j2, int i, int i2, int i3, int i4, int i5, int i6, boolean z, int i7, int i8, boolean z2, boolean z3) {
+        if (messageLoaderLogger != null) {
+            messageLoaderLogger.logStorageQueuePost();
+        }
+        final Runnable messagesInternal = getMessagesInternal(j, j2, i, i2, i3, i4, i5, i6, z, i7, i8, z2, z3, messageLoaderLogger);
+        if (messageLoaderLogger != null) {
+            messageLoaderLogger.logStorageProccessing();
+        }
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                messagesInternal.run();
+                MessagesStorage.lambda$getMessages$143(MessageLoaderLogger.this, messagesInternal);
             }
         });
+    }
+
+    public static void lambda$getMessages$143(MessageLoaderLogger messageLoaderLogger, Runnable runnable) {
+        if (messageLoaderLogger != null) {
+            messageLoaderLogger.logStageQueuePost();
+        }
+        runnable.run();
     }
 
     public void clearSentMedia() {
@@ -5957,7 +5970,7 @@ public class MessagesStorage extends BaseController {
             try {
                 ArrayList<Long> arrayList2 = new ArrayList<>();
                 ArrayList<TLRPC$EncryptedChat> arrayList3 = new ArrayList<>();
-                getEncryptedChatsInternal(BuildConfig.APP_CENTER_HASH + j, arrayList3, arrayList2);
+                getEncryptedChatsInternal("" + j, arrayList3, arrayList2);
                 if (!arrayList3.isEmpty() && !arrayList2.isEmpty()) {
                     ArrayList<TLRPC$User> arrayList4 = new ArrayList<>();
                     getUsersInternal(TextUtils.join(",", arrayList2), arrayList4);
@@ -6240,7 +6253,7 @@ public class MessagesStorage extends BaseController {
             if (str2 != null) {
                 executeFast.bindString(2, str2.toLowerCase());
             } else {
-                executeFast.bindString(2, BuildConfig.APP_CENTER_HASH);
+                executeFast.bindString(2, "");
             }
             executeFast.bindByteBuffer(3, nativeByteBuffer);
             executeFast.step();
@@ -6587,17 +6600,17 @@ public class MessagesStorage extends BaseController {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceivedWebpages, arrayList);
     }
 
-    public void overwriteChannel(final long j, final TLRPC$TL_updates_channelDifferenceTooLong tLRPC$TL_updates_channelDifferenceTooLong, final int i) {
+    public void overwriteChannel(final long j, final TLRPC$TL_updates_channelDifferenceTooLong tLRPC$TL_updates_channelDifferenceTooLong, final int i, final Runnable runnable) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$overwriteChannel$170(j, i, tLRPC$TL_updates_channelDifferenceTooLong);
+                MessagesStorage.this.lambda$overwriteChannel$170(j, i, tLRPC$TL_updates_channelDifferenceTooLong, runnable);
             }
         });
     }
 
-    public void lambda$overwriteChannel$170(long r20, int r22, final org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$overwriteChannel$170(long, int, org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong):void");
+    public void lambda$overwriteChannel$170(long r20, int r22, final org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong r23, java.lang.Runnable r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$overwriteChannel$170(long, int, org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong, java.lang.Runnable):void");
     }
 
     public void lambda$overwriteChannel$169(long j, TLRPC$TL_updates_channelDifferenceTooLong tLRPC$TL_updates_channelDifferenceTooLong) {
@@ -8289,7 +8302,7 @@ public class MessagesStorage extends BaseController {
     public TLRPC$User getUser(long j) {
         try {
             ArrayList<TLRPC$User> arrayList = new ArrayList<>();
-            getUsersInternal(BuildConfig.APP_CENTER_HASH + j, arrayList);
+            getUsersInternal("" + j, arrayList);
             if (arrayList.isEmpty()) {
                 return null;
             }
@@ -8314,7 +8327,7 @@ public class MessagesStorage extends BaseController {
     public TLRPC$Chat getChat(long j) {
         try {
             ArrayList<TLRPC$Chat> arrayList = new ArrayList<>();
-            getChatsInternal(BuildConfig.APP_CENTER_HASH + j, arrayList);
+            getChatsInternal("" + j, arrayList);
             if (arrayList.isEmpty()) {
                 return null;
             }
@@ -8328,7 +8341,7 @@ public class MessagesStorage extends BaseController {
     public TLRPC$EncryptedChat getEncryptedChat(long j) {
         try {
             ArrayList<TLRPC$EncryptedChat> arrayList = new ArrayList<>();
-            getEncryptedChatsInternal(BuildConfig.APP_CENTER_HASH + j, arrayList, null);
+            getEncryptedChatsInternal("" + j, arrayList, null);
             if (arrayList.isEmpty()) {
                 return null;
             }

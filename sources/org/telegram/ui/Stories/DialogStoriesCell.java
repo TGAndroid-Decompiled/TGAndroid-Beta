@@ -15,6 +15,7 @@ import android.text.Layout;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -32,7 +33,6 @@ import java.util.Comparator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -60,6 +60,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.RadialProgress;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Stories.DialogStoriesCell;
 import org.telegram.ui.Stories.StoriesUtilities;
@@ -1113,9 +1114,8 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 this.user = null;
                 tLRPC$User = chat;
             }
-            String str = BuildConfig.APP_CENTER_HASH;
             if (tLRPC$User == null) {
-                this.textView.setText(BuildConfig.APP_CENTER_HASH);
+                this.textView.setText("");
                 this.avatarImage.clearImage();
                 return;
             }
@@ -1180,23 +1180,21 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             }
             TLRPC$User tLRPC$User2 = this.user;
             if (tLRPC$User2 != null) {
-                String str2 = tLRPC$User2.first_name;
-                if (str2 != null) {
-                    str = str2.trim();
-                }
-                int indexOf = str.indexOf(" ");
+                String str = tLRPC$User2.first_name;
+                String trim = str != null ? str.trim() : "";
+                int indexOf = trim.indexOf(" ");
                 if (indexOf > 0) {
-                    str = str.substring(0, indexOf);
+                    trim = trim.substring(0, indexOf);
                 }
                 if (this.user.verified) {
                     if (this.verifiedDrawable == null) {
                         this.verifiedDrawable = DialogStoriesCell.this.createVerifiedDrawable();
                     }
-                    this.textView.setText(Emoji.replaceEmoji(str, this.textView.getPaint().getFontMetricsInt(), false));
+                    this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
                     this.textView.setRightDrawable(this.verifiedDrawable);
                     return;
                 }
-                this.textView.setText(Emoji.replaceEmoji(str, this.textView.getPaint().getFontMetricsInt(), false));
+                this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
                 this.textView.setRightDrawable((Drawable) null);
                 return;
             }
@@ -1714,6 +1712,10 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 DialogStoriesCell.this.lambda$makePremiumHint$8();
             }
         });
+        ClickableSpan[] clickableSpanArr = (ClickableSpan[]) replaceSingleTag.getSpans(0, replaceSingleTag.length(), ClickableSpan.class);
+        if (clickableSpanArr != null && clickableSpanArr.length >= 1) {
+            replaceSingleTag.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), replaceSingleTag.getSpanStart(clickableSpanArr[0]), replaceSingleTag.getSpanEnd(clickableSpanArr[0]), 33);
+        }
         HintView2 hintView22 = this.premiumHint;
         hintView22.setMaxWidthPx(HintView2.cutInFancyHalf(replaceSingleTag, hintView22.getTextPaint()));
         this.premiumHint.setText(replaceSingleTag);

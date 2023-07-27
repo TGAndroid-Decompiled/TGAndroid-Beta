@@ -22,7 +22,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -752,7 +751,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                         String userName = UserObject.getUserName(user);
                         if (UserObject.isReplyUser(user)) {
                             str = userName;
-                            str2 = BuildConfig.APP_CENTER_HASH;
+                            str2 = "";
                             tLRPC$User = user;
                         } else {
                             if (user.bot) {
@@ -766,7 +765,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                         }
                     } else {
                         str = null;
-                        str2 = BuildConfig.APP_CENTER_HASH;
+                        str2 = "";
                         tLRPC$User = null;
                     }
                 }

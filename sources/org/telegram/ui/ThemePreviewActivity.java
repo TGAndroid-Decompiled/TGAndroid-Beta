@@ -48,7 +48,6 @@ import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
@@ -694,7 +693,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 if (pathToWallpaper != null) {
                     pathToWallpaper.delete();
                 }
-                ThemePreviewActivity.this.accent.patternSlug = ThemePreviewActivity.this.selectedPattern != null ? ThemePreviewActivity.this.selectedPattern.slug : BuildConfig.APP_CENTER_HASH;
+                ThemePreviewActivity.this.accent.patternSlug = ThemePreviewActivity.this.selectedPattern != null ? ThemePreviewActivity.this.selectedPattern.slug : "";
                 ThemePreviewActivity.this.accent.patternIntensity = ThemePreviewActivity.this.currentIntensity;
                 ThemePreviewActivity.this.accent.patternMotion = ThemePreviewActivity.this.isMotion;
                 if (((int) ThemePreviewActivity.this.accent.backgroundOverrideColor) == 0) {
@@ -791,7 +790,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                                     e.printStackTrace();
                                 }
                                 File file3 = new File(photoEntry.imagePath);
-                                ThemePreviewActivity.this.currentWallpaper = new WallpapersListActivity.FileWallpaper(BuildConfig.APP_CENTER_HASH, file3, file3);
+                                ThemePreviewActivity.this.currentWallpaper = new WallpapersListActivity.FileWallpaper("", file3, file3);
                                 ThemePreviewActivity.this.currentWallpaperBitmap = loadBitmap;
                                 ThemePreviewActivity.this.lastSizeHash = 0;
                                 ThemePreviewActivity.this.backgroundImage.requestLayout();
@@ -3301,8 +3300,8 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     int indexOf = string.indexOf(42);
                     int lastIndexOf = string.lastIndexOf(42);
                     if (indexOf != -1 && lastIndexOf != -1) {
-                        sb.replace(lastIndexOf, lastIndexOf + 1, BuildConfig.APP_CENTER_HASH);
-                        sb.replace(indexOf, indexOf + 1, BuildConfig.APP_CENTER_HASH);
+                        sb.replace(lastIndexOf, lastIndexOf + 1, "");
+                        sb.replace(indexOf, indexOf + 1, "");
                         TLRPC$TL_messageEntityTextUrl tLRPC$TL_messageEntityTextUrl = new TLRPC$TL_messageEntityTextUrl();
                         tLRPC$TL_messageEntityTextUrl.offset = indexOf;
                         tLRPC$TL_messageEntityTextUrl.length = (lastIndexOf - indexOf) - 1;
@@ -3626,7 +3625,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
             this.messages.add(messageObject11);
             if (ThemePreviewActivity.this.dialogId != 0) {
                 TLRPC$TL_message tLRPC$TL_message17 = new TLRPC$TL_message();
-                tLRPC$TL_message17.message = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_message17.message = "";
                 MessageObject messageObject12 = new MessageObject(((BaseFragment) ThemePreviewActivity.this).currentAccount, tLRPC$TL_message17, true, false);
                 messageObject12.eventId = 1L;
                 messageObject12.contentType = 5;

@@ -54,7 +54,6 @@ import java.util.Locale;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
@@ -1290,7 +1289,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(PeerStoriesView.this.currentAccount).edit();
             edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, false).apply();
             NotificationsController.getInstance(PeerStoriesView.this.currentAccount).updateServerNotificationsSettings(PeerStoriesView.this.dialogId, 0);
-            String trim = tLRPC$User == null ? BuildConfig.APP_CENTER_HASH : tLRPC$User.first_name.trim();
+            String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
                 trim = trim.substring(0, indexOf);
@@ -1306,7 +1305,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(PeerStoriesView.this.currentAccount).edit();
             edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, true).apply();
             NotificationsController.getInstance(PeerStoriesView.this.currentAccount).updateServerNotificationsSettings(PeerStoriesView.this.dialogId, 0);
-            String trim = tLRPC$User == null ? BuildConfig.APP_CENTER_HASH : tLRPC$User.first_name.trim();
+            String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
                 trim = trim.substring(0, indexOf);
@@ -1912,7 +1911,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             public void onStickerSelected(TLRPC$TL_document tLRPC$TL_document, String str, Object obj) {
                 SendMessagesHelper.getInstance(PeerStoriesView.this.currentAccount).sendSticker(tLRPC$TL_document, str, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, null, true, 0, false, obj);
                 PeerStoriesView.this.chatActivityEnterView.addStickerToRecent(tLRPC$TL_document);
-                PeerStoriesView.this.chatActivityEnterView.setFieldText(BuildConfig.APP_CENTER_HASH);
+                PeerStoriesView.this.chatActivityEnterView.setFieldText("");
                 PeerStoriesView.this.afterMessageSend();
             }
 
@@ -2082,7 +2081,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                                 i3 = 4;
                             }
                             PeerStoriesView.this.afterMessageSend();
-                            PeerStoriesView.this.chatActivityEnterView.setFieldText(BuildConfig.APP_CENTER_HASH);
+                            PeerStoriesView.this.chatActivityEnterView.setFieldText("");
                         } else if (PeerStoriesView.this.chatAttachAlert != null) {
                             PeerStoriesView.this.chatAttachAlert.dismissWithButtonClick(i);
                         }
@@ -2352,7 +2351,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         if (chatActivityEnterView2 != null) {
             chatActivityEnterView2.setVisibility(0);
             if (!TextUtils.isEmpty(this.chatActivityEnterView.getEditField().getText())) {
-                this.chatActivityEnterView.getEditField().setText(BuildConfig.APP_CENTER_HASH);
+                this.chatActivityEnterView.getEditField().setText("");
             }
             this.chatActivityEnterView.setDialogId(this.dialogId, this.currentAccount);
             TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.dialogId);
@@ -2932,7 +2931,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             this.selfAvatarsContainer.setVisibility(8);
             return;
         }
-        this.selfStatusView.setText(BuildConfig.APP_CENTER_HASH);
+        this.selfStatusView.setText("");
         this.selfAvatarsContainer.setVisibility(8);
         this.selfAvatarsView.setVisibility(8);
     }

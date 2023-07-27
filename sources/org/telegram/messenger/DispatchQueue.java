@@ -12,8 +12,8 @@ public class DispatchQueue extends Thread {
     private volatile Handler handler;
     public final int index;
     private long lastTaskTime;
-    private int priority;
     private CountDownLatch syncLatch;
+    private int threadPriority;
 
     public void handleMessage(Message message) {
     }
@@ -28,7 +28,7 @@ public class DispatchQueue extends Thread {
         int i = indexPointer;
         indexPointer = i + 1;
         this.index = i;
-        this.priority = THREAD_PRIORITY_DEFAULT;
+        this.threadPriority = THREAD_PRIORITY_DEFAULT;
         setName(str);
         if (z) {
             start();
@@ -41,8 +41,8 @@ public class DispatchQueue extends Thread {
         int i2 = indexPointer;
         indexPointer = i2 + 1;
         this.index = i2;
-        this.priority = THREAD_PRIORITY_DEFAULT;
-        this.priority = i;
+        this.threadPriority = THREAD_PRIORITY_DEFAULT;
+        this.threadPriority = i;
         setName(str);
         if (z) {
             start();
@@ -127,7 +127,7 @@ public class DispatchQueue extends Thread {
             }
         });
         this.syncLatch.countDown();
-        int i = this.priority;
+        int i = this.threadPriority;
         if (i != THREAD_PRIORITY_DEFAULT) {
             Process.setThreadPriority(i);
         }

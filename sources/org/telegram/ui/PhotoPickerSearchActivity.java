@@ -24,7 +24,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -117,8 +116,8 @@ public class PhotoPickerSearchActivity extends BaseFragment {
         ActionBarMenuItem actionBarMenuItemSearchListener = this.actionBar.createMenu().addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new ActionBarMenuItem.ActionBarMenuItemSearchListener() {
             @Override
             public void onSearchExpand() {
-                PhotoPickerSearchActivity.this.imagesSearch.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
-                PhotoPickerSearchActivity.this.gifsSearch.getActionBar().openSearchField(BuildConfig.APP_CENTER_HASH, false);
+                PhotoPickerSearchActivity.this.imagesSearch.getActionBar().openSearchField("", false);
+                PhotoPickerSearchActivity.this.gifsSearch.getActionBar().openSearchField("", false);
                 PhotoPickerSearchActivity.this.searchItem.getSearchField().requestFocus();
             }
 

@@ -29,7 +29,6 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
@@ -669,14 +668,14 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
             if (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
         }
 
         public String getFormattedPrice() {
             if (BuildVars.useInvoiceBilling() || this.giftOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPrice(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPrice(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPrice(), getCurrency(), 6);
         }
 
         public long getPrice() {
@@ -695,7 +694,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
                 return this.giftOption.currency;
             }
             ProductDetails productDetails = this.googlePlayProductDetails;
-            return productDetails == null ? BuildConfig.APP_CENTER_HASH : productDetails.getOneTimePurchaseOfferDetails().getPriceCurrencyCode();
+            return productDetails == null ? "" : productDetails.getOneTimePurchaseOfferDetails().getPriceCurrencyCode();
         }
     }
 }

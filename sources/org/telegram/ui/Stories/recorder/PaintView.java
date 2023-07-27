@@ -60,7 +60,6 @@ import java.util.List;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Bitmaps;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Emoji;
@@ -1172,7 +1171,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         onTextAdd();
         Size paintingSize = getPaintingSize();
         Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
-        TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), BuildConfig.APP_CENTER_HASH, this.colorSwatch, this.selectedTextType);
+        TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), "", this.colorSwatch, this.selectedTextType);
         textPaintView.getEditText().betterFraming = true;
         if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             textPaintView.setHasStickyX(true);

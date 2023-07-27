@@ -450,7 +450,7 @@ public class FilePathDatabase {
     }
 
     private String shield(String str) {
-        return str.replace("'", BuildConfig.APP_CENTER_HASH).replace("\"", BuildConfig.APP_CENTER_HASH);
+        return str.replace("'", "").replace("\"", "");
     }
 
     public DispatchQueue getQueue() {

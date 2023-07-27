@@ -33,7 +33,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
@@ -1265,13 +1264,13 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     ((HeaderCell) viewHolder.itemView).setText(itemInner.text);
                     return;
                 case 1:
-                    ((TextCheckCell) viewHolder.itemView).setTextAndCheck(BuildConfig.APP_CENTER_HASH + ((Object) itemInner.text), itemInner.checked, z);
+                    ((TextCheckCell) viewHolder.itemView).setTextAndCheck("" + ((Object) itemInner.text), itemInner.checked, z);
                     return;
                 case 2:
                     ((UserCell) viewHolder.itemView).setException(itemInner.exception, null, z);
                     return;
                 case 3:
-                    ((TextColorCell) viewHolder.itemView).setTextAndColor(BuildConfig.APP_CENTER_HASH + ((Object) itemInner.text), itemInner.color, z);
+                    ((TextColorCell) viewHolder.itemView).setTextAndColor("" + ((Object) itemInner.text), itemInner.color, z);
                     return;
                 case 4:
                     TextInfoPrivacyCell textInfoPrivacyCell = (TextInfoPrivacyCell) viewHolder.itemView;
@@ -1334,11 +1333,11 @@ public class NotificationsCustomSettingsActivity extends BaseFragment implements
                     TextCell textCell = (TextCell) viewHolder.itemView;
                     if (itemInner.resId == 0) {
                         textCell.setColors(-1, Theme.key_text_RedRegular);
-                        textCell.setText(BuildConfig.APP_CENTER_HASH + ((Object) itemInner.text), z);
+                        textCell.setText("" + ((Object) itemInner.text), z);
                         return;
                     }
                     textCell.setColors(Theme.key_windowBackgroundWhiteBlueIcon, Theme.key_windowBackgroundWhiteBlueButton);
-                    textCell.setTextAndIcon(BuildConfig.APP_CENTER_HASH + ((Object) itemInner.text), itemInner.resId, z);
+                    textCell.setTextAndIcon("" + ((Object) itemInner.text), itemInner.resId, z);
                     return;
                 default:
                     return;

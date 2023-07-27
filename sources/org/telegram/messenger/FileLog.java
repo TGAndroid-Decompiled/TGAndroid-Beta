@@ -153,6 +153,7 @@ public class FileLog {
             hashSet.add("networkType");
             hashSet.add("disableFree");
             hashSet.add("mContext");
+            hashSet.add("priority");
             HashSet<String> hashSet2 = new HashSet<>();
             excludeRequests = hashSet2;
             hashSet2.add("TL_upload_getFile");
@@ -165,7 +166,7 @@ public class FileLog {
 
                 @Override
                 public boolean shouldSkipClass(Class<?> cls) {
-                    return cls.isInstance(AnimatedFileDrawable.class) || cls.isInstance(ColorStateList.class) || cls.isInstance(Context.class);
+                    return cls.isInstance(DispatchQueue.class) || cls.isInstance(AnimatedFileDrawable.class) || cls.isInstance(ColorStateList.class) || cls.isInstance(Context.class);
                 }
             };
             gson = new GsonBuilder().addSerializationExclusionStrategy(exclusionStrategy).registerTypeAdapterFactory(RuntimeClassNameTypeAdapterFactory.of(TLObject.class, "type_", exclusionStrategy)).create();
@@ -218,17 +219,17 @@ public class FileLog {
             try {
                 File logsDir = AndroidUtilities.getLogsDir();
                 if (logsDir == null) {
-                    return BuildConfig.APP_CENTER_HASH;
+                    return "";
                 }
                 FileLog fileLog = getInstance();
                 fileLog.networkFile = new File(logsDir, getInstance().fileDateFormat.format(System.currentTimeMillis()) + "_net.txt");
                 return getInstance().networkFile.getAbsolutePath();
             } catch (Throwable th) {
                 th.printStackTrace();
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public static String getTonlibLogPath() {
@@ -236,17 +237,17 @@ public class FileLog {
             try {
                 File logsDir = AndroidUtilities.getLogsDir();
                 if (logsDir == null) {
-                    return BuildConfig.APP_CENTER_HASH;
+                    return "";
                 }
                 FileLog fileLog = getInstance();
                 fileLog.tonlibFile = new File(logsDir, getInstance().dateFormat.format(System.currentTimeMillis()) + "_tonlib.txt");
                 return getInstance().tonlibFile.getAbsolutePath();
             } catch (Throwable th) {
                 th.printStackTrace();
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
         }
-        return BuildConfig.APP_CENTER_HASH;
+        return "";
     }
 
     public static void e(final String str, final Throwable th) {

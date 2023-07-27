@@ -29,7 +29,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
@@ -193,7 +192,7 @@ public class CaptionContainerView extends FrameLayout {
                 String str = null;
                 int i3 = MessagesController.getInstance(i).storyCaptionLengthLimit;
                 if (i2 + 25 > i3) {
-                    str = BuildConfig.APP_CENTER_HASH + (i3 - i2);
+                    str = "" + (i3 - i2);
                 }
                 CaptionContainerView.this.limitTextView.cancelAnimation();
                 CaptionContainerView.this.limitTextView.setText(str);
@@ -747,7 +746,7 @@ public class CaptionContainerView extends FrameLayout {
     }
 
     public void clear() {
-        this.editText.setText(BuildConfig.APP_CENTER_HASH);
+        this.editText.setText("");
     }
 
     public void setText(CharSequence charSequence) {

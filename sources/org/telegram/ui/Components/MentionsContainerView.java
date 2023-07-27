@@ -17,7 +17,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -670,7 +669,7 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
                 return;
             }
             SpannableString spannableString = new SpannableString(UserObject.getFirstName(tLRPC$User, false) + " ");
-            spannableString.setSpan(new URLSpanUserMention(BuildConfig.APP_CENTER_HASH + tLRPC$User.id, 3), 0, spannableString.length(), 33);
+            spannableString.setSpan(new URLSpanUserMention("" + tLRPC$User.id, 3), 0, spannableString.length(), 33);
             delegate.replaceText(resultStartPosition, resultLength, spannableString, false);
         } else if (item instanceof String) {
             delegate.replaceText(resultStartPosition, resultLength, item + " ", false);

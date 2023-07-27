@@ -38,7 +38,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
@@ -853,14 +852,14 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
 
         private String key(MediaController.PhotoEntry photoEntry) {
             if (photoEntry == null) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             String str = photoEntry.thumbPath;
             if (str != null) {
                 return str;
             }
             if (photoEntry.isVideo) {
-                return BuildConfig.APP_CENTER_HASH + photoEntry.imageId;
+                return "" + photoEntry.imageId;
             }
             return photoEntry.path;
         }

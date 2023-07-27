@@ -125,7 +125,6 @@ import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.BringAppForegroundService;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -1559,7 +1558,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         private String getOf() {
             this.lng = LocaleController.getInstance().getCurrentLocaleInfo().shortName;
-            return LocaleController.getString("Of").replace("%1$d", BuildConfig.APP_CENTER_HASH).replace("%2$d", BuildConfig.APP_CENTER_HASH);
+            return LocaleController.getString("Of").replace("%1$d", "").replace("%2$d", "");
         }
 
         public void set(int i, int i2) {
@@ -2216,7 +2215,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         public void setCount(int i) {
-            StaticLayout staticLayout = new StaticLayout(BuildConfig.APP_CENTER_HASH + Math.max(1, i), this.textPaint, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout("" + Math.max(1, i), this.textPaint, AndroidUtilities.dp(100.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.staticLayout = staticLayout;
             this.width = (int) Math.ceil((double) staticLayout.getLineWidth(0));
             this.height = this.staticLayout.getLineBottom(0);
@@ -6170,7 +6169,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             String firstName = UserObject.getFirstName(tLRPC$User);
             SpannableString spannableString = new SpannableString(firstName + " ");
-            spannableString.setSpan(new URLSpanUserMentionPhotoViewer(BuildConfig.APP_CENTER_HASH + tLRPC$User.id, true), 0, spannableString.length(), 33);
+            spannableString.setSpan(new URLSpanUserMentionPhotoViewer("" + tLRPC$User.id, true), 0, spannableString.length(), 33);
             this.captionEditText.replaceWithText(resultStartPosition, resultLength, spannableString, false);
         } else if (item instanceof String) {
             PhotoViewerCaptionEnterView photoViewerCaptionEnterView2 = this.captionEditText;
@@ -6337,7 +6336,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     str = str2;
                     j = j2;
                 } else {
-                    str = BuildConfig.APP_CENTER_HASH;
+                    str = "";
                 }
                 AlertDialog.Builder builder = new AlertDialog.Builder(this.containerView.getContext());
                 builder.setAdditionalHorizontalPadding(AndroidUtilities.dp(8.0f));
@@ -6532,7 +6531,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+        public void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             final FrameLayout frameLayout = this.val$photoContainerView;
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -8966,7 +8965,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             charSequence = (!(obj instanceof TLRPC$BotInlineResult) && (obj instanceof MediaController.SearchImage)) ? ((MediaController.SearchImage) obj).caption : null;
         }
         if (TextUtils.isEmpty(charSequence)) {
-            this.captionEditText.setFieldText(BuildConfig.APP_CENTER_HASH);
+            this.captionEditText.setFieldText("");
         } else {
             this.captionEditText.setFieldText(charSequence);
         }
@@ -11975,8 +11974,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (this.sendPhotoType != 1 && i2 == 1 && this.isVisible) {
             this.sendPhotoType = i2;
             this.doneButtonPressed = false;
-            this.actionBarContainer.setTitle(BuildConfig.APP_CENTER_HASH);
-            this.actionBarContainer.setSubtitle(BuildConfig.APP_CENTER_HASH, false);
+            this.actionBarContainer.setTitle("");
+            this.actionBarContainer.setSubtitle("", false);
             this.placeProvider = photoViewerProvider;
             this.mergeDialogId = 0L;
             this.currentDialogId = 0L;
@@ -12283,8 +12282,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.parentChatActivity = chatActivity;
                 this.lastTitle = null;
                 this.isEmbedVideo = num != null;
-                this.actionBarContainer.setTitle(BuildConfig.APP_CENTER_HASH);
-                this.actionBarContainer.setSubtitle(BuildConfig.APP_CENTER_HASH, false);
+                this.actionBarContainer.setTitle("");
+                this.actionBarContainer.setSubtitle("", false);
                 PhotoCountView photoCountView = this.countView;
                 if (photoCountView != null) {
                     photoCountView.set(0, 0, false);
@@ -13984,7 +13983,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (this.videoPreviewMessageObject == null) {
                     TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
                     tLRPC$TL_message.id = 0;
-                    tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$TL_message.message = "";
                     tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
                     tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
                     tLRPC$TL_message.dialog_id = this.currentDialogId;

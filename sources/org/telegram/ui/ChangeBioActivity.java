@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -115,7 +114,7 @@ public class ChangeBioActivity extends BaseFragment {
             public CharSequence filter(CharSequence charSequence, int i3, int i4, Spanned spanned, int i5, int i6) {
                 if (charSequence != null && charSequence.length() > 0 && TextUtils.indexOf(charSequence, '\n') == charSequence.length() - 1) {
                     ChangeBioActivity.this.doneButton.performClick();
-                    return BuildConfig.APP_CENTER_HASH;
+                    return "";
                 }
                 CharSequence filter = super.filter(charSequence, i3, i4, spanned, i5, i6);
                 if (filter != null && charSequence != null && filter.length() != charSequence.length()) {
@@ -207,9 +206,9 @@ public class ChangeBioActivity extends BaseFragment {
         }
         String str = userFull.about;
         if (str == null) {
-            str = BuildConfig.APP_CENTER_HASH;
+            str = "";
         }
-        final String replace = this.firstNameField.getText().toString().replace("\n", BuildConfig.APP_CENTER_HASH);
+        final String replace = this.firstNameField.getText().toString().replace("\n", "");
         if (str.equals(replace)) {
             finishFragment();
             return;

@@ -1,5 +1,5 @@
 package com.google.android.gms.internal.mlkit_language_id;
-final class zzhp {
+public final class zzhp {
     private static final zzho zza;
 
     public static boolean zza(byte[] bArr) {

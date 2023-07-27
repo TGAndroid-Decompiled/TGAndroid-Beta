@@ -174,6 +174,7 @@ public class NotificationCenter {
     public static int onDatabaseReset = 0;
     public static final int onDownloadingFilesChanged;
     public static final int onEmojiInteractionsReceived;
+    public static final int onReceivedChannelDifference;
     public static final int onRequestPermissionResultReceived;
     public static final int onUserRingtonesUpdated;
     public static final int openArticle;
@@ -214,6 +215,7 @@ public class NotificationCenter {
     public static final int showBulletin;
     public static final int startAllHeavyOperations;
     public static final int startSpoilers;
+    public static final int stealthModeChanged;
     public static final int stickersDidLoad;
     public static final int stickersImportComplete;
     public static final int stickersImportProgressChanged;
@@ -1008,8 +1010,14 @@ public class NotificationCenter {
         int i242 = i241 + 1;
         totalEvents = i242;
         uploadStoryEnd = i241;
-        totalEvents = i242 + 1;
+        int i243 = i242 + 1;
+        totalEvents = i243;
         customTypefacesLoaded = i242;
+        int i244 = i243 + 1;
+        totalEvents = i244;
+        stealthModeChanged = i243;
+        totalEvents = i244 + 1;
+        onReceivedChannelDifference = i244;
     }
 
     public static class DelayedPost {

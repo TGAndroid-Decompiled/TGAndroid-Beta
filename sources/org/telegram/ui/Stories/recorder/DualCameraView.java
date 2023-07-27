@@ -13,7 +13,6 @@ import com.google.common.primitives.Floats;
 import com.google.zxing.common.detector.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -155,7 +154,7 @@ public class DualCameraView extends CameraView implements CameraController.Error
                 TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue = new TLRPC$TL_jsonObjectValue();
                 tLRPC$TL_jsonObjectValue.key = "device";
                 TLRPC$TL_jsonString tLRPC$TL_jsonString = new TLRPC$TL_jsonString();
-                tLRPC$TL_jsonString.value = BuildConfig.APP_CENTER_HASH + Build.MANUFACTURER + Build.MODEL;
+                tLRPC$TL_jsonString.value = "" + Build.MANUFACTURER + Build.MODEL;
                 tLRPC$TL_jsonObjectValue.value = tLRPC$TL_jsonString;
                 tLRPC$TL_jsonObject.value.add(tLRPC$TL_jsonObjectValue);
                 tLRPC$TL_inputAppEvent.data = tLRPC$TL_jsonObject;

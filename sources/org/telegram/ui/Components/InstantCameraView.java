@@ -225,7 +225,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
         this.mSTMatrix = new float[16];
         this.moldSTMatrix = new float[16];
         this.drawBlur = true;
-        this.WRITE_TO_FILE_IN_BACKGROUND = SharedConfig.deviceIsAboveAverage();
+        this.WRITE_TO_FILE_IN_BACKGROUND = false;
         this.resourcesProvider = resourcesProvider;
         this.parentView = delegate.getFragmentView();
         setWillNotDraw(false);
@@ -2629,18 +2629,24 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                                     InstantCameraView.VideoRecorder.this.lambda$drainEncoder$8(cloneByteBuffer2, bufferInfo6);
                                 }
                             });
-                            this.audioEncoder.releaseOutputBuffer(dequeueOutputBuffer2, false);
+                            MediaCodec mediaCodec = this.audioEncoder;
+                            if (mediaCodec != null) {
+                                mediaCodec.releaseOutputBuffer(dequeueOutputBuffer2, false);
+                            }
                         } else {
                             long writeSampleData2 = this.mediaMuxer.writeSampleData(this.audioTrackIndex, outputBuffer2, bufferInfo5, false);
                             if (writeSampleData2 != 0 && !this.writingToDifferentFile) {
                                 didWriteData(this.videoFile, writeSampleData2, false);
                             }
-                            this.audioEncoder.releaseOutputBuffer(dequeueOutputBuffer2, false);
+                            MediaCodec mediaCodec2 = this.audioEncoder;
+                            if (mediaCodec2 != null) {
+                                mediaCodec2.releaseOutputBuffer(dequeueOutputBuffer2, false);
+                            }
                         }
                     } else {
-                        MediaCodec mediaCodec = this.audioEncoder;
-                        if (mediaCodec != null) {
-                            mediaCodec.releaseOutputBuffer(dequeueOutputBuffer2, false);
+                        MediaCodec mediaCodec3 = this.audioEncoder;
+                        if (mediaCodec3 != null) {
+                            mediaCodec3.releaseOutputBuffer(dequeueOutputBuffer2, false);
                         }
                     }
                     if ((this.audioBufferInfo.flags & 4) != 0) {

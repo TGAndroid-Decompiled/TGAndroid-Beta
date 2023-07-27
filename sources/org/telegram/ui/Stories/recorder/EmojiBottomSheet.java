@@ -43,7 +43,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
@@ -362,7 +361,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
             } else {
                 SearchField searchField = this.searchField;
                 searchField.ignoreTextChange = true;
-                searchField.editText.setText(BuildConfig.APP_CENTER_HASH);
+                searchField.editText.setText("");
                 SearchField searchField2 = this.searchField;
                 searchField2.ignoreTextChange = false;
                 searchField2.categoriesListView.selectCategory(EmojiBottomSheet.this.categoryIndex);
@@ -496,11 +495,11 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                             }
                         }
                     }
-                    String translitSafe = AndroidUtilities.translitSafe((this.query + BuildConfig.APP_CENTER_HASH).toLowerCase());
+                    String translitSafe = AndroidUtilities.translitSafe((this.query + "").toLowerCase());
                     for (int i6 = 0; i6 < this.allStickerSets.size(); i6++) {
                         TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = this.allStickerSets.get(i6);
                         if (tLRPC$TL_messages_stickerSet != null && tLRPC$TL_messages_stickerSet.set != null) {
-                            String translitSafe2 = AndroidUtilities.translitSafe((tLRPC$TL_messages_stickerSet.set.title + BuildConfig.APP_CENTER_HASH).toLowerCase());
+                            String translitSafe2 = AndroidUtilities.translitSafe((tLRPC$TL_messages_stickerSet.set.title + "").toLowerCase());
                             if (!translitSafe2.startsWith(translitSafe)) {
                                 if (!translitSafe2.contains(" " + translitSafe)) {
                                 }
@@ -562,7 +561,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                         return;
                     }
                     TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = this.stickerSets.get(i2);
-                    String str = (tLRPC$TL_messages_stickerSet == null || (tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set) == null) ? BuildConfig.APP_CENTER_HASH : tLRPC$StickerSet.title;
+                    String str = (tLRPC$TL_messages_stickerSet == null || (tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set) == null) ? "" : tLRPC$StickerSet.title;
                     StickerSetNameCell stickerSetNameCell = (StickerSetNameCell) viewHolder.itemView;
                     if (this.activeQuery == null) {
                         stickerSetNameCell.setText(str, 0);
@@ -1581,7 +1580,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
             };
             this.categoriesListView = stickerCategoriesListView;
             TextPaint paint = editTextBoldCursor.getPaint();
-            stickerCategoriesListView.setDontOccupyWidth(((int) paint.measureText(((Object) editTextBoldCursor.getHint()) + BuildConfig.APP_CENTER_HASH)) + AndroidUtilities.dp(16.0f));
+            stickerCategoriesListView.setDontOccupyWidth(((int) paint.measureText(((Object) editTextBoldCursor.getHint()) + "")) + AndroidUtilities.dp(16.0f));
             stickerCategoriesListView.setOnScrollIntoOccupiedWidth(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
@@ -1667,7 +1666,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
         }
 
         public void clear() {
-            this.editText.setText(BuildConfig.APP_CENTER_HASH);
+            this.editText.setText("");
             search(null, -1);
             this.categoriesListView.selectCategory((StickerCategoriesListView.EmojiCategory) null);
         }

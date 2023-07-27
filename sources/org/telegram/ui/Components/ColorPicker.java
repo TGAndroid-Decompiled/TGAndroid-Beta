@@ -33,7 +33,6 @@ import androidx.annotation.Keep;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -347,7 +346,7 @@ public class ColorPicker extends FrameLayout {
                         while (i3 < editable.length()) {
                             char charAt = editable.charAt(i3);
                             if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
-                                editable.replace(i3, i3 + 1, BuildConfig.APP_CENTER_HASH);
+                                editable.replace(i3, i3 + 1, "");
                                 i3--;
                             }
                             i3++;

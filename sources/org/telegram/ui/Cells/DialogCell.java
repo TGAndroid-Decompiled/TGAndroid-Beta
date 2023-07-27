@@ -34,7 +34,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -1866,19 +1865,19 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
         MessageObject messageObject2 = this.message;
         if (messageObject2 != null && (tLRPC$Message2 = messageObject2.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
-            return UserObject.getFirstName(user).replace("\n", BuildConfig.APP_CENTER_HASH);
+            return UserObject.getFirstName(user).replace("\n", "");
         }
         MessageObject messageObject3 = this.message;
         if (messageObject3 == null || (tLRPC$Message = messageObject3.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) {
             if (tLRPC$User == null) {
-                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", BuildConfig.APP_CENTER_HASH);
+                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", "");
             } else if (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) {
                 if (UserObject.isDeleted(tLRPC$User)) {
                     return LocaleController.getString("HiddenName", R.string.HiddenName);
                 }
-                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", BuildConfig.APP_CENTER_HASH);
+                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", "");
             } else {
-                return UserObject.getFirstName(tLRPC$User).replace("\n", BuildConfig.APP_CENTER_HASH);
+                return UserObject.getFirstName(tLRPC$User).replace("\n", "");
             }
         }
         return str2;
@@ -1920,7 +1919,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
             return valueOf;
         }
-        String str3 = BuildConfig.APP_CENTER_HASH;
+        String str3 = "";
         if (captionMessage != null && (charSequence3 = captionMessage.caption) != null) {
             CharSequence charSequence6 = charSequence3.toString();
             if (this.needEmoji) {
@@ -2048,7 +2047,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 }
                 return AndroidUtilities.formatSpannable(str, new CharSequence[]{spannableStringBuilder2, charSequence});
             }
-            return SpannableStringBuilder.valueOf(BuildConfig.APP_CENTER_HASH);
+            return SpannableStringBuilder.valueOf("");
         }
     }
 

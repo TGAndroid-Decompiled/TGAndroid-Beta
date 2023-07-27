@@ -1264,7 +1264,11 @@ public class StoryViewer {
                     storyViewer.swipeToReplyBackAnimator = null;
                     storyViewer.swipeToReplyOffset = 0.0f;
                     storyViewer.swipeToReplyProgress = 0.0f;
-                    storyViewer.storiesViewPager.getCurrentPeerView().invalidate();
+                    StoriesViewPager storiesViewPager = storyViewer.storiesViewPager;
+                    PeerStoriesView currentPeerView = storiesViewPager != null ? storiesViewPager.getCurrentPeerView() : null;
+                    if (currentPeerView != null) {
+                        currentPeerView.invalidate();
+                    }
                 }
             });
             this.swipeToReplyBackAnimator.setDuration(250L);
@@ -1276,7 +1280,11 @@ public class StoryViewer {
     public void lambda$cancelSwipeToReply$4(ValueAnimator valueAnimator) {
         this.swipeToReplyOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.swipeToReplyProgress = Utilities.clamp(this.swipeToReplyOffset / AndroidUtilities.dp(200.0f), 1.0f, 0.0f);
-        this.storiesViewPager.getCurrentPeerView().invalidate();
+        StoriesViewPager storiesViewPager = this.storiesViewPager;
+        PeerStoriesView currentPeerView = storiesViewPager == null ? null : storiesViewPager.getCurrentPeerView();
+        if (currentPeerView != null) {
+            currentPeerView.invalidate();
+        }
     }
 
     public boolean getStoryRect(RectF rectF) {

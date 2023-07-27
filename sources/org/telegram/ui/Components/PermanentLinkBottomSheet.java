@@ -12,7 +12,6 @@ import androidx.core.graphics.ColorUtils;
 import androidx.core.widget.NestedScrollView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -78,7 +77,7 @@ public class PermanentLinkBottomSheet extends BottomSheet {
         RLottieImageView rLottieImageView = new RLottieImageView(context);
         this.imageView = rLottieImageView;
         int i2 = R.raw.shared_link_enter;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f), false, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(90.0f), AndroidUtilities.dp(90.0f), false, null);
         this.linkIcon = rLottieDrawable;
         rLottieDrawable.setCustomEndFrame(42);
         rLottieImageView.setAnimation(rLottieDrawable);

@@ -437,7 +437,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                     SaveToGallerySettingsActivity saveToGallerySettingsActivity = SaveToGallerySettingsActivity.this;
                     final SelectableAnimatedTextView selectableAnimatedTextView = new SelectableAnimatedTextView(saveToGallerySettingsActivity.getContext());
                     selectableAnimatedTextView.setTextSize(AndroidUtilities.dp(13.0f));
-                    selectableAnimatedTextView.setText(AndroidUtilities.formatFileSize(524288L, true));
+                    selectableAnimatedTextView.setText(AndroidUtilities.formatFileSize(524288L, true, false));
                     frameLayout.addView(selectableAnimatedTextView, LayoutHelper.createFrame(-2, -2, 83));
                     SaveToGallerySettingsActivity saveToGallerySettingsActivity2 = SaveToGallerySettingsActivity.this;
                     final SelectableAnimatedTextView selectableAnimatedTextView2 = new SelectableAnimatedTextView(saveToGallerySettingsActivity2.getContext());
@@ -447,7 +447,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                     final SelectableAnimatedTextView selectableAnimatedTextView3 = new SelectableAnimatedTextView(saveToGallerySettingsActivity3.getContext());
                     selectableAnimatedTextView3.setTextSize(AndroidUtilities.dp(13.0f));
                     long j = 4194304000L;
-                    selectableAnimatedTextView3.setText(AndroidUtilities.formatFileSize(4194304000L, true));
+                    selectableAnimatedTextView3.setText(AndroidUtilities.formatFileSize(4194304000L, true, false));
                     frameLayout.addView(selectableAnimatedTextView3, LayoutHelper.createFrame(-2, -2, 85));
                     linearLayout.addView(frameLayout, LayoutHelper.createLinear(-1, 20, 0, 21, 10, 21, 0));
                     linearLayout.addView(seekBarView, LayoutHelper.createLinear(-1, 38, 0, 5, 0, 5, 4));
@@ -486,7 +486,7 @@ public class SaveToGallerySettingsActivity extends BaseFragment {
                                 selectableAnimatedTextView3.setSelectedInternal(false, isAttachedToWindow);
                                 AndroidUtilities.updateViewVisibilityAnimated(selectableAnimatedTextView2, false, 0.8f, isAttachedToWindow);
                             } else {
-                                selectableAnimatedTextView2.setText(LocaleController.formatString("UpToFileSize", R.string.UpToFileSize, AndroidUtilities.formatFileSize(j3, true)), false);
+                                selectableAnimatedTextView2.setText(LocaleController.formatString("UpToFileSize", R.string.UpToFileSize, AndroidUtilities.formatFileSize(j3, true, false)), false);
                                 selectableAnimatedTextView.setSelectedInternal(false, isAttachedToWindow);
                                 selectableAnimatedTextView2.setSelectedInternal(true, isAttachedToWindow);
                                 selectableAnimatedTextView3.setSelectedInternal(false, isAttachedToWindow);

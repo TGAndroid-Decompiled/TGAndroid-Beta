@@ -36,7 +36,6 @@ import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -511,7 +510,7 @@ public class StoryCaptionView extends NestedScrollView {
             Paint paint2 = new Paint(1);
             this.xRefGradinetPaint = paint2;
             this.sizeCached = 0;
-            this.text = BuildConfig.APP_CENTER_HASH;
+            this.text = "";
             this.spoilers = new ArrayList();
             this.spoilersPool = new Stack<>();
             new Path();
@@ -567,7 +566,7 @@ public class StoryCaptionView extends NestedScrollView {
 
         public void setText(CharSequence charSequence) {
             if (charSequence == null) {
-                charSequence = BuildConfig.APP_CENTER_HASH;
+                charSequence = "";
             }
             this.isSpoilersRevealed = false;
             this.text = charSequence;
