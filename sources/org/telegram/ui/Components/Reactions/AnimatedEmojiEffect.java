@@ -151,7 +151,7 @@ public class AnimatedEmojiEffect {
         }
     }
 
-    private class Particle {
+    public class Particle {
         long duration;
         float fromSize;
         float fromX;

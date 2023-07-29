@@ -99,10 +99,10 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
         int i = Theme.key_dialogBackground;
         view.setBackground(new GradientDrawable(orientation, new int[]{Theme.getColor(i, this.resourcesProvider), 0}));
-        addView(view, LayoutHelper.createFrame(-1, 8.0f, 0, 0.0f, 38.0f, 0.0f, 0.0f));
+        addView(view, LayoutHelper.createFrame(-1, 8.0f, 0, 0.0f, 39.0f, 0.0f, 0.0f));
         View view2 = new View(getContext());
         view2.setBackgroundColor(Theme.getColor(i, this.resourcesProvider));
-        addView(view2, LayoutHelper.createFrame(-1, 8.0f, 0, 0.0f, 30.0f, 0.0f, 0.0f));
+        addView(view2, LayoutHelper.createFrame(-1, 8.0f, 0, 0.0f, 32.0f, 0.0f, 0.0f));
     }
 
     public void lambda$new$0(StoryViewer storyViewer, View view, int i) {

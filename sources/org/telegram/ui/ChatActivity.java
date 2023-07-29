@@ -51,7 +51,6 @@ import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.URLSpan;
-import android.util.Log;
 import android.util.Pair;
 import android.util.Property;
 import android.util.SparseArray;
@@ -2392,7 +2391,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return;
         }
         this.firstMessagesLoaded = true;
-        Log.d("kek", "firstLoadMessages ");
         this.waitingForLoad.add(Integer.valueOf(this.lastLoadIndex));
         if (this.startLoadFromDate != 0) {
             MessagesController messagesController = getMessagesController();

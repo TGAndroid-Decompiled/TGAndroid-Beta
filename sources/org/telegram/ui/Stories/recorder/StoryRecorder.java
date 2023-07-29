@@ -20,6 +20,7 @@ import android.graphics.Matrix;
 import android.graphics.Outline;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
@@ -122,6 +123,7 @@ import org.telegram.ui.Stories.StoryWaveEffectView;
 import org.telegram.ui.Stories.recorder.DownloadButton;
 import org.telegram.ui.Stories.recorder.PreviewButtons;
 import org.telegram.ui.Stories.recorder.RecordControl;
+import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
 public class StoryRecorder implements NotificationCenter.NotificationCenterDelegate {
@@ -512,7 +514,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.containerView.setScaleY(1.0f);
         this.dismissProgress = 0.0f;
         AndroidUtilities.lockOrientation(this.activity, 1);
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda31(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda30(this));
         addNotificationObservers();
     }
 
@@ -564,7 +566,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$openEdit$0(boolean z) {
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda31(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda30(this));
         this.previewButtons.appear(true, true);
     }
 
@@ -3807,7 +3809,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
         this.captionEdit.keyboardNotifier.ignore(i2 != -1);
         Bulletin.hideVisible();
-        if (this.photoFilterView != null && i2 == 1) {
+        if (this.photoFilterView != null && i == 1) {
             applyFilter(null);
         }
         PhotoFilterView.EnhanceView enhanceView = this.photoFilterEnhanceView;
@@ -3911,68 +3913,101 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void createFilterPhotoView() {
-        Bitmap photoBitmap;
-        if (this.photoFilterView != null || this.outputEntry == null || (photoBitmap = this.previewView.getPhotoBitmap()) == null) {
+        StoryEntry storyEntry;
+        Bitmap bitmap;
+        Bitmap scaledBitmap;
+        if (this.photoFilterView != null || (storyEntry = this.outputEntry) == null) {
             return;
         }
-        Activity activity = this.activity;
-        VideoEditTextureView textureView = this.previewView.getTextureView();
-        int orientation = this.previewView.getOrientation();
-        StoryEntry storyEntry = this.outputEntry;
-        PhotoFilterView photoFilterView = new PhotoFilterView(activity, textureView, photoBitmap, orientation, storyEntry == null ? null : storyEntry.filterState, null, 0, false, false, this.resourcesProvider);
-        this.photoFilterView = photoFilterView;
-        this.containerView.addView(photoFilterView);
-        PhotoFilterView.EnhanceView enhanceView = this.photoFilterEnhanceView;
-        if (enhanceView != null) {
-            enhanceView.setFilterView(this.photoFilterView);
-        }
-        TextureView myTextureView = this.photoFilterView.getMyTextureView();
-        this.photoFilterViewTextureView = myTextureView;
-        if (myTextureView != null) {
-            myTextureView.setOpaque(false);
-        }
-        this.previewView.setFilterTextureView(this.photoFilterViewTextureView);
-        TextureView textureView2 = this.photoFilterViewTextureView;
-        if (textureView2 != null) {
-            textureView2.setAlpha(0.0f);
-            this.photoFilterViewTextureView.animate().alpha(1.0f).setDuration(220L).start();
-        }
-        applyFilterMatrix();
-        PhotoFilterBlurControl blurControl = this.photoFilterView.getBlurControl();
-        this.photoFilterViewBlurControl = blurControl;
-        if (blurControl != null) {
-            this.previewContainer.addView(blurControl);
-        }
-        PhotoFilterCurvesControl curveControl = this.photoFilterView.getCurveControl();
-        this.photoFilterViewCurvesControl = curveControl;
-        if (curveControl != null) {
-            this.previewContainer.addView(curveControl);
-        }
-        orderPreviewViews();
-        this.photoFilterView.getDoneTextView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                StoryRecorder.this.lambda$createFilterPhotoView$41(view);
+        if (storyEntry.isVideo) {
+            bitmap = null;
+        } else {
+            if (storyEntry.filterFile == null) {
+                scaledBitmap = this.previewView.getPhotoBitmap();
+            } else {
+                Bitmap bitmap2 = this.photoFilterBitmap;
+                if (bitmap2 != null) {
+                    bitmap2.recycle();
+                    this.photoFilterBitmap = null;
+                }
+                StoryEntry.DecodeBitmap decodeBitmap = new StoryEntry.DecodeBitmap() {
+                    @Override
+                    public final Bitmap decode(BitmapFactory.Options options) {
+                        Bitmap lambda$createFilterPhotoView$41;
+                        lambda$createFilterPhotoView$41 = StoryRecorder.this.lambda$createFilterPhotoView$41(options);
+                        return lambda$createFilterPhotoView$41;
+                    }
+                };
+                Point point = AndroidUtilities.displaySize;
+                scaledBitmap = StoryEntry.getScaledBitmap(decodeBitmap, point.x, point.y, true);
+                this.photoFilterBitmap = scaledBitmap;
             }
-        });
-        this.photoFilterView.getCancelTextView().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public final void onClick(View view) {
-                StoryRecorder.this.lambda$createFilterPhotoView$42(view);
+            bitmap = scaledBitmap;
+        }
+        if (bitmap != null || this.outputEntry.isVideo) {
+            Activity activity = this.activity;
+            VideoEditTextureView textureView = this.previewView.getTextureView();
+            int orientation = this.previewView.getOrientation();
+            StoryEntry storyEntry2 = this.outputEntry;
+            PhotoFilterView photoFilterView = new PhotoFilterView(activity, textureView, bitmap, orientation, storyEntry2 != null ? storyEntry2.filterState : null, null, 0, false, false, this.resourcesProvider);
+            this.photoFilterView = photoFilterView;
+            this.containerView.addView(photoFilterView);
+            PhotoFilterView.EnhanceView enhanceView = this.photoFilterEnhanceView;
+            if (enhanceView != null) {
+                enhanceView.setFilterView(this.photoFilterView);
             }
-        });
-        this.photoFilterView.getToolsView().setVisibility(8);
-        this.photoFilterView.getToolsView().setAlpha(0.0f);
-        this.photoFilterView.getToolsView().setTranslationY(AndroidUtilities.dp(186.0f));
-        this.photoFilterView.init();
+            TextureView myTextureView = this.photoFilterView.getMyTextureView();
+            this.photoFilterViewTextureView = myTextureView;
+            if (myTextureView != null) {
+                myTextureView.setOpaque(false);
+            }
+            this.previewView.setFilterTextureView(this.photoFilterViewTextureView);
+            TextureView textureView2 = this.photoFilterViewTextureView;
+            if (textureView2 != null) {
+                textureView2.setAlpha(0.0f);
+                this.photoFilterViewTextureView.animate().alpha(1.0f).setDuration(220L).start();
+            }
+            applyFilterMatrix();
+            PhotoFilterBlurControl blurControl = this.photoFilterView.getBlurControl();
+            this.photoFilterViewBlurControl = blurControl;
+            if (blurControl != null) {
+                this.previewContainer.addView(blurControl);
+            }
+            PhotoFilterCurvesControl curveControl = this.photoFilterView.getCurveControl();
+            this.photoFilterViewCurvesControl = curveControl;
+            if (curveControl != null) {
+                this.previewContainer.addView(curveControl);
+            }
+            orderPreviewViews();
+            this.photoFilterView.getDoneTextView().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    StoryRecorder.this.lambda$createFilterPhotoView$42(view);
+                }
+            });
+            this.photoFilterView.getCancelTextView().setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    StoryRecorder.this.lambda$createFilterPhotoView$43(view);
+                }
+            });
+            this.photoFilterView.getToolsView().setVisibility(8);
+            this.photoFilterView.getToolsView().setAlpha(0.0f);
+            this.photoFilterView.getToolsView().setTranslationY(AndroidUtilities.dp(186.0f));
+            this.photoFilterView.init();
+        }
     }
 
-    public void lambda$createFilterPhotoView$41(View view) {
+    public Bitmap lambda$createFilterPhotoView$41(BitmapFactory.Options options) {
+        return BitmapFactory.decodeFile(this.outputEntry.file.getAbsolutePath(), options);
+    }
+
+    public void lambda$createFilterPhotoView$42(View view) {
         applyFilter(null);
         switchToEditMode(-1, true);
     }
 
-    public void lambda$createFilterPhotoView$42(View view) {
+    public void lambda$createFilterPhotoView$43(View view) {
         switchToEditMode(-1, true);
     }
 
@@ -4041,7 +4076,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.cameraView.setDelegate(new CameraView.CameraViewDelegate() {
             @Override
             public final void onCameraInit() {
-                StoryRecorder.this.lambda$createCameraView$43();
+                StoryRecorder.this.lambda$createCameraView$44();
             }
         });
         this.dualButton.setVisibility((this.cameraView.dualAvailable() && this.currentPage == 0) ? 0 : 8);
@@ -4105,7 +4140,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$createCameraView$43() {
+    public void lambda$createCameraView$44() {
         String currentFlashMode = this.cameraView.getCameraSession().getCurrentFlashMode();
         if (TextUtils.equals(currentFlashMode, this.cameraView.getCameraSession().getNextFlashMode())) {
             currentFlashMode = null;
@@ -4139,7 +4174,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 Utilities.themeQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.this.lambda$saveLastCameraBitmap$44(bitmap, runnable);
+                        StoryRecorder.this.lambda$saveLastCameraBitmap$45(bitmap, runnable);
                     }
                 });
             } catch (Throwable unused) {
@@ -4147,7 +4182,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$saveLastCameraBitmap$44(Bitmap bitmap, Runnable runnable) {
+    public void lambda$saveLastCameraBitmap$45(Bitmap bitmap, Runnable runnable) {
         if (bitmap != null) {
             try {
                 Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), this.cameraView.getMatrix(), true);
@@ -4178,7 +4213,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             builder.setNeutralButton(LocaleController.getString(storyEntry.isDraft ? "StoryKeepDraft" : "StorySaveDraft"), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    StoryRecorder.this.lambda$showDismissEntry$45(dialogInterface, i);
+                    StoryRecorder.this.lambda$showDismissEntry$46(dialogInterface, i);
                 }
             });
         }
@@ -4186,7 +4221,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         builder.setPositiveButton((storyEntry2 == null || !storyEntry2.isDraft) ? LocaleController.getString("Discard", R.string.Discard) : LocaleController.getString("StoryDeleteDraft"), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                StoryRecorder.this.lambda$showDismissEntry$46(dialogInterface, i);
+                StoryRecorder.this.lambda$showDismissEntry$47(dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -4200,7 +4235,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$showDismissEntry$45(DialogInterface dialogInterface, int i) {
+    public void lambda$showDismissEntry$46(DialogInterface dialogInterface, int i) {
         StoryEntry storyEntry = this.outputEntry;
         if (storyEntry == null) {
             return;
@@ -4223,7 +4258,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         navigateTo(0, true);
     }
 
-    public void lambda$showDismissEntry$46(DialogInterface dialogInterface, int i) {
+    public void lambda$showDismissEntry$47(DialogInterface dialogInterface, int i) {
         StoryEntry storyEntry = this.outputEntry;
         if (storyEntry != null && storyEntry.isDraft) {
             MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().delete(this.outputEntry);
@@ -4238,7 +4273,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 saveLastCameraBitmap(new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.this.lambda$destroyCameraView$47();
+                        StoryRecorder.this.lambda$destroyCameraView$48();
                     }
                 });
                 return;
@@ -4246,7 +4281,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             saveLastCameraBitmap(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryRecorder.this.lambda$destroyCameraView$48();
+                    StoryRecorder.this.lambda$destroyCameraView$49();
                 }
             });
             this.cameraView.destroy(true, null);
@@ -4255,7 +4290,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$destroyCameraView$47() {
+    public void lambda$destroyCameraView$48() {
         this.cameraViewThumb.setImageDrawable(getCameraThumb());
         DualCameraView dualCameraView = this.cameraView;
         if (dualCameraView != null) {
@@ -4265,7 +4300,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$destroyCameraView$48() {
+    public void lambda$destroyCameraView$49() {
         this.cameraViewThumb.setImageDrawable(getCameraThumb());
     }
 
@@ -4286,7 +4321,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                         new AlertDialog.Builder(getContext()).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString("PermissionNoCameraWithHint", R.string.PermissionNoCameraWithHint))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                             @Override
                             public final void onClick(DialogInterface dialogInterface, int i) {
-                                StoryRecorder.this.lambda$requestCameraPermission$49(dialogInterface, i);
+                                StoryRecorder.this.lambda$requestCameraPermission$50(dialogInterface, i);
                             }
                         }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
                         return;
@@ -4307,7 +4342,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$requestCameraPermission$49(DialogInterface dialogInterface, int i) {
+    public void lambda$requestCameraPermission$50(DialogInterface dialogInterface, int i) {
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -4356,7 +4391,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.whenOpenDone = new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.this.lambda$onResumeInternal$50();
+                        StoryRecorder.this.lambda$onResumeInternal$51();
                     }
                 };
             } else {
@@ -4386,7 +4421,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().load();
     }
 
-    public void lambda$onResumeInternal$50() {
+    public void lambda$onResumeInternal$51() {
         requestCameraPermission(false);
     }
 
@@ -4438,13 +4473,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             new AlertDialog.Builder(getContext()).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString("PermissionNoCameraMicVideo", R.string.PermissionNoCameraMicVideo))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
-                    StoryRecorder.this.lambda$onRequestPermissionsResultInternal$51(dialogInterface, i2);
+                    StoryRecorder.this.lambda$onRequestPermissionsResultInternal$52(dialogInterface, i2);
                 }
             }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
         }
     }
 
-    public void lambda$onRequestPermissionsResultInternal$51(DialogInterface dialogInterface, int i) {
+    public void lambda$onRequestPermissionsResultInternal$52(DialogInterface dialogInterface, int i) {
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -4513,12 +4548,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         BulletinFactory.of(this.windowView, this.resourcesProvider).createSimpleBulletin(R.raw.fire_on, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", i / 3600, new Object[0]), new Runnable() {
             @Override
             public final void run() {
-                StoryRecorder.this.lambda$showPremiumPeriodBulletin$53();
+                StoryRecorder.this.lambda$showPremiumPeriodBulletin$54();
             }
         })).show(true);
     }
 
-    public void lambda$showPremiumPeriodBulletin$53() {
+    public void lambda$showPremiumPeriodBulletin$54() {
         PreviewView previewView = this.previewView;
         if (previewView != null) {
             previewView.updatePauseReason(4, true);
@@ -4543,13 +4578,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         premiumFeatureBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                StoryRecorder.this.lambda$showPremiumPeriodBulletin$52(dialogInterface);
+                StoryRecorder.this.lambda$showPremiumPeriodBulletin$53(dialogInterface);
             }
         });
         premiumFeatureBottomSheet.show();
     }
 
-    public void lambda$showPremiumPeriodBulletin$52(DialogInterface dialogInterface) {
+    public void lambda$showPremiumPeriodBulletin$53(DialogInterface dialogInterface) {
         PreviewView previewView = this.previewView;
         if (previewView != null) {
             previewView.updatePauseReason(4, false);

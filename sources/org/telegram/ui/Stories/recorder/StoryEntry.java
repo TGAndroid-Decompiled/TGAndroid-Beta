@@ -338,6 +338,15 @@ public class StoryEntry extends IStoryPart {
         return file != null ? file : this.file;
     }
 
+    private String ext(File file) {
+        String path;
+        int lastIndexOf;
+        if (file != null && (lastIndexOf = (path = file.getPath()).lastIndexOf(46)) > 0) {
+            return path.substring(lastIndexOf + 1);
+        }
+        return null;
+    }
+
     public void updateFilter(PhotoFilterView photoFilterView, final Runnable runnable) {
         clearFilter();
         MediaController.SavedFilterState savedFilterState = photoFilterView.getSavedFilterState();
@@ -353,10 +362,15 @@ public class StoryEntry extends IStoryPart {
         } else {
             Bitmap bitmap = photoFilterView.getBitmap();
             if (bitmap == null) {
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             }
             Matrix matrix = new Matrix();
             int i = this.invert;
+            final boolean z = true;
             matrix.postScale(i == 1 ? -1.0f : 1.0f, i != 2 ? 1.0f : -1.0f, this.width / 2.0f, this.height / 2.0f);
             matrix.postRotate(-this.orientation);
             final Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
@@ -368,10 +382,14 @@ public class StoryEntry extends IStoryPart {
             if (file != null && file.exists()) {
                 this.filterFile.delete();
             }
-            this.filterFile = makeCacheFile(this.currentAccount, "webp");
+            String ext = ext(this.file);
+            if (!"png".equals(ext) && !"webp".equals(ext)) {
+                z = false;
+            }
+            this.filterFile = makeCacheFile(this.currentAccount, z ? "webp" : "jpg");
             if (runnable == null) {
                 try {
-                    createBitmap.compress(Bitmap.CompressFormat.WEBP, 90, new FileOutputStream(this.filterFile));
+                    createBitmap.compress(z ? Bitmap.CompressFormat.WEBP : Bitmap.CompressFormat.JPEG, 90, new FileOutputStream(this.filterFile));
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
@@ -381,21 +399,23 @@ public class StoryEntry extends IStoryPart {
             Utilities.themeQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryEntry.this.lambda$updateFilter$3(createBitmap, runnable);
+                    StoryEntry.this.lambda$updateFilter$3(createBitmap, z, runnable);
                 }
             });
         }
     }
 
-    public void lambda$updateFilter$3(Bitmap bitmap, Runnable runnable) {
+    public void lambda$updateFilter$3(Bitmap bitmap, boolean z, Runnable runnable) {
         try {
-            bitmap.compress(Bitmap.CompressFormat.WEBP, 90, new FileOutputStream(this.filterFile));
+            bitmap.compress(z ? Bitmap.CompressFormat.WEBP : Bitmap.CompressFormat.JPEG, 90, new FileOutputStream(this.filterFile));
         } catch (Exception e) {
             FileLog.e((Throwable) e, false);
-            try {
-                bitmap.compress(Bitmap.CompressFormat.PNG, 90, new FileOutputStream(this.filterFile));
-            } catch (Exception e2) {
-                FileLog.e((Throwable) e2, false);
+            if (z) {
+                try {
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, new FileOutputStream(this.filterFile));
+                } catch (Exception e2) {
+                    FileLog.e((Throwable) e2, false);
+                }
             }
         }
         bitmap.recycle();

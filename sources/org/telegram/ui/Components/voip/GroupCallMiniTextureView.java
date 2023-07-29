@@ -215,7 +215,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             }
 
             @Override
-            protected void updateRendererSize() {
+            public void updateRendererSize() {
                 super.updateRendererSize();
                 ImageView imageView = GroupCallMiniTextureView.this.blurredFlippingStub;
                 if (imageView == null || imageView.getParent() == null) {
@@ -226,7 +226,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             }
 
             @Override
-            protected void dispatchDraw(Canvas canvas) {
+            public void dispatchDraw(Canvas canvas) {
                 float f;
                 float dp;
                 float f2;
@@ -444,7 +444,7 @@ public class GroupCallMiniTextureView extends FrameLayout implements GroupCallSt
             }
 
             @Override
-            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+            public void onLayout(boolean z, int i, int i2, int i3, int i4) {
                 int i5;
                 ChatObject.VideoParticipant videoParticipant;
                 GroupCallMiniTextureView groupCallMiniTextureView = GroupCallMiniTextureView.this;

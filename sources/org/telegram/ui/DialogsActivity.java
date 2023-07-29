@@ -31,7 +31,6 @@ import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.LongSparseArray;
 import android.util.Property;
 import android.util.StateSet;
@@ -2772,10 +2771,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         public void scrollToPositionWithOffset(int i, int i2) {
             if (this.fixOffset) {
                 i2 -= this.val$viewPage.listView.getPaddingTop();
-            }
-            Log.d("kek", "scrollToPositionWithOffset " + i + " " + i2);
-            if (i == 1 && i2 == 0) {
-                Log.d("kek", "dolbaeb");
             }
             super.scrollToPositionWithOffset(i, i2);
         }

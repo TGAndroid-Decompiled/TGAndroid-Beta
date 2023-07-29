@@ -300,7 +300,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
     public AnimatedFileDrawable(File file, boolean z, long j, int i, TLRPC$Document tLRPC$Document, ImageLocation imageLocation, Object obj, long j2, int i2, boolean z2, int i3, int i4, BitmapsCache.CacheOptions cacheOptions) {
         long j3;
         boolean z3;
-        this.USE_BITMAP_SHADER = Build.VERSION.SDK_INT < 30;
+        this.USE_BITMAP_SHADER = Build.VERSION.SDK_INT < 29;
         this.invalidateAfter = 50;
         int[] iArr = new int[6];
         this.metaData = iArr;
@@ -953,7 +953,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedFileDrawable.drawInternal(android.graphics.Canvas, boolean, long, int):void");
     }
 
-    private void drawBitmap(RectF rectF, Paint paint, Canvas canvas) {
+    private void drawBitmap(RectF rectF, Paint paint, Canvas canvas, float f, float f2) {
         canvas.translate(rectF.left, rectF.top);
         int[] iArr = this.metaData;
         if (iArr[2] == 90) {
@@ -966,7 +966,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
             canvas.rotate(270.0f);
             canvas.translate(-rectF.height(), 0.0f);
         }
-        canvas.scale(this.scaleX, this.scaleY);
+        canvas.scale(f, f2);
         canvas.drawBitmap(this.renderingBitmap, 0.0f, 0.0f, paint);
     }
 

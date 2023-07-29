@@ -264,7 +264,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    void onHide() {
+    public void onHide() {
         if (this.playingAudio != null && MediaController.getInstance().isPlayingMessage(this.playingAudio)) {
             MediaController.getInstance().cleanupPlayer(true, true);
         }
@@ -315,7 +315,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    int getCurrentItemTop() {
+    public int getCurrentItemTop() {
         if (this.listView.getChildCount() <= 0) {
             return ConnectionsManager.DEFAULT_DATACENTER_ID;
         }
@@ -345,7 +345,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    boolean onDismiss() {
+    public boolean onDismiss() {
         if (this.playingAudio != null && MediaController.getInstance().isPlayingMessage(this.playingAudio)) {
             MediaController.getInstance().cleanupPlayer(true, true);
         }
@@ -353,7 +353,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    int getListTopPadding() {
+    public int getListTopPadding() {
         return this.listView.getPaddingTop();
     }
 
@@ -364,7 +364,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    void onPreMeasure(int i, int i2) {
+    public void onPreMeasure(int i, int i2) {
         int i3;
         if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
             i3 = AndroidUtilities.dp(8.0f);
@@ -394,7 +394,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    void onHidden() {
+    public void onHidden() {
         this.selectedAudios.clear();
         this.selectedAudiosOrder.clear();
     }
@@ -868,7 +868,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
     }
 
     @Override
-    void onContainerTranslationUpdated(float f) {
+    public void onContainerTranslationUpdated(float f) {
         this.currentPanTranslationProgress = f;
         super.onContainerTranslationUpdated(f);
         updateEmptyViewPosition();

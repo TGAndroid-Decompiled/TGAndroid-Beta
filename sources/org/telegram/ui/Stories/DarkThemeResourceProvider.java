@@ -164,6 +164,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_chat_outBubbleGradient1, 0);
         this.sparseIntArray.put(Theme.key_chat_outBubbleGradient2, 0);
         this.sparseIntArray.put(Theme.key_chat_outBubbleGradient3, 0);
+        this.sparseIntArray.put(Theme.key_chat_textSelectBackground, ColorUtils.blendARGB(-16777216, -1, 0.6f));
         appendColors();
         this.dividerPaint.setColor(getColor(i5));
     }

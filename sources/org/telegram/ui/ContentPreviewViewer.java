@@ -1479,6 +1479,10 @@ public class ContentPreviewViewer {
     public void lambda$prepareBlurBitmap$7(Bitmap bitmap) {
         this.blurrBitmap = bitmap;
         this.preparingBitmap = false;
+        FrameLayoutDrawer frameLayoutDrawer = this.containerView;
+        if (frameLayoutDrawer != null) {
+            frameLayoutDrawer.invalidate();
+        }
     }
 
     public boolean showMenuFor(View view) {

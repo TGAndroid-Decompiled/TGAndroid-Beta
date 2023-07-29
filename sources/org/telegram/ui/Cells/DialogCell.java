@@ -1514,7 +1514,10 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             } else {
                 pullForegroundDrawable.outCy = this.storyParams.originalAvatarRect.centerY();
                 this.archivedChatsDrawable.outCx = this.storyParams.originalAvatarRect.centerX();
-                this.archivedChatsDrawable.outRadius = this.avatarImage.getImageWidth() / 2.0f;
+                this.archivedChatsDrawable.outRadius = this.storyParams.originalAvatarRect.width() / 2.0f;
+                if (MessagesController.getInstance(this.currentAccount).getStoriesController().hasHiddenStories()) {
+                    this.archivedChatsDrawable.outRadius -= AndroidUtilities.dpf2(3.5f);
+                }
                 this.archivedChatsDrawable.outImageSize = this.avatarImage.getBitmapWidth();
             }
             this.archivedChatsDrawable.startOutAnimation();

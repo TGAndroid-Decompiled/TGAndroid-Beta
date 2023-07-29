@@ -175,7 +175,9 @@ public class SelfStoryViewsView extends FrameLayout {
         Utilities.clamp(clamp / 0.5f, 1.0f, 0.0f);
         PeerStoriesView currentPeerView = this.storyViewer.getCurrentPeerView();
         if (f2 == 1.0f && this.progressToOpen != 1.0f) {
-            currentPeerView.selectPosition(this.selfStoriesPreviewView.getClosestPosition());
+            if (currentPeerView != null) {
+                currentPeerView.selectPosition(this.selfStoriesPreviewView.getClosestPosition());
+            }
             this.selfStoriesPreviewView.abortScroll();
         }
         if (currentPeerView != null) {

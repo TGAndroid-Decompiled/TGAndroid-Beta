@@ -79,7 +79,7 @@ public class StoriesUtilities {
         drawAvatarWithStory(j, canvas, imageReceiver, UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId() != j && MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().hasStories(j), avatarStoryParams);
     }
 
-    public static void drawAvatarWithStory(long r29, android.graphics.Canvas r31, org.telegram.messenger.ImageReceiver r32, boolean r33, org.telegram.ui.Stories.StoriesUtilities.AvatarStoryParams r34) {
+    public static void drawAvatarWithStory(long r30, android.graphics.Canvas r32, org.telegram.messenger.ImageReceiver r33, boolean r34, org.telegram.ui.Stories.StoriesUtilities.AvatarStoryParams r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesUtilities.drawAvatarWithStory(long, android.graphics.Canvas, org.telegram.messenger.ImageReceiver, boolean, org.telegram.ui.Stories.StoriesUtilities$AvatarStoryParams):void");
     }
 
@@ -426,6 +426,8 @@ public class StoriesUtilities {
     public static class AvatarStoryParams {
         public int animateFromUnreadState;
         ButtonBounce buttonBounce;
+        public long crossfadeToDialog;
+        public float crossfadeToDialogProgress;
         public int currentState;
         private long dialogId;
         public boolean drawHiddenStoriesAsSegments;
