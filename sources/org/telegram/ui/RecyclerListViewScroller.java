@@ -3,6 +3,7 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
+import android.view.animation.Interpolator;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RecyclerListView;
 public class RecyclerListViewScroller {
@@ -14,7 +15,11 @@ public class RecyclerListViewScroller {
         this.recyclerListView = recyclerListView;
     }
 
-    public void smoothScrollBy(final int i) {
+    public void smoothScrollBy(int i) {
+        smoothScrollBy(i, 200L, CubicBezierInterpolator.DEFAULT);
+    }
+
+    public void smoothScrollBy(final int i, long j, Interpolator interpolator) {
         ValueAnimator valueAnimator = this.valueAnimator;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
@@ -37,8 +42,8 @@ public class RecyclerListViewScroller {
                 RecyclerListViewScroller.this.valueAnimator = null;
             }
         });
-        this.valueAnimator.setDuration(200L);
-        this.valueAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
+        this.valueAnimator.setDuration(j);
+        this.valueAnimator.setInterpolator(interpolator);
         this.valueAnimator.start();
     }
 

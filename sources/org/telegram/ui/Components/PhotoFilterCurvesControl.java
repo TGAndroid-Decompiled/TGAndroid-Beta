@@ -10,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.Components.PhotoFilterView;
 public class PhotoFilterCurvesControl extends View {
     private int activeSegment;
@@ -173,7 +172,7 @@ public class PhotoFilterCurvesControl extends View {
             } else if (i3 == 3) {
                 format = String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.highlightsLevel / 100.0f));
             } else {
-                format = i3 != 4 ? BuildConfig.APP_CENTER_HASH : String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.whitesLevel / 100.0f));
+                format = i3 != 4 ? "" : String.format(Locale.US, "%.2f", Float.valueOf(curvesValue.whitesLevel / 100.0f));
             }
             float measureText = this.textPaint.measureText(format);
             Rect rect3 = this.actualArea;

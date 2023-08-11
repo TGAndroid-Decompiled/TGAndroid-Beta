@@ -5,21 +5,33 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.drawable.GradientDrawable;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.Scroller;
+import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$StoryItem;
+import org.telegram.tgnet.TLRPC$StoryViews;
+import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.Stories.SelfStoryViewsView;
 public abstract class SelfStoriesPreviewView extends View {
     boolean checkScroll;
     int childPadding;
     GestureDetector gestureDetector;
+    GradientDrawable gradientDrawable;
     ArrayList<ImageHolder> imageReceiversTmp;
     public int imagesFromH;
     public int imagesFromW;
@@ -35,6 +47,7 @@ public abstract class SelfStoriesPreviewView extends View {
     float scrollX;
     Scroller scroller;
     ArrayList<SelfStoryViewsView.StoryItemInternal> storyItems;
+    private float textWidth;
     float topPadding;
     private int viewH;
     private int viewW;
@@ -121,6 +134,7 @@ public abstract class SelfStoriesPreviewView extends View {
             }
         });
         this.scroller = new Scroller(context, new OvershootInterpolator());
+        this.gradientDrawable = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{0, ColorUtils.setAlphaComponent(-16777216, 160)});
     }
 
     @Override
@@ -129,15 +143,22 @@ public abstract class SelfStoriesPreviewView extends View {
         this.childPadding = AndroidUtilities.dp(8.0f);
         int dp = (int) (AndroidUtilities.dp(180.0f) / 1.2f);
         this.viewH = dp;
-        this.viewW = (int) ((dp / 16.0f) * 9.0f);
+        int i3 = (int) ((dp / 16.0f) * 9.0f);
+        this.viewW = i3;
+        float dp2 = i3 - AndroidUtilities.dp(8.0f);
         this.topPadding = ((AndroidUtilities.dp(180.0f) - this.viewH) / 2.0f) + AndroidUtilities.dp(20.0f);
         updateScrollParams();
-        if (this.scrollToPositionInLayout < 0 || getMeasuredWidth() <= 0) {
-            return;
+        if (this.scrollToPositionInLayout >= 0 && getMeasuredWidth() > 0) {
+            this.lastClosestPosition = -1;
+            scrollToPosition(this.scrollToPositionInLayout, false, false);
+            this.scrollToPositionInLayout = -1;
         }
-        this.lastClosestPosition = -1;
-        scrollToPosition(this.scrollToPositionInLayout, false, false);
-        this.scrollToPositionInLayout = -1;
+        if (this.textWidth != dp2) {
+            this.textWidth = dp2;
+            for (int i4 = 0; i4 < this.lastDrawnImageReceivers.size(); i4++) {
+                this.lastDrawnImageReceivers.get(i4).onBind(this.lastDrawnImageReceivers.get(i4).position);
+            }
+        }
     }
 
     private void updateScrollParams() {
@@ -152,6 +173,8 @@ public abstract class SelfStoriesPreviewView extends View {
         float f;
         float f2;
         float f3;
+        float f4;
+        float f5;
         int i;
         super.onDraw(canvas);
         if (this.scroller.computeScrollOffset()) {
@@ -161,64 +184,85 @@ public abstract class SelfStoriesPreviewView extends View {
         } else if (this.checkScroll) {
             scrollToClosest();
         }
-        float f4 = 2.0f;
+        float f6 = 2.0f;
         float measuredWidth = getMeasuredWidth() / 2.0f;
         this.imageReceiversTmp.clear();
         this.imageReceiversTmp.addAll(this.lastDrawnImageReceivers);
         this.lastDrawnImageReceivers.clear();
-        float f5 = 2.14748365E9f;
+        float f7 = 2.14748365E9f;
         int i2 = -1;
         int i3 = 0;
         int i4 = -1;
         while (i3 < this.storyItems.size()) {
             int i5 = this.viewW;
-            float f6 = (-this.scrollX) + ((this.childPadding + i5) * i3);
-            float f7 = ((i5 / f4) + f6) - measuredWidth;
-            float abs = Math.abs(f7);
+            float f8 = (-this.scrollX) + ((this.childPadding + i5) * i3);
+            float f9 = ((i5 / f6) + f8) - measuredWidth;
+            float abs = Math.abs(f9);
             if (abs < this.viewW) {
-                f = 1.0f - (Math.abs(f7) / this.viewW);
+                f = 1.0f - (Math.abs(f9) / this.viewW);
                 f2 = (0.2f * f) + 1.0f;
             } else {
                 f = 0.0f;
                 f2 = 1.0f;
             }
-            if (i4 == i2 || abs < f5) {
+            if (i4 == i2 || abs < f7) {
                 i4 = i3;
-                f5 = abs;
+                f7 = abs;
             }
-            if (f7 < 0.0f) {
-                f3 = f6 - ((this.viewW * 0.1f) * (1.0f - f));
+            if (f9 < 0.0f) {
+                f3 = f8 - ((this.viewW * 0.1f) * (1.0f - f));
             } else {
-                f3 = f6 + (this.viewW * 0.1f * (1.0f - f));
+                f3 = f8 + (this.viewW * 0.1f * (1.0f - f));
             }
-            if (f3 <= getMeasuredWidth() && this.viewW + f3 >= 0.0f) {
+            if (f3 > getMeasuredWidth() || this.viewW + f3 < 0.0f) {
+                f4 = measuredWidth;
+                f5 = f7;
+            } else {
                 ImageHolder findOrCreateImageReceiver = findOrCreateImageReceiver(i3, this.imageReceiversTmp);
                 int i6 = this.viewW;
-                float f8 = i6 * f2;
+                float f10 = i6 * f2;
                 int i7 = this.viewH;
-                float f9 = i7 * f2;
-                float f10 = f3 - ((f8 - i6) / f4);
-                float f11 = this.topPadding - ((f9 - i7) / f4);
+                float f11 = i7 * f2;
+                float f12 = f3 - ((f10 - i6) / f6);
+                float f13 = this.topPadding - ((f11 - i7) / f6);
                 if (this.progressToOpen == 0.0f || i3 == (i = this.lastClosestPosition)) {
-                    findOrCreateImageReceiver.receiver.setImageCoords(f10, f11, f8, f9);
+                    f4 = measuredWidth;
+                    f5 = f7;
+                    findOrCreateImageReceiver.receiver.setImageCoords(f12, f13, f10, f11);
                 } else {
-                    findOrCreateImageReceiver.receiver.setImageCoords(AndroidUtilities.lerp((i3 - i) * getMeasuredWidth(), f10, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromY, f11, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromW, f8, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromH, f9, this.progressToOpen));
+                    f4 = measuredWidth;
+                    f5 = f7;
+                    findOrCreateImageReceiver.receiver.setImageCoords(AndroidUtilities.lerp((i3 - i) * getMeasuredWidth(), f12, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromY, f13, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromW, f10, this.progressToOpen), AndroidUtilities.lerp(this.imagesFromH, f11, this.progressToOpen));
                 }
                 if (this.progressToOpen == 1.0f || i3 != this.lastClosestPosition) {
                     findOrCreateImageReceiver.receiver.draw(canvas);
+                    if (findOrCreateImageReceiver.layout != null) {
+                        int i8 = (int) (((f * 0.3f) + 0.7f) * 255.0f);
+                        this.gradientDrawable.setAlpha(i8);
+                        this.gradientDrawable.setBounds((int) findOrCreateImageReceiver.receiver.getImageX(), (int) (findOrCreateImageReceiver.receiver.getImageY2() - AndroidUtilities.dp(24.0f)), (int) findOrCreateImageReceiver.receiver.getImageX2(), ((int) findOrCreateImageReceiver.receiver.getImageY2()) + 2);
+                        this.gradientDrawable.draw(canvas);
+                        canvas.save();
+                        canvas.translate(findOrCreateImageReceiver.receiver.getCenterX() - (this.textWidth / 2.0f), (findOrCreateImageReceiver.receiver.getImageY2() - AndroidUtilities.dp(8.0f)) - findOrCreateImageReceiver.layout.getHeight());
+                        findOrCreateImageReceiver.paint.setAlpha(i8);
+                        findOrCreateImageReceiver.layout.draw(canvas);
+                        canvas.restore();
+                        this.lastDrawnImageReceivers.add(findOrCreateImageReceiver);
+                    }
                 }
                 this.lastDrawnImageReceivers.add(findOrCreateImageReceiver);
             }
             i3++;
-            f4 = 2.0f;
+            measuredWidth = f4;
+            f7 = f5;
+            f6 = 2.0f;
             i2 = -1;
         }
         if (this.scrollAnimator == null && this.lastClosestPosition != i4) {
             this.lastClosestPosition = i4;
             onClosestPositionChanged(i4);
         }
-        for (int i8 = 0; i8 < this.imageReceiversTmp.size(); i8++) {
-            this.imageReceiversTmp.get(i8).onDetach();
+        for (int i9 = 0; i9 < this.imageReceiversTmp.size(); i9++) {
+            this.imageReceiversTmp.get(i9).onDetach();
         }
         this.imageReceiversTmp.clear();
     }
@@ -313,10 +357,10 @@ public abstract class SelfStoriesPreviewView extends View {
         return this.lastClosestPosition;
     }
 
-    public ImageReceiver getCenteredImageReciever() {
+    public ImageHolder getCenteredImageReciever() {
         for (int i = 0; i < this.lastDrawnImageReceivers.size(); i++) {
             if (this.lastDrawnImageReceivers.get(i).position == this.lastClosestPosition) {
-                return this.lastDrawnImageReceivers.get(i).receiver;
+                return this.lastDrawnImageReceivers.get(i);
             }
         }
         return null;
@@ -375,14 +419,17 @@ public abstract class SelfStoriesPreviewView extends View {
     }
 
     public class ImageHolder {
+        StaticLayout layout;
+        TextPaint paint = new TextPaint(1);
         int position;
         ImageReceiver receiver;
 
         public ImageHolder() {
-            ImageReceiver imageReceiver = new ImageReceiver(SelfStoriesPreviewView.this);
-            this.receiver = imageReceiver;
-            imageReceiver.setAllowLoadingOnAttachedOnly(true);
+            this.receiver = new ImageReceiver(SelfStoriesPreviewView.this);
+            this.receiver.setAllowLoadingOnAttachedOnly(true);
             this.receiver.setRoundRadius(AndroidUtilities.dp(6.0f));
+            this.paint.setColor(-1);
+            this.paint.setTextSize(AndroidUtilities.dp(13.0f));
         }
 
         void onBind(int i) {
@@ -396,10 +443,62 @@ public abstract class SelfStoriesPreviewView extends View {
             } else {
                 StoriesUtilities.setImage(this.receiver, storyItemInternal.uploadingStory);
             }
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            TLRPC$StoryItem tLRPC$StoryItem2 = storyItemInternal.storyItem;
+            if (tLRPC$StoryItem2 != null) {
+                SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder, tLRPC$StoryItem2.views, false);
+            }
+            if (spannableStringBuilder.length() != 0) {
+                StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, ConnectionsManager.DEFAULT_DATACENTER_ID, 1);
+                this.layout = createStaticLayout;
+                if (createStaticLayout.getLineCount() > 1) {
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("");
+                    SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder2, storyItemInternal.storyItem.views, true);
+                    this.layout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, ConnectionsManager.DEFAULT_DATACENTER_ID, 2);
+                    return;
+                }
+                return;
+            }
+            this.layout = null;
         }
 
         void onDetach() {
             this.receiver.onDetachedFromWindow();
+        }
+
+        public void draw(Canvas canvas, float f, float f2, int i, int i2, int i3, int i4) {
+            this.receiver.setImageCoords(i, i2, i3, i4);
+            this.receiver.setAlpha(f);
+            this.receiver.draw(canvas);
+            this.receiver.setAlpha(1.0f);
+            if (this.layout != null) {
+                int i5 = (int) (f * 255.0f);
+                this.paint.setAlpha(i5);
+                SelfStoriesPreviewView.this.gradientDrawable.setAlpha(i5);
+                SelfStoriesPreviewView.this.gradientDrawable.setBounds((int) this.receiver.getImageX(), (int) (this.receiver.getImageY2() - (AndroidUtilities.dp(24.0f) * f2)), (int) this.receiver.getImageX2(), ((int) this.receiver.getImageY2()) + 2);
+                SelfStoriesPreviewView.this.gradientDrawable.draw(canvas);
+                canvas.save();
+                canvas.scale(f2, f2, this.receiver.getCenterX(), this.receiver.getImageY2() - (AndroidUtilities.dp(8.0f) * f2));
+                canvas.translate(this.receiver.getCenterX() - (SelfStoriesPreviewView.this.textWidth / 2.0f), (this.receiver.getImageY2() - (AndroidUtilities.dp(8.0f) * f2)) - this.layout.getHeight());
+                this.layout.draw(canvas);
+                canvas.restore();
+            }
+        }
+    }
+
+    public void formatCounterText(SpannableStringBuilder spannableStringBuilder, TLRPC$StoryViews tLRPC$StoryViews, boolean z) {
+        int i = tLRPC$StoryViews == null ? 0 : tLRPC$StoryViews.views_count;
+        if (i > 0) {
+            spannableStringBuilder.append("d");
+            spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.msg_views), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+            spannableStringBuilder.append(" ").append((CharSequence) AndroidUtilities.formatWholeNumber(i, 0));
+            if (tLRPC$StoryViews == null || tLRPC$StoryViews.reactions_count <= 0) {
+                return;
+            }
+            spannableStringBuilder.append((CharSequence) (z ? "\n" : "  "));
+            spannableStringBuilder.append("d");
+            spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.mini_like_filled), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+            spannableStringBuilder.append(" ").append((CharSequence) AndroidUtilities.formatWholeNumber(tLRPC$StoryViews.reactions_count, 0));
         }
     }
 

@@ -23,6 +23,7 @@ import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.zxing.common.detector.MathUtils;
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -396,7 +397,11 @@ public class PreviewView extends FrameLayout {
             }
             Bitmap bitmap4 = this.bitmap;
             if (bitmap4 == null) {
-                final String path = storyEntry.getOriginalFile().getPath();
+                File originalFile = storyEntry.getOriginalFile();
+                if (originalFile == null) {
+                    return;
+                }
+                final String path = originalFile.getPath();
                 this.bitmap = StoryEntry.getScaledBitmap(new StoryEntry.DecodeBitmap() {
                     @Override
                     public final Bitmap decode(BitmapFactory.Options options) {
@@ -539,6 +544,7 @@ public class PreviewView extends FrameLayout {
         if (j > 0) {
             this.videoPlayer.seekTo(j);
         }
+        this.videoPlayer.setMute(storyEntry.muted);
         this.videoTimelineView.setVideoPath(fromFile.toString(), storyEntry.left, storyEntry.right);
     }
 
@@ -1020,5 +1026,13 @@ public class PreviewView extends FrameLayout {
         if (videoPlayer != null) {
             videoPlayer.setPlayWhenReady(this.pauseLinks.isEmpty());
         }
+    }
+
+    public boolean isPlaying() {
+        return !this.pauseLinks.contains(-9982);
+    }
+
+    public void play(boolean z) {
+        updatePauseReason(-9982, !z);
     }
 }

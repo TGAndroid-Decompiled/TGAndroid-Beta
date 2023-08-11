@@ -16,7 +16,6 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.FrameLayout;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
@@ -205,8 +204,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             tLRPC$TL_peerUser.user_id = clientUserId;
             tLRPC$Peer.user_id = clientUserId;
             tLRPC$TL_message.date = (int) (System.currentTimeMillis() / 1000);
-            String str = BuildConfig.APP_CENTER_HASH;
-            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_message.message = "";
             TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = new TLRPC$TL_messageMediaDocument();
             tLRPC$TL_message.media = tLRPC$TL_messageMediaDocument;
             tLRPC$TL_messageMediaDocument.flags |= 3;
@@ -217,7 +215,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             TLRPC$Document tLRPC$Document2 = this.documentAttach;
             if (tLRPC$Document2 != null) {
                 tLRPC$MessageMedia.document = tLRPC$Document2;
-                tLRPC$TL_message.attachPath = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_message.attachPath = "";
             } else {
                 String httpUrlExtension = ImageLoader.getHttpUrlExtension(this.inlineResult.content.url, this.documentAttachType == 5 ? "mp3" : "ogg");
                 TLRPC$Document tLRPC$Document3 = tLRPC$TL_message.media.document;
@@ -231,16 +229,13 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 TLRPC$TL_documentAttributeAudio tLRPC$TL_documentAttributeAudio = new TLRPC$TL_documentAttributeAudio();
                 tLRPC$TL_documentAttributeAudio.duration = MessageObject.getInlineResultDuration(this.inlineResult);
                 TLRPC$BotInlineResult tLRPC$BotInlineResult2 = this.inlineResult;
-                String str2 = tLRPC$BotInlineResult2.title;
-                if (str2 == null) {
-                    str2 = BuildConfig.APP_CENTER_HASH;
+                String str = tLRPC$BotInlineResult2.title;
+                if (str == null) {
+                    str = "";
                 }
-                tLRPC$TL_documentAttributeAudio.title = str2;
-                String str3 = tLRPC$BotInlineResult2.description;
-                if (str3 != null) {
-                    str = str3;
-                }
-                tLRPC$TL_documentAttributeAudio.performer = str;
+                tLRPC$TL_documentAttributeAudio.title = str;
+                String str2 = tLRPC$BotInlineResult2.description;
+                tLRPC$TL_documentAttributeAudio.performer = str2 != null ? str2 : "";
                 tLRPC$TL_documentAttributeAudio.flags |= 3;
                 if (this.documentAttachType == 3) {
                     tLRPC$TL_documentAttributeAudio.voice = true;
@@ -715,7 +710,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             if (contextLinkCell.resolveFileNameId == i) {
                 contextLinkCell.fileName = str;
                 if (str == null) {
-                    contextLinkCell.fileName = BuildConfig.APP_CENTER_HASH;
+                    contextLinkCell.fileName = "";
                 }
                 contextLinkCell.cacheFile = file;
                 contextLinkCell.fileExist = z;

@@ -81,6 +81,8 @@ public interface IMapsProvider {
 
         float getMaxZoomLevel();
 
+        float getMinZoomLevel();
+
         IProjection getProjection();
 
         IUISettings getUiSettings();
@@ -92,6 +94,8 @@ public interface IMapsProvider {
         void setMapType(int i);
 
         void setMyLocationEnabled(boolean z);
+
+        void setOnCameraIdleListener(Runnable runnable);
 
         void setOnCameraMoveListener(Runnable runnable);
 

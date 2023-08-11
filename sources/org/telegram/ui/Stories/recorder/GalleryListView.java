@@ -1,5 +1,10 @@
 package org.telegram.ui.Stories.recorder;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +19,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -27,7 +33,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScrollerCustom;
@@ -37,24 +45,46 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.GenericProvider;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$BotInlineResult;
+import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$Photo;
+import org.telegram.tgnet.TLRPC$TL_contacts_resolveUsername;
+import org.telegram.tgnet.TLRPC$TL_contacts_resolvedPeer;
+import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_inputPeerEmpty;
+import org.telegram.tgnet.TLRPC$TL_messages_getInlineBotResults;
+import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC$WebDocument;
+import org.telegram.tgnet.TLRPC$messages_BotResults;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
+import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
+import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.StickerEmptyView;
 import org.telegram.ui.Stories.recorder.GalleryListView;
 public class GalleryListView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static final MediaController.AlbumEntry draftsAlbum = new MediaController.AlbumEntry(-1, null, null);
@@ -74,12 +104,18 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
     public boolean firstLayout;
     private HeaderView headerView;
     public boolean ignoreScroll;
+    private final KeyboardNotifier keyboardNotifier;
     public final GridLayoutManager layoutManager;
     public final RecyclerListView listView;
     private Runnable onBackClickListener;
     private Utilities.Callback2<Object, Bitmap> onSelectListener;
     public final boolean onlyPhotos;
-    private Theme.ResourcesProvider resourcesProvider;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private final SearchAdapter searchAdapterImages;
+    private final FrameLayout searchContainer;
+    private final StickerEmptyView searchEmptyView;
+    private final ActionBarMenuItem searchItem;
+    private final RecyclerListView searchListView;
     public MediaController.AlbumEntry selectedAlbum;
     public ArrayList<MediaController.PhotoEntry> selectedPhotos;
 
@@ -202,7 +238,8 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
                 }
             }
         });
-        ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, actionBar.createMenu(), 0, 0, resourcesProvider) {
+        ActionBarMenu createMenu = actionBar.createMenu();
+        ActionBarMenuItem actionBarMenuItem = new ActionBarMenuItem(context, createMenu, 0, 0, resourcesProvider) {
             @Override
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -234,12 +271,106 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
         textView.setPadding(0, AndroidUtilities.statusBarHeight, AndroidUtilities.dp(10.0f), 0);
         actionBarMenuItem.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 16, 16.0f, 0.0f, 0.0f, 0.0f));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.searchContainer = frameLayout;
+        frameLayout.setVisibility(8);
+        frameLayout.setAlpha(0.0f);
+        addView(frameLayout, LayoutHelper.createFrame(-1, -1, 119));
+        RecyclerListView recyclerListView2 = new RecyclerListView(context, resourcesProvider);
+        this.searchListView = recyclerListView2;
+        recyclerListView2.setLayoutManager(new GridLayoutManager(context, 3));
+        SearchAdapter searchAdapter = new SearchAdapter() {
+            @Override
+            protected void onLoadingUpdate(boolean z2) {
+                if (GalleryListView.this.searchItem != null) {
+                    GalleryListView.this.searchItem.setShowSearchProgress(z2);
+                }
+                GalleryListView.this.searchEmptyView.showProgress(z2, true);
+            }
+
+            @Override
+            public void notifyDataSetChanged() {
+                super.notifyDataSetChanged();
+                if (TextUtils.isEmpty(this.query)) {
+                    GalleryListView.this.searchEmptyView.setStickerType(11);
+                    GalleryListView.this.searchEmptyView.title.setText(LocaleController.getString(R.string.SearchImagesType));
+                    return;
+                }
+                GalleryListView.this.searchEmptyView.setStickerType(1);
+                GalleryListView.this.searchEmptyView.title.setText(LocaleController.formatString(R.string.NoResultFoundFor, this.query));
+            }
+        };
+        this.searchAdapterImages = searchAdapter;
+        recyclerListView2.setAdapter(searchAdapter);
+        recyclerListView2.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i2, int i3) {
+                if (!GalleryListView.this.searchListView.scrollingByUser || GalleryListView.this.searchItem == null || GalleryListView.this.searchItem.getSearchField() == null) {
+                    return;
+                }
+                AndroidUtilities.hideKeyboard(GalleryListView.this.searchItem.getSearchContainer());
+            }
+        });
+        recyclerListView2.setClipToPadding(true);
+        recyclerListView2.addItemDecoration(new RecyclerView.ItemDecoration(this) {
+            @Override
+            public void getItemOffsets(Rect rect, View view, RecyclerView recyclerView, RecyclerView.State state) {
+                int dp = AndroidUtilities.dp(4.0f);
+                rect.top = 0;
+                rect.bottom = dp;
+                rect.right = dp;
+                rect.left = dp;
+                if (recyclerView.getChildAdapterPosition(view) % 3 != 2) {
+                    rect.right = 0;
+                }
+            }
+        });
+        frameLayout.addView(recyclerListView2, LayoutHelper.createFrame(-1, -1, 119));
+        FlickerLoadingView flickerLoadingView = new FlickerLoadingView(this, context, resourcesProvider) {
+            @Override
+            public int getColumnsCount() {
+                return 3;
+            }
+        };
+        flickerLoadingView.setViewType(2);
+        flickerLoadingView.setAlpha(0.0f);
+        flickerLoadingView.setVisibility(8);
+        frameLayout.addView(flickerLoadingView, LayoutHelper.createFrame(-1, -1, 119));
+        StickerEmptyView stickerEmptyView = new StickerEmptyView(context, flickerLoadingView, 11, resourcesProvider);
+        this.searchEmptyView = stickerEmptyView;
+        stickerEmptyView.title.setTextSize(1, 16.0f);
+        stickerEmptyView.title.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
+        stickerEmptyView.title.setText(LocaleController.getString(R.string.SearchImagesType));
+        this.keyboardNotifier = new KeyboardNotifier(this, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                GalleryListView.this.lambda$new$3((Integer) obj);
+            }
+        });
+        frameLayout.addView(stickerEmptyView, LayoutHelper.createFrame(-1, -1, 119));
+        recyclerListView2.setEmptyView(stickerEmptyView);
+        ActionBarMenuItem actionBarMenuItemSearchListener = createMenu.addItem(0, R.drawable.ic_ab_search).setIsSearchField(true).setActionBarMenuItemSearchListener(new AnonymousClass12());
+        this.searchItem = actionBarMenuItemSearchListener;
+        actionBarMenuItemSearchListener.setVisibility(8);
+        actionBarMenuItemSearchListener.setSearchFieldHint(LocaleController.getString("SearchImagesTitle", R.string.SearchImagesTitle));
+        recyclerListView2.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+            @Override
+            public final void onItemClick(View view, int i2) {
+                GalleryListView.this.lambda$new$4(view, i2);
+            }
+        });
         arrayList.clear();
         if (!z) {
-            arrayList.addAll(MessagesController.getInstance(i).getStoriesController().getDraftsController().drafts);
+            Iterator<StoryEntry> it = MessagesController.getInstance(i).getStoriesController().getDraftsController().drafts.iterator();
+            while (it.hasNext()) {
+                StoryEntry next = it.next();
+                if (!next.isEdit) {
+                    this.drafts.add(next);
+                }
+            }
         }
         updateAlbumsDropDown();
-        if (albumEntry != null && (albumEntry != draftsAlbum || arrayList.size() > 0)) {
+        if (albumEntry != null && (albumEntry != draftsAlbum || this.drafts.size() > 0)) {
             this.selectedAlbum = albumEntry;
         } else {
             ArrayList<MediaController.AlbumEntry> arrayList2 = this.dropDownAlbums;
@@ -253,11 +384,11 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         updateContainsDrafts();
         MediaController.AlbumEntry albumEntry2 = this.selectedAlbum;
         if (albumEntry2 == MediaController.allMediaAlbumEntry) {
-            textView.setText(LocaleController.getString("ChatGallery", R.string.ChatGallery));
+            this.dropDown.setText(LocaleController.getString("ChatGallery", R.string.ChatGallery));
         } else if (albumEntry2 == draftsAlbum) {
-            textView.setText(LocaleController.getString("StoryDraftsAlbum"));
+            this.dropDown.setText(LocaleController.getString("StoryDraftsAlbum"));
         } else {
-            textView.setText(albumEntry2.bucketName);
+            this.dropDown.setText(albumEntry2.bucketName);
         }
     }
 
@@ -296,6 +427,139 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         this.dropDownContainer.toggleSubMenu();
     }
 
+    public void lambda$new$3(Integer num) {
+        this.searchEmptyView.animate().translationY(((-num.intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator).start();
+    }
+
+    public class AnonymousClass12 extends ActionBarMenuItem.ActionBarMenuItemSearchListener {
+        private AnimatorSet animatorSet;
+
+        AnonymousClass12() {
+        }
+
+        @Override
+        public void onSearchCollapse() {
+            AnimatorSet animatorSet = this.animatorSet;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+            }
+            ArrayList arrayList = new ArrayList();
+            GalleryListView.this.dropDownContainer.setVisibility(0);
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.SCALE_X, 1.0f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.SCALE_Y, 1.0f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.ALPHA, 1.0f));
+            final EditTextBoldCursor searchField = GalleryListView.this.searchItem.getSearchField();
+            if (searchField != null) {
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.SCALE_X, 0.8f));
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.SCALE_Y, 0.8f));
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.ALPHA, 0.0f));
+            }
+            GalleryListView.this.listView.setVisibility(0);
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.listView, View.ALPHA, 1.0f));
+            GalleryListView.this.listView.setFastScrollVisible(true);
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.searchContainer, View.ALPHA, 0.0f));
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    GalleryListView.AnonymousClass12.this.lambda$onSearchCollapse$0(valueAnimator);
+                }
+            });
+            arrayList.add(ofFloat);
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.animatorSet = animatorSet2;
+            animatorSet2.setDuration(320L);
+            this.animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.animatorSet.playTogether(arrayList);
+            this.animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    View view = searchField;
+                    if (view != null) {
+                        view.setVisibility(4);
+                    }
+                    GalleryListView.this.searchContainer.setVisibility(8);
+                }
+            });
+            this.animatorSet.start();
+        }
+
+        public void lambda$onSearchCollapse$0(ValueAnimator valueAnimator) {
+            GalleryListView.this.invalidate();
+        }
+
+        @Override
+        public void onSearchExpand() {
+            AnimatorSet animatorSet = this.animatorSet;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+            }
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.SCALE_X, 0.8f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.SCALE_Y, 0.8f));
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.dropDownContainer, View.ALPHA, 0.0f));
+            EditTextBoldCursor searchField = GalleryListView.this.searchItem.getSearchField();
+            if (searchField != null) {
+                searchField.setVisibility(0);
+                searchField.setHandlesColor(-1);
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.SCALE_X, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.SCALE_Y, 1.0f));
+                arrayList.add(ObjectAnimator.ofFloat(searchField, View.ALPHA, 1.0f));
+            }
+            GalleryListView.this.searchContainer.setVisibility(0);
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.listView, View.ALPHA, 0.0f));
+            GalleryListView.this.listView.setFastScrollVisible(false);
+            arrayList.add(ObjectAnimator.ofFloat(GalleryListView.this.searchContainer, View.ALPHA, 1.0f));
+            GalleryListView.this.searchEmptyView.setVisibility(0);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    GalleryListView.AnonymousClass12.this.lambda$onSearchExpand$1(valueAnimator);
+                }
+            });
+            arrayList.add(ofFloat);
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.animatorSet = animatorSet2;
+            animatorSet2.setDuration(320L);
+            this.animatorSet.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.animatorSet.playTogether(arrayList);
+            this.animatorSet.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    GalleryListView.this.dropDownContainer.setVisibility(8);
+                    GalleryListView.this.listView.setVisibility(8);
+                }
+            });
+            this.animatorSet.start();
+        }
+
+        public void lambda$onSearchExpand$1(ValueAnimator valueAnimator) {
+            GalleryListView.this.invalidate();
+        }
+
+        @Override
+        public void onTextChanged(EditText editText) {
+            GalleryListView.this.searchAdapterImages.load(editText.getText().toString());
+        }
+    }
+
+    public void lambda$new$4(View view, int i) {
+        Utilities.Callback2<Object, Bitmap> callback2;
+        ActionBarMenuItem actionBarMenuItem = this.searchItem;
+        if (actionBarMenuItem != null) {
+            AndroidUtilities.hideKeyboard(actionBarMenuItem.getSearchContainer());
+        }
+        if (i < 0 || i >= this.searchAdapterImages.results.size() || (callback2 = this.onSelectListener) == null) {
+            return;
+        }
+        callback2.run(this.searchAdapterImages.results.get(i), null);
+    }
+
+    public void allowSearch(boolean z) {
+        this.searchItem.setVisibility(z ? 0 : 8);
+    }
+
     private ArrayList<MediaController.PhotoEntry> getPhotoEntries(MediaController.AlbumEntry albumEntry) {
         if (albumEntry == null) {
             return new ArrayList<>();
@@ -311,6 +575,24 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             }
         }
         return arrayList;
+    }
+
+    public void openSearch() {
+        this.actionBar.onSearchFieldVisibilityChanged(this.searchItem.toggleSearch(true));
+    }
+
+    public boolean onBackPressed() {
+        ActionBarMenuItem actionBarMenuItem = this.searchItem;
+        if (actionBarMenuItem == null || !actionBarMenuItem.isSearchFieldVisible()) {
+            return false;
+        }
+        EditTextBoldCursor searchField = this.searchItem.getSearchField();
+        if (this.keyboardNotifier.keyboardVisible()) {
+            AndroidUtilities.hideKeyboard(searchField);
+            return true;
+        }
+        this.actionBar.onSearchFieldVisibilityChanged(this.searchItem.toggleSearch(true));
+        return true;
     }
 
     @Override
@@ -354,6 +636,11 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         float f;
         this.listView.setPinnedSectionOffsetY(AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight());
         this.listView.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight(), AndroidUtilities.dp(1.0f), AndroidUtilities.navigationBarHeight);
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.searchContainer.getLayoutParams();
+        layoutParams.leftMargin = 0;
+        layoutParams.topMargin = AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight();
+        layoutParams.rightMargin = 0;
+        layoutParams.bottomMargin = AndroidUtilities.navigationBarHeight;
         this.dropDown.setPadding(0, AndroidUtilities.statusBarHeight, AndroidUtilities.dp(10.0f), 0);
         TextView textView = this.dropDown;
         if (!AndroidUtilities.isTablet()) {
@@ -394,9 +681,9 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         Collections.sort(arrayList2, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$updateAlbumsDropDown$3;
-                lambda$updateAlbumsDropDown$3 = GalleryListView.lambda$updateAlbumsDropDown$3(arrayList, (MediaController.AlbumEntry) obj, (MediaController.AlbumEntry) obj2);
-                return lambda$updateAlbumsDropDown$3;
+                int lambda$updateAlbumsDropDown$5;
+                lambda$updateAlbumsDropDown$5 = GalleryListView.lambda$updateAlbumsDropDown$5(arrayList, (MediaController.AlbumEntry) obj, (MediaController.AlbumEntry) obj2);
+                return lambda$updateAlbumsDropDown$5;
             }
         });
         if (!this.drafts.isEmpty()) {
@@ -423,13 +710,13 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             albumButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    GalleryListView.this.lambda$updateAlbumsDropDown$4(albumEntry, view);
+                    GalleryListView.this.lambda$updateAlbumsDropDown$6(albumEntry, view);
                 }
             });
         }
     }
 
-    public static int lambda$updateAlbumsDropDown$3(ArrayList arrayList, MediaController.AlbumEntry albumEntry, MediaController.AlbumEntry albumEntry2) {
+    public static int lambda$updateAlbumsDropDown$5(ArrayList arrayList, MediaController.AlbumEntry albumEntry, MediaController.AlbumEntry albumEntry2) {
         int indexOf;
         int indexOf2;
         int i = albumEntry.bucketId;
@@ -442,7 +729,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         return -1;
     }
 
-    public void lambda$updateAlbumsDropDown$4(MediaController.AlbumEntry albumEntry, View view) {
+    public void lambda$updateAlbumsDropDown$6(MediaController.AlbumEntry albumEntry, View view) {
         selectAlbum(albumEntry, false);
         this.dropDownContainer.closeSubMenu();
     }
@@ -853,14 +1140,14 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
 
         private String key(MediaController.PhotoEntry photoEntry) {
             if (photoEntry == null) {
-                return BuildConfig.APP_CENTER_HASH;
+                return "";
             }
             String str = photoEntry.thumbPath;
             if (str != null) {
                 return str;
             }
             if (photoEntry.isVideo) {
-                return BuildConfig.APP_CENTER_HASH + photoEntry.imageId;
+                return "" + photoEntry.imageId;
             }
             return photoEntry.path;
         }
@@ -992,14 +1279,38 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         }
     }
 
-    private static class HeaderView extends TextView {
+    public class HeaderView extends FrameLayout {
+        public ImageView searchButton;
+        public TextView textView;
+
         public HeaderView(Context context, boolean z) {
             super(context);
-            setTextSize(1, 16.0f);
-            setTextColor(-1);
-            setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(10.0f));
-            setText(LocaleController.getString(z ? R.string.AddImage : R.string.ChoosePhotoOrVideo));
+            setPadding(AndroidUtilities.dp(z ? 14.0f : 16.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(10.0f));
+            if (z) {
+                ImageView imageView = new ImageView(context);
+                this.searchButton = imageView;
+                imageView.setImageResource(R.drawable.ic_ab_search);
+                this.searchButton.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+                this.searchButton.setBackground(Theme.createSelectorDrawable(436207615));
+                this.searchButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        GalleryListView.HeaderView.this.lambda$new$0(view);
+                    }
+                });
+                addView(this.searchButton, LayoutHelper.createFrame(24, 24, 21));
+            }
+            TextView textView = new TextView(context);
+            this.textView = textView;
+            textView.setTextSize(1, 16.0f);
+            this.textView.setTextColor(-1);
+            this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.textView.setText(LocaleController.getString(z ? R.string.AddImage : R.string.ChoosePhotoOrVideo));
+            addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 119, 0.0f, 0.0f, z ? 32.0f : 0.0f, 0.0f));
+        }
+
+        public void lambda$new$0(View view) {
+            GalleryListView.this.openSearch();
         }
     }
 
@@ -1019,7 +1330,9 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
                 GalleryListView galleryListView = GalleryListView.this;
                 cell = new EmptyView(galleryListView.getContext());
             } else if (i == 1) {
-                cell = GalleryListView.this.headerView = new HeaderView(GalleryListView.this.getContext(), GalleryListView.this.onlyPhotos);
+                GalleryListView galleryListView2 = GalleryListView.this;
+                GalleryListView galleryListView3 = GalleryListView.this;
+                cell = galleryListView2.headerView = new HeaderView(galleryListView3.getContext(), GalleryListView.this.onlyPhotos);
             } else {
                 cell = new Cell(GalleryListView.this.getContext());
             }
@@ -1127,20 +1440,24 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
     }
 
     public int top() {
+        int padding;
         RecyclerListView recyclerListView = this.listView;
         if (recyclerListView == null || recyclerListView.getChildCount() <= 0) {
-            return getPadding();
-        }
-        int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
-        if (this.listView != null) {
-            for (int i2 = 0; i2 < this.listView.getChildCount(); i2++) {
-                View childAt = this.listView.getChildAt(i2);
-                if (this.listView.getChildAdapterPosition(childAt) > 0) {
-                    i = Math.min(i, (int) childAt.getY());
+            padding = getPadding();
+        } else {
+            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            if (this.listView != null) {
+                for (int i2 = 0; i2 < this.listView.getChildCount(); i2++) {
+                    View childAt = this.listView.getChildAt(i2);
+                    if (this.listView.getChildAdapterPosition(childAt) > 0) {
+                        i = Math.min(i, (int) childAt.getY());
+                    }
                 }
             }
+            padding = Math.max(0, Math.min(i, getHeight()));
         }
-        return Math.max(0, Math.min(i, getHeight()));
+        RecyclerListView recyclerListView2 = this.listView;
+        return recyclerListView2 == null ? padding : AndroidUtilities.lerp(0, padding, recyclerListView2.getAlpha());
     }
 
     @Override
@@ -1199,7 +1516,13 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
     public void updateDrafts() {
         this.drafts.clear();
         if (!this.onlyPhotos) {
-            this.drafts.addAll(MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().drafts);
+            Iterator<StoryEntry> it = MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().drafts.iterator();
+            while (it.hasNext()) {
+                StoryEntry next = it.next();
+                if (!next.isEdit) {
+                    this.drafts.add(next);
+                }
+            }
         }
         updateAlbumsDropDown();
         updateContainsDrafts();
@@ -1219,5 +1542,202 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             z = false;
         }
         this.containsDrafts = z;
+    }
+
+    public class SearchAdapter extends RecyclerListView.SelectionAdapter {
+        private TLRPC$User bot;
+        private int currentReqId;
+        private String lastOffset;
+        private boolean loading;
+        private Drawable loadingDrawable;
+        public String query;
+        public ArrayList<TLObject> results;
+        private final Runnable searchRunnable;
+        private boolean triedResolvingBot;
+        public int type;
+
+        @Override
+        public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
+            return true;
+        }
+
+        protected void onLoadingUpdate(boolean z) {
+            throw null;
+        }
+
+        private SearchAdapter() {
+            this.results = new ArrayList<>();
+            this.currentReqId = -1;
+            this.loadingDrawable = new ColorDrawable(285212671);
+            this.searchRunnable = new Runnable() {
+                @Override
+                public final void run() {
+                    GalleryListView.SearchAdapter.this.loadInternal();
+                }
+            };
+        }
+
+        @Override
+        public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+            return new RecyclerListView.Holder(new BackupImageView(this, GalleryListView.this.getContext()) {
+                @Override
+                protected void onMeasure(int i2, int i3) {
+                    int size = View.MeasureSpec.getSize(i2);
+                    setMeasuredDimension(size, size);
+                }
+            });
+        }
+
+        @Override
+        public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+            BackupImageView backupImageView = (BackupImageView) viewHolder.itemView;
+            TLObject tLObject = this.results.get(i);
+            if (tLObject instanceof TLRPC$Document) {
+                backupImageView.setImage(ImageLocation.getForDocument((TLRPC$Document) tLObject), "200_200", this.loadingDrawable, (Object) null);
+            } else if (tLObject instanceof TLRPC$Photo) {
+                TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) tLObject;
+                backupImageView.setImage(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 320), tLRPC$Photo), "200_200", this.loadingDrawable, (Object) null);
+            } else if (tLObject instanceof TLRPC$BotInlineResult) {
+                TLRPC$BotInlineResult tLRPC$BotInlineResult = (TLRPC$BotInlineResult) tLObject;
+                TLRPC$WebDocument tLRPC$WebDocument = tLRPC$BotInlineResult.thumb;
+                if (tLRPC$WebDocument != null) {
+                    backupImageView.setImage(ImageLocation.getForPath(tLRPC$WebDocument.url), "200_200", this.loadingDrawable, tLRPC$BotInlineResult);
+                } else {
+                    backupImageView.clearImage();
+                }
+            } else {
+                backupImageView.clearImage();
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return this.results.size();
+        }
+
+        public void load(String str) {
+            if (!TextUtils.equals(this.query, str)) {
+                if (this.currentReqId != -1) {
+                    ConnectionsManager.getInstance(GalleryListView.this.currentAccount).cancelRequest(this.currentReqId, true);
+                    this.currentReqId = -1;
+                }
+                this.loading = false;
+                this.lastOffset = null;
+            }
+            this.query = str;
+            AndroidUtilities.cancelRunOnUIThread(this.searchRunnable);
+            if (TextUtils.isEmpty(str)) {
+                this.results.clear();
+                onLoadingUpdate(false);
+                notifyDataSetChanged();
+                return;
+            }
+            onLoadingUpdate(true);
+            AndroidUtilities.runOnUIThread(this.searchRunnable, 1500L);
+        }
+
+        public void loadInternal() {
+            if (this.loading) {
+                return;
+            }
+            this.loading = true;
+            onLoadingUpdate(true);
+            final MessagesController messagesController = MessagesController.getInstance(GalleryListView.this.currentAccount);
+            String str = this.type == 1 ? messagesController.gifSearchBot : messagesController.imageSearchBot;
+            if (this.bot == null) {
+                TLObject userOrChat = messagesController.getUserOrChat(str);
+                if (userOrChat instanceof TLRPC$User) {
+                    this.bot = (TLRPC$User) userOrChat;
+                }
+            }
+            TLRPC$User tLRPC$User = this.bot;
+            if (tLRPC$User == null && !this.triedResolvingBot) {
+                TLRPC$TL_contacts_resolveUsername tLRPC$TL_contacts_resolveUsername = new TLRPC$TL_contacts_resolveUsername();
+                tLRPC$TL_contacts_resolveUsername.username = str;
+                this.currentReqId = ConnectionsManager.getInstance(GalleryListView.this.currentAccount).sendRequest(tLRPC$TL_contacts_resolveUsername, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        GalleryListView.SearchAdapter.this.lambda$loadInternal$1(messagesController, tLObject, tLRPC$TL_error);
+                    }
+                });
+            } else if (tLRPC$User == null) {
+            } else {
+                TLRPC$TL_messages_getInlineBotResults tLRPC$TL_messages_getInlineBotResults = new TLRPC$TL_messages_getInlineBotResults();
+                tLRPC$TL_messages_getInlineBotResults.bot = messagesController.getInputUser(this.bot);
+                String str2 = this.query;
+                if (str2 == null) {
+                    str2 = "";
+                }
+                tLRPC$TL_messages_getInlineBotResults.query = str2;
+                tLRPC$TL_messages_getInlineBotResults.peer = new TLRPC$TL_inputPeerEmpty();
+                String str3 = this.lastOffset;
+                String str4 = str3 != null ? str3 : "";
+                tLRPC$TL_messages_getInlineBotResults.offset = str4;
+                final boolean isEmpty = TextUtils.isEmpty(str4);
+                this.currentReqId = ConnectionsManager.getInstance(GalleryListView.this.currentAccount).sendRequest(tLRPC$TL_messages_getInlineBotResults, new RequestDelegate() {
+                    @Override
+                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                        GalleryListView.SearchAdapter.this.lambda$loadInternal$3(isEmpty, tLObject, tLRPC$TL_error);
+                    }
+                });
+            }
+        }
+
+        public void lambda$loadInternal$1(final MessagesController messagesController, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    GalleryListView.SearchAdapter.this.lambda$loadInternal$0(tLObject, messagesController);
+                }
+            });
+        }
+
+        public void lambda$loadInternal$0(TLObject tLObject, MessagesController messagesController) {
+            this.triedResolvingBot = true;
+            this.loading = false;
+            if (tLObject instanceof TLRPC$TL_contacts_resolvedPeer) {
+                TLRPC$TL_contacts_resolvedPeer tLRPC$TL_contacts_resolvedPeer = (TLRPC$TL_contacts_resolvedPeer) tLObject;
+                messagesController.putUsers(tLRPC$TL_contacts_resolvedPeer.users, false);
+                messagesController.putChats(tLRPC$TL_contacts_resolvedPeer.chats, false);
+                MessagesStorage.getInstance(GalleryListView.this.currentAccount).putUsersAndChats(tLRPC$TL_contacts_resolvedPeer.users, tLRPC$TL_contacts_resolvedPeer.chats, true, true);
+                loadInternal();
+            }
+        }
+
+        public void lambda$loadInternal$3(final boolean z, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    GalleryListView.SearchAdapter.this.lambda$loadInternal$2(tLObject, z);
+                }
+            });
+        }
+
+        public void lambda$loadInternal$2(TLObject tLObject, boolean z) {
+            if (tLObject instanceof TLRPC$messages_BotResults) {
+                TLRPC$messages_BotResults tLRPC$messages_BotResults = (TLRPC$messages_BotResults) tLObject;
+                this.lastOffset = tLRPC$messages_BotResults.next_offset;
+                if (z) {
+                    this.results.clear();
+                }
+                for (int i = 0; i < tLRPC$messages_BotResults.results.size(); i++) {
+                    TLRPC$BotInlineResult tLRPC$BotInlineResult = tLRPC$messages_BotResults.results.get(i);
+                    TLRPC$Document tLRPC$Document = tLRPC$BotInlineResult.document;
+                    if (tLRPC$Document != null) {
+                        this.results.add(tLRPC$Document);
+                    } else {
+                        TLRPC$Photo tLRPC$Photo = tLRPC$BotInlineResult.photo;
+                        if (tLRPC$Photo != null) {
+                            this.results.add(tLRPC$Photo);
+                        } else if (tLRPC$BotInlineResult.content != null) {
+                            this.results.add(tLRPC$BotInlineResult);
+                        }
+                    }
+                }
+                this.loading = false;
+                onLoadingUpdate(false);
+                notifyDataSetChanged();
+            }
+        }
     }
 }

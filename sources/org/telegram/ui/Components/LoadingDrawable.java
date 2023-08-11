@@ -217,6 +217,7 @@ public class LoadingDrawable extends Drawable {
     @Override
     public void setAlpha(int i) {
         this.paint.setAlpha(i);
+        this.strokePaint.setAlpha(i);
         if (i > 0) {
             invalidateSelf();
         }

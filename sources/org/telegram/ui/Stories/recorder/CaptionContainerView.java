@@ -29,7 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
+import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
@@ -90,10 +90,18 @@ public class CaptionContainerView extends FrameLayout {
     private boolean periodVisible;
     private final Theme.ResourcesProvider resourcesProvider;
     private final StoryRecorder.WindowView rootView;
+    private int shiftDp;
     private boolean toKeyboardShow;
     private Runnable updateShowKeyboard;
     public static final int[] periods = {21600, 43200, 86400, 172800};
     public static final int[] periodDrawables = {R.drawable.msg_story_6h, R.drawable.msg_story_12h, R.drawable.msg_story_24h, R.drawable.msg_story_48h};
+
+    public boolean captionLimitToast() {
+        return false;
+    }
+
+    protected void onCaptionLimitUpdate(boolean z) {
+    }
 
     public CaptionContainerView(Context context, final int i, final StoryRecorder.WindowView windowView, FrameLayout frameLayout, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
@@ -106,6 +114,7 @@ public class CaptionContainerView extends FrameLayout {
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(10.0f), new int[]{-65536, 0}, new float[]{0.05f, 1.0f}, Shader.TileMode.CLAMP);
         this.fadeGradient = linearGradient;
         this.matrix = new Matrix();
+        this.shiftDp = -4;
         this.updateShowKeyboard = new Runnable() {
             @Override
             public final void run() {
@@ -160,6 +169,9 @@ public class CaptionContainerView extends FrameLayout {
         editTextEmoji.getEditText().setTranslationX(AndroidUtilities.dp(-22.0f));
         editTextEmoji.getEmojiButton().setAlpha(0.0f);
         editTextEmoji.getEditText().addTextChangedListener(new TextWatcher() {
+            private int lastLength;
+            private boolean lastOverLimit;
+
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
             }
@@ -181,23 +193,37 @@ public class CaptionContainerView extends FrameLayout {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                int i2;
+                CaptionContainerView captionContainerView;
                 EditTextCaption editText = CaptionContainerView.this.editText.getEditText();
-                int i2 = 0;
                 if (editText != null && editText.getLayout() != null) {
-                    editText.ignoreClipTop = editText.getLayout().getHeight() > (AndroidUtilities.dp(180.0f) - editText.getPaddingTop()) - editText.getPaddingBottom();
+                    editText.ignoreClipTop = editText.getLayout().getHeight() > (AndroidUtilities.dp(120.0f) - editText.getPaddingTop()) - editText.getPaddingBottom();
                 }
                 try {
                     i2 = CaptionContainerView.this.editText.getEditText().getText().length();
                 } catch (Exception unused) {
+                    i2 = 0;
                 }
                 String str = null;
-                int i3 = MessagesController.getInstance(i).storyCaptionLengthLimit;
+                boolean isPremium = UserConfig.getInstance(i).isPremium();
+                MessagesController messagesController = MessagesController.getInstance(i);
+                int i3 = isPremium ? messagesController.storyCaptionLengthLimitPremium : messagesController.storyCaptionLengthLimitDefault;
                 if (i2 + 25 > i3) {
-                    str = BuildConfig.APP_CENTER_HASH + (i3 - i2);
+                    str = "" + (i3 - i2);
                 }
                 CaptionContainerView.this.limitTextView.cancelAnimation();
                 CaptionContainerView.this.limitTextView.setText(str);
                 CaptionContainerView.this.limitTextView.setTextColor(i2 >= i3 ? -1280137 : -1);
+                if (i2 > i3 && !isPremium && i2 < MessagesController.getInstance(i).storyCaptionLengthLimitPremium && i2 > this.lastLength && CaptionContainerView.this.captionLimitToast()) {
+                    AndroidUtilities.shakeViewSpring(CaptionContainerView.this.limitTextView, captionContainerView.shiftDp = -captionContainerView.shiftDp);
+                    BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                }
+                this.lastLength = i2;
+                boolean z = i2 > i3;
+                if (z != this.lastOverLimit) {
+                    CaptionContainerView.this.onCaptionLimitUpdate(z);
+                }
+                this.lastOverLimit = z;
             }
         });
         addView(editTextEmoji, LayoutHelper.createFrame(-1, -2.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
@@ -224,7 +250,7 @@ public class CaptionContainerView extends FrameLayout {
         this.limitTextView.setAnimationProperties(0.4f, 0L, 320L, cubicBezierInterpolator);
         this.limitTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.limitTextView.setTranslationX(AndroidUtilities.dp(2.0f));
-        addView(this.limitTextView, LayoutHelper.createFrame(52, 16.0f, 85, 0.0f, 0.0f, 0.0f, 44.0f));
+        addView(this.limitTextView, LayoutHelper.createFrame(52, 16.0f, 85, 0.0f, 0.0f, 0.0f, 50.0f));
         paint2.setShader(linearGradient);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         ImageView imageView = new ImageView(context);
@@ -566,7 +592,8 @@ public class CaptionContainerView extends FrameLayout {
             this.editText.getEditText().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(-22.0f), AndroidUtilities.dp(2.0f), this.keyboardT));
             this.editText.setTranslationX(AndroidUtilities.lerp(0, AndroidUtilities.dp(-8.0f), this.keyboardT));
             this.editText.setTranslationY(AndroidUtilities.lerp(0, AndroidUtilities.dp(10.0f), this.keyboardT));
-            this.limitTextView.setAlpha(AndroidUtilities.lerp(0, 1, this.keyboardT));
+            this.limitTextView.setTranslationX(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), this.keyboardT));
+            this.limitTextView.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), 0, this.keyboardT));
             this.editText.getEmojiButton().setAlpha(this.keyboardT);
             this.applyButton.setVisibility(z ? 0 : 8);
             this.applyButton.setAlpha(z ? 1.0f : 0.0f);
@@ -614,7 +641,8 @@ public class CaptionContainerView extends FrameLayout {
         this.editText.getEditText().setTranslationX(AndroidUtilities.lerp(AndroidUtilities.dp(-22.0f), AndroidUtilities.dp(2.0f), this.keyboardT));
         this.editText.setTranslationX(AndroidUtilities.lerp(0, AndroidUtilities.dp(-8.0f), this.keyboardT));
         this.editText.setTranslationY(AndroidUtilities.lerp(0, AndroidUtilities.dp(10.0f), this.keyboardT));
-        this.limitTextView.setAlpha(AndroidUtilities.lerp(0, 1, this.keyboardT));
+        this.limitTextView.setTranslationX(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), this.keyboardT));
+        this.limitTextView.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), 0, this.keyboardT));
         this.editText.getEmojiButton().setAlpha(this.keyboardT);
         this.applyButton.setAlpha((float) Math.pow(this.keyboardT, 16.0d));
         this.periodButton.setAlpha(1.0f - this.keyboardT);
@@ -623,6 +651,16 @@ public class CaptionContainerView extends FrameLayout {
             mentionsContainerView.setAlpha((float) Math.pow(this.keyboardT, 4.0d));
         }
         invalidate();
+    }
+
+    public boolean isCaptionOverLimit() {
+        int i;
+        try {
+            i = this.editText.getEditText().getText().length();
+        } catch (Exception unused) {
+            i = 0;
+        }
+        return i > (UserConfig.getInstance(this.currentAccount).isPremium() ? MessagesController.getInstance(this.currentAccount).storyCaptionLengthLimitPremium : MessagesController.getInstance(this.currentAccount).storyCaptionLengthLimitDefault);
     }
 
     public void drawBlurBitmap(Bitmap bitmap, float f) {
@@ -747,7 +785,7 @@ public class CaptionContainerView extends FrameLayout {
     }
 
     public void clear() {
-        this.editText.setText(BuildConfig.APP_CENTER_HASH);
+        this.editText.setText("");
     }
 
     public void setText(CharSequence charSequence) {

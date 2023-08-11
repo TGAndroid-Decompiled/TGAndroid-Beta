@@ -2,11 +2,12 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_stories_allStories extends TLRPC$stories_AllStories {
-    public static int constructor = -2086796248;
+    public static int constructor = 1369278878;
     public int count;
     public int flags;
     public boolean has_more;
     public String state;
+    public TLRPC$TL_storiesStealthMode stealth_mode;
     public ArrayList<TLRPC$TL_userStories> user_stories = new ArrayList<>();
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
@@ -47,6 +48,7 @@ public class TLRPC$TL_stories_allStories extends TLRPC$stories_AllStories {
             }
             this.users.add(TLdeserialize2);
         }
+        this.stealth_mode = TLRPC$TL_storiesStealthMode.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
     }
 
     @Override
@@ -69,5 +71,6 @@ public class TLRPC$TL_stories_allStories extends TLRPC$stories_AllStories {
         for (int i3 = 0; i3 < size2; i3++) {
             this.users.get(i3).serializeToStream(abstractSerializedData);
         }
+        this.stealth_mode.serializeToStream(abstractSerializedData);
     }
 }

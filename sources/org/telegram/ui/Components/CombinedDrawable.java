@@ -98,8 +98,11 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
 
     @Override
     public void draw(Canvas canvas) {
-        this.background.setBounds(getBounds());
-        this.background.draw(canvas);
+        Drawable drawable = this.background;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            this.background.draw(canvas);
+        }
         if (this.icon != null) {
             if (this.fullSize) {
                 android.graphics.Rect bounds = getBounds();
@@ -120,8 +123,8 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
             } else {
                 int centerX2 = (getBounds().centerX() - (this.icon.getIntrinsicWidth() / 2)) + this.left;
                 int centerY2 = (getBounds().centerY() - (this.icon.getIntrinsicHeight() / 2)) + this.top;
-                Drawable drawable = this.icon;
-                drawable.setBounds(centerX2, centerY2, drawable.getIntrinsicWidth() + centerX2, this.icon.getIntrinsicHeight() + centerY2);
+                Drawable drawable2 = this.icon;
+                drawable2.setBounds(centerX2, centerY2, drawable2.getIntrinsicWidth() + centerX2, this.icon.getIntrinsicHeight() + centerY2);
             }
             this.icon.draw(canvas);
         }

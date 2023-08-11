@@ -596,7 +596,7 @@ public class SecretChatHelper extends BaseController {
                 if (str3 != null && str3.startsWith(FileLoader.getDirectory(4).getAbsolutePath()) && new File(tLRPC$Message.attachPath).renameTo(getFileLoader().getPathToAttach(tLRPC$Message.media.document))) {
                     messageObject.mediaExists = messageObject.attachPathExists;
                     messageObject.attachPathExists = false;
-                    tLRPC$Message.attachPath = BuildConfig.APP_CENTER_HASH;
+                    tLRPC$Message.attachPath = "";
                 }
                 ArrayList<TLRPC$Message> arrayList4 = new ArrayList<>();
                 arrayList4.add(tLRPC$Message);

@@ -11,14 +11,19 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ImageSpan;
+import android.text.style.ReplacementSpan;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -34,7 +39,6 @@ import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -184,7 +188,7 @@ public class FilterCreateActivity extends BaseFragment {
             while (getMessagesController().dialogFiltersById.get(this.filter.id) != null) {
                 this.filter.id++;
             }
-            this.filter.name = BuildConfig.APP_CENTER_HASH;
+            this.filter.name = "";
             this.creatingNew = true;
         }
         MessagesController.DialogFilter dialogFilter3 = this.filter;
@@ -587,7 +591,7 @@ public class FilterCreateActivity extends BaseFragment {
             tLRPC$TL_chatlists_exportChatlistInvite.chatlist = tLRPC$TL_inputChatlistDialogFilter;
             tLRPC$TL_inputChatlistDialogFilter.filter_id = this.filter.id;
             tLRPC$TL_chatlists_exportChatlistInvite.peers = arrayList;
-            tLRPC$TL_chatlists_exportChatlistInvite.title = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_chatlists_exportChatlistInvite.title = "";
             getConnectionsManager().sendRequest(tLRPC$TL_chatlists_exportChatlistInvite, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -891,51 +895,50 @@ public class FilterCreateActivity extends BaseFragment {
                 int i = this.newFilterFlags;
                 int i2 = MessagesController.DIALOG_FILTER_FLAG_ALL_CHATS;
                 int i3 = i & i2;
-                int i4 = i3 & i2;
-                String str = BuildConfig.APP_CENTER_HASH;
-                if (i4 == i2) {
+                String str = "";
+                if ((i3 & i2) == i2) {
                     if ((MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_READ & i) != 0) {
                         string = LocaleController.getString("FilterNameUnread", R.string.FilterNameUnread);
                     } else {
                         if ((i & MessagesController.DIALOG_FILTER_FLAG_EXCLUDE_MUTED) != 0) {
                             string = LocaleController.getString("FilterNameNonMuted", R.string.FilterNameNonMuted);
                         }
-                        string = BuildConfig.APP_CENTER_HASH;
+                        string = "";
                     }
                 } else {
-                    int i5 = MessagesController.DIALOG_FILTER_FLAG_CONTACTS;
-                    if ((i3 & i5) != 0) {
-                        if (((i5 ^ (-1)) & i3) == 0) {
+                    int i4 = MessagesController.DIALOG_FILTER_FLAG_CONTACTS;
+                    if ((i3 & i4) != 0) {
+                        if (((i4 ^ (-1)) & i3) == 0) {
                             string = LocaleController.getString("FilterContacts", R.string.FilterContacts);
                         }
-                        string = BuildConfig.APP_CENTER_HASH;
+                        string = "";
                     } else {
-                        int i6 = MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS;
-                        if ((i3 & i6) != 0) {
-                            if (((i6 ^ (-1)) & i3) == 0) {
+                        int i5 = MessagesController.DIALOG_FILTER_FLAG_NON_CONTACTS;
+                        if ((i3 & i5) != 0) {
+                            if (((i5 ^ (-1)) & i3) == 0) {
                                 string = LocaleController.getString("FilterNonContacts", R.string.FilterNonContacts);
                             }
-                            string = BuildConfig.APP_CENTER_HASH;
+                            string = "";
                         } else {
-                            int i7 = MessagesController.DIALOG_FILTER_FLAG_GROUPS;
-                            if ((i3 & i7) != 0) {
-                                if (((i7 ^ (-1)) & i3) == 0) {
+                            int i6 = MessagesController.DIALOG_FILTER_FLAG_GROUPS;
+                            if ((i3 & i6) != 0) {
+                                if (((i6 ^ (-1)) & i3) == 0) {
                                     string = LocaleController.getString("FilterGroups", R.string.FilterGroups);
                                 }
-                                string = BuildConfig.APP_CENTER_HASH;
+                                string = "";
                             } else {
-                                int i8 = MessagesController.DIALOG_FILTER_FLAG_BOTS;
-                                if ((i3 & i8) != 0) {
-                                    if (((i8 ^ (-1)) & i3) == 0) {
+                                int i7 = MessagesController.DIALOG_FILTER_FLAG_BOTS;
+                                if ((i3 & i7) != 0) {
+                                    if (((i7 ^ (-1)) & i3) == 0) {
                                         string = LocaleController.getString("FilterBots", R.string.FilterBots);
                                     }
-                                    string = BuildConfig.APP_CENTER_HASH;
+                                    string = "";
                                 } else {
-                                    int i9 = MessagesController.DIALOG_FILTER_FLAG_CHANNELS;
-                                    if ((i3 & i9) != 0 && ((i9 ^ (-1)) & i3) == 0) {
+                                    int i8 = MessagesController.DIALOG_FILTER_FLAG_CHANNELS;
+                                    if ((i3 & i8) != 0 && ((i8 ^ (-1)) & i3) == 0) {
                                         string = LocaleController.getString("FilterChannels", R.string.FilterChannels);
                                     }
-                                    string = BuildConfig.APP_CENTER_HASH;
+                                    string = "";
                                 }
                             }
                         }
@@ -1337,7 +1340,7 @@ public class FilterCreateActivity extends BaseFragment {
                 textView2.setAlpha((pollEditTextCell.getTextView().isFocused() || length < 0) ? 1.0f : 0.0f);
                 return;
             }
-            pollEditTextCell.setText2(BuildConfig.APP_CENTER_HASH);
+            pollEditTextCell.setText2("");
         }
     }
 
@@ -1589,7 +1592,7 @@ public class FilterCreateActivity extends BaseFragment {
                 FilterCreateActivity.this.setTextLeft(viewHolder.itemView);
                 PollEditTextCell pollEditTextCell = (PollEditTextCell) viewHolder.itemView;
                 pollEditTextCell.setTag(1);
-                pollEditTextCell.setTextAndHint(FilterCreateActivity.this.newFilterName != null ? FilterCreateActivity.this.newFilterName : BuildConfig.APP_CENTER_HASH, LocaleController.getString("FilterNameHint", R.string.FilterNameHint), false);
+                pollEditTextCell.setTextAndHint(FilterCreateActivity.this.newFilterName != null ? FilterCreateActivity.this.newFilterName : "", LocaleController.getString("FilterNameHint", R.string.FilterNameHint), false);
                 pollEditTextCell.setTag(null);
             }
         }
@@ -2177,9 +2180,9 @@ public class FilterCreateActivity extends BaseFragment {
             super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
             StringBuilder sb = new StringBuilder();
             TLRPC$TL_exportedChatlistInvite tLRPC$TL_exportedChatlistInvite = this.lastInvite;
-            String str2 = BuildConfig.APP_CENTER_HASH;
+            String str2 = "";
             if (tLRPC$TL_exportedChatlistInvite == null || TextUtils.isEmpty(tLRPC$TL_exportedChatlistInvite.title)) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             } else {
                 str = this.lastInvite.title + "\n ";
             }
@@ -2246,6 +2249,90 @@ public class FilterCreateActivity extends BaseFragment {
                 drawable.setColorFilter(new PorterDuffColorFilter(color, PorterDuff.Mode.MULTIPLY));
             }
             super.draw(canvas, charSequence, i, i2, f, i3, i4, i5, paint);
+        }
+    }
+
+    public static class NewSpan extends ReplacementSpan {
+        private int color;
+        float height;
+        StaticLayout layout;
+        private boolean outline;
+        float width;
+        TextPaint textPaint = new TextPaint(1);
+        Paint bgPaint = new Paint(1);
+
+        public NewSpan(boolean z) {
+            this.outline = z;
+            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            if (z) {
+                this.bgPaint.setStyle(Paint.Style.STROKE);
+                this.bgPaint.setStrokeWidth(AndroidUtilities.dpf2(1.33f));
+                this.textPaint.setTextSize(AndroidUtilities.dp(10.0f));
+                this.textPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+                this.textPaint.setStrokeWidth(AndroidUtilities.dpf2(0.2f));
+                if (Build.VERSION.SDK_INT >= 21) {
+                    this.textPaint.setLetterSpacing(0.03f);
+                    return;
+                }
+                return;
+            }
+            this.bgPaint.setStyle(Paint.Style.FILL);
+            this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        }
+
+        public void setColor(int i) {
+            this.color = i;
+        }
+
+        public StaticLayout makeLayout() {
+            if (this.layout == null) {
+                StaticLayout staticLayout = new StaticLayout("NEW", this.textPaint, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                this.layout = staticLayout;
+                this.width = staticLayout.getLineWidth(0);
+                this.height = this.layout.getHeight();
+            }
+            return this.layout;
+        }
+
+        @Override
+        public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
+            makeLayout();
+            return (int) (AndroidUtilities.dp(10.0f) + this.width);
+        }
+
+        @Override
+        public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
+            float dp;
+            makeLayout();
+            int i6 = this.color;
+            if (i6 == 0) {
+                i6 = paint.getColor();
+            }
+            this.bgPaint.setColor(i6);
+            if (this.outline) {
+                this.textPaint.setColor(i6);
+            } else {
+                this.textPaint.setColor(AndroidUtilities.computePerceivedBrightness(i6) > 0.721f ? -16777216 : -1);
+            }
+            float dp2 = f + AndroidUtilities.dp(2.0f);
+            float dp3 = (i4 - this.height) + AndroidUtilities.dp(1.0f);
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(dp2, dp3, this.width + dp2, this.height + dp3);
+            if (this.outline) {
+                dp = AndroidUtilities.dp(3.66f);
+                rectF.left -= AndroidUtilities.dp(4.0f);
+                rectF.top -= AndroidUtilities.dp(2.33f);
+                rectF.right += AndroidUtilities.dp(3.66f);
+                rectF.bottom += AndroidUtilities.dp(1.33f);
+            } else {
+                dp = AndroidUtilities.dp(4.4f);
+                rectF.inset(AndroidUtilities.dp(-4.0f), AndroidUtilities.dp(-2.33f));
+            }
+            canvas.drawRoundRect(rectF, dp, dp, this.bgPaint);
+            canvas.save();
+            canvas.translate(dp2, dp3);
+            this.layout.draw(canvas);
+            canvas.restore();
         }
     }
 
@@ -2376,7 +2463,7 @@ public class FilterCreateActivity extends BaseFragment {
             int i = R.string.FolderLinkShareTitle;
             Object[] objArr = new Object[1];
             MessagesController.DialogFilter dialogFilter = this.filter;
-            objArr[0] = dialogFilter == null ? BuildConfig.APP_CENTER_HASH : dialogFilter.name;
+            objArr[0] = dialogFilter == null ? "" : dialogFilter.name;
             return LocaleController.formatString("FolderLinkShareTitle", i, objArr);
         }
 
@@ -2461,7 +2548,7 @@ public class FilterCreateActivity extends BaseFragment {
                         textInfoPrivacyCell = new CreateLinkCell(FilterInvitesBottomSheet.this.getContext());
                         textInfoPrivacyCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
                     } else if (i == 7) {
-                        textInfoPrivacyCell = new C00381(FilterInvitesBottomSheet.this.getContext(), null, ((BottomSheet) FilterInvitesBottomSheet.this).currentAccount, FilterInvitesBottomSheet.this.filter.id);
+                        textInfoPrivacyCell = new C00411(FilterInvitesBottomSheet.this.getContext(), null, ((BottomSheet) FilterInvitesBottomSheet.this).currentAccount, FilterInvitesBottomSheet.this.filter.id);
                         textInfoPrivacyCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
                     } else if (i == 6 || i == 3) {
                         textInfoPrivacyCell = new TextInfoPrivacyCell(FilterInvitesBottomSheet.this.getContext());
@@ -2473,8 +2560,8 @@ public class FilterCreateActivity extends BaseFragment {
                     return new RecyclerListView.Holder(textInfoPrivacyCell);
                 }
 
-                public class C00381 extends LinkCell {
-                    C00381(Context context, BaseFragment baseFragment, int i, int i2) {
+                public class C00411 extends LinkCell {
+                    C00411(Context context, BaseFragment baseFragment, int i, int i2) {
                         super(context, baseFragment, i, i2);
                         AnonymousClass1.this = r1;
                     }
@@ -2485,19 +2572,19 @@ public class FilterCreateActivity extends BaseFragment {
                         makeOptions.add(R.drawable.msg_copy, LocaleController.getString("CopyLink", R.string.CopyLink), new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00381.this.copy();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00411.this.copy();
                             }
                         });
                         makeOptions.add(R.drawable.msg_qrcode, LocaleController.getString("GetQRCode", R.string.GetQRCode), new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00381.this.qrcode();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00411.this.qrcode();
                             }
                         });
                         makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("DeleteLink", R.string.DeleteLink), true, new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00381.this.deleteLink();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00411.this.deleteLink();
                             }
                         });
                         if (LocaleController.isRTL) {
@@ -2548,7 +2635,7 @@ public class FilterCreateActivity extends BaseFragment {
                             textInfoPrivacyCell.setText(itemInner.text);
                         } else {
                             textInfoPrivacyCell.setFixedSize(12);
-                            textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
+                            textInfoPrivacyCell.setText("");
                         }
                         textInfoPrivacyCell.setForeground(Theme.getThemedDrawableByKey(FilterInvitesBottomSheet.this.getContext(), z ? R.drawable.greydivider : R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     }
@@ -2644,7 +2731,7 @@ public class FilterCreateActivity extends BaseFragment {
             tLRPC$TL_chatlists_exportChatlistInvite.chatlist = tLRPC$TL_inputChatlistDialogFilter;
             tLRPC$TL_inputChatlistDialogFilter.filter_id = this.filter.id;
             tLRPC$TL_chatlists_exportChatlistInvite.peers = arrayList;
-            tLRPC$TL_chatlists_exportChatlistInvite.title = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_chatlists_exportChatlistInvite.title = "";
             getBaseFragment().getConnectionsManager().sendRequest(tLRPC$TL_chatlists_exportChatlistInvite, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

@@ -145,6 +145,7 @@ public class PremiumGradient {
         public boolean exactly;
         Matrix matrix;
         public final Paint paint;
+        private final Theme.ResourcesProvider resourcesProvider;
         Shader shader;
         public float x1;
         public float x2;
@@ -156,6 +157,10 @@ public class PremiumGradient {
         }
 
         public PremiumGradientTools(int i, int i2, int i3, int i4, int i5) {
+            this(i, i2, i3, i4, -1, null);
+        }
+
+        public PremiumGradientTools(int i, int i2, int i3, int i4, int i5, Theme.ResourcesProvider resourcesProvider) {
             this.cx = 0.5f;
             this.cy = 0.5f;
             this.matrix = new Matrix();
@@ -165,6 +170,7 @@ public class PremiumGradient {
             this.y1 = 1.0f;
             this.x2 = 1.5f;
             this.y2 = 0.0f;
+            this.resourcesProvider = resourcesProvider;
             this.colorKey1 = i;
             this.colorKey2 = i2;
             this.colorKey3 = i3;
@@ -191,14 +197,14 @@ public class PremiumGradient {
         }
 
         public void chekColors() {
-            int color = Theme.getColor(this.colorKey1);
-            int color2 = Theme.getColor(this.colorKey2);
+            int color = Theme.getColor(this.colorKey1, this.resourcesProvider);
+            int color2 = Theme.getColor(this.colorKey2, this.resourcesProvider);
             int i = this.colorKey3;
-            int color3 = i < 0 ? 0 : Theme.getColor(i);
+            int color3 = i < 0 ? 0 : Theme.getColor(i, this.resourcesProvider);
             int i2 = this.colorKey4;
-            int color4 = i2 < 0 ? 0 : Theme.getColor(i2);
+            int color4 = i2 < 0 ? 0 : Theme.getColor(i2, this.resourcesProvider);
             int i3 = this.colorKey5;
-            int color5 = i3 < 0 ? 0 : Theme.getColor(i3);
+            int color5 = i3 < 0 ? 0 : Theme.getColor(i3, this.resourcesProvider);
             int[] iArr = this.colors;
             if (iArr[0] == color && iArr[1] == color2 && iArr[2] == color3 && iArr[3] == color4 && iArr[4] == color5) {
                 return;

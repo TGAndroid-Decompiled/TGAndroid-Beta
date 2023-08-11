@@ -24,7 +24,6 @@ import android.widget.TextView;
 import androidx.core.math.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -44,7 +43,7 @@ public class LimitPreviewView extends LinearLayout {
     int icon;
     boolean inc;
     CounterView limitIcon;
-    LinearLayout limitsContainer;
+    FrameLayout limitsContainer;
     private View parentVideForGradient;
     private float position;
     TextView premiumCount;
@@ -53,13 +52,14 @@ public class LimitPreviewView extends LinearLayout {
     PremiumGradient.PremiumGradientTools staticGradient;
     boolean wasAnimation;
     boolean wasHaptic;
+    int width1;
 
-    public LimitPreviewView(Context context, int i, int i2, int i3) {
-        this(context, i, i2, i3, 0.5f);
+    public LimitPreviewView(Context context, int i, int i2, int i3, Theme.ResourcesProvider resourcesProvider) {
+        this(context, i, i2, i3, 0.5f, resourcesProvider);
     }
 
     @SuppressLint({"SetTextI18n"})
-    public LimitPreviewView(Context context, int i, int i2, int i3, float f) {
+    public LimitPreviewView(Context context, int i, int i2, int i3, float f, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.animationCanPlay = true;
         final float clamp = MathUtils.clamp(f, 0.1f, 0.9f);
@@ -74,18 +74,57 @@ public class LimitPreviewView extends LinearLayout {
             this.limitIcon.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f));
             addView(this.limitIcon, LayoutHelper.createLinear(-2, -2, 0.0f, 3));
         }
-        LinearLayout linearLayout = new LinearLayout(context) {
+        final FrameLayout frameLayout = new FrameLayout(context);
+        final TextView textView = new TextView(context);
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView.setText(LocaleController.getString("LimitFree", R.string.LimitFree));
+        textView.setGravity(16);
+        int i4 = Theme.key_windowBackgroundWhiteBlackText;
+        textView.setTextColor(Theme.getColor(i4, resourcesProvider));
+        TextView textView2 = new TextView(context);
+        this.defaultCount = textView2;
+        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.defaultCount.setText(String.format("%d", Integer.valueOf(i3)));
+        this.defaultCount.setGravity(16);
+        this.defaultCount.setTextColor(Theme.getColor(i4, resourcesProvider));
+        if (LocaleController.isRTL) {
+            frameLayout.addView(textView, LayoutHelper.createFrame(-1, 30.0f, 5, 12.0f, 0.0f, 12.0f, 0.0f));
+            frameLayout.addView(this.defaultCount, LayoutHelper.createFrame(-2, 30.0f, 3, 12.0f, 0.0f, 12.0f, 0.0f));
+        } else {
+            frameLayout.addView(textView, LayoutHelper.createFrame(-1, 30.0f, 3, 12.0f, 0.0f, 12.0f, 0.0f));
+            frameLayout.addView(this.defaultCount, LayoutHelper.createFrame(-2, 30.0f, 5, 12.0f, 0.0f, 12.0f, 0.0f));
+        }
+        final FrameLayout frameLayout2 = new FrameLayout(context);
+        final TextView textView3 = new TextView(context);
+        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView3.setText(LocaleController.getString("LimitPremium", R.string.LimitPremium));
+        textView3.setGravity(16);
+        textView3.setTextColor(-1);
+        TextView textView4 = new TextView(context);
+        this.premiumCount = textView4;
+        textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.premiumCount.setText(String.format("%d", Integer.valueOf(i3)));
+        this.premiumCount.setGravity(16);
+        this.premiumCount.setTextColor(-1);
+        if (LocaleController.isRTL) {
+            frameLayout2.addView(textView3, LayoutHelper.createFrame(-1, 30.0f, 5, 12.0f, 0.0f, 12.0f, 0.0f));
+            frameLayout2.addView(this.premiumCount, LayoutHelper.createFrame(-2, 30.0f, 3, 12.0f, 0.0f, 12.0f, 0.0f));
+        } else {
+            frameLayout2.addView(textView3, LayoutHelper.createFrame(-1, 30.0f, 3, 12.0f, 0.0f, 12.0f, 0.0f));
+            frameLayout2.addView(this.premiumCount, LayoutHelper.createFrame(-2, 30.0f, 5, 12.0f, 0.0f, 12.0f, 0.0f));
+        }
+        FrameLayout frameLayout3 = new FrameLayout(context) {
             Paint grayPaint = new Paint();
 
             @Override
             protected void dispatchDraw(Canvas canvas) {
-                this.grayPaint.setColor(Theme.getColor(Theme.key_windowBackgroundGray));
+                this.grayPaint.setColor(Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider));
                 RectF rectF = AndroidUtilities.rectTmp;
                 float f2 = 0.0f;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.grayPaint);
                 canvas.save();
-                canvas.clipRect(getMeasuredWidth() * clamp, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                canvas.clipRect(LimitPreviewView.this.width1, 0, getMeasuredWidth(), getMeasuredHeight());
                 Paint mainGradientPaint = PremiumGradient.getInstance().getMainGradientPaint();
                 if (LimitPreviewView.this.parentVideForGradient != null) {
                     View view = LimitPreviewView.this.parentVideForGradient;
@@ -110,57 +149,42 @@ public class LimitPreviewView extends LinearLayout {
                 }
                 super.dispatchDraw(canvas);
             }
+
+            @Override
+            protected void onMeasure(int i5, int i6) {
+                if (getChildCount() == 2) {
+                    int size = View.MeasureSpec.getSize(i5);
+                    int size2 = View.MeasureSpec.getSize(i6);
+                    frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                    int max = Math.max(frameLayout.getMeasuredWidth(), AndroidUtilities.dp(24.0f) + textView.getMeasuredWidth() + (LimitPreviewView.this.defaultCount.getVisibility() == 0 ? AndroidUtilities.dp(24.0f) + LimitPreviewView.this.defaultCount.getMeasuredWidth() : 0));
+                    frameLayout2.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                    LimitPreviewView.this.width1 = (int) Utilities.clamp(size * clamp, size - Math.max(frameLayout2.getMeasuredWidth(), (AndroidUtilities.dp(24.0f) + textView3.getMeasuredWidth()) + (LimitPreviewView.this.premiumCount.getVisibility() == 0 ? AndroidUtilities.dp(24.0f) + LimitPreviewView.this.premiumCount.getMeasuredWidth() : 0)), max);
+                    frameLayout.measure(View.MeasureSpec.makeMeasureSpec(LimitPreviewView.this.width1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                    frameLayout2.measure(View.MeasureSpec.makeMeasureSpec(size - LimitPreviewView.this.width1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+                    setMeasuredDimension(size, size2);
+                    return;
+                }
+                super.onMeasure(i5, i6);
+            }
+
+            @Override
+            protected void onLayout(boolean z, int i5, int i6, int i7, int i8) {
+                if (getChildCount() == 2) {
+                    View childAt = getChildAt(0);
+                    View childAt2 = getChildAt(1);
+                    int measuredWidth = childAt.getMeasuredWidth();
+                    int i9 = i8 - i6;
+                    childAt.layout(0, 0, measuredWidth, i9);
+                    childAt2.layout(measuredWidth, 0, i7 - i5, i9);
+                    return;
+                }
+                super.onLayout(z, i5, i6, i7, i8);
+            }
         };
-        this.limitsContainer = linearLayout;
-        linearLayout.setOrientation(0);
-        FrameLayout frameLayout = new FrameLayout(context);
-        TextView textView = new TextView(context);
-        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView.setText(LocaleController.getString("LimitFree", R.string.LimitFree));
-        textView.setGravity(16);
-        int i4 = Theme.key_windowBackgroundWhiteBlackText;
-        textView.setTextColor(Theme.getColor(i4));
-        textView.setPadding(AndroidUtilities.dp(12.0f), 0, 0, 0);
-        TextView textView2 = new TextView(context);
-        this.defaultCount = textView2;
-        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.defaultCount.setText(String.format("%d", Integer.valueOf(i3)));
-        this.defaultCount.setGravity(16);
-        this.defaultCount.setTextColor(Theme.getColor(i4));
-        if (clamp > 0.3f) {
-            if (LocaleController.isRTL) {
-                frameLayout.addView(textView, LayoutHelper.createFrame(-1, 30.0f, 5, 36.0f, 0.0f, 12.0f, 0.0f));
-                frameLayout.addView(this.defaultCount, LayoutHelper.createFrame(-2, 30.0f, 3, 12.0f, 0.0f, 0.0f, 0.0f));
-            } else {
-                frameLayout.addView(textView, LayoutHelper.createFrame(-1, 30.0f, 3, 0.0f, 0.0f, 36.0f, 0.0f));
-                frameLayout.addView(this.defaultCount, LayoutHelper.createFrame(-2, 30.0f, 5, 0.0f, 0.0f, 12.0f, 0.0f));
-            }
-        }
-        this.limitsContainer.addView(frameLayout, LayoutHelper.createLinear(-1, 30, (1.0f - clamp) * 2.0f));
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        TextView textView3 = new TextView(context);
-        textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textView3.setText(LocaleController.getString("LimitPremium", R.string.LimitPremium));
-        textView3.setGravity(16);
-        textView3.setTextColor(-1);
-        textView3.setPadding(AndroidUtilities.dp(12.0f), 0, 0, 0);
-        TextView textView4 = new TextView(context);
-        this.premiumCount = textView4;
-        textView4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.premiumCount.setText(String.format("%d", Integer.valueOf(i3)));
-        this.premiumCount.setGravity(16);
-        this.premiumCount.setTextColor(-1);
-        if (clamp < 0.7f) {
-            if (LocaleController.isRTL) {
-                frameLayout2.addView(textView3, LayoutHelper.createFrame(-1, 30.0f, 5, 36.0f, 0.0f, 12.0f, 0.0f));
-                frameLayout2.addView(this.premiumCount, LayoutHelper.createFrame(-2, 30.0f, 3, 12.0f, 0.0f, 0.0f, 0.0f));
-            } else {
-                frameLayout2.addView(textView3, LayoutHelper.createFrame(-1, 30.0f, 3, 0.0f, 0.0f, 36.0f, 0.0f));
-                frameLayout2.addView(this.premiumCount, LayoutHelper.createFrame(-2, 30.0f, 5, 0.0f, 0.0f, 12.0f, 0.0f));
-            }
-        }
-        this.limitsContainer.addView(frameLayout2, LayoutHelper.createLinear(-1, 30, clamp * 2.0f));
-        addView(this.limitsContainer, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 14, i == 0 ? 0 : 12, 14, 0));
+        this.limitsContainer = frameLayout3;
+        frameLayout3.addView(frameLayout, LayoutHelper.createFrame(-1, 30.0f));
+        this.limitsContainer.addView(frameLayout2, LayoutHelper.createFrame(-1, 30.0f));
+        addView(this.limitsContainer, LayoutHelper.createLinear(-1, 30, 0.0f, 0, 14, i == 0 ? 0 : 12, 14, 0));
     }
 
     public void setIconValue(int i) {
@@ -205,12 +229,12 @@ public class LimitPreviewView extends LinearLayout {
         super.onLayout(z, i, i2, i3, i4);
         if (!this.wasAnimation && this.limitIcon != null && this.animationCanPlay && !this.premiumLocked) {
             int dp2 = AndroidUtilities.dp(14.0f);
-            float measuredWidth = (dp2 + ((getMeasuredWidth() - (dp2 * 2)) * this.position)) - (this.limitIcon.getMeasuredWidth() / 2.0f);
-            if (measuredWidth > (getMeasuredWidth() - dp2) - this.limitIcon.getMeasuredWidth()) {
+            float max = (dp2 + Math.max(this.width1, (getMeasuredWidth() - (dp2 * 2)) * this.position)) - (this.limitIcon.getMeasuredWidth() / 2.0f);
+            if (max > (getMeasuredWidth() - dp2) - this.limitIcon.getMeasuredWidth()) {
                 f = (getMeasuredWidth() - dp2) - this.limitIcon.getMeasuredWidth();
                 f2 = 1.0f;
             } else {
-                f = measuredWidth;
+                f = max;
                 f2 = 0.5f;
             }
             this.limitIcon.setAlpha(1.0f);
@@ -296,7 +320,7 @@ public class LimitPreviewView extends LinearLayout {
                 spannableStringBuilder2.append((CharSequence) "d").setSpan(new ColoredImageSpan(this.icon), 0, 1, 0);
                 this.limitIcon.setText(spannableStringBuilder2);
             }
-            this.premiumCount.setText(BuildConfig.APP_CENTER_HASH);
+            this.premiumCount.setText("");
         }
     }
 
@@ -478,7 +502,7 @@ public class LimitPreviewView extends LinearLayout {
                     }
                     int i3 = 1;
                     while (i3 <= charAt) {
-                        animatedLayout.staticLayouts.add(new StaticLayout(BuildConfig.APP_CENTER_HASH + (i3 == 10 ? 0 : i3), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+                        animatedLayout.staticLayouts.add(new StaticLayout("" + (i3 == 10 ? 0 : i3), this.textPaint, (int) this.textWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
                         i3++;
                     }
                     spannableStringBuilder.setSpan(new EmptyStubSpan(), i2, i2 + 1, 0);

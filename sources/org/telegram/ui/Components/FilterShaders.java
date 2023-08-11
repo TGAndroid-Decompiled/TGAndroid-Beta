@@ -13,7 +13,6 @@ import java.nio.FloatBuffer;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
@@ -864,10 +863,10 @@ public class FilterShaders {
         if (hDRType == 1) {
             readRes = RLottieDrawable.readRes(null, R.raw.yuv_hlg2rgb);
         } else {
-            readRes = hDRType == 2 ? RLottieDrawable.readRes(null, R.raw.yuv_pq2rgb) : BuildConfig.APP_CENTER_HASH;
+            readRes = hDRType == 2 ? RLottieDrawable.readRes(null, R.raw.yuv_pq2rgb) : "";
         }
         boolean z = this.isVideo;
-        String str = z ? "#extension GL_OES_EGL_image_external : require" : BuildConfig.APP_CENTER_HASH;
+        String str = z ? "#extension GL_OES_EGL_image_external : require" : "";
         String str2 = z ? "samplerExternalOES" : "sampler2D";
         int[] iArr = new int[1];
         int i = 0;
@@ -889,7 +888,7 @@ public class FilterShaders {
                     }
                 } else {
                     loadShader5 = loadShader(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
-                    loadShader6 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision highp float;varying vec2 vTextureCoord;uniform %2$s sTexture;vec3 rgb_to_hsv(vec3 c) {vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);vec4 p = c.g < c.b ? vec4(c.bg, K.wz) : vec4(c.gb, K.xy);vec4 q = c.r < p.x ? vec4(p.xyw, c.r) : vec4(c.r, p.yzx);float d = q.x - min(q.w, q.y);float e = 1.0e-10;return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);}void main() {vec4 texel = texture2D(sTexture, vTextureCoord);gl_FragColor = vec4(rgb_to_hsv(texel.rgb), texel.a);}", BuildConfig.APP_CENTER_HASH, "sampler2D"));
+                    loadShader6 = loadShader(35632, String.format(Locale.US, "%1$s\nprecision highp float;varying vec2 vTextureCoord;uniform %2$s sTexture;vec3 rgb_to_hsv(vec3 c) {vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);vec4 p = c.g < c.b ? vec4(c.bg, K.wz) : vec4(c.gb, K.xy);vec4 q = c.r < p.x ? vec4(p.xyw, c.r) : vec4(c.r, p.yzx);float d = q.x - min(q.w, q.y);float e = 1.0e-10;return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);}void main() {vec4 texel = texture2D(sTexture, vTextureCoord);gl_FragColor = vec4(rgb_to_hsv(texel.rgb), texel.a);}", "", "sampler2D"));
                 }
                 GLES20.glDeleteProgram(this.rgbToHsvShaderProgram[i]);
                 if (loadShader5 == 0 || loadShader6 == 0) {

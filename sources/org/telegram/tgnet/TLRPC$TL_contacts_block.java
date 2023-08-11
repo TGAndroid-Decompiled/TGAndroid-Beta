@@ -1,7 +1,9 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_contacts_block extends TLObject {
-    public static int constructor = 1758204945;
+    public static int constructor = 774801204;
+    public int flags;
     public TLRPC$InputPeer id;
+    public boolean my_stories_from;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -11,6 +13,9 @@ public class TLRPC$TL_contacts_block extends TLObject {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
+        int i = this.my_stories_from ? this.flags | 1 : this.flags & (-2);
+        this.flags = i;
+        abstractSerializedData.writeInt32(i);
         this.id.serializeToStream(abstractSerializedData);
     }
 }

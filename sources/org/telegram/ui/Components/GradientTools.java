@@ -16,6 +16,7 @@ public class GradientTools {
     int color3;
     int color4;
     public boolean isDiagonal;
+    public boolean isLinear;
     public boolean isRotate;
     Shader shader;
     public Paint paint = new Paint(1);
@@ -58,18 +59,30 @@ public class GradientTools {
                 this.shader = linearGradient2;
                 paint3.setShader(linearGradient2);
             }
+        } else if (this.isLinear) {
+            if (this.isDiagonal && this.isRotate) {
+                Paint paint4 = this.paint;
+                LinearGradient linearGradient3 = new LinearGradient(0.0f, 0.0f, 80.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
+                this.shader = linearGradient3;
+                paint4.setShader(linearGradient3);
+            } else {
+                Paint paint5 = this.paint;
+                LinearGradient linearGradient4 = new LinearGradient(this.isDiagonal ? 80.0f : 0.0f, 0.0f, 0.0f, 80.0f, new int[]{i, i2, i3}, (float[]) null, Shader.TileMode.CLAMP);
+                this.shader = linearGradient4;
+                paint5.setShader(linearGradient4);
+            }
         } else {
             if (this.gradientBitmap == null) {
                 this.gradientBitmap = Bitmap.createBitmap(60, 80, Bitmap.Config.ARGB_8888);
             }
             Bitmap bitmap = this.gradientBitmap;
             Utilities.generateGradient(bitmap, true, 0, 0.0f, bitmap.getWidth(), this.gradientBitmap.getHeight(), this.gradientBitmap.getRowBytes(), this.colors);
-            Paint paint4 = this.paint;
+            Paint paint6 = this.paint;
             Bitmap bitmap2 = this.gradientBitmap;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
             this.shader = bitmapShader;
-            paint4.setShader(bitmapShader);
+            paint6.setShader(bitmapShader);
         }
         updateBounds();
     }

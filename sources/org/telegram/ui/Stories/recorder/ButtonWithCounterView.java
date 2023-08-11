@@ -14,7 +14,6 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -31,6 +30,7 @@ public class ButtonWithCounterView extends FrameLayout {
     private boolean enabled;
     private ValueAnimator enabledAnimator;
     private float enabledT;
+    private int globalAlpha;
     private int lastCount;
     private boolean loading;
     private ValueAnimator loadingAnimator;
@@ -59,6 +59,7 @@ public class ButtonWithCounterView extends FrameLayout {
         this.countScale = 1.0f;
         this.enabledT = 1.0f;
         this.enabled = true;
+        this.globalAlpha = 255;
         this.resourcesProvider = resourcesProvider;
         ScaleStateListAnimator.apply(this, 0.02f, 1.2f);
         View view = new View(context);
@@ -89,17 +90,17 @@ public class ButtonWithCounterView extends FrameLayout {
         animatedTextDrawable2.setTextSize(AndroidUtilities.dp(12.0f));
         animatedTextDrawable2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         animatedTextDrawable2.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
-        animatedTextDrawable2.setText(BuildConfig.APP_CENTER_HASH);
+        animatedTextDrawable2.setText("");
         animatedTextDrawable2.setGravity(1);
         setWillNotDraw(false);
     }
 
-    public void setText(String str, boolean z) {
+    public void setText(CharSequence charSequence, boolean z) {
         if (z) {
             this.text.cancelAnimation();
         }
-        this.text.setText(str, z);
-        setContentDescription(str);
+        this.text.setText(charSequence, z);
+        setContentDescription(charSequence);
         invalidate();
     }
 
@@ -190,7 +191,7 @@ public class ButtonWithCounterView extends FrameLayout {
         this.lastCount = i;
         this.countAlpha = (i != 0 || this.showZero) ? 1.0f : 0.0f;
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-        animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH + i, z);
+        animatedTextDrawable.setText("" + i, z);
         invalidate();
     }
 
@@ -255,7 +256,7 @@ public class ButtonWithCounterView extends FrameLayout {
             float dp2 = ((AndroidUtilities.dp(15.66f) + this.countText.getCurrentWidth()) * f2) + currentWidth;
             Rect rect = AndroidUtilities.rectTmp2;
             rect.set((int) (((getMeasuredWidth() - dp2) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - dp2) + getWidth()) / 2.0f) + currentWidth), (int) (((getMeasuredHeight() + this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
-            this.text.setAlpha((int) ((1.0f - this.loadingT) * 255.0f * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
+            this.text.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
             this.text.setBounds(rect);
             this.text.draw(canvas);
             rect.set((int) (((getMeasuredWidth() - dp2) / 2.0f) + currentWidth + AndroidUtilities.dp(5.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - dp2) / 2.0f) + currentWidth + AndroidUtilities.dp(13.0f) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth())), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
@@ -266,10 +267,10 @@ public class ButtonWithCounterView extends FrameLayout {
                 float f3 = this.countScale;
                 canvas.scale(f3, f3, rect.centerX(), rect.centerY());
             }
-            this.paint.setAlpha((int) ((1.0f - this.loadingT) * 255.0f * f2 * f2 * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
+            this.paint.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * f2 * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
             canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.paint);
             rect.offset(-AndroidUtilities.dp(0.3f), -AndroidUtilities.dp(0.4f));
-            this.countText.setAlpha((int) ((1.0f - this.loadingT) * 255.0f * f2));
+            this.countText.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2));
             this.countText.setBounds(rect);
             this.countText.draw(canvas);
             if (this.countScale != 1.0f) {
@@ -285,5 +286,13 @@ public class ButtonWithCounterView extends FrameLayout {
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.Button");
+    }
+
+    public void setTextAlpha(float f) {
+        this.text.setAlpha((int) (f * 255.0f));
+    }
+
+    public void setGlobalAlpha(float f) {
+        this.globalAlpha = (int) (f * 255.0f);
     }
 }

@@ -28,6 +28,7 @@ public class PremiumButtonView extends FrameLayout {
     AnimatedFloat counterOffset;
     AnimatedFloat counterOffset2;
     CounterView counterView;
+    public boolean drawGradient;
     private boolean drawOverlayColor;
     CellFlickerDrawable flickerDrawable;
     RLottieImageView iconView;
@@ -51,6 +52,7 @@ public class PremiumButtonView extends FrameLayout {
         super(context);
         this.paintOverlayPaint = new Paint(1);
         this.path = new Path();
+        this.drawGradient = true;
         this.counterOffset = new AnimatedFloat(this);
         this.counterOffset2 = new AnimatedFloat(this);
         this.radius = i;
@@ -138,9 +140,15 @@ public class PremiumButtonView extends FrameLayout {
                     this.inc = true;
                 }
             }
-            PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), (-getMeasuredWidth()) * 0.1f * this.progress, 0.0f);
-            int i = this.radius;
-            canvas.drawRoundRect(rectF, i, i, PremiumGradient.getInstance().getMainGradientPaint());
+            if (this.drawGradient) {
+                PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), (-getMeasuredWidth()) * 0.1f * this.progress, 0.0f);
+                int i = this.radius;
+                canvas.drawRoundRect(rectF, i, i, PremiumGradient.getInstance().getMainGradientPaint());
+            } else {
+                this.paintOverlayPaint.setAlpha(255);
+                int i2 = this.radius;
+                canvas.drawRoundRect(rectF, i2, i2, this.paintOverlayPaint);
+            }
             invalidate();
         }
         if (!BuildVars.IS_BILLING_UNAVAILABLE && !this.isFlickerDisabled) {
@@ -155,12 +163,12 @@ public class PremiumButtonView extends FrameLayout {
                 this.path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, Math.max(getMeasuredWidth(), getMeasuredHeight()) * 1.4f * this.overlayProgress, Path.Direction.CW);
                 canvas.save();
                 canvas.clipPath(this.path);
-                int i2 = this.radius;
-                canvas.drawRoundRect(rectF, i2, i2, this.paintOverlayPaint);
-                canvas.restore();
-            } else {
                 int i3 = this.radius;
                 canvas.drawRoundRect(rectF, i3, i3, this.paintOverlayPaint);
+                canvas.restore();
+            } else {
+                int i4 = this.radius;
+                canvas.drawRoundRect(rectF, i4, i4, this.paintOverlayPaint);
             }
         }
         super.dispatchDraw(canvas);

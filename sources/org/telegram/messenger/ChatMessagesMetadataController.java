@@ -214,11 +214,11 @@ public class ChatMessagesMetadataController {
 
     public void onFragmentDestroy() {
         for (int i = 0; i < this.reactionsRequests.size(); i++) {
-            this.chatActivity.getConnectionsManager().cancelRequest(this.reactionsRequests.remove(i).intValue(), false);
+            this.chatActivity.getConnectionsManager().cancelRequest(this.reactionsRequests.get(i).intValue(), false);
         }
         this.reactionsRequests.clear();
         for (int i2 = 0; i2 < this.extendedMediaRequests.size(); i2++) {
-            this.chatActivity.getConnectionsManager().cancelRequest(this.extendedMediaRequests.remove(i2).intValue(), false);
+            this.chatActivity.getConnectionsManager().cancelRequest(this.extendedMediaRequests.get(i2).intValue(), false);
         }
         this.extendedMediaRequests.clear();
     }

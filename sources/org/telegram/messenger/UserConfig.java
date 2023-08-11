@@ -256,7 +256,7 @@ public class UserConfig extends BaseController {
         synchronized (this.sync) {
             TLRPC$User tLRPC$User = this.currentUser;
             if (tLRPC$User == null || (str = tLRPC$User.phone) == null) {
-                str = BuildConfig.APP_CENTER_HASH;
+                str = "";
             }
         }
         return str;
@@ -453,7 +453,7 @@ public class UserConfig extends BaseController {
         SharedPreferences preferences = getPreferences();
         StringBuilder sb = new StringBuilder();
         sb.append("2totalDialogsLoadCount");
-        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb.append(i == 0 ? "" : Integer.valueOf(i));
         return preferences.getInt(sb.toString(), 0);
     }
 
@@ -461,7 +461,7 @@ public class UserConfig extends BaseController {
         SharedPreferences.Editor edit = getPreferences().edit();
         StringBuilder sb = new StringBuilder();
         sb.append("2totalDialogsLoadCount");
-        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putInt(sb.toString(), i2).commit();
     }
 
@@ -469,31 +469,27 @@ public class UserConfig extends BaseController {
         SharedPreferences preferences = getPreferences();
         StringBuilder sb = new StringBuilder();
         sb.append("2dialogsLoadOffsetId");
-        Object obj = BuildConfig.APP_CENTER_HASH;
-        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb.append(i == 0 ? "" : Integer.valueOf(i));
         int i2 = preferences.getInt(sb.toString(), this.hasValidDialogLoadIds ? 0 : -1);
         StringBuilder sb2 = new StringBuilder();
         sb2.append("2dialogsLoadOffsetDate");
-        sb2.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb2.append(i == 0 ? "" : Integer.valueOf(i));
         int i3 = preferences.getInt(sb2.toString(), this.hasValidDialogLoadIds ? 0 : -1);
         StringBuilder sb3 = new StringBuilder();
         sb3.append("2dialogsLoadOffsetUserId");
-        sb3.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb3.append(i == 0 ? "" : Integer.valueOf(i));
         long prefIntOrLong = AndroidUtilities.getPrefIntOrLong(preferences, sb3.toString(), this.hasValidDialogLoadIds ? 0L : -1L);
         StringBuilder sb4 = new StringBuilder();
         sb4.append("2dialogsLoadOffsetChatId");
-        sb4.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb4.append(i == 0 ? "" : Integer.valueOf(i));
         long prefIntOrLong2 = AndroidUtilities.getPrefIntOrLong(preferences, sb4.toString(), this.hasValidDialogLoadIds ? 0L : -1L);
         StringBuilder sb5 = new StringBuilder();
         sb5.append("2dialogsLoadOffsetChannelId");
-        sb5.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb5.append(i == 0 ? "" : Integer.valueOf(i));
         long prefIntOrLong3 = AndroidUtilities.getPrefIntOrLong(preferences, sb5.toString(), this.hasValidDialogLoadIds ? 0L : -1L);
         StringBuilder sb6 = new StringBuilder();
         sb6.append("2dialogsLoadOffsetAccess");
-        if (i != 0) {
-            obj = Integer.valueOf(i);
-        }
-        sb6.append(obj);
+        sb6.append(i != 0 ? Integer.valueOf(i) : "");
         return new long[]{i2, i3, prefIntOrLong, prefIntOrLong2, prefIntOrLong3, preferences.getLong(sb6.toString(), this.hasValidDialogLoadIds ? 0L : -1L)};
     }
 
@@ -501,31 +497,27 @@ public class UserConfig extends BaseController {
         SharedPreferences.Editor edit = getPreferences().edit();
         StringBuilder sb = new StringBuilder();
         sb.append("2dialogsLoadOffsetId");
-        Object obj = BuildConfig.APP_CENTER_HASH;
-        sb.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putInt(sb.toString(), i2);
         StringBuilder sb2 = new StringBuilder();
         sb2.append("2dialogsLoadOffsetDate");
-        sb2.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb2.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putInt(sb2.toString(), i3);
         StringBuilder sb3 = new StringBuilder();
         sb3.append("2dialogsLoadOffsetUserId");
-        sb3.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb3.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putLong(sb3.toString(), j);
         StringBuilder sb4 = new StringBuilder();
         sb4.append("2dialogsLoadOffsetChatId");
-        sb4.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb4.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putLong(sb4.toString(), j2);
         StringBuilder sb5 = new StringBuilder();
         sb5.append("2dialogsLoadOffsetChannelId");
-        sb5.append(i == 0 ? BuildConfig.APP_CENTER_HASH : Integer.valueOf(i));
+        sb5.append(i == 0 ? "" : Integer.valueOf(i));
         edit.putLong(sb5.toString(), j3);
         StringBuilder sb6 = new StringBuilder();
         sb6.append("2dialogsLoadOffsetAccess");
-        if (i != 0) {
-            obj = Integer.valueOf(i);
-        }
-        sb6.append(obj);
+        sb6.append(i != 0 ? Integer.valueOf(i) : "");
         edit.putLong(sb6.toString(), j4);
         edit.putBoolean("hasValidDialogLoadIds", true);
         edit.commit();

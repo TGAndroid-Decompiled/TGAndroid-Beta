@@ -15,11 +15,14 @@ public class ColoredImageSpan extends ReplacementSpan {
     int colorKey;
     Drawable drawable;
     int drawableColor;
-    private float scale;
+    private int overrideColor;
+    private float scaleX;
+    private float scaleY;
     private int size;
     private int sizeWidth;
     private int topOffset;
     private float translateX;
+    private float translateY;
     boolean usePaintColor;
     private final int verticalAlignment;
 
@@ -38,7 +41,8 @@ public class ColoredImageSpan extends ReplacementSpan {
     public ColoredImageSpan(Drawable drawable, int i) {
         this.usePaintColor = true;
         this.topOffset = 0;
-        this.scale = 1.0f;
+        this.scaleX = 1.0f;
+        this.scaleY = 1.0f;
         this.drawable = drawable;
         if (drawable != null) {
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
@@ -55,65 +59,75 @@ public class ColoredImageSpan extends ReplacementSpan {
         this.translateX = f;
     }
 
+    public void translate(float f, float f2) {
+        this.translateX = f;
+        this.translateY = f2;
+    }
+
     public void setWidth(int i) {
         this.sizeWidth = i;
     }
 
     @Override
     public int getSize(Paint paint, CharSequence charSequence, int i, int i2, Paint.FontMetricsInt fontMetricsInt) {
-        int i3 = this.sizeWidth;
-        if (i3 != 0) {
-            return (int) (this.scale * i3);
+        float abs;
+        int i3;
+        if (this.sizeWidth != 0) {
+            abs = Math.abs(this.scaleX);
+            i3 = this.sizeWidth;
+        } else {
+            abs = Math.abs(this.scaleX);
+            i3 = this.size;
+            if (i3 == 0) {
+                i3 = this.drawable.getIntrinsicWidth();
+            }
         }
-        float f = this.scale;
-        int i4 = this.size;
-        if (i4 == 0) {
-            i4 = this.drawable.getIntrinsicWidth();
-        }
-        return (int) (f * i4);
+        return (int) (abs * i3);
     }
 
     @Override
     public void draw(Canvas canvas, CharSequence charSequence, int i, int i2, float f, int i3, int i4, int i5, Paint paint) {
-        int color;
         Runnable runnable = this.checkColorDelegate;
         if (runnable != null) {
             runnable.run();
         } else {
-            if (this.usePaintColor) {
-                color = paint.getColor();
-            } else {
-                color = Theme.getColor(this.colorKey);
+            int i6 = this.overrideColor;
+            if (i6 == 0) {
+                if (this.usePaintColor) {
+                    i6 = paint.getColor();
+                } else {
+                    i6 = Theme.getColor(this.colorKey);
+                }
             }
-            if (this.drawableColor != color) {
-                this.drawableColor = color;
+            if (this.drawableColor != i6) {
+                this.drawableColor = i6;
                 this.drawable.setColorFilter(new PorterDuffColorFilter(this.drawableColor, PorterDuff.Mode.MULTIPLY));
             }
         }
         canvas.save();
         Drawable drawable = this.drawable;
-        int i6 = i5 - (drawable != null ? drawable.getBounds().bottom : i5);
-        int i7 = this.verticalAlignment;
-        if (i7 != 1) {
-            if (i7 == 2) {
-                int i8 = i3 + ((i5 - i3) / 2);
+        int i7 = i5 - (drawable != null ? drawable.getBounds().bottom : i5);
+        int i8 = this.verticalAlignment;
+        if (i8 != 1) {
+            if (i8 == 2) {
+                int i9 = i3 + ((i5 - i3) / 2);
                 Drawable drawable2 = this.drawable;
-                i6 = i8 - (drawable2 != null ? drawable2.getBounds().height() / 2 : 0);
-            } else if (i7 == 0) {
-                int i9 = i5 - i3;
-                int i10 = this.size;
-                if (i10 == 0) {
-                    i10 = this.drawable.getIntrinsicHeight();
+                i7 = i9 - (drawable2 != null ? drawable2.getBounds().height() / 2 : 0);
+            } else if (i8 == 0) {
+                int i10 = i5 - i3;
+                int i11 = this.size;
+                if (i11 == 0) {
+                    i11 = this.drawable.getIntrinsicHeight();
                 }
-                i6 = AndroidUtilities.dp(this.topOffset) + i3 + ((i9 - i10) / 2);
+                i7 = AndroidUtilities.dp(this.topOffset) + i3 + ((i10 - i11) / 2);
             }
         }
-        canvas.translate(f + this.translateX, i6);
+        canvas.translate(f + this.translateX, i7 + this.translateY);
         Drawable drawable3 = this.drawable;
         if (drawable3 != null) {
-            float f2 = this.scale;
-            if (f2 != 1.0f) {
-                canvas.scale(f2, f2, 0.0f, drawable3.getBounds().centerY());
+            float f2 = this.scaleX;
+            if (f2 != 1.0f || this.scaleY != 1.0f) {
+                canvas.scale(f2, this.scaleY, 0.0f, drawable3.getBounds().centerY());
             }
             this.drawable.draw(canvas);
         }
@@ -130,6 +144,15 @@ public class ColoredImageSpan extends ReplacementSpan {
     }
 
     public void setScale(float f) {
-        this.scale = f;
+        this.scaleX = f;
+    }
+
+    public void setScale(float f, float f2) {
+        this.scaleX = f;
+        this.scaleY = f2;
+    }
+
+    public void setOverrideColor(int i) {
+        this.overrideColor = i;
     }
 }

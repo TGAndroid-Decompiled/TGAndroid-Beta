@@ -198,6 +198,16 @@ public final class BulletinFactory {
         return create(lottieLayout, charSequence.length() < 20 ? 1500 : 2750);
     }
 
+    public Bulletin createSimpleLargeBulletin(int i, CharSequence charSequence, CharSequence charSequence2) {
+        Bulletin.TwoLineLayout twoLineLayout = new Bulletin.TwoLineLayout(getContext(), this.resourcesProvider);
+        twoLineLayout.imageView.setImageResource(i);
+        twoLineLayout.titleTextView.setText(charSequence);
+        twoLineLayout.subtitleTextView.setText(charSequence2);
+        twoLineLayout.subtitleTextView.setSingleLine(false);
+        twoLineLayout.subtitleTextView.setMaxLines(5);
+        return create(twoLineLayout, 5000);
+    }
+
     public Bulletin createSimpleBulletin(int i, CharSequence charSequence, int i2) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
         lottieLayout.setAnimation(i, 36, 36, new String[0]);
@@ -849,6 +859,20 @@ public final class BulletinFactory {
         }
         lottieLayout.textView.setText(AndroidUtilities.replaceTags(string));
         return Bulletin.make(baseFragment, lottieLayout, 1500);
+    }
+
+    public Bulletin createBanBulletin(boolean z) {
+        String string;
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
+        if (z) {
+            lottieLayout.setAnimation(R.raw.ic_ban, "Hand");
+            string = LocaleController.getString("UserBlocked", R.string.UserBlocked);
+        } else {
+            lottieLayout.setAnimation(R.raw.ic_unban, "Main", "Finger 1", "Finger 2", "Finger 3", "Finger 4");
+            string = LocaleController.getString("UserUnblocked", R.string.UserUnblocked);
+        }
+        lottieLayout.textView.setText(AndroidUtilities.replaceTags(string));
+        return create(lottieLayout, 1500);
     }
 
     public static Bulletin createCopyLinkBulletin(BaseFragment baseFragment) {

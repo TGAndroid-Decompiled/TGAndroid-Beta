@@ -35,7 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
@@ -43,6 +42,7 @@ import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedTextView;
 public class EditTextBoldCursor extends EditTextEffects {
     private static Class editorClass;
     private static Method getVerticalOffsetMethod;
@@ -77,6 +77,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     private AnimatorSet headerTransformAnimation;
     private CharSequence hint;
     private float hintAlpha;
+    private AnimatedTextView.AnimatedTextDrawable hintAnimatedDrawable;
     private SubstringLayoutAnimator hintAnimator;
     private int hintColor;
     private long hintLastUpdateTime;
@@ -101,6 +102,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     private ViewTreeObserver.OnPreDrawListener listenerFixer;
     private android.graphics.Rect mTempRect;
     private boolean nextSetTextAnimated;
+    private Runnable onPremiumMenuLockClickListener;
     private android.graphics.Rect padding;
     private android.graphics.Rect rect;
     private List<TextWatcher> registeredTextWatchers;
@@ -198,6 +200,18 @@ public class EditTextBoldCursor extends EditTextEffects {
         init();
     }
 
+    public void useAnimatedTextDrawable() {
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable() {
+            @Override
+            public void invalidateSelf() {
+                EditTextBoldCursor.this.invalidate();
+            }
+        };
+        this.hintAnimatedDrawable = animatedTextDrawable;
+        animatedTextDrawable.setTextColor(this.hintColor);
+        this.hintAnimatedDrawable.setTextSize(getPaint().getTextSize());
+    }
+
     @Override
     public void addTextChangedListener(TextWatcher textWatcher) {
         this.registeredTextWatchers.add(textWatcher);
@@ -218,7 +232,7 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     public void dispatchTextWatchersTextChanged() {
         for (TextWatcher textWatcher : this.registeredTextWatchers) {
-            textWatcher.beforeTextChanged(BuildConfig.APP_CENTER_HASH, 0, length(), length());
+            textWatcher.beforeTextChanged("", 0, length(), length());
             textWatcher.onTextChanged(getText(), 0, length(), length());
             textWatcher.afterTextChanged(getText());
         }
@@ -238,7 +252,7 @@ public class EditTextBoldCursor extends EditTextEffects {
         for (TextWatcher textWatcher2 : this.registeredTextWatchers) {
             super.addTextChangedListener(textWatcher2);
             if (z2) {
-                textWatcher2.beforeTextChanged(BuildConfig.APP_CENTER_HASH, 0, length(), length());
+                textWatcher2.beforeTextChanged("", 0, length(), length());
                 textWatcher2.onTextChanged(getText(), 0, length(), length());
                 textWatcher2.afterTextChanged(getText());
             }
@@ -463,12 +477,25 @@ public class EditTextBoldCursor extends EditTextEffects {
 
     public void setHintColor(int i) {
         this.hintColor = i;
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.hintAnimatedDrawable;
+        if (animatedTextDrawable != null) {
+            animatedTextDrawable.setTextColor(i);
+        }
         invalidate();
     }
 
     public void setHeaderHintColor(int i) {
         this.headerHintColor = i;
         invalidate();
+    }
+
+    @Override
+    public void setTextSize(int i, float f) {
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.hintAnimatedDrawable;
+        if (animatedTextDrawable != null) {
+            animatedTextDrawable.setTextSize(AndroidUtilities.dp(f));
+        }
+        super.setTextSize(i, f);
     }
 
     public void setNextSetTextAnimated(boolean z) {
@@ -521,7 +548,11 @@ public class EditTextBoldCursor extends EditTextEffects {
     public void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
         int measuredHeight = getMeasuredHeight() + (getMeasuredWidth() << 16);
-        if (this.hintLayout != null) {
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.hintAnimatedDrawable;
+        if (animatedTextDrawable != null) {
+            animatedTextDrawable.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
+        }
+        if (this.hintLayout != null && this.hintAnimatedDrawable == null) {
             if (this.lastSize != measuredHeight) {
                 setHintText(this.hint);
             }
@@ -537,8 +568,13 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     public void setHintText(CharSequence charSequence, boolean z) {
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.hintAnimatedDrawable;
+        if (animatedTextDrawable != null) {
+            animatedTextDrawable.setText(charSequence, true);
+            return;
+        }
         if (charSequence == null) {
-            charSequence = BuildConfig.APP_CENTER_HASH;
+            charSequence = "";
         }
         if (getMeasuredWidth() == 0) {
             z = false;
@@ -779,7 +815,9 @@ public class EditTextBoldCursor extends EditTextEffects {
             if (view == null) {
                 view = this.attachedToWindow;
             }
-            this.floatingToolbar = new FloatingToolbar(context, view, getActionModeStyle(), getResourcesProvider());
+            FloatingToolbar floatingToolbar = new FloatingToolbar(context, view, getActionModeStyle(), getResourcesProvider());
+            this.floatingToolbar = floatingToolbar;
+            floatingToolbar.setOnPremiumLockClick(this.onPremiumMenuLockClickListener);
             this.floatingActionMode = new FloatingActionMode(getContext(), new ActionModeCallback2Wrapper(callback), this, this.floatingToolbar);
             this.floatingToolbarPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
                 @Override
@@ -868,5 +906,9 @@ public class EditTextBoldCursor extends EditTextEffects {
             } catch (Exception unused) {
             }
         }
+    }
+
+    public void setOnPremiumMenuLockClickListener(Runnable runnable) {
+        this.onPremiumMenuLockClickListener = runnable;
     }
 }

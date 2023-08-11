@@ -1,7 +1,6 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-import org.telegram.messenger.BuildConfig;
 public abstract class TLRPC$BotInfo extends TLObject {
     public ArrayList<TLRPC$TL_botCommand> commands = new ArrayList<>();
     public String description;
@@ -140,7 +139,7 @@ public abstract class TLRPC$BotInfo extends TLObject {
                         abstractSerializedData2.writeInt32(constructor);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt32(this.version);
-                        abstractSerializedData2.writeString(BuildConfig.APP_CENTER_HASH);
+                        abstractSerializedData2.writeString("");
                         abstractSerializedData2.writeString(this.description);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.commands.size();

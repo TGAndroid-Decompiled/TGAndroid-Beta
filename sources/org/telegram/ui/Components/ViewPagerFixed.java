@@ -37,7 +37,6 @@ import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -66,7 +65,7 @@ public class ViewPagerFixed extends FrameLayout {
     private boolean animatingForward;
     private boolean backAnimation;
     private float backProgress;
-    int currentPosition;
+    public int currentPosition;
     private ValueAnimator manualScrolling;
     private int maximumVelocity;
     private boolean maybeStartTracking;
@@ -99,7 +98,7 @@ public class ViewPagerFixed extends FrameLayout {
         }
 
         public String getItemTitle(int i) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
 
         public int getItemViewType(int i) {

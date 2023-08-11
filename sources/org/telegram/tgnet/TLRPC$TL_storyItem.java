@@ -2,7 +2,7 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_storyItem extends TLRPC$StoryItem {
-    public static int constructor = 1445635639;
+    public static int constructor = 1153718222;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -40,7 +40,7 @@ public class TLRPC$TL_storyItem extends TLRPC$StoryItem {
             }
         }
         this.media = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
-        if ((this.flags & 4) != 0) {
+        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
             int readInt324 = abstractSerializedData.readInt32(z);
             if (readInt324 != 481674261) {
                 if (z) {
@@ -50,15 +50,35 @@ public class TLRPC$TL_storyItem extends TLRPC$StoryItem {
             }
             int readInt325 = abstractSerializedData.readInt32(z);
             for (int i2 = 0; i2 < readInt325; i2++) {
-                TLRPC$PrivacyRule TLdeserialize2 = TLRPC$PrivacyRule.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                TLRPC$MediaArea TLdeserialize2 = TLRPC$MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize2 == null) {
                     return;
                 }
-                this.privacy.add(TLdeserialize2);
+                this.media_areas.add(TLdeserialize2);
+            }
+        }
+        if ((this.flags & 4) != 0) {
+            int readInt326 = abstractSerializedData.readInt32(z);
+            if (readInt326 != 481674261) {
+                if (z) {
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
+                }
+                return;
+            }
+            int readInt327 = abstractSerializedData.readInt32(z);
+            for (int i3 = 0; i3 < readInt327; i3++) {
+                TLRPC$PrivacyRule TLdeserialize3 = TLRPC$PrivacyRule.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+                if (TLdeserialize3 == null) {
+                    return;
+                }
+                this.privacy.add(TLdeserialize3);
             }
         }
         if ((this.flags & 8) != 0) {
-            this.views = TLRPC$TL_storyViews.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.views = TLRPC$StoryViews.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        }
+        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+            this.sent_reaction = TLRPC$Reaction.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 
@@ -97,16 +117,27 @@ public class TLRPC$TL_storyItem extends TLRPC$StoryItem {
             }
         }
         this.media.serializeToStream(abstractSerializedData);
-        if ((this.flags & 4) != 0) {
+        if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
             abstractSerializedData.writeInt32(481674261);
-            int size2 = this.privacy.size();
+            int size2 = this.media_areas.size();
             abstractSerializedData.writeInt32(size2);
             for (int i10 = 0; i10 < size2; i10++) {
-                this.privacy.get(i10).serializeToStream(abstractSerializedData);
+                this.media_areas.get(i10).serializeToStream(abstractSerializedData);
+            }
+        }
+        if ((this.flags & 4) != 0) {
+            abstractSerializedData.writeInt32(481674261);
+            int size3 = this.privacy.size();
+            abstractSerializedData.writeInt32(size3);
+            for (int i11 = 0; i11 < size3; i11++) {
+                this.privacy.get(i11).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 8) != 0) {
             this.views.serializeToStream(abstractSerializedData);
+        }
+        if ((this.flags & LiteMode.FLAG_CHAT_SCALE) != 0) {
+            this.sent_reaction.serializeToStream(abstractSerializedData);
         }
     }
 }

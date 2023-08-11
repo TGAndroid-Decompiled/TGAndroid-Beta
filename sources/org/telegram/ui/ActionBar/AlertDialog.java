@@ -1285,6 +1285,16 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         }
     }
 
+    public void setPositiveButton(CharSequence charSequence, DialogInterface.OnClickListener onClickListener) {
+        this.positiveButtonText = charSequence;
+        this.positiveButtonListener = onClickListener;
+    }
+
+    public void setNegativeButton(CharSequence charSequence, DialogInterface.OnClickListener onClickListener) {
+        this.negativeButtonText = charSequence;
+        this.negativeButtonListener = onClickListener;
+    }
+
     public void setNeutralButton(CharSequence charSequence, DialogInterface.OnClickListener onClickListener) {
         this.neutralButtonText = charSequence;
         this.neutralButtonListener = onClickListener;

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -76,7 +77,7 @@ public class PreviewHighlightView extends FrameLayout {
         peerHeaderView.backupImageView.getAvatarDrawable().setInfo(currentUser);
         BackupImageView backupImageView = peerHeaderView.backupImageView;
         backupImageView.setForUserOrChat(currentUser, backupImageView.getAvatarDrawable());
-        peerHeaderView.titleView.setText(UserObject.getUserName(currentUser));
+        peerHeaderView.titleView.setText(Emoji.replaceEmoji(UserObject.getUserName(currentUser), peerHeaderView.titleView.getPaint().getFontMetricsInt(), false));
         peerHeaderView.setSubtitle(LocaleController.getString("RightNow", R.string.RightNow), false);
         frameLayout.addView(peerHeaderView, LayoutHelper.createFrame(-1, -2.0f, 55, 0.0f, 17.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
@@ -118,7 +119,7 @@ public class PreviewHighlightView extends FrameLayout {
     }
 
     public void updateCaption(CharSequence charSequence) {
-        this.storyCaptionView.captionTextview.setText(AnimatedEmojiSpan.cloneSpans(charSequence));
+        this.storyCaptionView.captionTextview.setText(AnimatedEmojiSpan.cloneSpans(charSequence), false, false);
     }
 
     public void show(boolean z, boolean z2, View view) {

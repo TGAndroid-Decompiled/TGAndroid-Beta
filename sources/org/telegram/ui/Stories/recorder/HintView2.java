@@ -4,20 +4,26 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.RippleDrawable;
+import android.os.Build;
 import android.text.Layout;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.style.ClickableSpan;
+import android.util.StateSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -41,9 +47,11 @@ public class HintView2 extends View {
     private ValueAnimator bounceAnimator;
     private float bounceT;
     private final RectF bounds;
+    private final Rect boundsWithArrow;
     private boolean closeButton;
     private Drawable closeButtonDrawable;
     private float closeButtonMargin;
+    private Paint cutSelectorPaint;
     private int direction;
     private long duration;
     private boolean firstDraw;
@@ -64,6 +72,7 @@ public class HintView2 extends View {
     private LinkSpanDrawable<ClickableSpan> pressedLink;
     private boolean repeatedBounce;
     private float rounding;
+    private Drawable selectorDrawable;
     private AnimatedFloat show;
     private boolean shown;
     private AnimatedTextView.AnimatedTextDrawable textDrawable;
@@ -109,11 +118,12 @@ public class HintView2 extends View {
         };
         this.bounceT = 1.0f;
         this.bounce = new ButtonBounce(this, 2.0f);
+        this.boundsWithArrow = new Rect();
         this.bounds = new RectF();
         this.path = new Path();
         this.firstDraw = true;
         this.direction = i;
-        paint.setColor(-869783512);
+        paint.setColor(-433575896);
         paint.setPathEffect(new CornerPathEffect(this.rounding));
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable(true, true, false);
         this.textDrawable = animatedTextDrawable;
@@ -126,6 +136,10 @@ public class HintView2 extends View {
     public HintView2 setRounding(float f) {
         this.rounding = AndroidUtilities.dp(f);
         this.backgroundPaint.setPathEffect(new CornerPathEffect(this.rounding));
+        Paint paint = this.cutSelectorPaint;
+        if (paint != null) {
+            paint.setPathEffect(new CornerPathEffect(this.rounding));
+        }
         return this;
     }
 
@@ -235,8 +249,8 @@ public class HintView2 extends View {
         if (length <= 0 || contains(charSequence, '\n')) {
             ceil = Math.ceil(textWidth);
         } else {
-            int i2 = i - 1;
-            int i3 = i + 1;
+            int i2 = i - 2;
+            int i3 = i + 2;
             while (true) {
                 if (i2 < 0 || i3 >= length) {
                     break;
@@ -277,6 +291,39 @@ public class HintView2 extends View {
         return this;
     }
 
+    public HintView2 setSelectorColor(int i) {
+        if (Build.VERSION.SDK_INT < 21) {
+            return this;
+        }
+        Paint paint = new Paint(1);
+        this.cutSelectorPaint = paint;
+        paint.setPathEffect(new CornerPathEffect(this.rounding));
+        RippleDrawable rippleDrawable = new RippleDrawable(new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i}), null, new Drawable() {
+            @Override
+            public int getOpacity() {
+                return -2;
+            }
+
+            @Override
+            public void setAlpha(int i2) {
+            }
+
+            @Override
+            public void setColorFilter(ColorFilter colorFilter) {
+            }
+
+            @Override
+            public void draw(Canvas canvas) {
+                canvas.save();
+                canvas.drawPath(HintView2.this.path, HintView2.this.cutSelectorPaint);
+                canvas.restore();
+            }
+        });
+        this.selectorDrawable = rippleDrawable;
+        rippleDrawable.setCallback(this);
+        return this;
+    }
+
     public HintView2 setBounce(boolean z) {
         this.repeatedBounce = z;
         return this;
@@ -304,6 +351,16 @@ public class HintView2 extends View {
         }
         this.joint = f;
         this.jointTranslate = AndroidUtilities.dp(f2);
+        return this;
+    }
+
+    public HintView2 setJointPx(float f, float f2) {
+        if (Math.abs(this.joint - f) >= 1.0f || Math.abs(this.jointTranslate - f2) >= 1.0f) {
+            this.pathSet = false;
+            invalidate();
+        }
+        this.joint = f;
+        this.jointTranslate = f2;
         return this;
     }
 
@@ -514,6 +571,12 @@ public class HintView2 extends View {
         this.backgroundPaint.setAlpha((int) (alpha * f4));
         canvas.drawPath(this.path, this.backgroundPaint);
         this.backgroundPaint.setAlpha(alpha);
+        Drawable drawable = this.selectorDrawable;
+        if (drawable != null) {
+            drawable.setAlpha((int) (f4 * 255.0f));
+            this.selectorDrawable.setBounds(this.boundsWithArrow);
+            this.selectorDrawable.draw(canvas);
+        }
         if (this.multiline) {
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), Math.max(getHeight(), f3), (int) (f4 * 255.0f), 31);
             RectF rectF2 = this.bounds;
@@ -551,9 +614,9 @@ public class HintView2 extends View {
                 mutate2.setColorFilter(new PorterDuffColorFilter(2113929215, PorterDuff.Mode.MULTIPLY));
             }
             this.closeButtonDrawable.setAlpha((int) (f4 * 255.0f));
-            Drawable drawable = this.closeButtonDrawable;
+            Drawable drawable2 = this.closeButtonDrawable;
             RectF rectF6 = this.bounds;
-            drawable.setBounds((int) ((this.bounds.right - (this.innerPadding.right * 0.66f)) - drawable.getIntrinsicWidth()), (int) (this.bounds.centerY() - (this.closeButtonDrawable.getIntrinsicHeight() / 2.0f)), (int) (rectF6.right - (this.innerPadding.right * 0.66f)), (int) (rectF6.centerY() + (this.closeButtonDrawable.getIntrinsicHeight() / 2.0f)));
+            drawable2.setBounds((int) ((this.bounds.right - (this.innerPadding.right * 0.66f)) - drawable2.getIntrinsicWidth()), (int) (this.bounds.centerY() - (this.closeButtonDrawable.getIntrinsicHeight() / 2.0f)), (int) (rectF6.right - (this.innerPadding.right * 0.66f)), (int) (rectF6.centerY() + (this.closeButtonDrawable.getIntrinsicHeight() / 2.0f)));
             this.closeButtonDrawable.draw(canvas);
         }
         canvas.restore();
@@ -587,10 +650,13 @@ public class HintView2 extends View {
                 this.bounds.set(((getMeasuredWidth() - getPaddingRight()) - this.arrowHeight) - f, f6, (getMeasuredWidth() - getPaddingRight()) - this.arrowHeight, min2);
             }
         }
+        Rect rect = this.boundsWithArrow;
+        RectF rectF = this.bounds;
+        rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
         this.path.rewind();
         Path path = this.path;
-        RectF rectF = this.bounds;
-        path.moveTo(rectF.left, rectF.bottom);
+        RectF rectF2 = this.bounds;
+        path.moveTo(rectF2.left, rectF2.bottom);
         if (this.direction == 0) {
             this.path.lineTo(this.bounds.left, this.arrowHalfWidth + clamp + AndroidUtilities.dp(2.0f));
             this.path.lineTo(this.bounds.left, this.arrowHalfWidth + clamp);
@@ -602,10 +668,12 @@ public class HintView2 extends View {
             this.path.lineTo(f9 - f10, clamp - AndroidUtilities.dp(1.0f));
             this.path.lineTo(this.bounds.left, clamp - this.arrowHalfWidth);
             this.path.lineTo(this.bounds.left, (clamp - this.arrowHalfWidth) - AndroidUtilities.dp(2.0f));
+            Rect rect2 = this.boundsWithArrow;
+            rect2.left = (int) (rect2.left - this.arrowHeight);
         }
         Path path2 = this.path;
-        RectF rectF2 = this.bounds;
-        path2.lineTo(rectF2.left, rectF2.top);
+        RectF rectF3 = this.bounds;
+        path2.lineTo(rectF3.left, rectF3.top);
         if (this.direction == 1) {
             this.path.lineTo((clamp - this.arrowHalfWidth) - AndroidUtilities.dp(2.0f), this.bounds.top);
             this.path.lineTo(clamp - this.arrowHalfWidth, this.bounds.top);
@@ -615,10 +683,12 @@ public class HintView2 extends View {
             this.path.lineTo(AndroidUtilities.dp(1.0f) + clamp, this.bounds.top - this.arrowHeight);
             this.path.lineTo(this.arrowHalfWidth + clamp, this.bounds.top);
             this.path.lineTo(this.arrowHalfWidth + clamp + AndroidUtilities.dp(2.0f), this.bounds.top);
+            Rect rect3 = this.boundsWithArrow;
+            rect3.top = (int) (rect3.top - this.arrowHeight);
         }
         Path path3 = this.path;
-        RectF rectF3 = this.bounds;
-        path3.lineTo(rectF3.right, rectF3.top);
+        RectF rectF4 = this.bounds;
+        path3.lineTo(rectF4.right, rectF4.top);
         if (this.direction == 2) {
             this.path.lineTo(this.bounds.right, (clamp - this.arrowHalfWidth) - AndroidUtilities.dp(2.0f));
             this.path.lineTo(this.bounds.right, clamp - this.arrowHalfWidth);
@@ -630,10 +700,12 @@ public class HintView2 extends View {
             this.path.lineTo(f11 + f12, AndroidUtilities.dp(1.0f) + clamp);
             this.path.lineTo(this.bounds.right, this.arrowHalfWidth + clamp);
             this.path.lineTo(this.bounds.right, this.arrowHalfWidth + clamp + AndroidUtilities.dp(2.0f));
+            Rect rect4 = this.boundsWithArrow;
+            rect4.right = (int) (rect4.right + this.arrowHeight);
         }
         Path path4 = this.path;
-        RectF rectF4 = this.bounds;
-        path4.lineTo(rectF4.right, rectF4.bottom);
+        RectF rectF5 = this.bounds;
+        path4.lineTo(rectF5.right, rectF5.bottom);
         if (this.direction == 3) {
             this.path.lineTo(this.arrowHalfWidth + clamp + AndroidUtilities.dp(2.0f), this.bounds.bottom);
             this.path.lineTo(this.arrowHalfWidth + clamp, this.bounds.bottom);
@@ -643,6 +715,8 @@ public class HintView2 extends View {
             this.path.lineTo(clamp - AndroidUtilities.dp(1.0f), this.bounds.bottom + this.arrowHeight);
             this.path.lineTo(clamp - this.arrowHalfWidth, this.bounds.bottom);
             this.path.lineTo((clamp - this.arrowHalfWidth) - AndroidUtilities.dp(2.0f), this.bounds.bottom);
+            Rect rect5 = this.boundsWithArrow;
+            rect5.bottom = (int) (rect5.bottom + this.arrowHeight);
         }
         this.path.close();
         this.pathSet = true;
@@ -650,12 +724,15 @@ public class HintView2 extends View {
 
     @Override
     protected boolean verifyDrawable(Drawable drawable) {
-        return drawable == this.textDrawable || super.verifyDrawable(drawable);
+        return drawable == this.textDrawable || drawable == this.selectorDrawable || super.verifyDrawable(drawable);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.hideByTouch && this.shown && (checkTouchLinks(motionEvent) || checkTouchTap(motionEvent));
+        if ((this.hideByTouch || hasOnClickListeners()) && this.shown) {
+            return checkTouchLinks(motionEvent) || checkTouchTap(motionEvent);
+        }
+        return false;
     }
 
     public boolean containsTouch(MotionEvent motionEvent, float f, float f2) {
@@ -663,17 +740,34 @@ public class HintView2 extends View {
     }
 
     private boolean checkTouchTap(MotionEvent motionEvent) {
-        motionEvent.getX();
-        motionEvent.getY();
+        float x = motionEvent.getX();
+        float y = motionEvent.getY();
         if (motionEvent.getAction() == 0 && containsTouch(motionEvent, 0.0f, 0.0f)) {
             this.bounce.setPressed(true);
+            Drawable drawable = this.selectorDrawable;
+            if (drawable != null && Build.VERSION.SDK_INT >= 21) {
+                drawable.setHotspot(x, y);
+                this.selectorDrawable.setState(new int[]{16842919, 16842910});
+            }
             return true;
         } else if (motionEvent.getAction() == 1) {
-            hide();
+            if (hasOnClickListeners()) {
+                performClick();
+            } else if (this.hideByTouch) {
+                hide();
+            }
             this.bounce.setPressed(false);
+            Drawable drawable2 = this.selectorDrawable;
+            if (drawable2 != null) {
+                drawable2.setState(new int[0]);
+            }
             return true;
         } else if (motionEvent.getAction() == 3) {
             this.bounce.setPressed(false);
+            Drawable drawable3 = this.selectorDrawable;
+            if (drawable3 != null) {
+                drawable3.setState(new int[0]);
+            }
             return true;
         } else {
             return false;

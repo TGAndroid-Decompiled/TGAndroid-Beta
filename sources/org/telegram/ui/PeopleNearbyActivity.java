@@ -47,6 +47,7 @@ import org.telegram.tgnet.TLRPC$TL_channels_getAdminedPublicChannels;
 import org.telegram.tgnet.TLRPC$TL_contacts_getLocated;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputGeoPoint;
+import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
 import org.telegram.tgnet.TLRPC$TL_peerChat;
 import org.telegram.tgnet.TLRPC$TL_peerLocated;
 import org.telegram.tgnet.TLRPC$TL_peerSelfLocated;
@@ -767,7 +768,7 @@ public class PeopleNearbyActivity extends BaseFragment implements NotificationCe
     }
 
     @Override
-    public void onLocationAddressAvailable(String str, String str2, Location location) {
+    public void onLocationAddressAvailable(String str, String str2, TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue2, Location location) {
         this.currentGroupCreateAddress = str;
         this.currentGroupCreateDisplayAddress = str2;
         this.currentGroupCreateLocation = location;

@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
@@ -478,7 +477,7 @@ public class StickersSearchAdapter extends RecyclerListView.SelectionAdapter {
                 int i5 = i3 - size2;
                 if (i5 < i2) {
                     int size3 = this.emojiArrays.size();
-                    String str = BuildConfig.APP_CENTER_HASH;
+                    String str = "";
                     int i6 = 0;
                     for (int i7 = 0; i7 < size3; i7++) {
                         ArrayList<TLRPC$Document> arrayList2 = this.emojiArrays.get(i7);

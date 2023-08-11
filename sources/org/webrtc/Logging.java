@@ -5,7 +5,6 @@ import java.io.StringWriter;
 import java.util.EnumSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 public class Logging {
     private static final Logger fallbackLogger = createFallbackLogger();
@@ -174,7 +173,7 @@ public class Logging {
 
     private static String getStackTraceString(Throwable th) {
         if (th == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         StringWriter stringWriter = new StringWriter();
         th.printStackTrace(new PrintWriter(stringWriter));

@@ -29,7 +29,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
@@ -745,7 +744,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 this.nonscrollingT = new AnimatedFloat(StoriesTabsView.this, 0L, 200L, CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.drawableColor = -1;
                 this.i = i;
-                RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f));
+                RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f));
                 this.drawable = rLottieDrawable;
                 rLottieDrawable.setMasterParent(StoriesTabsView.this);
                 rLottieDrawable.setAllowDecodeSingleFrame(true);

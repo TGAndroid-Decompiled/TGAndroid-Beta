@@ -815,6 +815,7 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
 
     protected void finalize() throws Throwable {
         try {
+            this.secondParentViews.clear();
             recycle();
         } finally {
             super.finalize();

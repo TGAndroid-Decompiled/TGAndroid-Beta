@@ -33,13 +33,11 @@ import java.util.Comparator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.NotificationsController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
@@ -93,6 +91,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     boolean drawCircleForce;
     EllipsizeSpanAnimator ellipsizeSpanAnimator;
     BaseFragment fragment;
+    private StoriesUtilities.EnsureStoryFileLoadedObject globalCancelable;
     Paint grayPaint;
     private boolean hasOverlayText;
     DefaultItemAnimator itemAnimator;
@@ -149,9 +148,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         this.comparator = new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$new$1;
-                lambda$new$1 = DialogStoriesCell.lambda$new$1((DialogStoriesCell.StoryCell) obj, (DialogStoriesCell.StoryCell) obj2);
-                return lambda$new$1;
+                int lambda$new$3;
+                lambda$new$3 = DialogStoriesCell.lambda$new$3((DialogStoriesCell.StoryCell) obj, (DialogStoriesCell.StoryCell) obj2);
+                return lambda$new$3;
             }
         };
         this.K = 0.3f;
@@ -179,12 +178,14 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             }
         };
         this.recyclerListView = recyclerListView;
-        recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerListView.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
+        this.recyclerListView.setClipToPadding(false);
+        this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
                 super.onScrolled(recyclerView, i3, i4);
                 DialogStoriesCell.this.invalidate();
-                DialogStoriesCell.this.lambda$didReceivedNotification$2();
+                DialogStoriesCell.this.lambda$didReceivedNotification$4();
                 if (DialogStoriesCell.this.premiumHint != null) {
                     DialogStoriesCell.this.premiumHint.hide();
                 }
@@ -282,9 +283,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 int childLayoutPosition = recyclerView.getChildLayoutPosition(view);
                 rect.setEmpty();
                 if (childLayoutPosition == 1) {
-                    rect.left = (-AndroidUtilities.dp(85.0f)) + AndroidUtilities.dp(29.0f);
+                    rect.left = (-AndroidUtilities.dp(85.0f)) + AndroidUtilities.dp(35.0f);
                 } else if (childLayoutPosition == 2) {
-                    rect.left = (-AndroidUtilities.dp(85.0f)) + AndroidUtilities.dp(29.0f);
+                    rect.left = (-AndroidUtilities.dp(85.0f)) + AndroidUtilities.dp(35.0f);
                 }
             }
         });
@@ -307,70 +308,100 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     }
 
     public void lambda$new$0(View view, int i) {
-        openStoryForCell((StoryCell) view);
+        openStoryForCell((StoryCell) view, false);
     }
 
-    private void openStoryForCell(StoryCell storyCell) {
-        boolean z;
+    private void openStoryForCell(final StoryCell storyCell, boolean z) {
         if (storyCell == null) {
             return;
         }
         if (storyCell.isSelf && !this.storiesController.hasSelfStories()) {
             if (!MessagesController.getInstance(this.currentAccount).storiesEnabled()) {
                 showPremiumHint();
-                return;
             } else {
                 openStoryRecorder();
+            }
+        } else if (this.storiesController.hasStories(storyCell.dialogId)) {
+            TLRPC$TL_userStories stories = this.storiesController.getStories(storyCell.dialogId);
+            final long j = storyCell.dialogId;
+            Runnable runnable = new Runnable() {
+                @Override
+                public final void run() {
+                    DialogStoriesCell.this.lambda$openStoryForCell$2(storyCell, j);
+                }
+            };
+            if (z) {
+                runnable.run();
                 return;
             }
-        }
-        int i = storyCell.position;
-        ArrayList<Long> arrayList = new ArrayList<>();
-        if (this.storiesController.hasStories(storyCell.dialogId)) {
-            int i2 = 0;
-            int i3 = 0;
-            while (true) {
-                if (i3 >= this.items.size()) {
-                    z = true;
-                    break;
-                }
-                long j = this.items.get(i3).dialogId;
-                if (j != UserConfig.getInstance(this.currentAccount).clientUserId && this.storiesController.hasUnreadStories(j)) {
-                    z = false;
-                    break;
-                }
-                i3++;
+            StoriesUtilities.EnsureStoryFileLoadedObject ensureStoryFileLoaded = StoriesUtilities.ensureStoryFileLoaded(stories, runnable);
+            storyCell.cancellable = ensureStoryFileLoaded;
+            this.globalCancelable = ensureStoryFileLoaded;
+            if (ensureStoryFileLoaded != null) {
+                this.storiesController.setLoading(storyCell.dialogId, true);
             }
-            if (storyCell.isSelf && (!z || this.items.size() == 1)) {
-                arrayList.add(Long.valueOf(storyCell.dialogId));
-            } else {
-                if (!storyCell.isSelf && this.storiesController.hasUnreadStories(storyCell.dialogId)) {
-                    while (i2 < this.items.size()) {
-                        long j2 = this.items.get(i2).dialogId;
-                        if (!storyCell.isSelf && this.storiesController.hasUnreadStories(j2)) {
-                            arrayList.add(Long.valueOf(j2));
-                        }
-                        if (j2 == storyCell.dialogId) {
-                            i = arrayList.size() - 1;
-                        }
-                        i2++;
-                    }
-                } else {
-                    while (i2 < this.items.size()) {
-                        if (this.storiesController.hasStories(this.items.get(i2).dialogId)) {
-                            arrayList.add(Long.valueOf(this.items.get(i2).dialogId));
-                        } else if (i2 <= i) {
-                            i--;
-                        }
-                        i2++;
-                    }
-                }
-            }
-            this.fragment.getOrCreateStoryViewer().open(getContext(), null, arrayList, i, null, null, StoriesListPlaceProvider.of(this.recyclerListView), false);
         }
     }
 
-    public void lambda$didReceivedNotification$2() {
+    public void lambda$openStoryForCell$2(StoryCell storyCell, final long j) {
+        boolean z;
+        int i = storyCell.position;
+        ArrayList<Long> arrayList = new ArrayList<>();
+        int i2 = 0;
+        int i3 = 0;
+        while (true) {
+            if (i3 >= this.items.size()) {
+                z = true;
+                break;
+            }
+            long j2 = this.items.get(i3).dialogId;
+            if (j2 != UserConfig.getInstance(this.currentAccount).clientUserId && this.storiesController.hasUnreadStories(j2)) {
+                z = false;
+                break;
+            }
+            i3++;
+        }
+        if (storyCell.isSelf && (!z || this.items.size() == 1)) {
+            arrayList.add(Long.valueOf(storyCell.dialogId));
+        } else {
+            if (!storyCell.isSelf && this.storiesController.hasUnreadStories(storyCell.dialogId)) {
+                while (i2 < this.items.size()) {
+                    long j3 = this.items.get(i2).dialogId;
+                    if (!storyCell.isSelf && this.storiesController.hasUnreadStories(j3)) {
+                        arrayList.add(Long.valueOf(j3));
+                    }
+                    if (j3 == storyCell.dialogId) {
+                        i = arrayList.size() - 1;
+                    }
+                    i2++;
+                }
+            } else {
+                while (i2 < this.items.size()) {
+                    if (this.storiesController.hasStories(this.items.get(i2).dialogId)) {
+                        arrayList.add(Long.valueOf(this.items.get(i2).dialogId));
+                    } else if (i2 <= i) {
+                        i--;
+                    }
+                    i2++;
+                }
+            }
+        }
+        int i4 = i;
+        StoryViewer orCreateStoryViewer = this.fragment.getOrCreateStoryViewer();
+        orCreateStoryViewer.doOnAnimationReady(new Runnable() {
+            @Override
+            public final void run() {
+                DialogStoriesCell.this.lambda$openStoryForCell$1(j);
+            }
+        });
+        orCreateStoryViewer.open(getContext(), null, arrayList, i4, null, null, StoriesListPlaceProvider.of(this.recyclerListView), false);
+    }
+
+    public void lambda$openStoryForCell$1(long j) {
+        this.storiesController.setLoading(j, false);
+    }
+
+    public void lambda$didReceivedNotification$4() {
         if (this.layoutManager.findLastVisibleItemPosition() + 10 > this.items.size()) {
             this.storiesController.loadNextStories(this.type == 1);
         }
@@ -458,7 +489,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         return this.storiesController.hasSelfStories() && this.storiesController.getDialogListStories().size() <= 3;
     }
 
-    public static int lambda$new$1(StoryCell storyCell, StoryCell storyCell2) {
+    public static int lambda$new$3(StoryCell storyCell, StoryCell storyCell2) {
         return storyCell2.position - storyCell.position;
     }
 
@@ -607,7 +638,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                     }
                 }
                 if (storyCell3.drawInParent) {
-                    float x = this.recyclerListView.getX() + storyCell3.getX() + (storyCell3.getMeasuredWidth() / 2.0f) + (AndroidUtilities.dp(74.0f) / 2.0f);
+                    float x = this.recyclerListView.getX() + storyCell3.getX() + (storyCell3.getMeasuredWidth() / 2.0f) + (AndroidUtilities.dp(68.0f) / 2.0f);
                     if (f == 0.0f || x > f) {
                         f = x;
                     }
@@ -635,9 +666,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         float min = Math.min(this.collapsedProgress, this.collapsedProgress2);
         if (min != 0.0f) {
             this.titleView.setTranslationY((lerp + AndroidUtilities.dp(14.0f)) - ((this.titleView.getMeasuredHeight() - this.titleView.getTextHeight()) / 2.0f));
-            float avatarRight = f + (-dp) + getAvatarRight(AndroidUtilities.dp(72.0f), this.collapsedProgress) + AndroidUtilities.dp(12.0f);
-            this.titleView.setTranslationX(avatarRight);
-            this.titleView.getDrawable().setRightPadding(avatarRight + (this.actionBar.menu.getItemsMeasuredWidth() * min));
+            float dp4 = f + (-dp) + AndroidUtilities.dp(6.0f) + getAvatarRight(AndroidUtilities.dp(72.0f), this.collapsedProgress) + AndroidUtilities.dp(12.0f);
+            this.titleView.setTranslationX(dp4);
+            this.titleView.getDrawable().setRightPadding(dp4 + (this.actionBar.menu.getItemsMeasuredWidth() * min));
             this.titleView.setAlpha(min);
             i2 = 0;
             this.titleView.setVisibility(0);
@@ -674,14 +705,17 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         super.onDetachedFromWindow();
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesUpdated);
         this.ellipsizeSpanAnimator.onDetachedFromWindow();
+        StoriesUtilities.EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = this.globalCancelable;
+        if (ensureStoryFileLoadedObject != null) {
+            ensureStoryFileLoadedObject.cancelled = true;
+            this.globalCancelable = null;
+        }
     }
 
     @Override
     protected void onMeasure(int i, int i2) {
         this.titleView.setTextSize(AndroidUtilities.dp((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 20.0f : 18.0f));
-        this.items.size();
-        AndroidUtilities.dp(74.0f);
-        this.currentCellWidth = AndroidUtilities.dp(74.0f);
+        this.currentCellWidth = AndroidUtilities.dp(68.0f);
         AndroidUtilities.rectTmp.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
         super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(85.0f), 1073741824));
     }
@@ -693,7 +727,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogStoriesCell.this.lambda$didReceivedNotification$2();
+                    DialogStoriesCell.this.lambda$didReceivedNotification$4();
                 }
             });
         }
@@ -732,7 +766,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 valueAnimator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        DialogStoriesCell.this.lambda$setProgressToCollapse$3(valueAnimator3);
+                        DialogStoriesCell.this.lambda$setProgressToCollapse$5(valueAnimator3);
                     }
                 });
                 this.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -749,7 +783,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void lambda$setProgressToCollapse$3(ValueAnimator valueAnimator) {
+    public void lambda$setProgressToCollapse$5(ValueAnimator valueAnimator) {
         this.collapsedProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         checkCollapsedProgres();
     }
@@ -776,24 +810,24 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         AndroidUtilities.forEachViews(this.recyclerListView, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                DialogStoriesCell.lambda$updateColors$4(textColor, (View) obj);
+                DialogStoriesCell.lambda$updateColors$6(textColor, (View) obj);
             }
         });
         AndroidUtilities.forEachViews(this.listViewMini, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                DialogStoriesCell.lambda$updateColors$5((View) obj);
+                DialogStoriesCell.lambda$updateColors$7((View) obj);
             }
         });
     }
 
-    public static void lambda$updateColors$4(int i, View view) {
+    public static void lambda$updateColors$6(int i, View view) {
         StoryCell storyCell = (StoryCell) view;
         storyCell.invalidate();
         storyCell.textView.setTextColor(i);
     }
 
-    public static void lambda$updateColors$5(View view) {
+    public static void lambda$updateColors$7(View view) {
         ((StoryCell) view).invalidate();
     }
 
@@ -938,7 +972,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     }
 
     public void openOverscrollSelectedStory() {
-        openStoryForCell(this.overscrollSelectedView);
+        openStoryForCell(this.overscrollSelectedView, true);
         performHapticFeedback(3);
     }
 
@@ -1030,6 +1064,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         AvatarDrawable avatarDrawable;
         public ImageReceiver avatarImage;
         private float bounceScale;
+        public StoriesUtilities.EnsureStoryFileLoadedObject cancellable;
         TLRPC$Chat chat;
         AvatarDrawable crossfadeAvatarDrawable;
         boolean crossfadeToDialog;
@@ -1093,6 +1128,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             this.textView.setGravity(17);
             this.textView.setTextSize(11);
             this.textView.setTextColor(DialogStoriesCell.this.getTextColor());
+            NotificationCenter.listenEmojiLoading(this.textView);
             this.textView.setMaxLines(1);
             this.textViewContainer.addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 0, 2.0f, 0.0f, 2.0f, 0.0f));
             this.avatarImage.setRoundRadius(AndroidUtilities.dp(48.0f) / 2);
@@ -1101,7 +1137,13 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
 
         public void setDialogId(long j) {
             TLRPC$User tLRPC$User;
-            boolean z = this.dialogId == j;
+            long j2 = this.dialogId;
+            boolean z = j2 == j;
+            if (!z && this.cancellable != null) {
+                DialogStoriesCell.this.storiesController.setLoading(j2, false);
+                this.cancellable.cancelled = true;
+                this.cancellable = null;
+            }
             this.dialogId = j;
             this.isSelf = j == UserConfig.getInstance(DialogStoriesCell.this.currentAccount).getClientUserId();
             if (j > 0) {
@@ -1115,9 +1157,8 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 this.user = null;
                 tLRPC$User = chat;
             }
-            String str = BuildConfig.APP_CENTER_HASH;
             if (tLRPC$User == null) {
-                this.textView.setText(BuildConfig.APP_CENTER_HASH);
+                this.textView.setText("");
                 this.avatarImage.clearImage();
                 return;
             }
@@ -1182,23 +1223,21 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             }
             TLRPC$User tLRPC$User2 = this.user;
             if (tLRPC$User2 != null) {
-                String str2 = tLRPC$User2.first_name;
-                if (str2 != null) {
-                    str = str2.trim();
-                }
-                int indexOf = str.indexOf(" ");
+                String str = tLRPC$User2.first_name;
+                String trim = str != null ? str.trim() : "";
+                int indexOf = trim.indexOf(" ");
                 if (indexOf > 0) {
-                    str = str.substring(0, indexOf);
+                    trim = trim.substring(0, indexOf);
                 }
                 if (this.user.verified) {
                     if (this.verifiedDrawable == null) {
                         this.verifiedDrawable = DialogStoriesCell.this.createVerifiedDrawable();
                     }
-                    this.textView.setText(Emoji.replaceEmoji(str, this.textView.getPaint().getFontMetricsInt(), false));
+                    this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
                     this.textView.setRightDrawable(this.verifiedDrawable);
                     return;
                 }
-                this.textView.setText(Emoji.replaceEmoji(str, this.textView.getPaint().getFontMetricsInt(), false));
+                this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
                 this.textView.setRightDrawable((Drawable) null);
                 return;
             }
@@ -1215,7 +1254,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
 
         @Override
         protected void onMeasure(int i, int i2) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.mini ? AndroidUtilities.dp(74.0f) : DialogStoriesCell.this.currentCellWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(81.0f), 1073741824));
+            super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.mini ? AndroidUtilities.dp(68.0f) : DialogStoriesCell.this.currentCellWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(81.0f), 1073741824));
         }
 
         float getCy() {
@@ -1555,6 +1594,11 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             this.avatarImage.onDetachedFromWindow();
             this.crossfageToAvatarImage.onDetachedFromWindow();
             this.params.onDetachFromWindow();
+            StoriesUtilities.EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = this.cancellable;
+            if (ensureStoryFileLoadedObject != null) {
+                ensureStoryFileLoadedObject.cancelled = true;
+                this.cancellable = null;
+            }
         }
 
         public void setProgressToCollapsed(float f, float f2, float f3, boolean z) {
@@ -1636,7 +1680,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogStoriesCell.this.lambda$updateCurrentState$6();
+                    DialogStoriesCell.this.lambda$updateCurrentState$8();
                 }
             });
         }
@@ -1645,7 +1689,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             AndroidUtilities.forEachViews(this.recyclerListView, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    DialogStoriesCell.lambda$updateCurrentState$7((View) obj);
+                    DialogStoriesCell.lambda$updateCurrentState$9((View) obj);
                 }
             });
             this.listViewMini.setVisibility(4);
@@ -1668,15 +1712,20 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             this.recyclerListView.setVisibility(4);
             this.layoutManager.scrollToPositionWithOffset(0, 0);
             MessagesController.getInstance(this.currentAccount).getStoriesController().scheduleSort();
+            StoriesUtilities.EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = this.globalCancelable;
+            if (ensureStoryFileLoadedObject != null) {
+                ensureStoryFileLoadedObject.cancelled = true;
+                this.globalCancelable = null;
+            }
         }
         invalidate();
     }
 
-    public void lambda$updateCurrentState$6() {
+    public void lambda$updateCurrentState$8() {
         updateItems(true, false);
     }
 
-    public static void lambda$updateCurrentState$7(View view) {
+    public static void lambda$updateCurrentState$9(View view) {
         view.setAlpha(1.0f);
         view.setTranslationX(0.0f);
         view.setTranslationY(0.0f);
@@ -1691,7 +1740,6 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         if (System.currentTimeMillis() < this.checkedStoryNotificationDeletion) {
             return;
         }
-        NotificationsController.getInstance(this.currentAccount).processIgnoreStories();
         this.checkedStoryNotificationDeletion = System.currentTimeMillis() + 60000;
     }
 
@@ -1714,10 +1762,10 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             return hintView2;
         }
         this.premiumHint = new HintView2(getContext(), 1).setBgColor(Theme.getColor(Theme.key_undo_background)).setMultilineText(true).setTextAlign(Layout.Alignment.ALIGN_CENTER).setJoint(0.0f, 29.0f);
-        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint").replace('\n', ' '), Theme.key_undo_cancelColor, 0, new Runnable() {
+        SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint2").replace('\n', ' '), Theme.key_undo_cancelColor, 0, new Runnable() {
             @Override
             public final void run() {
-                DialogStoriesCell.this.lambda$makePremiumHint$8();
+                DialogStoriesCell.this.lambda$makePremiumHint$10();
             }
         });
         ClickableSpan[] clickableSpanArr = (ClickableSpan[]) replaceSingleTag.getSpans(0, replaceSingleTag.length(), ClickableSpan.class);
@@ -1734,7 +1782,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         return this.premiumHint;
     }
 
-    public void lambda$makePremiumHint$8() {
+    public void lambda$makePremiumHint$10() {
         HintView2 hintView2 = this.premiumHint;
         if (hintView2 != null) {
             hintView2.hide();

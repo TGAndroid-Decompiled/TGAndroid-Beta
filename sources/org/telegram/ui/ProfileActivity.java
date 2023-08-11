@@ -106,7 +106,6 @@ import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ChatThemeController;
@@ -1969,7 +1968,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         ProfileActivity.this.searchItem.clearFocusOnSearchView();
                     }
                     if (ProfileActivity.this.searchMode) {
-                        ProfileActivity.this.searchItem.getSearchField().setText(BuildConfig.APP_CENTER_HASH);
+                        ProfileActivity.this.searchItem.getSearchField().setText("");
                     }
                     ProfileActivity profileActivity2 = ProfileActivity.this;
                     return profileActivity2.searchExpandTransition(profileActivity2.searchMode);
@@ -3210,7 +3209,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getParentActivity(), ProfileActivity.this.resourcesProvider);
                 int i = R.string.AddBot;
                 builder.setTitle(LocaleController.getString("AddBot", i));
-                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? BuildConfig.APP_CENTER_HASH : chat.title)));
+                builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? "" : chat.title)));
                 builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
                 builder.setPositiveButton(LocaleController.getString("AddBot", i), new DialogInterface.OnClickListener() {
                     @Override
@@ -3918,7 +3917,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 linearLayout.setOrientation(1);
                 checkBoxCellArr[0] = new CheckBoxCell(getParentActivity(), 1, this.resourcesProvider);
                 checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
-                checkBoxCellArr[0].setText(LocaleController.getString("BanUser", R.string.BanUser), BuildConfig.APP_CENTER_HASH, true, false);
+                checkBoxCellArr[0].setText(LocaleController.getString("BanUser", R.string.BanUser), "", true, false);
                 checkBoxCellArr[0].setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
                 linearLayout.addView(checkBoxCellArr[0], LayoutHelper.createLinear(-1, -2));
                 checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
@@ -4388,6 +4387,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 SharedConfig.emojiInteractionsHintCount = 3;
                 SharedConfig.dayNightThemeSwitchHintCount = 3;
                 SharedConfig.fastScrollHintCount = 3;
+                SharedConfig.stealthModeSendMessageConfirm = 2;
+                SharedConfig.updateStealthModeSendMessageConfirm(2);
+                SharedConfig.setStoriesReactionsLongPressHintUsed(false);
                 ChatThemeController.getInstance(((BaseFragment) ProfileActivity.this).currentAccount).clearCache();
                 ProfileActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
                 RestrictedLanguagesSelectActivity.cleanup();
@@ -4470,15 +4472,15 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 CharSequence[] charSequenceArr = new CharSequence[3];
                 StringBuilder sb = new StringBuilder();
                 sb.append(devicePerformanceClass == 2 ? "**HIGH**" : "HIGH");
-                sb.append(measureDevicePerformanceClass == 2 ? " (measured)" : BuildConfig.APP_CENTER_HASH);
+                sb.append(measureDevicePerformanceClass == 2 ? " (measured)" : "");
                 charSequenceArr[0] = AndroidUtilities.replaceTags(sb.toString());
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(devicePerformanceClass == 1 ? "**AVERAGE**" : "AVERAGE");
-                sb2.append(measureDevicePerformanceClass == 1 ? " (measured)" : BuildConfig.APP_CENTER_HASH);
+                sb2.append(measureDevicePerformanceClass == 1 ? " (measured)" : "");
                 charSequenceArr[1] = AndroidUtilities.replaceTags(sb2.toString());
                 StringBuilder sb3 = new StringBuilder();
                 sb3.append(devicePerformanceClass == 0 ? "**LOW**" : "LOW");
-                sb3.append(measureDevicePerformanceClass != 0 ? BuildConfig.APP_CENTER_HASH : " (measured)");
+                sb3.append(measureDevicePerformanceClass != 0 ? "" : " (measured)");
                 charSequenceArr[2] = AndroidUtilities.replaceTags(sb3.toString());
                 builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                     @Override
@@ -4757,7 +4759,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         long j2 = this.banFromGroup;
         TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights = tLRPC$Chat.default_banned_rights;
         TLRPC$ChannelParticipant tLRPC$ChannelParticipant = this.currentChannelParticipant;
-        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, j2, null, tLRPC$TL_chatBannedRights, tLRPC$ChannelParticipant != null ? tLRPC$ChannelParticipant.banned_rights : null, BuildConfig.APP_CENTER_HASH, 1, true, false, null);
+        ChatRightsEditActivity chatRightsEditActivity = new ChatRightsEditActivity(j, j2, null, tLRPC$TL_chatBannedRights, tLRPC$ChannelParticipant != null ? tLRPC$ChannelParticipant.banned_rights : null, "", 1, true, false, null);
         chatRightsEditActivity.setDelegate(new ChatRightsEditActivity.ChatRightsEditActivityDelegate() {
             @Override
             public void didSetRights(int i, TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights2, String str) {
@@ -5470,7 +5472,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         public final void run() {
                             ProfileActivity.this.lambda$onMemberClick$24(tLRPC$ChannelParticipant4, tLRPC$ChatParticipant, user, callback);
                         }
-                    }).addIf(z6, R.drawable.msg_remove, (CharSequence) LocaleController.getString("KickFromGroup", R.string.KickFromGroup), true, new Runnable() {
+                    }).addIf(z6, R.drawable.msg_remove, LocaleController.getString("KickFromGroup", R.string.KickFromGroup), true, new Runnable() {
                         @Override
                         public final void run() {
                             ProfileActivity.this.lambda$onMemberClick$25(tLRPC$ChatParticipant);
@@ -5494,7 +5496,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (tLRPC$ChannelParticipant != null) {
             openRightsEdit(num.intValue(), tLRPC$User, tLRPC$ChatParticipant, tLRPC$ChannelParticipant.admin_rights, tLRPC$ChannelParticipant.banned_rights, tLRPC$ChannelParticipant.rank, z);
         } else {
-            openRightsEdit(num.intValue(), tLRPC$User, tLRPC$ChatParticipant, null, null, BuildConfig.APP_CENTER_HASH, z);
+            openRightsEdit(num.intValue(), tLRPC$User, tLRPC$ChatParticipant, null, null, "", z);
         }
     }
 
@@ -5635,9 +5637,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         String str;
         TLRPC$UserFull tLRPC$UserFull;
         View view2 = view;
-        int i2 = this.usernameRow;
-        String str2 = BuildConfig.APP_CENTER_HASH;
-        if (i == i2 || i == this.setUsernameRow) {
+        if (i == this.usernameRow || i == this.setUsernameRow) {
             if (this.userId != 0) {
                 TLRPC$User user = getMessagesController().getUser(Long.valueOf(this.userId));
                 publicUsername = UserObject.getPublicUsername(user);
@@ -5657,10 +5657,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     sb2.append(getMessagesController().linkPrefix);
                     sb2.append("/");
                     sb2.append(ChatObject.getPublicUsername(chat2));
-                    if (this.topicId != 0) {
-                        str2 = "/" + this.topicId;
-                    }
-                    sb2.append(str2);
+                    sb2.append(this.topicId != 0 ? "/" + this.topicId : "");
                     sb = sb2.toString();
                 } else {
                     StringBuilder sb3 = new StringBuilder();
@@ -5668,14 +5665,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     sb3.append(getMessagesController().linkPrefix);
                     sb3.append("/c/");
                     sb3.append(chat2.id);
-                    if (this.topicId != 0) {
-                        str2 = "/" + this.topicId;
-                    }
-                    sb3.append(str2);
+                    sb3.append(this.topicId != 0 ? "/" + this.topicId : "");
                     sb = sb3.toString();
                 }
-                String str3 = sb;
-                showDialog(new AnonymousClass35(getParentActivity(), null, str3, false, str3, false));
+                String str2 = sb;
+                showDialog(new AnonymousClass35(getParentActivity(), null, str2, false, str2, false));
                 return true;
             }
             try {
@@ -5733,9 +5727,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
             };
             actionBarPopupWindowLayout.setFitItems(true);
-            for (int i3 = 0; i3 < arrayList3.size(); i3++) {
-                final int intValue = ((Integer) arrayList2.get(i3)).intValue();
-                ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i3)).intValue(), (CharSequence) arrayList.get(i3), false, this.resourcesProvider).setOnClickListener(new View.OnClickListener() {
+            for (int i2 = 0; i2 < arrayList3.size(); i2++) {
+                final int intValue = ((Integer) arrayList2.get(i2)).intValue();
+                ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i2)).intValue(), (CharSequence) arrayList.get(i2), false, this.resourcesProvider).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view3) {
                         ProfileActivity.this.lambda$processOnClickOrPress$26(atomicReference, intValue, user2, view3);
@@ -5756,11 +5750,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 int indexOf = TextUtils.indexOf((CharSequence) spannableStringBuilder, '*');
                 int lastIndexOf = TextUtils.lastIndexOf(spannableStringBuilder, '*');
                 if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                    spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
-                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
-                    int i4 = lastIndexOf - 1;
-                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), indexOf, i4, 33);
-                    spannableStringBuilder.setSpan(new ForegroundColorSpan(textView.getLinkTextColors().getDefaultColor()), indexOf, i4, 33);
+                    spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
+                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
+                    int i3 = lastIndexOf - 1;
+                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM)), indexOf, i3, 33);
+                    spannableStringBuilder.setSpan(new ForegroundColorSpan(textView.getLinkTextColors().getDefaultColor()), indexOf, i3, 33);
                 }
                 textView.setText(spannableStringBuilder);
                 textView.setOnClickListener(new View.OnClickListener() {
@@ -5769,9 +5763,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         ProfileActivity.lambda$processOnClickOrPress$27(view3);
                     }
                 });
-                int i5 = R.id.fit_width_tag;
-                frameLayout.setTag(i5, 1);
-                textView.setTag(i5, 1);
+                int i4 = R.id.fit_width_tag;
+                frameLayout.setTag(i4, 1);
+                textView.setTag(i4, 1);
                 actionBarPopupWindowLayout.addView((View) textView, LayoutHelper.createLinear(-2, -2));
             }
             ActionBarPopupWindow actionBarPopupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2);
@@ -5807,28 +5801,28 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if ((view2 instanceof AboutLinkCell) && ((AboutLinkCell) view2).onClick()) {
                 return false;
             }
-            String str4 = null;
+            String str3 = null;
             if (i == this.locationRow) {
                 TLRPC$ChatFull tLRPC$ChatFull = this.chatInfo;
                 if (tLRPC$ChatFull != null) {
                     TLRPC$ChannelLocation tLRPC$ChannelLocation = tLRPC$ChatFull.location;
                     if (tLRPC$ChannelLocation instanceof TLRPC$TL_channelLocation) {
-                        str4 = ((TLRPC$TL_channelLocation) tLRPC$ChannelLocation).address;
+                        str3 = ((TLRPC$TL_channelLocation) tLRPC$ChannelLocation).address;
                     }
                 }
             } else if (i == this.channelInfoRow) {
                 TLRPC$ChatFull tLRPC$ChatFull2 = this.chatInfo;
                 if (tLRPC$ChatFull2 != null) {
-                    str4 = tLRPC$ChatFull2.about;
+                    str3 = tLRPC$ChatFull2.about;
                 }
             } else {
                 TLRPC$UserFull tLRPC$UserFull3 = this.userInfo;
                 if (tLRPC$UserFull3 != null) {
-                    str4 = tLRPC$UserFull3.about;
+                    str3 = tLRPC$UserFull3.about;
                 }
             }
-            final String str5 = str4;
-            if (TextUtils.isEmpty(str5)) {
+            final String str4 = str3;
+            if (TextUtils.isEmpty(str4)) {
                 return false;
             }
             final String[] strArr = {TranslateController.UNKNOWN_LANGUAGE};
@@ -5839,15 +5833,15 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    ProfileActivity.this.lambda$processOnClickOrPress$30(zArr, str5, i, strArr, language, f, f2, view);
+                    ProfileActivity.this.lambda$processOnClickOrPress$30(zArr, str4, i, strArr, language, f, f2, view);
                 }
             };
             if (zArr[0]) {
                 if (LanguageDetector.hasSupport()) {
-                    LanguageDetector.detectLanguage(str5, new LanguageDetector.StringCallback() {
+                    LanguageDetector.detectLanguage(str4, new LanguageDetector.StringCallback() {
                         @Override
-                        public final void run(String str6) {
-                            ProfileActivity.this.lambda$processOnClickOrPress$31(strArr, zArr, language, isContextTranslateEnabled, runnable, str6);
+                        public final void run(String str5) {
+                            ProfileActivity.this.lambda$processOnClickOrPress$31(strArr, zArr, language, isContextTranslateEnabled, runnable, str5);
                         }
                     }, new LanguageDetector.ExceptionCallback() {
                         @Override
@@ -8599,7 +8593,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             intent.addFlags(1);
         }
         intent.setType("message/rfc822");
-        intent.putExtra("android.intent.extra.EMAIL", BuildConfig.APP_CENTER_HASH);
+        intent.putExtra("android.intent.extra.EMAIL", "");
         intent.putExtra("android.intent.extra.SUBJECT", "Logs from " + LocaleController.getInstance().formatterStats.format(System.currentTimeMillis()));
         intent.putExtra("android.intent.extra.STREAM", fromFile);
         if (activity != null) {

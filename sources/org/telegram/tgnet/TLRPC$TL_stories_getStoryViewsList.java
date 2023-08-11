@@ -1,10 +1,13 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_stories_getStoryViewsList extends TLObject {
-    public static int constructor = 1262182039;
+    public static int constructor = -111189596;
+    public int flags;
     public int id;
+    public boolean just_contacts;
     public int limit;
-    public int offset_date;
-    public long offset_id;
+    public String offset;
+    public String q;
+    public boolean reactions_first;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -14,9 +17,16 @@ public class TLRPC$TL_stories_getStoryViewsList extends TLObject {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
+        int i = this.just_contacts ? this.flags | 1 : this.flags & (-2);
+        this.flags = i;
+        int i2 = this.reactions_first ? i | 4 : i & (-5);
+        this.flags = i2;
+        abstractSerializedData.writeInt32(i2);
+        if ((this.flags & 2) != 0) {
+            abstractSerializedData.writeString(this.q);
+        }
         abstractSerializedData.writeInt32(this.id);
-        abstractSerializedData.writeInt32(this.offset_date);
-        abstractSerializedData.writeInt64(this.offset_id);
+        abstractSerializedData.writeString(this.offset);
         abstractSerializedData.writeInt32(this.limit);
     }
 }

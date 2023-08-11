@@ -9,7 +9,6 @@ import android.util.SparseIntArray;
 import androidx.core.graphics.ColorUtils;
 import java.util.HashSet;
 import java.util.Objects;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.ui.ActionBar.Theme;
 public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
     Paint actionPaint;
@@ -65,6 +64,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         sparseIntArray2.put(i2, ColorUtils.setAlphaComponent(-1, 17));
         this.sparseIntArray.put(Theme.key_actionBarDefaultSubmenuItem, -1);
         this.sparseIntArray.put(Theme.key_actionBarDefaultSubmenuItemIcon, -1);
+        this.sparseIntArray.put(Theme.key_text_RedRegular, -1152913);
         this.sparseIntArray.put(Theme.key_listSelector, 234881023);
         SparseIntArray sparseIntArray3 = this.sparseIntArray;
         int i3 = Theme.key_dialogButtonSelector;
@@ -87,7 +87,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_chat_emojiPanelBackground, -1073741824);
         this.sparseIntArray.put(i, ColorUtils.blendARGB(-16777216, -1, 0.5f));
         this.sparseIntArray.put(i2, ColorUtils.setAlphaComponent(-1, 17));
-        this.sparseIntArray.put(Theme.key_windowBackgroundWhiteGrayText, ColorUtils.setAlphaComponent(-1, MessagesStorage.LAST_DB_VERSION));
+        this.sparseIntArray.put(Theme.key_windowBackgroundWhiteGrayText, ColorUtils.setAlphaComponent(-1, 127));
         this.sparseIntArray.put(Theme.key_chat_messagePanelVoiceLockBackground, -14606046);
         this.sparseIntArray.put(Theme.key_chat_messagePanelVoiceLock, -1);
         this.sparseIntArray.put(Theme.key_chat_recordedVoiceDot, -1221292);
@@ -107,6 +107,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(i4, -1);
         this.sparseIntArray.put(Theme.key_chat_messagePanelBackground, ColorUtils.setAlphaComponent(-16777216, 122));
         this.sparseIntArray.put(Theme.key_dialogBackground, -14737633);
+        this.sparseIntArray.put(Theme.key_dialogBackgroundGray, -16777216);
         this.sparseIntArray.put(Theme.key_dialog_inlineProgressBackground, -15393241);
         this.sparseIntArray.put(Theme.key_windowBackgroundWhite, -15198183);
         this.sparseIntArray.put(Theme.key_windowBackgroundWhiteBlackText, -1);
@@ -159,12 +160,16 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_dialogSearchText, -1);
         this.sparseIntArray.put(Theme.key_chat_messageLinkIn, -12147733);
         this.sparseIntArray.put(Theme.key_dialogTextGray2, -8553091);
+        this.sparseIntArray.put(Theme.key_location_actionIcon, -592138);
+        this.sparseIntArray.put(Theme.key_location_actionBackground, -14737633);
+        this.sparseIntArray.put(Theme.key_location_actionPressedBackground, -12632257);
+        this.sparseIntArray.put(Theme.key_location_actionActiveIcon, -8796932);
         this.sparseIntArray.put(Theme.key_sheet_other, 1140850687);
         this.sparseIntArray.put(Theme.key_chat_outBubble, ColorUtils.blendARGB(-16777216, -1, 0.4f));
         this.sparseIntArray.put(Theme.key_chat_outBubbleGradient1, 0);
         this.sparseIntArray.put(Theme.key_chat_outBubbleGradient2, 0);
         this.sparseIntArray.put(Theme.key_chat_outBubbleGradient3, 0);
-        this.sparseIntArray.put(Theme.key_chat_textSelectBackground, ColorUtils.blendARGB(-16777216, -1, 0.6f));
+        this.sparseIntArray.put(Theme.key_chat_textSelectBackground, ColorUtils.setAlphaComponent(-1, 75));
         appendColors();
         this.dividerPaint.setColor(getColor(i5));
     }

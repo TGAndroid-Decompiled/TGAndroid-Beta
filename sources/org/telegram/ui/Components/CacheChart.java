@@ -22,7 +22,6 @@ import com.google.zxing.common.detector.MathUtils;
 import java.util.Arrays;
 import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
@@ -112,7 +111,7 @@ public class CacheChart extends View {
         private float lastWidth;
         Paint paint;
         Bitmap particle;
-        Paint particlePaint = new Paint(3);
+        Paint particlePaint;
         float particlesAlpha;
         AnimatedFloat particlesAlphaAnimated;
         Path path;
@@ -128,6 +127,9 @@ public class CacheChart extends View {
         Paint uncut;
 
         Sector() {
+            Paint paint = new Paint(3);
+            this.particlePaint = paint;
+            paint.setColor(-1);
             CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
             this.angleCenterAnimated = new AnimatedFloat(CacheChart.this, 650L, cubicBezierInterpolator);
             this.angleSizeAnimated = new AnimatedFloat(CacheChart.this, 650L, cubicBezierInterpolator);
@@ -147,9 +149,9 @@ public class CacheChart extends View {
             this.paint = new Paint(1);
             this.pathBounds = new RectF();
             this.uncut = new Paint(1);
-            Paint paint = new Paint(1);
-            this.cut = paint;
-            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+            Paint paint2 = new Paint(1);
+            this.cut = paint2;
+            paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
             this.paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
             this.particlePaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP));
             this.rectF = new RectF();
@@ -806,24 +808,18 @@ public class CacheChart extends View {
                     j2 = j3;
                 }
                 String[] split = AndroidUtilities.formatFileSize(j2, true, true).split(" ");
-                int length2 = split.length;
-                String str2 = BuildConfig.APP_CENTER_HASH;
-                if (length2 > 0) {
+                if (split.length > 0) {
                     c = 0;
                     str = split[0];
                 } else {
                     c = 0;
-                    str = BuildConfig.APP_CENTER_HASH;
+                    str = "";
                 }
                 if (str.length() >= 4 && j2 < 1073741824) {
                     str = str.split("\\.")[c];
                 }
                 this.topText.setText(str, z);
-                AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.bottomText;
-                if (split.length > 1) {
-                    str2 = split[1];
-                }
-                animatedTextDrawable.setText(str2, z);
+                this.bottomText.setText(split.length > 1 ? split[1] : "", z);
                 if (this.completeFloat.get() > 0.0f) {
                     this.topCompleteText.setText(this.topText.getText(), z);
                     this.bottomCompleteText.setText(this.bottomText.getText(), z);

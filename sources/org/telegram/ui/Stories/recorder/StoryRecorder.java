@@ -34,8 +34,12 @@ import android.os.Build;
 import android.os.Parcelable;
 import android.text.Layout;
 import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
 import android.text.style.ImageSpan;
 import android.util.Pair;
 import android.util.Property;
@@ -86,13 +90,13 @@ import org.telegram.messenger.camera.CameraSession;
 import org.telegram.messenger.camera.CameraView;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputDocument;
-import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CombinedDrawable;
@@ -106,6 +110,7 @@ import org.telegram.ui.Components.Paint.RenderView;
 import org.telegram.ui.Components.PhotoFilterBlurControl;
 import org.telegram.ui.Components.PhotoFilterCurvesControl;
 import org.telegram.ui.Components.PhotoFilterView;
+import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RLottieImageView;
@@ -118,6 +123,7 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.DialogStoriesCell;
 import org.telegram.ui.Stories.PeerStoriesView;
+import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoryViewer;
 import org.telegram.ui.Stories.StoryWaveEffectView;
 import org.telegram.ui.Stories.recorder.DownloadButton;
@@ -126,6 +132,7 @@ import org.telegram.ui.Stories.recorder.RecordControl;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 import org.telegram.ui.Stories.recorder.StoryRecorder;
+import org.telegram.ui.WrappedResourceProvider;
 public class StoryRecorder implements NotificationCenter.NotificationCenterDelegate {
     private static StoryRecorder instance;
     private FrameLayout actionBarContainer;
@@ -198,6 +205,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     private PhotoFilterBlurControl photoFilterViewBlurControl;
     private PhotoFilterCurvesControl photoFilterViewCurvesControl;
     private TextureView photoFilterViewTextureView;
+    private PlayPauseButton playButton;
     private boolean prepareClosing;
     private boolean previewAlreadySet;
     private PreviewButtons previewButtons;
@@ -219,6 +227,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     private TrashView trash;
     private int underControls;
     private boolean underStatusBar;
+    private boolean videoError;
     private VideoTimeView videoTimeView;
     private FrameLayout videoTimelineContainerView;
     private VideoTimelinePlayView videoTimelineView;
@@ -244,7 +253,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     private boolean stoppingTakingVideo = false;
     private boolean awaitingPlayer = false;
     private int shiftDp = -3;
-    private final RecordControl.Delegate recordControlDelegate = new AnonymousClass9();
+    private final RecordControl.Delegate recordControlDelegate = new AnonymousClass10();
     private boolean videoTimerShown = true;
     private boolean applyContainerViewTranslation2 = true;
 
@@ -492,6 +501,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.windowManager.addView(this.windowView, this.windowLayoutParams);
         }
         this.cameraViewThumb.setImageDrawable(getCameraThumb());
+        StoriesController.StoryLimit checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit();
+        if (checkStoryLimit != null && checkStoryLimit.active(this.currentAccount)) {
+            showLimitReachedSheet(checkStoryLimit);
+        }
         navigateTo(0, false);
         switchToEditMode(-1, false);
         if (sourceView != null) {
@@ -514,7 +527,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.containerView.setScaleY(1.0f);
         this.dismissProgress = 0.0f;
         AndroidUtilities.lockOrientation(this.activity, 1);
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda30(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda33(this));
         addNotificationObservers();
     }
 
@@ -550,6 +563,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.containerView.setScaleY(1.0f);
         this.dismissProgress = 0.0f;
         AndroidUtilities.lockOrientation(this.activity, 1);
+        StoryEntry storyEntry2 = this.outputEntry;
+        if (storyEntry2 != null) {
+            this.captionEdit.setText(storyEntry2.caption);
+        }
         navigateToPreviewWithPlayerAwait(new Runnable() {
             @Override
             public final void run() {
@@ -558,15 +575,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }, j);
         navigateTo(1, false);
         switchToEditMode(-1, false);
-        StoryEntry storyEntry2 = this.outputEntry;
-        if (storyEntry2 != null) {
-            this.captionEdit.setText(storyEntry2.caption);
-        }
         addNotificationObservers();
     }
 
     public void lambda$openEdit$0(boolean z) {
-        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda30(this));
+        animateOpenTo(1.0f, z, new StoryRecorder$$ExternalSyntheticLambda33(this));
         this.previewButtons.appear(true, true);
     }
 
@@ -579,13 +592,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.privacySheet = null;
             }
             StoryEntry storyEntry = this.outputEntry;
-            if (storyEntry != null) {
+            if (storyEntry != null && !storyEntry.isEditSaved) {
                 if (this.wasSend && storyEntry.isEdit) {
                     storyEntry.editedMedia = false;
                 }
                 storyEntry.destroy(false);
-                this.outputEntry = null;
             }
+            this.outputEntry = null;
             Utilities.Callback3<Long, Runnable, Boolean> callback3 = this.onClosePrepareListener;
             if (callback3 != null && (previewView = this.previewView) != null) {
                 if (this.prepareClosing) {
@@ -767,6 +780,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (windowView != null) {
             Bulletin.removeDelegate(windowView);
         }
+        FrameLayout frameLayout = this.captionContainer;
+        if (frameLayout != null) {
+            Bulletin.removeDelegate(frameLayout);
+        }
     }
 
     public void lambda$onCloseDone$3() {
@@ -927,7 +944,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     }
                 } else if (StoryRecorder.this.galleryListView != null && StoryRecorder.this.galleryListView.getTranslationY() > 0.0f) {
                     StoryRecorder storyRecorder = StoryRecorder.this;
-                    storyRecorder.lambda$animateGalleryListView$34((storyRecorder.takingVideo || StoryRecorder.this.galleryListView.getTranslationY() >= ((float) StoryRecorder.this.galleryListView.getPadding())) ? false : false);
+                    storyRecorder.lambda$animateGalleryListView$35((storyRecorder.takingVideo || StoryRecorder.this.galleryListView.getTranslationY() >= ((float) StoryRecorder.this.galleryListView.getPadding())) ? false : false);
                 }
                 StoryRecorder.this.modeSwitcherView.stopScroll(0.0f);
                 StoryRecorder.this.scrollingY = false;
@@ -978,7 +995,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             @Override
             public void onScaleEnd(ScaleGestureDetector scaleGestureDetector) {
                 WindowView.this.scaling = false;
-                StoryRecorder.this.lambda$animateGalleryListView$34(false);
+                StoryRecorder.this.lambda$animateGalleryListView$35(false);
                 StoryRecorder.this.animateContainerBack();
                 super.onScaleEnd(scaleGestureDetector);
             }
@@ -1012,7 +1029,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     if (!StoryRecorder.this.isGalleryOpen() || motionEvent.getY() >= StoryRecorder.this.galleryListView.top()) {
                         return false;
                     }
-                    StoryRecorder.this.lambda$animateGalleryListView$34(false);
+                    StoryRecorder.this.lambda$animateGalleryListView$35(false);
                     return true;
                 }
                 return true;
@@ -1445,11 +1462,6 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             }
 
             @Override
-            public int getBottomOffset(int i2) {
-                return Bulletin.Delegate.CC.$default$getBottomOffset(this, i2);
-            }
-
-            @Override
             public void onBottomOffsetChange(float f) {
                 Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
             }
@@ -1471,6 +1483,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             @Override
             public int getTopOffset(int i2) {
                 return (int) (AndroidUtilities.dp(56.0f) + (AndroidUtilities.dp(46.0f) * StoryRecorder.this.muteButton.getAlpha()));
+            }
+
+            @Override
+            public int getBottomOffset(int i2) {
+                return Bulletin.Delegate.CC.$default$getBottomOffset(this, i2);
             }
         });
         ImageView imageView = new ImageView(context);
@@ -1517,7 +1534,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         });
         this.previewContainer.addView(this.previewView, LayoutHelper.createFrame(-1, -1, 119));
         this.previewContainer.addView(this.photoFilterEnhanceView, LayoutHelper.createFrame(-1, -1, 119));
-        CaptionContainerView captionContainerView = new CaptionContainerView(context, this.currentAccount, this.windowView, this.containerView, this.resourcesProvider) {
+        this.captionEdit = new CaptionContainerView(context, this.currentAccount, this.windowView, this.containerView, this.resourcesProvider) {
             {
                 StoryRecorder.this = this;
             }
@@ -1527,9 +1544,93 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 StoryRecorder.this.windowView.drawBlurBitmap(bitmap, f);
                 super.drawBlurBitmap(bitmap, f);
             }
+
+            @Override
+            public boolean captionLimitToast() {
+                Bulletin visibleBulletin = Bulletin.getVisibleBulletin();
+                if (visibleBulletin == null || visibleBulletin.tag != 2) {
+                    int i2 = MessagesController.getInstance(StoryRecorder.this.currentAccount).storyCaptionLengthLimitPremium;
+                    int round = Math.round(i2 / MessagesController.getInstance(StoryRecorder.this.currentAccount).storyCaptionLengthLimitDefault);
+                    SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("CaptionPremiumSubtitle", round, "" + i2));
+                    int indexOf = replaceTags.toString().indexOf("__");
+                    if (indexOf >= 0) {
+                        replaceTags.replace(indexOf, indexOf + 2, (CharSequence) "");
+                        int indexOf2 = replaceTags.toString().indexOf("__");
+                        if (indexOf2 >= 0) {
+                            replaceTags.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
+                            replaceTags.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, StoryRecorder.this.resourcesProvider)), indexOf, indexOf2, 33);
+                            replaceTags.setSpan(new ClickableSpan() {
+                                {
+                                    AnonymousClass8.this = this;
+                                }
+
+                                @Override
+                                public void updateDrawState(TextPaint textPaint) {
+                                    textPaint.setUnderlineText(false);
+                                }
+
+                                @Override
+                                public void onClick(View view) {
+                                    StoryRecorder.this.openPremium();
+                                }
+                            }, indexOf, indexOf2, 33);
+                        }
+                    }
+                    Bulletin createSimpleBulletin = BulletinFactory.of(StoryRecorder.this.captionContainer, StoryRecorder.this.resourcesProvider).createSimpleBulletin(R.raw.caption_limit, LocaleController.getString("CaptionPremiumTitle"), replaceTags);
+                    createSimpleBulletin.tag = 2;
+                    createSimpleBulletin.setDuration(5000);
+                    createSimpleBulletin.show(false);
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            protected void onCaptionLimitUpdate(boolean z) {
+                StoryRecorder.this.previewButtons.setShareEnabled((StoryRecorder.this.videoError || z || MessagesController.getInstance(StoryRecorder.this.currentAccount).getStoriesController().hasStoryLimit()) ? false : true);
+            }
         };
-        this.captionEdit = captionContainerView;
-        captionContainerView.setOnHeightUpdate(new Utilities.Callback() {
+        Bulletin.addDelegate(this.captionContainer, new Bulletin.Delegate() {
+            @Override
+            public boolean allowLayoutChanges() {
+                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean clipWithGradient(int i2) {
+                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i2);
+            }
+
+            @Override
+            public int getTopOffset(int i2) {
+                return Bulletin.Delegate.CC.$default$getTopOffset(this, i2);
+            }
+
+            @Override
+            public void onBottomOffsetChange(float f) {
+                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+            }
+
+            @Override
+            public void onHide(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+            }
+
+            @Override
+            public void onShow(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+            }
+
+            {
+                StoryRecorder.this = this;
+            }
+
+            @Override
+            public int getBottomOffset(int i2) {
+                return StoryRecorder.this.captionEdit.getEditTextHeight() + AndroidUtilities.dp(12.0f);
+            }
+        });
+        this.captionEdit.setOnHeightUpdate(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
                 StoryRecorder.this.lambda$initViews$7((Integer) obj);
@@ -1592,7 +1693,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.titleTextView.setAlpha(0.0f);
         this.titleTextView.setVisibility(8);
         this.titleTextView.setEllipsizeByGradient(true);
-        this.titleTextView.setRightPadding(AndroidUtilities.dp(96.0f));
+        this.titleTextView.setRightPadding(AndroidUtilities.dp(144.0f));
         this.actionBarContainer.addView(this.titleTextView, LayoutHelper.createFrame(-1, 56.0f, 55, 71.0f, 0.0f, 0.0f, 0.0f));
         DownloadButton downloadButton = new DownloadButton(context, new Utilities.Callback() {
             @Override
@@ -1623,6 +1724,18 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.muteButton.setVisibility(8);
         this.muteButton.setAlpha(0.0f);
         this.actionBarContainer.addView(this.muteButton, LayoutHelper.createFrame(56, 56.0f, 53, 0.0f, 0.0f, 48.0f, 0.0f));
+        PlayPauseButton playPauseButton = new PlayPauseButton(context);
+        this.playButton = playPauseButton;
+        playPauseButton.setBackground(Theme.createSelectorDrawable(553648127));
+        this.playButton.setVisibility(8);
+        this.playButton.setAlpha(0.0f);
+        this.playButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                StoryRecorder.this.lambda$initViews$13(view);
+            }
+        });
+        this.actionBarContainer.addView(this.playButton, LayoutHelper.createFrame(56, 56.0f, 53, 0.0f, 0.0f, 96.0f, 0.0f));
         ImageView imageView3 = new ImageView(context);
         this.flashButton = imageView3;
         imageView3.setScaleType(ImageView.ScaleType.CENTER);
@@ -1631,7 +1744,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.flashButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StoryRecorder.this.lambda$initViews$13(view);
+                StoryRecorder.this.lambda$initViews$14(view);
             }
         });
         this.flashButton.setVisibility(8);
@@ -1642,7 +1755,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         toggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                StoryRecorder.this.lambda$initViews$14(view);
+                StoryRecorder.this.lambda$initViews$15(view);
             }
         });
         this.dualButton.setVisibility(DualCameraView.dualAvailableStatic(context) ? 0 : 8);
@@ -1650,7 +1763,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         HintView2 onHiddenListener = new HintView2(this.activity, 1).setJoint(1.0f, -20.0f).setDuration(5000L).setCloseButton(true).setText(LocaleController.getString(R.string.StoryCameraDualHint)).setOnHiddenListener(new Runnable() {
             @Override
             public final void run() {
-                StoryRecorder.lambda$initViews$15();
+                StoryRecorder.lambda$initViews$16();
             }
         });
         this.dualHint = onHiddenListener;
@@ -1681,7 +1794,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.zoomControlView.setDelegate(new ZoomControlView.ZoomControlViewDelegate() {
             @Override
             public final void didSetZoom(float f) {
-                StoryRecorder.this.lambda$initViews$16(f);
+                StoryRecorder.this.lambda$initViews$17(f);
             }
         });
         ZoomControlView zoomControlView2 = this.zoomControlView;
@@ -1692,13 +1805,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         photoVideoSwitcherView.setOnSwitchModeListener(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StoryRecorder.this.lambda$initViews$17((Boolean) obj);
+                StoryRecorder.this.lambda$initViews$18((Boolean) obj);
             }
         });
         this.modeSwitcherView.setOnSwitchingModeListener(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StoryRecorder.this.lambda$initViews$18((Float) obj);
+                StoryRecorder.this.lambda$initViews$19((Float) obj);
             }
         });
         this.navbarContainer.addView(this.modeSwitcherView, LayoutHelper.createFrame(-1, -1, 87));
@@ -1711,7 +1824,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.previewButtons.setOnClickListener(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                StoryRecorder.this.lambda$initViews$23((Integer) obj);
+                StoryRecorder.this.lambda$initViews$24((Integer) obj);
             }
         });
         this.navbarContainer.addView(this.previewButtons, LayoutHelper.createFrame(-1, 52, 23));
@@ -1818,6 +1931,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$initViews$6() {
+        this.videoError = true;
         this.previewButtons.setShareEnabled(false);
         this.downloadButton.showFailedVideo();
     }
@@ -1827,6 +1941,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (frameLayout != null) {
             frameLayout.setTranslationY((-(this.captionEdit.getEditTextHeight() + AndroidUtilities.dp(12.0f))) + AndroidUtilities.dp(64.0f));
         }
+        Bulletin visibleBulletin = Bulletin.getVisibleBulletin();
+        if (visibleBulletin == null || visibleBulletin.tag != 2) {
+            return;
+        }
+        visibleBulletin.updatePosition();
     }
 
     public void lambda$initViews$8(Integer num) {
@@ -1841,6 +1960,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.previewView.updatePauseReason(2, bool.booleanValue());
         this.videoTimelineContainerView.clearAnimation();
         this.videoTimelineContainerView.animate().alpha(bool.booleanValue() ? 0.0f : 1.0f).setDuration(120L).start();
+        Bulletin visibleBulletin = Bulletin.getVisibleBulletin();
+        if (visibleBulletin == null || visibleBulletin.tag != 2) {
+            return;
+        }
+        visibleBulletin.updatePosition();
     }
 
     public void lambda$initViews$10(View view) {
@@ -1851,7 +1975,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$initViews$11(Runnable runnable) {
-        applyPaint(true);
+        applyPaint();
         applyFilter(runnable);
     }
 
@@ -1869,6 +1993,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public void lambda$initViews$13(View view) {
+        boolean isPlaying = this.previewView.isPlaying();
+        this.previewView.play(!isPlaying);
+        this.playButton.drawable.setPause(!isPlaying, true);
+    }
+
+    public void lambda$initViews$14(View view) {
         CameraSession cameraSession;
         DualCameraView dualCameraView = this.cameraView;
         if (dualCameraView == null || this.awaitingPlayer || (cameraSession = dualCameraView.getCameraSession()) == null) {
@@ -1883,7 +2013,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         setCameraFlashModeIcon(nextFlashMode, true);
     }
 
-    public void lambda$initViews$14(View view) {
+    public void lambda$initViews$15(View view) {
         DualCameraView dualCameraView = this.cameraView;
         if (dualCameraView == null || this.currentPage != 0) {
             return;
@@ -1898,11 +2028,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.savedDualHint.hide();
     }
 
-    public static void lambda$initViews$15() {
+    public static void lambda$initViews$16() {
         MessagesController.getGlobalMainSettings().edit().putInt("storydualhint", MessagesController.getGlobalMainSettings().getInt("storydualhint", 0) + 1).apply();
     }
 
-    public void lambda$initViews$16(float f) {
+    public void lambda$initViews$17(float f) {
         DualCameraView dualCameraView = this.cameraView;
         if (dualCameraView != null) {
             this.cameraZoom = f;
@@ -1911,7 +2041,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         showZoomControls(true, true);
     }
 
-    public void lambda$initViews$17(Boolean bool) {
+    public void lambda$initViews$18(Boolean bool) {
         if (this.takingPhoto || this.takingVideo) {
             return;
         }
@@ -1922,11 +2052,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.recordControl.startAsVideo(this.isVideo);
     }
 
-    public void lambda$initViews$18(Float f) {
+    public void lambda$initViews$19(Float f) {
         this.recordControl.startAsVideoT(f.floatValue());
     }
 
-    public void lambda$initViews$23(Integer num) {
+    public void lambda$initViews$24(Integer num) {
+        StoriesController.StoryLimit checkStoryLimit;
         if (this.outputEntry == null) {
             return;
         }
@@ -1937,7 +2068,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 storyPrivacyBottomSheet.dismiss();
                 this.privacySheet = null;
             }
-            if (!this.previewButtons.isShareEnabled()) {
+            if (this.videoError) {
                 this.downloadButton.showFailedVideo();
                 BotWebViewVibrationEffect.APP_ERROR.vibrate();
                 PreviewButtons.ShareButtonView shareButtonView = this.previewButtons.shareButton;
@@ -1946,33 +2077,45 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 AndroidUtilities.shakeViewSpring(shareButtonView, i);
                 return;
             }
-            StoryEntry storyEntry = this.outputEntry;
-            if (storyEntry.isEdit) {
-                storyEntry.editedPrivacy = false;
-                applyFilter(null);
-                upload(true);
-                return;
+            CaptionContainerView captionContainerView = this.captionEdit;
+            if (captionContainerView != null && captionContainerView.isCaptionOverLimit()) {
+                BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                AnimatedTextView animatedTextView = this.captionEdit.limitTextView;
+                int i2 = -this.shiftDp;
+                this.shiftDp = i2;
+                AndroidUtilities.shakeViewSpring(animatedTextView, i2);
+                this.captionEdit.captionLimitToast();
+            } else if (!this.outputEntry.isEdit && (checkStoryLimit = MessagesController.getInstance(this.currentAccount).storiesController.checkStoryLimit()) != null && checkStoryLimit.active(this.currentAccount)) {
+                showLimitReachedSheet(checkStoryLimit);
+            } else {
+                StoryEntry storyEntry = this.outputEntry;
+                if (storyEntry.isEdit) {
+                    storyEntry.editedPrivacy = false;
+                    applyFilter(null);
+                    upload(true);
+                    return;
+                }
+                this.previewView.updatePauseReason(3, true);
+                StoryPrivacyBottomSheet whenSelectedRules = new StoryPrivacyBottomSheet(this.activity, this.outputEntry.period, this.resourcesProvider).setValue(this.outputEntry.privacy).whenDismiss(new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        StoryRecorder.this.lambda$initViews$20((StoryPrivacyBottomSheet.StoryPrivacy) obj);
+                    }
+                }).isEdit(false).setWarnUsers(getUsersFrom(this.captionEdit.getText())).whenSelectedRules(new Utilities.Callback4() {
+                    @Override
+                    public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
+                        StoryRecorder.this.lambda$initViews$22((StoryPrivacyBottomSheet.StoryPrivacy) obj, (Boolean) obj2, (Boolean) obj3, (Runnable) obj4);
+                    }
+                }, false);
+                this.privacySheet = whenSelectedRules;
+                whenSelectedRules.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                    @Override
+                    public final void onDismiss(DialogInterface dialogInterface) {
+                        StoryRecorder.this.lambda$initViews$23(dialogInterface);
+                    }
+                });
+                this.privacySheet.show();
             }
-            this.previewView.updatePauseReason(3, true);
-            StoryPrivacyBottomSheet whenSelectedRules = new StoryPrivacyBottomSheet(this.activity, this.outputEntry.period, this.resourcesProvider).setValue(this.outputEntry.privacy).whenDismiss(new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    StoryRecorder.this.lambda$initViews$19((StoryPrivacyBottomSheet.StoryPrivacy) obj);
-                }
-            }).isEdit(false).setWarnUsers(getUsersFrom(this.captionEdit.getText())).whenSelectedRules(new Utilities.Callback4() {
-                @Override
-                public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                    StoryRecorder.this.lambda$initViews$21((StoryPrivacyBottomSheet.StoryPrivacy) obj, (Boolean) obj2, (Boolean) obj3, (Runnable) obj4);
-                }
-            }, false);
-            this.privacySheet = whenSelectedRules;
-            whenSelectedRules.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    StoryRecorder.this.lambda$initViews$22(dialogInterface);
-                }
-            });
-            this.privacySheet.show();
         } else if (num.intValue() == 0) {
             switchToEditMode(0, true);
             PaintView paintView = this.paintView;
@@ -1999,14 +2142,14 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$initViews$19(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy) {
+    public void lambda$initViews$20(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy) {
         StoryEntry storyEntry = this.outputEntry;
         if (storyEntry != null) {
             storyEntry.privacy = storyPrivacy;
         }
     }
 
-    public void lambda$initViews$21(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, Boolean bool, Boolean bool2, final Runnable runnable) {
+    public void lambda$initViews$22(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, Boolean bool, Boolean bool2, final Runnable runnable) {
         if (this.outputEntry == null) {
             return;
         }
@@ -2021,17 +2164,17 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         applyFilter(new Runnable() {
             @Override
             public final void run() {
-                StoryRecorder.this.lambda$initViews$20(runnable);
+                StoryRecorder.this.lambda$initViews$21(runnable);
             }
         });
     }
 
-    public void lambda$initViews$20(Runnable runnable) {
+    public void lambda$initViews$21(Runnable runnable) {
         runnable.run();
         upload(true);
     }
 
-    public void lambda$initViews$22(DialogInterface dialogInterface) {
+    public void lambda$initViews$23(DialogInterface dialogInterface) {
         this.previewView.updatePauseReason(3, false);
         this.privacySheet = null;
     }
@@ -2096,7 +2239,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     private void upload(final boolean z) {
-        applyPaint(true);
+        applyPaint();
         if (this.outputEntry == null) {
             close(true);
             return;
@@ -2108,7 +2251,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         storyEntry.editedCaption = !TextUtils.equals(storyEntry.caption, text);
         this.outputEntry.caption = text;
         MessagesController.getInstance(this.currentAccount).getStoriesController().uploadStory(this.outputEntry, z);
-        if (this.outputEntry.isDraft) {
+        StoryEntry storyEntry2 = this.outputEntry;
+        if (storyEntry2.isDraft && !storyEntry2.isEdit) {
             MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().delete(this.outputEntry);
         }
         this.outputEntry.cancelCheckStickers();
@@ -2119,7 +2263,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                StoryRecorder.this.lambda$upload$25(z);
+                StoryRecorder.this.lambda$upload$26(z);
             }
         };
         ClosingViewProvider closingViewProvider = this.closingSourceProvider;
@@ -2131,7 +2275,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         MessagesController.getGlobalMainSettings().edit().putInt("storyhint2", 2).apply();
     }
 
-    public void lambda$upload$25(boolean z) {
+    public void lambda$upload$26(boolean z) {
         if (z) {
             SourceView sourceView = this.fromSourceView;
             if (sourceView != null) {
@@ -2159,7 +2303,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 ((LaunchActivity) activity).drawerLayoutContainer.post(new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.this.lambda$upload$24();
+                        StoryRecorder.this.lambda$upload$25();
                     }
                 });
                 return;
@@ -2171,7 +2315,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         close(true);
     }
 
-    public void lambda$upload$24() {
+    public void lambda$upload$25() {
         close(true);
     }
 
@@ -2258,7 +2402,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.flashButton.animate().alpha(0.0f).withEndAction(new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.this.lambda$setCameraFlashModeIcon$26();
+                        StoryRecorder.this.lambda$setCameraFlashModeIcon$27();
                     }
                 }).start();
                 return;
@@ -2307,12 +2451,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$setCameraFlashModeIcon$26() {
+    public void lambda$setCameraFlashModeIcon$27() {
         this.flashButton.setVisibility(8);
     }
 
-    public class AnonymousClass9 implements RecordControl.Delegate {
-        AnonymousClass9() {
+    public class AnonymousClass10 implements RecordControl.Delegate {
+        AnonymousClass10() {
             StoryRecorder.this = r1;
         }
 
@@ -2323,7 +2467,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         public void onPhotoShoot() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryRecorder.AnonymousClass9.onPhotoShoot():void");
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryRecorder.AnonymousClass10.onPhotoShoot():void");
         }
 
         public void lambda$onPhotoShoot$0(Integer num) {
@@ -2383,12 +2527,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             CameraController.getInstance().recordVideo(StoryRecorder.this.cameraView.getCameraSession(), StoryRecorder.this.outputFile, false, new CameraController.VideoTakeCallback() {
                 @Override
                 public final void onFinishVideoRecording(String str, long j) {
-                    StoryRecorder.AnonymousClass9.this.lambda$onVideoRecordStart$2(str, j);
+                    StoryRecorder.AnonymousClass10.this.lambda$onVideoRecordStart$2(str, j);
                 }
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    StoryRecorder.AnonymousClass9.this.lambda$onVideoRecordStart$3(runnable, z);
+                    StoryRecorder.AnonymousClass10.this.lambda$onVideoRecordStart$3(runnable, z);
                 }
             }, StoryRecorder.this.cameraView, false);
             if (StoryRecorder.this.isVideo) {
@@ -2449,7 +2593,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             StoryRecorder.this.navigateToPreviewWithPlayerAwait(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryRecorder.AnonymousClass9.this.lambda$onVideoRecordStart$1();
+                    StoryRecorder.AnonymousClass10.this.lambda$onVideoRecordStart$1();
                 }
             }, 0L);
         }
@@ -2491,7 +2635,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryRecorder.AnonymousClass9.this.lambda$onVideoRecordEnd$4();
+                    StoryRecorder.AnonymousClass10.this.lambda$onVideoRecordEnd$4();
                 }
             }, z ? 0L : 400L);
         }
@@ -2511,7 +2655,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         @Override
         public void onGalleryClick() {
             if (StoryRecorder.this.currentPage == 0 && StoryRecorder.this.requestGalleryPermission()) {
-                StoryRecorder.this.lambda$animateGalleryListView$34(true);
+                StoryRecorder.this.lambda$animateGalleryListView$35(true);
             }
         }
 
@@ -2688,7 +2832,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.videoTimerView.animate().alpha(z ? 1.0f : 0.0f).setDuration(350L).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryRecorder.this.lambda$showVideoTimer$27(z);
+                    StoryRecorder.this.lambda$showVideoTimer$28(z);
                 }
             }).start();
             return;
@@ -2701,7 +2845,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.videoTimerView.setRecording(false, false);
     }
 
-    public void lambda$showVideoTimer$27(boolean z) {
+    public void lambda$showVideoTimer$28(boolean z) {
         if (z) {
             return;
         }
@@ -2718,7 +2862,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.this.lambda$showZoomControls$28();
+                        StoryRecorder.this.lambda$showZoomControls$29();
                     }
                 };
                 this.zoomControlHideRunnable = runnable2;
@@ -2764,7 +2908,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             Runnable runnable3 = new Runnable() {
                 @Override
                 public final void run() {
-                    StoryRecorder.this.lambda$showZoomControls$29();
+                    StoryRecorder.this.lambda$showZoomControls$30();
                 }
             };
             this.zoomControlHideRunnable = runnable3;
@@ -2772,12 +2916,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$showZoomControls$28() {
+    public void lambda$showZoomControls$29() {
         showZoomControls(false, true);
         this.zoomControlHideRunnable = null;
     }
 
-    public void lambda$showZoomControls$29() {
+    public void lambda$showZoomControls$30() {
         showZoomControls(false, true);
         this.zoomControlHideRunnable = null;
     }
@@ -2793,8 +2937,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         } else if (this.takingPhoto || this.captionEdit.onBackPressed()) {
             return false;
         } else {
-            if (this.galleryListView != null) {
-                lambda$animateGalleryListView$34(false);
+            GalleryListView galleryListView = this.galleryListView;
+            if (galleryListView != null) {
+                if (galleryListView.onBackPressed()) {
+                    return false;
+                }
+                lambda$animateGalleryListView$35(false);
                 this.lastGallerySelectedAlbum = null;
                 return false;
             } else if (this.currentEditMode == 0 && (paintView2 = this.paintView) != null && paintView2.onBackPressed()) {
@@ -2831,7 +2979,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.afterPlayerAwait = new Runnable() {
             @Override
             public final void run() {
-                StoryRecorder.this.lambda$navigateToPreviewWithPlayerAwait$30(runnable);
+                StoryRecorder.this.lambda$navigateToPreviewWithPlayerAwait$31(runnable);
             }
         };
         this.previewView.setAlpha(0.0f);
@@ -2840,8 +2988,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         AndroidUtilities.runOnUIThread(this.afterPlayerAwait, 400L);
     }
 
-    public void lambda$navigateToPreviewWithPlayerAwait$30(Runnable runnable) {
-        lambda$animateGalleryListView$34(false);
+    public void lambda$navigateToPreviewWithPlayerAwait$31(Runnable runnable) {
+        lambda$animateGalleryListView$35(false);
         AndroidUtilities.cancelRunOnUIThread(this.afterPlayerAwait);
         this.afterPlayerAwait = null;
         this.awaitingPlayer = false;
@@ -2952,11 +3100,16 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             float[] fArr15 = new float[1];
             fArr15[0] = (i == 1 && this.isVideo) ? 1.0f : 0.0f;
             arrayList.add(ObjectAnimator.ofFloat(rLottieImageView, property15, fArr15));
-            DownloadButton downloadButton = this.downloadButton;
+            PlayPauseButton playPauseButton = this.playButton;
             Property property16 = View.ALPHA;
             float[] fArr16 = new float[1];
-            fArr16[0] = i != 1 ? 0.0f : 1.0f;
-            arrayList.add(ObjectAnimator.ofFloat(downloadButton, property16, fArr16));
+            fArr16[0] = (i == 1 && this.isVideo) ? 1.0f : 0.0f;
+            arrayList.add(ObjectAnimator.ofFloat(playPauseButton, property16, fArr16));
+            DownloadButton downloadButton = this.downloadButton;
+            Property property17 = View.ALPHA;
+            float[] fArr17 = new float[1];
+            fArr17[0] = i != 1 ? 0.0f : 1.0f;
+            arrayList.add(ObjectAnimator.ofFloat(downloadButton, property17, fArr17));
             arrayList.add(ObjectAnimator.ofFloat(this.zoomControlView, View.ALPHA, 0.0f));
             this.pageAnimator.playTogether(arrayList);
             this.pageAnimator.addListener(new AnimatorListenerAdapter() {
@@ -2993,6 +3146,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.captionContainer.setAlpha(i == 1 ? 1.0f : 0.0f);
         this.captionContainer.setTranslationY(i == 1 ? 0.0f : AndroidUtilities.dp(12.0f));
         this.muteButton.setAlpha((i == 1 && this.isVideo) ? 1.0f : 0.0f);
+        this.playButton.setAlpha((i == 1 && this.isVideo) ? 1.0f : 0.0f);
         this.downloadButton.setAlpha(i == 1 ? 1.0f : 0.0f);
         this.videoTimelineView.setAlpha((i == 1 && this.isVideo) ? 1.0f : 0.0f);
         this.titleTextView.setAlpha(i == 1 ? 1.0f : 0.0f);
@@ -3014,7 +3168,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                StoryRecorder.this.lambda$animateContainerBack$31(translationY1, translationY2, valueAnimator2);
+                StoryRecorder.this.lambda$animateContainerBack$32(translationY1, translationY2, valueAnimator2);
             }
         });
         this.containerViewBackAnimator.setDuration(340L);
@@ -3034,7 +3188,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.containerViewBackAnimator.start();
     }
 
-    public void lambda$animateContainerBack$31(float f, float f2, ValueAnimator valueAnimator) {
+    public void lambda$animateContainerBack$32(float f, float f2, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.containerView.setTranslationY(f * floatValue);
         this.containerView.setTranslationY2(f2 * floatValue);
@@ -3068,18 +3222,19 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (this.galleryListView != null || getContext() == null) {
             return;
         }
-        AnonymousClass14 anonymousClass14 = new AnonymousClass14(this.currentAccount, getContext(), this.resourcesProvider, this.lastGallerySelectedAlbum, z);
-        this.galleryListView = anonymousClass14;
-        anonymousClass14.setOnBackClickListener(new Runnable() {
+        AnonymousClass15 anonymousClass15 = new AnonymousClass15(this.currentAccount, getContext(), this.resourcesProvider, this.lastGallerySelectedAlbum, z);
+        this.galleryListView = anonymousClass15;
+        anonymousClass15.allowSearch(z);
+        this.galleryListView.setOnBackClickListener(new Runnable() {
             @Override
             public final void run() {
-                StoryRecorder.this.lambda$createGalleryListView$32();
+                StoryRecorder.this.lambda$createGalleryListView$33();
             }
         });
         this.galleryListView.setOnSelectListener(new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                StoryRecorder.this.lambda$createGalleryListView$33(z, obj, (Bitmap) obj2);
+                StoryRecorder.this.lambda$createGalleryListView$34(z, obj, (Bitmap) obj2);
             }
         });
         Parcelable parcelable = this.lastGalleryScrollPosition;
@@ -3089,8 +3244,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.windowView.addView(this.galleryListView, LayoutHelper.createFrame(-1, -1, 119));
     }
 
-    public class AnonymousClass14 extends GalleryListView {
-        AnonymousClass14(int i, Context context, Theme.ResourcesProvider resourcesProvider, MediaController.AlbumEntry albumEntry, boolean z) {
+    public class AnonymousClass15 extends GalleryListView {
+        AnonymousClass15(int i, Context context, Theme.ResourcesProvider resourcesProvider, MediaController.AlbumEntry albumEntry, boolean z) {
             super(i, context, resourcesProvider, albumEntry, z);
             StoryRecorder.this = r7;
         }
@@ -3121,7 +3276,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.AnonymousClass14.this.lambda$onFullScreen$0();
+                        StoryRecorder.AnonymousClass15.this.lambda$onFullScreen$0();
                     }
                 });
             }
@@ -3133,24 +3288,29 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$createGalleryListView$32() {
-        lambda$animateGalleryListView$34(false);
+    public void lambda$createGalleryListView$33() {
+        lambda$animateGalleryListView$35(false);
         this.lastGallerySelectedAlbum = null;
     }
 
-    public void lambda$createGalleryListView$33(boolean z, Object obj, Bitmap bitmap) {
+    public void lambda$createGalleryListView$34(boolean z, Object obj, Bitmap bitmap) {
         if (obj == null || this.galleryListViewOpening != null || this.scrollingY || !isGalleryOpen()) {
             return;
         }
         if (z) {
-            if (this.outputEntry == null || !(obj instanceof MediaController.PhotoEntry)) {
+            if (this.outputEntry == null) {
                 return;
             }
             createPhotoPaintView();
             this.outputEntry.editedMedia = true;
-            PaintView paintView = this.paintView;
-            paintView.appearAnimation(paintView.createPhoto(((MediaController.PhotoEntry) obj).path, false));
-            lambda$animateGalleryListView$34(false);
+            if (obj instanceof MediaController.PhotoEntry) {
+                PaintView paintView = this.paintView;
+                paintView.appearAnimation(paintView.createPhoto(((MediaController.PhotoEntry) obj).path, false));
+            } else if (obj instanceof TLObject) {
+                PaintView paintView2 = this.paintView;
+                paintView2.appearAnimation(paintView2.createPhoto((TLObject) obj, false));
+            }
+            lambda$animateGalleryListView$35(false);
         } else {
             if (obj instanceof MediaController.PhotoEntry) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
@@ -3175,7 +3335,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             showVideoTimer(false, true);
             this.modeSwitcherView.switchMode(this.isVideo);
             this.recordControl.startAsVideo(this.isVideo);
-            lambda$animateGalleryListView$34(false);
+            lambda$animateGalleryListView$35(false);
             navigateTo(1, true);
         }
         GalleryListView galleryListView = this.galleryListView;
@@ -3190,7 +3350,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         return (this.scrollingY || (galleryListView = this.galleryListView) == null || galleryListView.getTranslationY() >= ((float) ((this.windowView.getMeasuredHeight() - ((int) (((float) AndroidUtilities.displaySize.y) * 0.35f))) - (AndroidUtilities.statusBarHeight + ActionBar.getCurrentActionBarHeight())))) ? false : true;
     }
 
-    public void lambda$animateGalleryListView$34(final boolean z) {
+    public void lambda$animateGalleryListView$35(final boolean z) {
         DraftSavedHint draftSavedHint;
         this.wasGalleryOpen = z;
         Boolean bool = this.galleryListViewOpening;
@@ -3207,7 +3367,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.galleryLayouted = new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.this.lambda$animateGalleryListView$34(z);
+                        StoryRecorder.this.lambda$animateGalleryListView$35(z);
                     }
                 };
                 return;
@@ -3251,7 +3411,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.galleryOpenCloseSpringAnimator.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                     @Override
                     public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                        StoryRecorder.this.lambda$animateGalleryListView$35(height, dynamicAnimation, z2, f, f2);
+                        StoryRecorder.this.lambda$animateGalleryListView$36(height, dynamicAnimation, z2, f, f2);
                     }
                 });
                 this.galleryOpenCloseSpringAnimator.start();
@@ -3261,7 +3421,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                        StoryRecorder.this.lambda$animateGalleryListView$36(valueAnimator2);
+                        StoryRecorder.this.lambda$animateGalleryListView$37(valueAnimator2);
                     }
                 });
                 this.galleryOpenCloseAnimator.addListener(new AnimatorListenerAdapter() {
@@ -3275,6 +3435,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                         StoryRecorder.this.galleryListView = null;
                         StoryRecorder.this.galleryOpenCloseAnimator = null;
                         StoryRecorder.this.galleryListViewOpening = null;
+                        StoryRecorder.this.captionEdit.keyboardNotifier.ignore(StoryRecorder.this.currentPage != 1);
                     }
                 });
                 this.galleryOpenCloseAnimator.setDuration(450L);
@@ -3291,7 +3452,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$animateGalleryListView$35(float f, DynamicAnimation dynamicAnimation, boolean z, float f2, float f3) {
+    public void lambda$animateGalleryListView$36(float f, DynamicAnimation dynamicAnimation, boolean z, float f2, float f3) {
         if (z) {
             return;
         }
@@ -3301,7 +3462,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.galleryListViewOpening = null;
     }
 
-    public void lambda$animateGalleryListView$36(ValueAnimator valueAnimator) {
+    public void lambda$animateGalleryListView$37(ValueAnimator valueAnimator) {
         this.galleryListView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -3331,7 +3492,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             saveLastCameraBitmap(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryRecorder.this.lambda$onNavigateStart$37();
+                    StoryRecorder.this.lambda$onNavigateStart$38();
                 }
             });
             DraftSavedHint draftSavedHint = this.draftSavedHint;
@@ -3350,7 +3511,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.muteButton.setVisibility(0);
                 StoryEntry storyEntry2 = this.outputEntry;
                 setIconMuted(storyEntry2 != null && storyEntry2.muted, false);
-                this.titleTextView.setRightPadding(AndroidUtilities.dp(96.0f));
+                this.playButton.setVisibility(0);
+                this.previewView.play(true);
+                this.playButton.drawable.setPause(this.previewView.isPlaying(), false);
+                this.titleTextView.setRightPadding(AndroidUtilities.dp(144.0f));
             } else {
                 this.titleTextView.setRightPadding(AndroidUtilities.dp(48.0f));
             }
@@ -3367,6 +3531,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             captionContainerView2.setPeriodVisible(storyEntry4 == null || !storyEntry4.isEdit);
         }
         if (i2 == 1) {
+            this.videoError = false;
             PreviewButtons previewButtons = this.previewButtons;
             StoryEntry storyEntry5 = this.outputEntry;
             if (storyEntry5 == null || !storyEntry5.isEdit) {
@@ -3377,13 +3542,18 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 str = "Done";
             }
             previewButtons.setShareText(LocaleController.getString(str, i3));
-            this.previewButtons.setShareEnabled(true);
             if (!this.previewAlreadySet) {
                 this.previewView.set(this.outputEntry);
             }
             this.previewAlreadySet = false;
+            this.captionEdit.editText.getEditText().setOnPremiumMenuLockClickListener(MessagesController.getInstance(this.currentAccount).storyEntitiesAllowed() ? null : new Runnable() {
+                @Override
+                public final void run() {
+                    StoryRecorder.this.lambda$onNavigateStart$39();
+                }
+            });
             StoryEntry storyEntry6 = this.outputEntry;
-            if (storyEntry6 != null && storyEntry6.isDraft) {
+            if (storyEntry6 != null && (storyEntry6.isDraft || storyEntry6.isEdit)) {
                 if (storyEntry6.paintFile != null) {
                     destroyPhotoPaintView();
                     createPhotoPaintView();
@@ -3398,7 +3568,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     textureView.setDelegate(new VideoEditTextureView.VideoEditTextureViewDelegate() {
                         @Override
                         public final void onEGLThreadAvailable(FilterGLThread filterGLThread) {
-                            StoryRecorder.this.lambda$onNavigateStart$38(filterGLThread);
+                            StoryRecorder.this.lambda$onNavigateStart$40(filterGLThread);
                         }
                     });
                 }
@@ -3406,6 +3576,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             } else {
                 this.captionEdit.clear();
             }
+            this.previewButtons.setShareEnabled((this.videoError || this.captionEdit.isCaptionOverLimit() || MessagesController.getInstance(this.currentAccount).getStoriesController().hasStoryLimit()) ? false : true);
             RLottieImageView rLottieImageView = this.muteButton;
             StoryEntry storyEntry8 = this.outputEntry;
             rLottieImageView.setImageResource((storyEntry8 == null || !storyEntry8.muted) ? R.drawable.media_mute : R.drawable.media_unmute);
@@ -3415,8 +3586,6 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             SimpleTextView simpleTextView = this.titleTextView;
             StoryEntry storyEntry9 = this.outputEntry;
             simpleTextView.setText(LocaleController.getString((storyEntry9 == null || !storyEntry9.isEdit) ? R.string.RecorderNewStory : R.string.RecorderEditStory));
-            MediaDataController.getInstance(this.currentAccount).checkStickers(5);
-            MediaDataController.getInstance(this.currentAccount).checkFeaturedEmoji();
         }
         if (i == 1) {
             this.captionEdit.hidePeriodPopup();
@@ -3439,11 +3608,15 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$onNavigateStart$37() {
+    public void lambda$onNavigateStart$38() {
         this.cameraViewThumb.setImageDrawable(getCameraThumb());
     }
 
-    public void lambda$onNavigateStart$38(FilterGLThread filterGLThread) {
+    public void lambda$onNavigateStart$39() {
+        BulletinFactory.of(this.windowView, this.resourcesProvider).createSimpleBulletin(R.raw.voip_invite, premiumText(LocaleController.getString("StoryPremiumFormatting", R.string.StoryPremiumFormatting))).show(true);
+    }
+
+    public void lambda$onNavigateStart$40(FilterGLThread filterGLThread) {
         StoryEntry storyEntry;
         MediaController.SavedFilterState savedFilterState;
         if (filterGLThread == null || (storyEntry = this.outputEntry) == null || (savedFilterState = storyEntry.filterState) == null) {
@@ -3470,6 +3643,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.previewView.setVisibility(8);
             this.captionContainer.setVisibility(8);
             this.muteButton.setVisibility(8);
+            this.playButton.setVisibility(8);
             this.downloadButton.setVisibility(8);
             this.previewView.setVisibility(8);
             this.videoTimelineView.setVisibility(8);
@@ -3489,6 +3663,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.previewView.updatePauseReason(3, false);
             this.previewView.updatePauseReason(4, false);
             this.previewView.updatePauseReason(5, false);
+            this.previewView.updatePauseReason(7, false);
             VideoTimeView videoTimeView = this.videoTimeView;
             StoryEntry storyEntry = this.outputEntry;
             if (storyEntry != null && storyEntry.duration >= 30000) {
@@ -3509,6 +3684,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         CaptionContainerView captionContainerView = this.captionEdit;
         if (captionContainerView != null) {
             captionContainerView.ignoreTouches = i2 != 1;
+        }
+        if (i2 == 1) {
+            MediaDataController.getInstance(this.currentAccount).checkStickers(0);
+            MediaDataController.getInstance(this.currentAccount).loadRecents(0, false, true, false);
+            MediaDataController.getInstance(this.currentAccount).loadRecents(2, false, true, false);
+            MessagesController.getInstance(this.currentAccount).getStoriesController().loadBlocklistAtFirst();
         }
     }
 
@@ -3543,21 +3724,27 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.paintViewBitmap = null;
         }
         StoryEntry storyEntry = this.outputEntry;
-        if (storyEntry != null && storyEntry.isDraft && (file = storyEntry.paintFile) != null) {
+        if (storyEntry != null && ((storyEntry.isDraft || storyEntry.isEdit) && (file = storyEntry.paintFile) != null)) {
             this.paintViewBitmap = BitmapFactory.decodeFile(file.getPath());
         }
         if (this.paintViewBitmap == null) {
             this.paintViewBitmap = Bitmap.createBitmap(((Integer) paintSize.first).intValue(), ((Integer) paintSize.second).intValue(), Bitmap.Config.ARGB_8888);
         }
+        int measuredWidth = this.previewContainer.getMeasuredWidth();
+        int measuredHeight = this.previewContainer.getMeasuredHeight();
         Activity activity = this.activity;
+        StoryEntry storyEntry2 = this.outputEntry;
+        boolean z = (storyEntry2 == null || storyEntry2.fileDeletable) ? false : true;
+        File file2 = storyEntry2 == null ? null : storyEntry2.file;
+        boolean z2 = storyEntry2 != null && storyEntry2.isVideo;
         WindowView windowView = this.windowView;
         int i = this.currentAccount;
         Bitmap bitmap2 = this.paintViewBitmap;
         int orientation = this.previewView.getOrientation();
-        StoryEntry storyEntry2 = this.outputEntry;
-        AnonymousClass17 anonymousClass17 = new AnonymousClass17(activity, windowView, activity, i, bitmap2, null, orientation, storyEntry2 == null ? null : storyEntry2.mediaEntities, this.previewContainer.getMeasuredWidth(), this.previewContainer.getMeasuredHeight(), new MediaController.CropState(), null, this.resourcesProvider);
-        this.paintView = anonymousClass17;
-        this.containerView.addView(anonymousClass17);
+        StoryEntry storyEntry3 = this.outputEntry;
+        AnonymousClass18 anonymousClass18 = new AnonymousClass18(activity, z, file2, z2, windowView, activity, i, bitmap2, null, orientation, storyEntry3 == null ? null : storyEntry3.mediaEntities, measuredWidth, measuredHeight, new MediaController.CropState(), null, this.resourcesProvider);
+        this.paintView = anonymousClass18;
+        this.containerView.addView(anonymousClass18);
         RenderView renderView = this.paintView.getRenderView();
         this.paintViewRenderView = renderView;
         if (renderView != null) {
@@ -3587,22 +3774,24 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.paintView.setOnDoneButtonClickedListener(new Runnable() {
             @Override
             public final void run() {
-                StoryRecorder.this.lambda$createPhotoPaintView$39();
+                StoryRecorder.this.lambda$createPhotoPaintView$41();
             }
         });
         this.paintView.setOnCancelButtonClickedListener(new Runnable() {
             @Override
             public final void run() {
-                StoryRecorder.this.lambda$createPhotoPaintView$40();
+                StoryRecorder.this.lambda$createPhotoPaintView$42();
             }
         });
         this.paintView.init();
     }
 
-    public class AnonymousClass17 extends PaintView {
-        AnonymousClass17(Context context, WindowView windowView, Activity activity, int i, Bitmap bitmap, Bitmap bitmap2, int i2, ArrayList arrayList, int i3, int i4, MediaController.CropState cropState, Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
-            super(context, windowView, activity, i, bitmap, bitmap2, i2, arrayList, i3, i4, cropState, runnable, resourcesProvider);
-            StoryRecorder.this = r16;
+    public class AnonymousClass18 extends PaintView {
+        private boolean multitouch;
+
+        AnonymousClass18(Context context, boolean z, File file, boolean z2, WindowView windowView, Activity activity, int i, Bitmap bitmap, Bitmap bitmap2, int i2, ArrayList arrayList, int i3, int i4, MediaController.CropState cropState, Runnable runnable, Theme.ResourcesProvider resourcesProvider) {
+            super(context, z, file, z2, windowView, activity, i, bitmap, bitmap2, i2, arrayList, i3, i4, cropState, runnable, resourcesProvider);
+            StoryRecorder.this = r19;
         }
 
         @Override
@@ -3612,14 +3801,16 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         protected void onGalleryClick() {
+            StoryRecorder.this.captionEdit.keyboardNotifier.ignore(true);
             StoryRecorder.this.destroyGalleryListView();
             StoryRecorder.this.createGalleryListView(true);
-            StoryRecorder.this.lambda$animateGalleryListView$34(true);
+            StoryRecorder.this.lambda$animateGalleryListView$35(true);
         }
 
         @Override
         public void onEntityDraggedBottom(boolean z) {
             StoryRecorder.this.previewHighlight.updateCaption(StoryRecorder.this.captionEdit.getText());
+            StoryRecorder.this.previewHighlight.show(false, z && this.multitouch, null);
         }
 
         @Override
@@ -3633,13 +3824,14 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             StoryRecorder.this.trash.animate().alpha(0.0f).withEndAction(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryRecorder.AnonymousClass17.this.lambda$onEntityDragEnd$0();
+                    StoryRecorder.AnonymousClass18.this.lambda$onEntityDragEnd$0();
                 }
             }).setDuration(180L).setInterpolator(cubicBezierInterpolator).setStartDelay(z ? 500L : 0L).start();
             if (z) {
                 removeCurrentEntity();
             }
             super.onEntityDragEnd(z);
+            this.multitouch = false;
         }
 
         public void lambda$onEntityDragEnd$0() {
@@ -3656,6 +3848,33 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             StoryRecorder.this.trash.setAlpha(0.0f);
             StoryRecorder.this.trash.clearAnimation();
             StoryRecorder.this.trash.animate().alpha(1.0f).setDuration(180L).setInterpolator(cubicBezierInterpolator).start();
+        }
+
+        @Override
+        public void onEntityDragMultitouchStart() {
+            this.multitouch = true;
+            StoryRecorder.this.trash.onDragInfo(false, false);
+            StoryRecorder.this.trash.clearAnimation();
+            StoryRecorder.this.trash.animate().alpha(0.0f).withEndAction(new Runnable() {
+                @Override
+                public final void run() {
+                    StoryRecorder.AnonymousClass18.this.lambda$onEntityDragMultitouchStart$1();
+                }
+            }).setDuration(180L).setInterpolator(CubicBezierInterpolator.EASE_OUT).start();
+        }
+
+        public void lambda$onEntityDragMultitouchStart$1() {
+            StoryRecorder.this.trash.setVisibility(8);
+        }
+
+        @Override
+        public void onEntityDragMultitouchEnd() {
+            this.multitouch = false;
+            StoryRecorder.this.trash.setVisibility(0);
+            StoryRecorder.this.trash.setAlpha(0.0f);
+            StoryRecorder.this.trash.clearAnimation();
+            StoryRecorder.this.trash.animate().alpha(1.0f).setDuration(180L).setInterpolator(CubicBezierInterpolator.EASE_OUT).start();
+            StoryRecorder.this.previewHighlight.show(false, false, null);
         }
 
         @Override
@@ -3688,11 +3907,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$createPhotoPaintView$39() {
+    public void lambda$createPhotoPaintView$41() {
         switchToEditMode(-1, true);
     }
 
-    public void lambda$createPhotoPaintView$40() {
+    public void lambda$createPhotoPaintView$42() {
         switchToEditMode(-1, true);
     }
 
@@ -3794,6 +4013,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.titleTextView.setVisibility(0);
             if (this.isVideo) {
                 this.muteButton.setVisibility(0);
+                this.playButton.setVisibility(0);
             }
             this.videoTimelineView.setVisibility(0);
         }
@@ -3835,6 +4055,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (i == -1) {
             this.captionContainer.setVisibility(8);
             this.muteButton.setVisibility(8);
+            this.playButton.setVisibility(8);
             this.downloadButton.setVisibility(8);
             this.videoTimelineView.setVisibility(8);
             this.titleTextView.setVisibility(8);
@@ -3852,7 +4073,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    private void applyPaint(boolean z) {
+    private void applyPaint() {
         StoryEntry storyEntry;
         if (this.paintView == null || (storyEntry = this.outputEntry) == null) {
             return;
@@ -3869,25 +4090,52 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         PaintView paintView = this.paintView;
         StoryEntry storyEntry3 = this.outputEntry;
         paintView.getBitmap(storyEntry3.mediaEntities, storyEntry3.resultWidth, storyEntry3.resultHeight, false, false);
-        ArrayList<VideoEditedInfo.MediaEntity> arrayList2 = new ArrayList<>();
-        PaintView paintView2 = this.paintView;
         StoryEntry storyEntry4 = this.outputEntry;
-        Bitmap bitmap = paintView2.getBitmap(arrayList2, storyEntry4.resultWidth, storyEntry4.resultHeight, true, z && !storyEntry4.wouldBeVideo());
+        if (!storyEntry4.isVideo) {
+            storyEntry4.averageDuration = Utilities.clamp(this.paintView.getLcm(), 7500L, 5000L);
+        }
         List<TLRPC$InputDocument> masks = this.paintView.getMasks();
         this.outputEntry.stickers = masks != null ? new ArrayList(masks) : null;
-        Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.PNG;
+        this.outputEntry.mediaEntities = new ArrayList<>();
+        PaintView paintView2 = this.paintView;
         StoryEntry storyEntry5 = this.outputEntry;
-        TLRPC$PhotoSize scaleAndSaveImage = ImageLoader.scaleAndSaveImage(bitmap, compressFormat, storyEntry5.resultWidth, storyEntry5.resultHeight, 87, false, (int) FileLoader.MEDIA_DIR_VIDEO_PUBLIC, (int) FileLoader.MEDIA_DIR_VIDEO_PUBLIC);
+        Bitmap bitmap = paintView2.getBitmap(storyEntry5.mediaEntities, storyEntry5.resultWidth, storyEntry5.resultHeight, true, false);
+        if (this.outputEntry.mediaEntities.isEmpty()) {
+            this.outputEntry.mediaEntities = null;
+        }
+        try {
+            File file = this.outputEntry.paintFile;
+            if (file != null) {
+                file.delete();
+            }
+        } catch (Exception unused) {
+        }
+        try {
+            File file2 = this.outputEntry.paintEntitiesFile;
+            if (file2 != null) {
+                file2.delete();
+            }
+        } catch (Exception unused2) {
+        }
         StoryEntry storyEntry6 = this.outputEntry;
-        if (arrayList2.isEmpty()) {
-            arrayList2 = null;
-        }
-        storyEntry6.mediaEntities = arrayList2;
+        FileLoader fileLoader = FileLoader.getInstance(this.currentAccount);
+        Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.PNG;
         StoryEntry storyEntry7 = this.outputEntry;
-        if (!storyEntry7.isVideo) {
-            storyEntry7.averageDuration = Utilities.clamp(this.paintView.getLcm(), 7500L, 5000L);
+        storyEntry6.paintFile = fileLoader.getPathToAttach(ImageLoader.scaleAndSaveImage(bitmap, compressFormat, storyEntry7.resultWidth, storyEntry7.resultHeight, 87, false, (int) FileLoader.MEDIA_DIR_VIDEO_PUBLIC, (int) FileLoader.MEDIA_DIR_VIDEO_PUBLIC), true);
+        bitmap.recycle();
+        if (this.outputEntry.wouldBeVideo()) {
+            return;
         }
-        this.outputEntry.paintFile = FileLoader.getInstance(this.currentAccount).getPathToAttach(scaleAndSaveImage, true);
+        PaintView paintView3 = this.paintView;
+        ArrayList<VideoEditedInfo.MediaEntity> arrayList2 = new ArrayList<>();
+        StoryEntry storyEntry8 = this.outputEntry;
+        Bitmap bitmap2 = paintView3.getBitmap(arrayList2, storyEntry8.resultWidth, storyEntry8.resultHeight, false, true);
+        StoryEntry storyEntry9 = this.outputEntry;
+        FileLoader fileLoader2 = FileLoader.getInstance(this.currentAccount);
+        Bitmap.CompressFormat compressFormat2 = Bitmap.CompressFormat.PNG;
+        StoryEntry storyEntry10 = this.outputEntry;
+        storyEntry9.paintEntitiesFile = fileLoader2.getPathToAttach(ImageLoader.scaleAndSaveImage(bitmap2, compressFormat2, storyEntry10.resultWidth, storyEntry10.resultHeight, 87, false, (int) FileLoader.MEDIA_DIR_VIDEO_PUBLIC, (int) FileLoader.MEDIA_DIR_VIDEO_PUBLIC), true);
+        bitmap2.recycle();
     }
 
     private void applyFilter(Runnable runnable) {
@@ -3933,9 +4181,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 StoryEntry.DecodeBitmap decodeBitmap = new StoryEntry.DecodeBitmap() {
                     @Override
                     public final Bitmap decode(BitmapFactory.Options options) {
-                        Bitmap lambda$createFilterPhotoView$41;
-                        lambda$createFilterPhotoView$41 = StoryRecorder.this.lambda$createFilterPhotoView$41(options);
-                        return lambda$createFilterPhotoView$41;
+                        Bitmap lambda$createFilterPhotoView$43;
+                        lambda$createFilterPhotoView$43 = StoryRecorder.this.lambda$createFilterPhotoView$43(options);
+                        return lambda$createFilterPhotoView$43;
                     }
                 };
                 Point point = AndroidUtilities.displaySize;
@@ -3982,13 +4230,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.photoFilterView.getDoneTextView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StoryRecorder.this.lambda$createFilterPhotoView$42(view);
+                    StoryRecorder.this.lambda$createFilterPhotoView$44(view);
                 }
             });
             this.photoFilterView.getCancelTextView().setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    StoryRecorder.this.lambda$createFilterPhotoView$43(view);
+                    StoryRecorder.this.lambda$createFilterPhotoView$45(view);
                 }
             });
             this.photoFilterView.getToolsView().setVisibility(8);
@@ -3998,16 +4246,16 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public Bitmap lambda$createFilterPhotoView$41(BitmapFactory.Options options) {
+    public Bitmap lambda$createFilterPhotoView$43(BitmapFactory.Options options) {
         return BitmapFactory.decodeFile(this.outputEntry.file.getAbsolutePath(), options);
     }
 
-    public void lambda$createFilterPhotoView$42(View view) {
+    public void lambda$createFilterPhotoView$44(View view) {
         applyFilter(null);
         switchToEditMode(-1, true);
     }
 
-    public void lambda$createFilterPhotoView$43(View view) {
+    public void lambda$createFilterPhotoView$45(View view) {
         switchToEditMode(-1, true);
     }
 
@@ -4068,15 +4316,15 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (this.cameraView != null || getContext() == null) {
             return;
         }
-        AnonymousClass18 anonymousClass18 = new AnonymousClass18(getContext(), getCameraFace(), false);
-        this.cameraView = anonymousClass18;
-        anonymousClass18.isStory = true;
-        anonymousClass18.setThumbDrawable(getCameraThumb());
+        AnonymousClass19 anonymousClass19 = new AnonymousClass19(getContext(), getCameraFace(), false);
+        this.cameraView = anonymousClass19;
+        anonymousClass19.isStory = true;
+        anonymousClass19.setThumbDrawable(getCameraThumb());
         this.cameraView.initTexture();
         this.cameraView.setDelegate(new CameraView.CameraViewDelegate() {
             @Override
             public final void onCameraInit() {
-                StoryRecorder.this.lambda$createCameraView$44();
+                StoryRecorder.this.lambda$createCameraView$46();
             }
         });
         this.dualButton.setVisibility((this.cameraView.dualAvailable() && this.currentPage == 0) ? 0 : 8);
@@ -4091,8 +4339,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public class AnonymousClass18 extends DualCameraView {
-        AnonymousClass18(Context context, boolean z, boolean z2) {
+    public class AnonymousClass19 extends DualCameraView {
+        AnonymousClass19(Context context, boolean z, boolean z2) {
             super(context, z, z2);
             StoryRecorder.this = r1;
         }
@@ -4121,7 +4369,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.AnonymousClass18.this.lambda$onSavedDualCameraSuccess$0();
+                        StoryRecorder.AnonymousClass19.this.lambda$onSavedDualCameraSuccess$0();
                     }
                 }, 340L);
             }
@@ -4140,7 +4388,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$createCameraView$44() {
+    public void lambda$createCameraView$46() {
         String currentFlashMode = this.cameraView.getCameraSession().getCurrentFlashMode();
         if (TextUtils.equals(currentFlashMode, this.cameraView.getCameraSession().getNextFlashMode())) {
             currentFlashMode = null;
@@ -4174,7 +4422,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 Utilities.themeQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.this.lambda$saveLastCameraBitmap$45(bitmap, runnable);
+                        StoryRecorder.this.lambda$saveLastCameraBitmap$47(bitmap, runnable);
                     }
                 });
             } catch (Throwable unused) {
@@ -4182,7 +4430,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$saveLastCameraBitmap$45(Bitmap bitmap, Runnable runnable) {
+    public void lambda$saveLastCameraBitmap$47(Bitmap bitmap, Runnable runnable) {
         if (bitmap != null) {
             try {
                 Bitmap createBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), this.cameraView.getMatrix(), true);
@@ -4213,7 +4461,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             builder.setNeutralButton(LocaleController.getString(storyEntry.isDraft ? "StoryKeepDraft" : "StorySaveDraft"), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    StoryRecorder.this.lambda$showDismissEntry$46(dialogInterface, i);
+                    StoryRecorder.this.lambda$showDismissEntry$48(dialogInterface, i);
                 }
             });
         }
@@ -4221,7 +4469,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         builder.setPositiveButton((storyEntry2 == null || !storyEntry2.isDraft) ? LocaleController.getString("Discard", R.string.Discard) : LocaleController.getString("StoryDeleteDraft"), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                StoryRecorder.this.lambda$showDismissEntry$47(dialogInterface, i);
+                StoryRecorder.this.lambda$showDismissEntry$49(dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -4235,14 +4483,14 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$showDismissEntry$46(DialogInterface dialogInterface, int i) {
+    public void lambda$showDismissEntry$48(DialogInterface dialogInterface, int i) {
         StoryEntry storyEntry = this.outputEntry;
         if (storyEntry == null) {
             return;
         }
         this.showSavedDraftHint = !storyEntry.isDraft;
         applyFilter(null);
-        applyPaint(false);
+        applyPaint();
         destroyPhotoFilterView();
         StoryEntry storyEntry2 = this.outputEntry;
         storyEntry2.destroy(true);
@@ -4258,7 +4506,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         navigateTo(0, true);
     }
 
-    public void lambda$showDismissEntry$47(DialogInterface dialogInterface, int i) {
+    public void lambda$showDismissEntry$49(DialogInterface dialogInterface, int i) {
         StoryEntry storyEntry = this.outputEntry;
         if (storyEntry != null && storyEntry.isDraft) {
             MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().delete(this.outputEntry);
@@ -4273,7 +4521,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 saveLastCameraBitmap(new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.this.lambda$destroyCameraView$48();
+                        StoryRecorder.this.lambda$destroyCameraView$50();
                     }
                 });
                 return;
@@ -4281,7 +4529,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             saveLastCameraBitmap(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryRecorder.this.lambda$destroyCameraView$49();
+                    StoryRecorder.this.lambda$destroyCameraView$51();
                 }
             });
             this.cameraView.destroy(true, null);
@@ -4290,7 +4538,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$destroyCameraView$48() {
+    public void lambda$destroyCameraView$50() {
         this.cameraViewThumb.setImageDrawable(getCameraThumb());
         DualCameraView dualCameraView = this.cameraView;
         if (dualCameraView != null) {
@@ -4300,7 +4548,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
     }
 
-    public void lambda$destroyCameraView$49() {
+    public void lambda$destroyCameraView$51() {
         this.cameraViewThumb.setImageDrawable(getCameraThumb());
     }
 
@@ -4321,7 +4569,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                         new AlertDialog.Builder(getContext()).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString("PermissionNoCameraWithHint", R.string.PermissionNoCameraWithHint))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                             @Override
                             public final void onClick(DialogInterface dialogInterface, int i) {
-                                StoryRecorder.this.lambda$requestCameraPermission$50(dialogInterface, i);
+                                StoryRecorder.this.lambda$requestCameraPermission$52(dialogInterface, i);
                             }
                         }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
                         return;
@@ -4337,12 +4585,12 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             if (CameraController.getInstance().isCameraInitied()) {
                 createCameraView();
             } else {
-                CameraController.getInstance().initCamera(new StoryRecorder$$ExternalSyntheticLambda26(this));
+                CameraController.getInstance().initCamera(new StoryRecorder$$ExternalSyntheticLambda29(this));
             }
         }
     }
 
-    public void lambda$requestCameraPermission$50(DialogInterface dialogInterface, int i) {
+    public void lambda$requestCameraPermission$52(DialogInterface dialogInterface, int i) {
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -4391,7 +4639,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 this.whenOpenDone = new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.this.lambda$onResumeInternal$51();
+                        StoryRecorder.this.lambda$onResumeInternal$53();
                     }
                 };
             } else {
@@ -4421,7 +4669,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().load();
     }
 
-    public void lambda$onResumeInternal$51() {
+    public void lambda$onResumeInternal$53() {
         requestCameraPermission(false);
     }
 
@@ -4460,26 +4708,26 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 if (CameraController.getInstance().isCameraInitied()) {
                     createCameraView();
                 } else {
-                    CameraController.getInstance().initCamera(new StoryRecorder$$ExternalSyntheticLambda26(this));
+                    CameraController.getInstance().initCamera(new StoryRecorder$$ExternalSyntheticLambda29(this));
                 }
             }
         } else if (i == 114) {
             if (z) {
                 MediaController.loadGalleryPhotosAlbums(0);
-                lambda$animateGalleryListView$34(true);
+                lambda$animateGalleryListView$35(true);
             }
         } else if (i != 112 || z) {
         } else {
             new AlertDialog.Builder(getContext()).setTopAnimation(R.raw.permission_request_camera, 72, false, Theme.getColor(Theme.key_dialogTopBackground)).setMessage(AndroidUtilities.replaceTags(LocaleController.getString("PermissionNoCameraMicVideo", R.string.PermissionNoCameraMicVideo))).setPositiveButton(LocaleController.getString("PermissionOpenSettings", R.string.PermissionOpenSettings), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
-                    StoryRecorder.this.lambda$onRequestPermissionsResultInternal$52(dialogInterface, i2);
+                    StoryRecorder.this.lambda$onRequestPermissionsResultInternal$54(dialogInterface, i2);
                 }
             }).setNegativeButton(LocaleController.getString("ContactsPermissionAlertNotNow", R.string.ContactsPermissionAlertNotNow), null).create().show();
         }
     }
 
-    public void lambda$onRequestPermissionsResultInternal$52(DialogInterface dialogInterface, int i) {
+    public void lambda$onRequestPermissionsResultInternal$54(DialogInterface dialogInterface, int i) {
         try {
             Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
             intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
@@ -4499,11 +4747,14 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        RecordControl recordControl;
+        StoriesController.StoryLimit checkStoryLimit;
+        boolean z = false;
+        z = false;
+        z = false;
         if (i == NotificationCenter.albumsDidLoad) {
-            RecordControl recordControl2 = this.recordControl;
-            if (recordControl2 != null) {
-                recordControl2.updateGalleryImage();
+            RecordControl recordControl = this.recordControl;
+            if (recordControl != null) {
+                recordControl.updateGalleryImage();
             }
             if (this.lastGallerySelectedAlbum == null || MediaController.allMediaAlbums == null) {
                 return;
@@ -4517,19 +4768,83 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     return;
                 }
             }
-        } else if (i == NotificationCenter.storiesDraftsUpdated && (recordControl = this.recordControl) != null && !this.showSavedDraftHint) {
-            recordControl.updateGalleryImage();
+        } else if (i == NotificationCenter.storiesDraftsUpdated) {
+            RecordControl recordControl2 = this.recordControl;
+            if (recordControl2 == null || this.showSavedDraftHint) {
+                return;
+            }
+            recordControl2.updateGalleryImage();
+        } else if (i == NotificationCenter.storiesLimitUpdate) {
+            int i5 = this.currentPage;
+            if (i5 == 1) {
+                PreviewButtons previewButtons = this.previewButtons;
+                if (!this.videoError && !this.captionEdit.isCaptionOverLimit() && !MessagesController.getInstance(this.currentAccount).getStoriesController().hasStoryLimit()) {
+                    z = true;
+                }
+                previewButtons.setShareEnabled(z);
+            } else if (i5 == 0 && (checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit()) != null && checkStoryLimit.active(this.currentAccount)) {
+                showLimitReachedSheet(checkStoryLimit);
+            }
         }
     }
 
     public void addNotificationObservers() {
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.albumsDidLoad);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesDraftsUpdated);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.storiesLimitUpdate);
     }
 
     public void removeNotificationObservers() {
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.albumsDidLoad);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesDraftsUpdated);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesLimitUpdate);
+    }
+
+    private void showLimitReachedSheet(StoriesController.StoryLimit storyLimit) {
+        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(new BaseFragment() {
+            @Override
+            public boolean isLightStatusBar() {
+                return false;
+            }
+
+            {
+                StoryRecorder.this = this;
+            }
+
+            @Override
+            public Activity getParentActivity() {
+                return StoryRecorder.this.activity;
+            }
+
+            @Override
+            public Theme.ResourcesProvider getResourceProvider() {
+                return new WrappedResourceProvider(this, StoryRecorder.this.resourcesProvider) {
+                    @Override
+                    public void appendColors() {
+                        this.sparseIntArray.append(Theme.key_dialogBackground, -14737633);
+                        this.sparseIntArray.append(Theme.key_windowBackgroundGray, -13421773);
+                    }
+                };
+            }
+
+            @Override
+            public boolean presentFragment(BaseFragment baseFragment) {
+                StoryRecorder.this.openPremium();
+                return false;
+            }
+        }, this.activity, storyLimit.getLimitReachedType(), this.currentAccount);
+        limitReachedBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public final void onDismiss(DialogInterface dialogInterface) {
+                StoryRecorder.this.lambda$showLimitReachedSheet$55(dialogInterface);
+            }
+        });
+        this.previewView.updatePauseReason(7, true);
+        limitReachedBottomSheet.show();
+    }
+
+    public void lambda$showLimitReachedSheet$55(DialogInterface dialogInterface) {
+        this.previewView.updatePauseReason(7, true);
     }
 
     public void checkBackgroundVisibility() {
@@ -4544,21 +4859,21 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.isBackgroundVisible = z;
     }
 
-    public void showPremiumPeriodBulletin(int i) {
-        BulletinFactory.of(this.windowView, this.resourcesProvider).createSimpleBulletin(R.raw.fire_on, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", i / 3600, new Object[0]), new Runnable() {
-            @Override
-            public final void run() {
-                StoryRecorder.this.lambda$showPremiumPeriodBulletin$54();
-            }
-        })).show(true);
-    }
-
-    public void lambda$showPremiumPeriodBulletin$54() {
+    public void openPremium() {
         PreviewView previewView = this.previewView;
         if (previewView != null) {
             previewView.updatePauseReason(4, true);
         }
+        CaptionContainerView captionContainerView = this.captionEdit;
+        if (captionContainerView != null) {
+            captionContainerView.hidePeriodPopup();
+        }
         PremiumFeatureBottomSheet premiumFeatureBottomSheet = new PremiumFeatureBottomSheet(new BaseFragment() {
+            @Override
+            public boolean isLightStatusBar() {
+                return false;
+            }
+
             {
                 StoryRecorder.this = this;
                 this.currentAccount = this.currentAccount;
@@ -4574,21 +4889,90 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             public Activity getParentActivity() {
                 return StoryRecorder.this.activity;
             }
-        }, 0, false);
+
+            @Override
+            public Theme.ResourcesProvider getResourceProvider() {
+                return new WrappedResourceProvider(this, StoryRecorder.this.resourcesProvider) {
+                    @Override
+                    public void appendColors() {
+                        this.sparseIntArray.append(Theme.key_dialogBackground, -14803426);
+                        this.sparseIntArray.append(Theme.key_windowBackgroundGray, -16777216);
+                    }
+                };
+            }
+        }, 14, false);
         premiumFeatureBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                StoryRecorder.this.lambda$showPremiumPeriodBulletin$53(dialogInterface);
+                StoryRecorder.this.lambda$openPremium$56(dialogInterface);
             }
         });
         premiumFeatureBottomSheet.show();
     }
 
-    public void lambda$showPremiumPeriodBulletin$53(DialogInterface dialogInterface) {
+    public void lambda$openPremium$56(DialogInterface dialogInterface) {
         PreviewView previewView = this.previewView;
         if (previewView != null) {
             previewView.updatePauseReason(4, false);
         }
+    }
+
+    private CharSequence premiumText(String str) {
+        return AndroidUtilities.replaceSingleTag(str, Theme.key_chat_messageLinkIn, 0, new Runnable() {
+            @Override
+            public final void run() {
+                StoryRecorder.this.openPremium();
+            }
+        }, this.resourcesProvider);
+    }
+
+    public void showPremiumPeriodBulletin(int i) {
+        int i2 = i / 3600;
+        Bulletin.BulletinWindow.BulletinWindowLayout make = Bulletin.BulletinWindow.make(this.activity, new Bulletin.Delegate(this) {
+            @Override
+            public boolean allowLayoutChanges() {
+                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean clipWithGradient(int i3) {
+                return true;
+            }
+
+            @Override
+            public int getBottomOffset(int i3) {
+                return Bulletin.Delegate.CC.$default$getBottomOffset(this, i3);
+            }
+
+            @Override
+            public int getTopOffset(int i3) {
+                return 0;
+            }
+
+            @Override
+            public void onBottomOffsetChange(float f) {
+                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+            }
+
+            @Override
+            public void onHide(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+            }
+
+            @Override
+            public void onShow(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+            }
+        });
+        WindowManager.LayoutParams layout = make.getLayout();
+        if (layout != null) {
+            layout.height = -2;
+            layout.width = this.containerView.getWidth();
+            layout.y = (int) (this.containerView.getY() + AndroidUtilities.dp(56.0f));
+            make.updateLayout();
+        }
+        make.setTouchable(true);
+        BulletinFactory.of(make, this.resourcesProvider).createSimpleBulletin(R.raw.fire_on, premiumText(LocaleController.formatPluralString("StoryPeriodPremium", i2, new Object[0])), 3).show(true);
     }
 
     public void setIconMuted(boolean z, boolean z2) {

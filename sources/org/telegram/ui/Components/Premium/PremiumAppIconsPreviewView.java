@@ -22,12 +22,14 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
     private AdaptiveIconImageView bottomRightIcon;
     private List<LauncherIconController.LauncherIcon> icons;
     boolean isEmpty;
+    private final Theme.ResourcesProvider resourcesProvider;
     private AdaptiveIconImageView topIcon;
 
-    public PremiumAppIconsPreviewView(Context context) {
+    public PremiumAppIconsPreviewView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         LauncherIconController.LauncherIcon[] values;
         this.icons = new ArrayList();
+        this.resourcesProvider = resourcesProvider;
         for (LauncherIconController.LauncherIcon launcherIcon : LauncherIconController.LauncherIcon.values()) {
             if (launcherIcon.premium) {
                 this.icons.add(launcherIcon);
@@ -131,8 +133,10 @@ public class PremiumAppIconsPreviewView extends FrameLayout implements PagerHead
             if (i == 0) {
                 drawable.type = 1002;
             }
-            drawable.colorKey = Theme.key_premiumStartSmallStarsColor2;
-            drawable.init();
+            drawable.resourcesProvider = premiumAppIconsPreviewView.resourcesProvider;
+            StarParticlesView.Drawable drawable2 = this.drawable;
+            drawable2.colorKey = Theme.key_premiumStartSmallStarsColor2;
+            drawable2.init();
             this.paint.setColor(-1);
         }
 

@@ -78,7 +78,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -89,7 +88,6 @@ import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda251;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -165,7 +163,6 @@ public class Theme {
     public static boolean autoNightScheduleByLocation;
     public static int autoNightSunriseTime;
     public static int autoNightSunsetTime;
-    public static Drawable[] avatarDrawables;
     public static Paint avatar_backgroundPaint;
     private static BackgroundGradientDrawable.Disposable backgroundGradientDisposable;
     public static Drawable calllog_msgCallDownGreenDrawable;
@@ -182,7 +179,6 @@ public class Theme {
     public static TextPaint chat_actionTextPaint2;
     public static TextPaint chat_adminPaint;
     public static PorterDuffColorFilter chat_animatedEmojiTextColorFilter;
-    public static RLottieDrawable[] chat_attachButtonDrawables;
     public static Drawable chat_attachEmptyDrawable;
     public static TextPaint chat_audioPerformerPaint;
     public static TextPaint chat_audioTimePaint;
@@ -200,7 +196,6 @@ public class Theme {
     public static Paint chat_composeBackgroundPaint;
     public static Drawable chat_composeShadowDrawable;
     public static Drawable chat_composeShadowRoundDrawable;
-    public static Drawable[] chat_contactDrawable;
     public static TextPaint chat_contactNamePaint;
     public static TextPaint chat_contactPhonePaint;
     public static TextPaint chat_contextResult_descriptionTextPaint;
@@ -210,8 +205,6 @@ public class Theme {
     public static Paint chat_docBackPaint;
     public static TextPaint chat_docNamePaint;
     public static TextPaint chat_durationPaint;
-    public static Path[] chat_filePath;
-    public static Drawable[][] chat_fileStatesDrawable;
     public static Drawable chat_flameIcon;
     public static TextPaint chat_forwardNamePaint;
     public static TextPaint chat_gamePaint;
@@ -227,7 +220,6 @@ public class Theme {
     public static Paint chat_instantViewRectPaint;
     public static TextPaint chat_livePaint;
     public static TextPaint chat_locationAddressPaint;
-    public static Drawable[] chat_locationDrawable;
     public static TextPaint chat_locationTitlePaint;
     public static Drawable chat_lockIconDrawable;
     public static Paint chat_messageBackgroundSelectedPaint;
@@ -240,8 +232,6 @@ public class Theme {
     public static Drawable chat_msgErrorDrawable;
     public static Paint chat_msgErrorPaint;
     public static TextPaint chat_msgGameTextPaint;
-    public static Drawable[] chat_msgInCallDrawable;
-    public static Drawable[] chat_msgInCallSelectedDrawable;
     public static MessageDrawable chat_msgInDrawable;
     public static Drawable chat_msgInInstantDrawable;
     public static MessageDrawable chat_msgInMediaDrawable;
@@ -262,8 +252,6 @@ public class Theme {
     public static Drawable chat_msgMediaRepliesDrawable;
     public static Drawable chat_msgMediaViewsDrawable;
     public static Drawable chat_msgNoSoundDrawable;
-    public static Drawable[] chat_msgOutCallDrawable;
-    public static Drawable[] chat_msgOutCallSelectedDrawable;
     public static Drawable chat_msgOutCheckDrawable;
     public static Drawable chat_msgOutCheckReadDrawable;
     public static Drawable chat_msgOutCheckReadSelectedDrawable;
@@ -297,11 +285,7 @@ public class Theme {
     public static Drawable chat_muteIconDrawable;
     public static TextPaint chat_namePaint;
     public static Paint chat_outUrlPaint;
-    public static Drawable[] chat_pollCheckDrawable;
-    public static Drawable[] chat_pollCrossDrawable;
-    public static Drawable[] chat_pollHintDrawable;
     public static Paint chat_pollTimerPaint;
-    public static Drawable[] chat_psaHelpDrawable;
     public static Paint chat_radialProgress2Paint;
     public static Paint chat_radialProgressPaint;
     public static Paint chat_radialProgressPausedSeekbarPaint;
@@ -314,14 +298,12 @@ public class Theme {
     public static TextPaint chat_shipmentPaint;
     public static Paint chat_statusPaint;
     public static Paint chat_statusRecordPaint;
-    private static StatusDrawable[] chat_status_drawables;
     public static TextPaint chat_stickerCommentCountPaint;
     public static Paint chat_textSearchSelectionPaint;
     public static Paint chat_timeBackgroundPaint;
     public static TextPaint chat_timePaint;
     public static TextPaint chat_topicTextPaint;
     public static TextPaint chat_unlockExtendedMediaTextPaint;
-    public static Path[] chat_updatePath;
     public static Paint chat_urlPaint;
     public static Paint checkboxSquare_backgroundPaint;
     public static Paint checkboxSquare_checkPaint;
@@ -1134,14 +1116,11 @@ public class Theme {
     private static long lastDelayUpdateTime;
     private static long lastHolidayCheckTime;
     private static int lastLoadingCurrentThemeTime;
-    private static int[] lastLoadingThemesTime;
     private static long lastThemeSwitchTime;
     private static Sensor lightSensor;
     private static boolean lightSensorRegistered;
     public static Paint linkSelectionPaint;
     private static int loadingCurrentTheme;
-    private static boolean[] loadingRemoteThemes;
-    private static Paint maskPaint;
     public static Drawable moveUpDrawable;
     public static final int myMessagesBubblesEndIndex;
     public static final int myMessagesBubblesStartIndex;
@@ -1154,7 +1133,6 @@ public class Theme {
     public static TextPaint profile_aboutTextPaint;
     public static Drawable profile_verifiedCheckDrawable;
     public static Drawable profile_verifiedDrawable;
-    private static long[] remoteThemesHash;
     private static RoundVideoProgressShadow roundPlayDrawable;
     public static int selectedAutoNightType;
     private static SensorManager sensorManager;
@@ -1200,6 +1178,26 @@ public class Theme {
         }
     };
     public static int DEFALT_THEME_ACCENT_ID = 99;
+    private static Paint maskPaint = new Paint(1);
+    private static boolean[] loadingRemoteThemes = new boolean[4];
+    private static int[] lastLoadingThemesTime = new int[4];
+    private static long[] remoteThemesHash = new long[4];
+    public static Drawable[] avatarDrawables = new Drawable[14];
+    private static StatusDrawable[] chat_status_drawables = new StatusDrawable[6];
+    public static Drawable[] chat_msgInCallDrawable = new Drawable[2];
+    public static Drawable[] chat_msgInCallSelectedDrawable = new Drawable[2];
+    public static Drawable[] chat_msgOutCallDrawable = new Drawable[2];
+    public static Drawable[] chat_msgOutCallSelectedDrawable = new Drawable[2];
+    public static Drawable[] chat_pollCheckDrawable = new Drawable[2];
+    public static Drawable[] chat_pollCrossDrawable = new Drawable[2];
+    public static Drawable[] chat_pollHintDrawable = new Drawable[2];
+    public static Drawable[] chat_psaHelpDrawable = new Drawable[2];
+    public static RLottieDrawable[] chat_attachButtonDrawables = new RLottieDrawable[6];
+    public static Drawable[] chat_locationDrawable = new Drawable[2];
+    public static Drawable[] chat_contactDrawable = new Drawable[2];
+    public static Drawable[][] chat_fileStatesDrawable = (Drawable[][]) Array.newInstance(Drawable.class, 5, 2);
+    public static Path[] chat_filePath = new Path[2];
+    public static Path[] chat_updatePath = new Path[3];
 
     public static class BackgroundDrawableSettings {
         public Boolean isCustomTheme;
@@ -2204,7 +2202,7 @@ public class Theme {
         public String uploadingFile;
         public String uploadingThumb;
         public int backgroundRotation = 45;
-        public String patternSlug = BuildConfig.APP_CENTER_HASH;
+        public String patternSlug = "";
         private float[] tempHSV = new float[3];
 
         ThemeAccent() {
@@ -2688,15 +2686,15 @@ public class Theme {
         public long wallpaperId;
 
         public OverrideWallpaperInfo() {
-            this.fileName = BuildConfig.APP_CENTER_HASH;
-            this.originalFileName = BuildConfig.APP_CENTER_HASH;
-            this.slug = BuildConfig.APP_CENTER_HASH;
+            this.fileName = "";
+            this.originalFileName = "";
+            this.slug = "";
         }
 
         public OverrideWallpaperInfo(OverrideWallpaperInfo overrideWallpaperInfo, ThemeInfo themeInfo, ThemeAccent themeAccent) {
-            this.fileName = BuildConfig.APP_CENTER_HASH;
-            this.originalFileName = BuildConfig.APP_CENTER_HASH;
-            this.slug = BuildConfig.APP_CENTER_HASH;
+            this.fileName = "";
+            this.originalFileName = "";
+            this.slug = "";
             this.slug = overrideWallpaperInfo.slug;
             this.color = overrideWallpaperInfo.color;
             this.gradientColor1 = overrideWallpaperInfo.gradientColor1;
@@ -2716,11 +2714,11 @@ public class Theme {
                     this.fileName = generateWallpaperName;
                     AndroidUtilities.copyFile(file, new File(filesDirFixed, generateWallpaperName));
                 } catch (Exception e) {
-                    this.fileName = BuildConfig.APP_CENTER_HASH;
+                    this.fileName = "";
                     FileLog.e(e);
                 }
             } else {
-                this.fileName = BuildConfig.APP_CENTER_HASH;
+                this.fileName = "";
             }
             if (!TextUtils.isEmpty(overrideWallpaperInfo.originalFileName)) {
                 if (!overrideWallpaperInfo.originalFileName.equals(overrideWallpaperInfo.fileName)) {
@@ -2732,7 +2730,7 @@ public class Theme {
                         AndroidUtilities.copyFile(file2, new File(filesDirFixed2, generateWallpaperName2));
                         return;
                     } catch (Exception e2) {
-                        this.originalFileName = BuildConfig.APP_CENTER_HASH;
+                        this.originalFileName = "";
                         FileLog.e(e2);
                         return;
                     }
@@ -2740,7 +2738,7 @@ public class Theme {
                 this.originalFileName = this.fileName;
                 return;
             }
-            this.originalFileName = BuildConfig.APP_CENTER_HASH;
+            this.originalFileName = "";
         }
 
         public boolean isDefault() {
@@ -2788,7 +2786,7 @@ public class Theme {
                 jSONObject.put("pGrAngle", this.rotation);
                 String str = this.slug;
                 if (str == null) {
-                    str = BuildConfig.APP_CENTER_HASH;
+                    str = "";
                 }
                 jSONObject.put("wallSlug", str);
                 jSONObject.put("wBlur", this.isBlurred);
@@ -4317,7 +4315,7 @@ public class Theme {
             } else {
                 fArr[2] = Math.min(1.0f, Math.max(0.0f, fArr[2] + (Theme.isCurrentThemeDark() ? 0.1f : -0.1f)));
             }
-            return Color.HSVToColor(MessagesStorage.LAST_DB_VERSION, tempHSV);
+            return Color.HSVToColor(127, tempHSV);
         }
     }
 
@@ -5048,8 +5046,8 @@ public class Theme {
         while (i3 < 4) {
             StringBuilder sb = new StringBuilder();
             sb.append("2remoteThemesHash");
-            Object obj = BuildConfig.APP_CENTER_HASH;
-            sb.append(i3 != 0 ? Integer.valueOf(i3) : BuildConfig.APP_CENTER_HASH);
+            Object obj = "";
+            sb.append(i3 != 0 ? Integer.valueOf(i3) : "");
             edit.putLong(sb.toString(), remoteThemesHash[i3]);
             StringBuilder sb2 = new StringBuilder();
             sb2.append("lastLoadingThemesTime");
@@ -5084,7 +5082,7 @@ public class Theme {
     public static String getCurrentNightThemeName() {
         ThemeInfo themeInfo = currentNightTheme;
         if (themeInfo == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         String name = themeInfo.getName();
         return name.toLowerCase().endsWith(".attheme") ? name.substring(0, name.lastIndexOf(46)) : name;
@@ -6933,7 +6931,7 @@ public class Theme {
             colorMatrix.setSaturation(((MotionBackgroundDrawable) drawable).getIntensity() >= 0 ? 1.8f : 0.5f);
             chat_actionBackgroundPaint.setShader(serviceBitmapShader);
             chat_actionBackgroundPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-            chat_actionBackgroundPaint.setAlpha(MessagesStorage.LAST_DB_VERSION);
+            chat_actionBackgroundPaint.setAlpha(127);
             chat_actionBackgroundSelectedPaint.setShader(serviceBitmapShader);
             chat_actionBackgroundSelectedPaint.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
             chat_actionBackgroundSelectedPaint.setAlpha(200);

@@ -121,6 +121,11 @@ public class GoogleMapsProvider implements IMapsProvider {
         }
 
         @Override
+        public float getMinZoomLevel() {
+            return this.googleMap.getMinZoomLevel();
+        }
+
+        @Override
         @SuppressLint({"MissingPermission"})
         public void setMyLocationEnabled(boolean z) {
             this.googleMap.setMyLocationEnabled(z);
@@ -149,6 +154,18 @@ public class GoogleMapsProvider implements IMapsProvider {
                 i2 = 1;
             }
             onCameraMoveStartedListener.onCameraMoveStarted(i2);
+        }
+
+        @Override
+        public void setOnCameraIdleListener(final Runnable runnable) {
+            GoogleMap googleMap = this.googleMap;
+            Objects.requireNonNull(runnable);
+            googleMap.setOnCameraIdleListener(new GoogleMap.OnCameraIdleListener() {
+                @Override
+                public final void onCameraIdle() {
+                    runnable.run();
+                }
+            });
         }
 
         @Override

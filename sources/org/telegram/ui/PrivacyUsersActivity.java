@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.PhoneFormat.PhoneFormat;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.GenericProvider;
@@ -312,7 +311,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
             }
         });
         int i = this.currentType;
-        addIf.addIf(i != 1, i == 0 ? R.drawable.msg_user_remove : 0, (CharSequence) LocaleController.getString("Remove", R.string.Remove), true, new Runnable() {
+        addIf.addIf(i != 1, i == 0 ? R.drawable.msg_user_remove : 0, LocaleController.getString("Remove", R.string.Remove), true, new Runnable() {
             @Override
             public final void run() {
                 PrivacyUsersActivity.this.lambda$showUnblockAlert$6(l);
@@ -548,7 +547,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                     }
                 } else if (i == PrivacyUsersActivity.this.usersDetailRow) {
                     textInfoPrivacyCell.setFixedSize(12);
-                    textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
+                    textInfoPrivacyCell.setText("");
                     textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     return;
                 } else {

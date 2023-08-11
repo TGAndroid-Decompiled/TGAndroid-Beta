@@ -277,10 +277,11 @@ public class FilePathDatabase {
         final ArrayList arrayList2 = new ArrayList(arrayList);
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         long currentTimeMillis = System.currentTimeMillis();
-        postRunnable(new Runnable() {
+        final long[] jArr = new long[1];
+        postToFrontRunnable(new Runnable() {
             @Override
             public final void run() {
-                FilePathDatabase.this.lambda$checkMediaExistance$2(arrayList2, countDownLatch);
+                FilePathDatabase.this.lambda$checkMediaExistance$2(arrayList2, jArr, countDownLatch);
             }
         });
         try {
@@ -288,13 +289,14 @@ public class FilePathDatabase {
         } catch (InterruptedException e) {
             FileLog.e(e);
         }
-        FileLog.d("checkMediaExistance size=" + arrayList.size() + " time=" + (System.currentTimeMillis() - currentTimeMillis));
+        FileLog.d("checkMediaExistance size=" + arrayList.size() + " time=" + (System.currentTimeMillis() - currentTimeMillis) + " thread_time=" + jArr[0]);
         if (BuildVars.DEBUG_VERSION && Thread.currentThread() == Looper.getMainLooper().getThread()) {
             FileLog.e(new Exception("warning, not allowed in main thread"));
         }
     }
 
-    public void lambda$checkMediaExistance$2(ArrayList arrayList, CountDownLatch countDownLatch) {
+    public void lambda$checkMediaExistance$2(ArrayList arrayList, long[] jArr, CountDownLatch countDownLatch) {
+        long currentTimeMillis = System.currentTimeMillis();
         ensureDatabaseCreated();
         for (int i = 0; i < arrayList.size(); i++) {
             try {
@@ -305,6 +307,7 @@ public class FilePathDatabase {
                 }
             }
         }
+        jArr[0] = System.currentTimeMillis() - currentTimeMillis;
     }
 
     public void clear() {
@@ -450,7 +453,7 @@ public class FilePathDatabase {
     }
 
     private String shield(String str) {
-        return str.replace("'", BuildConfig.APP_CENTER_HASH).replace("\"", BuildConfig.APP_CENTER_HASH);
+        return str.replace("'", "").replace("\"", "");
     }
 
     public DispatchQueue getQueue() {
@@ -528,6 +531,11 @@ public class FilePathDatabase {
     private void postRunnable(Runnable runnable) {
         ensureQueueExist();
         this.dispatchQueue.postRunnable(runnable);
+    }
+
+    private void postToFrontRunnable(Runnable runnable) {
+        ensureQueueExist();
+        this.dispatchQueue.postToFrontRunnable(runnable);
     }
 
     private void ensureQueueExist() {

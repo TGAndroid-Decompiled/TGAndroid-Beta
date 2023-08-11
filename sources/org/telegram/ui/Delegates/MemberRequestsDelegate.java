@@ -70,6 +70,7 @@ import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.ProfileGalleryView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerEmptyView;
@@ -196,7 +197,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 str = "NoMemberRequests";
             }
             textView.setText(LocaleController.getString(str, i));
-            TextView textView2 = this.emptyView.subtitle;
+            LinkSpanDrawable.LinksTextView linksTextView = this.emptyView.subtitle;
             if (this.isChannel) {
                 i2 = R.string.NoSubscribeRequestsDescription;
                 str2 = "NoSubscribeRequestsDescription";
@@ -204,7 +205,7 @@ public class MemberRequestsDelegate implements MemberRequestCell.OnClickListener
                 i2 = R.string.NoMemberRequestsDescription;
                 str2 = "NoMemberRequestsDescription";
             }
-            textView2.setText(LocaleController.getString(str2, i2));
+            linksTextView.setText(LocaleController.getString(str2, i2));
             this.emptyView.setAnimateLayoutChange(true);
             this.emptyView.setVisibility(8);
         }

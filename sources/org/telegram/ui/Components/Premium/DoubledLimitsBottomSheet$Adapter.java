@@ -27,6 +27,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
     int lastViewRow;
     final ArrayList<DoubledLimitsBottomSheet$Limit> limits;
     int limitsStartRow;
+    private final Theme.ResourcesProvider resourcesProvider;
     int rowCount;
     private int totalGradientHeight;
 
@@ -35,11 +36,12 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
         return false;
     }
 
-    public DoubledLimitsBottomSheet$Adapter(int i, boolean z) {
+    public DoubledLimitsBottomSheet$Adapter(int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
         ArrayList<DoubledLimitsBottomSheet$Limit> arrayList = new ArrayList<>();
         this.limits = arrayList;
         this.drawHeader = z;
-        PremiumGradient.PremiumGradientTools premiumGradientTools = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, Theme.key_premiumGradient3, Theme.key_premiumGradient4);
+        this.resourcesProvider = resourcesProvider;
+        PremiumGradient.PremiumGradientTools premiumGradientTools = new PremiumGradient.PremiumGradientTools(Theme.key_premiumGradient1, Theme.key_premiumGradient2, Theme.key_premiumGradient3, Theme.key_premiumGradient4, -1, resourcesProvider);
         this.gradientTools = premiumGradientTools;
         premiumGradientTools.x1 = 0.0f;
         premiumGradientTools.y1 = 0.0f;
@@ -70,7 +72,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
         Context context = viewGroup.getContext();
         if (i != 1) {
             if (i != 2) {
-                DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context);
+                DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context, this.resourcesProvider);
                 doubledLimitsBottomSheet$LimitCell.previewView.setParentViewForGradien(this.containerView);
                 doubledLimitsBottomSheet$LimitCell.previewView.setStaticGradinet(this.gradientTools);
                 fixedHeightEmptyCell = doubledLimitsBottomSheet$LimitCell;
@@ -93,7 +95,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
             textView.setText(LocaleController.getString("DoubledLimits", R.string.DoubledLimits));
             textView.setGravity(17);
             textView.setTextSize(1, 20.0f);
-            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+            textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             linearLayout.addView(textView, LayoutHelper.createFrame(-2, -2, 16));
             frameLayout.addView(linearLayout, LayoutHelper.createFrame(-2, -2, 17));
@@ -129,7 +131,7 @@ public class DoubledLimitsBottomSheet$Adapter extends RecyclerListView.Selection
     }
 
     public void measureGradient(Context context, int i, int i2) {
-        DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context);
+        DoubledLimitsBottomSheet$LimitCell doubledLimitsBottomSheet$LimitCell = new DoubledLimitsBottomSheet$LimitCell(context, this.resourcesProvider);
         int i3 = 0;
         for (int i4 = 0; i4 < this.limits.size(); i4++) {
             doubledLimitsBottomSheet$LimitCell.setData(this.limits.get(i4));

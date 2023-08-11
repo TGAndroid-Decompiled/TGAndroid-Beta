@@ -4299,12 +4299,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     inputStream.close();
                 } catch (Exception e2) {
                     FileLog.e(e2);
-                    if (inputStream != null) {
-                        inputStream.close();
-                    }
                 }
             } catch (Exception e3) {
                 FileLog.e(e3);
+                if (inputStream != null) {
+                    inputStream.close();
+                }
             }
             return false;
         } catch (Throwable th) {
@@ -4361,7 +4361,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public static String getFileName(Uri uri) {
         if (uri == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         try {
             if (uri.getScheme().equals("content")) {
@@ -4381,7 +4381,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return r2;
         } catch (Exception e2) {
             FileLog.e(e2);
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
     }
 

@@ -240,6 +240,14 @@ public class StickerView extends EntityView {
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
+            int saveCount = canvas.getSaveCount();
+            float showAlpha = getShowAlpha();
+            if (showAlpha <= 0.0f) {
+                return;
+            }
+            if (showAlpha < 1.0f) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
+            }
             float dpf2 = AndroidUtilities.dpf2(5.66f);
             float dp = AndroidUtilities.dp(1.0f) + dpf2 + AndroidUtilities.dp(15.0f);
             float measuredWidth = (getMeasuredWidth() / 2) - dp;
@@ -252,6 +260,7 @@ public class StickerView extends EntityView {
             canvas.drawCircle(dp, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
             canvas.drawCircle(f, f2, dpf2, this.dotStrokePaint);
             canvas.drawCircle(f, f2, dpf2 - AndroidUtilities.dp(1.0f), this.dotPaint);
+            canvas.restoreToCount(saveCount);
         }
     }
 }

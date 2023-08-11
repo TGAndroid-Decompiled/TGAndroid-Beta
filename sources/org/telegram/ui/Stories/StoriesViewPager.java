@@ -15,6 +15,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Stories.PeerStoriesView;
+import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesViewPager;
 public class StoriesViewPager extends ViewPager {
     int currentAccount;
@@ -31,11 +32,13 @@ public class StoriesViewPager extends ViewPager {
     float progress;
     PeerStoriesView.SharedResources resources;
     int selectedPosition;
+    private int selectedPositionInPage;
     StoryViewer storyViewer;
     int toPosition;
     boolean touchEnabled;
     private boolean touchLocked;
     boolean updateDelegate;
+    private int updateVisibleItemPosition;
 
     public void onStateChanged() {
     }
@@ -51,6 +54,7 @@ public class StoriesViewPager extends ViewPager {
                 StoriesViewPager.this.touchLocked = false;
             }
         };
+        this.updateVisibleItemPosition = -1;
         this.resources = new PeerStoriesView.SharedResources(context);
         this.storyViewer = storyViewer;
         PagerAdapter pagerAdapter = new PagerAdapter() {
@@ -270,7 +274,28 @@ public class StoriesViewPager extends ViewPager {
                 this.delegate.onPeerSelected(currentPeerView.getCurrentPeer(), currentPeerView.getSelectedPosition());
             }
         }
+        checkPageVisibility();
         updateActiveStory();
+    }
+
+    public void checkPageVisibility() {
+        if (this.updateVisibleItemPosition >= 0) {
+            for (int i = 0; i < getChildCount(); i++) {
+                if (((Integer) getChildAt(i).getTag()).intValue() == getCurrentItem() && getCurrentItem() == this.updateVisibleItemPosition) {
+                    PageLayout pageLayout = (PageLayout) getChildAt(i);
+                    if (!pageLayout.isVisible) {
+                        this.updateVisibleItemPosition = -1;
+                        pageLayout.setVisible(true);
+                        if (this.days != null) {
+                            pageLayout.peerStoryView.setDay(pageLayout.dialogId, pageLayout.day);
+                        } else {
+                            pageLayout.peerStoryView.setDialogId(pageLayout.dialogId);
+                        }
+                    }
+                    pageLayout.peerStoryView.selectPosition(this.selectedPositionInPage);
+                }
+            }
+        }
     }
 
     public void setDelegate(PeerStoriesView.Delegate delegate) {
@@ -403,6 +428,33 @@ public class StoriesViewPager extends ViewPager {
                 invalidate();
                 this.peerStoryView.setIsVisible(z);
                 StoriesViewPager.this.checkAllowScreenshots();
+            }
+        }
+    }
+
+    public void setCurrentDate(long j, int i) {
+        for (int i2 = 0; i2 < this.days.size(); i2++) {
+            if (j == StoriesController.StoriesList.day(this.storyViewer.storiesList.findMessageObject(this.days.get(i2).get(0).intValue()))) {
+                int size = this.storyViewer.reversed ? (this.days.size() - 1) - i2 : i2;
+                int i3 = 0;
+                while (true) {
+                    if (i3 >= this.days.get(i2).size()) {
+                        i3 = 0;
+                        break;
+                    } else if (this.days.get(i2).get(i3).intValue() == i) {
+                        break;
+                    } else {
+                        i3++;
+                    }
+                }
+                if (getCurrentPeerView() == null || getCurrentItem() != size) {
+                    setCurrentItem(size, false);
+                    this.updateVisibleItemPosition = size;
+                    this.selectedPositionInPage = i3;
+                    return;
+                }
+                getCurrentPeerView().selectPosition(i3);
+                return;
             }
         }
     }

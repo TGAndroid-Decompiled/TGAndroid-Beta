@@ -18,6 +18,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public class EditTextOutline extends EditTextBoldCursor {
     public boolean betterFraming;
+    public RectF framePadding;
     private boolean isFrameDirty;
     private float lastFrameRoundRadius;
     private RectF[] lines;
@@ -203,67 +204,89 @@ public class EditTextOutline extends EditTextBoldCursor {
                         }
                     }
                 }
+                if (this.framePadding == null) {
+                    this.framePadding = new RectF();
+                }
+                this.framePadding.left = getMeasuredWidth();
+                this.framePadding.top = getMeasuredHeight();
+                RectF rectF = this.framePadding;
+                rectF.bottom = 0.0f;
+                rectF.right = 0.0f;
+                for (int i4 = 0; i4 < this.lines.length; i4++) {
+                    RectF rectF2 = this.framePadding;
+                    rectF2.left = Math.min(rectF2.left, getPaddingLeft() + this.lines[i4].left);
+                    RectF rectF3 = this.framePadding;
+                    rectF3.top = Math.min(rectF3.top, getPaddingTop() + this.lines[i4].top);
+                    RectF rectF4 = this.framePadding;
+                    rectF4.right = Math.max(rectF4.right, getPaddingLeft() + this.lines[i4].right);
+                    RectF rectF5 = this.framePadding;
+                    rectF5.bottom = Math.max(rectF5.bottom, getPaddingTop() + this.lines[i4].bottom);
+                }
+                RectF rectF6 = this.framePadding;
+                RectF rectF7 = this.framePadding;
+                rectF6.right = getMeasuredWidth() - rectF7.right;
+                rectF7.bottom = getMeasuredHeight() - this.framePadding.bottom;
             }
             this.path.rewind();
             float height = getHeight();
-            int i4 = 0;
+            int i5 = 0;
             while (true) {
                 RectF[] rectFArr5 = this.lines;
-                if (i4 >= rectFArr5.length) {
+                if (i5 >= rectFArr5.length) {
                     break;
                 }
-                if (rectFArr5[i4].width() != 0.0f) {
+                if (rectFArr5[i5].width() != 0.0f) {
                     RectF[] rectFArr6 = this.lines;
-                    height = rectFArr6[i4].bottom - rectFArr6[i4].top;
+                    height = rectFArr6[i5].bottom - rectFArr6[i5].top;
                 }
-                i4++;
+                i5++;
             }
             float min = Math.min(height / 3.0f, AndroidUtilities.dp(16.0f));
             float f2 = 1.5f * min;
-            int i5 = 1;
+            int i6 = 1;
             while (true) {
                 RectF[] rectFArr7 = this.lines;
-                if (i5 >= rectFArr7.length) {
+                if (i6 >= rectFArr7.length) {
                     break;
                 }
-                RectF rectF = rectFArr7[i5 - 1];
-                RectF rectF2 = rectFArr7[i5];
-                if (rectF.width() >= AndroidUtilities.dp(1.0f) && rectF2.width() >= AndroidUtilities.dp(1.0f)) {
-                    if (Math.abs(rectF.left - rectF2.left) < f2) {
-                        float min2 = Math.min(rectF2.left, rectF.left);
-                        rectF.left = min2;
-                        rectF2.left = min2;
+                RectF rectF8 = rectFArr7[i6 - 1];
+                RectF rectF9 = rectFArr7[i6];
+                if (rectF8.width() >= AndroidUtilities.dp(1.0f) && rectF9.width() >= AndroidUtilities.dp(1.0f)) {
+                    if (Math.abs(rectF8.left - rectF9.left) < f2) {
+                        float min2 = Math.min(rectF9.left, rectF8.left);
+                        rectF8.left = min2;
+                        rectF9.left = min2;
                         z = true;
                     } else {
                         z = false;
                     }
-                    if (Math.abs(rectF.right - rectF2.right) < f2) {
-                        float max = Math.max(rectF2.right, rectF.right);
-                        rectF.right = max;
-                        rectF2.right = max;
+                    if (Math.abs(rectF8.right - rectF9.right) < f2) {
+                        float max = Math.max(rectF9.right, rectF8.right);
+                        rectF8.right = max;
+                        rectF9.right = max;
                         z = true;
                     }
                     if (z) {
-                        for (int i6 = i5; i6 >= 1; i6--) {
+                        for (int i7 = i6; i7 >= 1; i7--) {
                             RectF[] rectFArr8 = this.lines;
-                            RectF rectF3 = rectFArr8[i6 - 1];
-                            RectF rectF4 = rectFArr8[i6];
-                            if (rectF3.width() >= AndroidUtilities.dp(1.0f) && rectF4.width() >= AndroidUtilities.dp(1.0f)) {
-                                if (Math.abs(rectF3.left - rectF4.left) < f2) {
-                                    float min3 = Math.min(rectF4.left, rectF3.left);
-                                    rectF3.left = min3;
-                                    rectF4.left = min3;
+                            RectF rectF10 = rectFArr8[i7 - 1];
+                            RectF rectF11 = rectFArr8[i7];
+                            if (rectF10.width() >= AndroidUtilities.dp(1.0f) && rectF11.width() >= AndroidUtilities.dp(1.0f)) {
+                                if (Math.abs(rectF10.left - rectF11.left) < f2) {
+                                    float min3 = Math.min(rectF11.left, rectF10.left);
+                                    rectF10.left = min3;
+                                    rectF11.left = min3;
                                 }
-                                if (Math.abs(rectF3.right - rectF4.right) < f2) {
-                                    float max2 = Math.max(rectF4.right, rectF3.right);
-                                    rectF3.right = max2;
-                                    rectF4.right = max2;
+                                if (Math.abs(rectF10.right - rectF11.right) < f2) {
+                                    float max2 = Math.max(rectF11.right, rectF10.right);
+                                    rectF10.right = max2;
+                                    rectF11.right = max2;
                                 }
                             }
                         }
                     }
                 }
-                i5++;
+                i6++;
             }
             while (true) {
                 RectF[] rectFArr9 = this.lines;
@@ -278,6 +301,8 @@ public class EditTextOutline extends EditTextBoldCursor {
             setFrameRoundRadius(min);
             canvas.drawPath(this.path, this.paint);
             canvas.restore();
+        } else {
+            this.framePadding = null;
         }
         super.onDraw(canvas);
     }

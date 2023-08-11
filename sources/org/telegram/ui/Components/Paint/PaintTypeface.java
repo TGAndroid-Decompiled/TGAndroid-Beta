@@ -21,6 +21,7 @@ public class PaintTypeface {
     public static final List<PaintTypeface> BUILT_IN_FONTS;
     public static final PaintTypeface COURIER_NEW_BOLD;
     public static final PaintTypeface MW_BOLD;
+    public static final PaintTypeface ROBOTO_CONDENSED;
     public static final PaintTypeface ROBOTO_ITALIC;
     public static final PaintTypeface ROBOTO_MEDIUM;
     public static final PaintTypeface ROBOTO_MONO;
@@ -62,7 +63,7 @@ public class PaintTypeface {
             }
         }));
         ROBOTO_SERIF = paintTypeface3;
-        PaintTypeface paintTypeface4 = new PaintTypeface("mono", "PhotoEditorTypefaceMono", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+        PaintTypeface paintTypeface4 = new PaintTypeface("condensed", "PhotoEditorTypefaceCondensed", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
                 Typeface lambda$static$3;
@@ -70,8 +71,8 @@ public class PaintTypeface {
                 return lambda$static$3;
             }
         }));
-        ROBOTO_MONO = paintTypeface4;
-        PaintTypeface paintTypeface5 = new PaintTypeface("mw_bold", "PhotoEditorTypefaceMerriweather", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+        ROBOTO_CONDENSED = paintTypeface4;
+        PaintTypeface paintTypeface5 = new PaintTypeface("mono", "PhotoEditorTypefaceMono", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
                 Typeface lambda$static$4;
@@ -79,8 +80,8 @@ public class PaintTypeface {
                 return lambda$static$4;
             }
         }));
-        MW_BOLD = paintTypeface5;
-        PaintTypeface paintTypeface6 = new PaintTypeface("courier_new_bold", "PhotoEditorTypefaceCourierNew", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+        ROBOTO_MONO = paintTypeface5;
+        PaintTypeface paintTypeface6 = new PaintTypeface("mw_bold", "PhotoEditorTypefaceMerriweather", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
                 Typeface lambda$static$5;
@@ -88,8 +89,17 @@ public class PaintTypeface {
                 return lambda$static$5;
             }
         }));
-        COURIER_NEW_BOLD = paintTypeface6;
-        BUILT_IN_FONTS = Arrays.asList(paintTypeface, paintTypeface2, paintTypeface3, paintTypeface4, paintTypeface5, paintTypeface6);
+        MW_BOLD = paintTypeface6;
+        PaintTypeface paintTypeface7 = new PaintTypeface("courier_new_bold", "PhotoEditorTypefaceCourierNew", new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
+            @Override
+            public final Typeface load() {
+                Typeface lambda$static$6;
+                lambda$static$6 = PaintTypeface.lambda$static$6();
+                return lambda$static$6;
+            }
+        }));
+        COURIER_NEW_BOLD = paintTypeface7;
+        BUILT_IN_FONTS = Arrays.asList(paintTypeface, paintTypeface2, paintTypeface3, paintTypeface4, paintTypeface5, paintTypeface6, paintTypeface7);
         preferable = Arrays.asList("Google Sans", "Dancing Script", "Carrois Gothic SC", "Cutive Mono", "Droid Sans Mono", "Coming Soon");
     }
 
@@ -106,14 +116,18 @@ public class PaintTypeface {
     }
 
     public static Typeface lambda$static$3() {
-        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MONO);
+        return AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf");
     }
 
     public static Typeface lambda$static$4() {
-        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_MERRIWEATHER_BOLD);
+        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MONO);
     }
 
     public static Typeface lambda$static$5() {
+        return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_MERRIWEATHER_BOLD);
+    }
+
+    public static Typeface lambda$static$6() {
         return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_COURIER_NEW_BOLD);
     }
 
@@ -153,14 +167,14 @@ public class PaintTypeface {
         this.lazyTypeface = new LazyTypeface(new LazyTypeface.LazyTypefaceLoader() {
             @Override
             public final Typeface load() {
-                Typeface lambda$new$6;
-                lambda$new$6 = PaintTypeface.lambda$new$6(font);
-                return lambda$new$6;
+                Typeface lambda$new$7;
+                lambda$new$7 = PaintTypeface.lambda$new$7(font);
+                return lambda$new$7;
             }
         });
     }
 
-    public static Typeface lambda$new$6(Font font) {
+    public static Typeface lambda$new$7(Font font) {
         return Typeface.createFromFile(font.getFile());
     }
 
@@ -189,12 +203,12 @@ public class PaintTypeface {
         Utilities.themeQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PaintTypeface.lambda$load$8();
+                PaintTypeface.lambda$load$9();
             }
         });
     }
 
-    public static void lambda$load$8() {
+    public static void lambda$load$9() {
         FontData parseFont;
         final ArrayList arrayList = new ArrayList(BUILT_IN_FONTS);
         if (Build.VERSION.SDK_INT >= 29) {
@@ -225,12 +239,12 @@ public class PaintTypeface {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PaintTypeface.lambda$load$7(arrayList);
+                PaintTypeface.lambda$load$8(arrayList);
             }
         });
     }
 
-    public static void lambda$load$7(ArrayList arrayList) {
+    public static void lambda$load$8(ArrayList arrayList) {
         typefaces = arrayList;
         loadingTypefaces = false;
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.customTypefacesLoaded, new Object[0]);

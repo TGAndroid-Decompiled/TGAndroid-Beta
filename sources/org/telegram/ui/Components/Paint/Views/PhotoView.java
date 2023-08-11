@@ -11,8 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Photo;
+import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -29,6 +33,7 @@ public class PhotoView extends EntityView {
     private FrameLayoutDrawer containerView;
     private final AnimatedFloat mirrorT;
     private boolean mirrored;
+    private TLObject object;
     private String path;
 
     public class FrameLayoutDrawer extends FrameLayout {
@@ -66,6 +71,36 @@ public class PhotoView extends EntityView {
         int round = Math.round((Math.min(point2.x, point2.y) * 0.8f) / AndroidUtilities.density);
         ImageLocation forPath = ImageLocation.getForPath(str);
         imageReceiver.setImage(forPath, round + "_" + round, null, null, null, 1);
+        updatePosition();
+    }
+
+    public PhotoView(Context context, Point point, float f, float f2, Size size, TLObject tLObject) {
+        super(context, point);
+        this.anchor = -1;
+        this.mirrored = false;
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.centerImage = imageReceiver;
+        setRotation(f);
+        setScale(f2);
+        this.object = tLObject;
+        this.baseSize = size;
+        FrameLayoutDrawer frameLayoutDrawer = new FrameLayoutDrawer(context);
+        this.containerView = frameLayoutDrawer;
+        addView(frameLayoutDrawer, LayoutHelper.createFrame(-1, -1.0f));
+        this.mirrorT = new AnimatedFloat(this.containerView, 0L, 500L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        imageReceiver.setAspectFit(true);
+        imageReceiver.setInvalidateAll(true);
+        imageReceiver.setParentView(this.containerView);
+        imageReceiver.setRoundRadius(AndroidUtilities.dp(12.0f));
+        android.graphics.Point point2 = AndroidUtilities.displaySize;
+        int round = Math.round((Math.min(point2.x, point2.y) * 0.8f) / AndroidUtilities.density);
+        TLObject tLObject2 = this.object;
+        if (tLObject2 instanceof TLRPC$Photo) {
+            TLRPC$Photo tLRPC$Photo = (TLRPC$Photo) tLObject2;
+            TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 1000);
+            TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo.sizes, 90);
+            imageReceiver.setImage(ImageLocation.getForPhoto(closestPhotoSizeWithSize, tLRPC$Photo), round + "_" + round, ImageLocation.getForPhoto(closestPhotoSizeWithSize2, tLRPC$Photo), round + "_" + round, (String) null, (Object) null, 1);
+        }
         updatePosition();
     }
 
@@ -160,7 +195,14 @@ public class PhotoView extends EntityView {
         return new PhotoViewSelectionView(this, getContext());
     }
 
-    public String getPath() {
+    public String getPath(int i) {
+        TLObject tLObject = this.object;
+        if (tLObject instanceof TLRPC$Photo) {
+            try {
+                return FileLoader.getInstance(i).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(((TLRPC$Photo) tLObject).sizes, 1000), true).getAbsolutePath();
+            } catch (Exception unused) {
+            }
+        }
         return this.path;
     }
 
@@ -201,6 +243,14 @@ public class PhotoView extends EntityView {
         @Override
         protected void onDraw(Canvas canvas) {
             super.onDraw(canvas);
+            int saveCount = canvas.getSaveCount();
+            float showAlpha = getShowAlpha();
+            if (showAlpha <= 0.0f) {
+                return;
+            }
+            if (showAlpha < 1.0f) {
+                canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (showAlpha * 255.0f), 31);
+            }
             float dpf2 = AndroidUtilities.dpf2(5.66f);
             float dp = AndroidUtilities.dp(2.0f) + dpf2 + AndroidUtilities.dp(15.0f);
             float f = dp * 2.0f;
@@ -244,7 +294,7 @@ public class PhotoView extends EntityView {
             canvas.drawLine(f2, f12, f2, f13, this.paint);
             canvas.drawCircle(f2, f11, (AndroidUtilities.dp(1.0f) + dpf2) - 1.0f, this.clearPaint);
             canvas.drawCircle(dp, f11, (dpf2 + AndroidUtilities.dp(1.0f)) - 1.0f, this.clearPaint);
-            canvas.restore();
+            canvas.restoreToCount(saveCount);
         }
     }
 }

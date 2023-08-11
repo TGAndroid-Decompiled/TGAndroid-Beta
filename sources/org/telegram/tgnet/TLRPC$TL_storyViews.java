@@ -1,28 +1,12 @@
 package org.telegram.tgnet;
-
-import java.util.ArrayList;
-public class TLRPC$TL_storyViews extends TLObject {
-    public static int constructor = -748199729;
-    public int flags;
-    public ArrayList<Long> recent_viewers = new ArrayList<>();
-    public int views_count;
-
-    public static TLRPC$TL_storyViews TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
-            if (z) {
-                throw new RuntimeException(String.format("can't parse magic %x in TL_storyViews", Integer.valueOf(i)));
-            }
-            return null;
-        }
-        TLRPC$TL_storyViews tLRPC$TL_storyViews = new TLRPC$TL_storyViews();
-        tLRPC$TL_storyViews.readParams(abstractSerializedData, z);
-        return tLRPC$TL_storyViews;
-    }
+public class TLRPC$TL_storyViews extends TLRPC$StoryViews {
+    public static int constructor = -968094825;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.flags = abstractSerializedData.readInt32(z);
         this.views_count = abstractSerializedData.readInt32(z);
+        this.reactions_count = abstractSerializedData.readInt32(z);
         if ((this.flags & 1) != 0) {
             int readInt32 = abstractSerializedData.readInt32(z);
             if (readInt32 != 481674261) {
@@ -43,6 +27,7 @@ public class TLRPC$TL_storyViews extends TLObject {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt32(this.views_count);
+        abstractSerializedData.writeInt32(this.reactions_count);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size = this.recent_viewers.size();

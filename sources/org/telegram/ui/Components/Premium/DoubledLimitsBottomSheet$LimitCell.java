@@ -12,7 +12,7 @@ class DoubledLimitsBottomSheet$LimitCell extends LinearLayout {
     TextView subtitle;
     TextView title;
 
-    public DoubledLimitsBottomSheet$LimitCell(Context context) {
+    public DoubledLimitsBottomSheet$LimitCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         setOrientation(1);
         setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
@@ -20,14 +20,14 @@ class DoubledLimitsBottomSheet$LimitCell extends LinearLayout {
         this.title = textView;
         textView.setTextSize(1, 15.0f);
         this.title.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.title.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        this.title.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         addView(this.title, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 16, 0, 16, 0));
         TextView textView2 = new TextView(context);
         this.subtitle = textView2;
-        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+        textView2.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
         this.subtitle.setTextSize(1, 14.0f);
         addView(this.subtitle, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 16, 1, 16, 0));
-        LimitPreviewView limitPreviewView = new LimitPreviewView(context, 0, 10, 20);
+        LimitPreviewView limitPreviewView = new LimitPreviewView(context, 0, 10, 20, resourcesProvider);
         this.previewView = limitPreviewView;
         addView(limitPreviewView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 8, 0, 21));
     }

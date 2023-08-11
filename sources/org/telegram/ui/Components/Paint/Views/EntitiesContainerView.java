@@ -9,22 +9,13 @@ import android.widget.FrameLayout;
 import org.telegram.ui.Components.Paint.Views.RotationGestureDetector;
 public class EntitiesContainerView extends FrameLayout implements ScaleGestureDetector.OnScaleGestureListener, RotationGestureDetector.OnRotationGestureListener {
     private EntitiesContainerViewDelegate delegate;
-    private ScaleGestureDetector gestureDetector;
     private boolean hasTransformed;
-    private float previousAngle;
     private float previousScale;
-    private RotationGestureDetector rotationGestureDetector;
 
     public interface EntitiesContainerViewDelegate {
         void onEntityDeselect();
 
         EntityView onSelectedEntityRequest();
-
-        boolean shouldReceiveTouches();
-    }
-
-    @Override
-    public void onRotationEnd(RotationGestureDetector rotationGestureDetector) {
     }
 
     @Override
@@ -34,8 +25,8 @@ public class EntitiesContainerView extends FrameLayout implements ScaleGestureDe
     public EntitiesContainerView(Context context, EntitiesContainerViewDelegate entitiesContainerViewDelegate) {
         super(context);
         this.previousScale = 1.0f;
-        this.gestureDetector = new ScaleGestureDetector(context, this);
-        this.rotationGestureDetector = new RotationGestureDetector(this);
+        new ScaleGestureDetector(context, this);
+        new RotationGestureDetector(this);
         this.delegate = entitiesContainerViewDelegate;
     }
 
@@ -47,11 +38,6 @@ public class EntitiesContainerView extends FrameLayout implements ScaleGestureDe
             }
         }
         return i;
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return motionEvent.getPointerCount() == 2 && this.delegate.shouldReceiveTouches();
     }
 
     @Override
@@ -71,8 +57,6 @@ public class EntitiesContainerView extends FrameLayout implements ScaleGestureDe
                 return false;
             }
         }
-        this.gestureDetector.onTouchEvent(motionEvent);
-        this.rotationGestureDetector.onTouchEvent(motionEvent);
         return true;
     }
 
@@ -89,20 +73,6 @@ public class EntitiesContainerView extends FrameLayout implements ScaleGestureDe
         this.previousScale = 1.0f;
         this.hasTransformed = true;
         return true;
-    }
-
-    @Override
-    public void onRotationBegin(RotationGestureDetector rotationGestureDetector) {
-        this.previousAngle = rotationGestureDetector.getStartAngle();
-        this.hasTransformed = true;
-    }
-
-    @Override
-    public void onRotation(RotationGestureDetector rotationGestureDetector) {
-        EntityView onSelectedEntityRequest = this.delegate.onSelectedEntityRequest();
-        float angle = rotationGestureDetector.getAngle();
-        onSelectedEntityRequest.rotate(onSelectedEntityRequest.getRotation() + (this.previousAngle - angle));
-        this.previousAngle = angle;
     }
 
     @Override

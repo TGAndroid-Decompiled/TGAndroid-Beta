@@ -1,7 +1,7 @@
 package org.telegram.ui.Stories;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -13,29 +13,37 @@ import androidx.core.view.NestedScrollingParent3;
 import androidx.core.view.NestedScrollingParentHelper;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$StoryItem;
+import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Stories.SelfStoriesPreviewView;
+import org.telegram.ui.Stories.SelfStoryViewsPage;
+import org.telegram.ui.Stories.SelfStoryViewsView;
 import org.telegram.ui.Stories.StoriesController;
 public class SelfStoryViewsView extends FrameLayout {
     public float bottomPadding;
     private int currentState;
     ArrayList<SelfStoryViewsPage> itemViews;
+    int keyboardHeight;
     boolean listenPager;
     public float maxSelfStoriesViewsOffset;
     private final PagerAdapter pagerAdapter;
+    float progressToKeyboard;
     float progressToOpen;
     Theme.ResourcesProvider resourcesProvider;
     SelfStoriesPreviewView selfStoriesPreviewView;
     float selfStoriesViewsOffset;
     private Drawable shadowDrawable;
+    SelfStoryViewsPage.FiltersState sharedFilterState;
     ArrayList<StoryItemInternal> storyItems;
     StoryViewer storyViewer;
     float toHeight;
@@ -43,10 +51,11 @@ public class SelfStoryViewsView extends FrameLayout {
     ViewPagerInner viewPager;
     ContainerView viewPagerContainer;
 
-    public SelfStoryViewsView(final Context context, final StoryViewer storyViewer) {
+    public SelfStoryViewsView(Context context, final StoryViewer storyViewer) {
         super(context);
         this.storyItems = new ArrayList<>();
         this.itemViews = new ArrayList<>();
+        this.sharedFilterState = new SelfStoryViewsPage.FiltersState();
         this.resourcesProvider = storyViewer.resourcesProvider;
         this.storyViewer = storyViewer;
         this.selfStoriesPreviewView = new SelfStoriesPreviewView(getContext()) {
@@ -80,7 +89,35 @@ public class SelfStoryViewsView extends FrameLayout {
         this.shadowDrawable = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogBackground, this.resourcesProvider), PorterDuff.Mode.MULTIPLY));
         this.viewPagerContainer = new ContainerView(context);
-        ViewPagerInner viewPagerInner = new ViewPagerInner(this, context);
+        ViewPagerInner viewPagerInner = new ViewPagerInner(context) {
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                if (checkTopOffset(motionEvent) && motionEvent.getAction() == 0) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            }
+
+            @Override
+            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                if (!checkTopOffset(motionEvent) && Math.abs(SelfStoryViewsView.this.getCurrentTopOffset() - SelfStoryViewsView.this.bottomPadding) <= AndroidUtilities.dp(1.0f)) {
+                    return super.onInterceptTouchEvent(motionEvent);
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if (!checkTopOffset(motionEvent) && Math.abs(SelfStoryViewsView.this.getCurrentTopOffset() - SelfStoryViewsView.this.bottomPadding) <= AndroidUtilities.dp(1.0f)) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            }
+
+            private boolean checkTopOffset(MotionEvent motionEvent) {
+                return motionEvent.getY() < SelfStoryViewsView.this.getCurrentTopOffset();
+            }
+        };
         this.viewPager = viewPagerInner;
         viewPagerInner.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -104,47 +141,113 @@ public class SelfStoryViewsView extends FrameLayout {
             }
         });
         ViewPagerInner viewPagerInner2 = this.viewPager;
-        PagerAdapter pagerAdapter = new PagerAdapter() {
-            @Override
-            public boolean isViewFromObject(View view, Object obj) {
-                return view == obj;
-            }
-
-            @Override
-            public int getCount() {
-                return SelfStoryViewsView.this.storyItems.size();
-            }
-
-            @Override
-            public Object instantiateItem(ViewGroup viewGroup, int i) {
-                SelfStoryViewsPage selfStoryViewsPage = new SelfStoryViewsPage(storyViewer, context) {
-                    @Override
-                    protected void dispatchDraw(Canvas canvas) {
-                        SelfStoryViewsView.this.shadowDrawable.setBounds(-AndroidUtilities.dp(6.0f), 0, getMeasuredWidth() + AndroidUtilities.dp(6.0f), getMeasuredHeight());
-                        SelfStoryViewsView.this.shadowDrawable.draw(canvas);
-                        super.dispatchDraw(canvas);
-                    }
-                };
-                selfStoryViewsPage.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
-                selfStoryViewsPage.setStoryItem(SelfStoryViewsView.this.storyItems.get(i));
-                selfStoryViewsPage.setListBottomPadding(SelfStoryViewsView.this.bottomPadding);
-                viewGroup.addView(selfStoryViewsPage);
-                SelfStoryViewsView.this.itemViews.add(selfStoryViewsPage);
-                return selfStoryViewsPage;
-            }
-
-            @Override
-            public void destroyItem(ViewGroup viewGroup, int i, Object obj) {
-                viewGroup.removeView((View) obj);
-                SelfStoryViewsView.this.itemViews.remove(obj);
-            }
-        };
-        this.pagerAdapter = pagerAdapter;
-        viewPagerInner2.setAdapter(pagerAdapter);
+        AnonymousClass4 anonymousClass4 = new AnonymousClass4(storyViewer, context);
+        this.pagerAdapter = anonymousClass4;
+        viewPagerInner2.setAdapter(anonymousClass4);
         this.viewPagerContainer.addView(this.viewPager, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
         addView(this.selfStoriesPreviewView, LayoutHelper.createFrame(-1, -1.0f));
         addView(this.viewPagerContainer);
         setVisibility(4);
+    }
+
+    public class AnonymousClass4 extends PagerAdapter {
+        final Context val$context;
+        final StoryViewer val$storyViewer;
+
+        @Override
+        public boolean isViewFromObject(View view, Object obj) {
+            return view == obj;
+        }
+
+        AnonymousClass4(StoryViewer storyViewer, Context context) {
+            this.val$storyViewer = storyViewer;
+            this.val$context = context;
+        }
+
+        @Override
+        public int getCount() {
+            return SelfStoryViewsView.this.storyItems.size();
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup viewGroup, int i) {
+            SelfStoryViewsPage selfStoryViewsPage = new SelfStoryViewsPage(this.val$storyViewer, this.val$context, SelfStoryViewsView.this.sharedFilterState, new Consumer() {
+                @Override
+                public final void accept(Object obj) {
+                    SelfStoryViewsView.AnonymousClass4.this.lambda$instantiateItem$0((SelfStoryViewsPage) obj);
+                }
+            }) {
+                @Override
+                public void onTopOffsetChanged(int i2) {
+                    super.onTopOffsetChanged(i2);
+                    if (((Integer) getTag()).intValue() == SelfStoryViewsView.this.viewPager.getCurrentItem()) {
+                        float f = i2;
+                        SelfStoryViewsView.this.selfStoriesPreviewView.setAlpha(Utilities.clamp(f / SelfStoryViewsView.this.bottomPadding, 1.0f, 0.0f));
+                        SelfStoryViewsView selfStoryViewsView = SelfStoryViewsView.this;
+                        selfStoryViewsView.selfStoriesPreviewView.setTranslationY((-(selfStoryViewsView.bottomPadding - f)) / 2.0f);
+                    }
+                }
+            };
+            selfStoryViewsPage.setTag(Integer.valueOf(i));
+            selfStoryViewsPage.setShadowDrawable(SelfStoryViewsView.this.shadowDrawable);
+            selfStoryViewsPage.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
+            selfStoryViewsPage.setStoryItem(SelfStoryViewsView.this.storyItems.get(i));
+            selfStoryViewsPage.setListBottomPadding(SelfStoryViewsView.this.bottomPadding);
+            viewGroup.addView(selfStoryViewsPage);
+            SelfStoryViewsView.this.itemViews.add(selfStoryViewsPage);
+            return selfStoryViewsPage;
+        }
+
+        public void lambda$instantiateItem$0(SelfStoryViewsPage selfStoryViewsPage) {
+            for (int i = 0; i < SelfStoryViewsView.this.itemViews.size(); i++) {
+                if (selfStoryViewsPage != SelfStoryViewsView.this.itemViews.get(i)) {
+                    SelfStoryViewsView.this.itemViews.get(i).updateSharedState();
+                }
+            }
+        }
+
+        @Override
+        public void destroyItem(ViewGroup viewGroup, int i, Object obj) {
+            viewGroup.removeView((View) obj);
+            SelfStoryViewsView.this.itemViews.remove(obj);
+        }
+    }
+
+    public float getCurrentTopOffset() {
+        float f = this.bottomPadding;
+        SelfStoryViewsPage currentPage = getCurrentPage();
+        return currentPage != null ? currentPage.getTopOffset() : f;
+    }
+
+    public void setKeyboardHeight(int i) {
+        SelfStoryViewsPage currentPage;
+        boolean z = this.keyboardHeight >= AndroidUtilities.dp(20.0f);
+        boolean z2 = i >= AndroidUtilities.dp(20.0f);
+        if (z2 != z) {
+            float[] fArr = new float[2];
+            fArr[0] = this.progressToKeyboard;
+            fArr[1] = z2 ? 1.0f : 0.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    SelfStoryViewsView.this.lambda$setKeyboardHeight$0(valueAnimator);
+                }
+            });
+            ofFloat.setInterpolator(AdjustPanLayoutHelper.keyboardInterpolator);
+            ofFloat.setDuration(250L);
+            ofFloat.start();
+        }
+        this.keyboardHeight = i;
+        if (i <= 0 || (currentPage = getCurrentPage()) == null) {
+            return;
+        }
+        currentPage.onKeyboardShown();
+    }
+
+    public void lambda$setKeyboardHeight$0(ValueAnimator valueAnimator) {
+        this.progressToKeyboard = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        updateTranslation();
     }
 
     @Override
@@ -154,7 +257,8 @@ public class SelfStoryViewsView extends FrameLayout {
         ((FrameLayout.LayoutParams) this.selfStoriesPreviewView.getLayoutParams()).topMargin = i3;
         this.toHeight = this.selfStoriesPreviewView.getFinalHeight();
         this.toY = AndroidUtilities.dp(20.0f) + i3;
-        float dp = i3 + AndroidUtilities.dp(20.0f) + this.toHeight + AndroidUtilities.dp(24.0f);
+        ((FrameLayout.LayoutParams) this.viewPagerContainer.getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight;
+        float dp = (((i3 + AndroidUtilities.dp(20.0f)) + this.toHeight) + AndroidUtilities.dp(24.0f)) - AndroidUtilities.statusBarHeight;
         this.bottomPadding = dp;
         this.maxSelfStoriesViewsOffset = size - dp;
         for (int i4 = 0; i4 < this.itemViews.size(); i4++) {
@@ -168,14 +272,18 @@ public class SelfStoryViewsView extends FrameLayout {
             return;
         }
         this.selfStoriesViewsOffset = f;
-        this.viewPagerContainer.setTranslationY(getMeasuredHeight() - f);
+        updateTranslation();
         float f2 = this.progressToOpen;
         float clamp = Utilities.clamp(f / this.maxSelfStoriesViewsOffset, 1.0f, 0.0f);
         this.progressToOpen = clamp;
         Utilities.clamp(clamp / 0.5f, 1.0f, 0.0f);
         PeerStoriesView currentPeerView = this.storyViewer.getCurrentPeerView();
         if (f2 == 1.0f && this.progressToOpen != 1.0f) {
-            if (currentPeerView != null) {
+            StoriesController.StoriesList storiesList = this.storyViewer.storiesList;
+            if (storiesList != null) {
+                MessageObject messageObject = storiesList.messageObjects.get(this.selfStoriesPreviewView.getClosestPosition());
+                this.storyViewer.storiesViewPager.setCurrentDate(StoriesController.StoriesList.day(messageObject), messageObject.storyItem.id);
+            } else if (currentPeerView != null) {
                 currentPeerView.selectPosition(this.selfStoriesPreviewView.getClosestPosition());
             }
             this.selfStoriesPreviewView.abortScroll();
@@ -196,6 +304,10 @@ public class SelfStoryViewsView extends FrameLayout {
         }
     }
 
+    private void updateTranslation() {
+        this.viewPagerContainer.setTranslationY(((-this.bottomPadding) + getMeasuredHeight()) - this.selfStoriesViewsOffset);
+    }
+
     public void setItems(ArrayList<TLRPC$StoryItem> arrayList, int i) {
         this.storyItems.clear();
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
@@ -212,8 +324,20 @@ public class SelfStoryViewsView extends FrameLayout {
         this.viewPager.setCurrentItem(i);
     }
 
-    public ImageReceiver getCrossfadeToImage() {
+    public SelfStoriesPreviewView.ImageHolder getCrossfadeToImage() {
         return this.selfStoriesPreviewView.getCenteredImageReciever();
+    }
+
+    public boolean onBackPressed() {
+        if (this.keyboardHeight > 0) {
+            AndroidUtilities.hideKeyboard(this);
+            return true;
+        }
+        SelfStoryViewsPage currentPage = getCurrentPage();
+        if (currentPage != null) {
+            return currentPage.onBackPressed();
+        }
+        return false;
     }
 
     public class ContainerView extends FrameLayout implements NestedScrollingParent3 {
@@ -223,14 +347,14 @@ public class SelfStoryViewsView extends FrameLayout {
         public void onNestedScroll(View view, int i, int i2, int i3, int i4, int i5) {
         }
 
-        @Override
-        public boolean onStartNestedScroll(View view, View view2, int i, int i2) {
-            return i == 2;
-        }
-
         public ContainerView(Context context) {
             super(context);
             this.nestedScrollingParentHelper = new NestedScrollingParentHelper(this);
+        }
+
+        @Override
+        public boolean onStartNestedScroll(View view, View view2, int i, int i2) {
+            return SelfStoryViewsView.this.keyboardHeight <= 0 && i == 2;
         }
 
         @Override
@@ -245,22 +369,24 @@ public class SelfStoryViewsView extends FrameLayout {
 
         @Override
         public void onNestedScroll(View view, int i, int i2, int i3, int i4, int i5, int[] iArr) {
-            if (i4 == 0 || i2 != 0) {
-                return;
-            }
             SelfStoryViewsView selfStoryViewsView = SelfStoryViewsView.this;
-            float f = selfStoryViewsView.storyViewer.selfStoriesViewsOffset;
-            float f2 = i4 + f;
-            if (f2 <= f) {
-                f = f2;
+            if (selfStoryViewsView.keyboardHeight <= 0 && i4 != 0 && i2 == 0) {
+                float f = selfStoryViewsView.storyViewer.selfStoriesViewsOffset;
+                float f2 = i4 + f;
+                if (f2 <= f) {
+                    f = f2;
+                }
+                selfStoryViewsView.setOffset(f);
+                SelfStoryViewsView.this.storyViewer.setSelfStoriesViewsOffset(f);
             }
-            selfStoryViewsView.setOffset(f);
-            SelfStoryViewsView.this.storyViewer.setSelfStoriesViewsOffset(f);
         }
 
         @Override
         public void onNestedPreScroll(View view, int i, int i2, int[] iArr, int i3) {
             SelfStoryViewsView selfStoryViewsView = SelfStoryViewsView.this;
+            if (selfStoryViewsView.keyboardHeight > 0) {
+                return;
+            }
             float f = selfStoryViewsView.storyViewer.selfStoriesViewsOffset;
             float f2 = selfStoryViewsView.maxSelfStoriesViewsOffset;
             if (f >= f2 || i2 <= 0) {
@@ -279,7 +405,7 @@ public class SelfStoryViewsView extends FrameLayout {
     public class ViewPagerInner extends ViewPager {
         boolean gesturesEnabled;
 
-        public ViewPagerInner(SelfStoryViewsView selfStoryViewsView, Context context) {
+        public ViewPagerInner(Context context) {
             super(context);
         }
 
@@ -288,11 +414,10 @@ public class SelfStoryViewsView extends FrameLayout {
             if (motionEvent.getAction() == 0) {
                 this.gesturesEnabled = true;
             }
-            if (this.gesturesEnabled) {
+            if (this.gesturesEnabled && SelfStoryViewsView.this.keyboardHeight <= 0) {
                 try {
                     return super.onInterceptTouchEvent(motionEvent);
                 } catch (Exception unused) {
-                    return false;
                 }
             }
             return false;
@@ -303,10 +428,10 @@ public class SelfStoryViewsView extends FrameLayout {
             if (motionEvent.getAction() == 0) {
                 this.gesturesEnabled = true;
             }
-            if (this.gesturesEnabled) {
-                return super.onTouchEvent(motionEvent);
+            if (!this.gesturesEnabled || SelfStoryViewsView.this.keyboardHeight > 0) {
+                return false;
             }
-            return false;
+            return super.onTouchEvent(motionEvent);
         }
     }
 
@@ -321,5 +446,14 @@ public class SelfStoryViewsView extends FrameLayout {
         public StoryItemInternal(SelfStoryViewsView selfStoryViewsView, StoriesController.UploadingStory uploadingStory) {
             this.uploadingStory = uploadingStory;
         }
+    }
+
+    public SelfStoryViewsPage getCurrentPage() {
+        for (int i = 0; i < this.itemViews.size(); i++) {
+            if (((Integer) this.itemViews.get(i).getTag()).intValue() == this.viewPager.getCurrentItem()) {
+                return this.itemViews.get(i);
+            }
+        }
+        return null;
     }
 }

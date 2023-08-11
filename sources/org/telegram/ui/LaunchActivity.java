@@ -52,6 +52,7 @@ import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.common.primitives.Longs;
 import j$.util.function.Consumer;
 import j$.wrappers.C$r8$wrapper$java$util$function$Consumer$WRP;
 import java.io.BufferedReader;
@@ -73,7 +74,6 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AutoDeleteMediaTask;
 import org.telegram.messenger.BackupAgent;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -407,6 +407,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.fillStatusBarHeight(this);
         this.actionBarLayout = INavigationLayout.CC.newLayout(this);
         FrameLayout frameLayout = new FrameLayout(this) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
@@ -427,6 +431,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.frameLayout.addView(this.drawerLayoutContainer, LayoutHelper.createFrame(-1, -1.0f));
         if (i2 >= 21) {
             View view = new View(this) {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 protected void onDraw(Canvas canvas) {
                     if (LaunchActivity.this.themeSwitchSunDrawable != null) {
@@ -452,7 +460,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             @Override
-            protected void onStop() {
+            public void onStop() {
                 super.onStop();
                 setVisibility(8);
             }
@@ -462,6 +470,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         setupActionBarLayout();
         this.sideMenuContainer = new FrameLayout(this);
         RecyclerListView recyclerListView = new RecyclerListView(this) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public boolean drawChild(Canvas canvas, View view2, long j) {
                 int i3;
@@ -533,6 +545,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int i4) {
+            }
+
+            {
+                LaunchActivity.this = this;
             }
 
             @Override
@@ -641,7 +657,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.requestPermissions);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.billingConfirmPurchaseError);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.currentUserPremiumStatusChanged);
-        LiteMode.addOnPowerSaverAppliedListener(new LaunchActivity$$ExternalSyntheticLambda91(this));
+        LiteMode.addOnPowerSaverAppliedListener(new LaunchActivity$$ExternalSyntheticLambda90(this));
         if (this.actionBarLayout.getFragmentStack().isEmpty() && ((iNavigationLayout = this.layersActionBarLayout) == null || iNavigationLayout.getFragmentStack().isEmpty())) {
             if (!UserConfig.getInstance(this.currentAccount).isClientActivated()) {
                 this.actionBarLayout.addFragmentToStack(getClientNotActivatedFragment());
@@ -762,15 +778,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             String str = Build.DISPLAY;
             String str2 = Build.USER;
-            String str3 = BuildConfig.APP_CENTER_HASH;
-            String lowerCase2 = str != null ? str.toLowerCase() : BuildConfig.APP_CENTER_HASH;
-            if (str2 != null) {
-                str3 = lowerCase2.toLowerCase();
-            }
+            String lowerCase2 = str != null ? str.toLowerCase() : "";
+            String lowerCase3 = str2 != null ? lowerCase2.toLowerCase() : "";
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("OS name " + lowerCase2 + " " + str3);
+                FileLog.d("OS name " + lowerCase2 + " " + lowerCase3);
             }
-            if ((lowerCase2.contains("flyme") || str3.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
+            if ((lowerCase2.contains("flyme") || lowerCase3.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
                 AndroidUtilities.incorrectDisplaySizeFix = true;
                 final View rootView = getWindow().getDecorView().getRootView();
                 ViewTreeObserver viewTreeObserver = rootView.getViewTreeObserver();
@@ -799,6 +812,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (i5 >= 31) {
             getWindow().getDecorView().addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void onViewAttachedToWindow(View view2) {
                     LaunchActivity.this.getWindowManager().addCrossWindowBlurEnabledListener(C$r8$wrapper$java$util$function$Consumer$WRP.convert(LaunchActivity.this.blurListener));
@@ -823,10 +840,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         AnonymousClass3(Context context) {
             super(context);
+            LaunchActivity.this = r1;
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             setDrawerPosition(getDrawerPosition());
             boolean z2 = i4 - i2 > i3 - i;
@@ -1012,6 +1030,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 return false;
             }
             DialogsActivity dialogsActivity = new DialogsActivity(null) {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void onTransitionAnimationEnd(boolean z, boolean z2) {
                     super.onTransitionAnimationEnd(z, z2);
@@ -1097,6 +1119,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 private boolean inLayout;
 
                 {
+                    LaunchActivity.this = this;
                     new Path();
                 }
 
@@ -1308,6 +1331,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         View view2 = view;
         SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(lastFragment, this, true, Integer.valueOf(i), 0, null) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void onSettings() {
                 DrawerLayoutContainer drawerLayoutContainer = LaunchActivity.this.drawerLayoutContainer;
@@ -1380,6 +1407,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         selectAnimatedEmojiDialog.setSaveState(2);
         selectAnimatedEmojiDialog.setScrimDrawable(swapAnimatedEmojiDrawable, view2);
         SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, -2, -2) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -1680,6 +1711,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private void showUpdateActivity(int i, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, boolean z) {
         if (this.blockingUpdateView == null) {
             BlockingUpdateView blockingUpdateView = new BlockingUpdateView(this) {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void setVisibility(int i2) {
                     super.setVisibility(i2);
@@ -1715,6 +1750,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public class AnonymousClass15 implements TermsOfServiceView.TermsOfServiceViewDelegate {
         AnonymousClass15() {
+            LaunchActivity.this = r1;
         }
 
         @Override
@@ -2026,6 +2062,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             bundle.putString("selectAlertStringGroup", LocaleController.getString("SendMessagesToGroupText", R.string.SendMessagesToGroupText));
         }
         DialogsActivity dialogsActivity = new DialogsActivity(bundle) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public boolean shouldShowNextButton(DialogsActivity dialogsActivity2, ArrayList<Long> arrayList2, CharSequence charSequence, boolean z2) {
                 if (LaunchActivity.this.exportingChatUri != null) {
@@ -2673,7 +2713,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 final CheckBoxCell checkBoxCell = new CheckBoxCell(this, 5, baseFragment.getResourceProvider());
                 checkBoxCell.setBackground(Theme.getSelectorDrawable(false));
                 checkBoxCell.setMultiline(true);
-                checkBoxCell.setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), BuildConfig.APP_CENTER_HASH, true, false);
+                checkBoxCell.setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), "", true, false);
                 checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
                 checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -2790,7 +2830,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             int i2 = R.string.AddBot;
             builder.setTitle(LocaleController.getString("AddBot", i2));
-            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? BuildConfig.APP_CENTER_HASH : chat.title)));
+            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? "" : chat.title)));
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
             builder.setPositiveButton(LocaleController.getString("AddBot", i2), new DialogInterface.OnClickListener() {
                 @Override
@@ -3040,6 +3080,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final Integer val$messageId;
 
         AnonymousClass18(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+            LaunchActivity.this = r1;
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -3640,6 +3681,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             private Paint paint = new Paint();
             private Matrix matrix = new Matrix();
 
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void draw(Canvas canvas) {
                 if (this.updateGradient != null) {
@@ -3734,7 +3779,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     } catch (Exception unused) {
                     }
                     if (tLRPC$TL_help_getAppUpdate.source == null) {
-                        tLRPC$TL_help_getAppUpdate.source = BuildConfig.APP_CENTER_HASH;
+                        tLRPC$TL_help_getAppUpdate.source = "";
                     }
                     final int i = this.currentAccount;
                     ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_help_getAppUpdate, new RequestDelegate() {
@@ -3829,7 +3874,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 edit.putBoolean("proxy_enabled", false);
                 edit.putBoolean("proxy_enabled_calls", false);
                 edit.commit();
-                ConnectionsManager.setProxySettings(false, BuildConfig.APP_CENTER_HASH, 1080, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
+                ConnectionsManager.setProxySettings(false, "", 1080, "", "", "");
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
                 this.proxyErrorDialog = null;
             }
@@ -4215,7 +4260,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.appUpdateAvailable);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.requestPermissions);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.billingConfirmPurchaseError);
-        LiteMode.removeOnPowerSaverAppliedListener(new LaunchActivity$$ExternalSyntheticLambda91(this));
+        LiteMode.removeOnPowerSaverAppliedListener(new LaunchActivity$$ExternalSyntheticLambda90(this));
     }
 
     public void onPowerSaver(boolean z) {
@@ -5029,7 +5074,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (UserConfig.getInstance(this.currentAccount).isClientActivated()) {
             try {
                 if (!this.loadingLocaleDialog && !ApplicationLoader.mainInterfacePaused) {
-                    String string = MessagesController.getGlobalMainSettings().getString("language_showed2", BuildConfig.APP_CENTER_HASH);
+                    String string = MessagesController.getGlobalMainSettings().getString("language_showed2", "");
                     final String str2 = MessagesController.getInstance(this.currentAccount).suggestedLangCode;
                     if (!z && string.equals(str2)) {
                         if (BuildVars.LOGS_ENABLED) {
@@ -5159,6 +5204,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (SharedConfig.passcodeHash.length() != 0) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
             Runnable runnable = new Runnable() {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void run() {
                     if (LaunchActivity.this.lockRunnable == this) {
@@ -5815,84 +5864,46 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return AndroidUtilities.getLightNavigationBar(getWindow());
     }
 
-    private void openStories(final long[] jArr, boolean z) {
+    private void openStories(long[] jArr, boolean z) {
         boolean z2;
-        final DialogsActivity dialogsActivity;
-        StoriesListPlaceProvider of;
+        final long[] jArr2 = jArr;
         int i = 0;
         while (true) {
-            if (i >= jArr.length) {
+            if (i >= jArr2.length) {
                 z2 = true;
                 break;
             }
-            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(jArr[i]));
+            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(jArr2[i]));
             if (user != null && !user.stories_hidden) {
                 z2 = false;
                 break;
             }
             i++;
         }
-        NotificationsController.getInstance(this.currentAccount).processIgnoreStories();
-        List<BaseFragment> fragmentStack = this.actionBarLayout.getFragmentStack();
-        int size = fragmentStack.size() - 1;
-        while (true) {
-            if (size < 0) {
-                dialogsActivity = null;
-                break;
-            }
-            BaseFragment baseFragment = fragmentStack.get(size);
-            if (baseFragment instanceof DialogsActivity) {
-                dialogsActivity = (DialogsActivity) baseFragment;
-                if ((!dialogsActivity.isArchive() || z2) && dialogsActivity.getType() == 0) {
-                    break;
-                }
-            }
-            baseFragment.removeSelfFromStack(true);
-            size--;
-        }
-        if (dialogsActivity != null) {
-            DrawerLayoutContainer drawerLayoutContainer = this.drawerLayoutContainer;
-            if (drawerLayoutContainer != null) {
-                drawerLayoutContainer.closeDrawer(true);
-            }
-            if (z2) {
-                MessagesController.getInstance(dialogsActivity.getCurrentAccount()).getStoriesController().loadHiddenStories();
-            } else {
-                MessagesController.getInstance(dialogsActivity.getCurrentAccount()).getStoriesController().loadStories();
-            }
-            if (dialogsActivity.rightSlidingDialogContainer.hasFragment()) {
-                dialogsActivity.rightSlidingDialogContainer.lambda$presentFragment$1();
-            }
-            if (z2 && !dialogsActivity.isArchive()) {
-                Bundle bundle = new Bundle();
-                bundle.putInt("folderId", 1);
-                dialogsActivity = new DialogsActivity(bundle);
-                lambda$runLinkRequest$80(dialogsActivity);
-            }
-            dialogsActivity.scrollToTop(false, false);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    DialogsActivity.this.scrollToTop(true, true);
-                }
-            }, 500L);
-            return;
-        }
         BaseFragment lastFragment = getLastFragment();
         if (lastFragment == null) {
             return;
         }
         StoriesController storiesController = MessagesController.getInstance(this.currentAccount).getStoriesController();
-        ArrayList arrayList = new ArrayList(storiesController.getDialogListStories());
-        arrayList.addAll(storiesController.getHiddenList());
+        ArrayList arrayList = new ArrayList(z2 ? storiesController.getHiddenList() : storiesController.getDialogListStories());
         ArrayList<Long> arrayList2 = new ArrayList<>();
         ArrayList arrayList3 = new ArrayList();
+        if (!z2) {
+            ArrayList arrayList4 = new ArrayList();
+            for (int i2 = 0; i2 < jArr2.length; i2++) {
+                TLRPC$User user2 = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(jArr2[i2]));
+                if (user2 == null || !user2.stories_hidden) {
+                    arrayList4.add(Long.valueOf(jArr2[i2]));
+                }
+            }
+            jArr2 = Longs.toArray(arrayList4);
+        }
         if (z) {
-            for (long j : jArr) {
+            for (long j : jArr2) {
                 arrayList3.add(Long.valueOf(j));
             }
         } else {
-            for (long j2 : jArr) {
+            for (long j2 : jArr2) {
                 arrayList2.add(Long.valueOf(j2));
             }
         }
@@ -5902,11 +5913,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             final Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    LaunchActivity.this.lambda$openStories$132(iArr, jArr);
+                    LaunchActivity.this.lambda$openStories$131(iArr, jArr2);
                 }
             };
-            for (int i2 = 0; i2 < arrayList3.size(); i2++) {
-                final long longValue = ((Long) arrayList3.get(i2)).longValue();
+            for (int i3 = 0; i3 < arrayList3.size(); i3++) {
+                final long longValue = ((Long) arrayList3.get(i3)).longValue();
                 TLRPC$TL_stories_getUserStories tLRPC$TL_stories_getUserStories = new TLRPC$TL_stories_getUserStories();
                 TLRPC$InputUser inputUser = messagesController.getInputUser(longValue);
                 tLRPC$TL_stories_getUserStories.user_id = inputUser;
@@ -5918,7 +5929,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stories_getUserStories, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            LaunchActivity.lambda$openStories$134(MessagesController.this, longValue, runnable, tLObject, tLRPC$TL_error);
+                            LaunchActivity.lambda$openStories$133(MessagesController.this, longValue, runnable, tLObject, tLRPC$TL_error);
                         }
                     });
                 }
@@ -5926,8 +5937,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             return;
         }
         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-        for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            TLRPC$TL_userStories tLRPC$TL_userStories = (TLRPC$TL_userStories) arrayList.get(i3);
+        for (int i4 = 0; i4 < arrayList.size(); i4++) {
+            TLRPC$TL_userStories tLRPC$TL_userStories = (TLRPC$TL_userStories) arrayList.get(i4);
             long j3 = tLRPC$TL_userStories.user_id;
             if (j3 != clientUserId && !arrayList2.contains(Long.valueOf(j3)) && storiesController.hasUnreadStories(tLRPC$TL_userStories.user_id)) {
                 arrayList2.add(Long.valueOf(tLRPC$TL_userStories.user_id));
@@ -5936,20 +5947,18 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (arrayList2.isEmpty()) {
             return;
         }
+        StoriesListPlaceProvider storiesListPlaceProvider = null;
         if (lastFragment instanceof DialogsActivity) {
             try {
-                of = StoriesListPlaceProvider.of(((DialogsActivity) lastFragment).dialogStoriesCell.recyclerListView);
+                storiesListPlaceProvider = StoriesListPlaceProvider.of(((DialogsActivity) lastFragment).dialogStoriesCell.recyclerListView);
             } catch (Exception unused) {
             }
-            lastFragment.getOrCreateStoryViewer().instantClose();
-            lastFragment.getOrCreateStoryViewer().open(this, null, arrayList2, 0, null, null, of, false);
         }
-        of = null;
         lastFragment.getOrCreateStoryViewer().instantClose();
-        lastFragment.getOrCreateStoryViewer().open(this, null, arrayList2, 0, null, null, of, false);
+        lastFragment.getOrCreateStoryViewer().open(this, null, arrayList2, 0, null, null, storiesListPlaceProvider, false);
     }
 
-    public void lambda$openStories$132(int[] iArr, long[] jArr) {
+    public void lambda$openStories$131(int[] iArr, long[] jArr) {
         iArr[0] = iArr[0] - 1;
         if (iArr[0] == 0) {
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
@@ -5957,16 +5966,16 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public static void lambda$openStories$134(final MessagesController messagesController, final long j, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$openStories$133(final MessagesController messagesController, final long j, final Runnable runnable, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.lambda$openStories$133(TLObject.this, messagesController, j, runnable);
+                LaunchActivity.lambda$openStories$132(TLObject.this, messagesController, j, runnable);
             }
         });
     }
 
-    public static void lambda$openStories$133(TLObject tLObject, MessagesController messagesController, long j, Runnable runnable) {
+    public static void lambda$openStories$132(TLObject tLObject, MessagesController messagesController, long j, Runnable runnable) {
         if (tLObject instanceof TLRPC$TL_stories_userStories) {
             TLRPC$TL_stories_userStories tLRPC$TL_stories_userStories = (TLRPC$TL_stories_userStories) tLObject;
             messagesController.putUsers(tLRPC$TL_stories_userStories.users, false);

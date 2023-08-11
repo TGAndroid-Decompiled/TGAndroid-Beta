@@ -52,7 +52,7 @@ public abstract class BottomSheetWithRecyclerListView extends BottomSheet {
     }
 
     public BottomSheetWithRecyclerListView(BaseFragment baseFragment, boolean z, boolean z2) {
-        this(baseFragment, z, z2, false, null);
+        this(baseFragment, z, z2, false, baseFragment == null ? null : baseFragment.getResourceProvider());
     }
 
     public BottomSheetWithRecyclerListView(BaseFragment baseFragment, boolean z, final boolean z2, boolean z3, Theme.ResourcesProvider resourcesProvider) {

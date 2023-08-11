@@ -6,6 +6,7 @@ import org.telegram.messenger.LiteMode;
 public abstract class TLRPC$UserFull extends TLObject {
     public String about;
     public boolean blocked;
+    public boolean blocked_my_stories_from;
     public TLRPC$TL_chatAdminRights bot_broadcast_admin_rights;
     public TLRPC$TL_chatAdminRights bot_group_admin_rights;
     public TLRPC$BotInfo bot_info;

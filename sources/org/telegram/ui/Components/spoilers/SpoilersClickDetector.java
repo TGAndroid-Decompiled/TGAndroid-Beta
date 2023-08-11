@@ -7,7 +7,9 @@ import androidx.core.view.GestureDetectorCompat;
 import java.util.List;
 public class SpoilersClickDetector {
     private GestureDetectorCompat gestureDetector;
+    private int horizontalPadding;
     private boolean trackingTap;
+    private int verticalPadding;
 
     public interface OnSpoilerClickedListener {
         void onSpoilerClicked(SpoilerEffect spoilerEffect, float f, float f2);
@@ -27,8 +29,10 @@ public class SpoilersClickDetector {
                     x -= view.getPaddingLeft();
                     y -= view.getPaddingTop();
                 }
+                int i = x - SpoilersClickDetector.this.horizontalPadding;
+                int i2 = y - SpoilersClickDetector.this.verticalPadding;
                 for (SpoilerEffect spoilerEffect : list) {
-                    if (spoilerEffect.getBounds().contains(x, y)) {
+                    if (spoilerEffect.getBounds().contains(i, i2)) {
                         SpoilersClickDetector.this.trackingTap = true;
                         return true;
                     }
@@ -47,9 +51,11 @@ public class SpoilersClickDetector {
                         x -= view.getPaddingLeft();
                         y -= view.getPaddingTop();
                     }
+                    int i = x - SpoilersClickDetector.this.horizontalPadding;
+                    int i2 = y - SpoilersClickDetector.this.verticalPadding;
                     for (SpoilerEffect spoilerEffect : list) {
-                        if (spoilerEffect.getBounds().contains(x, y)) {
-                            onSpoilerClickedListener.onSpoilerClicked(spoilerEffect, x, y);
+                        if (spoilerEffect.getBounds().contains(i, i2)) {
+                            onSpoilerClickedListener.onSpoilerClicked(spoilerEffect, i, i2);
                             return true;
                         }
                     }
@@ -61,5 +67,10 @@ public class SpoilersClickDetector {
 
     public boolean onTouchEvent(MotionEvent motionEvent) {
         return this.gestureDetector.onTouchEvent(motionEvent);
+    }
+
+    public void setAdditionalOffsets(int i, int i2) {
+        this.horizontalPadding = i;
+        this.verticalPadding = i2;
     }
 }

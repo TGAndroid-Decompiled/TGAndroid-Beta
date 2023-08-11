@@ -705,14 +705,24 @@ public class MessagesController extends BaseController implements NotificationCe
     private LongSparseArray<SponsoredMessagesInfo> sponsoredMessages;
     private int statusRequest;
     private int statusSettingState;
+    public int stealthModeCooldown;
+    public int stealthModeFuture;
+    public int stealthModePast;
     public int stickersFavedLimitDefault;
     public int stickersFavedLimitPremium;
     public StoriesController storiesController;
+    public String storiesEntities;
     public boolean storiesExportNopublicLink;
     public String storiesPosting;
-    public int storyCaptionLengthLimit;
+    public int storiesSentMonthlyLimitDefault;
+    public int storiesSentMonthlyLimitPremium;
+    public int storiesSentWeeklyLimitDefault;
+    public int storiesSentWeeklyLimitPremium;
+    public int storyCaptionLengthLimitDefault;
+    public int storyCaptionLengthLimitPremium;
     public int storyExpiringLimitDefault;
     public int storyExpiringLimitPremium;
+    public String storyVenueSearchBot;
     public boolean suggestContacts;
     public boolean suggestStickersApiOnly;
     public ArrayList<TLRPC$TL_dialogFilterSuggested> suggestedFilters;
@@ -931,7 +941,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 if (tLRPC$TL_error != null) {
                     str = tLRPC$TL_error.code + " " + tLRPC$TL_error.text;
                 } else {
-                    str = BuildConfig.APP_CENTER_HASH;
+                    str = "";
                 }
                 sb.append(str);
                 FileLog.e(sb.toString());
@@ -1902,6 +1912,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.promoPsaType = this.mainPreferences.getString("promo_psa_type", null);
         this.proxyDialogAddress = this.mainPreferences.getString("proxyDialogAddress", null);
         this.venueSearchBot = this.mainPreferences.getString("venueSearchBot", "foursquare");
+        this.storyVenueSearchBot = this.mainPreferences.getString("storyVenueSearchBot", "foursquare");
         this.gifSearchBot = this.mainPreferences.getString("gifSearchBot", "gif");
         this.imageSearchBot = this.mainPreferences.getString("imageSearchBot", "pic");
         this.blockedCountry = this.mainPreferences.getBoolean("blockedCountry", false);
@@ -1945,7 +1956,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.publicLinksLimitPremium = this.mainPreferences.getInt("publicLinksLimitPremium", 20);
         this.captionLengthLimitDefault = this.mainPreferences.getInt("captionLengthLimitDefault", 1024);
         this.captionLengthLimitPremium = this.mainPreferences.getInt("captionLengthLimitPremium", LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM);
-        this.storyCaptionLengthLimit = this.mainPreferences.getInt("storyCaptionLengthLimit", 1024);
+        this.storyCaptionLengthLimitDefault = this.mainPreferences.getInt("storyCaptionLengthLimit", 200);
+        this.storyCaptionLengthLimitPremium = this.mainPreferences.getInt("storyCaptionLengthLimitPremium", LiteMode.FLAG_AUTOPLAY_GIFS);
         this.aboutLengthLimitDefault = this.mainPreferences.getInt("aboutLengthLimitDefault", 70);
         this.aboutLengthLimitPremium = this.mainPreferences.getInt("aboutLengthLimitPremium", 140);
         this.reactionsUserMaxDefault = this.mainPreferences.getInt("reactionsUserMaxDefault", 1);
@@ -1970,14 +1982,22 @@ public class MessagesController extends BaseController implements NotificationCe
         this.checkResetLangpack = this.mainPreferences.getInt("checkResetLangpack", 0);
         this.smallQueueMaxActiveOperations = this.mainPreferences.getInt("smallQueueMaxActiveOperations", 5);
         this.largeQueueMaxActiveOperations = this.mainPreferences.getInt("largeQueueMaxActiveOperations", 2);
+        this.stealthModeFuture = this.mainPreferences.getInt("stories_stealth_future_period", 1500);
+        this.stealthModePast = this.mainPreferences.getInt("stories_stealth_past_period", 300);
+        this.stealthModeCooldown = this.mainPreferences.getInt("stories_stealth_cooldown_period", 3600);
         boolean z = ConnectionsManager.native_isTestBackend(this.currentAccount) != 0;
         this.chatlistInvitesLimitDefault = this.mainPreferences.getInt("chatlistInvitesLimitDefault", 3);
         this.storyExpiringLimitDefault = this.mainPreferences.getInt("storyExpiringLimitDefault", 50);
         this.storyExpiringLimitPremium = this.mainPreferences.getInt("storyExpiringLimitPremium", 100);
+        this.storiesSentWeeklyLimitDefault = this.mainPreferences.getInt("storiesSentWeeklyLimitDefault", 7);
+        this.storiesSentWeeklyLimitPremium = this.mainPreferences.getInt("storiesSentWeeklyLimitPremium", 70);
+        this.storiesSentMonthlyLimitDefault = this.mainPreferences.getInt("storiesSentMonthlyLimitDefault", 30);
+        this.storiesSentMonthlyLimitPremium = this.mainPreferences.getInt("storiesSentMonthlyLimitPremium", 300);
         this.chatlistInvitesLimitPremium = this.mainPreferences.getInt("chatlistInvitesLimitPremium", z ? 5 : 20);
         this.chatlistJoinedLimitDefault = this.mainPreferences.getInt("chatlistJoinedLimitDefault", 2);
         this.chatlistJoinedLimitPremium = this.mainPreferences.getInt("chatlistJoinedLimitPremium", z ? 5 : 20);
-        this.storiesPosting = this.mainPreferences.getString("storiesPosting", "premium");
+        this.storiesPosting = this.mainPreferences.getString("storiesPosting", "enabled");
+        this.storiesEntities = this.mainPreferences.getString("storiesEntities", "premium");
         this.storiesExportNopublicLink = this.mainPreferences.getBoolean("storiesExportNopublicLink", false);
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {
@@ -3046,7 +3066,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tLRPC$TL_userForeign_old2.phone = "333";
         tLRPC$TL_userForeign_old2.id = 333000L;
         tLRPC$TL_userForeign_old2.first_name = "Telegram";
-        tLRPC$TL_userForeign_old2.last_name = BuildConfig.APP_CENTER_HASH;
+        tLRPC$TL_userForeign_old2.last_name = "";
         tLRPC$TL_userForeign_old2.status = null;
         tLRPC$TL_userForeign_old2.photo = new TLRPC$TL_userProfilePhotoEmpty();
         putUser(tLRPC$TL_userForeign_old2, true);
@@ -3557,7 +3577,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 TLRPC$TL_account_createTheme tLRPC$TL_account_createTheme = new TLRPC$TL_account_createTheme();
                 tLRPC$TL_account_createTheme.document = tLRPC$TL_inputDocument;
                 tLRPC$TL_account_createTheme.flags |= 4;
-                tLRPC$TL_account_createTheme.slug = (tLRPC$TL_theme == null || TextUtils.isEmpty(tLRPC$TL_theme.slug)) ? BuildConfig.APP_CENTER_HASH : tLRPC$TL_theme.slug;
+                tLRPC$TL_account_createTheme.slug = (tLRPC$TL_theme == null || TextUtils.isEmpty(tLRPC$TL_theme.slug)) ? "" : tLRPC$TL_theme.slug;
                 tLRPC$TL_account_createTheme.title = name;
                 if (tLRPC$TL_inputThemeSettings != null) {
                     tLRPC$TL_account_createTheme.settings = tLRPC$TL_inputThemeSettings;
@@ -4506,14 +4526,14 @@ public class MessagesController extends BaseController implements NotificationCe
     public String getAdminRank(long j, long j2) {
         TLRPC$ChannelParticipant tLRPC$ChannelParticipant;
         if (j == j2) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         LongSparseArray<TLRPC$ChannelParticipant> longSparseArray = this.channelAdmins.get(j);
         if (longSparseArray == null || (tLRPC$ChannelParticipant = longSparseArray.get(j2)) == null) {
             return null;
         }
         String str = tLRPC$ChannelParticipant.rank;
-        return str != null ? str : BuildConfig.APP_CENTER_HASH;
+        return str != null ? str : "";
     }
 
     public boolean isChannelAdminsLoaded(long j) {
@@ -4985,7 +5005,7 @@ public class MessagesController extends BaseController implements NotificationCe
             } else if (tLRPC$User != null) {
                 tLRPC$TL_account_reportPeer.peer = getInputPeer(tLRPC$User.id);
             }
-            tLRPC$TL_account_reportPeer.message = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_account_reportPeer.message = "";
             tLRPC$TL_account_reportPeer.reason = new TLRPC$ReportReason() {
                 public static int constructor = -606798099;
 
@@ -5371,7 +5391,7 @@ public class MessagesController extends BaseController implements NotificationCe
             tLRPC$TL_messages_search.filter = new TLRPC$TL_inputMessagesFilterChatPhotos();
             tLRPC$TL_messages_search.limit = i;
             tLRPC$TL_messages_search.offset_id = i2;
-            tLRPC$TL_messages_search.q = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_messages_search.q = "";
             tLRPC$TL_messages_search.peer = getInputPeer(j);
             getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
                 @Override
@@ -7379,8 +7399,8 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             SharedPreferences globalMainSettings = getGlobalMainSettings();
             globalMainSettings.getBoolean("proxy_enabled", false);
-            final String string = globalMainSettings.getString("proxy_ip", BuildConfig.APP_CENTER_HASH);
-            final String string2 = globalMainSettings.getString("proxy_secret", BuildConfig.APP_CENTER_HASH);
+            final String string = globalMainSettings.getString("proxy_ip", "");
+            final String string2 = globalMainSettings.getString("proxy_secret", "");
             if (this.promoDialogId != 0 && this.promoDialogType == PROMO_TYPE_PROXY && (str = this.proxyDialogAddress) != null) {
                 if (!str.equals(string + string2)) {
                     z2 = true;
@@ -7624,14 +7644,14 @@ public class MessagesController extends BaseController implements NotificationCe
 
     private String getUserNameForTyping(TLRPC$User tLRPC$User) {
         if (tLRPC$User == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         String str = tLRPC$User.first_name;
         if (str != null && str.length() > 0) {
             return tLRPC$User.first_name;
         }
         String str2 = tLRPC$User.last_name;
-        return (str2 == null || str2.length() <= 0) ? BuildConfig.APP_CENTER_HASH : tLRPC$User.last_name;
+        return (str2 == null || str2.length() <= 0) ? "" : tLRPC$User.last_name;
     }
 
     private void updatePrintingStrings() {
@@ -8055,6 +8075,7 @@ public class MessagesController extends BaseController implements NotificationCe
                         }
                         tLRPC$TL_messages_getReplies.limit = i15;
                         tLRPC$TL_messages_getReplies.offset_id = i2;
+                        System.currentTimeMillis();
                         getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_messages_getReplies, new RequestDelegate() {
                             @Override
                             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -8066,6 +8087,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 messagesController = this;
                 tLRPC$TL_messages_getReplies.limit = i15;
                 tLRPC$TL_messages_getReplies.offset_id = i2;
+                System.currentTimeMillis();
                 getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_messages_getReplies, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -8423,7 +8445,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 public final void run() {
                     MessagesController.this.lambda$processLoadedMessages$167(z2, i6, i7, z, z4, i8, j, i4, arrayList, i20, i9, i10, i2, i11, i12, i13, i);
                 }
-            });
+            }, i6);
             z5 = true;
         } else {
             z5 = true;
@@ -10044,7 +10066,7 @@ public class MessagesController extends BaseController implements NotificationCe
             final TLRPC$TL_channels_createChannel tLRPC$TL_channels_createChannel = new TLRPC$TL_channels_createChannel();
             tLRPC$TL_channels_createChannel.title = str;
             if (str2 == null) {
-                str2 = BuildConfig.APP_CENTER_HASH;
+                str2 = "";
             }
             tLRPC$TL_channels_createChannel.about = str2;
             tLRPC$TL_channels_createChannel.for_import = z;
@@ -12268,7 +12290,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 public final void run() {
                     MessagesController.this.lambda$getDifference$308(keyAt, arrayList2);
                 }
-            });
+            }, 0);
         }
     }
 
@@ -13280,6 +13302,7 @@ public class MessagesController extends BaseController implements NotificationCe
             this.blockePeers.delete(peerId);
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.blockedUsersDidLoad, new Object[0]);
+        getStoriesController().updateBlockUser(peerId, tLRPC$TL_updatePeerBlocked.blocked_my_stories_from, false);
     }
 
     public void lambda$processUpdateArray$343(TLRPC$TL_updateServiceNotification tLRPC$TL_updateServiceNotification) {
@@ -14991,6 +15014,32 @@ public class MessagesController extends BaseController implements NotificationCe
     public boolean storiesEnabled() {
         char c;
         String str = this.storiesPosting;
+        int hashCode = str.hashCode();
+        if (hashCode == -1609594047) {
+            if (str.equals("enabled")) {
+                c = 1;
+            }
+            c = 65535;
+        } else if (hashCode != -318452137) {
+            if (hashCode == 270940796 && str.equals("disabled")) {
+                c = 3;
+            }
+            c = 65535;
+        } else {
+            if (str.equals("premium")) {
+                c = 0;
+            }
+            c = 65535;
+        }
+        if (c != 0) {
+            return c == 1;
+        }
+        return getUserConfig().isPremium();
+    }
+
+    public boolean storyEntitiesAllowed() {
+        char c;
+        String str = this.storiesEntities;
         int hashCode = str.hashCode();
         if (hashCode == -1609594047) {
             if (str.equals("enabled")) {

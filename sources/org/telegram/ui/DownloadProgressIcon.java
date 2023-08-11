@@ -32,6 +32,7 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
     float progress;
     float progressDt;
     boolean showCompletedIcon;
+    private boolean wasDrawn;
 
     public DownloadProgressIcon(int i, Context context) {
         super(context);
@@ -39,8 +40,11 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
         this.paint2 = new Paint(1);
         this.currentListeners = new ArrayList<>();
         this.downloadImageReceiver = new ImageReceiver(this);
-        this.downloadCompleteImageReceiver = new ImageReceiver(this);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.downloadCompleteImageReceiver = imageReceiver;
         this.currentAccount = i;
+        this.downloadImageReceiver.ignoreNotifications = true;
+        imageReceiver.ignoreNotifications = true;
         RLottieDrawable rLottieDrawable = new RLottieDrawable(R.raw.download_progress, "download_progress", AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
         this.downloadDrawable = rLottieDrawable;
         int i2 = Theme.key_actionBarDefaultIcon;
@@ -121,6 +125,9 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
             this.showCompletedIcon = true;
         }
         canvas.restore();
+        if (getAlpha() != 0.0f) {
+            this.wasDrawn = true;
+        }
     }
 
     @Override
@@ -160,18 +167,18 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
                 this.currentListeners.add(progressObserver);
             }
         }
-        if (this.currentListeners.size() == 0) {
-            if (getVisibility() == 0 && getAlpha() == 1.0f) {
-                return;
-            }
-            if (DownloadController.getInstance(this.currentAccount).hasUnviewedDownloads()) {
-                this.progress = 1.0f;
-                this.currentProgress = 1.0f;
-                return;
-            }
-            this.progress = 0.0f;
-            this.currentProgress = 0.0f;
+        if (this.currentListeners.size() != 0 || this.wasDrawn) {
+            return;
         }
+        if (DownloadController.getInstance(this.currentAccount).hasUnviewedDownloads()) {
+            this.progress = 1.0f;
+            this.currentProgress = 1.0f;
+            this.showCompletedIcon = true;
+            return;
+        }
+        this.progress = 0.0f;
+        this.currentProgress = 0.0f;
+        this.showCompletedIcon = false;
     }
 
     public void updateProgress() {
@@ -244,5 +251,21 @@ public class DownloadProgressIcon extends View implements NotificationCenter.Not
             this.total = j2;
             DownloadProgressIcon.this.updateProgress();
         }
+    }
+
+    @Override
+    public void setAlpha(float f) {
+        if (f == 0.0f) {
+            this.wasDrawn = false;
+        }
+        super.setAlpha(f);
+    }
+
+    @Override
+    public void setVisibility(int i) {
+        if (i != 0) {
+            this.wasDrawn = false;
+        }
+        super.setVisibility(i);
     }
 }
