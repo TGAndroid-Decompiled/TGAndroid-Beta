@@ -137,12 +137,6 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        motionEvent.getX();
-        return super.dispatchTouchEvent(motionEvent);
-    }
-
-    @Override
     public void onClick(View view) {
         if (view instanceof AreaView) {
             AreaView areaView = this.selectedArea;

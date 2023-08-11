@@ -499,7 +499,9 @@ public class MentionsContainerView extends BlurredFrameLayout implements Notific
         if (springAnimation != null) {
             springAnimation.cancel();
         }
-        AndroidUtilities.runOnUIThread(this.updateVisibilityRunnable, this.baseFragment.getFragmentBeginToShow() ? 0L : 100L);
+        Runnable runnable = this.updateVisibilityRunnable;
+        BaseFragment baseFragment = this.baseFragment;
+        AndroidUtilities.runOnUIThread(runnable, (baseFragment == null || !baseFragment.getFragmentBeginToShow()) ? 100L : 0L);
         if (z) {
             onOpen();
         } else {

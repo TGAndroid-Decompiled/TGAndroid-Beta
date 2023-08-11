@@ -1587,6 +1587,9 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
 
     public void lambda$positionMarker$27(double d, double d2) {
         IMapsProvider.ICameraUpdate newCameraUpdateLatLngZoom;
+        if (this.map == null) {
+            return;
+        }
         if (d != 0.0d && d2 != 0.0d) {
             Location location = new Location("");
             this.userLocation = location;

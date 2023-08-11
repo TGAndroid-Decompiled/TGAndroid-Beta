@@ -956,21 +956,25 @@ public abstract class BaseFragment {
 
     public boolean isLightStatusBar() {
         int color;
-        if (!hasForceLightStatusBar() || Theme.getCurrentTheme().isDark()) {
-            Theme.ResourcesProvider resourceProvider = getResourceProvider();
-            int i = Theme.key_actionBarDefault;
-            ActionBar actionBar = this.actionBar;
-            if (actionBar != null && actionBar.isActionModeShowed()) {
-                i = Theme.key_actionBarActionModeDefault;
+        StoryViewer storyViewer = this.storyViewer;
+        if (storyViewer == null || !storyViewer.isShown()) {
+            if (!hasForceLightStatusBar() || Theme.getCurrentTheme().isDark()) {
+                Theme.ResourcesProvider resourceProvider = getResourceProvider();
+                int i = Theme.key_actionBarDefault;
+                ActionBar actionBar = this.actionBar;
+                if (actionBar != null && actionBar.isActionModeShowed()) {
+                    i = Theme.key_actionBarActionModeDefault;
+                }
+                if (resourceProvider != null) {
+                    color = resourceProvider.getColorOrDefault(i);
+                } else {
+                    color = Theme.getColor(i, null, true);
+                }
+                return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
             }
-            if (resourceProvider != null) {
-                color = resourceProvider.getColorOrDefault(i);
-            } else {
-                color = Theme.getColor(i, null, true);
-            }
-            return ColorUtils.calculateLuminance(color) > 0.699999988079071d;
+            return true;
         }
-        return true;
+        return false;
     }
 
     public void setPreviewDelegate(PreviewDelegate previewDelegate) {

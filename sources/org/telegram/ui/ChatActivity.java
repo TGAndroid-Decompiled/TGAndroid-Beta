@@ -8736,11 +8736,22 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 FileLog.e(e);
             }
         } else if (i == 1) {
-            if (Build.VERSION.SDK_INT >= 23 && getParentActivity().checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
+            Activity parentActivity2 = getParentActivity();
+            int i3 = Build.VERSION.SDK_INT;
+            if (i3 >= 33) {
+                if (parentActivity2.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0) {
+                    try {
+                        getParentActivity().requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}, 4);
+                        return;
+                    } catch (Throwable unused) {
+                        return;
+                    }
+                }
+            } else if (i3 >= 23 && parentActivity2.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
                 try {
                     getParentActivity().requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
                     return;
-                } catch (Throwable unused) {
+                } catch (Throwable unused2) {
                     return;
                 }
             }
@@ -8754,7 +8765,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             }
             photoAlbumPickerActivity.setDelegate(new PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate() {
                 @Override
-                public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i3) {
+                public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i4) {
                 }
 
                 @Override
@@ -8776,12 +8787,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             });
             presentFragment(photoAlbumPickerActivity);
         } else if (i == 2) {
-            int i3 = Build.VERSION.SDK_INT;
-            if (i3 >= 23 && getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
+            int i4 = Build.VERSION.SDK_INT;
+            if (i4 >= 23 && getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
                 try {
                     getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 20);
                     return;
-                } catch (Throwable unused2) {
+                } catch (Throwable unused3) {
                     return;
                 }
             }
@@ -8789,12 +8800,12 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 Intent intent2 = new Intent("android.media.action.VIDEO_CAPTURE");
                 File generateVideoPath = AndroidUtilities.generateVideoPath();
                 if (generateVideoPath != null) {
-                    if (i3 >= 24) {
-                        Activity parentActivity2 = getParentActivity();
-                        intent2.putExtra("output", FileProvider.getUriForFile(parentActivity2, ApplicationLoader.getApplicationId() + ".provider", generateVideoPath));
+                    if (i4 >= 24) {
+                        Activity parentActivity3 = getParentActivity();
+                        intent2.putExtra("output", FileProvider.getUriForFile(parentActivity3, ApplicationLoader.getApplicationId() + ".provider", generateVideoPath));
                         intent2.addFlags(2);
                         intent2.addFlags(1);
-                    } else if (i3 >= 18) {
+                    } else if (i4 >= 18) {
                         intent2.putExtra("output", Uri.fromFile(generateVideoPath));
                     }
                     intent2.putExtra("android.intent.extra.sizeLimit", FileLoader.DEFAULT_MAX_FILE_SIZE);

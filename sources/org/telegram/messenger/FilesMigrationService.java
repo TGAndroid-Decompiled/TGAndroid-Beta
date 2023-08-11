@@ -285,14 +285,24 @@ public class FilesMigrationService extends Service {
 
         public void migrateOldFolder() {
             Activity parentActivity = this.fragment.getParentActivity();
-            boolean z = parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0;
-            boolean z2 = parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") == 0;
-            if (!z2 || !z) {
+            boolean z = true;
+            boolean z2 = parentActivity.checkSelfPermission("android.permission.WRITE_EXTERNAL_STORAGE") == 0;
+            int i = Build.VERSION.SDK_INT;
+            if ((i < 33 || parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 || parentActivity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0 || parentActivity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) && (i >= 33 || parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0)) {
+                z = false;
+            }
+            if (!z || !z2) {
                 ArrayList arrayList = new ArrayList();
-                if (!z2) {
-                    arrayList.add("android.permission.READ_EXTERNAL_STORAGE");
-                }
                 if (!z) {
+                    if (i >= 33) {
+                        arrayList.add("android.permission.READ_MEDIA_IMAGES");
+                        arrayList.add("android.permission.READ_MEDIA_VIDEO");
+                        arrayList.add("android.permission.READ_MEDIA_AUDIO");
+                    } else {
+                        arrayList.add("android.permission.READ_EXTERNAL_STORAGE");
+                    }
+                }
+                if (!z2) {
                     arrayList.add("android.permission.WRITE_EXTERNAL_STORAGE");
                 }
                 parentActivity.requestPermissions((String[]) arrayList.toArray(new String[arrayList.size()]), 4);

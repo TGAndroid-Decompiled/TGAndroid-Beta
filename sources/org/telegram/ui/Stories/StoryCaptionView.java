@@ -643,20 +643,25 @@ public class StoryCaptionView extends NestedScrollView {
                         for (int i3 = 3; i3 < this.fullLayout.getLineCount(); i3++) {
                             int lineStart = this.fullLayout.getLineStart(i3);
                             int lineEnd = this.fullLayout.getLineEnd(i3);
-                            StoryCaptionTextView storyCaptionTextView6 = StoryCaptionTextView.this;
-                            StaticLayout makeTextLayout2 = storyCaptionTextView6.makeTextLayout(storyCaptionTextView6.textPaint, this.text.subSequence(Math.min(lineStart, lineEnd), Math.max(lineStart, lineEnd)), i);
-                            LineInfo lineInfo = new LineInfo(StoryCaptionTextView.this);
-                            this.nextLinesLayouts[i3 - 3] = lineInfo;
-                            lineInfo.staticLayout = makeTextLayout2;
-                            lineInfo.finalX = this.fullLayout.getLineLeft(i3);
-                            lineInfo.finalY = this.fullLayout.getLineTop(i3) + this.fullLayout.getTopPadding();
-                            if (lineRight < StoryCaptionTextView.this.showMoreX - AndroidUtilities.dp(16.0f)) {
-                                lineInfo.collapsedY = lineTop;
-                                lineInfo.collapsedX = lineRight;
-                                lineRight += makeTextLayout2.getLineRight(0) + measureText;
+                            CharSequence subSequence = this.text.subSequence(Math.min(lineStart, lineEnd), Math.max(lineStart, lineEnd));
+                            if (TextUtils.isEmpty(subSequence)) {
+                                this.nextLinesLayouts[i3 - 3] = null;
                             } else {
-                                lineInfo.collapsedY = lineInfo.finalY;
-                                lineInfo.collapsedX = lineInfo.finalX;
+                                StoryCaptionTextView storyCaptionTextView6 = StoryCaptionTextView.this;
+                                StaticLayout makeTextLayout2 = storyCaptionTextView6.makeTextLayout(storyCaptionTextView6.textPaint, subSequence, i);
+                                LineInfo lineInfo = new LineInfo(StoryCaptionTextView.this);
+                                this.nextLinesLayouts[i3 - 3] = lineInfo;
+                                lineInfo.staticLayout = makeTextLayout2;
+                                lineInfo.finalX = this.fullLayout.getLineLeft(i3);
+                                lineInfo.finalY = this.fullLayout.getLineTop(i3) + this.fullLayout.getTopPadding();
+                                if (lineRight < StoryCaptionTextView.this.showMoreX - AndroidUtilities.dp(16.0f)) {
+                                    lineInfo.collapsedY = lineTop;
+                                    lineInfo.collapsedX = lineRight;
+                                    lineRight += makeTextLayout2.getLineRight(0) + measureText;
+                                } else {
+                                    lineInfo.collapsedY = lineInfo.finalY;
+                                    lineInfo.collapsedX = lineInfo.finalX;
+                                }
                             }
                         }
                     }
@@ -780,50 +785,51 @@ public class StoryCaptionView extends NestedScrollView {
                         return;
                     }
                     LineInfo lineInfo = lineInfoArr[i2];
-                    canvas.save();
-                    float f2 = lineInfo.collapsedX;
-                    float f3 = lineInfo.finalX;
-                    if (f2 == f3) {
-                        StoryCaptionTextView storyCaptionTextView7 = StoryCaptionTextView.this;
-                        if (storyCaptionTextView7.progressToExpand == 0.0f) {
-                            i = i2;
-                            i2 = i + 1;
+                    if (lineInfo != null) {
+                        canvas.save();
+                        float f2 = lineInfo.collapsedX;
+                        float f3 = lineInfo.finalX;
+                        if (f2 == f3) {
+                            StoryCaptionTextView storyCaptionTextView7 = StoryCaptionTextView.this;
+                            if (storyCaptionTextView7.progressToExpand != 0.0f) {
+                                canvas.translate(storyCaptionTextView7.horizontalPadding + f3, storyCaptionTextView7.verticalPadding + lineInfo.finalY);
+                                canvas.saveLayerAlpha(0.0f, 0.0f, lineInfo.staticLayout.getWidth(), lineInfo.staticLayout.getHeight(), (int) (StoryCaptionTextView.this.progressToExpand * 255.0f), 31);
+                                drawLayout(lineInfo.staticLayout, canvas, this.spoilers);
+                                if (z) {
+                                    StaticLayout staticLayout3 = lineInfo.staticLayout;
+                                    StoryCaptionTextView storyCaptionTextView8 = StoryCaptionTextView.this;
+                                    putLayoutRects(staticLayout3, storyCaptionTextView8.horizontalPadding + lineInfo.finalX, storyCaptionTextView8.verticalPadding + lineInfo.finalY);
+                                }
+                                lineInfo.staticLayout.draw(canvas);
+                                AnimatedEmojiSpan.EmojiGroupedSpans update3 = AnimatedEmojiSpan.update(0, StoryCaptionTextView.this, lineInfo.layoutEmoji, lineInfo.staticLayout);
+                                lineInfo.layoutEmoji = update3;
+                                StaticLayout staticLayout4 = lineInfo.staticLayout;
+                                List<SpoilerEffect> list = this.spoilers;
+                                StoryCaptionTextView storyCaptionTextView9 = StoryCaptionTextView.this;
+                                i = i2;
+                                AnimatedEmojiSpan.drawAnimatedEmojis(canvas, staticLayout4, update3, 0.0f, list, 0.0f, 0.0f, 0.0f, storyCaptionTextView9.progressToExpand, storyCaptionTextView9.emojiColorFilter);
+                                canvas.restore();
+                            }
                         } else {
-                            canvas.translate(storyCaptionTextView7.horizontalPadding + f3, storyCaptionTextView7.verticalPadding + lineInfo.finalY);
-                            canvas.saveLayerAlpha(0.0f, 0.0f, lineInfo.staticLayout.getWidth(), lineInfo.staticLayout.getHeight(), (int) (StoryCaptionTextView.this.progressToExpand * 255.0f), 31);
-                            drawLayout(lineInfo.staticLayout, canvas, this.spoilers);
+                            i = i2;
+                            float lerp = AndroidUtilities.lerp(f2, f3, StoryCaptionTextView.this.progressToExpand);
+                            float lerp2 = AndroidUtilities.lerp(lineInfo.collapsedY, lineInfo.finalY, CubicBezierInterpolator.EASE_OUT.getInterpolation(StoryCaptionTextView.this.progressToExpand));
+                            StoryCaptionTextView storyCaptionTextView10 = StoryCaptionTextView.this;
+                            canvas.translate(storyCaptionTextView10.horizontalPadding + lerp, storyCaptionTextView10.verticalPadding + lerp2);
                             if (z) {
-                                StaticLayout staticLayout3 = lineInfo.staticLayout;
-                                StoryCaptionTextView storyCaptionTextView8 = StoryCaptionTextView.this;
-                                putLayoutRects(staticLayout3, storyCaptionTextView8.horizontalPadding + lineInfo.finalX, storyCaptionTextView8.verticalPadding + lineInfo.finalY);
+                                StaticLayout staticLayout5 = lineInfo.staticLayout;
+                                StoryCaptionTextView storyCaptionTextView11 = StoryCaptionTextView.this;
+                                putLayoutRects(staticLayout5, storyCaptionTextView11.horizontalPadding + lerp, storyCaptionTextView11.verticalPadding + lerp2);
                             }
                             lineInfo.staticLayout.draw(canvas);
-                            AnimatedEmojiSpan.EmojiGroupedSpans update3 = AnimatedEmojiSpan.update(0, StoryCaptionTextView.this, lineInfo.layoutEmoji, lineInfo.staticLayout);
-                            lineInfo.layoutEmoji = update3;
-                            StaticLayout staticLayout4 = lineInfo.staticLayout;
-                            List<SpoilerEffect> list = this.spoilers;
-                            StoryCaptionTextView storyCaptionTextView9 = StoryCaptionTextView.this;
-                            i = i2;
-                            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, staticLayout4, update3, 0.0f, list, 0.0f, 0.0f, 0.0f, storyCaptionTextView9.progressToExpand, storyCaptionTextView9.emojiColorFilter);
-                            canvas.restore();
+                            AnimatedEmojiSpan.EmojiGroupedSpans update4 = AnimatedEmojiSpan.update(0, StoryCaptionTextView.this, lineInfo.layoutEmoji, lineInfo.staticLayout);
+                            lineInfo.layoutEmoji = update4;
+                            AnimatedEmojiSpan.drawAnimatedEmojis(canvas, lineInfo.staticLayout, update4, 0.0f, this.spoilers, 0.0f, 0.0f, 0.0f, 1.0f, StoryCaptionTextView.this.emojiColorFilter);
                         }
-                    } else {
-                        i = i2;
-                        float lerp = AndroidUtilities.lerp(f2, f3, StoryCaptionTextView.this.progressToExpand);
-                        float lerp2 = AndroidUtilities.lerp(lineInfo.collapsedY, lineInfo.finalY, CubicBezierInterpolator.EASE_OUT.getInterpolation(StoryCaptionTextView.this.progressToExpand));
-                        StoryCaptionTextView storyCaptionTextView10 = StoryCaptionTextView.this;
-                        canvas.translate(storyCaptionTextView10.horizontalPadding + lerp, storyCaptionTextView10.verticalPadding + lerp2);
-                        if (z) {
-                            StaticLayout staticLayout5 = lineInfo.staticLayout;
-                            StoryCaptionTextView storyCaptionTextView11 = StoryCaptionTextView.this;
-                            putLayoutRects(staticLayout5, storyCaptionTextView11.horizontalPadding + lerp, storyCaptionTextView11.verticalPadding + lerp2);
-                        }
-                        lineInfo.staticLayout.draw(canvas);
-                        AnimatedEmojiSpan.EmojiGroupedSpans update4 = AnimatedEmojiSpan.update(0, StoryCaptionTextView.this, lineInfo.layoutEmoji, lineInfo.staticLayout);
-                        lineInfo.layoutEmoji = update4;
-                        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, lineInfo.staticLayout, update4, 0.0f, this.spoilers, 0.0f, 0.0f, 0.0f, 1.0f, StoryCaptionTextView.this.emojiColorFilter);
+                        canvas.restore();
+                        i2 = i + 1;
                     }
-                    canvas.restore();
+                    i = i2;
                     i2 = i + 1;
                 }
             }

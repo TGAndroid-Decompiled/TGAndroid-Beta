@@ -1565,6 +1565,10 @@ public class StoriesController {
         return null;
     }
 
+    public void onPremiumChanged() {
+        this.selfViewsModel.clear();
+    }
+
     public class UploadingStory implements NotificationCenter.NotificationCenterDelegate {
         boolean canceled;
         float convertingProgress;

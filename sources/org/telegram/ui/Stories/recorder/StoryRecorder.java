@@ -223,6 +223,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     private boolean scrollingX;
     private boolean scrollingY;
     private boolean showSavedDraftHint;
+    private boolean shownLimitReached;
     private SimpleTextView titleTextView;
     private TrashView trash;
     private int underControls;
@@ -503,7 +504,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         this.cameraViewThumb.setImageDrawable(getCameraThumb());
         StoriesController.StoryLimit checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit();
         if (checkStoryLimit != null && checkStoryLimit.active(this.currentAccount)) {
-            showLimitReachedSheet(checkStoryLimit);
+            showLimitReachedSheet(checkStoryLimit, true);
         }
         navigateTo(0, false);
         switchToEditMode(-1, false);
@@ -2086,7 +2087,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 AndroidUtilities.shakeViewSpring(animatedTextView, i2);
                 this.captionEdit.captionLimitToast();
             } else if (!this.outputEntry.isEdit && (checkStoryLimit = MessagesController.getInstance(this.currentAccount).storiesController.checkStoryLimit()) != null && checkStoryLimit.active(this.currentAccount)) {
-                showLimitReachedSheet(checkStoryLimit);
+                showLimitReachedSheet(checkStoryLimit, false);
             } else {
                 StoryEntry storyEntry = this.outputEntry;
                 if (storyEntry.isEdit) {
@@ -4122,7 +4123,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.PNG;
         StoryEntry storyEntry7 = this.outputEntry;
         storyEntry6.paintFile = fileLoader.getPathToAttach(ImageLoader.scaleAndSaveImage(bitmap, compressFormat, storyEntry7.resultWidth, storyEntry7.resultHeight, 87, false, (int) FileLoader.MEDIA_DIR_VIDEO_PUBLIC, (int) FileLoader.MEDIA_DIR_VIDEO_PUBLIC), true);
-        bitmap.recycle();
+        if (bitmap != null) {
+            bitmap.recycle();
+        }
         if (this.outputEntry.wouldBeVideo()) {
             return;
         }
@@ -4603,13 +4606,19 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     public boolean requestGalleryPermission() {
         Activity activity = this.activity;
         if (activity != null) {
-            if (Build.VERSION.SDK_INT >= 23) {
-                r4 = activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0;
-                if (r4) {
+            int i = Build.VERSION.SDK_INT;
+            if (i >= 33) {
+                r5 = (activity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") == 0 && this.activity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") == 0) ? true : true;
+                if (r5) {
+                    this.activity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}, 114);
+                }
+            } else if (i >= 23) {
+                r5 = activity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0;
+                if (r5) {
                     this.activity.requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 114);
                 }
             }
-            return !r4;
+            return !r5;
         }
         return true;
     }
@@ -4783,7 +4792,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 }
                 previewButtons.setShareEnabled(z);
             } else if (i5 == 0 && (checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit()) != null && checkStoryLimit.active(this.currentAccount)) {
-                showLimitReachedSheet(checkStoryLimit);
+                showLimitReachedSheet(checkStoryLimit, true);
             }
         }
     }
@@ -4800,7 +4809,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.storiesLimitUpdate);
     }
 
-    private void showLimitReachedSheet(StoriesController.StoryLimit storyLimit) {
+    private void showLimitReachedSheet(StoriesController.StoryLimit storyLimit, final boolean z) {
+        if (this.shownLimitReached) {
+            return;
+        }
         LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(new BaseFragment() {
             @Override
             public boolean isLightStatusBar() {
@@ -4836,15 +4848,20 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         limitReachedBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                StoryRecorder.this.lambda$showLimitReachedSheet$55(dialogInterface);
+                StoryRecorder.this.lambda$showLimitReachedSheet$55(z, dialogInterface);
             }
         });
         this.previewView.updatePauseReason(7, true);
+        this.shownLimitReached = true;
         limitReachedBottomSheet.show();
     }
 
-    public void lambda$showLimitReachedSheet$55(DialogInterface dialogInterface) {
+    public void lambda$showLimitReachedSheet$55(boolean z, DialogInterface dialogInterface) {
+        this.shownLimitReached = false;
         this.previewView.updatePauseReason(7, true);
+        if (z) {
+            close(true);
+        }
     }
 
     public void checkBackgroundVisibility() {

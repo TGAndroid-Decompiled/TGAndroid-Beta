@@ -7979,18 +7979,18 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         if (this.currentConnectionState != connectionState || z2) {
             this.currentConnectionState = connectionState;
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
-            String string = sharedPreferences.getString("proxy_ip", "");
-            boolean z3 = sharedPreferences.getBoolean("proxy_enabled", false);
+            boolean z3 = sharedPreferences.getBoolean("proxy_enabled", false) && !TextUtils.isEmpty(sharedPreferences.getString("proxy_ip", ""));
             int i = this.currentConnectionState;
             boolean z4 = i == 3 || i == 5;
-            boolean z5 = (z3 && !TextUtils.isEmpty(string)) || (getMessagesController().blockedCountry && !SharedConfig.proxyList.isEmpty()) || (i == 1 || i == 2 || i == 4);
-            if (z5) {
+            boolean z5 = i == 1 || i == 2 || i == 4;
+            if (z3) {
+                this.proxyDrawable.setConnected(true, z4, z);
+                showProxyButton(true, z);
+            } else if ((getMessagesController().blockedCountry && !SharedConfig.proxyList.isEmpty()) || z5) {
+                this.proxyDrawable.setConnected(true, z4, z);
                 showProxyButtonDelayed();
             } else {
-                showProxyButton(z5, z);
-            }
-            if (z5) {
-                this.proxyDrawable.setConnected(true, z4, z);
+                showProxyButton(false, z);
             }
         }
     }

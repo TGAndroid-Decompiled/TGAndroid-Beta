@@ -251,9 +251,9 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private int captionHeight;
     private StaticLayout captionLayout;
     private int captionOffsetX;
-    private AtomicReference<Layout> captionPatchedSpoilersLayout;
-    private List<SpoilerEffect> captionSpoilers;
-    private Stack<SpoilerEffect> captionSpoilersPool;
+    private final AtomicReference<Layout> captionPatchedSpoilersLayout;
+    private final List<SpoilerEffect> captionSpoilers;
+    private final Stack<SpoilerEffect> captionSpoilersPool;
     private int captionWidth;
     private float captionX;
     private float captionY;
@@ -368,11 +368,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean forwardBotPressed;
     private int forwardHeight;
     private int forwardNameCenterX;
-    private float[] forwardNameOffsetX;
+    private final float[] forwardNameOffsetX;
     private boolean forwardNamePressed;
     private float forwardNameX;
     private int forwardNameY;
-    private StaticLayout[] forwardedNameLayout;
+    private final StaticLayout[] forwardedNameLayout;
     private int forwardedNameWidth;
     private boolean fullyDraw;
     private boolean gamePreviewPressed;
@@ -591,7 +591,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     public float replySelectorRadRight;
     public Rect replySelectorRect;
     public List<SpoilerEffect> replySpoilers;
-    private Stack<SpoilerEffect> replySpoilersPool;
+    private final Stack<SpoilerEffect> replySpoilersPool;
     public int replyStartX;
     public int replyStartY;
     public StaticLayout replyTextLayout;
@@ -609,7 +609,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private float roundToPauseProgress2;
     private AnimatedFloat roundVideoPlayPipFloat;
     private RoundVideoPlayingDrawable roundVideoPlayingDrawable;
-    private Path sPath;
+    private final Path sPath;
     private boolean scheduledInvalidate;
     private Rect scrollRect;
     private SeekBar seekBar;

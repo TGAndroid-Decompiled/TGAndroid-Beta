@@ -819,12 +819,21 @@ public class StoriesUtilities {
     }
 
     public static class EnsureStoryFileLoadedObject {
-        boolean cancelled;
+        private boolean cancelled;
+        long dialogId;
         ImageReceiver imageReceiver;
         public Runnable runnable;
+        StoriesController storiesController;
 
-        private EnsureStoryFileLoadedObject() {
+        private EnsureStoryFileLoadedObject(StoriesController storiesController, long j) {
             this.cancelled = false;
+            this.dialogId = j;
+            this.storiesController = storiesController;
+        }
+
+        public void cancel() {
+            this.cancelled = true;
+            this.storiesController.setLoading(this.dialogId, false);
         }
     }
 
@@ -838,7 +847,8 @@ public class StoriesUtilities {
             runnable.run();
             return null;
         }
-        int i = MessagesController.getInstance(UserConfig.selectedAccount).storiesController.dialogIdToMaxReadId.get(tLRPC$TL_userStories.user_id);
+        StoriesController storiesController = MessagesController.getInstance(UserConfig.selectedAccount).storiesController;
+        int i = storiesController.dialogIdToMaxReadId.get(tLRPC$TL_userStories.user_id);
         int i2 = 0;
         while (true) {
             if (i2 >= tLRPC$TL_userStories.stories.size()) {
@@ -854,19 +864,19 @@ public class StoriesUtilities {
         if (tLRPC$StoryItem == null) {
             tLRPC$StoryItem = tLRPC$TL_userStories.stories.get(0);
         }
-        TLRPC$StoryItem tLRPC$StoryItem2 = tLRPC$StoryItem;
-        TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$StoryItem2.media;
+        TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$StoryItem.media;
         if (tLRPC$MessageMedia != null && tLRPC$MessageMedia.document != null) {
-            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$StoryItem2.media.document, "", false);
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$StoryItem.media.document, "", false);
             if (pathToAttach != null && pathToAttach.exists()) {
                 runnable.run();
                 return null;
             }
-            File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$StoryItem2.media.document, "", true);
+            File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$StoryItem.media.document, "", true);
             if (pathToAttach2 != null) {
                 try {
                     if (pathToAttach2.getName().lastIndexOf(".") > 0) {
-                        if (new File(pathToAttach2.getParentFile(), pathToAttach2.getName().substring(0, lastIndexOf) + ".temp").exists()) {
+                        File file = new File(pathToAttach2.getParentFile(), pathToAttach2.getName().substring(0, lastIndexOf) + ".temp");
+                        if (file.exists() && file.length() > 0) {
                             runnable.run();
                             return null;
                         }
@@ -887,7 +897,7 @@ public class StoriesUtilities {
                 return null;
             }
         }
-        final EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = new EnsureStoryFileLoadedObject();
+        final EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = new EnsureStoryFileLoadedObject(storiesController, tLRPC$TL_userStories.user_id);
         ensureStoryFileLoadedObject.runnable = new Runnable() {
             @Override
             public final void run() {
@@ -923,19 +933,18 @@ public class StoriesUtilities {
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         ensureStoryFileLoadedObject.imageReceiver.onAttachedToWindow();
         String storyImageFilter = getStoryImageFilter();
-        TLRPC$MessageMedia tLRPC$MessageMedia2 = tLRPC$StoryItem2.media;
+        TLRPC$MessageMedia tLRPC$MessageMedia2 = tLRPC$StoryItem.media;
         if (tLRPC$MessageMedia2 != null && (tLRPC$Document = tLRPC$MessageMedia2.document) != null) {
-            ensureStoryFileLoadedObject.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), storyImageFilter + "_pframe", null, null, null, 0L, null, tLRPC$StoryItem2, 0);
-        } else {
-            TLRPC$Photo tLRPC$Photo2 = tLRPC$MessageMedia2 != null ? tLRPC$MessageMedia2.photo : null;
-            if (tLRPC$Photo2 != null && (arrayList2 = tLRPC$Photo2.sizes) != null) {
-                ensureStoryFileLoadedObject.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList2, ConnectionsManager.DEFAULT_DATACENTER_ID), tLRPC$Photo2), storyImageFilter, null, null, null, 0L, null, tLRPC$StoryItem2, 0);
-            } else {
-                ensureStoryFileLoadedObject.runnable.run();
-                return null;
-            }
+            ensureStoryFileLoadedObject.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), storyImageFilter + "_pframe", null, null, null, 0L, null, tLRPC$StoryItem, 0);
+            return ensureStoryFileLoadedObject;
         }
-        return ensureStoryFileLoadedObject;
+        TLRPC$Photo tLRPC$Photo2 = tLRPC$MessageMedia2 != null ? tLRPC$MessageMedia2.photo : null;
+        if (tLRPC$Photo2 != null && (arrayList2 = tLRPC$Photo2.sizes) != null) {
+            ensureStoryFileLoadedObject.imageReceiver.setImage(null, null, ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(arrayList2, ConnectionsManager.DEFAULT_DATACENTER_ID), tLRPC$Photo2), storyImageFilter, null, null, null, 0L, null, tLRPC$StoryItem, 0);
+            return ensureStoryFileLoadedObject;
+        }
+        ensureStoryFileLoadedObject.runnable.run();
+        return null;
     }
 
     public static void lambda$ensureStoryFileLoaded$0(EnsureStoryFileLoadedObject ensureStoryFileLoadedObject, Runnable runnable) {

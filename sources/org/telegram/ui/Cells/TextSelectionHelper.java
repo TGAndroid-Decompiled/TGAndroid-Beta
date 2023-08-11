@@ -1503,7 +1503,11 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
                 }
             }
             if (i6 >= 0) {
-                return this.layoutBlock.charOffset + layout.getOffsetForHorizontal(i6, i5);
+                try {
+                    return this.layoutBlock.charOffset + layout.getOffsetForHorizontal(i6, i5);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
             }
             return -1;
         }

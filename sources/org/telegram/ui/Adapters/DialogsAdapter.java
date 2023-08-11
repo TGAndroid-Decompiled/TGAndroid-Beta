@@ -891,7 +891,11 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     break;
             }
         } else {
-            TextCell textCell = (TextCell) viewHolder.itemView;
+            View view = viewHolder.itemView;
+            if (!(view instanceof TextCell)) {
+                return;
+            }
+            TextCell textCell = (TextCell) view;
             int i9 = Theme.key_windowBackgroundWhiteBlueText4;
             textCell.setColors(i9, i9);
             TLRPC$RequestPeerType tLRPC$RequestPeerType = this.requestPeerType;

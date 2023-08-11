@@ -3972,6 +3972,12 @@
     <string name="NotificationsOffUntil">Off until %1$s</string>
     <string name="NotificationsOn">On</string>
     <string name="NotificationsOther">Other</string>
+    <string name="NotificationsPermissionAlert1">Get notified about new messages</string>
+    <string name="NotificationsPermissionAlert2">Learn when you are mentioned in groups</string>
+    <string name="NotificationsPermissionAlert3">Mute specific chats and types of chats</string>
+    <string name="NotificationsPermissionAlertSubtitle">Please allow Telegram to send you notifications to stay in touch with your friends and family.</string>
+    <string name="NotificationsPermissionAlertTitle">Turn on notifications</string>
+    <string name="NotificationsPermissionContinue">Continue</string>
     <string name="NotificationsPriorityHigh">High</string>
     <string name="NotificationsPriorityLow">Low</string>
     <string name="NotificationsPriorityMedium">Medium</string>
@@ -5428,6 +5434,7 @@
     <string name="SentSmsCodeTitle">Enter code</string>
     <string name="September">September</string>
     <string name="ServerErrorViewers">The list of viewers hasn’t been recorded for this story.</string>
+    <string name="ServerErrorViewersFull">The full list of viewers hasn’t been recorded for this story.</string>
     <string name="ServiceNotifications">Service notifications</string>
     <string name="SessionsInfo">Control your sessions on other devices.</string>
     <string name="SessionsListInfo">The official Telegram app is available for Android, iPhone, iPad, Windows, macOS and Linux.</string>
@@ -6533,6 +6540,7 @@
     <string name="UsersCount_other">%1$d users</string>
     <string name="UsersCount_two">%1$d users</string>
     <string name="UsersCount_zero">%1$d users</string>
+    <string name="UsersDeselectAll">Deselect All</string>
     <string name="Users_few">%1$d users</string>
     <string name="Users_many">%1$d users</string>
     <string name="Users_one">%1$d user</string>

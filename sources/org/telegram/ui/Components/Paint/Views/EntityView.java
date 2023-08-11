@@ -372,8 +372,12 @@ public class EntityView extends FrameLayout {
         }
         this.delegate.getTransformedTouch(motionEvent.getRawX(), motionEvent.getRawY(), this.xy);
         boolean z2 = motionEvent.getPointerCount() > 1;
-        if (z2 && Build.VERSION.SDK_INT >= 29) {
-            this.delegate.getTransformedTouch(motionEvent.getRawX(1), motionEvent.getRawY(1), this.xy2);
+        if (z2) {
+            if (Build.VERSION.SDK_INT >= 29) {
+                this.delegate.getTransformedTouch(motionEvent.getRawX(1), motionEvent.getRawY(1), this.xy2);
+            } else {
+                z2 = false;
+            }
         }
         if (z2) {
             float[] fArr = this.cxy;
@@ -935,7 +939,7 @@ public class EntityView extends FrameLayout {
         }
 
         @Override
-        public boolean onTouchEvent(android.view.MotionEvent r13) {
+        public boolean onTouchEvent(android.view.MotionEvent r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Paint.Views.EntityView.SelectionView.onTouchEvent(android.view.MotionEvent):boolean");
         }
 

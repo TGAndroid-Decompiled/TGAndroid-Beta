@@ -1321,7 +1321,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 return;
             }
             if (StoryPrivacyBottomSheet.this.mergeUsers(this.selectedUsers, this.selectedUsersByGroup).size() > 0) {
-                this.sectionCell.setRightText(LocaleController.getString(R.string.DeselectAll), true, new View.OnClickListener() {
+                this.sectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), true, new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
                         StoryPrivacyBottomSheet.Page.this.lambda$updateSectionCell$15(view);

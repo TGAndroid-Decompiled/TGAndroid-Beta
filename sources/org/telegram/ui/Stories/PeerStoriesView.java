@@ -1117,7 +1117,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                         });
                         addItem2.setMultiline(false);
                     }
-                    if (user.contact) {
+                    if (user != null && user.contact) {
                         if (!user.stories_hidden) {
                             ActionBarMenuItem.addItem(actionBarPopupWindowLayout, R.drawable.msg_archive, LocaleController.getString("ArchivePeerStories", R.string.ArchivePeerStories), false, this.val$resourcesProvider).setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -3798,14 +3798,16 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                         }
                         Rect rect2 = AndroidUtilities.rectTmp2;
                         childAt.getHitRect(rect2);
-                        if (this.keyboardVisible && childAt == this.chatActivityEnterView && f2 > rect2.top) {
-                            return true;
-                        }
-                        if (!z && rect2.contains((int) f, (int) f2) && (((childAt.isClickable() || childAt == this.reactionsContainerLayout) && childAt.isEnabled()) || ((chatActivityEnterView = this.chatActivityEnterView) != null && childAt == chatActivityEnterView.getRecordCircle()))) {
-                            return true;
-                        }
-                        if (childAt.isEnabled() && (childAt instanceof ViewGroup) && findClickableView((ViewGroup) childAt, f - childAt.getX(), f2 - childAt.getY(), z)) {
-                            return true;
+                        if (childAt != this.storyAreasView || (f >= AndroidUtilities.dp(60.0f) && f <= viewGroup.getMeasuredWidth() - AndroidUtilities.dp(60.0f))) {
+                            if (this.keyboardVisible && childAt == this.chatActivityEnterView && f2 > rect2.top) {
+                                return true;
+                            }
+                            if (!z && rect2.contains((int) f, (int) f2) && (((childAt.isClickable() || childAt == this.reactionsContainerLayout) && childAt.isEnabled()) || ((chatActivityEnterView = this.chatActivityEnterView) != null && childAt == chatActivityEnterView.getRecordCircle()))) {
+                                return true;
+                            }
+                            if (childAt.isEnabled() && (childAt instanceof ViewGroup) && findClickableView((ViewGroup) childAt, f - childAt.getX(), f2 - childAt.getY(), z)) {
+                                return true;
+                            }
                         }
                     }
                 }
@@ -5253,7 +5255,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     }
 
     public boolean needEnterText() {
-        boolean isKeyboardVisible = this.chatActivityEnterView.isKeyboardVisible();
+        ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
+        if (chatActivityEnterView == null) {
+            return false;
+        }
+        boolean isKeyboardVisible = chatActivityEnterView.isKeyboardVisible();
         if (isKeyboardVisible) {
             this.chatActivityEnterView.showEmojiView();
         }
