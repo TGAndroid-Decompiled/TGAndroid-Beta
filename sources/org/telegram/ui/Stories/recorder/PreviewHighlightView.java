@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
+import android.text.SpannableString;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -119,7 +120,7 @@ public class PreviewHighlightView extends FrameLayout {
     }
 
     public void updateCaption(CharSequence charSequence) {
-        this.storyCaptionView.captionTextview.setText(AnimatedEmojiSpan.cloneSpans(charSequence), false, false);
+        this.storyCaptionView.captionTextview.setText(AnimatedEmojiSpan.cloneSpans(new SpannableString(charSequence)), false, false);
     }
 
     public void show(boolean z, boolean z2, View view) {

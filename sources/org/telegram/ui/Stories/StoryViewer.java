@@ -1260,6 +1260,15 @@ public class StoryViewer {
         }
         if (this.allowSelfStoriesView || this.selfStoriesViewsOffset != 0.0f) {
             this.locker.lock();
+            if (!z) {
+                float f = this.selfStoriesViewsOffset;
+                SelfStoryViewsView selfStoryViewsView = this.selfStoryViewsView;
+                float f2 = selfStoryViewsView.maxSelfStoriesViewsOffset;
+                if (f == f2) {
+                    this.selfStoriesViewsOffset = f2 - 1.0f;
+                    selfStoryViewsView.setOffset(f2 - 1.0f);
+                }
+            }
             float[] fArr = new float[2];
             fArr[0] = this.selfStoriesViewsOffset;
             fArr[1] = z ? this.selfStoryViewsView.maxSelfStoriesViewsOffset : 0.0f;
@@ -1298,10 +1307,6 @@ public class StoryViewer {
 
     public void lambda$cancelSwipeToViews$1(ValueAnimator valueAnimator) {
         this.selfStoriesViewsOffset = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        PeerStoriesView currentPeerView = this.storiesViewPager.getCurrentPeerView();
-        if (currentPeerView != null) {
-            currentPeerView.invalidate();
-        }
         this.containerView.invalidate();
     }
 
@@ -1787,6 +1792,7 @@ public class StoryViewer {
                 if (imageReceiver2 != null && !storyViewer3.foundViewToClose) {
                     imageReceiver2.setAlpha(1.0f);
                     StoryViewer.this.transitionViewHolder.storyImage.setVisible(true, true);
+                    StoryViewer.this.transitionViewHolder.storyImage = null;
                 }
                 PeerStoriesView currentPeerView2 = StoryViewer.this.getCurrentPeerView();
                 if (currentPeerView2 != null) {

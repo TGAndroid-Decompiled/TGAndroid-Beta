@@ -178,9 +178,9 @@ public class StoriesViewPager extends ViewPager {
         if (!pageLayout.isVisible) {
             pageLayout.setVisible(true);
             if (this.days != null) {
-                pageLayout.peerStoryView.setDay(pageLayout.dialogId, pageLayout.day);
+                pageLayout.peerStoryView.setDay(pageLayout.dialogId, pageLayout.day, -1);
             } else {
-                pageLayout.peerStoryView.setDialogId(pageLayout.dialogId);
+                pageLayout.peerStoryView.setDialogId(pageLayout.dialogId, -1);
             }
         }
         pageLayout.peerStoryView.setOffset(f);
@@ -287,12 +287,11 @@ public class StoriesViewPager extends ViewPager {
                         this.updateVisibleItemPosition = -1;
                         pageLayout.setVisible(true);
                         if (this.days != null) {
-                            pageLayout.peerStoryView.setDay(pageLayout.dialogId, pageLayout.day);
+                            pageLayout.peerStoryView.setDay(pageLayout.dialogId, pageLayout.day, this.selectedPositionInPage);
                         } else {
-                            pageLayout.peerStoryView.setDialogId(pageLayout.dialogId);
+                            pageLayout.peerStoryView.setDialogId(pageLayout.dialogId, this.selectedPositionInPage);
                         }
                     }
-                    pageLayout.peerStoryView.selectPosition(this.selectedPositionInPage);
                 }
             }
         }
@@ -449,8 +448,18 @@ public class StoriesViewPager extends ViewPager {
                 }
                 if (getCurrentPeerView() == null || getCurrentItem() != size) {
                     setCurrentItem(size, false);
-                    this.updateVisibleItemPosition = size;
-                    this.selectedPositionInPage = i3;
+                    PeerStoriesView currentPeerView = getCurrentPeerView();
+                    if (currentPeerView != null) {
+                        PageLayout pageLayout = (PageLayout) currentPeerView.getParent();
+                        pageLayout.setVisible(true);
+                        if (this.days != null) {
+                            pageLayout.peerStoryView.setDay(pageLayout.dialogId, pageLayout.day, i3);
+                            return;
+                        } else {
+                            pageLayout.peerStoryView.setDialogId(pageLayout.dialogId, i3);
+                            return;
+                        }
+                    }
                     return;
                 }
                 getCurrentPeerView().selectPosition(i3);

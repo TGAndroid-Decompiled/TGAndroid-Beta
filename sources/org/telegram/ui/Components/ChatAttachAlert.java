@@ -665,6 +665,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
             public static void $default$sendAudio(ChatAttachViewDelegate chatAttachViewDelegate, ArrayList arrayList, CharSequence charSequence, boolean z, int i) {
             }
+
+            public static void $default$doOnIdle(ChatAttachViewDelegate _this, Runnable runnable) {
+                runnable.run();
+            }
         }
     }
 

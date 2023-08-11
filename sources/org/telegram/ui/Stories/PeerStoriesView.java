@@ -2731,19 +2731,19 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         });
     }
 
-    public void setDay(long j, ArrayList<Integer> arrayList) {
+    public void setDay(long j, ArrayList<Integer> arrayList, int i) {
         this.dialogId = j;
         this.day = arrayList;
-        bindInternal();
+        bindInternal(i);
     }
 
-    public void setDialogId(long j) {
+    public void setDialogId(long j, int i) {
         if (this.dialogId != j) {
             this.currentStory.clear();
         }
         this.dialogId = j;
         this.day = null;
-        bindInternal();
+        bindInternal(i);
         TLRPC$TL_userStories tLRPC$TL_userStories = this.storyViewer.overrideUserStories;
         if (tLRPC$TL_userStories != null) {
             this.storiesController.loadSkippedStories(tLRPC$TL_userStories, true);
@@ -2752,7 +2752,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
     }
 
-    private void bindInternal() {
+    private void bindInternal(int i) {
         this.deletedPeer = false;
         this.forceUpdateOffsets = true;
         long j = this.dialogId;
@@ -2792,7 +2792,10 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             MessagesController.getInstance(this.currentAccount).getChatFull(-this.dialogId);
         }
         updateStoryItems();
-        this.selectedPosition = 0;
+        this.selectedPosition = i;
+        if (i < 0) {
+            this.selectedPosition = 0;
+        }
         this.currentImageTime = 0L;
         this.switchEventSent = false;
         if (this.isSelf) {
@@ -2802,28 +2805,30 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             if (chatActivityEnterView != null) {
                 chatActivityEnterView.setVisibility(8);
             }
-            ArrayList<Integer> arrayList = this.day;
-            if (arrayList != null) {
-                int indexOf = arrayList.indexOf(Integer.valueOf(this.storyViewer.dayStoryId));
-                if (indexOf < 0 && !this.day.isEmpty()) {
-                    if (this.storyViewer.dayStoryId > this.day.get(0).intValue()) {
-                        indexOf = 0;
-                    } else {
-                        int i = this.storyViewer.dayStoryId;
-                        ArrayList<Integer> arrayList2 = this.day;
-                        if (i < arrayList2.get(arrayList2.size() - 1).intValue()) {
-                            indexOf = this.day.size() - 1;
+            if (i == -1) {
+                ArrayList<Integer> arrayList = this.day;
+                if (arrayList != null) {
+                    int indexOf = arrayList.indexOf(Integer.valueOf(this.storyViewer.dayStoryId));
+                    if (indexOf < 0 && !this.day.isEmpty()) {
+                        if (this.storyViewer.dayStoryId > this.day.get(0).intValue()) {
+                            indexOf = 0;
+                        } else {
+                            int i2 = this.storyViewer.dayStoryId;
+                            ArrayList<Integer> arrayList2 = this.day;
+                            if (i2 < arrayList2.get(arrayList2.size() - 1).intValue()) {
+                                indexOf = this.day.size() - 1;
+                            }
                         }
                     }
-                }
-                this.selectedPosition = Math.max(0, indexOf);
-            } else if (!this.uploadingStories.isEmpty()) {
-                this.selectedPosition = this.storyItems.size();
-            } else {
-                for (int i2 = 0; i2 < this.storyItems.size(); i2++) {
-                    if (this.storyItems.get(i2).justUploaded || this.storyItems.get(i2).id > this.storiesController.dialogIdToMaxReadId.get(this.dialogId)) {
-                        this.selectedPosition = i2;
-                        break;
+                    this.selectedPosition = Math.max(0, indexOf);
+                } else if (!this.uploadingStories.isEmpty()) {
+                    this.selectedPosition = this.storyItems.size();
+                } else {
+                    for (int i3 = 0; i3 < this.storyItems.size(); i3++) {
+                        if (this.storyItems.get(i3).justUploaded || this.storyItems.get(i3).id > this.storiesController.dialogIdToMaxReadId.get(this.dialogId)) {
+                            this.selectedPosition = i3;
+                            break;
+                        }
                     }
                 }
             }
@@ -2835,7 +2840,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         if (this.chatActivityEnterView == null) {
             createEnterView();
         }
-        updateSelectedPosition();
+        if (i == -1) {
+            updateSelectedPosition();
+        }
         ChatActivityEnterView chatActivityEnterView2 = this.chatActivityEnterView;
         if (chatActivityEnterView2 != null) {
             chatActivityEnterView2.setVisibility(0);
@@ -5277,9 +5284,16 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     }
 
     public void setViewsThumbImageReceiver(float f, float f2, float f3, SelfStoriesPreviewView.ImageHolder imageHolder) {
-        this.viewsThumbImageReceiver = imageHolder;
         this.viewsThumbAlpha = f;
         this.viewsThumbScale = 1.0f / f2;
+        if (this.viewsThumbImageReceiver == imageHolder) {
+            return;
+        }
+        this.viewsThumbImageReceiver = imageHolder;
+        if (imageHolder == null || imageHolder.receiver.getBitmap() == null) {
+            return;
+        }
+        this.imageReceiver.updateStaticDrawableThump(imageHolder.receiver.getBitmap().copy(Bitmap.Config.ARGB_8888, false));
     }
 
     public static class SharedResources {

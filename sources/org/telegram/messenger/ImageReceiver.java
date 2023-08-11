@@ -207,6 +207,12 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return this.currentMediaDrawable;
     }
 
+    public void updateStaticDrawableThump(Bitmap bitmap) {
+        this.staticThumbShader = null;
+        this.roundPaint.setShader(null);
+        setStaticDrawable(new BitmapDrawable(bitmap));
+    }
+
     public static class BitmapHolder {
         public Bitmap bitmap;
         public Drawable drawable;

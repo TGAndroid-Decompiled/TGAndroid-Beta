@@ -286,9 +286,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 int childLayoutPosition = recyclerView.getChildLayoutPosition(view);
                 rect.setEmpty();
                 if (childLayoutPosition == 1) {
-                    rect.left = (-AndroidUtilities.dp(85.0f)) + AndroidUtilities.dp(35.0f);
+                    rect.left = (-AndroidUtilities.dp(85.0f)) + AndroidUtilities.dp(33.0f);
                 } else if (childLayoutPosition == 2) {
-                    rect.left = (-AndroidUtilities.dp(85.0f)) + AndroidUtilities.dp(35.0f);
+                    rect.left = (-AndroidUtilities.dp(85.0f)) + AndroidUtilities.dp(33.0f);
                 }
             }
         });

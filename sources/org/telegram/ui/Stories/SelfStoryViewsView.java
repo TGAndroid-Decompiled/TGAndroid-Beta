@@ -17,6 +17,7 @@ import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
@@ -282,7 +283,13 @@ public class SelfStoryViewsView extends FrameLayout {
             StoriesController.StoriesList storiesList = this.storyViewer.storiesList;
             if (storiesList != null) {
                 MessageObject messageObject = storiesList.messageObjects.get(this.selfStoriesPreviewView.getClosestPosition());
-                this.storyViewer.storiesViewPager.setCurrentDate(StoriesController.StoriesList.day(messageObject), messageObject.storyItem.id);
+                long day = StoriesController.StoriesList.day(messageObject);
+                ImageReceiver imageReceiver = this.storyViewer.transitionViewHolder.storyImage;
+                if (imageReceiver != null) {
+                    imageReceiver.setVisible(true, true);
+                    this.storyViewer.transitionViewHolder.storyImage = null;
+                }
+                this.storyViewer.storiesViewPager.setCurrentDate(day, messageObject.storyItem.id);
             } else if (currentPeerView != null) {
                 currentPeerView.selectPosition(this.selfStoriesPreviewView.getClosestPosition());
             }
