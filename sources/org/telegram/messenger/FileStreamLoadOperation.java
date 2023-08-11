@@ -63,9 +63,9 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
 
     @Override
     public long open(DataSpec dataSpec) throws IOException {
-        Uri uri = dataSpec.uri;
-        this.uri = uri;
-        int intValue = Utilities.parseInt((CharSequence) uri.getQueryParameter("account")).intValue();
+        this.uri = dataSpec.uri;
+        transferInitializing(dataSpec);
+        int intValue = Utilities.parseInt((CharSequence) this.uri.getQueryParameter("account")).intValue();
         this.currentAccount = intValue;
         this.parentObject = FileLoader.getInstance(intValue).getParentObject(Utilities.parseInt((CharSequence) this.uri.getQueryParameter("rid")).intValue());
         TLRPC$TL_document tLRPC$TL_document = new TLRPC$TL_document();

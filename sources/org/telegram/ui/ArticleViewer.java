@@ -69,6 +69,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Keep;
 import androidx.collection.LongSparseArray;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.GridLayoutManagerFixed;
@@ -88,6 +89,7 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
@@ -262,6 +264,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     private ImageView backButton;
     private BackDrawable backDrawable;
     private Paint backgroundPaint;
+    private Drawable chat_redLocationIcon;
     private ImageView clearButton;
     private boolean closeAnimationInProgress;
     private boolean collapsed;
@@ -699,7 +702,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         @Override
         protected void onDraw(Canvas canvas) {
             this.textPaint.setColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText));
-            canvas.drawText("" + SharedConfig.ivFontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), this.textPaint);
+            canvas.drawText(BuildConfig.APP_CENTER_HASH + SharedConfig.ivFontSize, getMeasuredWidth() - AndroidUtilities.dp(39.0f), AndroidUtilities.dp(28.0f), this.textPaint);
         }
 
         @Override
@@ -876,13 +879,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             TextSelectionHelper<Cell>.TextSelectionOverlay overlayView = ArticleViewer.this.textSelectionHelper.getOverlayView(getContext());
             MotionEvent obtain = MotionEvent.obtain(motionEvent);
             obtain.offsetLocation(-ArticleViewer.this.containerView.getX(), -ArticleViewer.this.containerView.getY());
-            if (ArticleViewer.this.textSelectionHelper.isSelectionMode() && ArticleViewer.this.textSelectionHelper.getOverlayView(getContext()).onTouchEvent(obtain)) {
+            if (ArticleViewer.this.textSelectionHelper.isInSelectionMode() && ArticleViewer.this.textSelectionHelper.getOverlayView(getContext()).onTouchEvent(obtain)) {
                 return true;
             }
             if (overlayView.checkOnTap(motionEvent)) {
                 motionEvent.setAction(3);
             }
-            if (motionEvent.getAction() == 0 && ArticleViewer.this.textSelectionHelper.isSelectionMode() && (motionEvent.getY() < ArticleViewer.this.containerView.getTop() || motionEvent.getY() > ArticleViewer.this.containerView.getBottom())) {
+            if (motionEvent.getAction() == 0 && ArticleViewer.this.textSelectionHelper.isInSelectionMode() && (motionEvent.getY() < ArticleViewer.this.containerView.getTop() || motionEvent.getY() > ArticleViewer.this.containerView.getBottom())) {
                 if (ArticleViewer.this.textSelectionHelper.getOverlayView(getContext()).onTouchEvent(obtain)) {
                     return super.dispatchTouchEvent(motionEvent);
                 }
@@ -1019,7 +1022,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         }
 
         public boolean handleTouchEvent(MotionEvent motionEvent) {
-            if (ArticleViewer.this.pageSwitchAnimation != null || ArticleViewer.this.closeAnimationInProgress || ArticleViewer.this.fullscreenVideoContainer.getVisibility() == 0 || ArticleViewer.this.textSelectionHelper.isSelectionMode()) {
+            if (ArticleViewer.this.pageSwitchAnimation != null || ArticleViewer.this.closeAnimationInProgress || ArticleViewer.this.fullscreenVideoContainer.getVisibility() == 0 || ArticleViewer.this.textSelectionHelper.isInSelectionMode()) {
                 return false;
             }
             if (motionEvent != null && motionEvent.getAction() == 0 && !this.startedTracking && !this.maybeStartTracking) {
@@ -1099,7 +1102,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                                     articleViewer.textSelectionHelper.setParentView(articleViewer.listView[0]);
                                     ArticleViewer articleViewer2 = ArticleViewer.this;
                                     articleViewer2.textSelectionHelper.layoutManager = articleViewer2.layoutManager[0];
-                                    ArticleViewer.this.titleTextView.setText(ArticleViewer.this.adapter[0].currentPage.site_name == null ? "" : ArticleViewer.this.adapter[0].currentPage.site_name);
+                                    ArticleViewer.this.titleTextView.setText(ArticleViewer.this.adapter[0].currentPage.site_name == null ? BuildConfig.APP_CENTER_HASH : ArticleViewer.this.adapter[0].currentPage.site_name);
                                     ArticleViewer.this.textSelectionHelper.clear(true);
                                     ArticleViewer.this.headerView.invalidate();
                                 }
@@ -1136,7 +1139,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     this.tracker = null;
                 }
                 TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = ArticleViewer.this.textSelectionHelper;
-                if (articleTextSelectionHelper != null && !articleTextSelectionHelper.isSelectionMode()) {
+                if (articleTextSelectionHelper != null && !articleTextSelectionHelper.isInSelectionMode()) {
                     ArticleViewer.this.textSelectionHelper.clear();
                 }
             }
@@ -1253,7 +1256,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         ArticleViewer articleViewer4 = ArticleViewer.this;
                         articleViewer4.textSelectionHelper.trySelect(articleViewer4.pressedLinkOwnerView);
                     }
-                    if (ArticleViewer.this.textSelectionHelper.isSelectionMode()) {
+                    if (ArticleViewer.this.textSelectionHelper.isInSelectionMode()) {
                         ArticleViewer.this.windowView.performHapticFeedback(0, 2);
                         return;
                     }
@@ -1386,7 +1389,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             try {
                 str2 = URLDecoder.decode(str.substring(lastIndexOf + 1), "UTF-8");
             } catch (Exception unused) {
-                str2 = "";
+                str2 = BuildConfig.APP_CENTER_HASH;
             }
             if (str.toLowerCase().contains(lowerCase)) {
                 if (TextUtils.isEmpty(str2)) {
@@ -1781,7 +1784,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             SimpleTextView simpleTextView = this.titleTextView;
             String str = tLRPC$WebPage.site_name;
             if (str == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             simpleTextView.setText(str);
             this.textSelectionHelper.clear(true);
@@ -1904,13 +1907,13 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         TextSelectionHelper<Cell>.TextSelectionOverlay overlayView2 = ArticleViewer.this.textSelectionHelperBottomSheet.getOverlayView(getContext());
                         MotionEvent obtain = MotionEvent.obtain(motionEvent);
                         obtain.offsetLocation(-linearLayout.getX(), -linearLayout.getY());
-                        if (ArticleViewer.this.textSelectionHelperBottomSheet.isSelectionMode() && ArticleViewer.this.textSelectionHelperBottomSheet.getOverlayView(getContext()).onTouchEvent(obtain)) {
+                        if (ArticleViewer.this.textSelectionHelperBottomSheet.isInSelectionMode() && ArticleViewer.this.textSelectionHelperBottomSheet.getOverlayView(getContext()).onTouchEvent(obtain)) {
                             return true;
                         }
                         if (overlayView2.checkOnTap(motionEvent)) {
                             motionEvent.setAction(3);
                         }
-                        if (motionEvent.getAction() == 0 && ArticleViewer.this.textSelectionHelperBottomSheet.isSelectionMode() && (motionEvent.getY() < linearLayout.getTop() || motionEvent.getY() > linearLayout.getBottom())) {
+                        if (motionEvent.getAction() == 0 && ArticleViewer.this.textSelectionHelperBottomSheet.isInSelectionMode() && (motionEvent.getY() < linearLayout.getTop() || motionEvent.getY() > linearLayout.getBottom())) {
                             if (ArticleViewer.this.textSelectionHelperBottomSheet.getOverlayView(getContext()).onTouchEvent(obtain)) {
                                 return super.dispatchTouchEvent(motionEvent);
                             }
@@ -1929,7 +1932,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     @Override
                     public boolean canDismiss() {
                         TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper2 = ArticleViewer.this.textSelectionHelperBottomSheet;
-                        if (articleTextSelectionHelper2 == null || !articleTextSelectionHelper2.isSelectionMode()) {
+                        if (articleTextSelectionHelper2 == null || !articleTextSelectionHelper2.isInSelectionMode()) {
                             return true;
                         }
                         ArticleViewer.this.textSelectionHelperBottomSheet.clear();
@@ -1939,7 +1942,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 frameLayout.addView(linearLayout, -1, -2);
                 frameLayout.addView(overlayView, -1, -2);
                 builder.setCustomView(frameLayout);
-                if (this.textSelectionHelper.isSelectionMode()) {
+                if (this.textSelectionHelper.isInSelectionMode()) {
                     this.textSelectionHelper.clear();
                 }
                 BottomSheet create = builder.create();
@@ -2167,9 +2170,10 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 spannableStringBuilder3.setSpan(new AnchorSpan(tLRPC$TL_textAnchor.name), 0, spannableStringBuilder3.length(), 17);
                 return spannableStringBuilder3;
             }
-            ?? r2 = "";
-            if (tLRPC$RichText2 instanceof TLRPC$TL_textEmpty) {
-                return "";
+            boolean z = tLRPC$RichText2 instanceof TLRPC$TL_textEmpty;
+            ?? r2 = BuildConfig.APP_CENTER_HASH;
+            if (z) {
+                return BuildConfig.APP_CENTER_HASH;
             }
             if (tLRPC$RichText2 instanceof TLRPC$TL_textConcat) {
                 SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
@@ -2178,8 +2182,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 while (i4 < size) {
                     TLRPC$RichText tLRPC$RichText3 = tLRPC$RichText2.texts.get(i4);
                     TLRPC$RichText lastRichText = getLastRichText(tLRPC$RichText3);
-                    boolean z = i >= 0 && (tLRPC$RichText3 instanceof TLRPC$TL_textUrl) && ((TLRPC$TL_textUrl) tLRPC$RichText3).webpage_id != j;
-                    if (z && spannableStringBuilder4.length() != 0 && spannableStringBuilder4.charAt(spannableStringBuilder4.length() - 1) != '\n') {
+                    boolean z2 = i >= 0 && (tLRPC$RichText3 instanceof TLRPC$TL_textUrl) && ((TLRPC$TL_textUrl) tLRPC$RichText3).webpage_id != j;
+                    if (z2 && spannableStringBuilder4.length() != 0 && spannableStringBuilder4.charAt(spannableStringBuilder4.length() - 1) != '\n') {
                         spannableStringBuilder4.append((CharSequence) " ");
                         spannableStringBuilder4.setSpan(new TextSelectionHelper.IgnoreCopySpannable(), spannableStringBuilder4.length() - 1, spannableStringBuilder4.length(), 33);
                     }
@@ -2207,7 +2211,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                             spannableStringBuilder4.setSpan(new TextPaintSpan(getTextPaint(tLRPC$RichText, lastRichText, tLRPC$PageBlock)), length, spannableStringBuilder4.length(), 33);
                         }
                     }
-                    if (z && i5 != i6 - 1) {
+                    if (z2 && i5 != i6 - 1) {
                         spannableStringBuilder4.append((CharSequence) " ");
                         spannableStringBuilder4.setSpan(new TextSelectionHelper.IgnoreCopySpannable(), spannableStringBuilder4.length() - 1, spannableStringBuilder4.length(), 33);
                     }
@@ -2267,7 +2271,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
     public static CharSequence getPlainText(TLRPC$RichText tLRPC$RichText) {
         if (tLRPC$RichText == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         if (tLRPC$RichText instanceof TLRPC$TL_textFixed) {
             return getPlainText(((TLRPC$TL_textFixed) tLRPC$RichText).text);
@@ -2297,7 +2301,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             return getPlainText(((TLRPC$TL_textAnchor) tLRPC$RichText).text);
         }
         if (tLRPC$RichText instanceof TLRPC$TL_textEmpty) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         if (tLRPC$RichText instanceof TLRPC$TL_textConcat) {
             StringBuilder sb = new StringBuilder();
@@ -2319,7 +2323,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 return getPlainText(((TLRPC$TL_textPhone) tLRPC$RichText).text);
             }
             boolean z = tLRPC$RichText instanceof TLRPC$TL_textImage;
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 
@@ -3520,7 +3524,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     public void lambda$setParentActivity$12(WebpageAdapter webpageAdapter, View view, int i, float f, float f2) {
         TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = this.textSelectionHelper;
         if (articleTextSelectionHelper != null) {
-            if (articleTextSelectionHelper.isSelectionMode()) {
+            if (articleTextSelectionHelper.isInSelectionMode()) {
                 this.textSelectionHelper.clear();
                 return;
             }
@@ -3704,7 +3708,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
     public void lambda$setParentActivity$16(View view) {
         if (this.searchField.length() != 0) {
-            this.searchField.setText("");
+            this.searchField.setText(BuildConfig.APP_CENTER_HASH);
         }
         this.searchField.requestFocus();
         AndroidUtilities.showKeyboard(this.searchField);
@@ -3873,7 +3877,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         }
                         ArticleViewer.this.searchContainer.setVisibility(4);
                         ArticleViewer.this.searchPanel.setVisibility(4);
-                        ArticleViewer.this.searchField.setText("");
+                        ArticleViewer.this.searchField.setText(BuildConfig.APP_CENTER_HASH);
                     }
 
                     @Override
@@ -3907,7 +3911,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             } else {
                 this.searchContainer.setVisibility(4);
                 this.searchPanel.setVisibility(4);
-                this.searchField.setText("");
+                this.searchField.setText(BuildConfig.APP_CENTER_HASH);
             }
             updateWindowLayoutParamsForSearch();
         }
@@ -3934,7 +3938,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         imageView2.setAlpha(imageView2.isEnabled() ? 1.0f : 0.5f);
         int size = this.searchResults.size();
         if (size < 0) {
-            this.searchCountText.setText("");
+            this.searchCountText.setText(BuildConfig.APP_CENTER_HASH);
         } else if (size == 0) {
             this.searchCountText.setText(LocaleController.getString("NoResult", R.string.NoResult));
         } else if (size == 1) {
@@ -4410,7 +4414,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 return;
             }
         }
-        if (this.textSelectionHelper.isSelectionMode()) {
+        if (this.textSelectionHelper.isInSelectionMode()) {
             this.textSelectionHelper.clear();
         } else if (this.searchContainer.getTag() != null) {
             showSearch(false);
@@ -6907,7 +6911,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     }
                     BlockTableCell.this.updateChildTextPositions();
                     TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = ArticleViewer.this.textSelectionHelper;
-                    if (articleTextSelectionHelper == null || !articleTextSelectionHelper.isSelectionMode()) {
+                    if (articleTextSelectionHelper == null || !articleTextSelectionHelper.isInSelectionMode()) {
                         return;
                     }
                     ArticleViewer.this.textSelectionHelper.invalidate();
@@ -9080,13 +9084,16 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             Theme.chat_locationDrawable[0].draw(canvas);
             this.imageView.draw(canvas);
             if (this.currentMapProvider == 2 && this.imageView.hasNotThumb()) {
-                int intrinsicWidth = (int) (Theme.chat_redLocationIcon.getIntrinsicWidth() * 0.8f);
-                int intrinsicHeight = (int) (Theme.chat_redLocationIcon.getIntrinsicHeight() * 0.8f);
+                if (ArticleViewer.this.chat_redLocationIcon == null) {
+                    ArticleViewer.this.chat_redLocationIcon = ContextCompat.getDrawable(getContext(), R.drawable.map_pin).mutate();
+                }
+                int intrinsicWidth = (int) (ArticleViewer.this.chat_redLocationIcon.getIntrinsicWidth() * 0.8f);
+                int intrinsicHeight = (int) (ArticleViewer.this.chat_redLocationIcon.getIntrinsicHeight() * 0.8f);
                 int imageX = (int) (this.imageView.getImageX() + ((this.imageView.getImageWidth() - intrinsicWidth) / 2.0f));
                 int imageY = (int) (this.imageView.getImageY() + ((this.imageView.getImageHeight() / 2.0f) - intrinsicHeight));
-                Theme.chat_redLocationIcon.setAlpha((int) (this.imageView.getCurrentAlpha() * 255.0f));
-                Theme.chat_redLocationIcon.setBounds(imageX, imageY, intrinsicWidth + imageX, intrinsicHeight + imageY);
-                Theme.chat_redLocationIcon.draw(canvas);
+                ArticleViewer.this.chat_redLocationIcon.setAlpha((int) (this.imageView.getCurrentAlpha() * 255.0f));
+                ArticleViewer.this.chat_redLocationIcon.setBounds(imageX, imageY, intrinsicWidth + imageX, intrinsicHeight + imageY);
+                ArticleViewer.this.chat_redLocationIcon.draw(canvas);
             }
             if (this.captionLayout != null) {
                 canvas.save();
@@ -9818,7 +9825,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         public void lambda$new$0(View view, int i, int i2, int i3, int i4) {
             TextSelectionHelper.ArticleTextSelectionHelper articleTextSelectionHelper = ArticleViewer.this.textSelectionHelper;
-            if (articleTextSelectionHelper == null || !articleTextSelectionHelper.isSelectionMode()) {
+            if (articleTextSelectionHelper == null || !articleTextSelectionHelper.isInSelectionMode()) {
                 return;
             }
             ArticleViewer.this.textSelectionHelper.invalidate();

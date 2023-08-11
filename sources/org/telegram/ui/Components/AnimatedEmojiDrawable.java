@@ -22,6 +22,7 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.FileLoader;
@@ -521,16 +522,16 @@ public class AnimatedEmojiDrawable extends Drawable {
                         }
 
                         @Override
-                        public boolean setImageBitmapByKey(Drawable drawable, String str2, int i2, boolean z2, int i3) {
+                        protected boolean setImageBitmapByKey(Drawable drawable, String str2, int i2, boolean z2, int i3) {
                             AnimatedEmojiDrawable.this.invalidate();
                             return super.setImageBitmapByKey(drawable, str2, i2, z2, i3);
                         }
                     };
                     this.imageReceiver = imageReceiver2;
                     imageReceiver2.setAllowLoadingOnAttachedOnly(true);
-                }
-                if (this.cacheType == 12) {
-                    this.imageReceiver.ignoreNotifications = true;
+                    if (this.cacheType == 12) {
+                        this.imageReceiver.ignoreNotifications = true;
+                    }
                 }
                 if (this.colorFilterToSet != null && canOverrideColor()) {
                     this.imageReceiver.setColorFilter(this.colorFilterToSet);
@@ -573,7 +574,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                     if (this.cacheType != 0) {
                         str = this.cacheType + "_";
                     } else {
-                        str = "";
+                        str = BuildConfig.APP_CENTER_HASH;
                     }
                     sb.append(str);
                     sb.append(this.documentId);

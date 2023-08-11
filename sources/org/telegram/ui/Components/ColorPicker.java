@@ -33,6 +33,7 @@ import androidx.annotation.Keep;
 import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -222,6 +223,10 @@ public class ColorPicker extends FrameLayout {
             private RectF rect = new RectF();
             private Paint paint = new Paint(1);
 
+            {
+                ColorPicker.this = this;
+            }
+
             @Override
             protected void onDraw(Canvas canvas) {
                 this.paint.setColor(ColorPicker.this.getThemedColor(Theme.key_dialogBackgroundGray));
@@ -259,6 +264,10 @@ public class ColorPicker extends FrameLayout {
             }
             if (i2 % 2 == 0) {
                 editTextBoldCursorArr[i2] = new EditTextBoldCursor(context) {
+                    {
+                        ColorPicker.this = this;
+                    }
+
                     @Override
                     public boolean onTouchEvent(MotionEvent motionEvent) {
                         if (getAlpha() == 1.0f && motionEvent.getAction() == 0) {
@@ -279,6 +288,10 @@ public class ColorPicker extends FrameLayout {
                 this.linearLayout.addView(this.colorEditText[i2], LayoutHelper.createLinear(-2, -1, 0.0f, 0.0f, 0.0f, 0.0f));
             } else {
                 editTextBoldCursorArr[i2] = new EditTextBoldCursor(context) {
+                    {
+                        ColorPicker.this = this;
+                    }
+
                     @Override
                     public boolean onTouchEvent(MotionEvent motionEvent) {
                         if (getAlpha() != 1.0f) {
@@ -319,6 +332,10 @@ public class ColorPicker extends FrameLayout {
                     public void onTextChanged(CharSequence charSequence, int i3, int i4, int i5) {
                     }
 
+                    {
+                        ColorPicker.this = this;
+                    }
+
                     @Override
                     public void afterTextChanged(Editable editable) {
                         ColorPicker colorPicker = ColorPicker.this;
@@ -330,7 +347,7 @@ public class ColorPicker extends FrameLayout {
                         while (i3 < editable.length()) {
                             char charAt = editable.charAt(i3);
                             if ((charAt < '0' || charAt > '9') && ((charAt < 'a' || charAt > 'f') && (charAt < 'A' || charAt > 'F'))) {
-                                editable.replace(i3, i3 + 1, "");
+                                editable.replace(i3, i3 + 1, BuildConfig.APP_CENTER_HASH);
                                 i3--;
                             }
                             i3++;
@@ -399,6 +416,10 @@ public class ColorPicker extends FrameLayout {
         this.addButton.setContentDescription(LocaleController.getString("Add", R.string.Add));
         addView(this.addButton, LayoutHelper.createFrame(30, 30.0f, 49, 36.0f, 1.0f, 0.0f, 0.0f));
         ImageView imageView3 = new ImageView(getContext()) {
+            {
+                ColorPicker.this = this;
+            }
+
             @Override
             public void setAlpha(float f) {
                 super.setAlpha(f);
@@ -564,6 +585,10 @@ public class ColorPicker extends FrameLayout {
         this.colorsAnimator.setDuration(180L);
         this.colorsAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
         this.colorsAnimator.addListener(new AnimatorListenerAdapter() {
+            {
+                ColorPicker.this = this;
+            }
+
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (ColorPicker.this.colorsCount == ColorPicker.this.maxColorsCount) {
@@ -644,6 +669,10 @@ public class ColorPicker extends FrameLayout {
                 this.colorsAnimator.setDuration(180L);
                 this.colorsAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT);
                 this.colorsAnimator.addListener(new AnimatorListenerAdapter() {
+                    {
+                        ColorPicker.this = this;
+                    }
+
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         if (ColorPicker.this.colorsCount == 1) {
@@ -842,6 +871,10 @@ public class ColorPicker extends FrameLayout {
                 fArr[0] = z ? 1.0f : 0.0f;
                 arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
                 animatorSet.addListener(new AnimatorListenerAdapter() {
+                    {
+                        ColorPicker.this = this;
+                    }
+
                     @Override
                     public void onAnimationEnd(Animator animator) {
                         if (z) {
@@ -920,6 +953,10 @@ public class ColorPicker extends FrameLayout {
         animatorSet.playTogether(arrayList);
         animatorSet.setDuration(180L);
         animatorSet.addListener(new AnimatorListenerAdapter() {
+            {
+                ColorPicker.this = this;
+            }
+
             @Override
             public void onAnimationEnd(Animator animator) {
                 if (i2 <= 1) {

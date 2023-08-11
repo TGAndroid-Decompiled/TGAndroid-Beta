@@ -34,19 +34,19 @@ public class SpoilerEffectBitmapFactory {
 
     private SpoilerEffectBitmapFactory() {
         new Matrix();
-        int dp = AndroidUtilities.dp(SharedConfig.getDevicePerformanceClass() == 2 ? 200.0f : 150.0f);
+        int dp = AndroidUtilities.dp(SharedConfig.getDevicePerformanceClass() == 2 ? 150.0f : 100.0f);
         Point point = AndroidUtilities.displaySize;
         int min = (int) Math.min(Math.min(point.x, point.y) * 0.5f, dp);
         this.size = min;
-        if (min < AndroidUtilities.dp(100.0f)) {
-            this.size = AndroidUtilities.dp(100.0f);
+        if (min < AndroidUtilities.dp(80.0f)) {
+            this.size = AndroidUtilities.dp(80.0f);
         }
     }
 
     public Paint getPaint() {
         if (this.shaderBitmap == null) {
             int i = this.size;
-            this.shaderBitmap = Bitmap.createBitmap(i, i, Bitmap.Config.ARGB_8888);
+            this.shaderBitmap = Bitmap.createBitmap(i, i, Bitmap.Config.ALPHA_8);
             this.shaderCanvas = new Canvas(this.shaderBitmap);
             this.shaderPaint = new Paint();
             this.shaderSpoilerEffects = new ArrayList<>(100);
@@ -102,12 +102,12 @@ public class SpoilerEffectBitmapFactory {
     public void lambda$checkUpdate$1(final Bitmap bitmap) {
         if (bitmap == null) {
             int i = this.size;
-            bitmap = Bitmap.createBitmap(i, i, Bitmap.Config.ARGB_8888);
+            bitmap = Bitmap.createBitmap(i, i, Bitmap.Config.ALPHA_8);
         }
         Bitmap bitmap2 = this.backgroundBitmap;
         if (bitmap2 == null) {
             int i2 = this.size;
-            this.backgroundBitmap = Bitmap.createBitmap(i2, i2, Bitmap.Config.ARGB_8888);
+            this.backgroundBitmap = Bitmap.createBitmap(i2, i2, Bitmap.Config.ALPHA_8);
         } else {
             bitmap2.eraseColor(0);
         }

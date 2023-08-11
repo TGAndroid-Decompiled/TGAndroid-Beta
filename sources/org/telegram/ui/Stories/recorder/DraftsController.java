@@ -9,6 +9,7 @@ import java.util.List;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -312,10 +313,11 @@ public class DraftsController {
             this.id = storyEntry.draftId;
             this.date = storyEntry.draftDate;
             File file = storyEntry.draftThumbFile;
-            this.thumb = file == null ? "" : file.toString();
+            String str = BuildConfig.APP_CENTER_HASH;
+            this.thumb = file == null ? BuildConfig.APP_CENTER_HASH : file.toString();
             this.isVideo = storyEntry.isVideo;
             File file2 = storyEntry.file;
-            this.file = file2 == null ? "" : file2.toString();
+            this.file = file2 == null ? BuildConfig.APP_CENTER_HASH : file2.toString();
             this.fileDeletable = storyEntry.fileDeletable;
             this.muted = storyEntry.muted;
             float f = storyEntry.left;
@@ -334,15 +336,15 @@ public class DraftsController {
             this.gradientBottomColor = storyEntry.gradientBottomColor;
             CharSequence charSequence = storyEntry.caption;
             this.captionEntities = MediaDataController.getInstance(storyEntry.currentAccount).getEntities(new CharSequence[]{charSequence}, true);
-            this.caption = charSequence == null ? "" : charSequence.toString();
+            this.caption = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
             arrayList.addAll(storyEntry.privacyRules);
             File file3 = storyEntry.paintFile;
-            this.paintFilePath = file3 == null ? "" : file3.toString();
+            this.paintFilePath = file3 == null ? BuildConfig.APP_CENTER_HASH : file3.toString();
             this.averageDuration = storyEntry.averageDuration;
             this.mediaEntities = storyEntry.mediaEntities;
             this.stickers = storyEntry.stickers;
             File file4 = storyEntry.filterFile;
-            this.filterFilePath = file4 != null ? file4.toString() : "";
+            this.filterFilePath = file4 != null ? file4.toString() : str;
             this.filterState = storyEntry.filterState;
             this.period = storyEntry.period;
             arrayList2.clear();
@@ -386,7 +388,7 @@ public class DraftsController {
                 MessageObject.addEntitiesToText(replaceEmoji, this.captionEntities, true, false, true, false);
                 storyEntry.caption = replaceEmoji;
             } else {
-                storyEntry.caption = "";
+                storyEntry.caption = BuildConfig.APP_CENTER_HASH;
             }
             storyEntry.privacyRules.clear();
             storyEntry.privacyRules.addAll(this.privacyRules);
@@ -476,7 +478,7 @@ public class DraftsController {
             }
             String str = this.filterFilePath;
             if (str == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             abstractSerializedData.writeString(str);
             if (this.filterState == null) {

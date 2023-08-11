@@ -41,11 +41,13 @@ import org.telegram.tgnet.TLRPC$TL_stories_getUserStories;
 import org.telegram.tgnet.TLRPC$TL_storyViews;
 import org.telegram.tgnet.TLRPC$TL_userStories;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.GradientTools;
+import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesUtilities;
@@ -426,6 +428,7 @@ public class StoriesUtilities {
     public static class AvatarStoryParams {
         public int animateFromUnreadState;
         ButtonBounce buttonBounce;
+        public View child;
         public long crossfadeToDialog;
         public float crossfadeToDialogProgress;
         public int currentState;
@@ -461,9 +464,6 @@ public class StoriesUtilities {
         public void onLongPress() {
         }
 
-        public void openStory(long j, Runnable runnable) {
-        }
-
         public AvatarStoryParams(boolean z) {
             this.isStoryCell = z;
         }
@@ -489,6 +489,7 @@ public class StoriesUtilities {
 
         public boolean checkOnTouchEvent(MotionEvent motionEvent, final View view) {
             boolean z;
+            this.child = view;
             StoriesController storiesController = MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController();
             boolean z2 = false;
             if (motionEvent.getAction() == 0 && this.originalAvatarRect.contains(motionEvent.getX(), motionEvent.getY())) {
@@ -594,6 +595,15 @@ public class StoriesUtilities {
                 }
                 new UserStoriesLoadOperation().load(this.dialogId, view, this);
             }
+        }
+
+        public void openStory(long j, Runnable runnable) {
+            BaseFragment lastFragment = LaunchActivity.getLastFragment();
+            if (lastFragment == null || this.child == null) {
+                return;
+            }
+            lastFragment.getOrCreateStoryViewer().doOnAnimationReady(runnable);
+            lastFragment.getOrCreateStoryViewer().open(lastFragment.getContext(), j, StoriesListPlaceProvider.of((RecyclerListView) this.child.getParent()));
         }
 
         public float getScale() {

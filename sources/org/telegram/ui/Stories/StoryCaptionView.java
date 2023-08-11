@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -477,8 +478,8 @@ public class StoryCaptionView extends NestedScrollView {
     }
 
     public void checkCancelTextSelection() {
-        if (this.textSelectionHelper.isSelectionMode()) {
-            this.textSelectionHelper.getOverlayView(getContext()).checkCancel(this.lastMotionX, this.lastMotionY);
+        if (this.textSelectionHelper.isInSelectionMode()) {
+            this.textSelectionHelper.getOverlayView(getContext()).checkCancel(this.lastMotionX, this.lastMotionY, false);
         }
     }
 
@@ -524,7 +525,7 @@ public class StoryCaptionView extends NestedScrollView {
             Paint paint2 = new Paint(1);
             this.xRefGradinetPaint = paint2;
             this.sizeCached = 0;
-            this.text = "";
+            this.text = BuildConfig.APP_CENTER_HASH;
             this.spoilers = new ArrayList();
             this.spoilersPool = new Stack<>();
             new Path();
@@ -580,7 +581,7 @@ public class StoryCaptionView extends NestedScrollView {
 
         public void setText(CharSequence charSequence) {
             if (charSequence == null) {
-                charSequence = "";
+                charSequence = BuildConfig.APP_CENTER_HASH;
             }
             this.isSpoilersRevealed = false;
             this.text = charSequence;
@@ -685,7 +686,7 @@ public class StoryCaptionView extends NestedScrollView {
                 if (this.fullLayout != null) {
                     canvas.save();
                     canvas.translate(this.textX, this.textY);
-                    if (StoryCaptionView.this.textSelectionHelper.isSelectionMode()) {
+                    if (StoryCaptionView.this.textSelectionHelper.isInSelectionMode()) {
                         StoryCaptionView.this.textSelectionHelper.draw(canvas);
                     }
                     drawLayout(this.fullLayout, canvas);
@@ -695,7 +696,7 @@ public class StoryCaptionView extends NestedScrollView {
                     canvas.restore();
                 }
             } else {
-                if (StoryCaptionView.this.textSelectionHelper.isSelectionMode()) {
+                if (StoryCaptionView.this.textSelectionHelper.isInSelectionMode()) {
                     canvas.save();
                     canvas.translate(this.textX, this.textY);
                     StoryCaptionView.this.textSelectionHelper.draw(canvas);

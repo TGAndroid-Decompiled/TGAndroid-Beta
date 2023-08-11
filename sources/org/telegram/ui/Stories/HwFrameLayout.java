@@ -6,7 +6,7 @@ import android.widget.FrameLayout;
 import java.util.HashSet;
 import java.util.Set;
 import org.telegram.messenger.SharedConfig;
-class HwFrameLayout extends FrameLayout {
+public class HwFrameLayout extends FrameLayout {
     private final boolean isFastDevice;
     static final Set<View> hwViews = new HashSet();
     static boolean hwEnabled = false;

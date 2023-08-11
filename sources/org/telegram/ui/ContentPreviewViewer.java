@@ -312,12 +312,12 @@ public class ContentPreviewViewer {
                     for (int i9 = 0; i9 < arrayList3.size(); i9++) {
                         iArr[i9] = ((Integer) arrayList3.get(i9)).intValue();
                     }
-                    View$OnClickListenerC00381 view$OnClickListenerC00381 = new View$OnClickListenerC00381(arrayList2, isStickerInFavorites);
+                    View$OnClickListenerC00351 view$OnClickListenerC00351 = new View$OnClickListenerC00351(arrayList2, isStickerInFavorites);
                     ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(ContentPreviewViewer.this.containerView.getContext(), R.drawable.popup_fixed_alert3, ContentPreviewViewer.this.resourcesProvider);
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
                         ActionBarMenuSubItem addItem = ActionBarMenuItem.addItem(actionBarPopupWindowLayout, ((Integer) arrayList3.get(i10)).intValue(), (CharSequence) arrayList.get(i10), false, ContentPreviewViewer.this.resourcesProvider);
                         addItem.setTag(Integer.valueOf(i10));
-                        addItem.setOnClickListener(view$OnClickListenerC00381);
+                        addItem.setOnClickListener(view$OnClickListenerC00351);
                     }
                     ContentPreviewViewer.this.popupWindow = new ActionBarPopupWindow(actionBarPopupWindowLayout, -2, -2) {
                         {
@@ -606,11 +606,11 @@ public class ContentPreviewViewer {
             }
         }
 
-        class View$OnClickListenerC00381 implements View.OnClickListener {
+        class View$OnClickListenerC00351 implements View.OnClickListener {
             final ArrayList val$actions;
             final boolean val$inFavs;
 
-            View$OnClickListenerC00381(ArrayList arrayList, boolean z) {
+            View$OnClickListenerC00351(ArrayList arrayList, boolean z) {
                 AnonymousClass1.this = r1;
                 this.val$actions = arrayList;
                 this.val$inFavs = z;
@@ -818,7 +818,7 @@ public class ContentPreviewViewer {
         }
     }
 
-    public boolean onTouch(android.view.MotionEvent r17, final org.telegram.ui.Components.RecyclerListView r18, int r19, final java.lang.Object r20, org.telegram.ui.ContentPreviewViewer.ContentPreviewViewerDelegate r21, org.telegram.ui.ActionBar.Theme.ResourcesProvider r22) {
+    public boolean onTouch(android.view.MotionEvent r16, final org.telegram.ui.Components.RecyclerListView r17, int r18, final java.lang.Object r19, org.telegram.ui.ContentPreviewViewer.ContentPreviewViewerDelegate r20, org.telegram.ui.ActionBar.Theme.ResourcesProvider r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ContentPreviewViewer.onTouch(android.view.MotionEvent, org.telegram.ui.Components.RecyclerListView, int, java.lang.Object, org.telegram.ui.ContentPreviewViewer$ContentPreviewViewerDelegate, org.telegram.ui.ActionBar.Theme$ResourcesProvider):boolean");
     }
 
@@ -841,7 +841,6 @@ public class ContentPreviewViewer {
 
     public boolean onInterceptTouchEvent(MotionEvent motionEvent, final RecyclerListView recyclerListView, int i, ContentPreviewViewerDelegate contentPreviewViewerDelegate, final Theme.ResourcesProvider resourcesProvider) {
         this.delegate = contentPreviewViewerDelegate;
-        this.resourcesProvider = resourcesProvider;
         if ((contentPreviewViewerDelegate == null || contentPreviewViewerDelegate.can()) && motionEvent.getAction() == 0) {
             int x = (int) motionEvent.getX();
             int y = (int) motionEvent.getY();
@@ -1248,11 +1247,23 @@ public class ContentPreviewViewer {
         this.currentQuery = null;
         this.delegate = null;
         this.isVisible = false;
+        this.resourcesProvider = null;
         UnlockPremiumView unlockPremiumView = this.unlockPremiumView;
         if (unlockPremiumView != null) {
             unlockPremiumView.animate().alpha(0.0f).translationY(AndroidUtilities.dp(56.0f)).setDuration(150L).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
         }
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 8);
+    }
+
+    public void clearDelegate(ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
+        if (this.delegate == contentPreviewViewerDelegate) {
+            this.currentDocument = null;
+            this.currentStickerSet = null;
+            this.currentQuery = null;
+            this.delegate = null;
+            this.resourcesProvider = null;
+            reset();
+        }
     }
 
     public void destroy() {

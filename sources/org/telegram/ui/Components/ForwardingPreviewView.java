@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.ChatMessageSharedResources;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
@@ -83,6 +84,7 @@ public class ForwardingPreviewView extends FrameLayout {
     boolean returnSendersNames;
     TLRPC$Peer sendAsPeer;
     ActionBarMenuSubItem sendMessagesView;
+    ChatMessageSharedResources sharedResources;
     ActionBarMenuSubItem showCaptionView;
     ActionBarMenuSubItem showSendersNameView;
     boolean showing;
@@ -133,6 +135,7 @@ public class ForwardingPreviewView extends FrameLayout {
             }
         };
         this.drawingGroups = new ArrayList<>(10);
+        this.sharedResources = new ChatMessageSharedResources(context);
         this.currentUser = tLRPC$User;
         this.currentChat = tLRPC$Chat;
         this.forwardingMessagesParams = forwardingMessagesParams;
@@ -1120,7 +1123,9 @@ public class ForwardingPreviewView extends FrameLayout {
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            return new RecyclerListView.Holder(new ChatMessageCell(viewGroup.getContext(), false, ForwardingPreviewView.this.resourcesProvider));
+            Context context = viewGroup.getContext();
+            ForwardingPreviewView forwardingPreviewView = ForwardingPreviewView.this;
+            return new RecyclerListView.Holder(new ChatMessageCell(context, false, forwardingPreviewView.sharedResources, forwardingPreviewView.resourcesProvider));
         }
 
         @Override

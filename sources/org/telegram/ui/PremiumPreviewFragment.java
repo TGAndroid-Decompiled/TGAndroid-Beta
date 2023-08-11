@@ -49,6 +49,7 @@ import java.util.List;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BillingController;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.GenericProvider;
@@ -1089,7 +1090,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             if (i == 1) {
                 view = new PremiumFeatureCell(context) {
                     @Override
-                    protected void dispatchDraw(Canvas canvas) {
+                    public void dispatchDraw(Canvas canvas) {
                         RectF rectF = AndroidUtilities.rectTmp;
                         rectF.set(this.imageView.getLeft(), this.imageView.getTop(), this.imageView.getRight(), this.imageView.getBottom());
                         PremiumPreviewFragment.this.matrix.reset();
@@ -1301,7 +1302,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 final PremiumTierCell premiumTierCell = new PremiumTierCell(this.val$context) {
                     @Override
-                    protected void dispatchDraw(Canvas canvas) {
+                    public void dispatchDraw(Canvas canvas) {
                         if (this.discountView.getVisibility() == 0) {
                             RectF rectF = AndroidUtilities.rectTmp;
                             rectF.set(this.discountView.getLeft(), this.discountView.getTop(), this.discountView.getRight(), this.discountView.getBottom());
@@ -1748,21 +1749,21 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             if (BuildVars.useInvoiceBilling() || this.subscriptionOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(this.pricePerYearRegular, getCurrency());
             }
-            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(this.pricePerYearRegular, getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(this.pricePerYearRegular, getCurrency(), 6);
         }
 
         public String getFormattedPricePerYear() {
             if (BuildVars.useInvoiceBilling() || this.subscriptionOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPricePerYear(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerYear(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPricePerYear(), getCurrency(), 6);
         }
 
         public String getFormattedPricePerMonth() {
             if (BuildVars.useInvoiceBilling() || this.subscriptionOption.store_product == null) {
                 return BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency());
             }
-            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
+            return this.googlePlayProductDetails == null ? BuildConfig.APP_CENTER_HASH : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6);
         }
 
         public long getPrice() {
@@ -1785,11 +1786,11 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return this.subscriptionOption.currency;
             }
             if (this.googlePlayProductDetails == null) {
-                return "";
+                return BuildConfig.APP_CENTER_HASH;
             }
             checkOfferDetails();
             ProductDetails.SubscriptionOfferDetails subscriptionOfferDetails = this.offerDetails;
-            return subscriptionOfferDetails == null ? "" : subscriptionOfferDetails.getPricingPhases().getPricingPhaseList().get(0).getPriceCurrencyCode();
+            return subscriptionOfferDetails == null ? BuildConfig.APP_CENTER_HASH : subscriptionOfferDetails.getPricingPhases().getPricingPhaseList().get(0).getPriceCurrencyCode();
         }
 
         private void checkOfferDetails() {

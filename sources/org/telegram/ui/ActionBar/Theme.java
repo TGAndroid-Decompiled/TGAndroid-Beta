@@ -78,6 +78,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -164,6 +165,7 @@ public class Theme {
     public static boolean autoNightScheduleByLocation;
     public static int autoNightSunriseTime;
     public static int autoNightSunsetTime;
+    public static Drawable[] avatarDrawables;
     public static Paint avatar_backgroundPaint;
     private static BackgroundGradientDrawable.Disposable backgroundGradientDisposable;
     public static Drawable calllog_msgCallDownGreenDrawable;
@@ -180,6 +182,7 @@ public class Theme {
     public static TextPaint chat_actionTextPaint2;
     public static TextPaint chat_adminPaint;
     public static PorterDuffColorFilter chat_animatedEmojiTextColorFilter;
+    public static RLottieDrawable[] chat_attachButtonDrawables;
     public static Drawable chat_attachEmptyDrawable;
     public static TextPaint chat_audioPerformerPaint;
     public static TextPaint chat_audioTimePaint;
@@ -197,6 +200,7 @@ public class Theme {
     public static Paint chat_composeBackgroundPaint;
     public static Drawable chat_composeShadowDrawable;
     public static Drawable chat_composeShadowRoundDrawable;
+    public static Drawable[] chat_contactDrawable;
     public static TextPaint chat_contactNamePaint;
     public static TextPaint chat_contactPhonePaint;
     public static TextPaint chat_contextResult_descriptionTextPaint;
@@ -206,6 +210,8 @@ public class Theme {
     public static Paint chat_docBackPaint;
     public static TextPaint chat_docNamePaint;
     public static TextPaint chat_durationPaint;
+    public static Path[] chat_filePath;
+    public static Drawable[][] chat_fileStatesDrawable;
     public static Drawable chat_flameIcon;
     public static TextPaint chat_forwardNamePaint;
     public static TextPaint chat_gamePaint;
@@ -221,11 +227,11 @@ public class Theme {
     public static Paint chat_instantViewRectPaint;
     public static TextPaint chat_livePaint;
     public static TextPaint chat_locationAddressPaint;
+    public static Drawable[] chat_locationDrawable;
     public static TextPaint chat_locationTitlePaint;
     public static Drawable chat_lockIconDrawable;
     public static Paint chat_messageBackgroundSelectedPaint;
     private static AudioVisualizerDrawable chat_msgAudioVisualizeDrawable;
-    public static Drawable chat_msgAvatarLiveLocationDrawable;
     public static TextPaint chat_msgBotButtonPaint;
     public static Drawable chat_msgCallDownGreenDrawable;
     public static Drawable chat_msgCallDownRedDrawable;
@@ -234,6 +240,8 @@ public class Theme {
     public static Drawable chat_msgErrorDrawable;
     public static Paint chat_msgErrorPaint;
     public static TextPaint chat_msgGameTextPaint;
+    public static Drawable[] chat_msgInCallDrawable;
+    public static Drawable[] chat_msgInCallSelectedDrawable;
     public static MessageDrawable chat_msgInDrawable;
     public static Drawable chat_msgInInstantDrawable;
     public static MessageDrawable chat_msgInMediaDrawable;
@@ -254,6 +262,8 @@ public class Theme {
     public static Drawable chat_msgMediaRepliesDrawable;
     public static Drawable chat_msgMediaViewsDrawable;
     public static Drawable chat_msgNoSoundDrawable;
+    public static Drawable[] chat_msgOutCallDrawable;
+    public static Drawable[] chat_msgOutCallSelectedDrawable;
     public static Drawable chat_msgOutCheckDrawable;
     public static Drawable chat_msgOutCheckReadDrawable;
     public static Drawable chat_msgOutCheckReadSelectedDrawable;
@@ -287,11 +297,14 @@ public class Theme {
     public static Drawable chat_muteIconDrawable;
     public static TextPaint chat_namePaint;
     public static Paint chat_outUrlPaint;
+    public static Drawable[] chat_pollCheckDrawable;
+    public static Drawable[] chat_pollCrossDrawable;
+    public static Drawable[] chat_pollHintDrawable;
     public static Paint chat_pollTimerPaint;
+    public static Drawable[] chat_psaHelpDrawable;
     public static Paint chat_radialProgress2Paint;
     public static Paint chat_radialProgressPaint;
     public static Paint chat_radialProgressPausedSeekbarPaint;
-    public static Drawable chat_redLocationIcon;
     public static Drawable chat_replyIconDrawable;
     public static Paint chat_replyLinePaint;
     public static TextPaint chat_replyNamePaint;
@@ -301,12 +314,14 @@ public class Theme {
     public static TextPaint chat_shipmentPaint;
     public static Paint chat_statusPaint;
     public static Paint chat_statusRecordPaint;
+    private static StatusDrawable[] chat_status_drawables;
     public static TextPaint chat_stickerCommentCountPaint;
     public static Paint chat_textSearchSelectionPaint;
     public static Paint chat_timeBackgroundPaint;
     public static TextPaint chat_timePaint;
     public static TextPaint chat_topicTextPaint;
     public static TextPaint chat_unlockExtendedMediaTextPaint;
+    public static Path[] chat_updatePath;
     public static Paint chat_urlPaint;
     public static Paint checkboxSquare_backgroundPaint;
     public static Paint checkboxSquare_checkPaint;
@@ -1119,11 +1134,14 @@ public class Theme {
     private static long lastDelayUpdateTime;
     private static long lastHolidayCheckTime;
     private static int lastLoadingCurrentThemeTime;
+    private static int[] lastLoadingThemesTime;
     private static long lastThemeSwitchTime;
     private static Sensor lightSensor;
     private static boolean lightSensorRegistered;
     public static Paint linkSelectionPaint;
     private static int loadingCurrentTheme;
+    private static boolean[] loadingRemoteThemes;
+    private static Paint maskPaint;
     public static Drawable moveUpDrawable;
     public static final int myMessagesBubblesEndIndex;
     public static final int myMessagesBubblesStartIndex;
@@ -1136,6 +1154,7 @@ public class Theme {
     public static TextPaint profile_aboutTextPaint;
     public static Drawable profile_verifiedCheckDrawable;
     public static Drawable profile_verifiedDrawable;
+    private static long[] remoteThemesHash;
     private static RoundVideoProgressShadow roundPlayDrawable;
     public static int selectedAutoNightType;
     private static SensorManager sensorManager;
@@ -1181,26 +1200,6 @@ public class Theme {
         }
     };
     public static int DEFALT_THEME_ACCENT_ID = 99;
-    private static Paint maskPaint = new Paint(1);
-    private static boolean[] loadingRemoteThemes = new boolean[4];
-    private static int[] lastLoadingThemesTime = new int[4];
-    private static long[] remoteThemesHash = new long[4];
-    public static Drawable[] avatarDrawables = new Drawable[14];
-    private static StatusDrawable[] chat_status_drawables = new StatusDrawable[6];
-    public static Drawable[] chat_msgInCallDrawable = new Drawable[2];
-    public static Drawable[] chat_msgInCallSelectedDrawable = new Drawable[2];
-    public static Drawable[] chat_msgOutCallDrawable = new Drawable[2];
-    public static Drawable[] chat_msgOutCallSelectedDrawable = new Drawable[2];
-    public static Drawable[] chat_pollCheckDrawable = new Drawable[2];
-    public static Drawable[] chat_pollCrossDrawable = new Drawable[2];
-    public static Drawable[] chat_pollHintDrawable = new Drawable[2];
-    public static Drawable[] chat_psaHelpDrawable = new Drawable[2];
-    public static RLottieDrawable[] chat_attachButtonDrawables = new RLottieDrawable[6];
-    public static Drawable[] chat_locationDrawable = new Drawable[2];
-    public static Drawable[] chat_contactDrawable = new Drawable[2];
-    public static Drawable[][] chat_fileStatesDrawable = (Drawable[][]) Array.newInstance(Drawable.class, 5, 2);
-    public static Path[] chat_filePath = new Path[2];
-    public static Path[] chat_updatePath = new Path[3];
 
     public static class BackgroundDrawableSettings {
         public Boolean isCustomTheme;
@@ -2205,7 +2204,7 @@ public class Theme {
         public String uploadingFile;
         public String uploadingThumb;
         public int backgroundRotation = 45;
-        public String patternSlug = "";
+        public String patternSlug = BuildConfig.APP_CENTER_HASH;
         private float[] tempHSV = new float[3];
 
         ThemeAccent() {
@@ -2689,15 +2688,15 @@ public class Theme {
         public long wallpaperId;
 
         public OverrideWallpaperInfo() {
-            this.fileName = "";
-            this.originalFileName = "";
-            this.slug = "";
+            this.fileName = BuildConfig.APP_CENTER_HASH;
+            this.originalFileName = BuildConfig.APP_CENTER_HASH;
+            this.slug = BuildConfig.APP_CENTER_HASH;
         }
 
         public OverrideWallpaperInfo(OverrideWallpaperInfo overrideWallpaperInfo, ThemeInfo themeInfo, ThemeAccent themeAccent) {
-            this.fileName = "";
-            this.originalFileName = "";
-            this.slug = "";
+            this.fileName = BuildConfig.APP_CENTER_HASH;
+            this.originalFileName = BuildConfig.APP_CENTER_HASH;
+            this.slug = BuildConfig.APP_CENTER_HASH;
             this.slug = overrideWallpaperInfo.slug;
             this.color = overrideWallpaperInfo.color;
             this.gradientColor1 = overrideWallpaperInfo.gradientColor1;
@@ -2717,11 +2716,11 @@ public class Theme {
                     this.fileName = generateWallpaperName;
                     AndroidUtilities.copyFile(file, new File(filesDirFixed, generateWallpaperName));
                 } catch (Exception e) {
-                    this.fileName = "";
+                    this.fileName = BuildConfig.APP_CENTER_HASH;
                     FileLog.e(e);
                 }
             } else {
-                this.fileName = "";
+                this.fileName = BuildConfig.APP_CENTER_HASH;
             }
             if (!TextUtils.isEmpty(overrideWallpaperInfo.originalFileName)) {
                 if (!overrideWallpaperInfo.originalFileName.equals(overrideWallpaperInfo.fileName)) {
@@ -2733,7 +2732,7 @@ public class Theme {
                         AndroidUtilities.copyFile(file2, new File(filesDirFixed2, generateWallpaperName2));
                         return;
                     } catch (Exception e2) {
-                        this.originalFileName = "";
+                        this.originalFileName = BuildConfig.APP_CENTER_HASH;
                         FileLog.e(e2);
                         return;
                     }
@@ -2741,7 +2740,7 @@ public class Theme {
                 this.originalFileName = this.fileName;
                 return;
             }
-            this.originalFileName = "";
+            this.originalFileName = BuildConfig.APP_CENTER_HASH;
         }
 
         public boolean isDefault() {
@@ -2789,7 +2788,7 @@ public class Theme {
                 jSONObject.put("pGrAngle", this.rotation);
                 String str = this.slug;
                 if (str == null) {
-                    str = "";
+                    str = BuildConfig.APP_CENTER_HASH;
                 }
                 jSONObject.put("wallSlug", str);
                 jSONObject.put("wBlur", this.isBlurred);
@@ -5049,8 +5048,8 @@ public class Theme {
         while (i3 < 4) {
             StringBuilder sb = new StringBuilder();
             sb.append("2remoteThemesHash");
-            Object obj = "";
-            sb.append(i3 != 0 ? Integer.valueOf(i3) : "");
+            Object obj = BuildConfig.APP_CENTER_HASH;
+            sb.append(i3 != 0 ? Integer.valueOf(i3) : BuildConfig.APP_CENTER_HASH);
             edit.putLong(sb.toString(), remoteThemesHash[i3]);
             StringBuilder sb2 = new StringBuilder();
             sb2.append("lastLoadingThemesTime");
@@ -5085,7 +5084,7 @@ public class Theme {
     public static String getCurrentNightThemeName() {
         ThemeInfo themeInfo = currentNightTheme;
         if (themeInfo == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         String name = themeInfo.getName();
         return name.toLowerCase().endsWith(".attheme") ? name.substring(0, name.lastIndexOf(46)) : name;
@@ -6374,11 +6373,9 @@ public class Theme {
             int i15 = R.drawable.ic_call_received_green_18dp;
             calllog_msgCallDownRedDrawable = resources.getDrawable(i15).mutate();
             calllog_msgCallDownGreenDrawable = resources.getDrawable(i15).mutate();
-            chat_msgAvatarLiveLocationDrawable = resources.getDrawable(R.drawable.livepin).mutate();
             chat_inlineResultFile = resources.getDrawable(R.drawable.bot_file);
             chat_inlineResultAudio = resources.getDrawable(R.drawable.bot_music);
             chat_inlineResultLocation = resources.getDrawable(R.drawable.bot_location);
-            chat_redLocationIcon = resources.getDrawable(R.drawable.map_pin).mutate();
             chat_botLinkDrawable = resources.getDrawable(R.drawable.bot_link);
             chat_botInlineDrawable = resources.getDrawable(R.drawable.bot_lines);
             chat_botCardDrawable = resources.getDrawable(R.drawable.bot_card);
@@ -6460,38 +6457,17 @@ public class Theme {
             chat_locationDrawable[1] = resources.getDrawable(i23).mutate();
             chat_composeShadowDrawable = context.getResources().getDrawable(R.drawable.compose_panel_shadow).mutate();
             chat_composeShadowRoundDrawable = context.getResources().getDrawable(R.drawable.sheet_shadow_round).mutate();
-            try {
-                int dp8 = AndroidUtilities.roundMessageSize + AndroidUtilities.dp(6.0f);
-                Bitmap createBitmap = Bitmap.createBitmap(dp8, dp8, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                Paint paint = new Paint(1);
-                paint.setColor(0);
-                paint.setStyle(Paint.Style.FILL);
-                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                Paint paint2 = new Paint(1);
-                paint2.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, 0.0f, 1593835520);
-                int i24 = 0;
-                while (i24 < 2) {
-                    canvas.drawCircle(dp8 / 2, dp8 / 2, (AndroidUtilities.roundMessageSize / 2) - AndroidUtilities.dp(1.0f), i24 == 0 ? paint2 : paint);
-                    i24++;
-                }
-                try {
-                    canvas.setBitmap(null);
-                } catch (Exception unused) {
-                }
-                chat_roundVideoShadow = new BitmapDrawable(createBitmap);
-            } catch (Throwable unused2) {
-            }
+            chat_roundVideoShadow = new RoundVideoShadow();
             defaultChatDrawables.clear();
             defaultChatDrawableColorKeys.clear();
             Drawable drawable = chat_botInlineDrawable;
-            int i25 = key_chat_serviceIcon;
-            addChatDrawable("drawableBotInline", drawable, i25);
-            addChatDrawable("drawableBotWebView", chat_botWebViewDrawable, i25);
-            addChatDrawable("drawableBotLink", chat_botLinkDrawable, i25);
-            addChatDrawable("drawable_botInvite", chat_botInviteDrawable, i25);
-            addChatDrawable("drawableGoIcon", chat_goIconDrawable, i25);
-            addChatDrawable("drawableCommentSticker", chat_commentStickerDrawable, i25);
+            int i24 = key_chat_serviceIcon;
+            addChatDrawable("drawableBotInline", drawable, i24);
+            addChatDrawable("drawableBotWebView", chat_botWebViewDrawable, i24);
+            addChatDrawable("drawableBotLink", chat_botLinkDrawable, i24);
+            addChatDrawable("drawable_botInvite", chat_botInviteDrawable, i24);
+            addChatDrawable("drawableGoIcon", chat_goIconDrawable, i24);
+            addChatDrawable("drawableCommentSticker", chat_commentStickerDrawable, i24);
             addChatDrawable("drawableMsgError", chat_msgErrorDrawable, key_chat_sentErrorIcon);
             addChatDrawable("drawableMsgIn", chat_msgInDrawable, -1);
             addChatDrawable("drawableMsgInSelected", chat_msgInSelectedDrawable, -1);
@@ -6503,45 +6479,45 @@ public class Theme {
             addChatDrawable("drawableMsgOutMedia", chat_msgOutMediaDrawable, -1);
             addChatDrawable("drawableMsgOutMediaSelected", chat_msgOutMediaSelectedDrawable, -1);
             Drawable drawable2 = chat_msgOutCallDrawable[0];
-            int i26 = key_chat_outInstant;
-            addChatDrawable("drawableMsgOutCallAudio", drawable2, i26);
+            int i25 = key_chat_outInstant;
+            addChatDrawable("drawableMsgOutCallAudio", drawable2, i25);
             Drawable drawable3 = chat_msgOutCallSelectedDrawable[0];
-            int i27 = key_chat_outInstantSelected;
-            addChatDrawable("drawableMsgOutCallAudioSelected", drawable3, i27);
-            addChatDrawable("drawableMsgOutCallVideo", chat_msgOutCallDrawable[1], i26);
-            addChatDrawable("drawableMsgOutCallVideo", chat_msgOutCallSelectedDrawable[1], i27);
+            int i26 = key_chat_outInstantSelected;
+            addChatDrawable("drawableMsgOutCallAudioSelected", drawable3, i26);
+            addChatDrawable("drawableMsgOutCallVideo", chat_msgOutCallDrawable[1], i25);
+            addChatDrawable("drawableMsgOutCallVideo", chat_msgOutCallSelectedDrawable[1], i26);
             addChatDrawable("drawableMsgOutCheck", chat_msgOutCheckDrawable, key_chat_outSentCheck);
             addChatDrawable("drawableMsgOutCheckSelected", chat_msgOutCheckSelectedDrawable, key_chat_outSentCheckSelected);
             Drawable drawable4 = chat_msgOutCheckReadDrawable;
-            int i28 = key_chat_outSentCheckRead;
-            addChatDrawable("drawableMsgOutCheckRead", drawable4, i28);
+            int i27 = key_chat_outSentCheckRead;
+            addChatDrawable("drawableMsgOutCheckRead", drawable4, i27);
             Drawable drawable5 = chat_msgOutCheckReadSelectedDrawable;
-            int i29 = key_chat_outSentCheckReadSelected;
-            addChatDrawable("drawableMsgOutCheckReadSelected", drawable5, i29);
-            addChatDrawable("drawableMsgOutHalfCheck", chat_msgOutHalfCheckDrawable, i28);
-            addChatDrawable("drawableMsgOutHalfCheckSelected", chat_msgOutHalfCheckSelectedDrawable, i29);
-            addChatDrawable("drawableMsgOutInstant", chat_msgOutInstantDrawable, i26);
+            int i28 = key_chat_outSentCheckReadSelected;
+            addChatDrawable("drawableMsgOutCheckReadSelected", drawable5, i28);
+            addChatDrawable("drawableMsgOutHalfCheck", chat_msgOutHalfCheckDrawable, i27);
+            addChatDrawable("drawableMsgOutHalfCheckSelected", chat_msgOutHalfCheckSelectedDrawable, i28);
+            addChatDrawable("drawableMsgOutInstant", chat_msgOutInstantDrawable, i25);
             addChatDrawable("drawableMsgOutMenu", chat_msgOutMenuDrawable, key_chat_outMenu);
             addChatDrawable("drawableMsgOutMenuSelected", chat_msgOutMenuSelectedDrawable, key_chat_outMenuSelected);
             Drawable drawable6 = chat_msgOutPinnedDrawable;
-            int i30 = key_chat_outViews;
-            addChatDrawable("drawableMsgOutPinned", drawable6, i30);
+            int i29 = key_chat_outViews;
+            addChatDrawable("drawableMsgOutPinned", drawable6, i29);
             Drawable drawable7 = chat_msgOutPinnedSelectedDrawable;
-            int i31 = key_chat_outViewsSelected;
-            addChatDrawable("drawableMsgOutPinnedSelected", drawable7, i31);
-            addChatDrawable("drawableMsgOutReplies", chat_msgOutRepliesDrawable, i30);
-            addChatDrawable("drawableMsgOutReplies", chat_msgOutRepliesSelectedDrawable, i31);
-            addChatDrawable("drawableMsgOutViews", chat_msgOutViewsDrawable, i30);
-            addChatDrawable("drawableMsgOutViewsSelected", chat_msgOutViewsSelectedDrawable, i31);
+            int i30 = key_chat_outViewsSelected;
+            addChatDrawable("drawableMsgOutPinnedSelected", drawable7, i30);
+            addChatDrawable("drawableMsgOutReplies", chat_msgOutRepliesDrawable, i29);
+            addChatDrawable("drawableMsgOutReplies", chat_msgOutRepliesSelectedDrawable, i30);
+            addChatDrawable("drawableMsgOutViews", chat_msgOutViewsDrawable, i29);
+            addChatDrawable("drawableMsgOutViewsSelected", chat_msgOutViewsSelectedDrawable, i30);
             Drawable drawable8 = chat_msgStickerCheckDrawable;
-            int i32 = key_chat_serviceText;
-            addChatDrawable("drawableMsgStickerCheck", drawable8, i32);
-            addChatDrawable("drawableMsgStickerHalfCheck", chat_msgStickerHalfCheckDrawable, i32);
-            addChatDrawable("drawableMsgStickerPinned", chat_msgStickerPinnedDrawable, i32);
-            addChatDrawable("drawableMsgStickerReplies", chat_msgStickerRepliesDrawable, i32);
-            addChatDrawable("drawableMsgStickerViews", chat_msgStickerViewsDrawable, i32);
-            addChatDrawable("drawableReplyIcon", chat_replyIconDrawable, i25);
-            addChatDrawable("drawableShareIcon", chat_shareIconDrawable, i25);
+            int i31 = key_chat_serviceText;
+            addChatDrawable("drawableMsgStickerCheck", drawable8, i31);
+            addChatDrawable("drawableMsgStickerHalfCheck", chat_msgStickerHalfCheckDrawable, i31);
+            addChatDrawable("drawableMsgStickerPinned", chat_msgStickerPinnedDrawable, i31);
+            addChatDrawable("drawableMsgStickerReplies", chat_msgStickerRepliesDrawable, i31);
+            addChatDrawable("drawableMsgStickerViews", chat_msgStickerViewsDrawable, i31);
+            addChatDrawable("drawableReplyIcon", chat_replyIconDrawable, i24);
+            addChatDrawable("drawableShareIcon", chat_shareIconDrawable, i24);
             addChatDrawable("drawableMuteIcon", chat_muteIconDrawable, key_chat_muteIcon);
             addChatDrawable("drawableLockIcon", chat_lockIconDrawable, key_chat_lockIcon);
             addChatDrawable("drawable_chat_pollHintDrawableOut", chat_pollHintDrawable[1], key_chat_outPreviewInstantText);
@@ -6572,7 +6548,7 @@ public class Theme {
         chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f2));
         chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(f));
         chat_adminPaint.setTextSize(AndroidUtilities.dp(f2));
-        int i33 = SharedConfig.fontSize;
+        int i32 = SharedConfig.fontSize;
         chat_timePaint.setTextSize(AndroidUtilities.dp(12.0f));
         chat_gamePaint.setTextSize(AndroidUtilities.dp(13.0f));
         chat_shipmentPaint.setTextSize(AndroidUtilities.dp(13.0f));

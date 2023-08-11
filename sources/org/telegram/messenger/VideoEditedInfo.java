@@ -196,7 +196,7 @@ public class VideoEditedInfo {
             if (paintTypeface == null) {
                 key = this.textTypefaceKey;
                 if (key == null) {
-                    key = "";
+                    key = BuildConfig.APP_CENTER_HASH;
                 }
             } else {
                 key = paintTypeface.getKey();
@@ -249,7 +249,7 @@ public class VideoEditedInfo {
         PhotoFilterView.CurvesValue curvesValue;
         ArrayList<MediaEntity> arrayList;
         if (this.avatarStartTime == -1 && this.filterState == null && this.paintPath == null && (((arrayList = this.mediaEntities) == null || arrayList.isEmpty()) && this.cropState == null)) {
-            bytesToHex = "";
+            bytesToHex = BuildConfig.APP_CENTER_HASH;
         } else {
             int i = this.filterState != null ? 170 : 10;
             String str = this.paintPath;

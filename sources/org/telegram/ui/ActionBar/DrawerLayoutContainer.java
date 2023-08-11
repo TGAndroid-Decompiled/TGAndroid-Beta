@@ -700,7 +700,7 @@ public class DrawerLayoutContainer extends FrameLayout {
         return this.navigationBar;
     }
 
-    private static class PreviewForegroundDrawable extends Drawable {
+    public static class PreviewForegroundDrawable extends Drawable {
         private final GradientDrawable bottomDrawable;
         private final GradientDrawable topDrawable;
 

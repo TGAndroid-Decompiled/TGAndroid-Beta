@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -679,8 +680,9 @@ public class TranscribeButton {
     public static void lambda$transcribePressed$4(final MessageObject messageObject, long j, int i, long j2, int i2, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         final long j3;
         boolean z;
-        final String str = "";
-        if (tLObject instanceof TLRPC$TL_messages_transcribedAudio) {
+        boolean z2 = tLObject instanceof TLRPC$TL_messages_transcribedAudio;
+        final String str = BuildConfig.APP_CENTER_HASH;
+        if (z2) {
             TLRPC$TL_messages_transcribedAudio tLRPC$TL_messages_transcribedAudio = (TLRPC$TL_messages_transcribedAudio) tLObject;
             String str2 = tLRPC$TL_messages_transcribedAudio.text;
             long j4 = tLRPC$TL_messages_transcribedAudio.transcription_id;

@@ -98,15 +98,15 @@ public class SvgHelper {
         private Paint overridePaint;
         private ImageReceiver parentImageReceiver;
         protected int width;
-        private static int[] parentPosition = new int[2];
+        private static final int[] parentPosition = new int[2];
         private static boolean lite = LiteMode.isEnabled(32);
         protected ArrayList<Object> commands = new ArrayList<>();
         protected HashMap<Object, Paint> paints = new HashMap<>();
-        private Bitmap[] backgroundBitmap = new Bitmap[3];
-        private Canvas[] backgroundCanvas = new Canvas[3];
-        private LinearGradient[] placeholderGradient = new LinearGradient[3];
-        private Matrix[] placeholderMatrix = new Matrix[3];
-        private int[] currentColor = new int[2];
+        private final Bitmap[] backgroundBitmap = new Bitmap[3];
+        private final Canvas[] backgroundCanvas = new Canvas[3];
+        private final LinearGradient[] placeholderGradient = new LinearGradient[3];
+        private final Matrix[] placeholderMatrix = new Matrix[3];
+        private final int[] currentColor = new int[2];
         private float crossfadeAlpha = 1.0f;
         SparseArray<Paint> overridePaintByPosition = new SparseArray<>();
         private boolean aspectFill = true;
@@ -211,8 +211,9 @@ public class SvgHelper {
                     if (imageReceiver == null || z) {
                         i2 = 0;
                     } else {
-                        imageReceiver.getParentPosition(parentPosition);
-                        i2 = parentPosition[0];
+                        int[] iArr = parentPosition;
+                        imageReceiver.getParentPosition(iArr);
+                        i2 = iArr[0];
                     }
                     int i4 = z ? i + 1 : 0;
                     Matrix[] matrixArr = this.placeholderMatrix;
@@ -457,6 +458,9 @@ public class SvgHelper {
             FileInputStream fileInputStream = new FileInputStream(file);
             XMLReader xMLReader = SAXParserFactory.newInstance().newSAXParser().getXMLReader();
             SVGHandler sVGHandler = new SVGHandler(i, i2, z ? -1 : null, false, 1.0f);
+            if (!z) {
+                sVGHandler.alphaOnly = true;
+            }
             xMLReader.setContentHandler(sVGHandler);
             xMLReader.parse(new InputSource(fileInputStream));
             Bitmap bitmap = sVGHandler.getBitmap();
@@ -964,6 +968,7 @@ public class SvgHelper {
     }
 
     public static class SVGHandler extends DefaultHandler {
+        private boolean alphaOnly;
         private Bitmap bitmap;
         private boolean boundsMode;
         private Canvas canvas;
@@ -1321,7 +1326,7 @@ public class SvgHelper {
                         }
                         SvgDrawable svgDrawable7 = this.drawable;
                         if (svgDrawable7 == null) {
-                            Bitmap createBitmap = Bitmap.createBitmap(ceil, ceil2, Bitmap.Config.ARGB_8888);
+                            Bitmap createBitmap = Bitmap.createBitmap(ceil, ceil2, this.alphaOnly ? Bitmap.Config.ALPHA_8 : Bitmap.Config.ARGB_8888);
                             this.bitmap = createBitmap;
                             createBitmap.eraseColor(0);
                             Canvas canvas = new Canvas(this.bitmap);
@@ -1485,7 +1490,7 @@ public class SvgHelper {
                     if (sb != null) {
                         String[] split = sb.toString().split("\\}");
                         for (int i = 0; i < split.length; i++) {
-                            split[i] = split[i].trim().replace("\t", "").replace("\n", "");
+                            split[i] = split[i].trim().replace("\t", BuildConfig.APP_CENTER_HASH).replace("\n", BuildConfig.APP_CENTER_HASH);
                             if (split[i].length() != 0 && split[i].charAt(0) == '.' && (indexOf = split[i].indexOf(123)) >= 0) {
                                 this.globalStyles.put(split[i].substring(1, indexOf).trim(), new StyleSet(split[i].substring(indexOf + 1)));
                             }
@@ -1639,7 +1644,7 @@ public class SvgHelper {
             return sb.toString();
         } catch (Exception e) {
             FileLog.e(e);
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 }

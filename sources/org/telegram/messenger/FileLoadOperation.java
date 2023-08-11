@@ -783,7 +783,12 @@ public class FileLoadOperation {
     }
 
     public void lambda$getDownloadedLengthFromOffset$4(long[] jArr, long j, long j2, CountDownLatch countDownLatch) {
-        jArr[0] = getDownloadedLengthFromOffsetInternal(this.notLoadedBytesRanges, j, j2);
+        try {
+            jArr[0] = getDownloadedLengthFromOffsetInternal(this.notLoadedBytesRanges, j, j2);
+        } catch (Throwable th) {
+            FileLog.e(th);
+            jArr[0] = 0;
+        }
         if (this.state == 3) {
             jArr[1] = 1;
         }

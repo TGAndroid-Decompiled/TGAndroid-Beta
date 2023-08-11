@@ -39,6 +39,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     public static final int TYPE_IMAGE = 0;
     public static final int TYPE_MEDIA = 3;
     public static final int TYPE_THUMB = 1;
+    private boolean allowCrossfadeWithImage;
     private boolean allowDecodeSingleFrame;
     private boolean allowLoadingOnAttachedOnly;
     private boolean allowLottieVibration;
@@ -51,7 +52,6 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private int autoRepeat;
     private int autoRepeatCount;
     private long autoRepeatTimeout;
-    private RectF bitmapRect;
     private Object blendMode;
     private int bufferedFrame;
     private boolean canceledLoading;
@@ -92,7 +92,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private ImageLocation currentThumbLocation;
     private long currentTime;
     private ImageReceiverDelegate delegate;
-    private RectF drawRegion;
+    private final RectF drawRegion;
     private long endTime;
     private int fileLoadingPriority;
     private boolean forceCrossfade;
@@ -136,16 +136,17 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private float previousAlpha;
     private TLRPC$Document qulityThumbDocument;
     private Paint roundPaint;
-    private Path roundPath;
-    private int[] roundRadius;
-    private RectF roundRect;
+    private final Path roundPath;
+    private final int[] roundRadius;
+    private final RectF roundRect;
     private SetImageBackup setImageBackup;
-    private Matrix shaderMatrix;
+    private final Matrix shaderMatrix;
     private boolean shouldGenerateQualityThumb;
     private float sideClip;
     private boolean skipUpdateFrame;
     private long startTime;
     private Drawable staticThumbDrawable;
+    public BitmapShader staticThumbShader;
     private ImageLocation strippedLocation;
     private int thumbInvert;
     private int thumbOrientation;
@@ -157,7 +158,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private boolean videoThumbIsSame;
     private static PorterDuffColorFilter selectedColorFilter = new PorterDuffColorFilter(-2236963, PorterDuff.Mode.MULTIPLY);
     private static PorterDuffColorFilter selectedGroupColorFilter = new PorterDuffColorFilter(-4473925, PorterDuff.Mode.MULTIPLY);
-    private static float[] radii = new float[8];
+    private static final float[] radii = new float[8];
 
     public interface ImageReceiverDelegate {
 
@@ -175,10 +176,6 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return true;
     }
 
-    protected boolean customDraw(Canvas canvas, AnimatedFileDrawable animatedFileDrawable, RLottieDrawable rLottieDrawable, Drawable drawable, BitmapShader bitmapShader, Drawable drawable2, BitmapShader bitmapShader2, Drawable drawable3, BitmapShader bitmapShader3, boolean z, boolean z2, Drawable drawable4, BitmapShader bitmapShader4, Drawable drawable5, float f, float f2, float f3, int[] iArr, BackgroundThreadDrawHolder backgroundThreadDrawHolder) {
-        return false;
-    }
-
     public void skipDraw() {
     }
 
@@ -191,7 +188,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             return true;
         }
         Drawable drawable2 = this.staticThumbDrawable;
-        if (drawable2 == null || (bitmapShader = this.thumbShader) == null) {
+        if (drawable2 == null || (bitmapShader = this.staticThumbShader) == null) {
             return false;
         }
         drawDrawable(null, drawable2, 255, bitmapShader, 0, 0, 0, null);
@@ -335,6 +332,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     }
 
     public ImageReceiver(View view) {
+        this.allowCrossfadeWithImage = true;
         this.fileLoadingPriority = 1;
         this.useRoundForThumb = true;
         this.allowLottieVibration = true;
@@ -347,7 +345,6 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         this.roundRadius = new int[4];
         this.isRoundRect = true;
         this.roundRect = new RectF();
-        this.bitmapRect = new RectF();
         this.shaderMatrix = new Matrix();
         this.roundPath = new Path();
         this.overrideAlpha = 1.0f;
@@ -606,7 +603,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
                     recycleBitmap(key3, 1);
                     recycleBitmap(null, 2);
                     recycleBitmap(key2, 3);
-                    this.crossfadeShader = this.thumbShader;
+                    this.crossfadeShader = this.staticThumbShader;
                     this.crossfadeImage = this.staticThumbDrawable;
                     this.crossfadingWithThumb = false;
                     this.crossfadeKey = null;
@@ -643,6 +640,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             this.imageShader = null;
             this.composeShader = null;
             this.thumbShader = null;
+            this.staticThumbShader = null;
             this.mediaShader = null;
             this.legacyShader = null;
             this.legacyCanvas = null;
@@ -773,7 +771,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             recycleBitmap(null, 1);
             recycleBitmap(null, 2);
             recycleBitmap(null, 3);
-            this.crossfadeShader = this.thumbShader;
+            this.crossfadeShader = this.staticThumbShader;
             this.crossfadeImage = this.staticThumbDrawable;
             this.crossfadingWithThumb = true;
             this.crossfadeKey = null;
@@ -811,6 +809,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             }
             rLottieDrawable.setAllowDecodeSingleFrame(true);
         }
+        this.staticThumbShader = null;
         this.thumbShader = null;
         this.roundPaint.setShader(null);
         setStaticDrawable(drawable);
@@ -888,8 +887,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     }
 
     private void setDrawableShader(Drawable drawable, BitmapShader bitmapShader) {
-        if (drawable == this.currentThumbDrawable || drawable == this.staticThumbDrawable) {
+        if (drawable == this.currentThumbDrawable) {
             this.thumbShader = bitmapShader;
+        } else if (drawable == this.staticThumbDrawable) {
+            this.staticThumbShader = bitmapShader;
         } else if (drawable == this.currentMediaDrawable) {
             this.mediaShader = bitmapShader;
         } else if (drawable == this.currentImageDrawable) {
@@ -991,10 +992,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             }
             if (this.staticThumbDrawable != null) {
                 setStaticDrawable(null);
-                this.thumbShader = null;
-                this.roundPaint.setShader(null);
+                this.staticThumbShader = null;
             }
             clearImage();
+            this.roundPaint.setShader(null);
             if (this.isPressed == 0) {
                 this.pressedProgress = 0.0f;
             }
@@ -1253,7 +1254,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         return draw(canvas, null);
     }
 
-    public boolean draw(android.graphics.Canvas r42, org.telegram.messenger.ImageReceiver.BackgroundThreadDrawHolder r43) {
+    public boolean draw(android.graphics.Canvas r39, org.telegram.messenger.ImageReceiver.BackgroundThreadDrawHolder r40) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageReceiver.draw(android.graphics.Canvas, org.telegram.messenger.ImageReceiver$BackgroundThreadDrawHolder):boolean");
     }
 
@@ -2139,6 +2140,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         this.currentThumbKey = null;
         this.currentThumbDrawable = null;
         this.thumbShader = null;
+        this.staticThumbShader = null;
         this.roundPaint.setShader(null);
         setStaticDrawable(drawable);
         this.crossfadeWithThumb = true;
@@ -2257,6 +2259,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         backgroundThreadDrawHolder.imageShader = this.imageShader;
         backgroundThreadDrawHolder.thumbDrawable = this.currentThumbDrawable;
         backgroundThreadDrawHolder.thumbShader = this.thumbShader;
+        backgroundThreadDrawHolder.staticThumbShader = this.staticThumbShader;
         backgroundThreadDrawHolder.staticThumbDrawable = this.staticThumbDrawable;
         backgroundThreadDrawHolder.crossfadeImage = this.crossfadeImage;
         backgroundThreadDrawHolder.colorFilter = this.colorFilter;
@@ -2300,6 +2303,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         private float previousAlpha;
         private Path roundPath;
         private Drawable staticThumbDrawable;
+        public BitmapShader staticThumbShader;
         public int threadIndex;
         private Drawable thumbDrawable;
         private BitmapShader thumbShader;
@@ -2320,6 +2324,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             this.imageShader = null;
             this.thumbDrawable = null;
             this.thumbShader = null;
+            this.staticThumbShader = null;
             this.staticThumbDrawable = null;
             this.crossfadeImage = null;
             this.colorFilter = null;

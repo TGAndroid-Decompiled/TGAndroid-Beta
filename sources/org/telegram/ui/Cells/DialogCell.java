@@ -34,6 +34,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatThemeController;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -518,7 +519,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
         };
         this.storyParams = avatarStoryParams;
-        this.thumbPath = new Path();
         this.thumbSpoiler = new SpoilerEffect();
         this.collapseOffset = 0.0f;
         this.hasUnmutedTopics = false;
@@ -735,6 +735,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         AnimatedEmojiSpan.release(this, this.animatedEmojiStack3);
         AnimatedEmojiSpan.release(this, this.animatedEmojiStackName);
         this.storyParams.onDetachFromWindow();
+        this.canvasButton = null;
     }
 
     @Override
@@ -1868,19 +1869,19 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         }
         MessageObject messageObject2 = this.message;
         if (messageObject2 != null && (tLRPC$Message2 = messageObject2.messageOwner) != null && (tLRPC$Message2.from_id instanceof TLRPC$TL_peerUser) && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.message.messageOwner.from_id.user_id))) != null) {
-            return UserObject.getFirstName(user).replace("\n", "");
+            return UserObject.getFirstName(user).replace("\n", BuildConfig.APP_CENTER_HASH);
         }
         MessageObject messageObject3 = this.message;
         if (messageObject3 == null || (tLRPC$Message = messageObject3.messageOwner) == null || (tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from) == null || (str2 = tLRPC$MessageFwdHeader.from_name) == null) {
             if (tLRPC$User == null) {
-                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", "");
+                return (chat == null || (str = chat.title) == null) ? "DELETED" : str.replace("\n", BuildConfig.APP_CENTER_HASH);
             } else if (this.useForceThreeLines || SharedConfig.useThreeLinesLayout) {
                 if (UserObject.isDeleted(tLRPC$User)) {
                     return LocaleController.getString("HiddenName", R.string.HiddenName);
                 }
-                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", "");
+                return ContactsController.formatName(tLRPC$User.first_name, tLRPC$User.last_name).replace("\n", BuildConfig.APP_CENTER_HASH);
             } else {
-                return UserObject.getFirstName(tLRPC$User).replace("\n", "");
+                return UserObject.getFirstName(tLRPC$User).replace("\n", BuildConfig.APP_CENTER_HASH);
             }
         }
         return str2;
@@ -1922,7 +1923,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             }
             return valueOf;
         }
-        String str3 = "";
+        String str3 = BuildConfig.APP_CENTER_HASH;
         if (captionMessage != null && (charSequence3 = captionMessage.caption) != null) {
             CharSequence charSequence6 = charSequence3.toString();
             if (this.needEmoji) {
@@ -2050,7 +2051,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 }
                 return AndroidUtilities.formatSpannable(str, new CharSequence[]{spannableStringBuilder2, charSequence});
             }
-            return SpannableStringBuilder.valueOf("");
+            return SpannableStringBuilder.valueOf(BuildConfig.APP_CENTER_HASH);
         }
     }
 

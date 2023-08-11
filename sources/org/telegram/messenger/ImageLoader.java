@@ -89,6 +89,7 @@ import org.telegram.ui.Components.MotionBackgroundDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
 public class ImageLoader {
     public static final String AUTOPLAY_FILTER = "g";
+    private static final boolean DEBUG_MODE = false;
     private boolean canForce8888;
     private LruCache<BitmapDrawable> lottieMemCache;
     private LruCache<BitmapDrawable> memCache;
@@ -754,7 +755,7 @@ public class ImageLoader {
     public static String decompressGzip(File file) {
         StringBuilder sb = new StringBuilder();
         if (file == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         try {
             GZIPInputStream gZIPInputStream = new GZIPInputStream(new FileInputStream(file));
@@ -780,7 +781,7 @@ public class ImageLoader {
                 }
             }
         } catch (Exception unused) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 
@@ -1022,7 +1023,9 @@ public class ImageLoader {
         System.arraycopy(Bitmaps.footer, 0, bArr2, (Bitmaps.header.length + bArr.length) - 3, Bitmaps.footer.length);
         bArr2[164] = bArr[1];
         bArr2[166] = bArr[2];
-        Bitmap decodeByteArray = BitmapFactory.decodeByteArray(bArr2, 0, length);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inPreferredConfig = SharedConfig.deviceIsHigh() ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565;
+        Bitmap decodeByteArray = BitmapFactory.decodeByteArray(bArr2, 0, length, options);
         if (decodeByteArray != null && !TextUtils.isEmpty(str) && str.contains("b")) {
             Utilities.blurBitmap(decodeByteArray, 3, 1, decodeByteArray.getWidth(), decodeByteArray.getHeight(), decodeByteArray.getRowBytes());
         }
@@ -1280,7 +1283,7 @@ public class ImageLoader {
         this.memCache = new LruCache<BitmapDrawable>((int) (0.8f * f)) {
             @Override
             public int sizeOf(String str, BitmapDrawable bitmapDrawable) {
-                return bitmapDrawable.getBitmap().getByteCount();
+                return ImageLoader.this.sizeOfBitmapDrawable(bitmapDrawable);
             }
 
             @Override
@@ -1302,7 +1305,7 @@ public class ImageLoader {
         this.smallImagesMemCache = new LruCache<BitmapDrawable>((int) (f * 0.2f)) {
             @Override
             public int sizeOf(String str, BitmapDrawable bitmapDrawable) {
-                return bitmapDrawable.getBitmap().getByteCount();
+                return ImageLoader.this.sizeOfBitmapDrawable(bitmapDrawable);
             }
 
             @Override
@@ -1324,13 +1327,13 @@ public class ImageLoader {
         this.wallpaperMemCache = new LruCache<BitmapDrawable>(min / 4) {
             @Override
             public int sizeOf(String str, BitmapDrawable bitmapDrawable) {
-                return bitmapDrawable.getBitmap().getByteCount();
+                return ImageLoader.this.sizeOfBitmapDrawable(bitmapDrawable);
             }
         };
         this.lottieMemCache = new LruCache<BitmapDrawable>(10485760) {
             @Override
             public int sizeOf(String str, BitmapDrawable bitmapDrawable) {
-                return bitmapDrawable.getIntrinsicWidth() * bitmapDrawable.getIntrinsicHeight() * 4 * 2;
+                return ImageLoader.this.sizeOfBitmapDrawable(bitmapDrawable);
             }
 
             @Override
@@ -1619,6 +1622,17 @@ public class ImageLoader {
 
         public void lambda$onReceive$0() {
             ImageLoader.this.checkMediaPaths();
+        }
+    }
+
+    public int sizeOfBitmapDrawable(BitmapDrawable bitmapDrawable) {
+        if (bitmapDrawable instanceof AnimatedFileDrawable) {
+            AnimatedFileDrawable animatedFileDrawable = (AnimatedFileDrawable) bitmapDrawable;
+            return Math.max(animatedFileDrawable.getIntrinsicHeight() * bitmapDrawable.getIntrinsicWidth() * 4 * 3, animatedFileDrawable.getRenderingHeight() * animatedFileDrawable.getRenderingWidth() * 4 * 3);
+        } else if (bitmapDrawable instanceof RLottieDrawable) {
+            return bitmapDrawable.getIntrinsicWidth() * bitmapDrawable.getIntrinsicHeight() * 4 * 2;
+        } else {
+            return bitmapDrawable.getBitmap().getByteCount();
         }
     }
 

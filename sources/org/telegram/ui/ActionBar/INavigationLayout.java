@@ -294,10 +294,6 @@ public interface INavigationLayout {
 
             public static void $default$onThemeProgress(INavigationLayoutDelegate iNavigationLayoutDelegate, float f) {
             }
-
-            public static boolean $default$needPresentFragment(INavigationLayoutDelegate _this, INavigationLayout iNavigationLayout, NavigationParams navigationParams) {
-                return _this.needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
-            }
         }
     }
 

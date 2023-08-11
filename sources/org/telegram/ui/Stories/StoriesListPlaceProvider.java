@@ -9,6 +9,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Cells.DialogCell;
+import org.telegram.ui.Cells.ProfileSearchCell;
 import org.telegram.ui.Cells.ReactedUserHolderView;
 import org.telegram.ui.Cells.SharedPhotoVideoCell2;
 import org.telegram.ui.Cells.UserCell;
@@ -169,6 +170,16 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                     transitionViewHolder.params = reactedUserHolderView.params;
                     transitionViewHolder.avatarImage = backupImageView2.getImageReceiver();
                     transitionViewHolder.clipParent = (View) reactedUserHolderView.getParent();
+                    updateClip(transitionViewHolder);
+                    return true;
+                }
+            } else if (childAt instanceof ProfileSearchCell) {
+                ProfileSearchCell profileSearchCell = (ProfileSearchCell) childAt;
+                if (profileSearchCell.getDialogId() == j) {
+                    transitionViewHolder.view = profileSearchCell;
+                    transitionViewHolder.params = profileSearchCell.avatarStoryParams;
+                    transitionViewHolder.avatarImage = profileSearchCell.avatarImage;
+                    transitionViewHolder.clipParent = (View) profileSearchCell.getParent();
                     updateClip(transitionViewHolder);
                     return true;
                 }

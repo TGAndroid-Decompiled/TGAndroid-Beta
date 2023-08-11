@@ -61,7 +61,6 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
-        addView(textView);
         RecyclerListView recyclerListView = new RecyclerListView(context) {
             @Override
             public void onMeasure(int i, int i2) {
@@ -99,10 +98,11 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
         int i = Theme.key_dialogBackground;
         view.setBackground(new GradientDrawable(orientation, new int[]{Theme.getColor(i, this.resourcesProvider), 0}));
-        addView(view, LayoutHelper.createFrame(-1, 8.0f, 0, 0.0f, 39.0f, 0.0f, 0.0f));
+        addView(view, LayoutHelper.createFrame(-1, 8.0f, 0, 0.0f, 38.0f, 0.0f, 0.0f));
         View view2 = new View(getContext());
         view2.setBackgroundColor(Theme.getColor(i, this.resourcesProvider));
-        addView(view2, LayoutHelper.createFrame(-1, 8.0f, 0, 0.0f, 32.0f, 0.0f, 0.0f));
+        addView(view2, LayoutHelper.createFrame(-1, 10.0f, 0, 0.0f, 29.0f, 0.0f, 0.0f));
+        addView(textView);
     }
 
     public void lambda$new$0(StoryViewer storyViewer, View view, int i) {
@@ -115,8 +115,10 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
         if (view == this.recyclerListView) {
+            canvas.save();
             canvas.clipRect(0, AndroidUtilities.dp(46.0f), getMeasuredWidth(), getMeasuredHeight());
             super.drawChild(canvas, view, j);
+            canvas.restore();
             return true;
         }
         return super.drawChild(canvas, view, j);

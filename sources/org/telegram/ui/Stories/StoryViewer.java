@@ -2430,6 +2430,11 @@ public class StoryViewer {
                     StoryViewer.VideoPlayerHolder.this.lambda$release$3(tLRPC$Document, runnable);
                 }
             });
+            Bitmap bitmap = StoryViewer.this.playerStubBitmap;
+            if (bitmap != null) {
+                AndroidUtilities.recycleBitmap(bitmap);
+                StoryViewer.this.playerStubBitmap = null;
+            }
             return true;
         }
 

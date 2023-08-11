@@ -73,6 +73,7 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.AutoDeleteMediaTask;
 import org.telegram.messenger.BackupAgent;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -406,10 +407,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.fillStatusBarHeight(this);
         this.actionBarLayout = INavigationLayout.CC.newLayout(this);
         FrameLayout frameLayout = new FrameLayout(this) {
-            {
-                LaunchActivity.this = this;
-            }
-
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
@@ -430,10 +427,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.frameLayout.addView(this.drawerLayoutContainer, LayoutHelper.createFrame(-1, -1.0f));
         if (i2 >= 21) {
             View view = new View(this) {
-                {
-                    LaunchActivity.this = this;
-                }
-
                 @Override
                 protected void onDraw(Canvas canvas) {
                     if (LaunchActivity.this.themeSwitchSunDrawable != null) {
@@ -459,7 +452,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             @Override
-            public void onStop() {
+            protected void onStop() {
                 super.onStop();
                 setVisibility(8);
             }
@@ -469,10 +462,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         setupActionBarLayout();
         this.sideMenuContainer = new FrameLayout(this);
         RecyclerListView recyclerListView = new RecyclerListView(this) {
-            {
-                LaunchActivity.this = this;
-            }
-
             @Override
             public boolean drawChild(Canvas canvas, View view2, long j) {
                 int i3;
@@ -544,10 +533,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int i4) {
-            }
-
-            {
-                LaunchActivity.this = this;
             }
 
             @Override
@@ -777,12 +762,15 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         try {
             String str = Build.DISPLAY;
             String str2 = Build.USER;
-            String lowerCase2 = str != null ? str.toLowerCase() : "";
-            String lowerCase3 = str2 != null ? lowerCase2.toLowerCase() : "";
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("OS name " + lowerCase2 + " " + lowerCase3);
+            String str3 = BuildConfig.APP_CENTER_HASH;
+            String lowerCase2 = str != null ? str.toLowerCase() : BuildConfig.APP_CENTER_HASH;
+            if (str2 != null) {
+                str3 = lowerCase2.toLowerCase();
             }
-            if ((lowerCase2.contains("flyme") || lowerCase3.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("OS name " + lowerCase2 + " " + str3);
+            }
+            if ((lowerCase2.contains("flyme") || str3.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
                 AndroidUtilities.incorrectDisplaySizeFix = true;
                 final View rootView = getWindow().getDecorView().getRootView();
                 ViewTreeObserver viewTreeObserver = rootView.getViewTreeObserver();
@@ -811,10 +799,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (i5 >= 31) {
             getWindow().getDecorView().addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
-                {
-                    LaunchActivity.this = this;
-                }
-
                 @Override
                 public void onViewAttachedToWindow(View view2) {
                     LaunchActivity.this.getWindowManager().addCrossWindowBlurEnabledListener(C$r8$wrapper$java$util$function$Consumer$WRP.convert(LaunchActivity.this.blurListener));
@@ -839,11 +823,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         AnonymousClass3(Context context) {
             super(context);
-            LaunchActivity.this = r1;
         }
 
         @Override
-        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             setDrawerPosition(getDrawerPosition());
             boolean z2 = i4 - i2 > i3 - i;
@@ -1029,10 +1012,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 return false;
             }
             DialogsActivity dialogsActivity = new DialogsActivity(null) {
-                {
-                    LaunchActivity.this = this;
-                }
-
                 @Override
                 public void onTransitionAnimationEnd(boolean z, boolean z2) {
                     super.onTransitionAnimationEnd(z, z2);
@@ -1118,7 +1097,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 private boolean inLayout;
 
                 {
-                    LaunchActivity.this = this;
                     new Path();
                 }
 
@@ -1330,10 +1308,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         View view2 = view;
         SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(lastFragment, this, true, Integer.valueOf(i), 0, null) {
-            {
-                LaunchActivity.this = this;
-            }
-
             @Override
             public void onSettings() {
                 DrawerLayoutContainer drawerLayoutContainer = LaunchActivity.this.drawerLayoutContainer;
@@ -1406,10 +1380,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         selectAnimatedEmojiDialog.setSaveState(2);
         selectAnimatedEmojiDialog.setScrimDrawable(swapAnimatedEmojiDrawable, view2);
         SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, -2, -2) {
-            {
-                LaunchActivity.this = this;
-            }
-
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -1710,10 +1680,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private void showUpdateActivity(int i, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, boolean z) {
         if (this.blockingUpdateView == null) {
             BlockingUpdateView blockingUpdateView = new BlockingUpdateView(this) {
-                {
-                    LaunchActivity.this = this;
-                }
-
                 @Override
                 public void setVisibility(int i2) {
                     super.setVisibility(i2);
@@ -1749,7 +1715,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public class AnonymousClass15 implements TermsOfServiceView.TermsOfServiceViewDelegate {
         AnonymousClass15() {
-            LaunchActivity.this = r1;
         }
 
         @Override
@@ -2061,10 +2026,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             bundle.putString("selectAlertStringGroup", LocaleController.getString("SendMessagesToGroupText", R.string.SendMessagesToGroupText));
         }
         DialogsActivity dialogsActivity = new DialogsActivity(bundle) {
-            {
-                LaunchActivity.this = this;
-            }
-
             @Override
             public boolean shouldShowNextButton(DialogsActivity dialogsActivity2, ArrayList<Long> arrayList2, CharSequence charSequence, boolean z2) {
                 if (LaunchActivity.this.exportingChatUri != null) {
@@ -2712,7 +2673,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 final CheckBoxCell checkBoxCell = new CheckBoxCell(this, 5, baseFragment.getResourceProvider());
                 checkBoxCell.setBackground(Theme.getSelectorDrawable(false));
                 checkBoxCell.setMultiline(true);
-                checkBoxCell.setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), "", true, false);
+                checkBoxCell.setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), BuildConfig.APP_CENTER_HASH, true, false);
                 checkBoxCell.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
                 checkBoxCell.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -2829,7 +2790,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             int i2 = R.string.AddBot;
             builder.setTitle(LocaleController.getString("AddBot", i2));
-            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? "" : chat.title)));
+            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("AddMembersAlertNamesText", R.string.AddMembersAlertNamesText, UserObject.getUserName(tLRPC$User), chat == null ? BuildConfig.APP_CENTER_HASH : chat.title)));
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
             builder.setPositiveButton(LocaleController.getString("AddBot", i2), new DialogInterface.OnClickListener() {
                 @Override
@@ -3079,7 +3040,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final Integer val$messageId;
 
         AnonymousClass18(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
-            LaunchActivity.this = r1;
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -3680,10 +3640,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             private Paint paint = new Paint();
             private Matrix matrix = new Matrix();
 
-            {
-                LaunchActivity.this = this;
-            }
-
             @Override
             public void draw(Canvas canvas) {
                 if (this.updateGradient != null) {
@@ -3778,7 +3734,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     } catch (Exception unused) {
                     }
                     if (tLRPC$TL_help_getAppUpdate.source == null) {
-                        tLRPC$TL_help_getAppUpdate.source = "";
+                        tLRPC$TL_help_getAppUpdate.source = BuildConfig.APP_CENTER_HASH;
                     }
                     final int i = this.currentAccount;
                     ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_help_getAppUpdate, new RequestDelegate() {
@@ -3873,7 +3829,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 edit.putBoolean("proxy_enabled", false);
                 edit.putBoolean("proxy_enabled_calls", false);
                 edit.commit();
-                ConnectionsManager.setProxySettings(false, "", 1080, "", "", "");
+                ConnectionsManager.setProxySettings(false, BuildConfig.APP_CENTER_HASH, 1080, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
                 NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
                 this.proxyErrorDialog = null;
             }
@@ -5073,7 +5029,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (UserConfig.getInstance(this.currentAccount).isClientActivated()) {
             try {
                 if (!this.loadingLocaleDialog && !ApplicationLoader.mainInterfacePaused) {
-                    String string = MessagesController.getGlobalMainSettings().getString("language_showed2", "");
+                    String string = MessagesController.getGlobalMainSettings().getString("language_showed2", BuildConfig.APP_CENTER_HASH);
                     final String str2 = MessagesController.getInstance(this.currentAccount).suggestedLangCode;
                     if (!z && string.equals(str2)) {
                         if (BuildVars.LOGS_ENABLED) {
@@ -5203,10 +5159,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (SharedConfig.passcodeHash.length() != 0) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
             Runnable runnable = new Runnable() {
-                {
-                    LaunchActivity.this = this;
-                }
-
                 @Override
                 public void run() {
                     if (LaunchActivity.this.lockRunnable == this) {

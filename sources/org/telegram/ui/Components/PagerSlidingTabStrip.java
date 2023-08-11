@@ -292,7 +292,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         super.onDraw(canvas);
     }
 
-    private class PageListener implements ViewPager.OnPageChangeListener {
+    public class PageListener implements ViewPager.OnPageChangeListener {
         private PageListener() {
         }
 

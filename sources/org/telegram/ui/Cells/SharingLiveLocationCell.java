@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.IMapsProvider;
@@ -117,8 +118,9 @@ public class SharingLiveLocationCell extends FrameLayout {
         this.currentAccount = UserConfig.selectedAccount;
         String str = tLRPC$TL_channelLocation.address;
         this.avatarDrawable = null;
-        String str2 = "";
-        if (DialogObject.isUserDialog(j)) {
+        boolean isUserDialog = DialogObject.isUserDialog(j);
+        String str2 = BuildConfig.APP_CENTER_HASH;
+        if (isUserDialog) {
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
             if (user != null) {
                 this.avatarDrawable = new AvatarDrawable(user);
@@ -168,7 +170,7 @@ public class SharingLiveLocationCell extends FrameLayout {
                     this.avatarImageView.setForUserOrChat(user, this.avatarDrawable);
                     str = userName;
                 }
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             } else {
                 TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-fromChatId));
                 if (chat != null) {
@@ -178,7 +180,7 @@ public class SharingLiveLocationCell extends FrameLayout {
                     this.avatarImageView.setForUserOrChat(chat, avatarDrawable);
                     str = str3;
                 }
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
         }
         this.nameTextView.setText(str);
@@ -196,7 +198,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         } else if (!z) {
             this.distanceTextView.setText(LocaleController.getString("Loading", R.string.Loading));
         } else {
-            this.distanceTextView.setText("");
+            this.distanceTextView.setText(BuildConfig.APP_CENTER_HASH);
         }
     }
 

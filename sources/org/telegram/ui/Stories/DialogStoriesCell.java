@@ -33,6 +33,7 @@ import java.util.Comparator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -1114,8 +1115,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 this.user = null;
                 tLRPC$User = chat;
             }
+            String str = BuildConfig.APP_CENTER_HASH;
             if (tLRPC$User == null) {
-                this.textView.setText("");
+                this.textView.setText(BuildConfig.APP_CENTER_HASH);
                 this.avatarImage.clearImage();
                 return;
             }
@@ -1180,21 +1182,23 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             }
             TLRPC$User tLRPC$User2 = this.user;
             if (tLRPC$User2 != null) {
-                String str = tLRPC$User2.first_name;
-                String trim = str != null ? str.trim() : "";
-                int indexOf = trim.indexOf(" ");
+                String str2 = tLRPC$User2.first_name;
+                if (str2 != null) {
+                    str = str2.trim();
+                }
+                int indexOf = str.indexOf(" ");
                 if (indexOf > 0) {
-                    trim = trim.substring(0, indexOf);
+                    str = str.substring(0, indexOf);
                 }
                 if (this.user.verified) {
                     if (this.verifiedDrawable == null) {
                         this.verifiedDrawable = DialogStoriesCell.this.createVerifiedDrawable();
                     }
-                    this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
+                    this.textView.setText(Emoji.replaceEmoji(str, this.textView.getPaint().getFontMetricsInt(), false));
                     this.textView.setRightDrawable(this.verifiedDrawable);
                     return;
                 }
-                this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
+                this.textView.setText(Emoji.replaceEmoji(str, this.textView.getPaint().getFontMetricsInt(), false));
                 this.textView.setRightDrawable((Drawable) null);
                 return;
             }

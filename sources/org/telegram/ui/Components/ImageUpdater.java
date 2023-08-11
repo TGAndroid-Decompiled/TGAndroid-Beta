@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -135,7 +136,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         if (photoEntry.isVideo || photoEntry.editedInfo != null) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.id = 0;
-            tLRPC$TL_message.message = "";
+            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
             tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
             tLRPC$TL_message.dialog_id = 0L;
@@ -353,6 +354,10 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             public void selectedPhotosChanged() {
             }
 
+            {
+                ImageUpdater.this = this;
+            }
+
             @Override
             public void actionButtonPressed(boolean z, boolean z2, int i) {
                 if (hashMap.isEmpty() || ImageUpdater.this.delegate == null || this.sendPressed || z) {
@@ -449,6 +454,10 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
                 @Override
                 public void sendAudio(ArrayList arrayList, CharSequence charSequence, boolean z, int i) {
                     ChatAttachAlert.ChatAttachViewDelegate.CC.$default$sendAudio(this, arrayList, charSequence, z, i);
+                }
+
+                {
+                    ImageUpdater.this = this;
                 }
 
                 @Override
@@ -558,7 +567,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         if (sendingMediaInfo.isVideo || sendingMediaInfo.videoEditedInfo != null) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.id = 0;
-            tLRPC$TL_message.message = "";
+            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
             tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
             tLRPC$TL_message.dialog_id = 0L;
@@ -705,6 +714,10 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         PhotoAlbumPickerActivity photoAlbumPickerActivity = new PhotoAlbumPickerActivity(this.canSelectVideo ? PhotoAlbumPickerActivity.SELECT_TYPE_AVATAR_VIDEO : PhotoAlbumPickerActivity.SELECT_TYPE_AVATAR, false, false, null);
         photoAlbumPickerActivity.setAllowSearchImages(this.searchAvailable);
         photoAlbumPickerActivity.setDelegate(new PhotoAlbumPickerActivity.PhotoAlbumPickerActivityDelegate() {
+            {
+                ImageUpdater.this = this;
+            }
+
             @Override
             public void didSelectPhotos(ArrayList<SendMessagesHelper.SendingMediaInfo> arrayList, boolean z, int i) {
                 ImageUpdater.this.didSelectPhotos(arrayList);
@@ -774,6 +787,10 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
             @Override
             public boolean canScrollAway() {
                 return false;
+            }
+
+            {
+                ImageUpdater.this = this;
             }
 
             @Override
