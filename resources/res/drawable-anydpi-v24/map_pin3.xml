@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:height="64dp" android:width="64dp" android:viewportWidth="64" android:viewportHeight="64">
-    <path android:fillColor="@drawable/res_0x7f070043_map_pin3__0" android:pathData="M32.0003 6C21.2306 6 12.5 14.7989 12.5 25.6528C12.5 30.4983 12.5 39.5 32.0033 58C51.5 39.5 51.5 30.4978 51.5 25.6522C51.5005 14.7989 42.7699 6 32.0003 6ZM32.0003 31.5C29 31.5 25.5 28.4522 25.5 24.9761C25.5 21.5 29.0005 18.5 32.0003 18.5C35 18.5 38.5 21.5 38.5 24.9761C38.5 28.4522 35.0005 31.5 32.0003 31.5Z"/>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" android:height="72dp" android:width="72dp" android:viewportWidth="72" android:viewportHeight="72">
+    <path android:fillColor="@drawable/res_0x7f070043_map_pin3__0" android:pathData="M36,9.33333333 C24.8,9.33333333 14.6666667,17.92 14.6666667,31.2 C14.6666667,39.68 21.2,51.7866667 34.24,63.28 C35.2533333,64.16 36.7733333,64.16 37.7866667,63.28 C50.8,51.7866667 57.3333333,39.68 57.3333333,31.2 C57.3333333,17.92 47.2,9.33333333 36,9.33333333 Z M36,37 C32.15,37 29,33.85 29,30 C29,26.15 32.15,23 36,23 C39.85,23 43,26.15 43,30 C43,33.85 39.85,37 36,37 Z"/>
 </vector>

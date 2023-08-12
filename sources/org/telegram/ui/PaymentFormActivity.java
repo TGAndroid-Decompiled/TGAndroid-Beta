@@ -1703,7 +1703,10 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         }
         showEditDoneProgress(true, false);
         setDonePressed(false);
-        this.googlePayButton.setClickable(true);
+        FrameLayout frameLayout = this.googlePayButton;
+        if (frameLayout != null) {
+            frameLayout.setClickable(true);
+        }
     }
 
     public void goToNextStep() {

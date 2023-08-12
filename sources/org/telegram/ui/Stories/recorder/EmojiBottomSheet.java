@@ -1795,7 +1795,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                             Rect rect = AndroidUtilities.rectTmp2;
                             rect.set(emojiImageView.getPaddingLeft(), emojiImageView.getPaddingTop(), emojiImageView.getWidth() - emojiImageView.getPaddingRight(), emojiImageView.getHeight() - emojiImageView.getPaddingBottom());
                             float aspectRatio = getAspectRatio(imageReceiver);
-                            if (aspectRatio < 0.0f) {
+                            if (aspectRatio < 1.0f) {
                                 float height = (rect.height() * aspectRatio) / 2.0f;
                                 rect.left = (int) (rect.centerX() - height);
                                 rect.right = (int) (rect.centerX() + height);
@@ -2342,7 +2342,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
             textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
             textPaint.setTextSize(AndroidUtilities.dp(21.3f));
             textPaint.setColor(-1);
-            Drawable mutate = context.getResources().getDrawable(R.drawable.pin).mutate();
+            Drawable mutate = context.getResources().getDrawable(R.drawable.map_pin3).mutate();
             this.pin = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
             paint.setColor(436207615);
@@ -2360,7 +2360,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 float dp = AndroidUtilities.dp(45.6f) + this.layoutWidth;
                 float dp2 = AndroidUtilities.dp(11.0f) + this.layout.getHeight();
                 this.bounds.set((getMeasuredWidth() - dp) / 2.0f, (getMeasuredHeight() - dp2) / 2.0f, (getMeasuredWidth() + dp) / 2.0f, (getMeasuredHeight() + dp2) / 2.0f);
-                this.pin.setBounds((int) (this.bounds.left + AndroidUtilities.dp(6.0f)), (int) ((this.bounds.centerY() - AndroidUtilities.dp(12.0f)) + AndroidUtilities.dp(1.0f)), (int) (this.bounds.left + AndroidUtilities.dp(30.0f)), (int) (this.bounds.centerY() + AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(1.0f)));
+                this.pin.setBounds((int) (this.bounds.left + AndroidUtilities.dp(6.0f)), (int) (this.bounds.centerY() - AndroidUtilities.dp(12.0f)), (int) (this.bounds.left + AndroidUtilities.dp(30.0f)), (int) (this.bounds.centerY() + AndroidUtilities.dp(12.0f)));
             }
         }
 

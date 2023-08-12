@@ -340,6 +340,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
         this.searchEmptyView = stickerEmptyView;
         stickerEmptyView.title.setTextSize(1, 16.0f);
         stickerEmptyView.title.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
+        stickerEmptyView.title.setTypeface(null);
         stickerEmptyView.title.setText(LocaleController.getString(R.string.SearchImagesType));
         this.keyboardNotifier = new KeyboardNotifier(this, new Utilities.Callback() {
             @Override

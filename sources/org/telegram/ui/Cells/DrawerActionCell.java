@@ -13,7 +13,6 @@ import android.widget.TextView;
 import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
@@ -23,7 +22,6 @@ public class DrawerActionCell extends FrameLayout {
     private ImageView imageView;
     private RectF rect;
     private TextView textView;
-    private boolean wasRTL;
 
     public DrawerActionCell(Context context) {
         super(context);
@@ -36,36 +34,22 @@ public class DrawerActionCell extends FrameLayout {
         textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
         this.textView.setTextSize(1, 15.0f);
         this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.textView.setGravity(16);
-        toggleRTL(true);
+        this.textView.setGravity(19);
+        addView(this.imageView, LayoutHelper.createFrame(24, 24.0f, 51, 19.0f, 12.0f, 0.0f, 0.0f));
+        addView(this.textView, LayoutHelper.createFrame(-1, -1.0f, 51, 72.0f, 0.0f, 16.0f, 0.0f));
         setWillNotDraw(false);
-    }
-
-    public void toggleRTL(boolean z) {
-        boolean z2 = this.wasRTL;
-        boolean z3 = LocaleController.isRTL;
-        if (z2 != z3 || z) {
-            this.wasRTL = z3;
-            removeAllViews();
-            ImageView imageView = this.imageView;
-            boolean z4 = LocaleController.isRTL;
-            addView(imageView, LayoutHelper.createFrame(24, 24.0f, (z4 ? 5 : 3) | 48, z4 ? 0.0f : 19.0f, 12.0f, z4 ? 19.0f : 0.0f, 0.0f));
-            TextView textView = this.textView;
-            boolean z5 = LocaleController.isRTL;
-            addView(textView, LayoutHelper.createFrame(-1, -1.0f, (z5 ? 5 : 3) | 48, z5 ? 16.0f : 72.0f, 0.0f, z5 ? 72.0f : 16.0f, 0.0f));
-        }
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         int dp;
+        int measuredWidth;
         super.onDraw(canvas);
         if (this.currentId == 8) {
             Set<String> set = MessagesController.getInstance(UserConfig.selectedAccount).pendingSuggestions;
             if (set.contains("VALIDATE_PHONE_NUMBER") || set.contains("VALIDATE_PASSWORD")) {
                 int dp2 = AndroidUtilities.dp(12.5f);
-                int dp3 = AndroidUtilities.dp(9.0f);
-                this.rect.set((LocaleController.isRTL ? AndroidUtilities.dp(25.0f) + dp3 : (getMeasuredWidth() - dp3) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(5.5f), dp2, dp + dp3 + AndroidUtilities.dp(14.0f), dp2 + AndroidUtilities.dp(23.0f));
+                this.rect.set(((getMeasuredWidth() - AndroidUtilities.dp(9.0f)) - AndroidUtilities.dp(25.0f)) - AndroidUtilities.dp(5.5f), dp2, measuredWidth + dp + AndroidUtilities.dp(14.0f), dp2 + AndroidUtilities.dp(23.0f));
                 Theme.chat_docBackPaint.setColor(Theme.getColor(Theme.key_chats_archiveBackground));
                 RectF rectF = this.rect;
                 float f = AndroidUtilities.density;
@@ -90,7 +74,6 @@ public class DrawerActionCell extends FrameLayout {
     }
 
     public void setTextAndIcon(int i, String str, int i2) {
-        toggleRTL(false);
         this.currentId = i;
         try {
             this.textView.setText(str);

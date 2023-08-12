@@ -81,6 +81,8 @@ public class TextureRenderer {
     private int simplePositionHandle;
     private int simpleShaderProgram;
     private int simpleSourceImageHandle;
+    private Bitmap stickerBitmap;
+    private Canvas stickerCanvas;
     private int[] stickerTexture;
     private int texSizeHandle;
     Paint textColorPaint;
@@ -257,9 +259,6 @@ public class TextureRenderer {
             }
             drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
         } else if (mediaEntity.animatedFileDrawable != null) {
-            if (mediaEntity.bitmap == null || mediaEntity.W <= 0 || mediaEntity.H <= 0) {
-                return;
-            }
             float f2 = mediaEntity.currentFrame;
             int i4 = (int) f2;
             float f3 = f2 + mediaEntity.framesPerDraw;
@@ -269,19 +268,19 @@ public class TextureRenderer {
             }
             Bitmap backgroundBitmap = mediaEntity.animatedFileDrawable.getBackgroundBitmap();
             if (backgroundBitmap != null) {
-                if (mediaEntity.canvas == null && mediaEntity.bitmap != null) {
-                    mediaEntity.canvas = new Canvas(mediaEntity.bitmap);
-                    if (mediaEntity.bitmap.getHeight() != backgroundBitmap.getHeight() || mediaEntity.bitmap.getWidth() != backgroundBitmap.getWidth()) {
-                        mediaEntity.canvas.scale(mediaEntity.bitmap.getWidth() / backgroundBitmap.getWidth(), mediaEntity.bitmap.getHeight() / backgroundBitmap.getHeight());
+                if (this.stickerCanvas == null && this.stickerBitmap != null) {
+                    this.stickerCanvas = new Canvas(this.stickerBitmap);
+                    if (this.stickerBitmap.getHeight() != backgroundBitmap.getHeight() || this.stickerBitmap.getWidth() != backgroundBitmap.getWidth()) {
+                        this.stickerCanvas.scale(this.stickerBitmap.getWidth() / backgroundBitmap.getWidth(), this.stickerBitmap.getHeight() / backgroundBitmap.getHeight());
                     }
                 }
-                Bitmap bitmap2 = mediaEntity.bitmap;
+                Bitmap bitmap2 = this.stickerBitmap;
                 if (bitmap2 != null) {
                     bitmap2.eraseColor(0);
-                    mediaEntity.canvas.drawBitmap(backgroundBitmap, 0.0f, 0.0f, (Paint) null);
-                    applyRoundRadius(mediaEntity, mediaEntity.bitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
+                    this.stickerCanvas.drawBitmap(backgroundBitmap, 0.0f, 0.0f, (Paint) null);
+                    applyRoundRadius(mediaEntity, this.stickerBitmap, (mediaEntity.subType & 8) != 0 ? i : 0);
                     GLES20.glBindTexture(3553, this.stickerTexture[0]);
-                    GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
+                    GLUtils.texImage2D(3553, 0, this.stickerBitmap, 0);
                     drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, (mediaEntity.subType & 2) != 0);
                 }
             }
@@ -436,40 +435,34 @@ public class TextureRenderer {
 
     public void initStickerEntity(VideoEditedInfo.MediaEntity mediaEntity) {
         Bitmap bitmap;
-        int i;
         AnimatedFileDrawable animatedFileDrawable;
-        int i2;
-        int i3 = (int) (mediaEntity.width * this.transformedWidth);
-        mediaEntity.W = i3;
-        int i4 = (int) (mediaEntity.height * this.transformedHeight);
-        mediaEntity.H = i4;
-        if (i3 > 512) {
-            mediaEntity.H = (int) ((i4 / i3) * 512.0f);
+        int i;
+        int i2 = (int) (mediaEntity.width * this.transformedWidth);
+        mediaEntity.W = i2;
+        int i3 = (int) (mediaEntity.height * this.transformedHeight);
+        mediaEntity.H = i3;
+        if (i2 > 512) {
+            mediaEntity.H = (int) ((i3 / i2) * 512.0f);
             mediaEntity.W = LiteMode.FLAG_CALLS_ANIMATIONS;
         }
-        int i5 = mediaEntity.H;
-        if (i5 > 512) {
-            mediaEntity.W = (int) ((mediaEntity.W / i5) * 512.0f);
+        int i4 = mediaEntity.H;
+        if (i4 > 512) {
+            mediaEntity.W = (int) ((mediaEntity.W / i4) * 512.0f);
             mediaEntity.H = LiteMode.FLAG_CALLS_ANIMATIONS;
         }
         byte b = mediaEntity.subType;
         if ((b & 1) != 0) {
-            int i6 = mediaEntity.W;
-            if (i6 <= 0 || (i2 = mediaEntity.H) <= 0) {
+            int i5 = mediaEntity.W;
+            if (i5 <= 0 || (i = mediaEntity.H) <= 0) {
                 return;
             }
-            mediaEntity.bitmap = Bitmap.createBitmap(i6, i2, Bitmap.Config.ARGB_8888);
+            mediaEntity.bitmap = Bitmap.createBitmap(i5, i, Bitmap.Config.ARGB_8888);
             int[] iArr = new int[3];
             mediaEntity.metadata = iArr;
             mediaEntity.ptr = RLottieDrawable.create(mediaEntity.text, null, mediaEntity.W, mediaEntity.H, iArr, false, null, false, 0);
             mediaEntity.framesPerDraw = mediaEntity.metadata[1] / this.videoFps;
         } else if ((b & 4) != 0) {
-            int i7 = mediaEntity.W;
-            if (i7 <= 0 || (i = mediaEntity.H) <= 0) {
-                return;
-            }
-            mediaEntity.bitmap = Bitmap.createBitmap(i7, i, Bitmap.Config.ARGB_8888);
-            mediaEntity.animatedFileDrawable = new AnimatedFileDrawable(new File(mediaEntity.text), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, mediaEntity.W, mediaEntity.H, null);
+            mediaEntity.animatedFileDrawable = new AnimatedFileDrawable(new File(mediaEntity.text), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS, null);
             mediaEntity.framesPerDraw = animatedFileDrawable.getFps() / this.videoFps;
             mediaEntity.currentFrame = 0.0f;
             mediaEntity.animatedFileDrawable.getNextFrame();
@@ -513,10 +506,10 @@ public class TextureRenderer {
                     float f4 = mediaEntity.y;
                     float f5 = mediaEntity.height;
                     float f6 = f4 + (f5 / 2.0f);
-                    int i8 = this.transformedWidth;
-                    int i9 = this.transformedHeight;
-                    float f7 = (f2 * i8) / i9;
-                    float f8 = (f5 * i9) / i8;
+                    int i6 = this.transformedWidth;
+                    int i7 = this.transformedHeight;
+                    float f7 = (f2 * i6) / i7;
+                    float f8 = (f5 * i7) / i6;
                     mediaEntity.width = f8;
                     mediaEntity.height = f7;
                     mediaEntity.x = f3 - (f8 / 2.0f);

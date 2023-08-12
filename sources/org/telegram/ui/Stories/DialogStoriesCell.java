@@ -16,6 +16,7 @@ import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ClickableSpan;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
@@ -52,6 +53,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.ButtonBounce;
+import org.telegram.ui.Components.CanvasButton;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.EllipsizeSpanAnimator;
@@ -104,6 +106,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     Adapter miniAdapter;
     private final DefaultItemAnimator miniItemAnimator;
     ArrayList<Item> miniItems;
+    CanvasButton miniItemsClickArea;
     ArrayList<Item> oldItems;
     ArrayList<Item> oldMiniItems;
     private int overlayTextId;
@@ -123,6 +126,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     ValueAnimator valueAnimator;
     ArrayList<StoryCell> viewsDrawInParent;
 
+    public void lambda$new$0() {
+    }
+
     public void onUserLongPressed(View view, long j) {
     }
 
@@ -140,6 +146,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         this.grayPaint = new Paint();
         this.addCirclePaint = new Paint(1);
         this.backgroundPaint = new Paint(1);
+        this.miniItemsClickArea = new CanvasButton(this);
         this.collapsedProgress = -1.0f;
         this.currentState = -1;
         this.viewsDrawInParent = new ArrayList<>();
@@ -150,9 +157,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         this.comparator = new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$new$4;
-                lambda$new$4 = DialogStoriesCell.lambda$new$4((DialogStoriesCell.StoryCell) obj, (DialogStoriesCell.StoryCell) obj2);
-                return lambda$new$4;
+                int lambda$new$5;
+                lambda$new$5 = DialogStoriesCell.lambda$new$5((DialogStoriesCell.StoryCell) obj, (DialogStoriesCell.StoryCell) obj2);
+                return lambda$new$5;
             }
         };
         this.K = 0.3f;
@@ -183,12 +190,18 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         recyclerListView.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
         this.recyclerListView.setClipToPadding(false);
         this.recyclerListView.setClipChildren(false);
+        this.miniItemsClickArea.setDelegate(new Runnable() {
+            @Override
+            public final void run() {
+                DialogStoriesCell.this.lambda$new$0();
+            }
+        });
         this.recyclerListView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
                 super.onScrolled(recyclerView, i3, i4);
                 DialogStoriesCell.this.invalidate();
-                DialogStoriesCell.this.lambda$didReceivedNotification$5();
+                DialogStoriesCell.this.lambda$didReceivedNotification$6();
                 if (DialogStoriesCell.this.premiumHint != null) {
                     DialogStoriesCell.this.premiumHint.hide();
                 }
@@ -207,7 +220,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                DialogStoriesCell.this.lambda$new$0(view, i3);
+                DialogStoriesCell.this.lambda$new$1(view, i3);
             }
         });
         this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
@@ -239,6 +252,21 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         this.grayPaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         this.addNewStoryDrawable = ContextCompat.getDrawable(getContext(), R.drawable.msg_mini_addstory);
         RecyclerListView recyclerListView3 = new RecyclerListView(getContext()) {
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                return false;
+            }
+
+            @Override
+            public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                return false;
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                return false;
+            }
+
             @Override
             public void dispatchDraw(Canvas canvas) {
                 DialogStoriesCell.this.viewsDrawInParent.clear();
@@ -310,7 +338,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         updateItems(false, false);
     }
 
-    public void lambda$new$0(View view, int i) {
+    public void lambda$new$1(View view, int i) {
         openStoryForCell((StoryCell) view, false);
     }
 
@@ -335,7 +363,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    DialogStoriesCell.this.lambda$openStoryForCell$3(storyCell, j);
+                    DialogStoriesCell.this.lambda$openStoryForCell$4(storyCell, j);
                 }
             };
             if (z) {
@@ -351,21 +379,21 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void lambda$openStoryForCell$3(org.telegram.ui.Stories.DialogStoriesCell.StoryCell r11, final long r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.DialogStoriesCell.lambda$openStoryForCell$3(org.telegram.ui.Stories.DialogStoriesCell$StoryCell, long):void");
+    public void lambda$openStoryForCell$4(org.telegram.ui.Stories.DialogStoriesCell.StoryCell r11, final long r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.DialogStoriesCell.lambda$openStoryForCell$4(org.telegram.ui.Stories.DialogStoriesCell$StoryCell, long):void");
     }
 
-    public void lambda$openStoryForCell$1(long j) {
+    public void lambda$openStoryForCell$2(long j) {
         this.storiesController.setLoading(j, false);
     }
 
-    public void lambda$openStoryForCell$2(boolean z, boolean z2) {
+    public void lambda$openStoryForCell$3(boolean z, boolean z2) {
         if (!z && z2) {
             this.storiesController.loadNextStories(this.type == 1);
         }
     }
 
-    public void lambda$didReceivedNotification$5() {
+    public void lambda$didReceivedNotification$6() {
         if (this.layoutManager.findLastVisibleItemPosition() + 10 > this.items.size()) {
             this.storiesController.loadNextStories(this.type == 1);
         }
@@ -453,7 +481,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         return this.storiesController.hasSelfStories() && this.storiesController.getDialogListStories().size() <= 3;
     }
 
-    public static int lambda$new$4(StoryCell storyCell, StoryCell storyCell2) {
+    public static int lambda$new$5(StoryCell storyCell, StoryCell storyCell2) {
         return storyCell2.position - storyCell.position;
     }
 
@@ -497,7 +525,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogStoriesCell.this.lambda$didReceivedNotification$5();
+                    DialogStoriesCell.this.lambda$didReceivedNotification$6();
                 }
             });
         }
@@ -536,7 +564,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 valueAnimator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        DialogStoriesCell.this.lambda$setProgressToCollapse$6(valueAnimator3);
+                        DialogStoriesCell.this.lambda$setProgressToCollapse$7(valueAnimator3);
                     }
                 });
                 this.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -553,7 +581,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void lambda$setProgressToCollapse$6(ValueAnimator valueAnimator) {
+    public void lambda$setProgressToCollapse$7(ValueAnimator valueAnimator) {
         this.collapsedProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         checkCollapsedProgres();
     }
@@ -580,24 +608,24 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         AndroidUtilities.forEachViews(this.recyclerListView, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                DialogStoriesCell.lambda$updateColors$7(textColor, (View) obj);
+                DialogStoriesCell.lambda$updateColors$8(textColor, (View) obj);
             }
         });
         AndroidUtilities.forEachViews(this.listViewMini, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                DialogStoriesCell.lambda$updateColors$8((View) obj);
+                DialogStoriesCell.lambda$updateColors$9((View) obj);
             }
         });
     }
 
-    public static void lambda$updateColors$7(int i, View view) {
+    public static void lambda$updateColors$8(int i, View view) {
         StoryCell storyCell = (StoryCell) view;
         storyCell.invalidate();
         storyCell.textView.setTextColor(i);
     }
 
-    public static void lambda$updateColors$8(View view) {
+    public static void lambda$updateColors$9(View view) {
         ((StoryCell) view).invalidate();
     }
 
@@ -1453,7 +1481,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogStoriesCell.this.lambda$updateCurrentState$9();
+                    DialogStoriesCell.this.lambda$updateCurrentState$10();
                 }
             });
         }
@@ -1462,7 +1490,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             AndroidUtilities.forEachViews(this.recyclerListView, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    DialogStoriesCell.lambda$updateCurrentState$10((View) obj);
+                    DialogStoriesCell.lambda$updateCurrentState$11((View) obj);
                 }
             });
             this.listViewMini.setVisibility(4);
@@ -1494,11 +1522,11 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         invalidate();
     }
 
-    public void lambda$updateCurrentState$9() {
+    public void lambda$updateCurrentState$10() {
         updateItems(true, false);
     }
 
-    public static void lambda$updateCurrentState$10(View view) {
+    public static void lambda$updateCurrentState$11(View view) {
         view.setAlpha(1.0f);
         view.setTranslationX(0.0f);
         view.setTranslationY(0.0f);
@@ -1538,7 +1566,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint2").replace('\n', ' '), Theme.key_undo_cancelColor, 0, new Runnable() {
             @Override
             public final void run() {
-                DialogStoriesCell.this.lambda$makePremiumHint$11();
+                DialogStoriesCell.this.lambda$makePremiumHint$12();
             }
         });
         ClickableSpan[] clickableSpanArr = (ClickableSpan[]) replaceSingleTag.getSpans(0, replaceSingleTag.length(), ClickableSpan.class);
@@ -1555,7 +1583,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         return this.premiumHint;
     }
 
-    public void lambda$makePremiumHint$11() {
+    public void lambda$makePremiumHint$12() {
         HintView2 hintView2 = this.premiumHint;
         if (hintView2 != null) {
             hintView2.hide();
@@ -1572,5 +1600,17 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             }
             this.premiumHint.show();
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.currentState == 2) {
+            int size = this.miniItems.size();
+            this.miniItemsClickArea.setRect((int) this.listViewMini.getX(), (int) this.listViewMini.getY(), (int) (this.listViewMini.getX() + AndroidUtilities.dp((size * 28) - (Math.max(0, size - 1) * 18.0f))), (int) (this.listViewMini.getY() + this.listViewMini.getHeight()));
+            if (this.miniItemsClickArea.checkTouchEvent(motionEvent)) {
+                return true;
+            }
+        }
+        return super.onTouchEvent(motionEvent);
     }
 }

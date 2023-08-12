@@ -97,15 +97,6 @@ public class ItemOptions {
     }
 
     private void init() {
-        BaseFragment baseFragment = this.fragment;
-        if (baseFragment != null && baseFragment.getFragmentView() != null) {
-            this.fragment.getFragmentView().getRootView().dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
-        } else {
-            ViewGroup viewGroup = this.container;
-            if (viewGroup != null) {
-                viewGroup.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
-            }
-        }
         ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.context, this.resourcesProvider);
         this.lastLayout = actionBarPopupWindowLayout;
         actionBarPopupWindowLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
@@ -115,15 +106,6 @@ public class ItemOptions {
             }
         });
         this.layout = this.lastLayout;
-        BaseFragment baseFragment2 = this.fragment;
-        if (baseFragment2 != null && baseFragment2.getFragmentView() != null) {
-            this.fragment.getFragmentView().getRootView().dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
-            return;
-        }
-        ViewGroup viewGroup2 = this.container;
-        if (viewGroup2 != null) {
-            viewGroup2.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
-        }
     }
 
     public void lambda$init$0(KeyEvent keyEvent) {
@@ -468,6 +450,12 @@ public class ItemOptions {
                     height = (int) (f2 + this.scrimView.getMeasuredHeight() + viewGroup2.getY());
                 } else {
                     height = (viewGroup2.getHeight() - this.layout.getMeasuredHeight()) / 2;
+                }
+                BaseFragment baseFragment = this.fragment;
+                if (baseFragment != null && baseFragment.getFragmentView() != null) {
+                    this.fragment.getFragmentView().getRootView().dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
+                } else if (this.container != null) {
+                    viewGroup2.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
                 }
                 this.actionBarPopupWindow.showAtLocation(viewGroup2, 0, (int) (width + this.translateX), (int) (height + this.translateY));
             }

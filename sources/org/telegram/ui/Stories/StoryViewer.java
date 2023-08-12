@@ -953,7 +953,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     return;
                 }
                 final ArrayList arrayList = new ArrayList(StoryViewer.this.storiesViewPager.days);
-                int indexOf = arrayList.indexOf(StoryViewer.this.storiesViewPager.getCurrentPeerView().getCurrentDay());
+                int indexOf = StoryViewer.this.storiesViewPager.getCurrentPeerView() == null ? -1 : arrayList.indexOf(StoryViewer.this.storiesViewPager.getCurrentPeerView().getCurrentDay());
                 if (indexOf >= 0) {
                     arrayList.remove(indexOf);
                     if (!StoryViewer.this.storiesViewPager.switchToNext(true)) {

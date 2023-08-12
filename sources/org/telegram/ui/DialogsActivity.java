@@ -1615,7 +1615,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
     }
 
-    private StoriesController getStoriesController() {
+    public StoriesController getStoriesController() {
         return getMessagesController().getStoriesController();
     }
 
@@ -3338,6 +3338,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         public void lambda$onUserLongPressed$8(long j) {
             DialogsActivity.this.toggleArciveForStory(j);
+        }
+
+        @Override
+        public void onMiniListClicked() {
+            DialogsActivity dialogsActivity = DialogsActivity.this;
+            if (dialogsActivity.hasOnlySlefStories && dialogsActivity.getStoriesController().hasOnlySelfStories()) {
+                DialogsActivity.this.dialogStoriesCell.openSelfStories();
+            } else {
+                DialogsActivity.this.scrollToTop(true, true);
+            }
         }
     }
 

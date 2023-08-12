@@ -312,7 +312,7 @@ public class StoriesStorage {
     }
 
     public void lambda$updateStoryItem$7(long j, TLRPC$StoryItem tLRPC$StoryItem) {
-        if (j == 0) {
+        if (j == 0 || tLRPC$StoryItem == null) {
             return;
         }
         if (tLRPC$StoryItem instanceof TLRPC$TL_storyItemDeleted) {
