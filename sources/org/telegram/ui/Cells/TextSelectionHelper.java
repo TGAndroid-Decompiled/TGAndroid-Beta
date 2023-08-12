@@ -494,7 +494,7 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
             this.capturedY = (int) motionEvent.getY();
             this.tryCapture = false;
             this.textArea.inset(-AndroidUtilities.dp(8.0f), -AndroidUtilities.dp(8.0f));
-            if (this.textArea.contains(this.capturedX, this.capturedY)) {
+            if (this.textArea.contains(this.capturedX, this.capturedY) && this.maybeSelectedView != null) {
                 this.textArea.inset(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
                 int i = this.capturedX;
                 int i2 = this.capturedY;

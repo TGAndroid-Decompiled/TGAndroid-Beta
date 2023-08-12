@@ -20,7 +20,12 @@ import org.telegram.ui.Stories.DialogStoriesCell;
 import org.telegram.ui.Stories.StoryViewer;
 public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
     int[] clipPoint = new int[2];
+    public boolean hasPaginationParams;
+    public boolean hiddedStories;
     private boolean isHiddenArchive;
+    LoadNextInterface loadNextInterface;
+    public boolean onlySelfStories;
+    public boolean onlyUnreadStories;
     private final RecyclerListView recyclerListView;
 
     public interface AvatarOverlaysView {
@@ -31,12 +36,21 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
         void updateClip(int[] iArr);
     }
 
+    public interface LoadNextInterface {
+        void loadNext(boolean z);
+    }
+
     public static StoriesListPlaceProvider of(RecyclerListView recyclerListView) {
         return of(recyclerListView, false);
     }
 
     public static StoriesListPlaceProvider of(RecyclerListView recyclerListView, boolean z) {
         return new StoriesListPlaceProvider(recyclerListView, z);
+    }
+
+    public StoriesListPlaceProvider with(LoadNextInterface loadNextInterface) {
+        this.loadNextInterface = loadNextInterface;
+        return this;
     }
 
     public StoriesListPlaceProvider(RecyclerListView recyclerListView, boolean z) {
@@ -218,5 +232,21 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
             transitionViewHolder.clipTop = view.getPaddingTop();
             transitionViewHolder.clipBottom = transitionViewHolder.clipParent.getMeasuredHeight() - transitionViewHolder.clipParent.getPaddingBottom();
         }
+    }
+
+    @Override
+    public void loadNext(boolean z) {
+        LoadNextInterface loadNextInterface = this.loadNextInterface;
+        if (loadNextInterface != null) {
+            loadNextInterface.loadNext(z);
+        }
+    }
+
+    public StoryViewer.PlaceProvider setPaginationParaments(boolean z, boolean z2, boolean z3) {
+        this.hiddedStories = z;
+        this.onlyUnreadStories = z2;
+        this.onlySelfStories = z3;
+        this.hasPaginationParams = true;
+        return this;
     }
 }

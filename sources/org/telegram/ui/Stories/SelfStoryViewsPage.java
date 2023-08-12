@@ -241,10 +241,11 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     }
 
     public void lambda$new$0(StoryViewer storyViewer, View view, int i) {
-        TLRPC$TL_storyView tLRPC$TL_storyView = this.listAdapter.items.get(i).user;
-        if (tLRPC$TL_storyView != null) {
-            storyViewer.presentFragment(ProfileActivity.of(tLRPC$TL_storyView.user_id));
+        TLRPC$TL_storyView tLRPC$TL_storyView;
+        if (i < 0 || i >= this.listAdapter.items.size() || (tLRPC$TL_storyView = this.listAdapter.items.get(i).user) == null) {
+            return;
         }
+        storyViewer.presentFragment(ProfileActivity.of(tLRPC$TL_storyView.user_id));
     }
 
     public class AnonymousClass4 implements RecyclerListView.OnItemLongClickListener {
@@ -495,7 +496,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             if (tLRPC$StoryViews != null) {
                 int i = tLRPC$StoryViews.views_count;
                 this.showSearch = i >= 15;
-                this.showReactionsSort = tLRPC$StoryViews.reactions_count >= (BuildVars.DEBUG_VERSION ? 5 : 10);
+                this.showReactionsSort = tLRPC$StoryViews.reactions_count >= (BuildVars.DEBUG_PRIVATE_VERSION ? 5 : 10);
                 this.showContactsFilter = (i < 20 || tLRPC$StoryItem.contacts || tLRPC$StoryItem.close_friends || tLRPC$StoryItem.selected_contacts) ? false : true;
             }
             ViewsModel viewsModel = MessagesController.getInstance(this.currentAccount).storiesController.selfViewsModel.get(tLRPC$StoryItem.id);
@@ -787,7 +788,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                         @Override
                         protected void onMeasure(int i3, int i4) {
                             int lastItemHeight = SelfStoryViewsPage.this.layoutManager.getLastItemHeight();
-                            if (lastItemHeight <= SelfStoryViewsPage.this.recyclerListView.getPaddingTop() && !SelfStoryViewsPage.this.showSearch) {
+                            if (lastItemHeight >= SelfStoryViewsPage.this.recyclerListView.getPaddingTop() && !SelfStoryViewsPage.this.showSearch) {
                                 lastItemHeight = 0;
                             }
                             super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(lastItemHeight, 1073741824));
@@ -821,7 +822,8 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                         stickerEmptyView.title.setVisibility(8);
                         stickerEmptyView.setSubtitle(LocaleController.getString("NoContactsViewed", R.string.NoContactsViewed));
                     } else if (i == 10) {
-                        stickerEmptyView.title.setVisibility(8);
+                        stickerEmptyView.title.setVisibility(0);
+                        stickerEmptyView.title.setText(LocaleController.getString("Oops", R.string.Oops));
                         stickerEmptyView.setSubtitle(LocaleController.getString("ServerErrorViewers", R.string.ServerErrorViewers));
                     } else if (SelfStoryViewsPage.this.defaultModel.isExpiredViews) {
                         stickerEmptyView.title.setVisibility(8);

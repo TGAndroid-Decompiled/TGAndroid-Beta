@@ -183,6 +183,11 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
     }
 
     public class AnonymousClass1 implements StoryViewer.PlaceProvider {
+        @Override
+        public void loadNext(boolean z) {
+            StoryViewer.PlaceProvider.CC.$default$loadNext(this, z);
+        }
+
         AnonymousClass1() {
         }
 

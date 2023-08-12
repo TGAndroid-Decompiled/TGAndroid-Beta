@@ -30,7 +30,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextPaint;
 import android.text.TextUtils;
-import android.util.Log;
 import android.util.LongSparseArray;
 import android.util.Property;
 import android.util.StateSet;
@@ -7455,14 +7454,6 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     }
                 }
                 if (!this.searching && (getDownloadController().hasUnviewedDownloads() || z3 || (this.downloadsItem.getVisibility() == 0 && this.downloadsItem.getAlpha() == 1.0f && !z2))) {
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("download button visible unviewed_downloads=");
-                    sb.append(getDownloadController().hasUnviewedDownloads());
-                    sb.append(" show_downloads=");
-                    sb.append(z3);
-                    sb.append(" last_case=");
-                    sb.append(this.downloadsItem.getVisibility() == 0 && this.downloadsItem.getAlpha() == 1.0f && !z2);
-                    Log.d("kek", sb.toString());
                     this.downloadsItemVisible = true;
                     this.downloadsItem.setVisibility(0);
                 } else {

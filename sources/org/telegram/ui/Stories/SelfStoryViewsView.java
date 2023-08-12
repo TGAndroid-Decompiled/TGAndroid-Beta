@@ -30,6 +30,7 @@ import org.telegram.ui.Stories.SelfStoriesPreviewView;
 import org.telegram.ui.Stories.SelfStoryViewsPage;
 import org.telegram.ui.Stories.SelfStoryViewsView;
 import org.telegram.ui.Stories.StoriesController;
+import org.telegram.ui.Stories.StoryViewer;
 public class SelfStoryViewsView extends FrameLayout {
     public float bottomPadding;
     private int currentState;
@@ -67,17 +68,29 @@ public class SelfStoryViewsView extends FrameLayout {
 
             @Override
             public void onClosestPositionChanged(int i) {
+                StoryViewer.PlaceProvider placeProvider;
                 super.onClosestPositionChanged(i);
                 SelfStoryViewsView selfStoryViewsView = SelfStoryViewsView.this;
-                if (selfStoryViewsView.listenPager || selfStoryViewsView.viewPager.getCurrentItem() == i) {
+                if (selfStoryViewsView.listenPager) {
                     return;
                 }
-                try {
-                    SelfStoryViewsView.this.viewPager.setCurrentItem(i, false);
-                } catch (Throwable th) {
-                    FileLog.e(th);
-                    SelfStoryViewsView.this.viewPager.getAdapter().notifyDataSetChanged();
-                    SelfStoryViewsView.this.viewPager.setCurrentItem(i, false);
+                if (selfStoryViewsView.viewPager.getCurrentItem() != i) {
+                    try {
+                        SelfStoryViewsView.this.viewPager.setCurrentItem(i, false);
+                    } catch (Throwable th) {
+                        FileLog.e(th);
+                        SelfStoryViewsView.this.viewPager.getAdapter().notifyDataSetChanged();
+                        SelfStoryViewsView.this.viewPager.setCurrentItem(i, false);
+                    }
+                }
+                StoryViewer storyViewer2 = storyViewer;
+                if (storyViewer2.storiesList == null || (placeProvider = storyViewer2.placeProvider) == null) {
+                    return;
+                }
+                if (i < 10) {
+                    placeProvider.loadNext(false);
+                } else if (i >= this.storyItems.size() - 10) {
+                    storyViewer.placeProvider.loadNext(true);
                 }
             }
 
@@ -345,6 +358,14 @@ public class SelfStoryViewsView extends FrameLayout {
             return currentPage.onBackPressed();
         }
         return false;
+    }
+
+    public TLRPC$StoryItem getSelectedStory() {
+        int closestPosition = this.selfStoriesPreviewView.getClosestPosition();
+        if (closestPosition < 0 || closestPosition >= this.storyItems.size()) {
+            return null;
+        }
+        return this.storyItems.get(closestPosition).storyItem;
     }
 
     public class ContainerView extends FrameLayout implements NestedScrollingParent3 {

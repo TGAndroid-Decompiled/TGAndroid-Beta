@@ -1,6 +1,7 @@
 package org.telegram.tgnet;
 
 import org.telegram.messenger.FileLoaderPriorityQueue;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_user extends TLRPC$User {
     public static int constructor = -1414139616;
@@ -101,8 +102,12 @@ public class TLRPC$TL_user extends TLRPC$User {
                 this.usernames.add(TLdeserialize2);
             }
         }
-        if ((this.flags2 & 32) != 0) {
-            this.stories_max_id = abstractSerializedData.readInt32(z);
+        try {
+            if ((this.flags2 & 32) != 0) {
+                this.stories_max_id = abstractSerializedData.readInt32(z);
+            }
+        } catch (Throwable th) {
+            FileLog.e(th);
         }
     }
 

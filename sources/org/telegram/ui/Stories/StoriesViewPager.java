@@ -17,6 +17,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesViewPager;
+import org.telegram.ui.Stories.StoryViewer;
 public class StoriesViewPager extends ViewPager {
     int currentAccount;
     public int currentState;
@@ -145,6 +146,14 @@ public class StoriesViewPager extends ViewPager {
                 }
                 StoriesViewPager.this.delegate.onPeerSelected(currentPeerView.getCurrentPeer(), currentPeerView.getSelectedPosition());
                 StoriesViewPager.this.updateActiveStory();
+                StoryViewer.PlaceProvider placeProvider = storyViewer.placeProvider;
+                if (placeProvider != null) {
+                    if (i < 3) {
+                        placeProvider.loadNext(false);
+                    } else if (i > StoriesViewPager.this.pagerAdapter.getCount() - 4) {
+                        storyViewer.placeProvider.loadNext(true);
+                    }
+                }
             }
 
             @Override
@@ -402,6 +411,10 @@ public class StoriesViewPager extends ViewPager {
         onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
         AndroidUtilities.cancelRunOnUIThread(this.lockTouchRunnable);
         AndroidUtilities.runOnUIThread(this.lockTouchRunnable, j);
+    }
+
+    public ArrayList<Long> getDialogIds() {
+        return this.dialogs;
     }
 
     public class PageLayout extends FrameLayout {

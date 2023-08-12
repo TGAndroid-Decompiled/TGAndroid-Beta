@@ -802,6 +802,11 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     public class AnonymousClass2 implements StoryViewer.PlaceProvider {
+        @Override
+        public void loadNext(boolean z) {
+            StoryViewer.PlaceProvider.CC.$default$loadNext(this, z);
+        }
+
         AnonymousClass2() {
         }
 

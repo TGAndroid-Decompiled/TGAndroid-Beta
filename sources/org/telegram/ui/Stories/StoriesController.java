@@ -1491,6 +1491,9 @@ public class StoriesController {
 
     public void checkExpiredStories(long j) {
         TLRPC$TL_userStories stories = getStories(j);
+        if (stories == null) {
+            return;
+        }
         int i = 0;
         while (i < stories.stories.size()) {
             if (StoriesUtilities.isExpired(this.currentAccount, stories.stories.get(i))) {

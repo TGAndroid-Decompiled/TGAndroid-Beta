@@ -54,16 +54,16 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$getAllStories$2(consumer);
+                StoriesStorage.this.lambda$getAllStories$3(consumer);
             }
         });
     }
 
-    public void lambda$getAllStories$2(final com.google.android.exoplayer2.util.Consumer r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$getAllStories$2(com.google.android.exoplayer2.util.Consumer):void");
+    public void lambda$getAllStories$3(final com.google.android.exoplayer2.util.Consumer r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$getAllStories$3(com.google.android.exoplayer2.util.Consumer):void");
     }
 
-    public static int lambda$getAllStories$0(TLRPC$TL_userStories tLRPC$TL_userStories) {
+    public static int lambda$getAllStories$1(TLRPC$TL_userStories tLRPC$TL_userStories) {
         ArrayList<TLRPC$StoryItem> arrayList = tLRPC$TL_userStories.stories;
         return -arrayList.get(arrayList.size() - 1).date;
     }
@@ -92,7 +92,7 @@ public class StoriesStorage {
             try {
                 database.executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d AND story_id IN (%s)", Long.valueOf(j), TextUtils.join(", ", arrayList3))).stepThis().dispose();
             } catch (SQLiteException e) {
-                e.printStackTrace();
+                FileLog.e(e);
             }
         }
     }
@@ -209,12 +209,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$saveAllStories$3(arrayList, z, z2, runnable);
+                StoriesStorage.this.lambda$saveAllStories$4(arrayList, z, z2, runnable);
             }
         });
     }
 
-    public void lambda$saveAllStories$3(ArrayList arrayList, boolean z, boolean z2, Runnable runnable) {
+    public void lambda$saveAllStories$4(ArrayList arrayList, boolean z, boolean z2, Runnable runnable) {
         SQLiteDatabase database = this.storage.getDatabase();
         for (int i = 0; i < arrayList.size(); i++) {
             TLRPC$TL_userStories tLRPC$TL_userStories = (TLRPC$TL_userStories) arrayList.get(i);
@@ -294,7 +294,7 @@ public class StoriesStorage {
             }
             queryFinalized.dispose();
         } catch (SQLiteException e) {
-            e.printStackTrace();
+            FileLog.e(e);
         }
         return tLRPC$StoryItem;
     }
@@ -306,12 +306,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$updateStoryItem$6(j, tLRPC$StoryItem);
+                StoriesStorage.this.lambda$updateStoryItem$7(j, tLRPC$StoryItem);
             }
         });
     }
 
-    public void lambda$updateStoryItem$6(long j, TLRPC$StoryItem tLRPC$StoryItem) {
+    public void lambda$updateStoryItem$7(long j, TLRPC$StoryItem tLRPC$StoryItem) {
         if (j == 0) {
             return;
         }
@@ -376,12 +376,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$updateMaxReadId$7(j, i);
+                StoriesStorage.this.lambda$updateMaxReadId$8(j, i);
             }
         });
     }
 
-    public void lambda$updateMaxReadId$7(long j, int i) {
+    public void lambda$updateMaxReadId$8(long j, int i) {
         try {
             this.storage.getDatabase().executeFast(String.format(Locale.US, "REPLACE INTO stories_counter VALUES(%d, 0, %d)", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
         } catch (Throwable th) {
@@ -393,27 +393,27 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$processUpdate$8(tLRPC$TL_updateStory);
+                StoriesStorage.this.lambda$processUpdate$9(tLRPC$TL_updateStory);
             }
         });
     }
 
-    public void lambda$processUpdate$8(org.telegram.tgnet.TLRPC$TL_updateStory r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$processUpdate$8(org.telegram.tgnet.TLRPC$TL_updateStory):void");
+    public void lambda$processUpdate$9(org.telegram.tgnet.TLRPC$TL_updateStory r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$processUpdate$9(org.telegram.tgnet.TLRPC$TL_updateStory):void");
     }
 
     public void updateStories(final TLRPC$TL_userStories tLRPC$TL_userStories) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$updateStories$9(tLRPC$TL_userStories);
+                StoriesStorage.this.lambda$updateStories$10(tLRPC$TL_userStories);
             }
         });
     }
 
-    public void lambda$updateStories$9(TLRPC$TL_userStories tLRPC$TL_userStories) {
+    public void lambda$updateStories$10(TLRPC$TL_userStories tLRPC$TL_userStories) {
         for (int i = 0; i < tLRPC$TL_userStories.stories.size(); i++) {
-            lambda$updateStoryItem$6(tLRPC$TL_userStories.user_id, tLRPC$TL_userStories.stories.get(i));
+            lambda$updateStoryItem$7(tLRPC$TL_userStories.user_id, tLRPC$TL_userStories.stories.get(i));
         }
     }
 
@@ -421,12 +421,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$deleteStory$10(j, i);
+                StoriesStorage.this.lambda$deleteStory$11(j, i);
             }
         });
     }
 
-    public void lambda$deleteStory$10(long j, int i) {
+    public void lambda$deleteStory$11(long j, int i) {
         try {
             this.storage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(i))).stepThis().dispose();
         } catch (Throwable th) {
@@ -438,12 +438,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$deleteStories$11(arrayList, j);
+                StoriesStorage.this.lambda$deleteStories$12(arrayList, j);
             }
         });
     }
 
-    public void lambda$deleteStories$11(ArrayList arrayList, long j) {
+    public void lambda$deleteStories$12(ArrayList arrayList, long j) {
         SQLiteDatabase database = this.storage.getDatabase();
         try {
             database.executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d AND story_id IN (%s)", Long.valueOf(j), TextUtils.join(", ", arrayList))).stepThis().dispose();
@@ -483,7 +483,7 @@ public class StoriesStorage {
             }
             i2++;
         }
-        lambda$fillMessagesWithStories$12(arrayList);
+        lambda$fillMessagesWithStories$13(arrayList);
         if (!longSparseArray.isEmpty()) {
             final int[] iArr = {longSparseArray.size()};
             for (int i4 = 0; i4 < longSparseArray.size(); i4++) {
@@ -497,7 +497,7 @@ public class StoriesStorage {
                 int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stories_getStoriesByID, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        StoriesStorage.this.lambda$fillMessagesWithStories$13(valueAt2, keyAt2, iArr, runnable, tLObject, tLRPC$TL_error);
+                        StoriesStorage.this.lambda$fillMessagesWithStories$14(valueAt2, keyAt2, iArr, runnable, tLObject, tLRPC$TL_error);
                     }
                 });
                 if (i != 0) {
@@ -509,7 +509,7 @@ public class StoriesStorage {
         runnable.run();
     }
 
-    public void lambda$fillMessagesWithStories$13(final ArrayList arrayList, long j, int[] iArr, Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$fillMessagesWithStories$14(final ArrayList arrayList, long j, int[] iArr, Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         boolean z;
         if (tLObject != null) {
             TLRPC$TL_stories_stories tLRPC$TL_stories_stories = (TLRPC$TL_stories_stories) tLObject;
@@ -536,7 +536,7 @@ public class StoriesStorage {
                 this.storage.getStorageQueue().postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        StoriesStorage.this.lambda$fillMessagesWithStories$12(arrayList);
+                        StoriesStorage.this.lambda$fillMessagesWithStories$13(arrayList);
                     }
                 });
             }
@@ -596,7 +596,7 @@ public class StoriesStorage {
         return messageObject.messageOwner.reply_to.story_id;
     }
 
-    public void lambda$fillMessagesWithStories$12(List<MessageObject> list) {
+    public void lambda$fillMessagesWithStories$13(List<MessageObject> list) {
         try {
             SQLiteDatabase database = this.storage.getDatabase();
             if (list.isEmpty()) {
@@ -667,12 +667,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$getMaxReadIds$15(consumer);
+                StoriesStorage.this.lambda$getMaxReadIds$16(consumer);
             }
         });
     }
 
-    public void lambda$getMaxReadIds$15(final Consumer consumer) {
+    public void lambda$getMaxReadIds$16(final Consumer consumer) {
         SQLiteDatabase database = this.storage.getDatabase();
         final LongSparseIntArray longSparseIntArray = new LongSparseIntArray();
         try {
@@ -695,12 +695,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$putUserStories$16(tLRPC$TL_userStories);
+                StoriesStorage.this.lambda$putUserStories$17(tLRPC$TL_userStories);
             }
         });
     }
 
-    public void lambda$putUserStories$16(TLRPC$TL_userStories tLRPC$TL_userStories) {
+    public void lambda$putUserStories$17(TLRPC$TL_userStories tLRPC$TL_userStories) {
         putStoriesInternal(tLRPC$TL_userStories.user_id, tLRPC$TL_userStories);
     }
 
@@ -708,12 +708,12 @@ public class StoriesStorage {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$deleteAllUserStories$17(j);
+                StoriesStorage.this.lambda$deleteAllUserStories$18(j);
             }
         });
     }
 
-    public void lambda$deleteAllUserStories$17(long j) {
+    public void lambda$deleteAllUserStories$18(long j) {
         try {
             this.storage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM stories WHERE dialog_id = %d", Long.valueOf(j))).stepThis().dispose();
         } catch (Throwable th) {

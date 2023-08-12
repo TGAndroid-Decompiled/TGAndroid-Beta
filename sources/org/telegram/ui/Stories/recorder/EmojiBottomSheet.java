@@ -2352,7 +2352,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
         protected void onMeasure(int i, int i2) {
             super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
             if (this.lastWidth != getMeasuredWidth()) {
-                StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize("ADD LOCATION", this.textPaint, getMeasuredWidth(), TextUtils.TruncateAt.END), this.textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                StaticLayout staticLayout = new StaticLayout(TextUtils.ellipsize(LocaleController.getString("AddLocation", R.string.AddLocation), this.textPaint, getMeasuredWidth(), TextUtils.TruncateAt.END), this.textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 this.layout = staticLayout;
                 this.layoutLeft = staticLayout.getLineCount() <= 0 ? 0.0f : this.layout.getLineLeft(0);
                 this.layoutWidth = this.layout.getLineCount() > 0 ? this.layout.getLineWidth(0) : 0.0f;

@@ -4294,9 +4294,21 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 FileLog.e(e);
             }
         } else if (i3 == 8 || i3 == 9) {
-            this.profileActivity.getOrCreateStoryViewer().open(getContext(), messageObject.getId(), (i3 == 8 ? this.storiesAdapter : this.archivedStoriesAdapter).storiesList, StoriesListPlaceProvider.of(this.mediaPages[i2].listView));
+            final StoriesController.StoriesList storiesList = (i3 == 8 ? this.storiesAdapter : this.archivedStoriesAdapter).storiesList;
+            this.profileActivity.getOrCreateStoryViewer().open(getContext(), messageObject.getId(), storiesList, StoriesListPlaceProvider.of(this.mediaPages[i2].listView).with(new StoriesListPlaceProvider.LoadNextInterface() {
+                @Override
+                public final void loadNext(boolean z) {
+                    SharedMediaLayout.lambda$onItemClick$19(StoriesController.StoriesList.this, z);
+                }
+            }));
         }
         updateForwardItem();
+    }
+
+    public static void lambda$onItemClick$19(StoriesController.StoriesList storiesList, boolean z) {
+        if (z) {
+            storiesList.load(false, 30);
+        }
     }
 
     public void openUrl(String str) {
@@ -6174,7 +6186,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
                 @Override
                 public final void didSetColor() {
-                    SharedMediaLayout.this.lambda$getThemeDescriptions$19(i7);
+                    SharedMediaLayout.this.lambda$getThemeDescriptions$20(i7);
                 }
 
                 @Override
@@ -6286,7 +6298,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$19(int i) {
+    public void lambda$getThemeDescriptions$20(int i) {
         if (this.mediaPages[i].listView != null) {
             int childCount = this.mediaPages[i].listView.getChildCount();
             for (int i2 = 0; i2 < childCount; i2++) {

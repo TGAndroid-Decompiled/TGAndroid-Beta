@@ -957,6 +957,10 @@ public class StoriesUtilities {
     public static void lambda$ensureStoryFileLoaded$1(Runnable[] runnableArr, EnsureStoryFileLoadedObject ensureStoryFileLoadedObject) {
         runnableArr[0] = null;
         ensureStoryFileLoadedObject.runnable.run();
+        ImageReceiver imageReceiver = ensureStoryFileLoadedObject.imageReceiver;
+        if (imageReceiver != null) {
+            imageReceiver.onDetachedFromWindow();
+        }
     }
 
     public static class AvatarStoryParams {

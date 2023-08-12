@@ -1024,7 +1024,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 arrayList.add(Long.valueOf(storiesController.getHiddenList().get(i).user_id));
             }
         }
-        this.parentFragment.getOrCreateStoryViewer().open(this.mContext, null, arrayList, 0, null, null, StoriesListPlaceProvider.of(this.recyclerListView, true), false);
+        this.parentFragment.getOrCreateStoryViewer().open(this.mContext, null, arrayList, 0, null, null, StoriesListPlaceProvider.of(this.recyclerListView), false);
     }
 
     public void setIsTransitionSupport() {
