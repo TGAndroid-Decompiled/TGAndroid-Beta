@@ -3560,10 +3560,6 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     createPhotoPaintView();
                     hidePhotoPaintView();
                 }
-                if (this.outputEntry.filterState != null) {
-                    destroyPhotoFilterView();
-                    createFilterPhotoView();
-                }
                 StoryEntry storyEntry7 = this.outputEntry;
                 if (storyEntry7.isVideo && storyEntry7.filterState != null && (textureView = this.previewView.getTextureView()) != null) {
                     textureView.setDelegate(new VideoEditTextureView.VideoEditTextureViewDelegate() {

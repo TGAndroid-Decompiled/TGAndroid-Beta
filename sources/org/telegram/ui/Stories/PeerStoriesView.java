@@ -3805,7 +3805,8 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                         }
                         Rect rect2 = AndroidUtilities.rectTmp2;
                         childAt.getHitRect(rect2);
-                        if (childAt != this.storyAreasView || (f >= AndroidUtilities.dp(60.0f) && f <= viewGroup.getMeasuredWidth() - AndroidUtilities.dp(60.0f))) {
+                        StoryMediaAreasView storyMediaAreasView = this.storyAreasView;
+                        if (childAt != storyMediaAreasView || storyMediaAreasView.hasSelected() || (f >= AndroidUtilities.dp(60.0f) && f <= viewGroup.getMeasuredWidth() - AndroidUtilities.dp(60.0f))) {
                             if (this.keyboardVisible && childAt == this.chatActivityEnterView && f2 > rect2.top) {
                                 return true;
                             }

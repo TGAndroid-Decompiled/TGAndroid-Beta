@@ -89,13 +89,14 @@ public class SharingLiveLocationCell extends FrameLayout {
         this.nameTextView.setTextColor(getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
         this.nameTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.nameTextView.setGravity(LocaleController.isRTL ? 5 : 3);
+        this.nameTextView.setScrollNonFitText(true);
         if (z) {
             BackupImageView backupImageView2 = this.avatarImageView;
             boolean z2 = LocaleController.isRTL;
             addView(backupImageView2, LayoutHelper.createFrame(42, 42.0f, (z2 ? 5 : 3) | 48, z2 ? 0.0f : 15.0f, 12.0f, z2 ? 15.0f : 0.0f, 0.0f));
             SimpleTextView simpleTextView2 = this.nameTextView;
             boolean z3 = LocaleController.isRTL;
-            addView(simpleTextView2, LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? i : 73.0f, 12.0f, z3 ? 73.0f : i, 0.0f));
+            addView(simpleTextView2, LayoutHelper.createFrame(-1, 20.0f, (z3 ? 5 : 3) | 48, z3 ? i : 73.0f, 12.0f, z3 ? 73.0f : 16.0f, 0.0f));
             SimpleTextView simpleTextView3 = new SimpleTextView(context);
             this.distanceTextView = simpleTextView3;
             simpleTextView3.setTextSize(14);

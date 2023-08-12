@@ -18,7 +18,6 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.text.Layout;
-import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -215,59 +214,32 @@ public class HintView2 extends View {
         return this;
     }
 
-    private static boolean contains(CharSequence charSequence, char c) {
-        if (charSequence == null) {
-            return false;
-        }
-        for (int i = 0; i < charSequence.length(); i++) {
-            if (charSequence.charAt(i) == c) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static int getTextWidth(CharSequence charSequence, TextPaint textPaint) {
-        if (charSequence instanceof Spannable) {
-            StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, 99999, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            if (staticLayout.getLineCount() > 0) {
-                return (int) Math.ceil(staticLayout.getLineWidth(0));
-            }
-            return 0;
-        }
-        return (int) textPaint.measureText(charSequence.toString());
-    }
-
     public static int cutInFancyHalf(CharSequence charSequence, TextPaint textPaint) {
-        double ceil;
-        if (charSequence == null) {
-            return 0;
-        }
-        float textWidth = getTextWidth(charSequence, textPaint);
-        int length = charSequence.toString().length();
-        int i = length / 2;
-        if (length <= 0 || contains(charSequence, '\n')) {
-            ceil = Math.ceil(textWidth);
-        } else {
-            int i2 = i - 2;
-            int i3 = i + 2;
-            while (true) {
-                if (i2 < 0 || i3 >= length) {
-                    break;
-                } else if (charSequence.charAt(i2) == ' ') {
-                    i = i2;
-                    break;
-                } else if (charSequence.charAt(i3) == ' ') {
-                    i = i3;
-                    break;
-                } else {
-                    i2--;
-                    i3++;
-                }
+        int length = charSequence.length() / 2;
+        float f = 0.0f;
+        float f2 = 0.0f;
+        float f3 = 0.0f;
+        float f4 = Float.MAX_VALUE;
+        int i = 0;
+        while (i < 10) {
+            while (length > 0 && charSequence.charAt(length) != ' ') {
+                length--;
             }
-            ceil = Math.ceil(Math.max(0.3f * textWidth, (Math.max(i + 0.5f, (length - i) + 0.5f) / length) * textWidth));
+            f2 = textPaint.measureText(charSequence.subSequence(0, length).toString());
+            f3 = textPaint.measureText(charSequence.subSequence(length, charSequence.length()).toString().trim());
+            if (f2 != f || f3 != f4) {
+                length = f2 < f3 ? length + 1 : length - 1;
+                if (length <= 0 || length >= charSequence.length()) {
+                    break;
+                }
+                i++;
+                f = f2;
+                f4 = f3;
+            } else {
+                break;
+            }
         }
-        return (int) ceil;
+        return (int) Math.ceil(Math.max(f2, f3));
     }
 
     public HintView2 setDuration(long j) {

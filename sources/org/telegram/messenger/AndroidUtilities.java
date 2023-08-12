@@ -633,7 +633,7 @@ public class AndroidUtilities {
         }
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
             View childAt = viewGroup.getChildAt(i);
-            if (childAt.getVisibility() == 0 && ((!(childAt instanceof PeerStoriesView) || childAt == view) && (!(childAt instanceof StoryMediaAreasView.AreaView) || (f >= dp(60.0f) && f <= viewGroup.getWidth() - dp(60.0f))))) {
+            if (childAt.getVisibility() == 0 && ((!(childAt instanceof PeerStoriesView) || childAt == view) && (!(childAt instanceof StoryMediaAreasView.AreaView) || ((StoryMediaAreasView) viewGroup).hasSelected() || (f >= dp(60.0f) && f <= viewGroup.getWidth() - dp(60.0f))))) {
                 Rect rect = rectTmp2;
                 childAt.getHitRect(rect);
                 if (rect.contains((int) f, (int) f2) && childAt.isClickable()) {

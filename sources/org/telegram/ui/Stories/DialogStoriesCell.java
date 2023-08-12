@@ -366,8 +366,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     }
 
     public void lambda$didReceivedNotification$5() {
-        this.layoutManager.findLastVisibleItemPosition();
-        this.items.size();
+        if (this.layoutManager.findLastVisibleItemPosition() + 10 > this.items.size()) {
+            this.storiesController.loadNextStories(this.type == 1);
+        }
     }
 
     public void updateItems(boolean z, boolean z2) {

@@ -349,14 +349,11 @@ public class StoryEntry extends IStoryPart {
             BitmapShader bitmapShader = new BitmapShader(decode, tileMode, tileMode);
             Paint paint = new Paint(3);
             paint.setShader(bitmapShader);
-            int clamp = Utilities.clamp(Math.round(1.0f / max), 8, 0);
+            Utilities.clamp(Math.round(1.0f / max), 8, 0);
             matrix.reset();
             matrix.postScale(max, max);
             bitmapShader.setLocalMatrix(matrix);
             canvas.drawRect(0.0f, 0.0f, width, height, paint);
-            if (z && clamp > 0) {
-                Utilities.stackBlurBitmap(createBitmap, clamp);
-            }
             return createBitmap;
         }
         options.inScaled = true;

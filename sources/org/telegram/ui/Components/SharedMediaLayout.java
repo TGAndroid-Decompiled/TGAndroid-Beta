@@ -3692,7 +3692,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         return this.isActionModeShowed;
     }
 
-    protected void showActionMode(final boolean z) {
+    public void showActionMode(final boolean z) {
         if (this.isActionModeShowed == z) {
             return;
         }

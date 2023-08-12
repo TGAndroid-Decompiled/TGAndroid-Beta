@@ -4030,7 +4030,6 @@
     <string name="OnlyIfSilent">Only if silent</string>
     <string name="OnlyWhenScreenOff">Only when screen \"off\"</string>
     <string name="OnlyWhenScreenOn">Only when screen \"on\"</string>
-    <string name="Oops">Oops</string>
     <string name="Open">Open</string>
     <string name="OpenAllTopics">All Topics</string>
     <string name="OpenBackground">VIEW BACKGROUND</string>
@@ -5437,6 +5436,7 @@
     <string name="September">September</string>
     <string name="ServerErrorViewers">Information about the viewers wasn\'t recorded.</string>
     <string name="ServerErrorViewersFull">Information about the other viewers wasn\'t recorded.</string>
+    <string name="ServerErrorViewersTitle">Oops</string>
     <string name="ServiceNotifications">Service notifications</string>
     <string name="SessionsInfo">Control your sessions on other devices.</string>
     <string name="SessionsListInfo">The official Telegram app is available for Android, iPhone, iPad, Windows, macOS and Linux.</string>

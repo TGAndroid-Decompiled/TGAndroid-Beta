@@ -823,7 +823,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                         stickerEmptyView.setSubtitle(LocaleController.getString("NoContactsViewed", R.string.NoContactsViewed));
                     } else if (i == 10) {
                         stickerEmptyView.title.setVisibility(0);
-                        stickerEmptyView.title.setText(LocaleController.getString("Oops", R.string.Oops));
+                        stickerEmptyView.title.setText(LocaleController.getString("ServerErrorViewersTitle", R.string.ServerErrorViewersTitle));
                         stickerEmptyView.setSubtitle(LocaleController.getString("ServerErrorViewers", R.string.ServerErrorViewers));
                     } else if (SelfStoryViewsPage.this.defaultModel.isExpiredViews) {
                         stickerEmptyView.title.setVisibility(8);

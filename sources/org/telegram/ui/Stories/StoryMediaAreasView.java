@@ -358,6 +358,10 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
         }
     }
 
+    public boolean hasSelected() {
+        return this.selectedArea != null;
+    }
+
     public static class AreaView extends View {
         private LinearGradient gradient;
         private final Matrix gradientMatrix;
@@ -427,8 +431,8 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
         public void shineInternal() {
             this.shining = true;
             this.startTime = System.currentTimeMillis();
-            this.gradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 1325400063, 1325400063, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-            this.strokeGradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 872415231, 872415231, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+            this.gradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 771751935, 771751935, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
+            this.strokeGradient = new LinearGradient(0.0f, 0.0f, 40.0f, 0.0f, new int[]{16777215, 553648127, 553648127, 16777215}, new float[]{0.0f, 0.4f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
             invalidate();
         }
     }
