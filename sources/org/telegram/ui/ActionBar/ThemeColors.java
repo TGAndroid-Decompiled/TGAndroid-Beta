@@ -704,6 +704,12 @@ public class ThemeColors {
         iArr[Theme.key_premiumGradientBottomSheet3] = -1600322;
         iArr[Theme.key_topics_unreadCounter] = -11613090;
         iArr[Theme.key_topics_unreadCounterMuted] = -7631473;
+        iArr[Theme.key_stories_circle1] = -12984516;
+        iArr[Theme.key_stories_circle2] = -11682817;
+        iArr[Theme.key_stories_circle_dialog1] = -11866795;
+        iArr[Theme.key_stories_circle_dialog2] = -11680769;
+        iArr[Theme.key_stories_circle_closeFriends1] = -3544264;
+        iArr[Theme.key_stories_circle_closeFriends2] = -16137881;
         return iArr;
     }
 
@@ -1423,6 +1429,12 @@ public class ThemeColors {
         sparseArray.put(Theme.key_premiumGradientBottomSheet3, "premiumGradientBottomSheet3");
         sparseArray.put(Theme.key_topics_unreadCounter, "topics_unreadCounter");
         sparseArray.put(Theme.key_topics_unreadCounterMuted, "topics_unreadCounterMuted");
+        sparseArray.put(Theme.key_stories_circle1, "stories_circle1");
+        sparseArray.put(Theme.key_stories_circle2, "stories_circle2");
+        sparseArray.put(Theme.key_stories_circle_dialog1, "stories_circle_dialog1");
+        sparseArray.put(Theme.key_stories_circle_dialog2, "stories_circle_dialog2");
+        sparseArray.put(Theme.key_stories_circle_closeFriends1, "stories_circle_closeFriends1");
+        sparseArray.put(Theme.key_stories_circle_closeFriends2, "stories_circle_closeFriends2");
         return sparseArray;
     }
 

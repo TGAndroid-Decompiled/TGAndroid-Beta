@@ -7429,6 +7429,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         if (undoView != null) {
             undoView.hide(true, 0);
         }
+        super.onBecomeFullyHidden();
     }
 
     public void setPlayProfileAnimation(int i) {

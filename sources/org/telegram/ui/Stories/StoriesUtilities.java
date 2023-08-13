@@ -596,9 +596,9 @@ public class StoriesUtilities {
             gradientToolsArr2[z ? 1 : 0].isDiagonal = true;
             gradientToolsArr2[z ? 1 : 0].isRotate = true;
             if (z) {
-                gradientToolsArr2[z ? 1 : 0].setColors(-11866795, -11680769);
+                gradientToolsArr2[z ? 1 : 0].setColors(Theme.getColor(Theme.key_stories_circle_dialog1), Theme.getColor(Theme.key_stories_circle_dialog2));
             } else {
-                gradientToolsArr2[z ? 1 : 0].setColors(-12984516, -11682817);
+                gradientToolsArr2[z ? 1 : 0].setColors(Theme.getColor(Theme.key_stories_circle1), Theme.getColor(Theme.key_stories_circle2));
             }
             storiesGradientTools[z ? 1 : 0].paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
             storiesGradientTools[z ? 1 : 0].paint.setStyle(Paint.Style.STROKE);
@@ -608,13 +608,28 @@ public class StoriesUtilities {
         return storiesGradientTools[z ? 1 : 0].paint;
     }
 
+    public static void updateColors() {
+        GradientTools gradientTools = closeFriendsGradientTools;
+        if (gradientTools != null) {
+            gradientTools.setColors(Theme.getColor(Theme.key_stories_circle_closeFriends1), Theme.getColor(Theme.key_stories_circle_closeFriends2));
+        }
+        GradientTools[] gradientToolsArr = storiesGradientTools;
+        if (gradientToolsArr[0] != null) {
+            gradientToolsArr[0].setColors(Theme.getColor(Theme.key_stories_circle_dialog1), Theme.getColor(Theme.key_stories_circle_dialog2));
+        }
+        GradientTools[] gradientToolsArr2 = storiesGradientTools;
+        if (gradientToolsArr2[1] != null) {
+            gradientToolsArr2[1].setColors(Theme.getColor(Theme.key_stories_circle1), Theme.getColor(Theme.key_stories_circle2));
+        }
+    }
+
     public static Paint getCloseFriendsPaint(ImageReceiver imageReceiver) {
         if (closeFriendsGradientTools == null) {
             GradientTools gradientTools = new GradientTools();
             closeFriendsGradientTools = gradientTools;
             gradientTools.isDiagonal = true;
             gradientTools.isRotate = true;
-            gradientTools.setColors(-3544264, -16137881);
+            gradientTools.setColors(Theme.getColor(Theme.key_stories_circle_closeFriends1), Theme.getColor(Theme.key_stories_circle_closeFriends2));
             closeFriendsGradientTools.paint.setStrokeWidth(AndroidUtilities.dp(2.3f));
             closeFriendsGradientTools.paint.setStyle(Paint.Style.STROKE);
             closeFriendsGradientTools.paint.setStrokeCap(Paint.Cap.ROUND);

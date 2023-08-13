@@ -5830,6 +5830,7 @@
     <string name="StoryContainsStickers_other">This story contains stickers from **%d packs**.</string>
     <string name="StoryContainsStickers_two">This story contains stickers from **%d packs**.</string>
     <string name="StoryContainsStickers_zero">This story contains stickers from **%d packs**.</string>
+    <string name="StoryDeleteContact">Delete Contact</string>
     <string name="StoryDeleteDraft">Delete Draft</string>
     <string name="StoryDisableKeep">The story will disappear after it expires.</string>
     <string name="StoryDisabledScreenshots">Downloading and taking screenshots will be disabled for this story.</string>

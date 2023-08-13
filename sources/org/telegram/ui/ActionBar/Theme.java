@@ -87,7 +87,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda251;
+import org.telegram.messenger.MessagesController$$ExternalSyntheticLambda252;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -995,6 +995,12 @@ public class Theme {
     public static final int key_statisticChartSignatureAlpha;
     public static final int key_stickers_menu;
     public static final int key_stickers_menuSelector;
+    public static final int key_stories_circle1;
+    public static final int key_stories_circle2;
+    public static final int key_stories_circle_closeFriends1;
+    public static final int key_stories_circle_closeFriends2;
+    public static final int key_stories_circle_dialog1;
+    public static final int key_stories_circle_dialog2;
     public static final int key_switch2Track;
     public static final int key_switch2TrackChecked;
     public static final int key_switchTrack;
@@ -4766,7 +4772,7 @@ public class Theme {
                 if (isCurrentThemeNight()) {
                     switchNightThemeDelay = 2000;
                     lastDelayUpdateTime = SystemClock.elapsedRealtime();
-                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda251.INSTANCE, 2100L);
+                    AndroidUtilities.runOnUIThread(MessagesController$$ExternalSyntheticLambda252.INSTANCE, 2100L);
                 }
             }
             currentTheme = themeInfo;

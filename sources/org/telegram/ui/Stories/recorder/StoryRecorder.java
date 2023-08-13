@@ -1588,7 +1588,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
 
             @Override
             protected void onCaptionLimitUpdate(boolean z) {
-                StoryRecorder.this.previewButtons.setShareEnabled((StoryRecorder.this.videoError || z || MessagesController.getInstance(StoryRecorder.this.currentAccount).getStoriesController().hasStoryLimit()) ? false : true);
+                StoryRecorder.this.previewButtons.setShareEnabled((StoryRecorder.this.videoError || z || (MessagesController.getInstance(StoryRecorder.this.currentAccount).getStoriesController().hasStoryLimit() && (StoryRecorder.this.outputEntry == null || !StoryRecorder.this.outputEntry.isEdit))) ? false : true);
             }
         };
         Bulletin.addDelegate(this.captionContainer, new Bulletin.Delegate() {
@@ -3470,6 +3470,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     private void onNavigateStart(int i, int i2) {
         int i3;
         String str;
+        StoryEntry storyEntry;
         VideoEditTextureView textureView;
         if (i2 == 0) {
             requestCameraPermission(false);
@@ -3482,9 +3483,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.zoomControlView.setVisibility(0);
             this.zoomControlView.setAlpha(0.0f);
             this.videoTimerView.setDuration(0L, true);
-            StoryEntry storyEntry = this.outputEntry;
-            if (storyEntry != null) {
-                storyEntry.destroy(false);
+            StoryEntry storyEntry2 = this.outputEntry;
+            if (storyEntry2 != null) {
+                storyEntry2.destroy(false);
                 this.outputEntry = null;
             }
         }
@@ -3510,8 +3511,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.downloadButton.setEntry(i2 == 1 ? this.outputEntry : null);
             if (this.isVideo) {
                 this.muteButton.setVisibility(0);
-                StoryEntry storyEntry2 = this.outputEntry;
-                setIconMuted(storyEntry2 != null && storyEntry2.muted, false);
+                StoryEntry storyEntry3 = this.outputEntry;
+                setIconMuted(storyEntry3 != null && storyEntry3.muted, false);
                 this.playButton.setVisibility(0);
                 this.previewView.play(true);
                 this.playButton.drawable.setPause(this.previewView.isPlaying(), false);
@@ -3525,17 +3526,17 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.captionContainer.setVisibility(0);
             this.captionContainer.clearFocus();
             CaptionContainerView captionContainerView = this.captionEdit;
-            StoryEntry storyEntry3 = this.outputEntry;
-            captionContainerView.setPeriod(storyEntry3 == null ? 86400 : storyEntry3.period, false);
-            CaptionContainerView captionContainerView2 = this.captionEdit;
             StoryEntry storyEntry4 = this.outputEntry;
-            captionContainerView2.setPeriodVisible(storyEntry4 == null || !storyEntry4.isEdit);
+            captionContainerView.setPeriod(storyEntry4 == null ? 86400 : storyEntry4.period, false);
+            CaptionContainerView captionContainerView2 = this.captionEdit;
+            StoryEntry storyEntry5 = this.outputEntry;
+            captionContainerView2.setPeriodVisible(storyEntry5 == null || !storyEntry5.isEdit);
         }
         if (i2 == 1) {
             this.videoError = false;
             PreviewButtons previewButtons = this.previewButtons;
-            StoryEntry storyEntry5 = this.outputEntry;
-            if (storyEntry5 == null || !storyEntry5.isEdit) {
+            StoryEntry storyEntry6 = this.outputEntry;
+            if (storyEntry6 == null || !storyEntry6.isEdit) {
                 i3 = R.string.Next;
                 str = "Next";
             } else {
@@ -3553,15 +3554,15 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     StoryRecorder.this.lambda$onNavigateStart$39();
                 }
             });
-            StoryEntry storyEntry6 = this.outputEntry;
-            if (storyEntry6 != null && (storyEntry6.isDraft || storyEntry6.isEdit)) {
-                if (storyEntry6.paintFile != null) {
+            StoryEntry storyEntry7 = this.outputEntry;
+            if (storyEntry7 != null && (storyEntry7.isDraft || storyEntry7.isEdit)) {
+                if (storyEntry7.paintFile != null) {
                     destroyPhotoPaintView();
                     createPhotoPaintView();
                     hidePhotoPaintView();
                 }
-                StoryEntry storyEntry7 = this.outputEntry;
-                if (storyEntry7.isVideo && storyEntry7.filterState != null && (textureView = this.previewView.getTextureView()) != null) {
+                StoryEntry storyEntry8 = this.outputEntry;
+                if (storyEntry8.isVideo && storyEntry8.filterState != null && (textureView = this.previewView.getTextureView()) != null) {
                     textureView.setDelegate(new VideoEditTextureView.VideoEditTextureViewDelegate() {
                         @Override
                         public final void onEGLThreadAvailable(FilterGLThread filterGLThread) {
@@ -3573,16 +3574,16 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             } else {
                 this.captionEdit.clear();
             }
-            this.previewButtons.setShareEnabled((this.videoError || this.captionEdit.isCaptionOverLimit() || MessagesController.getInstance(this.currentAccount).getStoriesController().hasStoryLimit()) ? false : true);
+            this.previewButtons.setShareEnabled((this.videoError || this.captionEdit.isCaptionOverLimit() || (MessagesController.getInstance(this.currentAccount).getStoriesController().hasStoryLimit() && ((storyEntry = this.outputEntry) == null || !storyEntry.isEdit))) ? false : true);
             RLottieImageView rLottieImageView = this.muteButton;
-            StoryEntry storyEntry8 = this.outputEntry;
-            rLottieImageView.setImageResource((storyEntry8 == null || !storyEntry8.muted) ? R.drawable.media_mute : R.drawable.media_unmute);
+            StoryEntry storyEntry9 = this.outputEntry;
+            rLottieImageView.setImageResource((storyEntry9 == null || !storyEntry9.muted) ? R.drawable.media_mute : R.drawable.media_unmute);
             this.previewView.setVisibility(0);
             this.videoTimelineView.setVisibility(this.isVideo ? 0 : 8);
             this.titleTextView.setVisibility(0);
             SimpleTextView simpleTextView = this.titleTextView;
-            StoryEntry storyEntry9 = this.outputEntry;
-            simpleTextView.setText(LocaleController.getString((storyEntry9 == null || !storyEntry9.isEdit) ? R.string.RecorderNewStory : R.string.RecorderEditStory));
+            StoryEntry storyEntry10 = this.outputEntry;
+            simpleTextView.setText(LocaleController.getString((storyEntry10 == null || !storyEntry10.isEdit) ? R.string.RecorderNewStory : R.string.RecorderEditStory));
         }
         if (i == 1) {
             this.captionEdit.hidePeriodPopup();
@@ -4753,7 +4754,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         StoriesController.StoryLimit checkStoryLimit;
+        StoryEntry storyEntry;
         boolean z = false;
+        z = false;
         z = false;
         z = false;
         if (i == NotificationCenter.albumsDidLoad) {
@@ -4783,7 +4786,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             int i5 = this.currentPage;
             if (i5 == 1) {
                 PreviewButtons previewButtons = this.previewButtons;
-                if (!this.videoError && !this.captionEdit.isCaptionOverLimit() && !MessagesController.getInstance(this.currentAccount).getStoriesController().hasStoryLimit()) {
+                if (!this.videoError && !this.captionEdit.isCaptionOverLimit() && (!MessagesController.getInstance(this.currentAccount).getStoriesController().hasStoryLimit() || ((storyEntry = this.outputEntry) != null && storyEntry.isEdit))) {
                     z = true;
                 }
                 previewButtons.setShareEnabled(z);

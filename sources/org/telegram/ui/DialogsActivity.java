@@ -5092,6 +5092,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (undoViewArr[0] != null) {
             undoViewArr[0].hide(true, 0);
         }
+        super.onBecomeFullyHidden();
     }
 
     @Override

@@ -5687,6 +5687,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
 
         private void checkColumns() {
+            if (this.isArchive) {
+                return;
+            }
             if ((!SharedMediaLayout.this.storiesColumnsCountSet || (SharedMediaLayout.this.allowStoriesSingleColumn && this.storiesList.getCount() > 1)) && this.storiesList.getCount() > 0 && !SharedMediaLayout.this.isStoriesView()) {
                 if (this.storiesList.getCount() < 5) {
                     SharedMediaLayout.this.mediaColumnsCount[1] = this.storiesList.getCount();

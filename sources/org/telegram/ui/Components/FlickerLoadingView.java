@@ -92,6 +92,7 @@ public class FlickerLoadingView extends View {
         this.showDate = true;
         this.colorKey1 = Theme.key_actionBarDefaultSubmenuBackground;
         this.colorKey2 = Theme.key_listSelector;
+        this.colorKey3 = -1;
         this.itemsCount = 1;
         this.resourcesProvider = resourcesProvider;
         this.matrix = new Matrix();

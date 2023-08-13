@@ -13131,6 +13131,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.progressDialogCurrent = null;
         }
         this.flagSecure.detach();
+        super.onBecomeFullyHidden();
     }
 
     @Override

@@ -302,7 +302,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                     public final void run() {
                         SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$3(messagesController, user, reactedUserHolderView, tLRPC$TL_storyView);
                     }
-                }).addIf(z2, i2, LocaleController.getString(R.string.DeleteContact), true, new Runnable() {
+                }).addIf(z2, i2, LocaleController.getString(R.string.StoryDeleteContact), true, new Runnable() {
                     @Override
                     public final void run() {
                         SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$4(user, str2, reactedUserHolderView, tLRPC$TL_storyView);

@@ -3294,7 +3294,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             updateTopMargin(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
             super.onMeasure(i, i2);
         }
@@ -11462,7 +11462,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         int i;
         boolean z3;
         boolean z4;
-        CharSequence replaceEmoji;
+        TLRPC$Message tLRPC$Message;
         int i2;
         CharSequence cloneSpans = AnimatedEmojiSpan.cloneSpans(charSequence);
         if (this.needCaptionLayout) {
@@ -11562,19 +11562,21 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         if (!isEmpty) {
             Theme.createChatResources(null, true);
-            if (messageObject != null && !messageObject.messageOwner.entities.isEmpty()) {
-                SpannableString spannableString = new SpannableString(cloneSpans);
-                messageObject.addEntitiesToText(spannableString, true, false);
-                if (messageObject.isVideo()) {
-                    MessageObject.addUrlsByPattern(messageObject.isOutOwner(), spannableString, false, 3, (int) messageObject.getDuration(), false);
+            if (messageObject == null || !this.captionTranslated || (tLRPC$Message = messageObject.messageOwner) == null || tLRPC$Message.translatedText == null || !TextUtils.equals(tLRPC$Message.translatedToLanguage, TranslateAlert2.getToLanguage())) {
+                if (messageObject != null && !messageObject.messageOwner.entities.isEmpty()) {
+                    SpannableString spannableString = new SpannableString(cloneSpans);
+                    messageObject.addEntitiesToText(spannableString, true, false);
+                    if (messageObject.isVideo()) {
+                        MessageObject.addUrlsByPattern(messageObject.isOutOwner(), spannableString, false, 3, (int) messageObject.getDuration(), false);
+                    }
+                    cloneSpans = Emoji.replaceEmoji(spannableString, nextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
+                } else {
+                    cloneSpans = Emoji.replaceEmoji(new SpannableStringBuilder(cloneSpans), nextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
                 }
-                replaceEmoji = Emoji.replaceEmoji(spannableString, nextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
-            } else {
-                replaceEmoji = Emoji.replaceEmoji(new SpannableStringBuilder(cloneSpans), nextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
             }
-            this.captionTextViewSwitcher.setTag(replaceEmoji);
+            this.captionTextViewSwitcher.setTag(cloneSpans);
             try {
-                this.captionTextViewSwitcher.setText(replaceEmoji, z2, this.lastCaptionTranslating != z);
+                this.captionTextViewSwitcher.setText(cloneSpans, z2, this.lastCaptionTranslating != z);
                 CaptionScrollView captionScrollView2 = this.captionScrollView;
                 if (captionScrollView2 != null) {
                     captionScrollView2.updateTopMargin();

@@ -59,6 +59,7 @@ import org.telegram.tgnet.TLRPC$TL_userStories;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ArticleViewer;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatActivityEnterView;
@@ -691,7 +692,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void dispatchDraw(android.graphics.Canvas r17) {
+        public void dispatchDraw(android.graphics.Canvas r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoryViewer.AnonymousClass2.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -901,6 +902,8 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             });
             NotificationCenter.getInstance(StoryViewer.this.currentAccount).addObserver(StoryViewer.this, NotificationCenter.storiesListUpdated);
             NotificationCenter.getInstance(StoryViewer.this.currentAccount).addObserver(StoryViewer.this, NotificationCenter.storiesUpdated);
+            NotificationCenter.getInstance(StoryViewer.this.currentAccount).addObserver(StoryViewer.this, NotificationCenter.articleClosed);
+            NotificationCenter.getInstance(StoryViewer.this.currentAccount).addObserver(StoryViewer.this, NotificationCenter.openArticle);
         }
 
         @Override
@@ -909,6 +912,8 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             Bulletin.removeDelegate(this);
             NotificationCenter.getInstance(StoryViewer.this.currentAccount).removeObserver(StoryViewer.this, NotificationCenter.storiesListUpdated);
             NotificationCenter.getInstance(StoryViewer.this.currentAccount).removeObserver(StoryViewer.this, NotificationCenter.storiesUpdated);
+            NotificationCenter.getInstance(StoryViewer.this.currentAccount).removeObserver(StoryViewer.this, NotificationCenter.articleClosed);
+            NotificationCenter.getInstance(StoryViewer.this.currentAccount).removeObserver(StoryViewer.this, NotificationCenter.openArticle);
         }
 
         @Override
@@ -1553,29 +1558,28 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             if (tLRPC$StoryItem == null && this.isSingleStory) {
                 tLRPC$StoryItem = this.singleStory;
             }
-            this.transitionViewHolder.clear();
-            PlaceProvider placeProvider = this.placeProvider;
-            long currentDialogId = this.storiesViewPager.getCurrentDialogId();
-            int i2 = this.messageId;
             if (this.storiesList != null) {
                 i = this.dayStoryId;
             }
-            if (placeProvider.findView(currentDialogId, i2, i, tLRPC$StoryItem == null ? -1 : tLRPC$StoryItem.messageType, this.transitionViewHolder)) {
-                View view = this.transitionViewHolder.view;
+            this.transitionViewHolder.clear();
+            if (this.placeProvider.findView(this.storiesViewPager.getCurrentDialogId(), this.messageId, i, tLRPC$StoryItem == null ? -1 : tLRPC$StoryItem.messageType, this.transitionViewHolder)) {
+                TransitionViewHolder transitionViewHolder = this.transitionViewHolder;
+                transitionViewHolder.storyId = i;
+                View view = transitionViewHolder.view;
                 if (view != null) {
                     int[] iArr = new int[2];
                     view.getLocationOnScreen(iArr);
                     this.fromXCell = iArr[0];
                     this.fromYCell = iArr[1];
-                    TransitionViewHolder transitionViewHolder = this.transitionViewHolder;
-                    View view2 = transitionViewHolder.view;
+                    TransitionViewHolder transitionViewHolder2 = this.transitionViewHolder;
+                    View view2 = transitionViewHolder2.view;
                     if (view2 instanceof StoriesListPlaceProvider.AvatarOverlaysView) {
                         this.animateFromCell = (StoriesListPlaceProvider.AvatarOverlaysView) view2;
                     } else {
                         this.animateFromCell = null;
                     }
                     this.animateAvatar = false;
-                    ImageReceiver imageReceiver3 = transitionViewHolder.avatarImage;
+                    ImageReceiver imageReceiver3 = transitionViewHolder2.avatarImage;
                     if (imageReceiver3 != null) {
                         this.fromX = iArr[0] + imageReceiver3.getCenterX();
                         this.fromY = iArr[1] + this.transitionViewHolder.avatarImage.getCenterY();
@@ -1600,7 +1604,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                         }
                         this.animateAvatar = true;
                     } else {
-                        ImageReceiver imageReceiver4 = transitionViewHolder.storyImage;
+                        ImageReceiver imageReceiver4 = transitionViewHolder2.storyImage;
                         if (imageReceiver4 != null) {
                             this.fromX = iArr[0] + imageReceiver4.getCenterX();
                             this.fromY = iArr[1] + this.transitionViewHolder.storyImage.getCenterY();
@@ -1610,15 +1614,15 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                         }
                     }
                     this.transitionViewHolder.clipParent.getLocationOnScreen(iArr);
-                    TransitionViewHolder transitionViewHolder2 = this.transitionViewHolder;
-                    float f3 = transitionViewHolder2.clipTop;
-                    if (f3 == 0.0f && transitionViewHolder2.clipBottom == 0.0f) {
+                    TransitionViewHolder transitionViewHolder3 = this.transitionViewHolder;
+                    float f3 = transitionViewHolder3.clipTop;
+                    if (f3 == 0.0f && transitionViewHolder3.clipBottom == 0.0f) {
                         this.clipTop = 0.0f;
                         this.clipBottom = 0.0f;
                         return;
                     }
                     this.clipTop = iArr[1] + f3;
-                    this.clipBottom = iArr[1] + transitionViewHolder2.clipBottom;
+                    this.clipBottom = iArr[1] + transitionViewHolder3.clipBottom;
                     return;
                 }
                 this.animateAvatar = false;
@@ -1683,6 +1687,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         boolean isPaused = isPaused();
         boolean z = true;
         if (this.ATTACH_TO_FRAGMENT && (this.fragment.isPaused() || !this.fragment.isLastFragment())) {
+            isPaused = true;
+        }
+        if (ArticleViewer.getInstance().isVisible()) {
             isPaused = true;
         }
         this.storiesViewPager.setPaused(isPaused);
@@ -2296,11 +2303,15 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     this.storiesViewPager.getAdapter().notifyDataSetChanged();
                 }
             }
+        } else if (i == NotificationCenter.openArticle || i == NotificationCenter.articleClosed) {
+            updatePlayingMode();
         }
     }
 
     public static class TransitionViewHolder {
+        public float alpha = 1.0f;
         public ImageReceiver avatarImage;
+        public Paint bgPaint;
         public float clipBottom;
         public View clipParent;
         public float clipTop;
@@ -2309,6 +2320,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         public HolderClip drawClip;
         StoriesUtilities.AvatarStoryParams params;
         public RadialProgress radialProgressUpload;
+        public int storyId;
         public ImageReceiver storyImage;
         public View view;
 
@@ -2324,6 +2336,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             this.crossfadeToAvatarImage = null;
             this.clipTop = 0.0f;
             this.clipBottom = 0.0f;
+            this.storyId = 0;
+            this.bgPaint = null;
+            this.alpha = 1.0f;
         }
     }
 

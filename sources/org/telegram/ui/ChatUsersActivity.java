@@ -447,6 +447,10 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         flickerLoadingView.setViewType(6);
         this.flickerLoadingView.showDate(false);
         this.flickerLoadingView.setUseHeaderOffset(true);
+        FlickerLoadingView flickerLoadingView2 = this.flickerLoadingView;
+        int i4 = Theme.key_actionBarDefaultSubmenuBackground;
+        int i5 = Theme.key_listSelector;
+        flickerLoadingView2.setColors(i4, i5, i5);
         frameLayout3.addView(this.flickerLoadingView);
         RadialProgressView radialProgressView = new RadialProgressView(context);
         this.progressBar = radialProgressView;
@@ -482,11 +486,11 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         this.listView = recyclerListView;
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, 1, false) {
             @Override
-            public int scrollVerticallyBy(int i4, RecyclerView.Recycler recycler, RecyclerView.State state) {
+            public int scrollVerticallyBy(int i6, RecyclerView.Recycler recycler, RecyclerView.State state) {
                 if (!ChatUsersActivity.this.firstLoaded && ChatUsersActivity.this.type == 0 && ChatUsersActivity.this.participants.size() == 0) {
                     return 0;
                 }
-                return super.scrollVerticallyBy(i4, recycler, state);
+                return super.scrollVerticallyBy(i6, recycler, state);
             }
         };
         this.layoutManager = linearLayoutManager;
@@ -540,37 +544,37 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
         frameLayout2.addView(this.listView, LayoutHelper.createFrame(-1, -1.0f));
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListenerExtended() {
             @Override
-            public boolean hasDoubleTap(View view, int i4) {
-                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i4);
+            public boolean hasDoubleTap(View view, int i6) {
+                return RecyclerListView.OnItemClickListenerExtended.CC.$default$hasDoubleTap(this, view, i6);
             }
 
             @Override
-            public void onDoubleTap(View view, int i4, float f, float f2) {
-                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i4, f, f2);
+            public void onDoubleTap(View view, int i6, float f, float f2) {
+                RecyclerListView.OnItemClickListenerExtended.CC.$default$onDoubleTap(this, view, i6, f, f2);
             }
 
             @Override
-            public final void onItemClick(View view, int i4, float f, float f2) {
-                ChatUsersActivity.this.lambda$createView$5(view, i4, f, f2);
+            public final void onItemClick(View view, int i6, float f, float f2) {
+                ChatUsersActivity.this.lambda$createView$5(view, i6, f, f2);
             }
         });
         this.listView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
-            public final boolean onItemClick(View view, int i4) {
+            public final boolean onItemClick(View view, int i6) {
                 boolean lambda$createView$6;
-                lambda$createView$6 = ChatUsersActivity.this.lambda$createView$6(view, i4);
+                lambda$createView$6 = ChatUsersActivity.this.lambda$createView$6(view, i6);
                 return lambda$createView$6;
             }
         });
         if (this.searchItem != null) {
             this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
-                public void onScrolled(RecyclerView recyclerView, int i4, int i5) {
+                public void onScrolled(RecyclerView recyclerView, int i6, int i7) {
                 }
 
                 @Override
-                public void onScrollStateChanged(RecyclerView recyclerView, int i4) {
-                    if (i4 == 1) {
+                public void onScrollStateChanged(RecyclerView recyclerView, int i6) {
+                    if (i6 == 1) {
                         AndroidUtilities.hideKeyboard(ChatUsersActivity.this.getParentActivity().getCurrentFocus());
                     }
                 }
