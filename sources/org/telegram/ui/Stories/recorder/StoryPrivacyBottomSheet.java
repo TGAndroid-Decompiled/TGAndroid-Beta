@@ -565,7 +565,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     public final void run(Object obj) {
                         StoryPrivacyBottomSheet.Page.this.lambda$new$2(j, (TLRPC$TL_channels_channelParticipants) obj);
                     }
-                });
+                }, 200);
             } else {
                 MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).loadFullChat(j, 0, true);
             }

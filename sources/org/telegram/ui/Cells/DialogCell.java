@@ -172,6 +172,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private boolean drawCount;
     private boolean drawCount2;
     private boolean drawError;
+    private boolean drawForwardIcon;
     private boolean drawMention;
     private boolean drawNameLock;
     private boolean drawPin;
@@ -950,6 +951,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                         spanStart = 0;
                     }
                     int ceil = (int) Math.ceil(Math.min(staticLayout.getPrimaryHorizontal(spanStart), staticLayout.getPrimaryHorizontal(spanStart + 1)));
+                    if (ceil != 0 && !this.drawForwardIcon) {
+                        ceil += AndroidUtilities.dp(3.0f);
+                    }
                     for (int i3 = 0; i3 < this.thumbsCount; i3++) {
                         this.thumbImage[i3].setImageX(i + ceil + AndroidUtilities.dp((this.thumbSize + 2) * i3));
                         this.thumbImageSeen[i3] = true;

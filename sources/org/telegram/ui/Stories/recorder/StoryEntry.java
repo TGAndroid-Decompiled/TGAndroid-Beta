@@ -117,6 +117,7 @@ public class StoryEntry extends IStoryPart {
     public int resultHeight = 1280;
     public int partsMaxId = 1;
     public final ArrayList<Part> parts = new ArrayList<>();
+    public boolean captionEntitiesAllowed = true;
     public final ArrayList<TLRPC$InputPrivacyRule> privacyRules = new ArrayList<>();
     public boolean pinned = true;
     public int period = 86400;

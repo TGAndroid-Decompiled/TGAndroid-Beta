@@ -1073,7 +1073,7 @@ public class StoriesUtilities {
                 if (this.dialogId != UserConfig.getInstance(UserConfig.selectedAccount).clientUserId && z) {
                     ButtonBounce buttonBounce = this.buttonBounce;
                     if (buttonBounce == null) {
-                        this.buttonBounce = new ButtonBounce(view, 1.5f);
+                        this.buttonBounce = new ButtonBounce(view, 1.5f, 5.0f);
                     } else {
                         buttonBounce.setView(view);
                     }

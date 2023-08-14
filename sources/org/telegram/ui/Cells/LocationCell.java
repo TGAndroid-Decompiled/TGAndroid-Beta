@@ -99,7 +99,7 @@ public class LocationCell extends FrameLayout {
     }
 
     public void setLocation(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, int i, boolean z) {
-        setLocation(tLRPC$TL_messageMediaVenue, null, i, z);
+        setLocation(tLRPC$TL_messageMediaVenue, null, i, z, false);
     }
 
     public void setAllowTextAnimation(boolean z) {
@@ -143,16 +143,16 @@ public class LocationCell extends FrameLayout {
         return charSequence;
     }
 
-    public void setLocation(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, String str, int i, boolean z) {
+    public void setLocation(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue, String str, int i, boolean z, boolean z2) {
         String str2;
         this.needDivider = z;
         if (tLRPC$TL_messageMediaVenue != null) {
-            this.nameTextView.setText(getTitle(tLRPC$TL_messageMediaVenue), this.allowTextAnimation && !LocaleController.isRTL);
+            this.nameTextView.setText(getTitle(tLRPC$TL_messageMediaVenue), this.allowTextAnimation && !LocaleController.isRTL && z2);
         }
         if (str != null) {
             this.addressTextView.setText(str, this.allowTextAnimation && !LocaleController.isRTL);
         } else if (tLRPC$TL_messageMediaVenue != null) {
-            this.addressTextView.setText(tLRPC$TL_messageMediaVenue.address, this.allowTextAnimation && !LocaleController.isRTL);
+            this.addressTextView.setText(tLRPC$TL_messageMediaVenue.address, this.allowTextAnimation && !LocaleController.isRTL && z2);
         }
         int colorForIndex = getColorForIndex(i);
         if (tLRPC$TL_messageMediaVenue != null && (str2 = tLRPC$TL_messageMediaVenue.icon) != null) {
@@ -174,9 +174,9 @@ public class LocationCell extends FrameLayout {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        boolean z2 = tLRPC$TL_messageMediaVenue == null;
+        boolean z3 = tLRPC$TL_messageMediaVenue == null;
         final float f = this.enterAlpha;
-        final float f2 = z2 ? 0.0f : 1.0f;
+        final float f2 = z3 ? 0.0f : 1.0f;
         final long abs = Math.abs(f - f2) * 150.0f;
         this.enterAnimator = ValueAnimator.ofFloat(f, f2);
         final long elapsedRealtime = SystemClock.elapsedRealtime();
@@ -187,7 +187,7 @@ public class LocationCell extends FrameLayout {
             }
         });
         ValueAnimator valueAnimator2 = this.enterAnimator;
-        if (z2) {
+        if (z3) {
             abs = Long.MAX_VALUE;
         }
         valueAnimator2.setDuration(abs);

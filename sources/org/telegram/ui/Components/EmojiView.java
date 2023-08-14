@@ -506,6 +506,11 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
 
     public class AnonymousClass2 implements ContentPreviewViewer.ContentPreviewViewerDelegate {
         @Override
+        public boolean isPhotoEditor() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isPhotoEditor(this);
+        }
+
+        @Override
         public boolean needCopy(TLRPC$Document tLRPC$Document) {
             return true;
         }

@@ -116,7 +116,7 @@ public class HintView2 extends View {
             }
         };
         this.bounceT = 1.0f;
-        this.bounce = new ButtonBounce(this, 2.0f);
+        this.bounce = new ButtonBounce(this, 2.0f, 5.0f);
         this.boundsWithArrow = new Rect();
         this.bounds = new RectF();
         this.path = new Path();

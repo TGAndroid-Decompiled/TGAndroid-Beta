@@ -710,6 +710,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int stealthModePast;
     public int stickersFavedLimitDefault;
     public int stickersFavedLimitPremium;
+    public long storiesChangelogUserId;
     public StoriesController storiesController;
     public String storiesEntities;
     public boolean storiesExportNopublicLink;
@@ -1984,6 +1985,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.smallQueueMaxActiveOperations = this.mainPreferences.getInt("smallQueueMaxActiveOperations", 5);
         this.largeQueueMaxActiveOperations = this.mainPreferences.getInt("largeQueueMaxActiveOperations", 2);
         this.stealthModeFuture = this.mainPreferences.getInt("stories_stealth_future_period", 1500);
+        this.storiesChangelogUserId = this.mainPreferences.getLong("stories_changelog_user_id", 777000L);
         this.stealthModePast = this.mainPreferences.getInt("stories_stealth_past_period", 300);
         this.stealthModeCooldown = this.mainPreferences.getInt("stories_stealth_cooldown_period", 3600);
         boolean z = ConnectionsManager.native_isTestBackend(this.currentAccount) != 0;
@@ -6834,10 +6836,10 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public void loadChannelParticipants(Long l) {
-        loadChannelParticipants(l, null);
+        loadChannelParticipants(l, null, 32);
     }
 
-    public void loadChannelParticipants(final Long l, final Utilities.Callback<TLRPC$TL_channels_channelParticipants> callback) {
+    public void loadChannelParticipants(final Long l, final Utilities.Callback<TLRPC$TL_channels_channelParticipants> callback, int i) {
         if (callback == null && (this.loadingFullParticipants.contains(l) || this.loadedFullParticipants.contains(l))) {
             return;
         }
@@ -6846,7 +6848,7 @@ public class MessagesController extends BaseController implements NotificationCe
         tLRPC$TL_channels_getParticipants.channel = getInputChannel(l.longValue());
         tLRPC$TL_channels_getParticipants.filter = new TLRPC$TL_channelParticipantsRecent();
         tLRPC$TL_channels_getParticipants.offset = 0;
-        tLRPC$TL_channels_getParticipants.limit = 32;
+        tLRPC$TL_channels_getParticipants.limit = i;
         getConnectionsManager().sendRequest(tLRPC$TL_channels_getParticipants, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -15069,5 +15071,26 @@ public class MessagesController extends BaseController implements NotificationCe
             return c == 1;
         }
         return getUserConfig().isPremium();
+    }
+
+    public boolean storyEntitiesAllowed(TLRPC$User tLRPC$User) {
+        if (tLRPC$User == null || tLRPC$User.id != this.storiesChangelogUserId) {
+            String str = this.storiesEntities;
+            char c = 65535;
+            int hashCode = str.hashCode();
+            if (hashCode != -1609594047) {
+                if (hashCode != -318452137) {
+                    if (hashCode == 270940796 && str.equals("disabled")) {
+                        c = 3;
+                    }
+                } else if (str.equals("premium")) {
+                    c = 0;
+                }
+            } else if (str.equals("enabled")) {
+                c = 1;
+            }
+            return c != 0 ? c == 1 : tLRPC$User != null && tLRPC$User.premium;
+        }
+        return true;
     }
 }

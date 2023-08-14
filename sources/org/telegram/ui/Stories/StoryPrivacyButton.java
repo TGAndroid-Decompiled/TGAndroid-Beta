@@ -46,7 +46,7 @@ public class StoryPrivacyButton extends View {
         Paint paint = new Paint(1);
         this.arrowPaint = paint;
         this.arrowPath = new Path();
-        this.bounce = new ButtonBounce(this, 0.6f);
+        this.bounce = new ButtonBounce(this, 0.6f, 5.0f);
         Paint[] paintArr = {new Paint(1), new Paint(1)};
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);

@@ -243,6 +243,7 @@ public class TextureRenderer {
         int i2;
         int i3;
         long j = mediaEntity.ptr;
+        boolean z = true;
         if (j != 0) {
             Bitmap bitmap = mediaEntity.bitmap;
             if (bitmap == null || (i2 = mediaEntity.W) <= 0 || (i3 = mediaEntity.H) <= 0) {
@@ -288,14 +289,20 @@ public class TextureRenderer {
             if (mediaEntity.bitmap != null) {
                 GLES20.glBindTexture(3553, this.stickerTexture[0]);
                 GLUtils.texImage2D(3553, 0, mediaEntity.bitmap, 0);
-                drawTexture(false, this.stickerTexture[0], mediaEntity.x, mediaEntity.y, mediaEntity.width, mediaEntity.height, mediaEntity.rotation, mediaEntity.type == 2 && (mediaEntity.subType & 2) != 0);
+                int i6 = this.stickerTexture[0];
+                float f4 = mediaEntity.x;
+                float f5 = mediaEntity.additionalWidth;
+                float f6 = f4 - (f5 / 2.0f);
+                float f7 = mediaEntity.y;
+                float f8 = mediaEntity.additionalHeight;
+                drawTexture(false, i6, f6, f7 - (f8 / 2.0f), mediaEntity.width + f5, f8 + mediaEntity.height, mediaEntity.rotation, (mediaEntity.type != 2 || (mediaEntity.subType & 2) == 0) ? false : false);
             }
             ArrayList<VideoEditedInfo.EmojiEntity> arrayList = mediaEntity.entities;
             if (arrayList == null || arrayList.isEmpty()) {
                 return;
             }
-            for (int i6 = 0; i6 < mediaEntity.entities.size(); i6++) {
-                VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i6);
+            for (int i7 = 0; i7 < mediaEntity.entities.size(); i7++) {
+                VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i7);
                 if (emojiEntity != null && (mediaEntity2 = emojiEntity.entity) != null) {
                     drawEntity(mediaEntity2, mediaEntity.color);
                 }

@@ -376,8 +376,12 @@ public class Browser {
                         zArr[0] = true;
                     }
                 }
-            } else if (z && (lowerCase.endsWith("telegram.org") || lowerCase.endsWith("telegra.ph") || lowerCase.endsWith("telesco.pe"))) {
+            } else if ("telegram.org".equals(lowerCase) && uri.getPath() != null && uri.getPath().startsWith("/blog/")) {
                 return true;
+            } else {
+                if (z && (lowerCase.endsWith("telegram.org") || lowerCase.endsWith("telegra.ph") || lowerCase.endsWith("telesco.pe"))) {
+                    return true;
+                }
             }
             return false;
         }

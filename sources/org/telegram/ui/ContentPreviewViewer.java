@@ -88,6 +88,7 @@ public class ContentPreviewViewer {
     private float finalMoveY;
     private SendMessagesHelper.ImportingSticker importingSticker;
     private TLRPC$BotInlineResult inlineResult;
+    private boolean isPhotoEditor;
     private boolean isRecentSticker;
     private WindowInsets lastInsets;
     private float lastTouchY;
@@ -137,6 +138,10 @@ public class ContentPreviewViewer {
             }
 
             public static void $default$gifAddedOrDeleted(ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
+            }
+
+            public static boolean $default$isPhotoEditor(ContentPreviewViewerDelegate contentPreviewViewerDelegate) {
+                return false;
             }
 
             public static boolean $default$needCopy(ContentPreviewViewerDelegate contentPreviewViewerDelegate, TLRPC$Document tLRPC$Document) {
@@ -197,6 +202,8 @@ public class ContentPreviewViewer {
 
         boolean isInScheduleMode();
 
+        boolean isPhotoEditor();
+
         boolean needCopy(TLRPC$Document tLRPC$Document);
 
         boolean needMenu();
@@ -256,7 +263,7 @@ public class ContentPreviewViewer {
             int i7;
             int i8;
             int min;
-            if (ContentPreviewViewer.this.parentActivity == null) {
+            if (ContentPreviewViewer.this.parentActivity == null || ContentPreviewViewer.this.isPhotoEditor) {
                 return;
             }
             ContentPreviewViewer.this.closeOnDismiss = true;
@@ -841,7 +848,11 @@ public class ContentPreviewViewer {
 
     public boolean onInterceptTouchEvent(MotionEvent motionEvent, final RecyclerListView recyclerListView, int i, ContentPreviewViewerDelegate contentPreviewViewerDelegate, final Theme.ResourcesProvider resourcesProvider) {
         this.delegate = contentPreviewViewerDelegate;
-        if ((contentPreviewViewerDelegate == null || contentPreviewViewerDelegate.can()) && motionEvent.getAction() == 0) {
+        if (contentPreviewViewerDelegate != null) {
+            this.isPhotoEditor = contentPreviewViewerDelegate.isPhotoEditor();
+        }
+        ContentPreviewViewerDelegate contentPreviewViewerDelegate2 = this.delegate;
+        if ((contentPreviewViewerDelegate2 == null || contentPreviewViewerDelegate2.can()) && motionEvent.getAction() == 0) {
             int x = (int) motionEvent.getX();
             int y = (int) motionEvent.getY();
             int childCount = recyclerListView.getChildCount();
@@ -943,7 +954,7 @@ public class ContentPreviewViewer {
             TLRPC$Document document = contextLinkCell.getDocument();
             ContentPreviewViewerDelegate contentPreviewViewerDelegate3 = this.delegate;
             open(document, null, null, contentPreviewViewerDelegate3 != null ? contentPreviewViewerDelegate3.getQuery(true) : null, contextLinkCell.getBotInlineResult(), i, false, contextLinkCell.getBotInlineResult() != null ? contextLinkCell.getInlineBot() : contextLinkCell.getParentObject(), resourcesProvider);
-            if (i != 1) {
+            if (i != 1 || this.isPhotoEditor) {
                 contextLinkCell.setScaled(true);
             }
         } else if (view instanceof EmojiPacksAlert.EmojiImageView) {
@@ -1403,7 +1414,7 @@ public class ContentPreviewViewer {
             this.centerImage.setImageCoords(f12, f12, f13, f13);
             this.centerImage.draw(canvas);
         }
-        if (this.currentContentType == 1 && (drawable = this.slideUpDrawable) != null) {
+        if (this.currentContentType == 1 && !this.isPhotoEditor && (drawable = this.slideUpDrawable) != null) {
             int intrinsicWidth = drawable.getIntrinsicWidth();
             int intrinsicHeight = this.slideUpDrawable.getIntrinsicHeight();
             int dp = (int) (this.centerImage.getDrawRegion().top - AndroidUtilities.dp(((this.currentMoveY / AndroidUtilities.dp(60.0f)) * 6.0f) + 17.0f));

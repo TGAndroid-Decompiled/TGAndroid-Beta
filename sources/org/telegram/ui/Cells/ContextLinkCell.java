@@ -47,6 +47,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$WebDocument;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimationProperties;
+import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CheckBox2;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LetterDrawable;
@@ -58,6 +59,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     private int TAG;
     private AnimatorSet animator;
     private Paint backgroundPaint;
+    private ButtonBounce buttonBounce;
     private boolean buttonPressed;
     private int buttonState;
     File cacheFile;
@@ -80,7 +82,6 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     private TLRPC$BotInlineResult inlineResult;
     private boolean isForceGif;
     private boolean isKeyboard;
-    private long lastUpdateTime;
     private LetterDrawable letterDrawable;
     private ImageReceiver linkImageView;
     private StaticLayout linkLayout;
@@ -94,7 +95,6 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
     int resolveFileNameId;
     boolean resolvingFileName;
     private Theme.ResourcesProvider resourcesProvider;
-    private float scale;
     private boolean scaled;
     private StaticLayout titleLayout;
     private int titleY;
@@ -157,6 +157,12 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
             addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 53, 0.0f, 1.0f, 1.0f, 0.0f));
         }
         setWillNotDraw(false);
+    }
+
+    public void allowButtonBounce(boolean z) {
+        if (z != (this.buttonBounce != null)) {
+            this.buttonBounce = z ? new ButtonBounce(this, 1.0f, 3.0f).setReleaseDelay(120L) : null;
+        }
     }
 
     @Override
@@ -346,8 +352,7 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
 
     public void setScaled(boolean z) {
         this.scaled = z;
-        this.lastUpdateTime = System.currentTimeMillis();
-        invalidate();
+        this.buttonBounce.setPressed(isPressed() || this.scaled);
     }
 
     public void setCanPreviewGif(boolean z) {
@@ -571,32 +576,12 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
                 this.linkImageView.setVisible(!PhotoViewer.isShowingImage(tLRPC$BotInlineResult5), false);
             }
             canvas.save();
-            boolean z = this.scaled;
-            if ((z && this.scale != 0.8f) || (!z && this.scale != 1.0f)) {
-                long currentTimeMillis = System.currentTimeMillis();
-                long j = currentTimeMillis - this.lastUpdateTime;
-                this.lastUpdateTime = currentTimeMillis;
-                if (this.scaled) {
-                    float f = this.scale;
-                    if (f != 0.8f) {
-                        float f2 = f - (((float) j) / 400.0f);
-                        this.scale = f2;
-                        if (f2 < 0.8f) {
-                            this.scale = 0.8f;
-                        }
-                        invalidate();
-                    }
-                }
-                float f3 = this.scale + (((float) j) / 400.0f);
-                this.scale = f3;
-                if (f3 > 1.0f) {
-                    this.scale = 1.0f;
-                }
-                invalidate();
+            float f = this.imageScale;
+            ButtonBounce buttonBounce = this.buttonBounce;
+            if (buttonBounce != null) {
+                f *= buttonBounce.getScale(0.1f);
             }
-            float f4 = this.scale;
-            float f5 = this.imageScale;
-            canvas.scale(f4 * f5, f4 * f5, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
+            canvas.scale(f, f, getMeasuredWidth() / 2, getMeasuredHeight() / 2);
             this.linkImageView.draw(canvas);
             canvas.restore();
         }
@@ -867,5 +852,14 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
         }
         this.imageScale = z ? 0.85f : 1.0f;
         invalidate();
+    }
+
+    @Override
+    public void setPressed(boolean z) {
+        super.setPressed(z);
+        ButtonBounce buttonBounce = this.buttonBounce;
+        if (buttonBounce != null) {
+            buttonBounce.setPressed(z || this.scaled);
+        }
     }
 }

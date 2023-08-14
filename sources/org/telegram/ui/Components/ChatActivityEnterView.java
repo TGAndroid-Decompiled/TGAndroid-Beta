@@ -10446,6 +10446,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (linearLayout != null) {
             linearLayout.setTranslationX(this.attachLayoutPaddingTranslationX + this.attachLayoutTranslationX);
             this.attachLayout.setAlpha(this.attachLayoutAlpha * this.attachLayoutPaddingAlpha);
+            LinearLayout linearLayout2 = this.attachLayout;
+            linearLayout2.setVisibility(linearLayout2.getAlpha() > 0.0f ? 0 : 8);
         }
     }
 

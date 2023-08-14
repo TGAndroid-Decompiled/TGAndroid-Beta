@@ -3465,6 +3465,7 @@
     <string name="MessageContainsEmojiPacks_many">This message contains emoji from **%d Packs**.</string>
     <string name="MessageContainsEmojiPacks_other">This message contains emoji from **%d Packs**.</string>
     <string name="MessageContainsEmojiPacks_two">This message contains emoji from **%d Packs**.</string>
+    <string name="MessageContainsReactionPack">This reaction is an emoji from %s pack.</string>
     <string name="MessageContainsReactionsPack">This reactions contains emoji from %s pack.</string>
     <string name="MessageContainsReactionsPacks_few">This reactions contains emoji from **%d Packs**.</string>
     <string name="MessageContainsReactionsPacks_many">This reactions contains emoji from **%d Packs**.</string>

@@ -39,6 +39,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC$BotInlineResult;
 import org.telegram.tgnet.TLRPC$TL_document;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.Theme;
@@ -226,6 +227,7 @@ public class CaptionContainerView extends FrameLayout {
                 this.lastOverLimit = z;
             }
         });
+        editTextEmoji.getEditText().setLinkTextColor(-1);
         addView(editTextEmoji, LayoutHelper.createFrame(-1, -2.0f, 87, 12.0f, 12.0f, 12.0f, 12.0f));
         this.applyButton = new BounceableImageView(context);
         CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(16.0f), -10043398), context.getResources().getDrawable(R.drawable.input_done).mutate(), 0, AndroidUtilities.dp(1.0f));
@@ -383,6 +385,11 @@ public class CaptionContainerView extends FrameLayout {
             @Override
             public void onStickerSelected(TLRPC$TL_document tLRPC$TL_document, String str, Object obj) {
                 MentionsContainerView.Delegate.CC.$default$onStickerSelected(this, tLRPC$TL_document, str, obj);
+            }
+
+            @Override
+            public void sendBotInlineResult(TLRPC$BotInlineResult tLRPC$BotInlineResult, boolean z, int i) {
+                MentionsContainerView.Delegate.CC.$default$sendBotInlineResult(this, tLRPC$BotInlineResult, z, i);
             }
 
             @Override

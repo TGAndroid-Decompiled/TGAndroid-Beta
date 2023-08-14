@@ -864,7 +864,10 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                         break;
                     }
                     TLRPC$TL_premiumSubscriptionOption next = it.next();
-                    if (next.months == 1) {
+                    int i = next.months;
+                    if (i == 1) {
+                        subscriptionTier = new SubscriptionTier(next);
+                    } else if (i == 12) {
                         subscriptionTier = new SubscriptionTier(next);
                         break;
                     }
@@ -1045,28 +1048,41 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
 
     public static String getPremiumButtonText(int i, SubscriptionTier subscriptionTier) {
         int i2;
+        String formatCurrency;
         if (BuildVars.IS_BILLING_UNAVAILABLE) {
             return LocaleController.getString(R.string.SubscribeToPremiumNotAvailable);
         }
         if (subscriptionTier == null) {
+            TLRPC$TL_premiumSubscriptionOption tLRPC$TL_premiumSubscriptionOption = 0;
             if (BuildVars.useInvoiceBilling()) {
                 TLRPC$TL_help_premiumPromo premiumPromo = MediaDataController.getInstance(i).getPremiumPromo();
                 if (premiumPromo != null) {
-                    long j = 0;
                     Iterator<TLRPC$TL_premiumSubscriptionOption> it = premiumPromo.period_options.iterator();
-                    String str = "USD";
-                    while (it.hasNext()) {
+                    while (true) {
+                        if (!it.hasNext()) {
+                            break;
+                        }
                         TLRPC$TL_premiumSubscriptionOption next = it.next();
-                        if (next.months == 1) {
-                            j = next.amount;
-                            str = next.currency;
+                        int i3 = next.months;
+                        if (i3 == 12) {
+                            tLRPC$TL_premiumSubscriptionOption = next;
+                            break;
+                        } else if (tLRPC$TL_premiumSubscriptionOption == 0 && i3 == 1) {
+                            tLRPC$TL_premiumSubscriptionOption = next;
                         }
                     }
-                    return LocaleController.formatString(R.string.SubscribeToPremium, BillingController.getInstance().formatCurrency(j, str));
+                    if (tLRPC$TL_premiumSubscriptionOption == 0) {
+                        return LocaleController.getString(R.string.SubscribeToPremiumNoPrice);
+                    }
+                    if (tLRPC$TL_premiumSubscriptionOption.months == 12) {
+                        formatCurrency = BillingController.getInstance().formatCurrency(tLRPC$TL_premiumSubscriptionOption.amount / 12, tLRPC$TL_premiumSubscriptionOption.currency);
+                    } else {
+                        formatCurrency = BillingController.getInstance().formatCurrency(tLRPC$TL_premiumSubscriptionOption.amount, tLRPC$TL_premiumSubscriptionOption.currency);
+                    }
+                    return LocaleController.formatString(R.string.SubscribeToPremium, formatCurrency);
                 }
                 return LocaleController.getString(R.string.SubscribeToPremiumNoPrice);
             }
-            String str2 = null;
             ProductDetails productDetails = BillingController.PREMIUM_PRODUCT_DETAILS;
             if (productDetails != null) {
                 List<ProductDetails.SubscriptionOfferDetails> subscriptionOfferDetails = productDetails.getSubscriptionOfferDetails();
@@ -1078,24 +1094,27 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                         }
                         ProductDetails.PricingPhase next2 = it2.next();
                         if (next2.getBillingPeriod().equals("P1M")) {
-                            str2 = next2.getFormattedPrice();
+                            tLRPC$TL_premiumSubscriptionOption = next2.getFormattedPrice();
+                        } else if (next2.getBillingPeriod().equals("P1Y")) {
+                            tLRPC$TL_premiumSubscriptionOption = BillingController.getInstance().formatCurrency(next2.getPriceAmountMicros() / 12, next2.getPriceCurrencyCode(), 6);
                             break;
                         }
                     }
                 }
             }
-            return str2 == null ? LocaleController.getString(R.string.Loading) : LocaleController.formatString(R.string.SubscribeToPremium, str2);
+            return tLRPC$TL_premiumSubscriptionOption == null ? LocaleController.getString(R.string.Loading) : LocaleController.formatString(R.string.SubscribeToPremium, tLRPC$TL_premiumSubscriptionOption);
         } else if (!BuildVars.useInvoiceBilling() && subscriptionTier.getOfferDetails() == null) {
             return LocaleController.getString(R.string.Loading);
         } else {
-            if (UserConfig.getInstance(i).isPremium()) {
-                i2 = subscriptionTier.getMonths() == 12 ? R.string.UpgradePremiumPerYear : R.string.UpgradePremiumPerMonth;
+            boolean isPremium = UserConfig.getInstance(i).isPremium();
+            boolean z = subscriptionTier.getMonths() == 12;
+            String formattedPricePerYear = z ? subscriptionTier.getFormattedPricePerYear() : subscriptionTier.getFormattedPricePerMonth();
+            if (isPremium) {
+                i2 = z ? R.string.UpgradePremiumPerYear : R.string.UpgradePremiumPerMonth;
             } else {
-                i2 = subscriptionTier.getMonths() == 12 ? R.string.SubscribeToPremiumPerYear : R.string.SubscribeToPremium;
+                i2 = z ? R.string.SubscribeToPremiumPerYear : R.string.SubscribeToPremium;
             }
-            Object[] objArr = new Object[1];
-            objArr[0] = subscriptionTier.getMonths() == 12 ? subscriptionTier.getFormattedPricePerYear() : subscriptionTier.getFormattedPricePerMonth();
-            return LocaleController.formatString(i2, objArr);
+            return LocaleController.formatString(i2, formattedPricePerYear);
         }
     }
 

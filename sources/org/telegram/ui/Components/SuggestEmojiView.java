@@ -112,6 +112,11 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
         }
 
         @Override
+        public boolean isPhotoEditor() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isPhotoEditor(this);
+        }
+
+        @Override
         public boolean needMenu() {
             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$needMenu(this);
         }

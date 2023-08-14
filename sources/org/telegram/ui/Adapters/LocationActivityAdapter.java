@@ -32,6 +32,7 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.LocationActivity;
 public class LocationActivityAdapter extends BaseLocationAdapter implements LocationController.LocationFetchCallback {
     private String addressName;
+    public boolean animated;
     private boolean askingForMyLocation;
     private TLRPC$TL_channelLocation chatLocation;
     public TLRPC$TL_messageMediaVenue city;
@@ -63,6 +64,7 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
         this.currentAccount = UserConfig.selectedAccount;
         this.shareLiveLocationPotistion = -1;
         this.currentLiveLocations = new ArrayList<>();
+        this.animated = true;
         this.myLocationDenied = false;
         this.askingForMyLocation = false;
         this.mContext = context;
@@ -427,9 +429,9 @@ public class LocationActivityAdapter extends BaseLocationAdapter implements Loca
                 if (this.askingForMyLocation) {
                     locationCell2.setLocation(null, 2, (i != 1 || this.street == null) ? false : false);
                 } else if (i == 1) {
-                    locationCell2.setLocation(this.city, 2, this.street != null);
+                    locationCell2.setLocation(this.city, null, 2, this.street != null, this.animated);
                 } else {
-                    locationCell2.setLocation(this.street, 2, false);
+                    locationCell2.setLocation(this.street, null, 2, false, this.animated);
                 }
             }
         } else {

@@ -103,6 +103,8 @@ public class VideoEditedInfo {
         public static final int TYPE_TEXT = 1;
         public int H;
         public int W;
+        public float additionalHeight;
+        public float additionalWidth;
         public AnimatedFileDrawable animatedFileDrawable;
         public Bitmap bitmap;
         public Canvas canvas;

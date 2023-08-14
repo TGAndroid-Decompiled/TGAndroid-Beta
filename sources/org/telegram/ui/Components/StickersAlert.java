@@ -230,6 +230,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             }
 
             @Override
+            public boolean isPhotoEditor() {
+                return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isPhotoEditor(this);
+            }
+
+            @Override
             public boolean needCopy(TLRPC$Document tLRPC$Document) {
                 return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$needCopy(this, tLRPC$Document);
             }
@@ -446,6 +451,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             }
 
             @Override
+            public boolean isPhotoEditor() {
+                return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isPhotoEditor(this);
+            }
+
+            @Override
             public boolean needCopy(TLRPC$Document tLRPC$Document) {
                 return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$needCopy(this, tLRPC$Document);
             }
@@ -659,6 +669,11 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
             @Override
             public void gifAddedOrDeleted() {
                 ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$gifAddedOrDeleted(this);
+            }
+
+            @Override
+            public boolean isPhotoEditor() {
+                return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isPhotoEditor(this);
             }
 
             @Override

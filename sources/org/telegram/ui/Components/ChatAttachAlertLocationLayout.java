@@ -2163,4 +2163,18 @@ public class ChatAttachAlertLocationLayout extends ChatAttachAlert.AttachAlertLa
             }
         }
     }
+
+    @Override
+    public void onPanTransitionStart(boolean z, int i) {
+        if (z) {
+            this.adapter.animated = false;
+        }
+    }
+
+    @Override
+    public void onPanTransitionEnd() {
+        LocationActivityAdapter locationActivityAdapter = this.adapter;
+        ChatAttachAlert chatAttachAlert = this.parentAlert;
+        locationActivityAdapter.animated = (chatAttachAlert == null || chatAttachAlert.isKeyboardVisible()) ? false : true;
+    }
 }

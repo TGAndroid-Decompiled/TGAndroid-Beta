@@ -185,6 +185,14 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 }
                 DialogStoriesCell.this.afterNextLayout.clear();
             }
+
+            @Override
+            public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+                if (motionEvent.getAction() != 0 || (DialogStoriesCell.this.collapsedProgress1 <= 0.2f && DialogStoriesCell.this.getAlpha() != 0.0f)) {
+                    return super.dispatchTouchEvent(motionEvent);
+                }
+                return false;
+            }
         };
         this.recyclerListView = recyclerListView;
         recyclerListView.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
@@ -1323,7 +1331,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             if (z) {
                 StoriesUtilities.AvatarStoryParams avatarStoryParams = this.params;
                 if (avatarStoryParams.buttonBounce == null) {
-                    avatarStoryParams.buttonBounce = new ButtonBounce(this, 1.5f);
+                    avatarStoryParams.buttonBounce = new ButtonBounce(this, 1.5f, 5.0f);
                 }
             }
             ButtonBounce buttonBounce = this.params.buttonBounce;

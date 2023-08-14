@@ -9,17 +9,28 @@ public class ButtonBounce {
     private ValueAnimator animator;
     private final float durationMultiplier;
     private boolean isPressed;
+    private final float overshoot;
     private float pressedT;
+    private long releaseDelay;
     private View view;
 
     public ButtonBounce(View view) {
+        this.releaseDelay = 0L;
         this.view = view;
         this.durationMultiplier = 1.0f;
+        this.overshoot = 5.0f;
     }
 
-    public ButtonBounce(View view, float f) {
+    public ButtonBounce(View view, float f, float f2) {
+        this.releaseDelay = 0L;
         this.view = view;
         this.durationMultiplier = f;
+        this.overshoot = f2;
+    }
+
+    public ButtonBounce setReleaseDelay(long j) {
+        this.releaseDelay = j;
+        return this;
     }
 
     public void setView(View view) {
@@ -30,6 +41,7 @@ public class ButtonBounce {
         if (this.isPressed != z) {
             this.isPressed = z;
             ValueAnimator valueAnimator = this.animator;
+            this.animator = null;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
@@ -47,17 +59,21 @@ public class ButtonBounce {
             this.animator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {
-                    ButtonBounce.this.animator = null;
-                    ButtonBounce.this.pressedT = z ? 1.0f : 0.0f;
-                    ButtonBounce.this.invalidate();
+                    if (animator == ButtonBounce.this.animator) {
+                        ButtonBounce.this.animator = null;
+                        ButtonBounce.this.pressedT = z ? 1.0f : 0.0f;
+                        ButtonBounce.this.invalidate();
+                    }
                 }
             });
             if (this.isPressed) {
                 this.animator.setInterpolator(CubicBezierInterpolator.DEFAULT);
                 this.animator.setDuration(this.durationMultiplier * 60.0f);
+                this.animator.setStartDelay(0L);
             } else {
-                this.animator.setInterpolator(new OvershootInterpolator(5.0f));
+                this.animator.setInterpolator(new OvershootInterpolator(this.overshoot));
                 this.animator.setDuration(this.durationMultiplier * 350.0f);
+                this.animator.setStartDelay(this.releaseDelay);
             }
             this.animator.start();
         }

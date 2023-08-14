@@ -40,6 +40,7 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$InputStickerSet;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_getCustomEmojiDocuments;
@@ -418,6 +419,20 @@ public class AnimatedEmojiDrawable extends Drawable {
                     this.emojiDocumentsCache = new HashMap<>();
                 }
                 this.emojiDocumentsCache.put(Long.valueOf(tLRPC$Document.id), tLRPC$Document);
+            }
+        }
+
+        public TLRPC$InputStickerSet findStickerSet(long j) {
+            synchronized (this) {
+                HashMap<Long, TLRPC$Document> hashMap = this.emojiDocumentsCache;
+                if (hashMap == null) {
+                    return null;
+                }
+                TLRPC$Document tLRPC$Document = hashMap.get(Long.valueOf(j));
+                if (tLRPC$Document == null) {
+                    return null;
+                }
+                return MessageObject.getInputStickerSet(tLRPC$Document);
             }
         }
     }

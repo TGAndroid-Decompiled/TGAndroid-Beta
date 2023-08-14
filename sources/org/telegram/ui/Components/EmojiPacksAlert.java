@@ -167,6 +167,11 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
+        public boolean isPhotoEditor() {
+            return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$isPhotoEditor(this);
+        }
+
+        @Override
         public boolean needMenu() {
             return ContentPreviewViewer.ContentPreviewViewerDelegate.CC.$default$needMenu(this);
         }

@@ -470,7 +470,7 @@ public class DraftsController {
             this.gradientTopColor = storyEntry.gradientTopColor;
             this.gradientBottomColor = storyEntry.gradientBottomColor;
             CharSequence charSequence = storyEntry.caption;
-            this.captionEntities = MediaDataController.getInstance(storyEntry.currentAccount).getEntities(new CharSequence[]{charSequence}, true);
+            this.captionEntities = storyEntry.captionEntitiesAllowed ? MediaDataController.getInstance(storyEntry.currentAccount).getEntities(new CharSequence[]{charSequence}, true) : null;
             this.caption = charSequence == null ? "" : charSequence.toString();
             arrayList.addAll(storyEntry.privacyRules);
             File file3 = storyEntry.paintFile;

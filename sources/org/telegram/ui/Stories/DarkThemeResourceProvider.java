@@ -128,7 +128,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_dialogFloatingIcon, -1);
         this.sparseIntArray.put(Theme.key_graySection, -14079703);
         this.sparseIntArray.put(Theme.key_graySectionText, -8158332);
-        this.sparseIntArray.put(Theme.key_windowBackgroundGray, -14737633);
+        this.sparseIntArray.put(Theme.key_windowBackgroundGray, -16777216);
         this.sparseIntArray.put(Theme.key_windowBackgroundWhiteBlueHeader, -9652488);
         this.sparseIntArray.put(Theme.key_windowBackgroundWhiteGrayText3, ColorUtils.blendARGB(-1, -16777216, 0.3f));
         this.sparseIntArray.put(Theme.key_undo_background, -14605274);

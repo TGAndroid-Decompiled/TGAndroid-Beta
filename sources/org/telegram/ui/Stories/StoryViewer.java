@@ -165,6 +165,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     ValueAnimator swipeToViewsAnimator;
     private TextureView textureView;
     public boolean unreadStateChanged;
+    boolean verticalScrollDetected;
     private StoriesVolumeContorl volumeControl;
     WindowManager.LayoutParams windowLayoutParams;
     WindowManager windowManager;
@@ -692,7 +693,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void dispatchDraw(android.graphics.Canvas r18) {
+        public void dispatchDraw(android.graphics.Canvas r17) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoryViewer.AnonymousClass2.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -718,6 +719,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 this.startX = motionEvent.getX();
                 this.startY = motionEvent.getY();
                 StoryViewer storyViewer = StoryViewer.this;
+                storyViewer.verticalScrollDetected = false;
                 storyViewer.allowIntercept = !storyViewer.findClickableView(storyViewer.windowView, motionEvent.getX(), motionEvent.getY(), false);
                 StoryViewer storyViewer2 = StoryViewer.this;
                 storyViewer2.allowSwipeToDissmiss = !storyViewer2.findClickableView(storyViewer2.windowView, motionEvent.getX(), motionEvent.getY(), true);
@@ -738,11 +740,17 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     AndroidUtilities.runOnUIThread(StoryViewer.this.longPressRunnable, 400L);
                 }
             } else if (motionEvent.getAction() == 2) {
-                StoryViewer storyViewer6 = StoryViewer.this;
-                if (!storyViewer6.inSwipeToDissmissMode && !storyViewer6.keyboardVisible && storyViewer6.allowSwipeToDissmiss) {
-                    float abs = Math.abs(this.startY - motionEvent.getY());
-                    if (abs > Math.abs(this.startX - motionEvent.getX()) && abs > AndroidUtilities.touchSlop * 2.0f) {
-                        StoryViewer storyViewer7 = StoryViewer.this;
+                float abs = Math.abs(this.startY - motionEvent.getY());
+                float abs2 = Math.abs(this.startX - motionEvent.getX());
+                if (abs > abs2) {
+                    StoryViewer storyViewer6 = StoryViewer.this;
+                    if (!storyViewer6.verticalScrollDetected && abs > AndroidUtilities.touchSlop * 2.0f) {
+                        storyViewer6.verticalScrollDetected = true;
+                    }
+                }
+                StoryViewer storyViewer7 = StoryViewer.this;
+                if (!storyViewer7.inSwipeToDissmissMode && !storyViewer7.keyboardVisible && storyViewer7.allowSwipeToDissmiss) {
+                    if (abs > abs2 && abs > AndroidUtilities.touchSlop * 2.0f) {
                         storyViewer7.inSwipeToDissmissMode = true;
                         PeerStoriesView currentPeerView = storyViewer7.storiesViewPager.getCurrentPeerView();
                         if (currentPeerView != null) {
@@ -777,6 +785,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     StoryViewer.this.delayedTapRunnable = null;
                 }
                 StoryViewer.this.setInTouchMode(false);
+                StoryViewer.this.verticalScrollDetected = false;
             }
             StoryViewer storyViewer10 = StoryViewer.this;
             SelfStoryViewsView selfStoryViewsView = storyViewer10.selfStoryViewsView;
@@ -826,7 +835,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 }
             }
             StoryViewer storyViewer4 = StoryViewer.this;
-            if (storyViewer4.inSwipeToDissmissMode || storyViewer4.keyboardVisible || storyViewer4.swipeToReplyOffset != 0.0f || ((storyViewer4.selfStoriesViewsOffset != 0.0f && storyViewer4.allowIntercept) || storyViewer4.isInTextSelectionMode)) {
+            if (storyViewer4.inSwipeToDissmissMode || storyViewer4.keyboardVisible || storyViewer4.swipeToReplyOffset != 0.0f || ((storyViewer4.selfStoriesViewsOffset != 0.0f && (storyViewer4.allowIntercept || storyViewer4.verticalScrollDetected)) || storyViewer4.isInTextSelectionMode)) {
                 StoryViewer.this.gestureDetector.onTouchEvent(motionEvent);
                 return true;
             }
@@ -1257,15 +1266,16 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
 
     public void showKeyboard() {
         PeerStoriesView currentPeerView = this.storiesViewPager.getCurrentPeerView();
-        if (currentPeerView != null) {
-            currentPeerView.showKeyboard();
+        if (currentPeerView != null && currentPeerView.showKeyboard()) {
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    StoryViewer.this.cancelSwipeToReply();
+                }
+            }, 200L);
+        } else {
+            cancelSwipeToReply();
         }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                StoryViewer.this.cancelSwipeToReply();
-            }
-        }, 200L);
     }
 
     public void cancelSwipeToViews(final boolean z) {

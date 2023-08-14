@@ -235,6 +235,15 @@ public class ItemOptions {
         return this;
     }
 
+    public ItemOptions addView(View view) {
+        if (view == null) {
+            return this;
+        }
+        view.setTag(R.id.fit_width_tag, 1);
+        this.lastLayout.addView(view, LayoutHelper.createLinear(-1, -2));
+        return this;
+    }
+
     public ItemOptions addText(CharSequence charSequence, int i) {
         TextView textView = new TextView(this.context);
         textView.setTextSize(1, i);

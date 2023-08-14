@@ -636,6 +636,10 @@ public class BottomSheet extends Dialog {
         return systemGestureInsets.bottom;
     }
 
+    public boolean isKeyboardVisible() {
+        return this.keyboardVisible;
+    }
+
     public void setCalcMandatoryInsets(boolean z) {
         this.calcMandatoryInsets = z;
         this.drawNavigationBar = z;

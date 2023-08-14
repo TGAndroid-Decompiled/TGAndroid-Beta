@@ -40,9 +40,12 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$InputStickerSet;
+import org.telegram.tgnet.TLRPC$Reaction;
 import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$StoryViews;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_stories_getStoryViewsList;
 import org.telegram.tgnet.TLRPC$TL_stories_storyViewsList;
 import org.telegram.tgnet.TLRPC$TL_storyView;
@@ -53,18 +56,22 @@ import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
+import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.FixedHeightEmptyCell;
 import org.telegram.ui.Cells.ReactedUserHolderView;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.CustomPopupMenu;
+import org.telegram.ui.Components.EmojiPacksAlert;
 import org.telegram.ui.Components.FillLastLinearLayoutManager;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.ItemOptions;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkSpanDrawable;
+import org.telegram.ui.Components.MessageContainsEmojiButton;
 import org.telegram.ui.Components.Premium.PremiumFeatureBottomSheet;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RecyclerAnimationScrollHelper;
@@ -259,6 +266,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         public boolean onItemClick(View view, int i) {
             final MessagesController messagesController;
             final TLRPC$User user;
+            final AnonymousClass4 anonymousClass4;
             if (view instanceof ReactedUserHolderView) {
                 final ReactedUserHolderView reactedUserHolderView = (ReactedUserHolderView) view;
                 StoryViewer storyViewer = this.val$storyViewer;
@@ -292,7 +300,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 }).makeMultiline(false).cutTextInFancyHalf();
                 boolean z3 = (z2 || z) ? false : true;
                 int i2 = R.drawable.msg_user_remove;
-                cutTextInFancyHalf.addIf(z3, i2, LocaleController.getString(R.string.BlockUser), true, new Runnable() {
+                final ItemOptions addIf = cutTextInFancyHalf.addIf(z3, i2, LocaleController.getString(R.string.BlockUser), true, new Runnable() {
                     @Override
                     public final void run() {
                         SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$2(messagesController, user, reactedUserHolderView, tLRPC$TL_storyView);
@@ -307,7 +315,29 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                     public final void run() {
                         SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$4(user, str2, reactedUserHolderView, tLRPC$TL_storyView);
                     }
-                }).show();
+                });
+                TLRPC$Reaction tLRPC$Reaction = tLRPC$TL_storyView.reaction;
+                if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
+                    anonymousClass4 = this;
+                    TLRPC$InputStickerSet findStickerSet = AnimatedEmojiDrawable.getDocumentFetcher(SelfStoryViewsPage.this.currentAccount).findStickerSet(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id);
+                    if (findStickerSet != null) {
+                        addIf.addGap();
+                        final ArrayList arrayList = new ArrayList();
+                        arrayList.add(findStickerSet);
+                        SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
+                        MessageContainsEmojiButton messageContainsEmojiButton = new MessageContainsEmojiButton(selfStoryViewsPage.currentAccount, selfStoryViewsPage.getContext(), SelfStoryViewsPage.this.resourcesProvider, arrayList, 3);
+                        messageContainsEmojiButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$5(arrayList, addIf, view2);
+                            }
+                        });
+                        addIf.addView(messageContainsEmojiButton);
+                    }
+                } else {
+                    anonymousClass4 = this;
+                }
+                addIf.show();
                 try {
                     try {
                         SelfStoryViewsPage.this.performHapticFeedback(0, 1);
@@ -358,6 +388,26 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
             BulletinFactory.of(selfStoryViewsPage, selfStoryViewsPage.resourcesProvider).createSimpleBulletin(R.raw.ic_ban, LocaleController.formatString(R.string.DeletedFromYourContacts, str)).show();
             reactedUserHolderView.animateAlpha(SelfStoryViewsPage.this.isStoryShownToUser(tLRPC$TL_storyView) ? 1.0f : 0.5f, true);
+        }
+
+        public void lambda$onItemClick$5(ArrayList arrayList, ItemOptions itemOptions, View view) {
+            new EmojiPacksAlert(new BaseFragment() {
+                @Override
+                public int getCurrentAccount() {
+                    return this.currentAccount;
+                }
+
+                @Override
+                public Context getContext() {
+                    return SelfStoryViewsPage.this.getContext();
+                }
+
+                @Override
+                public Theme.ResourcesProvider getResourceProvider() {
+                    return SelfStoryViewsPage.this.resourcesProvider;
+                }
+            }, SelfStoryViewsPage.this.getContext(), SelfStoryViewsPage.this.resourcesProvider, arrayList).show();
+            itemOptions.dismiss();
         }
     }
 

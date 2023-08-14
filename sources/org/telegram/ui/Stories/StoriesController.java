@@ -319,7 +319,7 @@ public class StoriesController {
         while (i < arrayList.size()) {
             TLRPC$TL_userStories tLRPC$TL_userStories = arrayList.get(i);
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$TL_userStories.user_id));
-            if (user != null && !user.contact) {
+            if (user != null && !isContactOrService(user)) {
                 arrayList.remove(i);
                 i--;
             }
@@ -761,7 +761,7 @@ public class StoriesController {
             return;
         }
         final TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$TL_updateStory.user_id));
-        if (user != null && (user.contact || user.self)) {
+        if (user != null && (isContactOrService(user) || user.self)) {
             this.storiesStorage.processUpdate(tLRPC$TL_updateStory);
         }
         AndroidUtilities.runOnUIThread(new Runnable() {
@@ -824,7 +824,7 @@ public class StoriesController {
             } else if (StoriesUtilities.isExpired(this.currentAccount, tLRPC$StoryItem)) {
                 FileLog.d("StoriesController can't add new story isExpired");
                 return;
-            } else if (tLRPC$User == null || (!tLRPC$User.self && !tLRPC$User.contact)) {
+            } else if (tLRPC$User == null || (!tLRPC$User.self && !isContactOrService(tLRPC$User))) {
                 FileLog.d("StoriesController can't add new story user is not contact");
                 return;
             } else {
@@ -854,7 +854,7 @@ public class StoriesController {
             } else if (StoriesUtilities.isExpired(this.currentAccount, tLRPC$StoryItem3)) {
                 FileLog.d("StoriesController can't add user " + tLRPC$TL_updateStory.user_id + " with new story isExpired");
                 return;
-            } else if (tLRPC$User == null || (!tLRPC$User.self && !tLRPC$User.contact)) {
+            } else if (tLRPC$User == null || (!tLRPC$User.self && !isContactOrService(tLRPC$User))) {
                 FileLog.d("StoriesController can't add user cause is not contact");
                 return;
             } else {
@@ -876,6 +876,10 @@ public class StoriesController {
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
         }
         MessagesController.getInstance(this.currentAccount).checkArchiveFolder();
+    }
+
+    private boolean isContactOrService(TLRPC$User tLRPC$User) {
+        return tLRPC$User != null && (tLRPC$User.contact || tLRPC$User.id == MessagesController.getInstance(this.currentAccount).storiesChangelogUserId);
     }
 
     private void applyToList(TLRPC$TL_userStories tLRPC$TL_userStories) {
@@ -961,7 +965,7 @@ public class StoriesController {
         TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
         TLRPC$TL_userStories tLRPC$TL_userStories = tLRPC$TL_stories_userStories.stories;
         this.allStoriesMap.put(tLRPC$TL_userStories.user_id, tLRPC$TL_userStories);
-        if (user != null && (user.contact || user.self)) {
+        if (user != null && (isContactOrService(user) || user.self)) {
             applyToList(tLRPC$TL_userStories);
             this.storiesStorage.putUserStories(tLRPC$TL_userStories);
         }
@@ -1407,7 +1411,7 @@ public class StoriesController {
     public void putStories(long j, TLRPC$TL_userStories tLRPC$TL_userStories) {
         this.allStoriesMap.put(j, tLRPC$TL_userStories);
         TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
-        if (user.contact || user.self) {
+        if (isContactOrService(user) || user.self) {
             this.storiesStorage.putUserStories(tLRPC$TL_userStories);
             applyToList(tLRPC$TL_userStories);
         }
@@ -1851,7 +1855,11 @@ public class StoriesController {
                     if (charSequenceArr[0].length() > i2) {
                         charSequenceArr[0] = charSequenceArr[0].subSequence(0, i2);
                     }
-                    tLRPC$TL_stories_editStory.entities = MediaDataController.getInstance(StoriesController.this.currentAccount).getEntities(charSequenceArr, true);
+                    if (MessagesController.getInstance(StoriesController.this.currentAccount).storyEntitiesAllowed()) {
+                        tLRPC$TL_stories_editStory.entities = MediaDataController.getInstance(StoriesController.this.currentAccount).getEntities(charSequenceArr, true);
+                    } else {
+                        tLRPC$TL_stories_editStory.entities.clear();
+                    }
                     if (charSequenceArr[0].length() > i2) {
                         charSequenceArr[0] = charSequenceArr[0].subSequence(0, i2);
                     }
@@ -1896,7 +1904,11 @@ public class StoriesController {
                     if (charSequenceArr2[0].length() > i2) {
                         charSequenceArr2[0] = charSequenceArr2[0].subSequence(0, i2);
                     }
-                    tLRPC$TL_stories_sendStory2.entities = MediaDataController.getInstance(StoriesController.this.currentAccount).getEntities(charSequenceArr2, true);
+                    if (MessagesController.getInstance(StoriesController.this.currentAccount).storyEntitiesAllowed()) {
+                        tLRPC$TL_stories_sendStory2.entities = MediaDataController.getInstance(StoriesController.this.currentAccount).getEntities(charSequenceArr2, true);
+                    } else {
+                        tLRPC$TL_stories_sendStory2.entities.clear();
+                    }
                     if (charSequenceArr2[0].length() > i2) {
                         charSequenceArr2[0] = charSequenceArr2[0].subSequence(0, i2);
                     }
