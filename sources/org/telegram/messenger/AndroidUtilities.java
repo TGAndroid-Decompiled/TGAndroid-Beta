@@ -742,6 +742,9 @@ public class AndroidUtilities {
     public static void getViewPositionInParent(View view, ViewGroup viewGroup, float[] fArr) {
         fArr[0] = 0.0f;
         fArr[1] = 0.0f;
+        if (view == null || viewGroup == null) {
+            return;
+        }
         while (view != viewGroup) {
             if (!(view.getParent() instanceof ViewPager)) {
                 fArr[0] = fArr[0] + view.getX();

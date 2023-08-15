@@ -352,7 +352,10 @@ public class ContextLinkCell extends FrameLayout implements DownloadController.F
 
     public void setScaled(boolean z) {
         this.scaled = z;
-        this.buttonBounce.setPressed(isPressed() || this.scaled);
+        ButtonBounce buttonBounce = this.buttonBounce;
+        if (buttonBounce != null) {
+            buttonBounce.setPressed(isPressed() || this.scaled);
+        }
     }
 
     public void setCanPreviewGif(boolean z) {

@@ -111,7 +111,7 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                 }
             } else if (childAt instanceof DialogCell) {
                 DialogCell dialogCell = (DialogCell) childAt;
-                if (dialogCell.getDialogId() == j || (this.isHiddenArchive && dialogCell.isDialogFolder())) {
+                if ((dialogCell.getDialogId() == j && !this.isHiddenArchive) || (this.isHiddenArchive && dialogCell.isDialogFolder())) {
                     transitionViewHolder.view = childAt;
                     transitionViewHolder.params = dialogCell.storyParams;
                     transitionViewHolder.avatarImage = dialogCell.avatarImage;

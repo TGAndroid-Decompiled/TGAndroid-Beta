@@ -111,46 +111,49 @@ public class PremiumLockIconView extends ImageView {
                 invalidate();
             }
         }
-        if (this.type == TYPE_REACTIONS) {
-            if (this.currentColor != 0) {
-                canvas.drawPath(this.path, this.paint);
-            } else {
-                PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), -AndroidUtilities.dp(24.0f), 0.0f);
-                canvas.drawPath(this.path, PremiumGradient.getInstance().getMainGradientPaint());
-            }
-            if (this.cellFlickerDrawable == null) {
-                this.cellFlickerDrawable = new CellFlickerDrawable();
-            }
-            this.cellFlickerDrawable.setParentWidth(getMeasuredWidth() / 2);
-            CellFlickerDrawable cellFlickerDrawable = this.cellFlickerDrawable;
-            cellFlickerDrawable.drawFrame = false;
-            cellFlickerDrawable.draw(canvas, this.path, this);
-            canvas.save();
-            canvas.clipPath(this.path);
-            this.starParticles.onDraw(canvas);
-            canvas.restore();
-            invalidate();
-        } else {
-            float measuredWidth = getMeasuredWidth() / 2.0f;
-            float measuredHeight = getMeasuredHeight() / 2.0f;
-            if (this.oldShaderPaint == null) {
-                this.shaderCrossfadeProgress = 1.0f;
-            }
-            float f = this.shaderCrossfadeProgress;
-            if (f != 1.0f) {
-                this.paint.setAlpha((int) (f * 255.0f));
-                canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.oldShaderPaint);
-                canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.paint);
-                float f2 = this.shaderCrossfadeProgress + 0.10666667f;
-                this.shaderCrossfadeProgress = f2;
-                if (f2 > 1.0f) {
-                    this.shaderCrossfadeProgress = 1.0f;
-                    this.oldShaderPaint = null;
+        Paint paint = this.paint;
+        if (paint != null) {
+            if (this.type == TYPE_REACTIONS) {
+                if (this.currentColor != 0) {
+                    canvas.drawPath(this.path, paint);
+                } else {
+                    PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), -AndroidUtilities.dp(24.0f), 0.0f);
+                    canvas.drawPath(this.path, PremiumGradient.getInstance().getMainGradientPaint());
                 }
+                if (this.cellFlickerDrawable == null) {
+                    this.cellFlickerDrawable = new CellFlickerDrawable();
+                }
+                this.cellFlickerDrawable.setParentWidth(getMeasuredWidth() / 2);
+                CellFlickerDrawable cellFlickerDrawable = this.cellFlickerDrawable;
+                cellFlickerDrawable.drawFrame = false;
+                cellFlickerDrawable.draw(canvas, this.path, this);
+                canvas.save();
+                canvas.clipPath(this.path);
+                this.starParticles.onDraw(canvas);
+                canvas.restore();
                 invalidate();
-                this.paint.setAlpha(255);
             } else {
-                canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.paint);
+                float measuredWidth = getMeasuredWidth() / 2.0f;
+                float measuredHeight = getMeasuredHeight() / 2.0f;
+                if (this.oldShaderPaint == null) {
+                    this.shaderCrossfadeProgress = 1.0f;
+                }
+                float f = this.shaderCrossfadeProgress;
+                if (f != 1.0f) {
+                    this.paint.setAlpha((int) (f * 255.0f));
+                    canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.oldShaderPaint);
+                    canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.paint);
+                    float f2 = this.shaderCrossfadeProgress + 0.10666667f;
+                    this.shaderCrossfadeProgress = f2;
+                    if (f2 > 1.0f) {
+                        this.shaderCrossfadeProgress = 1.0f;
+                        this.oldShaderPaint = null;
+                    }
+                    invalidate();
+                    this.paint.setAlpha(255);
+                } else {
+                    canvas.drawCircle(measuredWidth, measuredHeight, measuredWidth, this.paint);
+                }
             }
         }
         super.onDraw(canvas);

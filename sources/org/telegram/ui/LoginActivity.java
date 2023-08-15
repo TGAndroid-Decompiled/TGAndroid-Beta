@@ -3694,10 +3694,14 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             tryHideProgress(false);
             this.nextPressed = false;
             if (tLRPC$TL_error == null) {
+                final Activity parentActivity = LoginActivity.this.getParentActivity();
+                if (parentActivity == null) {
+                    return;
+                }
                 animateSuccess(new Runnable() {
                     @Override
                     public final void run() {
-                        LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$26();
+                        LoginActivity.LoginActivitySmsView.this.lambda$onNextPressed$26(parentActivity);
                     }
                 });
                 return;
@@ -3729,8 +3733,8 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public void lambda$onNextPressed$26() {
-            AlertDialog.Builder title = new AlertDialog.Builder(LoginActivity.this.getParentActivity()).setTitle(LocaleController.getString(R.string.CancelLinkSuccessTitle));
+        public void lambda$onNextPressed$26(Activity activity) {
+            AlertDialog.Builder title = new AlertDialog.Builder(activity).setTitle(LocaleController.getString(R.string.CancelLinkSuccessTitle));
             int i = R.string.CancelLinkSuccess;
             PhoneFormat phoneFormat = PhoneFormat.getInstance();
             title.setMessage(LocaleController.formatString("CancelLinkSuccess", i, phoneFormat.format("+" + this.phone))).setPositiveButton(LocaleController.getString(R.string.Close), null).setOnDismissListener(new DialogInterface.OnDismissListener() {

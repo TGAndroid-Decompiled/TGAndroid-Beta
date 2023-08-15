@@ -26,6 +26,11 @@ public class LocationView extends EntityView {
     public TLRPC$MediaArea mediaArea;
 
     @Override
+    protected float getMaxScale() {
+        return 1.5f;
+    }
+
+    @Override
     protected float getStickyPaddingLeft() {
         return this.marker.padx;
     }
@@ -150,11 +155,6 @@ public class LocationView extends EntityView {
 
     public int getType() {
         return this.currentType;
-    }
-
-    @Override
-    protected Float getMaxScale() {
-        return Float.valueOf(1.5f);
     }
 
     @Override

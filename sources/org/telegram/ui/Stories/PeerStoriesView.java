@@ -2401,7 +2401,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 hashMap.put("query_id", "" + tLRPC$BotInlineResult.query_id);
                 hashMap.put("bot", "" + contextBotId);
                 hashMap.put("bot_name", PeerStoriesView.this.mentionContainer.getAdapter().getContextBotName());
-                SendMessagesHelper.prepareSendingBotContextResult(PeerStoriesView.this.storyViewer.fragment, PeerStoriesView.this.getAccountInstance(), tLRPC$BotInlineResult, hashMap, PeerStoriesView.this.dialogId, null, null, null, z, i);
+                SendMessagesHelper.prepareSendingBotContextResult(PeerStoriesView.this.storyViewer.fragment, PeerStoriesView.this.getAccountInstance(), tLRPC$BotInlineResult, hashMap, PeerStoriesView.this.dialogId, null, null, PeerStoriesView.this.currentStory.storyItem, z, i);
                 PeerStoriesView.this.chatActivityEnterView.setFieldText("");
                 PeerStoriesView.this.afterMessageSend();
                 MediaDataController.getInstance(PeerStoriesView.this.currentAccount).increaseInlineRaiting(contextBotId);
@@ -2682,7 +2682,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
-                protected void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                     super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     BulletinFactory of = BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider);
@@ -3978,11 +3978,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     }
 
     public boolean showKeyboard() {
-        if (this.replyDisabledTextView.getVisibility() == 0) {
+        TextView textView;
+        EditTextCaption editField;
+        if (this.chatActivityEnterView == null || (((textView = this.replyDisabledTextView) != null && textView.getVisibility() == 0) || (editField = this.chatActivityEnterView.getEditField()) == null)) {
             return false;
         }
-        this.chatActivityEnterView.getEditField().requestFocus();
-        AndroidUtilities.showKeyboard(this.chatActivityEnterView.getEditField());
+        editField.requestFocus();
+        AndroidUtilities.showKeyboard(editField);
         return true;
     }
 

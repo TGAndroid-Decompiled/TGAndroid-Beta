@@ -2591,7 +2591,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.paint = new Paint();
             this.adjustPanLayoutHelper = new AdjustPanLayoutHelper(this, false) {
                 @Override
-                public void onPanTranslationUpdate(float f, float f2, boolean z) {
+                protected void onPanTranslationUpdate(float f, float f2, boolean z) {
                     PhotoViewer.this.currentPanTranslationY = f;
                     if (PhotoViewer.this.currentEditMode != 3) {
                         PhotoViewer.this.actionBar.setTranslationY(f);
@@ -2661,7 +2661,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
 
                 @Override
-                public void onTransitionStart(boolean z, int i) {
+                protected void onTransitionStart(boolean z, int i) {
                     int i2;
                     String str;
                     PhotoViewer.this.navigationBar.setVisibility(4);
@@ -2695,7 +2695,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
 
                 @Override
-                public void onTransitionEnd() {
+                protected void onTransitionEnd() {
                     super.onTransitionEnd();
                     PhotoViewer.this.navigationBar.setVisibility(PhotoViewer.this.currentEditMode != 2 ? 0 : 4);
                     if (PhotoViewer.this.captionEditText.getTag() == null) {
@@ -3294,7 +3294,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void onMeasure(int i, int i2) {
+        protected void onMeasure(int i, int i2) {
             updateTopMargin(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
             super.onMeasure(i, i2);
         }
@@ -8788,9 +8788,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
                 PhotoViewer.this.waitingForFirstTextureUpload = 0;
             }
-            if (PhotoViewer.this.firstFrameView != null) {
-                PhotoViewer.this.firstFrameView.checkFromPlayer(PhotoViewer.this.videoPlayer);
-            }
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    PhotoViewer.AnonymousClass51.this.lambda$onSurfaceTextureUpdated$5();
+                }
+            });
         }
 
         public void lambda$onSurfaceTextureUpdated$3(ValueAnimator valueAnimator) {
@@ -8807,6 +8810,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             if (PhotoViewer.this.firstFrameView != null) {
                 PhotoViewer.this.firstFrameView.invalidateOutline();
+            }
+        }
+
+        public void lambda$onSurfaceTextureUpdated$5() {
+            if (PhotoViewer.this.firstFrameView != null) {
+                PhotoViewer.this.firstFrameView.checkFromPlayer(PhotoViewer.this.videoPlayer);
             }
         }
     }

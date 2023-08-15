@@ -31,6 +31,7 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
@@ -96,6 +97,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     ViewsModel currentModel;
     ViewsModel defaultModel;
     HeaderView headerView;
+    private boolean isAttachedToWindow;
     boolean isSearchDebounce;
     public FillLastLinearLayoutManager layoutManager;
     ListAdapter listAdapter;
@@ -565,11 +567,18 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             } else {
                 viewsModel.reloadIfNeed(this.state, this.showContactsFilter, this.showReactionsSort);
             }
-            ViewsModel viewsModel3 = this.defaultModel;
-            this.currentModel = viewsModel3;
-            if (!viewsModel3.isExpiredViews || UserConfig.getInstance(this.currentAccount).isPremium()) {
-                ViewsModel viewsModel4 = this.currentModel;
-                if (viewsModel4.loading || viewsModel4.hasNext || !viewsModel4.views.isEmpty() || !TextUtils.isEmpty(this.currentModel.state.searchQuery)) {
+            ViewsModel viewsModel3 = this.currentModel;
+            if (viewsModel3 != null) {
+                viewsModel3.removeListener(this);
+            }
+            ViewsModel viewsModel4 = this.defaultModel;
+            this.currentModel = viewsModel4;
+            if (viewsModel4 != null && this.isAttachedToWindow) {
+                viewsModel4.addListener(this);
+            }
+            if (!this.currentModel.isExpiredViews || UserConfig.getInstance(this.currentAccount).isPremium()) {
+                ViewsModel viewsModel5 = this.currentModel;
+                if (viewsModel5.loading || viewsModel5.hasNext || !viewsModel5.views.isEmpty() || !TextUtils.isEmpty(this.currentModel.state.searchQuery)) {
                     TLRPC$StoryViews tLRPC$StoryViews3 = tLRPC$StoryItem.views;
                     if (tLRPC$StoryViews3 == null || tLRPC$StoryViews3.views_count == 0) {
                         this.showSearch = false;
@@ -581,8 +590,8 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                         this.TOP_PADDING = 46;
                     } else {
                         this.headerView.setVisibility(0);
-                        ViewsModel viewsModel5 = this.currentModel;
-                        if (viewsModel5.showReactionOnly) {
+                        ViewsModel viewsModel6 = this.currentModel;
+                        if (viewsModel6.showReactionOnly) {
                             TextView textView = this.titleView;
                             int i3 = tLRPC$StoryItem.views.reactions_count;
                             textView.setText(LocaleController.formatPluralString("Likes", i3, Integer.valueOf(i3)));
@@ -590,9 +599,9 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                             this.showReactionsSort = false;
                             this.showContactsFilter = false;
                         } else {
-                            if (viewsModel5.views.size() < 20 && this.currentModel.views.size() < tLRPC$StoryItem.views.views_count) {
-                                ViewsModel viewsModel6 = this.currentModel;
-                                if (!viewsModel6.loading && !viewsModel6.hasNext) {
+                            if (viewsModel6.views.size() < 20 && this.currentModel.views.size() < tLRPC$StoryItem.views.views_count) {
+                                ViewsModel viewsModel7 = this.currentModel;
+                                if (!viewsModel7.loading && !viewsModel7.hasNext) {
                                     this.showSearch = false;
                                     this.showReactionsSort = false;
                                     this.showContactsFilter = false;
@@ -656,6 +665,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
+        this.isAttachedToWindow = true;
         ViewsModel viewsModel = this.currentModel;
         if (viewsModel != null) {
             viewsModel.addListener(this);
@@ -705,6 +715,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
+        this.isAttachedToWindow = false;
         ViewsModel viewsModel = this.currentModel;
         if (viewsModel != null) {
             viewsModel.removeListener(this);
@@ -715,15 +726,6 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     }
 
     public void onDataRecieved(ViewsModel viewsModel) {
-        NotificationCenter.getInstance(this.currentAccount).doOnIdle(new Runnable() {
-            @Override
-            public final void run() {
-                SelfStoryViewsPage.this.lambda$onDataRecieved$1();
-            }
-        });
-    }
-
-    public void lambda$onDataRecieved$1() {
         int itemCount = this.listAdapter.getItemCount();
         if (TextUtils.isEmpty(this.state.searchQuery) && !this.state.contactsOnly) {
             updateViewsVisibility();
@@ -826,8 +828,12 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                     linksTextView = new ReactedUserHolderView(i2, selfStoryViewsPage.currentAccount, selfStoryViewsPage.getContext(), SelfStoryViewsPage.this.resourcesProvider) {
                         @Override
                         public void openStory(long j, Runnable runnable) {
-                            LaunchActivity.getLastFragment().getOrCreateOverlayStoryViewer().doOnAnimationReady(runnable);
-                            LaunchActivity.getLastFragment().getOrCreateOverlayStoryViewer().open(getContext(), j, StoriesListPlaceProvider.of(SelfStoryViewsPage.this.recyclerListView));
+                            BaseFragment lastFragment = LaunchActivity.getLastFragment();
+                            if (lastFragment == null || lastFragment.getOrCreateOverlayStoryViewer().isShowing) {
+                                return;
+                            }
+                            lastFragment.getOrCreateOverlayStoryViewer().doOnAnimationReady(runnable);
+                            lastFragment.getOrCreateOverlayStoryViewer().open(getContext(), j, StoriesListPlaceProvider.of(SelfStoryViewsPage.this.recyclerListView));
                         }
                     };
                     break;
@@ -1090,10 +1096,13 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 return;
             }
             for (int i3 = 0; i3 < tLRPC$StoryItem.views.recent_viewers.size(); i3++) {
-                TLRPC$TL_storyView tLRPC$TL_storyView = new TLRPC$TL_storyView();
-                tLRPC$TL_storyView.user_id = tLRPC$StoryItem.views.recent_viewers.get(i3).longValue();
-                tLRPC$TL_storyView.date = 0;
-                this.views.add(tLRPC$TL_storyView);
+                long longValue = tLRPC$StoryItem.views.recent_viewers.get(i3).longValue();
+                if (MessagesController.getInstance(i).getUser(Long.valueOf(longValue)) != null) {
+                    TLRPC$TL_storyView tLRPC$TL_storyView = new TLRPC$TL_storyView();
+                    tLRPC$TL_storyView.user_id = longValue;
+                    tLRPC$TL_storyView.date = 0;
+                    this.views.add(tLRPC$TL_storyView);
+                }
             }
         }
 
@@ -1128,6 +1137,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 tLRPC$TL_stories_getStoryViewsList.offset = "";
             }
             this.loading = true;
+            FileLog.d("SelfStoryViewsPage load next " + this.storyItem.id + " " + this.initial + " offset=" + tLRPC$TL_stories_getStoryViewsList.offset + " q" + tLRPC$TL_stories_getStoryViewsList.q + " " + tLRPC$TL_stories_getStoryViewsList.just_contacts + " " + tLRPC$TL_stories_getStoryViewsList.reactions_first);
             int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stories_getStoryViewsList, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -1149,6 +1159,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
 
         public void lambda$loadNext$0(int[] iArr, TLObject tLObject) {
             if (iArr[0] != this.reqId) {
+                FileLog.d("SelfStoryViewsPage " + this.storyItem.id + " localId != reqId");
                 return;
             }
             this.loading = false;
@@ -1172,9 +1183,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                     this.views.addAll(tLRPC$TL_stories_storyViewsList.views);
                 }
                 if (!tLRPC$TL_stories_storyViewsList.views.isEmpty()) {
-                    ArrayList<TLRPC$TL_storyView> arrayList = tLRPC$TL_stories_storyViewsList.views;
-                    arrayList.get(arrayList.size() - 1);
-                    this.hasNext = this.views.size() < tLRPC$TL_stories_storyViewsList.count;
+                    this.hasNext = true;
                 } else {
                     this.hasNext = false;
                 }
@@ -1199,6 +1208,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             } else {
                 this.hasNext = false;
             }
+            FileLog.d("SelfStoryViewsPage " + this.storyItem.id + " response  totalItems " + this.views.size() + " has next " + this.hasNext);
             for (int i4 = 0; i4 < this.listeners.size(); i4++) {
                 this.listeners.get(i4).onDataRecieved(this);
             }
@@ -1583,8 +1593,8 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         if (viewsModel2 == null) {
             return;
         }
-        viewsModel2.reloadIfNeed(this.state, this.showContactsFilter, this.showReactionsSort);
-        this.currentModel.addListener(this);
+        viewsModel2.addListener(this);
+        this.currentModel.reloadIfNeed(this.state, this.showContactsFilter, this.showReactionsSort);
         this.listAdapter.updateRows();
         this.layoutManager.scrollToPositionWithOffset(0, (int) (getTopOffset() - this.recyclerListView.getPaddingTop()));
     }

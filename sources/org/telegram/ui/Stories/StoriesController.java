@@ -315,13 +315,17 @@ public class StoriesController {
     }
 
     private void fixDeletedAndNonContactsStories(ArrayList<TLRPC$TL_userStories> arrayList) {
+        boolean z;
         int i = 0;
         while (i < arrayList.size()) {
             TLRPC$TL_userStories tLRPC$TL_userStories = arrayList.get(i);
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$TL_userStories.user_id));
-            if (user != null && !isContactOrService(user)) {
+            if (user == null || isContactOrService(user)) {
+                z = false;
+            } else {
                 arrayList.remove(i);
                 i--;
+                z = true;
             }
             int i2 = 0;
             while (i2 < tLRPC$TL_userStories.stories.size()) {
@@ -331,7 +335,7 @@ public class StoriesController {
                 }
                 i2++;
             }
-            if (tLRPC$TL_userStories.stories.isEmpty()) {
+            if (!z && tLRPC$TL_userStories.stories.isEmpty()) {
                 arrayList.remove(i);
                 i--;
             }
@@ -1124,9 +1128,10 @@ public class StoriesController {
     }
 
     public boolean markStoryAsRead(long j, TLRPC$StoryItem tLRPC$StoryItem) {
+        TLRPC$UserFull userFull;
         TLRPC$TL_userStories stories = getStories(j);
-        if (stories == null) {
-            stories = MessagesController.getInstance(this.currentAccount).getUserFull(j).stories;
+        if (stories == null && (userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j)) != null) {
+            stories = userFull.stories;
         }
         return markStoryAsRead(stories, tLRPC$StoryItem, false);
     }
@@ -3086,7 +3091,7 @@ public class StoriesController {
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 StoriesController.this.lambda$checkStoryLimit$28(tLObject, tLRPC$TL_error);
             }
-        });
+        }, 1024);
         return null;
     }
 
@@ -3118,6 +3123,8 @@ public class StoriesController {
                 } catch (Exception unused2) {
                 }
                 this.storyLimitCached = new StoryLimit(3, j);
+            } else if (tLRPC$TL_error.text.equals("STORIES_TOO_MUCH")) {
+                this.storyLimitCached = new StoryLimit(1, 0L);
             }
         }
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesLimitUpdate, new Object[0]);

@@ -293,9 +293,8 @@ public class SelfStoryViewsView extends FrameLayout {
         Utilities.clamp(clamp / 0.5f, 1.0f, 0.0f);
         PeerStoriesView currentPeerView = this.storyViewer.getCurrentPeerView();
         if (f2 == 1.0f && this.progressToOpen != 1.0f) {
-            StoriesController.StoriesList storiesList = this.storyViewer.storiesList;
-            if (storiesList != null) {
-                MessageObject messageObject = storiesList.messageObjects.get(this.selfStoriesPreviewView.getClosestPosition());
+            if (this.storyViewer.storiesList != null) {
+                MessageObject messageObject = this.storyViewer.storiesList.messageObjects.get(Utilities.clamp(this.selfStoriesPreviewView.getClosestPosition(), this.storyViewer.storiesList.messageObjects.size() - 1, 0));
                 long day = StoriesController.StoriesList.day(messageObject);
                 ImageReceiver imageReceiver = this.storyViewer.transitionViewHolder.storyImage;
                 if (imageReceiver != null) {

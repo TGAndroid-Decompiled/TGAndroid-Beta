@@ -401,6 +401,9 @@ public class FileLoader extends BaseController {
     }
 
     public void cancelFileUpload(final String str, final boolean z) {
+        if (str == null) {
+            return;
+        }
         fileLoaderQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {

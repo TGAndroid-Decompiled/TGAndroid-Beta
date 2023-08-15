@@ -1913,7 +1913,7 @@ public class Theme {
             while (i < size) {
                 ThemeAccent themeAccent = (ThemeAccent) arrayList.get(i);
                 File pathToWallpaper = themeAccent.getPathToWallpaper();
-                if (pathToWallpaper != null && pathToWallpaper.exists()) {
+                if (pathToWallpaper != null && pathToWallpaper.length() > 0) {
                     arrayList.remove(i);
                     i--;
                     size--;
@@ -7401,7 +7401,7 @@ public class Theme {
         return createBackgroundDrawable(themeInfo, overrideWallpaperInfo, sparseIntArray, pathToWallpaper, str, currentColorsNoAccent.get(key_wallpaperFileOffset, -1), (int) f, i, z, false, false, z2, null);
     }
 
-    public static org.telegram.ui.ActionBar.Theme.BackgroundDrawableSettings createBackgroundDrawable(org.telegram.ui.ActionBar.Theme.ThemeInfo r22, org.telegram.ui.ActionBar.Theme.OverrideWallpaperInfo r23, android.util.SparseIntArray r24, java.io.File r25, java.lang.String r26, int r27, int r28, int r29, boolean r30, boolean r31, boolean r32, boolean r33, org.telegram.tgnet.TLRPC$Document r34) {
+    public static org.telegram.ui.ActionBar.Theme.BackgroundDrawableSettings createBackgroundDrawable(org.telegram.ui.ActionBar.Theme.ThemeInfo r24, org.telegram.ui.ActionBar.Theme.OverrideWallpaperInfo r25, android.util.SparseIntArray r26, java.io.File r27, java.lang.String r28, int r29, int r30, int r31, boolean r32, boolean r33, boolean r34, boolean r35, org.telegram.tgnet.TLRPC$Document r36) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.createBackgroundDrawable(org.telegram.ui.ActionBar.Theme$ThemeInfo, org.telegram.ui.ActionBar.Theme$OverrideWallpaperInfo, android.util.SparseIntArray, java.io.File, java.lang.String, int, int, int, boolean, boolean, boolean, boolean, org.telegram.tgnet.TLRPC$Document):org.telegram.ui.ActionBar.Theme$BackgroundDrawableSettings");
     }
 

@@ -2584,118 +2584,122 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
     public void lambda$new$7(Theme.ResourcesProvider resourcesProvider, View view, int i) {
         BaseFragment baseFragment = this.baseFragment;
-        if (baseFragment == null || baseFragment.getParentActivity() != null) {
-            if (view instanceof AttachButton) {
-                Activity parentActivity = this.baseFragment.getParentActivity();
-                int intValue = ((Integer) view.getTag()).intValue();
-                if (intValue == 1) {
-                    if (!this.photosEnabled && !this.videosEnabled) {
-                        ChatAttachRestrictedLayout chatAttachRestrictedLayout = new ChatAttachRestrictedLayout(1, this, getContext(), resourcesProvider);
-                        this.restrictedLayout = chatAttachRestrictedLayout;
-                        showLayout(chatAttachRestrictedLayout);
-                    }
-                    showLayout(this.photoLayout);
-                } else if (intValue == 3) {
-                    int i2 = Build.VERSION.SDK_INT;
-                    if (i2 >= 33) {
-                        if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
-                            parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 4);
-                            return;
-                        }
-                    } else if (i2 >= 23 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
-                        AndroidUtilities.findActivity(getContext()).requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-                        return;
-                    }
-                    openAudioLayout(true);
-                } else if (intValue == 4) {
-                    int i3 = Build.VERSION.SDK_INT;
-                    if (i3 >= 33) {
-                        if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 || parentActivity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0) {
-                            parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}, 4);
-                            return;
-                        }
-                    } else if (i3 >= 23 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
-                        AndroidUtilities.findActivity(getContext()).requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
-                        return;
-                    }
-                    openDocumentsLayout(true);
-                } else if (intValue == 5) {
-                    if (Build.VERSION.SDK_INT >= 23 && this.plainTextEnabled && getContext().checkSelfPermission("android.permission.READ_CONTACTS") != 0) {
-                        AndroidUtilities.findActivity(getContext()).requestPermissions(new String[]{"android.permission.READ_CONTACTS"}, 5);
-                        return;
-                    }
-                    openContactsLayout();
-                } else if (intValue == 6) {
-                    if (!AndroidUtilities.isMapsInstalled(this.baseFragment)) {
-                        return;
-                    }
-                    if (!this.plainTextEnabled) {
-                        ChatAttachRestrictedLayout chatAttachRestrictedLayout2 = new ChatAttachRestrictedLayout(6, this, getContext(), resourcesProvider);
-                        this.restrictedLayout = chatAttachRestrictedLayout2;
-                        showLayout(chatAttachRestrictedLayout2);
-                    } else {
-                        if (this.locationLayout == null) {
-                            AttachAlertLayout[] attachAlertLayoutArr = this.layouts;
-                            ChatAttachAlertLocationLayout chatAttachAlertLocationLayout = new ChatAttachAlertLocationLayout(this, getContext(), resourcesProvider);
-                            this.locationLayout = chatAttachAlertLocationLayout;
-                            attachAlertLayoutArr[5] = chatAttachAlertLocationLayout;
-                            chatAttachAlertLocationLayout.setDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
-                                @Override
-                                public final void didSelectLocation(TLRPC$MessageMedia tLRPC$MessageMedia, int i4, boolean z, int i5) {
-                                    ChatAttachAlert.this.lambda$new$5(tLRPC$MessageMedia, i4, z, i5);
-                                }
-                            });
-                        }
-                        showLayout(this.locationLayout);
-                    }
-                } else if (intValue == 9) {
-                    if (!this.pollsEnabled) {
-                        ChatAttachRestrictedLayout chatAttachRestrictedLayout3 = new ChatAttachRestrictedLayout(9, this, getContext(), resourcesProvider);
-                        this.restrictedLayout = chatAttachRestrictedLayout3;
-                        showLayout(chatAttachRestrictedLayout3);
-                    } else {
-                        if (this.pollLayout == null) {
-                            AttachAlertLayout[] attachAlertLayoutArr2 = this.layouts;
-                            ChatAttachAlertPollLayout chatAttachAlertPollLayout = new ChatAttachAlertPollLayout(this, getContext(), resourcesProvider);
-                            this.pollLayout = chatAttachAlertPollLayout;
-                            attachAlertLayoutArr2[1] = chatAttachAlertPollLayout;
-                            chatAttachAlertPollLayout.setDelegate(new ChatAttachAlertPollLayout.PollCreateActivityDelegate() {
-                                @Override
-                                public final void sendPoll(TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll, HashMap hashMap, boolean z, int i4) {
-                                    ChatAttachAlert.this.lambda$new$6(tLRPC$TL_messageMediaPoll, hashMap, z, i4);
-                                }
-                            });
-                        }
-                        showLayout(this.pollLayout);
-                    }
-                } else {
-                    this.delegate.didPressedButton(((Integer) view.getTag()).intValue(), true, true, 0, false);
+        if (baseFragment == null) {
+            baseFragment = LaunchActivity.getLastFragment();
+        }
+        if (baseFragment == null || baseFragment.getParentActivity() == null) {
+            return;
+        }
+        if (view instanceof AttachButton) {
+            Activity parentActivity = baseFragment.getParentActivity();
+            int intValue = ((Integer) view.getTag()).intValue();
+            if (intValue == 1) {
+                if (!this.photosEnabled && !this.videosEnabled) {
+                    ChatAttachRestrictedLayout chatAttachRestrictedLayout = new ChatAttachRestrictedLayout(1, this, getContext(), resourcesProvider);
+                    this.restrictedLayout = chatAttachRestrictedLayout;
+                    showLayout(chatAttachRestrictedLayout);
                 }
-                int left = view.getLeft();
-                int right = view.getRight();
-                int dp = AndroidUtilities.dp(10.0f);
-                int i4 = left - dp;
-                if (i4 < 0) {
-                    this.buttonsRecyclerView.smoothScrollBy(i4, 0);
-                } else {
-                    int i5 = right + dp;
-                    if (i5 > this.buttonsRecyclerView.getMeasuredWidth()) {
-                        RecyclerListView recyclerListView = this.buttonsRecyclerView;
-                        recyclerListView.smoothScrollBy(i5 - recyclerListView.getMeasuredWidth(), 0);
+                showLayout(this.photoLayout);
+            } else if (intValue == 3) {
+                int i2 = Build.VERSION.SDK_INT;
+                if (i2 >= 33) {
+                    if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_AUDIO") != 0) {
+                        parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_AUDIO"}, 4);
+                        return;
                     }
+                } else if (i2 >= 23 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
+                    AndroidUtilities.findActivity(getContext()).requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
+                    return;
                 }
-            } else if (view instanceof AttachBotButton) {
-                AttachBotButton attachBotButton = (AttachBotButton) view;
-                if (attachBotButton.attachMenuBot != null) {
-                    showBotLayout(attachBotButton.attachMenuBot.bot_id);
+                openAudioLayout(true);
+            } else if (intValue == 4) {
+                int i3 = Build.VERSION.SDK_INT;
+                if (i3 >= 33) {
+                    if (parentActivity.checkSelfPermission("android.permission.READ_MEDIA_IMAGES") != 0 || parentActivity.checkSelfPermission("android.permission.READ_MEDIA_VIDEO") != 0) {
+                        parentActivity.requestPermissions(new String[]{"android.permission.READ_MEDIA_IMAGES", "android.permission.READ_MEDIA_VIDEO"}, 4);
+                        return;
+                    }
+                } else if (i3 >= 23 && parentActivity.checkSelfPermission("android.permission.READ_EXTERNAL_STORAGE") != 0) {
+                    AndroidUtilities.findActivity(getContext()).requestPermissions(new String[]{"android.permission.READ_EXTERNAL_STORAGE"}, 4);
+                    return;
+                }
+                openDocumentsLayout(true);
+            } else if (intValue == 5) {
+                if (Build.VERSION.SDK_INT >= 23 && this.plainTextEnabled && getContext().checkSelfPermission("android.permission.READ_CONTACTS") != 0) {
+                    AndroidUtilities.findActivity(getContext()).requestPermissions(new String[]{"android.permission.READ_CONTACTS"}, 5);
+                    return;
+                }
+                openContactsLayout();
+            } else if (intValue == 6) {
+                if (!AndroidUtilities.isMapsInstalled(this.baseFragment)) {
+                    return;
+                }
+                if (!this.plainTextEnabled) {
+                    ChatAttachRestrictedLayout chatAttachRestrictedLayout2 = new ChatAttachRestrictedLayout(6, this, getContext(), resourcesProvider);
+                    this.restrictedLayout = chatAttachRestrictedLayout2;
+                    showLayout(chatAttachRestrictedLayout2);
                 } else {
-                    this.delegate.didSelectBot(attachBotButton.currentUser);
-                    dismiss();
+                    if (this.locationLayout == null) {
+                        AttachAlertLayout[] attachAlertLayoutArr = this.layouts;
+                        ChatAttachAlertLocationLayout chatAttachAlertLocationLayout = new ChatAttachAlertLocationLayout(this, getContext(), resourcesProvider);
+                        this.locationLayout = chatAttachAlertLocationLayout;
+                        attachAlertLayoutArr[5] = chatAttachAlertLocationLayout;
+                        chatAttachAlertLocationLayout.setDelegate(new ChatAttachAlertLocationLayout.LocationActivityDelegate() {
+                            @Override
+                            public final void didSelectLocation(TLRPC$MessageMedia tLRPC$MessageMedia, int i4, boolean z, int i5) {
+                                ChatAttachAlert.this.lambda$new$5(tLRPC$MessageMedia, i4, z, i5);
+                            }
+                        });
+                    }
+                    showLayout(this.locationLayout);
+                }
+            } else if (intValue == 9) {
+                if (!this.pollsEnabled) {
+                    ChatAttachRestrictedLayout chatAttachRestrictedLayout3 = new ChatAttachRestrictedLayout(9, this, getContext(), resourcesProvider);
+                    this.restrictedLayout = chatAttachRestrictedLayout3;
+                    showLayout(chatAttachRestrictedLayout3);
+                } else {
+                    if (this.pollLayout == null) {
+                        AttachAlertLayout[] attachAlertLayoutArr2 = this.layouts;
+                        ChatAttachAlertPollLayout chatAttachAlertPollLayout = new ChatAttachAlertPollLayout(this, getContext(), resourcesProvider);
+                        this.pollLayout = chatAttachAlertPollLayout;
+                        attachAlertLayoutArr2[1] = chatAttachAlertPollLayout;
+                        chatAttachAlertPollLayout.setDelegate(new ChatAttachAlertPollLayout.PollCreateActivityDelegate() {
+                            @Override
+                            public final void sendPoll(TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll, HashMap hashMap, boolean z, int i4) {
+                                ChatAttachAlert.this.lambda$new$6(tLRPC$TL_messageMediaPoll, hashMap, z, i4);
+                            }
+                        });
+                    }
+                    showLayout(this.pollLayout);
+                }
+            } else {
+                this.delegate.didPressedButton(((Integer) view.getTag()).intValue(), true, true, 0, false);
+            }
+            int left = view.getLeft();
+            int right = view.getRight();
+            int dp = AndroidUtilities.dp(10.0f);
+            int i4 = left - dp;
+            if (i4 < 0) {
+                this.buttonsRecyclerView.smoothScrollBy(i4, 0);
+            } else {
+                int i5 = right + dp;
+                if (i5 > this.buttonsRecyclerView.getMeasuredWidth()) {
+                    RecyclerListView recyclerListView = this.buttonsRecyclerView;
+                    recyclerListView.smoothScrollBy(i5 - recyclerListView.getMeasuredWidth(), 0);
                 }
             }
-            if (view.getX() + view.getWidth() >= this.buttonsRecyclerView.getMeasuredWidth() - AndroidUtilities.dp(32.0f)) {
-                this.buttonsRecyclerView.smoothScrollBy((int) (view.getWidth() * 1.5f), 0);
+        } else if (view instanceof AttachBotButton) {
+            AttachBotButton attachBotButton = (AttachBotButton) view;
+            if (attachBotButton.attachMenuBot != null) {
+                showBotLayout(attachBotButton.attachMenuBot.bot_id);
+            } else {
+                this.delegate.didSelectBot(attachBotButton.currentUser);
+                dismiss();
             }
+        }
+        if (view.getX() + view.getWidth() >= this.buttonsRecyclerView.getMeasuredWidth() - AndroidUtilities.dp(32.0f)) {
+            this.buttonsRecyclerView.smoothScrollBy((int) (view.getWidth() * 1.5f), 0);
         }
     }
 

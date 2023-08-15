@@ -4889,6 +4889,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$onResume$46(boolean z, boolean z2, boolean z3, final Activity activity) {
+        if (getParentActivity() == null) {
+            return;
+        }
         this.afterSignup = false;
         if (z || z2 || z3) {
             this.askingForPermissions = true;

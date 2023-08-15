@@ -134,8 +134,8 @@ public class EntityView extends FrameLayout {
         return null;
     }
 
-    protected Float getMaxScale() {
-        return null;
+    protected float getMaxScale() {
+        return 100.0f;
     }
 
     protected float getStickyPaddingBottom() {
@@ -650,19 +650,15 @@ public class EntityView extends FrameLayout {
     public void scale(float f) {
         float f2 = this.scale * f;
         this.scale = f2;
-        float max = Math.max(f2, 0.1f);
-        Float maxScale = getMaxScale();
-        if (maxScale != null) {
-            max = Math.min(max, maxScale.floatValue());
-            if (getScale() < maxScale.floatValue() && max >= maxScale.floatValue()) {
-                try {
-                    performHapticFeedback(3, 1);
-                } catch (Exception unused) {
-                }
+        float min = Math.min(Math.max(f2, 0.1f), getMaxScale());
+        if (getScale() < getMaxScale() && min >= getMaxScale()) {
+            try {
+                performHapticFeedback(3, 1);
+            } catch (Exception unused) {
             }
         }
-        setScaleX(max);
-        setScaleY(max);
+        setScaleX(min);
+        setScaleY(min);
     }
 
     public void rotate(float f) {

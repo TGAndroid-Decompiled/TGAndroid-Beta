@@ -616,6 +616,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
         this.windowManager = (WindowManager) context.getSystemService("window");
         if (this.ATTACH_TO_FRAGMENT) {
+            AndroidUtilities.removeFromParent(this.windowView);
             this.windowView.setFitsSystemWindows(true);
             lastFragment.getLayoutContainer().addView(this.windowView);
             AndroidUtilities.requestAdjustResize(lastFragment.getParentActivity(), lastFragment.getClassGuid());
@@ -1466,7 +1467,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     private void lockOrientation(boolean z) {
         Activity findActivity = AndroidUtilities.findActivity(this.fragment.getContext());
         if (findActivity != null) {
-            findActivity.setRequestedOrientation(z ? 1 : -1);
+            try {
+                findActivity.setRequestedOrientation(z ? 1 : -1);
+            } catch (Exception unused) {
+            }
             if (z) {
                 findActivity.getWindow().addFlags(128);
             } else {
@@ -1945,6 +1949,17 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
+    public void lambda$startCloseAnimation$7() {
+        if (this.openCloseAnimator == null) {
+            return;
+        }
+        this.containerView.enableHwAcceleration();
+        this.openCloseAnimator.addListener(new AnonymousClass11());
+        this.openCloseAnimator.setDuration(400L);
+        this.openCloseAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.openCloseAnimator.start();
+    }
+
     public class AnonymousClass11 extends AnimatorListenerAdapter {
         AnonymousClass11() {
         }
@@ -2007,14 +2022,6 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             }
             StoryViewer.this.windowView = null;
         }
-    }
-
-    public void lambda$startCloseAnimation$7() {
-        this.containerView.enableHwAcceleration();
-        this.openCloseAnimator.addListener(new AnonymousClass11());
-        this.openCloseAnimator.setDuration(400L);
-        this.openCloseAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.openCloseAnimator.start();
     }
 
     public void release() {
@@ -2647,8 +2654,11 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         public void lambda$release$3(TLRPC$Document tLRPC$Document, Runnable runnable) {
             VideoPlayer videoPlayer = this.videoPlayer;
             if (videoPlayer != null) {
-                videoPlayer.setTextureView(null);
-                this.videoPlayer.setSurfaceView(null);
+                try {
+                    videoPlayer.setTextureView(null);
+                    this.videoPlayer.setSurfaceView(null);
+                } catch (Exception unused) {
+                }
                 this.videoPlayer.releasePlayer(false);
             }
             if (tLRPC$Document != null) {

@@ -189,6 +189,7 @@ public class ReactedUserHolderView extends FrameLayout {
         }
         this.avatarView.setImage(ImageLocation.getForUserOrChat(tLRPC$User2, 1), "50_50", drawable2, tLRPC$User2);
         if (z) {
+            this.reactView.setAnimatedEmojiDrawable(null);
             Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.media_like_active).mutate();
             this.reactView.setColorFilter(new PorterDuffColorFilter(-53704, PorterDuff.Mode.MULTIPLY));
             this.reactView.setImageDrawable(mutate);
@@ -197,6 +198,7 @@ public class ReactedUserHolderView extends FrameLayout {
         } else if (tLRPC$Reaction != null) {
             ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction);
             if (fromTLReaction.emojicon != null) {
+                this.reactView.setAnimatedEmojiDrawable(null);
                 TLRPC$TL_availableReaction tLRPC$TL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(fromTLReaction.emojicon);
                 if (tLRPC$TL_availableReaction != null) {
                     this.reactView.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", "webp", DocumentObject.getSvgThumb(tLRPC$TL_availableReaction.static_icon.thumbs, Theme.key_windowBackgroundGray, 1.0f), tLRPC$TL_availableReaction);
