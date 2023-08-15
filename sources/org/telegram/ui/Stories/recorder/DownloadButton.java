@@ -190,43 +190,45 @@ public class DownloadButton extends ImageView {
     }
 
     public void onClickInternal() {
-        if (this.preparing) {
-            this.preparing = false;
-            if (this.currentEntry.wouldBeVideo()) {
-                final File generateVideoPath = AndroidUtilities.generateVideoPath();
-                this.buildingVideo = new BuildingVideo(this.currentAccount, this.currentEntry, generateVideoPath, new Runnable() {
-                    @Override
-                    public final void run() {
-                        DownloadButton.this.lambda$onClickInternal$3(generateVideoPath);
-                    }
-                }, new Utilities.Callback() {
-                    @Override
-                    public final void run(Object obj) {
-                        DownloadButton.this.lambda$onClickInternal$4((Float) obj);
-                    }
-                }, new Runnable() {
-                    @Override
-                    public final void run() {
-                        DownloadButton.this.lambda$onClickInternal$5();
-                    }
-                });
-            } else {
-                final File generatePicturePath = AndroidUtilities.generatePicturePath(false, "png");
-                if (generatePicturePath == null) {
-                    this.toast.setDone(R.raw.error, LocaleController.getString("UnknownError"), 3500);
-                    this.downloading = false;
-                    updateImage();
-                    return;
-                }
-                Utilities.themeQueue.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        DownloadButton.this.lambda$onClickInternal$8(generatePicturePath);
-                    }
-                });
-            }
-            updateImage();
+        StoryEntry storyEntry;
+        if (!this.preparing || (storyEntry = this.currentEntry) == null) {
+            return;
         }
+        this.preparing = false;
+        if (storyEntry.wouldBeVideo()) {
+            final File generateVideoPath = AndroidUtilities.generateVideoPath();
+            this.buildingVideo = new BuildingVideo(this.currentAccount, this.currentEntry, generateVideoPath, new Runnable() {
+                @Override
+                public final void run() {
+                    DownloadButton.this.lambda$onClickInternal$3(generateVideoPath);
+                }
+            }, new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    DownloadButton.this.lambda$onClickInternal$4((Float) obj);
+                }
+            }, new Runnable() {
+                @Override
+                public final void run() {
+                    DownloadButton.this.lambda$onClickInternal$5();
+                }
+            });
+        } else {
+            final File generatePicturePath = AndroidUtilities.generatePicturePath(false, "png");
+            if (generatePicturePath == null) {
+                this.toast.setDone(R.raw.error, LocaleController.getString("UnknownError"), 3500);
+                this.downloading = false;
+                updateImage();
+                return;
+            }
+            Utilities.themeQueue.postRunnable(new Runnable() {
+                @Override
+                public final void run() {
+                    DownloadButton.this.lambda$onClickInternal$8(generatePicturePath);
+                }
+            });
+        }
+        updateImage();
     }
 
     public void lambda$onClickInternal$3(File file) {

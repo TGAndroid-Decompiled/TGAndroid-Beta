@@ -117,7 +117,7 @@ public class DownloadController extends BaseController implements NotificationCe
             int[] iArr2 = new int[5];
             this.mask = iArr2;
             this.sizes = new long[4];
-            System.arraycopy(iArr, 0, iArr2, 0, iArr2.length);
+            System.arraycopy(iArr, 0, iArr2, 0, Math.max(iArr.length, iArr2.length));
             long[] jArr = this.sizes;
             jArr[0] = j;
             jArr[1] = j2;

@@ -63,6 +63,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$ChannelParticipant;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
+import org.telegram.tgnet.TLRPC$ChatParticipant;
 import org.telegram.tgnet.TLRPC$ChatParticipants;
 import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$InputPrivacyRule;
@@ -381,6 +382,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
         public void lambda$new$6(View view, int i, float f, float f2) {
             TLRPC$ChatParticipants tLRPC$ChatParticipants;
+            ArrayList<TLRPC$ChatParticipant> arrayList;
             if (i < 0 || i >= this.items.size()) {
                 return;
             }
@@ -435,7 +437,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                             } else if (!this.selectedUsersByGroup.containsKey(Long.valueOf(j))) {
                                 final TLRPC$Chat chat = MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).getChat(Long.valueOf(j));
                                 TLRPC$ChatFull chatFull = MessagesController.getInstance(((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount).getChatFull(j);
-                                if (chatFull != null && (tLRPC$ChatParticipants = chatFull.participants) != null && !tLRPC$ChatParticipants.participants.isEmpty()) {
+                                if (chatFull != null && (tLRPC$ChatParticipants = chatFull.participants) != null && (arrayList = tLRPC$ChatParticipants.participants) != null && !arrayList.isEmpty() && chatFull.participants.participants.size() >= chatFull.participants_count - 1) {
                                     selectChat(j, chatFull.participants);
                                 } else {
                                     AlertDialog alertDialog = this.progressDialog;
@@ -461,9 +463,9 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                                     updateItems(false);
                                 }
                             } else {
-                                ArrayList<Long> arrayList = this.selectedUsersByGroup.get(Long.valueOf(j));
-                                if (arrayList != null) {
-                                    Iterator<Long> it = arrayList.iterator();
+                                ArrayList<Long> arrayList2 = this.selectedUsersByGroup.get(Long.valueOf(j));
+                                if (arrayList2 != null) {
+                                    Iterator<Long> it = arrayList2.iterator();
                                     while (it.hasNext()) {
                                         this.changelog.put(it.next().longValue(), Boolean.FALSE);
                                     }
@@ -539,9 +541,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         }
 
         public void lambda$new$5(TLRPC$Chat tLRPC$Chat, MessagesStorage messagesStorage, final long j) {
+            TLRPC$ChatParticipants tLRPC$ChatParticipants;
+            ArrayList<TLRPC$ChatParticipant> arrayList;
             final boolean isChannel = ChatObject.isChannel(tLRPC$Chat);
             final TLRPC$ChatFull loadChatInfoInQueue = messagesStorage.loadChatInfoInQueue(j, isChannel, true, true, 0);
-            if (loadChatInfoInQueue == null || loadChatInfoInQueue.participants == null) {
+            if (loadChatInfoInQueue == null || (tLRPC$ChatParticipants = loadChatInfoInQueue.participants) == null || ((arrayList = tLRPC$ChatParticipants.participants) != null && arrayList.size() < loadChatInfoInQueue.participants_count - 1)) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -1419,7 +1423,15 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     ItemInner itemInner2 = this.items.get(childAdapterPosition);
                     UserCell userCell = (UserCell) childAt;
                     userCell.setChecked(itemInner2.checked || itemInner2.halfChecked, z);
-                    userCell.setCheckboxAlpha((!itemInner2.halfChecked || itemInner2.checked) ? 1.0f : 0.5f, z);
+                    TLRPC$Chat tLRPC$Chat2 = itemInner2.chat;
+                    if (tLRPC$Chat2 != null) {
+                        userCell.setCheckboxAlpha(StoryPrivacyBottomSheet.this.getParticipantsCount(tLRPC$Chat2) > 200 ? 0.3f : 1.0f, z);
+                    } else {
+                        if (itemInner2.halfChecked && !itemInner2.checked) {
+                            r6 = 0.5f;
+                        }
+                        userCell.setCheckboxAlpha(r6, z);
+                    }
                 }
             }
             updateSectionCell(z);
@@ -1773,6 +1785,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 StoryPrivacyBottomSheet.this.lambda$new$1(messagesStorage);
             }
         });
+        MessagesController.getInstance(this.currentAccount).getStoriesController().loadBlocklist(false);
     }
 
     public void lambda$new$1(MessagesStorage messagesStorage) {
@@ -2410,7 +2423,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     hashMap.put(Long.valueOf(user2.id), Boolean.TRUE);
                     arrayList.add(user2);
                 }
-            } else if (z2 && DialogObject.isChatDialog(tLRPC$Dialog.id) && (chat = messagesController.getChat(Long.valueOf(-tLRPC$Dialog.id))) != null && !ChatObject.isForum(chat) && !ChatObject.isChannelAndNotMegaGroup(chat)) {
+            } else if (z2 && DialogObject.isChatDialog(tLRPC$Dialog.id) && (chat = messagesController.getChat(Long.valueOf(-tLRPC$Dialog.id))) != null && !ChatObject.isChannelAndNotMegaGroup(chat)) {
                 hashMap.put(Long.valueOf(-chat.id), Boolean.TRUE);
                 arrayList.add(chat);
             }
@@ -2484,7 +2497,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             avatarDrawable.setRoundRadius(AndroidUtilities.dp(40.0f));
             BackupImageView backupImageView = new BackupImageView(context);
             this.imageView = backupImageView;
-            backupImageView.setRoundRadius(AndroidUtilities.dp(40.0f));
+            backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
             addView(backupImageView, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 5 : 3) | 16, 53.0f, 0.0f, 53.0f, 0.0f));
             SimpleTextView simpleTextView = new SimpleTextView(context);
             this.titleTextView = simpleTextView;
@@ -2556,6 +2569,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
         public void setUser(TLRPC$User tLRPC$User) {
             this.avatarDrawable.setInfo(tLRPC$User);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
             this.imageView.setForUserOrChat(tLRPC$User, this.avatarDrawable);
             this.titleTextView.setText(Emoji.replaceEmoji(UserObject.getUserName(tLRPC$User), this.titleTextView.getPaint().getFontMetricsInt(), false));
             boolean[] zArr = this.isOnline;
@@ -2570,6 +2584,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         public void setChat(TLRPC$Chat tLRPC$Chat, int i) {
             String lowerCase;
             this.avatarDrawable.setInfo(tLRPC$Chat);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(ChatObject.isForum(tLRPC$Chat) ? 12.0f : 20.0f));
             this.imageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
             this.titleTextView.setText(Emoji.replaceEmoji(tLRPC$Chat.title, this.titleTextView.getPaint().getFontMetricsInt(), false));
             this.isOnline[0] = false;
@@ -2661,6 +2676,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.checkBox.setVisibility(8);
             this.radioButton.setVisibility(0);
             this.imageView.setImageDrawable(this.avatarDrawable);
+            this.imageView.setRoundRadius(AndroidUtilities.dp(20.0f));
         }
 
         private void setSubtitle(CharSequence charSequence) {

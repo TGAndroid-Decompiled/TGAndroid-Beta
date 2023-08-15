@@ -202,8 +202,17 @@ public class FileLoadOperation {
         int i = this.preloadPrefixSize;
         if (i > 0 && this.downloadedBytes > i) {
             long j = Long.MAX_VALUE;
-            for (int i2 = 0; i2 < this.notLoadedBytesRanges.size(); i2++) {
-                j = Math.min(j, this.notLoadedBytesRanges.get(i2).start);
+            ArrayList<Range> arrayList = this.notLoadedBytesRanges;
+            if (arrayList == null) {
+                return true;
+            }
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                try {
+                    j = Math.min(j, arrayList.get(i2).start);
+                } catch (Throwable th) {
+                    FileLog.e(th);
+                    return true;
+                }
             }
             if (j > this.preloadPrefixSize) {
                 return true;

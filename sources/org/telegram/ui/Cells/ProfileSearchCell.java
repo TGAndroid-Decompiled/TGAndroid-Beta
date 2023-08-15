@@ -255,6 +255,7 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
                     }
                     updateStatus(this.drawCheck, this.user, false);
                 } else if (this.contact != null) {
+                    this.dialog_id = 0L;
                     if (!LocaleController.isRTL) {
                         this.nameLeft = AndroidUtilities.dp(AndroidUtilities.leftBaseline);
                     } else {
@@ -732,7 +733,13 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             this.actionLayout.draw(canvas);
             canvas.restore();
         }
-        StoriesUtilities.drawAvatarWithStory(this.dialog_id, canvas, this.avatarImage, this.avatarStoryParams);
+        TLRPC$User tLRPC$User = this.user;
+        if (tLRPC$User != null) {
+            StoriesUtilities.drawAvatarWithStory(tLRPC$User.id, canvas, this.avatarImage, this.avatarStoryParams);
+            return;
+        }
+        this.avatarImage.setImageCoords(this.avatarStoryParams.originalAvatarRect);
+        this.avatarImage.draw(canvas);
     }
 
     @Override

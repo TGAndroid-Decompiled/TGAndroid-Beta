@@ -1740,6 +1740,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.chatlistFoldersUpdates = new SparseArray<>();
         this.largeQueueMaxActiveOperations = 2;
         this.smallQueueMaxActiveOperations = 5;
+        this.storiesChangelogUserId = 777000L;
         this.loadingPeerSettings = new LongSparseArray<>();
         this.createdDialogIds = new ArrayList<>();
         this.createdScheduledDialogIds = new ArrayList<>();

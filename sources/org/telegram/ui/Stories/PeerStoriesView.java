@@ -2682,7 +2682,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
-                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                protected void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                     super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     BulletinFactory of = BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider);
@@ -5295,7 +5295,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
         @Override
         public boolean needEnterText() {
-            PeerStoriesView.this.delegate.requestAdjust(true);
+            PeerStoriesView.this.delegate.requestAdjust(false);
             return false;
         }
     }

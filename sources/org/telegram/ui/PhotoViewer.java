@@ -2591,7 +2591,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.paint = new Paint();
             this.adjustPanLayoutHelper = new AdjustPanLayoutHelper(this, false) {
                 @Override
-                protected void onPanTranslationUpdate(float f, float f2, boolean z) {
+                public void onPanTranslationUpdate(float f, float f2, boolean z) {
                     PhotoViewer.this.currentPanTranslationY = f;
                     if (PhotoViewer.this.currentEditMode != 3) {
                         PhotoViewer.this.actionBar.setTranslationY(f);
@@ -2661,7 +2661,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
 
                 @Override
-                protected void onTransitionStart(boolean z, int i) {
+                public void onTransitionStart(boolean z, int i) {
                     int i2;
                     String str;
                     PhotoViewer.this.navigationBar.setVisibility(4);
@@ -2695,7 +2695,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
 
                 @Override
-                protected void onTransitionEnd() {
+                public void onTransitionEnd() {
                     super.onTransitionEnd();
                     PhotoViewer.this.navigationBar.setVisibility(PhotoViewer.this.currentEditMode != 2 ? 0 : 4);
                     if (PhotoViewer.this.captionEditText.getTag() == null) {
@@ -3294,7 +3294,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        protected void onMeasure(int i, int i2) {
+        public void onMeasure(int i, int i2) {
             updateTopMargin(View.MeasureSpec.getSize(i), View.MeasureSpec.getSize(i2));
             super.onMeasure(i, i2);
         }

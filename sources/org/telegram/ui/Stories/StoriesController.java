@@ -543,36 +543,45 @@ public class StoriesController {
                 this.hiddenListStories.clear();
             }
         }
-        FileLog.d("StoriesController processAllStoriesResponse " + tLRPC$TL_stories_allStories.user_stories.size() + " " + z2 + " " + z);
-        MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_stories_allStories.users, z2);
-        for (int i = 0; i < tLRPC$TL_stories_allStories.user_stories.size(); i++) {
-            TLRPC$TL_userStories tLRPC$TL_userStories = tLRPC$TL_stories_allStories.user_stories.get(i);
-            int i2 = 0;
-            while (i2 < tLRPC$TL_userStories.stories.size()) {
-                if (tLRPC$TL_userStories.stories.get(i2) instanceof TLRPC$TL_storyItemDeleted) {
-                    NotificationsController.getInstance(this.currentAccount).processDeleteStory(tLRPC$TL_userStories.user_id, tLRPC$TL_userStories.stories.get(i2).id);
-                    tLRPC$TL_userStories.stories.remove(i2);
-                    i2--;
+        if (BuildVars.LOGS_ENABLED) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < tLRPC$TL_stories_allStories.user_stories.size(); i++) {
+                if (sb.length() != 0) {
+                    sb.append(", ");
                 }
-                i2++;
+                sb.append(tLRPC$TL_stories_allStories.user_stories.get(i).user_id);
+            }
+            FileLog.d("StoriesController cache=" + z2 + " hidden=" + z + " processAllStoriesResponse {" + ((Object) sb) + "}");
+        }
+        MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_stories_allStories.users, z2);
+        for (int i2 = 0; i2 < tLRPC$TL_stories_allStories.user_stories.size(); i2++) {
+            TLRPC$TL_userStories tLRPC$TL_userStories = tLRPC$TL_stories_allStories.user_stories.get(i2);
+            int i3 = 0;
+            while (i3 < tLRPC$TL_userStories.stories.size()) {
+                if (tLRPC$TL_userStories.stories.get(i3) instanceof TLRPC$TL_storyItemDeleted) {
+                    NotificationsController.getInstance(this.currentAccount).processDeleteStory(tLRPC$TL_userStories.user_id, tLRPC$TL_userStories.stories.get(i3).id);
+                    tLRPC$TL_userStories.stories.remove(i3);
+                    i3--;
+                }
+                i3++;
             }
             if (!tLRPC$TL_userStories.stories.isEmpty()) {
                 this.allStoriesMap.put(tLRPC$TL_userStories.user_id, tLRPC$TL_userStories);
-                int i3 = 0;
-                while (i3 < 2) {
-                    ArrayList<TLRPC$TL_userStories> arrayList = i3 == 0 ? this.hiddenListStories : this.dialogListStories;
-                    int i4 = 0;
+                int i4 = 0;
+                while (i4 < 2) {
+                    ArrayList<TLRPC$TL_userStories> arrayList = i4 == 0 ? this.hiddenListStories : this.dialogListStories;
+                    int i5 = 0;
                     while (true) {
-                        if (i4 >= arrayList.size()) {
+                        if (i5 >= arrayList.size()) {
                             break;
-                        } else if (arrayList.get(i4).user_id == tLRPC$TL_userStories.user_id) {
-                            arrayList.remove(i4);
+                        } else if (arrayList.get(i5).user_id == tLRPC$TL_userStories.user_id) {
+                            arrayList.remove(i5);
                             break;
                         } else {
-                            i4++;
+                            i5++;
                         }
                     }
-                    i3++;
+                    i4++;
                 }
                 TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$TL_userStories.user_id));
                 if (user != null) {

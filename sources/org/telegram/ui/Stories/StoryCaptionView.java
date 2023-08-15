@@ -433,7 +433,7 @@ public class StoryCaptionView extends NestedScrollView {
 
     public void lambda$expand$1(float f, float f2, float f3, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        setScrollY((int) AndroidUtilities.lerp(f, this.captionContainer.getBottom() - getMeasuredHeight(), floatValue));
+        setScrollY((int) AndroidUtilities.lerp(f, Math.min((getMeasuredHeight() - this.blackoutBottomOffset) - AndroidUtilities.dp(64.0f), this.captionContainer.getBottom() - getMeasuredHeight()), floatValue));
         this.captionTextview.progressToExpand = AndroidUtilities.lerp(f2, f3, floatValue);
         this.captionTextview.invalidate();
     }

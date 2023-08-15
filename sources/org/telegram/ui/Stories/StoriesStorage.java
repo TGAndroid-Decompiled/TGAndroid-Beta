@@ -222,10 +222,10 @@ public class StoriesStorage {
         }
         if (!z) {
             try {
-                SQLiteCursor queryFinalized = database.queryFinalized("SELECT dialog_id FROM stories", new Object[0]);
+                SQLiteCursor queryFinalized = database.queryFinalized("SELECT DISTINCT dialog_id FROM stories", new Object[0]);
                 ArrayList arrayList2 = new ArrayList();
                 while (queryFinalized.next()) {
-                    long longValue = queryFinalized.longValue(1);
+                    long longValue = queryFinalized.longValue(0);
                     TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(longValue));
                     if (user == null) {
                         user = MessagesStorage.getInstance(this.currentAccount).getUser(longValue);

@@ -4683,7 +4683,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            public void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+            protected void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -5869,7 +5869,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        public void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+        protected void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -8086,6 +8086,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         this.avatarContainer.setVisibility(0);
         this.nameTextView[1].setVisibility(0);
         this.onlineTextView[1].setVisibility(0);
+        this.onlineTextView[3].setVisibility(0);
         this.actionBar.onSearchFieldVisibilityChanged(this.searchTransitionProgress > 0.5f);
         int i = this.searchTransitionProgress > 0.5f ? 0 : 8;
         ActionBarMenuItem actionBarMenuItem = this.otherItem;
@@ -8168,6 +8169,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         this.nameTextView[1].setAlpha(f2);
         this.onlineTextView[1].setAlpha(f2);
+        this.onlineTextView[3].setAlpha(f2);
         this.searchItem.getSearchField().setAlpha(f3);
         if (z && this.searchTransitionProgress < 0.7f) {
             this.searchItem.requestFocusOnSearchView();
@@ -8213,6 +8215,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         this.nameTextView[1].setVisibility(i2);
         this.onlineTextView[1].setVisibility(i2);
+        this.onlineTextView[3].setVisibility(i2);
         ActionBarMenuItem actionBarMenuItem = this.otherItem;
         if (actionBarMenuItem != null) {
             actionBarMenuItem.setAlpha(1.0f);
