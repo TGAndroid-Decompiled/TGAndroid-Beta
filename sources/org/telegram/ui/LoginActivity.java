@@ -1414,6 +1414,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         ContactsController.getInstance(this.currentAccount).checkAppAccount();
         MessagesController.getInstance(this.currentAccount).checkPromoInfo(true);
         ConnectionsManager.getInstance(this.currentAccount).updateDcSettings();
+        MessagesController.getInstance(this.currentAccount).loadAppConfig();
         if (tLRPC$TL_auth_authorization.future_auth_token != null) {
             AuthTokensHelper.saveLogInToken(tLRPC$TL_auth_authorization);
         } else {
@@ -3415,6 +3416,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 return;
             }
             this.codeTime = 15000;
+            int i = this.time;
+            if (i > 15000) {
+                this.codeTime = i;
+            }
             this.codeTimer = new Timer();
             this.lastCodeTime = System.currentTimeMillis();
             this.codeTimer.schedule(new AnonymousClass7(), 0L, 1000L);
@@ -3506,8 +3511,12 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     int i2 = (LoginActivitySmsView.this.time / 1000) - (i * 60);
                     if (LoginActivitySmsView.this.nextType == 4 || LoginActivitySmsView.this.nextType == 3 || LoginActivitySmsView.this.nextType == 11) {
                         LoginActivitySmsView.this.timeText.setText(LocaleController.formatString("CallAvailableIn", R.string.CallAvailableIn, Integer.valueOf(i), Integer.valueOf(i2)));
-                    } else if (LoginActivitySmsView.this.nextType == 2) {
-                        LoginActivitySmsView.this.timeText.setText(LocaleController.formatString("SmsAvailableIn", R.string.SmsAvailableIn, Integer.valueOf(i), Integer.valueOf(i2)));
+                    } else if (LoginActivitySmsView.this.currentType != 2 || LoginActivitySmsView.this.nextType != 2) {
+                        if (LoginActivitySmsView.this.nextType == 2) {
+                            LoginActivitySmsView.this.timeText.setText(LocaleController.formatString("SmsAvailableIn", R.string.SmsAvailableIn, Integer.valueOf(i), Integer.valueOf(i2)));
+                        }
+                    } else {
+                        LoginActivitySmsView.this.timeText.setText(LocaleController.formatString("ResendSmsAvailableIn", R.string.ResendSmsAvailableIn, Integer.valueOf(i), Integer.valueOf(i2)));
                     }
                     ProgressView unused = LoginActivitySmsView.this.progressView;
                     return;
@@ -6177,7 +6186,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 int dp = AndroidUtilities.dp(16.0f);
                 this.codeField[i3].setPadding(dp, dp, dp, dp);
                 if (i == 0) {
-                    this.codeField[i3].setInputType(129);
+                    this.codeField[i3].setInputType(MessagesStorage.LAST_DB_VERSION);
                     this.codeField[i3].setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
                 this.codeField[i3].setTypeface(Typeface.DEFAULT);

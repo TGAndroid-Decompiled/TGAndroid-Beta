@@ -1507,12 +1507,10 @@ public class VideoPlayer implements Player.Listener, VideoListener, AnalyticsLis
             ByteBuffer byteBuffer = ((MediaCodecRenderer) this.player.getRenderer(0)).codecOutputMediaFormat.getByteBuffer("hdr-static-info");
             byteBuffer.order(ByteOrder.LITTLE_ENDIAN);
             if (byteBuffer.get() == 0) {
-                hDRInfo.maxlum = byteBuffer.getShort(17);
-                hDRInfo.minlum = byteBuffer.getShort(19) * 1.0E-4f;
+                byteBuffer.getShort(17);
+                byteBuffer.getShort(19);
             }
         } catch (Exception unused) {
-            hDRInfo.minlum = 0.0f;
-            hDRInfo.maxlum = 0.0f;
         }
         return hDRInfo;
     }

@@ -411,8 +411,8 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         int action = motionEvent.getAction();
         if (this.pinchToZoomHelper != null && getCurrentItemView() != null) {
             if (action != 0 && this.isDownReleased && !this.pinchToZoomHelper.isInOverlayMode()) {
-                this.pinchToZoomHelper.checkPinchToZoom(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0), this, getCurrentItemView().getImageReceiver(), null);
-            } else if (this.pinchToZoomHelper.checkPinchToZoom(motionEvent, this, getCurrentItemView().getImageReceiver(), null)) {
+                this.pinchToZoomHelper.checkPinchToZoom(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0), this, getCurrentItemView().getImageReceiver(), null, null);
+            } else if (this.pinchToZoomHelper.checkPinchToZoom(motionEvent, this, getCurrentItemView().getImageReceiver(), null, null)) {
                 if (!this.isDownReleased) {
                     this.isDownReleased = true;
                     this.callback.onRelease();

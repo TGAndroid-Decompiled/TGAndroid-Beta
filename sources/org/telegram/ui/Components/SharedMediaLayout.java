@@ -1835,8 +1835,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                     actionBarPopupWindowLayout.addView(actionBarMenuSubItem3);
                     if (c != 0) {
                         final StoriesAdapter storiesAdapter = closestTab == 8 ? SharedMediaLayout.this.storiesAdapter : SharedMediaLayout.this.archivedStoriesAdapter;
-                        actionBarMenuSubItem2.setChecked(storiesAdapter.storiesList.showPhotos());
-                        actionBarMenuSubItem3.setChecked(storiesAdapter.storiesList.showVideos());
+                        StoriesController.StoriesList storiesList = storiesAdapter.storiesList;
+                        if (storiesList != null) {
+                            actionBarMenuSubItem2.setChecked(storiesList.showPhotos());
+                            actionBarMenuSubItem3.setChecked(storiesAdapter.storiesList.showVideos());
+                        }
                         actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
@@ -1924,7 +1927,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 return;
             }
             actionBarMenuSubItem2.getCheckView().setChecked(!actionBarMenuSubItem2.getCheckView().isChecked(), true);
-            storiesAdapter.storiesList.updateFilters(actionBarMenuSubItem2.getCheckView().isChecked(), actionBarMenuSubItem.getCheckView().isChecked());
+            StoriesController.StoriesList storiesList = storiesAdapter.storiesList;
+            if (storiesList == null) {
+                return;
+            }
+            storiesList.updateFilters(actionBarMenuSubItem2.getCheckView().isChecked(), actionBarMenuSubItem.getCheckView().isChecked());
         }
 
         public void lambda$onClick$3(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, StoriesAdapter storiesAdapter, View view) {
@@ -1937,7 +1944,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                 return;
             }
             actionBarMenuSubItem2.getCheckView().setChecked(!actionBarMenuSubItem2.getCheckView().isChecked(), true);
-            storiesAdapter.storiesList.updateFilters(actionBarMenuSubItem.getCheckView().isChecked(), actionBarMenuSubItem2.getCheckView().isChecked());
+            StoriesController.StoriesList storiesList = storiesAdapter.storiesList;
+            if (storiesList == null) {
+                return;
+            }
+            storiesList.updateFilters(actionBarMenuSubItem.getCheckView().isChecked(), actionBarMenuSubItem2.getCheckView().isChecked());
         }
     }
 
@@ -2097,14 +2108,17 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     }
 
     public void setStoriesFilter(boolean z, boolean z2) {
+        StoriesController.StoriesList storiesList;
+        StoriesController.StoriesList storiesList2;
         StoriesAdapter storiesAdapter = this.storiesAdapter;
-        if (storiesAdapter != null) {
-            storiesAdapter.storiesList.updateFilters(z, z2);
+        if (storiesAdapter != null && (storiesList2 = storiesAdapter.storiesList) != null) {
+            storiesList2.updateFilters(z, z2);
         }
         StoriesAdapter storiesAdapter2 = this.archivedStoriesAdapter;
-        if (storiesAdapter2 != null) {
-            storiesAdapter2.storiesList.updateFilters(z, z2);
+        if (storiesAdapter2 == null || (storiesList = storiesAdapter2.storiesList) == null) {
+            return;
         }
+        storiesList.updateFilters(z, z2);
     }
 
     public void setForwardRestrictedHint(HintView hintView) {
@@ -4295,6 +4309,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             }
         } else if (i3 == 8 || i3 == 9) {
             final StoriesController.StoriesList storiesList = (i3 == 8 ? this.storiesAdapter : this.archivedStoriesAdapter).storiesList;
+            if (storiesList == null) {
+                return;
+            }
             this.profileActivity.getOrCreateStoryViewer().open(getContext(), messageObject.getId(), storiesList, StoriesListPlaceProvider.of(this.mediaPages[i2].listView).with(new StoriesListPlaceProvider.LoadNextInterface() {
                 @Override
                 public final void loadNext(boolean z) {
@@ -5640,11 +5657,16 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     }
 
     public int getStoriesCount(int i) {
-        if (i == 8) {
-            return this.storiesAdapter.storiesList.getCount();
+        StoriesController.StoriesList storiesList;
+        if (i != 8) {
+            if (i == 9) {
+                storiesList = this.archivedStoriesAdapter.storiesList;
+            }
+            return 0;
         }
-        if (i == 9) {
-            return this.archivedStoriesAdapter.storiesList.getCount();
+        storiesList = this.storiesAdapter.storiesList;
+        if (storiesList != null) {
+            return storiesList.getCount();
         }
         return 0;
     }
@@ -5652,7 +5674,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     public class StoriesAdapter extends SharedPhotoVideoAdapter {
         private int id;
         private final boolean isArchive;
-        public StoriesController.StoriesList storiesList;
+        public final StoriesController.StoriesList storiesList;
         private StoriesAdapter supportingAdapter;
 
         @Override
@@ -5675,7 +5697,9 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             this.isArchive = z;
             StoriesController.StoriesList storiesList = SharedMediaLayout.this.profileActivity.getMessagesController().getStoriesController().getStoriesList(SharedMediaLayout.this.dialog_id, z ? 1 : 0);
             this.storiesList = storiesList;
-            this.id = storiesList.link();
+            if (storiesList != null) {
+                this.id = storiesList.link();
+            }
             checkColumns();
         }
 
@@ -5687,7 +5711,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
 
         private void checkColumns() {
-            if (this.isArchive) {
+            if (this.storiesList == null || this.isArchive) {
                 return;
             }
             if ((!SharedMediaLayout.this.storiesColumnsCountSet || (SharedMediaLayout.this.allowStoriesSingleColumn && this.storiesList.getCount() > 1)) && this.storiesList.getCount() > 0 && !SharedMediaLayout.this.isStoriesView()) {
@@ -5728,7 +5752,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
         @Override
         public int getItemCount() {
-            if (this.storiesList.isOnlyCache() && SharedMediaLayout.this.hasInternet()) {
+            StoriesController.StoriesList storiesList = this.storiesList;
+            if (storiesList == null) {
+                return 0;
+            }
+            if (storiesList.isOnlyCache() && SharedMediaLayout.this.hasInternet()) {
                 return 0;
             }
             return this.storiesList.getCount();
@@ -5756,12 +5784,13 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
-            if (viewHolder.getItemViewType() == 0) {
+            if (this.storiesList != null && viewHolder.getItemViewType() == 0) {
                 SharedPhotoVideoCell2 sharedPhotoVideoCell2 = (SharedPhotoVideoCell2) viewHolder.itemView;
                 sharedPhotoVideoCell2.isStory = true;
                 int topOffset = i - getTopOffset();
                 if (topOffset < 0 || topOffset >= this.storiesList.messageObjects.size()) {
                     sharedPhotoVideoCell2.setMessageObject(null, columnsCount());
+                    sharedPhotoVideoCell2.isStory = true;
                     return;
                 }
                 MessageObject messageObject = this.storiesList.messageObjects.get(topOffset);
@@ -5776,16 +5805,19 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         }
 
         public void load(boolean z) {
+            if (this.storiesList == null) {
+                return;
+            }
             int columnsCount = columnsCount();
             this.storiesList.load(z, Math.min(100, Math.max(1, columnsCount / 2) * columnsCount * columnsCount));
         }
 
         @Override
         public String getLetter(int i) {
+            int topOffset;
             MessageObject messageObject;
             TLRPC$StoryItem tLRPC$StoryItem;
-            int topOffset = i - getTopOffset();
-            if (topOffset < 0 || topOffset >= this.storiesList.messageObjects.size() || (messageObject = this.storiesList.messageObjects.get(topOffset)) == null || (tLRPC$StoryItem = messageObject.storyItem) == null) {
+            if (this.storiesList == null || (topOffset = i - getTopOffset()) < 0 || topOffset >= this.storiesList.messageObjects.size() || (messageObject = this.storiesList.messageObjects.get(topOffset)) == null || (tLRPC$StoryItem = messageObject.storyItem) == null) {
                 return null;
             }
             return LocaleController.formatYearMont(tLRPC$StoryItem.date, true);

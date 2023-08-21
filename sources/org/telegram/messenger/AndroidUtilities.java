@@ -63,6 +63,7 @@ import android.util.StateSet;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.PixelCopy;
+import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
@@ -293,7 +294,7 @@ public class AndroidUtilities {
         return c == '-' || c == '~';
     }
 
-    public static String lambda$formatSpannableSimple$10(Integer num) {
+    public static String lambda$formatSpannableSimple$11(Integer num) {
         return "%s";
     }
 
@@ -337,9 +338,9 @@ public class AndroidUtilities {
         sUrlMatchFilter = new Linkify.MatchFilter() {
             @Override
             public final boolean acceptMatch(CharSequence charSequence, int i, int i2) {
-                boolean lambda$static$4;
-                lambda$static$4 = AndroidUtilities.lambda$static$4(charSequence, i, i2);
-                return lambda$static$4;
+                boolean lambda$static$5;
+                lambda$static$5 = AndroidUtilities.lambda$static$5(charSequence, i, i2);
+                return lambda$static$5;
             }
         };
         hasCallPermissions = Build.VERSION.SDK_INT >= 23;
@@ -780,6 +781,24 @@ public class AndroidUtilities {
         }
     }
 
+    public static void getBitmapFromSurface(Surface surface, Bitmap bitmap) {
+        if (surface == null || !surface.isValid()) {
+            return;
+        }
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        PixelCopy.request(surface, bitmap, new PixelCopy.OnPixelCopyFinishedListener() {
+            @Override
+            public final void onPixelCopyFinished(int i) {
+                countDownLatch.countDown();
+            }
+        }, Utilities.searchQueue.getHandler());
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static float[] getCoordinateInParent(ViewGroup viewGroup, View view) {
         float f;
         float f2 = 0.0f;
@@ -859,7 +878,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static boolean lambda$static$4(CharSequence charSequence, int i, int i2) {
+    public static boolean lambda$static$5(CharSequence charSequence, int i, int i2) {
         return i == 0 || charSequence.charAt(i - 1) != '@';
     }
 
@@ -919,9 +938,9 @@ public class AndroidUtilities {
         Collections.sort(arrayList, new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$pruneOverlaps$5;
-                lambda$pruneOverlaps$5 = AndroidUtilities.lambda$pruneOverlaps$5((AndroidUtilities.LinkSpec) obj, (AndroidUtilities.LinkSpec) obj2);
-                return lambda$pruneOverlaps$5;
+                int lambda$pruneOverlaps$6;
+                lambda$pruneOverlaps$6 = AndroidUtilities.lambda$pruneOverlaps$6((AndroidUtilities.LinkSpec) obj, (AndroidUtilities.LinkSpec) obj2);
+                return lambda$pruneOverlaps$6;
             }
         });
         int size = arrayList.size();
@@ -944,7 +963,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static int lambda$pruneOverlaps$5(LinkSpec linkSpec, LinkSpec linkSpec2) {
+    public static int lambda$pruneOverlaps$6(LinkSpec linkSpec, LinkSpec linkSpec2) {
         int i;
         int i2;
         int i3 = linkSpec.start;
@@ -1312,7 +1331,7 @@ public class AndroidUtilities {
             builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i) {
-                    AndroidUtilities.lambda$isMapsInstalled$6(mapsAppPackageName, baseFragment, dialogInterface, i);
+                    AndroidUtilities.lambda$isMapsInstalled$7(mapsAppPackageName, baseFragment, dialogInterface, i);
                 }
             });
             builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1321,7 +1340,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static void lambda$isMapsInstalled$6(String str, BaseFragment baseFragment, DialogInterface dialogInterface, int i) {
+    public static void lambda$isMapsInstalled$7(String str, BaseFragment baseFragment, DialogInterface dialogInterface, int i) {
         try {
             baseFragment.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + str)), 500);
         } catch (Exception e) {
@@ -1895,14 +1914,14 @@ public class AndroidUtilities {
                 SmsRetriever.getClient(ApplicationLoader.applicationContext).startSmsRetriever().addOnSuccessListener(new OnSuccessListener() {
                     @Override
                     public final void onSuccess(Object obj) {
-                        AndroidUtilities.lambda$setWaitingForSms$7((Void) obj);
+                        AndroidUtilities.lambda$setWaitingForSms$8((Void) obj);
                     }
                 });
             }
         }
     }
 
-    public static void lambda$setWaitingForSms$7(Void r0) {
+    public static void lambda$setWaitingForSms$8(Void r0) {
         if (BuildVars.DEBUG_VERSION) {
             FileLog.d("sms listener registered");
         }
@@ -2730,7 +2749,7 @@ public class AndroidUtilities {
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AndroidUtilities.lambda$shakeView$8(view, valueAnimator);
+                AndroidUtilities.lambda$shakeView$9(view, valueAnimator);
             }
         });
         ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -2744,7 +2763,7 @@ public class AndroidUtilities {
         view.setTag(i, ofFloat);
     }
 
-    public static void lambda$shakeView$8(View view, ValueAnimator valueAnimator) {
+    public static void lambda$shakeView$9(View view, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         double d = floatValue * 4.0f * (1.0f - floatValue);
         double d2 = floatValue;
@@ -2785,14 +2804,14 @@ public class AndroidUtilities {
         SpringAnimation addEndListener = new SpringAnimation(view, DynamicAnimation.TRANSLATION_X, translationX).setSpring(new SpringForce(translationX).setStiffness(600.0f)).setStartVelocity((-dp) * 100).addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f3, float f4) {
-                AndroidUtilities.lambda$shakeViewSpring$9(runnable, view, translationX, dynamicAnimation, z, f3, f4);
+                AndroidUtilities.lambda$shakeViewSpring$10(runnable, view, translationX, dynamicAnimation, z, f3, f4);
             }
         });
         view.setTag(i, addEndListener);
         addEndListener.start();
     }
 
-    public static void lambda$shakeViewSpring$9(Runnable runnable, View view, float f, DynamicAnimation dynamicAnimation, boolean z, float f2, float f3) {
+    public static void lambda$shakeViewSpring$10(Runnable runnable, View view, float f, DynamicAnimation dynamicAnimation, boolean z, float f2, float f3) {
         if (runnable != null) {
             runnable.run();
         }
@@ -3342,9 +3361,9 @@ public class AndroidUtilities {
         return formatSpannable(charSequence, new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                String lambda$formatSpannableSimple$10;
-                lambda$formatSpannableSimple$10 = AndroidUtilities.lambda$formatSpannableSimple$10((Integer) obj);
-                return lambda$formatSpannableSimple$10;
+                String lambda$formatSpannableSimple$11;
+                lambda$formatSpannableSimple$11 = AndroidUtilities.lambda$formatSpannableSimple$11((Integer) obj);
+                return lambda$formatSpannableSimple$11;
             }
         }, charSequenceArr);
     }
@@ -3356,14 +3375,14 @@ public class AndroidUtilities {
         return formatSpannable(charSequence, new GenericProvider() {
             @Override
             public final Object provide(Object obj) {
-                String lambda$formatSpannable$11;
-                lambda$formatSpannable$11 = AndroidUtilities.lambda$formatSpannable$11((Integer) obj);
-                return lambda$formatSpannable$11;
+                String lambda$formatSpannable$12;
+                lambda$formatSpannable$12 = AndroidUtilities.lambda$formatSpannable$12((Integer) obj);
+                return lambda$formatSpannable$12;
             }
         }, charSequenceArr);
     }
 
-    public static String lambda$formatSpannable$11(Integer num) {
+    public static String lambda$formatSpannable$12(Integer num) {
         return "%" + (num.intValue() + 1) + "$s";
     }
 
@@ -3640,7 +3659,7 @@ public class AndroidUtilities {
                         ConnectionsManager.getInstance(UserConfig.selectedAccount).checkProxy(str, Integer.parseInt(str2), str3, str4, str5, new RequestTimeDelegate() {
                             @Override
                             public final void run(long j) {
-                                AndroidUtilities.lambda$showProxyAlert$13(TextDetailSettingsCell.this, j);
+                                AndroidUtilities.lambda$showProxyAlert$14(TextDetailSettingsCell.this, j);
                             }
                         });
                     } catch (NumberFormatException unused) {
@@ -3674,22 +3693,22 @@ public class AndroidUtilities {
         pickerBottomLayout.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                AndroidUtilities.lambda$showProxyAlert$15(str, str2, str5, str4, str3, activity, dismissRunnable, view2);
+                AndroidUtilities.lambda$showProxyAlert$16(str, str2, str5, str4, str3, activity, dismissRunnable, view2);
             }
         });
         builder.show();
     }
 
-    public static void lambda$showProxyAlert$13(final TextDetailSettingsCell textDetailSettingsCell, final long j) {
+    public static void lambda$showProxyAlert$14(final TextDetailSettingsCell textDetailSettingsCell, final long j) {
         runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                AndroidUtilities.lambda$showProxyAlert$12(j, textDetailSettingsCell);
+                AndroidUtilities.lambda$showProxyAlert$13(j, textDetailSettingsCell);
             }
         });
     }
 
-    public static void lambda$showProxyAlert$12(long j, TextDetailSettingsCell textDetailSettingsCell) {
+    public static void lambda$showProxyAlert$13(long j, TextDetailSettingsCell textDetailSettingsCell) {
         if (j == -1) {
             textDetailSettingsCell.getTextView().setText(LocaleController.getString(R.string.Unavailable));
             textDetailSettingsCell.getTextView().setTextColor(Theme.getColor(Theme.key_text_RedRegular));
@@ -3700,7 +3719,7 @@ public class AndroidUtilities {
         textDetailSettingsCell.getTextView().setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGreenText));
     }
 
-    public static void lambda$showProxyAlert$15(String str, String str2, String str3, String str4, String str5, Activity activity, Runnable runnable, View view) {
+    public static void lambda$showProxyAlert$16(String str, String str2, String str3, String str4, String str5, Activity activity, Runnable runnable, View view) {
         SharedConfig.ProxyInfo proxyInfo;
         boolean z;
         UndoView undoView;
@@ -4155,7 +4174,7 @@ public class AndroidUtilities {
             ofArgb.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    AndroidUtilities.lambda$setNavigationBarColor$16(AndroidUtilities.IntColorCallback.this, window, valueAnimator2);
+                    AndroidUtilities.lambda$setNavigationBarColor$17(AndroidUtilities.IntColorCallback.this, window, valueAnimator2);
                 }
             });
             ofArgb.addListener(new AnimatorListenerAdapter() {
@@ -4176,7 +4195,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static void lambda$setNavigationBarColor$16(IntColorCallback intColorCallback, Window window, ValueAnimator valueAnimator) {
+    public static void lambda$setNavigationBarColor$17(IntColorCallback intColorCallback, Window window, ValueAnimator valueAnimator) {
         int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
         if (intColorCallback != null) {
             intColorCallback.run(intValue);
@@ -4247,9 +4266,9 @@ public class AndroidUtilities {
             recyclerListView.highlightRow(new RecyclerListView.IntReturnCallback() {
                 @Override
                 public final int run() {
-                    int lambda$scrollToFragmentRow$17;
-                    lambda$scrollToFragmentRow$17 = AndroidUtilities.lambda$scrollToFragmentRow$17(BaseFragment.this, str, recyclerListView);
-                    return lambda$scrollToFragmentRow$17;
+                    int lambda$scrollToFragmentRow$18;
+                    lambda$scrollToFragmentRow$18 = AndroidUtilities.lambda$scrollToFragmentRow$18(BaseFragment.this, str, recyclerListView);
+                    return lambda$scrollToFragmentRow$18;
                 }
             });
             declaredField.setAccessible(false);
@@ -4257,7 +4276,7 @@ public class AndroidUtilities {
         }
     }
 
-    public static int lambda$scrollToFragmentRow$17(BaseFragment baseFragment, String str, RecyclerListView recyclerListView) {
+    public static int lambda$scrollToFragmentRow$18(BaseFragment baseFragment, String str, RecyclerListView recyclerListView) {
         int i = -1;
         try {
             Field declaredField = baseFragment.getClass().getDeclaredField(str);
@@ -4303,13 +4322,13 @@ public class AndroidUtilities {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                AndroidUtilities.lambda$updateImageViewImageAnimated$18(imageView, atomicBoolean, drawable, valueAnimator);
+                AndroidUtilities.lambda$updateImageViewImageAnimated$19(imageView, atomicBoolean, drawable, valueAnimator);
             }
         });
         duration.start();
     }
 
-    public static void lambda$updateImageViewImageAnimated$18(ImageView imageView, AtomicBoolean atomicBoolean, Drawable drawable, ValueAnimator valueAnimator) {
+    public static void lambda$updateImageViewImageAnimated$19(ImageView imageView, AtomicBoolean atomicBoolean, Drawable drawable, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         float abs = Math.abs(floatValue - 0.5f) + 0.5f;
         imageView.setScaleX(abs);

@@ -414,6 +414,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private boolean isPlaying;
     private boolean isStreaming;
     private boolean isVisible;
+    private boolean isVisibleOrAnimating;
     private LinearLayout itemsLayout;
     private boolean keepScreenOnFlagSet;
     boolean keyboardAnimationEnabled;
@@ -1031,6 +1032,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
+        public void onReleasePlayerBeforeClose(int i) {
+            PhotoViewerProvider.CC.$default$onReleasePlayerBeforeClose(this, i);
+        }
+
+        @Override
         public void openPhotoForEdit(String str, String str2, boolean z) {
         }
 
@@ -1089,6 +1095,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
         Object getParentObject();
 
+        boolean isHardwarePlayer(int i);
+
         boolean isVideo(int i);
 
         void updateSlideshowCell(TLRPC$PageBlock tLRPC$PageBlock);
@@ -1109,6 +1117,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
 
             public static void $default$onPreOpen(PhotoViewerProvider photoViewerProvider) {
+            }
+
+            public static void $default$onReleasePlayerBeforeClose(PhotoViewerProvider photoViewerProvider, int i) {
             }
         }
 
@@ -1167,6 +1178,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         void onPreClose();
 
         void onPreOpen();
+
+        void onReleasePlayerBeforeClose(int i);
 
         void openPhotoForEdit(String str, String str2, boolean z);
 
@@ -1243,12 +1256,20 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     public void onShowPress(MotionEvent motionEvent) {
     }
 
-    public static void access$17000(PhotoViewer photoViewer) {
+    public static void access$17100(PhotoViewer photoViewer) {
         photoViewer.updateCaptionTranslated();
     }
 
     public void lambda$new$0() {
         toggleMiniProgressInternal(true);
+    }
+
+    public TextureView getVideoTextureView() {
+        return this.videoTextureView;
+    }
+
+    public boolean isVisibleOrAnimating() {
+        return this.isVisibleOrAnimating;
     }
 
     public static class PhotoViewerActionBarContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
@@ -6996,6 +7017,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         Instance = null;
         this.switchingInlineMode = true;
         this.isVisible = false;
+        this.isVisibleOrAnimating = false;
         AndroidUtilities.cancelRunOnUIThread(this.hideActionBarRunnable);
         PlaceProviderObject placeProviderObject = this.currentPlaceObject;
         if (placeProviderObject != null && !placeProviderObject.imageReceiver.getVisible()) {
@@ -7395,6 +7417,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             }
             try {
                 this.isVisible = true;
+                this.isVisibleOrAnimating = true;
                 ((WindowManager) this.parentActivity.getSystemService("window")).addView(this.windowView, this.windowLayoutParams);
                 onShowView();
                 PlaceProviderObject placeProviderObject = this.currentPlaceObject;
@@ -8359,6 +8382,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
     private void preparePlayer(Uri uri, boolean z, boolean z2, MediaController.SavedFilterState savedFilterState) {
         boolean z3;
+        PageBlocksAdapter pageBlocksAdapter;
         if (!z2) {
             this.currentPlayingVideoFile = uri;
         }
@@ -8537,7 +8561,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.videoPlayer.setPlayWhenReady(z);
         }
         MessageObject messageObject3 = this.currentMessageObject;
-        boolean z4 = messageObject3 != null && messageObject3.getDuration() <= 30.0d;
+        boolean z4 = (messageObject3 != null && messageObject3.getDuration() <= 30.0d) || ((pageBlocksAdapter = this.pageBlocksAdapter) != null && pageBlocksAdapter.isHardwarePlayer(this.currentIndex));
         this.playerLooping = z4;
         this.videoPlayerControlFrameLayout.setSeekBarTransitionEnabled(z4);
         this.videoPlayer.setLooping(this.playerLooping);
@@ -8560,7 +8584,12 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (this.pageBlocksAdapter != null) {
             this.bottomLayout.setVisibility(0);
         }
-        setVideoPlayerControlVisible(!this.isCurrentVideo, true);
+        PageBlocksAdapter pageBlocksAdapter2 = this.pageBlocksAdapter;
+        if (pageBlocksAdapter2 != null && pageBlocksAdapter2.isHardwarePlayer(this.currentIndex) && !this.pageBlocksAdapter.isVideo(this.currentIndex)) {
+            setVideoPlayerControlVisible(false, true);
+        } else {
+            setVideoPlayerControlVisible(!this.isCurrentVideo, true);
+        }
         if (!this.isCurrentVideo) {
             scheduleActionBarHide(this.playerAutoStarted ? 3000 : 1000);
         }
@@ -11885,10 +11914,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         PageBlocksAdapter pageBlocksAdapter = this.pageBlocksAdapter;
                         if (pageBlocksAdapter != null) {
                             File file4 = pageBlocksAdapter.getFile(i3);
-                            boolean isVideo = this.pageBlocksAdapter.isVideo(i3);
+                            boolean z7 = this.pageBlocksAdapter.isVideo(i3) || this.pageBlocksAdapter.isHardwarePlayer(i3);
                             shouldIndexAutoPlayed = shouldIndexAutoPlayed(i3);
                             file2 = file4;
-                            z3 = isVideo;
+                            z3 = z7;
                             file = null;
                             messageObject = null;
                         } else {
@@ -11909,18 +11938,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 }
                 z4 = false;
             }
-            boolean z7 = !(i == 0 && this.dontAutoPlay) && shouldIndexAutoPlayed;
-            final boolean z8 = hasBitmap;
+            boolean z8 = !(i == 0 && this.dontAutoPlay) && shouldIndexAutoPlayed;
+            final boolean z9 = hasBitmap;
             final File file5 = file2;
             final FileLoader.FileResolver fileResolver3 = fileResolver2;
             final MessageObject messageObject3 = messageObject;
-            final boolean z9 = z4;
-            final boolean z10 = z3;
-            final boolean z11 = z7;
+            final boolean z10 = z4;
+            final boolean z11 = z3;
+            final boolean z12 = z8;
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    PhotoViewer.this.lambda$checkProgress$79(z8, file5, file, fileResolver3, i, messageObject3, z9, z10, z11, z2);
+                    PhotoViewer.this.lambda$checkProgress$79(z9, file5, file, fileResolver3, i, messageObject3, z10, z11, z12, z2);
                 }
             });
             return;
@@ -12204,6 +12233,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.velocityTracker = VelocityTracker.obtain();
             }
             this.isVisible = true;
+            this.isVisibleOrAnimating = true;
             togglePhotosListView(false, false);
             this.openedFullScreenVideo = false;
             createCropView();
@@ -12530,6 +12560,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     this.velocityTracker = VelocityTracker.obtain();
                 }
                 this.isVisible = true;
+                this.isVisibleOrAnimating = true;
                 togglePhotosListView(false, false);
                 boolean z3 = !z;
                 this.openedFullScreenVideo = z3;
@@ -13274,6 +13305,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             FileLoader.getInstance(this.currentAccount).cancelLoadFile(this.currentMessageObject.getDocument());
         }
         this.isVisible = false;
+        this.isVisibleOrAnimating = false;
         this.cropInitied = false;
         this.disableShowCheck = true;
         this.currentMessageObject = null;
@@ -13656,7 +13688,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private boolean shouldIndexAutoPlayed(int i) {
         File file;
         PageBlocksAdapter pageBlocksAdapter = this.pageBlocksAdapter;
-        return pageBlocksAdapter != null && pageBlocksAdapter.isVideo(i) && SharedConfig.isAutoplayVideo() && (file = this.pageBlocksAdapter.getFile(i)) != null && file.exists();
+        if (pageBlocksAdapter != null) {
+            return (pageBlocksAdapter.isVideo(i) || this.pageBlocksAdapter.isHardwarePlayer(i)) && SharedConfig.isAutoplayVideo() && (file = this.pageBlocksAdapter.getFile(i)) != null && file.exists();
+        }
+        return false;
     }
 
     public float getCropFillScale(boolean z) {

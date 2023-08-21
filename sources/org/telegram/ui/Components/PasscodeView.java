@@ -52,6 +52,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FingerprintController;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -1472,7 +1473,7 @@ public class PasscodeView extends FrameLayout implements NotificationCenter.Noti
             this.fingerprintImage.setVisibility(8);
         } else if (i3 == 1) {
             this.passwordEditText.setFilters(new InputFilter[0]);
-            this.passwordEditText.setInputType(129);
+            this.passwordEditText.setInputType(MessagesStorage.LAST_DB_VERSION);
             this.numbersFrameLayout.setVisibility(8);
             this.passwordEditText.setFocusable(true);
             this.passwordEditText.setFocusableInTouchMode(true);

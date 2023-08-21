@@ -862,8 +862,8 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 final RectF rectF2 = new RectF(storyCircle2.cachedRect);
                 transitionViewHolder.drawClip = new StoryViewer.HolderClip() {
                     @Override
-                    public final void clip(Canvas canvas, RectF rectF3, float f) {
-                        ProfileStoriesView.AnonymousClass2.this.lambda$findView$0(rectF, storyCircle, rectF2, storyCircle2, canvas, rectF3, f);
+                    public final void clip(Canvas canvas, RectF rectF3, float f, boolean z) {
+                        ProfileStoriesView.AnonymousClass2.this.lambda$findView$0(rectF, storyCircle, rectF2, storyCircle2, canvas, rectF3, f, z);
                     }
                 };
             } else {
@@ -872,7 +872,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             return true;
         }
 
-        public void lambda$findView$0(RectF rectF, StoryCircle storyCircle, RectF rectF2, StoryCircle storyCircle2, Canvas canvas, RectF rectF3, float f) {
+        public void lambda$findView$0(RectF rectF, StoryCircle storyCircle, RectF rectF2, StoryCircle storyCircle2, Canvas canvas, RectF rectF3, float f, boolean z) {
             rectF.set(storyCircle.cachedRect);
             rectF2.set(storyCircle2.cachedRect);
             storyCircle.cachedRect.set(rectF3);

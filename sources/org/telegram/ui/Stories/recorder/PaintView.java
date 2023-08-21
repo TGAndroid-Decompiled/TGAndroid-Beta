@@ -3430,6 +3430,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
     @Override
     public void onEntityDragEnd(boolean z) {
         updatePreviewViewTranslationY();
+        this.forceChanges = true;
     }
 
     @Override

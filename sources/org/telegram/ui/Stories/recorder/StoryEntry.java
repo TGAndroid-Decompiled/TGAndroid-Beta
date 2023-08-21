@@ -83,6 +83,7 @@ public class StoryEntry extends IStoryPart {
     public boolean editedMedia;
     public ArrayList<TLRPC$MediaArea> editedMediaAreas;
     public boolean editedPrivacy;
+    public TLRPC$TL_error error;
     public File file;
     public boolean fileDeletable;
     public File filterFile;
@@ -95,6 +96,7 @@ public class StoryEntry extends IStoryPart {
     public boolean isDraft;
     public boolean isEdit;
     public boolean isEditSaved;
+    public boolean isError;
     public boolean isVideo;
     public float left;
     public ArrayList<VideoEditedInfo.MediaEntity> mediaEntities;
@@ -889,18 +891,14 @@ public class StoryEntry extends IStoryPart {
         public int colorRange;
         public int colorStandard;
         public int colorTransfer;
-        public float maxlum;
-        public float minlum;
 
         public int getHDRType() {
-            if ((this.maxlum > 0.0f || this.minlum > 0.0f) && this.colorStandard == 6) {
+            if (this.colorStandard == 6) {
                 int i = this.colorTransfer;
                 if (i == 7) {
                     return 1;
                 }
-                if (i == 6) {
-                    return 2;
-                }
+                return i == 6 ? 2 : 0;
             }
             return 0;
         }
@@ -935,8 +933,6 @@ public class StoryEntry extends IStoryPart {
                 if (hDRInfo == null) {
                     hDRInfo = new HDRInfo();
                     this.hdrInfo = hDRInfo;
-                    hDRInfo.maxlum = 1000.0f;
-                    hDRInfo.minlum = 0.001f;
                 }
                 MediaExtractor mediaExtractor = new MediaExtractor();
                 mediaExtractor.setDataSource(this.file.getAbsolutePath());

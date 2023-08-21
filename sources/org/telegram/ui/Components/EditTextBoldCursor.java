@@ -37,6 +37,7 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.ui.ActionBar.FloatingActionMode;
@@ -570,7 +571,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     public void setHintText(CharSequence charSequence, boolean z) {
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.hintAnimatedDrawable;
         if (animatedTextDrawable != null) {
-            animatedTextDrawable.setText(charSequence, true);
+            animatedTextDrawable.setText(charSequence, !LocaleController.isRTL);
             return;
         }
         if (charSequence == null) {

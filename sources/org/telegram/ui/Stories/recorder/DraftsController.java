@@ -16,6 +16,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
@@ -29,6 +30,8 @@ import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$StoryItem;
+import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_null;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 public class DraftsController {
@@ -36,10 +39,27 @@ public class DraftsController {
     public final ArrayList<StoryEntry> drafts = new ArrayList<>();
     private File draftsFolder;
     private boolean loaded;
+    private boolean loadedFailed;
     private boolean loading;
+    private boolean loadingFailed;
 
     public DraftsController(int i) {
         this.currentAccount = i;
+        loadFailed();
+    }
+
+    private void loadInternal(final boolean z, final Utilities.Callback<ArrayList<StoryDraft>> callback) {
+        final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
+        messagesStorage.getStorageQueue().postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                DraftsController.lambda$loadInternal$1(MessagesStorage.this, z, callback);
+            }
+        });
+    }
+
+    public static void lambda$loadInternal$1(org.telegram.messenger.MessagesStorage r6, boolean r7, final org.telegram.messenger.Utilities.Callback r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.DraftsController.lambda$loadInternal$1(org.telegram.messenger.MessagesStorage, boolean, org.telegram.messenger.Utilities$Callback):void");
     }
 
     public void load() {
@@ -47,21 +67,52 @@ public class DraftsController {
             return;
         }
         this.loading = true;
-        final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
-        messagesStorage.getStorageQueue().postRunnable(new Runnable() {
+        loadInternal(false, new Utilities.Callback() {
             @Override
-            public final void run() {
-                DraftsController.this.lambda$load$1(messagesStorage);
+            public final void run(Object obj) {
+                DraftsController.this.lambda$load$2((ArrayList) obj);
             }
         });
     }
 
-    public void lambda$load$1(org.telegram.messenger.MessagesStorage r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.DraftsController.lambda$load$1(org.telegram.messenger.MessagesStorage):void");
+    public void lambda$load$2(java.util.ArrayList r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.DraftsController.lambda$load$2(java.util.ArrayList):void");
     }
 
-    public void lambda$load$0(java.util.ArrayList r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.DraftsController.lambda$load$0(java.util.ArrayList):void");
+    private void loadFailed() {
+        if (this.loadedFailed || this.loadingFailed) {
+            return;
+        }
+        this.loadingFailed = true;
+        loadInternal(true, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                DraftsController.this.lambda$loadFailed$3((ArrayList) obj);
+            }
+        });
+    }
+
+    public void lambda$loadFailed$3(ArrayList arrayList) {
+        long currentTimeMillis = System.currentTimeMillis();
+        ArrayList arrayList2 = new ArrayList();
+        ArrayList<StoryEntry> arrayList3 = new ArrayList<>();
+        ArrayList<StoryEntry> arrayList4 = new ArrayList<>();
+        for (int i = 0; i < arrayList.size(); i++) {
+            StoryEntry entry = ((StoryDraft) arrayList.get(i)).toEntry();
+            if (entry != null) {
+                File file = entry.file;
+                if (file == null || !file.exists() || currentTimeMillis - entry.draftDate > 604800000) {
+                    arrayList3.add(entry);
+                } else {
+                    arrayList4.add(entry);
+                    arrayList2.add(Long.valueOf(entry.draftId));
+                }
+            }
+        }
+        delete(arrayList3);
+        this.loadingFailed = false;
+        this.loadedFailed = true;
+        MessagesController.getInstance(this.currentAccount).getStoriesController().putUploadingDrafts(arrayList4);
     }
 
     public void edit(StoryEntry storyEntry) {
@@ -70,19 +121,21 @@ public class DraftsController {
         }
         prepare(storyEntry);
         this.drafts.remove(storyEntry);
-        this.drafts.add(0, storyEntry);
+        if (!storyEntry.isError) {
+            this.drafts.add(0, storyEntry);
+        }
         final StoryDraft storyDraft = new StoryDraft(storyEntry);
         final MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DraftsController.lambda$edit$2(MessagesStorage.this, storyDraft);
+                DraftsController.lambda$edit$4(MessagesStorage.this, storyDraft);
             }
         });
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
     }
 
-    public static void lambda$edit$2(MessagesStorage messagesStorage, StoryDraft storyDraft) {
+    public static void lambda$edit$4(MessagesStorage messagesStorage, StoryDraft storyDraft) {
         SQLiteDatabase database;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
@@ -97,13 +150,18 @@ public class DraftsController {
             if (database == null) {
                 return;
             }
-            sQLitePreparedStatement = database.executeFast("REPLACE INTO story_drafts VALUES (?, ?, ?)");
+            sQLitePreparedStatement = database.executeFast("REPLACE INTO story_drafts VALUES (?, ?, ?, ?)");
             sQLitePreparedStatement.requery();
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyDraft.getObjectSize());
             storyDraft.toStream(nativeByteBuffer);
+            int i = 1;
             sQLitePreparedStatement.bindLong(1, storyDraft.id);
             sQLitePreparedStatement.bindLong(2, storyDraft.date);
             sQLitePreparedStatement.bindByteBuffer(3, nativeByteBuffer);
+            if (!storyDraft.isEdit) {
+                i = storyDraft.isError ? 2 : 0;
+            }
+            sQLitePreparedStatement.bindInteger(4, i);
             sQLitePreparedStatement.step();
             nativeByteBuffer.reuse();
             sQLitePreparedStatement.dispose();
@@ -119,6 +177,9 @@ public class DraftsController {
     private void prepare(StoryEntry storyEntry) {
         if (storyEntry == null) {
             return;
+        }
+        if (storyEntry.draftId == 0) {
+            storyEntry.draftId = Utilities.random.nextLong();
         }
         storyEntry.draftDate = System.currentTimeMillis();
         storyEntry.isDraft = true;
@@ -180,8 +241,8 @@ public class DraftsController {
         sb2.append("StoryDraft append ");
         sb2.append(storyDraft.id);
         sb2.append(" (edit=");
-        sb2.append(storyDraft.edit);
-        if (storyDraft.edit) {
+        sb2.append(storyDraft.isEdit);
+        if (storyDraft.isEdit) {
             StringBuilder sb3 = new StringBuilder();
             sb3.append(", storyId=");
             sb3.append(storyDraft.editStoryId);
@@ -211,13 +272,13 @@ public class DraftsController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DraftsController.lambda$append$3(MessagesStorage.this, storyDraft);
+                DraftsController.lambda$append$5(MessagesStorage.this, storyDraft);
             }
         });
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
     }
 
-    public static void lambda$append$3(MessagesStorage messagesStorage, StoryDraft storyDraft) {
+    public static void lambda$append$5(MessagesStorage messagesStorage, StoryDraft storyDraft) {
         SQLiteDatabase database;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
@@ -232,13 +293,18 @@ public class DraftsController {
             if (database == null) {
                 return;
             }
-            sQLitePreparedStatement = database.executeFast("INSERT INTO story_drafts VALUES (?, ?, ?)");
+            sQLitePreparedStatement = database.executeFast("INSERT INTO story_drafts VALUES (?, ?, ?, ?)");
             sQLitePreparedStatement.requery();
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(storyDraft.getObjectSize());
             storyDraft.toStream(nativeByteBuffer);
+            int i = 1;
             sQLitePreparedStatement.bindLong(1, storyDraft.id);
             sQLitePreparedStatement.bindLong(2, storyDraft.date);
             sQLitePreparedStatement.bindByteBuffer(3, nativeByteBuffer);
+            if (!storyDraft.isEdit) {
+                i = storyDraft.isError ? 2 : 0;
+            }
+            sQLitePreparedStatement.bindInteger(4, i);
             sQLitePreparedStatement.step();
             nativeByteBuffer.reuse();
             sQLitePreparedStatement.dispose();
@@ -268,7 +334,7 @@ public class DraftsController {
         storyEntry.draftId = Utilities.random.nextLong();
         StoryDraft storyDraft = new StoryDraft(storyEntry);
         storyEntry.isEdit = true;
-        storyDraft.edit = true;
+        storyDraft.isEdit = true;
         storyEntry.editStoryPeerId = j;
         storyDraft.editStoryPeerId = j;
         int i = tLRPC$StoryItem.id;
@@ -377,13 +443,13 @@ public class DraftsController {
         messagesStorage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                DraftsController.lambda$delete$4(MessagesStorage.this, arrayList2);
+                DraftsController.lambda$delete$6(MessagesStorage.this, arrayList2);
             }
         });
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesDraftsUpdated, new Object[0]);
     }
 
-    public static void lambda$delete$4(MessagesStorage messagesStorage, ArrayList arrayList) {
+    public static void lambda$delete$6(MessagesStorage messagesStorage, ArrayList arrayList) {
         try {
             SQLiteDatabase database = messagesStorage.getDatabase();
             if (database == null) {
@@ -406,21 +472,24 @@ public class DraftsController {
         public ArrayList<TLRPC$MessageEntity> captionEntities;
         public long date;
         public long duration;
-        public boolean edit;
         public long editDocumentId;
         public long editExpireDate;
         public long editPhotoId;
         public int editStoryId;
         public long editStoryPeerId;
+        public TLRPC$TL_error error;
         public String file;
         public boolean fileDeletable;
         private String filterFilePath;
         private MediaController.SavedFilterState filterState;
+        public String fullThumb;
         public int gradientBottomColor;
         public int gradientTopColor;
         public int height;
         public long id;
         public int invert;
+        public boolean isEdit;
+        public boolean isError;
         public boolean isVideo;
         public long left;
         public final float[] matrixValues;
@@ -450,9 +519,11 @@ public class DraftsController {
             this.date = storyEntry.draftDate;
             File file = storyEntry.draftThumbFile;
             this.thumb = file == null ? "" : file.toString();
+            File file2 = storyEntry.uploadThumbFile;
+            this.fullThumb = file2 == null ? "" : file2.toString();
             this.isVideo = storyEntry.isVideo;
-            File file2 = storyEntry.file;
-            this.file = file2 == null ? "" : file2.toString();
+            File file3 = storyEntry.file;
+            this.file = file3 == null ? "" : file3.toString();
             this.fileDeletable = storyEntry.fileDeletable;
             this.muted = storyEntry.muted;
             float f = storyEntry.left;
@@ -473,19 +544,21 @@ public class DraftsController {
             this.captionEntities = storyEntry.captionEntitiesAllowed ? MediaDataController.getInstance(storyEntry.currentAccount).getEntities(new CharSequence[]{charSequence}, true) : null;
             this.caption = charSequence == null ? "" : charSequence.toString();
             arrayList.addAll(storyEntry.privacyRules);
-            File file3 = storyEntry.paintFile;
-            this.paintFilePath = file3 == null ? "" : file3.toString();
-            File file4 = storyEntry.paintEntitiesFile;
-            this.paintEntitiesFilePath = file4 == null ? "" : file4.toString();
+            File file4 = storyEntry.paintFile;
+            this.paintFilePath = file4 == null ? "" : file4.toString();
+            File file5 = storyEntry.paintEntitiesFile;
+            this.paintEntitiesFilePath = file5 == null ? "" : file5.toString();
             this.averageDuration = storyEntry.averageDuration;
             this.mediaEntities = storyEntry.mediaEntities;
             this.stickers = storyEntry.stickers;
-            File file5 = storyEntry.filterFile;
-            this.filterFilePath = file5 != null ? file5.toString() : "";
+            File file6 = storyEntry.filterFile;
+            this.filterFilePath = file6 != null ? file6.toString() : "";
             this.filterState = storyEntry.filterState;
             this.period = storyEntry.period;
             arrayList2.clear();
             arrayList2.addAll(storyEntry.parts);
+            this.isError = storyEntry.isError;
+            this.error = storyEntry.error;
         }
 
         public StoryEntry toEntry() {
@@ -493,8 +566,11 @@ public class DraftsController {
             storyEntry.draftId = this.id;
             storyEntry.isDraft = true;
             storyEntry.draftDate = this.date;
-            if (this.thumb != null) {
+            if (!TextUtils.isEmpty(this.thumb)) {
                 storyEntry.draftThumbFile = new File(this.thumb);
+            }
+            if (!TextUtils.isEmpty(this.fullThumb)) {
+                storyEntry.uploadThumbFile = new File(this.fullThumb);
             }
             storyEntry.isVideo = this.isVideo;
             if (this.file != null) {
@@ -549,12 +625,14 @@ public class DraftsController {
             for (int i = 0; i < this.parts.size(); i++) {
                 storyEntry.partsMaxId = Math.max(storyEntry.partsMaxId, this.parts.get(i).id);
             }
-            storyEntry.isEdit = this.edit;
+            storyEntry.isEdit = this.isEdit;
             storyEntry.editStoryId = this.editStoryId;
             storyEntry.editStoryPeerId = this.editStoryPeerId;
             storyEntry.editExpireDate = this.editExpireDate;
             storyEntry.editPhotoId = this.editPhotoId;
             storyEntry.editDocumentId = this.editDocumentId;
+            storyEntry.isError = this.isError;
+            storyEntry.error = this.error;
             return storyEntry;
         }
 
@@ -639,13 +717,21 @@ public class DraftsController {
             for (int i6 = 0; i6 < this.parts.size(); i6++) {
                 this.parts.get(i6).serializeToStream(abstractSerializedData);
             }
-            abstractSerializedData.writeBool(this.edit);
+            abstractSerializedData.writeBool(this.isEdit);
             abstractSerializedData.writeInt32(this.editStoryId);
             abstractSerializedData.writeInt64(this.editStoryPeerId);
             abstractSerializedData.writeInt64(this.editExpireDate);
             abstractSerializedData.writeInt64(this.editPhotoId);
             abstractSerializedData.writeInt64(this.editDocumentId);
             abstractSerializedData.writeString(this.paintEntitiesFilePath);
+            abstractSerializedData.writeBool(this.isError);
+            TLRPC$TL_error tLRPC$TL_error = this.error;
+            if (tLRPC$TL_error == null) {
+                abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+            } else {
+                tLRPC$TL_error.serializeToStream(abstractSerializedData);
+            }
+            abstractSerializedData.writeString(this.fullThumb);
         }
 
         public int getObjectSize() {
@@ -792,7 +878,7 @@ public class DraftsController {
                 }
             }
             if (abstractSerializedData.remaining() > 0) {
-                this.edit = abstractSerializedData.readBool(z);
+                this.isEdit = abstractSerializedData.readBool(z);
                 this.editStoryId = abstractSerializedData.readInt32(z);
                 this.editStoryPeerId = abstractSerializedData.readInt64(z);
                 this.editExpireDate = abstractSerializedData.readInt64(z);
@@ -802,10 +888,19 @@ public class DraftsController {
             if (abstractSerializedData.remaining() > 0) {
                 String readString6 = abstractSerializedData.readString(z);
                 this.paintEntitiesFilePath = readString6;
-                if (readString6 == null || readString6.length() != 0) {
-                    return;
+                if (readString6 != null && readString6.length() == 0) {
+                    this.paintEntitiesFilePath = null;
                 }
-                this.paintEntitiesFilePath = null;
+            }
+            if (abstractSerializedData.remaining() > 0) {
+                this.isError = abstractSerializedData.readBool(z);
+                int readInt327 = abstractSerializedData.readInt32(z);
+                if (readInt327 == TLRPC$TL_null.constructor) {
+                    this.error = null;
+                } else {
+                    this.error = TLRPC$TL_error.TLdeserialize(abstractSerializedData, readInt327, z);
+                }
+                this.fullThumb = abstractSerializedData.readString(z);
             }
         }
     }

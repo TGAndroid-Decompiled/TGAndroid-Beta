@@ -129,6 +129,10 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     public void updateSharedState() {
     }
 
+    public static void access$1200(SelfStoryViewsPage selfStoryViewsPage) {
+        selfStoryViewsPage.showPremiumAlert();
+    }
+
     public boolean isStoryShownToUser(TLRPC$TL_storyView tLRPC$TL_storyView) {
         StoryEntry storyEntry;
         StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy;
@@ -731,7 +735,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             updateViewsVisibility();
         }
         this.listAdapter.updateRows();
-        this.recyclerItemsEnterAnimator.showItemsAnimated(itemCount);
+        this.recyclerItemsEnterAnimator.showItemsAnimated(itemCount - 1);
         checkLoadMore();
     }
 
@@ -885,20 +889,26 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                         stickerEmptyView.title.setVisibility(8);
                         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                         spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.getString("ExpiredViewsStub", R.string.ExpiredViewsStub)));
-                        spannableStringBuilder.append((CharSequence) "\n\n");
-                        spannableStringBuilder.append(AndroidUtilities.replaceSingleTag(LocaleController.getString("ExpiredViewsStubPremiumDescription", R.string.ExpiredViewsStubPremiumDescription), new Runnable() {
-                            @Override
-                            public final void run() {
-                                SelfStoryViewsPage.ListAdapter.this.lambda$onCreateViewHolder$1();
-                            }
-                        }));
+                        if (!MessagesController.getInstance(SelfStoryViewsPage.this.currentAccount).premiumLocked) {
+                            spannableStringBuilder.append((CharSequence) "\n\n");
+                            String string = LocaleController.getString("ExpiredViewsStubPremiumDescription", R.string.ExpiredViewsStubPremiumDescription);
+                            final SelfStoryViewsPage selfStoryViewsPage2 = SelfStoryViewsPage.this;
+                            spannableStringBuilder.append(AndroidUtilities.replaceSingleTag(string, new Runnable() {
+                                @Override
+                                public final void run() {
+                                    SelfStoryViewsPage.access$1200(SelfStoryViewsPage.this);
+                                }
+                            }));
+                            String string2 = LocaleController.getString("LearnMore", R.string.LearnMore);
+                            final SelfStoryViewsPage selfStoryViewsPage3 = SelfStoryViewsPage.this;
+                            stickerEmptyView.createButtonLayout(string2, new Runnable() {
+                                @Override
+                                public final void run() {
+                                    SelfStoryViewsPage.access$1200(SelfStoryViewsPage.this);
+                                }
+                            });
+                        }
                         stickerEmptyView.subtitle.setText(spannableStringBuilder);
-                        stickerEmptyView.createButtonLayout(LocaleController.getString("LearnMore", R.string.LearnMore), new Runnable() {
-                            @Override
-                            public final void run() {
-                                SelfStoryViewsPage.ListAdapter.this.lambda$onCreateViewHolder$2();
-                            }
-                        });
                     } else {
                         stickerEmptyView.title.setVisibility(0);
                         stickerEmptyView.title.setText(LocaleController.getString("NoViews", R.string.NoViews));
@@ -943,14 +953,6 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                     break;
             }
             return new RecyclerListView.Holder(linksTextView);
-        }
-
-        public void lambda$onCreateViewHolder$1() {
-            SelfStoryViewsPage.this.showPremiumAlert();
-        }
-
-        public void lambda$onCreateViewHolder$2() {
-            SelfStoryViewsPage.this.showPremiumAlert();
         }
 
         @Override

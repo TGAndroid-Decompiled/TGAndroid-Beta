@@ -46,6 +46,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SRPHelper;
@@ -937,7 +938,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 this.outlineTextFirstRow.setText(LocaleController.getString(this.currentType == 0 ? R.string.EnterPassword : R.string.ReEnterPassword));
                 this.editTextFirstRow.setContentDescription(LocaleController.getString(this.currentType == 0 ? R.string.EnterPassword : R.string.ReEnterPassword));
                 this.editTextFirstRow.setImeOptions(268435461);
-                this.editTextFirstRow.setInputType(129);
+                this.editTextFirstRow.setInputType(MessagesStorage.LAST_DB_VERSION);
                 this.editTextFirstRow.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 this.editTextFirstRow.setTypeface(Typeface.DEFAULT);
                 this.needPasswordButton = this.currentType == 0;
@@ -1107,7 +1108,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
                 outlineTextContainerView4.setText(LocaleController.getString(i25));
                 this.editTextFirstRow.setContentDescription(LocaleController.getString(i25));
                 this.editTextFirstRow.setImeOptions(268435462);
-                this.editTextFirstRow.setInputType(129);
+                this.editTextFirstRow.setInputType(MessagesStorage.LAST_DB_VERSION);
                 this.editTextFirstRow.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 this.editTextFirstRow.setTypeface(Typeface.DEFAULT);
                 this.imageView.setAnimation(R.raw.wallet_science, 120, 120);

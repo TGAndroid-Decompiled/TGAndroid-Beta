@@ -10,6 +10,8 @@ import java.io.EOFException;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -173,6 +175,44 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
     public static void setPriorityForDocument(TLRPC$Document tLRPC$Document, int i) {
         if (tLRPC$Document != null) {
             priorityMap.put(Long.valueOf(tLRPC$Document.id), Integer.valueOf(i));
+        }
+    }
+
+    public static Uri prepareUri(int i, TLRPC$Document tLRPC$Document, Object obj) {
+        String attachFileName = FileLoader.getAttachFileName(tLRPC$Document);
+        File pathToAttach = FileLoader.getInstance(i).getPathToAttach(tLRPC$Document);
+        if (pathToAttach != null && pathToAttach.exists()) {
+            return Uri.fromFile(pathToAttach);
+        }
+        try {
+            StringBuilder sb = new StringBuilder();
+            sb.append("?account=");
+            sb.append(i);
+            sb.append("&id=");
+            sb.append(tLRPC$Document.id);
+            sb.append("&hash=");
+            sb.append(tLRPC$Document.access_hash);
+            sb.append("&dc=");
+            sb.append(tLRPC$Document.dc_id);
+            sb.append("&size=");
+            sb.append(tLRPC$Document.size);
+            sb.append("&mime=");
+            sb.append(URLEncoder.encode(tLRPC$Document.mime_type, "UTF-8"));
+            sb.append("&rid=");
+            sb.append(FileLoader.getInstance(i).getFileReference(obj));
+            sb.append("&name=");
+            sb.append(URLEncoder.encode(FileLoader.getDocumentFileName(tLRPC$Document), "UTF-8"));
+            sb.append("&reference=");
+            byte[] bArr = tLRPC$Document.file_reference;
+            if (bArr == null) {
+                bArr = new byte[0];
+            }
+            sb.append(Utilities.bytesToHex(bArr));
+            String sb2 = sb.toString();
+            return Uri.parse("tg://" + attachFileName + sb2);
+        } catch (UnsupportedEncodingException e) {
+            FileLog.e(e);
+            return null;
         }
     }
 }

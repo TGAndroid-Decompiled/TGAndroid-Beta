@@ -52,6 +52,7 @@ public class PinchToZoomHelper {
     Callback callback;
     private View child;
     private ImageReceiver childImage;
+    private TextureView childTextureView;
     ClipBoundsListener clipBoundsListener;
     private float[] clipTopBottom;
     private float enterProgress;
@@ -153,7 +154,7 @@ public class PinchToZoomHelper {
         this.isSimple = true;
     }
 
-    public void startZoom(View view, ImageReceiver imageReceiver, MessageObject messageObject) {
+    public void startZoom(View view, ImageReceiver imageReceiver, TextureView textureView, MessageObject messageObject) {
         this.child = view;
         this.messageObject = messageObject;
         if (this.overlayView == null && !this.isSimple) {
@@ -232,6 +233,7 @@ public class PinchToZoomHelper {
                 this.isHardwareVideo = false;
                 ImageReceiver imageReceiver4 = new ImageReceiver();
                 this.childImage = imageReceiver4;
+                this.childTextureView = textureView;
                 imageReceiver4.onAttachedToWindow();
                 Drawable drawable = imageReceiver.getDrawable();
                 this.childImage.setImageBitmap(drawable);
@@ -603,6 +605,12 @@ public class PinchToZoomHelper {
                         PinchToZoomHelper.this.fullImage.draw(canvas);
                     }
                 }
+                if (PinchToZoomHelper.this.childTextureView != null) {
+                    canvas.save();
+                    canvas.translate(PinchToZoomHelper.this.childImage.getImageX(), PinchToZoomHelper.this.childImage.getImageY());
+                    PinchToZoomHelper.this.childTextureView.draw(canvas);
+                    canvas.restore();
+                }
             } else {
                 FrameLayout frameLayout = this.videoPlayerContainer;
                 PinchToZoomHelper pinchToZoomHelper5 = PinchToZoomHelper.this;
@@ -728,7 +736,7 @@ public class PinchToZoomHelper {
         this.callback = callback;
     }
 
-    public boolean checkPinchToZoom(MotionEvent motionEvent, View view, ImageReceiver imageReceiver, MessageObject messageObject) {
+    public boolean checkPinchToZoom(MotionEvent motionEvent, View view, ImageReceiver imageReceiver, TextureView textureView, MessageObject messageObject) {
         if (zoomEnabled(view, imageReceiver)) {
             if (motionEvent.getActionMasked() == 0 || motionEvent.getActionMasked() == 5) {
                 if (!this.isInPinchToZoomTouchMode && motionEvent.getPointerCount() == 2) {
@@ -775,7 +783,7 @@ public class PinchToZoomHelper {
                     this.pinchTranslationX = 0.0f;
                     this.pinchTranslationY = 0.0f;
                     view.getParent().requestDisallowInterceptTouchEvent(true);
-                    startZoom(view, imageReceiver, messageObject);
+                    startZoom(view, imageReceiver, textureView, messageObject);
                 }
                 float x3 = this.pinchStartCenterX - ((motionEvent.getX(i) + motionEvent.getX(i2)) / 2.0f);
                 float y3 = this.pinchStartCenterY - ((motionEvent.getY(i) + motionEvent.getY(i2)) / 2.0f);

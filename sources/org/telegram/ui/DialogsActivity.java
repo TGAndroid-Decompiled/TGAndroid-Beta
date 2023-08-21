@@ -1308,7 +1308,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         public void onMeasure(int i, int i2) {
             int currentActionBarHeight;
             int findFirstVisibleItemPosition = this.parentPage.layoutManager.findFirstVisibleItemPosition();
-            if (findFirstVisibleItemPosition != -1 && this.parentPage.itemTouchhelper.isIdle() && !this.parentPage.layoutManager.hasPendingScrollPosition()) {
+            if (findFirstVisibleItemPosition != -1 && this.parentPage.itemTouchhelper.isIdle() && !this.parentPage.layoutManager.hasPendingScrollPosition() && this.parentPage.listView.getScrollState() != 1) {
                 RecyclerView.ViewHolder findViewHolderForAdapterPosition = this.parentPage.listView.findViewHolderForAdapterPosition(findFirstVisibleItemPosition);
                 if (findViewHolderForAdapterPosition != null) {
                     int top = findViewHolderForAdapterPosition.itemView.getTop();

@@ -1512,7 +1512,13 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     }
 
     public boolean hasNotThumb() {
-        return (this.currentImageDrawable == null && this.currentMediaDrawable == null && !(this.staticThumbDrawable instanceof VectorAvatarThumbDrawable)) ? false : true;
+        if (this.currentImageDrawable == null && this.currentMediaDrawable == null) {
+            Drawable drawable = this.staticThumbDrawable;
+            if (!(drawable instanceof VectorAvatarThumbDrawable) && (drawable == null || this.currentImageKey != null || this.currentMediaKey != null)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public boolean hasStaticThumb() {

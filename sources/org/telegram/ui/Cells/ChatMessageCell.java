@@ -2492,7 +2492,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return false;
         }
         if ((!this.currentMessageObject.isDocument() || this.currentMessageObject.isGif()) && !this.currentMessageObject.needDrawBluredPreview()) {
-            return pinchToZoomHelper.checkPinchToZoom(motionEvent, this, this.photoImage, this.currentMessageObject);
+            return pinchToZoomHelper.checkPinchToZoom(motionEvent, this, this.photoImage, null, this.currentMessageObject);
         }
         return false;
     }

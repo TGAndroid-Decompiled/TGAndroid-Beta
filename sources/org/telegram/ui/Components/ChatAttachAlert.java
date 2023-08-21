@@ -2275,6 +2275,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             float dp2;
             float f;
             int themedColor;
+            boolean drawChild;
             int themedColor2;
             float alpha;
             if ((view instanceof AttachAlertLayout) && view.getAlpha() > 0.0f) {
@@ -2360,10 +2361,14 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                         canvas.restore();
                     }
                 }
-                canvas.save();
-                canvas.clipRect(((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, (ChatAttachAlert.this.actionBar.getY() + ChatAttachAlert.this.actionBar.getMeasuredHeight()) - ChatAttachAlert.this.currentPanTranslationY, getMeasuredWidth() - ((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, getMeasuredHeight());
-                boolean drawChild = super.drawChild(canvas, view, j);
-                canvas.restore();
+                if (view != ChatAttachAlert.this.contactsLayout && view != ChatAttachAlert.this.audioLayout) {
+                    canvas.save();
+                    canvas.clipRect(((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, (ChatAttachAlert.this.actionBar.getY() + ChatAttachAlert.this.actionBar.getMeasuredHeight()) - ChatAttachAlert.this.currentPanTranslationY, getMeasuredWidth() - ((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, getMeasuredHeight());
+                    drawChild = super.drawChild(canvas, view, j);
+                    canvas.restore();
+                } else {
+                    drawChild = super.drawChild(canvas, view, j);
+                }
                 if (z) {
                     if (f != 1.0f && needsActionBar != 2) {
                         Theme.dialogs_onlineCirclePaint.setColor(themedColor);

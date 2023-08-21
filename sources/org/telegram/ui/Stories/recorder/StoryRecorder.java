@@ -1549,6 +1549,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
 
             @Override
             public boolean captionLimitToast() {
+                if (MessagesController.getInstance(StoryRecorder.this.currentAccount).premiumLocked) {
+                    return false;
+                }
                 Bulletin visibleBulletin = Bulletin.getVisibleBulletin();
                 if (visibleBulletin == null || visibleBulletin.tag != 2) {
                     int i2 = MessagesController.getInstance(StoryRecorder.this.currentAccount).storyCaptionLengthLimitPremium;
@@ -2338,70 +2341,67 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         if (storyEntry == null || this.previewView.getWidth() <= 0 || this.previewView.getHeight() <= 0) {
             return null;
         }
-        if (z || storyEntry.wouldBeVideo() || storyEntry.isEdit) {
-            File file = z ? storyEntry.draftThumbFile : storyEntry.uploadThumbFile;
-            if (file != null) {
-                file.delete();
+        File file = z ? storyEntry.draftThumbFile : storyEntry.uploadThumbFile;
+        if (file != null) {
+            file.delete();
+        }
+        float f = z ? 0.33333334f : 1.0f;
+        int width = (int) (this.previewView.getWidth() * f);
+        Bitmap createBitmap = Bitmap.createBitmap(width, (int) (this.previewView.getHeight() * f), Bitmap.Config.RGB_565);
+        Canvas canvas = new Canvas(createBitmap);
+        canvas.save();
+        canvas.scale(f, f);
+        this.previewView.draw(canvas);
+        canvas.restore();
+        Paint paint = new Paint(2);
+        VideoEditTextureView textureView = this.previewView.getTextureView();
+        if (storyEntry.isVideo && textureView != null) {
+            Bitmap bitmap = textureView.getBitmap();
+            Matrix transform = textureView.getTransform(null);
+            if (transform != null) {
+                Matrix matrix = new Matrix(transform);
+                matrix.postScale(f, f);
+                transform = matrix;
             }
-            float f = z ? 0.33333334f : 1.0f;
-            int width = (int) (this.previewView.getWidth() * f);
-            Bitmap createBitmap = Bitmap.createBitmap(width, (int) (this.previewView.getHeight() * f), Bitmap.Config.RGB_565);
-            Canvas canvas = new Canvas(createBitmap);
+            canvas.drawBitmap(bitmap, transform, paint);
+            bitmap.recycle();
+        }
+        File file2 = storyEntry.paintFile;
+        if (file2 != null) {
+            try {
+                Bitmap decodeFile = BitmapFactory.decodeFile(file2.getPath());
+                canvas.save();
+                float width2 = width / decodeFile.getWidth();
+                canvas.scale(width2, width2);
+                canvas.drawBitmap(decodeFile, 0.0f, 0.0f, paint);
+                canvas.restore();
+                decodeFile.recycle();
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
+        PaintView paintView = this.paintView;
+        if (paintView != null && paintView.entitiesView != null) {
             canvas.save();
             canvas.scale(f, f);
-            this.previewView.draw(canvas);
+            this.paintView.entitiesView.draw(canvas);
             canvas.restore();
-            Paint paint = new Paint(2);
-            VideoEditTextureView textureView = this.previewView.getTextureView();
-            if (storyEntry.isVideo && textureView != null) {
-                Bitmap bitmap = textureView.getBitmap();
-                Matrix transform = textureView.getTransform(null);
-                if (transform != null) {
-                    Matrix matrix = new Matrix(transform);
-                    matrix.postScale(f, f);
-                    transform = matrix;
-                }
-                canvas.drawBitmap(bitmap, transform, paint);
-                bitmap.recycle();
-            }
-            File file2 = storyEntry.paintFile;
-            if (file2 != null) {
-                try {
-                    Bitmap decodeFile = BitmapFactory.decodeFile(file2.getPath());
-                    canvas.save();
-                    float width2 = width / decodeFile.getWidth();
-                    canvas.scale(width2, width2);
-                    canvas.drawBitmap(decodeFile, 0.0f, 0.0f, paint);
-                    canvas.restore();
-                    decodeFile.recycle();
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-            }
-            PaintView paintView = this.paintView;
-            if (paintView != null && paintView.entitiesView != null) {
-                canvas.save();
-                canvas.scale(f, f);
-                this.paintView.entitiesView.draw(canvas);
-                canvas.restore();
-            }
-            Bitmap createScaledBitmap = Bitmap.createScaledBitmap(createBitmap, 40, 22, true);
-            File makeCacheFile = StoryEntry.makeCacheFile(this.currentAccount, false);
-            try {
-                createBitmap.compress(Bitmap.CompressFormat.JPEG, z ? 95 : 75, new FileOutputStream(makeCacheFile));
-            } catch (FileNotFoundException e2) {
-                e2.printStackTrace();
-            }
-            createBitmap.recycle();
-            if (z) {
-                storyEntry.draftThumbFile = makeCacheFile;
-            } else {
-                storyEntry.uploadThumbFile = makeCacheFile;
-            }
-            storyEntry.thumbBitmap = createScaledBitmap;
-            return makeCacheFile;
         }
-        return null;
+        Bitmap createScaledBitmap = Bitmap.createScaledBitmap(createBitmap, 40, 22, true);
+        File makeCacheFile = StoryEntry.makeCacheFile(this.currentAccount, false);
+        try {
+            createBitmap.compress(Bitmap.CompressFormat.JPEG, z ? 95 : 75, new FileOutputStream(makeCacheFile));
+        } catch (FileNotFoundException e2) {
+            e2.printStackTrace();
+        }
+        createBitmap.recycle();
+        if (z) {
+            storyEntry.draftThumbFile = makeCacheFile;
+        } else {
+            storyEntry.uploadThumbFile = makeCacheFile;
+        }
+        storyEntry.thumbBitmap = createScaledBitmap;
+        return makeCacheFile;
     }
 
     public void setCameraFlashModeIcon(String str, boolean z) {
@@ -3492,9 +3492,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     private void onNavigateStart(int i, int i2) {
+        StoryEntry storyEntry;
         int i3;
         String str;
-        StoryEntry storyEntry;
+        StoryEntry storyEntry2;
         VideoEditTextureView textureView;
         if (i2 == 0) {
             requestCameraPermission(false);
@@ -3507,9 +3508,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.zoomControlView.setVisibility(0);
             this.zoomControlView.setAlpha(0.0f);
             this.videoTimerView.setDuration(0L, true);
-            StoryEntry storyEntry2 = this.outputEntry;
-            if (storyEntry2 != null) {
-                storyEntry2.destroy(false);
+            StoryEntry storyEntry3 = this.outputEntry;
+            if (storyEntry3 != null) {
+                storyEntry3.destroy(false);
                 this.outputEntry = null;
             }
         }
@@ -3535,8 +3536,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.downloadButton.setEntry(i2 == 1 ? this.outputEntry : null);
             if (this.isVideo) {
                 this.muteButton.setVisibility(0);
-                StoryEntry storyEntry3 = this.outputEntry;
-                setIconMuted(storyEntry3 != null && storyEntry3.muted, false);
+                StoryEntry storyEntry4 = this.outputEntry;
+                setIconMuted(storyEntry4 != null && storyEntry4.muted, false);
                 this.playButton.setVisibility(0);
                 this.previewView.play(true);
                 this.playButton.drawable.setPause(this.previewView.isPlaying(), false);
@@ -3550,11 +3551,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.captionContainer.setVisibility(0);
             this.captionContainer.clearFocus();
             CaptionContainerView captionContainerView = this.captionEdit;
-            StoryEntry storyEntry4 = this.outputEntry;
-            captionContainerView.setPeriod(storyEntry4 == null ? 86400 : storyEntry4.period, false);
-            CaptionContainerView captionContainerView2 = this.captionEdit;
             StoryEntry storyEntry5 = this.outputEntry;
-            captionContainerView2.setPeriodVisible(storyEntry5 == null || !storyEntry5.isEdit);
+            captionContainerView.setPeriod(storyEntry5 == null ? 86400 : storyEntry5.period, false);
+            this.captionEdit.setPeriodVisible(!MessagesController.getInstance(this.currentAccount).premiumLocked && ((storyEntry = this.outputEntry) == null || !storyEntry.isEdit));
         }
         if (i2 == 1) {
             this.videoError = false;
@@ -3598,7 +3597,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             } else {
                 this.captionEdit.clear();
             }
-            this.previewButtons.setShareEnabled((this.videoError || this.captionEdit.isCaptionOverLimit() || (MessagesController.getInstance(this.currentAccount).getStoriesController().hasStoryLimit() && ((storyEntry = this.outputEntry) == null || !storyEntry.isEdit))) ? false : true);
+            this.previewButtons.setShareEnabled((this.videoError || this.captionEdit.isCaptionOverLimit() || (MessagesController.getInstance(this.currentAccount).getStoriesController().hasStoryLimit() && ((storyEntry2 = this.outputEntry) == null || !storyEntry2.isEdit))) ? false : true);
             RLottieImageView rLottieImageView = this.muteButton;
             StoryEntry storyEntry9 = this.outputEntry;
             rLottieImageView.setImageResource((storyEntry9 == null || !storyEntry9.muted) ? R.drawable.media_mute : R.drawable.media_unmute);
@@ -3623,9 +3622,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             hintView22.hide();
         }
         Bulletin.hideVisible();
-        CaptionContainerView captionContainerView3 = this.captionEdit;
-        if (captionContainerView3 != null) {
-            captionContainerView3.closeKeyboard();
+        CaptionContainerView captionContainerView2 = this.captionEdit;
+        if (captionContainerView2 != null) {
+            captionContainerView2.closeKeyboard();
             this.captionEdit.ignoreTouches = true;
         }
     }

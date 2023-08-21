@@ -566,6 +566,22 @@ public class SharedConfig {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SharedConfig.setNewAppVersionAvailable(org.telegram.tgnet.TLRPC$TL_help_appUpdate):boolean");
     }
 
+    private static boolean versionBiggerOrEqual(String str, String str2) {
+        String[] split = str.split("\\.");
+        String[] split2 = str2.split("\\.");
+        for (int i = 0; i < Math.min(split.length, split2.length); i++) {
+            int parseInt = Integer.parseInt(split[i]);
+            int parseInt2 = Integer.parseInt(split2[i]);
+            if (parseInt < parseInt2) {
+                return false;
+            }
+            if (parseInt > parseInt2) {
+                return true;
+            }
+        }
+        return true;
+    }
+
     public static boolean checkPasscode(String str) {
         if (passcodeSalt.length == 0) {
             boolean equals = Utilities.MD5(str).equals(passcodeHash);

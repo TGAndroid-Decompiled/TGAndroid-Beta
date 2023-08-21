@@ -978,10 +978,9 @@ public class MessagesController extends BaseController implements NotificationCe
             try {
                 SQLiteDatabase database = MessagesStorage.getInstance(i).getDatabase();
                 if (database != null) {
-                    if (tLRPC$TL_help_appConfig == null) {
-                        database.executeFast("DELETE FROM app_config").stepThis().dispose();
-                    } else {
-                        SQLitePreparedStatement executeFast = database.executeFast("REPLACE INTO app_config VALUES(?)");
+                    database.executeFast("DELETE FROM app_config").stepThis().dispose();
+                    if (tLRPC$TL_help_appConfig != null) {
+                        SQLitePreparedStatement executeFast = database.executeFast("INSERT INTO app_config VALUES(?)");
                         executeFast.requery();
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$TL_help_appConfig.getObjectSize());
                         tLRPC$TL_help_appConfig.serializeToStream(nativeByteBuffer);

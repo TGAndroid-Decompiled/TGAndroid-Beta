@@ -718,7 +718,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
             textView2.setTextSize(1, 14.0f);
             textView2.setGravity(1);
             textView2.setTextColor(Theme.getColor(i11, ((BottomSheet) limitReachedBottomSheet).resourcesProvider));
-            addView(textView2, LayoutHelper.createLinear(-2, -2, 0, 24, 0, 24, 24));
+            addView(textView2, LayoutHelper.createLinear(-2, -2, 1, 24, 0, 24, 24));
             limitReachedBottomSheet.updatePremiumButtonText();
         }
     }

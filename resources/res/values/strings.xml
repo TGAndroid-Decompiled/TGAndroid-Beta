@@ -2301,6 +2301,8 @@
     <string name="ExternalFolderInfo">Browse your external storage</string>
     <string name="ExternalStorage">External Storage</string>
     <string name="Fade">Fade</string>
+    <string name="FailedStory">Failed</string>
+    <string name="FailedToUploadStory">failed to upload</string>
     <string name="FakeMessage">FAKE</string>
     <string name="FallbackTooltip">public photo</string>
     <string name="FavoriteStickers">Favorites</string>
@@ -3201,7 +3203,7 @@
     <string name="LimitReachedSharedFoldersLocked">You can only have %1$d shareable folders. We are working to let you increase this limit in the future.</string>
     <string name="LimitReachedSharedFoldersPremium">You can only have %1$d shareable folders. Try deleting some shareable folder.</string>
     <string name="LimitReachedStoriesCount">You can post **%1$d** stories in **24** hours.\nSubscribe to **Telegram Premium** to increase this limit to **%2$d**.</string>
-    <string name="LimitReachedStoriesCountPremium">Sorry, you can’t post more than **%1$d** stories.</string>
+    <string name="LimitReachedStoriesCountPremium">Sorry, you can’t post more than **%1$d** stories in **24** hours.</string>
     <string name="LimitReachedStoriesMonthly">You can post **%1$d** stories in a month.\nSubscribe to **Telegram Premium** to increase this limit to **%2$d**.</string>
     <string name="LimitReachedStoriesMonthlyPremium">Sorry, you can’t post more than **%1$d** stories in a month.</string>
     <string name="LimitReachedStoriesWeekly">You can post **%1$d** stories in a week.\nSubscribe to **Telegram Premium** to increase this limit to **%2$d**.</string>
@@ -5115,6 +5117,7 @@
     <string name="RequestedToJoinAt">requested to join %1$s</string>
     <string name="ResendCode">Resend code</string>
     <string name="ResendCodeInfo">The verification code was sent to your email.</string>
+    <string name="ResendSmsAvailableIn">You can request a new SMS in %1$d:%2$02d</string>
     <string name="Reset">Reset</string>
     <string name="ResetAccount">Reset account</string>
     <string name="ResetAccountButton">RESET ACCOUNT</string>
@@ -5849,6 +5852,7 @@
     <string name="StoryEnableKeep">Users allowed to view your story will see it on your page after it expires.</string>
     <string name="StoryEnabledScreenshots">Downloading and taking screenshots will be enabled for this story.</string>
     <string name="StoryEnabledScreenshotsShare">Downloading, sharing and taking screenshots will be enabled for this story.</string>
+    <string name="StoryError">Couldn’t upload</string>
     <string name="StoryExpiredSubtitle">This story has expired</string>
     <string name="StoryHidFromToast">%s would not be able to see your stories.</string>
     <string name="StoryHideFrom">Hide My Stories From %s</string>
@@ -6310,6 +6314,7 @@
     <string name="TranslationFailedAlert2">Translation failed.</string>
     <string name="TrashHintDrag">Drag to delete</string>
     <string name="TrashHintRelease">Release to delete</string>
+    <string name="TryAgain">Try Again</string>
     <string name="TurnPasswordOff">Turn Password Off</string>
     <string name="TurnPasswordOffPassport">Warning! All data saved in your Telegram Passport will be lost!</string>
     <string name="TurnPasswordOffQuestion">Are you sure you want to disable your password?</string>

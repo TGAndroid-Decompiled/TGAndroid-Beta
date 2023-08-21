@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
@@ -314,7 +315,7 @@ public class ProxySettingsActivity extends BaseFragment {
                     }
                 });
             } else if (i2 == 3) {
-                this.inputFields[i2].setInputType(129);
+                this.inputFields[i2].setInputType(MessagesStorage.LAST_DB_VERSION);
                 this.inputFields[i2].setTypeface(Typeface.DEFAULT);
                 this.inputFields[i2].setTransformationMethod(PasswordTransformationMethod.getInstance());
             } else {

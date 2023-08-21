@@ -11,9 +11,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_help_saveAppLog;
 import org.telegram.tgnet.TLRPC$TL_inputAppEvent;
 import org.telegram.tgnet.TLRPC$TL_jsonNull;
@@ -42,12 +39,12 @@ public class PushListenerController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PushListenerController.lambda$sendRegistrationToServer$3(str, i);
+                PushListenerController.lambda$sendRegistrationToServer$1(str, i);
             }
         });
     }
 
-    public static void lambda$sendRegistrationToServer$3(final String str, final int i) {
+    public static void lambda$sendRegistrationToServer$1(final String str, final int i) {
         boolean z;
         ConnectionsManager.setRegId(str, i, SharedConfig.pushStringStatus);
         if (str == null) {
@@ -81,41 +78,22 @@ public class PushListenerController {
                     tLRPC$TL_inputAppEvent2.peer = SharedConfig.pushStringGetTimeEnd - SharedConfig.pushStringGetTimeStart;
                     tLRPC$TL_inputAppEvent2.data = new TLRPC$TL_jsonNull();
                     tLRPC$TL_help_saveAppLog.events.add(tLRPC$TL_inputAppEvent2);
-                    ConnectionsManager.getInstance(i2).sendRequest(tLRPC$TL_help_saveAppLog, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            PushListenerController.lambda$sendRegistrationToServer$1(tLObject, tLRPC$TL_error);
-                        }
-                    });
+                    SharedConfig.pushStatSent = true;
+                    SharedConfig.saveConfig();
+                    ConnectionsManager.getInstance(i2).sendRequest(tLRPC$TL_help_saveAppLog, null);
                     z = false;
                 }
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        PushListenerController.lambda$sendRegistrationToServer$2(i2, i, str);
+                        PushListenerController.lambda$sendRegistrationToServer$0(i2, i, str);
                     }
                 });
             }
         }
     }
 
-    public static void lambda$sendRegistrationToServer$1(TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                PushListenerController.lambda$sendRegistrationToServer$0(TLRPC$TL_error.this);
-            }
-        });
-    }
-
-    public static void lambda$sendRegistrationToServer$0(TLRPC$TL_error tLRPC$TL_error) {
-        if (tLRPC$TL_error != null) {
-            SharedConfig.pushStatSent = true;
-            SharedConfig.saveConfig();
-        }
-    }
-
-    public static void lambda$sendRegistrationToServer$2(int i, int i2, String str) {
+    public static void lambda$sendRegistrationToServer$0(int i, int i2, String str) {
         MessagesController.getInstance(i).registerForPush(i2, str);
     }
 
@@ -128,7 +106,7 @@ public class PushListenerController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PushListenerController.lambda$processRemoteMessage$8(str2, str, j);
+                PushListenerController.lambda$processRemoteMessage$6(str2, str, j);
             }
         });
         try {
@@ -140,7 +118,7 @@ public class PushListenerController {
         }
     }
 
-    public static void lambda$processRemoteMessage$8(final String str, final String str2, final long j) {
+    public static void lambda$processRemoteMessage$6(final String str, final String str2, final long j) {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d(str + " PRE INIT APP");
         }
@@ -151,27 +129,27 @@ public class PushListenerController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PushListenerController.lambda$processRemoteMessage$7(str, str2, j);
+                PushListenerController.lambda$processRemoteMessage$5(str, str2, j);
             }
         });
     }
 
-    public static void lambda$processRemoteMessage$7(java.lang.String r55, java.lang.String r56, long r57) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$7(java.lang.String, java.lang.String, long):void");
+    public static void lambda$processRemoteMessage$5(java.lang.String r55, java.lang.String r56, long r57) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.PushListenerController.lambda$processRemoteMessage$5(java.lang.String, java.lang.String, long):void");
     }
 
-    public static void lambda$processRemoteMessage$4(int i, TLRPC$TL_updates tLRPC$TL_updates) {
+    public static void lambda$processRemoteMessage$2(int i, TLRPC$TL_updates tLRPC$TL_updates) {
         MessagesController.getInstance(i).processUpdates(tLRPC$TL_updates, false);
     }
 
-    public static void lambda$processRemoteMessage$5(int i) {
+    public static void lambda$processRemoteMessage$3(int i) {
         if (UserConfig.getInstance(i).getClientUserId() != 0) {
             UserConfig.getInstance(i).clearConfig();
             MessagesController.getInstance(i).performLogout(0);
         }
     }
 
-    public static void lambda$processRemoteMessage$6(int i) {
+    public static void lambda$processRemoteMessage$4(int i) {
         LocationController.getInstance(i).setNewLocationEndWatchTime();
     }
 

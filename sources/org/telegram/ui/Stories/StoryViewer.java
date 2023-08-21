@@ -9,16 +9,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.SurfaceTexture;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
+import android.util.LongSparseArray;
 import android.util.SparseArray;
 import android.view.GestureDetector;
 import android.view.KeyEvent;
@@ -32,14 +31,12 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
-import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import java.util.ArrayList;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
@@ -52,6 +49,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$StoryItem;
@@ -70,7 +68,6 @@ import org.telegram.ui.Components.ReactionsContainerLayout;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.ShareAlert;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
-import org.telegram.ui.Components.VideoPlayer;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Stories.PeerStoriesView;
 import org.telegram.ui.Stories.StoriesController;
@@ -139,11 +136,11 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     private Runnable onCloseListener;
     ValueAnimator openCloseAnimator;
     boolean openedFromLightNavigationBar;
+    private boolean opening;
     TLRPC$TL_userStories overrideUserStories;
+    LaunchActivity parentActivity;
     public PlaceProvider placeProvider;
     VideoPlayerHolder playerHolder;
-    Bitmap playerStubBitmap;
-    public Paint playerStubPaint;
     float progressToDismiss;
     float progressToOpen;
     private int realKeyboardHeight;
@@ -192,13 +189,14 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     };
     public LongSparseIntArray savedPositions = new LongSparseIntArray();
+    LongSparseArray<CharSequence> replyDrafts = new LongSparseArray<>();
 
     public interface HolderClip {
-        void clip(Canvas canvas, RectF rectF, float f);
+        void clip(Canvas canvas, RectF rectF, float f, boolean z);
     }
 
     public interface HolderDrawAbove {
-        void draw(Canvas canvas, RectF rectF, float f);
+        void draw(Canvas canvas, RectF rectF, float f, boolean z);
     }
 
     public interface PlaceProvider {
@@ -694,7 +692,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
-        public void dispatchDraw(android.graphics.Canvas r17) {
+        public void dispatchDraw(android.graphics.Canvas r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoryViewer.AnonymousClass2.dispatchDraw(android.graphics.Canvas):void");
         }
 
@@ -1106,7 +1104,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                             }
                             StoryViewer storyViewer5 = StoryViewer.this;
                             if (storyViewer5.playerHolder == null) {
-                                storyViewer5.playerHolder = new VideoPlayerHolder();
+                                storyViewer5.playerHolder = new VideoPlayerHolder(storyViewer5.surfaceView, StoryViewer.this.textureView);
                                 StoryViewer.this.playerHolder.document = tLRPC$Document;
                             }
                             StoryViewer storyViewer6 = StoryViewer.this;
@@ -1250,7 +1248,8 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 }
                 for (int i3 = 0; i3 < arrayList2.size(); i3++) {
                     Uri uri = arrayList2.get(i3);
-                    VideoPlayerHolder videoPlayerHolder = new VideoPlayerHolder();
+                    StoryViewer storyViewer = StoryViewer.this;
+                    VideoPlayerHolder videoPlayerHolder = new VideoPlayerHolder(storyViewer.surfaceView, StoryViewer.this.textureView);
                     videoPlayerHolder.uri = uri;
                     TLRPC$Document tLRPC$Document = arrayList.get(i3);
                     videoPlayerHolder.document = tLRPC$Document;
@@ -1793,6 +1792,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         if (this.transitionViewHolder.radialProgressUpload != null && (currentPeerView = getCurrentPeerView()) != null && (radialProgress = currentPeerView.headerView.radialProgress) != null) {
             radialProgress.copyParams(this.transitionViewHolder.radialProgressUpload);
         }
+        this.opening = true;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.openCloseAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -1907,6 +1907,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         updateTransitionParams();
         this.locker.lock();
         this.fromDismissOffset = this.swipeToDismissOffset;
+        this.opening = false;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.progressToOpen, 0.0f);
         this.openCloseAnimator = ofFloat;
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -2325,6 +2326,28 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
+    public void saveDraft(long j, TLRPC$StoryItem tLRPC$StoryItem, CharSequence charSequence) {
+        if (j == 0 || tLRPC$StoryItem == null) {
+            return;
+        }
+        this.replyDrafts.put(draftHash(j, tLRPC$StoryItem), charSequence);
+    }
+
+    public CharSequence getDraft(long j, TLRPC$StoryItem tLRPC$StoryItem) {
+        return (j == 0 || tLRPC$StoryItem == null) ? "" : this.replyDrafts.get(draftHash(j, tLRPC$StoryItem), "");
+    }
+
+    public void clearDraft(long j, TLRPC$StoryItem tLRPC$StoryItem) {
+        if (j == 0 || tLRPC$StoryItem == null) {
+            return;
+        }
+        this.replyDrafts.remove(draftHash(j, tLRPC$StoryItem));
+    }
+
+    private long draftHash(long j, TLRPC$StoryItem tLRPC$StoryItem) {
+        return j + (j >> 16) + (tLRPC$StoryItem.id << 16);
+    }
+
     public static class TransitionViewHolder {
         public float alpha = 1.0f;
         public ImageReceiver avatarImage;
@@ -2359,464 +2382,71 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public class VideoPlayerHolder {
-        boolean audioDisabled;
-        public long currentPosition;
-        public TLRPC$Document document;
-        boolean firstFrameRendered;
-        Runnable initRunnable;
-        int lastState;
+    public class VideoPlayerHolder extends VideoPlayerHolderBase {
         boolean logBuffering;
-        private Runnable onReadyListener;
-        public boolean paused;
-        long playerDuration;
-        float progress;
-        volatile boolean released;
-        boolean stubAvailable;
-        Uri uri;
-        VideoPlayer videoPlayer;
-        final DispatchQueue dispatchQueue = Utilities.getOrCreatePlayerQueue();
-        Runnable progressRunnable = new Runnable() {
-            @Override
-            public void run() {
-                VideoPlayerHolder videoPlayerHolder = VideoPlayerHolder.this;
-                VideoPlayer videoPlayer = videoPlayerHolder.videoPlayer;
-                if (videoPlayer != null) {
-                    if (videoPlayerHolder.lastState == 4) {
-                        videoPlayerHolder.progress = 1.0f;
-                    } else {
-                        videoPlayerHolder.currentPosition = videoPlayer.getCurrentPosition();
-                        VideoPlayerHolder videoPlayerHolder2 = VideoPlayerHolder.this;
-                        videoPlayerHolder2.playerDuration = videoPlayerHolder2.videoPlayer.getDuration();
-                    }
-                    VideoPlayerHolder videoPlayerHolder3 = VideoPlayerHolder.this;
-                    if (videoPlayerHolder3.lastState == 3) {
-                        videoPlayerHolder3.dispatchQueue.cancelRunnable(videoPlayerHolder3.progressRunnable);
-                        VideoPlayerHolder videoPlayerHolder4 = VideoPlayerHolder.this;
-                        videoPlayerHolder4.dispatchQueue.postRunnable(videoPlayerHolder4.progressRunnable, 16L);
-                    }
-                }
-            }
-        };
 
-        public VideoPlayerHolder() {
-        }
-
-        void preparePlayer(final Uri uri, final boolean z) {
-            this.audioDisabled = z;
-            this.paused = true;
-            Runnable runnable = this.initRunnable;
-            if (runnable != null) {
-                this.dispatchQueue.cancelRunnable(runnable);
-            }
-            DispatchQueue dispatchQueue = this.dispatchQueue;
-            Runnable runnable2 = new Runnable() {
-                @Override
-                public final void run() {
-                    StoryViewer.VideoPlayerHolder.this.lambda$preparePlayer$0(z, uri);
-                }
-            };
-            this.initRunnable = runnable2;
-            dispatchQueue.postRunnable(runnable2);
-        }
-
-        public void lambda$preparePlayer$0(boolean z, Uri uri) {
-            if (this.released) {
-                return;
-            }
-            ensurePlayerCreated(z);
-            this.videoPlayer.preparePlayer(uri, "other", 0);
-            this.videoPlayer.setPlayWhenReady(false);
-            this.videoPlayer.setWorkerQueue(this.dispatchQueue);
-        }
-
-        void start(final boolean z, final Uri uri, final long j, final boolean z2) {
-            System.currentTimeMillis();
-            this.audioDisabled = z2;
-            this.paused = z;
-            DispatchQueue dispatchQueue = this.dispatchQueue;
-            Runnable runnable = new Runnable() {
-                @Override
-                public final void run() {
-                    StoryViewer.VideoPlayerHolder.this.lambda$start$2(z2, uri, z, j);
-                }
-            };
-            this.initRunnable = runnable;
-            dispatchQueue.postRunnable(runnable);
-        }
-
-        public void lambda$start$2(boolean z, Uri uri, boolean z2, long j) {
-            if (this.released) {
-                return;
-            }
-            VideoPlayer videoPlayer = this.videoPlayer;
-            if (videoPlayer == null) {
-                ensurePlayerCreated(z);
-                this.videoPlayer.preparePlayer(uri, "other");
-                this.videoPlayer.setWorkerQueue(this.dispatchQueue);
-                if (!z2) {
-                    StoryViewer storyViewer = StoryViewer.this;
-                    if (storyViewer.USE_SURFACE_VIEW) {
-                        this.videoPlayer.setSurfaceView(storyViewer.surfaceView);
-                    } else {
-                        this.videoPlayer.setTextureView(storyViewer.textureView);
-                    }
-                    this.videoPlayer.setPlayWhenReady(true);
-                }
-            } else if (!z2) {
-                StoryViewer storyViewer2 = StoryViewer.this;
-                if (storyViewer2.USE_SURFACE_VIEW) {
-                    videoPlayer.setSurfaceView(storyViewer2.surfaceView);
-                } else {
-                    videoPlayer.setTextureView(storyViewer2.textureView);
-                }
-                this.videoPlayer.play();
-            }
-            if (j > 0) {
-                this.videoPlayer.seekTo(j);
-            }
-            this.videoPlayer.setVolume(StoryViewer.isInSilentMode ? 0.0f : 1.0f);
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    StoryViewer.VideoPlayerHolder.this.lambda$start$1();
-                }
-            });
-        }
-
-        public void lambda$start$1() {
-            this.initRunnable = null;
-        }
-
-        private void ensurePlayerCreated(boolean z) {
-            VideoPlayer videoPlayer = this.videoPlayer;
-            if (videoPlayer != null) {
-                videoPlayer.releasePlayer(true);
-            }
-            VideoPlayer videoPlayer2 = new VideoPlayer(false, z);
-            this.videoPlayer = videoPlayer2;
-            videoPlayer2.setDelegate(new AnonymousClass2());
-            this.videoPlayer.setIsStory();
-        }
-
-        public class AnonymousClass2 implements VideoPlayer.VideoPlayerDelegate {
-            @Override
-            public void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
-                VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
-            }
-
-            @Override
-            public void onSeekFinished(AnalyticsListener.EventTime eventTime) {
-                VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
-            }
-
-            @Override
-            public void onSeekStarted(AnalyticsListener.EventTime eventTime) {
-                VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
-            }
-
-            @Override
-            public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-                return false;
-            }
-
-            @Override
-            public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-            }
-
-            @Override
-            public void onVideoSizeChanged(int i, int i2, int i3, float f) {
-            }
-
-            AnonymousClass2() {
-            }
-
-            @Override
-            public void onStateChanged(boolean z, int i) {
-                VideoPlayerHolder videoPlayerHolder = VideoPlayerHolder.this;
-                videoPlayerHolder.lastState = i;
-                if (i != 3 && i != 2) {
-                    if (i == 4) {
-                        if (StoryViewer.this.isCaptionPartVisible) {
-                            VideoPlayerHolder videoPlayerHolder2 = VideoPlayerHolder.this;
-                            videoPlayerHolder2.progress = 0.0f;
-                            videoPlayerHolder2.videoPlayer.seekTo(0L);
-                            VideoPlayerHolder.this.videoPlayer.play();
-                            return;
-                        }
-                        VideoPlayerHolder.this.progress = 1.0f;
-                        return;
-                    }
-                    return;
-                }
-                videoPlayerHolder.dispatchQueue.cancelRunnable(videoPlayerHolder.progressRunnable);
-                VideoPlayerHolder videoPlayerHolder3 = VideoPlayerHolder.this;
-                videoPlayerHolder3.dispatchQueue.postRunnable(videoPlayerHolder3.progressRunnable);
-                VideoPlayerHolder videoPlayerHolder4 = VideoPlayerHolder.this;
-                if (videoPlayerHolder4.firstFrameRendered && i == 2) {
-                    videoPlayerHolder4.logBuffering = true;
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            StoryViewer.VideoPlayerHolder.AnonymousClass2.this.lambda$onStateChanged$0();
-                        }
-                    });
-                }
-                VideoPlayerHolder videoPlayerHolder5 = VideoPlayerHolder.this;
-                if (videoPlayerHolder5.logBuffering && i == 3) {
-                    videoPlayerHolder5.logBuffering = false;
-                    AndroidUtilities.runOnUIThread(new Runnable() {
-                        @Override
-                        public final void run() {
-                            StoryViewer.VideoPlayerHolder.AnonymousClass2.this.lambda$onStateChanged$1();
-                        }
-                    });
-                }
-            }
-
-            public void lambda$onStateChanged$0() {
-                PeerStoriesView currentPeerView = StoryViewer.this.getCurrentPeerView();
-                if (currentPeerView == null || currentPeerView.currentStory.storyItem == null) {
-                    return;
-                }
-                FileLog.d("StoryViewer displayed story buffering dialogId=" + currentPeerView.getCurrentPeer() + " storyId=" + currentPeerView.currentStory.storyItem.id);
-            }
-
-            public void lambda$onStateChanged$1() {
-                PeerStoriesView currentPeerView = StoryViewer.this.getCurrentPeerView();
-                if (currentPeerView == null || currentPeerView.currentStory.storyItem == null) {
-                    return;
-                }
-                FileLog.d("StoryViewer displayed story playing dialogId=" + currentPeerView.getCurrentPeer() + " storyId=" + currentPeerView.currentStory.storyItem.id);
-            }
-
-            @Override
-            public void onError(VideoPlayer videoPlayer, Exception exc) {
-                FileLog.e(exc);
-            }
-
-            @Override
-            public void onRenderedFirstFrame() {
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StoryViewer.VideoPlayerHolder.AnonymousClass2.this.lambda$onRenderedFirstFrame$2();
-                    }
-                }, 16L);
-            }
-
-            public void lambda$onRenderedFirstFrame$2() {
-                if (VideoPlayerHolder.this.released) {
-                    return;
-                }
-                VideoPlayerHolder videoPlayerHolder = VideoPlayerHolder.this;
-                PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope = StoryViewer.this.currentPlayerScope;
-                if (videoPlayerSharedScope == null) {
-                    return;
-                }
-                videoPlayerSharedScope.firstFrameRendered = true;
-                videoPlayerHolder.firstFrameRendered = true;
-                videoPlayerSharedScope.invalidate();
-                if (VideoPlayerHolder.this.onReadyListener != null) {
-                    VideoPlayerHolder.this.onReadyListener.run();
-                    VideoPlayerHolder.this.onReadyListener = null;
-                }
-            }
-        }
-
-        public void setOnReadyListener(Runnable runnable) {
-            this.onReadyListener = runnable;
-        }
-
-        boolean release(final Runnable runnable) {
-            final TLRPC$Document tLRPC$Document = this.document;
-            if (tLRPC$Document != null && FileStreamLoadOperation.getStreamPrioriy(tLRPC$Document) != 0) {
-                FileStreamLoadOperation.setPriorityForDocument(tLRPC$Document, 0);
-                FileLoader.getInstance(StoryViewer.this.currentAccount).changePriority(0, tLRPC$Document, null, null, null, null, null);
-            }
-            this.released = true;
-            this.dispatchQueue.cancelRunnable(this.initRunnable);
-            this.initRunnable = null;
-            this.dispatchQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    StoryViewer.VideoPlayerHolder.this.lambda$release$3(tLRPC$Document, runnable);
-                }
-            });
-            Bitmap bitmap = StoryViewer.this.playerStubBitmap;
-            if (bitmap != null) {
-                AndroidUtilities.recycleBitmap(bitmap);
-                StoryViewer.this.playerStubBitmap = null;
-            }
-            return true;
-        }
-
-        public void lambda$release$3(TLRPC$Document tLRPC$Document, Runnable runnable) {
-            VideoPlayer videoPlayer = this.videoPlayer;
-            if (videoPlayer != null) {
-                try {
-                    videoPlayer.setTextureView(null);
-                    this.videoPlayer.setSurfaceView(null);
-                } catch (Exception unused) {
-                }
-                this.videoPlayer.releasePlayer(false);
-            }
-            if (tLRPC$Document != null) {
-                FileLoader.getInstance(StoryViewer.this.currentAccount).cancelLoadFile(tLRPC$Document);
-            }
-            if (runnable != null) {
-                AndroidUtilities.runOnUIThread(runnable);
-            }
-            this.videoPlayer = null;
-        }
-
-        public void pause() {
-            if (this.released || this.paused) {
-                return;
-            }
-            this.paused = true;
-            StoryViewer storyViewer = StoryViewer.this;
-            if (storyViewer.USE_SURFACE_VIEW && storyViewer.surfaceView != null && this.firstFrameRendered && StoryViewer.this.surfaceView.getHolder().getSurface().isValid()) {
-                this.stubAvailable = true;
-                StoryViewer storyViewer2 = StoryViewer.this;
-                if (storyViewer2.playerStubBitmap == null) {
-                    storyViewer2.playerStubBitmap = Bitmap.createBitmap(720, 1280, Bitmap.Config.ARGB_8888);
-                    StoryViewer.this.playerStubPaint = new Paint(1);
-                }
-                if (Build.VERSION.SDK_INT >= 24) {
-                    AndroidUtilities.getBitmapFromSurface(StoryViewer.this.surfaceView, StoryViewer.this.playerStubBitmap);
-                }
-            }
-            this.dispatchQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    StoryViewer.VideoPlayerHolder.this.lambda$pause$4();
-                }
-            });
-        }
-
-        public void lambda$pause$4() {
-            VideoPlayer videoPlayer = this.videoPlayer;
-            if (videoPlayer != null) {
-                videoPlayer.pause();
-            }
-        }
-
-        public void play() {
-            if (!this.released && this.paused) {
-                this.paused = false;
-                this.dispatchQueue.postRunnable(new Runnable() {
-                    @Override
-                    public final void run() {
-                        StoryViewer.VideoPlayerHolder.this.lambda$play$5();
-                    }
-                });
-            }
-        }
-
-        public void lambda$play$5() {
-            VideoPlayer videoPlayer = this.videoPlayer;
-            if (videoPlayer != null) {
-                StoryViewer storyViewer = StoryViewer.this;
-                if (storyViewer.USE_SURFACE_VIEW) {
-                    videoPlayer.setSurfaceView(storyViewer.surfaceView);
-                } else {
-                    videoPlayer.setTextureView(storyViewer.textureView);
-                }
-                this.videoPlayer.setPlayWhenReady(true);
-            }
-        }
-
-        public void setAudioEnabled(final boolean z, final boolean z2) {
-            boolean z3 = !z;
-            if (this.audioDisabled == z3) {
-                return;
-            }
-            this.audioDisabled = z3;
-            this.dispatchQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    StoryViewer.VideoPlayerHolder.this.lambda$setAudioEnabled$6(z, z2);
-                }
-            });
-        }
-
-        public void lambda$setAudioEnabled$6(boolean z, boolean z2) {
-            VideoPlayer videoPlayer = this.videoPlayer;
-            if (videoPlayer == null) {
-                return;
-            }
-            boolean isPlaying = videoPlayer.isPlaying();
-            if (z && !this.videoPlayer.createdWithAudioTrack()) {
-                this.videoPlayer.pause();
-                long currentPosition = this.videoPlayer.getCurrentPosition();
-                this.videoPlayer.releasePlayer(false);
-                this.videoPlayer = null;
-                ensurePlayerCreated(this.audioDisabled);
-                this.videoPlayer.preparePlayer(this.uri, "other");
-                this.videoPlayer.setWorkerQueue(this.dispatchQueue);
-                if (!z2) {
-                    StoryViewer storyViewer = StoryViewer.this;
-                    if (storyViewer.USE_SURFACE_VIEW) {
-                        this.videoPlayer.setSurfaceView(storyViewer.surfaceView);
-                    } else {
-                        this.videoPlayer.setTextureView(storyViewer.textureView);
-                    }
-                }
-                this.videoPlayer.seekTo(currentPosition + 50);
-                if (isPlaying && !z2) {
-                    this.videoPlayer.setPlayWhenReady(true);
-                    this.videoPlayer.play();
-                    return;
-                }
-                this.videoPlayer.setPlayWhenReady(false);
-                this.videoPlayer.pause();
-                return;
-            }
-            this.videoPlayer.setVolume(z ? 1.0f : 0.0f);
-        }
-
-        public float getPlaybackProgress(long j) {
-            float f;
-            if (this.lastState == 4) {
-                this.progress = 1.0f;
+        public VideoPlayerHolder(SurfaceView surfaceView, TextureView textureView) {
+            if (StoryViewer.this.USE_SURFACE_VIEW) {
+                with(surfaceView);
             } else {
-                if (j != 0) {
-                    f = ((float) this.currentPosition) / ((float) j);
-                } else {
-                    f = ((float) this.currentPosition) / ((float) this.playerDuration);
-                }
-                float f2 = this.progress;
-                if (f < f2) {
-                    return f2;
-                }
-                this.progress = f;
+                with(textureView);
             }
-            return this.progress;
         }
 
-        public void loopBack() {
-            this.progress = 0.0f;
-            this.lastState = 1;
-            this.dispatchQueue.postRunnable(new Runnable() {
-                @Override
-                public final void run() {
-                    StoryViewer.VideoPlayerHolder.this.lambda$loopBack$7();
-                }
-            });
+        @Override
+        public boolean needRepeat() {
+            return StoryViewer.this.isCaptionPartVisible;
         }
 
-        public void lambda$loopBack$7() {
-            VideoPlayer videoPlayer = this.videoPlayer;
-            if (videoPlayer != null) {
-                videoPlayer.seekTo(0L);
+        @Override
+        public void onRenderedFirstFrame() {
+            PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope = StoryViewer.this.currentPlayerScope;
+            if (videoPlayerSharedScope == null) {
+                return;
             }
-            this.progress = 0.0f;
-            this.currentPosition = 0L;
+            videoPlayerSharedScope.firstFrameRendered = true;
+            this.firstFrameRendered = true;
+            videoPlayerSharedScope.invalidate();
         }
 
-        public boolean isBuffering() {
-            return !this.released && this.lastState == 2;
+        @Override
+        public void onStateChanged(boolean z, int i) {
+            if (i == 3 || i == 2) {
+                if (this.firstFrameRendered && i == 2) {
+                    this.logBuffering = true;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            StoryViewer.VideoPlayerHolder.this.lambda$onStateChanged$0();
+                        }
+                    });
+                }
+                if (this.logBuffering && i == 3) {
+                    this.logBuffering = false;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            StoryViewer.VideoPlayerHolder.this.lambda$onStateChanged$1();
+                        }
+                    });
+                }
+            }
+        }
+
+        public void lambda$onStateChanged$0() {
+            PeerStoriesView currentPeerView = StoryViewer.this.getCurrentPeerView();
+            if (currentPeerView == null || currentPeerView.currentStory.storyItem == null) {
+                return;
+            }
+            FileLog.d("StoryViewer displayed story buffering dialogId=" + currentPeerView.getCurrentPeer() + " storyId=" + currentPeerView.currentStory.storyItem.id);
+        }
+
+        public void lambda$onStateChanged$1() {
+            PeerStoriesView currentPeerView = StoryViewer.this.getCurrentPeerView();
+            if (currentPeerView == null || currentPeerView.currentStory.storyItem == null) {
+                return;
+            }
+            FileLog.d("StoryViewer displayed story playing dialogId=" + currentPeerView.getCurrentPeer() + " storyId=" + currentPeerView.currentStory.storyItem.id);
         }
     }
 }

@@ -365,7 +365,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             Iterator<StoryEntry> it = MessagesController.getInstance(i).getStoriesController().getDraftsController().drafts.iterator();
             while (it.hasNext()) {
                 StoryEntry next = it.next();
-                if (!next.isEdit) {
+                if (!next.isEdit && !next.isError) {
                     this.drafts.add(next);
                 }
             }
@@ -1520,7 +1520,7 @@ public class GalleryListView extends FrameLayout implements NotificationCenter.N
             Iterator<StoryEntry> it = MessagesController.getInstance(this.currentAccount).getStoriesController().getDraftsController().drafts.iterator();
             while (it.hasNext()) {
                 StoryEntry next = it.next();
-                if (!next.isEdit) {
+                if (!next.isEdit && !next.isError) {
                     this.drafts.add(next);
                 }
             }

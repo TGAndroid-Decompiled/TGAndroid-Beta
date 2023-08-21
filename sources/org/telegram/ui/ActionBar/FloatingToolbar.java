@@ -54,6 +54,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -966,8 +967,12 @@ public final class FloatingToolbar {
                 });
             }
             int size = list.size();
+            boolean z = MessagesController.getInstance(UserConfig.selectedAccount).premiumLocked;
             for (int i = 0; i < size; i++) {
-                arrayAdapter.add(list.get(i));
+                MenuItem menuItem = list.get(i);
+                if (!FloatingToolbar.premiumOptions.contains(Integer.valueOf(menuItem.getItemId())) || !z) {
+                    arrayAdapter.add(menuItem);
+                }
             }
             this.mOverflowPanel.setAdapter((ListAdapter) arrayAdapter);
             if (this.mOpenOverflowUpwards) {

@@ -2,8 +2,11 @@ package org.telegram.ui.Stories;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
+import android.graphics.Region;
 import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
@@ -107,6 +110,17 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                     transitionViewHolder.clipBottom = 0.0f;
                     transitionViewHolder.clipTop = 0.0f;
                     transitionViewHolder.alpha = 1.0f;
+                    if (storyCell.isFail) {
+                        final Path path = new Path();
+                        transitionViewHolder.drawClip = new StoryViewer.HolderClip() {
+                            @Override
+                            public final void clip(Canvas canvas, RectF rectF, float f, boolean z) {
+                                StoriesListPlaceProvider.lambda$findView$0(path, canvas, rectF, f, z);
+                            }
+                        };
+                    } else {
+                        transitionViewHolder.drawClip = null;
+                    }
                     return true;
                 }
             } else if (childAt instanceof DialogCell) {
@@ -164,8 +178,8 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                     transitionViewHolder.storyImage = sharedPhotoVideoCell2.imageReceiver;
                     transitionViewHolder.drawAbove = new StoryViewer.HolderDrawAbove() {
                         @Override
-                        public final void draw(Canvas canvas, RectF rectF, float f) {
-                            StoriesListPlaceProvider.lambda$findView$0(SharedPhotoVideoCell2.this, fastScroll, iArr, canvas, rectF, f);
+                        public final void draw(Canvas canvas, RectF rectF, float f, boolean z) {
+                            StoriesListPlaceProvider.lambda$findView$1(SharedPhotoVideoCell2.this, fastScroll, iArr, canvas, rectF, f, z);
                         }
                     };
                     transitionViewHolder.clipParent = (View) sharedPhotoVideoCell2.getParent();
@@ -221,7 +235,14 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
         return false;
     }
 
-    public static void lambda$findView$0(SharedPhotoVideoCell2 sharedPhotoVideoCell2, RecyclerListView.FastScroll fastScroll, int[] iArr, Canvas canvas, RectF rectF, float f) {
+    public static void lambda$findView$0(Path path, Canvas canvas, RectF rectF, float f, boolean z) {
+        path.rewind();
+        float pow = z ? 1.0f - ((float) Math.pow(1.0f - f, 2.0d)) : (float) Math.pow(f, 2.0d);
+        path.addCircle((rectF.right + AndroidUtilities.dp(7.0f)) - (AndroidUtilities.dp(14.0f) * pow), (rectF.bottom + AndroidUtilities.dp(7.0f)) - (AndroidUtilities.dp(14.0f) * pow), AndroidUtilities.dp(11.0f), Path.Direction.CW);
+        canvas.clipPath(path, Region.Op.DIFFERENCE);
+    }
+
+    public static void lambda$findView$1(SharedPhotoVideoCell2 sharedPhotoVideoCell2, RecyclerListView.FastScroll fastScroll, int[] iArr, Canvas canvas, RectF rectF, float f, boolean z) {
         sharedPhotoVideoCell2.drawDuration(canvas, rectF, f);
         if (fastScroll != null && fastScroll.isVisible && fastScroll.getVisibility() == 0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), (int) (f * 255.0f), 31);

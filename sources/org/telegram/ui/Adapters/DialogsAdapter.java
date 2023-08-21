@@ -427,11 +427,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 if (z2) {
                     f = 0.0f;
                 }
-                if (z && i2 == 0 && ((recyclerListView.getPaddingTop() - view.getTop()) - view.getMeasuredHeight()) + f < 0.0f) {
-                    i2 = 1;
-                    top = f;
+                if (recyclerListView.getScrollState() != 1) {
+                    if (z && i2 == 0 && ((recyclerListView.getPaddingTop() - view.getTop()) - view.getMeasuredHeight()) + f < 0.0f) {
+                        top = f;
+                        i2 = 1;
+                    }
+                    linearLayoutManager.scrollToPositionWithOffset(i2, (int) top);
                 }
-                linearLayoutManager.scrollToPositionWithOffset(i2, (int) top);
             }
         }
         DiffUtil.calculateDiff(new DiffUtil.Callback() {

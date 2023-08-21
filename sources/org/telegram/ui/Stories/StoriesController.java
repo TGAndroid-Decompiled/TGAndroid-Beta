@@ -348,6 +348,9 @@ public class StoriesController {
     }
 
     public boolean hasStories(long j) {
+        if (getSelfUserId() == j && hasUploadingStories()) {
+            return true;
+        }
         TLRPC$TL_userStories tLRPC$TL_userStories = this.allStoriesMap.get(j);
         return (tLRPC$TL_userStories == null || tLRPC$TL_userStories.stories.isEmpty()) ? false : true;
     }
@@ -688,6 +691,14 @@ public class StoriesController {
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
     }
 
+    public void putUploadingDrafts(ArrayList<StoryEntry> arrayList) {
+        Iterator<StoryEntry> it = arrayList.iterator();
+        while (it.hasNext()) {
+            this.uploadingStories.add(new UploadingStory(it.next()));
+        }
+        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
+    }
+
     public ArrayList<TLRPC$TL_userStories> getDialogListStories() {
         return this.dialogListStories;
     }
@@ -698,6 +709,14 @@ public class StoriesController {
 
     public ArrayList<UploadingStory> getUploadingStories() {
         return this.uploadingStories;
+    }
+
+    public boolean isLastUploadingFailed() {
+        if (this.uploadingStories.isEmpty()) {
+            return false;
+        }
+        ArrayList<UploadingStory> arrayList = this.uploadingStories;
+        return arrayList.get(arrayList.size() - 1).failed;
     }
 
     public ArrayList<UploadingStory> getUploadingAndEditingStories() {
@@ -1612,7 +1631,9 @@ public class StoriesController {
         public final boolean edit;
         final StoryEntry entry;
         private boolean entryDestroyed;
+        public boolean failed;
         String firstFramePath;
+        public boolean hadFailed;
         private VideoEditedInfo info;
         private boolean isCloseFriends;
         boolean isVideo;
@@ -1625,12 +1646,15 @@ public class StoriesController {
         public final long random_id = Utilities.random.nextLong();
 
         public UploadingStory(StoryEntry storyEntry) {
-            this.edit = storyEntry.isEdit;
             this.entry = storyEntry;
+            this.edit = storyEntry.isEdit;
             File file = storyEntry.uploadThumbFile;
             if (file != null) {
                 this.firstFramePath = file.getAbsolutePath();
             }
+            boolean z = storyEntry.isError;
+            this.hadFailed = z;
+            this.failed = z;
         }
 
         private void startForeground() {
@@ -1707,6 +1731,22 @@ public class StoriesController {
             });
         }
 
+        public void tryAgain() {
+            this.failed = false;
+            this.entryDestroyed = false;
+            this.progress = 0.0f;
+            this.uploadProgress = 0.0f;
+            this.convertingProgress = 0.0f;
+            if (this.path != null) {
+                try {
+                    new File(this.path).delete();
+                    this.path = null;
+                } catch (Exception unused) {
+                }
+            }
+            start();
+        }
+
         public void lambda$start$1() {
             long j;
             if (this.entry.shareUserIds == null) {
@@ -1732,7 +1772,9 @@ public class StoriesController {
             NotificationCenter.getInstance(StoriesController.this.currentAccount).removeObserver(this, NotificationCenter.filePreparingFailed);
             NotificationCenter.getInstance(StoriesController.this.currentAccount).removeObserver(this, NotificationCenter.filePreparingStarted);
             NotificationCenter.getInstance(StoriesController.this.currentAccount).removeObserver(this, NotificationCenter.fileNewChunkAvailable);
-            StoriesController.this.uploadingStories.remove(this);
+            if (!this.failed) {
+                StoriesController.this.uploadingStories.remove(this);
+            }
             StoriesController.this.uploadingAndEditingStories.remove(this);
             if (this.edit) {
                 StoriesController.this.editingStories.remove(Integer.valueOf(this.entry.editStoryId));
@@ -1773,6 +1815,18 @@ public class StoriesController {
                 }
             } else if (i == NotificationCenter.filePreparingFailed) {
                 if (objArr[0] == this.messageObject) {
+                    if (!this.edit) {
+                        StoryEntry storyEntry = this.entry;
+                        storyEntry.isError = true;
+                        storyEntry.error = new TLRPC$TL_error();
+                        TLRPC$TL_error tLRPC$TL_error = this.entry.error;
+                        tLRPC$TL_error.code = 400;
+                        tLRPC$TL_error.text = "FILE_PREPARE_FAILED";
+                        this.entryDestroyed = true;
+                        this.failed = true;
+                        this.hadFailed = true;
+                        StoriesController.this.getDraftsController().edit(this.entry);
+                    }
                     cleanup();
                 }
             } else if (i == NotificationCenter.fileUploaded) {
@@ -1799,8 +1853,10 @@ public class StoriesController {
         }
 
         private void sendUploadedRequest(TLRPC$InputFile tLRPC$InputFile) {
+            TLRPC$InputMedia tLRPC$InputMedia;
             TLRPC$TL_stories_sendStory tLRPC$TL_stories_sendStory;
             CharSequence charSequence;
+            CharSequence charSequence2;
             List<TLRPC$InputDocument> list;
             List<TLRPC$InputDocument> list2;
             if (this.canceled) {
@@ -1810,48 +1866,46 @@ public class StoriesController {
             if (storyEntry.shareUserIds != null) {
                 return;
             }
-            TLRPC$InputMedia tLRPC$InputMedia = null;
             int i = 0;
-            if (tLRPC$InputFile != null) {
-                if (storyEntry.wouldBeVideo()) {
-                    TLRPC$TL_inputMediaUploadedDocument tLRPC$TL_inputMediaUploadedDocument = new TLRPC$TL_inputMediaUploadedDocument();
-                    tLRPC$TL_inputMediaUploadedDocument.file = tLRPC$InputFile;
-                    TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = new TLRPC$TL_documentAttributeVideo();
-                    SendMessagesHelper.fillVideoAttribute(this.path, tLRPC$TL_documentAttributeVideo, null);
-                    tLRPC$TL_documentAttributeVideo.supports_streaming = true;
-                    tLRPC$TL_documentAttributeVideo.flags |= 4;
-                    tLRPC$TL_documentAttributeVideo.preload_prefix_size = (int) this.firstSecondSize;
-                    tLRPC$TL_inputMediaUploadedDocument.attributes.add(tLRPC$TL_documentAttributeVideo);
-                    List<TLRPC$InputDocument> list3 = this.entry.stickers;
-                    if (list3 != null && (!list3.isEmpty() || ((list2 = this.entry.editStickers) != null && !list2.isEmpty()))) {
-                        tLRPC$TL_inputMediaUploadedDocument.flags |= 1;
-                        ArrayList<TLRPC$InputDocument> arrayList = new ArrayList<>(this.entry.stickers);
-                        tLRPC$TL_inputMediaUploadedDocument.stickers = arrayList;
-                        List<TLRPC$InputDocument> list4 = this.entry.editStickers;
-                        if (list4 != null) {
-                            arrayList.addAll(list4);
-                        }
-                        tLRPC$TL_inputMediaUploadedDocument.attributes.add(new TLRPC$TL_documentAttributeHasStickers());
+            if (tLRPC$InputFile == null) {
+                tLRPC$InputMedia = null;
+            } else if (storyEntry.wouldBeVideo()) {
+                tLRPC$InputMedia = new TLRPC$TL_inputMediaUploadedDocument();
+                tLRPC$InputMedia.file = tLRPC$InputFile;
+                TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = new TLRPC$TL_documentAttributeVideo();
+                SendMessagesHelper.fillVideoAttribute(this.path, tLRPC$TL_documentAttributeVideo, null);
+                tLRPC$TL_documentAttributeVideo.supports_streaming = true;
+                tLRPC$TL_documentAttributeVideo.flags |= 4;
+                tLRPC$TL_documentAttributeVideo.preload_prefix_size = (int) this.firstSecondSize;
+                tLRPC$InputMedia.attributes.add(tLRPC$TL_documentAttributeVideo);
+                List<TLRPC$InputDocument> list3 = this.entry.stickers;
+                if (list3 != null && (!list3.isEmpty() || ((list2 = this.entry.editStickers) != null && !list2.isEmpty()))) {
+                    tLRPC$InputMedia.flags |= 1;
+                    ArrayList<TLRPC$InputDocument> arrayList = new ArrayList<>(this.entry.stickers);
+                    tLRPC$InputMedia.stickers = arrayList;
+                    List<TLRPC$InputDocument> list4 = this.entry.editStickers;
+                    if (list4 != null) {
+                        arrayList.addAll(list4);
                     }
-                    StoryEntry storyEntry2 = this.entry;
-                    tLRPC$TL_inputMediaUploadedDocument.nosound_video = storyEntry2.muted || !storyEntry2.isVideo;
-                    tLRPC$TL_inputMediaUploadedDocument.mime_type = "video/mp4";
-                    tLRPC$InputMedia = tLRPC$TL_inputMediaUploadedDocument;
-                } else {
-                    tLRPC$InputMedia = new TLRPC$TL_inputMediaUploadedPhoto();
-                    tLRPC$InputMedia.file = tLRPC$InputFile;
-                    MimeTypeMap singleton = MimeTypeMap.getSingleton();
-                    int lastIndexOf = this.path.lastIndexOf(46);
-                    tLRPC$InputMedia.mime_type = singleton.getMimeTypeFromExtension(lastIndexOf != -1 ? this.path.substring(lastIndexOf + 1).toLowerCase() : "txt");
-                    List<TLRPC$InputDocument> list5 = this.entry.stickers;
-                    if (list5 != null && (!list5.isEmpty() || ((list = this.entry.editStickers) != null && !list.isEmpty()))) {
-                        tLRPC$InputMedia.flags |= 1;
-                        List<TLRPC$InputDocument> list6 = this.entry.editStickers;
-                        if (list6 != null) {
-                            tLRPC$InputMedia.stickers.addAll(list6);
-                        }
-                        tLRPC$InputMedia.stickers = new ArrayList<>(this.entry.stickers);
+                    tLRPC$InputMedia.attributes.add(new TLRPC$TL_documentAttributeHasStickers());
+                }
+                StoryEntry storyEntry2 = this.entry;
+                tLRPC$InputMedia.nosound_video = storyEntry2.muted || !storyEntry2.isVideo;
+                tLRPC$InputMedia.mime_type = "video/mp4";
+            } else {
+                tLRPC$InputMedia = new TLRPC$TL_inputMediaUploadedPhoto();
+                tLRPC$InputMedia.file = tLRPC$InputFile;
+                MimeTypeMap singleton = MimeTypeMap.getSingleton();
+                int lastIndexOf = this.path.lastIndexOf(46);
+                tLRPC$InputMedia.mime_type = singleton.getMimeTypeFromExtension(lastIndexOf != -1 ? this.path.substring(lastIndexOf + 1).toLowerCase() : "txt");
+                List<TLRPC$InputDocument> list5 = this.entry.stickers;
+                if (list5 != null && (!list5.isEmpty() || ((list = this.entry.editStickers) != null && !list.isEmpty()))) {
+                    tLRPC$InputMedia.flags |= 1;
+                    List<TLRPC$InputDocument> list6 = this.entry.editStickers;
+                    if (list6 != null) {
+                        tLRPC$InputMedia.stickers.addAll(list6);
                     }
+                    tLRPC$InputMedia.stickers = new ArrayList<>(this.entry.stickers);
                 }
             }
             int i2 = UserConfig.getInstance(StoriesController.this.currentAccount).isPremium() ? MessagesController.getInstance(StoriesController.this.currentAccount).storyCaptionLengthLimitPremium : MessagesController.getInstance(StoriesController.this.currentAccount).storyCaptionLengthLimitDefault;
@@ -1863,9 +1917,9 @@ public class StoriesController {
                     tLRPC$TL_stories_editStory.flags |= 1;
                     tLRPC$TL_stories_editStory.media = tLRPC$InputMedia;
                 }
-                if (storyEntry3.editedCaption && (charSequence = storyEntry3.caption) != null) {
+                if (storyEntry3.editedCaption && (charSequence2 = storyEntry3.caption) != null) {
                     tLRPC$TL_stories_editStory.flags |= 2;
-                    CharSequence[] charSequenceArr = {charSequence};
+                    CharSequence[] charSequenceArr = {charSequence2};
                     if (charSequenceArr[0].length() > i2) {
                         charSequenceArr[0] = charSequenceArr[0].subSequence(0, i2);
                     }
@@ -1911,10 +1965,10 @@ public class StoriesController {
                 StoryEntry storyEntry5 = this.entry;
                 tLRPC$TL_stories_sendStory2.pinned = storyEntry5.pinned;
                 tLRPC$TL_stories_sendStory2.noforwards = !storyEntry5.allowScreenshots;
-                CharSequence charSequence2 = storyEntry5.caption;
-                if (charSequence2 != null) {
+                CharSequence charSequence3 = storyEntry5.caption;
+                if (charSequence3 != null) {
                     tLRPC$TL_stories_sendStory2.flags |= 3;
-                    CharSequence[] charSequenceArr2 = {charSequence2};
+                    CharSequence[] charSequenceArr2 = {charSequence3};
                     if (charSequenceArr2[0].length() > i2) {
                         charSequenceArr2[0] = charSequenceArr2[0].subSequence(0, i2);
                     }
@@ -1953,16 +2007,25 @@ public class StoriesController {
                     }
                 }
             }
-            this.currentRequest = ConnectionsManager.getInstance(StoriesController.this.currentAccount).sendRequest(tLRPC$TL_stories_sendStory, new RequestDelegate() {
+            RequestDelegate requestDelegate = new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    StoriesController.UploadingStory.this.lambda$sendUploadedRequest$6(tLObject, tLRPC$TL_error);
+                    StoriesController.UploadingStory.this.lambda$sendUploadedRequest$7(tLObject, tLRPC$TL_error);
                 }
-            });
+            };
+            if (!BuildVars.DEBUG_PRIVATE_VERSION || this.edit || (charSequence = this.entry.caption) == null || !charSequence.toString().contains("#failtest") || this.hadFailed) {
+                this.currentRequest = ConnectionsManager.getInstance(StoriesController.this.currentAccount).sendRequest(tLRPC$TL_stories_sendStory, requestDelegate);
+                return;
+            }
+            TLRPC$TL_error tLRPC$TL_error = new TLRPC$TL_error();
+            tLRPC$TL_error.code = 400;
+            tLRPC$TL_error.text = "FORCED_TO_FAIL";
+            requestDelegate.run(null, tLRPC$TL_error);
         }
 
-        public void lambda$sendUploadedRequest$6(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$sendUploadedRequest$7(TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
             if (tLObject != null) {
+                this.failed = false;
                 TLRPC$Updates tLRPC$Updates = (TLRPC$Updates) tLObject;
                 final TLRPC$StoryItem tLRPC$StoryItem = null;
                 int i = 0;
@@ -2033,6 +2096,13 @@ public class StoriesController {
                     });
                     MessagesController.getInstance(StoriesController.this.currentAccount).processUpdateArray(tLRPC$Updates.updates, tLRPC$Updates.users, tLRPC$Updates.chats, false, tLRPC$Updates.date);
                 }
+            } else if (tLRPC$TL_error != null && !this.edit) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        StoriesController.UploadingStory.this.lambda$sendUploadedRequest$6(tLRPC$TL_error);
+                    }
+                });
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -2052,11 +2122,30 @@ public class StoriesController {
 
         public void lambda$sendUploadedRequest$5(long j, TLRPC$StoryItem tLRPC$StoryItem) {
             this.entryDestroyed = true;
+            if (this.entry.isError) {
+                StoriesController.this.getDraftsController().delete(this.entry);
+            }
+            StoryEntry storyEntry = this.entry;
+            storyEntry.isError = false;
+            storyEntry.error = null;
             StoriesController.this.getDraftsController().saveForEdit(this.entry, j, tLRPC$StoryItem);
             if (this.edit) {
                 return;
             }
             StoriesController.this.invalidateStoryLimit();
+        }
+
+        public void lambda$sendUploadedRequest$6(TLRPC$TL_error tLRPC$TL_error) {
+            this.entry.isError = true;
+            if (StoriesController.this.checkStoryError(tLRPC$TL_error)) {
+                this.entry.error = null;
+            } else {
+                this.entry.error = tLRPC$TL_error;
+            }
+            this.entryDestroyed = true;
+            this.failed = true;
+            this.hadFailed = true;
+            StoriesController.this.getDraftsController().edit(this.entry);
         }
 
         private void putMessages() {
@@ -2091,6 +2180,10 @@ public class StoriesController {
         }
 
         public void cancel() {
+            if (this.failed) {
+                StoriesController.this.getDraftsController().delete(this.entry);
+                StoriesController.this.uploadingStories.remove(this);
+            }
             this.canceled = true;
             if (this.entry.wouldBeVideo()) {
                 MediaController.getInstance().cancelVideoConvert(this.messageObject);
@@ -2112,24 +2205,27 @@ public class StoriesController {
     }
 
     private StoriesList getStoriesList(long j, int i, boolean z) {
-        HashMap<Long, StoriesList>[] hashMapArr = this.storiesLists;
-        if (hashMapArr[i] == null) {
-            hashMapArr[i] = new HashMap<>();
+        if (i != 1 || j == getSelfUserId()) {
+            HashMap<Long, StoriesList>[] hashMapArr = this.storiesLists;
+            if (hashMapArr[i] == null) {
+                hashMapArr[i] = new HashMap<>();
+            }
+            StoriesList storiesList = this.storiesLists[i].get(Long.valueOf(j));
+            if (storiesList == null && z) {
+                HashMap<Long, StoriesList> hashMap = this.storiesLists[i];
+                Long valueOf = Long.valueOf(j);
+                StoriesList storiesList2 = new StoriesList(this.currentAccount, j, i, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        StoriesController.this.destroyStoryList((StoriesController.StoriesList) obj);
+                    }
+                }, null);
+                hashMap.put(valueOf, storiesList2);
+                return storiesList2;
+            }
+            return storiesList;
         }
-        StoriesList storiesList = this.storiesLists[i].get(Long.valueOf(j));
-        if (storiesList == null && z) {
-            HashMap<Long, StoriesList> hashMap = this.storiesLists[i];
-            Long valueOf = Long.valueOf(j);
-            StoriesList storiesList2 = new StoriesList(this.currentAccount, j, i, new Utilities.Callback() {
-                @Override
-                public final void run(Object obj) {
-                    StoriesController.this.destroyStoryList((StoriesController.StoriesList) obj);
-                }
-            }, null);
-            hashMap.put(valueOf, storiesList2);
-            return storiesList2;
-        }
-        return storiesList;
+        return null;
     }
 
     public static String storyItemIds(List<TLRPC$StoryItem> list) {
@@ -3114,29 +3210,17 @@ public class StoriesController {
     }
 
     public void lambda$checkStoryLimit$27(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        String str;
         this.storyLimitFetched = true;
         if (tLObject instanceof TLRPC$TL_boolTrue) {
             this.storyLimitCached = null;
-        } else if (tLRPC$TL_error != null && (str = tLRPC$TL_error.text) != null) {
-            long j = 0;
-            if (str.startsWith("STORY_SEND_FLOOD_WEEKLY_")) {
-                try {
-                    j = Long.parseLong(tLRPC$TL_error.text.substring(24));
-                } catch (Exception unused) {
-                }
-                this.storyLimitCached = new StoryLimit(2, j);
-            } else if (tLRPC$TL_error.text.startsWith("STORY_SEND_FLOOD_MONTHLY_")) {
-                try {
-                    j = Long.parseLong(tLRPC$TL_error.text.substring(25));
-                } catch (Exception unused2) {
-                }
-                this.storyLimitCached = new StoryLimit(3, j);
-            } else if (tLRPC$TL_error.text.equals("STORIES_TOO_MUCH")) {
-                this.storyLimitCached = new StoryLimit(1, 0L);
-            }
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesLimitUpdate, new Object[0]);
+            return;
         }
-        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesLimitUpdate, new Object[0]);
+        checkStoryError(tLRPC$TL_error);
+    }
+
+    public boolean checkStoryError(org.telegram.tgnet.TLRPC$TL_error r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesController.checkStoryError(org.telegram.tgnet.TLRPC$TL_error):boolean");
     }
 
     public boolean hasStoryLimit() {

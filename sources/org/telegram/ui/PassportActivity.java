@@ -83,6 +83,7 @@ import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.MrzRecognizer;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.PushListenerController;
@@ -1386,7 +1387,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             this.inputFields[i2].setCursorColor(Theme.getColor(i3));
             this.inputFields[i2].setCursorSize(AndroidUtilities.dp(20.0f));
             this.inputFields[i2].setCursorWidth(1.5f);
-            this.inputFields[i2].setInputType(129);
+            this.inputFields[i2].setInputType(MessagesStorage.LAST_DB_VERSION);
             this.inputFields[i2].setMaxLines(1);
             this.inputFields[i2].setLines(1);
             this.inputFields[i2].setSingleLine(true);

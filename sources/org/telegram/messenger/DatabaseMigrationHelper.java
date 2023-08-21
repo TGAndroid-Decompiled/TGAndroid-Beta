@@ -1252,7 +1252,12 @@ public class DatabaseMigrationHelper {
         if (i7 == 127) {
             sQLiteDatabase.executeFast("ALTER TABLE stories ADD COLUMN custom_params BLOB default NULL").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 128").stepThis().dispose();
-            return 128;
+            i7 = 128;
+        }
+        if (i7 == 128) {
+            sQLiteDatabase.executeFast("ALTER TABLE story_drafts ADD COLUMN type INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 129").stepThis().dispose();
+            return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
     }
@@ -1296,7 +1301,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 128) {
+        if (intValue != 129) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }
