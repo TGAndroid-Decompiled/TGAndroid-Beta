@@ -965,7 +965,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
     }
 
     @SuppressLint({"SetJavaScriptEnabled", "AddJavascriptInterface"})
-    public WebPlayerView(Context context, boolean z, boolean z2, WebPlayerViewDelegate webPlayerViewDelegate) {
+    public WebPlayerView(final Context context, boolean z, boolean z2, WebPlayerViewDelegate webPlayerViewDelegate) {
         super(context);
         lastContainerId++;
         this.allowInlineAnimation = Build.VERSION.SDK_INT >= 21;
@@ -1111,7 +1111,19 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         this.aspectRatioFrameLayout = aspectRatioFrameLayout;
         addView(aspectRatioFrameLayout, LayoutHelper.createFrame(-1, -1, 17));
         this.interfaceName = "JavaScriptInterface";
-        WebView webView = new WebView(context);
+        WebView webView = new WebView(this, context) {
+            @Override
+            protected void onAttachedToWindow() {
+                AndroidUtilities.checkAndroidTheme(context, true);
+                super.onAttachedToWindow();
+            }
+
+            @Override
+            protected void onDetachedFromWindow() {
+                AndroidUtilities.checkAndroidTheme(context, false);
+                super.onDetachedFromWindow();
+            }
+        };
         this.webView = webView;
         webView.addJavascriptInterface(new JavaScriptInterface(new CallJavaResultInterface() {
             @Override

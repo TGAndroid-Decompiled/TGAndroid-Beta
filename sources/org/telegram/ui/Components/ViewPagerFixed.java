@@ -300,10 +300,13 @@ public class ViewPagerFixed extends FrameLayout {
                 ViewPagerFixed.this.onTabPageSelected(i2);
                 View[] viewArr = ViewPagerFixed.this.viewPages;
                 int measuredWidth = viewArr[0] != null ? viewArr[0].getMeasuredWidth() : 0;
-                if (z2) {
-                    ViewPagerFixed.this.viewPages[1].setTranslationX(measuredWidth);
-                } else {
-                    ViewPagerFixed.this.viewPages[1].setTranslationX(-measuredWidth);
+                View[] viewArr2 = ViewPagerFixed.this.viewPages;
+                if (viewArr2[1] != null) {
+                    if (z2) {
+                        viewArr2[1].setTranslationX(measuredWidth);
+                    } else {
+                        viewArr2[1].setTranslationX(-measuredWidth);
+                    }
                 }
             }
 

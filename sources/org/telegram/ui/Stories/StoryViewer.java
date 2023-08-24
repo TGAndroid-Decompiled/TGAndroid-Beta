@@ -32,6 +32,7 @@ import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
+import com.google.android.exoplayer2.util.Log;
 import java.util.ArrayList;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
@@ -2330,11 +2331,16 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         if (j == 0 || tLRPC$StoryItem == null) {
             return;
         }
+        Log.d("kek", "saveDraft" + j + "_" + tLRPC$StoryItem.id + " " + ((Object) charSequence));
         this.replyDrafts.put(draftHash(j, tLRPC$StoryItem), charSequence);
     }
 
     public CharSequence getDraft(long j, TLRPC$StoryItem tLRPC$StoryItem) {
-        return (j == 0 || tLRPC$StoryItem == null) ? "" : this.replyDrafts.get(draftHash(j, tLRPC$StoryItem), "");
+        if (j == 0 || tLRPC$StoryItem == null) {
+            return "";
+        }
+        Log.d("kek", "getDraft " + j + "_" + tLRPC$StoryItem.id + " " + ((Object) this.replyDrafts.get(draftHash(j, tLRPC$StoryItem), "")));
+        return this.replyDrafts.get(draftHash(j, tLRPC$StoryItem), "");
     }
 
     public void clearDraft(long j, TLRPC$StoryItem tLRPC$StoryItem) {

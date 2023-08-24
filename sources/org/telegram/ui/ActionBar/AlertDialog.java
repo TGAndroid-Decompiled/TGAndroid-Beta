@@ -44,6 +44,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -244,7 +245,6 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         this.customViewOffset = 12;
         this.dialogButtonColorKey = Theme.key_dialogButton;
         this.topHeight = 132;
-        boolean z = true;
         this.messageTextViewClickable = true;
         this.canCacnel = true;
         this.dismissDialogByButtons = true;
@@ -265,21 +265,19 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         float f = 0.8f;
         this.blurAlpha = 0.8f;
         this.resourcesProvider = resourcesProvider;
-        this.blurredNativeBackground = supportsNativeBlur() && this.progressViewStyle == 0;
         int themedColor = getThemedColor(Theme.key_dialogBackground);
         this.backgroundColor = themedColor;
-        boolean z2 = AndroidUtilities.computePerceivedBrightness(themedColor) < 0.721f;
-        if (!this.blurredNativeBackground && (supportsNativeBlur() || SharedConfig.getDevicePerformanceClass() < 2 || !z2)) {
-            z = false;
-        }
-        this.blurredBackground = z;
+        boolean z = AndroidUtilities.computePerceivedBrightness(themedColor) < 0.721f;
+        boolean z2 = supportsNativeBlur() && this.progressViewStyle == 0;
+        this.blurredNativeBackground = z2;
+        this.blurredBackground = (z2 || (!supportsNativeBlur() && SharedConfig.getDevicePerformanceClass() >= 2 && LiteMode.isEnabled(LiteMode.FLAG_CHAT_BLUR))) && z;
         this.backgroundPaddings = new Rect();
         if (i != 3 || this.blurredBackground) {
             Drawable mutate = context.getResources().getDrawable(R.drawable.popup_fixed_alert3).mutate();
             this.shadowDrawable = mutate;
             if (i == 3) {
                 f = 0.55f;
-            } else if (!z2) {
+            } else if (!z) {
                 f = 0.985f;
             }
             this.blurOpacity = f;

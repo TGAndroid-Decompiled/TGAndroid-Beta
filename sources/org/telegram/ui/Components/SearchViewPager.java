@@ -128,7 +128,7 @@ public class SearchViewPager extends ViewPagerFixed implements FilteredSearchVie
         this.itemAnimator.setRemoveDuration(0L);
         this.itemAnimator.setMoveInterpolator(new OvershootInterpolator(1.1f));
         this.itemAnimator.setTranslationInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
-        this.dialogsSearchAdapter = new DialogsSearchAdapter(context, i, i2, this.itemAnimator, dialogsActivity.getAllowGlobalSearch()) {
+        this.dialogsSearchAdapter = new DialogsSearchAdapter(context, dialogsActivity, i, i2, this.itemAnimator, dialogsActivity.getAllowGlobalSearch()) {
             @Override
             public void notifyDataSetChanged() {
                 RecyclerListView recyclerListView;

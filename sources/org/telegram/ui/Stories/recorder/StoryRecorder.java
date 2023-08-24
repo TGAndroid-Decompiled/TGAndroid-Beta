@@ -2205,7 +2205,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 if (uRLSpanUserMention != null) {
                     try {
                         TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(Long.parseLong(uRLSpanUserMention.getURL())));
-                        if (user != null && UserObject.getPublicUsername(user) != null && !arrayList.contains(user)) {
+                        if (user != null && !UserObject.isUserSelf(user) && UserObject.getPublicUsername(user) != null && !arrayList.contains(user)) {
                             arrayList.add(UserObject.getPublicUsername(user));
                         }
                     } catch (Exception unused) {
@@ -2225,7 +2225,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                         TLObject userOrChat = MessagesController.getInstance(this.currentAccount).getUserOrChat(charSequence2);
                         if (userOrChat instanceof TLRPC$User) {
                             TLRPC$User tLRPC$User = (TLRPC$User) userOrChat;
-                            if (!tLRPC$User.bot && tLRPC$User.id != 777000 && !UserObject.isReplyUser(tLRPC$User) && !arrayList.contains(charSequence2)) {
+                            if (!tLRPC$User.bot && !UserObject.isUserSelf(tLRPC$User) && tLRPC$User.id != 777000 && !UserObject.isReplyUser(tLRPC$User) && !arrayList.contains(charSequence2)) {
                                 arrayList.add(charSequence2);
                             }
                         }
@@ -2238,7 +2238,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 TLObject userOrChat2 = MessagesController.getInstance(this.currentAccount).getUserOrChat(charSequence3);
                 if (userOrChat2 instanceof TLRPC$User) {
                     TLRPC$User tLRPC$User2 = (TLRPC$User) userOrChat2;
-                    if (!tLRPC$User2.bot && tLRPC$User2.id != 777000 && !UserObject.isReplyUser(tLRPC$User2) && !arrayList.contains(charSequence3)) {
+                    if (!tLRPC$User2.bot && !UserObject.isUserSelf(tLRPC$User2) && tLRPC$User2.id != 777000 && !UserObject.isReplyUser(tLRPC$User2) && !arrayList.contains(charSequence3)) {
                         arrayList.add(charSequence3);
                     }
                 }

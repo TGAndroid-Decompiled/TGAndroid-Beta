@@ -10304,7 +10304,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 if (blockVideoCell.currentBlock == tLRPC$PageBlock) {
                     view.getLocationInWindow(iArr);
                     ArticleViewer articleViewer = ArticleViewer.this;
-                    if (blockVideoCell == articleViewer.currentPlayer && (videoPlayerHolderBase = articleViewer.videoPlayer) != null && videoPlayerHolderBase.firstFrameRendered) {
+                    if (blockVideoCell == articleViewer.currentPlayer && (videoPlayerHolderBase = articleViewer.videoPlayer) != null && videoPlayerHolderBase.firstFrameRendered && blockVideoCell.textureView.getSurfaceTexture() != null) {
                         if (Build.VERSION.SDK_INT < 24) {
                             blockVideoCell.imageView.setImageBitmap(blockVideoCell.textureView.getBitmap());
                         } else {
@@ -10364,14 +10364,16 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                 viewFromListView.playFrom = videoPlayer.getCurrentPosition();
                 viewFromListView.firstFrameRendered = false;
                 viewFromListView.textureView.setAlpha(0.0f);
-                if (Build.VERSION.SDK_INT < 24) {
-                    viewFromListView.imageView.setImageBitmap(videoTextureView.getBitmap());
-                } else {
-                    Surface surface = new Surface(videoTextureView.getSurfaceTexture());
-                    Bitmap createBitmap = Bitmap.createBitmap(videoTextureView.getMeasuredWidth(), videoTextureView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
-                    AndroidUtilities.getBitmapFromSurface(surface, createBitmap);
-                    surface.release();
-                    viewFromListView.imageView.setImageBitmap(createBitmap);
+                if (videoTextureView.getSurfaceTexture() != null) {
+                    if (Build.VERSION.SDK_INT < 24) {
+                        viewFromListView.imageView.setImageBitmap(videoTextureView.getBitmap());
+                    } else {
+                        Surface surface = new Surface(videoTextureView.getSurfaceTexture());
+                        Bitmap createBitmap = Bitmap.createBitmap(videoTextureView.getMeasuredWidth(), videoTextureView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                        AndroidUtilities.getBitmapFromSurface(surface, createBitmap);
+                        surface.release();
+                        viewFromListView.imageView.setImageBitmap(createBitmap);
+                    }
                 }
             }
             ArticleViewer.this.checkVideoPlayer();

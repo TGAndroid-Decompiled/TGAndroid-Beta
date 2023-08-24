@@ -140,6 +140,7 @@ public class WebviewActivity extends BaseFragment {
     @Override
     public void onFragmentDestroy() {
         super.onFragmentDestroy();
+        AndroidUtilities.checkAndroidTheme(getContext(), false);
         AndroidUtilities.cancelRunOnUIThread(this.typingRunnable);
         this.webView.setLayerType(0, null);
         this.typingRunnable = null;
@@ -210,6 +211,7 @@ public class WebviewActivity extends BaseFragment {
             this.progressItem.getContentView().setVisibility(8);
             this.progressItem.setEnabled(false);
         }
+        AndroidUtilities.checkAndroidTheme(context, true);
         WebView webView = new WebView(context);
         this.webView = webView;
         webView.getSettings().setJavaScriptEnabled(true);

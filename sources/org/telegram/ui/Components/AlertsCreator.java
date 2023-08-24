@@ -1704,6 +1704,7 @@ public class AlertsCreator {
         if (tLRPC$TL_messages_botApp.request_write_access) {
             atomicBoolean.set(true);
             checkBoxCellArr[0] = new CheckBoxCell(context, 1, baseFragment.getResourceProvider());
+            checkBoxCellArr[0].allowMultiline();
             checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
             checkBoxCellArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), "", true, false);
             CheckBoxCell checkBoxCell = checkBoxCellArr[0];

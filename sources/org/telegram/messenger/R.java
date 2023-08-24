@@ -9183,26 +9183,27 @@ public final class R {
         public static final int Theme_TMessages_AppWidget_Preview7 = 0x7f0f0019;
         public static final int Theme_TMessages_BorderLessButton = 0x7f0f001a;
         public static final int Theme_TMessages_CalendarView = 0x7f0f001b;
-        public static final int Theme_TMessages_DatePicker = 0x7f0f001c;
-        public static final int Theme_TMessages_DayOfWeek = 0x7f0f001d;
-        public static final int Theme_TMessages_Dialog_Alert = 0x7f0f001e;
-        public static final int Theme_TMessages_ListView = 0x7f0f001f;
-        public static final int Theme_TMessages_PopupNotification = 0x7f0f0020;
-        public static final int Theme_TMessages_Start = 0x7f0f0021;
-        public static final int Theme_TMessages_TimePicker = 0x7f0f0022;
-        public static final int Theme_TMessages_Transparent = 0x7f0f0023;
-        public static final int Theme_TMessages_TransparentWithAlerts = 0x7f0f0024;
-        public static final int TransparentDialog = 0x7f0f0025;
-        public static final int TransparentDialog2 = 0x7f0f0026;
-        public static final int TransparentDialogNoAnimation = 0x7f0f0027;
-        public static final int WalletFragmentDefaultButtonTextAppearance = 0x7f0f0028;
-        public static final int WalletFragmentDefaultDetailsHeaderTextAppearance = 0x7f0f0029;
-        public static final int WalletFragmentDefaultDetailsTextAppearance = 0x7f0f002a;
-        public static final int WalletFragmentDefaultStyle = 0x7f0f002b;
-        public static final int Widget_Compat_NotificationActionContainer = 0x7f0f002c;
-        public static final int Widget_Compat_NotificationActionText = 0x7f0f002d;
-        public static final int Widget_Support_CoordinatorLayout = 0x7f0f002e;
-        public static final int scrollbarShapeStyle = 0x7f0f002f;
+        public static final int Theme_TMessages_Dark = 0x7f0f001c;
+        public static final int Theme_TMessages_DatePicker = 0x7f0f001d;
+        public static final int Theme_TMessages_DayOfWeek = 0x7f0f001e;
+        public static final int Theme_TMessages_Dialog_Alert = 0x7f0f001f;
+        public static final int Theme_TMessages_ListView = 0x7f0f0020;
+        public static final int Theme_TMessages_PopupNotification = 0x7f0f0021;
+        public static final int Theme_TMessages_Start = 0x7f0f0022;
+        public static final int Theme_TMessages_TimePicker = 0x7f0f0023;
+        public static final int Theme_TMessages_Transparent = 0x7f0f0024;
+        public static final int Theme_TMessages_TransparentWithAlerts = 0x7f0f0025;
+        public static final int TransparentDialog = 0x7f0f0026;
+        public static final int TransparentDialog2 = 0x7f0f0027;
+        public static final int TransparentDialogNoAnimation = 0x7f0f0028;
+        public static final int WalletFragmentDefaultButtonTextAppearance = 0x7f0f0029;
+        public static final int WalletFragmentDefaultDetailsHeaderTextAppearance = 0x7f0f002a;
+        public static final int WalletFragmentDefaultDetailsTextAppearance = 0x7f0f002b;
+        public static final int WalletFragmentDefaultStyle = 0x7f0f002c;
+        public static final int Widget_Compat_NotificationActionContainer = 0x7f0f002d;
+        public static final int Widget_Compat_NotificationActionText = 0x7f0f002e;
+        public static final int Widget_Support_CoordinatorLayout = 0x7f0f002f;
+        public static final int scrollbarShapeStyle = 0x7f0f0030;
 
         private style() {
         }

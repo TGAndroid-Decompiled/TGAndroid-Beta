@@ -19,6 +19,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -104,7 +105,6 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
     private boolean lastExpanded;
     private String lastQrText;
     private ValueCallback<Uri[]> mFilePathCallback;
-    private String mUrl;
     private Runnable onPermissionsRequestResultCallback;
     private Activity parentActivity;
     private Theme.ResourcesProvider resourcesProvider;
@@ -157,7 +157,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         void onWebViewScrolled(WebView webView, int i, int i2);
     }
 
-    public static void lambda$evaluateJs$6(String str) {
+    public static void lambda$evaluateJs$4(String str) {
     }
 
     public BotWebViewContainer(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
@@ -305,6 +305,18 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                 }
                 return super.onTouchEvent(motionEvent);
             }
+
+            @Override
+            protected void onAttachedToWindow() {
+                AndroidUtilities.checkAndroidTheme(getContext(), true);
+                super.onAttachedToWindow();
+            }
+
+            @Override
+            protected void onDetachedFromWindow() {
+                AndroidUtilities.checkAndroidTheme(getContext(), false);
+                super.onDetachedFromWindow();
+            }
         };
         this.webView = webView2;
         webView2.setBackgroundColor(getColor(Theme.key_windowBackgroundWhite));
@@ -313,6 +325,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         settings.setGeolocationEnabled(true);
         settings.setDomStorageEnabled(true);
         settings.setDatabaseEnabled(true);
+        settings.setSupportMultipleWindows(true);
         settings.setTextSize(WebSettings.TextSize.NORMAL);
         File file = new File(ApplicationLoader.getFilesDirFixed(), "webview_database");
         if ((file.exists() && file.isDirectory()) || file.mkdirs()) {
@@ -323,16 +336,15 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         this.webView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView webView3, String str) {
-                Uri parse = Uri.parse(BotWebViewContainer.this.mUrl);
-                Uri parse2 = Uri.parse(str);
-                if (!BotWebViewContainer.this.isPageLoaded || (Objects.equals(parse.getHost(), parse2.getHost()) && Objects.equals(parse.getPath(), parse2.getPath()))) {
-                    return false;
-                }
-                if (BotWebViewContainer.WHITELISTED_SCHEMES.contains(parse2.getScheme())) {
-                    BotWebViewContainer.this.onOpenUri(parse2);
+                Uri parse = Uri.parse(str);
+                if (Browser.isInternalUri(parse, null)) {
+                    if (BotWebViewContainer.WHITELISTED_SCHEMES.contains(parse.getScheme())) {
+                        BotWebViewContainer.this.onOpenUri(parse);
+                        return true;
+                    }
                     return true;
                 }
-                return true;
+                return false;
             }
 
             @Override
@@ -352,6 +364,21 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         private Dialog lastPermissionsDialog;
 
         AnonymousClass4() {
+        }
+
+        @Override
+        public boolean onCreateWindow(WebView webView, boolean z, boolean z2, Message message) {
+            WebView webView2 = new WebView(webView.getContext());
+            webView2.setWebViewClient(new WebViewClient() {
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView webView3, String str) {
+                    BotWebViewContainer.this.onOpenUri(Uri.parse(str));
+                    return true;
+                }
+            });
+            ((WebView.WebViewTransport) message.obj).setWebView(webView2);
+            message.sendToTarget();
+            return true;
         }
 
         @Override
@@ -539,52 +566,31 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         if (System.currentTimeMillis() - this.lastClickMs <= 10000 || !z2) {
             this.lastClickMs = 0L;
             boolean[] zArr = {false};
-            if (!Browser.isInternalUri(uri, zArr) || zArr[0]) {
-                if (z2) {
-                    Browser.openUrl(getContext(), uri, true, z);
+            if (Browser.isInternalUri(uri, zArr) && !zArr[0]) {
+                if (this.delegate != null) {
+                    setDescendantFocusability(393216);
+                    setFocusable(false);
+                    this.webView.setFocusable(false);
+                    this.webView.setDescendantFocusability(393216);
+                    this.webView.clearFocus();
+                    ((InputMethodManager) getContext().getSystemService("input_method")).hideSoftInputFromWindow(getWindowToken(), 2);
+                    this.delegate.onCloseRequested(new Runnable() {
+                        @Override
+                        public final void run() {
+                            BotWebViewContainer.this.lambda$onOpenUri$0(uri, z);
+                        }
+                    });
                     return;
                 }
-                this.isRequestingPageOpen = true;
-                new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString(R.string.OpenUrlTitle)).setMessage(LocaleController.formatString(R.string.OpenUrlAlert2, uri.toString())).setPositiveButton(LocaleController.getString(R.string.Open), new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface, int i) {
-                        BotWebViewContainer.this.lambda$onOpenUri$1(uri, z, dialogInterface, i);
-                    }
-                }).setNegativeButton(LocaleController.getString(R.string.Cancel), null).setOnDismissListener(new DialogInterface.OnDismissListener() {
-                    @Override
-                    public final void onDismiss(DialogInterface dialogInterface) {
-                        BotWebViewContainer.this.lambda$onOpenUri$2(dialogInterface);
-                    }
-                }).show();
-            } else if (this.delegate != null) {
-                setDescendantFocusability(393216);
-                setFocusable(false);
-                this.webView.setFocusable(false);
-                this.webView.setDescendantFocusability(393216);
-                this.webView.clearFocus();
-                ((InputMethodManager) getContext().getSystemService("input_method")).hideSoftInputFromWindow(getWindowToken(), 2);
-                this.delegate.onCloseRequested(new Runnable() {
-                    @Override
-                    public final void run() {
-                        BotWebViewContainer.this.lambda$onOpenUri$0(uri, z);
-                    }
-                });
-            } else {
                 Browser.openUrl(getContext(), uri, true, z);
+                return;
             }
+            Browser.openUrl(getContext(), uri, true, z);
         }
     }
 
     public void lambda$onOpenUri$0(Uri uri, boolean z) {
         Browser.openUrl(getContext(), uri, true, z);
-    }
-
-    public void lambda$onOpenUri$1(Uri uri, boolean z, DialogInterface dialogInterface, int i) {
-        Browser.openUrl(getContext(), uri, true, z);
-    }
-
-    public void lambda$onOpenUri$2(DialogInterface dialogInterface) {
-        this.isRequestingPageOpen = false;
     }
 
     public static int getMainButtonRippleColor(int i) {
@@ -620,7 +626,6 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             }
         });
         animatorSet.start();
-        this.mUrl = str;
         this.isPageLoaded = true;
         setFocusable(true);
         this.delegate.onWebAppReady();
@@ -643,7 +648,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             this.onPermissionsRequestResultCallback = new Runnable() {
                 @Override
                 public final void run() {
-                    BotWebViewContainer.this.lambda$runWithPermissions$3(consumer, strArr);
+                    BotWebViewContainer.this.lambda$runWithPermissions$1(consumer, strArr);
                 }
             };
             Activity activity = this.parentActivity;
@@ -653,7 +658,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         }
     }
 
-    public void lambda$runWithPermissions$3(Consumer consumer, String[] strArr) {
+    public void lambda$runWithPermissions$1(Consumer consumer, String[] strArr) {
         consumer.accept(Boolean.valueOf(checkPermissions(strArr)));
     }
 
@@ -852,21 +857,21 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getAttachMenuBot, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                BotWebViewContainer.this.lambda$loadFlickerAndSettingsItem$5(actionBarMenuSubItem, tLObject, tLRPC$TL_error);
+                BotWebViewContainer.this.lambda$loadFlickerAndSettingsItem$3(actionBarMenuSubItem, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$loadFlickerAndSettingsItem$5(final ActionBarMenuSubItem actionBarMenuSubItem, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadFlickerAndSettingsItem$3(final ActionBarMenuSubItem actionBarMenuSubItem, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$loadFlickerAndSettingsItem$4(tLObject, actionBarMenuSubItem);
+                BotWebViewContainer.this.lambda$loadFlickerAndSettingsItem$2(tLObject, actionBarMenuSubItem);
             }
         });
     }
 
-    public void lambda$loadFlickerAndSettingsItem$4(TLObject tLObject, ActionBarMenuSubItem actionBarMenuSubItem) {
+    public void lambda$loadFlickerAndSettingsItem$2(TLObject tLObject, ActionBarMenuSubItem actionBarMenuSubItem) {
         boolean z;
         if (!(tLObject instanceof TLRPC$TL_attachMenuBotsBot)) {
             if (actionBarMenuSubItem != null) {
@@ -926,7 +931,6 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         this.isPageLoaded = false;
         this.lastClickMs = 0L;
         this.hasUserPermissions = false;
-        this.mUrl = str;
         WebView webView = this.webView;
         if (webView != null) {
             webView.loadUrl(str);
@@ -976,7 +980,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             webView.evaluateJavascript(str, new ValueCallback() {
                 @Override
                 public final void onReceiveValue(Object obj) {
-                    BotWebViewContainer.lambda$evaluateJs$6((String) obj);
+                    BotWebViewContainer.lambda$evaluateJs$4((String) obj);
                 }
             });
             return;
@@ -1025,6 +1029,26 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BotWebViewContainer.onEventReceived(java.lang.String, java.lang.String):void");
     }
 
+    public void lambda$onEventReceived$7(PopupButton popupButton, AtomicBoolean atomicBoolean, DialogInterface dialogInterface, int i) {
+        dialogInterface.dismiss();
+        try {
+            notifyEvent("popup_closed", new JSONObject().put("button_id", popupButton.id));
+            atomicBoolean.set(true);
+        } catch (JSONException e) {
+            FileLog.e(e);
+        }
+    }
+
+    public void lambda$onEventReceived$8(PopupButton popupButton, AtomicBoolean atomicBoolean, DialogInterface dialogInterface, int i) {
+        dialogInterface.dismiss();
+        try {
+            notifyEvent("popup_closed", new JSONObject().put("button_id", popupButton.id));
+            atomicBoolean.set(true);
+        } catch (JSONException e) {
+            FileLog.e(e);
+        }
+    }
+
     public void lambda$onEventReceived$9(PopupButton popupButton, AtomicBoolean atomicBoolean, DialogInterface dialogInterface, int i) {
         dialogInterface.dismiss();
         try {
@@ -1035,27 +1059,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         }
     }
 
-    public void lambda$onEventReceived$10(PopupButton popupButton, AtomicBoolean atomicBoolean, DialogInterface dialogInterface, int i) {
-        dialogInterface.dismiss();
-        try {
-            notifyEvent("popup_closed", new JSONObject().put("button_id", popupButton.id));
-            atomicBoolean.set(true);
-        } catch (JSONException e) {
-            FileLog.e(e);
-        }
-    }
-
-    public void lambda$onEventReceived$11(PopupButton popupButton, AtomicBoolean atomicBoolean, DialogInterface dialogInterface, int i) {
-        dialogInterface.dismiss();
-        try {
-            notifyEvent("popup_closed", new JSONObject().put("button_id", popupButton.id));
-            atomicBoolean.set(true);
-        } catch (JSONException e) {
-            FileLog.e(e);
-        }
-    }
-
-    public void lambda$onEventReceived$12(AtomicBoolean atomicBoolean, DialogInterface dialogInterface) {
+    public void lambda$onEventReceived$10(AtomicBoolean atomicBoolean, DialogInterface dialogInterface) {
         if (!atomicBoolean.get()) {
             notifyEvent("popup_closed", new JSONObject());
         }
@@ -1063,16 +1067,16 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         this.lastDialogClosed = System.currentTimeMillis();
     }
 
-    public void lambda$onEventReceived$14(final String str, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onEventReceived$12(final String str, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$13(tLRPC$TL_error, str, tLObject);
+                BotWebViewContainer.this.lambda$onEventReceived$11(tLRPC$TL_error, str, tLObject);
             }
         });
     }
 
-    public void lambda$onEventReceived$13(TLRPC$TL_error tLRPC$TL_error, String str, TLObject tLObject) {
+    public void lambda$onEventReceived$11(TLRPC$TL_error tLRPC$TL_error, String str, TLObject tLObject) {
         if (tLRPC$TL_error != null) {
             onInvoiceStatusUpdate(str, "failed");
         } else {

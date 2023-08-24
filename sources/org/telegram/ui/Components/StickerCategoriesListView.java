@@ -355,7 +355,7 @@ public class StickerCategoriesListView extends RecyclerListView {
             if (childAt instanceof CategoryButton) {
                 float cascade = AndroidUtilities.cascade(f, (getChildCount() - 1) - getChildAdapterPosition(childAt), getChildCount() - 1, 3.0f);
                 if (cascade > 0.0f && childAt.getAlpha() <= 0.0f) {
-                    ((CategoryButton) childAt).play();
+                    ((CategoryButton) childAt).play(false);
                 }
                 childAt.setAlpha(cascade);
                 childAt.setScaleX(cascade);
@@ -581,7 +581,7 @@ public class StickerCategoriesListView extends RecyclerListView {
             categoryButton.setAlpha(StickerCategoriesListView.this.categoriesShownT);
             categoryButton.setScaleX(StickerCategoriesListView.this.categoriesShownT);
             categoryButton.setScaleY(StickerCategoriesListView.this.categoriesShownT);
-            categoryButton.play();
+            categoryButton.play(false);
         }
 
         @Override
@@ -589,7 +589,7 @@ public class StickerCategoriesListView extends RecyclerListView {
             if (viewHolder.getItemViewType() == 1) {
                 CategoryButton categoryButton = (CategoryButton) viewHolder.itemView;
                 categoryButton.setSelected(StickerCategoriesListView.this.selectedCategoryIndex == viewHolder.getAdapterPosition() - 1, false);
-                categoryButton.play();
+                categoryButton.play(false);
             }
         }
 
@@ -612,7 +612,7 @@ public class StickerCategoriesListView extends RecyclerListView {
     }
 
     protected boolean isTabIconsAnimationEnabled(boolean z) {
-        return LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD) && !z;
+        return LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD);
     }
 
     public class CategoryButton extends RLottieImageView {
@@ -796,8 +796,8 @@ public class StickerCategoriesListView extends RecyclerListView {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(size - AndroidUtilities.dp(4.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
         }
 
-        public void play() {
-            if (System.currentTimeMillis() - this.lastPlayed > 250) {
+        public void play(boolean z) {
+            if (System.currentTimeMillis() - this.lastPlayed > 250 || z) {
                 this.lastPlayed = System.currentTimeMillis();
                 RLottieDrawable animatedDrawable = getAnimatedDrawable();
                 if (animatedDrawable == null && getImageReceiver() != null) {

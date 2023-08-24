@@ -9097,26 +9097,27 @@
     <public type="style" name="Theme.TMessages.AppWidget.Preview7" id="0x7f0f0019" />
     <public type="style" name="Theme.TMessages.BorderLessButton" id="0x7f0f001a" />
     <public type="style" name="Theme.TMessages.CalendarView" id="0x7f0f001b" />
-    <public type="style" name="Theme.TMessages.DatePicker" id="0x7f0f001c" />
-    <public type="style" name="Theme.TMessages.DayOfWeek" id="0x7f0f001d" />
-    <public type="style" name="Theme.TMessages.Dialog.Alert" id="0x7f0f001e" />
-    <public type="style" name="Theme.TMessages.ListView" id="0x7f0f001f" />
-    <public type="style" name="Theme.TMessages.PopupNotification" id="0x7f0f0020" />
-    <public type="style" name="Theme.TMessages.Start" id="0x7f0f0021" />
-    <public type="style" name="Theme.TMessages.TimePicker" id="0x7f0f0022" />
-    <public type="style" name="Theme.TMessages.Transparent" id="0x7f0f0023" />
-    <public type="style" name="Theme.TMessages.TransparentWithAlerts" id="0x7f0f0024" />
-    <public type="style" name="TransparentDialog" id="0x7f0f0025" />
-    <public type="style" name="TransparentDialog2" id="0x7f0f0026" />
-    <public type="style" name="TransparentDialogNoAnimation" id="0x7f0f0027" />
-    <public type="style" name="WalletFragmentDefaultButtonTextAppearance" id="0x7f0f0028" />
-    <public type="style" name="WalletFragmentDefaultDetailsHeaderTextAppearance" id="0x7f0f0029" />
-    <public type="style" name="WalletFragmentDefaultDetailsTextAppearance" id="0x7f0f002a" />
-    <public type="style" name="WalletFragmentDefaultStyle" id="0x7f0f002b" />
-    <public type="style" name="Widget.Compat.NotificationActionContainer" id="0x7f0f002c" />
-    <public type="style" name="Widget.Compat.NotificationActionText" id="0x7f0f002d" />
-    <public type="style" name="Widget.Support.CoordinatorLayout" id="0x7f0f002e" />
-    <public type="style" name="scrollbarShapeStyle" id="0x7f0f002f" />
+    <public type="style" name="Theme.TMessages.Dark" id="0x7f0f001c" />
+    <public type="style" name="Theme.TMessages.DatePicker" id="0x7f0f001d" />
+    <public type="style" name="Theme.TMessages.DayOfWeek" id="0x7f0f001e" />
+    <public type="style" name="Theme.TMessages.Dialog.Alert" id="0x7f0f001f" />
+    <public type="style" name="Theme.TMessages.ListView" id="0x7f0f0020" />
+    <public type="style" name="Theme.TMessages.PopupNotification" id="0x7f0f0021" />
+    <public type="style" name="Theme.TMessages.Start" id="0x7f0f0022" />
+    <public type="style" name="Theme.TMessages.TimePicker" id="0x7f0f0023" />
+    <public type="style" name="Theme.TMessages.Transparent" id="0x7f0f0024" />
+    <public type="style" name="Theme.TMessages.TransparentWithAlerts" id="0x7f0f0025" />
+    <public type="style" name="TransparentDialog" id="0x7f0f0026" />
+    <public type="style" name="TransparentDialog2" id="0x7f0f0027" />
+    <public type="style" name="TransparentDialogNoAnimation" id="0x7f0f0028" />
+    <public type="style" name="WalletFragmentDefaultButtonTextAppearance" id="0x7f0f0029" />
+    <public type="style" name="WalletFragmentDefaultDetailsHeaderTextAppearance" id="0x7f0f002a" />
+    <public type="style" name="WalletFragmentDefaultDetailsTextAppearance" id="0x7f0f002b" />
+    <public type="style" name="WalletFragmentDefaultStyle" id="0x7f0f002c" />
+    <public type="style" name="Widget.Compat.NotificationActionContainer" id="0x7f0f002d" />
+    <public type="style" name="Widget.Compat.NotificationActionText" id="0x7f0f002e" />
+    <public type="style" name="Widget.Support.CoordinatorLayout" id="0x7f0f002f" />
+    <public type="style" name="scrollbarShapeStyle" id="0x7f0f0030" />
     <public type="xml" name="actions" id="0x7f110000" />
     <public type="xml" name="auth" id="0x7f110001" />
     <public type="xml" name="auth_menu" id="0x7f110002" />

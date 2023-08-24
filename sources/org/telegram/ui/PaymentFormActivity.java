@@ -1520,6 +1520,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
         if (paymentFormActivityDelegate != null) {
             paymentFormActivityDelegate.onFragmentDestroyed();
         }
+        AndroidUtilities.checkAndroidTheme(getContext(), false);
         if (!this.paymentStatusSent) {
             this.invoiceStatus = InvoiceStatus.CANCELLED;
             if (this.paymentFormCallback != null && getOtherSameFragmentDiff() == 0) {

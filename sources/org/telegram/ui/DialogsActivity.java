@@ -220,16 +220,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private float additionalFloatingTranslation2;
     private float additionalOffset;
     private boolean afterSignup;
-    private boolean allowBots;
-    private boolean allowChannels;
+    public boolean allowBots;
+    public boolean allowChannels;
     private boolean allowGlobalSearch;
-    private boolean allowGroups;
-    private boolean allowLegacyGroups;
-    private boolean allowMegagroups;
+    public boolean allowGroups;
+    public boolean allowLegacyGroups;
+    public boolean allowMegagroups;
     private boolean allowMoving;
     private boolean allowSwipeDuringCurrentTouch;
     private boolean allowSwitchAccount;
-    private boolean allowUsers;
+    public boolean allowUsers;
     private boolean animateToHasStories;
     private DrawerProfileCell.AnimatedStatusView animatedStatusView;
     private boolean animatingForward;
@@ -4903,7 +4903,11 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                     }
                 });
                 if (showDialog(notificationPermissionDialog) == null) {
-                    notificationPermissionDialog.show();
+                    try {
+                        notificationPermissionDialog.show();
+                    } catch (Throwable th) {
+                        FileLog.e(th);
+                    }
                 }
             } else if (z2 && this.askAboutContacts && getUserConfig().syncContacts && activity.shouldShowRequestPermissionRationale("android.permission.READ_CONTACTS")) {
                 AlertDialog create = AlertsCreator.createContactsPermissionDialog(activity, new MessagesStorage.IntCallback() {

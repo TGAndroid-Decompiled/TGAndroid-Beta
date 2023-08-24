@@ -40,15 +40,15 @@ public class SearchAdapterHelper {
     private String lastFoundChannel;
     private ArrayList<DialogsSearchAdapter.RecentSearchObject> localRecentResults;
     private ArrayList<Object> localSearchResults;
-    private ArrayList<Integer> pendingRequestIds = new ArrayList<>();
+    private final ArrayList<Integer> pendingRequestIds = new ArrayList<>();
     private String lastFoundUsername = null;
-    private ArrayList<TLObject> localServerSearch = new ArrayList<>();
-    private ArrayList<TLObject> globalSearch = new ArrayList<>();
-    private LongSparseArray<TLObject> globalSearchMap = new LongSparseArray<>();
-    private ArrayList<TLObject> groupSearch = new ArrayList<>();
-    private LongSparseArray<TLObject> groupSearchMap = new LongSparseArray<>();
-    private LongSparseArray<TLObject> phoneSearchMap = new LongSparseArray<>();
-    private ArrayList<Object> phonesSearch = new ArrayList<>();
+    private final ArrayList<TLObject> localServerSearch = new ArrayList<>();
+    private final ArrayList<TLObject> globalSearch = new ArrayList<>();
+    private final LongSparseArray<TLObject> globalSearchMap = new LongSparseArray<>();
+    private final ArrayList<TLObject> groupSearch = new ArrayList<>();
+    private final LongSparseArray<TLObject> groupSearchMap = new LongSparseArray<>();
+    private final LongSparseArray<TLObject> phoneSearchMap = new LongSparseArray<>();
+    private final ArrayList<Object> phonesSearch = new ArrayList<>();
     private int currentAccount = UserConfig.selectedAccount;
     private boolean allowGlobalResults = true;
     private boolean hashtagsLoadedFromDb = false;
@@ -86,6 +86,10 @@ public class SearchAdapterHelper {
         void onDataSetChanged(int i);
 
         void onSetHashtags(ArrayList<HashtagObject> arrayList, HashMap<String, HashtagObject> hashMap);
+    }
+
+    protected boolean filter(TLObject tLObject) {
+        return true;
     }
 
     public SearchAdapterHelper(boolean z) {
@@ -189,11 +193,11 @@ public class SearchAdapterHelper {
                         tLRPC$User2 = null;
                     }
                     if (tLRPC$Chat2 != null) {
-                        if (z && ((!z2 || ChatObject.canAddBotsToChat(tLRPC$Chat2)) && (this.allowGlobalResults || !ChatObject.isNotInChat(tLRPC$Chat2)))) {
+                        if (z && ((!z2 || ChatObject.canAddBotsToChat(tLRPC$Chat2)) && ((this.allowGlobalResults || !ChatObject.isNotInChat(tLRPC$Chat2)) && filter(tLRPC$Chat2)))) {
                             this.globalSearch.add(tLRPC$Chat2);
                             this.globalSearchMap.put(-tLRPC$Chat2.id, tLRPC$Chat2);
                         }
-                    } else if (tLRPC$User2 != null && !z2 && ((z3 || !tLRPC$User2.bot) && ((z4 || !tLRPC$User2.self) && (this.allowGlobalResults || i4 != 1 || tLRPC$User2.contact)))) {
+                    } else if (tLRPC$User2 != null && !z2 && ((z3 || !tLRPC$User2.bot) && ((z4 || !tLRPC$User2.self) && ((this.allowGlobalResults || i4 != 1 || tLRPC$User2.contact) && filter(tLRPC$User2))))) {
                         this.globalSearch.add(tLRPC$User2);
                         this.globalSearchMap.put(tLRPC$User2.id, tLRPC$User2);
                     }
@@ -222,11 +226,11 @@ public class SearchAdapterHelper {
                         tLRPC$User = null;
                     }
                     if (tLRPC$Chat != null) {
-                        if (z && ((!z2 || ChatObject.canAddBotsToChat(tLRPC$Chat)) && (-tLRPC$Chat.id) != j)) {
+                        if (z && ((!z2 || ChatObject.canAddBotsToChat(tLRPC$Chat)) && (-tLRPC$Chat.id) != j && filter(tLRPC$Chat))) {
                             this.localServerSearch.add(tLRPC$Chat);
                             this.globalSearchMap.put(-tLRPC$Chat.id, tLRPC$Chat);
                         }
-                    } else if (tLRPC$User != null && !z2 && ((z3 || !tLRPC$User.bot) && ((z4 || !tLRPC$User.self) && tLRPC$User.id != j))) {
+                    } else if (tLRPC$User != null && !z2 && ((z3 || !tLRPC$User.bot) && ((z4 || !tLRPC$User.self) && tLRPC$User.id != j && filter(tLRPC$User)))) {
                         this.localServerSearch.add(tLRPC$User);
                         this.globalSearchMap.put(tLRPC$User.id, tLRPC$User);
                     }

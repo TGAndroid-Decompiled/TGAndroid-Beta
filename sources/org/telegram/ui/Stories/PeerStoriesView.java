@@ -3868,7 +3868,6 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
                 ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
                 if (chatActivityEnterView != null && chatActivityEnterView.isPopupShowing()) {
-                    this.storyViewer.saveDraft(this.dialogId, this.currentStory.storyItem, this.chatActivityEnterView.getEditText());
                     if (this.realKeyboardHeight > 0) {
                         AndroidUtilities.hideKeyboard(this.chatActivityEnterView.getEmojiView());
                     } else {
@@ -3876,6 +3875,10 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     }
                     return true;
                 } else if (getKeyboardHeight() >= AndroidUtilities.dp(20.0f)) {
+                    ChatActivityEnterView chatActivityEnterView2 = this.chatActivityEnterView;
+                    if (chatActivityEnterView2 != null) {
+                        this.storyViewer.saveDraft(this.dialogId, this.currentStory.storyItem, chatActivityEnterView2.getEditText());
+                    }
                     AndroidUtilities.hideKeyboard(this.chatActivityEnterView);
                     return true;
                 } else if (this.storyCaptionView.getVisibility() != 0 || this.storyCaptionView.getProgressToBlackout() <= 0.0f) {
@@ -4634,6 +4637,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 this.lastOpenedKeyboardHeight = i3;
                 checkReactionsLayout();
                 ReactionsEffectOverlay.dismissAll();
+            } else {
+                ChatActivityEnterView chatActivityEnterView2 = this.chatActivityEnterView;
+                if (chatActivityEnterView2 != null) {
+                    this.storyViewer.saveDraft(this.dialogId, this.currentStory.storyItem, chatActivityEnterView2.getEditText());
+                }
             }
             if (this.keyboardVisible && (mentionsContainerView = this.mentionContainer) != null) {
                 mentionsContainerView.setVisibility(0);
@@ -4643,9 +4651,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
             this.headerView.setEnabled(!this.keyboardVisible);
             this.optionsIconView.setEnabled(!this.keyboardVisible);
-            ChatActivityEnterView chatActivityEnterView2 = this.chatActivityEnterView;
-            if (chatActivityEnterView2 != null) {
-                chatActivityEnterView2.checkReactionsButton(!this.keyboardVisible);
+            ChatActivityEnterView chatActivityEnterView3 = this.chatActivityEnterView;
+            if (chatActivityEnterView3 != null) {
+                chatActivityEnterView3.checkReactionsButton(!this.keyboardVisible);
             }
             if (this.isActive && this.keyboardVisible) {
                 this.delegate.setKeyboardVisible(true);
@@ -4671,9 +4679,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     PeerStoriesView.this.notificationsLocker.unlock();
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     peerStoriesView.animatingKeyboardHeight = peerStoriesView.lastKeyboardHeight;
-                    ChatActivityEnterView chatActivityEnterView3 = PeerStoriesView.this.chatActivityEnterView;
-                    if (chatActivityEnterView3 != null) {
-                        chatActivityEnterView3.onOverrideAnimationEnd();
+                    ChatActivityEnterView chatActivityEnterView4 = PeerStoriesView.this.chatActivityEnterView;
+                    if (chatActivityEnterView4 != null) {
+                        chatActivityEnterView4.onOverrideAnimationEnd();
                     }
                     PeerStoriesView peerStoriesView2 = PeerStoriesView.this;
                     if (peerStoriesView2.isActive && !peerStoriesView2.keyboardVisible) {
@@ -4702,9 +4710,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 if (z2) {
                     createBlurredBitmap(this.bitmapShaderTools.getCanvas(), this.bitmapShaderTools.getBitmap());
                 } else {
-                    ChatActivityEnterView chatActivityEnterView3 = this.chatActivityEnterView;
-                    if (chatActivityEnterView3 != null) {
-                        chatActivityEnterView3.getEditField().clearFocus();
+                    ChatActivityEnterView chatActivityEnterView4 = this.chatActivityEnterView;
+                    if (chatActivityEnterView4 != null) {
+                        chatActivityEnterView4.getEditField().clearFocus();
                     }
                 }
                 this.animateKeyboardOpening = true;
@@ -4712,8 +4720,8 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 this.animateKeyboardOpening = false;
             }
         }
-        ChatActivityEnterView chatActivityEnterView4 = this.chatActivityEnterView;
-        if (chatActivityEnterView4 != null && chatActivityEnterView4.getEmojiView() != null) {
+        ChatActivityEnterView chatActivityEnterView5 = this.chatActivityEnterView;
+        if (chatActivityEnterView5 != null && chatActivityEnterView5.getEmojiView() != null) {
             ((FrameLayout.LayoutParams) this.chatActivityEnterView.getEmojiView().getLayoutParams()).gravity = 80;
         }
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.storyContainer.getLayoutParams();

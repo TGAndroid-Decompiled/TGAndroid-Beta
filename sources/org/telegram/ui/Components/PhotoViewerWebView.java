@@ -252,7 +252,7 @@ public class PhotoViewerWebView extends FrameLayout {
     }
 
     @SuppressLint({"SetJavaScriptEnabled"})
-    public PhotoViewerWebView(PhotoViewer photoViewer, Context context, View view) {
+    public PhotoViewerWebView(PhotoViewer photoViewer, final Context context, View view) {
         super(context);
         this.currentAccount = UserConfig.selectedAccount;
         this.youtubeStoryboards = new ArrayList();
@@ -278,6 +278,18 @@ public class PhotoViewerWebView extends FrameLayout {
                     canvas.drawColor(-16777216);
                     PhotoViewerWebView.this.drawBlackBackground(canvas, getWidth(), getHeight());
                 }
+            }
+
+            @Override
+            protected void onAttachedToWindow() {
+                AndroidUtilities.checkAndroidTheme(context, true);
+                super.onAttachedToWindow();
+            }
+
+            @Override
+            protected void onDetachedFromWindow() {
+                AndroidUtilities.checkAndroidTheme(context, false);
+                super.onDetachedFromWindow();
             }
         };
         this.webView = webView;

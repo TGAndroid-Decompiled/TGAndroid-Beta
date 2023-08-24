@@ -143,7 +143,7 @@ public class EmbedBottomSheet extends BottomSheet {
     }
 
     @SuppressLint({"SetJavaScriptEnabled"})
-    private EmbedBottomSheet(Context context, String str, String str2, String str3, String str4, int i, int i2, int i3) {
+    private EmbedBottomSheet(final Context context, String str, String str2, String str3, String str4, int i, int i2, int i3) {
         super(context, false);
         this.position = new int[2];
         this.prevOrientation = -2;
@@ -235,6 +235,18 @@ public class EmbedBottomSheet extends BottomSheet {
         });
         setCustomView(this.containerLayout);
         WebView webView = new WebView(context) {
+            @Override
+            protected void onAttachedToWindow() {
+                AndroidUtilities.checkAndroidTheme(context, true);
+                super.onAttachedToWindow();
+            }
+
+            @Override
+            protected void onDetachedFromWindow() {
+                AndroidUtilities.checkAndroidTheme(context, false);
+                super.onDetachedFromWindow();
+            }
+
             @Override
             public boolean onTouchEvent(MotionEvent motionEvent) {
                 boolean onTouchEvent = super.onTouchEvent(motionEvent);

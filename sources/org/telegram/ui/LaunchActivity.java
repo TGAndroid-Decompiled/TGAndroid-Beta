@@ -2604,33 +2604,38 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             MessagesController.getInstance(i).putUsers(tLRPC$TL_attachMenuBotsBot.users, false);
             TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = tLRPC$TL_attachMenuBotsBot.bot;
             ArrayList<BaseFragment> arrayList = mainFragmentsStack;
-            final BaseFragment baseFragment = arrayList.get(arrayList.size() - 1);
-            ArrayList arrayList2 = new ArrayList();
+            BaseFragment baseFragment = arrayList.get(arrayList.size() - 1);
+            if (AndroidUtilities.isTablet() && !(baseFragment instanceof ChatActivity) && !rightFragmentsStack.isEmpty()) {
+                ArrayList<BaseFragment> arrayList2 = rightFragmentsStack;
+                baseFragment = arrayList2.get(arrayList2.size() - 1);
+            }
+            final BaseFragment baseFragment2 = baseFragment;
+            ArrayList arrayList3 = new ArrayList();
             if (!TextUtils.isEmpty(str)) {
                 for (String str3 : str.split(" ")) {
                     if (MediaDataController.canShowAttachMenuBotForTarget(tLRPC$TL_attachMenuBot, str3)) {
-                        arrayList2.add(str3);
+                        arrayList3.add(str3);
                     }
                 }
             }
-            if (arrayList2.isEmpty()) {
+            if (arrayList3.isEmpty()) {
                 dialogsActivity = null;
             } else {
                 Bundle bundle = new Bundle();
                 bundle.putInt("dialogsType", 14);
                 bundle.putBoolean("onlySelect", true);
-                bundle.putBoolean("allowGroups", arrayList2.contains("groups"));
-                bundle.putBoolean("allowMegagroups", arrayList2.contains("groups"));
-                bundle.putBoolean("allowLegacyGroups", arrayList2.contains("groups"));
-                bundle.putBoolean("allowUsers", arrayList2.contains("users"));
-                bundle.putBoolean("allowChannels", arrayList2.contains("channels"));
-                bundle.putBoolean("allowBots", arrayList2.contains("bots"));
+                bundle.putBoolean("allowGroups", arrayList3.contains("groups"));
+                bundle.putBoolean("allowMegagroups", arrayList3.contains("groups"));
+                bundle.putBoolean("allowLegacyGroups", arrayList3.contains("groups"));
+                bundle.putBoolean("allowUsers", arrayList3.contains("users"));
+                bundle.putBoolean("allowChannels", arrayList3.contains("channels"));
+                bundle.putBoolean("allowBots", arrayList3.contains("bots"));
                 DialogsActivity dialogsActivity2 = new DialogsActivity(bundle);
                 dialogsActivity2.setDelegate(new DialogsActivity.DialogsActivityDelegate() {
                     @Override
-                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList3, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
+                    public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList4, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
                         boolean lambda$runLinkRequest$51;
-                        lambda$runLinkRequest$51 = LaunchActivity.this.lambda$runLinkRequest$51(tLRPC$User, str2, i, dialogsActivity3, arrayList3, charSequence, z, topicsFragment);
+                        lambda$runLinkRequest$51 = LaunchActivity.this.lambda$runLinkRequest$51(tLRPC$User, str2, i, dialogsActivity3, arrayList4, charSequence, z, topicsFragment);
                         return lambda$runLinkRequest$51;
                     }
                 });
@@ -2640,17 +2645,17 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 if (dialogsActivity != null) {
                     lambda$runLinkRequest$80(dialogsActivity);
                     return;
-                } else if (baseFragment instanceof ChatActivity) {
-                    ChatActivity chatActivity = (ChatActivity) baseFragment;
+                } else if (baseFragment2 instanceof ChatActivity) {
+                    ChatActivity chatActivity = (ChatActivity) baseFragment2;
                     if (!MediaDataController.canShowAttachMenuBot(tLRPC$TL_attachMenuBot, chatActivity.getCurrentUser() != null ? chatActivity.getCurrentUser() : chatActivity.getCurrentChat())) {
-                        BulletinFactory.of(baseFragment).createErrorBulletin(LocaleController.getString(R.string.BotAlreadyAddedToAttachMenu)).show();
+                        BulletinFactory.of(baseFragment2).createErrorBulletin(LocaleController.getString(R.string.BotAlreadyAddedToAttachMenu)).show();
                         return;
                     } else {
                         chatActivity.openAttachBotLayout(tLRPC$User.id, str2);
                         return;
                     }
                 } else {
-                    BulletinFactory.of(baseFragment).createErrorBulletin(LocaleController.getString(R.string.BotAlreadyAddedToAttachMenu)).show();
+                    BulletinFactory.of(baseFragment2).createErrorBulletin(LocaleController.getString(R.string.BotAlreadyAddedToAttachMenu)).show();
                     return;
                 }
             }
@@ -2662,12 +2667,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             AlertDialog.Builder negativeButton = new AlertDialog.Builder(this).setTopView(attachBotIntroTopView).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BotRequestAttachPermission", R.string.BotRequestAttachPermission, UserObject.getUserName(tLRPC$User)))).setPositiveButton(LocaleController.getString(R.string.BotAddToMenu), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
-                    LaunchActivity.this.lambda$runLinkRequest$54(i, l, atomicBoolean, dialogsActivity, baseFragment, tLRPC$User, str2, dialogInterface, i2);
+                    LaunchActivity.this.lambda$runLinkRequest$54(i, l, atomicBoolean, dialogsActivity, baseFragment2, tLRPC$User, str2, dialogInterface, i2);
                 }
             }).setNegativeButton(LocaleController.getString(R.string.Cancel), null);
             if (tLRPC$TL_attachMenuBot.request_write_access) {
                 atomicBoolean.set(true);
-                final CheckBoxCell checkBoxCell = new CheckBoxCell(this, 5, baseFragment.getResourceProvider());
+                final CheckBoxCell checkBoxCell = new CheckBoxCell(this, 5, baseFragment2.getResourceProvider());
                 checkBoxCell.setBackground(Theme.getSelectorDrawable(false));
                 checkBoxCell.setMultiline(true);
                 checkBoxCell.setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), "", true, false);
@@ -2683,8 +2688,8 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             negativeButton.show();
             return;
         }
-        ArrayList<BaseFragment> arrayList3 = mainFragmentsStack;
-        BulletinFactory.of(arrayList3.get(arrayList3.size() - 1)).createErrorBulletin(LocaleController.getString(R.string.BotCantAddToAttachMenu)).show();
+        ArrayList<BaseFragment> arrayList4 = mainFragmentsStack;
+        BulletinFactory.of(arrayList4.get(arrayList4.size() - 1)).createErrorBulletin(LocaleController.getString(R.string.BotCantAddToAttachMenu)).show();
     }
 
     public boolean lambda$runLinkRequest$51(TLRPC$User tLRPC$User, String str, int i, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
