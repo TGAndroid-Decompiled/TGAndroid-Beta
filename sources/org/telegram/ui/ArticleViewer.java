@@ -47,6 +47,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.Surface;
+import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.VelocityTracker;
 import android.view.View;
@@ -10359,6 +10360,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void onReleasePlayerBeforeClose(int i) {
             VideoPlayer videoPlayer = PhotoViewer.getInstance().getVideoPlayer();
             TextureView videoTextureView = PhotoViewer.getInstance().getVideoTextureView();
+            SurfaceView videoSurfaceView = PhotoViewer.getInstance().getVideoSurfaceView();
             BlockVideoCell viewFromListView = getViewFromListView(ArticleViewer.this.listView[0], this.pageBlocks.get(i));
             if (viewFromListView != null && videoPlayer != null && videoTextureView != null) {
                 viewFromListView.playFrom = videoPlayer.getCurrentPosition();
@@ -10375,6 +10377,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         viewFromListView.imageView.setImageBitmap(createBitmap);
                     }
                 }
+            }
+            if (viewFromListView != null && videoPlayer != null && videoSurfaceView != null) {
+                viewFromListView.playFrom = videoPlayer.getCurrentPosition();
+                viewFromListView.firstFrameRendered = false;
+                viewFromListView.textureView.setAlpha(0.0f);
+                Bitmap createBitmap2 = Bitmap.createBitmap(videoSurfaceView.getMeasuredWidth(), videoSurfaceView.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+                AndroidUtilities.getBitmapFromSurface(videoSurfaceView, createBitmap2);
+                viewFromListView.imageView.setImageBitmap(createBitmap2);
             }
             ArticleViewer.this.checkVideoPlayer();
         }

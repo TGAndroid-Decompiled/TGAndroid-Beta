@@ -62,6 +62,9 @@ public abstract class TLRPC$Update extends TLObject {
                     }
                 };
                 break;
+            case -1991136273:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateNewAuthorization();
+                break;
             case -1937192669:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChannelUserTyping();
                 break;
@@ -326,6 +329,9 @@ public abstract class TLRPC$Update extends TLObject {
             case -219423922:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateGroupCallParticipants();
                 break;
+            case -131960447:
+                tLRPC$TL_updateTheme = new TLRPC$TL_updateReadMessagesContents();
+                break;
             case -124097970:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateChat();
                 break;
@@ -581,9 +587,6 @@ public abstract class TLRPC$Update extends TLObject {
                 break;
             case 1753886890:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateNewStickerSet();
-                break;
-            case 1757493555:
-                tLRPC$TL_updateTheme = new TLRPC$TL_updateReadMessagesContents();
                 break;
             case 1767677564:
                 tLRPC$TL_updateTheme = new TLRPC$TL_updateReadChannelDiscussionOutbox();

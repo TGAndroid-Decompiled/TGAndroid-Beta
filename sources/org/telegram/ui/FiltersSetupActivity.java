@@ -608,14 +608,14 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 return;
             }
             if (dialogFilter.locked) {
-                showDialog(new LimitReachedBottomSheet(this, context, 3, this.currentAccount));
+                showDialog(new LimitReachedBottomSheet(this, context, 3, this.currentAccount, null));
             } else {
                 presentFragment(new FilterCreateActivity(dialogFilter));
             }
         } else if (i2 == 4) {
             int size = getMessagesController().getDialogFilters().size();
             if ((size - 1 >= getMessagesController().dialogFiltersLimitDefault && !getUserConfig().isPremium()) || size >= getMessagesController().dialogFiltersLimitPremium) {
-                showDialog(new LimitReachedBottomSheet(this, context, 3, this.currentAccount));
+                showDialog(new LimitReachedBottomSheet(this, context, 3, this.currentAccount, null));
             } else {
                 presentFragment(new FilterCreateActivity());
             }
@@ -793,7 +793,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
             if (dialogFilter.locked) {
                 FiltersSetupActivity filtersSetupActivity = FiltersSetupActivity.this;
                 FiltersSetupActivity filtersSetupActivity2 = FiltersSetupActivity.this;
-                filtersSetupActivity.showDialog(new LimitReachedBottomSheet(filtersSetupActivity2, this.mContext, 3, ((BaseFragment) filtersSetupActivity2).currentAccount));
+                filtersSetupActivity.showDialog(new LimitReachedBottomSheet(filtersSetupActivity2, this.mContext, 3, ((BaseFragment) filtersSetupActivity2).currentAccount, null));
                 return;
             }
             FiltersSetupActivity.this.presentFragment(new FilterCreateActivity(dialogFilter));

@@ -43,6 +43,7 @@ public class TextCheckCell2 extends FrameLayout {
             int i = Theme.key_windowBackgroundWhiteBlackText;
             animatedTextView2.setTextColor(Theme.getColor(i));
             this.animatedTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.animatedTextView.setAnimationProperties(0.4f, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.collapseViewContainer.addView(this.animatedTextView, LayoutHelper.createFrame(-2, 20.0f));
             this.collapsedArrow = new View(getContext());
             Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
@@ -160,11 +161,28 @@ public class TextCheckCell2 extends FrameLayout {
             this.textView.setAlpha(1.0f);
             this.valueTextView.setAlpha(1.0f);
             this.checkBox.setAlpha(1.0f);
+            AnimatedTextView animatedTextView = this.animatedTextView;
+            if (animatedTextView != null) {
+                animatedTextView.setAlpha(1.0f);
+            }
+            View view = this.collapsedArrow;
+            if (view != null) {
+                view.setAlpha(1.0f);
+                return;
+            }
             return;
         }
         this.checkBox.setAlpha(0.5f);
         this.textView.setAlpha(0.5f);
         this.valueTextView.setAlpha(0.5f);
+        AnimatedTextView animatedTextView2 = this.animatedTextView;
+        if (animatedTextView2 != null) {
+            animatedTextView2.setAlpha(0.6f);
+        }
+        View view2 = this.collapsedArrow;
+        if (view2 != null) {
+            view2.setAlpha(0.6f);
+        }
     }
 
     public void setEnabled(boolean z, boolean z2) {

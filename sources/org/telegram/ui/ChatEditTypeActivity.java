@@ -685,7 +685,7 @@ public class ChatEditTypeActivity extends BaseFragment implements NotificationCe
         if (getParentActivity() == null) {
             return;
         }
-        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getParentActivity(), 2, this.currentAccount);
+        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getParentActivity(), 2, this.currentAccount, null);
         limitReachedBottomSheet.parentIsChannel = this.isChannel;
         limitReachedBottomSheet.onSuccessRunnable = new Runnable() {
             @Override

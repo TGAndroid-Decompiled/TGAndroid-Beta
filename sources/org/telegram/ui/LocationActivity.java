@@ -229,6 +229,10 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
         return true;
     }
 
+    protected boolean disablePermissionCheck() {
+        return false;
+    }
+
     @Override
     public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
         return false;
@@ -1898,7 +1902,7 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
 
     public void openShareLiveLocation(final int i) {
         Activity parentActivity;
-        if (this.delegate == null || getParentActivity() == null || this.myLocation == null || !checkGpsEnabled()) {
+        if (this.delegate == null || disablePermissionCheck() || getParentActivity() == null || this.myLocation == null || !checkGpsEnabled()) {
             return;
         }
         if (this.checkBackgroundPermission && Build.VERSION.SDK_INT >= 29 && (parentActivity = getParentActivity()) != null) {
@@ -2272,6 +2276,9 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
     }
 
     private boolean checkGpsEnabled() {
+        if (disablePermissionCheck()) {
+            return false;
+        }
         if (getParentActivity().getPackageManager().hasSystemFeature("android.hardware.location.gps")) {
             try {
                 if (!((LocationManager) ApplicationLoader.applicationContext.getSystemService("location")).isProviderEnabled("gps")) {
@@ -3095,7 +3102,9 @@ public class LocationActivity extends BaseFragment implements NotificationCenter
             }
         }
         fixLayoutInternal(true);
-        if (this.checkPermission && Build.VERSION.SDK_INT >= 23 && (parentActivity = getParentActivity()) != null) {
+        if (disablePermissionCheck()) {
+            this.checkPermission = false;
+        } else if (this.checkPermission && Build.VERSION.SDK_INT >= 23 && (parentActivity = getParentActivity()) != null) {
             this.checkPermission = false;
             if (parentActivity.checkSelfPermission("android.permission.ACCESS_COARSE_LOCATION") != 0) {
                 parentActivity.requestPermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, 2);

@@ -53,9 +53,10 @@ import org.telegram.ui.Components.AutoDeletePopupWrapper;
 import org.telegram.ui.Components.SharedMediaLayout;
 import org.telegram.ui.TopicsFragment;
 public class ChatAvatarContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
+    public boolean allowDrawStories;
     public boolean allowShorterStatus;
     private AvatarDrawable avatarDrawable;
-    private BackupImageView avatarImageView;
+    public BackupImageView avatarImageView;
     private int currentAccount;
     private int currentConnectionState;
     StatusDrawable currentTypingDrawable;
@@ -468,6 +469,9 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         if (simpleTextView != null) {
             removeView(simpleTextView);
             this.subtitleTextLargerCopyView.set(null);
+            if (this.allowDrawStories) {
+                return;
+            }
             setClipChildren(true);
         }
     }

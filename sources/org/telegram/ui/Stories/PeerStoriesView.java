@@ -2251,6 +2251,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         @Override
+        public void onKeyboardRequested() {
+            ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$onKeyboardRequested(this);
+        }
+
+        @Override
         public void onMessageEditEnd(boolean z) {
         }
 
@@ -2334,7 +2339,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
             if (PeerStoriesView.this.mentionContainer.getAdapter() != null) {
                 PeerStoriesView.this.mentionContainer.setDialogId(PeerStoriesView.this.dialogId);
-                PeerStoriesView.this.mentionContainer.getAdapter().setUserOrChar(MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId)), null);
+                PeerStoriesView.this.mentionContainer.getAdapter().setUserOrChat(MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId)), null);
                 PeerStoriesView.this.mentionContainer.getAdapter().searchUsernameOrHashtag(charSequence, PeerStoriesView.this.chatActivityEnterView.getCursorPosition(), null, false, false);
             }
             PeerStoriesView.this.invalidate();
@@ -3229,7 +3234,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     float f6 = dp2 / 2.0f;
                     animatedEmojiEffect.setBounds((int) (x2 - f6), (int) (y2 - f6), (int) (x2 + f6), (int) (y2 + f6));
                     this.emojiReactionEffect.draw(canvas);
-                    if (this.emojiReactionEffect.done()) {
+                    if (this.emojiReactionEffect.isDone()) {
                         this.emojiReactionEffect.removeView(this);
                         this.emojiReactionEffect = null;
                         this.drawReactionEffect = false;
@@ -3298,7 +3303,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         StoriesController.StoryLimit checkStoryLimit;
-        final Activity findActivity;
+        Activity findActivity;
         if (i == NotificationCenter.storiesUpdated || (i == NotificationCenter.storiesListUpdated && this.storyViewer.storiesList == objArr[0])) {
             Delegate delegate = this.delegate;
             if (delegate == null || !delegate.isClosed()) {
@@ -3344,10 +3349,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             if (storyViewer == null || (findActivity = storyViewer.parentActivity) == null) {
                 findActivity = AndroidUtilities.findActivity(getContext());
             }
-            if (findActivity == null) {
+            final Activity activity = findActivity;
+            if (activity == null) {
                 return;
             }
-            this.delegate.showDialog(new LimitReachedBottomSheet(new BaseFragment() {
+            this.delegate.showDialog(new LimitReachedBottomSheet(new BaseFragment(this) {
                 @Override
                 public boolean isLightStatusBar() {
                     return false;
@@ -3355,18 +3361,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
                 @Override
                 public Activity getParentActivity() {
-                    return findActivity;
-                }
-
-                @Override
-                public Theme.ResourcesProvider getResourceProvider() {
-                    return new WrappedResourceProvider(this, PeerStoriesView.this.resourcesProvider) {
-                        @Override
-                        public void appendColors() {
-                            this.sparseIntArray.append(Theme.key_dialogBackground, -14737633);
-                            this.sparseIntArray.append(Theme.key_windowBackgroundGray, -13421773);
-                        }
-                    };
+                    return activity;
                 }
 
                 @Override
@@ -3374,7 +3369,13 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     this.storyViewer.presentFragment(baseFragment);
                     return true;
                 }
-            }, findActivity, checkStoryLimit.getLimitReachedType(), this.currentAccount));
+            }, activity, checkStoryLimit.getLimitReachedType(), this.currentAccount, new WrappedResourceProvider(this, this.resourcesProvider) {
+                @Override
+                public void appendColors() {
+                    this.sparseIntArray.append(Theme.key_dialogBackground, -14737633);
+                    this.sparseIntArray.append(Theme.key_windowBackgroundGray, -13421773);
+                }
+            }));
         }
     }
 
@@ -5132,14 +5133,14 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             this.reactionsContainerLayout = reactionsContainerLayout;
             reactionsContainerLayout.skipEnterAnimation = true;
             addView(reactionsContainerLayout, this.reactionsContainerIndex, LayoutHelper.createFrame(-2, 52.0f, 49, 0.0f, 0.0f, 0.0f, 64.0f));
-            this.reactionsContainerLayout.setDelegate(new AnonymousClass33());
+            this.reactionsContainerLayout.setDelegate(new AnonymousClass34());
             this.reactionsContainerLayout.setMessage(null, null);
         }
         this.reactionsContainerLayout.setFragment(LaunchActivity.getLastFragment());
     }
 
-    public class AnonymousClass33 implements ReactionsContainerLayout.ReactionsContainerDelegate {
-        AnonymousClass33() {
+    public class AnonymousClass34 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+        AnonymousClass34() {
         }
 
         @Override
@@ -5154,7 +5155,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             if (z3 && PeerStoriesView.this.applyMessageToChat(new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass33.this.lambda$onReactionClickedInternal$0(view, visibleReaction, z, z2);
+                    PeerStoriesView.AnonymousClass34.this.lambda$onReactionClickedInternal$0(view, visibleReaction, z, z2);
                 }
             })) {
                 return;
@@ -5201,7 +5202,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             BulletinFactory.of(peerStoriesView5.storyContainer, peerStoriesView5.resourcesProvider).createEmojiBulletin(tLRPC$Document, LocaleController.getString("ReactionSent", R.string.ReactionSent), LocaleController.getString("ViewInChat", R.string.ViewInChat), new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass33.this.lambda$onReactionClickedInternal$1();
+                    PeerStoriesView.AnonymousClass34.this.lambda$onReactionClickedInternal$1();
                 }
             }).setDuration(5000).show();
             if (PeerStoriesView.this.reactionsContainerLayout.getReactionsWindow() != null) {
@@ -5256,7 +5257,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             reactionsContainerLayout2.setPadding(0, 0, 0, AndroidUtilities.dp(22.0f));
             addView(this.likesReactionLayout, this.reactionsContainerIndex, LayoutHelper.createFrame(-2, 74.0f, 53, 0.0f, 0.0f, 12.0f, 64.0f));
             this.likesReactionLayout.setVisibility(8);
-            this.likesReactionLayout.setDelegate(new AnonymousClass35());
+            this.likesReactionLayout.setDelegate(new AnonymousClass36());
             this.likesReactionLayout.setMessage(null, null);
         } else {
             reactionsContainerLayout.reset();
@@ -5264,7 +5265,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         this.likesReactionLayout.setFragment(LaunchActivity.getLastFragment());
     }
 
-    public class AnonymousClass35 implements ReactionsContainerLayout.ReactionsContainerDelegate {
+    public class AnonymousClass36 implements ReactionsContainerLayout.ReactionsContainerDelegate {
         @Override
         public void drawRoundRect(Canvas canvas, RectF rectF, float f, float f2, float f3) {
             ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawRoundRect(this, canvas, rectF, f, f2, f3);
@@ -5275,7 +5276,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$onEmojiWindowDismissed(this);
         }
 
-        AnonymousClass35() {
+        AnonymousClass36() {
         }
 
         @Override
@@ -5283,7 +5284,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    PeerStoriesView.AnonymousClass35.this.lambda$onReactionClicked$1(visibleReaction, view);
+                    PeerStoriesView.AnonymousClass36.this.lambda$onReactionClicked$1(visibleReaction, view);
                 }
             };
             if (!z) {
@@ -5352,7 +5353,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    PeerStoriesView.AnonymousClass35.this.lambda$onReactionClicked$0(ofFloat, zArr, valueAnimator);
+                    PeerStoriesView.AnonymousClass36.this.lambda$onReactionClicked$0(ofFloat, zArr, valueAnimator);
                 }
             });
             ofFloat.addListener(new AnimatorListenerAdapter() {

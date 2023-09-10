@@ -144,49 +144,11 @@ public class DownloadButton extends ImageView {
                     }
                 });
             }
-            if (this.currentEntry.wouldBeVideo()) {
-                this.downloadingVideo = true;
-                PreparingVideoToast preparingVideoToast2 = new PreparingVideoToast(getContext());
-                this.toast = preparingVideoToast2;
-                preparingVideoToast2.setOnCancelListener(new Runnable() {
-                    @Override
-                    public final void run() {
-                        DownloadButton.this.lambda$onClick$1();
-                    }
-                });
-                this.container.addView(this.toast);
-            } else {
-                this.downloadingVideo = false;
-            }
             updateImage();
-            Utilities.Callback<Runnable> callback2 = this.prepare;
-            if (callback2 != null) {
-                this.preparing = true;
-                callback2.run(new Runnable() {
-                    @Override
-                    public final void run() {
-                        DownloadButton.this.onClickInternal();
-                    }
-                });
-                return;
+            if (this.prepare == null) {
+                onClickInternal();
             }
-            onClickInternal();
         }
-    }
-
-    public void lambda$onClick$1() {
-        this.preparing = false;
-        BuildingVideo buildingVideo = this.buildingVideo;
-        if (buildingVideo != null) {
-            buildingVideo.stop(true);
-            this.buildingVideo = null;
-        }
-        PreparingVideoToast preparingVideoToast = this.toast;
-        if (preparingVideoToast != null) {
-            preparingVideoToast.hide();
-        }
-        this.downloading = false;
-        updateImage();
     }
 
     public void onClickInternal() {
@@ -196,6 +158,16 @@ public class DownloadButton extends ImageView {
         }
         this.preparing = false;
         if (storyEntry.wouldBeVideo()) {
+            this.downloadingVideo = true;
+            PreparingVideoToast preparingVideoToast = new PreparingVideoToast(getContext());
+            this.toast = preparingVideoToast;
+            preparingVideoToast.setOnCancelListener(new Runnable() {
+                @Override
+                public final void run() {
+                    DownloadButton.this.lambda$onClickInternal$1();
+                }
+            });
+            this.container.addView(this.toast);
             final File generateVideoPath = AndroidUtilities.generateVideoPath();
             this.buildingVideo = new BuildingVideo(this.currentAccount, this.currentEntry, generateVideoPath, new Runnable() {
                 @Override
@@ -214,6 +186,7 @@ public class DownloadButton extends ImageView {
                 }
             });
         } else {
+            this.downloadingVideo = false;
             final File generatePicturePath = AndroidUtilities.generatePicturePath(false, "png");
             if (generatePicturePath == null) {
                 this.toast.setDone(R.raw.error, LocaleController.getString("UnknownError"), 3500);
@@ -228,6 +201,21 @@ public class DownloadButton extends ImageView {
                 }
             });
         }
+        updateImage();
+    }
+
+    public void lambda$onClickInternal$1() {
+        this.preparing = false;
+        BuildingVideo buildingVideo = this.buildingVideo;
+        if (buildingVideo != null) {
+            buildingVideo.stop(true);
+            this.buildingVideo = null;
+        }
+        PreparingVideoToast preparingVideoToast = this.toast;
+        if (preparingVideoToast != null) {
+            preparingVideoToast.hide();
+        }
+        this.downloading = false;
         updateImage();
     }
 

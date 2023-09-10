@@ -151,7 +151,7 @@ public class LogoutActivity extends BaseFragment {
             if (i2 > 0 && num != null) {
                 presentFragment(new LoginActivity(num.intValue()));
             } else if (!UserConfig.hasPremiumOnAccounts()) {
-                showDialog(new LimitReachedBottomSheet(this, getContext(), 7, this.currentAccount));
+                showDialog(new LimitReachedBottomSheet(this, getContext(), 7, this.currentAccount, null));
             }
         } else if (i == this.passcodeRow) {
             presentFragment(PasscodeActivity.determineOpenFragment());

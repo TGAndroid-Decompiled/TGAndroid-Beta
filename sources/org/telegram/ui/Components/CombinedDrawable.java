@@ -45,6 +45,11 @@ public class CombinedDrawable extends Drawable implements Drawable.Callback {
         }
     }
 
+    public void setBackgroundDrawable(Drawable drawable) {
+        this.background = drawable;
+        invalidateSelf();
+    }
+
     public void setCustomSize(int i, int i2) {
         this.backWidth = i;
         this.backHeight = i2;

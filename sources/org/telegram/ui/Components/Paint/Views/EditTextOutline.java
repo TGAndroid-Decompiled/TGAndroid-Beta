@@ -17,7 +17,6 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public class EditTextOutline extends EditTextBoldCursor {
-    public boolean betterFraming;
     public RectF framePadding;
     private boolean isFrameDirty;
     private float lastFrameRoundRadius;
@@ -159,9 +158,7 @@ public class EditTextOutline extends EditTextBoldCursor {
         }
         if (this.mFrameColor != 0) {
             canvas.save();
-            if (this.betterFraming) {
-                canvas.translate(getPaddingLeft(), getPaddingTop());
-            }
+            canvas.translate(getPaddingLeft(), getPaddingTop());
             this.paint.setColor(this.mFrameColor);
             Layout layout = getLayout();
             if (layout == null) {
@@ -182,16 +179,11 @@ public class EditTextOutline extends EditTextBoldCursor {
                     }
                     this.lines[i2].set(layout.getLineLeft(i2), layout.getLineTop(i2), layout.getLineRight(i2), layout.getLineBottom(i2));
                     if (this.lines[i2].width() > AndroidUtilities.dp(1.0f)) {
-                        if (this.betterFraming) {
-                            this.lines[i2].inset((-getTextSize()) / 3.0f, 0.0f);
-                            this.lines[i2].top += AndroidUtilities.dpf2(1.2f);
-                            this.lines[i2].bottom += AndroidUtilities.dpf2(1.0f);
-                            this.lines[i2].left = Math.max(-getPaddingLeft(), this.lines[i2].left);
-                            this.lines[i2].right = Math.min(getWidth() - getPaddingLeft(), this.lines[i2].right);
-                        } else {
-                            this.lines[i2].right += AndroidUtilities.dp(32.0f);
-                            this.lines[i2].bottom += AndroidUtilities.dp(6.0f);
-                        }
+                        this.lines[i2].inset((-getTextSize()) / 3.0f, 0.0f);
+                        this.lines[i2].top += AndroidUtilities.dpf2(1.2f);
+                        this.lines[i2].bottom += AndroidUtilities.dpf2(1.0f);
+                        this.lines[i2].left = Math.max(-getPaddingLeft(), this.lines[i2].left);
+                        this.lines[i2].right = Math.min(getWidth() - getPaddingLeft(), this.lines[i2].right);
                     } else {
                         RectF[] rectFArr3 = this.lines;
                         rectFArr3[i2].left = rectFArr3[i2].right;
@@ -228,34 +220,21 @@ public class EditTextOutline extends EditTextBoldCursor {
                 rectF7.bottom = getMeasuredHeight() - this.framePadding.bottom;
             }
             this.path.rewind();
-            float height = getHeight();
-            int i5 = 0;
+            float textSize = getTextSize() / 3.0f;
+            float f2 = 1.5f * textSize;
+            int i5 = 1;
             while (true) {
                 RectF[] rectFArr5 = this.lines;
                 if (i5 >= rectFArr5.length) {
                     break;
                 }
-                if (rectFArr5[i5].width() != 0.0f) {
-                    RectF[] rectFArr6 = this.lines;
-                    height = rectFArr6[i5].bottom - rectFArr6[i5].top;
-                }
-                i5++;
-            }
-            float min = Math.min(height / 3.0f, AndroidUtilities.dp(16.0f));
-            float f2 = 1.5f * min;
-            int i6 = 1;
-            while (true) {
-                RectF[] rectFArr7 = this.lines;
-                if (i6 >= rectFArr7.length) {
-                    break;
-                }
-                RectF rectF8 = rectFArr7[i6 - 1];
-                RectF rectF9 = rectFArr7[i6];
+                RectF rectF8 = rectFArr5[i5 - 1];
+                RectF rectF9 = rectFArr5[i5];
                 if (rectF8.width() >= AndroidUtilities.dp(1.0f) && rectF9.width() >= AndroidUtilities.dp(1.0f)) {
                     if (Math.abs(rectF8.left - rectF9.left) < f2) {
-                        float min2 = Math.min(rectF9.left, rectF8.left);
-                        rectF8.left = min2;
-                        rectF9.left = min2;
+                        float min = Math.min(rectF9.left, rectF8.left);
+                        rectF8.left = min;
+                        rectF9.left = min;
                         z = true;
                     } else {
                         z = false;
@@ -267,15 +246,15 @@ public class EditTextOutline extends EditTextBoldCursor {
                         z = true;
                     }
                     if (z) {
-                        for (int i7 = i6; i7 >= 1; i7--) {
-                            RectF[] rectFArr8 = this.lines;
-                            RectF rectF10 = rectFArr8[i7 - 1];
-                            RectF rectF11 = rectFArr8[i7];
+                        for (int i6 = i5; i6 >= 1; i6--) {
+                            RectF[] rectFArr6 = this.lines;
+                            RectF rectF10 = rectFArr6[i6 - 1];
+                            RectF rectF11 = rectFArr6[i6];
                             if (rectF10.width() >= AndroidUtilities.dp(1.0f) && rectF11.width() >= AndroidUtilities.dp(1.0f)) {
                                 if (Math.abs(rectF10.left - rectF11.left) < f2) {
-                                    float min3 = Math.min(rectF11.left, rectF10.left);
-                                    rectF10.left = min3;
-                                    rectF11.left = min3;
+                                    float min2 = Math.min(rectF11.left, rectF10.left);
+                                    rectF10.left = min2;
+                                    rectF11.left = min2;
                                 }
                                 if (Math.abs(rectF10.right - rectF11.right) < f2) {
                                     float max2 = Math.max(rectF11.right, rectF10.right);
@@ -286,19 +265,19 @@ public class EditTextOutline extends EditTextBoldCursor {
                         }
                     }
                 }
-                i6++;
+                i5++;
             }
             while (true) {
-                RectF[] rectFArr9 = this.lines;
-                if (i >= rectFArr9.length) {
+                RectF[] rectFArr7 = this.lines;
+                if (i >= rectFArr7.length) {
                     break;
                 }
-                if (rectFArr9[i].width() != 0.0f) {
+                if (rectFArr7[i].width() != 0.0f) {
                     this.path.addRect(this.lines[i], Path.Direction.CW);
                 }
                 i++;
             }
-            setFrameRoundRadius(min);
+            setFrameRoundRadius(textSize);
             canvas.drawPath(this.path, this.paint);
             canvas.restore();
         } else {

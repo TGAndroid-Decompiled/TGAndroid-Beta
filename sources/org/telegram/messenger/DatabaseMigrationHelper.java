@@ -1257,6 +1257,28 @@ public class DatabaseMigrationHelper {
         if (i7 == 128) {
             sQLiteDatabase.executeFast("ALTER TABLE story_drafts ADD COLUMN type INTEGER default 0").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 129").stepThis().dispose();
+            i7 = 129;
+        }
+        if (i7 == 129) {
+            sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS stickers_featured_emoji_index ON stickers_featured(emoji);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 130").stepThis().dispose();
+            i7 = 130;
+        }
+        if (i7 == 130) {
+            sQLiteDatabase.executeFast("DROP TABLE archived_stories").stepThis().dispose();
+            sQLiteDatabase.executeFast("ALTER TABLE profile_stories ADD COLUMN type INTEGER default 0").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 131").stepThis().dispose();
+            i7 = 131;
+        }
+        if (i7 == 131) {
+            sQLiteDatabase.executeFast("ALTER TABLE stories DROP COLUMN local_path").stepThis().dispose();
+            sQLiteDatabase.executeFast("ALTER TABLE stories DROP COLUMN local_thumb_path").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 132").stepThis().dispose();
+            i7 = 132;
+        }
+        if (i7 == 132) {
+            sQLiteDatabase.executeFast("CREATE TABLE unconfirmed_auth (data BLOB);").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 133").stepThis().dispose();
             return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
@@ -1301,7 +1323,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 129) {
+        if (intValue != 133) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }

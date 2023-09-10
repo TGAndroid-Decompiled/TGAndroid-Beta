@@ -6186,7 +6186,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 int dp = AndroidUtilities.dp(16.0f);
                 this.codeField[i3].setPadding(dp, dp, dp, dp);
                 if (i == 0) {
-                    this.codeField[i3].setInputType(MessagesStorage.LAST_DB_VERSION);
+                    this.codeField[i3].setInputType(129);
                     this.codeField[i3].setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }
                 this.codeField[i3].setTypeface(Typeface.DEFAULT);

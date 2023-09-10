@@ -69,6 +69,7 @@ public class BottomSheet extends Dialog {
     private int bottomInset;
     protected boolean calcMandatoryInsets;
     private boolean canDismissWithSwipe;
+    private boolean canDismissWithTouchOutside;
     protected ContainerView container;
     protected ViewGroup containerView;
     protected int currentAccount;
@@ -156,10 +157,6 @@ public class BottomSheet extends Dialog {
     }
 
     public static boolean lambda$onCreate$2(View view, MotionEvent motionEvent) {
-        return true;
-    }
-
-    protected boolean canDismissWithTouchOutside() {
         return true;
     }
 
@@ -794,6 +791,7 @@ public class BottomSheet extends Dialog {
         int i = Theme.key_dialogBackground;
         this.behindKeyboardColorKey = i;
         this.canDismissWithSwipe = true;
+        this.canDismissWithTouchOutside = true;
         this.allowCustomAnimation = true;
         this.statusBarHeight = AndroidUtilities.statusBarHeight;
         this.openInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
@@ -853,6 +851,53 @@ public class BottomSheet extends Dialog {
                 if (Build.VERSION.SDK_INT >= 21) {
                     BottomSheet.this.container.requestApplyInsets();
                 }
+            }
+
+            @Override
+            protected void onAttachedToWindow() {
+                super.onAttachedToWindow();
+                Bulletin.addDelegate(this, new Bulletin.Delegate(this) {
+                    @Override
+                    public boolean allowLayoutChanges() {
+                        return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+                    }
+
+                    @Override
+                    public boolean clipWithGradient(int i3) {
+                        return Bulletin.Delegate.CC.$default$clipWithGradient(this, i3);
+                    }
+
+                    @Override
+                    public int getBottomOffset(int i3) {
+                        return Bulletin.Delegate.CC.$default$getBottomOffset(this, i3);
+                    }
+
+                    @Override
+                    public void onBottomOffsetChange(float f) {
+                        Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+                    }
+
+                    @Override
+                    public void onHide(Bulletin bulletin) {
+                        Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+                    }
+
+                    @Override
+                    public void onShow(Bulletin bulletin) {
+                        Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+                    }
+
+                    @Override
+                    public int getTopOffset(int i3) {
+                        return AndroidUtilities.statusBarHeight;
+                    }
+                });
+            }
+
+            @Override
+            protected void onDetachedFromWindow() {
+                super.onDetachedFromWindow();
+                Bulletin.removeDelegate(this);
             }
         };
         this.container = containerView;
@@ -1193,6 +1238,14 @@ public class BottomSheet extends Dialog {
 
     public void onDismissWithTouchOutside() {
         dismiss();
+    }
+
+    protected boolean canDismissWithTouchOutside() {
+        return this.canDismissWithTouchOutside;
+    }
+
+    public void setCanDismissWithTouchOutside(boolean z) {
+        this.canDismissWithTouchOutside = z;
     }
 
     public TextView getTitleView() {
@@ -1680,11 +1733,6 @@ public class BottomSheet extends Dialog {
         public BottomSheet show() {
             this.bottomSheet.show();
             return this.bottomSheet;
-        }
-
-        public Builder setUseHardwareLayer(boolean z) {
-            this.bottomSheet.useHardwareLayer = z;
-            return this;
         }
 
         public Builder setDelegate(BottomSheetDelegate bottomSheetDelegate) {

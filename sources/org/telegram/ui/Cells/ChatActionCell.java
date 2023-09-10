@@ -62,8 +62,8 @@ import org.telegram.tgnet.TLRPC$TL_documentEmpty;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$TL_messageActionSuggestProfilePhoto;
 import org.telegram.tgnet.TLRPC$TL_messageActionUserUpdatedPhoto;
+import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
-import org.telegram.tgnet.TLRPC$TL_photoEmpty;
 import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
 import org.telegram.tgnet.TLRPC$TL_premiumGiftOption;
 import org.telegram.tgnet.TLRPC$TL_stickerPack;
@@ -905,12 +905,15 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             if (charSequence == null) {
                 TLRPC$Message tLRPC$Message = messageObject.messageOwner;
                 if (tLRPC$Message != null && (tLRPC$MessageMedia = tLRPC$Message.media) != null && tLRPC$MessageMedia.ttl_seconds != 0) {
-                    if (tLRPC$MessageMedia.photo instanceof TLRPC$TL_photoEmpty) {
+                    if (tLRPC$MessageMedia.photo != null) {
                         charSequence = LocaleController.getString("AttachPhotoExpired", R.string.AttachPhotoExpired);
-                    } else if (tLRPC$MessageMedia.document instanceof TLRPC$TL_documentEmpty) {
-                        charSequence = LocaleController.getString("AttachVideoExpired", R.string.AttachVideoExpired);
                     } else {
-                        charSequence = AnimatedEmojiSpan.cloneSpans(messageObject.messageText);
+                        TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
+                        if ((tLRPC$Document instanceof TLRPC$TL_documentEmpty) || ((tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaDocument) && tLRPC$Document == null)) {
+                            charSequence = LocaleController.getString("AttachVideoExpired", R.string.AttachVideoExpired);
+                        } else {
+                            charSequence = AnimatedEmojiSpan.cloneSpans(messageObject.messageText);
+                        }
                     }
                 } else {
                     charSequence = AnimatedEmojiSpan.cloneSpans(messageObject.messageText);

@@ -59,7 +59,7 @@ public class StoriesStorage {
         });
     }
 
-    public void lambda$getAllStories$3(final com.google.android.exoplayer2.util.Consumer r20) {
+    public void lambda$getAllStories$3(final com.google.android.exoplayer2.util.Consumer r18) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$getAllStories$3(com.google.android.exoplayer2.util.Consumer):void");
     }
 
@@ -102,18 +102,10 @@ public class StoriesStorage {
         if (tLRPC$TL_userStories != null) {
             try {
                 ArrayList<TLRPC$StoryItem> arrayList = tLRPC$TL_userStories.stories;
-                SQLitePreparedStatement executeFast = database.executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?, ?, ?)");
+                SQLitePreparedStatement executeFast = database.executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
                 for (int i = 0; i < arrayList.size(); i++) {
                     executeFast.requery();
                     TLRPC$StoryItem tLRPC$StoryItem = arrayList.get(i);
-                    if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                        SQLiteCursor queryFinalized = database.queryFinalized(String.format(Locale.US, "SELECT local_path, local_thumb_path FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(tLRPC$StoryItem.id)), new Object[0]);
-                        if (queryFinalized.next()) {
-                            tLRPC$StoryItem.attachPath = queryFinalized.stringValue(1);
-                            tLRPC$StoryItem.firstFramePath = queryFinalized.stringValue(2);
-                        }
-                        queryFinalized.dispose();
-                    }
                     if (tLRPC$StoryItem instanceof TLRPC$TL_storyItemDeleted) {
                         FileLog.e("try write deleted story");
                     } else {
@@ -122,23 +114,11 @@ public class StoriesStorage {
                         NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$StoryItem.getObjectSize());
                         tLRPC$StoryItem.serializeToStream(nativeByteBuffer);
                         executeFast.bindByteBuffer(3, nativeByteBuffer);
-                        String str = tLRPC$StoryItem.attachPath;
-                        if (str == null) {
-                            executeFast.bindNull(4);
-                        } else {
-                            executeFast.bindString(4, str);
-                        }
-                        String str2 = tLRPC$StoryItem.firstFramePath;
-                        if (str2 == null) {
-                            executeFast.bindNull(5);
-                        } else {
-                            executeFast.bindString(5, str2);
-                        }
                         NativeByteBuffer writeLocalParams = StoryCustomParamsHelper.writeLocalParams(tLRPC$StoryItem);
                         if (writeLocalParams != null) {
-                            executeFast.bindByteBuffer(6, writeLocalParams);
+                            executeFast.bindByteBuffer(4, writeLocalParams);
                         } else {
-                            executeFast.bindNull(6);
+                            executeFast.bindNull(4);
                         }
                         if (writeLocalParams != null) {
                             writeLocalParams.reuse();
@@ -156,17 +136,8 @@ public class StoriesStorage {
     }
 
     public void putStoryInternal(long j, TLRPC$StoryItem tLRPC$StoryItem) {
-        SQLiteDatabase database = this.storage.getDatabase();
         try {
-            SQLitePreparedStatement executeFast = database.executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?, ?, ?)");
-            if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                SQLiteCursor queryFinalized = database.queryFinalized(String.format(Locale.US, "SELECT local_path, local_thumb_path FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(tLRPC$StoryItem.id)), new Object[0]);
-                if (queryFinalized.next()) {
-                    tLRPC$StoryItem.attachPath = queryFinalized.stringValue(1);
-                    tLRPC$StoryItem.firstFramePath = queryFinalized.stringValue(2);
-                }
-                queryFinalized.dispose();
-            }
+            SQLitePreparedStatement executeFast = this.storage.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
             if (tLRPC$StoryItem instanceof TLRPC$TL_storyItemDeleted) {
                 FileLog.e("putStoryInternal: try write deleted story");
                 return;
@@ -176,23 +147,11 @@ public class StoriesStorage {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$StoryItem.getObjectSize());
             tLRPC$StoryItem.serializeToStream(nativeByteBuffer);
             executeFast.bindByteBuffer(3, nativeByteBuffer);
-            String str = tLRPC$StoryItem.attachPath;
-            if (str == null) {
-                executeFast.bindNull(4);
-            } else {
-                executeFast.bindString(4, str);
-            }
-            String str2 = tLRPC$StoryItem.firstFramePath;
-            if (str2 == null) {
-                executeFast.bindNull(5);
-            } else {
-                executeFast.bindString(5, str2);
-            }
             NativeByteBuffer writeLocalParams = StoryCustomParamsHelper.writeLocalParams(tLRPC$StoryItem);
             if (writeLocalParams != null) {
-                executeFast.bindByteBuffer(6, writeLocalParams);
+                executeFast.bindByteBuffer(4, writeLocalParams);
             } else {
-                executeFast.bindNull(6);
+                executeFast.bindNull(4);
             }
             if (writeLocalParams != null) {
                 writeLocalParams.reuse();
@@ -272,17 +231,13 @@ public class StoriesStorage {
     private TLRPC$StoryItem getStoryInternal(long j, int i) {
         TLRPC$StoryItem tLRPC$StoryItem = null;
         try {
-            SQLiteCursor queryFinalized = this.storage.getDatabase().queryFinalized(String.format(Locale.US, "SELECT data, local_path, local_thumb_path, custom_params FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(i)), new Object[0]);
+            SQLiteCursor queryFinalized = this.storage.getDatabase().queryFinalized(String.format(Locale.US, "SELECT data, custom_params FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(i)), new Object[0]);
             if (queryFinalized.next()) {
                 NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(0);
-                String stringValue = queryFinalized.stringValue(1);
-                String stringValue2 = queryFinalized.stringValue(2);
-                NativeByteBuffer byteBufferValue2 = queryFinalized.byteBufferValue(3);
+                NativeByteBuffer byteBufferValue2 = queryFinalized.byteBufferValue(1);
                 if (byteBufferValue != null) {
                     tLRPC$StoryItem = TLRPC$StoryItem.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
                     tLRPC$StoryItem.dialogId = j;
-                    tLRPC$StoryItem.attachPath = stringValue;
-                    tLRPC$StoryItem.firstFramePath = stringValue2;
                     byteBufferValue.reuse();
                 }
                 if (tLRPC$StoryItem != null) {
@@ -321,40 +276,19 @@ public class StoriesStorage {
         if (StoriesUtilities.isExpired(this.currentAccount, tLRPC$StoryItem)) {
             FileLog.e("StoriesStorage: try write expired story");
         }
-        SQLiteDatabase database = this.storage.getDatabase();
         try {
-            String str = tLRPC$StoryItem.attachPath;
-            String str2 = tLRPC$StoryItem.firstFramePath;
-            if (j == UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                SQLiteCursor queryFinalized = database.queryFinalized(String.format(Locale.US, "SELECT local_path, local_thumb_path FROM stories WHERE dialog_id = %d AND story_id = %d", Long.valueOf(j), Integer.valueOf(tLRPC$StoryItem.id)), new Object[0]);
-                if (queryFinalized.next()) {
-                    str = queryFinalized.stringValue(1);
-                    str2 = queryFinalized.stringValue(2);
-                }
-                queryFinalized.dispose();
-            }
-            SQLitePreparedStatement executeFast = database.executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?, ?, ?)");
+            SQLitePreparedStatement executeFast = this.storage.getDatabase().executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
             executeFast.requery();
             executeFast.bindLong(1, j);
             executeFast.bindLong(2, tLRPC$StoryItem.id);
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(tLRPC$StoryItem.getObjectSize());
             tLRPC$StoryItem.serializeToStream(nativeByteBuffer);
             executeFast.bindByteBuffer(3, nativeByteBuffer);
-            if (str == null) {
-                executeFast.bindNull(4);
-            } else {
-                executeFast.bindString(4, str);
-            }
-            if (str2 == null) {
-                executeFast.bindNull(5);
-            } else {
-                executeFast.bindString(5, str2);
-            }
             NativeByteBuffer writeLocalParams = StoryCustomParamsHelper.writeLocalParams(tLRPC$StoryItem);
             if (writeLocalParams != null) {
-                executeFast.bindByteBuffer(6, writeLocalParams);
+                executeFast.bindByteBuffer(4, writeLocalParams);
             } else {
-                executeFast.bindNull(6);
+                executeFast.bindNull(4);
             }
             if (writeLocalParams != null) {
                 writeLocalParams.reuse();
@@ -398,7 +332,7 @@ public class StoriesStorage {
         });
     }
 
-    public void lambda$processUpdate$9(org.telegram.tgnet.TLRPC$TL_updateStory r14) {
+    public void lambda$processUpdate$9(org.telegram.tgnet.TLRPC$TL_updateStory r12) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$processUpdate$9(org.telegram.tgnet.TLRPC$TL_updateStory):void");
     }
 

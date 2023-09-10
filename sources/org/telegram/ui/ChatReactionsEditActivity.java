@@ -326,7 +326,7 @@ public class ChatReactionsEditActivity extends BaseFragment implements Notificat
         }
         TextCheckCell textCheckCell = this.enableReactionsCell;
         if (textCheckCell != null) {
-            boolean z2 = i == 1;
+            boolean z2 = i == 1 || i == 0;
             textCheckCell.setChecked(z2);
             int color = Theme.getColor(z2 ? Theme.key_windowBackgroundChecked : Theme.key_windowBackgroundUnchecked);
             if (z2) {

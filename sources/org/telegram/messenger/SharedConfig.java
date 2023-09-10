@@ -69,6 +69,7 @@ public class SharedConfig {
     public static boolean disableVoiceAudioEffects = false;
     public static int distanceSystemType = 0;
     public static boolean dontAskManageStorage = false;
+    public static boolean drawActionBarShadow = false;
     public static boolean drawDialogIcons = false;
     public static int emojiInteractionsHintCount = 0;
     public static int fastScrollHintCount = 0;
@@ -115,6 +116,7 @@ public class SharedConfig {
     public static boolean pauseMusicOnRecord;
     public static TLRPC$TL_help_appUpdate pendingAppUpdate;
     public static int pendingAppUpdateBuildVersion;
+    public static boolean photoViewerBlur;
     public static boolean playOrderReversed;
     public static ArrayList<ProxyInfo> proxyList;
     private static boolean proxyListLoaded;
@@ -267,6 +269,11 @@ public class SharedConfig {
         ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("useSurfaceInStories", useSurfaceInStories).apply();
     }
 
+    public static void togglePhotoViewerBlur() {
+        photoViewerBlur = !photoViewerBlur;
+        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("photoViewerBlur", photoViewerBlur).apply();
+    }
+
     static {
         HashSet<String> hashSet = new HashSet<>();
         hevcEncoderWhitelist = hashSet;
@@ -281,6 +288,7 @@ public class SharedConfig {
         useFingerprint = true;
         keepMedia = CacheByChatsController.KEEP_MEDIA_ONE_MONTH;
         updateStickersOrderOnSend = true;
+        photoViewerBlur = true;
         stealthModeSendMessageConfirm = 2;
         lastLocalId = -210000;
         passportConfigJson = "";
@@ -314,6 +322,7 @@ public class SharedConfig {
         LOW_SOC = new int[]{-1775228513, 802464304, 802464333, 802464302, 2067362118, 2067362060, 2067362084, 2067362241, 2067362117, 2067361998, -1853602818};
         loadConfig();
         proxyList = new ArrayList<>();
+        drawActionBarShadow = true;
     }
 
     public static String findGoodHevcEncoder() {
@@ -1446,5 +1455,13 @@ public class SharedConfig {
             }
         }
         return legacyDevicePerformanceClass;
+    }
+
+    private static void loadDebugConfig(SharedPreferences sharedPreferences) {
+        drawActionBarShadow = sharedPreferences.getBoolean("drawActionBarShadow", true);
+    }
+
+    public static void saveDebugConfig() {
+        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("drawActionBarShadow", drawActionBarShadow);
     }
 }

@@ -970,7 +970,7 @@ public final class FloatingToolbar {
             boolean z = MessagesController.getInstance(UserConfig.selectedAccount).premiumLocked;
             for (int i = 0; i < size; i++) {
                 MenuItem menuItem = list.get(i);
-                if (!FloatingToolbar.premiumOptions.contains(Integer.valueOf(menuItem.getItemId())) || !z) {
+                if (FloatingToolbar.this.premiumLockClickListener == null || (z && !FloatingToolbar.premiumOptions.contains(Integer.valueOf(menuItem.getItemId())))) {
                     arrayAdapter.add(menuItem);
                 }
             }

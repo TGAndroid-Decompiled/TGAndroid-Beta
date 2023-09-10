@@ -584,7 +584,7 @@ public class FilterCreateActivity extends BaseFragment {
             }
         }
         if (arrayList.size() > (getUserConfig().isPremium() ? getMessagesController().dialogFiltersChatsLimitPremium : getMessagesController().dialogFiltersChatsLimitDefault)) {
-            showDialog(new LimitReachedBottomSheet(this, getContext(), 4, this.currentAccount));
+            showDialog(new LimitReachedBottomSheet(this, getContext(), 4, this.currentAccount, null));
         } else if (!arrayList.isEmpty()) {
             TLRPC$TL_chatlists_exportChatlistInvite tLRPC$TL_chatlists_exportChatlistInvite = new TLRPC$TL_chatlists_exportChatlistInvite();
             TLRPC$TL_inputChatlistDialogFilter tLRPC$TL_inputChatlistDialogFilter = new TLRPC$TL_inputChatlistDialogFilter();
@@ -2253,15 +2253,17 @@ public class FilterCreateActivity extends BaseFragment {
     }
 
     public static class NewSpan extends ReplacementSpan {
+        Paint bgPaint;
         private int color;
         float height;
         StaticLayout layout;
         private boolean outline;
+        TextPaint textPaint;
         float width;
-        TextPaint textPaint = new TextPaint(1);
-        Paint bgPaint = new Paint(1);
 
         public NewSpan(boolean z) {
+            this.textPaint = new TextPaint(1);
+            this.bgPaint = new Paint(1);
             this.outline = z;
             this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             if (z) {
@@ -2278,6 +2280,15 @@ public class FilterCreateActivity extends BaseFragment {
             }
             this.bgPaint.setStyle(Paint.Style.FILL);
             this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        }
+
+        public NewSpan(float f) {
+            this.textPaint = new TextPaint(1);
+            this.bgPaint = new Paint(1);
+            this.outline = false;
+            this.textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.bgPaint.setStyle(Paint.Style.FILL);
+            this.textPaint.setTextSize(AndroidUtilities.dp(f));
         }
 
         public void setColor(int i) {
@@ -2548,7 +2559,7 @@ public class FilterCreateActivity extends BaseFragment {
                         textInfoPrivacyCell = new CreateLinkCell(FilterInvitesBottomSheet.this.getContext());
                         textInfoPrivacyCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
                     } else if (i == 7) {
-                        textInfoPrivacyCell = new C00411(FilterInvitesBottomSheet.this.getContext(), null, ((BottomSheet) FilterInvitesBottomSheet.this).currentAccount, FilterInvitesBottomSheet.this.filter.id);
+                        textInfoPrivacyCell = new C00401(FilterInvitesBottomSheet.this.getContext(), null, ((BottomSheet) FilterInvitesBottomSheet.this).currentAccount, FilterInvitesBottomSheet.this.filter.id);
                         textInfoPrivacyCell.setBackgroundColor(Theme.getColor(Theme.key_dialogBackground));
                     } else if (i == 6 || i == 3) {
                         textInfoPrivacyCell = new TextInfoPrivacyCell(FilterInvitesBottomSheet.this.getContext());
@@ -2560,8 +2571,8 @@ public class FilterCreateActivity extends BaseFragment {
                     return new RecyclerListView.Holder(textInfoPrivacyCell);
                 }
 
-                public class C00411 extends LinkCell {
-                    C00411(Context context, BaseFragment baseFragment, int i, int i2) {
+                public class C00401 extends LinkCell {
+                    C00401(Context context, BaseFragment baseFragment, int i, int i2) {
                         super(context, baseFragment, i, i2);
                         AnonymousClass1.this = r1;
                     }
@@ -2572,19 +2583,19 @@ public class FilterCreateActivity extends BaseFragment {
                         makeOptions.add(R.drawable.msg_copy, LocaleController.getString("CopyLink", R.string.CopyLink), new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00411.this.copy();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00401.this.copy();
                             }
                         });
                         makeOptions.add(R.drawable.msg_qrcode, LocaleController.getString("GetQRCode", R.string.GetQRCode), new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00411.this.qrcode();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00401.this.qrcode();
                             }
                         });
                         makeOptions.add(R.drawable.msg_delete, (CharSequence) LocaleController.getString("DeleteLink", R.string.DeleteLink), true, new Runnable() {
                             @Override
                             public final void run() {
-                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00411.this.deleteLink();
+                                FilterCreateActivity.FilterInvitesBottomSheet.AnonymousClass1.C00401.this.deleteLink();
                             }
                         });
                         if (LocaleController.isRTL) {
@@ -2795,23 +2806,23 @@ public class FilterCreateActivity extends BaseFragment {
     public static boolean processErrors(TLRPC$TL_error tLRPC$TL_error, BaseFragment baseFragment, BulletinFactory bulletinFactory) {
         if (tLRPC$TL_error != null && !TextUtils.isEmpty(tLRPC$TL_error.text)) {
             if ("INVITE_PEERS_TOO_MUCH".equals(tLRPC$TL_error.text)) {
-                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 4, baseFragment.getCurrentAccount()).show();
+                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 4, baseFragment.getCurrentAccount(), null).show();
             } else if ("PEERS_LIST_EMPTY".equals(tLRPC$TL_error.text)) {
                 bulletinFactory.createErrorBulletin(LocaleController.getString("FolderLinkNoChatsError", R.string.FolderLinkNoChatsError)).show();
             } else if ("USER_CHANNELS_TOO_MUCH".equals(tLRPC$TL_error.text)) {
                 bulletinFactory.createErrorBulletin(LocaleController.getString("FolderLinkOtherAdminLimitError", R.string.FolderLinkOtherAdminLimitError)).show();
             } else if ("CHANNELS_TOO_MUCH".equals(tLRPC$TL_error.text)) {
-                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 5, baseFragment.getCurrentAccount()).show();
+                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 5, baseFragment.getCurrentAccount(), null).show();
             } else if ("INVITES_TOO_MUCH".equals(tLRPC$TL_error.text)) {
-                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 12, baseFragment.getCurrentAccount()).show();
+                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 12, baseFragment.getCurrentAccount(), null).show();
             } else if ("CHATLISTS_TOO_MUCH".equals(tLRPC$TL_error.text)) {
-                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 13, baseFragment.getCurrentAccount()).show();
+                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 13, baseFragment.getCurrentAccount(), null).show();
             } else if ("INVITE_SLUG_EXPIRED".equals(tLRPC$TL_error.text)) {
                 bulletinFactory.createErrorBulletin(LocaleController.getString("NoFolderFound", R.string.NoFolderFound)).show();
             } else if ("FILTER_INCLUDE_TOO_MUCH".equals(tLRPC$TL_error.text)) {
-                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 4, baseFragment.getCurrentAccount()).show();
+                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 4, baseFragment.getCurrentAccount(), null).show();
             } else if ("DIALOG_FILTERS_TOO_MUCH".equals(tLRPC$TL_error.text)) {
-                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 3, baseFragment.getCurrentAccount()).show();
+                new LimitReachedBottomSheet(baseFragment, baseFragment.getContext(), 3, baseFragment.getCurrentAccount(), null).show();
             } else {
                 bulletinFactory.createErrorBulletin(LocaleController.getString("UnknownError", R.string.UnknownError)).show();
             }

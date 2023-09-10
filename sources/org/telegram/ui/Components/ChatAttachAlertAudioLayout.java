@@ -486,31 +486,8 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
         new AlertDialog.Builder(getContext(), this.resourcesProvider).setTitle(LocaleController.getString("AppName", R.string.AppName)).setMessage(str).setPositiveButton(LocaleController.getString("OK", R.string.OK), null).show();
     }
 
-    private void onItemClick(View view) {
-        if (view instanceof SharedAudioCell) {
-            SharedAudioCell sharedAudioCell = (SharedAudioCell) view;
-            MediaController.AudioEntry audioEntry = (MediaController.AudioEntry) sharedAudioCell.getTag();
-            boolean z = false;
-            if (this.selectedAudios.indexOfKey(audioEntry.id) >= 0) {
-                this.selectedAudios.remove(audioEntry.id);
-                this.selectedAudiosOrder.remove(audioEntry);
-                sharedAudioCell.setChecked(false, true);
-            } else {
-                if (this.maxSelectedFiles >= 0) {
-                    int size = this.selectedAudios.size();
-                    int i = this.maxSelectedFiles;
-                    if (size >= i) {
-                        showErrorBox(LocaleController.formatString("PassportUploadMaxReached", R.string.PassportUploadMaxReached, LocaleController.formatPluralString("Files", i, new Object[0])));
-                        return;
-                    }
-                }
-                this.selectedAudios.put(audioEntry.id, audioEntry);
-                this.selectedAudiosOrder.add(audioEntry);
-                sharedAudioCell.setChecked(true, true);
-                z = true;
-            }
-            this.parentAlert.updateCountButton(z ? 1 : 2);
-        }
+    private void onItemClick(android.view.View r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertAudioLayout.onItemClick(android.view.View):void");
     }
 
     @Override

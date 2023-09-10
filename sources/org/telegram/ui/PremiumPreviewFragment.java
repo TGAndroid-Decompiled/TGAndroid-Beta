@@ -811,7 +811,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
         return messagesController.premiumFeaturesTypesToPosition.get(premiumFeatureData.type, ConnectionsManager.DEFAULT_DATACENTER_ID) - messagesController.premiumFeaturesTypesToPosition.get(premiumFeatureData2.type, ConnectionsManager.DEFAULT_DATACENTER_ID);
     }
 
-    private static CharSequence applyNewSpan(String str) {
+    public static CharSequence applyNewSpan(String str) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
         spannableStringBuilder.append((CharSequence) "  d");
         FilterCreateActivity.NewSpan newSpan = new FilterCreateActivity.NewSpan(false);

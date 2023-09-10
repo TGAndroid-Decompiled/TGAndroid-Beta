@@ -3,6 +3,7 @@ package org.telegram.ui.Stories;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
@@ -78,6 +79,7 @@ public class UserListPoller {
             if (tLObject != null) {
                 TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
                 ArrayList arrayList2 = new ArrayList();
+                new ArrayList();
                 for (int i = 0; i < tLRPC$Vector.objects.size(); i++) {
                     TLRPC$User user = MessagesController.getInstance(UserListPoller.this.currentAccount).getUser((Long) arrayList.get(i));
                     if (user != null) {
@@ -99,7 +101,6 @@ public class UserListPoller {
 
     public void checkList(RecyclerListView recyclerListView) {
         long dialogId;
-        TLRPC$User user;
         TLRPC$UserStatus tLRPC$UserStatus;
         long currentTimeMillis = System.currentTimeMillis();
         this.dialogIds.clear();
@@ -110,7 +111,13 @@ public class UserListPoller {
             } else {
                 dialogId = childAt instanceof UserCell ? ((UserCell) childAt).getDialogId() : 0L;
             }
-            if (dialogId > 0 && (user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId))) != null && !user.bot && !user.self && !user.contact && (tLRPC$UserStatus = user.status) != null && !(tLRPC$UserStatus instanceof TLRPC$TL_userStatusEmpty) && currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) > 3600000) {
+            if (dialogId > 0) {
+                TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(dialogId));
+                if (user != null && !user.bot && !user.self && !user.contact && (tLRPC$UserStatus = user.status) != null && !(tLRPC$UserStatus instanceof TLRPC$TL_userStatusEmpty) && currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) > 3600000) {
+                    this.userPollLastTime.put(dialogId, currentTimeMillis);
+                    this.dialogIds.add(Long.valueOf(dialogId));
+                }
+            } else if (ChatObject.isChannel(MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-dialogId))) && currentTimeMillis - this.userPollLastTime.get(dialogId, 0L) > 3600000) {
                 this.userPollLastTime.put(dialogId, currentTimeMillis);
                 this.dialogIds.add(Long.valueOf(dialogId));
             }

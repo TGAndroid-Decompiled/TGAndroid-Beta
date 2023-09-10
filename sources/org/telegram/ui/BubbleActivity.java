@@ -92,7 +92,7 @@ public class BubbleActivity extends BasePermissionsActivity implements INavigati
         if (SharedConfig.passcodeHash.length() != 0 && SharedConfig.appLocked) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
         }
-        AndroidUtilities.fillStatusBarHeight(this);
+        AndroidUtilities.fillStatusBarHeight(this, false);
         Theme.createDialogsResources(this);
         Theme.createChatResources(this, false);
         INavigationLayout newLayout = INavigationLayout.CC.newLayout(this);

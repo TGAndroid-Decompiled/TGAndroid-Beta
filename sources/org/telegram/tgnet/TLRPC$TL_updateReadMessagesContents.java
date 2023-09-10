@@ -2,13 +2,16 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_updateReadMessagesContents extends TLRPC$Update {
-    public static int constructor = 1757493555;
+    public static int constructor = -131960447;
+    public int date;
+    public int flags;
     public ArrayList<Integer> messages = new ArrayList<>();
     public int pts;
     public int pts_count;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
+        this.flags = abstractSerializedData.readInt32(z);
         int readInt32 = abstractSerializedData.readInt32(z);
         if (readInt32 != 481674261) {
             if (z) {
@@ -22,11 +25,15 @@ public class TLRPC$TL_updateReadMessagesContents extends TLRPC$Update {
         }
         this.pts = abstractSerializedData.readInt32(z);
         this.pts_count = abstractSerializedData.readInt32(z);
+        if ((this.flags & 1) != 0) {
+            this.date = abstractSerializedData.readInt32(z);
+        }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt32(481674261);
         int size = this.messages.size();
         abstractSerializedData.writeInt32(size);
@@ -35,5 +42,8 @@ public class TLRPC$TL_updateReadMessagesContents extends TLRPC$Update {
         }
         abstractSerializedData.writeInt32(this.pts);
         abstractSerializedData.writeInt32(this.pts_count);
+        if ((this.flags & 1) != 0) {
+            abstractSerializedData.writeInt32(this.date);
+        }
     }
 }

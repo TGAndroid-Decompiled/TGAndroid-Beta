@@ -855,7 +855,8 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             }
             TextView textView = textInfoPrivacyCell.getTextView();
             textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
-            textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, this.arrowDrawable, (Drawable) null);
+            DialogsActivity dialogsActivity = this.parentFragment;
+            textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, (dialogsActivity == null || !dialogsActivity.storiesEnabled) ? this.arrowDrawable : null, (Drawable) null);
             textView.getLayoutParams().width = -2;
         } else if (itemViewType != 12) {
             switch (itemViewType) {

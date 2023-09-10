@@ -322,7 +322,7 @@ public class DrawerProfileCell extends FrameLayout implements NotificationCenter
                     AnimatedEmojiEffect animatedEmojiEffect = (AnimatedEmojiEffect) obj;
                     animatedEmojiEffect.setBounds((int) ((getMeasuredWidth() - dp) / 2.0f), (int) ((getMeasuredHeight() - dp) / 2.0f), (int) ((getMeasuredWidth() + dp) / 2.0f), (int) ((getMeasuredHeight() + dp) / 2.0f));
                     animatedEmojiEffect.draw(canvas);
-                    if (animatedEmojiEffect.done()) {
+                    if (animatedEmojiEffect.isDone()) {
                         animatedEmojiEffect.removeView(this);
                         this.animations.remove(animatedEmojiEffect);
                     }

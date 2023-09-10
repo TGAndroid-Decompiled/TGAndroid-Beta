@@ -1,5 +1,6 @@
 package org.telegram.messenger;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -38,66 +39,77 @@ import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatBackgroundDrawable;
 public class ChatThemeController extends BaseController {
-    private static List<EmojiThemes> allChatThemes = null;
-    private static volatile long lastReloadTimeMs = 0;
-    private static final long reloadTimeoutMs = 7200000;
-    private static volatile long themesHash;
-    private final LongSparseArray<String> dialogEmoticonsMap;
     public static volatile DispatchQueue chatThemeQueue = new DispatchQueue("chatThemeQueue");
-    private static final HashMap<Long, Bitmap> themeIdWallpaperThumbMap = new HashMap<>();
     private static final ChatThemeController[] instances = new ChatThemeController[4];
-
-    public static void clearWallpaperImages() {
-    }
+    private List<EmojiThemes> allChatThemes;
+    private final LongSparseArray<String> dialogEmoticonsMap;
+    private volatile long lastReloadTimeMs;
+    private final long reloadTimeoutMs;
+    private final HashMap<Long, Bitmap> themeIdWallpaperThumbMap;
+    private volatile long themesHash;
 
     public static void lambda$clearWallpaper$8(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
     }
 
-    public static void init() {
+    public void clearWallpaperImages() {
+    }
+
+    private ChatThemeController(int i) {
+        super(i);
+        this.reloadTimeoutMs = 7200000L;
+        this.themeIdWallpaperThumbMap = new HashMap<>();
+        this.dialogEmoticonsMap = new LongSparseArray<>();
+        init();
+    }
+
+    private void init() {
         SharedPreferences sharedPreferences = getSharedPreferences();
-        themesHash = 0L;
-        lastReloadTimeMs = 0L;
+        this.themesHash = 0L;
+        this.lastReloadTimeMs = 0L;
         try {
-            themesHash = sharedPreferences.getLong("hash", 0L);
-            lastReloadTimeMs = sharedPreferences.getLong("lastReload", 0L);
+            this.themesHash = sharedPreferences.getLong("hash", 0L);
+            this.lastReloadTimeMs = sharedPreferences.getLong("lastReload", 0L);
         } catch (Exception e) {
             FileLog.e(e);
         }
-        allChatThemes = getAllChatThemesFromPrefs();
+        this.allChatThemes = getAllChatThemesFromPrefs();
         preloadSticker("❌");
-        if (allChatThemes.isEmpty()) {
+        if (this.allChatThemes.isEmpty()) {
             return;
         }
-        for (EmojiThemes emojiThemes : allChatThemes) {
+        for (EmojiThemes emojiThemes : this.allChatThemes) {
             preloadSticker(emojiThemes.getEmoticon());
         }
     }
 
-    private static void preloadSticker(String str) {
+    private void preloadSticker(String str) {
         new ImageReceiver().setImage(ImageLocation.getForDocument(MediaDataController.getInstance(UserConfig.selectedAccount).getEmojiAnimatedSticker(str)), "50_50", null, null, null, 0);
         Emoji.preloadEmoji(str);
     }
 
-    public static void requestAllChatThemes(final ResultCallback<List<EmojiThemes>> resultCallback, final boolean z) {
-        if (themesHash == 0 || lastReloadTimeMs == 0) {
+    public void requestAllChatThemes(final ResultCallback<List<EmojiThemes>> resultCallback, final boolean z) {
+        if (this.themesHash == 0 || this.lastReloadTimeMs == 0) {
             init();
         }
-        System.currentTimeMillis();
-        TLRPC$TL_account_getChatThemes tLRPC$TL_account_getChatThemes = new TLRPC$TL_account_getChatThemes();
-        tLRPC$TL_account_getChatThemes.hash = themesHash;
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_account_getChatThemes, new RequestDelegate() {
-            @Override
-            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatThemeController.lambda$requestAllChatThemes$3(ResultCallback.this, z, tLObject, tLRPC$TL_error);
-            }
-        });
-        List<EmojiThemes> list = allChatThemes;
-        if (list == null || list.isEmpty()) {
+        boolean z2 = System.currentTimeMillis() - this.lastReloadTimeMs > 7200000;
+        List<EmojiThemes> list = this.allChatThemes;
+        if (list == null || list.isEmpty() || z2) {
+            TLRPC$TL_account_getChatThemes tLRPC$TL_account_getChatThemes = new TLRPC$TL_account_getChatThemes();
+            tLRPC$TL_account_getChatThemes.hash = this.themesHash;
+            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_account_getChatThemes, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    ChatThemeController.this.lambda$requestAllChatThemes$3(resultCallback, z, tLObject, tLRPC$TL_error);
+                }
+            });
+        }
+        List<EmojiThemes> list2 = this.allChatThemes;
+        if (list2 == null || list2.isEmpty()) {
             return;
         }
-        ArrayList<EmojiThemes> arrayList = new ArrayList(allChatThemes);
+        ArrayList<EmojiThemes> arrayList = new ArrayList(this.allChatThemes);
         if (z && !arrayList.get(0).showAsDefaultStub) {
-            arrayList.add(0, EmojiThemes.createChatThemesDefault());
+            arrayList.add(0, EmojiThemes.createChatThemesDefault(this.currentAccount));
         }
         for (EmojiThemes emojiThemes : arrayList) {
             emojiThemes.initColors();
@@ -105,33 +117,34 @@ public class ChatThemeController extends BaseController {
         resultCallback.onComplete(arrayList);
     }
 
-    public static void lambda$requestAllChatThemes$3(final ResultCallback resultCallback, final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$requestAllChatThemes$3(final ResultCallback resultCallback, final boolean z, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         chatThemeQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                ChatThemeController.lambda$requestAllChatThemes$2(TLObject.this, resultCallback, tLRPC$TL_error, z);
+                ChatThemeController.this.lambda$requestAllChatThemes$2(tLObject, resultCallback, tLRPC$TL_error, z);
             }
         });
     }
 
-    public static void lambda$requestAllChatThemes$2(org.telegram.tgnet.TLObject r7, final org.telegram.tgnet.ResultCallback r8, final org.telegram.tgnet.TLRPC$TL_error r9, boolean r10) {
+    public void lambda$requestAllChatThemes$2(org.telegram.tgnet.TLObject r8, final org.telegram.tgnet.ResultCallback r9, final org.telegram.tgnet.TLRPC$TL_error r10, boolean r11) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ChatThemeController.lambda$requestAllChatThemes$2(org.telegram.tgnet.TLObject, org.telegram.tgnet.ResultCallback, org.telegram.tgnet.TLRPC$TL_error, boolean):void");
     }
 
-    public static void lambda$requestAllChatThemes$1(List list, ResultCallback resultCallback) {
-        allChatThemes = new ArrayList(list);
+    public void lambda$requestAllChatThemes$1(List list, ResultCallback resultCallback) {
+        this.allChatThemes = new ArrayList(list);
         resultCallback.onComplete(list);
     }
 
-    private static SharedPreferences getSharedPreferences() {
-        return ApplicationLoader.applicationContext.getSharedPreferences("chatthemeconfig", 0);
+    private SharedPreferences getSharedPreferences() {
+        Context context = ApplicationLoader.applicationContext;
+        return context.getSharedPreferences("chatthemeconfig_" + this.currentAccount, 0);
     }
 
-    private static SharedPreferences getEmojiSharedPreferences() {
+    private SharedPreferences getEmojiSharedPreferences() {
         return ApplicationLoader.applicationContext.getSharedPreferences("chatthemeconfig_emoji", 0);
     }
 
-    private static List<EmojiThemes> getAllChatThemesFromPrefs() {
+    private List<EmojiThemes> getAllChatThemesFromPrefs() {
         SharedPreferences sharedPreferences = getSharedPreferences();
         int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
         ArrayList arrayList = new ArrayList(i);
@@ -140,7 +153,7 @@ public class ChatThemeController extends BaseController {
             try {
                 TLRPC$TL_theme TLdeserialize = TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true);
                 if (TLdeserialize != null) {
-                    arrayList.add(new EmojiThemes(TLdeserialize, false));
+                    arrayList.add(new EmojiThemes(this.currentAccount, TLdeserialize, false));
                 }
             } catch (Throwable th) {
                 FileLog.e(th);
@@ -149,7 +162,7 @@ public class ChatThemeController extends BaseController {
         return arrayList;
     }
 
-    public static void requestChatTheme(final String str, final ResultCallback<EmojiThemes> resultCallback) {
+    public void requestChatTheme(final String str, final ResultCallback<EmojiThemes> resultCallback) {
         if (TextUtils.isEmpty(str)) {
             resultCallback.onComplete(null);
         } else {
@@ -190,11 +203,6 @@ public class ChatThemeController extends BaseController {
             }
         }
         return chatThemeController;
-    }
-
-    public ChatThemeController(int i) {
-        super(i);
-        this.dialogEmoticonsMap = new LongSparseArray<>();
     }
 
     public static boolean equals(TLRPC$WallPaper tLRPC$WallPaper, TLRPC$WallPaper tLRPC$WallPaper2) {
@@ -254,7 +262,7 @@ public class ChatThemeController extends BaseController {
             this.dialogEmoticonsMap.put(j, str);
         }
         if (str != null) {
-            for (EmojiThemes emojiThemes : allChatThemes) {
+            for (EmojiThemes emojiThemes : this.allChatThemes) {
                 if (str.equals(emojiThemes.getEmoticon())) {
                     return emojiThemes;
                 }
@@ -300,8 +308,8 @@ public class ChatThemeController extends BaseController {
         return null;
     }
 
-    public static void preloadAllWallpaperImages(boolean z) {
-        for (EmojiThemes emojiThemes : allChatThemes) {
+    public void preloadAllWallpaperImages(boolean z) {
+        for (EmojiThemes emojiThemes : this.allChatThemes) {
             TLRPC$TL_theme tlTheme = emojiThemes.getTlTheme(z ? 1 : 0);
             if (tlTheme != null && !getPatternFile(tlTheme.id).exists()) {
                 emojiThemes.loadWallpaper(z ? 1 : 0, null);
@@ -309,15 +317,15 @@ public class ChatThemeController extends BaseController {
         }
     }
 
-    public static void preloadAllWallpaperThumbs(boolean z) {
-        for (EmojiThemes emojiThemes : allChatThemes) {
+    public void preloadAllWallpaperThumbs(boolean z) {
+        for (EmojiThemes emojiThemes : this.allChatThemes) {
             TLRPC$TL_theme tlTheme = emojiThemes.getTlTheme(z ? 1 : 0);
             if (tlTheme != null) {
-                if (!themeIdWallpaperThumbMap.containsKey(Long.valueOf(tlTheme.id))) {
+                if (!this.themeIdWallpaperThumbMap.containsKey(Long.valueOf(tlTheme.id))) {
                     emojiThemes.loadWallpaperThumb(z ? 1 : 0, new ResultCallback() {
                         @Override
                         public final void onComplete(Object obj) {
-                            ChatThemeController.lambda$preloadAllWallpaperThumbs$4((Pair) obj);
+                            ChatThemeController.this.lambda$preloadAllWallpaperThumbs$4((Pair) obj);
                         }
 
                         @Override
@@ -330,18 +338,18 @@ public class ChatThemeController extends BaseController {
         }
     }
 
-    public static void lambda$preloadAllWallpaperThumbs$4(Pair pair) {
+    public void lambda$preloadAllWallpaperThumbs$4(Pair pair) {
         if (pair != null) {
-            themeIdWallpaperThumbMap.put((Long) pair.first, (Bitmap) pair.second);
+            this.themeIdWallpaperThumbMap.put((Long) pair.first, (Bitmap) pair.second);
         }
     }
 
-    public static void clearWallpaperThumbImages() {
-        themeIdWallpaperThumbMap.clear();
+    public void clearWallpaperThumbImages() {
+        this.themeIdWallpaperThumbMap.clear();
     }
 
-    public static void getWallpaperBitmap(long j, final ResultCallback<Bitmap> resultCallback) {
-        if (themesHash == 0) {
+    public void getWallpaperBitmap(long j, final ResultCallback<Bitmap> resultCallback) {
+        if (this.themesHash == 0) {
             resultCallback.onComplete(null);
             return;
         }
@@ -373,11 +381,11 @@ public class ChatThemeController extends BaseController {
         }
     }
 
-    private static File getPatternFile(long j) {
-        return new File(ApplicationLoader.getFilesDirFixed(), String.format(Locale.US, "%d_%d.jpg", Long.valueOf(j), Long.valueOf(themesHash)));
+    private File getPatternFile(long j) {
+        return new File(ApplicationLoader.getFilesDirFixed(), String.format(Locale.US, "%d_%d.jpg", Long.valueOf(j), Long.valueOf(this.themesHash)));
     }
 
-    public static void saveWallpaperBitmap(final Bitmap bitmap, long j) {
+    public void saveWallpaperBitmap(final Bitmap bitmap, long j) {
         final File patternFile = getPatternFile(j);
         chatThemeQueue.postRunnable(new Runnable() {
             @Override
@@ -397,13 +405,13 @@ public class ChatThemeController extends BaseController {
         }
     }
 
-    public static Bitmap getWallpaperThumbBitmap(long j) {
-        return themeIdWallpaperThumbMap.get(Long.valueOf(j));
+    public Bitmap getWallpaperThumbBitmap(long j) {
+        return this.themeIdWallpaperThumbMap.get(Long.valueOf(j));
     }
 
     public void clearCache() {
-        themesHash = 0L;
-        lastReloadTimeMs = 0L;
+        this.themesHash = 0L;
+        this.lastReloadTimeMs = 0L;
         getSharedPreferences().edit().clear().apply();
     }
 

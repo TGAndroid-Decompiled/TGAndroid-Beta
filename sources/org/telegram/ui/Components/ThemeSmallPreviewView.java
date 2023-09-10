@@ -34,7 +34,6 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SvgHelper;
@@ -568,7 +567,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         if (staticLayout != null) {
             return staticLayout;
         }
-        TextPaint textPaint = new TextPaint((int) MessagesStorage.LAST_DB_VERSION);
+        TextPaint textPaint = new TextPaint(129);
         this.noThemeTextPaint = textPaint;
         textPaint.setColor(getThemedColor(Theme.key_chat_emojiPanelTrendingDescription));
         this.noThemeTextPaint.setTextSize(AndroidUtilities.dp(14.0f));

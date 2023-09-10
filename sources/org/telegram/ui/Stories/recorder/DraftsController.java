@@ -30,7 +30,9 @@ import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$StoryItem;
+import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_jsonString;
 import org.telegram.tgnet.TLRPC$TL_null;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Stories.recorder.StoryEntry;
@@ -467,6 +469,14 @@ public class DraftsController {
     }
 
     public static class StoryDraft {
+        public String audioAuthor;
+        public long audioDuration;
+        public float audioLeft;
+        public long audioOffset;
+        public String audioPath;
+        public float audioRight;
+        public String audioTitle;
+        public float audioVolume;
         public long averageDuration;
         public String caption;
         public ArrayList<TLRPC$MessageEntity> captionEntities;
@@ -515,6 +525,8 @@ public class DraftsController {
             this.privacyRules = arrayList;
             ArrayList<StoryEntry.Part> arrayList2 = new ArrayList<>();
             this.parts = arrayList2;
+            this.audioRight = 1.0f;
+            this.audioVolume = 1.0f;
             this.id = storyEntry.draftId;
             this.date = storyEntry.draftDate;
             File file = storyEntry.draftThumbFile;
@@ -559,6 +571,14 @@ public class DraftsController {
             arrayList2.addAll(storyEntry.parts);
             this.isError = storyEntry.isError;
             this.error = storyEntry.error;
+            this.audioPath = storyEntry.audioPath;
+            this.audioAuthor = storyEntry.audioAuthor;
+            this.audioTitle = storyEntry.audioTitle;
+            this.audioDuration = storyEntry.audioDuration;
+            this.audioOffset = storyEntry.audioOffset;
+            this.audioLeft = storyEntry.audioLeft;
+            this.audioRight = storyEntry.audioRight;
+            this.audioVolume = storyEntry.audioVolume;
         }
 
         public StoryEntry toEntry() {
@@ -633,6 +653,14 @@ public class DraftsController {
             storyEntry.editDocumentId = this.editDocumentId;
             storyEntry.isError = this.isError;
             storyEntry.error = this.error;
+            storyEntry.audioPath = this.audioPath;
+            storyEntry.audioAuthor = this.audioAuthor;
+            storyEntry.audioTitle = this.audioTitle;
+            storyEntry.audioDuration = this.audioDuration;
+            storyEntry.audioOffset = this.audioOffset;
+            storyEntry.audioLeft = this.audioLeft;
+            storyEntry.audioRight = this.audioRight;
+            storyEntry.audioVolume = this.audioVolume;
             return storyEntry;
         }
 
@@ -732,6 +760,29 @@ public class DraftsController {
                 tLRPC$TL_error.serializeToStream(abstractSerializedData);
             }
             abstractSerializedData.writeString(this.fullThumb);
+            if (this.audioPath == null) {
+                abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+                return;
+            }
+            abstractSerializedData.writeInt32(TLRPC$TL_documentAttributeAudio.constructor);
+            abstractSerializedData.writeString(this.audioPath);
+            if (this.audioAuthor == null) {
+                abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+            } else {
+                abstractSerializedData.writeInt32(TLRPC$TL_jsonString.constructor);
+                abstractSerializedData.writeString(this.audioAuthor);
+            }
+            if (this.audioTitle == null) {
+                abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+            } else {
+                abstractSerializedData.writeInt32(TLRPC$TL_jsonString.constructor);
+                abstractSerializedData.writeString(this.audioTitle);
+            }
+            abstractSerializedData.writeInt64(this.audioDuration);
+            abstractSerializedData.writeInt64(this.audioOffset);
+            abstractSerializedData.writeFloat(this.audioLeft);
+            abstractSerializedData.writeFloat(this.audioRight);
+            abstractSerializedData.writeFloat(this.audioVolume);
         }
 
         public int getObjectSize() {
@@ -744,6 +795,8 @@ public class DraftsController {
             this.matrixValues = new float[9];
             this.privacyRules = new ArrayList<>();
             this.parts = new ArrayList<>();
+            this.audioRight = 1.0f;
+            this.audioVolume = 1.0f;
             if (abstractSerializedData.readInt32(z) != -1318387531) {
                 if (z) {
                     throw new RuntimeException("StoryDraft parse error");
@@ -902,6 +955,21 @@ public class DraftsController {
                 }
                 this.fullThumb = abstractSerializedData.readString(z);
             }
+            if (abstractSerializedData.remaining() <= 0 || abstractSerializedData.readInt32(z) != TLRPC$TL_documentAttributeAudio.constructor) {
+                return;
+            }
+            this.audioPath = abstractSerializedData.readString(z);
+            if (abstractSerializedData.readInt32(z) == TLRPC$TL_jsonString.constructor) {
+                this.audioAuthor = abstractSerializedData.readString(z);
+            }
+            if (abstractSerializedData.readInt32(z) == TLRPC$TL_jsonString.constructor) {
+                this.audioTitle = abstractSerializedData.readString(z);
+            }
+            this.audioDuration = abstractSerializedData.readInt64(z);
+            this.audioOffset = abstractSerializedData.readInt64(z);
+            this.audioLeft = abstractSerializedData.readFloat(z);
+            this.audioRight = abstractSerializedData.readFloat(z);
+            this.audioVolume = abstractSerializedData.readFloat(z);
         }
     }
 }

@@ -824,7 +824,7 @@ public class UsersSelectActivity extends BaseFragment implements NotificationCen
             if (z2) {
                 this.spansContainer.removeSpan(this.selectedContacts.get(j));
             } else if ((!z && !getUserConfig().isPremium() && this.selectedCount >= MessagesController.getInstance(this.currentAccount).dialogFiltersChatsLimitDefault) || this.selectedCount >= MessagesController.getInstance(this.currentAccount).dialogFiltersChatsLimitPremium) {
-                LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, context, 4, this.currentAccount);
+                LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, context, 4, this.currentAccount, null);
                 limitReachedBottomSheet.setCurrentValue(this.selectedCount);
                 showDialog(limitReachedBottomSheet);
                 return;

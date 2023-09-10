@@ -18,7 +18,9 @@ import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.RLottieDrawable;
+import org.telegram.ui.EmojiAnimationsOverlay;
 public class AnimatedEmojiEffect {
+    private static int currentIndex;
     public AnimatedEmojiDrawable animatedEmojiDrawable;
     int currentAccount;
     ImageReceiver effectImageReceiver;
@@ -37,8 +39,12 @@ public class AnimatedEmojiEffect {
         this.longAnimation = z;
         this.currentAccount = i;
         this.showGeneric = z2;
-        if (!z && z2 && LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_CHAT)) {
-            this.effectImageReceiver = new ImageReceiver();
+        if (z2 && LiteMode.isEnabled(LiteMode.FLAG_ANIMATED_EMOJI_CHAT)) {
+            ImageReceiver imageReceiver = new ImageReceiver();
+            this.effectImageReceiver = imageReceiver;
+            if (z) {
+                imageReceiver.setAllowDrawWhileCacheGenerating(true);
+            }
         }
     }
 
@@ -77,7 +83,16 @@ public class AnimatedEmojiEffect {
         }
         ImageReceiver imageReceiver = this.effectImageReceiver;
         if (imageReceiver != null && this.showGeneric) {
-            imageReceiver.draw(canvas);
+            if (!(imageReceiver.getLottieAnimation() != null && this.effectImageReceiver.getLottieAnimation().isLastFrame())) {
+                if (this.longAnimation) {
+                    canvas.save();
+                    canvas.translate(this.bounds.width() / 3.0f, 0.0f);
+                    this.effectImageReceiver.draw(canvas);
+                    canvas.restore();
+                } else {
+                    this.effectImageReceiver.draw(canvas);
+                }
+            }
         }
         canvas.save();
         Rect rect = this.bounds;
@@ -99,7 +114,7 @@ public class AnimatedEmojiEffect {
         this.firsDraw = false;
     }
 
-    public boolean done() {
+    public boolean isDone() {
         return System.currentTimeMillis() - this.startTime > 2500;
     }
 
@@ -119,7 +134,21 @@ public class AnimatedEmojiEffect {
         if (findAnimatedEmojiEmoticon == null || (tLRPC$TL_availableReaction = MediaDataController.getInstance(this.currentAccount).getReactionsMap().get(findAnimatedEmojiEmoticon)) == null || (tLRPC$Document = tLRPC$TL_availableReaction.around_animation) == null) {
             z = false;
         } else {
-            this.effectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), ReactionsEffectOverlay.getFilterForAroundAnimation(), null, null, tLRPC$TL_availableReaction.around_animation, 0);
+            if (this.longAnimation) {
+                ImageReceiver imageReceiver2 = this.effectImageReceiver;
+                StringBuilder sb = new StringBuilder();
+                int i = currentIndex;
+                currentIndex = i + 1;
+                sb.append(i);
+                sb.append(" ");
+                imageReceiver2.setUniqKeyPrefix(sb.toString());
+                int filterWidth = EmojiAnimationsOverlay.getFilterWidth();
+                ImageReceiver imageReceiver3 = this.effectImageReceiver;
+                ImageLocation forDocument = ImageLocation.getForDocument(tLRPC$TL_availableReaction.around_animation);
+                imageReceiver3.setImage(forDocument, filterWidth + "_" + filterWidth + "_pcache_compress", null, null, tLRPC$TL_availableReaction.around_animation, 0);
+            } else {
+                this.effectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), ReactionsEffectOverlay.getFilterForAroundAnimation(), null, null, tLRPC$TL_availableReaction.around_animation, 0);
+            }
             z = true;
         }
         if (!z) {
@@ -131,7 +160,21 @@ public class AnimatedEmojiEffect {
                 if (this.animationIndex < 0) {
                     this.animationIndex = Math.abs(Utilities.fastRandom.nextInt() % tLRPC$TL_messages_stickerSet.documents.size());
                 }
-                this.effectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex)), "60_60", null, null, tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex), 0);
+                if (this.longAnimation) {
+                    ImageReceiver imageReceiver4 = this.effectImageReceiver;
+                    StringBuilder sb2 = new StringBuilder();
+                    int i2 = currentIndex;
+                    currentIndex = i2 + 1;
+                    sb2.append(i2);
+                    sb2.append(" ");
+                    imageReceiver4.setUniqKeyPrefix(sb2.toString());
+                    int filterWidth2 = EmojiAnimationsOverlay.getFilterWidth();
+                    ImageReceiver imageReceiver5 = this.effectImageReceiver;
+                    ImageLocation forDocument2 = ImageLocation.getForDocument(tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex));
+                    imageReceiver5.setImage(forDocument2, filterWidth2 + "_" + filterWidth2 + "_pcache_compress", null, null, tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex), 0);
+                } else {
+                    this.effectImageReceiver.setImage(ImageLocation.getForDocument(tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex)), "60_60", null, null, tLRPC$TL_messages_stickerSet.documents.get(this.animationIndex), 0);
+                }
                 z = true;
             }
         }
@@ -142,8 +185,8 @@ public class AnimatedEmojiEffect {
             this.effectImageReceiver.setAutoRepeat(0);
             return;
         }
-        int i = R.raw.custom_emoji_reaction;
-        this.effectImageReceiver.setImageBitmap(new RLottieDrawable(i, "" + i, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
+        int i3 = R.raw.custom_emoji_reaction;
+        this.effectImageReceiver.setImageBitmap(new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
     }
 
     public void removeView(View view) {

@@ -97,6 +97,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     }
 
     public int getCurrencyExp(String str) {
+        BillingUtilities.extractCurrencyExp(this.currencyExpMap);
         return ((Integer) Map.EL.getOrDefault(this.currencyExpMap, str, 0)).intValue();
     }
 

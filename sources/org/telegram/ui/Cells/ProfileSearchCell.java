@@ -738,6 +738,11 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
             StoriesUtilities.drawAvatarWithStory(tLRPC$User.id, canvas, this.avatarImage, this.avatarStoryParams);
             return;
         }
+        TLRPC$Chat tLRPC$Chat = this.chat;
+        if (tLRPC$Chat != null) {
+            StoriesUtilities.drawAvatarWithStory(-tLRPC$Chat.id, canvas, this.avatarImage, this.avatarStoryParams);
+            return;
+        }
         this.avatarImage.setImageCoords(this.avatarStoryParams.originalAvatarRect);
         this.avatarImage.draw(canvas);
     }

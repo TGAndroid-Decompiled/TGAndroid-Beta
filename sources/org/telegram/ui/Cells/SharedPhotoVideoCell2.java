@@ -22,6 +22,7 @@ import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.math.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
@@ -45,7 +46,8 @@ import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.FlickerLoadingView;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
-public class SharedPhotoVideoCell2 extends View {
+import org.telegram.ui.Components.spoilers.SpoilerEffect2;
+public class SharedPhotoVideoCell2 extends FrameLayout {
     static boolean lastAutoDownload;
     static long lastUpdateDownloadSettingsTime;
     ValueAnimator animator;
@@ -73,6 +75,7 @@ public class SharedPhotoVideoCell2 extends View {
     public boolean isLast;
     public boolean isStory;
     private SpoilerEffect mediaSpoilerEffect;
+    private SpoilerEffect2 mediaSpoilerEffect2;
     private Path path;
     SharedResources sharedResources;
     boolean showVideoLayout;
@@ -115,6 +118,7 @@ public class SharedPhotoVideoCell2 extends View {
                 ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
             }
         });
+        setWillNotDraw(false);
     }
 
     public void lambda$new$0(ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
@@ -165,6 +169,7 @@ public class SharedPhotoVideoCell2 extends View {
             this.currentMessageObject = messageObject;
             boolean z = true;
             this.isStory = messageObject != null && messageObject.isStory();
+            updateSpoilers2();
             if (messageObject == null) {
                 this.imageReceiver.onDetachedFromWindow();
                 this.blurImageReceiver.onDetachedFromWindow();
@@ -421,6 +426,14 @@ public class SharedPhotoVideoCell2 extends View {
             this.imageReceiver.onAttachedToWindow();
             this.blurImageReceiver.onAttachedToWindow();
         }
+        SpoilerEffect2 spoilerEffect2 = this.mediaSpoilerEffect2;
+        if (spoilerEffect2 != null) {
+            if (spoilerEffect2.destroyed) {
+                this.mediaSpoilerEffect2 = SpoilerEffect2.getInstance(this);
+            } else {
+                spoilerEffect2.attach(this);
+            }
+        }
     }
 
     @Override
@@ -434,6 +447,10 @@ public class SharedPhotoVideoCell2 extends View {
         if (this.currentMessageObject != null) {
             this.imageReceiver.onDetachedFromWindow();
             this.blurImageReceiver.onDetachedFromWindow();
+        }
+        SpoilerEffect2 spoilerEffect2 = this.mediaSpoilerEffect2;
+        if (spoilerEffect2 != null) {
+            spoilerEffect2.detach(this);
         }
     }
 
@@ -450,6 +467,26 @@ public class SharedPhotoVideoCell2 extends View {
             i3 /= 2;
         }
         setMeasuredDimension(size, i3);
+        updateSpoilers2();
+    }
+
+    private void updateSpoilers2() {
+        if (getMeasuredHeight() <= 0 || getMeasuredWidth() <= 0) {
+            return;
+        }
+        MessageObject messageObject = this.currentMessageObject;
+        if (messageObject != null && messageObject.hasMediaSpoilers() && SpoilerEffect2.supports()) {
+            if (this.mediaSpoilerEffect2 == null) {
+                this.mediaSpoilerEffect2 = SpoilerEffect2.getInstance(this);
+                return;
+            }
+            return;
+        }
+        SpoilerEffect2 spoilerEffect2 = this.mediaSpoilerEffect2;
+        if (spoilerEffect2 != null) {
+            spoilerEffect2.detach(this);
+            this.mediaSpoilerEffect2 = null;
+        }
     }
 
     public int getMessageId() {

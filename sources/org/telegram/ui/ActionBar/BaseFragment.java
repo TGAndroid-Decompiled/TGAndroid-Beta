@@ -865,7 +865,7 @@ public abstract class BaseFragment {
         }
 
         @Override
-        public void onCreate(Bundle bundle) {
+        protected void onCreate(Bundle bundle) {
             super.onCreate(bundle);
             fixNavigationBar(Theme.getColor(Theme.key_dialogBackgroundGray, this.val$fragment.getResourceProvider()));
         }

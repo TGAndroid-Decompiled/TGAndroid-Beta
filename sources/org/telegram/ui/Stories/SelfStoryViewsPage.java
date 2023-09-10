@@ -34,6 +34,7 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -293,7 +294,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                     str = str.substring(0, indexOf);
                 }
                 final String str2 = str;
-                ItemOptions cutTextInFancyHalf = ItemOptions.makeOptions(this.val$storyViewer.containerView, SelfStoryViewsPage.this.resourcesProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, SelfStoryViewsPage.this.resourcesProvider))).setDimAlpha(133).addIf((!isStoryShownToUser || isBlocked || z) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, str2), new Runnable() {
+                ItemOptions cutTextInFancyHalf = ItemOptions.makeOptions(this.val$storyViewer.containerView, SelfStoryViewsPage.this.resourcesProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, SelfStoryViewsPage.this.resourcesProvider))).setDimAlpha(MessagesStorage.LAST_DB_VERSION).addIf((!isStoryShownToUser || isBlocked || z) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, str2), new Runnable() {
                     @Override
                     public final void run() {
                         SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$0(messagesController, user, str2, reactedUserHolderView, tLRPC$TL_storyView);
@@ -790,12 +791,17 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     }
 
     public boolean onBackPressed() {
-        if (Math.abs(this.topViewsContainer.getTranslationY() - this.recyclerListView.getPaddingTop()) > AndroidUtilities.dp(2.0f)) {
+        CustomPopupMenu customPopupMenu = this.popupMenu;
+        if (customPopupMenu != null && customPopupMenu.isShowing()) {
+            this.popupMenu.dismiss();
+            return true;
+        } else if (Math.abs(this.topViewsContainer.getTranslationY() - this.recyclerListView.getPaddingTop()) > AndroidUtilities.dp(2.0f)) {
             this.recyclerListView.dispatchTouchEvent(AndroidUtilities.emptyMotionEvent());
             this.recyclerListView.smoothScrollToPosition(0);
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     public float getTopOffset() {
@@ -1160,6 +1166,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         }
 
         public void lambda$loadNext$0(int[] iArr, TLObject tLObject) {
+            boolean z;
             if (iArr[0] != this.reqId) {
                 FileLog.d("SelfStoryViewsPage " + this.storyItem.id + " localId != reqId");
                 return;
@@ -1184,6 +1191,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 } else {
                     this.views.addAll(tLRPC$TL_stories_storyViewsList.views);
                 }
+                boolean z2 = true;
                 if (!tLRPC$TL_stories_storyViewsList.views.isEmpty()) {
                     this.hasNext = true;
                 } else {
@@ -1206,13 +1214,27 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                         this.storyItem.views.recent_viewers.add(Long.valueOf(tLRPC$TL_stories_storyViewsList.users.get(i3).id));
                     }
                     this.storyItem.views.views_count = tLRPC$TL_stories_storyViewsList.count;
+                    z = true;
+                } else {
+                    z = false;
+                }
+                TLRPC$StoryViews tLRPC$StoryViews2 = this.storyItem.views;
+                int i4 = tLRPC$StoryViews2.reactions_count;
+                int i5 = tLRPC$TL_stories_storyViewsList.reactions_count;
+                if (i4 != i5) {
+                    tLRPC$StoryViews2.reactions_count = i5;
+                } else {
+                    z2 = z;
+                }
+                if (z2) {
+                    NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                 }
             } else {
                 this.hasNext = false;
             }
             FileLog.d("SelfStoryViewsPage " + this.storyItem.id + " response  totalItems " + this.views.size() + " has next " + this.hasNext);
-            for (int i4 = 0; i4 < this.listeners.size(); i4++) {
-                this.listeners.get(i4).onDataRecieved(this);
+            for (int i6 = 0; i6 < this.listeners.size(); i6++) {
+                this.listeners.get(i6).onDataRecieved(this);
             }
             if (this.views.size() >= 20 || !this.hasNext) {
                 return;
@@ -1372,6 +1394,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             ImageView imageView = new ImageView(getContext());
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setImageDrawable(this.replacableDrawable);
+            imageView.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
             linearLayout2.addView(imageView, LayoutHelper.createLinear(26, 26));
             ImageView imageView2 = new ImageView(getContext());
             imageView2.setImageResource(R.drawable.arrow_more);

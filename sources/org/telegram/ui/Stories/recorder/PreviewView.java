@@ -14,6 +14,7 @@ import android.graphics.SurfaceTexture;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Pair;
 import android.util.Size;
 import android.view.MotionEvent;
@@ -29,17 +30,24 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$DocumentAttribute;
+import org.telegram.tgnet.TLRPC$Message;
+import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
+import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
 import org.telegram.ui.Components.AnimatedFloat;
+import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.PhotoFilterView;
 import org.telegram.ui.Components.VideoEditTextureView;
 import org.telegram.ui.Components.VideoPlayer;
-import org.telegram.ui.Components.VideoTimelinePlayView;
 import org.telegram.ui.Stories.recorder.PreviewView;
 import org.telegram.ui.Stories.recorder.StoryEntry;
+import org.telegram.ui.Stories.recorder.TimelineView;
 public class PreviewView extends FrameLayout {
     private float Tx;
     private float Ty;
@@ -49,8 +57,10 @@ public class PreviewView extends FrameLayout {
     private boolean allowRotation;
     private boolean allowWithSingleTouch;
     private float angle;
+    private VideoPlayer audioPlayer;
     private Bitmap bitmap;
     private final Paint bitmapPaint;
+    private final BlurringShader.BlurManager blurManager;
     private float cx;
     private float cy;
     private boolean doNotSpanRotation;
@@ -58,10 +68,14 @@ public class PreviewView extends FrameLayout {
     private StoryEntry entry;
     public TextureView filterTextureView;
     private Matrix finalMatrix;
+    private int gradientBottom;
     private final Paint gradientPaint;
+    private int gradientTop;
     private float h;
     private boolean inTrash;
+    public Runnable invalidateBlur;
     private boolean isPart;
+    private long lastPos;
     private final PointF lastTouch;
     private float lastTouchDistance;
     private double lastTouchRotation;
@@ -72,6 +86,7 @@ public class PreviewView extends FrameLayout {
     private final HashMap<Integer, Bitmap> partsBitmap;
     private final HashMap<Integer, ButtonBounce> partsBounce;
     private final HashSet<Integer> pauseLinks;
+    private PhotoFilterView photoFilterView;
     private float rotationDiff;
     private long seekedLastTime;
     private final Paint snapPaint;
@@ -82,17 +97,18 @@ public class PreviewView extends FrameLayout {
     private VideoEditTextureView textureView;
     private final AnimatedFloat thumbAlpha;
     private Bitmap thumbBitmap;
+    private TimelineView timelineView;
     private final PointF touch;
     private Matrix touchMatrix;
     private float trashCx;
     private float trashCy;
     private int trashPartIndex;
     private AnimatedFloat trashT;
+    private final Runnable updateAudioProgressRunnable;
     private final Runnable updateProgressRunnable;
     private final float[] vertices;
     private int videoHeight;
     private VideoPlayer videoPlayer;
-    private VideoTimelinePlayView videoTimelineView;
     private int videoWidth;
 
     public boolean additionalTouchEvent(MotionEvent motionEvent) {
@@ -114,10 +130,7 @@ public class PreviewView extends FrameLayout {
     public void onEntityDraggedTop(boolean z) {
     }
 
-    protected void onTimeDrag(boolean z, long j, boolean z2) {
-    }
-
-    public PreviewView(Context context) {
+    public PreviewView(Context context, BlurringShader.BlurManager blurManager) {
         super(context);
         Paint paint = new Paint(1);
         this.snapPaint = paint;
@@ -127,6 +140,12 @@ public class PreviewView extends FrameLayout {
             @Override
             public final void run() {
                 PreviewView.this.lambda$new$5();
+            }
+        };
+        this.updateAudioProgressRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                PreviewView.this.lambda$new$6();
             }
         };
         this.bitmapPaint = new Paint(7);
@@ -143,160 +162,11 @@ public class PreviewView extends FrameLayout {
         this.trashT = new AnimatedFloat(this, 0L, 280L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.tempVertices = new float[2];
         this.pauseLinks = new HashSet<>();
-        VideoTimelinePlayView videoTimelinePlayView = new VideoTimelinePlayView(context);
-        this.videoTimelineView = videoTimelinePlayView;
-        videoTimelinePlayView.setMode(0);
-        this.videoTimelineView.setDelegate(new AnonymousClass1());
+        this.blurManager = blurManager;
         paint.setStrokeWidth(AndroidUtilities.dp(1.0f));
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(-1);
         paint.setShadowLayer(AndroidUtilities.dp(3.0f), 0.0f, AndroidUtilities.dp(1.0f), 1073741824);
-    }
-
-    public class AnonymousClass1 implements VideoTimelinePlayView.VideoTimelineViewDelegate {
-        private Runnable dragStart;
-        private boolean dragging;
-        private long lastDragTime;
-        private int seekTo;
-        private Runnable seekToRunnable;
-
-        AnonymousClass1() {
-        }
-
-        private float durationOf(long j) {
-            return ((float) j) / ((float) (PreviewView.this.getDuration() == -9223372036854775807L ? PreviewView.this.entry.duration : PreviewView.this.getDuration()));
-        }
-
-        private long duration() {
-            int i = (PreviewView.this.getDuration() > (-9223372036854775807L) ? 1 : (PreviewView.this.getDuration() == (-9223372036854775807L) ? 0 : -1));
-            PreviewView previewView = PreviewView.this;
-            return i == 0 ? previewView.entry.duration : previewView.getDuration();
-        }
-
-        @Override
-        public void onLeftProgressChanged(float f) {
-            if (PreviewView.this.videoPlayer != null) {
-                if (PreviewView.this.videoPlayer.isPlaying()) {
-                    PreviewView.this.videoPlayer.pause();
-                }
-                PreviewView.this.entry.left = f;
-                PreviewView.this.entry.right = Utilities.clamp(Math.min(PreviewView.this.entry.right, PreviewView.this.entry.left + durationOf(59500L)), 1.0f, 0.0f);
-                PreviewView.this.entry.left = Utilities.clamp(Math.min(PreviewView.this.entry.left, PreviewView.this.entry.right - durationOf(1000L)), 1.0f, 0.0f);
-                PreviewView.this.videoTimelineView.setLeftRightProgress(PreviewView.this.entry.left, PreviewView.this.entry.right);
-                seekTo(PreviewView.this.entry.left);
-                PreviewView.this.videoTimelineView.setProgress(PreviewView.this.entry.left);
-                drag(PreviewView.this.entry.left * ((float) duration()));
-            }
-        }
-
-        @Override
-        public void onRightProgressChanged(float f) {
-            if (PreviewView.this.videoPlayer != null) {
-                if (PreviewView.this.videoPlayer.isPlaying()) {
-                    PreviewView.this.videoPlayer.pause();
-                }
-                PreviewView.this.entry.right = f;
-                PreviewView.this.entry.left = Utilities.clamp(Math.max(PreviewView.this.entry.left, PreviewView.this.entry.right - durationOf(59500L)), 1.0f, 0.0f);
-                PreviewView.this.entry.right = Utilities.clamp(Math.max(PreviewView.this.entry.right, PreviewView.this.entry.left + durationOf(1000L)), 1.0f, 0.0f);
-                PreviewView.this.videoTimelineView.setLeftRightProgress(PreviewView.this.entry.left, PreviewView.this.entry.right);
-                seekTo(PreviewView.this.entry.right);
-                PreviewView.this.videoTimelineView.setProgress(PreviewView.this.entry.right);
-                drag(PreviewView.this.entry.right * ((float) duration()));
-            }
-        }
-
-        @Override
-        public void onPlayProgressChanged(float f) {
-            if (PreviewView.this.videoPlayer != null) {
-                seekTo(f);
-            }
-            drag(f * ((float) duration()));
-        }
-
-        private void drag(long j) {
-            this.lastDragTime = j;
-            if (this.dragging) {
-                PreviewView.this.onTimeDrag(false, j, false);
-            } else if (this.dragStart == null) {
-                Runnable runnable = new Runnable() {
-                    @Override
-                    public final void run() {
-                        PreviewView.AnonymousClass1.this.lambda$drag$0();
-                    }
-                };
-                this.dragStart = runnable;
-                AndroidUtilities.runOnUIThread(runnable, 150L);
-            }
-        }
-
-        public void lambda$drag$0() {
-            this.dragging = true;
-            this.dragStart = null;
-            PreviewView.this.onTimeDrag(true, this.lastDragTime, false);
-        }
-
-        @Override
-        public void didStartDragging(int i) {
-            if (PreviewView.this.videoPlayer == null) {
-                return;
-            }
-            PreviewView.this.updatePauseReason(-1, true);
-            drag(PreviewView.this.videoTimelineView.getProgressOf(i) * ((float) duration()));
-        }
-
-        @Override
-        public void didStopDragging(int i) {
-            Runnable runnable = this.seekToRunnable;
-            if (runnable != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable);
-                this.seekToRunnable.run();
-            }
-            if (PreviewView.this.videoPlayer != null && !PreviewView.this.videoPlayer.isPlaying()) {
-                float currentPosition = ((float) PreviewView.this.videoPlayer.getCurrentPosition()) / ((float) PreviewView.this.getDuration());
-                if (currentPosition < PreviewView.this.entry.left || currentPosition > PreviewView.this.entry.right) {
-                    seekTo(PreviewView.this.entry.left * ((float) PreviewView.this.getDuration()));
-                }
-                PreviewView.this.updatePauseReason(-1, false);
-            }
-            this.dragging = false;
-            Runnable runnable2 = this.dragStart;
-            if (runnable2 != null) {
-                AndroidUtilities.cancelRunOnUIThread(runnable2);
-                this.dragStart = null;
-            }
-            PreviewView.this.onTimeDrag(false, this.lastDragTime, true);
-        }
-
-        private void seekTo(float f) {
-            if (PreviewView.this.videoPlayer == null) {
-                return;
-            }
-            this.seekTo = (int) (((float) PreviewView.this.getDuration()) * f);
-            if (SharedConfig.getDevicePerformanceClass() == 2) {
-                if (PreviewView.this.videoPlayer != null) {
-                    PreviewView.this.videoPlayer.seekTo(this.seekTo);
-                }
-                PreviewView.this.applyMatrix();
-                this.seekToRunnable = null;
-            } else if (this.seekToRunnable == null) {
-                Runnable runnable = new Runnable() {
-                    @Override
-                    public final void run() {
-                        PreviewView.AnonymousClass1.this.lambda$seekTo$1();
-                    }
-                };
-                this.seekToRunnable = runnable;
-                AndroidUtilities.runOnUIThread(runnable, 100L);
-            }
-        }
-
-        public void lambda$seekTo$1() {
-            if (PreviewView.this.videoPlayer != null) {
-                PreviewView.this.videoPlayer.seekTo(this.seekTo);
-            }
-            PreviewView.this.applyMatrix();
-            this.seekToRunnable = null;
-        }
     }
 
     public long getDuration() {
@@ -308,14 +178,10 @@ public class PreviewView extends FrameLayout {
             }
         }
         VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer != null) {
-            return videoPlayer.getDuration();
+        if (videoPlayer == null || videoPlayer.getDuration() == -9223372036854775807L) {
+            return 0L;
         }
-        return 0L;
-    }
-
-    public VideoTimelinePlayView getTimelineView() {
-        return this.videoTimelineView;
+        return this.videoPlayer.getDuration();
     }
 
     public void set(StoryEntry storyEntry) {
@@ -329,6 +195,7 @@ public class PreviewView extends FrameLayout {
             setupImage(null);
             setupParts(null);
             this.gradientPaint.setShader(null);
+            setupAudio((StoryEntry) null, false);
             return;
         }
         if (storyEntry.isVideo) {
@@ -351,21 +218,238 @@ public class PreviewView extends FrameLayout {
         }
         setupParts(storyEntry);
         applyMatrix();
+        setupAudio(storyEntry, false);
+    }
+
+    public void setupAudio(StoryEntry storyEntry, boolean z) {
+        VideoPlayer videoPlayer = this.audioPlayer;
+        if (videoPlayer != null) {
+            videoPlayer.pause();
+            this.audioPlayer.releasePlayer(true);
+            this.audioPlayer = null;
+        }
+        if (storyEntry == null) {
+            return;
+        }
+        TimelineView timelineView = this.timelineView;
+        if (timelineView != null) {
+            timelineView.setAudio(storyEntry.audioPath, storyEntry.audioAuthor, storyEntry.audioTitle, storyEntry.audioDuration, storyEntry.audioOffset, storyEntry.audioLeft, storyEntry.audioRight, storyEntry.audioVolume, z);
+        }
+        if (storyEntry.audioPath != null) {
+            VideoPlayer videoPlayer2 = new VideoPlayer();
+            this.audioPlayer = videoPlayer2;
+            videoPlayer2.allowMultipleInstances = true;
+            videoPlayer2.setDelegate(new VideoPlayer.VideoPlayerDelegate() {
+                @Override
+                public void onError(VideoPlayer videoPlayer3, Exception exc) {
+                }
+
+                @Override
+                public void onRenderedFirstFrame() {
+                }
+
+                @Override
+                public void onRenderedFirstFrame(AnalyticsListener.EventTime eventTime) {
+                    VideoPlayer.VideoPlayerDelegate.CC.$default$onRenderedFirstFrame(this, eventTime);
+                }
+
+                @Override
+                public void onSeekFinished(AnalyticsListener.EventTime eventTime) {
+                    VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekFinished(this, eventTime);
+                }
+
+                @Override
+                public void onSeekStarted(AnalyticsListener.EventTime eventTime) {
+                    VideoPlayer.VideoPlayerDelegate.CC.$default$onSeekStarted(this, eventTime);
+                }
+
+                @Override
+                public boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
+                    return false;
+                }
+
+                @Override
+                public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+                }
+
+                @Override
+                public void onVideoSizeChanged(int i, int i2, int i3, float f) {
+                }
+
+                @Override
+                public void onStateChanged(boolean z2, int i) {
+                    AndroidUtilities.cancelRunOnUIThread(PreviewView.this.updateAudioProgressRunnable);
+                    if (PreviewView.this.audioPlayer == null || !PreviewView.this.audioPlayer.isPlaying()) {
+                        return;
+                    }
+                    AndroidUtilities.runOnUIThread(PreviewView.this.updateAudioProgressRunnable);
+                }
+            });
+            this.audioPlayer.preparePlayer(Uri.fromFile(new File(storyEntry.audioPath)), "other");
+            updateAudioPlayer(true);
+        }
+    }
+
+    public void setupAudio(MessageObject messageObject, boolean z) {
+        TLRPC$Message tLRPC$Message;
+        StoryEntry storyEntry = this.entry;
+        if (storyEntry != null) {
+            if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
+                storyEntry.audioPath = null;
+                storyEntry.audioAuthor = null;
+                storyEntry.audioTitle = null;
+                storyEntry.audioOffset = 0L;
+                storyEntry.audioDuration = 0L;
+                storyEntry.audioLeft = 0.0f;
+                storyEntry.audioRight = 1.0f;
+            } else {
+                storyEntry.audioPath = tLRPC$Message.attachPath;
+                storyEntry.audioAuthor = null;
+                storyEntry.audioTitle = null;
+                TLRPC$Document document = messageObject.getDocument();
+                if (document != null) {
+                    Iterator<TLRPC$DocumentAttribute> it = document.attributes.iterator();
+                    while (true) {
+                        if (!it.hasNext()) {
+                            break;
+                        }
+                        TLRPC$DocumentAttribute next = it.next();
+                        if (next instanceof TLRPC$TL_documentAttributeAudio) {
+                            this.entry.audioAuthor = next.performer;
+                            if (!TextUtils.isEmpty(next.title)) {
+                                this.entry.audioTitle = next.title;
+                            }
+                            this.entry.audioDuration = (long) (next.duration * 1000.0d);
+                        } else if (next instanceof TLRPC$TL_documentAttributeFilename) {
+                            this.entry.audioTitle = next.file_name;
+                        }
+                    }
+                }
+                StoryEntry storyEntry2 = this.entry;
+                storyEntry2.audioOffset = 0L;
+                storyEntry2.audioLeft = 0.0f;
+                long min = Math.min((storyEntry2 == null || !storyEntry2.isVideo) ? storyEntry2.audioDuration : getDuration(), 120000L);
+                StoryEntry storyEntry3 = this.entry;
+                storyEntry3.audioRight = storyEntry3.audioDuration != 0 ? Math.min(1.0f, ((float) Math.min(min, 59000L)) / ((float) this.entry.audioDuration)) : 1.0f;
+            }
+        }
+        setupAudio(this.entry, z);
+    }
+
+    public void seekTo(long j) {
+        VideoPlayer videoPlayer = this.videoPlayer;
+        if (videoPlayer != null) {
+            videoPlayer.seekTo(j, false);
+        } else {
+            VideoPlayer videoPlayer2 = this.audioPlayer;
+            if (videoPlayer2 != null) {
+                videoPlayer2.seekTo(j, false);
+            }
+        }
+        updateAudioPlayer(true);
+    }
+
+    public void setVideoTimelineView(TimelineView timelineView) {
+        this.timelineView = timelineView;
+        if (timelineView != null) {
+            timelineView.setDelegate(new TimelineView.TimelineDelegate() {
+                @Override
+                public void onProgressDragChange(boolean z) {
+                    PreviewView.this.updatePauseReason(-4, z);
+                }
+
+                @Override
+                public void onProgressChange(long j, boolean z) {
+                    if (!z) {
+                        PreviewView.this.seekTo(j);
+                    } else if (PreviewView.this.videoPlayer != null) {
+                        PreviewView.this.videoPlayer.seekTo(j, true);
+                    } else if (PreviewView.this.audioPlayer != null) {
+                        PreviewView.this.audioPlayer.seekTo(j, false);
+                    }
+                }
+
+                @Override
+                public void onVideoLeftChange(float f) {
+                    if (PreviewView.this.entry == null) {
+                        return;
+                    }
+                    PreviewView.this.entry.left = f;
+                    if (PreviewView.this.videoPlayer == null || PreviewView.this.videoPlayer.getDuration() == -9223372036854775807L) {
+                        return;
+                    }
+                    PreviewView previewView = PreviewView.this;
+                    previewView.seekTo(f * ((float) previewView.videoPlayer.getDuration()));
+                }
+
+                @Override
+                public void onVideoRightChange(float f) {
+                    if (PreviewView.this.entry == null) {
+                        return;
+                    }
+                    PreviewView.this.entry.right = f;
+                }
+
+                @Override
+                public void onAudioLeftChange(float f) {
+                    if (PreviewView.this.entry == null) {
+                        return;
+                    }
+                    PreviewView.this.entry.audioLeft = f;
+                    PreviewView.this.updateAudioPlayer(true);
+                }
+
+                @Override
+                public void onAudioRightChange(float f) {
+                    if (PreviewView.this.entry == null) {
+                        return;
+                    }
+                    PreviewView.this.entry.audioRight = f;
+                    PreviewView.this.updateAudioPlayer(true);
+                }
+
+                @Override
+                public void onAudioOffsetChange(long j) {
+                    if (PreviewView.this.entry == null) {
+                        return;
+                    }
+                    PreviewView.this.entry.audioOffset = j;
+                    PreviewView.this.updateAudioPlayer(true);
+                }
+
+                @Override
+                public void onAudioRemove() {
+                    PreviewView.this.setupAudio((MessageObject) null, true);
+                }
+
+                @Override
+                public void onAudioVolumeChange(float f) {
+                    if (PreviewView.this.entry == null) {
+                        return;
+                    }
+                    PreviewView.this.entry.audioVolume = f;
+                    if (PreviewView.this.audioPlayer != null) {
+                        PreviewView.this.audioPlayer.setVolume(f);
+                    }
+                }
+            });
+        }
     }
 
     private void setupImage(final StoryEntry storyEntry) {
+        BlurringShader.BlurManager blurManager;
         String str;
         Uri withAppendedId;
         Bitmap bitmap = this.bitmap;
-        if (bitmap != null) {
-            bitmap.recycle();
-            this.bitmap = null;
+        if (bitmap != null && !bitmap.isRecycled()) {
+            this.bitmap.recycle();
         }
+        this.bitmap = null;
         Bitmap bitmap2 = this.thumbBitmap;
-        if (bitmap2 != null) {
-            bitmap2.recycle();
-            this.thumbBitmap = null;
+        if (bitmap2 != null && !bitmap2.isRecycled()) {
+            this.thumbBitmap.recycle();
         }
+        this.thumbBitmap = null;
         if (storyEntry != null) {
             int measuredWidth = getMeasuredWidth() <= 0 ? AndroidUtilities.displaySize.x : getMeasuredWidth();
             int i = (int) ((measuredWidth * 16) / 9.0f);
@@ -402,7 +486,7 @@ public class PreviewView extends FrameLayout {
                     return;
                 }
                 final String path = originalFile.getPath();
-                this.bitmap = StoryEntry.getScaledBitmap(new StoryEntry.DecodeBitmap() {
+                Bitmap scaledBitmap = StoryEntry.getScaledBitmap(new StoryEntry.DecodeBitmap() {
                     @Override
                     public final Bitmap decode(BitmapFactory.Options options) {
                         Bitmap lambda$setupImage$0;
@@ -410,11 +494,31 @@ public class PreviewView extends FrameLayout {
                         return lambda$setupImage$0;
                     }
                 }, measuredWidth, i, false);
+                this.bitmap = scaledBitmap;
+                BlurringShader.BlurManager blurManager2 = this.blurManager;
+                if (blurManager2 == null || scaledBitmap == null) {
+                    return;
+                }
+                blurManager2.resetBitmap();
+                this.blurManager.setFallbackBlur(storyEntry.buildBitmap(0.2f, this.bitmap), 0);
+                Runnable runnable = this.invalidateBlur;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             } else if (!storyEntry.isDraft && storyEntry.isVideo && bitmap4 != null) {
                 storyEntry.width = bitmap4.getWidth();
                 storyEntry.height = this.bitmap.getHeight();
                 storyEntry.setupMatrix();
+            }
+        }
+        if (storyEntry != null && (blurManager = this.blurManager) != null && this.bitmap != null) {
+            blurManager.resetBitmap();
+            this.blurManager.setFallbackBlur(storyEntry.buildBitmap(0.2f, this.bitmap), 0);
+            Runnable runnable2 = this.invalidateBlur;
+            if (runnable2 != null) {
+                runnable2.run();
             }
         }
         invalidate();
@@ -464,25 +568,61 @@ public class PreviewView extends FrameLayout {
         } else {
             Paint paint = this.gradientPaint;
             StoryEntry storyEntry2 = this.entry;
-            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, measuredHeight, new int[]{storyEntry2.gradientTopColor, storyEntry2.gradientBottomColor}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+            int i = storyEntry2.gradientTopColor;
+            this.gradientTop = i;
+            int i2 = storyEntry2.gradientBottomColor;
+            this.gradientBottom = i2;
+            paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, measuredHeight, new int[]{i, i2}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+            VideoEditTextureView videoEditTextureView = this.textureView;
+            if (videoEditTextureView != null) {
+                videoEditTextureView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
+            }
+            PhotoFilterView photoFilterView = this.photoFilterView;
+            if (photoFilterView != null) {
+                photoFilterView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
+            }
         }
         invalidate();
     }
 
     public void lambda$setupGradient$1(int i, int[] iArr) {
         StoryEntry storyEntry = this.entry;
-        storyEntry.gradientTopColor = iArr[0];
-        storyEntry.gradientBottomColor = iArr[1];
+        int i2 = iArr[0];
+        this.gradientTop = i2;
+        storyEntry.gradientTopColor = i2;
+        int i3 = iArr[1];
+        this.gradientBottom = i3;
+        storyEntry.gradientBottomColor = i3;
         this.gradientPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         invalidate();
+        VideoEditTextureView videoEditTextureView = this.textureView;
+        if (videoEditTextureView != null) {
+            videoEditTextureView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
+        }
+        PhotoFilterView photoFilterView = this.photoFilterView;
+        if (photoFilterView != null) {
+            photoFilterView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
+        }
     }
 
     public void lambda$setupGradient$2(int i, int[] iArr) {
         StoryEntry storyEntry = this.entry;
-        storyEntry.gradientTopColor = iArr[0];
-        storyEntry.gradientBottomColor = iArr[1];
+        int i2 = iArr[0];
+        this.gradientTop = i2;
+        storyEntry.gradientTopColor = i2;
+        int i3 = iArr[1];
+        this.gradientBottom = i3;
+        storyEntry.gradientBottomColor = i3;
         this.gradientPaint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         invalidate();
+        VideoEditTextureView videoEditTextureView = this.textureView;
+        if (videoEditTextureView != null) {
+            videoEditTextureView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
+        }
+        PhotoFilterView photoFilterView = this.photoFilterView;
+        if (photoFilterView != null) {
+            photoFilterView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
+        }
     }
 
     private void setupVideoPlayer(StoryEntry storyEntry, Runnable runnable, long j) {
@@ -503,6 +643,10 @@ public class PreviewView extends FrameLayout {
                     }
                 }).start();
             }
+            TimelineView timelineView = this.timelineView;
+            if (timelineView != null) {
+                timelineView.setVideo(null, 1L);
+            }
             AndroidUtilities.cancelRunOnUIThread(this.updateProgressRunnable);
             if (runnable != null) {
                 AndroidUtilities.runOnUIThread(runnable);
@@ -517,7 +661,8 @@ public class PreviewView extends FrameLayout {
         }
         VideoPlayer videoPlayer3 = new VideoPlayer();
         this.videoPlayer = videoPlayer3;
-        videoPlayer3.setDelegate(new AnonymousClass2(storyEntry, new Runnable[]{runnable}));
+        videoPlayer3.allowMultipleInstances = true;
+        videoPlayer3.setDelegate(new AnonymousClass3(storyEntry, new Runnable[]{runnable}));
         VideoEditTextureView videoEditTextureView2 = this.textureView;
         if (videoEditTextureView2 != null) {
             videoEditTextureView2.clearAnimation();
@@ -525,9 +670,10 @@ public class PreviewView extends FrameLayout {
             removeView(this.textureView);
             this.textureView = null;
         }
-        VideoEditTextureView videoEditTextureView3 = new VideoEditTextureView(getContext(), this.videoPlayer);
-        this.textureView = videoEditTextureView3;
-        videoEditTextureView3.setAlpha(runnable != null ? 1.0f : 0.0f);
+        this.textureView = new VideoEditTextureView(getContext(), this.videoPlayer);
+        this.blurManager.resetBitmap();
+        this.textureView.updateUiBlurManager(this.blurManager);
+        this.textureView.setAlpha(runnable != null ? 1.0f : 0.0f);
         this.textureView.setOpaque(false);
         applyMatrix();
         addView(this.textureView, LayoutHelper.createFrame(-2, -2, 51));
@@ -545,7 +691,10 @@ public class PreviewView extends FrameLayout {
             this.videoPlayer.seekTo(j);
         }
         this.videoPlayer.setMute(storyEntry.muted);
-        this.videoTimelineView.setVideoPath(fromFile.toString(), storyEntry.left, storyEntry.right);
+        updateAudioPlayer(true);
+        this.timelineView.setVideo(fromFile.toString(), getDuration());
+        this.timelineView.setVideoLeft(storyEntry.left);
+        this.timelineView.setVideoRight(storyEntry.right);
     }
 
     public void lambda$setupVideoPlayer$3() {
@@ -557,7 +706,7 @@ public class PreviewView extends FrameLayout {
         }
     }
 
-    public class AnonymousClass2 implements VideoPlayer.VideoPlayerDelegate {
+    public class AnonymousClass3 implements VideoPlayer.VideoPlayerDelegate {
         final StoryEntry val$entry;
         final Runnable[] val$whenReadyFinal;
 
@@ -585,7 +734,7 @@ public class PreviewView extends FrameLayout {
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
 
-        AnonymousClass2(StoryEntry storyEntry, Runnable[] runnableArr) {
+        AnonymousClass3(StoryEntry storyEntry, Runnable[] runnableArr) {
             this.val$entry = storyEntry;
             this.val$whenReadyFinal = runnableArr;
         }
@@ -642,7 +791,7 @@ public class PreviewView extends FrameLayout {
                     duration.withEndAction(new Runnable() {
                         @Override
                         public final void run() {
-                            PreviewView.AnonymousClass2.this.lambda$onRenderedFirstFrame$0(storyEntry);
+                            PreviewView.AnonymousClass3.this.lambda$onRenderedFirstFrame$0(storyEntry);
                         }
                     }).start();
                     return;
@@ -681,9 +830,15 @@ public class PreviewView extends FrameLayout {
     }
 
     public long release() {
-        VideoPlayer videoPlayer = this.videoPlayer;
+        VideoPlayer videoPlayer = this.audioPlayer;
         if (videoPlayer != null) {
-            long currentPosition = videoPlayer.getCurrentPosition();
+            videoPlayer.pause();
+            this.audioPlayer.releasePlayer(true);
+            this.audioPlayer = null;
+        }
+        VideoPlayer videoPlayer2 = this.videoPlayer;
+        if (videoPlayer2 != null) {
+            long currentPosition = videoPlayer2.getCurrentPosition();
             this.videoPlayer.pause();
             this.videoPlayer.releasePlayer(true);
             this.videoPlayer = null;
@@ -740,36 +895,84 @@ public class PreviewView extends FrameLayout {
         }
     }
 
-    public void setFilterTextureView(TextureView textureView) {
+    public void setFilterTextureView(TextureView textureView, PhotoFilterView photoFilterView) {
         TextureView textureView2 = this.filterTextureView;
         if (textureView2 != null) {
             removeView(textureView2);
             this.filterTextureView = null;
         }
+        this.photoFilterView = photoFilterView;
         this.filterTextureView = textureView;
-        if (textureView != null) {
-            addView(textureView);
+        if (photoFilterView != null) {
+            photoFilterView.updateUiBlurGradient(this.gradientTop, this.gradientBottom);
+        }
+        TextureView textureView3 = this.filterTextureView;
+        if (textureView3 != null) {
+            addView(textureView3);
         }
     }
 
     public void lambda$new$5() {
         VideoPlayer videoPlayer = this.videoPlayer;
-        if (videoPlayer == null) {
+        if (videoPlayer == null || this.timelineView == null) {
             return;
         }
-        float currentPosition = ((float) videoPlayer.getCurrentPosition()) / ((float) getDuration());
-        if (!this.videoTimelineView.isDragging()) {
-            StoryEntry storyEntry = this.entry;
-            if ((currentPosition < storyEntry.left || currentPosition > storyEntry.right) && System.currentTimeMillis() - this.seekedLastTime > 500) {
-                this.seekedLastTime = System.currentTimeMillis();
-                this.videoPlayer.seekTo(this.entry.left * ((float) getDuration()));
+        long currentPosition = videoPlayer.getCurrentPosition();
+        if (getDuration() > 0) {
+            float duration = ((float) currentPosition) / ((float) getDuration());
+            if (!this.timelineView.isDragging()) {
+                StoryEntry storyEntry = this.entry;
+                if ((duration < storyEntry.left || duration > storyEntry.right) && System.currentTimeMillis() - this.seekedLastTime > 500) {
+                    this.seekedLastTime = System.currentTimeMillis();
+                    VideoPlayer videoPlayer2 = this.videoPlayer;
+                    long duration2 = this.entry.left * ((float) getDuration());
+                    videoPlayer2.seekTo(duration2);
+                    updateAudioPlayer(true);
+                    currentPosition = duration2;
+                    this.timelineView.setProgress(this.videoPlayer.getCurrentPosition());
+                }
             }
+            updateAudioPlayer(currentPosition < this.lastPos);
+            this.timelineView.setProgress(this.videoPlayer.getCurrentPosition());
+        } else {
+            this.timelineView.setProgress(this.videoPlayer.getCurrentPosition());
         }
-        this.videoTimelineView.setProgress(Utilities.clamp(currentPosition, this.videoTimelineView.getRightProgress(), this.videoTimelineView.getLeftProgress()));
         if (this.videoPlayer.isPlaying()) {
             AndroidUtilities.cancelRunOnUIThread(this.updateProgressRunnable);
             AndroidUtilities.runOnUIThread(this.updateProgressRunnable, 1000.0f / AndroidUtilities.screenRefreshRate);
         }
+        this.lastPos = currentPosition;
+    }
+
+    public void lambda$new$6() {
+        VideoPlayer videoPlayer = this.audioPlayer;
+        if (videoPlayer == null || this.videoPlayer != null || this.timelineView == null) {
+            return;
+        }
+        long currentPosition = videoPlayer.getCurrentPosition();
+        StoryEntry storyEntry = this.entry;
+        if (storyEntry != null) {
+            float f = (float) currentPosition;
+            float f2 = storyEntry.audioLeft;
+            long j = storyEntry.audioDuration;
+            if ((f < f2 * ((float) j) || f > storyEntry.audioRight * ((float) j)) && System.currentTimeMillis() - this.seekedLastTime > 500) {
+                this.seekedLastTime = System.currentTimeMillis();
+                VideoPlayer videoPlayer2 = this.audioPlayer;
+                StoryEntry storyEntry2 = this.entry;
+                long j2 = storyEntry2.audioLeft * ((float) storyEntry2.audioDuration);
+                videoPlayer2.seekTo(j2);
+                currentPosition = j2;
+            }
+        }
+        this.timelineView.setProgress(currentPosition);
+        if (this.audioPlayer.isPlaying()) {
+            AndroidUtilities.cancelRunOnUIThread(this.updateAudioProgressRunnable);
+            AndroidUtilities.runOnUIThread(this.updateAudioProgressRunnable, 1000.0f / AndroidUtilities.screenRefreshRate);
+        }
+    }
+
+    public void updateAudioPlayer(boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PreviewView.updateAudioPlayer(boolean):void");
     }
 
     public void whenError(Runnable runnable) {
@@ -1026,6 +1229,7 @@ public class PreviewView extends FrameLayout {
         if (videoPlayer != null) {
             videoPlayer.setPlayWhenReady(this.pauseLinks.isEmpty());
         }
+        updateAudioPlayer(true);
     }
 
     public boolean isPlaying() {

@@ -423,6 +423,7 @@ public abstract class SelfStoriesPreviewView extends View {
         TextPaint paint = new TextPaint(1);
         int position;
         ImageReceiver receiver;
+        SelfStoryViewsView.StoryItemInternal storyItem;
 
         public ImageHolder() {
             this.receiver = new ImageReceiver(SelfStoriesPreviewView.this);
@@ -433,27 +434,32 @@ public abstract class SelfStoriesPreviewView extends View {
         }
 
         void onBind(int i) {
-            SelfStoryViewsView.StoryItemInternal storyItemInternal = SelfStoriesPreviewView.this.storyItems.get(i);
+            this.storyItem = SelfStoriesPreviewView.this.storyItems.get(i);
             if (SelfStoriesPreviewView.this.isAttachedToWindow) {
                 this.receiver.onAttachedToWindow();
             }
+            SelfStoryViewsView.StoryItemInternal storyItemInternal = this.storyItem;
             TLRPC$StoryItem tLRPC$StoryItem = storyItemInternal.storyItem;
             if (tLRPC$StoryItem != null) {
                 StoriesUtilities.setImage(this.receiver, tLRPC$StoryItem);
             } else {
                 StoriesUtilities.setImage(this.receiver, storyItemInternal.uploadingStory);
             }
+            updateLayout();
+        }
+
+        private void updateLayout() {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            TLRPC$StoryItem tLRPC$StoryItem2 = storyItemInternal.storyItem;
-            if (tLRPC$StoryItem2 != null) {
-                SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder, tLRPC$StoryItem2.views, false);
+            TLRPC$StoryItem tLRPC$StoryItem = this.storyItem.storyItem;
+            if (tLRPC$StoryItem != null) {
+                SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder, tLRPC$StoryItem.views, false);
             }
             if (spannableStringBuilder.length() != 0) {
                 StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, ConnectionsManager.DEFAULT_DATACENTER_ID, 1);
                 this.layout = createStaticLayout;
                 if (createStaticLayout.getLineCount() > 1) {
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("");
-                    SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder2, storyItemInternal.storyItem.views, true);
+                    SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder2, this.storyItem.storyItem.views, true);
                     this.layout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, ConnectionsManager.DEFAULT_DATACENTER_ID, 2);
                     return;
                 }

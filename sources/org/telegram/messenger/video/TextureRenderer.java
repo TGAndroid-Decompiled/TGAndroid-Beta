@@ -28,11 +28,13 @@ import org.telegram.messenger.Bitmaps;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFileDrawable;
+import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.EditTextEffects;
 import org.telegram.ui.Components.FilterShaders;
 import org.telegram.ui.Components.Paint.Views.EditTextOutline;
@@ -49,6 +51,16 @@ public class TextureRenderer {
     private int NUM_GRADIENT_SHADER;
     private FloatBuffer bitmapVerticesBuffer;
     private boolean blendEnabled;
+    private BlurringShader blur;
+    private int blurBlurImageHandle;
+    private int blurInputTexCoordHandle;
+    private int blurMaskImageHandle;
+    private String blurPath;
+    private int blurPositionHandle;
+    private int blurShaderProgram;
+    private int[] blurTexture;
+    private FloatBuffer blurVerticesBuffer;
+    private final MediaController.CropState cropState;
     private ArrayList<AnimatedEmojiDrawable> emojiDrawables;
     private FilterShaders filterShaders;
     private int gradientBottomColor;
@@ -57,8 +69,10 @@ public class TextureRenderer {
     private int gradientTopColor;
     private int gradientTopColorHandle;
     private FloatBuffer gradientVerticesBuffer;
+    private int imageHeight;
     private int imageOrientation;
     private String imagePath;
+    private int imageWidth;
     private boolean isPhoto;
     private int[] mProgram;
     private int mTextureID;
@@ -99,8 +113,8 @@ public class TextureRenderer {
     private float[] mSTMatrixIdentity = new float[16];
     private boolean firstFrame = true;
 
-    public TextureRenderer(org.telegram.messenger.MediaController.SavedFilterState r26, java.lang.String r27, java.lang.String r28, java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r29, org.telegram.messenger.MediaController.CropState r30, int r31, int r32, int r33, int r34, int r35, float r36, boolean r37, java.lang.Integer r38, java.lang.Integer r39, org.telegram.ui.Stories.recorder.StoryEntry.HDRInfo r40, java.util.ArrayList<org.telegram.ui.Stories.recorder.StoryEntry.Part> r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.TextureRenderer.<init>(org.telegram.messenger.MediaController$SavedFilterState, java.lang.String, java.lang.String, java.util.ArrayList, org.telegram.messenger.MediaController$CropState, int, int, int, int, int, float, boolean, java.lang.Integer, java.lang.Integer, org.telegram.ui.Stories.recorder.StoryEntry$HDRInfo, java.util.ArrayList):void");
+    public TextureRenderer(org.telegram.messenger.MediaController.SavedFilterState r26, java.lang.String r27, java.lang.String r28, java.lang.String r29, java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r30, org.telegram.messenger.MediaController.CropState r31, int r32, int r33, int r34, int r35, int r36, float r37, boolean r38, java.lang.Integer r39, java.lang.Integer r40, org.telegram.ui.Stories.recorder.StoryEntry.HDRInfo r41, java.util.ArrayList<org.telegram.ui.Stories.recorder.StoryEntry.Part> r42) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.TextureRenderer.<init>(org.telegram.messenger.MediaController$SavedFilterState, java.lang.String, java.lang.String, java.lang.String, java.util.ArrayList, org.telegram.messenger.MediaController$CropState, int, int, int, int, int, float, boolean, java.lang.Integer, java.lang.Integer, org.telegram.ui.Stories.recorder.StoryEntry$HDRInfo, java.util.ArrayList):void");
     }
 
     public int getTextureId() {
@@ -126,24 +140,30 @@ public class TextureRenderer {
 
     public void drawFrame(SurfaceTexture surfaceTexture) {
         int i;
+        float[] fArr;
         int i2;
         int i3;
-        float[] fArr;
+        int i4;
+        int i5;
+        int i6;
+        int i7;
+        int[] iArr;
         if (this.isPhoto) {
             drawGradient();
+            i4 = 0;
         } else {
             surfaceTexture.getTransformMatrix(this.mSTMatrix);
             if (BuildVars.LOGS_ENABLED && this.firstFrame) {
                 StringBuilder sb = new StringBuilder();
-                int i4 = 0;
+                int i8 = 0;
                 while (true) {
                     float[] fArr2 = this.mSTMatrix;
-                    if (i4 >= fArr2.length) {
+                    if (i8 >= fArr2.length) {
                         break;
                     }
-                    sb.append(fArr2[i4]);
+                    sb.append(fArr2[i8]);
                     sb.append(", ");
-                    i4++;
+                    i8++;
                 }
                 FileLog.d("stMatrix = " + ((Object) sb));
                 this.firstFrame = false;
@@ -162,35 +182,81 @@ public class TextureRenderer {
                 this.filterShaders.drawCustomParamsPass();
                 boolean drawBlurPass = this.filterShaders.drawBlurPass();
                 GLES20.glBindFramebuffer(36160, 0);
-                int i5 = this.transformedWidth;
-                if (i5 != this.originalWidth || this.transformedHeight != this.originalHeight) {
-                    GLES20.glViewport(0, 0, i5, this.transformedHeight);
+                int i9 = this.transformedWidth;
+                if (i9 != this.originalWidth || this.transformedHeight != this.originalHeight) {
+                    GLES20.glViewport(0, 0, i9, this.transformedHeight);
                 }
-                i = this.filterShaders.getRenderTexture(!drawBlurPass);
-                i2 = this.NUM_FILTER_SHADER;
-                i3 = 3553;
+                int renderTexture = this.filterShaders.getRenderTexture(!drawBlurPass);
+                int i10 = this.NUM_FILTER_SHADER;
                 fArr = this.mSTMatrixIdentity;
+                i2 = i10;
+                i3 = renderTexture;
+                i4 = drawBlurPass;
+                i = 3553;
             } else {
-                i = this.mTextureID;
-                i2 = this.NUM_EXTERNAL_SHADER;
-                i3 = 36197;
+                int i11 = this.mTextureID;
+                int i12 = this.NUM_EXTERNAL_SHADER;
+                i = 36197;
                 fArr = this.mSTMatrix;
+                i2 = i12;
+                i3 = i11;
+                i4 = 0;
             }
             drawGradient();
             GLES20.glUseProgram(this.mProgram[i2]);
             GLES20.glActiveTexture(33984);
-            GLES20.glBindTexture(i3, i);
+            GLES20.glBindTexture(i, i3);
             GLES20.glVertexAttribPointer(this.maPositionHandle[i2], 2, 5126, false, 8, (Buffer) this.verticesBuffer);
             GLES20.glEnableVertexAttribArray(this.maPositionHandle[i2]);
             GLES20.glVertexAttribPointer(this.maTextureHandle[i2], 2, 5126, false, 8, (Buffer) this.renderTextureBuffer);
             GLES20.glEnableVertexAttribArray(this.maTextureHandle[i2]);
-            int i6 = this.texSizeHandle;
-            if (i6 != 0) {
-                GLES20.glUniform2f(i6, this.transformedWidth, this.transformedHeight);
+            int i13 = this.texSizeHandle;
+            if (i13 != 0) {
+                GLES20.glUniform2f(i13, this.transformedWidth, this.transformedHeight);
             }
             GLES20.glUniformMatrix4fv(this.muSTMatrixHandle[i2], 1, false, fArr, 0);
             GLES20.glUniformMatrix4fv(this.muMVPMatrixHandle[i2], 1, false, this.mMVPMatrix, 0);
             GLES20.glDrawArrays(5, 0, 4);
+        }
+        if (this.blur != null) {
+            if (!this.blendEnabled) {
+                GLES20.glEnable(3042);
+                GLES20.glBlendFunc(1, 771);
+                this.blendEnabled = true;
+            }
+            if (this.imagePath != null && (iArr = this.paintTexture) != null) {
+                i5 = iArr[0];
+                i6 = this.imageWidth;
+                i7 = this.imageHeight;
+            } else {
+                FilterShaders filterShaders2 = this.filterShaders;
+                if (filterShaders2 != null) {
+                    i5 = filterShaders2.getRenderTexture(i4 ^ 1);
+                    i6 = this.filterShaders.getRenderBufferWidth();
+                    i7 = this.filterShaders.getRenderBufferHeight();
+                } else {
+                    i5 = -1;
+                    i6 = 1;
+                    i7 = 1;
+                }
+            }
+            if (i5 != -1) {
+                this.blur.draw(null, i5, i6, i7);
+                GLES20.glViewport(0, 0, this.transformedWidth, this.transformedHeight);
+                GLES20.glBindFramebuffer(36160, 0);
+                GLES20.glUseProgram(this.blurShaderProgram);
+                GLES20.glEnableVertexAttribArray(this.blurInputTexCoordHandle);
+                GLES20.glVertexAttribPointer(this.blurInputTexCoordHandle, 2, 5126, false, 8, (Buffer) this.gradientTextureBuffer);
+                GLES20.glEnableVertexAttribArray(this.blurPositionHandle);
+                GLES20.glVertexAttribPointer(this.blurPositionHandle, 2, 5126, false, 8, (Buffer) this.blurVerticesBuffer);
+                GLES20.glUniform1i(this.blurBlurImageHandle, 0);
+                GLES20.glActiveTexture(33984);
+                GLES20.glBindTexture(3553, this.blur.getTexture());
+                GLES20.glUniform1i(this.blurMaskImageHandle, 1);
+                GLES20.glActiveTexture(33985);
+                GLES20.glBindTexture(3553, this.blurTexture[0]);
+                GLES20.glDrawArrays(5, 0, 4);
+            }
         }
         if (this.isPhoto || this.paintTexture != null || this.stickerTexture != null || this.partsTexture != null) {
             GLES20.glUseProgram(this.simpleShaderProgram);
@@ -201,38 +267,38 @@ public class TextureRenderer {
             GLES20.glEnableVertexAttribArray(this.simplePositionHandle);
         }
         if (this.paintTexture != null && this.imagePath != null) {
-            int i7 = 0;
-            while (i7 < 1) {
-                drawTexture(true, this.paintTexture[i7], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, this.useMatrixForImagePath && this.isPhoto && i7 == 0, -1);
-                i7++;
+            int i14 = 0;
+            while (i14 < 1) {
+                drawTexture(true, this.paintTexture[i14], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, this.useMatrixForImagePath && this.isPhoto && i14 == 0, -1);
+                i14++;
             }
         }
         if (this.partsTexture != null) {
-            int i8 = 0;
+            int i15 = 0;
             while (true) {
-                int[] iArr = this.partsTexture;
-                if (i8 >= iArr.length) {
+                int[] iArr2 = this.partsTexture;
+                if (i15 >= iArr2.length) {
                     break;
                 }
-                drawTexture(true, iArr[i8], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, false, i8);
-                i8++;
+                drawTexture(true, iArr2[i15], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, false, i15);
+                i15++;
             }
         }
         if (this.paintTexture != null) {
-            int i9 = this.imagePath != null ? 1 : 0;
+            int i16 = this.imagePath != null ? 1 : 0;
             while (true) {
-                int[] iArr2 = this.paintTexture;
-                if (i9 >= iArr2.length) {
+                int[] iArr3 = this.paintTexture;
+                if (i16 >= iArr3.length) {
                     break;
                 }
-                drawTexture(true, iArr2[i9], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, this.useMatrixForImagePath && this.isPhoto && i9 == 0, -1);
-                i9++;
+                drawTexture(true, iArr3[i16], -10000.0f, -10000.0f, -10000.0f, -10000.0f, 0.0f, false, this.useMatrixForImagePath && this.isPhoto && i16 == 0, -1);
+                i16++;
             }
         }
         if (this.stickerTexture != null) {
             int size = this.mediaEntities.size();
-            for (int i10 = 0; i10 < size; i10++) {
-                drawEntity(this.mediaEntities.get(i10), this.mediaEntities.get(i10).color);
+            for (int i17 = 0; i17 < size; i17++) {
+                drawEntity(this.mediaEntities.get(i17), this.mediaEntities.get(i17).color);
             }
         }
         GLES20.glFinish();

@@ -446,12 +446,7 @@ public class ActionBar extends FrameLayout {
         if (simpleTextViewArr[i] != null) {
             return;
         }
-        simpleTextViewArr[i] = new SimpleTextView(this, getContext()) {
-            @Override
-            public void setAlpha(float f) {
-                super.setAlpha(f);
-            }
-        };
+        simpleTextViewArr[i] = new SimpleTextView(getContext());
         this.titleTextView[i].setGravity(19);
         int i2 = this.titleColorToSet;
         if (i2 != 0) {

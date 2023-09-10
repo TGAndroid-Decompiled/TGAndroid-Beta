@@ -180,6 +180,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.Reactions.ReactionsUtils;
@@ -262,6 +263,7 @@ public class MessageObject {
     public int emojiOnlyCount;
     public long eventId;
     public long extendedMediaLastCheckTime;
+    public boolean forceExpired;
     public boolean forcePlayEffect;
     public float forceSeekTo;
     public boolean forceUpdate;
@@ -333,6 +335,8 @@ public class MessageObject {
     public boolean resendAsIs;
     public boolean revealingMediaSpoilers;
     public boolean scheduled;
+    private CharSequence secretOnceSpan;
+    private CharSequence secretPlaySpan;
     public SendAnimationData sendAnimationData;
     public TLRPC$Peer sendAsPeer;
     public boolean settingAvatar;
@@ -503,7 +507,7 @@ public class MessageObject {
 
     public boolean hasMediaSpoilers() {
         TLRPC$MessageMedia tLRPC$MessageMedia = this.messageOwner.media;
-        return tLRPC$MessageMedia != null && tLRPC$MessageMedia.spoiler;
+        return (tLRPC$MessageMedia != null && tLRPC$MessageMedia.spoiler) || needDrawBluredPreview();
     }
 
     public TLRPC$MessagePeerReaction getRandomUnreadReaction() {
@@ -2176,7 +2180,7 @@ public class MessageObject {
                 }
             } else if (hasExtendedMediaPreview()) {
                 this.type = 20;
-            } else if (getMedia(this.messageOwner).ttl_seconds != 0 && ((getMedia(this.messageOwner).photo instanceof TLRPC$TL_photoEmpty) || (getDocument() instanceof TLRPC$TL_documentEmpty))) {
+            } else if (getMedia(this.messageOwner).ttl_seconds != 0 && ((getMedia(this.messageOwner).photo instanceof TLRPC$TL_photoEmpty) || (getDocument() instanceof TLRPC$TL_documentEmpty) || (((getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaDocument) && getDocument() == null) || this.forceExpired))) {
                 this.contentType = 1;
                 this.type = 10;
             } else if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaDice) {
@@ -3700,13 +3704,35 @@ public class MessageObject {
         return i2 != 0 ? Math.max(0, i2 - ConnectionsManager.getInstance(this.currentAccount).getCurrentTime()) : i;
     }
 
-    public String getSecretTimeString() {
+    public CharSequence getSecretTimeString() {
+        String str;
         if (isSecretMedia()) {
+            if (this.messageOwner.ttl == Integer.MAX_VALUE) {
+                if (this.secretOnceSpan == null) {
+                    this.secretOnceSpan = new SpannableString("v");
+                    ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_viewonce);
+                    coloredImageSpan.setTranslateX(-AndroidUtilities.dp(3.0f));
+                    coloredImageSpan.setWidth(AndroidUtilities.dp(13.0f));
+                    CharSequence charSequence = this.secretOnceSpan;
+                    ((Spannable) charSequence).setSpan(coloredImageSpan, 0, charSequence.length(), 33);
+                }
+                return TextUtils.concat(this.secretOnceSpan, "1");
+            }
             int secretTimeLeft = getSecretTimeLeft();
             if (secretTimeLeft < 60) {
-                return secretTimeLeft + "s";
+                str = secretTimeLeft + "s";
+            } else {
+                str = (secretTimeLeft / 60) + "m";
             }
-            return (secretTimeLeft / 60) + "m";
+            if (this.secretPlaySpan == null) {
+                this.secretPlaySpan = new SpannableString("p");
+                ColoredImageSpan coloredImageSpan2 = new ColoredImageSpan(R.drawable.play_mini_video);
+                coloredImageSpan2.setTranslateX(AndroidUtilities.dp(1.0f));
+                coloredImageSpan2.setWidth(AndroidUtilities.dp(13.0f));
+                CharSequence charSequence2 = this.secretPlaySpan;
+                ((Spannable) charSequence2).setSpan(coloredImageSpan2, 0, charSequence2.length(), 33);
+            }
+            return TextUtils.concat(this.secretPlaySpan, str);
         }
         return null;
     }

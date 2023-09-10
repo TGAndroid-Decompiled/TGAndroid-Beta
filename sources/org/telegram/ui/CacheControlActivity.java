@@ -872,7 +872,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 CacheControlActivity.this.lambda$cleanupFoldersInternal$15(j);
             }
         }, 150L);
-        MediaDataController.getInstance(this.currentAccount).chekAllMedia(true);
+        MediaDataController.getInstance(this.currentAccount).checkAllMedia(true);
         loadDialogEntities();
         if (runnable != null) {
             runnable.run();

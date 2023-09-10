@@ -244,7 +244,7 @@ public class FilterChatlistActivity extends BaseFragment {
                 ((GroupCreateUserCell) view).setChecked(false, true);
             } else if (this.allowedPeers.contains(Long.valueOf(longValue))) {
                 if (this.selectedPeers.size() + 1 > getMaxChats()) {
-                    showDialog(new LimitReachedBottomSheet(this, getContext(), 4, this.currentAccount));
+                    showDialog(new LimitReachedBottomSheet(this, getContext(), 4, this.currentAccount, null));
                     return;
                 }
                 this.selectedPeers.add(Long.valueOf(longValue));
@@ -372,11 +372,11 @@ public class FilterChatlistActivity extends BaseFragment {
         updateDoneProgress(false);
         this.saving = false;
         if (tLRPC$TL_error != null && "INVITES_TOO_MUCH".equals(tLRPC$TL_error.text)) {
-            showDialog(new LimitReachedBottomSheet(this, getContext(), 12, this.currentAccount));
+            showDialog(new LimitReachedBottomSheet(this, getContext(), 12, this.currentAccount, null));
         } else if (tLRPC$TL_error != null && "INVITE_PEERS_TOO_MUCH".equals(tLRPC$TL_error.text)) {
-            showDialog(new LimitReachedBottomSheet(this, getContext(), 4, this.currentAccount));
+            showDialog(new LimitReachedBottomSheet(this, getContext(), 4, this.currentAccount, null));
         } else if (tLRPC$TL_error != null && "CHATLISTS_TOO_MUCH".equals(tLRPC$TL_error.text)) {
-            showDialog(new LimitReachedBottomSheet(this, getContext(), 13, this.currentAccount));
+            showDialog(new LimitReachedBottomSheet(this, getContext(), 13, this.currentAccount, null));
         } else {
             finishFragment();
         }

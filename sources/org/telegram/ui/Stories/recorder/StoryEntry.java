@@ -26,10 +26,12 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileRefController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -37,6 +39,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$DocumentAttribute;
 import org.telegram.tgnet.TLRPC$InputDocument;
+import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputPrivacyRule;
 import org.telegram.tgnet.TLRPC$MediaArea;
 import org.telegram.tgnet.TLRPC$MessageMedia;
@@ -67,6 +70,12 @@ import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
 public class StoryEntry extends IStoryPart {
     public boolean allowScreenshots;
+    public String audioAuthor;
+    public long audioDuration;
+    public float audioLeft;
+    public long audioOffset;
+    public String audioPath;
+    public String audioTitle;
     public Bitmap blurredVideoThumb;
     public CharSequence caption;
     public long draftDate;
@@ -102,8 +111,10 @@ public class StoryEntry extends IStoryPart {
     public ArrayList<VideoEditedInfo.MediaEntity> mediaEntities;
     public boolean muted;
     public int orientation;
+    public File paintBlurFile;
     public File paintEntitiesFile;
     public File paintFile;
+    public TLRPC$InputPeer peer;
     public StoryPrivacyBottomSheet.StoryPrivacy privacy;
     public int scheduleDate;
     public ArrayList<Long> shareUserIds;
@@ -114,6 +125,8 @@ public class StoryEntry extends IStoryPart {
     public File uploadThumbFile;
     public final int currentAccount = UserConfig.selectedAccount;
     public double fileDuration = -1.0d;
+    public float audioRight = 1.0f;
+    public float audioVolume = 1.0f;
     public float right = 1.0f;
     public int resultWidth = 720;
     public int resultHeight = 1280;
@@ -168,30 +181,30 @@ public class StoryEntry extends IStoryPart {
 
     public boolean wouldBeVideo() {
         ArrayList<VideoEditedInfo.EmojiEntity> arrayList;
-        if (this.isVideo) {
-            return true;
-        }
-        ArrayList<VideoEditedInfo.MediaEntity> arrayList2 = this.mediaEntities;
-        if (arrayList2 != null && !arrayList2.isEmpty()) {
-            for (int i = 0; i < this.mediaEntities.size(); i++) {
-                VideoEditedInfo.MediaEntity mediaEntity = this.mediaEntities.get(i);
-                byte b = mediaEntity.type;
-                if (b == 0) {
-                    if (isAnimated(mediaEntity.document, mediaEntity.text)) {
-                        return true;
-                    }
-                } else if (b == 1 && (arrayList = mediaEntity.entities) != null && !arrayList.isEmpty()) {
-                    for (int i2 = 0; i2 < mediaEntity.entities.size(); i2++) {
-                        VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i2);
-                        if (isAnimated(emojiEntity.document, emojiEntity.documentAbsolutePath)) {
+        if (!this.isVideo && this.audioPath == null) {
+            ArrayList<VideoEditedInfo.MediaEntity> arrayList2 = this.mediaEntities;
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
+                for (int i = 0; i < this.mediaEntities.size(); i++) {
+                    VideoEditedInfo.MediaEntity mediaEntity = this.mediaEntities.get(i);
+                    byte b = mediaEntity.type;
+                    if (b == 0) {
+                        if (isAnimated(mediaEntity.document, mediaEntity.text)) {
                             return true;
                         }
+                    } else if (b == 1 && (arrayList = mediaEntity.entities) != null && !arrayList.isEmpty()) {
+                        for (int i2 = 0; i2 < mediaEntity.entities.size(); i2++) {
+                            VideoEditedInfo.EmojiEntity emojiEntity = mediaEntity.entities.get(i2);
+                            if (isAnimated(emojiEntity.document, emojiEntity.documentAbsolutePath)) {
+                                return true;
+                            }
+                        }
+                        continue;
                     }
-                    continue;
                 }
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     private boolean isAnimated(TLRPC$Document tLRPC$Document, String str) {
@@ -206,122 +219,151 @@ public class StoryEntry extends IStoryPart {
         return false;
     }
 
-    public void buildPhoto(File file) {
+    public Bitmap buildBitmap(float f, Bitmap bitmap) {
+        final Part part;
         Matrix matrix = new Matrix();
         Paint paint = new Paint(7);
-        Bitmap createBitmap = Bitmap.createBitmap(this.resultWidth, this.resultHeight, Bitmap.Config.ARGB_8888);
+        int i = (int) (this.resultWidth * f);
+        int i2 = (int) (this.resultHeight * f);
+        Bitmap createBitmap = Bitmap.createBitmap(i, i2, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         Paint paint2 = new Paint(1);
         paint2.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, canvas.getHeight(), new int[]{this.gradientTopColor, this.gradientBottomColor}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         canvas.drawRect(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), paint2);
         matrix.set(this.matrix);
-        final File file2 = this.filterFile;
-        if (file2 == null) {
-            file2 = this.file;
-        }
-        if (file2 != null) {
-            try {
-                Bitmap scaledBitmap = getScaledBitmap(new DecodeBitmap() {
-                    @Override
-                    public final Bitmap decode(BitmapFactory.Options options) {
-                        Bitmap lambda$buildPhoto$0;
-                        lambda$buildPhoto$0 = StoryEntry.lambda$buildPhoto$0(file2, options);
-                        return lambda$buildPhoto$0;
-                    }
-                }, this.resultWidth, this.resultHeight, true);
-                float width = this.width / scaledBitmap.getWidth();
-                matrix.preScale(width, width);
-                canvas.drawBitmap(scaledBitmap, matrix, paint);
-                scaledBitmap.recycle();
-            } catch (Exception e) {
-                FileLog.e(e);
+        if (bitmap != null) {
+            float width = this.width / bitmap.getWidth();
+            matrix.preScale(width, width);
+            matrix.postScale(f, f);
+            canvas.drawBitmap(bitmap, matrix, paint);
+        } else {
+            final File file = this.filterFile;
+            if (file == null) {
+                file = this.file;
+            }
+            if (file != null) {
+                try {
+                    Bitmap scaledBitmap = getScaledBitmap(new DecodeBitmap() {
+                        @Override
+                        public final Bitmap decode(BitmapFactory.Options options) {
+                            Bitmap lambda$buildBitmap$0;
+                            lambda$buildBitmap$0 = StoryEntry.lambda$buildBitmap$0(file, options);
+                            return lambda$buildBitmap$0;
+                        }
+                    }, i, i2, true);
+                    float width2 = this.width / scaledBitmap.getWidth();
+                    matrix.preScale(width2, width2);
+                    matrix.postScale(f, f);
+                    canvas.drawBitmap(scaledBitmap, matrix, paint);
+                    scaledBitmap.recycle();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+            for (int i3 = 0; i3 < this.parts.size(); i3++) {
+                try {
+                    part = this.parts.get(i3);
+                } catch (Exception e2) {
+                    e = e2;
+                }
+                try {
+                    Bitmap scaledBitmap2 = getScaledBitmap(new DecodeBitmap() {
+                        @Override
+                        public final Bitmap decode(BitmapFactory.Options options) {
+                            Bitmap lambda$buildBitmap$1;
+                            lambda$buildBitmap$1 = StoryEntry.lambda$buildBitmap$1(StoryEntry.Part.this, options);
+                            return lambda$buildBitmap$1;
+                        }
+                    }, i, i2, false);
+                    float width3 = part.width / scaledBitmap2.getWidth();
+                    matrix.set(part.matrix);
+                    matrix.preScale(width3, width3);
+                    matrix.postScale(f, f);
+                    canvas.drawBitmap(scaledBitmap2, matrix, paint);
+                    scaledBitmap2.recycle();
+                } catch (Exception e3) {
+                    e = e3;
+                    FileLog.e(e);
+                }
+            }
+            if (this.paintFile != null) {
+                try {
+                    Bitmap scaledBitmap3 = getScaledBitmap(new DecodeBitmap() {
+                        @Override
+                        public final Bitmap decode(BitmapFactory.Options options) {
+                            Bitmap lambda$buildBitmap$2;
+                            lambda$buildBitmap$2 = StoryEntry.this.lambda$buildBitmap$2(options);
+                            return lambda$buildBitmap$2;
+                        }
+                    }, i, i2, false);
+                    canvas.save();
+                    float width4 = this.resultWidth / scaledBitmap3.getWidth();
+                    canvas.scale(width4, width4);
+                    matrix.postScale(f, f);
+                    canvas.drawBitmap(scaledBitmap3, 0.0f, 0.0f, paint);
+                    canvas.restore();
+                    scaledBitmap3.recycle();
+                } catch (Exception e4) {
+                    FileLog.e(e4);
+                }
+            }
+            if (this.paintEntitiesFile != null) {
+                try {
+                    Bitmap scaledBitmap4 = getScaledBitmap(new DecodeBitmap() {
+                        @Override
+                        public final Bitmap decode(BitmapFactory.Options options) {
+                            Bitmap lambda$buildBitmap$3;
+                            lambda$buildBitmap$3 = StoryEntry.this.lambda$buildBitmap$3(options);
+                            return lambda$buildBitmap$3;
+                        }
+                    }, i, i2, false);
+                    canvas.save();
+                    float width5 = this.resultWidth / scaledBitmap4.getWidth();
+                    canvas.scale(width5, width5);
+                    matrix.postScale(f, f);
+                    canvas.drawBitmap(scaledBitmap4, 0.0f, 0.0f, paint);
+                    canvas.restore();
+                    scaledBitmap4.recycle();
+                } catch (Exception e5) {
+                    FileLog.e(e5);
+                }
             }
         }
-        for (int i = 0; i < this.parts.size(); i++) {
-            try {
-                final Part part = this.parts.get(i);
-                Bitmap scaledBitmap2 = getScaledBitmap(new DecodeBitmap() {
-                    @Override
-                    public final Bitmap decode(BitmapFactory.Options options) {
-                        Bitmap lambda$buildPhoto$1;
-                        lambda$buildPhoto$1 = StoryEntry.lambda$buildPhoto$1(StoryEntry.Part.this, options);
-                        return lambda$buildPhoto$1;
-                    }
-                }, this.resultWidth, this.resultHeight, false);
-                float width2 = part.width / scaledBitmap2.getWidth();
-                matrix.set(part.matrix);
-                matrix.preScale(width2, width2);
-                canvas.drawBitmap(scaledBitmap2, matrix, paint);
-                scaledBitmap2.recycle();
-            } catch (Exception e2) {
-                FileLog.e(e2);
-            }
-        }
-        if (this.paintFile != null) {
-            try {
-                Bitmap scaledBitmap3 = getScaledBitmap(new DecodeBitmap() {
-                    @Override
-                    public final Bitmap decode(BitmapFactory.Options options) {
-                        Bitmap lambda$buildPhoto$2;
-                        lambda$buildPhoto$2 = StoryEntry.this.lambda$buildPhoto$2(options);
-                        return lambda$buildPhoto$2;
-                    }
-                }, this.resultWidth, this.resultHeight, false);
-                canvas.save();
-                float width3 = this.resultWidth / scaledBitmap3.getWidth();
-                canvas.scale(width3, width3);
-                canvas.drawBitmap(scaledBitmap3, 0.0f, 0.0f, paint);
-                canvas.restore();
-                scaledBitmap3.recycle();
-            } catch (Exception e3) {
-                FileLog.e(e3);
-            }
-        }
-        if (this.paintEntitiesFile != null) {
-            try {
-                Bitmap scaledBitmap4 = getScaledBitmap(new DecodeBitmap() {
-                    @Override
-                    public final Bitmap decode(BitmapFactory.Options options) {
-                        Bitmap lambda$buildPhoto$3;
-                        lambda$buildPhoto$3 = StoryEntry.this.lambda$buildPhoto$3(options);
-                        return lambda$buildPhoto$3;
-                    }
-                }, this.resultWidth, this.resultHeight, false);
-                canvas.save();
-                float width4 = this.resultWidth / scaledBitmap4.getWidth();
-                canvas.scale(width4, width4);
-                canvas.drawBitmap(scaledBitmap4, 0.0f, 0.0f, paint);
-                canvas.restore();
-                scaledBitmap4.recycle();
-            } catch (Exception e4) {
-                FileLog.e(e4);
-            }
-        }
-        this.thumbBitmap = Bitmap.createScaledBitmap(createBitmap, 40, 22, true);
-        try {
-            FileOutputStream fileOutputStream = new FileOutputStream(file);
-            createBitmap.compress(Bitmap.CompressFormat.JPEG, 95, fileOutputStream);
-            fileOutputStream.close();
-        } catch (Exception e5) {
-            FileLog.e(e5);
-        }
-        createBitmap.recycle();
+        return createBitmap;
     }
 
-    public static Bitmap lambda$buildPhoto$0(File file, BitmapFactory.Options options) {
+    public static Bitmap lambda$buildBitmap$0(File file, BitmapFactory.Options options) {
         return BitmapFactory.decodeFile(file.getPath(), options);
     }
 
-    public static Bitmap lambda$buildPhoto$1(Part part, BitmapFactory.Options options) {
+    public static Bitmap lambda$buildBitmap$1(Part part, BitmapFactory.Options options) {
         return BitmapFactory.decodeFile(part.file.getPath(), options);
     }
 
-    public Bitmap lambda$buildPhoto$2(BitmapFactory.Options options) {
+    public Bitmap lambda$buildBitmap$2(BitmapFactory.Options options) {
         return BitmapFactory.decodeFile(this.paintFile.getPath(), options);
     }
 
-    public Bitmap lambda$buildPhoto$3(BitmapFactory.Options options) {
+    public Bitmap lambda$buildBitmap$3(BitmapFactory.Options options) {
         return BitmapFactory.decodeFile(this.paintEntitiesFile.getPath(), options);
+    }
+
+    public void buildPhoto(File file) {
+        Bitmap buildBitmap = buildBitmap(1.0f, null);
+        Bitmap bitmap = this.thumbBitmap;
+        if (bitmap != null) {
+            bitmap.recycle();
+            this.thumbBitmap = null;
+        }
+        this.thumbBitmap = Bitmap.createScaledBitmap(buildBitmap, 40, 22, true);
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            buildBitmap.compress(Bitmap.CompressFormat.JPEG, 95, fileOutputStream);
+            fileOutputStream.close();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        buildBitmap.recycle();
     }
 
     public static Bitmap getScaledBitmap(DecodeBitmap decodeBitmap, int i, int i2, boolean z) {
@@ -581,6 +623,7 @@ public class StoryEntry extends IStoryPart {
         storyEntry.setupMatrix();
         storyEntry.checkStickers(tLRPC$StoryItem);
         storyEntry.editedMediaAreas = tLRPC$StoryItem.media_areas;
+        storyEntry.peer = MessagesController.getInstance(storyEntry.currentAccount).getInputPeer(tLRPC$StoryItem.dialogId);
         return storyEntry;
     }
 
@@ -829,25 +872,34 @@ public class StoryEntry extends IStoryPart {
             videoEditedInfo.estimatedSize = iArr[5] + (((iArr[4] / 1000.0f) * extractRealEncoderBitrate) / 8.0f);
             videoEditedInfo.estimatedSize = Math.max(this.file.length(), videoEditedInfo.estimatedSize);
             videoEditedInfo.filterState = this.filterState;
+            File file2 = this.paintBlurFile;
+            videoEditedInfo.blurPath = file2 == null ? null : file2.getPath();
         } else {
-            File file2 = this.filterFile;
-            if (file2 != null) {
-                videoEditedInfo.originalPath = file2.getAbsolutePath();
+            File file3 = this.filterFile;
+            if (file3 != null) {
+                videoEditedInfo.originalPath = file3.getAbsolutePath();
             } else {
                 videoEditedInfo.originalPath = str;
             }
             videoEditedInfo.isPhoto = true;
-            long j4 = this.averageDuration;
-            this.duration = j4;
-            videoEditedInfo.originalDuration = j4;
-            videoEditedInfo.estimatedDuration = j4;
+            if (this.audioPath != null) {
+                long j4 = (this.audioRight - this.audioLeft) * ((float) this.audioDuration);
+                this.duration = j4;
+                videoEditedInfo.originalDuration = j4;
+                videoEditedInfo.estimatedDuration = j4;
+            } else {
+                long j5 = this.averageDuration;
+                this.duration = j5;
+                videoEditedInfo.originalDuration = j5;
+                videoEditedInfo.estimatedDuration = j5;
+            }
             videoEditedInfo.startTime = -1L;
             videoEditedInfo.endTime = -1L;
             videoEditedInfo.muted = true;
             videoEditedInfo.originalBitrate = -1;
             videoEditedInfo.bitrate = -1;
             videoEditedInfo.framerate = 30;
-            videoEditedInfo.estimatedSize = ((((float) j4) / 1000.0f) * extractRealEncoderBitrate) / 8.0f;
+            videoEditedInfo.estimatedSize = ((((float) this.duration) / 1000.0f) * extractRealEncoderBitrate) / 8.0f;
             videoEditedInfo.filterState = null;
         }
         videoEditedInfo.avatarStartTime = -1L;
@@ -861,6 +913,22 @@ public class StoryEntry extends IStoryPart {
         videoEditedInfo.forceFragmenting = true;
         videoEditedInfo.hdrInfo = this.hdrInfo;
         videoEditedInfo.parts = this.parts;
+        videoEditedInfo.mixedSoundInfos.clear();
+        String str2 = this.audioPath;
+        if (str2 != null) {
+            MediaCodecVideoConvertor.MixedSoundInfo mixedSoundInfo = new MediaCodecVideoConvertor.MixedSoundInfo(str2);
+            mixedSoundInfo.volume = this.audioVolume;
+            float f = this.audioLeft;
+            long j6 = this.audioDuration;
+            mixedSoundInfo.audioOffset = ((float) j6) * f * 1000;
+            if (this.isVideo) {
+                mixedSoundInfo.startTime = (((float) this.audioOffset) - (this.left * ((float) this.duration))) * 1000;
+            } else {
+                mixedSoundInfo.startTime = 0L;
+            }
+            mixedSoundInfo.duration = (this.audioRight - f) * ((float) j6) * 1000;
+            videoEditedInfo.mixedSoundInfos.add(mixedSoundInfo);
+        }
         callback.run(videoEditedInfo);
     }
 

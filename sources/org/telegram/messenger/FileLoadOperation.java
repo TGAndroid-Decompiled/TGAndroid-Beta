@@ -166,6 +166,8 @@ public class FileLoadOperation {
 
         boolean hasAnotherRefOnFile(String str);
 
+        boolean isLocallyCreatedFile(String str);
+
         void saveFilePath(FilePathDatabase.PathData pathData, File file);
     }
 

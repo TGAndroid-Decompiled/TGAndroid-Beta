@@ -457,7 +457,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             if (obj instanceof MediaController.SearchImage) {
                 charSequence2 = ((MediaController.SearchImage) obj).caption;
             }
-            ChatAttachAlertPhotoLayout.this.parentAlert.commentTextView.setText(charSequence2);
+            ChatAttachAlertPhotoLayout.this.parentAlert.commentTextView.setText(AnimatedEmojiSpan.cloneSpans(charSequence2, 3));
         }
 
         @Override
@@ -1945,16 +1945,6 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         AnonymousClass15(boolean z) {
             super(ChatAttachAlertPhotoLayout.this, null);
             this.val$sameTakePictureOrientation = z;
-        }
-
-        @Override
-        public void onOpen() {
-            ChatAttachAlertPhotoLayout.this.pauseCameraPreview();
-        }
-
-        @Override
-        public void onClose() {
-            ChatAttachAlertPhotoLayout.this.resumeCameraPreview();
         }
 
         @Override

@@ -38,6 +38,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.PhotoEditRadioCell;
 import org.telegram.ui.Cells.PhotoEditToolCell;
+import org.telegram.ui.Components.BlurringShader;
 import org.telegram.ui.Components.FilterShaders;
 import org.telegram.ui.Components.PhotoEditorSeekBar;
 import org.telegram.ui.Components.PhotoFilterView;
@@ -73,6 +74,9 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
     private float exposureValue;
     private int fadeTool;
     private float fadeValue;
+    private boolean filtersEmpty;
+    private int gradientBottom;
+    private int gradientTop;
     private int grainTool;
     private float grainValue;
     private int highlightsTool;
@@ -261,8 +265,8 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         }
     }
 
-    public PhotoFilterView(android.content.Context r25, org.telegram.ui.Components.VideoEditTextureView r26, android.graphics.Bitmap r27, int r28, org.telegram.messenger.MediaController.SavedFilterState r29, org.telegram.ui.Components.PaintingOverlay r30, int r31, boolean r32, boolean r33, org.telegram.ui.ActionBar.Theme.ResourcesProvider r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhotoFilterView.<init>(android.content.Context, org.telegram.ui.Components.VideoEditTextureView, android.graphics.Bitmap, int, org.telegram.messenger.MediaController$SavedFilterState, org.telegram.ui.Components.PaintingOverlay, int, boolean, boolean, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
+    public PhotoFilterView(android.content.Context r25, org.telegram.ui.Components.VideoEditTextureView r26, android.graphics.Bitmap r27, int r28, org.telegram.messenger.MediaController.SavedFilterState r29, org.telegram.ui.Components.PaintingOverlay r30, int r31, boolean r32, boolean r33, org.telegram.ui.Components.BlurringShader.BlurManager r34, org.telegram.ui.ActionBar.Theme.ResourcesProvider r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.PhotoFilterView.<init>(android.content.Context, org.telegram.ui.Components.VideoEditTextureView, android.graphics.Bitmap, int, org.telegram.messenger.MediaController$SavedFilterState, org.telegram.ui.Components.PaintingOverlay, int, boolean, boolean, org.telegram.ui.Components.BlurringShader$BlurManager, org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
     }
 
     public void lambda$new$0(FilterGLThread filterGLThread) {
@@ -270,15 +274,17 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         filterGLThread.setFilterGLThreadDelegate(this);
     }
 
-    public class AnonymousClass1 implements TextureView.SurfaceTextureListener {
+    public class AnonymousClass2 implements TextureView.SurfaceTextureListener {
+        final BlurringShader.BlurManager val$blurManager;
         final boolean val$ownLayout;
 
         @Override
         public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         }
 
-        AnonymousClass1(boolean z) {
+        AnonymousClass2(boolean z, BlurringShader.BlurManager blurManager) {
             this.val$ownLayout = z;
+            this.val$blurManager = blurManager;
         }
 
         @Override
@@ -286,7 +292,11 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             if (PhotoFilterView.this.eglThread != null || surfaceTexture == null) {
                 return;
             }
-            PhotoFilterView.this.eglThread = new FilterGLThread(surfaceTexture, PhotoFilterView.this.bitmapToEdit, PhotoFilterView.this.orientation, PhotoFilterView.this.isMirrored, null, this.val$ownLayout);
+            PhotoFilterView.this.eglThread = new FilterGLThread(surfaceTexture, PhotoFilterView.this.bitmapToEdit, PhotoFilterView.this.orientation, PhotoFilterView.this.isMirrored, null, this.val$ownLayout, this.val$blurManager, i, i2);
+            if (!this.val$ownLayout) {
+                PhotoFilterView.this.eglThread.updateUiBlurGradient(PhotoFilterView.this.gradientTop, PhotoFilterView.this.gradientBottom);
+                PhotoFilterView.this.eglThread.updateUiBlurTransform(PhotoFilterView.this.textureView.getTransform(null), PhotoFilterView.this.textureView.getWidth(), PhotoFilterView.this.textureView.getHeight());
+            }
             PhotoFilterView.this.eglThread.setFilterGLThreadDelegate(PhotoFilterView.this);
             PhotoFilterView.this.eglThread.setSurfaceTextureSize(i, i2);
             PhotoFilterView.this.eglThread.requestRender(true, true, false);
@@ -300,7 +310,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
                 PhotoFilterView.this.eglThread.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        PhotoFilterView.AnonymousClass1.this.lambda$onSurfaceTextureSizeChanged$0();
+                        PhotoFilterView.AnonymousClass2.this.lambda$onSurfaceTextureSizeChanged$0();
                     }
                 });
             }
@@ -570,6 +580,10 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         if (filterGLThread != null) {
             filterGLThread.requestRender(false);
         }
+    }
+
+    public void updateFiltersEmpty() {
+        this.filtersEmpty = Math.abs(this.enhanceValue) < 0.1f && Math.abs(this.softenSkinValue) < 0.1f && Math.abs(this.exposureValue) < 0.1f && Math.abs(this.contrastValue) < 0.1f && Math.abs(this.warmthValue) < 0.1f && Math.abs(this.saturationValue) < 0.1f && Math.abs(this.fadeValue) < 0.1f && this.tintShadowsColor == 0 && this.tintHighlightsColor == 0 && Math.abs(this.highlightsValue) < 0.1f && Math.abs(this.shadowsValue) < 0.1f && Math.abs(this.vignetteValue) < 0.1f && Math.abs(this.grainValue) < 0.1f && this.blurType == 0 && Math.abs(this.sharpenValue) < 0.1f;
     }
 
     public void switchMode() {
@@ -846,7 +860,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
 
     @Override
     public boolean shouldShowOriginal() {
-        return this.showOriginal;
+        return this.showOriginal || this.filtersEmpty;
     }
 
     @Override
@@ -886,6 +900,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
 
     public void setEnhanceValue(float f) {
         this.enhanceValue = f * 100.0f;
+        updateFiltersEmpty();
         int i = 0;
         while (true) {
             if (i >= this.recyclerListView.getChildCount()) {
@@ -980,6 +995,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             if (PhotoFilterView.this.eglThread != null) {
                 PhotoFilterView.this.eglThread.requestRender(true);
             }
+            PhotoFilterView.this.updateFiltersEmpty();
         }
 
         public void lambda$onCreateViewHolder$1(View view) {
@@ -992,6 +1008,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             if (PhotoFilterView.this.eglThread != null) {
                 PhotoFilterView.this.eglThread.requestRender(false);
             }
+            PhotoFilterView.this.updateFiltersEmpty();
         }
 
         @Override
@@ -1214,5 +1231,23 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
             canvas.restore();
             canvas.restore();
         }
+    }
+
+    public Bitmap getUiBlurBitmap() {
+        FilterGLThread filterGLThread = this.eglThread;
+        if (filterGLThread == null) {
+            return null;
+        }
+        return filterGLThread.getUiBlurBitmap();
+    }
+
+    public void updateUiBlurGradient(int i, int i2) {
+        FilterGLThread filterGLThread = this.eglThread;
+        if (filterGLThread != null) {
+            filterGLThread.updateUiBlurGradient(i, i2);
+            return;
+        }
+        this.gradientTop = i;
+        this.gradientBottom = i2;
     }
 }

@@ -19,6 +19,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$TL_error;
@@ -101,7 +102,7 @@ public class ChatBackgroundDrawable extends Drawable {
             this.motionBackgroundDrawable = motionBackgroundDrawable;
             TLRPC$WallPaperSettings tLRPC$WallPaperSettings3 = tLRPC$WallPaper.settings;
             motionBackgroundDrawable.setColors(tLRPC$WallPaperSettings3.background_color, tLRPC$WallPaperSettings3.second_background_color, tLRPC$WallPaperSettings3.third_background_color, tLRPC$WallPaperSettings3.fourth_background_color);
-            EmojiThemes.loadWallpaperImage(tLRPC$WallPaper.id, tLRPC$WallPaper, new ResultCallback() {
+            EmojiThemes.loadWallpaperImage(UserConfig.selectedAccount, tLRPC$WallPaper.id, tLRPC$WallPaper, new ResultCallback() {
                 @Override
                 public final void onComplete(Object obj) {
                     ChatBackgroundDrawable.this.lambda$new$0(tLRPC$WallPaper, (Pair) obj);

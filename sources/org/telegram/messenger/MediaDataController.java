@@ -313,9 +313,11 @@ public class MediaDataController extends BaseController {
     private boolean loadingRecentGifs;
     boolean loadingRecentReactions;
     private boolean[] loadingRecentStickers;
+    private final HashSet<TLRPC$InputStickerSet> loadingStickerSets;
     private boolean[] loadingStickers;
     private int menuBotsUpdateDate;
     private long menuBotsUpdateHash;
+    private boolean menuBotsUpdatedLocal;
     private int mergeReqId;
     private int[] messagesSearchCount;
     private boolean[] messagesSearchEndReached;
@@ -470,6 +472,7 @@ public class MediaDataController extends BaseController {
         this.emojiStatusesFetchDate = new Long[2];
         this.emojiStatusesFromCacheFetched = new boolean[2];
         this.emojiStatusesFetching = new boolean[2];
+        this.loadingStickerSets = new HashSet<>();
         this.messagesSearchCount = new int[]{0, 0};
         this.messagesSearchEndReached = new boolean[]{false, false};
         this.searchResultMessages = new ArrayList<>();
@@ -536,6 +539,7 @@ public class MediaDataController extends BaseController {
         loadAvatarConstructor(false);
         loadAvatarConstructor(true);
         this.ringtoneDataStore = new RingtoneDataStore(this.currentAccount);
+        this.menuBotsUpdateDate = getMessagesController().getMainSettings().getInt("menuBotsUpdateDate", 0);
     }
 
     public void cleanup() {
@@ -651,8 +655,11 @@ public class MediaDataController extends BaseController {
         loadReactions(true, false);
     }
 
-    public void checkMenuBots() {
-        if (this.isLoadingMenuBots || Math.abs((System.currentTimeMillis() / 1000) - this.menuBotsUpdateDate) < 3600) {
+    public void checkMenuBots(boolean z) {
+        if (this.isLoadingMenuBots) {
+            return;
+        }
+        if ((!z || this.menuBotsUpdatedLocal) && Math.abs((System.currentTimeMillis() / 1000) - this.menuBotsUpdateDate) < 3600) {
             return;
         }
         loadAttachMenuBots(true, false);
@@ -807,6 +814,10 @@ public class MediaDataController extends BaseController {
     }
 
     public void loadAttachMenuBots(boolean z, boolean z2) {
+        loadAttachMenuBots(z, z2, null);
+    }
+
+    public void loadAttachMenuBots(boolean z, boolean z2, final Runnable runnable) {
         this.isLoadingMenuBots = true;
         if (z) {
             getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
@@ -822,7 +833,7 @@ public class MediaDataController extends BaseController {
         getConnectionsManager().sendRequest(tLRPC$TL_messages_getAttachMenuBots, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MediaDataController.this.lambda$loadAttachMenuBots$3(tLObject, tLRPC$TL_error);
+                MediaDataController.this.lambda$loadAttachMenuBots$3(runnable, tLObject, tLRPC$TL_error);
             }
         });
     }
@@ -888,13 +899,16 @@ public class MediaDataController extends BaseController {
         processLoadedMenuBots(tLRPC$TL_attachMenuBots, j2, i, true);
     }
 
-    public void lambda$loadAttachMenuBots$3(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadAttachMenuBots$3(Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         int currentTimeMillis = (int) (System.currentTimeMillis() / 1000);
         if (tLObject instanceof TLRPC$TL_attachMenuBotsNotModified) {
             processLoadedMenuBots(null, 0L, currentTimeMillis, false);
         } else if (tLObject instanceof TLRPC$TL_attachMenuBots) {
             TLRPC$TL_attachMenuBots tLRPC$TL_attachMenuBots = (TLRPC$TL_attachMenuBots) tLObject;
             processLoadedMenuBots(tLRPC$TL_attachMenuBots, tLRPC$TL_attachMenuBots.hash, currentTimeMillis, false);
+        }
+        if (runnable != null) {
+            AndroidUtilities.runOnUIThread(runnable);
         }
     }
 
@@ -903,7 +917,10 @@ public class MediaDataController extends BaseController {
             this.attachMenuBots = tLRPC$TL_attachMenuBots;
             this.menuBotsUpdateHash = j;
         }
+        SharedPreferences.Editor edit = getMessagesController().getMainSettings().edit();
         this.menuBotsUpdateDate = i;
+        edit.putInt("menuBotsUpdateDate", i).commit();
+        this.menuBotsUpdatedLocal = true;
         if (tLRPC$TL_attachMenuBots != null) {
             getMessagesController().putUsers(tLRPC$TL_attachMenuBots.users, z);
             AndroidUtilities.runOnUIThread(new Runnable() {
@@ -922,6 +939,12 @@ public class MediaDataController extends BaseController {
 
     public void lambda$processLoadedMenuBots$4() {
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.attachMenuBotsDidLoad, new Object[0]);
+    }
+
+    public void updateAttachMenuBotsInCache() {
+        if (getAttachMenuBots() != null) {
+            putMenuBotsToCache(getAttachMenuBots(), this.menuBotsUpdateHash, this.menuBotsUpdateDate);
+        }
     }
 
     private void putMenuBotsToCache(final TLRPC$TL_attachMenuBots tLRPC$TL_attachMenuBots, final long j, final int i) {
@@ -1142,16 +1165,16 @@ public class MediaDataController extends BaseController {
         int min = Math.min(arrayList.size(), 10);
         for (int i = 0; i < min; i++) {
             TLRPC$TL_availableReaction tLRPC$TL_availableReaction = (TLRPC$TL_availableReaction) arrayList.get(i);
-            preloadImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.activate_animation));
-            preloadImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.appear_animation));
+            preloadImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.activate_animation), 0);
+            preloadImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.appear_animation), 0);
         }
         for (int i2 = 0; i2 < min; i2++) {
-            preloadImage(ImageLocation.getForDocument(((TLRPC$TL_availableReaction) arrayList.get(i2)).effect_animation));
+            preloadImage(ImageLocation.getForDocument(((TLRPC$TL_availableReaction) arrayList.get(i2)).effect_animation), 0);
         }
     }
 
-    private void preloadImage(ImageLocation imageLocation) {
-        getFileLoader().loadFile(imageLocation, null, null, 0, 11);
+    public void preloadImage(ImageLocation imageLocation, int i) {
+        getFileLoader().loadFile(imageLocation, null, null, i, 11);
     }
 
     public void preloadImage(ImageReceiver imageReceiver, ImageLocation imageLocation, String str) {
@@ -1872,30 +1895,32 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    private void fetchStickerSetInternal(TLRPC$InputStickerSet tLRPC$InputStickerSet, final Utilities.Callback2<Boolean, TLRPC$TL_messages_stickerSet> callback2) {
-        if (callback2 == null) {
+    private void fetchStickerSetInternal(final TLRPC$InputStickerSet tLRPC$InputStickerSet, final Utilities.Callback2<Boolean, TLRPC$TL_messages_stickerSet> callback2) {
+        if (callback2 == null || this.loadingStickerSets.contains(tLRPC$InputStickerSet)) {
             return;
         }
+        this.loadingStickerSets.add(tLRPC$InputStickerSet);
         TLRPC$TL_messages_getStickerSet tLRPC$TL_messages_getStickerSet = new TLRPC$TL_messages_getStickerSet();
         tLRPC$TL_messages_getStickerSet.stickerset = tLRPC$InputStickerSet;
         getConnectionsManager().sendRequest(tLRPC$TL_messages_getStickerSet, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MediaDataController.lambda$fetchStickerSetInternal$36(Utilities.Callback2.this, tLObject, tLRPC$TL_error);
+                MediaDataController.this.lambda$fetchStickerSetInternal$36(tLRPC$InputStickerSet, callback2, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public static void lambda$fetchStickerSetInternal$36(final Utilities.Callback2 callback2, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$fetchStickerSetInternal$36(final TLRPC$InputStickerSet tLRPC$InputStickerSet, final Utilities.Callback2 callback2, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.lambda$fetchStickerSetInternal$35(TLObject.this, callback2);
+                MediaDataController.this.lambda$fetchStickerSetInternal$35(tLRPC$InputStickerSet, tLObject, callback2);
             }
         });
     }
 
-    public static void lambda$fetchStickerSetInternal$35(TLObject tLObject, Utilities.Callback2 callback2) {
+    public void lambda$fetchStickerSetInternal$35(TLRPC$InputStickerSet tLRPC$InputStickerSet, TLObject tLObject, Utilities.Callback2 callback2) {
+        this.loadingStickerSets.remove(tLRPC$InputStickerSet);
         if (tLObject != null) {
             callback2.run(Boolean.TRUE, (TLRPC$TL_messages_stickerSet) tLObject);
         } else {
@@ -3084,7 +3109,7 @@ public class MediaDataController extends BaseController {
             processLoadedDiceStickers(getUserConfig().genericAnimationsStickerPack, false, tLRPC$TL_messages_stickerSet, false, (int) (System.currentTimeMillis() / 1000));
             for (int i = 0; i < tLRPC$TL_messages_stickerSet.documents.size(); i++) {
                 if (this.currentAccount == UserConfig.selectedAccount) {
-                    preloadImage(ImageLocation.getForDocument(tLRPC$TL_messages_stickerSet.documents.get(i)));
+                    preloadImage(ImageLocation.getForDocument(tLRPC$TL_messages_stickerSet.documents.get(i)), 0);
                 }
             }
         }
@@ -7578,7 +7603,7 @@ public class MediaDataController extends BaseController {
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.premiumStickersPreviewLoaded, new Object[0]);
     }
 
-    public void chekAllMedia(boolean z) {
+    public void checkAllMedia(boolean z) {
         if (z) {
             this.reactionsUpdateDate = 0;
             int[] iArr = this.loadFeaturedDate;
@@ -7591,7 +7616,7 @@ public class MediaDataController extends BaseController {
         checkFeaturedStickers();
         checkFeaturedEmoji();
         checkReactions();
-        checkMenuBots();
+        checkMenuBots(true);
         checkPremiumPromo();
         checkPremiumGiftStickers();
         checkGenericAnimations();
@@ -7987,11 +8012,11 @@ public class MediaDataController extends BaseController {
         SharedPreferences sharedPreferences = context.getSharedPreferences("emojithemes_config_" + this.currentAccount, 0);
         int i = sharedPreferences.getInt(NotificationBadge.NewHtcHomeBadger.COUNT, 0);
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme()));
+        arrayList.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme(this.currentAccount)));
         for (int i2 = 0; i2 < i; i2++) {
             SerializedData serializedData = new SerializedData(Utilities.hexToBytes(sharedPreferences.getString("theme_" + i2, "")));
             try {
-                EmojiThemes createPreviewFullTheme = EmojiThemes.createPreviewFullTheme(TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true));
+                EmojiThemes createPreviewFullTheme = EmojiThemes.createPreviewFullTheme(this.currentAccount, TLRPC$Theme.TLdeserialize(serializedData, serializedData.readInt32(true), true));
                 if (createPreviewFullTheme.items.size() >= 4) {
                     arrayList.add(new ChatThemeBottomSheet.ChatThemeItem(createPreviewFullTheme));
                 }
@@ -8044,9 +8069,9 @@ public class MediaDataController extends BaseController {
         edit.apply();
         if (!arrayList.isEmpty()) {
             ArrayList arrayList2 = new ArrayList();
-            arrayList2.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme()));
+            arrayList2.add(new ChatThemeBottomSheet.ChatThemeItem(EmojiThemes.createHomePreviewTheme(i)));
             for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                EmojiThemes createPreviewFullTheme = EmojiThemes.createPreviewFullTheme(arrayList.get(i3));
+                EmojiThemes createPreviewFullTheme = EmojiThemes.createPreviewFullTheme(i, arrayList.get(i3));
                 ChatThemeBottomSheet.ChatThemeItem chatThemeItem = new ChatThemeBottomSheet.ChatThemeItem(createPreviewFullTheme);
                 if (createPreviewFullTheme.items.size() >= 4) {
                     arrayList2.add(chatThemeItem);

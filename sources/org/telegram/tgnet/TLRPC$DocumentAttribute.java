@@ -100,33 +100,7 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                 };
                 break;
             case 250621158:
-                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeVideo() {
-                    public static int constructor = 250621158;
-
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        int readInt32 = abstractSerializedData2.readInt32(z2);
-                        this.flags = readInt32;
-                        this.round_message = (readInt32 & 1) != 0;
-                        this.supports_streaming = (readInt32 & 2) != 0;
-                        this.duration = abstractSerializedData2.readInt32(z2);
-                        this.w = abstractSerializedData2.readInt32(z2);
-                        this.h = abstractSerializedData2.readInt32(z2);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
-                        int i2 = this.round_message ? this.flags | 1 : this.flags & (-2);
-                        this.flags = i2;
-                        int i3 = this.supports_streaming ? i2 | 2 : i2 & (-3);
-                        this.flags = i3;
-                        abstractSerializedData2.writeInt32(i3);
-                        abstractSerializedData2.writeInt32((int) this.duration);
-                        abstractSerializedData2.writeInt32(this.w);
-                        abstractSerializedData2.writeInt32(this.h);
-                    }
-                };
+                tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeVideo_layer159();
                 break;
             case 297109817:
                 tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeAnimated();

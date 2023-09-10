@@ -687,6 +687,44 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         }
     }
 
+    public void showJustAddedBulletin() {
+        TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot;
+        final String formatString;
+        TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId));
+        Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
+        while (true) {
+            if (!it.hasNext()) {
+                tLRPC$TL_attachMenuBot = null;
+                break;
+            }
+            tLRPC$TL_attachMenuBot = it.next();
+            if (tLRPC$TL_attachMenuBot.bot_id == this.botId) {
+                break;
+            }
+        }
+        if (tLRPC$TL_attachMenuBot == null) {
+            return;
+        }
+        boolean z = tLRPC$TL_attachMenuBot.show_in_side_menu;
+        if (z && tLRPC$TL_attachMenuBot.show_in_attach_menu) {
+            formatString = LocaleController.formatString("BotAttachMenuShortcatAddedAttachAndSide", R.string.BotAttachMenuShortcatAddedAttachAndSide, user.first_name);
+        } else if (z) {
+            formatString = LocaleController.formatString("BotAttachMenuShortcatAddedSide", R.string.BotAttachMenuShortcatAddedSide, user.first_name);
+        } else {
+            formatString = LocaleController.formatString("BotAttachMenuShortcatAddedAttach", R.string.BotAttachMenuShortcatAddedAttach, user.first_name);
+        }
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                ChatAttachAlertBotWebViewLayout.this.lambda$showJustAddedBulletin$14(formatString);
+            }
+        }, 200L);
+    }
+
+    public void lambda$showJustAddedBulletin$14(String str) {
+        BulletinFactory.of(this.parentAlert.getContainer(), this.resourcesProvider).createSimpleBulletin(R.raw.info, AndroidUtilities.replaceTags(str)).setDuration(5000).show(true);
+    }
+
     public static class WebViewSwipeContainer extends FrameLayout {
         public static final SimpleFloatPropertyCompat<WebViewSwipeContainer> SWIPE_OFFSET_Y = new SimpleFloatPropertyCompat<>("swipeOffsetY", new SimpleFloatPropertyCompat.Getter() {
             @Override
@@ -897,6 +935,9 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
             Runnable runnable = this.scrollListener;
             if (runnable != null) {
                 runnable.run();
+            }
+            if (Bulletin.getVisibleBulletin() != null) {
+                Bulletin.getVisibleBulletin().updatePosition();
             }
         }
 

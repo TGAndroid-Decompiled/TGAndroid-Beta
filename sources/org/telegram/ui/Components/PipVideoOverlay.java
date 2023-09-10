@@ -401,10 +401,14 @@ public class PipVideoOverlay {
     }
 
     public static void dismiss(boolean z) {
-        instance.dismissInternal(z);
+        instance.dismissInternal(z, false);
     }
 
-    private void dismissInternal(boolean z) {
+    public static void dismiss(boolean z, boolean z2) {
+        instance.dismissInternal(z, z2);
+    }
+
+    private void dismissInternal(boolean z, boolean z2) {
         if (this.isDismissing) {
             return;
         }
@@ -423,13 +427,18 @@ public class PipVideoOverlay {
             this.pipYSpring.cancel();
         }
         if (z || this.contentView == null) {
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    PipVideoOverlay.this.onDismissedInternal();
-                }
-            }, 100L);
-            return;
+            if (z2) {
+                onDismissedInternal();
+                return;
+            } else {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        PipVideoOverlay.this.onDismissedInternal();
+                    }
+                }, 100L);
+                return;
+            }
         }
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(250L);

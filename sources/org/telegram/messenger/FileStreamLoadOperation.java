@@ -111,6 +111,9 @@ public class FileStreamLoadOperation extends BaseDataSource implements FileLoadO
                     RandomAccessFile randomAccessFile = new RandomAccessFile(this.currentFile, "r");
                     this.file = randomAccessFile;
                     randomAccessFile.seek(this.currentOffset);
+                    if (this.loadOperation.isFinished()) {
+                        this.bytesRemaining = this.currentFile.length() - this.currentOffset;
+                    }
                 } catch (Throwable unused) {
                 }
             }

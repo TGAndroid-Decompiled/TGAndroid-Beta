@@ -140,6 +140,7 @@ public class ApplicationLoader extends Application {
             return;
         }
         applicationInited = true;
+        NativeLoader.initNativeLibs(applicationContext);
         try {
             LocaleController.getInstance();
         } catch (Exception e) {
@@ -204,7 +205,6 @@ public class ApplicationLoader extends Application {
             ContactsController.getInstance(i2).checkAppAccount();
             DownloadController.getInstance(i2);
         }
-        ChatThemeController.init();
         BillingController.getInstance().lambda$onBillingServiceDisconnected$5();
     }
 

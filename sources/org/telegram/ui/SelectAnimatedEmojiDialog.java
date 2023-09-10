@@ -4696,7 +4696,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
             if (z) {
                 return;
             }
-            AndroidUtilities.forEachViews(this.emojiGridView, new com.google.android.exoplayer2.util.Consumer() {
+            AndroidUtilities.forEachViews((RecyclerView) this.emojiGridView, (com.google.android.exoplayer2.util.Consumer<View>) new com.google.android.exoplayer2.util.Consumer() {
                 @Override
                 public final void accept(Object obj) {
                     SelectAnimatedEmojiDialog.lambda$setEnterAnimationInProgress$34((View) obj);

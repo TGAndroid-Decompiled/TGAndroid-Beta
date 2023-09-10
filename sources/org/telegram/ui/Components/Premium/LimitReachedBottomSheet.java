@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
@@ -60,6 +62,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
     ArrayList<TLRPC$Chat> chats;
     int chatsTitleRow;
     private int currentValue;
+    private long dialogId;
     View divider;
     int dividerRow;
     int emptyViewDividerRow;
@@ -71,6 +74,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
     private boolean isVeryLargeFile;
     LimitParams limitParams;
     LimitPreviewView limitPreviewView;
+    private int linkRow;
     private boolean loading;
     int loadingRow;
     public Runnable onShowPremiumScreenRunnable;
@@ -128,8 +132,9 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
         }
     }
 
-    public LimitReachedBottomSheet(BaseFragment baseFragment, Context context, int i, int i2) {
-        super(baseFragment, false, hasFixedSize(i));
+    public LimitReachedBottomSheet(BaseFragment baseFragment, Context context, int i, int i2, Theme.ResourcesProvider resourcesProvider) {
+        super(baseFragment, false, hasFixedSize(i), false, resourcesProvider);
+        this.linkRow = -1;
         this.chats = new ArrayList<>();
         this.headerRow = -1;
         this.dividerRow = -1;
@@ -327,7 +332,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
 
     public void updatePremiumButtonText() {
         if (UserConfig.getInstance(this.currentAccount).isPremium() || MessagesController.getInstance(this.currentAccount).premiumLocked || this.isVeryLargeFile) {
-            this.premiumButtonView.buttonTextView.setText(LocaleController.getString(R.string.OK));
+            this.premiumButtonView.buttonTextView.setText(LocaleController.getString("OK", R.string.OK));
             this.premiumButtonView.hideIcon();
             return;
         }
@@ -437,59 +442,66 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
 
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-                View view;
-                FlickerLoadingView flickerLoadingView;
+                FrameLayout frameLayout;
                 Context context = viewGroup.getContext();
                 switch (i) {
                     case 1:
-                        flickerLoadingView = new AdminedChannelCell(context, new View.OnClickListener() {
+                        frameLayout = new AdminedChannelCell(context, new View.OnClickListener() {
                             @Override
-                            public void onClick(View view2) {
+                            public void onClick(View view) {
                                 ArrayList arrayList = new ArrayList();
-                                arrayList.add(((AdminedChannelCell) view2.getParent()).getCurrentChannel());
+                                arrayList.add(((AdminedChannelCell) view.getParent()).getCurrentChannel());
                                 LimitReachedBottomSheet.this.revokeLinks(arrayList);
                             }
                         }, true, 9);
-                        view = flickerLoadingView;
                         break;
                     case 2:
-                        flickerLoadingView = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, ((BottomSheet) LimitReachedBottomSheet.this).resourcesProvider));
-                        view = flickerLoadingView;
+                        frameLayout = new ShadowSectionCell(context, 12, Theme.getColor(Theme.key_windowBackgroundGray, ((BottomSheet) LimitReachedBottomSheet.this).resourcesProvider));
                         break;
                     case 3:
                         View headerCell = new HeaderCell(context);
                         headerCell.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
-                        flickerLoadingView = headerCell;
-                        view = flickerLoadingView;
+                        frameLayout = headerCell;
                         break;
                     case 4:
-                        flickerLoadingView = new GroupCreateUserCell(context, 1, 8, false);
-                        view = flickerLoadingView;
+                        frameLayout = new GroupCreateUserCell(context, 1, 8, false);
                         break;
                     case 5:
-                        FlickerLoadingView flickerLoadingView2 = new FlickerLoadingView(context, null);
-                        flickerLoadingView2.setViewType(LimitReachedBottomSheet.this.type == 2 ? 22 : 21);
-                        flickerLoadingView2.setIsSingleCell(true);
-                        flickerLoadingView2.setIgnoreHeightCheck(true);
-                        flickerLoadingView2.setItemsCount(10);
-                        flickerLoadingView = flickerLoadingView2;
-                        view = flickerLoadingView;
+                        FlickerLoadingView flickerLoadingView = new FlickerLoadingView(context, null);
+                        flickerLoadingView.setViewType(LimitReachedBottomSheet.this.type == 2 ? 22 : 21);
+                        flickerLoadingView.setIsSingleCell(true);
+                        flickerLoadingView.setIgnoreHeightCheck(true);
+                        flickerLoadingView.setItemsCount(10);
+                        frameLayout = flickerLoadingView;
                         break;
                     case 6:
-                        view = new View(this, LimitReachedBottomSheet.this.getContext()) {
+                        frameLayout = new View(this, LimitReachedBottomSheet.this.getContext()) {
                             @Override
                             protected void onMeasure(int i2, int i3) {
                                 super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
                             }
                         };
                         break;
+                    case 7:
+                        FrameLayout frameLayout2 = new FrameLayout(LimitReachedBottomSheet.this.getContext());
+                        TextView textView = new TextView(context);
+                        textView.setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(40.0f), AndroidUtilities.dp(13.0f));
+                        textView.setTextSize(1, 16.0f);
+                        textView.setEllipsize(TextUtils.TruncateAt.MIDDLE);
+                        textView.setSingleLine(true);
+                        frameLayout2.addView(textView, LayoutHelper.createFrame(-1, -2.0f, 0, 11.0f, 0.0f, 11.0f, 0.0f));
+                        textView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), Theme.getColor(Theme.key_graySection, ((BottomSheet) LimitReachedBottomSheet.this).resourcesProvider), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_listSelector, ((BottomSheet) LimitReachedBottomSheet.this).resourcesProvider), 76)));
+                        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, ((BottomSheet) LimitReachedBottomSheet.this).resourcesProvider));
+                        textView.setText(LimitReachedBottomSheet.this.getBoostLink());
+                        textView.setGravity(17);
+                        frameLayout = frameLayout2;
+                        break;
                     default:
-                        flickerLoadingView = new HeaderView(LimitReachedBottomSheet.this, context);
-                        view = flickerLoadingView;
+                        frameLayout = new HeaderView(LimitReachedBottomSheet.this, context);
                         break;
                 }
-                view.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
-                return new RecyclerListView.Holder(view);
+                frameLayout.setLayoutParams(new RecyclerView.LayoutParams(-1, -2));
+                return new RecyclerListView.Holder(frameLayout);
             }
 
             @Override
@@ -554,7 +566,10 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
                 if (limitReachedBottomSheet.emptyViewDividerRow == i) {
                     return 6;
                 }
-                int i2 = limitReachedBottomSheet.type;
+                if (limitReachedBottomSheet.linkRow == i) {
+                    return 7;
+                }
+                int i2 = LimitReachedBottomSheet.this.type;
                 return (i2 == 5 || i2 == 11) ? 4 : 1;
             }
 
@@ -563,6 +578,11 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
                 return LimitReachedBottomSheet.this.rowCount;
             }
         };
+    }
+
+    public String getBoostLink() {
+        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+        return "https://" + ChatObject.getPublicUsername(chat) + "?boost";
     }
 
     public void setCurrentValue(int i) {
@@ -879,6 +899,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
         this.chatStartRow = -1;
         this.chatEndRow = -1;
         this.loadingRow = -1;
+        this.linkRow = -1;
         this.emptyViewDividerRow = -1;
         this.rowCount = 0 + 1;
         this.headerRow = 0;

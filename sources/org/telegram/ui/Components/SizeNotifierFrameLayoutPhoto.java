@@ -3,18 +3,13 @@ package org.telegram.ui.Components;
 import android.app.Activity;
 import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public class SizeNotifierFrameLayoutPhoto extends FrameLayout {
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
+public class SizeNotifierFrameLayoutPhoto extends SizeNotifierFrameLayout {
     private Activity activity;
-    private SizeNotifierFrameLayoutPhotoDelegate delegate;
     private int keyboardHeight;
     private android.graphics.Rect rect;
     private boolean withoutWindow;
-
-    public interface SizeNotifierFrameLayoutPhotoDelegate {
-        void onSizeChanged(int i, boolean z);
-    }
 
     public SizeNotifierFrameLayoutPhoto(Context context, Activity activity, boolean z) {
         super(context);
@@ -24,10 +19,6 @@ public class SizeNotifierFrameLayoutPhoto extends FrameLayout {
 
     public void setActivity(Activity activity) {
         this.activity = activity;
-    }
-
-    public void setDelegate(SizeNotifierFrameLayoutPhotoDelegate sizeNotifierFrameLayoutPhotoDelegate) {
-        this.delegate = sizeNotifierFrameLayoutPhotoDelegate;
     }
 
     public void setWithoutWindow(boolean z) {
@@ -40,10 +31,12 @@ public class SizeNotifierFrameLayoutPhoto extends FrameLayout {
         notifyHeightChanged();
     }
 
+    @Override
     public int getKeyboardHeight() {
         return this.keyboardHeight;
     }
 
+    @Override
     public int measureKeyboardHeight() {
         View rootView = getRootView();
         getWindowVisibleDisplayFrame(this.rect);
@@ -59,6 +52,7 @@ public class SizeNotifierFrameLayoutPhoto extends FrameLayout {
         return height2;
     }
 
+    @Override
     public void notifyHeightChanged() {
         if (this.delegate != null) {
             this.keyboardHeight = measureKeyboardHeight();
@@ -74,9 +68,9 @@ public class SizeNotifierFrameLayoutPhoto extends FrameLayout {
     }
 
     public void lambda$notifyHeightChanged$0(boolean z) {
-        SizeNotifierFrameLayoutPhotoDelegate sizeNotifierFrameLayoutPhotoDelegate = this.delegate;
-        if (sizeNotifierFrameLayoutPhotoDelegate != null) {
-            sizeNotifierFrameLayoutPhotoDelegate.onSizeChanged(this.keyboardHeight, z);
+        SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate sizeNotifierFrameLayoutDelegate = this.delegate;
+        if (sizeNotifierFrameLayoutDelegate != null) {
+            sizeNotifierFrameLayoutDelegate.onSizeChanged(this.keyboardHeight, z);
         }
     }
 }

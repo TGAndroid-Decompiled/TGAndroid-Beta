@@ -295,21 +295,21 @@ public final class BulletinFactory {
         return create(lottieLayout, 5000);
     }
 
-    public Bulletin createUsersBulletin(List<TLRPC$User> list, CharSequence charSequence) {
+    public Bulletin createUsersBulletin(List<? extends TLObject> list, CharSequence charSequence) {
         return createUsersBulletin(list, charSequence, null, null);
     }
 
-    public Bulletin createUsersBulletin(List<TLRPC$User> list, CharSequence charSequence, CharSequence charSequence2, UndoObject undoObject) {
+    public Bulletin createUsersBulletin(List<? extends TLObject> list, CharSequence charSequence, CharSequence charSequence2, UndoObject undoObject) {
         int i;
         Bulletin.UsersLayout usersLayout = new Bulletin.UsersLayout(getContext(), charSequence2 != null, this.resourcesProvider);
         if (list != null) {
             i = 0;
             for (int i2 = 0; i2 < list.size() && i < 3; i2++) {
-                TLRPC$User tLRPC$User = list.get(i2);
-                if (tLRPC$User != null) {
+                TLObject tLObject = list.get(i2);
+                if (tLObject != null) {
                     i++;
                     usersLayout.avatarsImageView.setCount(i);
-                    usersLayout.avatarsImageView.setObject(i - 1, UserConfig.selectedAccount, tLRPC$User);
+                    usersLayout.avatarsImageView.setObject(i - 1, UserConfig.selectedAccount, tLObject);
                 }
             }
             if (list.size() == 1) {

@@ -32,10 +32,14 @@ public class CellFlickerDrawable {
     int size;
 
     public CellFlickerDrawable() {
-        this(64, 204);
+        this(64, 204, 160);
     }
 
     public CellFlickerDrawable(int i, int i2) {
+        this(i, i2, 160);
+    }
+
+    public CellFlickerDrawable(int i, int i2, int i3) {
         this.paint = new Paint(1);
         this.paintOutline = new Paint(1);
         this.matrix = new Matrix();
@@ -44,7 +48,7 @@ public class CellFlickerDrawable {
         this.frameInside = false;
         this.repeatProgress = 1.2f;
         this.animationSpeedScale = 1.0f;
-        this.size = AndroidUtilities.dp(160.0f);
+        this.size = AndroidUtilities.dp(i3);
         this.gradientShader = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(-1, i), 0}, (float[]) null, Shader.TileMode.CLAMP);
         this.gradientShader2 = new LinearGradient(0.0f, 0.0f, this.size, 0.0f, new int[]{0, ColorUtils.setAlphaComponent(-1, i2), 0}, (float[]) null, Shader.TileMode.CLAMP);
         this.paint.setShader(this.gradientShader);

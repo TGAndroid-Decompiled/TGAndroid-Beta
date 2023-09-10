@@ -193,7 +193,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
     }
 
     private boolean isMessageTypeAllowed(MessageObject messageObject) {
-        return (MessageObject.isPhoto(messageObject.messageOwner) && MessageObject.getMedia(messageObject.messageOwner).webpage == null) || (messageObject.getDocument() != null && (MessageObject.isVideoDocument(messageObject.getDocument()) || MessageObject.isGifDocument(messageObject.getDocument())));
+        return (messageObject == null || messageObject.needDrawBluredPreview() || ((!MessageObject.isPhoto(messageObject.messageOwner) || MessageObject.getMedia(messageObject.messageOwner).webpage != null) && (messageObject.getDocument() == null || (!MessageObject.isVideoDocument(messageObject.getDocument()) && !MessageObject.isGifDocument(messageObject.getDocument()))))) ? false : true;
     }
 
     public void setSelectedMessages(java.util.List<org.telegram.messenger.MessageObject> r11) {

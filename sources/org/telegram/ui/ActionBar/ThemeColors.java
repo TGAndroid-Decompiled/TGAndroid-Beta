@@ -39,7 +39,7 @@ public class ThemeColors {
         iArr[Theme.key_dialogButton] = -11955764;
         iArr[Theme.key_dialogButtonSelector] = 251658240;
         iArr[Theme.key_dialogScrollGlow] = -657673;
-        iArr[Theme.key_dialogRoundCheckBox] = -11750155;
+        iArr[Theme.key_dialogRoundCheckBox] = -15033089;
         iArr[Theme.key_dialogRoundCheckBoxCheck] = -1;
         iArr[Theme.key_dialogCameraIcon] = -1;
         iArr[Theme.key_dialog_inlineProgressBackground] = -151981323;
@@ -48,7 +48,7 @@ public class ThemeColors {
         iArr[Theme.key_dialogSearchHint] = -6774617;
         iArr[Theme.key_dialogSearchIcon] = -6182737;
         iArr[Theme.key_dialogSearchText] = -14540254;
-        iArr[Theme.key_dialogFloatingButton] = -11750155;
+        iArr[Theme.key_dialogFloatingButton] = -15033089;
         iArr[Theme.key_dialogFloatingButtonPressed] = 251658240;
         iArr[Theme.key_dialogFloatingIcon] = -1;
         iArr[Theme.key_dialogShadowLine] = 301989888;

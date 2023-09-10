@@ -249,7 +249,7 @@ public class VideoPlayerHolderBase {
                 public final void run() {
                     VideoPlayerHolderBase.AnonymousClass2.this.lambda$onRenderedFirstFrame$0();
                 }
-            }, 16L);
+            }, VideoPlayerHolderBase.this.surfaceView == null ? 16L : 32L);
         }
 
         public void lambda$onRenderedFirstFrame$0() {

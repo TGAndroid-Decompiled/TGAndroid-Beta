@@ -237,6 +237,10 @@ public class VideoPlayerSeekBar {
         return (this.pressed ? this.draggingThumbX : this.thumbX) + (thumbWidth / 2);
     }
 
+    public boolean isDragging() {
+        return this.pressed;
+    }
+
     public void setSize(int i, int i2) {
         this.width = i;
         this.height = i2;

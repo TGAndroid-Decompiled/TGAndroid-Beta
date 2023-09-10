@@ -977,12 +977,13 @@ public class AndroidUtilities {
         return 1;
     }
 
-    public static void fillStatusBarHeight(Context context) {
-        if (context == null || statusBarHeight > 0) {
-            return;
+    public static void fillStatusBarHeight(Context context, boolean z) {
+        if (context != null) {
+            if (statusBarHeight <= 0 || z) {
+                statusBarHeight = getStatusBarHeight(context);
+                navigationBarHeight = getNavigationBarHeight(context);
+            }
         }
-        statusBarHeight = getStatusBarHeight(context);
-        navigationBarHeight = getNavigationBarHeight(context);
     }
 
     public static int getStatusBarHeight(Context context) {
@@ -2157,15 +2158,11 @@ public class AndroidUtilities {
             if (firstConfigurationWas && Math.abs(f - f2) > 0.001d) {
                 Theme.reloadAllResources(context);
             }
-            boolean z = true;
             firstConfigurationWas = true;
             if (configuration == null) {
                 configuration = context.getResources().getConfiguration();
             }
-            if (configuration.keyboard == 1 || configuration.hardKeyboardHidden != 1) {
-                z = false;
-            }
-            usingHardwareInput = z;
+            usingHardwareInput = configuration.keyboard != 1 && configuration.hardKeyboardHidden == 1;
             WindowManager windowManager = (WindowManager) context.getSystemService("window");
             if (windowManager != null && (defaultDisplay = windowManager.getDefaultDisplay()) != null) {
                 defaultDisplay.getMetrics(displayMetrics);
@@ -2200,10 +2197,8 @@ public class AndroidUtilities {
                 }
                 roundMessageInset = dp(2.0f);
             }
+            fillStatusBarHeight(context, true);
             if (BuildVars.LOGS_ENABLED) {
-                if (statusBarHeight == 0) {
-                    fillStatusBarHeight(context);
-                }
                 FileLog.e("density = " + density + " display size = " + displaySize.x + " " + displaySize.y + " " + displayMetrics.xdpi + "x" + displayMetrics.ydpi + ", screen layout: " + configuration.screenLayout + ", statusbar height: " + statusBarHeight + ", navbar height: " + navigationBarHeight);
             }
             touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -4827,6 +4822,18 @@ public class AndroidUtilities {
             FileLog.e(e);
             return new Pair<>(0, 0);
         }
+    }
+
+    public static void forEachViews(View view, Consumer<View> consumer) {
+        if (view instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) view;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                consumer.accept(view);
+                forEachViews(viewGroup.getChildAt(i), consumer);
+            }
+            return;
+        }
+        consumer.accept(view);
     }
 
     public static void forEachViews(RecyclerView recyclerView, Consumer<View> consumer) {

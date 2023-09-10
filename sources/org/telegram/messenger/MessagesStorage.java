@@ -44,8 +44,6 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$DraftMessage;
 import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$InputChannel;
-import org.telegram.tgnet.TLRPC$InputDialogPeer;
-import org.telegram.tgnet.TLRPC$InputMedia;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageAction;
@@ -61,7 +59,6 @@ import org.telegram.tgnet.TLRPC$Poll;
 import org.telegram.tgnet.TLRPC$PollResults;
 import org.telegram.tgnet.TLRPC$ReplyMarkup;
 import org.telegram.tgnet.TLRPC$TL_channelFull;
-import org.telegram.tgnet.TLRPC$TL_channels_deleteMessages;
 import org.telegram.tgnet.TLRPC$TL_chatAdminRights;
 import org.telegram.tgnet.TLRPC$TL_chatBannedRights;
 import org.telegram.tgnet.TLRPC$TL_chatFull;
@@ -72,7 +69,6 @@ import org.telegram.tgnet.TLRPC$TL_dialog;
 import org.telegram.tgnet.TLRPC$TL_folderPeer;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$TL_inputFolderPeer;
-import org.telegram.tgnet.TLRPC$TL_inputMediaGame;
 import org.telegram.tgnet.TLRPC$TL_inputMessageEntityMentionName;
 import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.tgnet.TLRPC$TL_messageActionChatAddUser;
@@ -90,8 +86,6 @@ import org.telegram.tgnet.TLRPC$TL_messageReactions;
 import org.telegram.tgnet.TLRPC$TL_message_secret;
 import org.telegram.tgnet.TLRPC$TL_messages_botCallbackAnswer;
 import org.telegram.tgnet.TLRPC$TL_messages_botResults;
-import org.telegram.tgnet.TLRPC$TL_messages_deleteMessages;
-import org.telegram.tgnet.TLRPC$TL_messages_deleteScheduledMessages;
 import org.telegram.tgnet.TLRPC$TL_messages_messages;
 import org.telegram.tgnet.TLRPC$TL_peerChannel;
 import org.telegram.tgnet.TLRPC$TL_peerChat;
@@ -120,7 +114,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsSearchAdapter;
 public class MessagesStorage extends BaseController {
     public static final String[] DATABASE_TABLES;
-    public static final int LAST_DB_VERSION = 129;
+    public static final int LAST_DB_VERSION = 133;
     private int archiveUnreadCount;
     private int[][] bots;
     private File cacheFile;
@@ -457,7 +451,7 @@ public class MessagesStorage extends BaseController {
                         FileLog.e(e3);
                     }
                 }
-                if (intValue < 129) {
+                if (intValue < 133) {
                     try {
                         updateDbToLastVersion(intValue);
                     } catch (Exception e4) {
@@ -638,6 +632,7 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE TABLE pending_tasks(id INTEGER PRIMARY KEY, data BLOB);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE requested_holes(uid INTEGER, seq_out_start INTEGER, seq_out_end INTEGER, PRIMARY KEY (uid, seq_out_start, seq_out_end));").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE sharing_locations(uid INTEGER PRIMARY KEY, mid INTEGER, date INTEGER, period INTEGER, message BLOB, proximity INTEGER);").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS stickers_featured_emoji_index ON stickers_featured(emoji);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE shortcut_widget(id INTEGER, did INTEGER, ord INTEGER, PRIMARY KEY (id, did));").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS shortcut_widget_did ON shortcut_widget(did);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE emoji_keywords_v2(lang TEXT, keyword TEXT, emoji TEXT, PRIMARY KEY(lang, keyword, emoji));").stepThis().dispose();
@@ -686,13 +681,13 @@ public class MessagesStorage extends BaseController {
         sQLiteDatabase.executeFast("CREATE INDEX IF NOT EXISTS reaction_mentions_topics_did ON reaction_mentions_topics(dialog_id, topic_id);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE emoji_groups(type INTEGER PRIMARY KEY, data BLOB)").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE app_config(data BLOB)").stepThis().dispose();
-        sQLiteDatabase.executeFast("CREATE TABLE stories (dialog_id INTEGER, story_id INTEGER, data BLOB, local_path TEXT, local_thumb_path TEXT, custom_params BLOB, PRIMARY KEY (dialog_id, story_id));").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE stories (dialog_id INTEGER, story_id INTEGER, data BLOB, custom_params BLOB, PRIMARY KEY (dialog_id, story_id));").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE stories_counter (dialog_id INTEGER PRIMARY KEY, count INTEGER, max_read INTEGER);").stepThis().dispose();
-        sQLiteDatabase.executeFast("CREATE TABLE profile_stories (dialog_id INTEGER, story_id INTEGER, data BLOB, PRIMARY KEY(dialog_id, story_id));").stepThis().dispose();
-        sQLiteDatabase.executeFast("CREATE TABLE archived_stories (story_id INTEGER PRIMARY KEY, data BLOB);").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE profile_stories (dialog_id INTEGER, story_id INTEGER, data BLOB, type INTEGER, PRIMARY KEY(dialog_id, story_id));").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE story_drafts (id INTEGER PRIMARY KEY, date INTEGER, data BLOB, type INTEGER);").stepThis().dispose();
         sQLiteDatabase.executeFast("CREATE TABLE story_pushes (uid INTEGER, sid INTEGER, date INTEGER, localName TEXT, flags INTEGER, expire_date INTEGER, PRIMARY KEY(uid, sid));").stepThis().dispose();
-        sQLiteDatabase.executeFast("PRAGMA user_version = 129").stepThis().dispose();
+        sQLiteDatabase.executeFast("CREATE TABLE unconfirmed_auth (data BLOB);").stepThis().dispose();
+        sQLiteDatabase.executeFast("PRAGMA user_version = 133").stepThis().dispose();
     }
 
     public boolean isDatabaseMigrationInProgress() {
@@ -977,300 +972,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$loadPendingTasks$31();
+                MessagesStorage.this.lambda$loadPendingTasks$32();
             }
         });
     }
 
-    public void lambda$loadPendingTasks$31() {
-        try {
-            SQLiteCursor queryFinalized = this.database.queryFinalized("SELECT id, data FROM pending_tasks WHERE 1", new Object[0]);
-            while (queryFinalized.next()) {
-                final long longValue = queryFinalized.longValue(0);
-                NativeByteBuffer byteBufferValue = queryFinalized.byteBufferValue(1);
-                if (byteBufferValue != null) {
-                    int readInt32 = byteBufferValue.readInt32(false);
-                    if (readInt32 != 100) {
-                        switch (readInt32) {
-                            case 0:
-                                final TLRPC$Chat TLdeserialize = TLRPC$Chat.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                if (TLdeserialize != null) {
-                                    Utilities.stageQueue.postRunnable(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            MessagesStorage.this.lambda$loadPendingTasks$12(TLdeserialize, longValue);
-                                        }
-                                    });
-                                    break;
-                                }
-                                break;
-                            case 1:
-                                final long readInt322 = byteBufferValue.readInt32(false);
-                                final int readInt323 = byteBufferValue.readInt32(false);
-                                Utilities.stageQueue.postRunnable(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$13(readInt322, readInt323, longValue);
-                                    }
-                                });
-                                break;
-                            case 2:
-                            case 5:
-                            case 8:
-                            case 10:
-                            case 14:
-                                final TLRPC$TL_dialog tLRPC$TL_dialog = new TLRPC$TL_dialog();
-                                tLRPC$TL_dialog.id = byteBufferValue.readInt64(false);
-                                tLRPC$TL_dialog.top_message = byteBufferValue.readInt32(false);
-                                tLRPC$TL_dialog.read_inbox_max_id = byteBufferValue.readInt32(false);
-                                tLRPC$TL_dialog.read_outbox_max_id = byteBufferValue.readInt32(false);
-                                tLRPC$TL_dialog.unread_count = byteBufferValue.readInt32(false);
-                                tLRPC$TL_dialog.last_message_date = byteBufferValue.readInt32(false);
-                                tLRPC$TL_dialog.pts = byteBufferValue.readInt32(false);
-                                tLRPC$TL_dialog.flags = byteBufferValue.readInt32(false);
-                                if (readInt32 >= 5) {
-                                    tLRPC$TL_dialog.pinned = byteBufferValue.readBool(false);
-                                    tLRPC$TL_dialog.pinnedNum = byteBufferValue.readInt32(false);
-                                }
-                                if (readInt32 >= 8) {
-                                    tLRPC$TL_dialog.unread_mentions_count = byteBufferValue.readInt32(false);
-                                }
-                                if (readInt32 >= 10) {
-                                    tLRPC$TL_dialog.unread_mark = byteBufferValue.readBool(false);
-                                }
-                                if (readInt32 >= 14) {
-                                    tLRPC$TL_dialog.folder_id = byteBufferValue.readInt32(false);
-                                }
-                                final TLRPC$InputPeer TLdeserialize2 = TLRPC$InputPeer.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$14(tLRPC$TL_dialog, TLdeserialize2, longValue);
-                                    }
-                                });
-                                break;
-                            case 3:
-                                getSendMessagesHelper().sendGame(TLRPC$InputPeer.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false), (TLRPC$TL_inputMediaGame) TLRPC$InputMedia.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false), byteBufferValue.readInt64(false), longValue);
-                                break;
-                            case 4:
-                                final long readInt64 = byteBufferValue.readInt64(false);
-                                final boolean readBool = byteBufferValue.readBool(false);
-                                final TLRPC$InputPeer TLdeserialize3 = TLRPC$InputPeer.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$15(readInt64, readBool, TLdeserialize3, longValue);
-                                    }
-                                });
-                                break;
-                            case 6:
-                                final long readInt324 = byteBufferValue.readInt32(false);
-                                final int readInt325 = byteBufferValue.readInt32(false);
-                                final TLRPC$InputChannel TLdeserialize4 = TLRPC$InputChannel.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                Utilities.stageQueue.postRunnable(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$16(readInt324, readInt325, longValue, TLdeserialize4);
-                                    }
-                                });
-                                break;
-                            case 7:
-                                final long readInt326 = byteBufferValue.readInt32(false);
-                                int readInt327 = byteBufferValue.readInt32(false);
-                                TLObject TLdeserialize5 = TLRPC$TL_messages_deleteMessages.TLdeserialize(byteBufferValue, readInt327, false);
-                                final TLObject TLdeserialize6 = TLdeserialize5 == null ? TLRPC$TL_channels_deleteMessages.TLdeserialize(byteBufferValue, readInt327, false) : TLdeserialize5;
-                                if (TLdeserialize6 == null) {
-                                    removePendingTask(longValue);
-                                    break;
-                                } else {
-                                    AndroidUtilities.runOnUIThread(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            MessagesStorage.this.lambda$loadPendingTasks$18(readInt326, longValue, TLdeserialize6);
-                                        }
-                                    });
-                                    break;
-                                }
-                            case 9:
-                                final long readInt642 = byteBufferValue.readInt64(false);
-                                final TLRPC$InputPeer TLdeserialize7 = TLRPC$InputPeer.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$20(readInt642, TLdeserialize7, longValue);
-                                    }
-                                });
-                                break;
-                            case 11:
-                                final int readInt328 = byteBufferValue.readInt32(false);
-                                final long readInt329 = byteBufferValue.readInt32(false);
-                                final int readInt3210 = byteBufferValue.readInt32(false);
-                                final TLRPC$InputChannel TLdeserialize8 = readInt329 != 0 ? TLRPC$InputChannel.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false) : null;
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$21(readInt329, readInt328, TLdeserialize8, readInt3210, longValue);
-                                    }
-                                });
-                                break;
-                            case 12:
-                            case 19:
-                            case 20:
-                                removePendingTask(longValue);
-                                break;
-                            case 13:
-                                final long readInt643 = byteBufferValue.readInt64(false);
-                                final boolean readBool2 = byteBufferValue.readBool(false);
-                                final int readInt3211 = byteBufferValue.readInt32(false);
-                                final int readInt3212 = byteBufferValue.readInt32(false);
-                                final boolean readBool3 = byteBufferValue.readBool(false);
-                                final TLRPC$InputPeer TLdeserialize9 = TLRPC$InputPeer.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$24(readInt643, readBool2, readInt3211, readInt3212, readBool3, TLdeserialize9, longValue);
-                                    }
-                                });
-                                break;
-                            case 15:
-                                final TLRPC$InputPeer TLdeserialize10 = TLRPC$InputPeer.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                Utilities.stageQueue.postRunnable(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$25(TLdeserialize10, longValue);
-                                    }
-                                });
-                                break;
-                            case 16:
-                                final int readInt3213 = byteBufferValue.readInt32(false);
-                                int readInt3214 = byteBufferValue.readInt32(false);
-                                final ArrayList arrayList = new ArrayList();
-                                for (int i = 0; i < readInt3214; i++) {
-                                    arrayList.add(TLRPC$InputDialogPeer.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false));
-                                }
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$26(readInt3213, arrayList, longValue);
-                                    }
-                                });
-                                break;
-                            case 17:
-                                final int readInt3215 = byteBufferValue.readInt32(false);
-                                int readInt3216 = byteBufferValue.readInt32(false);
-                                final ArrayList arrayList2 = new ArrayList();
-                                for (int i2 = 0; i2 < readInt3216; i2++) {
-                                    arrayList2.add(TLRPC$TL_inputFolderPeer.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false));
-                                }
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$27(readInt3215, arrayList2, longValue);
-                                    }
-                                });
-                                break;
-                            case 18:
-                                final long readInt644 = byteBufferValue.readInt64(false);
-                                byteBufferValue.readInt32(false);
-                                final TLRPC$TL_messages_deleteScheduledMessages TLdeserialize11 = TLRPC$TL_messages_deleteScheduledMessages.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                if (TLdeserialize11 == null) {
-                                    removePendingTask(longValue);
-                                    break;
-                                } else {
-                                    AndroidUtilities.runOnUIThread(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            MessagesStorage.this.lambda$loadPendingTasks$28(readInt644, longValue, TLdeserialize11);
-                                        }
-                                    });
-                                    break;
-                                }
-                            case 21:
-                                final Theme.OverrideWallpaperInfo overrideWallpaperInfo = new Theme.OverrideWallpaperInfo();
-                                byteBufferValue.readInt64(false);
-                                overrideWallpaperInfo.isBlurred = byteBufferValue.readBool(false);
-                                overrideWallpaperInfo.isMotion = byteBufferValue.readBool(false);
-                                overrideWallpaperInfo.color = byteBufferValue.readInt32(false);
-                                overrideWallpaperInfo.gradientColor1 = byteBufferValue.readInt32(false);
-                                overrideWallpaperInfo.rotation = byteBufferValue.readInt32(false);
-                                overrideWallpaperInfo.intensity = (float) byteBufferValue.readDouble(false);
-                                final boolean readBool4 = byteBufferValue.readBool(false);
-                                overrideWallpaperInfo.slug = byteBufferValue.readString(false);
-                                overrideWallpaperInfo.originalFileName = byteBufferValue.readString(false);
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$23(overrideWallpaperInfo, readBool4, longValue);
-                                    }
-                                });
-                                break;
-                            case 22:
-                                final TLRPC$InputPeer TLdeserialize12 = TLRPC$InputPeer.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$29(TLdeserialize12, longValue);
-                                    }
-                                });
-                                break;
-                            case 23:
-                                final long readInt645 = byteBufferValue.readInt64(false);
-                                final int readInt3217 = byteBufferValue.readInt32(false);
-                                final int readInt3218 = byteBufferValue.readInt32(false);
-                                final TLRPC$InputChannel TLdeserialize13 = (!DialogObject.isEncryptedDialog(readInt645) && DialogObject.isChatDialog(readInt645) && byteBufferValue.hasRemaining()) ? TLRPC$InputChannel.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false) : null;
-                                AndroidUtilities.runOnUIThread(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$22(readInt645, readInt3217, TLdeserialize13, readInt3218, longValue);
-                                    }
-                                });
-                                break;
-                            case 24:
-                                final long readInt646 = byteBufferValue.readInt64(false);
-                                int readInt3219 = byteBufferValue.readInt32(false);
-                                TLObject TLdeserialize14 = TLRPC$TL_messages_deleteMessages.TLdeserialize(byteBufferValue, readInt3219, false);
-                                final TLObject TLdeserialize15 = TLdeserialize14 == null ? TLRPC$TL_channels_deleteMessages.TLdeserialize(byteBufferValue, readInt3219, false) : TLdeserialize14;
-                                if (TLdeserialize15 == null) {
-                                    removePendingTask(longValue);
-                                    break;
-                                } else {
-                                    AndroidUtilities.runOnUIThread(new Runnable() {
-                                        @Override
-                                        public final void run() {
-                                            MessagesStorage.this.lambda$loadPendingTasks$19(readInt646, longValue, TLdeserialize15);
-                                        }
-                                    });
-                                    break;
-                                }
-                            case 25:
-                                final long readInt647 = byteBufferValue.readInt64(false);
-                                final int readInt3220 = byteBufferValue.readInt32(false);
-                                final TLRPC$InputChannel TLdeserialize16 = TLRPC$InputChannel.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                                Utilities.stageQueue.postRunnable(new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        MessagesStorage.this.lambda$loadPendingTasks$17(readInt647, readInt3220, longValue, TLdeserialize16);
-                                    }
-                                });
-                                break;
-                        }
-                    } else {
-                        final int readInt3221 = byteBufferValue.readInt32(false);
-                        final boolean readBool5 = byteBufferValue.readBool(false);
-                        AndroidUtilities.runOnUIThread(new Runnable() {
-                            @Override
-                            public final void run() {
-                                MessagesStorage.this.lambda$loadPendingTasks$30(readInt3221, readBool5, longValue);
-                            }
-                        });
-                    }
-                    byteBufferValue.reuse();
-                }
-            }
-            queryFinalized.dispose();
-        } catch (Exception e) {
-            checkSQLException(e);
-        }
+    public void lambda$loadPendingTasks$32() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadPendingTasks$32():void");
     }
 
     public void lambda$loadPendingTasks$12(TLRPC$Chat tLRPC$Chat, long j) {
@@ -1313,8 +1021,8 @@ public class MessagesStorage extends BaseController {
         getMessagesController().markMessageAsRead2(-j, i, tLRPC$InputChannel, i2, j2);
     }
 
-    public void lambda$loadPendingTasks$22(long j, int i, TLRPC$InputChannel tLRPC$InputChannel, int i2, long j2) {
-        getMessagesController().markMessageAsRead2(j, i, tLRPC$InputChannel, i2, j2);
+    public void lambda$loadPendingTasks$22(long j, int i, TLRPC$InputChannel tLRPC$InputChannel, int i2, long j2, int i3) {
+        getMessagesController().markMessageAsRead2(j, i, tLRPC$InputChannel, i2, j2, i3 == 23);
     }
 
     public void lambda$loadPendingTasks$23(Theme.OverrideWallpaperInfo overrideWallpaperInfo, boolean z, long j) {
@@ -1349,16 +1057,20 @@ public class MessagesStorage extends BaseController {
         getSecretChatHelper().declineSecretChat(i, z, j);
     }
 
+    public void lambda$loadPendingTasks$31(long j, long j2, int i) {
+        getMessagesController().lambda$checkDeletingTask$72(j, j2, i);
+    }
+
     public void saveChannelPts(final long j, final int i) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$saveChannelPts$32(i, j);
+                MessagesStorage.this.lambda$saveChannelPts$33(i, j);
             }
         });
     }
 
-    public void lambda$saveChannelPts$32(int i, long j) {
+    public void lambda$saveChannelPts$33(int i, long j) {
         try {
             SQLitePreparedStatement executeFast = this.database.executeFast("UPDATE dialogs SET pts = ? WHERE did = ?");
             executeFast.bindInteger(1, i);
@@ -1370,7 +1082,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$saveDiffParams$33(int i, int i2, int i3, int i4) {
+    public void lambda$saveDiffParams$34(int i, int i2, int i3, int i4) {
         try {
             if (this.lastSavedSeq == i && this.lastSavedPts == i2 && this.lastSavedDate == i3 && this.lastQtsValue == i4) {
                 return;
@@ -1395,12 +1107,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$saveDiffParams$33(i, i2, i3, i4);
+                MessagesStorage.this.lambda$saveDiffParams$34(i, i2, i3, i4);
             }
         });
     }
 
-    public void lambda$updateMutedDialogsFiltersCounters$34() {
+    public void lambda$updateMutedDialogsFiltersCounters$35() {
         resetAllUnreadCounters(true);
     }
 
@@ -1408,7 +1120,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMutedDialogsFiltersCounters$34();
+                MessagesStorage.this.lambda$updateMutedDialogsFiltersCounters$35();
             }
         });
     }
@@ -1417,12 +1129,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$setDialogFlags$35(j, j2);
+                MessagesStorage.this.lambda$setDialogFlags$36(j, j2);
             }
         });
     }
 
-    public void lambda$setDialogFlags$35(long j, long j2) {
+    public void lambda$setDialogFlags$36(long j, long j2) {
         try {
             SQLiteDatabase sQLiteDatabase = this.database;
             SQLiteCursor queryFinalized = sQLiteDatabase.queryFinalized("SELECT flags FROM dialog_settings WHERE did = " + j, new Object[0]);
@@ -1442,12 +1154,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putStoryPushMessage$36(storyNotification);
+                MessagesStorage.this.lambda$putStoryPushMessage$37(storyNotification);
             }
         });
     }
 
-    public void lambda$putStoryPushMessage$36(NotificationsController.StoryNotification storyNotification) {
+    public void lambda$putStoryPushMessage$37(NotificationsController.StoryNotification storyNotification) {
         try {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM story_pushes WHERE uid = " + storyNotification.dialogId).stepThis().dispose();
@@ -1482,12 +1194,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$deleteStoryPushMessage$37(j);
+                MessagesStorage.this.lambda$deleteStoryPushMessage$38(j);
             }
         });
     }
 
-    public void lambda$deleteStoryPushMessage$37(long j) {
+    public void lambda$deleteStoryPushMessage$38(long j) {
         try {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM story_pushes WHERE uid = " + j).stepThis().dispose();
@@ -1500,12 +1212,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$deleteAllStoryPushMessages$38();
+                MessagesStorage.this.lambda$deleteAllStoryPushMessages$39();
             }
         });
     }
 
-    public void lambda$deleteAllStoryPushMessages$38() {
+    public void lambda$deleteAllStoryPushMessages$39() {
         try {
             this.database.executeFast("DELETE FROM story_pushes").stepThis().dispose();
         } catch (Exception e) {
@@ -1517,12 +1229,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putPushMessage$39(messageObject);
+                MessagesStorage.this.lambda$putPushMessage$40(messageObject);
             }
         });
     }
 
-    public void lambda$putPushMessage$39(MessageObject messageObject) {
+    public void lambda$putPushMessage$40(MessageObject messageObject) {
         try {
             NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(messageObject.messageOwner.getObjectSize());
             messageObject.messageOwner.serializeToStream(nativeByteBuffer);
@@ -1568,13 +1280,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$clearLocalDatabase$40();
+                MessagesStorage.this.lambda$clearLocalDatabase$41();
             }
         });
     }
 
-    public void lambda$clearLocalDatabase$40() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$clearLocalDatabase$40():void");
+    public void lambda$clearLocalDatabase$41() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$clearLocalDatabase$41():void");
     }
 
     public void saveTopics(final long j, final List<TLRPC$TL_forumTopic> list, final boolean z, boolean z2) {
@@ -1582,7 +1294,7 @@ public class MessagesStorage extends BaseController {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$saveTopics$41(j, list, z);
+                    MessagesStorage.this.lambda$saveTopics$42(j, list, z);
                 }
             });
         } else {
@@ -1590,7 +1302,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$saveTopics$41(long j, List list, boolean z) {
+    public void lambda$saveTopics$42(long j, List list, boolean z) {
         saveTopicsInternal(j, list, z, true);
     }
 
@@ -1717,29 +1429,29 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateTopicData$42(i, tLRPC$TL_forumTopic, j);
+                MessagesStorage.this.lambda$updateTopicData$43(i, tLRPC$TL_forumTopic, j);
             }
         });
     }
 
-    public void lambda$updateTopicData$42(int r12, org.telegram.tgnet.TLRPC$TL_forumTopic r13, long r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateTopicData$42(int, org.telegram.tgnet.TLRPC$TL_forumTopic, long):void");
+    public void lambda$updateTopicData$43(int r12, org.telegram.tgnet.TLRPC$TL_forumTopic r13, long r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateTopicData$43(int, org.telegram.tgnet.TLRPC$TL_forumTopic, long):void");
     }
 
     public void loadTopics(final long j, final Consumer<ArrayList<TLRPC$TL_forumTopic>> consumer) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$loadTopics$44(j, consumer);
+                MessagesStorage.this.lambda$loadTopics$45(j, consumer);
             }
         });
     }
 
-    public void lambda$loadTopics$44(long r21, j$.util.function.Consumer r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadTopics$44(long, j$.util.function.Consumer):void");
+    public void lambda$loadTopics$45(long r21, j$.util.function.Consumer r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadTopics$45(long, j$.util.function.Consumer):void");
     }
 
-    public void lambda$loadTopics$43(ArrayList arrayList, ArrayList arrayList2) {
+    public void lambda$loadTopics$44(ArrayList arrayList, ArrayList arrayList2) {
         if (!arrayList.isEmpty()) {
             getMessagesController().putUsers(arrayList, true);
         }
@@ -1843,12 +1555,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$removeTopic$45(j, i);
+                MessagesStorage.this.lambda$removeTopic$46(j, i);
             }
         });
     }
 
-    public void lambda$removeTopic$45(long j, int i) {
+    public void lambda$removeTopic$46(long j, int i) {
         try {
             SQLiteDatabase sQLiteDatabase = this.database;
             Locale locale = Locale.US;
@@ -1863,12 +1575,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$removeTopics$46(arrayList, j);
+                MessagesStorage.this.lambda$removeTopics$47(arrayList, j);
             }
         });
     }
 
-    public void lambda$removeTopics$46(ArrayList arrayList, long j) {
+    public void lambda$removeTopics$47(ArrayList arrayList, long j) {
         try {
             String join = TextUtils.join(", ", arrayList);
             SQLiteDatabase sQLiteDatabase = this.database;
@@ -1884,12 +1596,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateTopicsWithReadMessages$47(hashMap);
+                MessagesStorage.this.lambda$updateTopicsWithReadMessages$48(hashMap);
             }
         });
     }
 
-    public void lambda$updateTopicsWithReadMessages$47(HashMap hashMap) {
+    public void lambda$updateTopicsWithReadMessages$48(HashMap hashMap) {
         for (TopicKey topicKey : hashMap.keySet()) {
             try {
                 this.database.executeFast(String.format(Locale.US, "UPDATE topics SET read_outbox = max((SELECT read_outbox FROM topics WHERE did = %d AND topic_id = %d), %d) WHERE did = %d AND topic_id = %d", Long.valueOf(topicKey.dialogId), Integer.valueOf(topicKey.topicId), Integer.valueOf(((Integer) hashMap.get(topicKey)).intValue()), Long.valueOf(topicKey.dialogId), Integer.valueOf(topicKey.topicId))).stepThis().dispose();
@@ -1903,12 +1615,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$setDialogTtl$48(i, j);
+                MessagesStorage.this.lambda$setDialogTtl$49(i, j);
             }
         });
     }
 
-    public void lambda$setDialogTtl$48(int i, long j) {
+    public void lambda$setDialogTtl$49(int i, long j) {
         try {
             this.database.executeFast(String.format(Locale.US, "UPDATE dialogs SET ttl_period = %d WHERE did = %d", Integer.valueOf(i), Long.valueOf(j))).stepThis().dispose();
         } catch (SQLiteException e) {
@@ -1929,12 +1641,12 @@ public class MessagesStorage extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$reset$49();
+                MessagesStorage.this.lambda$reset$50();
             }
         });
     }
 
-    public void lambda$reset$49() {
+    public void lambda$reset$50() {
         for (int i = 0; i < 2; i++) {
             getUserConfig().setDialogsLoadOffset(i, 0, 0, 0L, 0L, 0L, 0L);
             getUserConfig().setTotalDialogsCount(i, 0);
@@ -1951,24 +1663,24 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$fullReset$51();
+                MessagesStorage.this.lambda$fullReset$52();
             }
         });
     }
 
-    public void lambda$fullReset$51() {
+    public void lambda$fullReset$52() {
         cleanupInternal(true);
         clearLoadingDialogsOffsets();
         openDatabase(1);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$fullReset$50();
+                MessagesStorage.this.lambda$fullReset$51();
             }
         });
     }
 
-    public void lambda$fullReset$50() {
+    public void lambda$fullReset$51() {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDatabaseReset, new Object[0]);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didClearDatabase, new Object[0]);
     }
@@ -1986,12 +1698,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$readAllDialogs$53(i);
+                MessagesStorage.this.lambda$readAllDialogs$54(i);
             }
         });
     }
 
-    public void lambda$readAllDialogs$53(int i) {
+    public void lambda$readAllDialogs$54(int i) {
         SQLiteCursor queryFinalized;
         SQLiteCursor sQLiteCursor = null;
         try {
@@ -2064,7 +1776,7 @@ public class MessagesStorage extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesStorage.this.lambda$readAllDialogs$52(arrayList4, arrayList5, arrayList6, longSparseArray);
+                        MessagesStorage.this.lambda$readAllDialogs$53(arrayList4, arrayList5, arrayList6, longSparseArray);
                     }
                 });
             } catch (Throwable th2) {
@@ -2075,7 +1787,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$readAllDialogs$52(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, LongSparseArray longSparseArray) {
+    public void lambda$readAllDialogs$53(ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, LongSparseArray longSparseArray) {
         getMessagesController().putUsers(arrayList, true);
         getMessagesController().putChats(arrayList2, true);
         getMessagesController().putEncryptedChats(arrayList3, true);
@@ -2096,16 +1808,16 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$loadDialogFilters$55();
+                MessagesStorage.this.lambda$loadDialogFilters$56();
             }
         });
     }
 
-    public void lambda$loadDialogFilters$55() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadDialogFilters$55():void");
+    public void lambda$loadDialogFilters$56() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadDialogFilters$56():void");
     }
 
-    public static int lambda$loadDialogFilters$54(MessagesController.DialogFilter dialogFilter, MessagesController.DialogFilter dialogFilter2) {
+    public static int lambda$loadDialogFilters$55(MessagesController.DialogFilter dialogFilter, MessagesController.DialogFilter dialogFilter2) {
         int i = dialogFilter.order;
         int i2 = dialogFilter2.order;
         if (i > i2) {
@@ -2248,16 +1960,16 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$checkLoadedRemoteFilters$57(tLRPC$Vector, runnable);
+                MessagesStorage.this.lambda$checkLoadedRemoteFilters$58(tLRPC$Vector, runnable);
             }
         });
     }
 
-    public void lambda$checkLoadedRemoteFilters$57(org.telegram.tgnet.TLRPC$Vector r36, java.lang.Runnable r37) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$checkLoadedRemoteFilters$57(org.telegram.tgnet.TLRPC$Vector, java.lang.Runnable):void");
+    public void lambda$checkLoadedRemoteFilters$58(org.telegram.tgnet.TLRPC$Vector r36, java.lang.Runnable r37) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$checkLoadedRemoteFilters$58(org.telegram.tgnet.TLRPC$Vector, java.lang.Runnable):void");
     }
 
-    public static int lambda$checkLoadedRemoteFilters$56(LongSparseIntArray longSparseIntArray, Long l, Long l2) {
+    public static int lambda$checkLoadedRemoteFilters$57(LongSparseIntArray longSparseIntArray, Long l, Long l2) {
         int i = longSparseIntArray.get(l.longValue());
         int i2 = longSparseIntArray.get(l2.longValue());
         if (i > i2) {
@@ -2266,13 +1978,13 @@ public class MessagesStorage extends BaseController {
         return i < i2 ? -1 : 0;
     }
 
-    public void lambda$processLoadedFilterPeers$59(TLRPC$messages_Dialogs tLRPC$messages_Dialogs, TLRPC$messages_Dialogs tLRPC$messages_Dialogs2, ArrayList<TLRPC$User> arrayList, ArrayList<TLRPC$Chat> arrayList2, ArrayList<MessagesController.DialogFilter> arrayList3, SparseArray<MessagesController.DialogFilter> sparseArray, ArrayList<Integer> arrayList4, HashMap<Integer, HashSet<Long>> hashMap, HashSet<Integer> hashSet, Runnable runnable) {
+    public void lambda$processLoadedFilterPeers$60(TLRPC$messages_Dialogs tLRPC$messages_Dialogs, TLRPC$messages_Dialogs tLRPC$messages_Dialogs2, ArrayList<TLRPC$User> arrayList, ArrayList<TLRPC$Chat> arrayList2, ArrayList<MessagesController.DialogFilter> arrayList3, SparseArray<MessagesController.DialogFilter> sparseArray, ArrayList<Integer> arrayList4, HashMap<Integer, HashSet<Long>> hashMap, HashSet<Integer> hashSet, Runnable runnable) {
         putUsersAndChats(arrayList, arrayList2, true, false);
         int size = sparseArray.size();
         int i = 0;
         boolean z = false;
         while (i < size) {
-            lambda$deleteDialogFilter$60(sparseArray.valueAt(i));
+            lambda$deleteDialogFilter$61(sparseArray.valueAt(i));
             i++;
             z = true;
         }
@@ -2315,9 +2027,9 @@ public class MessagesStorage extends BaseController {
             Collections.sort(this.dialogFilters, new Comparator() {
                 @Override
                 public final int compare(Object obj, Object obj2) {
-                    int lambda$processLoadedFilterPeersInternal$58;
-                    lambda$processLoadedFilterPeersInternal$58 = MessagesStorage.lambda$processLoadedFilterPeersInternal$58((MessagesController.DialogFilter) obj, (MessagesController.DialogFilter) obj2);
-                    return lambda$processLoadedFilterPeersInternal$58;
+                    int lambda$processLoadedFilterPeersInternal$59;
+                    lambda$processLoadedFilterPeersInternal$59 = MessagesStorage.lambda$processLoadedFilterPeersInternal$59((MessagesController.DialogFilter) obj, (MessagesController.DialogFilter) obj2);
+                    return lambda$processLoadedFilterPeersInternal$59;
                 }
             });
             saveDialogFiltersOrderInternal();
@@ -2327,7 +2039,7 @@ public class MessagesStorage extends BaseController {
         getMessagesController().processLoadedDialogFilters(new ArrayList<>(this.dialogFilters), tLRPC$messages_Dialogs, tLRPC$messages_Dialogs2, arrayList, arrayList2, null, i4, runnable);
     }
 
-    public static int lambda$processLoadedFilterPeersInternal$58(MessagesController.DialogFilter dialogFilter, MessagesController.DialogFilter dialogFilter2) {
+    public static int lambda$processLoadedFilterPeersInternal$59(MessagesController.DialogFilter dialogFilter, MessagesController.DialogFilter dialogFilter2) {
         int i = dialogFilter.order;
         int i2 = dialogFilter2.order;
         if (i > i2) {
@@ -2340,12 +2052,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$processLoadedFilterPeers$59(tLRPC$messages_Dialogs, tLRPC$messages_Dialogs2, arrayList, arrayList2, arrayList3, sparseArray, arrayList4, hashMap, hashSet, runnable);
+                MessagesStorage.this.lambda$processLoadedFilterPeers$60(tLRPC$messages_Dialogs, tLRPC$messages_Dialogs2, arrayList, arrayList2, arrayList3, sparseArray, arrayList4, hashMap, hashSet, runnable);
             }
         });
     }
 
-    public void lambda$deleteDialogFilter$60(MessagesController.DialogFilter dialogFilter) {
+    public void lambda$deleteDialogFilter$61(MessagesController.DialogFilter dialogFilter) {
         try {
             this.dialogFilters.remove(dialogFilter);
             this.dialogFiltersMap.remove(dialogFilter.id);
@@ -2364,7 +2076,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$deleteDialogFilter$60(dialogFilter);
+                MessagesStorage.this.lambda$deleteDialogFilter$61(dialogFilter);
             }
         });
     }
@@ -2373,23 +2085,23 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$saveDialogFilter$62(dialogFilter, z, z2);
+                MessagesStorage.this.lambda$saveDialogFilter$63(dialogFilter, z, z2);
             }
         });
     }
 
-    public void lambda$saveDialogFilter$62(MessagesController.DialogFilter dialogFilter, boolean z, boolean z2) {
+    public void lambda$saveDialogFilter$63(MessagesController.DialogFilter dialogFilter, boolean z, boolean z2) {
         saveDialogFilterInternal(dialogFilter, z, z2);
         calcUnreadCounters(false);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$saveDialogFilter$61();
+                MessagesStorage.this.lambda$saveDialogFilter$62();
             }
         });
     }
 
-    public void lambda$saveDialogFilter$61() {
+    public void lambda$saveDialogFilter$62() {
         ArrayList<MessagesController.DialogFilter> arrayList = getMessagesController().dialogFilters;
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
@@ -2434,12 +2146,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$saveDialogFiltersOrder$63(arrayList);
+                MessagesStorage.this.lambda$saveDialogFiltersOrder$64(arrayList);
             }
         });
     }
 
-    public void lambda$saveDialogFiltersOrder$63(ArrayList arrayList) {
+    public void lambda$saveDialogFiltersOrder$64(ArrayList arrayList) {
         this.dialogFilters.clear();
         this.dialogFiltersMap.clear();
         this.dialogFilters.addAll(arrayList);
@@ -2482,16 +2194,16 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$loadUnreadMessages$65();
+                MessagesStorage.this.lambda$loadUnreadMessages$66();
             }
         });
     }
 
-    public void lambda$loadUnreadMessages$65() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadUnreadMessages$65():void");
+    public void lambda$loadUnreadMessages$66() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadUnreadMessages$66():void");
     }
 
-    public void lambda$loadUnreadMessages$64(LongSparseArray longSparseArray, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, HashMap hashMap) {
+    public void lambda$loadUnreadMessages$65(LongSparseArray longSparseArray, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5, HashMap hashMap) {
         getNotificationsController().processLoadedUnreadMessages(longSparseArray, arrayList, arrayList2, arrayList3, arrayList4, arrayList5, hashMap.values());
     }
 
@@ -2499,25 +2211,25 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putWallpapers$66(i, arrayList);
+                MessagesStorage.this.lambda$putWallpapers$67(i, arrayList);
             }
         });
     }
 
-    public void lambda$putWallpapers$66(int r11, java.util.ArrayList r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putWallpapers$66(int, java.util.ArrayList):void");
+    public void lambda$putWallpapers$67(int r11, java.util.ArrayList r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putWallpapers$67(int, java.util.ArrayList):void");
     }
 
     public void deleteWallpaper(final long j) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$deleteWallpaper$67(j);
+                MessagesStorage.this.lambda$deleteWallpaper$68(j);
             }
         });
     }
 
-    public void lambda$deleteWallpaper$67(long j) {
+    public void lambda$deleteWallpaper$68(long j) {
         try {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM wallpapers2 WHERE uid = " + j).stepThis().dispose();
@@ -2530,12 +2242,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getWallpapers$69();
+                MessagesStorage.this.lambda$getWallpapers$70();
             }
         });
     }
 
-    public void lambda$getWallpapers$69() {
+    public void lambda$getWallpapers$70() {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -2554,7 +2266,7 @@ public class MessagesStorage extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesStorage.lambda$getWallpapers$68(arrayList);
+                        MessagesStorage.lambda$getWallpapers$69(arrayList);
                     }
                 });
             } catch (Exception e) {
@@ -2572,7 +2284,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public static void lambda$getWallpapers$68(ArrayList arrayList) {
+    public static void lambda$getWallpapers$69(ArrayList arrayList) {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.wallpapersDidLoad, arrayList);
     }
 
@@ -2586,12 +2298,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$addRecentLocalFile$70(tLRPC$Document, str, str2);
+                MessagesStorage.this.lambda$addRecentLocalFile$71(tLRPC$Document, str, str2);
             }
         });
     }
 
-    public void lambda$addRecentLocalFile$70(TLRPC$Document tLRPC$Document, String str, String str2) {
+    public void lambda$addRecentLocalFile$71(TLRPC$Document tLRPC$Document, String str, String str2) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -2632,21 +2344,21 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$deleteUserChatHistory$73(j, j2);
+                MessagesStorage.this.lambda$deleteUserChatHistory$74(j, j2);
             }
         });
     }
 
-    public void lambda$deleteUserChatHistory$73(final long r18, long r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$deleteUserChatHistory$73(long, long):void");
+    public void lambda$deleteUserChatHistory$74(final long r18, long r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$deleteUserChatHistory$74(long, long):void");
     }
 
-    public void lambda$deleteUserChatHistory$71(ArrayList arrayList, long j, ArrayList arrayList2) {
+    public void lambda$deleteUserChatHistory$72(ArrayList arrayList, long j, ArrayList arrayList2) {
         getFileLoader().cancelLoadFiles(arrayList);
         getMessagesController().markDialogMessageAsDeleted(j, arrayList2);
     }
 
-    public void lambda$deleteUserChatHistory$72(ArrayList arrayList, long j) {
+    public void lambda$deleteUserChatHistory$73(ArrayList arrayList, long j) {
         NotificationCenter notificationCenter = getNotificationCenter();
         int i = NotificationCenter.messagesDeleted;
         Object[] objArr = new Object[3];
@@ -2742,20 +2454,20 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$deleteDialog$76(i, j);
+                MessagesStorage.this.lambda$deleteDialog$77(i, j);
             }
         });
     }
 
-    public void lambda$deleteDialog$76(int r26, long r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$deleteDialog$76(int, long):void");
+    public void lambda$deleteDialog$77(int r26, long r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$deleteDialog$77(int, long):void");
     }
 
-    public void lambda$deleteDialog$74(ArrayList arrayList) {
+    public void lambda$deleteDialog$75(ArrayList arrayList) {
         getFileLoader().cancelLoadFiles(arrayList);
     }
 
-    public void lambda$deleteDialog$75() {
+    public void lambda$deleteDialog$76() {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needReloadRecentDialogsSearch, new Object[0]);
     }
 
@@ -2763,12 +2475,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$onDeleteQueryComplete$77(j);
+                MessagesStorage.this.lambda$onDeleteQueryComplete$78(j);
             }
         });
     }
 
-    public void lambda$onDeleteQueryComplete$77(long j) {
+    public void lambda$onDeleteQueryComplete$78(long j) {
         try {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM media_counts_v2 WHERE uid = " + j).stepThis().dispose();
@@ -2781,12 +2493,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getDialogPhotos$79(i2, j, i, i3);
+                MessagesStorage.this.lambda$getDialogPhotos$80(i2, j, i, i3);
             }
         });
     }
 
-    public void lambda$getDialogPhotos$79(final int i, final long j, final int i2, final int i3) {
+    public void lambda$getDialogPhotos$80(final int i, final long j, final int i2, final int i3) {
         SQLiteCursor queryFinalized;
         SQLiteCursor sQLiteCursor;
         SQLiteCursor sQLiteCursor2 = null;
@@ -2824,7 +2536,7 @@ public class MessagesStorage extends BaseController {
             Utilities.stageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$getDialogPhotos$78(tLRPC$TL_photos_photos, arrayList, j, i2, i, i3);
+                    MessagesStorage.this.lambda$getDialogPhotos$79(tLRPC$TL_photos_photos, arrayList, j, i2, i, i3);
                 }
             });
         } catch (Exception e2) {
@@ -2844,7 +2556,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$getDialogPhotos$78(TLRPC$photos_Photos tLRPC$photos_Photos, ArrayList arrayList, long j, int i, int i2, int i3) {
+    public void lambda$getDialogPhotos$79(TLRPC$photos_Photos tLRPC$photos_Photos, ArrayList arrayList, long j, int i, int i2, int i3) {
         getMessagesController().processLoadedUserPhotos(tLRPC$photos_Photos, arrayList, j, i, i2, true, i3);
     }
 
@@ -2852,12 +2564,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$clearUserPhotos$80(j);
+                MessagesStorage.this.lambda$clearUserPhotos$81(j);
             }
         });
     }
 
-    public void lambda$clearUserPhotos$80(long j) {
+    public void lambda$clearUserPhotos$81(long j) {
         try {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM user_photos WHERE uid = " + j).stepThis().dispose();
@@ -2870,12 +2582,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$clearUserPhoto$81(j, j2);
+                MessagesStorage.this.lambda$clearUserPhoto$82(j, j2);
             }
         });
     }
 
-    public void lambda$clearUserPhoto$81(long j, long j2) {
+    public void lambda$clearUserPhoto$82(long j, long j2) {
         try {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM user_photos WHERE uid = " + j + " AND id = " + j2).stepThis().dispose();
@@ -2888,16 +2600,16 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$resetDialogs$83(tLRPC$messages_Dialogs, i6, i2, i3, i4, i5, tLRPC$Message, i, longSparseArray, longSparseArray2);
+                MessagesStorage.this.lambda$resetDialogs$84(tLRPC$messages_Dialogs, i6, i2, i3, i4, i5, tLRPC$Message, i, longSparseArray, longSparseArray2);
             }
         });
     }
 
-    public void lambda$resetDialogs$83(org.telegram.tgnet.TLRPC$messages_Dialogs r33, int r34, int r35, int r36, int r37, int r38, org.telegram.tgnet.TLRPC$Message r39, int r40, androidx.collection.LongSparseArray r41, androidx.collection.LongSparseArray r42) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$resetDialogs$83(org.telegram.tgnet.TLRPC$messages_Dialogs, int, int, int, int, int, org.telegram.tgnet.TLRPC$Message, int, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
+    public void lambda$resetDialogs$84(org.telegram.tgnet.TLRPC$messages_Dialogs r33, int r34, int r35, int r36, int r37, int r38, org.telegram.tgnet.TLRPC$Message r39, int r40, androidx.collection.LongSparseArray r41, androidx.collection.LongSparseArray r42) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$resetDialogs$84(org.telegram.tgnet.TLRPC$messages_Dialogs, int, int, int, int, int, org.telegram.tgnet.TLRPC$Message, int, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
     }
 
-    public static int lambda$resetDialogs$82(LongSparseIntArray longSparseIntArray, Long l, Long l2) {
+    public static int lambda$resetDialogs$83(LongSparseIntArray longSparseIntArray, Long l, Long l2) {
         int i = longSparseIntArray.get(l.longValue());
         int i2 = longSparseIntArray.get(l2.longValue());
         if (i < i2) {
@@ -2913,12 +2625,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putDialogPhotos$84(j, tLRPC$photos_Photos, arrayList);
+                MessagesStorage.this.lambda$putDialogPhotos$85(j, tLRPC$photos_Photos, arrayList);
             }
         });
     }
 
-    public void lambda$putDialogPhotos$84(long j, TLRPC$photos_Photos tLRPC$photos_Photos, ArrayList<TLRPC$Message> arrayList) {
+    public void lambda$putDialogPhotos$85(long j, TLRPC$photos_Photos tLRPC$photos_Photos, ArrayList<TLRPC$Message> arrayList) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -2968,12 +2680,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$addDialogPhoto$85(j, tLRPC$Photo);
+                MessagesStorage.this.lambda$addDialogPhoto$86(j, tLRPC$Photo);
             }
         });
     }
 
-    public void lambda$addDialogPhoto$85(long j, TLRPC$Photo tLRPC$Photo) {
+    public void lambda$addDialogPhoto$86(long j, TLRPC$Photo tLRPC$Photo) {
         SQLiteCursor queryFinalized;
         SQLiteCursor sQLiteCursor = null;
         try {
@@ -3004,7 +2716,7 @@ public class MessagesStorage extends BaseController {
             }
             queryFinalized.dispose();
             tLRPC$TL_photos_photos.photos.add(0, tLRPC$Photo);
-            lambda$putDialogPhotos$84(j, tLRPC$TL_photos_photos, arrayList);
+            lambda$putDialogPhotos$85(j, tLRPC$TL_photos_photos, arrayList);
         } catch (Exception e2) {
             e = e2;
             sQLiteCursor = queryFinalized;
@@ -3026,22 +2738,22 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$emptyMessagesMedia$88(arrayList, j);
+                MessagesStorage.this.lambda$emptyMessagesMedia$89(arrayList, j);
             }
         });
     }
 
-    public void lambda$emptyMessagesMedia$88(java.util.ArrayList r18, long r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$emptyMessagesMedia$88(java.util.ArrayList, long):void");
+    public void lambda$emptyMessagesMedia$89(java.util.ArrayList r18, long r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$emptyMessagesMedia$89(java.util.ArrayList, long):void");
     }
 
-    public void lambda$emptyMessagesMedia$86(ArrayList arrayList) {
+    public void lambda$emptyMessagesMedia$87(ArrayList arrayList) {
         for (int i = 0; i < arrayList.size(); i++) {
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateMessageMedia, arrayList.get(i));
         }
     }
 
-    public void lambda$emptyMessagesMedia$87(ArrayList arrayList) {
+    public void lambda$emptyMessagesMedia$88(ArrayList arrayList) {
         getFileLoader().cancelLoadFiles(arrayList);
     }
 
@@ -3049,12 +2761,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessagePollResults$89(j, tLRPC$Poll, tLRPC$PollResults);
+                MessagesStorage.this.lambda$updateMessagePollResults$90(j, tLRPC$Poll, tLRPC$PollResults);
             }
         });
     }
 
-    public void lambda$updateMessagePollResults$89(long j, TLRPC$Poll tLRPC$Poll, TLRPC$PollResults tLRPC$PollResults) {
+    public void lambda$updateMessagePollResults$90(long j, TLRPC$Poll tLRPC$Poll, TLRPC$PollResults tLRPC$PollResults) {
         LongSparseArray longSparseArray;
         SQLitePreparedStatement sQLitePreparedStatement;
         int i;
@@ -3223,12 +2935,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessageReactions$90(i, j, tLRPC$TL_messageReactions);
+                MessagesStorage.this.lambda$updateMessageReactions$91(i, j, tLRPC$TL_messageReactions);
             }
         });
     }
 
-    public void lambda$updateMessageReactions$90(int i, long j, TLRPC$TL_messageReactions tLRPC$TL_messageReactions) {
+    public void lambda$updateMessageReactions$91(int i, long j, TLRPC$TL_messageReactions tLRPC$TL_messageReactions) {
         SQLiteCursor queryFinalized;
         NativeByteBuffer byteBufferValue;
         SQLitePreparedStatement executeFast;
@@ -3312,12 +3024,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessageVoiceTranscriptionOpen$91(i, j, tLRPC$Message);
+                MessagesStorage.this.lambda$updateMessageVoiceTranscriptionOpen$92(i, j, tLRPC$Message);
             }
         });
     }
 
-    public void lambda$updateMessageVoiceTranscriptionOpen$91(int i, long j, TLRPC$Message tLRPC$Message) {
+    public void lambda$updateMessageVoiceTranscriptionOpen$92(int i, long j, TLRPC$Message tLRPC$Message) {
         SQLitePreparedStatement executeFast;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
@@ -3393,12 +3105,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessageVoiceTranscription$92(i, j, z, j2, str);
+                MessagesStorage.this.lambda$updateMessageVoiceTranscription$93(i, j, z, j2, str);
             }
         });
     }
 
-    public void lambda$updateMessageVoiceTranscription$92(int i, long j, boolean z, long j2, String str) {
+    public void lambda$updateMessageVoiceTranscription$93(int i, long j, boolean z, long j2, String str) {
         TLRPC$Message messageWithCustomParamsOnlyInternal;
         SQLitePreparedStatement executeFast;
         SQLitePreparedStatement sQLitePreparedStatement = null;
@@ -3465,12 +3177,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessageVoiceTranscription$93(i, j, tLRPC$Message, str);
+                MessagesStorage.this.lambda$updateMessageVoiceTranscription$94(i, j, tLRPC$Message, str);
             }
         });
     }
 
-    public void lambda$updateMessageVoiceTranscription$93(int i, long j, TLRPC$Message tLRPC$Message, String str) {
+    public void lambda$updateMessageVoiceTranscription$94(int i, long j, TLRPC$Message tLRPC$Message, String str) {
         SQLitePreparedStatement executeFast;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
@@ -3547,12 +3259,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessageCustomParams$94(tLRPC$Message, j);
+                MessagesStorage.this.lambda$updateMessageCustomParams$95(tLRPC$Message, j);
             }
         });
     }
 
-    public void lambda$updateMessageCustomParams$94(TLRPC$Message tLRPC$Message, long j) {
+    public void lambda$updateMessageCustomParams$95(TLRPC$Message tLRPC$Message, long j) {
         SQLitePreparedStatement executeFast;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
@@ -3674,25 +3386,25 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getNewTask$95(longSparseArray, longSparseArray2);
+                MessagesStorage.this.lambda$getNewTask$96(longSparseArray, longSparseArray2);
             }
         });
     }
 
-    public void lambda$getNewTask$95(androidx.collection.LongSparseArray r14, androidx.collection.LongSparseArray r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getNewTask$95(androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
+    public void lambda$getNewTask$96(androidx.collection.LongSparseArray r14, androidx.collection.LongSparseArray r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getNewTask$96(androidx.collection.LongSparseArray, androidx.collection.LongSparseArray):void");
     }
 
     public void markMentionMessageAsRead(final long j, final int i, final long j2) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$markMentionMessageAsRead$96(i, j, j2);
+                MessagesStorage.this.lambda$markMentionMessageAsRead$97(i, j, j2);
             }
         });
     }
 
-    public void lambda$markMentionMessageAsRead$96(int i, long j, long j2) {
+    public void lambda$markMentionMessageAsRead$97(int i, long j, long j2) {
         SQLiteCursor sQLiteCursor;
         SQLiteCursor sQLiteCursor2;
         SQLiteCursor sQLiteCursor3 = null;
@@ -3771,12 +3483,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$markMessageAsMention$97(i, j);
+                MessagesStorage.this.lambda$markMessageAsMention$98(i, j);
             }
         });
     }
 
-    public void lambda$markMessageAsMention$97(int i, long j) {
+    public void lambda$markMessageAsMention$98(int i, long j) {
         try {
             this.database.executeFast(String.format(Locale.US, "UPDATE messages_v2 SET mention = 1, read_state = read_state & ~2 WHERE mid = %d AND uid = %d", Integer.valueOf(i), Long.valueOf(j))).stepThis().dispose();
         } catch (Exception e) {
@@ -3788,12 +3500,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$resetMentionsCount$98(i, j, i2);
+                MessagesStorage.this.lambda$resetMentionsCount$99(i, j, i2);
             }
         });
     }
 
-    public void lambda$resetMentionsCount$98(int i, long j, int i2) {
+    public void lambda$resetMentionsCount$99(int i, long j, int i2) {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -3856,12 +3568,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$createTaskForMid$100(i2, i3, i4, i, z, j);
+                MessagesStorage.this.lambda$createTaskForMid$101(i2, i3, i4, i, z, j);
             }
         });
     }
 
-    public void lambda$createTaskForMid$100(int i, int i2, int i3, int i4, final boolean z, final long j) {
+    public void lambda$createTaskForMid$101(int i, int i2, int i3, int i4, final boolean z, final long j) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -3873,7 +3585,7 @@ public class MessagesStorage extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesStorage.this.lambda$createTaskForMid$99(z, j, arrayList);
+                        MessagesStorage.this.lambda$createTaskForMid$100(z, j, arrayList);
                     }
                 });
                 SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO enc_tasks_v4 VALUES(?, ?, ?, ?)");
@@ -3918,28 +3630,32 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$createTaskForMid$99(boolean z, long j, ArrayList arrayList) {
+    public void lambda$createTaskForMid$100(boolean z, long j, ArrayList arrayList) {
         if (!z) {
-            markMessagesContentAsRead(j, arrayList, 0);
+            markMessagesContentAsRead(j, arrayList, 0, 0);
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesReadContent, Long.valueOf(j), arrayList);
+    }
+
+    private void createTaskForSecretMedia(long r17, android.util.SparseArray<java.util.ArrayList<java.lang.Integer>> r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.createTaskForSecretMedia(long, android.util.SparseArray):void");
     }
 
     public void createTaskForSecretChat(final int i, final int i2, final int i3, final int i4, final ArrayList<Long> arrayList) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$createTaskForSecretChat$102(i, arrayList, i4, i2, i3);
+                MessagesStorage.this.lambda$createTaskForSecretChat$103(i, arrayList, i4, i2, i3);
             }
         });
     }
 
-    public void lambda$createTaskForSecretChat$102(int r18, java.util.ArrayList r19, int r20, int r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$createTaskForSecretChat$102(int, java.util.ArrayList, int, int, int):void");
+    public void lambda$createTaskForSecretChat$103(int r18, java.util.ArrayList r19, int r20, int r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$createTaskForSecretChat$103(int, java.util.ArrayList, int, int, int):void");
     }
 
-    public void lambda$createTaskForSecretChat$101(long j, ArrayList arrayList) {
-        markMessagesContentAsRead(j, arrayList, 0);
+    public void lambda$createTaskForSecretChat$102(long j, ArrayList arrayList) {
+        markMessagesContentAsRead(j, arrayList, 0, 0);
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesReadContent, Long.valueOf(j), arrayList);
     }
 
@@ -3947,7 +3663,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.updateFiltersReadCounter(org.telegram.messenger.support.LongSparseIntArray, org.telegram.messenger.support.LongSparseIntArray, boolean):void");
     }
 
-    public void lambda$updateFiltersReadCounter$103() {
+    public void lambda$updateFiltersReadCounter$104() {
         ArrayList<MessagesController.DialogFilter> arrayList = getMessagesController().dialogFilters;
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
@@ -3989,7 +3705,7 @@ public class MessagesStorage extends BaseController {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$updateDialogsWithReadMessages$104(longSparseIntArray, longSparseIntArray2, longSparseArray, longSparseIntArray3);
+                    MessagesStorage.this.lambda$updateDialogsWithReadMessages$105(longSparseIntArray, longSparseIntArray2, longSparseArray, longSparseIntArray3);
                 }
             });
         } else {
@@ -3997,7 +3713,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateDialogsWithReadMessages$104(LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, LongSparseArray longSparseArray, LongSparseIntArray longSparseIntArray3) {
+    public void lambda$updateDialogsWithReadMessages$105(LongSparseIntArray longSparseIntArray, LongSparseIntArray longSparseIntArray2, LongSparseArray longSparseArray, LongSparseIntArray longSparseIntArray3) {
         updateDialogsWithReadMessagesInternal(null, longSparseIntArray, longSparseIntArray2, longSparseArray, longSparseIntArray3);
     }
 
@@ -4008,12 +3724,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateChatParticipants$106(tLRPC$ChatParticipants);
+                MessagesStorage.this.lambda$updateChatParticipants$107(tLRPC$ChatParticipants);
             }
         });
     }
 
-    public void lambda$updateChatParticipants$106(TLRPC$ChatParticipants tLRPC$ChatParticipants) {
+    public void lambda$updateChatParticipants$107(TLRPC$ChatParticipants tLRPC$ChatParticipants) {
         SQLiteCursor queryFinalized;
         final TLRPC$ChatFull tLRPC$ChatFull;
         NativeByteBuffer byteBufferValue;
@@ -4044,7 +3760,7 @@ public class MessagesStorage extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesStorage.this.lambda$updateChatParticipants$105(tLRPC$ChatFull);
+                        MessagesStorage.this.lambda$updateChatParticipants$106(tLRPC$ChatFull);
                     }
                 });
                 SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
@@ -4078,7 +3794,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateChatParticipants$105(TLRPC$ChatFull tLRPC$ChatFull) {
+    public void lambda$updateChatParticipants$106(TLRPC$ChatFull tLRPC$ChatFull) {
         NotificationCenter notificationCenter = getNotificationCenter();
         int i = NotificationCenter.chatInfoDidLoad;
         Boolean bool = Boolean.FALSE;
@@ -4089,12 +3805,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$loadChannelAdmins$107(j);
+                MessagesStorage.this.lambda$loadChannelAdmins$108(j);
             }
         });
     }
 
-    public void lambda$loadChannelAdmins$107(long j) {
+    public void lambda$loadChannelAdmins$108(long j) {
         SQLiteCursor queryFinalized;
         SQLiteCursor sQLiteCursor = null;
         try {
@@ -4142,12 +3858,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putChannelAdmins$108(j, longSparseArray);
+                MessagesStorage.this.lambda$putChannelAdmins$109(j, longSparseArray);
             }
         });
     }
 
-    public void lambda$putChannelAdmins$108(long j, LongSparseArray longSparseArray) {
+    public void lambda$putChannelAdmins$109(long j, LongSparseArray longSparseArray) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -4210,12 +3926,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateChannelUsers$109(j, arrayList);
+                MessagesStorage.this.lambda$updateChannelUsers$110(j, arrayList);
             }
         });
     }
 
-    public void lambda$updateChannelUsers$109(long j, ArrayList arrayList) {
+    public void lambda$updateChannelUsers$110(long j, ArrayList arrayList) {
         SQLitePreparedStatement executeFast;
         long j2 = -j;
         SQLitePreparedStatement sQLitePreparedStatement = null;
@@ -4284,12 +4000,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$saveBotCache$110(tLObject, str);
+                MessagesStorage.this.lambda$saveBotCache$111(tLObject, str);
             }
         });
     }
 
-    public void lambda$saveBotCache$110(TLObject tLObject, String str) {
+    public void lambda$saveBotCache$111(TLObject tLObject, String str) {
         int currentTime;
         int i;
         SQLitePreparedStatement executeFast;
@@ -4359,13 +4075,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getBotCache$111(currentTime, str, requestDelegate);
+                MessagesStorage.this.lambda$getBotCache$112(currentTime, str, requestDelegate);
             }
         });
     }
 
-    public void lambda$getBotCache$111(int r5, java.lang.String r6, org.telegram.tgnet.RequestDelegate r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getBotCache$111(int, java.lang.String, org.telegram.tgnet.RequestDelegate):void");
+    public void lambda$getBotCache$112(int r5, java.lang.String r6, org.telegram.tgnet.RequestDelegate r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getBotCache$112(int, java.lang.String, org.telegram.tgnet.RequestDelegate):void");
     }
 
     public ArrayList<TLRPC$UserFull> loadUserInfos(HashSet<Long> hashSet) {
@@ -4397,38 +4113,38 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$loadUserInfo$112(tLRPC$User, z, i);
+                MessagesStorage.this.lambda$loadUserInfo$113(tLRPC$User, z, i);
             }
         });
     }
 
-    public void lambda$loadUserInfo$112(org.telegram.tgnet.TLRPC$User r20, boolean r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadUserInfo$112(org.telegram.tgnet.TLRPC$User, boolean, int):void");
+    public void lambda$loadUserInfo$113(org.telegram.tgnet.TLRPC$User r20, boolean r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$loadUserInfo$113(org.telegram.tgnet.TLRPC$User, boolean, int):void");
     }
 
     public void updateUserInfo(final TLRPC$UserFull tLRPC$UserFull, final boolean z) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateUserInfo$113(tLRPC$UserFull, z);
+                MessagesStorage.this.lambda$updateUserInfo$114(tLRPC$UserFull, z);
             }
         });
     }
 
-    public void lambda$updateUserInfo$113(org.telegram.tgnet.TLRPC$UserFull r10, boolean r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUserInfo$113(org.telegram.tgnet.TLRPC$UserFull, boolean):void");
+    public void lambda$updateUserInfo$114(org.telegram.tgnet.TLRPC$UserFull r10, boolean r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUserInfo$114(org.telegram.tgnet.TLRPC$UserFull, boolean):void");
     }
 
     public void saveChatInviter(final long j, final long j2) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$saveChatInviter$114(j2, j);
+                MessagesStorage.this.lambda$saveChatInviter$115(j2, j);
             }
         });
     }
 
-    public void lambda$saveChatInviter$114(long j, long j2) {
+    public void lambda$saveChatInviter$115(long j, long j2) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -4457,12 +4173,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$saveChatLinksCount$115(i, j);
+                MessagesStorage.this.lambda$saveChatLinksCount$116(i, j);
             }
         });
     }
 
-    public void lambda$saveChatLinksCount$115(int i, long j) {
+    public void lambda$saveChatLinksCount$116(int i, long j) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -4490,25 +4206,25 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateChatInfo$116(tLRPC$ChatFull, z);
+                MessagesStorage.this.lambda$updateChatInfo$117(tLRPC$ChatFull, z);
             }
         });
     }
 
-    public void lambda$updateChatInfo$116(org.telegram.tgnet.TLRPC$ChatFull r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateChatInfo$116(org.telegram.tgnet.TLRPC$ChatFull, boolean):void");
+    public void lambda$updateChatInfo$117(org.telegram.tgnet.TLRPC$ChatFull r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateChatInfo$117(org.telegram.tgnet.TLRPC$ChatFull, boolean):void");
     }
 
     public void updateChatOnlineCount(final long j, final int i) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateChatOnlineCount$117(i, j);
+                MessagesStorage.this.lambda$updateChatOnlineCount$118(i, j);
             }
         });
     }
 
-    public void lambda$updateChatOnlineCount$117(int i, long j) {
+    public void lambda$updateChatOnlineCount$118(int i, long j) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -4536,20 +4252,20 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updatePinnedMessages$120(z, hashMap, i2, j, arrayList, i, z2);
+                MessagesStorage.this.lambda$updatePinnedMessages$121(z, hashMap, i2, j, arrayList, i, z2);
             }
         });
     }
 
-    public void lambda$updatePinnedMessages$120(boolean r19, final java.util.HashMap r20, final int r21, final long r22, final java.util.ArrayList r24, int r25, boolean r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updatePinnedMessages$120(boolean, java.util.HashMap, int, long, java.util.ArrayList, int, boolean):void");
-    }
-
-    public void lambda$updatePinnedMessages$118(long j, ArrayList arrayList, HashMap hashMap, int i, int i2, boolean z) {
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(j), arrayList, Boolean.TRUE, 0, hashMap, Integer.valueOf(i), Integer.valueOf(i2), Boolean.valueOf(z));
+    public void lambda$updatePinnedMessages$121(boolean r19, final java.util.HashMap r20, final int r21, final long r22, final java.util.ArrayList r24, int r25, boolean r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updatePinnedMessages$121(boolean, java.util.HashMap, int, long, java.util.ArrayList, int, boolean):void");
     }
 
     public void lambda$updatePinnedMessages$119(long j, ArrayList arrayList, HashMap hashMap, int i, int i2, boolean z) {
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(j), arrayList, Boolean.TRUE, 0, hashMap, Integer.valueOf(i), Integer.valueOf(i2), Boolean.valueOf(z));
+    }
+
+    public void lambda$updatePinnedMessages$120(long j, ArrayList arrayList, HashMap hashMap, int i, int i2, boolean z) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didLoadPinnedMessages, Long.valueOf(j), arrayList, Boolean.FALSE, 0, hashMap, Integer.valueOf(i), Integer.valueOf(i2), Boolean.valueOf(z));
     }
 
@@ -4557,12 +4273,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateChatInfo$122(j, i, j2, j3, i2);
+                MessagesStorage.this.lambda$updateChatInfo$123(j, i, j2, j3, i2);
             }
         });
     }
 
-    public void lambda$updateChatInfo$122(long j, int i, long j2, long j3, int i2) {
+    public void lambda$updateChatInfo$123(long j, int i, long j2, long j3, int i2) {
         int i3;
         SQLiteCursor queryFinalized;
         final TLRPC$ChatFull tLRPC$ChatFull;
@@ -4640,7 +4356,7 @@ public class MessagesStorage extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesStorage.this.lambda$updateChatInfo$121(tLRPC$ChatFull);
+                        MessagesStorage.this.lambda$updateChatInfo$122(tLRPC$ChatFull);
                     }
                 });
                 SQLitePreparedStatement executeFast = this.database.executeFast("REPLACE INTO chat_settings_v2 VALUES(?, ?, ?, ?, ?, ?, ?)");
@@ -4674,7 +4390,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$updateChatInfo$121(TLRPC$ChatFull tLRPC$ChatFull) {
+    public void lambda$updateChatInfo$122(TLRPC$ChatFull tLRPC$ChatFull) {
         NotificationCenter notificationCenter = getNotificationCenter();
         int i = NotificationCenter.chatInfoDidLoad;
         Boolean bool = Boolean.FALSE;
@@ -4687,7 +4403,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$isMigratedChat$123(j, zArr, countDownLatch);
+                MessagesStorage.this.lambda$isMigratedChat$124(j, zArr, countDownLatch);
             }
         });
         try {
@@ -4698,7 +4414,7 @@ public class MessagesStorage extends BaseController {
         return zArr[0];
     }
 
-    public void lambda$isMigratedChat$123(long j, boolean[] zArr, CountDownLatch countDownLatch) {
+    public void lambda$isMigratedChat$124(long j, boolean[] zArr, CountDownLatch countDownLatch) {
         SQLiteCursor queryFinalized;
         TLRPC$ChatFull tLRPC$ChatFull;
         NativeByteBuffer byteBufferValue;
@@ -4749,7 +4465,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getMessage$124(j, j2, atomicReference, countDownLatch);
+                MessagesStorage.this.lambda$getMessage$125(j, j2, atomicReference, countDownLatch);
             }
         });
         try {
@@ -4760,7 +4476,7 @@ public class MessagesStorage extends BaseController {
         return (TLRPC$Message) atomicReference.get();
     }
 
-    public void lambda$getMessage$124(long j, long j2, AtomicReference atomicReference, CountDownLatch countDownLatch) {
+    public void lambda$getMessage$125(long j, long j2, AtomicReference atomicReference, CountDownLatch countDownLatch) {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -4797,7 +4513,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$hasInviteMeMessage$125(j, zArr, countDownLatch);
+                MessagesStorage.this.lambda$hasInviteMeMessage$126(j, zArr, countDownLatch);
             }
         });
         try {
@@ -4808,7 +4524,7 @@ public class MessagesStorage extends BaseController {
         return zArr[0];
     }
 
-    public void lambda$hasInviteMeMessage$125(long j, boolean[] zArr, CountDownLatch countDownLatch) {
+    public void lambda$hasInviteMeMessage$126(long j, boolean[] zArr, CountDownLatch countDownLatch) {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -4894,7 +4610,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$loadChatInfo$126(tLRPC$ChatFullArr, j, z, z2, z3, i, countDownLatch);
+                MessagesStorage.this.lambda$loadChatInfo$127(tLRPC$ChatFullArr, j, z, z2, z3, i, countDownLatch);
             }
         });
         if (countDownLatch != null) {
@@ -4906,7 +4622,7 @@ public class MessagesStorage extends BaseController {
         return tLRPC$ChatFullArr[0];
     }
 
-    public void lambda$loadChatInfo$126(TLRPC$ChatFull[] tLRPC$ChatFullArr, long j, boolean z, boolean z2, boolean z3, int i, CountDownLatch countDownLatch) {
+    public void lambda$loadChatInfo$127(TLRPC$ChatFull[] tLRPC$ChatFullArr, long j, boolean z, boolean z2, boolean z3, int i, CountDownLatch countDownLatch) {
         tLRPC$ChatFullArr[0] = loadChatInfoInternal(j, z, z2, z3, i);
         if (countDownLatch != null) {
             countDownLatch.countDown();
@@ -4922,13 +4638,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$processPendingRead$127(j, i, i3, i4, i2);
+                MessagesStorage.this.lambda$processPendingRead$128(j, i, i3, i4, i2);
             }
         });
     }
 
-    public void lambda$processPendingRead$127(long r19, int r21, int r22, int r23, int r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$processPendingRead$127(long, int, int, int, int):void");
+    public void lambda$processPendingRead$128(long r19, int r21, int r22, int r23, int r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$processPendingRead$128(long, int, int, int, int):void");
     }
 
     public void putContacts(ArrayList<TLRPC$TL_contact> arrayList, final boolean z) {
@@ -4937,14 +4653,14 @@ public class MessagesStorage extends BaseController {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$putContacts$128(z, arrayList2);
+                    MessagesStorage.this.lambda$putContacts$129(z, arrayList2);
                 }
             });
         }
     }
 
-    public void lambda$putContacts$128(boolean r8, java.util.ArrayList r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putContacts$128(boolean, java.util.ArrayList):void");
+    public void lambda$putContacts$129(boolean r8, java.util.ArrayList r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putContacts$129(boolean, java.util.ArrayList):void");
     }
 
     public void deleteContacts(final ArrayList<Long> arrayList) {
@@ -4954,12 +4670,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$deleteContacts$129(arrayList);
+                MessagesStorage.this.lambda$deleteContacts$130(arrayList);
             }
         });
     }
 
-    public void lambda$deleteContacts$129(ArrayList arrayList) {
+    public void lambda$deleteContacts$130(ArrayList arrayList) {
         try {
             String join = TextUtils.join(",", arrayList);
             SQLiteDatabase sQLiteDatabase = this.database;
@@ -4976,12 +4692,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$applyPhoneBookUpdates$130(str, str2);
+                MessagesStorage.this.lambda$applyPhoneBookUpdates$131(str, str2);
             }
         });
     }
 
-    public void lambda$applyPhoneBookUpdates$130(String str, String str2) {
+    public void lambda$applyPhoneBookUpdates$131(String str, String str2) {
         try {
             if (str.length() != 0) {
                 this.database.executeFast(String.format(Locale.US, "UPDATE user_phones_v7 SET deleted = 0 WHERE sphone IN(%s)", str)).stepThis().dispose();
@@ -5000,54 +4716,54 @@ public class MessagesStorage extends BaseController {
                 this.storageQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesStorage.this.lambda$putCachedPhoneBook$131(hashMap, z);
+                        MessagesStorage.this.lambda$putCachedPhoneBook$132(hashMap, z);
                     }
                 });
             }
         }
     }
 
-    public void lambda$putCachedPhoneBook$131(java.util.HashMap r12, boolean r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putCachedPhoneBook$131(java.util.HashMap, boolean):void");
+    public void lambda$putCachedPhoneBook$132(java.util.HashMap r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putCachedPhoneBook$132(java.util.HashMap, boolean):void");
     }
 
     public void getCachedPhoneBook(final boolean z) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getCachedPhoneBook$132(z);
+                MessagesStorage.this.lambda$getCachedPhoneBook$133(z);
             }
         });
     }
 
-    public void lambda$getCachedPhoneBook$132(boolean r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getCachedPhoneBook$132(boolean):void");
+    public void lambda$getCachedPhoneBook$133(boolean r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getCachedPhoneBook$133(boolean):void");
     }
 
     public void getContacts() {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getContacts$133();
+                MessagesStorage.this.lambda$getContacts$134();
             }
         });
     }
 
-    public void lambda$getContacts$133() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getContacts$133():void");
+    public void lambda$getContacts$134() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getContacts$134():void");
     }
 
     public void getUnsentMessages(final int i) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getUnsentMessages$134(i);
+                MessagesStorage.this.lambda$getUnsentMessages$135(i);
             }
         });
     }
 
-    public void lambda$getUnsentMessages$134(int r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getUnsentMessages$134(int):void");
+    public void lambda$getUnsentMessages$135(int r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getUnsentMessages$135(int):void");
     }
 
     public boolean checkMessageByRandomId(final long j) {
@@ -5056,7 +4772,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$checkMessageByRandomId$135(j, zArr, countDownLatch);
+                MessagesStorage.this.lambda$checkMessageByRandomId$136(j, zArr, countDownLatch);
             }
         });
         try {
@@ -5067,8 +4783,8 @@ public class MessagesStorage extends BaseController {
         return zArr[0];
     }
 
-    public void lambda$checkMessageByRandomId$135(long r7, boolean[] r9, java.util.concurrent.CountDownLatch r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$checkMessageByRandomId$135(long, boolean[], java.util.concurrent.CountDownLatch):void");
+    public void lambda$checkMessageByRandomId$136(long r7, boolean[] r9, java.util.concurrent.CountDownLatch r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$checkMessageByRandomId$136(long, boolean[], java.util.concurrent.CountDownLatch):void");
     }
 
     public boolean checkMessageId(final long j, final int i) {
@@ -5077,7 +4793,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$checkMessageId$136(j, i, zArr, countDownLatch);
+                MessagesStorage.this.lambda$checkMessageId$137(j, i, zArr, countDownLatch);
             }
         });
         try {
@@ -5088,20 +4804,20 @@ public class MessagesStorage extends BaseController {
         return zArr[0];
     }
 
-    public void lambda$checkMessageId$136(long r6, int r8, boolean[] r9, java.util.concurrent.CountDownLatch r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$checkMessageId$136(long, int, boolean[], java.util.concurrent.CountDownLatch):void");
+    public void lambda$checkMessageId$137(long r6, int r8, boolean[] r9, java.util.concurrent.CountDownLatch r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$checkMessageId$137(long, int, boolean[], java.util.concurrent.CountDownLatch):void");
     }
 
     public void getUnreadMention(final long j, final int i, final IntCallback intCallback) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getUnreadMention$138(i, j, intCallback);
+                MessagesStorage.this.lambda$getUnreadMention$139(i, j, intCallback);
             }
         });
     }
 
-    public void lambda$getUnreadMention$138(int i, long j, final IntCallback intCallback) {
+    public void lambda$getUnreadMention$139(int i, long j, final IntCallback intCallback) {
         SQLiteCursor queryFinalized;
         SQLiteCursor sQLiteCursor = null;
         try {
@@ -5139,12 +4855,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getMessagesCount$140(j, intCallback);
+                MessagesStorage.this.lambda$getMessagesCount$141(j, intCallback);
             }
         });
     }
 
-    public void lambda$getMessagesCount$140(long j, final IntCallback intCallback) {
+    public void lambda$getMessagesCount$141(long j, final IntCallback intCallback) {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -5169,7 +4885,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.getMessagesInternal(long, long, int, int, int, int, int, int, boolean, int, int, boolean, boolean, org.telegram.messenger.MessageLoaderLogger):java.lang.Runnable");
     }
 
-    public static int lambda$getMessagesInternal$141(TLRPC$Message tLRPC$Message, TLRPC$Message tLRPC$Message2) {
+    public static int lambda$getMessagesInternal$142(TLRPC$Message tLRPC$Message, TLRPC$Message tLRPC$Message2) {
         int i;
         int i2;
         int i3 = tLRPC$Message.id;
@@ -5193,7 +4909,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$getMessagesInternal$142(TLRPC$TL_messages_messages tLRPC$TL_messages_messages, int i, long j, long j2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, boolean z, boolean z2, int i11, int i12, boolean z3, int i13, boolean z4, boolean z5, MessageLoaderLogger messageLoaderLogger) {
+    public void lambda$getMessagesInternal$143(TLRPC$TL_messages_messages tLRPC$TL_messages_messages, int i, long j, long j2, int i2, int i3, int i4, int i5, int i6, int i7, int i8, int i9, int i10, boolean z, boolean z2, int i11, int i12, boolean z3, int i13, boolean z4, boolean z5, MessageLoaderLogger messageLoaderLogger) {
         getMessagesController().processLoadedMessages(tLRPC$TL_messages_messages, i, j, j2, i2, i3, i4, true, i5, i6, i7, i8, i9, i10, z, z2 ? 1 : 0, i11, i12, z3, i13, z4, z5, messageLoaderLogger);
     }
 
@@ -5235,12 +4951,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getMessages$144(messageLoaderLogger, j, j2, i, i2, i3, i4, i5, i6, z2, i7, i8, z3, z4);
+                MessagesStorage.this.lambda$getMessages$145(messageLoaderLogger, j, j2, i, i2, i3, i4, i5, i6, z2, i7, i8, z3, z4);
             }
         });
     }
 
-    public void lambda$getMessages$144(final MessageLoaderLogger messageLoaderLogger, long j, long j2, int i, int i2, int i3, int i4, int i5, int i6, boolean z, int i7, int i8, boolean z2, boolean z3) {
+    public void lambda$getMessages$145(final MessageLoaderLogger messageLoaderLogger, long j, long j2, int i, int i2, int i3, int i4, int i5, int i6, boolean z, int i7, int i8, boolean z2, boolean z3) {
         if (messageLoaderLogger != null) {
             messageLoaderLogger.logStorageQueuePost();
         }
@@ -5251,12 +4967,12 @@ public class MessagesStorage extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.lambda$getMessages$143(MessageLoaderLogger.this, messagesInternal);
+                MessagesStorage.lambda$getMessages$144(MessageLoaderLogger.this, messagesInternal);
             }
         });
     }
 
-    public static void lambda$getMessages$143(MessageLoaderLogger messageLoaderLogger, Runnable runnable) {
+    public static void lambda$getMessages$144(MessageLoaderLogger messageLoaderLogger, Runnable runnable) {
         if (messageLoaderLogger != null) {
             messageLoaderLogger.logStageQueuePost();
         }
@@ -5267,12 +4983,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$clearSentMedia$145();
+                MessagesStorage.this.lambda$clearSentMedia$146();
             }
         });
     }
 
-    public void lambda$clearSentMedia$145() {
+    public void lambda$clearSentMedia$146() {
         try {
             this.database.executeFast("DELETE FROM sent_files_v2 WHERE 1").stepThis().dispose();
         } catch (Exception e) {
@@ -5289,7 +5005,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getSentFile$146(str, i, objArr, countDownLatch);
+                MessagesStorage.this.lambda$getSentFile$147(str, i, objArr, countDownLatch);
             }
         });
         try {
@@ -5303,7 +5019,7 @@ public class MessagesStorage extends BaseController {
         return null;
     }
 
-    public void lambda$getSentFile$146(String str, int i, Object[] objArr, CountDownLatch countDownLatch) {
+    public void lambda$getSentFile$147(String str, int i, Object[] objArr, CountDownLatch countDownLatch) {
         NativeByteBuffer byteBufferValue;
         try {
             try {
@@ -5362,12 +5078,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putWidgetDialogs$147(i, arrayList);
+                MessagesStorage.this.lambda$putWidgetDialogs$148(i, arrayList);
             }
         });
     }
 
-    public void lambda$putWidgetDialogs$147(int i, ArrayList arrayList) {
+    public void lambda$putWidgetDialogs$148(int i, ArrayList arrayList) {
         try {
             this.database.beginTransaction();
             SQLiteDatabase sQLiteDatabase = this.database;
@@ -5401,12 +5117,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$clearWidgetDialogs$148(i);
+                MessagesStorage.this.lambda$clearWidgetDialogs$149(i);
             }
         });
     }
 
-    public void lambda$clearWidgetDialogs$148(int i) {
+    public void lambda$clearWidgetDialogs$149(int i) {
         try {
             SQLiteDatabase sQLiteDatabase = this.database;
             sQLiteDatabase.executeFast("DELETE FROM shortcut_widget WHERE id = " + i).stepThis().dispose();
@@ -5420,7 +5136,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getWidgetDialogIds$149(i, arrayList, arrayList2, arrayList3, z, i2, countDownLatch);
+                MessagesStorage.this.lambda$getWidgetDialogIds$150(i, arrayList, arrayList2, arrayList3, z, i2, countDownLatch);
             }
         });
         try {
@@ -5430,7 +5146,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$getWidgetDialogIds$149(int i, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i2, CountDownLatch countDownLatch) {
+    public void lambda$getWidgetDialogIds$150(int i, ArrayList arrayList, ArrayList arrayList2, ArrayList arrayList3, boolean z, int i2, CountDownLatch countDownLatch) {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -5524,7 +5240,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getWidgetDialogs$150(i, arrayList, i2, longSparseArray, longSparseArray2, arrayList3, arrayList2, countDownLatch);
+                MessagesStorage.this.lambda$getWidgetDialogs$151(i, arrayList, i2, longSparseArray, longSparseArray2, arrayList3, arrayList2, countDownLatch);
             }
         });
         try {
@@ -5534,7 +5250,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$getWidgetDialogs$150(int i, ArrayList arrayList, int i2, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, ArrayList arrayList2, ArrayList arrayList3, CountDownLatch countDownLatch) {
+    public void lambda$getWidgetDialogs$151(int i, ArrayList arrayList, int i2, LongSparseArray longSparseArray, LongSparseArray longSparseArray2, ArrayList arrayList2, ArrayList arrayList3, CountDownLatch countDownLatch) {
         SQLiteCursor queryFinalized;
         boolean z;
         SQLiteCursor sQLiteCursor = null;
@@ -5666,12 +5382,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putSentFile$151(str, tLObject, i, str2);
+                MessagesStorage.this.lambda$putSentFile$152(str, tLObject, i, str2);
             }
         });
     }
 
-    public void lambda$putSentFile$151(String str, TLObject tLObject, int i, String str2) {
+    public void lambda$putSentFile$152(String str, TLObject tLObject, int i, String str2) {
         TLRPC$MessageMedia tLRPC$MessageMedia;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
@@ -5728,12 +5444,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateEncryptedChatSeq$152(tLRPC$EncryptedChat, z);
+                MessagesStorage.this.lambda$updateEncryptedChatSeq$153(tLRPC$EncryptedChat, z);
             }
         });
     }
 
-    public void lambda$updateEncryptedChatSeq$152(TLRPC$EncryptedChat tLRPC$EncryptedChat, boolean z) {
+    public void lambda$updateEncryptedChatSeq$153(TLRPC$EncryptedChat tLRPC$EncryptedChat, boolean z) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -5771,12 +5487,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateEncryptedChatTTL$153(tLRPC$EncryptedChat);
+                MessagesStorage.this.lambda$updateEncryptedChatTTL$154(tLRPC$EncryptedChat);
             }
         });
     }
 
-    public void lambda$updateEncryptedChatTTL$153(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
+    public void lambda$updateEncryptedChatTTL$154(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -5806,12 +5522,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateEncryptedChatLayer$154(tLRPC$EncryptedChat);
+                MessagesStorage.this.lambda$updateEncryptedChatLayer$155(tLRPC$EncryptedChat);
             }
         });
     }
 
-    public void lambda$updateEncryptedChatLayer$154(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
+    public void lambda$updateEncryptedChatLayer$155(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -5841,12 +5557,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateEncryptedChat$155(tLRPC$EncryptedChat);
+                MessagesStorage.this.lambda$updateEncryptedChat$156(tLRPC$EncryptedChat);
             }
         });
     }
 
-    public void lambda$updateEncryptedChat$155(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
+    public void lambda$updateEncryptedChat$156(TLRPC$EncryptedChat tLRPC$EncryptedChat) {
         byte[] bArr;
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
@@ -5924,13 +5640,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$isDialogHasTopMessage$156(j, runnable);
+                MessagesStorage.this.lambda$isDialogHasTopMessage$157(j, runnable);
             }
         });
     }
 
-    public void lambda$isDialogHasTopMessage$156(long r8, java.lang.Runnable r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$isDialogHasTopMessage$156(long, java.lang.Runnable):void");
+    public void lambda$isDialogHasTopMessage$157(long r8, java.lang.Runnable r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$isDialogHasTopMessage$157(long, java.lang.Runnable):void");
     }
 
     public boolean hasAuthMessage(final int i) {
@@ -5939,7 +5655,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$hasAuthMessage$157(i, zArr, countDownLatch);
+                MessagesStorage.this.lambda$hasAuthMessage$158(i, zArr, countDownLatch);
             }
         });
         try {
@@ -5950,8 +5666,8 @@ public class MessagesStorage extends BaseController {
         return zArr[0];
     }
 
-    public void lambda$hasAuthMessage$157(int r7, boolean[] r8, java.util.concurrent.CountDownLatch r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$hasAuthMessage$157(int, boolean[], java.util.concurrent.CountDownLatch):void");
+    public void lambda$hasAuthMessage$158(int r7, boolean[] r8, java.util.concurrent.CountDownLatch r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$hasAuthMessage$158(int, boolean[], java.util.concurrent.CountDownLatch):void");
     }
 
     public void getEncryptedChat(final long j, final CountDownLatch countDownLatch, final ArrayList<TLObject> arrayList) {
@@ -5961,12 +5677,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getEncryptedChat$158(j, arrayList, countDownLatch);
+                MessagesStorage.this.lambda$getEncryptedChat$159(j, arrayList, countDownLatch);
             }
         });
     }
 
-    public void lambda$getEncryptedChat$158(long j, ArrayList arrayList, CountDownLatch countDownLatch) {
+    public void lambda$getEncryptedChat$159(long j, ArrayList arrayList, CountDownLatch countDownLatch) {
         try {
             try {
                 ArrayList<Long> arrayList2 = new ArrayList<>();
@@ -5995,13 +5711,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putEncryptedChat$159(tLRPC$EncryptedChat, tLRPC$User, tLRPC$Dialog);
+                MessagesStorage.this.lambda$putEncryptedChat$160(tLRPC$EncryptedChat, tLRPC$User, tLRPC$Dialog);
             }
         });
     }
 
-    public void lambda$putEncryptedChat$159(org.telegram.tgnet.TLRPC$EncryptedChat r17, org.telegram.tgnet.TLRPC$User r18, org.telegram.tgnet.TLRPC$Dialog r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putEncryptedChat$159(org.telegram.tgnet.TLRPC$EncryptedChat, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Dialog):void");
+    public void lambda$putEncryptedChat$160(org.telegram.tgnet.TLRPC$EncryptedChat r17, org.telegram.tgnet.TLRPC$User r18, org.telegram.tgnet.TLRPC$Dialog r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putEncryptedChat$160(org.telegram.tgnet.TLRPC$EncryptedChat, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Dialog):void");
     }
 
     private String formatUserSearchName(TLRPC$User tLRPC$User) {
@@ -6111,12 +5827,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateChatDefaultBannedRights$160(j, i, tLRPC$TL_chatBannedRights);
+                MessagesStorage.this.lambda$updateChatDefaultBannedRights$161(j, i, tLRPC$TL_chatBannedRights);
             }
         });
     }
 
-    public void lambda$updateChatDefaultBannedRights$160(long j, int i, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights) {
+    public void lambda$updateChatDefaultBannedRights$161(long j, int i, TLRPC$TL_chatBannedRights tLRPC$TL_chatBannedRights) {
         SQLiteCursor queryFinalized;
         TLRPC$Chat tLRPC$Chat;
         NativeByteBuffer byteBufferValue;
@@ -6363,7 +6079,7 @@ public class MessagesStorage extends BaseController {
         queryFinalized.dispose();
     }
 
-    public void lambda$putUsersAndChats$161(List<TLRPC$User> list, List<TLRPC$Chat> list2, boolean z) {
+    public void lambda$putUsersAndChats$162(List<TLRPC$User> list, List<TLRPC$Chat> list2, boolean z) {
         SQLiteDatabase sQLiteDatabase;
         try {
             if (z) {
@@ -6399,11 +6115,11 @@ public class MessagesStorage extends BaseController {
                 this.storageQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesStorage.this.lambda$putUsersAndChats$161(list, list2, z);
+                        MessagesStorage.this.lambda$putUsersAndChats$162(list, list2, z);
                     }
                 });
             } else {
-                lambda$putUsersAndChats$161(list, list2, z);
+                lambda$putUsersAndChats$162(list, list2, z);
             }
         }
     }
@@ -6412,12 +6128,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$removeFromDownloadQueue$162(z, i, j);
+                MessagesStorage.this.lambda$removeFromDownloadQueue$163(z, i, j);
             }
         });
     }
 
-    public void lambda$removeFromDownloadQueue$162(boolean z, int i, long j) {
+    public void lambda$removeFromDownloadQueue$163(boolean z, int i, long j) {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -6461,7 +6177,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.deleteFromDownloadQueue(java.util.ArrayList, boolean):void");
     }
 
-    public void lambda$deleteFromDownloadQueue$163(ArrayList arrayList) {
+    public void lambda$deleteFromDownloadQueue$164(ArrayList arrayList) {
         getDownloadController().cancelDownloading(arrayList);
     }
 
@@ -6469,12 +6185,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$clearDownloadQueue$164(i);
+                MessagesStorage.this.lambda$clearDownloadQueue$165(i);
             }
         });
     }
 
-    public void lambda$clearDownloadQueue$164(int i) {
+    public void lambda$clearDownloadQueue$165(int i) {
         try {
             if (i == 0) {
                 this.database.executeFast("DELETE FROM download_queue WHERE 1").stepThis().dispose();
@@ -6490,12 +6206,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getDownloadQueue$166(i);
+                MessagesStorage.this.lambda$getDownloadQueue$167(i);
             }
         });
     }
 
-    public void lambda$getDownloadQueue$166(final int i) {
+    public void lambda$getDownloadQueue$167(final int i) {
         int i2;
         SQLiteCursor sQLiteCursor = null;
         try {
@@ -6515,13 +6231,13 @@ public class MessagesStorage extends BaseController {
                             TLRPC$Document tLRPC$Document = TLdeserialize.document;
                             if (tLRPC$Document != null) {
                                 downloadObject.object = tLRPC$Document;
-                                downloadObject.secret = MessageObject.isVideoDocument(tLRPC$Document) && (i2 = TLdeserialize.ttl_seconds) > 0 && i2 <= 60;
+                                downloadObject.secret = MessageObject.isVideoDocument(tLRPC$Document) && (((i2 = TLdeserialize.ttl_seconds) > 0 && i2 <= 60) || i2 == Integer.MAX_VALUE);
                             } else {
                                 TLRPC$Photo tLRPC$Photo = TLdeserialize.photo;
                                 if (tLRPC$Photo != null) {
                                     downloadObject.object = tLRPC$Photo;
                                     int i3 = TLdeserialize.ttl_seconds;
-                                    downloadObject.secret = i3 > 0 && i3 <= 60;
+                                    downloadObject.secret = (i3 > 0 && i3 <= 60) || i3 == Integer.MAX_VALUE;
                                 }
                             }
                             downloadObject.forceCache = (TLdeserialize.flags & Integer.MIN_VALUE) != 0;
@@ -6549,18 +6265,18 @@ public class MessagesStorage extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesStorage.this.lambda$getDownloadQueue$165(i, arrayList);
+                        MessagesStorage.this.lambda$getDownloadQueue$166(i, arrayList);
                     }
                 });
-            } catch (Exception e2) {
-                e = e2;
+            } catch (Throwable th2) {
+                th = th2;
             }
-        } catch (Throwable th2) {
-            th = th2;
+        } catch (Exception e2) {
+            e = e2;
         }
     }
 
-    public void lambda$getDownloadQueue$165(int i, ArrayList arrayList) {
+    public void lambda$getDownloadQueue$166(int i, ArrayList arrayList) {
         getDownloadController().processDownloadObjects(i, arrayList);
     }
 
@@ -6588,16 +6304,16 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putWebPages$168(longSparseArray);
+                MessagesStorage.this.lambda$putWebPages$169(longSparseArray);
             }
         });
     }
 
-    public void lambda$putWebPages$168(androidx.collection.LongSparseArray r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putWebPages$168(androidx.collection.LongSparseArray):void");
+    public void lambda$putWebPages$169(androidx.collection.LongSparseArray r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putWebPages$169(androidx.collection.LongSparseArray):void");
     }
 
-    public void lambda$putWebPages$167(ArrayList arrayList) {
+    public void lambda$putWebPages$168(ArrayList arrayList) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didReceivedWebpages, arrayList);
     }
 
@@ -6605,16 +6321,16 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$overwriteChannel$170(j, i, tLRPC$TL_updates_channelDifferenceTooLong, runnable);
+                MessagesStorage.this.lambda$overwriteChannel$171(j, i, tLRPC$TL_updates_channelDifferenceTooLong, runnable);
             }
         });
     }
 
-    public void lambda$overwriteChannel$170(long r20, int r22, final org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong r23, java.lang.Runnable r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$overwriteChannel$170(long, int, org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong, java.lang.Runnable):void");
+    public void lambda$overwriteChannel$171(long r20, int r22, final org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong r23, java.lang.Runnable r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$overwriteChannel$171(long, int, org.telegram.tgnet.TLRPC$TL_updates_channelDifferenceTooLong, java.lang.Runnable):void");
     }
 
-    public void lambda$overwriteChannel$169(long j, TLRPC$TL_updates_channelDifferenceTooLong tLRPC$TL_updates_channelDifferenceTooLong) {
+    public void lambda$overwriteChannel$170(long j, TLRPC$TL_updates_channelDifferenceTooLong tLRPC$TL_updates_channelDifferenceTooLong) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.removeAllMessagesFromDialog, Long.valueOf(j), Boolean.TRUE, tLRPC$TL_updates_channelDifferenceTooLong);
     }
 
@@ -6625,20 +6341,20 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putChannelViews$171(longSparseArray, longSparseArray2, longSparseArray3, z);
+                MessagesStorage.this.lambda$putChannelViews$172(longSparseArray, longSparseArray2, longSparseArray3, z);
             }
         });
     }
 
-    public void lambda$putChannelViews$171(androidx.collection.LongSparseArray r23, androidx.collection.LongSparseArray r24, androidx.collection.LongSparseArray r25, boolean r26) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putChannelViews$171(androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, boolean):void");
+    public void lambda$putChannelViews$172(androidx.collection.LongSparseArray r23, androidx.collection.LongSparseArray r24, androidx.collection.LongSparseArray r25, boolean r26) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putChannelViews$172(androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, androidx.collection.LongSparseArray, boolean):void");
     }
 
-    public void lambda$updateRepliesMaxReadId$173(final long r21, final int r23, final int r24, int r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateRepliesMaxReadId$173(long, int, int, int):void");
+    public void lambda$updateRepliesMaxReadId$174(final long r21, final int r23, final int r24, int r25) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateRepliesMaxReadId$174(long, int, int, int):void");
     }
 
-    public void lambda$updateRepliesMaxReadIdInternal$172(long j, int i, int i2, int i3, int i4) {
+    public void lambda$updateRepliesMaxReadIdInternal$173(long j, int i, int i2, int i3, int i4) {
         getMessagesController().getTopicsController().updateMaxReadId(j, i, i2, i3, i4);
     }
 
@@ -6683,11 +6399,11 @@ public class MessagesStorage extends BaseController {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$updateRepliesMaxReadId$173(j, i, i2, i3);
+                    MessagesStorage.this.lambda$updateRepliesMaxReadId$174(j, i, i2, i3);
                 }
             });
         } else {
-            lambda$updateRepliesMaxReadId$173(j, i, i2, i3);
+            lambda$updateRepliesMaxReadId$174(j, i, i2, i3);
         }
     }
 
@@ -6695,13 +6411,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateRepliesCount$174(i, j, i3, arrayList, i2);
+                MessagesStorage.this.lambda$updateRepliesCount$175(i, j, i3, arrayList, i2);
             }
         });
     }
 
-    public void lambda$updateRepliesCount$174(int r16, long r17, int r19, java.util.ArrayList r20, int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateRepliesCount$174(int, long, int, java.util.ArrayList, int):void");
+    public void lambda$updateRepliesCount$175(int r16, long r17, int r19, java.util.ArrayList r20, int r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateRepliesCount$175(int, long, int, java.util.ArrayList, int):void");
     }
 
     private boolean isValidKeyboardToSave(TLRPC$Message tLRPC$Message) {
@@ -6713,12 +6429,12 @@ public class MessagesStorage extends BaseController {
         Utilities.stageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateMessageVerifyFlags$175(arrayList);
+                MessagesStorage.this.lambda$updateMessageVerifyFlags$176(arrayList);
             }
         });
     }
 
-    public void lambda$updateMessageVerifyFlags$175(ArrayList arrayList) {
+    public void lambda$updateMessageVerifyFlags$176(ArrayList arrayList) {
         SQLiteDatabase sQLiteDatabase;
         SQLiteDatabase sQLiteDatabase2;
         SQLitePreparedStatement executeFast;
@@ -6778,11 +6494,11 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$putMessages$179(java.util.ArrayList<org.telegram.tgnet.TLRPC$Message> r52, boolean r53, boolean r54, int r55, boolean r56, boolean r57, int r58) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$179(java.util.ArrayList, boolean, boolean, int, boolean, boolean, int):void");
+    public void lambda$putMessages$180(java.util.ArrayList<org.telegram.tgnet.TLRPC$Message> r52, boolean r53, boolean r54, int r55, boolean r56, boolean r57, int r58) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$180(java.util.ArrayList, boolean, boolean, int, boolean, boolean, int):void");
     }
 
-    public void lambda$putMessagesInternal$176(int i) {
+    public void lambda$putMessagesInternal$177(int i) {
         getDownloadController().newDownloadObjectsAvailable(i);
     }
 
@@ -6811,7 +6527,7 @@ public class MessagesStorage extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$createOrEditTopic$177(j, tLRPC$TL_forumTopic);
+                    MessagesStorage.this.lambda$createOrEditTopic$178(j, tLRPC$TL_forumTopic);
                 }
             });
         } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionTopicEdit) {
@@ -6837,17 +6553,17 @@ public class MessagesStorage extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$createOrEditTopic$178(j, tLRPC$TL_forumTopic, i3);
+                    MessagesStorage.this.lambda$createOrEditTopic$179(j, tLRPC$TL_forumTopic, i3);
                 }
             });
         }
     }
 
-    public void lambda$createOrEditTopic$177(long j, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+    public void lambda$createOrEditTopic$178(long j, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
         getMessagesController().getTopicsController().onTopicCreated(j, tLRPC$TL_forumTopic, false);
     }
 
-    public void lambda$createOrEditTopic$178(long j, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, int i) {
+    public void lambda$createOrEditTopic$179(long j, TLRPC$TL_forumTopic tLRPC$TL_forumTopic, int i) {
         getMessagesController().getTopicsController().updateTopicInUi(j, tLRPC$TL_forumTopic, i);
     }
 
@@ -6863,11 +6579,11 @@ public class MessagesStorage extends BaseController {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$putMessages$179(arrayList, z, z3, i, z4, z5, i2);
+                    MessagesStorage.this.lambda$putMessages$180(arrayList, z, z3, i, z4, z5, i2);
                 }
             });
         } else {
-            lambda$putMessages$179(arrayList, z, z3, i, z4, z5, i2);
+            lambda$putMessages$180(arrayList, z, z3, i, z4, z5, i2);
         }
     }
 
@@ -6875,12 +6591,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$markMessageAsSendError$180(tLRPC$Message, z);
+                MessagesStorage.this.lambda$markMessageAsSendError$181(tLRPC$Message, z);
             }
         });
     }
 
-    public void lambda$markMessageAsSendError$180(TLRPC$Message tLRPC$Message, boolean z) {
+    public void lambda$markMessageAsSendError$181(TLRPC$Message tLRPC$Message, boolean z) {
         try {
             long j = tLRPC$Message.id;
             if (z) {
@@ -6900,12 +6616,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$setMessageSeq$181(i, i2, i3);
+                MessagesStorage.this.lambda$setMessageSeq$182(i, i2, i3);
             }
         });
     }
 
-    public void lambda$setMessageSeq$181(int i, int i2, int i3) {
+    public void lambda$setMessageSeq$182(int i, int i2, int i3) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -6930,11 +6646,11 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public long[] lambda$updateMessageStateAndId$183(long r20, long r22, java.lang.Integer r24, int r25, int r26, int r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateMessageStateAndId$183(long, long, java.lang.Integer, int, int, int):long[]");
+    public long[] lambda$updateMessageStateAndId$184(long r20, long r22, java.lang.Integer r24, int r25, int r26, int r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateMessageStateAndId$184(long, long, java.lang.Integer, int, int, int):long[]");
     }
 
-    public void lambda$updateMessageStateAndIdInternal$182(TLRPC$TL_updates tLRPC$TL_updates) {
+    public void lambda$updateMessageStateAndIdInternal$183(TLRPC$TL_updates tLRPC$TL_updates) {
         getMessagesController().processUpdates(tLRPC$TL_updates, false);
     }
 
@@ -6943,15 +6659,15 @@ public class MessagesStorage extends BaseController {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$updateMessageStateAndId$183(j, j2, num, i, i2, i3);
+                    MessagesStorage.this.lambda$updateMessageStateAndId$184(j, j2, num, i, i2, i3);
                 }
             });
             return null;
         }
-        return lambda$updateMessageStateAndId$183(j, j2, num, i, i2, i3);
+        return lambda$updateMessageStateAndId$184(j, j2, num, i, i2, i3);
     }
 
-    public void lambda$updateUsers$184(ArrayList<TLRPC$User> arrayList, boolean z, boolean z2) {
+    public void lambda$updateUsers$185(ArrayList<TLRPC$User> arrayList, boolean z, boolean z2) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -7071,16 +6787,16 @@ public class MessagesStorage extends BaseController {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$updateUsers$184(arrayList, z, z2);
+                    MessagesStorage.this.lambda$updateUsers$185(arrayList, z, z2);
                 }
             });
         } else {
-            lambda$updateUsers$184(arrayList, z, z2);
+            lambda$updateUsers$185(arrayList, z, z2);
         }
     }
 
-    public void lambda$markMessagesAsRead$186(org.telegram.messenger.support.LongSparseIntArray r18, org.telegram.messenger.support.LongSparseIntArray r19, android.util.SparseIntArray r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessagesAsRead$186(org.telegram.messenger.support.LongSparseIntArray, org.telegram.messenger.support.LongSparseIntArray, android.util.SparseIntArray):void");
+    public void lambda$markMessagesAsRead$187(org.telegram.messenger.support.LongSparseIntArray r18, org.telegram.messenger.support.LongSparseIntArray r19, android.util.SparseIntArray r20) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessagesAsRead$187(org.telegram.messenger.support.LongSparseIntArray, org.telegram.messenger.support.LongSparseIntArray, android.util.SparseIntArray):void");
     }
 
     private void markMessagesContentAsReadInternal(long j, ArrayList<Integer> arrayList, int i) {
@@ -7132,20 +6848,20 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void markMessagesContentAsRead(final long j, final ArrayList<Integer> arrayList, final int i) {
+    public void markMessagesContentAsRead(final long j, final ArrayList<Integer> arrayList, final int i, final int i2) {
         if (isEmpty(arrayList)) {
             return;
         }
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$markMessagesContentAsRead$185(j, arrayList, i);
+                MessagesStorage.this.lambda$markMessagesContentAsRead$186(j, arrayList, i2, i);
             }
         });
     }
 
-    public void lambda$markMessagesContentAsRead$185(long r7, java.util.ArrayList r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessagesContentAsRead$185(long, java.util.ArrayList, int):void");
+    public void lambda$markMessagesContentAsRead$186(long r9, java.util.ArrayList r11, int r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessagesContentAsRead$186(long, java.util.ArrayList, int, int):void");
     }
 
     public void markMessagesAsRead(final LongSparseIntArray longSparseIntArray, final LongSparseIntArray longSparseIntArray2, final SparseIntArray sparseIntArray, boolean z) {
@@ -7153,11 +6869,11 @@ public class MessagesStorage extends BaseController {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$markMessagesAsRead$186(longSparseIntArray, longSparseIntArray2, sparseIntArray);
+                    MessagesStorage.this.lambda$markMessagesAsRead$187(longSparseIntArray, longSparseIntArray2, sparseIntArray);
                 }
             });
         } else {
-            lambda$markMessagesAsRead$186(longSparseIntArray, longSparseIntArray2, sparseIntArray);
+            lambda$markMessagesAsRead$187(longSparseIntArray, longSparseIntArray2, sparseIntArray);
         }
     }
 
@@ -7168,12 +6884,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$markMessagesAsDeletedByRandoms$188(arrayList);
+                MessagesStorage.this.lambda$markMessagesAsDeletedByRandoms$189(arrayList);
             }
         });
     }
 
-    public void lambda$markMessagesAsDeletedByRandoms$188(ArrayList arrayList) {
+    public void lambda$markMessagesAsDeletedByRandoms$189(ArrayList arrayList) {
         SQLiteCursor queryFinalized;
         SQLiteCursor sQLiteCursor = null;
         try {
@@ -7207,12 +6923,12 @@ public class MessagesStorage extends BaseController {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesStorage.this.lambda$markMessagesAsDeletedByRandoms$187(arrayList3);
+                        MessagesStorage.this.lambda$markMessagesAsDeletedByRandoms$188(arrayList3);
                     }
                 });
                 updateDialogsWithReadMessagesInternal(arrayList3, null, null, null, null);
-                lambda$markMessagesAsDeleted$192(keyAt, arrayList3, true, false);
-                lambda$updateDialogsWithDeletedMessages$191(keyAt, 0L, arrayList3, null);
+                lambda$markMessagesAsDeleted$193(keyAt, arrayList3, true, false);
+                lambda$updateDialogsWithDeletedMessages$192(keyAt, 0L, arrayList3, null);
             }
         } catch (Exception e2) {
             e = e2;
@@ -7231,7 +6947,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$markMessagesAsDeletedByRandoms$187(ArrayList arrayList) {
+    public void lambda$markMessagesAsDeletedByRandoms$188(ArrayList arrayList) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messagesDeleted, arrayList, 0L, Boolean.FALSE);
     }
 
@@ -7261,7 +6977,7 @@ public class MessagesStorage extends BaseController {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$broadcastScheduledMessagesChange$189(l, intValue);
+                    MessagesStorage.this.lambda$broadcastScheduledMessagesChange$190(l, intValue);
                 }
             });
         } catch (Exception e2) {
@@ -7281,20 +6997,20 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$broadcastScheduledMessagesChange$189(Long l, int i) {
+    public void lambda$broadcastScheduledMessagesChange$190(Long l, int i) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.scheduledMessagesUpdated, l, Integer.valueOf(i));
     }
 
-    public java.util.ArrayList<java.lang.Long> lambda$markMessagesAsDeleted$192(long r39, java.util.ArrayList<java.lang.Integer> r41, boolean r42, boolean r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessagesAsDeleted$192(long, java.util.ArrayList, boolean, boolean):java.util.ArrayList");
+    public java.util.ArrayList<java.lang.Long> lambda$markMessagesAsDeleted$193(long r39, java.util.ArrayList<java.lang.Integer> r41, boolean r42, boolean r43) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessagesAsDeleted$193(long, java.util.ArrayList, boolean, boolean):java.util.ArrayList");
     }
 
-    public void lambda$markMessagesAsDeletedInternal$190(ArrayList arrayList) {
+    public void lambda$markMessagesAsDeletedInternal$191(ArrayList arrayList) {
         getFileLoader().cancelLoadFiles(arrayList);
     }
 
-    public void lambda$updateDialogsWithDeletedMessages$191(long r24, long r26, java.util.ArrayList<java.lang.Integer> r28, java.util.ArrayList<java.lang.Long> r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogsWithDeletedMessages$191(long, long, java.util.ArrayList, java.util.ArrayList):void");
+    public void lambda$updateDialogsWithDeletedMessages$192(long r24, long r26, java.util.ArrayList<java.lang.Integer> r28, java.util.ArrayList<java.lang.Long> r29) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogsWithDeletedMessages$192(long, long, java.util.ArrayList, java.util.ArrayList):void");
     }
 
     public void updateDialogsWithDeletedMessages(final long j, final long j2, final ArrayList<Integer> arrayList, final ArrayList<Long> arrayList2, boolean z) {
@@ -7302,11 +7018,11 @@ public class MessagesStorage extends BaseController {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$updateDialogsWithDeletedMessages$191(j, j2, arrayList, arrayList2);
+                    MessagesStorage.this.lambda$updateDialogsWithDeletedMessages$192(j, j2, arrayList, arrayList2);
                 }
             });
         } else {
-            lambda$updateDialogsWithDeletedMessages$191(j, j2, arrayList, arrayList2);
+            lambda$updateDialogsWithDeletedMessages$192(j, j2, arrayList, arrayList2);
         }
     }
 
@@ -7318,19 +7034,19 @@ public class MessagesStorage extends BaseController {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$markMessagesAsDeleted$192(j, arrayList, z2, z3);
+                    MessagesStorage.this.lambda$markMessagesAsDeleted$193(j, arrayList, z2, z3);
                 }
             });
             return null;
         }
-        return lambda$markMessagesAsDeleted$192(j, arrayList, z2, z3);
+        return lambda$markMessagesAsDeleted$193(j, arrayList, z2, z3);
     }
 
-    public java.util.ArrayList<java.lang.Long> lambda$markMessagesAsDeleted$194(long r24, int r26, boolean r27) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessagesAsDeleted$194(long, int, boolean):java.util.ArrayList");
+    public java.util.ArrayList<java.lang.Long> lambda$markMessagesAsDeleted$195(long r24, int r26, boolean r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessagesAsDeleted$195(long, int, boolean):java.util.ArrayList");
     }
 
-    public void lambda$markMessagesAsDeletedInternal$193(ArrayList arrayList) {
+    public void lambda$markMessagesAsDeletedInternal$194(ArrayList arrayList) {
         getFileLoader().cancelLoadFiles(arrayList);
     }
 
@@ -7339,12 +7055,12 @@ public class MessagesStorage extends BaseController {
             this.storageQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$markMessagesAsDeleted$194(j, i, z2);
+                    MessagesStorage.this.lambda$markMessagesAsDeleted$195(j, i, z2);
                 }
             });
             return null;
         }
-        return lambda$markMessagesAsDeleted$194(j, i, z2);
+        return lambda$markMessagesAsDeleted$195(j, i, z2);
     }
 
     private void fixUnsupportedMedia(TLRPC$Message tLRPC$Message) {
@@ -7354,12 +7070,12 @@ public class MessagesStorage extends BaseController {
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported_old) {
             if (tLRPC$MessageMedia.bytes.length == 0) {
-                tLRPC$MessageMedia.bytes = Utilities.intToBytes(161);
+                tLRPC$MessageMedia.bytes = Utilities.intToBytes(163);
             }
         } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported) {
             TLRPC$TL_messageMediaUnsupported_old tLRPC$TL_messageMediaUnsupported_old = new TLRPC$TL_messageMediaUnsupported_old();
             tLRPC$Message.media = tLRPC$TL_messageMediaUnsupported_old;
-            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(161);
+            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(163);
             tLRPC$Message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
         }
     }
@@ -7542,16 +7258,16 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$replaceMessageIfExists$196(tLRPC$Message, z, arrayList, arrayList2);
+                MessagesStorage.this.lambda$replaceMessageIfExists$197(tLRPC$Message, z, arrayList, arrayList2);
             }
         });
     }
 
-    public void lambda$replaceMessageIfExists$196(org.telegram.tgnet.TLRPC$Message r20, boolean r21, java.util.ArrayList r22, java.util.ArrayList r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$replaceMessageIfExists$196(org.telegram.tgnet.TLRPC$Message, boolean, java.util.ArrayList, java.util.ArrayList):void");
+    public void lambda$replaceMessageIfExists$197(org.telegram.tgnet.TLRPC$Message r20, boolean r21, java.util.ArrayList r22, java.util.ArrayList r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$replaceMessageIfExists$197(org.telegram.tgnet.TLRPC$Message, boolean, java.util.ArrayList, java.util.ArrayList):void");
     }
 
-    public void lambda$replaceMessageIfExists$195(MessageObject messageObject, ArrayList arrayList) {
+    public void lambda$replaceMessageIfExists$196(MessageObject messageObject, ArrayList arrayList) {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.replaceMessagesObjects, Long.valueOf(messageObject.getDialogId()), arrayList);
     }
 
@@ -7559,16 +7275,16 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putMessages$198(z2, j, tLRPC$messages_Messages, i3, i, i2, z);
+                MessagesStorage.this.lambda$putMessages$199(z2, j, tLRPC$messages_Messages, i3, i, i2, z);
             }
         });
     }
 
-    public void lambda$putMessages$198(boolean r45, long r46, org.telegram.tgnet.TLRPC$messages_Messages r48, int r49, int r50, int r51, boolean r52) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$198(boolean, long, org.telegram.tgnet.TLRPC$messages_Messages, int, int, int, boolean):void");
+    public void lambda$putMessages$199(boolean r45, long r46, org.telegram.tgnet.TLRPC$messages_Messages r48, int r49, int r50, int r51, boolean r52) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$199(boolean, long, org.telegram.tgnet.TLRPC$messages_Messages, int, int, int, boolean):void");
     }
 
-    public void lambda$putMessages$197(ArrayList arrayList) {
+    public void lambda$putMessages$198(ArrayList arrayList) {
         getFileLoader().cancelLoadFiles(arrayList);
     }
 
@@ -7778,16 +7494,16 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getDialogs$200(i, i2, i3, jArr2);
+                MessagesStorage.this.lambda$getDialogs$201(i, i2, i3, jArr2);
             }
         });
     }
 
-    public void lambda$getDialogs$200(int r34, int r35, int r36, long[] r37) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getDialogs$200(int, int, int, long[]):void");
+    public void lambda$getDialogs$201(int r34, int r35, int r36, long[] r37) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getDialogs$201(int, int, int, long[]):void");
     }
 
-    public void lambda$getDialogs$199(LongSparseArray longSparseArray) {
+    public void lambda$getDialogs$200(LongSparseArray longSparseArray) {
         MediaDataController mediaDataController = getMediaDataController();
         mediaDataController.clearDraftsFolderIds();
         if (longSparseArray != null) {
@@ -7838,13 +7554,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateDialogData$201(tLRPC$Dialog);
+                MessagesStorage.this.lambda$updateDialogData$202(tLRPC$Dialog);
             }
         });
     }
 
-    public void lambda$updateDialogData$201(org.telegram.tgnet.TLRPC$Dialog r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogData$201(org.telegram.tgnet.TLRPC$Dialog):void");
+    public void lambda$updateDialogData$202(org.telegram.tgnet.TLRPC$Dialog r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogData$202(org.telegram.tgnet.TLRPC$Dialog):void");
     }
 
     private void putDialogsInternal(org.telegram.tgnet.TLRPC$messages_Dialogs r32, int r33) {
@@ -7855,12 +7571,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getDialogFolderId$203(j, intCallback);
+                MessagesStorage.this.lambda$getDialogFolderId$204(j, intCallback);
             }
         });
     }
 
-    public void lambda$getDialogFolderId$203(long j, final IntCallback intCallback) {
+    public void lambda$getDialogFolderId$204(long j, final IntCallback intCallback) {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -7900,12 +7616,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$setDialogsFolderId$204(arrayList, arrayList2, i, j);
+                MessagesStorage.this.lambda$setDialogsFolderId$205(arrayList, arrayList2, i, j);
             }
         });
     }
 
-    public void lambda$setDialogsFolderId$204(ArrayList arrayList, ArrayList arrayList2, int i, long j) {
+    public void lambda$setDialogsFolderId$205(ArrayList arrayList, ArrayList arrayList2, int i, long j) {
         SQLitePreparedStatement executeFast;
         boolean z;
         SQLitePreparedStatement sQLitePreparedStatement = null;
@@ -7964,7 +7680,7 @@ public class MessagesStorage extends BaseController {
             executeFast.dispose();
             this.database.commitTransaction();
             if (!z) {
-                lambda$checkIfFolderEmpty$206(1);
+                lambda$checkIfFolderEmpty$207(1);
             }
             resetAllUnreadCounters(false);
             SQLiteDatabase sQLiteDatabase = this.database;
@@ -7996,7 +7712,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$checkIfFolderEmpty$206(final int i) {
+    public void lambda$checkIfFolderEmpty$207(final int i) {
         SQLiteCursor sQLiteCursor = null;
         try {
             try {
@@ -8016,7 +7732,7 @@ public class MessagesStorage extends BaseController {
                     AndroidUtilities.runOnUIThread(new Runnable() {
                         @Override
                         public final void run() {
-                            MessagesStorage.this.lambda$checkIfFolderEmptyInternal$205(i);
+                            MessagesStorage.this.lambda$checkIfFolderEmptyInternal$206(i);
                         }
                     });
                     SQLiteDatabase sQLiteDatabase = this.database;
@@ -8037,7 +7753,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$checkIfFolderEmptyInternal$205(int i) {
+    public void lambda$checkIfFolderEmptyInternal$206(int i) {
         getMessagesController().onFolderEmpty(i);
     }
 
@@ -8045,7 +7761,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$checkIfFolderEmpty$206(i);
+                MessagesStorage.this.lambda$checkIfFolderEmpty$207(i);
             }
         });
     }
@@ -8054,26 +7770,26 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$unpinAllDialogsExceptNew$207(arrayList, i);
+                MessagesStorage.this.lambda$unpinAllDialogsExceptNew$208(arrayList, i);
             }
         });
     }
 
-    public void lambda$unpinAllDialogsExceptNew$207(java.util.ArrayList r10, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$unpinAllDialogsExceptNew$207(java.util.ArrayList, int):void");
+    public void lambda$unpinAllDialogsExceptNew$208(java.util.ArrayList r10, int r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$unpinAllDialogsExceptNew$208(java.util.ArrayList, int):void");
     }
 
     public void setDialogUnread(final long j, final boolean z) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$setDialogUnread$208(j, z);
+                MessagesStorage.this.lambda$setDialogUnread$209(j, z);
             }
         });
     }
 
-    public void lambda$setDialogUnread$208(long r6, boolean r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$setDialogUnread$208(long, boolean):void");
+    public void lambda$setDialogUnread$209(long r6, boolean r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$setDialogUnread$209(long, boolean):void");
     }
 
     public void resetAllUnreadCounters(boolean z) {
@@ -8092,12 +7808,12 @@ public class MessagesStorage extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$resetAllUnreadCounters$209();
+                MessagesStorage.this.lambda$resetAllUnreadCounters$210();
             }
         });
     }
 
-    public void lambda$resetAllUnreadCounters$209() {
+    public void lambda$resetAllUnreadCounters$210() {
         ArrayList<MessagesController.DialogFilter> arrayList = getMessagesController().dialogFilters;
         int size = arrayList.size();
         for (int i = 0; i < size; i++) {
@@ -8112,12 +7828,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$setDialogPinned$210(i, j);
+                MessagesStorage.this.lambda$setDialogPinned$211(i, j);
             }
         });
     }
 
-    public void lambda$setDialogPinned$210(int i, long j) {
+    public void lambda$setDialogPinned$211(int i, long j) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -8144,12 +7860,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$setDialogsPinned$211(arrayList, arrayList2);
+                MessagesStorage.this.lambda$setDialogsPinned$212(arrayList, arrayList2);
             }
         });
     }
 
-    public void lambda$setDialogsPinned$211(ArrayList arrayList, ArrayList arrayList2) {
+    public void lambda$setDialogsPinned$212(ArrayList arrayList, ArrayList arrayList2) {
         SQLitePreparedStatement sQLitePreparedStatement = null;
         try {
             try {
@@ -8183,12 +7899,12 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$putDialogs$212(tLRPC$messages_Dialogs, i);
+                MessagesStorage.this.lambda$putDialogs$213(tLRPC$messages_Dialogs, i);
             }
         });
     }
 
-    public void lambda$putDialogs$212(TLRPC$messages_Dialogs tLRPC$messages_Dialogs, int i) {
+    public void lambda$putDialogs$213(TLRPC$messages_Dialogs tLRPC$messages_Dialogs, int i) {
         putDialogsInternal(tLRPC$messages_Dialogs, i);
         try {
             loadUnreadMessages();
@@ -8201,16 +7917,16 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getDialogMaxMessageId$214(j, intCallback);
+                MessagesStorage.this.lambda$getDialogMaxMessageId$215(j, intCallback);
             }
         });
     }
 
-    public void lambda$getDialogMaxMessageId$214(long r6, final org.telegram.messenger.MessagesStorage.IntCallback r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getDialogMaxMessageId$214(long, org.telegram.messenger.MessagesStorage$IntCallback):void");
+    public void lambda$getDialogMaxMessageId$215(long r6, final org.telegram.messenger.MessagesStorage.IntCallback r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getDialogMaxMessageId$215(long, org.telegram.messenger.MessagesStorage$IntCallback):void");
     }
 
-    public static void lambda$getDialogMaxMessageId$213(IntCallback intCallback, int[] iArr) {
+    public static void lambda$getDialogMaxMessageId$214(IntCallback intCallback, int[] iArr) {
         intCallback.run(iArr[0]);
     }
 
@@ -8220,7 +7936,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getDialogReadMax$215(z, j, numArr, countDownLatch);
+                MessagesStorage.this.lambda$getDialogReadMax$216(z, j, numArr, countDownLatch);
             }
         });
         try {
@@ -8231,8 +7947,8 @@ public class MessagesStorage extends BaseController {
         return numArr[0].intValue();
     }
 
-    public void lambda$getDialogReadMax$215(boolean r5, long r6, java.lang.Integer[] r8, java.util.concurrent.CountDownLatch r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getDialogReadMax$215(boolean, long, java.lang.Integer[], java.util.concurrent.CountDownLatch):void");
+    public void lambda$getDialogReadMax$216(boolean r5, long r6, java.lang.Integer[] r8, java.util.concurrent.CountDownLatch r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getDialogReadMax$216(boolean, long, java.lang.Integer[], java.util.concurrent.CountDownLatch):void");
     }
 
     public int getChannelPtsSync(final long j) {
@@ -8241,7 +7957,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getChannelPtsSync$216(j, numArr, countDownLatch);
+                MessagesStorage.this.lambda$getChannelPtsSync$217(j, numArr, countDownLatch);
             }
         });
         try {
@@ -8252,8 +7968,8 @@ public class MessagesStorage extends BaseController {
         return numArr[0].intValue();
     }
 
-    public void lambda$getChannelPtsSync$216(long r5, java.lang.Integer[] r7, java.util.concurrent.CountDownLatch r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getChannelPtsSync$216(long, java.lang.Integer[], java.util.concurrent.CountDownLatch):void");
+    public void lambda$getChannelPtsSync$217(long r5, java.lang.Integer[] r7, java.util.concurrent.CountDownLatch r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$getChannelPtsSync$217(long, java.lang.Integer[], java.util.concurrent.CountDownLatch):void");
     }
 
     public TLRPC$User getUserSync(final long j) {
@@ -8262,7 +7978,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getUserSync$217(tLRPC$UserArr, j, countDownLatch);
+                MessagesStorage.this.lambda$getUserSync$218(tLRPC$UserArr, j, countDownLatch);
             }
         });
         try {
@@ -8273,7 +7989,7 @@ public class MessagesStorage extends BaseController {
         return tLRPC$UserArr[0];
     }
 
-    public void lambda$getUserSync$217(TLRPC$User[] tLRPC$UserArr, long j, CountDownLatch countDownLatch) {
+    public void lambda$getUserSync$218(TLRPC$User[] tLRPC$UserArr, long j, CountDownLatch countDownLatch) {
         tLRPC$UserArr[0] = getUser(j);
         countDownLatch.countDown();
     }
@@ -8284,7 +8000,7 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$getChatSync$218(tLRPC$ChatArr, j, countDownLatch);
+                MessagesStorage.this.lambda$getChatSync$219(tLRPC$ChatArr, j, countDownLatch);
             }
         });
         try {
@@ -8295,7 +8011,7 @@ public class MessagesStorage extends BaseController {
         return tLRPC$ChatArr[0];
     }
 
-    public void lambda$getChatSync$218(TLRPC$Chat[] tLRPC$ChatArr, long j, CountDownLatch countDownLatch) {
+    public void lambda$getChatSync$219(TLRPC$Chat[] tLRPC$ChatArr, long j, CountDownLatch countDownLatch) {
         tLRPC$ChatArr[0] = getChat(j);
         countDownLatch.countDown();
     }
@@ -8318,6 +8034,17 @@ public class MessagesStorage extends BaseController {
         ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
         try {
             getUsersInternal(TextUtils.join(",", arrayList), arrayList2);
+        } catch (Exception e) {
+            arrayList2.clear();
+            checkSQLException(e);
+        }
+        return arrayList2;
+    }
+
+    public ArrayList<TLRPC$Chat> getChats(ArrayList<Long> arrayList) {
+        ArrayList<TLRPC$Chat> arrayList2 = new ArrayList<>();
+        try {
+            getChatsInternal(TextUtils.join(",", arrayList), arrayList2);
         } catch (Exception e) {
             arrayList2.clear();
             checkSQLException(e);
@@ -8357,7 +8084,7 @@ public class MessagesStorage extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.localSearch(int, java.lang.String, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, java.util.ArrayList, int):void");
     }
 
-    public static int lambda$localSearch$219(DialogsSearchAdapter.DialogSearchResult dialogSearchResult, DialogsSearchAdapter.DialogSearchResult dialogSearchResult2) {
+    public static int lambda$localSearch$220(DialogsSearchAdapter.DialogSearchResult dialogSearchResult, DialogsSearchAdapter.DialogSearchResult dialogSearchResult2) {
         int i = dialogSearchResult.date;
         int i2 = dialogSearchResult2.date;
         if (i < i2) {
@@ -8378,13 +8105,13 @@ public class MessagesStorage extends BaseController {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateUnreadReactionsCount$220(i, z, j, i2);
+                MessagesStorage.this.lambda$updateUnreadReactionsCount$221(i, z, j, i2);
             }
         });
     }
 
-    public void lambda$updateUnreadReactionsCount$220(int r8, boolean r9, long r10, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUnreadReactionsCount$220(int, boolean, long, int):void");
+    public void lambda$updateUnreadReactionsCount$221(int r8, boolean r9, long r10, int r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateUnreadReactionsCount$221(int, boolean, long, int):void");
     }
 
     public void markMessageReactionsAsRead(final long j, final int i, final int i2, boolean z) {
@@ -8392,29 +8119,29 @@ public class MessagesStorage extends BaseController {
             getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    MessagesStorage.this.lambda$markMessageReactionsAsRead$221(j, i, i2);
+                    MessagesStorage.this.lambda$markMessageReactionsAsRead$222(j, i, i2);
                 }
             });
         } else {
-            lambda$markMessageReactionsAsRead$221(j, i, i2);
+            lambda$markMessageReactionsAsRead$222(j, i, i2);
         }
     }
 
-    public void lambda$markMessageReactionsAsRead$221(long r18, int r20, int r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessageReactionsAsRead$221(long, int, int):void");
+    public void lambda$markMessageReactionsAsRead$222(long r18, int r20, int r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$markMessageReactionsAsRead$222(long, int, int):void");
     }
 
     public void updateDialogUnreadReactions(final long j, final int i, final int i2, final boolean z) {
         this.storageQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                MessagesStorage.this.lambda$updateDialogUnreadReactions$222(z, j, i2, i);
+                MessagesStorage.this.lambda$updateDialogUnreadReactions$223(z, j, i2, i);
             }
         });
     }
 
-    public void lambda$updateDialogUnreadReactions$222(boolean r10, long r11, int r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogUnreadReactions$222(boolean, long, int, int):void");
+    public void lambda$updateDialogUnreadReactions$223(boolean r10, long r11, int r13, int r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$updateDialogUnreadReactions$223(boolean, long, int, int):void");
     }
 
     private boolean isForum(long j) {

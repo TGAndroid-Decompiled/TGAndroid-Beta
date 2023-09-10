@@ -35,6 +35,7 @@ import androidx.dynamicanimation.animation.SpringAnimation;
 import androidx.dynamicanimation.animation.SpringForce;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -46,6 +47,7 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.BlurSettingsBottomSheet;
 import org.telegram.ui.Cells.HeaderCell;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.CombinedDrawable;
@@ -497,44 +499,73 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
 
     private List<FloatingDebugController.DebugItem> getBuiltInDebugItems() {
         ArrayList arrayList = new ArrayList();
+        arrayList.add(new FloatingDebugController.DebugItem("Theme"));
+        arrayList.add(new FloatingDebugController.DebugItem("Draw action bar shadow", new Runnable() {
+            @Override
+            public final void run() {
+                FloatingDebugView.lambda$getBuiltInDebugItems$4();
+            }
+        }));
+        arrayList.add(new FloatingDebugController.DebugItem("Show blur settings", new Runnable() {
+            @Override
+            public final void run() {
+                FloatingDebugView.this.lambda$getBuiltInDebugItems$5();
+            }
+        }));
         arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(R.string.DebugGeneral)));
         if (Build.VERSION.SDK_INT >= 19) {
             arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuDisableWebViewDebug : R.string.DebugMenuEnableWebViewDebug), new Runnable() {
                 @Override
                 public final void run() {
-                    FloatingDebugView.this.lambda$getBuiltInDebugItems$4();
+                    FloatingDebugView.this.lambda$getBuiltInDebugItems$6();
                 }
             }));
         }
         arrayList.add(new FloatingDebugController.DebugItem(Theme.isCurrentThemeDark() ? "Switch to day theme" : "Switch to dark theme", new Runnable() {
             @Override
             public final void run() {
-                FloatingDebugView.lambda$getBuiltInDebugItems$6();
+                FloatingDebugView.lambda$getBuiltInDebugItems$8();
             }
         }));
         arrayList.add(new FloatingDebugController.DebugItem(LocaleController.getString(R.string.DebugSendLogs), new Runnable() {
             @Override
             public final void run() {
-                FloatingDebugView.this.lambda$getBuiltInDebugItems$7();
+                FloatingDebugView.this.lambda$getBuiltInDebugItems$9();
             }
         }));
         return arrayList;
     }
 
-    public void lambda$getBuiltInDebugItems$4() {
+    public static void lambda$getBuiltInDebugItems$4() {
+        SharedConfig.drawActionBarShadow = !SharedConfig.drawActionBarShadow;
+        SharedConfig.saveDebugConfig();
+        AndroidUtilities.forEachViews(LaunchActivity.instance.drawerLayoutContainer.getRootView(), new Consumer() {
+            @Override
+            public final void accept(Object obj) {
+                ((View) obj).invalidate();
+            }
+        });
+    }
+
+    public void lambda$getBuiltInDebugItems$5() {
+        BlurSettingsBottomSheet.show(LaunchActivity.getLastFragment());
+        showBigMenu(false);
+    }
+
+    public void lambda$getBuiltInDebugItems$6() {
         SharedConfig.toggleDebugWebView();
         Toast.makeText(getContext(), LocaleController.getString(SharedConfig.debugWebView ? R.string.DebugMenuWebViewDebugEnabled : R.string.DebugMenuWebViewDebugDisabled), 0).show();
     }
 
-    public static void lambda$getBuiltInDebugItems$6() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FloatingDebug.FloatingDebugView.lambda$getBuiltInDebugItems$6():void");
+    public static void lambda$getBuiltInDebugItems$8() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.FloatingDebug.FloatingDebugView.lambda$getBuiltInDebugItems$8():void");
     }
 
-    public static void lambda$getBuiltInDebugItems$5(Theme.ThemeInfo themeInfo) {
+    public static void lambda$getBuiltInDebugItems$7(Theme.ThemeInfo themeInfo) {
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, themeInfo, Boolean.TRUE, null, -1);
     }
 
-    public void lambda$getBuiltInDebugItems$7() {
+    public void lambda$getBuiltInDebugItems$9() {
         ProfileActivity.sendLogs((Activity) getContext(), false);
     }
 
@@ -563,12 +594,12 @@ public class FloatingDebugView extends FrameLayout implements NotificationCenter
         new SpringAnimation(new FloatValueHolder(0.0f)).setSpring(new SpringForce(1000.0f).setStiffness(750.0f).setDampingRatio(0.75f)).addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                FloatingDebugView.this.lambda$showFab$8(dynamicAnimation, f, f2);
+                FloatingDebugView.this.lambda$showFab$10(dynamicAnimation, f, f2);
             }
         }).start();
     }
 
-    public void lambda$showFab$8(DynamicAnimation dynamicAnimation, float f, float f2) {
+    public void lambda$showFab$10(DynamicAnimation dynamicAnimation, float f, float f2) {
         float f3 = f / 1000.0f;
         this.floatingButtonContainer.setPivotX(AndroidUtilities.dp(28.0f));
         this.floatingButtonContainer.setPivotY(AndroidUtilities.dp(28.0f));

@@ -92,6 +92,9 @@ public class Input {
         }
         final Brush brush2 = brush;
         this.canFill = false;
+        if (brush2 instanceof Brush.Eraser) {
+            this.renderView.getPainting().hasBlur = false;
+        }
         this.renderView.getPainting().clearStroke();
         this.pointsCount = 0;
         this.realPointsCount = 0;

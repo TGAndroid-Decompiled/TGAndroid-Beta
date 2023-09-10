@@ -39,12 +39,14 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
@@ -52,21 +54,29 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MrzRecognizer;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.SvgHelper;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$ReplyMarkup;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotsBot;
+import org.telegram.tgnet.TLRPC$TL_boolTrue;
+import org.telegram.tgnet.TLRPC$TL_bots_allowSendMessage;
+import org.telegram.tgnet.TLRPC$TL_dataJSON;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_getAttachMenuBot;
+import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -75,10 +85,12 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.CameraScanActivity;
 import org.telegram.ui.Components.BotWebViewContainer;
+import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatAttachAlertBotWebViewLayout;
 import org.telegram.ui.Components.voip.CellFlickerDrawable;
 public class BotWebViewContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static final List<String> WHITELISTED_SCHEMES = Arrays.asList("http", "https");
+    private long blockedDialogsUntil;
     private TLRPC$User botUser;
     private String buttonData;
     private BottomSheet cameraBottomSheet;
@@ -102,12 +114,14 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
     private long lastClickMs;
     private long lastDialogClosed;
     private long lastDialogCooldownTime;
+    private int lastDialogType;
     private boolean lastExpanded;
     private String lastQrText;
     private ValueCallback<Uri[]> mFilePathCallback;
     private Runnable onPermissionsRequestResultCallback;
     private Activity parentActivity;
     private Theme.ResourcesProvider resourcesProvider;
+    private int shownDialogsCount;
     private WebView webView;
     private boolean webViewNotAvailable;
     private TextView webViewNotAvailableText;
@@ -157,7 +171,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         void onWebViewScrolled(WebView webView, int i, int i2);
     }
 
-    public static void lambda$evaluateJs$4(String str) {
+    public static void lambda$evaluateJs$5(String str) {
     }
 
     public BotWebViewContainer(Context context, Theme.ResourcesProvider resourcesProvider, int i) {
@@ -166,6 +180,8 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         this.lastButtonColor = getColor(Theme.key_featuredStickers_addButton);
         this.lastButtonTextColor = getColor(Theme.key_featuredStickers_buttonText);
         this.lastButtonText = "";
+        this.lastDialogType = -1;
+        this.shownDialogsCount = 0;
         this.resourcesProvider = resourcesProvider;
         if (context instanceof Activity) {
             this.parentActivity = (Activity) context;
@@ -465,7 +481,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                 dialog.dismiss();
                 this.lastPermissionsDialog = null;
             }
-            String[] resources = permissionRequest.getResources();
+            final String[] resources = permissionRequest.getResources();
             if (resources.length == 1) {
                 final String str = resources[0];
                 if (BotWebViewContainer.this.parentActivity == null) {
@@ -491,6 +507,19 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
                     });
                     this.lastPermissionsDialog = createWebViewPermissionsRequestDialog2;
                     createWebViewPermissionsRequestDialog2.show();
+                }
+            } else if (resources.length == 2) {
+                if ("android.webkit.resource.AUDIO_CAPTURE".equals(resources[0]) || "android.webkit.resource.VIDEO_CAPTURE".equals(resources[0])) {
+                    if ("android.webkit.resource.AUDIO_CAPTURE".equals(resources[1]) || "android.webkit.resource.VIDEO_CAPTURE".equals(resources[1])) {
+                        Dialog createWebViewPermissionsRequestDialog3 = AlertsCreator.createWebViewPermissionsRequestDialog(BotWebViewContainer.this.parentActivity, BotWebViewContainer.this.resourcesProvider, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, R.raw.permission_request_camera, LocaleController.formatString(R.string.BotWebViewRequestCameraMicPermission, UserObject.getUserName(BotWebViewContainer.this.botUser)), LocaleController.formatString(R.string.BotWebViewRequestCameraMicPermissionWithHint, UserObject.getUserName(BotWebViewContainer.this.botUser)), new Consumer() {
+                            @Override
+                            public final void accept(Object obj) {
+                                BotWebViewContainer.AnonymousClass4.this.lambda$onPermissionRequest$7(permissionRequest, resources, (Boolean) obj);
+                            }
+                        });
+                        this.lastPermissionsDialog = createWebViewPermissionsRequestDialog3;
+                        createWebViewPermissionsRequestDialog3.show();
+                    }
                 }
             }
         }
@@ -539,6 +568,31 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         public void lambda$onPermissionRequest$4(PermissionRequest permissionRequest, String str, Boolean bool) {
             if (bool.booleanValue()) {
                 permissionRequest.grant(new String[]{str});
+                BotWebViewContainer.this.hasUserPermissions = true;
+                return;
+            }
+            permissionRequest.deny();
+        }
+
+        public void lambda$onPermissionRequest$7(final PermissionRequest permissionRequest, final String[] strArr, Boolean bool) {
+            if (this.lastPermissionsDialog != null) {
+                this.lastPermissionsDialog = null;
+                if (bool.booleanValue()) {
+                    BotWebViewContainer.this.runWithPermissions(new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new Consumer() {
+                        @Override
+                        public final void accept(Object obj) {
+                            BotWebViewContainer.AnonymousClass4.this.lambda$onPermissionRequest$6(permissionRequest, strArr, (Boolean) obj);
+                        }
+                    });
+                } else {
+                    permissionRequest.deny();
+                }
+            }
+        }
+
+        public void lambda$onPermissionRequest$6(PermissionRequest permissionRequest, String[] strArr, Boolean bool) {
+            if (bool.booleanValue()) {
+                permissionRequest.grant(new String[]{strArr[0], strArr[1]});
                 BotWebViewContainer.this.hasUserPermissions = true;
                 return;
             }
@@ -925,12 +979,21 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         }
     }
 
-    public void loadUrl(int i, String str) {
-        checkCreateWebView();
+    public void loadUrl(int i, final String str) {
         this.currentAccount = i;
         this.isPageLoaded = false;
         this.lastClickMs = 0L;
         this.hasUserPermissions = false;
+        NotificationCenter.getInstance(i).doOnIdle(new Runnable() {
+            @Override
+            public final void run() {
+                BotWebViewContainer.this.lambda$loadUrl$4(str);
+            }
+        });
+    }
+
+    public void lambda$loadUrl$4(String str) {
+        checkCreateWebView();
         WebView webView = this.webView;
         if (webView != null) {
             webView.loadUrl(str);
@@ -943,6 +1006,46 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.didSetNewTheme);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.onActivityResultReceived);
         NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.onRequestPermissionResultReceived);
+        Bulletin.addDelegate(this, new Bulletin.Delegate() {
+            @Override
+            public boolean allowLayoutChanges() {
+                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean clipWithGradient(int i) {
+                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i);
+            }
+
+            @Override
+            public int getTopOffset(int i) {
+                return Bulletin.Delegate.CC.$default$getTopOffset(this, i);
+            }
+
+            @Override
+            public void onBottomOffsetChange(float f) {
+                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+            }
+
+            @Override
+            public void onHide(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+            }
+
+            @Override
+            public void onShow(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+            }
+
+            @Override
+            public int getBottomOffset(int i) {
+                if (BotWebViewContainer.this.getParent() instanceof ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) {
+                    ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer webViewSwipeContainer = (ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer) BotWebViewContainer.this.getParent();
+                    return (int) ((webViewSwipeContainer.getOffsetY() + webViewSwipeContainer.getSwipeOffsetY()) - webViewSwipeContainer.getTopActionBarOffsetY());
+                }
+                return 0;
+            }
+        });
     }
 
     @Override
@@ -951,6 +1054,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.didSetNewTheme);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onRequestPermissionResultReceived);
+        Bulletin.removeDelegate(this);
     }
 
     public void destroyWebView() {
@@ -980,7 +1084,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
             webView.evaluateJavascript(str, new ValueCallback() {
                 @Override
                 public final void onReceiveValue(Object obj) {
-                    BotWebViewContainer.lambda$evaluateJs$4((String) obj);
+                    BotWebViewContainer.lambda$evaluateJs$5((String) obj);
                 }
             });
             return;
@@ -1029,6 +1133,16 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.BotWebViewContainer.onEventReceived(java.lang.String, java.lang.String):void");
     }
 
+    public void lambda$onEventReceived$6(PopupButton popupButton, AtomicBoolean atomicBoolean, DialogInterface dialogInterface, int i) {
+        dialogInterface.dismiss();
+        try {
+            notifyEvent("popup_closed", new JSONObject().put("button_id", popupButton.id));
+            atomicBoolean.set(true);
+        } catch (JSONException e) {
+            FileLog.e(e);
+        }
+    }
+
     public void lambda$onEventReceived$7(PopupButton popupButton, AtomicBoolean atomicBoolean, DialogInterface dialogInterface, int i) {
         dialogInterface.dismiss();
         try {
@@ -1049,17 +1163,7 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         }
     }
 
-    public void lambda$onEventReceived$9(PopupButton popupButton, AtomicBoolean atomicBoolean, DialogInterface dialogInterface, int i) {
-        dialogInterface.dismiss();
-        try {
-            notifyEvent("popup_closed", new JSONObject().put("button_id", popupButton.id));
-            atomicBoolean.set(true);
-        } catch (JSONException e) {
-            FileLog.e(e);
-        }
-    }
-
-    public void lambda$onEventReceived$10(AtomicBoolean atomicBoolean, DialogInterface dialogInterface) {
+    public void lambda$onEventReceived$9(AtomicBoolean atomicBoolean, DialogInterface dialogInterface) {
         if (!atomicBoolean.get()) {
             notifyEvent("popup_closed", new JSONObject());
         }
@@ -1067,21 +1171,243 @@ public class BotWebViewContainer extends FrameLayout implements NotificationCent
         this.lastDialogClosed = System.currentTimeMillis();
     }
 
-    public void lambda$onEventReceived$12(final String str, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$onEventReceived$11(final String str, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                BotWebViewContainer.this.lambda$onEventReceived$11(tLRPC$TL_error, str, tLObject);
+                BotWebViewContainer.this.lambda$onEventReceived$10(tLRPC$TL_error, str, tLObject);
             }
         });
     }
 
-    public void lambda$onEventReceived$11(TLRPC$TL_error tLRPC$TL_error, String str, TLObject tLObject) {
+    public void lambda$onEventReceived$10(TLRPC$TL_error tLRPC$TL_error, String str, TLObject tLObject) {
         if (tLRPC$TL_error != null) {
             onInvoiceStatusUpdate(str, "failed");
         } else {
             this.delegate.onWebAppOpenInvoice(str, tLObject);
         }
+    }
+
+    public void lambda$onEventReceived$18(final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BotWebViewContainer.this.lambda$onEventReceived$17(tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public void lambda$onEventReceived$17(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        if (!(tLObject instanceof TLRPC$TL_boolTrue)) {
+            if (tLRPC$TL_error != null) {
+                unknownError(tLRPC$TL_error.text);
+                return;
+            }
+            final String[] strArr = {"cancelled"};
+            showDialog(3, new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.BotWebViewRequestWriteTitle)).setMessage(LocaleController.getString(R.string.BotWebViewRequestWriteMessage)).setPositiveButton(LocaleController.getString(R.string.BotWebViewRequestAllow), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i) {
+                    BotWebViewContainer.this.lambda$onEventReceived$14(strArr, dialogInterface, i);
+                }
+            }).setNegativeButton(LocaleController.getString(R.string.BotWebViewRequestDontAllow), new DialogInterface.OnClickListener() {
+                @Override
+                public final void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            }).create(), new Runnable() {
+                @Override
+                public final void run() {
+                    BotWebViewContainer.this.lambda$onEventReceived$16(strArr);
+                }
+            });
+            return;
+        }
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("status", "allowed");
+            notifyEvent("write_access_requested", jSONObject);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public void lambda$onEventReceived$14(final String[] strArr, final DialogInterface dialogInterface, int i) {
+        TLRPC$TL_bots_allowSendMessage tLRPC$TL_bots_allowSendMessage = new TLRPC$TL_bots_allowSendMessage();
+        tLRPC$TL_bots_allowSendMessage.bot = MessagesController.getInstance(this.currentAccount).getInputUser(this.botUser);
+        ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_bots_allowSendMessage, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                BotWebViewContainer.this.lambda$onEventReceived$13(strArr, dialogInterface, tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public void lambda$onEventReceived$13(final String[] strArr, final DialogInterface dialogInterface, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BotWebViewContainer.this.lambda$onEventReceived$12(tLObject, strArr, tLRPC$TL_error, dialogInterface);
+            }
+        });
+    }
+
+    public void lambda$onEventReceived$12(TLObject tLObject, String[] strArr, TLRPC$TL_error tLRPC$TL_error, DialogInterface dialogInterface) {
+        if (tLObject != null) {
+            strArr[0] = "allowed";
+            if (tLObject instanceof TLRPC$Updates) {
+                MessagesController.getInstance(this.currentAccount).processUpdates((TLRPC$Updates) tLObject, false);
+            }
+        }
+        if (tLRPC$TL_error != null) {
+            unknownError(tLRPC$TL_error.text);
+        }
+        dialogInterface.dismiss();
+    }
+
+    public void lambda$onEventReceived$16(String[] strArr) {
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("status", strArr[0]);
+            notifyEvent("write_access_requested", jSONObject);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public void lambda$onEventReceived$20(final String str, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                BotWebViewContainer.this.lambda$onEventReceived$19(str, tLObject, tLRPC$TL_error);
+            }
+        });
+    }
+
+    public void lambda$onEventReceived$19(String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("req_id", str);
+            if (tLObject instanceof TLRPC$TL_dataJSON) {
+                jSONObject.put("result", new JSONTokener(((TLRPC$TL_dataJSON) tLObject).data).nextValue());
+            } else if (tLRPC$TL_error != null) {
+                jSONObject.put("error", tLRPC$TL_error.text);
+            }
+            notifyEvent("custom_method_invoked", jSONObject);
+        } catch (Exception e) {
+            FileLog.e(e);
+            unknownError();
+        }
+    }
+
+    public void lambda$onEventReceived$22(String[] strArr, boolean z, DialogInterface dialogInterface, int i) {
+        strArr[0] = null;
+        dialogInterface.dismiss();
+        if (z) {
+            MessagesController.getInstance(this.currentAccount).unblockPeer(this.botUser.id, new Runnable() {
+                @Override
+                public final void run() {
+                    BotWebViewContainer.this.lambda$onEventReceived$21();
+                }
+            });
+            return;
+        }
+        SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(UserConfig.getInstance(this.currentAccount).getCurrentUser(), this.botUser.id, (MessageObject) null, (MessageObject) null, (TLRPC$ReplyMarkup) null, (HashMap<String, String>) null, true, 0));
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("status", "sent");
+            notifyEvent("phone_requested", jSONObject);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public void lambda$onEventReceived$21() {
+        SendMessagesHelper.getInstance(this.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(UserConfig.getInstance(this.currentAccount).getCurrentUser(), this.botUser.id, (MessageObject) null, (MessageObject) null, (TLRPC$ReplyMarkup) null, (HashMap<String, String>) null, true, 0));
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("status", "sent");
+            notifyEvent("phone_requested", jSONObject);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public void lambda$onEventReceived$24(String[] strArr) {
+        if (strArr[0] == null) {
+            return;
+        }
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("status", strArr[0]);
+            notifyEvent("phone_requested", jSONObject);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    private void unknownError() {
+        unknownError(null);
+    }
+
+    private void unknownError(String str) {
+        String str2;
+        StringBuilder sb = new StringBuilder();
+        sb.append(LocaleController.getString("UnknownError", R.string.UnknownError));
+        if (str != null) {
+            str2 = ": " + str;
+        } else {
+            str2 = "";
+        }
+        sb.append(str2);
+        error(sb.toString());
+    }
+
+    private void error(String str) {
+        BulletinFactory.of(this, this.resourcesProvider).createSimpleBulletin(R.raw.error, str).show();
+    }
+
+    private boolean ignoreDialog(int i) {
+        if (this.currentDialog != null) {
+            return true;
+        }
+        if (this.blockedDialogsUntil <= 0 || System.currentTimeMillis() >= this.blockedDialogsUntil) {
+            if (this.lastDialogType != i || this.shownDialogsCount <= 3) {
+                return false;
+            }
+            this.blockedDialogsUntil = System.currentTimeMillis() + 3000;
+            this.shownDialogsCount = 0;
+            return true;
+        }
+        return true;
+    }
+
+    private boolean showDialog(int i, AlertDialog alertDialog, final Runnable runnable) {
+        if (alertDialog == null || ignoreDialog(i)) {
+            return false;
+        }
+        alertDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public final void onDismiss(DialogInterface dialogInterface) {
+                BotWebViewContainer.this.lambda$showDialog$25(runnable, dialogInterface);
+            }
+        });
+        this.currentDialog = alertDialog;
+        alertDialog.setDismissDialogByButtons(false);
+        this.currentDialog.show();
+        if (this.lastDialogType != i) {
+            this.lastDialogType = i;
+            this.shownDialogsCount = 0;
+            this.blockedDialogsUntil = 0L;
+        }
+        this.shownDialogsCount++;
+        return true;
+    }
+
+    public void lambda$showDialog$25(Runnable runnable, DialogInterface dialogInterface) {
+        if (runnable != null) {
+            runnable.run();
+        }
+        this.currentDialog = null;
     }
 
     public void openQrScanActivity() {

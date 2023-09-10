@@ -1050,6 +1050,7 @@ public class ChatRightsEditActivity extends BaseFragment {
     }
 
     public void lambda$initTransfer$13(TLRPC$TL_error tLRPC$TL_error, TLRPC$InputCheckPasswordSRP tLRPC$InputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity, TLRPC$TL_channels_editCreator tLRPC$TL_channels_editCreator) {
+        int i;
         if (tLRPC$TL_error == null) {
             if (tLRPC$InputCheckPasswordSRP != null) {
                 this.delegate.didChangeOwner(this.currentUser);
@@ -1070,8 +1071,8 @@ public class ChatRightsEditActivity extends BaseFragment {
                     builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("EditAdminTransferReadyAlertText", R.string.EditAdminTransferReadyAlertText, this.currentChat.title, UserObject.getFirstName(this.currentUser))));
                     builder.setPositiveButton(LocaleController.getString("EditAdminTransferChangeOwner", R.string.EditAdminTransferChangeOwner), new DialogInterface.OnClickListener() {
                         @Override
-                        public final void onClick(DialogInterface dialogInterface, int i) {
-                            ChatRightsEditActivity.this.lambda$initTransfer$9(dialogInterface, i);
+                        public final void onClick(DialogInterface dialogInterface, int i2) {
+                            ChatRightsEditActivity.this.lambda$initTransfer$9(dialogInterface, i2);
                         }
                     });
                     builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
@@ -1088,8 +1089,8 @@ public class ChatRightsEditActivity extends BaseFragment {
                 linearLayout.setOrientation(1);
                 builder2.setView(linearLayout);
                 TextView textView = new TextView(getParentActivity());
-                int i = Theme.key_dialogTextBlack;
-                textView.setTextColor(Theme.getColor(i));
+                int i2 = Theme.key_dialogTextBlack;
+                textView.setTextColor(Theme.getColor(i2));
                 textView.setTextSize(1, 16.0f);
                 textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
                 if (this.isChannel) {
@@ -1102,12 +1103,12 @@ public class ChatRightsEditActivity extends BaseFragment {
                 linearLayout2.setOrientation(0);
                 linearLayout.addView(linearLayout2, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
                 ImageView imageView = new ImageView(getParentActivity());
-                int i2 = R.drawable.list_circle;
-                imageView.setImageResource(i2);
+                int i3 = R.drawable.list_circle;
+                imageView.setImageResource(i3);
                 imageView.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+                imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
                 TextView textView2 = new TextView(getParentActivity());
-                textView2.setTextColor(Theme.getColor(i));
+                textView2.setTextColor(Theme.getColor(i2));
                 textView2.setTextSize(1, 16.0f);
                 textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
                 textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString("EditAdminTransferAlertText1", R.string.EditAdminTransferAlertText1)));
@@ -1122,34 +1123,39 @@ public class ChatRightsEditActivity extends BaseFragment {
                 linearLayout3.setOrientation(0);
                 linearLayout.addView(linearLayout3, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
                 ImageView imageView2 = new ImageView(getParentActivity());
-                imageView2.setImageResource(i2);
+                imageView2.setImageResource(i3);
                 imageView2.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(11.0f) : 0, AndroidUtilities.dp(9.0f), LocaleController.isRTL ? 0 : AndroidUtilities.dp(11.0f), 0);
-                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.MULTIPLY));
+                imageView2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i2), PorterDuff.Mode.MULTIPLY));
                 TextView textView3 = new TextView(getParentActivity());
-                textView3.setTextColor(Theme.getColor(i));
+                textView3.setTextColor(Theme.getColor(i2));
                 textView3.setTextSize(1, 16.0f);
                 textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
                 textView3.setText(AndroidUtilities.replaceTags(LocaleController.getString("EditAdminTransferAlertText2", R.string.EditAdminTransferAlertText2)));
                 if (LocaleController.isRTL) {
                     linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
+                    i = 5;
                     linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2, 5));
                 } else {
+                    i = 5;
                     linearLayout3.addView(imageView2, LayoutHelper.createLinear(-2, -2));
                     linearLayout3.addView(textView3, LayoutHelper.createLinear(-1, -2));
                 }
                 if ("PASSWORD_MISSING".equals(tLRPC$TL_error.text)) {
                     builder2.setPositiveButton(LocaleController.getString("EditAdminTransferSetPassword", R.string.EditAdminTransferSetPassword), new DialogInterface.OnClickListener() {
                         @Override
-                        public final void onClick(DialogInterface dialogInterface, int i3) {
-                            ChatRightsEditActivity.this.lambda$initTransfer$10(dialogInterface, i3);
+                        public final void onClick(DialogInterface dialogInterface, int i4) {
+                            ChatRightsEditActivity.this.lambda$initTransfer$10(dialogInterface, i4);
                         }
                     });
                     builder2.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
                 } else {
                     TextView textView4 = new TextView(getParentActivity());
-                    textView4.setTextColor(Theme.getColor(i));
+                    textView4.setTextColor(Theme.getColor(i2));
                     textView4.setTextSize(1, 16.0f);
-                    textView4.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+                    if (!LocaleController.isRTL) {
+                        i = 3;
+                    }
+                    textView4.setGravity(i | 48);
                     textView4.setText(LocaleController.getString("EditAdminTransferAlertText3", R.string.EditAdminTransferAlertText3));
                     linearLayout.addView(textView4, LayoutHelper.createLinear(-1, -2, 0.0f, 11.0f, 0.0f, 0.0f));
                     builder2.setNegativeButton(LocaleController.getString("OK", R.string.OK), null);
@@ -1164,7 +1170,7 @@ public class ChatRightsEditActivity extends BaseFragment {
                 }, 8);
             } else if (tLRPC$TL_error.text.equals("CHANNELS_TOO_MUCH")) {
                 if (getParentActivity() != null && !AccountInstance.getInstance(this.currentAccount).getUserConfig().isPremium()) {
-                    showDialog(new LimitReachedBottomSheet(this, getParentActivity(), 5, this.currentAccount));
+                    showDialog(new LimitReachedBottomSheet(this, getParentActivity(), 5, this.currentAccount, getResourceProvider()));
                 } else {
                     presentFragment(new TooManyCommunitiesActivity(1));
                 }

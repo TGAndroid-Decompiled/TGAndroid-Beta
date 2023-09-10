@@ -5,30 +5,38 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.Set;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
+import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.FilterCreateActivity;
 public class DrawerActionCell extends FrameLayout {
     private int currentId;
-    private ImageView imageView;
+    private BackupImageView imageView;
     private RectF rect;
     private TextView textView;
 
     public DrawerActionCell(Context context) {
         super(context);
         this.rect = new RectF();
-        ImageView imageView = new ImageView(context);
-        this.imageView = imageView;
-        imageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_menuItemIcon), PorterDuff.Mode.SRC_IN));
+        BackupImageView backupImageView = new BackupImageView(context);
+        this.imageView = backupImageView;
+        backupImageView.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_chats_menuItemIcon), PorterDuff.Mode.SRC_IN));
         TextView textView = new TextView(context);
         this.textView = textView;
         textView.setTextColor(Theme.getColor(Theme.key_chats_menuItemText));
@@ -92,7 +100,7 @@ public class DrawerActionCell extends FrameLayout {
         }
     }
 
-    public ImageView getImageView() {
+    public BackupImageView getImageView() {
         return this.imageView;
     }
 
@@ -104,5 +112,33 @@ public class DrawerActionCell extends FrameLayout {
         accessibilityNodeInfo.addAction(32);
         accessibilityNodeInfo.setText(this.textView.getText());
         accessibilityNodeInfo.setClassName(TextView.class.getName());
+    }
+
+    public void setBot(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
+        this.currentId = (int) tLRPC$TL_attachMenuBot.bot_id;
+        try {
+            if (tLRPC$TL_attachMenuBot.side_menu_disclaimer_needed) {
+                this.textView.setText(applyNewSpan(tLRPC$TL_attachMenuBot.short_name));
+            } else {
+                this.textView.setText(tLRPC$TL_attachMenuBot.short_name);
+            }
+            TLRPC$TL_attachMenuBotIcon staticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
+            if (staticAttachMenuBotIcon != null) {
+                this.imageView.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "24_24", (Drawable) null, tLRPC$TL_attachMenuBot);
+            } else {
+                this.imageView.setImageResource(R.drawable.msg_bot);
+            }
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
+    }
+
+    public static CharSequence applyNewSpan(String str) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
+        spannableStringBuilder.append((CharSequence) "  d");
+        FilterCreateActivity.NewSpan newSpan = new FilterCreateActivity.NewSpan(10.0f);
+        newSpan.setColor(Theme.getColor(Theme.key_premiumGradient1));
+        spannableStringBuilder.setSpan(newSpan, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+        return spannableStringBuilder;
     }
 }

@@ -36,6 +36,10 @@ public class TypefaceSpan extends MetricAffectingSpan {
         this.color = Theme.getColor(i2, resourcesProvider);
     }
 
+    public Typeface getTypeface() {
+        return this.typeface;
+    }
+
     public void setColor(int i) {
         this.color = i;
     }

@@ -99,6 +99,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     private Paint bgPaint;
     public int bigCircleOffset;
     private float bigCircleRadius;
+    private float bubblesOffset;
     ValueAnimator cancelPressedAnimation;
     private float cancelPressedProgress;
     ChatScrimPopupContainerLayout chatScrimPopupContainerLayout;
@@ -111,8 +112,11 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     public final float durationScale;
     private float flipVerticalProgress;
     BaseFragment fragment;
+    private boolean hasHint;
+    public TextView hintView;
     private boolean isFlippedVertically;
     public boolean isHiddenNextReaction;
+    private boolean isTop;
     long lastReactionSentTime;
     private long lastUpdate;
     HashSet<View> lastVisibleViews;
@@ -199,6 +203,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.visibleReactionsList = new ArrayList(20);
         this.premiumLockedReactions = new ArrayList(10);
         this.allReactionsList = new ArrayList(20);
+        new RectF();
         this.selectedReactions = new HashSet<>();
         this.location = new int[2];
         this.shadowPad = new android.graphics.Rect();
@@ -492,8 +497,8 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
                 });
                 view = ReactionsContainerLayout.this.customReactionsContainer;
             }
-            int paddingTop = (ReactionsContainerLayout.this.getLayoutParams().height - ReactionsContainerLayout.this.getPaddingTop()) - ReactionsContainerLayout.this.getPaddingBottom();
-            view.setLayoutParams(new RecyclerView.LayoutParams(paddingTop - AndroidUtilities.dp(12.0f), paddingTop));
+            int dp = ((ReactionsContainerLayout.this.getLayoutParams().height - (ReactionsContainerLayout.this.hasHint ? AndroidUtilities.dp(20.0f) : 0)) - ReactionsContainerLayout.this.getPaddingTop()) - ReactionsContainerLayout.this.getPaddingBottom();
+            view.setLayoutParams(new RecyclerView.LayoutParams(dp - AndroidUtilities.dp(12.0f), dp));
             return new RecyclerListView.Holder(view);
         }
 
@@ -726,14 +731,14 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
         this.allReactionsList.clear();
         this.allReactionsList.addAll(list);
-        if (((getLayoutParams().height - getPaddingTop()) - getPaddingBottom()) * list.size() < AndroidUtilities.dp(200.0f)) {
+        if ((((getLayoutParams().height - (this.hasHint ? AndroidUtilities.dp(20.0f) : 0)) - getPaddingTop()) - getPaddingBottom()) * list.size() < AndroidUtilities.dp(200.0f)) {
             getLayoutParams().width = -2;
         }
         this.listAdapter.notifyDataSetChanged();
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r20) {
+    protected void dispatchDraw(android.graphics.Canvas r22) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ReactionsContainerLayout.dispatchDraw(android.graphics.Canvas):void");
     }
 
@@ -747,25 +752,29 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             return;
         }
         canvas.save();
-        float f4 = this.rect.bottom;
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
-        canvas.clipRect(0.0f, AndroidUtilities.lerp(f4, 0.0f, cubicBezierInterpolator.getInterpolation(this.flipVerticalProgress)) - ((int) Math.ceil((this.rect.height() / 2.0f) * (1.0f - this.transitionProgress))), getMeasuredWidth(), AndroidUtilities.lerp(getMeasuredHeight() + AndroidUtilities.dp(8.0f), getPaddingTop() - expandSize(), cubicBezierInterpolator.getInterpolation(this.flipVerticalProgress)));
-        float width = (LocaleController.isRTL || this.mirrorX) ? this.bigCircleOffset : getWidth() - this.bigCircleOffset;
-        float lerp = AndroidUtilities.lerp((getHeight() - getPaddingBottom()) + expandSize(), getPaddingTop() - expandSize(), cubicBezierInterpolator.getInterpolation(this.flipVerticalProgress));
+        if (this.isTop) {
+            canvas.clipRect(0.0f, 0.0f, getMeasuredWidth(), (AndroidUtilities.lerp(this.rect.top, getMeasuredHeight(), CubicBezierInterpolator.DEFAULT.getInterpolation(this.flipVerticalProgress)) - ((int) Math.ceil((this.rect.height() / 2.0f) * (1.0f - this.transitionProgress)))) + 1.0f);
+        } else {
+            float f4 = this.rect.bottom;
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
+            canvas.clipRect(0.0f, (AndroidUtilities.lerp(f4, 0.0f, cubicBezierInterpolator.getInterpolation(this.flipVerticalProgress)) - ((int) Math.ceil((this.rect.height() / 2.0f) * (1.0f - this.transitionProgress)))) - 1.0f, getMeasuredWidth(), AndroidUtilities.lerp(getMeasuredHeight() + AndroidUtilities.dp(8.0f), getPaddingTop() - expandSize(), cubicBezierInterpolator.getInterpolation(this.flipVerticalProgress)));
+        }
+        float width = ((LocaleController.isRTL || this.mirrorX) ? this.bigCircleOffset : getWidth() - this.bigCircleOffset) + this.bubblesOffset;
+        float paddingTop = this.isTop ? getPaddingTop() - expandSize() : (getHeight() - getPaddingBottom()) + expandSize();
         int dp = AndroidUtilities.dp(3.0f);
         this.shadow.setAlpha(i);
         this.bgPaint.setAlpha(i);
         float f5 = dp;
         float f6 = f5 * f2;
-        this.shadow.setBounds((int) ((width - f) - f6), (int) ((lerp - f) - f6), (int) (width + f + f6), (int) (lerp + f + f6));
+        this.shadow.setBounds((int) ((width - f) - f6), (int) ((paddingTop - f) - f6), (int) (width + f + f6), (int) (paddingTop + f + f6));
         this.shadow.draw(canvas);
-        canvas.drawCircle(width, lerp, f, this.bgPaint);
-        float width2 = (LocaleController.isRTL || this.mirrorX) ? this.bigCircleOffset - this.bigCircleRadius : (getWidth() - this.bigCircleOffset) + this.bigCircleRadius;
-        float lerp2 = AndroidUtilities.lerp(((getHeight() - this.smallCircleRadius) - f5) + expandSize(), (this.smallCircleRadius + f5) - expandSize(), cubicBezierInterpolator.getInterpolation(this.flipVerticalProgress));
+        canvas.drawCircle(width, paddingTop, f, this.bgPaint);
+        float width2 = ((LocaleController.isRTL || this.mirrorX) ? this.bigCircleOffset - this.bigCircleRadius : (getWidth() - this.bigCircleOffset) + this.bigCircleRadius) + this.bubblesOffset;
+        float lerp = AndroidUtilities.lerp(this.isTop ? (getPaddingTop() - expandSize()) - AndroidUtilities.dp(16.0f) : ((getHeight() - this.smallCircleRadius) - f5) + expandSize(), (this.smallCircleRadius + f5) - expandSize(), CubicBezierInterpolator.DEFAULT.getInterpolation(this.flipVerticalProgress));
         float f7 = (-AndroidUtilities.dp(1.0f)) * f2;
-        this.shadow.setBounds((int) ((width2 - f) - f7), (int) ((lerp2 - f) - f7), (int) (width2 + f + f7), (int) (f + lerp2 + f7));
+        this.shadow.setBounds((int) ((width2 - f) - f7), (int) ((lerp - f) - f7), (int) (width2 + f + f7), (int) (f + lerp + f7));
         this.shadow.draw(canvas);
-        canvas.drawCircle(width2, lerp2, f3, this.bgPaint);
+        canvas.drawCircle(width2, lerp, f3, this.bgPaint);
         canvas.restore();
         this.shadow.setAlpha(255);
         this.bgPaint.setAlpha(255);
@@ -938,6 +947,14 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.selectedReactions.clear();
         if (tLRPC$StoryItem != null && (tLRPC$Reaction = tLRPC$StoryItem.sent_reaction) != null) {
             this.selectedReactions.add(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction));
+        }
+        this.listAdapter.notifyDataSetChanged();
+    }
+
+    public void setSelectedReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        this.selectedReactions.clear();
+        if (visibleReaction != null) {
+            this.selectedReactions.add(visibleReaction);
         }
         this.listAdapter.notifyDataSetChanged();
     }
@@ -1151,7 +1168,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.pullingLeftOffset = 0.0f;
         this.pressedReaction = null;
         this.clicked = false;
-        AndroidUtilities.forEachViews(this.recyclerListView, new Consumer() {
+        AndroidUtilities.forEachViews((RecyclerView) this.recyclerListView, (Consumer<View>) new Consumer() {
             @Override
             public final void accept(Object obj) {
                 ReactionsContainerLayout.this.lambda$reset$5((View) obj);
@@ -1178,6 +1195,35 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             }
             reactionHolderView.resetAnimation();
         }
+    }
+
+    public void setHint(String str) {
+        this.hasHint = true;
+        TextView textView = new TextView(getContext());
+        this.hintView = textView;
+        textView.setTextSize(1, 12.0f);
+        this.hintView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
+        this.hintView.setText(str);
+        this.hintView.setAlpha(0.5f);
+        this.hintView.setGravity(1);
+        addView(this.hintView, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 6.0f, 0.0f, 0.0f));
+        ((FrameLayout.LayoutParams) this.nextRecentReaction.getLayoutParams()).topMargin = AndroidUtilities.dp(20.0f);
+        ((FrameLayout.LayoutParams) this.recyclerListView.getLayoutParams()).topMargin = AndroidUtilities.dp(20.0f);
+    }
+
+    public void setTop(boolean z) {
+        this.isTop = z;
+    }
+
+    public float getTopOffset() {
+        if (this.hasHint) {
+            return AndroidUtilities.dp(20.0f);
+        }
+        return 0.0f;
+    }
+
+    public void setBubbleOffset(float f) {
+        this.bubblesOffset = f;
     }
 
     public final class LeftRightShadowsListener extends RecyclerView.OnScrollListener {

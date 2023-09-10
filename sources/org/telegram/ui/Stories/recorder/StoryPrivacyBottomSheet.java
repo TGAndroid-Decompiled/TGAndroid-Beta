@@ -1854,7 +1854,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         this.containerView = new ContainerView(context);
         ViewPagerFixed viewPagerFixed = new ViewPagerFixed(context) {
             @Override
-            protected void onTabAnimationUpdate() {
+            protected void onTabAnimationUpdate(boolean z) {
                 ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
             }
 

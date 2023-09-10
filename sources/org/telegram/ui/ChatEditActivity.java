@@ -210,6 +210,9 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
 
         @Override
         public boolean onDeletePhoto(int i) {
+            if (ChatEditActivity.this.userId == 0) {
+                return true;
+            }
             TLRPC$TL_photos_updateProfilePhoto tLRPC$TL_photos_updateProfilePhoto = new TLRPC$TL_photos_updateProfilePhoto();
             tLRPC$TL_photos_updateProfilePhoto.bot = ChatEditActivity.this.getMessagesController().getInputUser(ChatEditActivity.this.userId);
             tLRPC$TL_photos_updateProfilePhoto.flags |= 2;

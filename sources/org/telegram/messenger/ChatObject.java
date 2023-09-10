@@ -1664,6 +1664,10 @@ public class ChatObject {
         return tLRPC$Chat == null || (tLRPC$Chat instanceof TLRPC$TL_chatEmpty) || (tLRPC$Chat instanceof TLRPC$TL_chatForbidden) || (tLRPC$Chat instanceof TLRPC$TL_channelForbidden) || tLRPC$Chat.left || tLRPC$Chat.kicked || tLRPC$Chat.deactivated;
     }
 
+    public static boolean isInChat(TLRPC$Chat tLRPC$Chat) {
+        return (tLRPC$Chat == null || (tLRPC$Chat instanceof TLRPC$TL_chatEmpty) || (tLRPC$Chat instanceof TLRPC$TL_chatForbidden) || (tLRPC$Chat instanceof TLRPC$TL_channelForbidden) || tLRPC$Chat.left || tLRPC$Chat.kicked || tLRPC$Chat.deactivated) ? false : true;
+    }
+
     public static boolean canSendAsPeers(TLRPC$Chat tLRPC$Chat) {
         return isChannel(tLRPC$Chat) && tLRPC$Chat.megagroup && (isPublic(tLRPC$Chat) || tLRPC$Chat.has_geo || tLRPC$Chat.has_link);
     }

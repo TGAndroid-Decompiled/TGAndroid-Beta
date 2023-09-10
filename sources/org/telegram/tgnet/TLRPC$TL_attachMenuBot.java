@@ -2,13 +2,16 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
-    public static int constructor = -928371502;
+    public static int constructor = -653423106;
     public long bot_id;
     public int flags;
     public boolean has_settings;
     public boolean inactive;
     public boolean request_write_access;
     public String short_name;
+    public boolean show_in_attach_menu;
+    public boolean show_in_side_menu;
+    public boolean side_menu_disclaimer_needed;
     public ArrayList<TLRPC$AttachMenuPeerType> peer_types = new ArrayList<>();
     public ArrayList<TLRPC$TL_attachMenuBotIcon> icons = new ArrayList<>();
 
@@ -19,6 +22,9 @@ public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
         this.inactive = (readInt32 & 1) != 0;
         this.has_settings = (readInt32 & 2) != 0;
         this.request_write_access = (readInt32 & 4) != 0;
+        this.show_in_attach_menu = (readInt32 & 8) != 0;
+        this.show_in_side_menu = (readInt32 & 16) != 0;
+        this.side_menu_disclaimer_needed = (readInt32 & 32) != 0;
         this.bot_id = abstractSerializedData.readInt64(z);
         this.short_name = abstractSerializedData.readString(z);
         int readInt322 = abstractSerializedData.readInt32(z);
@@ -62,20 +68,26 @@ public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
         this.flags = i2;
         int i3 = this.request_write_access ? i2 | 4 : i2 & (-5);
         this.flags = i3;
-        abstractSerializedData.writeInt32(i3);
+        int i4 = this.show_in_attach_menu ? i3 | 8 : i3 & (-9);
+        this.flags = i4;
+        int i5 = this.show_in_side_menu ? i4 | 16 : i4 & (-17);
+        this.flags = i5;
+        int i6 = this.side_menu_disclaimer_needed ? i5 | 32 : i5 & (-33);
+        this.flags = i6;
+        abstractSerializedData.writeInt32(i6);
         abstractSerializedData.writeInt64(this.bot_id);
         abstractSerializedData.writeString(this.short_name);
         abstractSerializedData.writeInt32(481674261);
         int size = this.peer_types.size();
         abstractSerializedData.writeInt32(size);
-        for (int i4 = 0; i4 < size; i4++) {
-            this.peer_types.get(i4).serializeToStream(abstractSerializedData);
+        for (int i7 = 0; i7 < size; i7++) {
+            this.peer_types.get(i7).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
         int size2 = this.icons.size();
         abstractSerializedData.writeInt32(size2);
-        for (int i5 = 0; i5 < size2; i5++) {
-            this.icons.get(i5).serializeToStream(abstractSerializedData);
+        for (int i8 = 0; i8 < size2; i8++) {
+            this.icons.get(i8).serializeToStream(abstractSerializedData);
         }
     }
 }

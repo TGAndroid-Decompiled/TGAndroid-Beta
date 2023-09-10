@@ -412,7 +412,7 @@ public class PinchToZoomHelper {
         if (imageReceiver.getDrawable() instanceof AnimatedFileDrawable) {
             return !((AnimatedFileDrawable) imageReceiver.getDrawable()).isLoadingStream();
         }
-        return imageReceiver.hasNotThumb();
+        return imageReceiver.hasNotThumbOrOnlyStaticThumb();
     }
 
     public class ZoomOverlayView extends FrameLayout {

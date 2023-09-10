@@ -41,6 +41,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     public static final int TYPE_THUMB = 1;
     private boolean allowCrossfadeWithImage;
     private boolean allowDecodeSingleFrame;
+    private boolean allowDrawWhileCacheGenerating;
     private boolean allowLoadingOnAttachedOnly;
     private boolean allowLottieVibration;
     private boolean allowStartAnimation;
@@ -213,6 +214,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         setStaticDrawable(new BitmapDrawable(bitmap));
     }
 
+    public void setAllowDrawWhileCacheGenerating(boolean z) {
+        this.allowDrawWhileCacheGenerating = z;
+    }
+
     public static class BitmapHolder {
         public Bitmap bitmap;
         public Drawable drawable;
@@ -241,6 +246,10 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         public BitmapHolder(Bitmap bitmap) {
             this.bitmap = bitmap;
             this.recycleOnRelease = true;
+        }
+
+        public String getKey() {
+            return this.key;
         }
 
         public int getWidth() {
@@ -1512,9 +1521,13 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     }
 
     public boolean hasNotThumb() {
+        return (this.currentImageDrawable == null && this.currentMediaDrawable == null && !(this.staticThumbDrawable instanceof VectorAvatarThumbDrawable)) ? false : true;
+    }
+
+    public boolean hasNotThumbOrOnlyStaticThumb() {
         if (this.currentImageDrawable == null && this.currentMediaDrawable == null) {
             Drawable drawable = this.staticThumbDrawable;
-            if (!(drawable instanceof VectorAvatarThumbDrawable) && (drawable == null || this.currentImageKey != null || this.currentMediaKey != null)) {
+            if (!(drawable instanceof VectorAvatarThumbDrawable) && (drawable == null || (drawable instanceof AvatarDrawable) || this.currentImageKey != null || this.currentMediaKey != null)) {
                 return false;
             }
         }
@@ -2240,7 +2253,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     public void setFileLoadingPriority(int i) {
         if (this.fileLoadingPriority != i) {
             this.fileLoadingPriority = i;
-            if (this.attachedToWindow) {
+            if (this.attachedToWindow && hasImageSet()) {
                 ImageLoader.getInstance().changeFileLoadingPriorityForImageReceiver(this);
             }
         }

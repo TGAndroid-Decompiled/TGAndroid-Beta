@@ -25,6 +25,7 @@ public class ButtonWithCounterView extends FrameLayout {
     private float countAlpha;
     private final AnimatedFloat countAlphaAnimated;
     private ValueAnimator countAnimator;
+    private boolean countFilled;
     private float countScale;
     private final AnimatedTextView.AnimatedTextDrawable countText;
     private boolean enabled;
@@ -41,6 +42,8 @@ public class ButtonWithCounterView extends FrameLayout {
     private final View rippleView;
     private boolean showZero;
     private final AnimatedTextView.AnimatedTextDrawable text;
+    private Runnable tick;
+    private int timerSeconds;
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
@@ -55,6 +58,8 @@ public class ButtonWithCounterView extends FrameLayout {
         super(context);
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.countAlphaAnimated = new AnimatedFloat(350L, cubicBezierInterpolator);
+        this.countFilled = true;
+        this.timerSeconds = 0;
         this.loadingT = 0.0f;
         this.countScale = 1.0f;
         this.enabledT = 1.0f;
@@ -95,6 +100,53 @@ public class ButtonWithCounterView extends FrameLayout {
         setWillNotDraw(false);
     }
 
+    public void setCountFilled(boolean z) {
+        int textColor;
+        this.countFilled = z;
+        this.countText.setTextSize(AndroidUtilities.dp(z ? 12.0f : 14.0f));
+        AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
+        if (this.countFilled) {
+            textColor = Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider);
+        } else {
+            textColor = this.text.getTextColor();
+        }
+        animatedTextDrawable.setTextColor(textColor);
+    }
+
+    public void setTimer(int i, final Runnable runnable) {
+        AndroidUtilities.cancelRunOnUIThread(this.tick);
+        setCountFilled(false);
+        this.timerSeconds = i;
+        setCount(i, false);
+        setShowZero(false);
+        Runnable runnable2 = new Runnable() {
+            @Override
+            public final void run() {
+                ButtonWithCounterView.this.lambda$setTimer$0(runnable);
+            }
+        };
+        this.tick = runnable2;
+        AndroidUtilities.runOnUIThread(runnable2, 1000L);
+    }
+
+    public void lambda$setTimer$0(Runnable runnable) {
+        int i = this.timerSeconds - 1;
+        this.timerSeconds = i;
+        setCount(i, true);
+        if (this.timerSeconds > 0) {
+            AndroidUtilities.runOnUIThread(this.tick, 1000L);
+            return;
+        }
+        setClickable(true);
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public boolean isTimerActive() {
+        return this.timerSeconds > 0;
+    }
+
     public void setText(CharSequence charSequence, boolean z) {
         if (z) {
             this.text.cancelAnimation();
@@ -120,7 +172,7 @@ public class ButtonWithCounterView extends FrameLayout {
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ButtonWithCounterView.this.lambda$setLoading$0(valueAnimator2);
+                    ButtonWithCounterView.this.lambda$setLoading$1(valueAnimator2);
                 }
             });
             this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
@@ -136,7 +188,7 @@ public class ButtonWithCounterView extends FrameLayout {
         }
     }
 
-    public void lambda$setLoading$0(ValueAnimator valueAnimator) {
+    public void lambda$setLoading$1(ValueAnimator valueAnimator) {
         this.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
@@ -156,7 +208,7 @@ public class ButtonWithCounterView extends FrameLayout {
         ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                ButtonWithCounterView.this.lambda$animateCount$1(valueAnimator2);
+                ButtonWithCounterView.this.lambda$animateCount$2(valueAnimator2);
             }
         });
         this.countAnimator.addListener(new AnimatorListenerAdapter() {
@@ -171,7 +223,7 @@ public class ButtonWithCounterView extends FrameLayout {
         this.countAnimator.start();
     }
 
-    public void lambda$animateCount$1(ValueAnimator valueAnimator) {
+    public void lambda$animateCount$2(ValueAnimator valueAnimator) {
         this.countScale = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
         invalidate();
     }
@@ -212,14 +264,14 @@ public class ButtonWithCounterView extends FrameLayout {
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                    ButtonWithCounterView.this.lambda$setEnabled$2(valueAnimator2);
+                    ButtonWithCounterView.this.lambda$setEnabled$3(valueAnimator2);
                 }
             });
             this.enabledAnimator.start();
         }
     }
 
-    public void lambda$setEnabled$2(ValueAnimator valueAnimator) {
+    public void lambda$setEnabled$3(ValueAnimator valueAnimator) {
         this.enabledT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
@@ -259,7 +311,7 @@ public class ButtonWithCounterView extends FrameLayout {
             this.text.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
             this.text.setBounds(rect);
             this.text.draw(canvas);
-            rect.set((int) (((getMeasuredWidth() - dp2) / 2.0f) + currentWidth + AndroidUtilities.dp(5.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - dp2) / 2.0f) + currentWidth + AndroidUtilities.dp(13.0f) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth())), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
+            rect.set((int) (((getMeasuredWidth() - dp2) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - dp2) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 4 + 4) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth())), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);
             if (this.countScale != 1.0f) {
@@ -267,10 +319,12 @@ public class ButtonWithCounterView extends FrameLayout {
                 float f3 = this.countScale;
                 canvas.scale(f3, f3, rect.centerX(), rect.centerY());
             }
-            this.paint.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * f2 * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.paint);
+            if (this.countFilled) {
+                this.paint.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * f2 * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.paint);
+            }
             rect.offset(-AndroidUtilities.dp(0.3f), -AndroidUtilities.dp(0.4f));
-            this.countText.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2));
+            this.countText.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * (this.countFilled ? 1.0f : 0.5f)));
             this.countText.setBounds(rect);
             this.countText.draw(canvas);
             if (this.countScale != 1.0f) {

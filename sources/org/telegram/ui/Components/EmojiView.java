@@ -377,9 +377,6 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 return false;
             }
 
-            public static void $default$onClearEmojiRecent(EmojiViewDelegate emojiViewDelegate) {
-            }
-
             public static void $default$onEmojiSettingsClick(EmojiViewDelegate emojiViewDelegate, ArrayList arrayList) {
             }
 

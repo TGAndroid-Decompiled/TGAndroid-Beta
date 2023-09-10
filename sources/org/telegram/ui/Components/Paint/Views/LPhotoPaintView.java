@@ -108,11 +108,12 @@ import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.Size;
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.SizeNotifierFrameLayoutPhoto;
 import org.telegram.ui.Components.StickerMasksAlert;
 import org.telegram.ui.Components.TrendingStickersLayout;
 import org.telegram.ui.PhotoViewer;
-public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPaintView, PaintToolsView.Delegate, EntityView.EntityViewDelegate, PaintTextOptionsView.Delegate, SizeNotifierFrameLayoutPhoto.SizeNotifierFrameLayoutPhotoDelegate, NotificationCenter.NotificationCenterDelegate {
+public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPaintView, PaintToolsView.Delegate, EntityView.EntityViewDelegate, PaintTextOptionsView.Delegate, SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate, NotificationCenter.NotificationCenterDelegate {
     AdjustPanLayoutHelper adjustPanLayoutHelper;
     private float baseScale;
     private Bitmap bitmapToEdit;
@@ -251,6 +252,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         EntityView.EntityViewDelegate.CC.$default$onEntityDraggedTop(this, z);
     }
 
+    @Override
+    public void onEntityHandleTouched() {
+        EntityView.EntityViewDelegate.CC.$default$onEntityHandleTouched(this);
+    }
+
     protected void onOpenCloseStickersAlert(boolean z) {
     }
 
@@ -262,7 +268,6 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         super(context, activity, true);
         int i3;
         StickerView stickerView;
-        byte b = 1;
         this.tabsSelectedIndex = 0;
         this.tabsNewSelectedIndex = -1;
         this.weightDefaultValueOverride = new PaintWeightChooserView.ValueOverride() {
@@ -288,7 +293,6 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.colorSwatch = new Swatch(-1, 1.0f, 0.016773745f);
         this.toolsPaint = new Paint(1);
         this.zoomOutVisible = false;
-        byte b2 = 2;
         this.pos = new int[2];
         this.openKeyboardRunnable = new Runnable() {
             @Override
@@ -418,7 +422,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 LPhotoPaintView.this.lambda$new$1();
             }
         });
-        RenderView renderView = new RenderView(context, new Painting(getPaintingSize(), bitmap2, i2), this.bitmapToEdit) {
+        RenderView renderView = new RenderView(context, new Painting(getPaintingSize(), bitmap2, i2, null), this.bitmapToEdit, null, null) {
             @Override
             public void selectBrush(Brush brush) {
                 int indexOf = Brush.BRUSHES_LIST.indexOf(brush) + 1;
@@ -527,10 +531,10 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             int i4 = 0;
             while (i4 < size) {
                 VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i4);
-                byte b3 = mediaEntity.type;
-                if (b3 == 0) {
+                byte b = mediaEntity.type;
+                if (b == 0) {
                     StickerView createSticker = createSticker(mediaEntity.parentObject, mediaEntity.document, false);
-                    if ((mediaEntity.subType & b2) != 0) {
+                    if ((mediaEntity.subType & 2) != 0) {
                         createSticker.mirror();
                     }
                     ViewGroup.LayoutParams layoutParams = createSticker.getLayoutParams();
@@ -538,7 +542,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     layoutParams.height = mediaEntity.viewHeight;
                     i3 = size;
                     stickerView = createSticker;
-                } else if (b3 == b) {
+                } else if (b == 1) {
                     TextPaintView createText = createText(false);
                     createText.setType(mediaEntity.subType);
                     createText.setTypeface(mediaEntity.textTypeface);
@@ -563,8 +567,6 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     i3 = size;
                     i4++;
                     size = i3;
-                    b = 1;
-                    b2 = 2;
                 }
                 stickerView.setX((mediaEntity.x * this.paintingSize.width) - ((mediaEntity.viewWidth * (1.0f - mediaEntity.scale)) / 2.0f));
                 stickerView.setY((mediaEntity.y * this.paintingSize.height) - ((mediaEntity.viewHeight * (1.0f - mediaEntity.scale)) / 2.0f));
@@ -576,8 +578,6 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 stickerView.setRotation((float) ((d / 3.141592653589793d) * 180.0d));
                 i4++;
                 size = i3;
-                b = 1;
-                b2 = 2;
             }
         }
         this.entitiesView.setVisibility(4);
@@ -1863,11 +1863,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         Point point3;
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
         LPhotoPaintView lPhotoPaintView = this;
-        Bitmap resultBitmap = lPhotoPaintView.renderView.getResultBitmap();
+        int i2 = 0;
+        Bitmap resultBitmap = lPhotoPaintView.renderView.getResultBitmap(false, false);
         lPhotoPaintView.lcm = BigInteger.ONE;
         if (resultBitmap != null && lPhotoPaintView.entitiesView.entitiesCount() > 0) {
             int childCount = lPhotoPaintView.entitiesView.getChildCount();
-            int i2 = 0;
             Canvas canvas2 = null;
             int i3 = 0;
             while (i3 < childCount) {
@@ -3758,7 +3758,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         this.destroyed = false;
         super.onAttachedToWindow();
         this.adjustPanLayoutHelper.setResizableView(this);
@@ -3767,7 +3767,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     @Override
-    protected void onDetachedFromWindow() {
+    public void onDetachedFromWindow() {
         this.destroyed = true;
         super.onDetachedFromWindow();
         this.adjustPanLayoutHelper.onDetach();

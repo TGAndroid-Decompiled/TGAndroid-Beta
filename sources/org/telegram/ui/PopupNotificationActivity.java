@@ -133,7 +133,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
         super.onCreate(bundle);
         Theme.createDialogsResources(this);
         Theme.createChatResources(this, false);
-        AndroidUtilities.fillStatusBarHeight(this);
+        AndroidUtilities.fillStatusBarHeight(this, false);
         for (int i = 0; i < 4; i++) {
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.appDidLogout);
             NotificationCenter.getInstance(i).addObserver(this, NotificationCenter.updateInterfaces);
@@ -303,6 +303,11 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             @Override
             public void onEditTextScroll() {
                 ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$onEditTextScroll(this);
+            }
+
+            @Override
+            public void onKeyboardRequested() {
+                ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$onKeyboardRequested(this);
             }
 
             @Override

@@ -14,6 +14,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.video.audio_input.AudioInput;
+import org.telegram.messenger.video.audio_input.GeneralAudioInput;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 public class MediaCodecVideoConvertor {
@@ -31,9 +33,9 @@ public class MediaCodecVideoConvertor {
     private MP4Builder mediaMuxer;
     private String outputMimeType;
 
-    public boolean convertVideo(String str, File file, int i, boolean z, int i2, int i3, int i4, int i5, int i6, int i7, int i8, long j, long j2, long j3, boolean z2, long j4, MediaController.SavedFilterState savedFilterState, String str2, ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z3, MediaController.CropState cropState, boolean z4, MediaController.VideoConvertorListener videoConvertorListener, Integer num, Integer num2, boolean z5, boolean z6, StoryEntry.HDRInfo hDRInfo, ArrayList<StoryEntry.Part> arrayList2) {
-        this.callback = videoConvertorListener;
-        return convertVideoInternal(str, file, i, z, i2, i3, i4, i5, i6, i7, i8, j, j2, j3, j4, z2, false, savedFilterState, str2, arrayList, z3, cropState, z4, num, num2, z5, z6, hDRInfo, arrayList2, 0);
+    public boolean convertVideo(ConvertVideoParams convertVideoParams) {
+        this.callback = convertVideoParams.callback;
+        return convertVideoInternal(convertVideoParams, false, 0);
     }
 
     public long getLastFrameTimestamp() {
@@ -41,8 +43,31 @@ public class MediaCodecVideoConvertor {
     }
 
     @android.annotation.TargetApi(18)
-    private boolean convertVideoInternal(java.lang.String r77, java.io.File r78, int r79, boolean r80, int r81, int r82, int r83, int r84, int r85, int r86, int r87, long r88, long r90, long r92, long r94, boolean r96, boolean r97, org.telegram.messenger.MediaController.SavedFilterState r98, java.lang.String r99, java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r100, boolean r101, org.telegram.messenger.MediaController.CropState r102, boolean r103, java.lang.Integer r104, java.lang.Integer r105, boolean r106, boolean r107, org.telegram.ui.Stories.recorder.StoryEntry.HDRInfo r108, java.util.ArrayList<org.telegram.ui.Stories.recorder.StoryEntry.Part> r109, int r110) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(java.lang.String, java.io.File, int, boolean, int, int, int, int, int, int, int, long, long, long, long, boolean, boolean, org.telegram.messenger.MediaController$SavedFilterState, java.lang.String, java.util.ArrayList, boolean, org.telegram.messenger.MediaController$CropState, boolean, java.lang.Integer, java.lang.Integer, boolean, boolean, org.telegram.ui.Stories.recorder.StoryEntry$HDRInfo, java.util.ArrayList, int):boolean");
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r86, boolean r87, int r88) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
+    }
+
+    private static void applyAudioInputs(ArrayList<MixedSoundInfo> arrayList, ArrayList<AudioInput> arrayList2) throws IOException {
+        for (int i = 0; i < arrayList.size(); i++) {
+            MixedSoundInfo mixedSoundInfo = arrayList.get(i);
+            GeneralAudioInput generalAudioInput = new GeneralAudioInput(mixedSoundInfo.audioFile);
+            generalAudioInput.setVolume(mixedSoundInfo.volume);
+            long j = mixedSoundInfo.startTime;
+            if (j > 0) {
+                generalAudioInput.setStartOffsetUs(j);
+            }
+            long j2 = mixedSoundInfo.audioOffset;
+            if (j2 > 0) {
+                generalAudioInput.setStartTimeUs(j2);
+            } else {
+                j2 = 0;
+            }
+            long j3 = mixedSoundInfo.duration;
+            if (j3 > 0) {
+                generalAudioInput.setEndTimeUs(j2 + j3);
+            }
+            arrayList2.add(generalAudioInput);
+        }
     }
 
     private MediaCodec createEncoderForMimeType() throws IOException {
@@ -151,5 +176,89 @@ public class MediaCodecVideoConvertor {
             }
         }
         throw new RuntimeException(exc);
+    }
+
+    public static class ConvertVideoParams {
+        long avatarStartTime;
+        int bitrate;
+        String blurPath;
+        File cacheFile;
+        MediaController.VideoConvertorListener callback;
+        MediaController.CropState cropState;
+        long duration;
+        long endTime;
+        int framerate;
+        Integer gradientBottomColor;
+        Integer gradientTopColor;
+        StoryEntry.HDRInfo hdrInfo;
+        boolean isPhoto;
+        boolean isRound;
+        boolean isSecret;
+        boolean isStory;
+        ArrayList<VideoEditedInfo.MediaEntity> mediaEntities;
+        boolean muted;
+        boolean needCompress;
+        int originalBitrate;
+        int originalHeight;
+        int originalWidth;
+        String paintPath;
+        ArrayList<StoryEntry.Part> parts;
+        int resultHeight;
+        int resultWidth;
+        int rotationValue;
+        MediaController.SavedFilterState savedFilterState;
+        public ArrayList<MixedSoundInfo> soundInfos = new ArrayList<>();
+        long startTime;
+        String videoPath;
+
+        private ConvertVideoParams() {
+        }
+
+        public static ConvertVideoParams of(String str, File file, int i, boolean z, int i2, int i3, int i4, int i5, int i6, int i7, int i8, long j, long j2, long j3, boolean z2, long j4, MediaController.SavedFilterState savedFilterState, String str2, String str3, ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z3, MediaController.CropState cropState, boolean z4, MediaController.VideoConvertorListener videoConvertorListener, Integer num, Integer num2, boolean z5, boolean z6, StoryEntry.HDRInfo hDRInfo, ArrayList<StoryEntry.Part> arrayList2) {
+            ConvertVideoParams convertVideoParams = new ConvertVideoParams();
+            convertVideoParams.videoPath = str;
+            convertVideoParams.cacheFile = file;
+            convertVideoParams.rotationValue = i;
+            convertVideoParams.isSecret = z;
+            convertVideoParams.originalWidth = i2;
+            convertVideoParams.originalHeight = i3;
+            convertVideoParams.resultWidth = i4;
+            convertVideoParams.resultHeight = i5;
+            convertVideoParams.framerate = i6;
+            convertVideoParams.bitrate = i7;
+            convertVideoParams.originalBitrate = i8;
+            convertVideoParams.startTime = j;
+            convertVideoParams.endTime = j2;
+            convertVideoParams.avatarStartTime = j3;
+            convertVideoParams.needCompress = z2;
+            convertVideoParams.duration = j4;
+            convertVideoParams.savedFilterState = savedFilterState;
+            convertVideoParams.paintPath = str2;
+            convertVideoParams.blurPath = str3;
+            convertVideoParams.mediaEntities = arrayList;
+            convertVideoParams.isPhoto = z3;
+            convertVideoParams.cropState = cropState;
+            convertVideoParams.isRound = z4;
+            convertVideoParams.callback = videoConvertorListener;
+            convertVideoParams.gradientTopColor = num;
+            convertVideoParams.gradientBottomColor = num2;
+            convertVideoParams.muted = z5;
+            convertVideoParams.isStory = z6;
+            convertVideoParams.hdrInfo = hDRInfo;
+            convertVideoParams.parts = arrayList2;
+            return convertVideoParams;
+        }
+    }
+
+    public static class MixedSoundInfo {
+        final String audioFile;
+        public long audioOffset;
+        public long duration;
+        public long startTime;
+        public float volume = 1.0f;
+
+        public MixedSoundInfo(String str) {
+            this.audioFile = str;
+        }
     }
 }

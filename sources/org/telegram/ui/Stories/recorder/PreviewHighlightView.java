@@ -17,6 +17,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
@@ -66,7 +67,7 @@ public class PreviewHighlightView extends FrameLayout {
                 int i2 = 0;
                 while (i2 < PreviewHighlightView.this.storiesCount) {
                     this.rectF.set(dpf2, AndroidUtilities.dpf2(8.0f), dpf2 + width, AndroidUtilities.dpf2(10.0f));
-                    this.barPaint.setAlpha(i2 < PreviewHighlightView.this.storiesCount + (-1) ? 255 : 133);
+                    this.barPaint.setAlpha(i2 < PreviewHighlightView.this.storiesCount + (-1) ? 255 : MessagesStorage.LAST_DB_VERSION);
                     canvas.drawRoundRect(this.rectF, AndroidUtilities.dpf2(1.0f), AndroidUtilities.dpf2(1.0f), this.barPaint);
                     dpf2 += AndroidUtilities.dpf2(2.0f) + width;
                     i2++;

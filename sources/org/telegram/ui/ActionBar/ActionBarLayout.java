@@ -45,6 +45,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.INavigationLayout;
@@ -642,18 +643,19 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
 
     @Override
     public void drawHeaderShadow(Canvas canvas, int i, int i2) {
-        Drawable drawable = headerShadowDrawable;
-        if (drawable != null) {
-            if (Build.VERSION.SDK_INT >= 19) {
-                if (drawable.getAlpha() != i) {
-                    headerShadowDrawable.setAlpha(i);
-                }
-            } else {
-                drawable.setAlpha(i);
-            }
-            headerShadowDrawable.setBounds(0, i2, getMeasuredWidth(), headerShadowDrawable.getIntrinsicHeight() + i2);
-            headerShadowDrawable.draw(canvas);
+        if (headerShadowDrawable == null || !SharedConfig.drawActionBarShadow) {
+            return;
         }
+        int i3 = i / 2;
+        if (Build.VERSION.SDK_INT >= 19) {
+            if (headerShadowDrawable.getAlpha() != i3) {
+                headerShadowDrawable.setAlpha(i3);
+            }
+        } else {
+            headerShadowDrawable.setAlpha(i3);
+        }
+        headerShadowDrawable.setBounds(0, i2, getMeasuredWidth(), headerShadowDrawable.getIntrinsicHeight() + i2);
+        headerShadowDrawable.draw(canvas);
     }
 
     @Keep

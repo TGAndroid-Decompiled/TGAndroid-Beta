@@ -9,6 +9,7 @@ public abstract class TLRPC$WebPage extends TLObject {
     public int date;
     public String description;
     public String display_url;
+    public String displayedText;
     public TLRPC$Document document;
     public int duration;
     public int embed_height;

@@ -1481,7 +1481,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.dialog_id = j;
     }
 
-    public void setUserOrChar(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat) {
+    public void setUserOrChat(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat) {
         this.user = tLRPC$User;
         this.chat = tLRPC$Chat;
     }

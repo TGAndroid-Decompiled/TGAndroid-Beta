@@ -29,15 +29,18 @@ import org.telegram.tgnet.TLRPC$WallPaper;
 import org.telegram.ui.ActionBar.Theme;
 public class EmojiThemes {
     private static final int[] previewColorKeys = {Theme.key_chat_inBubble, Theme.key_chat_outBubble, Theme.key_featuredStickers_addButton, Theme.key_chat_wallpaper, Theme.key_chat_wallpaper_gradient_to1, Theme.key_chat_wallpaper_gradient_to2, Theme.key_chat_wallpaper_gradient_to3, Theme.key_chat_wallpaper_gradient_rotation};
+    private final int currentAccount;
     public String emoji;
     public ArrayList<ThemeItem> items = new ArrayList<>();
     public boolean showAsDefaultStub;
     public TLRPC$WallPaper wallpaper;
 
-    public EmojiThemes() {
+    public EmojiThemes(int i) {
+        this.currentAccount = i;
     }
 
-    public EmojiThemes(TLRPC$TL_theme tLRPC$TL_theme, boolean z) {
+    public EmojiThemes(int i, TLRPC$TL_theme tLRPC$TL_theme, boolean z) {
+        this.currentAccount = i;
         this.showAsDefaultStub = z;
         this.emoji = tLRPC$TL_theme.emoticon;
         if (z) {
@@ -53,20 +56,20 @@ public class EmojiThemes {
         this.items.add(themeItem2);
     }
 
-    public static EmojiThemes createPreviewFullTheme(TLRPC$TL_theme tLRPC$TL_theme) {
-        EmojiThemes emojiThemes = new EmojiThemes();
+    public static EmojiThemes createPreviewFullTheme(int i, TLRPC$TL_theme tLRPC$TL_theme) {
+        EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = tLRPC$TL_theme.emoticon;
-        for (int i = 0; i < tLRPC$TL_theme.settings.size(); i++) {
+        for (int i2 = 0; i2 < tLRPC$TL_theme.settings.size(); i2++) {
             ThemeItem themeItem = new ThemeItem();
             themeItem.tlTheme = tLRPC$TL_theme;
-            themeItem.settingsIndex = i;
+            themeItem.settingsIndex = i2;
             emojiThemes.items.add(themeItem);
         }
         return emojiThemes;
     }
 
-    public static EmojiThemes createChatThemesDefault() {
-        EmojiThemes emojiThemes = new EmojiThemes();
+    public static EmojiThemes createChatThemesDefault(int i) {
+        EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = "❌";
         emojiThemes.showAsDefaultStub = true;
         ThemeItem themeItem = new ThemeItem();
@@ -78,67 +81,67 @@ public class EmojiThemes {
         return emojiThemes;
     }
 
-    public static EmojiThemes createPreviewCustom() {
-        EmojiThemes emojiThemes = new EmojiThemes();
+    public static EmojiThemes createPreviewCustom(int i) {
+        EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = "🎨";
-        int i = 0;
+        int i2 = 0;
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("themeconfig", 0);
         String string = sharedPreferences.getString("lastDayCustomTheme", null);
-        int i2 = sharedPreferences.getInt("lastDayCustomThemeAccentId", -1);
-        int i3 = 99;
+        int i3 = sharedPreferences.getInt("lastDayCustomThemeAccentId", -1);
+        int i4 = 99;
         String str = "Blue";
         if (string == null || Theme.getTheme(string) == null) {
             string = sharedPreferences.getString("lastDayTheme", "Blue");
             Theme.ThemeInfo theme = Theme.getTheme(string);
             if (theme == null) {
                 string = "Blue";
-                i2 = 99;
+                i3 = 99;
             } else {
-                i2 = theme.currentAccentId;
+                i3 = theme.currentAccentId;
             }
             sharedPreferences.edit().putString("lastDayCustomTheme", string).apply();
-        } else if (i2 == -1) {
-            i2 = Theme.getTheme(string).lastAccentId;
+        } else if (i3 == -1) {
+            i3 = Theme.getTheme(string).lastAccentId;
         }
-        if (i2 != -1) {
+        if (i3 != -1) {
             str = string;
-            i3 = i2;
+            i4 = i3;
         }
         String string2 = sharedPreferences.getString("lastDarkCustomTheme", null);
-        int i4 = sharedPreferences.getInt("lastDarkCustomThemeAccentId", -1);
+        int i5 = sharedPreferences.getInt("lastDarkCustomThemeAccentId", -1);
         String str2 = "Dark Blue";
         if (string2 == null || Theme.getTheme(string2) == null) {
             string2 = sharedPreferences.getString("lastDarkTheme", "Dark Blue");
             Theme.ThemeInfo theme2 = Theme.getTheme(string2);
             if (theme2 == null) {
                 string2 = "Dark Blue";
-                i4 = 0;
+                i5 = 0;
             } else {
-                i4 = theme2.currentAccentId;
+                i5 = theme2.currentAccentId;
             }
             sharedPreferences.edit().putString("lastDarkCustomTheme", string2).apply();
-        } else if (i4 == -1) {
-            i4 = Theme.getTheme(str).lastAccentId;
+        } else if (i5 == -1) {
+            i5 = Theme.getTheme(str).lastAccentId;
         }
-        if (i4 != -1) {
+        if (i5 != -1) {
             str2 = string2;
-            i = i4;
+            i2 = i5;
         }
         ThemeItem themeItem = new ThemeItem();
         themeItem.themeInfo = Theme.getTheme(str);
-        themeItem.accentId = i3;
+        themeItem.accentId = i4;
         emojiThemes.items.add(themeItem);
         emojiThemes.items.add(null);
         ThemeItem themeItem2 = new ThemeItem();
         themeItem2.themeInfo = Theme.getTheme(str2);
-        themeItem2.accentId = i;
+        themeItem2.accentId = i2;
         emojiThemes.items.add(themeItem2);
         emojiThemes.items.add(null);
         return emojiThemes;
     }
 
-    public static EmojiThemes createHomePreviewTheme() {
-        EmojiThemes emojiThemes = new EmojiThemes();
+    public static EmojiThemes createHomePreviewTheme(int i) {
+        EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = "🏠";
         ThemeItem themeItem = new ThemeItem();
         themeItem.themeInfo = Theme.getTheme("Blue");
@@ -159,8 +162,8 @@ public class EmojiThemes {
         return emojiThemes;
     }
 
-    public static EmojiThemes createHomeQrTheme() {
-        EmojiThemes emojiThemes = new EmojiThemes();
+    public static EmojiThemes createHomeQrTheme(int i) {
+        EmojiThemes emojiThemes = new EmojiThemes(i);
         emojiThemes.emoji = "🏠";
         ThemeItem themeItem = new ThemeItem();
         themeItem.themeInfo = Theme.getTheme("Blue");
@@ -326,17 +329,17 @@ public class EmojiThemes {
     public void loadWallpaper(int i, ResultCallback<Pair<Long, Bitmap>> resultCallback) {
         TLRPC$WallPaper wallpaper = getWallpaper(i);
         if (wallpaper != null) {
-            loadWallpaperImage(getTlTheme(i).id, wallpaper, resultCallback);
+            loadWallpaperImage(this.currentAccount, getTlTheme(i).id, wallpaper, resultCallback);
         } else if (resultCallback != null) {
             resultCallback.onComplete(null);
         }
     }
 
-    public static void loadWallpaperImage(final long j, final TLRPC$WallPaper tLRPC$WallPaper, final ResultCallback<Pair<Long, Bitmap>> resultCallback) {
-        ChatThemeController.getWallpaperBitmap(j, new ResultCallback() {
+    public static void loadWallpaperImage(final int i, final long j, final TLRPC$WallPaper tLRPC$WallPaper, final ResultCallback<Pair<Long, Bitmap>> resultCallback) {
+        ChatThemeController.getInstance(i).getWallpaperBitmap(j, new ResultCallback() {
             @Override
             public final void onComplete(Object obj) {
-                EmojiThemes.lambda$loadWallpaperImage$1(ResultCallback.this, j, tLRPC$WallPaper, (Bitmap) obj);
+                EmojiThemes.lambda$loadWallpaperImage$1(ResultCallback.this, j, tLRPC$WallPaper, i, (Bitmap) obj);
             }
 
             @Override
@@ -346,7 +349,7 @@ public class EmojiThemes {
         });
     }
 
-    public static void lambda$loadWallpaperImage$1(final ResultCallback resultCallback, final long j, TLRPC$WallPaper tLRPC$WallPaper, Bitmap bitmap) {
+    public static void lambda$loadWallpaperImage$1(final ResultCallback resultCallback, final long j, TLRPC$WallPaper tLRPC$WallPaper, final int i, Bitmap bitmap) {
         if (bitmap != null && resultCallback != null) {
             resultCallback.onComplete(new Pair(Long.valueOf(j), bitmap));
             return;
@@ -362,7 +365,7 @@ public class EmojiThemes {
         imageReceiver.setDelegate(new ImageReceiver.ImageReceiverDelegate() {
             @Override
             public final void didSetImage(ImageReceiver imageReceiver2, boolean z, boolean z2, boolean z3) {
-                EmojiThemes.lambda$loadWallpaperImage$0(ResultCallback.this, j, imageReceiver2, z, z2, z3);
+                EmojiThemes.lambda$loadWallpaperImage$0(ResultCallback.this, j, i, imageReceiver2, z, z2, z3);
             }
 
             @Override
@@ -373,7 +376,7 @@ public class EmojiThemes {
         ImageLoader.getInstance().loadImageForImageReceiver(imageReceiver);
     }
 
-    public static void lambda$loadWallpaperImage$0(ResultCallback resultCallback, long j, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
+    public static void lambda$loadWallpaperImage$0(ResultCallback resultCallback, long j, int i, ImageReceiver imageReceiver, boolean z, boolean z2, boolean z3) {
         ImageReceiver.BitmapHolder bitmapSafe = imageReceiver.getBitmapSafe();
         if (!z || bitmapSafe == null) {
             return;
@@ -388,7 +391,7 @@ public class EmojiThemes {
         if (resultCallback != null) {
             resultCallback.onComplete(new Pair(Long.valueOf(j), bitmap));
         }
-        ChatThemeController.saveWallpaperBitmap(bitmap, j);
+        ChatThemeController.getInstance(i).saveWallpaperBitmap(bitmap, j);
     }
 
     public void loadWallpaperThumb(int i, final ResultCallback<Pair<Long, Bitmap>> resultCallback) {
@@ -401,7 +404,7 @@ public class EmojiThemes {
             return;
         }
         final long j = getTlTheme(i).id;
-        Bitmap wallpaperThumbBitmap = ChatThemeController.getWallpaperThumbBitmap(j);
+        Bitmap wallpaperThumbBitmap = ChatThemeController.getInstance(this.currentAccount).getWallpaperThumbBitmap(j);
         final File wallpaperThumbFile = getWallpaperThumbFile(j);
         if (wallpaperThumbBitmap == null && wallpaperThumbFile.exists() && wallpaperThumbFile.length() > 0) {
             try {

@@ -36,7 +36,6 @@ public class AdjustPanLayoutHelper {
     private boolean ignoreOnce;
     boolean inverse;
     boolean isKeyboardVisible;
-    protected float keyboardSize;
     private boolean needDelay;
     AnimationNotificationsLocker notificationsLocker;
     ViewTreeObserver.OnPreDrawListener onPreDrawListener;

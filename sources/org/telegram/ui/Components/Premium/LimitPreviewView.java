@@ -38,17 +38,21 @@ import org.telegram.ui.Components.Premium.PremiumGradient;
 public class LimitPreviewView extends LinearLayout {
     boolean animationCanPlay;
     TextView defaultCount;
+    private final TextView defaultText;
     public int gradientTotalHeight;
     int gradientYOffset;
     int icon;
     boolean inc;
+    private boolean isBoostsStyle;
     CounterView limitIcon;
     FrameLayout limitsContainer;
     private View parentVideForGradient;
     private float position;
     TextView premiumCount;
     private boolean premiumLocked;
+    private final TextView premiumText;
     float progress;
+    Theme.ResourcesProvider resourcesProvider;
     PremiumGradient.PremiumGradientTools staticGradient;
     boolean wasAnimation;
     boolean wasHaptic;
@@ -62,6 +66,7 @@ public class LimitPreviewView extends LinearLayout {
     public LimitPreviewView(Context context, int i, int i2, int i3, float f, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.animationCanPlay = true;
+        this.resourcesProvider = resourcesProvider;
         final float clamp = MathUtils.clamp(f, 0.1f, 0.9f);
         this.icon = i;
         setOrientation(1);
@@ -75,7 +80,8 @@ public class LimitPreviewView extends LinearLayout {
             addView(this.limitIcon, LayoutHelper.createLinear(-2, -2, 0.0f, 3));
         }
         final FrameLayout frameLayout = new FrameLayout(context);
-        final TextView textView = new TextView(context);
+        TextView textView = new TextView(context);
+        this.defaultText = textView;
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setText(LocaleController.getString("LimitFree", R.string.LimitFree));
         textView.setGravity(16);
@@ -95,7 +101,8 @@ public class LimitPreviewView extends LinearLayout {
             frameLayout.addView(this.defaultCount, LayoutHelper.createFrame(-2, 30.0f, 5, 12.0f, 0.0f, 12.0f, 0.0f));
         }
         final FrameLayout frameLayout2 = new FrameLayout(context);
-        final TextView textView3 = new TextView(context);
+        TextView textView3 = new TextView(context);
+        this.premiumText = textView3;
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView3.setText(LocaleController.getString("LimitPremium", R.string.LimitPremium));
         textView3.setGravity(16);
@@ -118,19 +125,25 @@ public class LimitPreviewView extends LinearLayout {
 
             @Override
             protected void dispatchDraw(Canvas canvas) {
-                this.grayPaint.setColor(Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider));
+                if (LimitPreviewView.this.isBoostsStyle) {
+                    this.grayPaint.setColor(Theme.getColor(Theme.key_graySection, resourcesProvider));
+                } else {
+                    this.grayPaint.setColor(Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider));
+                }
                 RectF rectF = AndroidUtilities.rectTmp;
-                float f2 = 0.0f;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.grayPaint);
                 canvas.save();
-                canvas.clipRect(LimitPreviewView.this.width1, 0, getMeasuredWidth(), getMeasuredHeight());
+                if (!LimitPreviewView.this.isBoostsStyle) {
+                    canvas.clipRect(LimitPreviewView.this.width1, 0, getMeasuredWidth(), getMeasuredHeight());
+                }
                 Paint mainGradientPaint = PremiumGradient.getInstance().getMainGradientPaint();
                 if (LimitPreviewView.this.parentVideForGradient != null) {
                     View view = LimitPreviewView.this.parentVideForGradient;
                     LimitPreviewView limitPreviewView = LimitPreviewView.this;
                     PremiumGradient.PremiumGradientTools premiumGradientTools = limitPreviewView.staticGradient;
                     if (premiumGradientTools == null) {
+                        float f2 = 0.0f;
                         for (View view2 = this; view2 != view; view2 = (View) view2.getParent()) {
                             f2 += view2.getY();
                         }
@@ -141,6 +154,9 @@ public class LimitPreviewView extends LinearLayout {
                     }
                 } else {
                     PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, LimitPreviewView.this.getMeasuredWidth(), LimitPreviewView.this.getMeasuredHeight(), LimitPreviewView.this.getGlobalXOffset() - getLeft(), -getTop());
+                }
+                if (LimitPreviewView.this.isBoostsStyle) {
+                    AndroidUtilities.rectTmp.set(0.0f, 0.0f, LimitPreviewView.this.width1, getMeasuredHeight());
                 }
                 canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), mainGradientPaint);
                 canvas.restore();
@@ -156,9 +172,9 @@ public class LimitPreviewView extends LinearLayout {
                     int size = View.MeasureSpec.getSize(i5);
                     int size2 = View.MeasureSpec.getSize(i6);
                     frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                    int max = Math.max(frameLayout.getMeasuredWidth(), AndroidUtilities.dp(24.0f) + textView.getMeasuredWidth() + (LimitPreviewView.this.defaultCount.getVisibility() == 0 ? AndroidUtilities.dp(24.0f) + LimitPreviewView.this.defaultCount.getMeasuredWidth() : 0));
+                    int max = Math.max(frameLayout.getMeasuredWidth(), AndroidUtilities.dp(24.0f) + LimitPreviewView.this.defaultText.getMeasuredWidth() + (LimitPreviewView.this.defaultCount.getVisibility() == 0 ? AndroidUtilities.dp(24.0f) + LimitPreviewView.this.defaultCount.getMeasuredWidth() : 0));
                     frameLayout2.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-                    LimitPreviewView.this.width1 = (int) Utilities.clamp(size * clamp, size - Math.max(frameLayout2.getMeasuredWidth(), (AndroidUtilities.dp(24.0f) + textView3.getMeasuredWidth()) + (LimitPreviewView.this.premiumCount.getVisibility() == 0 ? AndroidUtilities.dp(24.0f) + LimitPreviewView.this.premiumCount.getMeasuredWidth() : 0)), max);
+                    LimitPreviewView.this.width1 = (int) Utilities.clamp(size * clamp, size - Math.max(frameLayout2.getMeasuredWidth(), (AndroidUtilities.dp(24.0f) + LimitPreviewView.this.premiumText.getMeasuredWidth()) + (LimitPreviewView.this.premiumCount.getVisibility() == 0 ? AndroidUtilities.dp(24.0f) + LimitPreviewView.this.premiumCount.getMeasuredWidth() : 0)), max);
                     frameLayout.measure(View.MeasureSpec.makeMeasureSpec(LimitPreviewView.this.width1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
                     frameLayout2.measure(View.MeasureSpec.makeMeasureSpec(size - LimitPreviewView.this.width1, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
                     setMeasuredDimension(size, size2);

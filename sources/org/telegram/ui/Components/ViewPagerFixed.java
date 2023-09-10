@@ -66,6 +66,7 @@ public class ViewPagerFixed extends FrameLayout {
     private boolean backAnimation;
     private float backProgress;
     public int currentPosition;
+    public float currentProgress;
     private ValueAnimator manualScrolling;
     private int maximumVelocity;
     private boolean maybeStartTracking;
@@ -135,7 +136,7 @@ public class ViewPagerFixed extends FrameLayout {
     protected void onScrollEnd() {
     }
 
-    protected void onTabAnimationUpdate() {
+    protected void onTabAnimationUpdate(boolean z) {
     }
 
     protected void onTabPageSelected(int i) {
@@ -173,12 +174,14 @@ public class ViewPagerFixed extends FrameLayout {
                 if (ViewPagerFixed.this.tabsAnimationInProgress) {
                     float abs = Math.abs(ViewPagerFixed.this.viewPages[0].getTranslationX()) / ViewPagerFixed.this.viewPages[0].getMeasuredWidth();
                     ViewPagerFixed viewPagerFixed = ViewPagerFixed.this;
+                    float f = 1.0f - abs;
+                    viewPagerFixed.currentProgress = f;
                     TabsView tabsView = viewPagerFixed.tabsView;
                     if (tabsView != null) {
-                        tabsView.selectTab(viewPagerFixed.nextPosition, viewPagerFixed.currentPosition, 1.0f - abs);
+                        tabsView.selectTab(viewPagerFixed.nextPosition, viewPagerFixed.currentPosition, f);
                     }
                 }
-                ViewPagerFixed.this.onTabAnimationUpdate();
+                ViewPagerFixed.this.onTabAnimationUpdate(false);
             }
         };
         this.rect = new android.graphics.Rect();
@@ -206,7 +209,15 @@ public class ViewPagerFixed extends FrameLayout {
         return valueAnimator != null && valueAnimator.isRunning();
     }
 
-    public void scrollToPosition(int i) {
+    public boolean scrollToPosition(int i) {
+        ValueAnimator valueAnimator;
+        if (i == this.currentPosition || ((valueAnimator = this.manualScrolling) != null && this.nextPosition == i)) {
+            return false;
+        }
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.manualScrolling = null;
+        }
         boolean z = this.currentPosition < i;
         this.animatingForward = z;
         this.nextPosition = i;
@@ -218,11 +229,6 @@ public class ViewPagerFixed extends FrameLayout {
             this.viewPages[1].setTranslationX(measuredWidth);
         } else {
             this.viewPages[1].setTranslationX(-measuredWidth);
-        }
-        ValueAnimator valueAnimator = this.manualScrolling;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.manualScrolling = null;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.manualScrolling = ofFloat;
@@ -246,12 +252,13 @@ public class ViewPagerFixed extends FrameLayout {
                     ViewPagerFixed.this.viewPages[1] = null;
                 }
                 ViewPagerFixed.this.manualScrolling = null;
-                ViewPagerFixed.this.onTabAnimationUpdate();
+                ViewPagerFixed.this.onTabAnimationUpdate(true);
             }
         });
         this.manualScrolling.setDuration(540L);
         this.manualScrolling.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
         this.manualScrolling.start();
+        return true;
     }
 
     public void lambda$scrollToPosition$1(ValueAnimator valueAnimator) {
@@ -269,7 +276,8 @@ public class ViewPagerFixed extends FrameLayout {
             View[] viewArr3 = this.viewPages;
             viewArr3[0].setTranslationX(viewArr3[0].getMeasuredWidth() * floatValue);
         }
-        onTabAnimationUpdate();
+        this.currentProgress = floatValue;
+        onTabAnimationUpdate(true);
     }
 
     public TabsView createTabsView(boolean z, int i) {
@@ -461,6 +469,7 @@ public class ViewPagerFixed extends FrameLayout {
         int i2 = this.nextPosition;
         this.currentPosition = i2;
         this.nextPosition = i;
+        this.currentProgress = 1.0f - this.currentProgress;
         int[] iArr = this.viewTypes;
         int i3 = iArr[0];
         iArr[0] = iArr[1];
@@ -522,13 +531,15 @@ public class ViewPagerFixed extends FrameLayout {
         int i2 = this.currentPosition;
         if (i2 != i) {
             this.currentPosition = i;
+            this.nextPosition = 0;
+            this.currentProgress = 1.0f;
             View view = this.viewPages[0];
             updateViewForIndex(0);
             onItemSelected(this.viewPages[0], view, this.currentPosition, i2);
             this.viewPages[0].setTranslationX(0.0f);
             TabsView tabsView = this.tabsView;
             if (tabsView != null) {
-                tabsView.selectTab(i, 0, 1.0f);
+                tabsView.selectTab(this.currentPosition, this.nextPosition, this.currentProgress);
             }
         }
     }

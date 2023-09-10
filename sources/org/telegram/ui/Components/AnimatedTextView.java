@@ -166,7 +166,7 @@ public class AnimatedTextView extends View {
         }
 
         @Override
-        public void draw(android.graphics.Canvas r17) {
+        public void draw(android.graphics.Canvas r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedTextView.AnimatedTextDrawable.draw(android.graphics.Canvas):void");
         }
 
@@ -713,6 +713,17 @@ public class AnimatedTextView extends View {
         @Override
         public android.graphics.Rect getDirtyBounds() {
             return this.bounds;
+        }
+
+        public float isNotEmpty() {
+            CharSequence charSequence = this.oldText;
+            float f = 0.0f;
+            float f2 = (charSequence == null || charSequence.length() <= 0) ? 0.0f : 1.0f;
+            CharSequence charSequence2 = this.currentText;
+            if (charSequence2 != null && charSequence2.length() > 0) {
+                f = 1.0f;
+            }
+            return AndroidUtilities.lerp(f2, f, this.oldText != null ? this.t : 1.0f);
         }
     }
 

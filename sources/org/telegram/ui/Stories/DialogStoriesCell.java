@@ -496,7 +496,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r21) {
+    protected void dispatchDraw(android.graphics.Canvas r20) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.DialogStoriesCell.dispatchDraw(android.graphics.Canvas):void");
     }
 
@@ -616,13 +616,13 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         StoriesUtilities.updateColors();
         final int textColor = getTextColor();
         this.titleView.setTextColor(textColor);
-        AndroidUtilities.forEachViews(this.recyclerListView, new Consumer() {
+        AndroidUtilities.forEachViews((RecyclerView) this.recyclerListView, (Consumer<View>) new Consumer() {
             @Override
             public final void accept(Object obj) {
                 DialogStoriesCell.lambda$updateColors$8(textColor, (View) obj);
             }
         });
-        AndroidUtilities.forEachViews(this.listViewMini, new Consumer() {
+        AndroidUtilities.forEachViews((RecyclerView) this.listViewMini, (Consumer<View>) new Consumer() {
             @Override
             public final void accept(Object obj) {
                 DialogStoriesCell.lambda$updateColors$9((View) obj);
@@ -695,7 +695,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     public void openStoryRecorder() {
         StoriesController.StoryLimit checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit();
         if (checkStoryLimit != null) {
-            this.fragment.showDialog(new LimitReachedBottomSheet(this.fragment, getContext(), checkStoryLimit.getLimitReachedType(), this.currentAccount));
+            this.fragment.showDialog(new LimitReachedBottomSheet(this.fragment, getContext(), checkStoryLimit.getLimitReachedType(), this.currentAccount, this.fragment.getResourceProvider()));
             return;
         }
         StoryCell storyCell = null;
@@ -1553,7 +1553,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
         int i2 = this.currentState;
         if (i2 == 0) {
-            AndroidUtilities.forEachViews(this.recyclerListView, new Consumer() {
+            AndroidUtilities.forEachViews((RecyclerView) this.recyclerListView, (Consumer<View>) new Consumer() {
                 @Override
                 public final void accept(Object obj) {
                     DialogStoriesCell.lambda$updateCurrentState$11((View) obj);

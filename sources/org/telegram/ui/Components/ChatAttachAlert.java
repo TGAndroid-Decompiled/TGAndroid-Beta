@@ -60,6 +60,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -160,7 +161,6 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     protected RecyclerListView buttonsRecyclerView;
     public boolean canOpenPreview;
     private float captionEditTextTopOffset;
-    protected boolean captionLimitBulletinShown;
     private final NumberTextView captionLimitView;
     private float chatActivityEnterViewAnimateFromTop;
     private int codepointCount;
@@ -194,6 +194,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     protected boolean inBubbleMode;
     public boolean isPhotoPicker;
     private boolean isSoundPicker;
+    public boolean isStoryAudioPicker;
     public boolean isStoryLocationPicker;
     private ActionBarMenuSubItem[] itemCells;
     private AttachAlertLayout[] layouts;
@@ -276,10 +277,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     }
 
     public void showBotLayout(long j) {
-        showBotLayout(j, null);
+        showBotLayout(j, null, false);
     }
 
-    public void showBotLayout(long j, String str) {
+    public void showBotLayout(long j, String str, boolean z) {
         if ((this.botAttachLayouts.get(j) == null || !Objects.equals(str, this.botAttachLayouts.get(j).getStartCommand()) || this.botAttachLayouts.get(j).needReload()) && (this.baseFragment instanceof ChatActivity)) {
             ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout = new ChatAttachAlertBotWebViewLayout(this, getContext(), this.resourcesProvider);
             this.botAttachLayouts.put(j, chatAttachAlertBotWebViewLayout);
@@ -290,6 +291,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         if (this.botAttachLayouts.get(j) != null) {
             this.botAttachLayouts.get(j).disallowSwipeOffsetAnimation();
             showLayout(this.botAttachLayouts.get(j), -j);
+            if (z) {
+                this.botAttachLayouts.get(j).showJustAddedBulletin();
+            }
         }
     }
 
@@ -1252,6 +1256,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.canOpenPreview = false;
         this.isSoundPicker = false;
         this.isStoryLocationPicker = false;
+        this.isStoryAudioPicker = false;
         this.translationProgress = 0.0f;
         this.ATTACH_ALERT_LAYOUT_TRANSLATION = new AnimationProperties.FloatProperty<AttachAlertLayout>("translation") {
             {
@@ -1330,7 +1335,6 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         new DecelerateInterpolator();
         this.scrollOffsetY = new int[2];
         this.attachButtonPaint = new Paint(1);
-        this.captionLimitBulletinShown = false;
         this.exclusionRects = new ArrayList<>();
         this.exclustionRect = new android.graphics.Rect();
         this.ATTACH_ALERT_PROGRESS = new AnimationProperties.FloatProperty<ChatAttachAlert>("openProgress") {
@@ -3092,7 +3096,15 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
     public void onLongClickBotButton(final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, final TLRPC$User tLRPC$User) {
         String userName = tLRPC$TL_attachMenuBot != null ? tLRPC$TL_attachMenuBot.short_name : UserObject.getUserName(tLRPC$User);
-        new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.BotRemoveFromMenuTitle)).setMessage(AndroidUtilities.replaceTags(tLRPC$TL_attachMenuBot != null ? LocaleController.formatString("BotRemoveFromMenu", R.string.BotRemoveFromMenu, userName) : LocaleController.formatString("BotRemoveInlineFromMenu", R.string.BotRemoveInlineFromMenu, userName))).setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+        Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
+        while (it.hasNext() && it.next().bot_id != tLRPC$User.id) {
+        }
+        String formatString = LocaleController.formatString("BotRemoveFromMenu", R.string.BotRemoveFromMenu, userName);
+        AlertDialog.Builder title = new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.BotRemoveFromMenuTitle));
+        if (tLRPC$TL_attachMenuBot == null) {
+            formatString = LocaleController.formatString("BotRemoveInlineFromMenu", R.string.BotRemoveInlineFromMenu, userName);
+        }
+        title.setMessage(AndroidUtilities.replaceTags(formatString)).setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
                 ChatAttachAlert.this.lambda$onLongClickBotButton$20(tLRPC$TL_attachMenuBot, tLRPC$User, dialogInterface, i);
@@ -3910,11 +3922,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.currentSheetAnimation.setDuration(400L);
         this.currentSheetAnimation.setStartDelay(20L);
         this.currentSheetAnimation.setInterpolator(this.openInterpolator);
+        final AnimationNotificationsLocker animationNotificationsLocker = new AnimationNotificationsLocker();
         final BottomSheet.BottomSheetDelegateInterface bottomSheetDelegateInterface = super.delegate;
         final Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                ChatAttachAlert.this.lambda$onCustomOpenAnimation$29(bottomSheetDelegateInterface);
+                ChatAttachAlert.this.lambda$onCustomOpenAnimation$29(animationNotificationsLocker, bottomSheetDelegateInterface);
             }
         };
         this.appearSpringAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
@@ -3945,6 +3958,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 ((BottomSheet) ChatAttachAlert.this).currentSheetAnimationType = 0;
             }
         });
+        animationNotificationsLocker.lock();
         NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.stopAllHeavyOperations, Integer.valueOf((int) LiteMode.FLAG_CALLS_ANIMATIONS));
         this.currentSheetAnimation.start();
         ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -3970,9 +3984,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
     }
 
-    public void lambda$onCustomOpenAnimation$29(BottomSheet.BottomSheetDelegateInterface bottomSheetDelegateInterface) {
+    public void lambda$onCustomOpenAnimation$29(AnimationNotificationsLocker animationNotificationsLocker, BottomSheet.BottomSheetDelegateInterface bottomSheetDelegateInterface) {
         this.currentSheetAnimation = null;
         this.appearSpringAnimation = null;
+        animationNotificationsLocker.unlock();
         this.currentSheetAnimationType = 0;
         if (bottomSheetDelegateInterface != null) {
             bottomSheetDelegateInterface.onOpenAnimationEnd();
@@ -4299,6 +4314,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
             this.selectedId = 5L;
             attachAlertLayout = this.locationLayout;
+        } else if (this.isStoryAudioPicker) {
+            openAudioLayout(false);
+            attachAlertLayout = this.audioLayout;
+            this.selectedId = 3L;
         } else if (this.isSoundPicker) {
             openDocumentsLayout(false);
             attachAlertLayout = this.documentLayout;
@@ -4625,8 +4644,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                             Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(ChatAttachAlert.this.currentAccount).getAttachMenuBots().bots.iterator();
                             while (it.hasNext()) {
                                 TLRPC$TL_attachMenuBot next = it.next();
-                                if (MediaDataController.canShowAttachMenuBot(next, chatActivity.getCurrentChat() != null ? chatActivity.getCurrentChat() : chatActivity.getCurrentUser())) {
-                                    this.attachMenuBots.add(next);
+                                if (next.show_in_attach_menu) {
+                                    if (MediaDataController.canShowAttachMenuBot(next, chatActivity.getCurrentChat() != null ? chatActivity.getCurrentChat() : chatActivity.getCurrentUser())) {
+                                        this.attachMenuBots.add(next);
+                                    }
                                 }
                             }
                             int size = this.buttonsCount + this.attachMenuBots.size();
@@ -4830,7 +4851,6 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         if (baseFragment != null) {
             AndroidUtilities.setLightStatusBar(getWindow(), baseFragment.isLightStatusBar());
         }
-        this.captionLimitBulletinShown = false;
         super.dismiss();
         this.allowPassConfirmationAlert = false;
     }

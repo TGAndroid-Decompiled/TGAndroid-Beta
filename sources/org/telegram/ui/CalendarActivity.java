@@ -166,7 +166,7 @@ public class CalendarActivity extends BaseFragment implements NotificationCenter
         if (i == 2) {
             this.storiesList = MessagesController.getInstance(this.currentAccount).getStoriesController().getStoriesList(this.dialogId, 0);
         } else if (i == 3) {
-            this.storiesList = MessagesController.getInstance(this.currentAccount).getStoriesController().getStoriesList(getUserConfig().clientUserId, 1);
+            this.storiesList = MessagesController.getInstance(this.currentAccount).getStoriesController().getStoriesList(this.dialogId, 1);
         }
         if (this.storiesList != null) {
             this.storiesPlaceProvider = new AnonymousClass1();

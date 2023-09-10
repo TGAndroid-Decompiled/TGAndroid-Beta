@@ -10,7 +10,7 @@ public class VoipAudioManager {
     private VoipAudioManager() {
     }
 
-    public static final class InstanceHolder {
+    private static final class InstanceHolder {
         static final VoipAudioManager instance = new VoipAudioManager();
 
         private InstanceHolder() {

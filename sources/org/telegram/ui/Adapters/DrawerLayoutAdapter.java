@@ -10,9 +10,12 @@ import java.util.Comparator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
+import org.telegram.tgnet.TLRPC$TL_attachMenuBots;
 import org.telegram.ui.ActionBar.DrawerLayoutContainer;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.DividerCell;
@@ -207,6 +210,7 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         int i6;
         int i7;
         int i8;
+        boolean z;
         this.accountNumbers.clear();
         for (int i9 = 0; i9 < 4; i9++) {
             if (UserConfig.getInstance(i9).isClientActivated()) {
@@ -262,17 +266,33 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
                 i8 = R.drawable.msg_nearby;
             }
             UserConfig userConfig = UserConfig.getInstance(UserConfig.selectedAccount);
-            if (userConfig != null && userConfig.isPremium()) {
+            if (userConfig == null || !userConfig.isPremium()) {
+                z = false;
+            } else {
                 if (userConfig.getEmojiStatus() != null) {
                     this.items.add(new Item(15, LocaleController.getString("ChangeEmojiStatus", R.string.ChangeEmojiStatus), R.drawable.msg_status_edit));
                 } else {
                     this.items.add(new Item(15, LocaleController.getString("SetEmojiStatus", R.string.SetEmojiStatus), R.drawable.msg_status_set));
                 }
+                z = true;
             }
             if (MessagesController.getInstance(UserConfig.selectedAccount).storiesEnabled()) {
                 this.items.add(new Item(16, LocaleController.getString("ProfileMyStories", R.string.ProfileMyStories), R.drawable.msg_menu_stories));
-                this.items.add(null);
-            } else if (userConfig != null && userConfig.isPremium()) {
+                z = true;
+            }
+            TLRPC$TL_attachMenuBots attachMenuBots = MediaDataController.getInstance(UserConfig.selectedAccount).getAttachMenuBots();
+            if (attachMenuBots != null && attachMenuBots.bots != null) {
+                boolean z2 = z;
+                for (int i10 = 0; i10 < attachMenuBots.bots.size(); i10++) {
+                    TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = attachMenuBots.bots.get(i10);
+                    if (tLRPC$TL_attachMenuBot.show_in_side_menu) {
+                        this.items.add(new Item(tLRPC$TL_attachMenuBot));
+                        z2 = true;
+                    }
+                }
+                z = z2;
+            }
+            if (z) {
                 this.items.add(null);
             }
             this.items.add(new Item(2, LocaleController.getString("NewGroup", R.string.NewGroup), i));
@@ -321,7 +341,20 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
         return -1;
     }
 
+    public TLRPC$TL_attachMenuBot getAttachMenuBot(int i) {
+        Item item;
+        int i2 = i - 2;
+        if (this.accountsShown) {
+            i2 -= getAccountRowsCount();
+        }
+        if (i2 < 0 || i2 >= this.items.size() || (item = this.items.get(i2)) == null) {
+            return null;
+        }
+        return item.bot;
+    }
+
     public static class Item {
+        TLRPC$TL_attachMenuBot bot;
         public int icon;
         public int id;
         public String text;
@@ -332,8 +365,18 @@ public class DrawerLayoutAdapter extends RecyclerListView.SelectionAdapter {
             this.text = str;
         }
 
+        public Item(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
+            this.bot = tLRPC$TL_attachMenuBot;
+            this.id = (int) ((tLRPC$TL_attachMenuBot.bot_id >> 16) + 100);
+        }
+
         public void bind(DrawerActionCell drawerActionCell) {
-            drawerActionCell.setTextAndIcon(this.id, this.text, this.icon);
+            TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = this.bot;
+            if (tLRPC$TL_attachMenuBot != null) {
+                drawerActionCell.setBot(tLRPC$TL_attachMenuBot);
+            } else {
+                drawerActionCell.setTextAndIcon(this.id, this.text, this.icon);
+            }
         }
     }
 }

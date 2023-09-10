@@ -1618,7 +1618,7 @@ public class ChannelCreateActivity extends BaseFragment implements NotificationC
         if (getParentActivity() == null) {
             return;
         }
-        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getParentActivity(), 2, this.currentAccount);
+        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(this, getParentActivity(), 2, this.currentAccount, null);
         limitReachedBottomSheet.parentIsChannel = true;
         limitReachedBottomSheet.onSuccessRunnable = new Runnable() {
             @Override

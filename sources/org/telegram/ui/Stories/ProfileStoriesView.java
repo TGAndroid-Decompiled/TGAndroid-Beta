@@ -459,16 +459,14 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     protected void dispatchDraw(Canvas canvas) {
         boolean z;
         float f;
-        float f2;
         int i;
+        float f2;
         float f3;
-        float f4;
-        float f5;
         this.rightAnimated.set(this.right);
-        float x = this.avatarContainer.getX();
-        float y = this.avatarContainer.getY();
-        this.rect1.set(x, y, (this.avatarContainer.getWidth() * this.avatarContainer.getScaleX()) + x, (this.avatarContainer.getHeight() * this.avatarContainer.getScaleY()) + y);
-        float f6 = this.left;
+        float x = this.avatarContainer.getX() + (this.avatarContainer.getScaleX() * 0.0f);
+        float y = this.avatarContainer.getY() + (this.avatarContainer.getScaleY() * 0.0f);
+        this.rect1.set(x, y, ((this.avatarContainer.getWidth() - 0.0f) * this.avatarContainer.getScaleX()) + x, ((this.avatarContainer.getHeight() - 0.0f) * this.avatarContainer.getScaleY()) + y);
+        float f4 = this.left;
         int i2 = 0;
         while (true) {
             if (i2 >= this.circles.size()) {
@@ -476,9 +474,9 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 break;
             }
             StoryCircle storyCircle = this.circles.get(i2);
-            float f7 = storyCircle.scaleAnimated.set(storyCircle.scale);
-            storyCircle.cachedScale = f7;
-            if (f7 <= 0.0f && storyCircle.scale <= 0.0f) {
+            float f5 = storyCircle.scaleAnimated.set(storyCircle.scale);
+            storyCircle.cachedScale = f5;
+            if (f5 <= 0.0f && storyCircle.scale <= 0.0f) {
                 storyCircle.destroy();
                 this.circles.remove(i2);
                 i2--;
@@ -503,36 +501,35 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             });
         }
         float clamp = Utilities.clamp(1.0f - (this.expandProgress / 0.2f), 1.0f, 0.0f);
-        float f8 = this.segmentsCountAnimated.set(this.count);
-        float f9 = this.segmentsUnreadCountAnimated.set(this.unreadCount);
+        float f6 = this.segmentsCountAnimated.set(this.count);
+        float f7 = this.segmentsUnreadCountAnimated.set(this.unreadCount);
         float lerp = AndroidUtilities.lerp(this.rect1.centerY(), this.expandY, this.expandProgress);
         this.storiesGradientTools.setBounds(this.left, lerp - AndroidUtilities.dp(24.0f), this.right, AndroidUtilities.dp(24.0f) + lerp);
         if (this.expandProgress <= 0.0f || clamp >= 1.0f) {
-            f = f8;
-            f2 = 0.0f;
+            f = f6;
             i = 1526726655;
-            f3 = 1.0f;
+            f2 = 1.0f;
         } else {
             this.w = 0.0f;
             for (int i3 = 0; i3 < this.circles.size(); i3++) {
                 this.w += AndroidUtilities.dp(14.0f) * this.circles.get(i3).cachedScale;
             }
-            float f10 = 0.0f;
+            float f8 = 0.0f;
             for (int i4 = 0; i4 < this.circles.size(); i4++) {
                 StoryCircle storyCircle2 = this.circles.get(i4);
-                float f11 = storyCircle2.cachedScale;
-                float f12 = storyCircle2.cachedRead;
-                float dp = (AndroidUtilities.dp(28.0f) / 2.0f) * f11;
-                float f13 = (this.expandRight - this.w) + dp + f10;
-                f10 += AndroidUtilities.dp(18.0f) * f11;
-                float f14 = f13 + dp;
-                f6 = Math.max(f6, f14);
-                this.rect2.set(f13 - dp, lerp - dp, f14, dp + lerp);
+                float f9 = storyCircle2.cachedScale;
+                float f10 = storyCircle2.cachedRead;
+                float dp = (AndroidUtilities.dp(28.0f) / 2.0f) * f9;
+                float f11 = (this.expandRight - this.w) + dp + f8;
+                f8 += AndroidUtilities.dp(18.0f) * f9;
+                float f12 = f11 + dp;
+                f4 = Math.max(f4, f12);
+                this.rect2.set(f11 - dp, lerp - dp, f12, dp + lerp);
                 lerpCentered(this.rect1, this.rect2, this.expandProgress, this.rect3);
                 storyCircle2.cachedRect.set(this.rect3);
                 storyCircle2.borderRect.set(this.rect3);
-                float f15 = (-AndroidUtilities.lerp(AndroidUtilities.dpf2(2.66f), AndroidUtilities.lerp(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(2.33f), this.expandProgress), f12 * this.expandProgress)) * f11;
-                storyCircle2.borderRect.inset(f15, f15);
+                float f13 = (-AndroidUtilities.lerp(AndroidUtilities.dpf2(2.66f), AndroidUtilities.lerp(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(2.33f), this.expandProgress), f10 * this.expandProgress)) * f9;
+                storyCircle2.borderRect.inset(f13, f13);
             }
             this.readPaint.setColor(ColorUtils.blendARGB(1526726655, -2135178036, this.expandProgress));
             this.readPaintAlpha = this.readPaint.getAlpha();
@@ -558,22 +555,21 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 StoryCircle nearest2 = nearest(i9 < this.circles.size() ? this.circles.get(i9) : null, i10 < this.circles.size() ? this.circles.get(i10) : null, storyCircle4);
                 StoryCircle storyCircle5 = (nearest == null || (Math.abs(nearest.borderRect.centerX() - storyCircle4.borderRect.centerX()) >= Math.abs((storyCircle4.borderRect.width() / 2.0f) - (nearest.borderRect.width() / 2.0f)) && Math.abs(nearest.borderRect.centerX() - storyCircle4.borderRect.centerX()) <= (nearest.borderRect.width() / 2.0f) + (storyCircle4.borderRect.width() / 2.0f))) ? nearest : null;
                 StoryCircle storyCircle6 = (nearest2 == null || (Math.abs(nearest2.borderRect.centerX() - storyCircle4.borderRect.centerX()) >= Math.abs((storyCircle4.borderRect.width() / 2.0f) - (nearest2.borderRect.width() / 2.0f)) && Math.abs(nearest2.borderRect.centerX() - storyCircle4.borderRect.centerX()) <= (nearest2.borderRect.width() / 2.0f) + (storyCircle4.borderRect.width() / 2.0f))) ? nearest2 : null;
-                float f16 = storyCircle4.cachedRead;
-                if (f16 < 1.0f) {
-                    this.storiesGradientTools.paint.setAlpha((int) (storyCircle4.cachedScale * 255.0f * (1.0f - f16) * (1.0f - clamp)));
+                float f14 = storyCircle4.cachedRead;
+                if (f14 < 1.0f) {
+                    this.storiesGradientTools.paint.setAlpha((int) (storyCircle4.cachedScale * 255.0f * (1.0f - f14) * (1.0f - clamp)));
                     drawArcs(canvas, storyCircle5, storyCircle4, storyCircle6, this.storiesGradientTools.paint);
                 }
-                float f17 = storyCircle4.cachedRead;
-                if (f17 > 0.0f) {
-                    this.readPaint.setAlpha((int) (this.readPaintAlpha * storyCircle4.cachedScale * f17 * (1.0f - clamp)));
+                float f15 = storyCircle4.cachedRead;
+                if (f15 > 0.0f) {
+                    this.readPaint.setAlpha((int) (this.readPaintAlpha * storyCircle4.cachedScale * f15 * (1.0f - clamp)));
                     drawArcs(canvas, storyCircle5, storyCircle4, storyCircle6, this.readPaint);
                 }
                 i6 = i9;
             }
             i = 1526726655;
-            f = f8;
-            f3 = 1.0f;
-            f2 = 0.0f;
+            f = f6;
+            f2 = 1.0f;
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (this.expandProgress * 255.0f * (1.0f - clamp)), 31);
             for (int size = this.circles.size() - 1; size >= 0; size--) {
                 StoryCircle storyCircle7 = this.circles.get(size);
@@ -589,7 +585,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             }
             canvas.restore();
         }
-        if (this.mainCircle == null || clamp <= f2) {
+        if (this.mainCircle == null || clamp <= 0.0f) {
             return;
         }
         this.rect2.set(this.rect1);
@@ -600,46 +596,43 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         double width = this.rect1.width();
         Double.isNaN(width);
         Double.isNaN(dpf2);
-        float lerp2 = AndroidUtilities.lerp(f2, (float) ((dpf2 / (width * 3.141592653589793d)) * 360.0d), Utilities.clamp(f - f3, f3, f2) * clamp);
+        float lerp2 = AndroidUtilities.lerp(0.0f, (float) ((dpf2 / (width * 3.141592653589793d)) * 360.0d), Utilities.clamp(f - f2, f2, 0.0f) * clamp);
         int min = Math.min(this.count, 50);
         float min2 = Math.min(f, 50.0f);
-        float max = (360.0f - (Math.max(f2, min2) * lerp2)) / Math.max(f3, min2);
+        float max = (360.0f - (Math.max(0.0f, min2) * lerp2)) / Math.max(f2, min2);
         this.readPaint.setColor(ColorUtils.blendARGB(i, 973078528, this.actionBarProgress));
         this.readPaintAlpha = this.readPaint.getAlpha();
-        float f18 = (-90.0f) - (lerp2 / 2.0f);
+        float f16 = (-90.0f) - (lerp2 / 2.0f);
         int i13 = 0;
         while (i13 < min) {
-            float f19 = i13;
-            float clamp2 = f3 - Utilities.clamp(f9 - f19, f3, f2);
-            float clamp3 = f3 - Utilities.clamp((min - min2) - f19, f3, f2);
-            if (clamp3 >= f2) {
-                float f20 = i13 == 0 ? ((this.newStoryBounceT - f3) / 2.5f) + f3 : 1.0f;
-                if (f20 != f3) {
+            float f17 = i13;
+            float clamp2 = f2 - Utilities.clamp(f7 - f17, f2, 0.0f);
+            float clamp3 = f2 - Utilities.clamp((min - min2) - f17, f2, 0.0f);
+            if (clamp3 >= 0.0f) {
+                float f18 = i13 == 0 ? ((this.newStoryBounceT - f2) / 2.5f) + f2 : 1.0f;
+                if (f18 != f2) {
                     canvas.save();
-                    canvas.scale(f20, f20, this.rect2.centerX(), this.rect2.centerY());
+                    canvas.scale(f18, f18, this.rect2.centerX(), this.rect2.centerY());
                 }
-                if (clamp2 < f3) {
-                    this.storiesGradientTools.paint.setAlpha((int) ((f3 - clamp2) * 255.0f * clamp));
+                if (clamp2 < f2) {
+                    this.storiesGradientTools.paint.setAlpha((int) ((f2 - clamp2) * 255.0f * clamp));
                     this.storiesGradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
-                    f5 = 0.0f;
-                    f4 = f20;
-                    canvas.drawArc(this.rect2, f18, (-max) * clamp3, false, this.storiesGradientTools.paint);
+                    f3 = f18;
+                    canvas.drawArc(this.rect2, f16, (-max) * clamp3, false, this.storiesGradientTools.paint);
                 } else {
-                    f4 = f20;
-                    f5 = 0.0f;
+                    f3 = f18;
                 }
-                if (clamp2 > f5) {
+                if (clamp2 > 0.0f) {
                     this.readPaint.setAlpha((int) (this.readPaintAlpha * clamp2 * clamp));
                     this.readPaint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
-                    canvas.drawArc(this.rect3, f18, (-max) * clamp3, false, this.readPaint);
+                    canvas.drawArc(this.rect3, f16, (-max) * clamp3, false, this.readPaint);
                 }
-                if (f4 != f3) {
+                if (f3 != f2) {
                     canvas.restore();
                 }
-                f18 -= (max * clamp3) + (clamp3 * lerp2);
+                f16 -= (max * clamp3) + (clamp3 * lerp2);
             }
             i13++;
-            f2 = 0.0f;
         }
     }
 

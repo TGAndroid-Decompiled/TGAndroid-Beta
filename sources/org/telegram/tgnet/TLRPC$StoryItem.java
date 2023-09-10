@@ -38,19 +38,42 @@ public abstract class TLRPC$StoryItem extends TLObject {
     public ArrayList<TLRPC$PrivacyRule> privacy = new ArrayList<>();
 
     public static TLRPC$StoryItem TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$StoryItem tLRPC$TL_storyItemSkipped;
+        TLRPC$StoryItem tLRPC$StoryItem;
         switch (i) {
             case -5388013:
-                tLRPC$TL_storyItemSkipped = new TLRPC$TL_storyItemSkipped();
+                tLRPC$StoryItem = new TLRPC$StoryItem() {
+                    public static int constructor = -5388013;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.close_friends = (readInt32 & LiteMode.FLAG_CHAT_BLUR) != 0;
+                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.date = abstractSerializedData2.readInt32(z2);
+                        this.expire_date = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                        int i2 = this.close_friends ? this.flags | LiteMode.FLAG_CHAT_BLUR : this.flags & (-257);
+                        this.flags = i2;
+                        abstractSerializedData2.writeInt32(i2);
+                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.date);
+                        abstractSerializedData2.writeInt32(this.expire_date);
+                    }
+                };
                 break;
             case 1153718222:
-                tLRPC$TL_storyItemSkipped = new TLRPC$TL_storyItem();
+                tLRPC$StoryItem = new TLRPC$TL_storyItem();
                 break;
             case 1374088783:
-                tLRPC$TL_storyItemSkipped = new TLRPC$TL_storyItemDeleted();
+                tLRPC$StoryItem = new TLRPC$TL_storyItemDeleted();
                 break;
             case 1445635639:
-                tLRPC$TL_storyItemSkipped = new TLRPC$TL_storyItem() {
+                tLRPC$StoryItem = new TLRPC$TL_storyItem() {
                     public static int constructor = 1445635639;
 
                     @Override
@@ -161,15 +184,15 @@ public abstract class TLRPC$StoryItem extends TLObject {
                 };
                 break;
             default:
-                tLRPC$TL_storyItemSkipped = null;
+                tLRPC$StoryItem = null;
                 break;
         }
-        if (tLRPC$TL_storyItemSkipped == null && z) {
+        if (tLRPC$StoryItem == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in StoryItem", Integer.valueOf(i)));
         }
-        if (tLRPC$TL_storyItemSkipped != null) {
-            tLRPC$TL_storyItemSkipped.readParams(abstractSerializedData, z);
+        if (tLRPC$StoryItem != null) {
+            tLRPC$StoryItem.readParams(abstractSerializedData, z);
         }
-        return tLRPC$TL_storyItemSkipped;
+        return tLRPC$StoryItem;
     }
 }
