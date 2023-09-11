@@ -2812,6 +2812,10 @@
     <string name="GroupChats">Group Chats</string>
     <string name="GroupContacts">Contacts in this group</string>
     <string name="GroupCreateAutodeleteDescription">Automatically delete messages in this group for everyone after a period of time.</string>
+    <string name="GroupCreateMembersFive">%1$s, %2$s, %3$s, %4$s and %5$s</string>
+    <string name="GroupCreateMembersFour">%1$s, %2$s, %3$s and %4$s</string>
+    <string name="GroupCreateMembersThree">%1$s, %2$s and %3$s</string>
+    <string name="GroupCreateMembersTwo">%1$s and %2$s</string>
     <string name="GroupDeletedUndo">Group deleted.</string>
     <string name="GroupDescription1">Up to 200,000 members</string>
     <string name="GroupDescription2">Persistent chat history</string>

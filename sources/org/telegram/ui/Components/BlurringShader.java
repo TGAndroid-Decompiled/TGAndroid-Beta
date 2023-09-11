@@ -711,11 +711,14 @@ public class BlurringShader {
                 this.paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
                 this.oldPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.3f);
-            } else if (i == 1 || i == 2) {
-                if (i == 2) {
-                    this.paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-                    this.oldPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-                }
+            } else if (i == 2) {
+                this.paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+                this.oldPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.8f);
+                AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.45f);
+                AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 2.5f);
+                AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.8f);
+            } else if (i == 1) {
                 AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.35f);
                 AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.7f);
                 AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 1.5f);

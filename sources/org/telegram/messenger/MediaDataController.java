@@ -865,6 +865,9 @@ public class MediaDataController extends BaseController {
         edit.putInt("menuBotsUpdateDate", i).commit();
         this.menuBotsUpdatedLocal = true;
         if (tLRPC$TL_attachMenuBots != null) {
+            if (!z) {
+                getMessagesStorage().putUsersAndChats(tLRPC$TL_attachMenuBots.users, null, true, false);
+            }
             getMessagesController().putUsers(tLRPC$TL_attachMenuBots.users, z);
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override

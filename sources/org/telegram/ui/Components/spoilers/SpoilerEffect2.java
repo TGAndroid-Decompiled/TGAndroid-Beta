@@ -26,6 +26,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.RLottieDrawable;
 public class SpoilerEffect2 {
     private static SpoilerEffect2 instance;
+    private final double MAX_DELTA;
     public final int MAX_FPS;
     private final double MIN_DELTA;
     public boolean destroyed;
@@ -207,7 +208,9 @@ public class SpoilerEffect2 {
         this.MAX_FPS = i3;
         double d = i3;
         Double.isNaN(d);
-        this.MIN_DELTA = 1.0d / d;
+        double d2 = 1.0d / d;
+        this.MIN_DELTA = d2;
+        this.MAX_DELTA = d2 * 4.0d;
         this.width = i;
         this.height = i2;
         this.textureViewContainer = viewGroup;
@@ -282,7 +285,7 @@ public class SpoilerEffect2 {
         private volatile boolean running = true;
         private volatile boolean paused = false;
         private final Object resizeLock = new Object();
-        private float radius = AndroidUtilities.dpf2(1.15f);
+        private float radius = AndroidUtilities.dpf2(1.2f);
         private boolean reset = true;
         private int currentBuffer = 0;
         private int particlesCount = particlesCount();
@@ -295,7 +298,7 @@ public class SpoilerEffect2 {
         }
 
         private int particlesCount() {
-            return (int) Utilities.clamp(((this.width * this.height) / 250000.0f) * 1200.0f, 10000.0f, 500.0f);
+            return (int) Utilities.clamp(((this.width * this.height) / 250000.0f) * 1000.0f, 10000.0f, 500.0f);
         }
 
         public void updateSize(int i, int i2) {
@@ -333,6 +336,8 @@ public class SpoilerEffect2 {
                     } catch (Exception unused) {
                     }
                     d2 = SpoilerEffect2.this.MIN_DELTA;
+                } else if (d2 > SpoilerEffect2.this.MAX_DELTA) {
+                    d2 = SpoilerEffect2.this.MAX_DELTA;
                 }
                 while (this.paused) {
                     try {

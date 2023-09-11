@@ -133,12 +133,6 @@ public class CheckBoxCell extends FrameLayout {
         updateTextColor();
     }
 
-    public void allowMultiline() {
-        this.textView.setLines(3);
-        this.textView.setMaxLines(3);
-        this.textView.setSingleLine(false);
-    }
-
     public void updateTextColor() {
         LinkSpanDrawable.LinksTextView linksTextView = this.textView;
         int i = this.currentType;

@@ -288,6 +288,7 @@ public class PollVotesAlert extends BottomSheet {
         private boolean needDivider;
         private float placeholderAlpha;
         private int placeholderNum;
+        private StatusBadgeComponent statusBadgeComponent;
 
         @Override
         public boolean hasOverlappingRendering() {
@@ -315,6 +316,7 @@ public class PollVotesAlert extends BottomSheet {
             SimpleTextView simpleTextView2 = this.nameTextView;
             boolean z2 = LocaleController.isRTL;
             addView(simpleTextView2, LayoutHelper.createFrame(-1, 20.0f, (z2 ? 5 : 3) | 48, z2 ? 28.0f : 65.0f, 14.0f, z2 ? 65.0f : 28.0f, 0.0f));
+            this.statusBadgeComponent = new StatusBadgeComponent(this.nameTextView);
         }
 
         public void setData(TLObject tLObject, int i, boolean z) {
@@ -362,6 +364,18 @@ public class PollVotesAlert extends BottomSheet {
         @Override
         protected void onMeasure(int i, int i2) {
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f) + (this.needDivider ? 1 : 0), 1073741824));
+        }
+
+        @Override
+        protected void onAttachedToWindow() {
+            super.onAttachedToWindow();
+            this.statusBadgeComponent.onAttachedToWindow();
+        }
+
+        @Override
+        protected void onDetachedFromWindow() {
+            this.statusBadgeComponent.onDetachedFromWindow();
+            super.onDetachedFromWindow();
         }
 
         public void update(int r12) {

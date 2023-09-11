@@ -883,7 +883,7 @@ public class CaptionContainerView extends FrameLayout {
             canvas.restore();
             return;
         }
-        Paint paint = this.captionBlur.getPaint(0.75f);
+        Paint paint = this.captionBlur.getPaint(1.0f);
         if (paint == null) {
             runnable.run();
             return;

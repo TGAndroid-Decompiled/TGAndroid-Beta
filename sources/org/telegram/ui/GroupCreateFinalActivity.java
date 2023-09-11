@@ -278,6 +278,14 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         return false;
     }
 
+    private void setDefaultGroupName() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.GroupCreateFinalActivity.setDefaultGroupName():void");
+    }
+
+    private String getFirstNameByPos(int i) {
+        return getMessagesController().getUser(this.selectedContacts.get(i)).first_name;
+    }
+
     @Override
     public View createView(Context context) {
         int i;
@@ -479,6 +487,7 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
             this.editText.setText(str2);
             this.nameToSet = null;
         }
+        setDefaultGroupName();
         this.editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(100)});
         FrameLayout frameLayout6 = this.editTextContainer;
         EditTextEmoji editTextEmoji3 = this.editText;

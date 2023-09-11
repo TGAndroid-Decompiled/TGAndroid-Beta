@@ -241,6 +241,7 @@ public class MessageObject {
     public Boolean cachedIsSupergroup;
     public boolean cancelEditing;
     public CharSequence caption;
+    public int captionHeight;
     private boolean captionTranslated;
     public ArrayList<TLRPC$TL_pollAnswer> checkedVotes;
     public int contentType;
@@ -4323,6 +4324,10 @@ public class MessageObject {
                     }
                     dp = (int) (min2 * 0.5f);
                 }
+            }
+            CharSequence charSequence = this.caption;
+            if (charSequence != null && !TextUtils.isEmpty(charSequence)) {
+                dp += this.captionHeight;
             }
             return dp + AndroidUtilities.dp(14.0f);
         }

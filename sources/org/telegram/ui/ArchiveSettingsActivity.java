@@ -267,7 +267,7 @@ public class ArchiveSettingsActivity extends BaseFragment implements Notificatio
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() != 2;
+            return (viewHolder.getItemViewType() == 2 || viewHolder.getItemViewType() == 0) ? false : true;
         }
 
         @Override

@@ -28,7 +28,6 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -46,7 +45,6 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$Vector;
 import org.telegram.ui.ActionBar.SimpleTextView;
 import org.telegram.ui.ActionBar.Theme;
-import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.AvatarsImageView;
 import org.telegram.ui.Components.BackupImageView;
@@ -55,6 +53,7 @@ import org.telegram.ui.Components.HideViewAfterAnimation;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MessageSeenCheckDrawable;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.StatusBadgeComponent;
 public class MessageSeenView extends FrameLayout {
     AvatarsImageView avatarsImageView;
     int currentAccount;
@@ -375,7 +374,7 @@ public class MessageSeenView extends FrameLayout {
         SimpleTextView nameView;
         TLObject object;
         TextView readView;
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable rightDrawable;
+        StatusBadgeComponent statusBadgeComponent;
 
         public UserCell(Context context) {
             super(context);
@@ -391,7 +390,7 @@ public class MessageSeenView extends FrameLayout {
             this.nameView.setImportantForAccessibility(2);
             this.nameView.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
             this.nameView.setGravity(LocaleController.isRTL ? 5 : 3);
-            this.rightDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(18.0f));
+            this.statusBadgeComponent = new StatusBadgeComponent(this);
             this.nameView.setDrawablePadding(AndroidUtilities.dp(3.0f));
             TextView textView = new TextView(context);
             this.readView = textView;
@@ -460,38 +459,20 @@ public class MessageSeenView extends FrameLayout {
         }
 
         private void updateStatus(boolean z) {
-            TLObject tLObject = this.object;
-            TLRPC$User tLRPC$User = tLObject instanceof TLRPC$User ? (TLRPC$User) tLObject : null;
-            if (tLRPC$User == null) {
-                return;
-            }
-            Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(tLRPC$User);
-            if (emojiStatusDocumentId == null) {
-                this.nameView.setRightDrawable((Drawable) null);
-                this.rightDrawable.set((Drawable) null, z);
-                return;
-            }
-            this.nameView.setRightDrawable(this.rightDrawable);
-            this.rightDrawable.set(emojiStatusDocumentId.longValue(), z);
+            this.nameView.setRightDrawable(this.statusBadgeComponent.updateDrawable(this.object, Theme.getColor(Theme.key_chats_verifiedBackground), z));
         }
 
         @Override
         protected void onAttachedToWindow() {
             super.onAttachedToWindow();
-            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.rightDrawable;
-            if (swapAnimatedEmojiDrawable != null) {
-                swapAnimatedEmojiDrawable.attach();
-            }
+            this.statusBadgeComponent.onAttachedToWindow();
             NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.userEmojiStatusUpdated);
         }
 
         @Override
         protected void onDetachedFromWindow() {
             super.onDetachedFromWindow();
-            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.rightDrawable;
-            if (swapAnimatedEmojiDrawable != null) {
-                swapAnimatedEmojiDrawable.detach();
-            }
+            this.statusBadgeComponent.onDetachedFromWindow();
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.userEmojiStatusUpdated);
         }
     }

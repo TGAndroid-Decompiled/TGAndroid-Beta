@@ -7762,22 +7762,60 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         int[] iArr5 = this.videoPlayerCurrentTime;
         if (iArr5[0] >= 60) {
-            format = String.format(Locale.ROOT, "%02d:%02d:%02d", Integer.valueOf(iArr5[0] / 60), Integer.valueOf(this.videoPlayerCurrentTime[0] % 60), Integer.valueOf(this.videoPlayerCurrentTime[1]));
+            format = format(iArr5[0] / 60, iArr5[0] % 60, iArr5[1]);
         } else {
-            format = String.format(Locale.ROOT, "%02d:%02d", Integer.valueOf(iArr5[0]), Integer.valueOf(this.videoPlayerCurrentTime[1]));
+            format = format(iArr5[0], iArr5[1]);
         }
         int[] iArr6 = this.videoPlayerTotalTime;
         if (iArr6[0] >= 60) {
-            format2 = String.format(Locale.ROOT, "%02d:%02d:%02d", Integer.valueOf(iArr6[0] / 60), Integer.valueOf(this.videoPlayerTotalTime[0] % 60), Integer.valueOf(this.videoPlayerTotalTime[1]));
+            format2 = format(iArr6[0] / 60, iArr6[0] % 60, iArr6[1]);
         } else {
-            format2 = String.format(Locale.ROOT, "%02d:%02d", Integer.valueOf(iArr6[0]), Integer.valueOf(this.videoPlayerTotalTime[1]));
+            format2 = format(iArr6[0], iArr6[1]);
         }
-        this.videoPlayerTime.setText(String.format(Locale.ROOT, "%s / %s", format, format2));
+        this.videoPlayerTime.setText(format + " / " + format2);
         if (Objects.equals(this.lastControlFrameDuration, format2)) {
             return;
         }
         this.lastControlFrameDuration = format2;
         this.videoPlayerControlFrameLayout.requestLayout();
+    }
+
+    private String format(int i, int i2, int i3) {
+        char[] cArr = new char[8];
+        cArr[0] = (char) (((i >= 100 ? 99 : i) / 10) + 48);
+        if (i >= 100) {
+            i = 99;
+        }
+        cArr[1] = (char) ((i % 10) + 48);
+        cArr[2] = ':';
+        cArr[3] = (char) (((i2 >= 100 ? 99 : i2) / 10) + 48);
+        if (i2 >= 100) {
+            i2 = 99;
+        }
+        cArr[4] = (char) ((i2 % 10) + 48);
+        cArr[5] = ':';
+        cArr[6] = (char) (((i3 >= 100 ? 99 : i3) / 10) + 48);
+        if (i3 >= 100) {
+            i3 = 99;
+        }
+        cArr[7] = (char) ((i3 % 10) + 48);
+        return new String(cArr);
+    }
+
+    private String format(int i, int i2) {
+        char[] cArr = new char[5];
+        cArr[0] = (char) (((i >= 100 ? 99 : i) / 10) + 48);
+        if (i >= 100) {
+            i = 99;
+        }
+        cArr[1] = (char) ((i % 10) + 48);
+        cArr[2] = ':';
+        cArr[3] = (char) (((i2 >= 100 ? 99 : i2) / 10) + 48);
+        if (i2 >= 100) {
+            i2 = 99;
+        }
+        cArr[4] = (char) ((i2 % 10) + 48);
+        return new String(cArr);
     }
 
     private void checkBufferedProgress(float f) {
@@ -13570,7 +13608,18 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     private void drawFancyShadows(Canvas canvas) {
+        float f;
         if (this.fancyShadows) {
+            if (SharedConfig.photoViewerBlur) {
+                AnimatedFloat animatedFloat = this.blurAlpha;
+                int i = this.animationInProgress;
+                f = animatedFloat.set(i == 0 || i == 2 || i == 3);
+            } else {
+                f = 1.0f;
+            }
+            if (f <= 0.0f) {
+                return;
+            }
             int currentActionBarHeight = ((int) (AndroidUtilities.statusBarHeight * 1.5f)) + ActionBar.getCurrentActionBarHeight();
             int height = AndroidUtilities.navigationBarHeight + this.pickerView.getHeight() + (this.captionEdit.getVisibility() == 0 ? (this.captionEdit.getEditTextHeightClosedKeyboard() / 2) + AndroidUtilities.dp(20.0f) : 0);
             if (this.clipFancyShadows == null) {
@@ -13588,20 +13637,20 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 this.topFancyShadowPaint.setShader(this.topFancyShadow);
                 this.bottomFancyShadowPaint.setShader(this.bottomFancyShadow);
             }
-            canvas.saveLayerAlpha(0.0f, 0.0f, this.containerView.getWidth(), this.containerView.getHeight() + AndroidUtilities.navigationBarHeight, 255, 31);
+            canvas.saveLayerAlpha(0.0f, 0.0f, this.containerView.getWidth(), this.containerView.getHeight() + AndroidUtilities.navigationBarHeight, (int) (f * (this.backgroundDrawable.getAlpha() - 127) * 2.007874f), 31);
             this.clipFancyShadows.rewind();
-            float f = currentActionBarHeight;
-            this.clipFancyShadows.addRect(0.0f, 0.0f, this.containerView.getWidth(), f, Path.Direction.CW);
+            float f2 = currentActionBarHeight;
+            this.clipFancyShadows.addRect(0.0f, 0.0f, this.containerView.getWidth(), f2, Path.Direction.CW);
             this.clipFancyShadows.addRect(0.0f, (this.containerView.getHeight() + AndroidUtilities.navigationBarHeight) - height, this.containerView.getWidth(), this.containerView.getHeight() + AndroidUtilities.navigationBarHeight, Path.Direction.CW);
             canvas.clipPath(this.clipFancyShadows);
             canvas.drawColor(-16777216);
             drawCaptionBlur(canvas, this.shadowBlurer, 0, 0, true, true, false);
             canvas.save();
             this.topFancyShadowMatrix.reset();
-            this.topFancyShadowMatrix.postScale(1.0f, f / 16.0f);
+            this.topFancyShadowMatrix.postScale(1.0f, f2 / 16.0f);
             this.topFancyShadow.setLocalMatrix(this.topFancyShadowMatrix);
             this.topFancyShadowPaint.setAlpha(208);
-            canvas.drawRect(0.0f, 0.0f, this.containerView.getWidth(), f, this.topFancyShadowPaint);
+            canvas.drawRect(0.0f, 0.0f, this.containerView.getWidth(), f2, this.topFancyShadowPaint);
             this.bottomFancyShadowMatrix.reset();
             this.bottomFancyShadowMatrix.postScale(1.0f, height / 16.0f);
             this.bottomFancyShadowMatrix.postTranslate(0.0f, (this.containerView.getHeight() - height) + AndroidUtilities.navigationBarHeight);

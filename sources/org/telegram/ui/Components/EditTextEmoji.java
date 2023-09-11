@@ -220,6 +220,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             this.editText.setLineColors(getThemedColor(Theme.key_windowBackgroundWhiteInputField), getThemedColor(Theme.key_windowBackgroundWhiteInputFieldActivated), getThemedColor(Theme.key_text_RedRegular));
             this.editText.setHintTextColor(getThemedColor(Theme.key_windowBackgroundWhiteHintText));
             this.editText.setTextColor(getThemedColor(i2));
+            this.editText.setHandlesColor(getThemedColor(Theme.key_chat_TextSelectionCursor));
             this.editText.setPadding(LocaleController.isRTL ? AndroidUtilities.dp(40.0f) : 0, 0, LocaleController.isRTL ? 0 : AndroidUtilities.dp(40.0f), AndroidUtilities.dp(8.0f));
             EditTextCaption editTextCaption5 = this.editText;
             boolean z2 = LocaleController.isRTL;

@@ -1582,7 +1582,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.imageMoveAnimation = animatorSet;
         Animator[] animatorArr = new Animator[7];
         animatorArr[0] = ObjectAnimator.ofFloat(this.actionBar, View.ALPHA, 0.0f, 1.0f);
-        animatorArr[1] = ObjectAnimator.ofFloat(this.captionScrollView, View.ALPHA, f);
+        animatorArr[1] = ObjectAnimator.ofFloat(this.captionScrollView, View.ALPHA, 0.0f, 1.0f);
         animatorArr[2] = ObjectAnimator.ofFloat(this.secretHint, View.ALPHA, 0.0f, 1.0f);
         animatorArr[3] = ObjectAnimator.ofInt(this.photoBackgroundDrawable, (Property<PhotoBackgroundDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0, 255);
         animatorArr[c] = ObjectAnimator.ofFloat(this, "animationValue", 0.0f, 1.0f);

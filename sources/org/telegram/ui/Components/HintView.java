@@ -169,6 +169,7 @@ public class HintView extends FrameLayout {
                     return false;
                 }
                 forwardNameCenterX = chatMessageCell.getNoSoundIconCenterX();
+                measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
             } else if (i6 == 5) {
                 Integer num = (Integer) obj;
                 dp = i5 + i2;

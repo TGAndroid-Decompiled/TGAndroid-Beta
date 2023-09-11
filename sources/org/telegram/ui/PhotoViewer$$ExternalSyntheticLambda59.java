@@ -8,6 +8,6 @@ public final class PhotoViewer$$ExternalSyntheticLambda59 implements Runnable {
 
     @Override
     public final void run() {
-        PhotoViewer.m2242$r8$lambda$WJkKydMvfBHUvH1JuD2hWgeB5I(this.f$0);
+        PhotoViewer.m2250$r8$lambda$WJkKydMvfBHUvH1JuD2hWgeB5I(this.f$0);
     }
 }

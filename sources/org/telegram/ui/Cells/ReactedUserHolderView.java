@@ -43,8 +43,8 @@ import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.MessageSeenCheckDrawable;
-import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
+import org.telegram.ui.Components.StatusBadgeComponent;
 import org.telegram.ui.Stories.StoriesUtilities;
 public class ReactedUserHolderView extends FrameLayout {
     public static int STYLE_DEFAULT = 0;
@@ -62,7 +62,7 @@ public class ReactedUserHolderView extends FrameLayout {
     public StoriesUtilities.AvatarStoryParams params;
     BackupImageView reactView;
     Theme.ResourcesProvider resourcesProvider;
-    AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable rightDrawable;
+    StatusBadgeComponent statusBadgeComponent;
     int style;
     SimpleTextView subtitleView;
     SimpleTextView titleView;
@@ -134,9 +134,9 @@ public class ReactedUserHolderView extends FrameLayout {
         float f2 = i == i4 ? 7.66f : 5.33f;
         float f3 = i == i4 ? 73.0f : 55.0f;
         addView(this.titleView, LayoutHelper.createFrameRelatively(-1.0f, -2.0f, 55, f3, f2, 12.0f, 0.0f));
-        this.rightDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, AndroidUtilities.dp(18.0f));
+        this.statusBadgeComponent = new StatusBadgeComponent(this);
         this.titleView.setDrawablePadding(AndroidUtilities.dp(3.0f));
-        this.titleView.setRightDrawable(this.rightDrawable);
+        this.titleView.setRightDrawable(this.statusBadgeComponent.getDrawable());
         SimpleTextView simpleTextView2 = new SimpleTextView(context);
         this.subtitleView = simpleTextView2;
         simpleTextView2.setTextSize(13);
@@ -164,17 +164,7 @@ public class ReactedUserHolderView extends FrameLayout {
         if (tLRPC$User2 == null) {
             return;
         }
-        Long emojiStatusDocumentId = tLRPC$User2 instanceof TLRPC$User ? UserObject.getEmojiStatusDocumentId(tLRPC$User2) : null;
-        if (emojiStatusDocumentId == null) {
-            if (tLRPC$User != null && tLRPC$User.premium) {
-                this.rightDrawable.set(PremiumGradient.getInstance().premiumStarDrawableMini, false);
-            } else {
-                this.rightDrawable.set((Drawable) null, false);
-            }
-        } else {
-            this.rightDrawable.set(emojiStatusDocumentId.longValue(), false);
-        }
-        this.rightDrawable.setColor(Integer.valueOf(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider)));
+        this.statusBadgeComponent.updateDrawable(tLRPC$User, tLRPC$Chat, Theme.getColor(this.style == STYLE_STORY ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_chats_verifiedBackground, this.resourcesProvider), false);
         this.avatarDrawable.setInfo((TLObject) tLRPC$User2);
         if (tLRPC$User != null) {
             this.dialogId = tLRPC$User.id;
@@ -290,19 +280,13 @@ public class ReactedUserHolderView extends FrameLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.rightDrawable;
-        if (swapAnimatedEmojiDrawable != null) {
-            swapAnimatedEmojiDrawable.attach();
-        }
+        this.statusBadgeComponent.onAttachedToWindow();
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.rightDrawable;
-        if (swapAnimatedEmojiDrawable != null) {
-            swapAnimatedEmojiDrawable.detach();
-        }
+        this.statusBadgeComponent.onDetachedFromWindow();
         this.params.onDetachFromWindow();
     }
 
