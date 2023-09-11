@@ -334,9 +334,6 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     };
 
-    public static void lambda$runLinkRequest$51() {
-    }
-
     public static void lambda$setupActionBarLayout$9(View view) {
     }
 
@@ -2613,7 +2610,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         runLinkRequest(i, str, str2, str3, str4, str5, str6, str7, str8, str9, str10, str11, z, num, l, num2, num3, str12, hashMap, str13, str14, str15, str16, tLRPC$TL_wallPaper, str17, str18, str19, str20, i2, i3, str21, str22, str23, null, null, progress, z2, i4);
     }
 
-    public void lambda$runLinkRequest$53(Runnable runnable, final int i, final TLRPC$User tLRPC$User, final TLRPC$TL_messages_botApp tLRPC$TL_messages_botApp, final String str, boolean z, Long l) {
+    public void lambda$runLinkRequest$53(Runnable runnable, final int i, final TLRPC$User tLRPC$User, final TLRPC$TL_messages_botApp tLRPC$TL_messages_botApp, final String str, boolean z, final Long l) {
         runnable.run();
         final AtomicBoolean atomicBoolean = new AtomicBoolean();
         ArrayList<BaseFragment> arrayList = mainFragmentsStack;
@@ -2628,23 +2625,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             WebAppDisclaimerAlert.show(baseFragment.getContext(), new com.google.android.exoplayer2.util.Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    Boolean bool = (Boolean) obj;
-                    runnable2.run();
+                    LaunchActivity.lambda$runLinkRequest$52(runnable2, i, l, (Boolean) obj);
                 }
             }, null);
-            TLRPC$TL_messages_toggleBotInAttachMenu tLRPC$TL_messages_toggleBotInAttachMenu = new TLRPC$TL_messages_toggleBotInAttachMenu();
-            tLRPC$TL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i).getInputUser(l.longValue());
-            tLRPC$TL_messages_toggleBotInAttachMenu.enabled = true;
-            tLRPC$TL_messages_toggleBotInAttachMenu.write_allowed = true;
-            ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_toggleBotInAttachMenu, new RequestDelegate() {
-                @Override
-                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    LaunchActivity.lambda$runLinkRequest$52(tLObject, tLRPC$TL_error);
-                }
-            }, 66);
-            return;
+        } else {
+            runnable2.run();
         }
-        runnable2.run();
     }
 
     public void lambda$runLinkRequest$49(BaseFragment baseFragment, int i, TLRPC$User tLRPC$User, TLRPC$TL_messages_botApp tLRPC$TL_messages_botApp, AtomicBoolean atomicBoolean, String str) {
@@ -2655,13 +2641,31 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         botWebViewSheet.show();
     }
 
-    public static void lambda$runLinkRequest$52(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public static void lambda$runLinkRequest$52(Runnable runnable, final int i, Long l, Boolean bool) {
+        runnable.run();
+        TLRPC$TL_messages_toggleBotInAttachMenu tLRPC$TL_messages_toggleBotInAttachMenu = new TLRPC$TL_messages_toggleBotInAttachMenu();
+        tLRPC$TL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(i).getInputUser(l.longValue());
+        tLRPC$TL_messages_toggleBotInAttachMenu.enabled = true;
+        tLRPC$TL_messages_toggleBotInAttachMenu.write_allowed = true;
+        ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_toggleBotInAttachMenu, new RequestDelegate() {
+            @Override
+            public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                LaunchActivity.lambda$runLinkRequest$51(i, tLObject, tLRPC$TL_error);
+            }
+        }, 66);
+    }
+
+    public static void lambda$runLinkRequest$51(final int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.lambda$runLinkRequest$51();
+                LaunchActivity.lambda$runLinkRequest$50(i);
             }
         });
+    }
+
+    public static void lambda$runLinkRequest$50(int i) {
+        MediaDataController.getInstance(i).loadAttachMenuBots(false, true);
     }
 
     public void lambda$runLinkRequest$61(final int i, final String str, final TLRPC$User tLRPC$User, final String str2, final Long l, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

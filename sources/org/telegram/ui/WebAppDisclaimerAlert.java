@@ -19,7 +19,6 @@ import org.telegram.ui.Components.LayoutHelper;
 public class WebAppDisclaimerAlert {
     private AlertDialog alert;
     private CheckBoxCell cell;
-    private CheckBoxCell cell2;
     private TextView positiveButton;
 
     public static void show(final Context context, final Consumer<Boolean> consumer, TLRPC$User tLRPC$User) {
@@ -51,7 +50,7 @@ public class WebAppDisclaimerAlert {
         builder.setPositiveButton(LocaleController.getString("Continue", R.string.Continue), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                WebAppDisclaimerAlert.lambda$show$1(WebAppDisclaimerAlert.this, consumer, dialogInterface, i);
+                WebAppDisclaimerAlert.lambda$show$1(Consumer.this, dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
@@ -80,13 +79,8 @@ public class WebAppDisclaimerAlert {
         Browser.openUrl(context, LocaleController.getString("WebAppDisclaimerUrl", R.string.WebAppDisclaimerUrl));
     }
 
-    public static void lambda$show$1(WebAppDisclaimerAlert webAppDisclaimerAlert, Consumer consumer, DialogInterface dialogInterface, int i) {
-        CheckBoxCell checkBoxCell = webAppDisclaimerAlert.cell2;
-        if (checkBoxCell != null) {
-            consumer.accept(Boolean.valueOf(checkBoxCell.isChecked()));
-        } else {
-            consumer.accept(Boolean.FALSE);
-        }
+    public static void lambda$show$1(Consumer consumer, DialogInterface dialogInterface, int i) {
+        consumer.accept(Boolean.TRUE);
         dialogInterface.dismiss();
     }
 
