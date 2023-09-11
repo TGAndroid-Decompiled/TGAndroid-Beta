@@ -271,7 +271,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     public void open(Context context, int i, StoriesController.StoriesList storiesList, PlaceProvider placeProvider) {
         this.currentAccount = UserConfig.selectedAccount;
         ArrayList<Long> arrayList = new ArrayList<>();
-        arrayList.add(Long.valueOf(storiesList.userId));
+        arrayList.add(Long.valueOf(storiesList.dialogId));
         this.dayStoryId = i;
         open(context, null, arrayList, 0, storiesList, null, placeProvider, false);
     }
@@ -291,7 +291,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     public void open(Context context, TLRPC$StoryItem tLRPC$StoryItem, int i, StoriesController.StoriesList storiesList, boolean z, PlaceProvider placeProvider) {
         this.currentAccount = UserConfig.selectedAccount;
         ArrayList<Long> arrayList = new ArrayList<>();
-        arrayList.add(Long.valueOf(storiesList.userId));
+        arrayList.add(Long.valueOf(storiesList.dialogId));
         this.dayStoryId = i;
         open(context, tLRPC$StoryItem, arrayList, 0, storiesList, null, placeProvider, z);
     }
@@ -609,7 +609,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             updateTransitionParams();
         }
         if (storiesList != null) {
-            this.storiesViewPager.setDays(storiesList.userId, storiesList.getDays(), this.currentAccount);
+            this.storiesViewPager.setDays(storiesList.dialogId, storiesList.getDays(), this.currentAccount);
         } else {
             this.storiesViewPager.setPeerIds(arrayList, this.currentAccount, i);
         }
@@ -1009,7 +1009,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
 
         public void lambda$switchToNextAndRemoveCurrentPeer$0(StoriesController.StoriesList storiesList, ArrayList arrayList) {
             StoryViewer storyViewer = StoryViewer.this;
-            storyViewer.storiesViewPager.setDays(storiesList.userId, arrayList, storyViewer.currentAccount);
+            storyViewer.storiesViewPager.setDays(storiesList.dialogId, arrayList, storyViewer.currentAccount);
         }
 
         public void lambda$switchToNextAndRemoveCurrentPeer$1(ArrayList arrayList, int i) {
@@ -2283,7 +2283,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 getCurrentPeerView();
                 StoriesViewPager storiesViewPager = this.storiesViewPager;
                 StoriesController.StoriesList storiesList = this.storiesList;
-                storiesViewPager.setDays(storiesList.userId, storiesList.getDays(), this.currentAccount);
+                storiesViewPager.setDays(storiesList.dialogId, storiesList.getDays(), this.currentAccount);
                 SelfStoryViewsView selfStoryViewsView = this.selfStoryViewsView;
                 if (selfStoryViewsView != null) {
                     TLRPC$StoryItem selectedStory = selfStoryViewsView.getSelectedStory();

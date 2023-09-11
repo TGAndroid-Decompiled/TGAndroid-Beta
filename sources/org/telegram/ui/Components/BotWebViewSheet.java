@@ -220,9 +220,15 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
         };
         int i = Theme.key_windowBackgroundWhite;
-        BotWebViewContainer botWebViewContainer = new BotWebViewContainer(context, resourcesProvider, getColor(i));
+        BotWebViewContainer botWebViewContainer = new BotWebViewContainer(context, resourcesProvider, getColor(i)) {
+            @Override
+            public void onWebViewCreated() {
+                super.onWebViewCreated();
+                BotWebViewSheet.this.swipeContainer.setWebView(BotWebViewSheet.this.webViewContainer.getWebView());
+            }
+        };
         this.webViewContainer = botWebViewContainer;
-        botWebViewContainer.setDelegate(new AnonymousClass2(context, resourcesProvider));
+        botWebViewContainer.setDelegate(new AnonymousClass3(context, resourcesProvider));
         this.linePaint.setStyle(Paint.Style.FILL_AND_STROKE);
         this.linePaint.setStrokeWidth(AndroidUtilities.dp(4.0f));
         this.linePaint.setStrokeCap(Paint.Cap.ROUND);
@@ -414,7 +420,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         setContentView(this.frameLayout, new ViewGroup.LayoutParams(-1, -1));
     }
 
-    public class AnonymousClass2 implements BotWebViewContainer.Delegate {
+    public class AnonymousClass3 implements BotWebViewContainer.Delegate {
         private boolean sentWebViewData;
         final Context val$context;
         final Theme.ResourcesProvider val$resourcesProvider;
@@ -429,7 +435,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             BotWebViewContainer.Delegate.CC.$default$onWebAppReady(this);
         }
 
-        AnonymousClass2(Context context, Theme.ResourcesProvider resourcesProvider) {
+        AnonymousClass3(Context context, Theme.ResourcesProvider resourcesProvider) {
             this.val$context = context;
             this.val$resourcesProvider = resourcesProvider;
         }
@@ -458,7 +464,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             ConnectionsManager.getInstance(BotWebViewSheet.this.currentAccount).sendRequest(tLRPC$TL_messages_sendWebViewData, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    BotWebViewSheet.AnonymousClass2.this.lambda$onSendWebViewData$0(tLObject, tLRPC$TL_error);
+                    BotWebViewSheet.AnonymousClass3.this.lambda$onSendWebViewData$0(tLObject, tLRPC$TL_error);
                 }
             });
         }
@@ -485,7 +491,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BotWebViewSheet.AnonymousClass2.this.lambda$onWebAppSetActionBarColor$1(i2, color, valueAnimator);
+                    BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppSetActionBarColor$1(i2, color, valueAnimator);
                 }
             });
             duration.start();
@@ -505,7 +511,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BotWebViewSheet.AnonymousClass2.this.lambda$onWebAppSetBackgroundColor$2(color, i, valueAnimator);
+                    BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppSetBackgroundColor$2(color, i, valueAnimator);
                 }
             });
             duration.start();
@@ -540,7 +546,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 paymentFormActivity.setPaymentFormCallback(new PaymentFormActivity.PaymentFormCallback() {
                     @Override
                     public final void onInvoiceStatusChanged(PaymentFormActivity.InvoiceStatus invoiceStatus) {
-                        BotWebViewSheet.AnonymousClass2.this.lambda$onWebAppOpenInvoice$3(overlayActionBarLayoutDialog, str, invoiceStatus);
+                        BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppOpenInvoice$3(overlayActionBarLayoutDialog, str, invoiceStatus);
                     }
                 });
                 paymentFormActivity.setResourcesProvider(this.val$resourcesProvider);
@@ -594,7 +600,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 @Override
                 public final boolean didSelectDialogs(DialogsActivity dialogsActivity2, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
                     boolean lambda$onWebAppSwitchInlineQuery$4;
-                    lambda$onWebAppSwitchInlineQuery$4 = BotWebViewSheet.AnonymousClass2.this.lambda$onWebAppSwitchInlineQuery$4(tLRPC$User, str, overlayActionBarLayoutDialog, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
+                    lambda$onWebAppSwitchInlineQuery$4 = BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppSwitchInlineQuery$4(tLRPC$User, str, overlayActionBarLayoutDialog, dialogsActivity2, arrayList, charSequence, z, topicsFragment);
                     return lambda$onWebAppSwitchInlineQuery$4;
                 }
             });
@@ -908,7 +914,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         if (tLRPC$TL_attachMenuBot != null && (tLRPC$TL_attachMenuBot.show_in_side_menu || tLRPC$TL_attachMenuBot.show_in_attach_menu)) {
             addItem.addSubItem(R.id.menu_delete_bot, R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot));
         }
-        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass10(j2, i));
+        this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass11(j2, i));
         try {
             JSONObject jSONObject = new JSONObject();
             jSONObject.put("bg_color", getColor(Theme.key_windowBackgroundWhite));
@@ -1027,11 +1033,11 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
     }
 
-    public class AnonymousClass10 extends ActionBar.ActionBarMenuOnItemClick {
+    public class AnonymousClass11 extends ActionBar.ActionBarMenuOnItemClick {
         final long val$botId;
         final int val$currentAccount;
 
-        AnonymousClass10(long j, int i) {
+        AnonymousClass11(long j, int i) {
             this.val$botId = j;
             this.val$currentAccount = i;
         }
@@ -1067,7 +1073,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 BotWebViewSheet.deleteBot(this.val$currentAccount, this.val$botId, new Runnable() {
                     @Override
                     public final void run() {
-                        BotWebViewSheet.AnonymousClass10.this.lambda$onItemClick$0();
+                        BotWebViewSheet.AnonymousClass11.this.lambda$onItemClick$0();
                     }
                 });
             }
@@ -1092,7 +1098,6 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             TLRPC$TL_webViewResultUrl tLRPC$TL_webViewResultUrl = (TLRPC$TL_webViewResultUrl) tLObject;
             this.queryId = tLRPC$TL_webViewResultUrl.query_id;
             this.webViewContainer.loadUrl(i, tLRPC$TL_webViewResultUrl.url);
-            this.swipeContainer.setWebView(this.webViewContainer.getWebView());
             AndroidUtilities.runOnUIThread(this.pollRunnable, 60000L);
         }
     }
@@ -1110,7 +1115,6 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         if (tLObject instanceof TLRPC$TL_simpleWebViewResultUrl) {
             this.queryId = 0L;
             this.webViewContainer.loadUrl(i, ((TLRPC$TL_simpleWebViewResultUrl) tLObject).url);
-            this.swipeContainer.setWebView(this.webViewContainer.getWebView());
         }
     }
 
@@ -1128,7 +1132,6 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             TLRPC$TL_webViewResultUrl tLRPC$TL_webViewResultUrl = (TLRPC$TL_webViewResultUrl) tLObject;
             this.queryId = tLRPC$TL_webViewResultUrl.query_id;
             this.webViewContainer.loadUrl(i, tLRPC$TL_webViewResultUrl.url);
-            this.swipeContainer.setWebView(this.webViewContainer.getWebView());
             AndroidUtilities.runOnUIThread(this.pollRunnable, 60000L);
         }
     }
@@ -1146,7 +1149,6 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         if (tLRPC$TL_error == null) {
             this.queryId = 0L;
             this.webViewContainer.loadUrl(i, ((TLRPC$TL_appWebViewResultUrl) tLObject).url);
-            this.swipeContainer.setWebView(this.webViewContainer.getWebView());
             AndroidUtilities.runOnUIThread(this.pollRunnable, 60000L);
         }
     }
@@ -1211,8 +1213,8 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         return Theme.getColor(i, this.resourcesProvider);
     }
 
-    public class AnonymousClass11 implements View.OnLayoutChangeListener {
-        AnonymousClass11() {
+    public class AnonymousClass12 implements View.OnLayoutChangeListener {
+        AnonymousClass12() {
         }
 
         @Override
@@ -1234,7 +1236,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     @Override
     public void show() {
         this.frameLayout.setAlpha(0.0f);
-        this.frameLayout.addOnLayoutChangeListener(new AnonymousClass11());
+        this.frameLayout.addOnLayoutChangeListener(new AnonymousClass12());
         super.show();
     }
 

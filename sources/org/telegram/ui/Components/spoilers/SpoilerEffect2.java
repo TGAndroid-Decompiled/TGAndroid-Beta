@@ -25,11 +25,9 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.RLottieDrawable;
 public class SpoilerEffect2 {
-    static int I;
     private static SpoilerEffect2 instance;
     public final int MAX_FPS;
     private final double MIN_DELTA;
-    private final Runnable checkDestroy;
     public boolean destroyed;
     private int height;
     private final TextureView textureView;
@@ -39,24 +37,41 @@ public class SpoilerEffect2 {
     private final ArrayList<View> holders = new ArrayList<>();
     private final HashMap<View, Integer> holdersToIndex = new HashMap<>();
     private int holdersIndex = 0;
+    private final Runnable checkDestroy = new Runnable() {
+        @Override
+        public final void run() {
+            SpoilerEffect2.this.lambda$new$0();
+        }
+    };
 
     public static boolean supports() {
         return Build.VERSION.SDK_INT >= 21;
     }
 
     public static SpoilerEffect2 getInstance(View view) {
-        Activity findActivity;
-        if (view == null || !supports() || (findActivity = AndroidUtilities.findActivity(view.getContext())) == null) {
+        if (view == null || !supports()) {
+            return null;
+        }
+        if (instance == null) {
+            int size = getSize();
+            ViewGroup rootView = getRootView(view);
+            if (rootView == null) {
+                return null;
+            }
+            instance = new SpoilerEffect2(makeTextureViewContainer(rootView), size, size);
+        }
+        instance.attach(view);
+        return instance;
+    }
+
+    private static ViewGroup getRootView(View view) {
+        Activity findActivity = AndroidUtilities.findActivity(view.getContext());
+        if (findActivity == null) {
             return null;
         }
         View rootView = findActivity.findViewById(16908290).getRootView();
         if (rootView instanceof ViewGroup) {
-            if (instance == null) {
-                int size = getSize();
-                instance = new SpoilerEffect2(makeTextureViewContainer((ViewGroup) rootView), size, size);
-            }
-            instance.attach(view);
-            return instance;
+            return (ViewGroup) rootView;
         }
         return null;
     }
@@ -104,6 +119,18 @@ public class SpoilerEffect2 {
         int i = this.holdersIndex;
         this.holdersIndex = i + 1;
         hashMap.put(view, Integer.valueOf(i));
+    }
+
+    public void reassignAttach(View view, int i) {
+        this.holdersToIndex.put(view, Integer.valueOf(i));
+    }
+
+    public int getAttachIndex(View view) {
+        Integer num = this.holdersToIndex.get(view);
+        if (num == null) {
+            num = 0;
+        }
+        return num.intValue();
     }
 
     public void detach(View view) {
@@ -176,13 +203,6 @@ public class SpoilerEffect2 {
     }
 
     private SpoilerEffect2(ViewGroup viewGroup, int i, int i2) {
-        I++;
-        this.checkDestroy = new Runnable() {
-            @Override
-            public final void run() {
-                SpoilerEffect2.this.lambda$new$0();
-            }
-        };
         int i3 = (int) AndroidUtilities.screenRefreshRate;
         this.MAX_FPS = i3;
         double d = i3;
@@ -477,25 +497,33 @@ public class SpoilerEffect2 {
         }
 
         private void die() {
-            int[] iArr = this.particlesData;
-            if (iArr != null) {
-                GLES31.glDeleteBuffers(2, iArr, 0);
-                this.particlesData = null;
+            try {
+                int[] iArr = this.particlesData;
+                if (iArr != null) {
+                    GLES31.glDeleteBuffers(2, iArr, 0);
+                    this.particlesData = null;
+                }
+                int i = this.drawProgram;
+                if (i != 0) {
+                    GLES31.glDeleteProgram(i);
+                    this.drawProgram = 0;
+                }
+                EGL10 egl10 = this.egl;
+                if (egl10 != null) {
+                    EGLDisplay eGLDisplay = this.eglDisplay;
+                    EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
+                    egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
+                    this.egl.eglDestroySurface(this.eglDisplay, this.eglSurface);
+                    this.egl.eglDestroyContext(this.eglDisplay, this.eglContext);
+                }
+            } catch (Exception e) {
+                FileLog.e(e);
             }
-            int i = this.drawProgram;
-            if (i != 0) {
-                GLES31.glDeleteProgram(i);
-                this.drawProgram = 0;
+            try {
+                this.surfaceTexture.release();
+            } catch (Exception e2) {
+                FileLog.e(e2);
             }
-            EGL10 egl10 = this.egl;
-            if (egl10 != null) {
-                EGLDisplay eGLDisplay = this.eglDisplay;
-                EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
-                egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
-                this.egl.eglDestroySurface(this.eglDisplay, this.eglSurface);
-                this.egl.eglDestroyContext(this.eglDisplay, this.eglContext);
-            }
-            this.surfaceTexture.release();
             checkGlErrors();
         }
 

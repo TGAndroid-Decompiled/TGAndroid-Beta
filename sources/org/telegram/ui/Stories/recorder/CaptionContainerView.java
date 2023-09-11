@@ -739,8 +739,13 @@ public class CaptionContainerView extends FrameLayout {
         drawBlurBitmap(this.blurBitmap, 12.0f);
         this.ignoreDraw = false;
         Bitmap bitmap = this.blurBitmap;
+        if (bitmap != null && bitmap.isRecycled()) {
+            this.blurBitmap = null;
+            return;
+        }
+        Bitmap bitmap2 = this.blurBitmap;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.blurBitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+        this.blurBitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
         Matrix matrix = this.blurBitmapMatrix;
         if (matrix == null) {
             this.blurBitmapMatrix = new Matrix();
@@ -855,6 +860,10 @@ public class CaptionContainerView extends FrameLayout {
             }
         }
         super.dispatchDraw(canvas);
+    }
+
+    public RectF getBounds() {
+        return this.bounds;
     }
 
     public void drawHint(Canvas canvas, Runnable runnable) {

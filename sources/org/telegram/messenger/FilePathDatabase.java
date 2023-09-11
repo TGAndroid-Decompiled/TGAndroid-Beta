@@ -17,7 +17,7 @@ public class FilePathDatabase {
     private static final String DATABASE_BACKUP_NAME = "file_to_path_backup";
     private static final String DATABASE_NAME = "file_to_path";
     public static final int FLAG_LOCALLY_CREATED = 1;
-    private static final int LAST_DB_VERSION = 5;
+    private static final int LAST_DB_VERSION = 6;
     public static final int MESSAGE_TYPE_VIDEO_MESSAGE = 0;
     private File cacheFile;
     private final int currentAccount;
@@ -57,7 +57,7 @@ public class FilePathDatabase {
                 this.database.executeFast("CREATE TABLE paths(document_id INTEGER, dc_id INTEGER, type INTEGER, path TEXT, flags INTEGER, PRIMARY KEY(document_id, dc_id, type));").stepThis().dispose();
                 this.database.executeFast("CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);").stepThis().dispose();
                 this.database.executeFast("CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER, message_id INTEGER, message_type INTEGER);").stepThis().dispose();
-                this.database.executeFast("PRAGMA user_version = 5").stepThis().dispose();
+                this.database.executeFast("PRAGMA user_version = 6").stepThis().dispose();
             } else {
                 int intValue = this.database.executeInt("PRAGMA user_version", new Object[0]).intValue();
                 if (BuildVars.LOGS_ENABLED) {
@@ -103,10 +103,11 @@ public class FilePathDatabase {
             this.database.executeFast("ALTER TABLE paths_by_dialog_id ADD COLUMN message_id INTEGER default 0").stepThis().dispose();
             this.database.executeFast("ALTER TABLE paths_by_dialog_id ADD COLUMN message_type INTEGER default 0").stepThis().dispose();
             this.database.executeFast("PRAGMA user_version = 4").stepThis().dispose();
+            i = 4;
         }
-        if (i == 4) {
-            this.database.executeFast("ALTER TABLE paths ADD COLUMN flags INTEGER default 0").stepThis().dispose();
-            this.database.executeFast("PRAGMA user_version = 5").stepThis().dispose();
+        if (i == 4 || i == 5) {
+            this.database.executeFast("ALTER TABLE paths ADD COLUMN IF NOT EXIST flags INTEGER default 0").stepThis().dispose();
+            this.database.executeFast("PRAGMA user_version = 6").stepThis().dispose();
         }
     }
 

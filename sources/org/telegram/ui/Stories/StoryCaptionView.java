@@ -55,6 +55,7 @@ import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.StaticLayoutEx;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilersClickDetector;
+import org.telegram.ui.PhotoViewer$CaptionTextView$$ExternalSyntheticLambda1;
 import org.telegram.ui.Stories.StoryCaptionView;
 public class StoryCaptionView extends NestedScrollView {
     private Method abortAnimatedScrollMethod;
@@ -866,14 +867,9 @@ public class StoryCaptionView extends NestedScrollView {
                 LinkSpanDrawable<CharacterStyle> linkSpanDrawable2 = this.pressedLink;
                 if (linkSpanDrawable == linkSpanDrawable2 && linkSpanDrawable2 != null && (linkSpanDrawable2.getSpan() instanceof URLSpan)) {
                     StoryCaptionTextView storyCaptionTextView = StoryCaptionTextView.this;
-                    final LinkSpanDrawable.LinkCollector linkCollector = this.links;
+                    LinkSpanDrawable.LinkCollector linkCollector = this.links;
                     Objects.requireNonNull(linkCollector);
-                    StoryCaptionView.this.onLinkLongPress((URLSpan) this.pressedLink.getSpan(), storyCaptionTextView, new Runnable() {
-                        @Override
-                        public final void run() {
-                            LinkSpanDrawable.LinkCollector.this.clear();
-                        }
-                    });
+                    StoryCaptionView.this.onLinkLongPress((URLSpan) this.pressedLink.getSpan(), storyCaptionTextView, new PhotoViewer$CaptionTextView$$ExternalSyntheticLambda1(linkCollector));
                     this.pressedLink = null;
                 }
             }

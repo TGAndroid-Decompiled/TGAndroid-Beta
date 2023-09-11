@@ -2506,16 +2506,13 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean checkPinchToZoom(MotionEvent motionEvent) {
         ChatMessageCellDelegate chatMessageCellDelegate = this.delegate;
         PinchToZoomHelper pinchToZoomHelper = chatMessageCellDelegate == null ? null : chatMessageCellDelegate.getPinchToZoomHelper();
-        if (this.currentMessageObject == null || !this.photoImage.hasNotThumb() || pinchToZoomHelper == null || this.currentMessageObject.isSticker() || this.currentMessageObject.isAnimatedEmoji()) {
+        if (this.currentMessageObject == null || !this.photoImage.hasNotThumb() || pinchToZoomHelper == null || this.currentMessageObject.isSticker() || this.currentMessageObject.isAnimatedEmoji() || ((this.currentMessageObject.isVideo() && !this.autoPlayingMedia) || this.isRoundVideo || this.currentMessageObject.isAnimatedSticker() || ((this.currentMessageObject.isDocument() && !this.currentMessageObject.isGif()) || this.currentMessageObject.needDrawBluredPreview()))) {
             return false;
         }
-        if ((this.currentMessageObject.isVideo() && !this.autoPlayingMedia) || this.isRoundVideo || this.currentMessageObject.isAnimatedSticker()) {
-            return false;
-        }
-        if ((!this.currentMessageObject.isDocument() || this.currentMessageObject.isGif()) && !this.currentMessageObject.needDrawBluredPreview()) {
-            return pinchToZoomHelper.checkPinchToZoom(motionEvent, this, this.photoImage, null, this.currentMessageObject);
-        }
-        return false;
+        ImageReceiver imageReceiver = this.photoImage;
+        MessageObject messageObject = this.currentMessageObject;
+        SpoilerEffect2 spoilerEffect2 = this.mediaSpoilerEffect2;
+        return pinchToZoomHelper.checkPinchToZoom(motionEvent, this, imageReceiver, null, messageObject, spoilerEffect2 == null ? 0 : spoilerEffect2.getAttachIndex(this));
     }
 
     private boolean checkTextSelection(MotionEvent motionEvent) {

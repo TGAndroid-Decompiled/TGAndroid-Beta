@@ -3643,7 +3643,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
             this.authHintCell.setAlpha(1.0f);
             this.viewPages[0].listView.requestLayout();
-            this.fragmentView.requestLayout();
+            View view = this.fragmentView;
+            if (view != null) {
+                view.requestLayout();
+            }
             this.notificationsLocker.lock();
             float[] fArr = new float[2];
             fArr[0] = this.authHintCellProgress;
@@ -3659,7 +3662,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     DialogsActivity.this.notificationsLocker.unlock();
-                    ((BaseFragment) DialogsActivity.this).fragmentView.requestLayout();
+                    if (((BaseFragment) DialogsActivity.this).fragmentView != null) {
+                        ((BaseFragment) DialogsActivity.this).fragmentView.requestLayout();
+                    }
                     DialogsActivity.this.authHintCellProgress = z ? 1.0f : 0.0f;
                     if (z) {
                         return;
@@ -3689,7 +3694,10 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             if (this.authHintCell == null) {
                 UnconfirmedAuthHintCell unconfirmedAuthHintCell = new UnconfirmedAuthHintCell(getContext());
                 this.authHintCell = unconfirmedAuthHintCell;
-                ((ContentView) this.fragmentView).addView(unconfirmedAuthHintCell);
+                View view = this.fragmentView;
+                if (view instanceof ContentView) {
+                    ((ContentView) view).addView(unconfirmedAuthHintCell);
+                }
             }
             this.authHintCell.set(this, this.currentAccount);
             updateAuthHintCellVisibility(true);
@@ -3698,8 +3706,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.dialogsHintCell.setVisibility(0);
             this.dialogsHintCell.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
-                    DialogsActivity.this.lambda$updateDialogsHint$28(view);
+                public final void onClick(View view2) {
+                    DialogsActivity.this.lambda$updateDialogsHint$28(view2);
                 }
             });
             this.dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.RestorePremiumHintTitle, MediaDataController.getInstance(this.currentAccount).getPremiumHintAnnualDiscount(false)), Theme.key_windowBackgroundWhiteValueText, 0, null), LocaleController.getString(R.string.RestorePremiumHintMessage));
@@ -3709,8 +3717,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.dialogsHintCell.setVisibility(0);
             this.dialogsHintCell.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
-                    DialogsActivity.this.lambda$updateDialogsHint$30(view);
+                public final void onClick(View view2) {
+                    DialogsActivity.this.lambda$updateDialogsHint$30(view2);
                 }
             });
             this.dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(this.isPremiumHintUpgrade ? R.string.SaveOnAnnualPremiumTitle : R.string.UpgradePremiumTitle, MediaDataController.getInstance(this.currentAccount).getPremiumHintAnnualDiscount(false)), Theme.key_windowBackgroundWhiteValueText, 0, null), LocaleController.getString(this.isPremiumHintUpgrade ? R.string.UpgradePremiumMessage : R.string.SaveOnAnnualPremiumMessage));
@@ -3720,8 +3728,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.dialogsHintCell.setVisibility(0);
             this.dialogsHintCell.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public final void onClick(View view) {
-                    DialogsActivity.this.lambda$updateDialogsHint$32(view);
+                public final void onClick(View view2) {
+                    DialogsActivity.this.lambda$updateDialogsHint$32(view2);
                 }
             });
             this.dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.ClearStorageHintTitle, AndroidUtilities.formatFileSize(this.cacheSize.longValue())), Theme.key_windowBackgroundWhiteValueText, 0, null), LocaleController.getString(R.string.ClearStorageHintMessage));

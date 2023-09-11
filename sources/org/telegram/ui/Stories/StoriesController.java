@@ -25,7 +25,6 @@ import java.util.Objects;
 import java.util.SortedSet;
 import java.util.TreeSet;
 import org.telegram.SQLite.SQLiteCursor;
-import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
@@ -2293,7 +2292,7 @@ public class StoriesController {
         HashMap<Long, StoriesList>[] hashMapArr = this.storiesLists;
         int i = storiesList.type;
         if (hashMapArr[i] != null) {
-            hashMapArr[i].remove(Long.valueOf(storiesList.userId));
+            hashMapArr[i].remove(Long.valueOf(storiesList.dialogId));
         }
     }
 
@@ -2302,6 +2301,7 @@ public class StoriesController {
         private final SortedSet<Integer> cachedObjects;
         public final int currentAccount;
         private Runnable destroyRunnable;
+        public final long dialogId;
         private boolean done;
         private boolean error;
         public final HashMap<Long, TreeSet<Integer>> groupedByDay;
@@ -2321,7 +2321,6 @@ public class StoriesController {
         private Utilities.CallbackReturn<Integer, Boolean> toLoad;
         private int totalCount;
         public final int type;
-        public final long userId;
 
         StoriesList(int i, long j, int i2, Utilities.Callback callback, AnonymousClass1 anonymousClass1) {
             this(i, j, i2, callback);
@@ -2425,7 +2424,7 @@ public class StoriesController {
             };
             this.totalCount = -1;
             this.currentAccount = i;
-            this.userId = j;
+            this.dialogId = j;
             this.type = i2;
             this.destroyRunnable = new Runnable() {
                 @Override
@@ -2460,13 +2459,12 @@ public class StoriesController {
             final ArrayList<TLRPC$User> arrayList2 = new ArrayList<>();
             SQLiteCursor sQLiteCursor = null;
             try {
-                SQLiteDatabase database = messagesStorage.getDatabase();
-                sQLiteCursor = this.type == 0 ? database.queryFinalized(String.format(Locale.US, "SELECT data FROM profile_stories WHERE dialog_id = %d ORDER BY story_id DESC", Long.valueOf(this.userId)), new Object[0]) : database.queryFinalized("SELECT data FROM archived_stories ORDER BY story_id DESC", new Object[0]);
+                sQLiteCursor = messagesStorage.getDatabase().queryFinalized(String.format(Locale.US, "SELECT data FROM profile_stories WHERE dialog_id = %d AND type = %d ORDER BY story_id DESC", Long.valueOf(this.dialogId), Integer.valueOf(this.type)), new Object[0]);
                 while (sQLiteCursor.next()) {
                     NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
                     if (byteBufferValue != null) {
                         TLRPC$StoryItem TLdeserialize = TLRPC$StoryItem.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(true), true);
-                        TLdeserialize.dialogId = this.userId;
+                        TLdeserialize.dialogId = this.dialogId;
                         TLdeserialize.messageId = TLdeserialize.id;
                         MessageObject messageObject = new MessageObject(this.currentAccount, TLdeserialize);
                         Iterator<TLRPC$PrivacyRule> it = TLdeserialize.privacy.iterator();
@@ -2505,7 +2503,7 @@ public class StoriesController {
         }
 
         public void lambda$preloadCache$2(ArrayList arrayList, ArrayList arrayList2) {
-            FileLog.d("StoriesList " + this.type + "{" + this.userId + "} preloadCache {" + StoriesController.storyItemMessageIds(arrayList) + "}");
+            FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} preloadCache {" + StoriesController.storyItemMessageIds(arrayList) + "}");
             this.preloading = false;
             MessagesController.getInstance(this.currentAccount).putUsers(arrayList2, true);
             if (this.invalidateAfterPreload) {
@@ -2619,13 +2617,7 @@ public class StoriesController {
 
         public void lambda$invalidateCache$6(MessagesStorage messagesStorage) {
             try {
-                SQLiteDatabase database = messagesStorage.getDatabase();
-                int i = this.type;
-                if (i == 0) {
-                    database.executeFast(String.format(Locale.US, "DELETE FROM profile_stories WHERE dialog_id = %d", Long.valueOf(this.userId))).stepThis().dispose();
-                } else if (i == 1) {
-                    database.executeFast("DELETE FROM archived_stories").stepThis().dispose();
-                }
+                messagesStorage.getDatabase().executeFast(String.format(Locale.US, "DELETE FROM profile_stories WHERE dialog_id = %d AND type = %d", Long.valueOf(this.dialogId), Integer.valueOf(this.type))).stepThis().dispose();
             } catch (Throwable th) {
                 messagesStorage.checkSQLException(th);
             }
@@ -2666,13 +2658,13 @@ public class StoriesController {
 
         private boolean canLoad() {
             Long l;
-            return lastLoadTime == null || (l = lastLoadTime.get(Integer.valueOf(Objects.hash(Integer.valueOf(this.currentAccount), Integer.valueOf(this.type), Long.valueOf(this.userId))))) == null || System.currentTimeMillis() - l.longValue() > 120000;
+            return lastLoadTime == null || (l = lastLoadTime.get(Integer.valueOf(Objects.hash(Integer.valueOf(this.currentAccount), Integer.valueOf(this.type), Long.valueOf(this.dialogId))))) == null || System.currentTimeMillis() - l.longValue() > 120000;
         }
 
         private void resetCanLoad() {
             HashMap<Integer, Long> hashMap = lastLoadTime;
             if (hashMap != null) {
-                hashMap.remove(Integer.valueOf(Objects.hash(Integer.valueOf(this.currentAccount), Integer.valueOf(this.type), Long.valueOf(this.userId))));
+                hashMap.remove(Integer.valueOf(Objects.hash(Integer.valueOf(this.currentAccount), Integer.valueOf(this.type), Long.valueOf(this.dialogId))));
             }
         }
 
@@ -2695,7 +2687,7 @@ public class StoriesController {
             final int i2 = -1;
             if (this.type == 0) {
                 TLRPC$TL_stories_getPinnedStories tLRPC$TL_stories_getPinnedStories = new TLRPC$TL_stories_getPinnedStories();
-                tLRPC$TL_stories_getPinnedStories.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(this.userId);
+                tLRPC$TL_stories_getPinnedStories.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(this.dialogId);
                 if (!this.loadedObjects.isEmpty()) {
                     i2 = this.loadedObjects.last().intValue();
                     tLRPC$TL_stories_getPinnedStories.offset_id = i2;
@@ -2711,7 +2703,7 @@ public class StoriesController {
                 tLRPC$TL_stories_getStoriesArchive2.limit = i;
                 tLRPC$TL_stories_getStoriesArchive = tLRPC$TL_stories_getStoriesArchive2;
             }
-            FileLog.d("StoriesList " + this.type + "{" + this.userId + "} load");
+            FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} load");
             this.loading = true;
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stories_getStoriesArchive, new RequestDelegate() {
                 @Override
@@ -2750,7 +2742,7 @@ public class StoriesController {
         }
 
         public void lambda$load$10(ArrayList arrayList, TLRPC$TL_stories_stories tLRPC$TL_stories_stories, int i) {
-            FileLog.d("StoriesList " + this.type + "{" + this.userId + "} loaded {" + StoriesController.storyItemMessageIds(arrayList) + "}");
+            FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} loaded {" + StoriesController.storyItemMessageIds(arrayList) + "}");
             MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_stories_stories.users, false);
             this.loading = false;
             this.totalCount = tLRPC$TL_stories_stories.count;
@@ -2787,7 +2779,7 @@ public class StoriesController {
                 if (lastLoadTime == null) {
                     lastLoadTime = new HashMap<>();
                 }
-                lastLoadTime.put(Integer.valueOf(Objects.hash(Integer.valueOf(this.currentAccount), Integer.valueOf(this.type), Long.valueOf(this.userId))), Long.valueOf(System.currentTimeMillis()));
+                lastLoadTime.put(Integer.valueOf(Objects.hash(Integer.valueOf(this.currentAccount), Integer.valueOf(this.type), Long.valueOf(this.dialogId))), Long.valueOf(System.currentTimeMillis()));
             } else {
                 resetCanLoad();
             }
@@ -2801,7 +2793,7 @@ public class StoriesController {
         }
 
         public void updateDeletedStories(List<TLRPC$StoryItem> list) {
-            FileLog.d("StoriesList " + this.type + "{" + this.userId + "} updateDeletedStories {" + StoriesController.storyItemIds(list) + "}");
+            FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} updateDeletedStories {" + StoriesController.storyItemIds(list) + "}");
             if (list == null) {
                 return;
             }
@@ -2829,7 +2821,7 @@ public class StoriesController {
 
         public void updateStories(List<TLRPC$StoryItem> list) {
             MessageObject messageObject;
-            FileLog.d("StoriesList " + this.type + "{" + this.userId + "} updateStories {" + StoriesController.storyItemIds(list) + "}");
+            FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} updateStories {" + StoriesController.storyItemIds(list) + "}");
             if (list == null) {
                 return;
             }
@@ -2889,7 +2881,7 @@ public class StoriesController {
         }
 
         private MessageObject toMessageObject(TLRPC$StoryItem tLRPC$StoryItem) {
-            tLRPC$StoryItem.dialogId = this.userId;
+            tLRPC$StoryItem.dialogId = this.dialogId;
             tLRPC$StoryItem.messageId = tLRPC$StoryItem.id;
             MessageObject messageObject = new MessageObject(this.currentAccount, tLRPC$StoryItem);
             messageObject.generateThumbs(false);

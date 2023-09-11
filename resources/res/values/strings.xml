@@ -961,11 +961,6 @@
     <string name="BlurOff">Off</string>
     <string name="BlurRadial">Radial</string>
     <string name="Bold">Bold</string>
-    <string name="BoostChannel">Boost Channel</string>
-    <string name="BoostersInfoDescription">Your channel is currently boosted by these users.</string>
-    <string name="BoostingEnableStoriesForChannel">Enable stories for the channel</string>
-    <string name="BoostsExisting">Existing Boosts</string>
-    <string name="BoostsToLevel">Boosts to level up</string>
     <string name="Bot">bot</string>
     <string name="BotAddToGroupOrChannelInfo">This bot is able to manage a group or channel.</string>
     <string name="BotAddToMenu">Add to Menu</string>
@@ -1133,8 +1128,6 @@
     <string name="CancelReset">Cancel reset</string>
     <string name="CancelSending">Cancel sending</string>
     <string name="CantAddBotAsAdmin">Sorry, bots can only be added to channels as administrators.</string>
-    <string name="CantBoostToOften">Can’t boost too often!</string>
-    <string name="CantBoostToOftenDescription">You can change the channel you boost only once a day. Next time you can bost is in **%s.**</string>
     <string name="CantPlayVideo">App was unable to play this video. Try to play it with external player?</string>
     <string name="Caption">Caption</string>
     <string name="CaptionPremiumSubtitle_other">Increase this limit **%1$d** times to **%2$s** symbols by subscribing to __Telegram Premium.__</string>
@@ -1259,8 +1252,6 @@
     <string name="ChannelMessageStickerEmoji">%1$s posted a %2$s sticker</string>
     <string name="ChannelMessageVideo">%1$s posted a video</string>
     <string name="ChannelMute">MUTE</string>
-    <string name="ChannelNeedBoostsDescription">Your channel need %d more boosts to enable posting stories.\n\nAsk your Premium subscribers to boost your channel with this link:</string>
-    <string name="ChannelNeedBoostsDescription2">This channel needs %d more boosts to enable posting stories.</string>
     <string name="ChannelNotifyMembersInfoOff">Members will receive a silent notification</string>
     <string name="ChannelNotifyMembersInfoOn">Members will be notified when you post</string>
     <string name="ChannelOtherMembers">Other members</string>
@@ -4626,7 +4617,6 @@
     <string name="PowerUsage">Power Usage</string>
     <string name="PremiumMore">More</string>
     <string name="PremiumNeeded">Premuim needed!</string>
-    <string name="PremiumNeededForBoosting">Only **Telegram Premium** subscribeers can boost channels. Do you want subscribe to **Telegram Premium?**</string>
     <string name="PremiumPreviewAdvancedChatManagement">Advanced Chat Management</string>
     <string name="PremiumPreviewAdvancedChatManagementDescription">Tools to set the default folder, auto-archive and hide new chats from non-contacts.</string>
     <string name="PremiumPreviewAdvancedChatManagementDescription2">Subscribers of Telegram Premium can set the default folder, auto-archive and hide new chats from non-contacts.</string>
@@ -5074,7 +5064,6 @@
     <string name="RepeatNotificationsNever">Never</string>
     <string name="RepeatSong">Repeat song</string>
     <string name="Replace">Replace</string>
-    <string name="ReplaceBoostChannelDescription">You currently boost **%1$s**. Do you want to boost **%2$s** instead?</string>
     <string name="ReplacePhoto">Replace photo</string>
     <string name="RepliesChatInfo">This chat helps you keep track of replies to your comments in Channels.</string>
     <string name="RepliesTitle">Replies</string>
@@ -7049,7 +7038,6 @@
     <string name="YesterdayAt">yesterday at</string>
     <string name="YesterdayAtFormatted">yesterday at %1$s</string>
     <string name="YouBlockedUser">Sorry, you can\'t add this user or bot to groups because you\'ve blocked them. Please unblock to proceed.</string>
-    <string name="YouBoostedChannel">You boosted the channel</string>
     <string name="YouCreatedBroadcastList">You created a broadcast list</string>
     <string name="YouHaveNewMessage">You have a new message</string>
     <string name="YouLeft">You left this group</string>

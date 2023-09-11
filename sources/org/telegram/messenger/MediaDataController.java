@@ -47,7 +47,6 @@ import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC$AttachMenuBots;
 import org.telegram.tgnet.TLRPC$AttachMenuPeerType;
 import org.telegram.tgnet.TLRPC$BotInfo;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -224,6 +223,7 @@ public class MediaDataController extends BaseController {
     public static final String ATTACH_MENU_BOT_COLOR_LIGHT_ICON = "light_icon";
     public static final String ATTACH_MENU_BOT_COLOR_LIGHT_TEXT = "light_text";
     public static final String ATTACH_MENU_BOT_PLACEHOLDER_STATIC_KEY = "placeholder_static";
+    public static final String ATTACH_MENU_BOT_SIDE_MENU = "android_side_menu_static";
     public static final String ATTACH_MENU_BOT_STATIC_ICON_KEY = "default_static";
     public static final int MEDIA_AUDIO = 2;
     public static final int MEDIA_FILE = 1;
@@ -839,64 +839,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void lambda$loadAttachMenuBots$2() {
-        SQLiteCursor sQLiteCursor;
-        Throwable th;
-        long j;
-        SQLiteCursor sQLiteCursor2;
-        TLRPC$TL_attachMenuBots tLRPC$TL_attachMenuBots;
-        long j2;
-        int i;
-        int i2 = 0;
-        long j3 = 0;
-        try {
-            try {
-                sQLiteCursor = getMessagesStorage().getDatabase().queryFinalized("SELECT data, hash, date FROM attach_menu_bots", new Object[0]);
-            } catch (Exception e) {
-                e = e;
-                j = 0;
-                sQLiteCursor2 = null;
-            }
-        } catch (Throwable th2) {
-            sQLiteCursor = r0;
-            th = th2;
-        }
-        try {
-            if (sQLiteCursor.next()) {
-                NativeByteBuffer byteBufferValue = sQLiteCursor.byteBufferValue(0);
-                if (byteBufferValue != null) {
-                    TLRPC$AttachMenuBots TLdeserialize = TLRPC$AttachMenuBots.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), true);
-                    r0 = TLdeserialize instanceof TLRPC$TL_attachMenuBots ? (TLRPC$TL_attachMenuBots) TLdeserialize : null;
-                    byteBufferValue.reuse();
-                }
-                j3 = sQLiteCursor.longValue(1);
-                i2 = sQLiteCursor.intValue(2);
-            }
-            sQLiteCursor.dispose();
-            tLRPC$TL_attachMenuBots = r0;
-            i = i2;
-            j2 = j3;
-        } catch (Exception e2) {
-            e = e2;
-            long j4 = j3;
-            sQLiteCursor2 = r0;
-            r0 = sQLiteCursor;
-            j = j4;
-            FileLog.e((Throwable) e, false);
-            if (r0 != null) {
-                r0.dispose();
-            }
-            tLRPC$TL_attachMenuBots = sQLiteCursor2;
-            j2 = j;
-            i = 0;
-            processLoadedMenuBots(tLRPC$TL_attachMenuBots, j2, i, true);
-        } catch (Throwable th3) {
-            th = th3;
-            if (sQLiteCursor != null) {
-                sQLiteCursor.dispose();
-            }
-            throw th;
-        }
-        processLoadedMenuBots(tLRPC$TL_attachMenuBots, j2, i, true);
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$loadAttachMenuBots$2():void");
     }
 
     public void lambda$loadAttachMenuBots$3(Runnable runnable, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
@@ -2176,6 +2119,17 @@ public class MediaDataController extends BaseController {
         while (it.hasNext()) {
             TLRPC$TL_attachMenuBotIcon next = it.next();
             if (next.name.equals(ATTACH_MENU_BOT_ANIMATED_ICON_KEY)) {
+                return next;
+            }
+        }
+        return null;
+    }
+
+    public static TLRPC$TL_attachMenuBotIcon getSideMenuBotIcon(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
+        Iterator<TLRPC$TL_attachMenuBotIcon> it = tLRPC$TL_attachMenuBot.icons.iterator();
+        while (it.hasNext()) {
+            TLRPC$TL_attachMenuBotIcon next = it.next();
+            if (next.name.equals(ATTACH_MENU_BOT_SIDE_MENU)) {
                 return next;
             }
         }

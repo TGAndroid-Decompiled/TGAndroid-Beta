@@ -13422,7 +13422,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     public void openAttachBotLayout(long j, String str, boolean z) {
         openAttachMenu();
         createChatAttachView();
-        this.chatAttachAlert.showBotLayout(j, str, z);
+        this.chatAttachAlert.showBotLayout(j, str, z, false);
     }
 
     @Override
