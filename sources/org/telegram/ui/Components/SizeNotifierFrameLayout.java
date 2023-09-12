@@ -8,8 +8,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Shader;
@@ -76,7 +74,6 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     private boolean paused;
     BlurBitmap prevBitmap;
     private android.graphics.Rect rect;
-    float saturation;
     private Paint selectedBlurPaint;
     private Paint selectedBlurPaint2;
     private boolean skipBackgroundDrawing;
@@ -595,29 +592,18 @@ public class SizeNotifierFrameLayout extends FrameLayout {
 
     public void startBlur() {
         BlurBitmap blurBitmap;
-        if (this.blurIsRunning && !this.blurGeneratingTuskIsRunning && this.invalidateBlur && SharedConfig.chatBlurEnabled() && ((int) ((1.0f - BlurSettingsBottomSheet.blurAlpha) * 255.0f)) != 255) {
+        if (this.blurIsRunning && !this.blurGeneratingTuskIsRunning && this.invalidateBlur && SharedConfig.chatBlurEnabled() && Color.alpha(Theme.getColor(Theme.key_chat_BlurAlpha)) != 255) {
             int measuredWidth = getMeasuredWidth();
             int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(100.0f);
             if (measuredWidth == 0 || currentActionBarHeight == 0) {
                 return;
             }
-            float f = this.saturation;
-            float f2 = BlurSettingsBottomSheet.saturation;
-            if (f != f2) {
-                this.saturation = f2;
-                ColorMatrix colorMatrix = new ColorMatrix();
-                colorMatrix.setSaturation(this.saturation * 5.0f);
-                this.blurPaintTop.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                this.blurPaintTop2.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                this.blurPaintBottom.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-                this.blurPaintBottom2.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-            }
             this.invalidateBlur = false;
             this.blurGeneratingTuskIsRunning = true;
-            float f3 = currentActionBarHeight;
-            int i = ((int) (f3 / 12.0f)) + 34;
-            float f4 = measuredWidth;
-            int i2 = (int) (f4 / 12.0f);
+            float f = currentActionBarHeight;
+            int i = ((int) (f / 12.0f)) + 34;
+            float f2 = measuredWidth;
+            int i2 = (int) (f2 / 12.0f);
             long currentTimeMillis = System.currentTimeMillis();
             if (this.unusedBitmaps.size() > 0) {
                 ArrayList<BlurBitmap> arrayList = this.unusedBitmaps;
@@ -640,29 +626,29 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                     bitmap.eraseColor(0);
                 }
             }
-            float width = blurBitmap.topBitmap.getWidth() / f4;
-            float height = (blurBitmap.topBitmap.getHeight() - 34) / f3;
+            float width = blurBitmap.topBitmap.getWidth() / f2;
+            float height = (blurBitmap.topBitmap.getHeight() - 34) / f;
             blurBitmap.topCanvas.save();
             blurBitmap.pixelFixOffset = getScrollOffset() % 24;
-            float f5 = height * 10.0f;
-            blurBitmap.topCanvas.clipRect(1.0f, f5, blurBitmap.topBitmap.getWidth(), blurBitmap.topBitmap.getHeight() - 1);
+            float f3 = height * 10.0f;
+            blurBitmap.topCanvas.clipRect(1.0f, f3, blurBitmap.topBitmap.getWidth(), blurBitmap.topBitmap.getHeight() - 1);
             blurBitmap.topCanvas.scale(width, height);
-            blurBitmap.topCanvas.translate(0.0f, f5 + blurBitmap.pixelFixOffset);
+            blurBitmap.topCanvas.translate(0.0f, f3 + blurBitmap.pixelFixOffset);
             blurBitmap.topScaleX = 1.0f / width;
             blurBitmap.topScaleY = 1.0f / height;
             drawList(blurBitmap.topCanvas, true);
             blurBitmap.topCanvas.restore();
             if (this.needBlurBottom) {
-                float width2 = blurBitmap.bottomBitmap.getWidth() / f4;
-                float height2 = (blurBitmap.bottomBitmap.getHeight() - 34) / f3;
+                float width2 = blurBitmap.bottomBitmap.getWidth() / f2;
+                float height2 = (blurBitmap.bottomBitmap.getHeight() - 34) / f;
                 blurBitmap.needBlurBottom = true;
-                blurBitmap.bottomOffset = getBottomOffset() - f3;
+                blurBitmap.bottomOffset = getBottomOffset() - f;
                 blurBitmap.drawnLisetTranslationY = getBottomOffset();
                 blurBitmap.bottomCanvas.save();
-                float f6 = height2 * 10.0f;
-                blurBitmap.bottomCanvas.clipRect(1.0f, f6, blurBitmap.bottomBitmap.getWidth(), blurBitmap.bottomBitmap.getHeight() - 1);
+                float f4 = 10.0f * height2;
+                blurBitmap.bottomCanvas.clipRect(1.0f, f4, blurBitmap.bottomBitmap.getWidth(), blurBitmap.bottomBitmap.getHeight() - 1);
                 blurBitmap.bottomCanvas.scale(width2, height2);
-                blurBitmap.bottomCanvas.translate(0.0f, (f6 - blurBitmap.bottomOffset) + blurBitmap.pixelFixOffset);
+                blurBitmap.bottomCanvas.translate(0.0f, (f4 - blurBitmap.bottomOffset) + blurBitmap.pixelFixOffset);
                 blurBitmap.bottomScaleX = 1.0f / width2;
                 blurBitmap.bottomScaleY = 1.0f / height2;
                 drawList(blurBitmap.bottomCanvas, false);
@@ -874,7 +860,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
     }
 
     public void drawBlurRect(Canvas canvas, float f, android.graphics.Rect rect, Paint paint, boolean z) {
-        int i = (int) ((1.0f - BlurSettingsBottomSheet.blurAlpha) * 255.0f);
+        int alpha = Color.alpha(Theme.getColor(Theme.key_chat_BlurAlpha));
         if (this.currentBitmap == null || !SharedConfig.chatBlurEnabled()) {
             canvas.drawRect(rect, paint);
             return;
@@ -892,7 +878,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
             canvas.drawRect(rect, paint);
             canvas.drawRect(rect, this.selectedBlurPaint);
         }
-        paint.setAlpha(i);
+        paint.setAlpha(alpha);
         canvas.drawRect(rect, paint);
     }
 

@@ -3686,7 +3686,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void updateDialogsHint() {
-        if (this.dialogsHintCell == null) {
+        if (this.dialogsHintCell == null || getContext() == null) {
             return;
         }
         if (!getMessagesController().getUnconfirmedAuthController().auths.isEmpty() && this.folderId == 0 && this.initialDialogsType == 0) {

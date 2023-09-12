@@ -1855,7 +1855,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.switchingInlineMode = false;
             if (Build.VERSION.SDK_INT >= 21) {
                 final View view = this.usedSurfaceView ? this.videoSurfaceView : this.videoTextureView;
-                this.aspectRatioFrameLayout.getLocationInWindow(this.pipPosition);
+                AspectRatioFrameLayout aspectRatioFrameLayout = this.aspectRatioFrameLayout;
+                if (aspectRatioFrameLayout == null) {
+                    return;
+                }
+                aspectRatioFrameLayout.getLocationInWindow(this.pipPosition);
                 int[] iArr = this.pipPosition;
                 iArr[1] = (int) (iArr[1] - this.containerView.getTranslationY());
                 ImageView imageView2 = this.textureImageView;
@@ -4819,7 +4823,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         ImageView imageView5 = new ImageView(this.parentActivity);
         this.paintItem = imageView5;
         imageView5.setScaleType(ImageView.ScaleType.CENTER);
-        this.paintItem.setImageResource(R.drawable.msg_draw_pen);
+        this.paintItem.setImageResource(R.drawable.media_draw);
         this.paintItem.setBackgroundDrawable(Theme.createSelectorDrawable(1090519039));
         this.itemsLayout.addView(this.paintItem, LayoutHelper.createLinear(48, 48));
         this.paintItem.setOnClickListener(new View.OnClickListener() {

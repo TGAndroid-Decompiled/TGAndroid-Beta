@@ -122,7 +122,7 @@ public class RLottieImageView extends ImageView {
         }
         ImageReceiver imageReceiver2 = new ImageReceiver() {
             @Override
-            public boolean setImageBitmapByKey(Drawable drawable, String str, int i3, boolean z, int i4) {
+            protected boolean setImageBitmapByKey(Drawable drawable, String str, int i3, boolean z, int i4) {
                 if (drawable != null) {
                     RLottieImageView.this.onLoaded();
                 }
