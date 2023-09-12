@@ -74,6 +74,7 @@ import org.telegram.tgnet.TLRPC$TL_account_saveRingtone;
 import org.telegram.tgnet.TLRPC$TL_account_savedRingtoneConverted;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
+import org.telegram.tgnet.TLRPC$TL_attachMenuBot_layer162;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotsNotModified;
 import org.telegram.tgnet.TLRPC$TL_attachMenuPeerTypeBotPM;
@@ -856,6 +857,7 @@ public class MediaDataController extends BaseController {
     }
 
     public void processLoadedMenuBots(TLRPC$TL_attachMenuBots tLRPC$TL_attachMenuBots, long j, int i, boolean z) {
+        boolean z2;
         if (tLRPC$TL_attachMenuBots != null && i != 0) {
             this.attachMenuBots = tLRPC$TL_attachMenuBots;
             this.menuBotsUpdateHash = j;
@@ -875,10 +877,19 @@ public class MediaDataController extends BaseController {
                     MediaDataController.this.lambda$processLoadedMenuBots$4();
                 }
             });
+            z2 = false;
+            for (int i2 = 0; i2 < tLRPC$TL_attachMenuBots.bots.size(); i2++) {
+                if (tLRPC$TL_attachMenuBots.bots.get(i2) instanceof TLRPC$TL_attachMenuBot_layer162) {
+                    tLRPC$TL_attachMenuBots.bots.get(i2).show_in_attach_menu = true;
+                    z2 = true;
+                }
+            }
+        } else {
+            z2 = false;
         }
         if (!z) {
             putMenuBotsToCache(tLRPC$TL_attachMenuBots, j, i);
-        } else if (Math.abs((System.currentTimeMillis() / 1000) - i) >= 3600) {
+        } else if (z2 || Math.abs((System.currentTimeMillis() / 1000) - i) >= 3600) {
             loadAttachMenuBots(false, true);
         }
     }

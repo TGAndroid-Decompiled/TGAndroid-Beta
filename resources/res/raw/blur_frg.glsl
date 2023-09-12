@@ -15,9 +15,6 @@ uniform vec4 gtop;
 uniform vec4 gbottom;
 
 vec4 at(vec2 p) {
-    if (flipy > .5) {
-        p.y = 1. - p.y;
-    }
     if (step != 0) {
         return texture2D(tex, p);
     }
@@ -26,6 +23,9 @@ vec4 at(vec2 p) {
         return mix(gtop, gbottom, p.y);
     }
     if (hasVideoMatrix > 0.5) {
+        if (flipy > .5) {
+            uv.y = 1. - uv.y;
+        }
         return texture2D(tex, (videoMatrix * vec4(uv, 0., 1.)).xy);
     } else {
         return texture2D(tex, uv);

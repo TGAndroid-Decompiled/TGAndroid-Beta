@@ -482,7 +482,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    private class VimeoVideoTask extends AsyncTask<Void, Void, String> {
+    public class VimeoVideoTask extends AsyncTask<Void, Void, String> {
         private String[] results = new String[2];
         private String videoId;
 
@@ -537,7 +537,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    private class AparatVideoTask extends AsyncTask<Void, Void, String> {
+    public class AparatVideoTask extends AsyncTask<Void, Void, String> {
         private String[] results = new String[2];
         private String videoId;
 
@@ -593,7 +593,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    private class TwitchClipVideoTask extends AsyncTask<Void, Void, String> {
+    public class TwitchClipVideoTask extends AsyncTask<Void, Void, String> {
         private String currentUrl;
         private String[] results = new String[2];
 
@@ -640,7 +640,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    private class TwitchStreamVideoTask extends AsyncTask<Void, Void, String> {
+    public class TwitchStreamVideoTask extends AsyncTask<Void, Void, String> {
         private String[] results = new String[2];
         private String videoId;
 
@@ -699,7 +699,7 @@ public class WebPlayerView extends ViewGroup implements VideoPlayer.VideoPlayerD
         }
     }
 
-    private class CoubVideoTask extends AsyncTask<Void, Void, String> {
+    public class CoubVideoTask extends AsyncTask<Void, Void, String> {
         private String[] results = new String[4];
         private String videoId;
 

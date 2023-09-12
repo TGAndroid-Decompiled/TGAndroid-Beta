@@ -9144,7 +9144,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.photoCropView = photoCropView;
         photoCropView.setVisibility(8);
         this.photoCropView.onDisappear();
-        this.containerView.addView(this.photoCropView, this.containerView.indexOfChild(this.videoTimelineView) - 1, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 48.0f));
+        this.containerView.addView(this.photoCropView, this.containerView.indexOfChild(this.videoTimelineViewContainer) - 1, LayoutHelper.createFrame(-1, -1.0f, 51, 0.0f, 0.0f, 0.0f, 48.0f));
         this.photoCropView.setDelegate(new AnonymousClass51());
     }
 
