@@ -36,6 +36,11 @@ public class AlertDialogDecor extends AlertDialog {
     private View rootView;
     private final Runnable showRunnable;
 
+    @Override
+    protected boolean supportsNativeBlur() {
+        return false;
+    }
+
     public void lambda$new$0() {
         this.rootView.setVisibility(0);
         this.dimView.setAlpha(0.0f);
