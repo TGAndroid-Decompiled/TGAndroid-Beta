@@ -1490,7 +1490,7 @@ public class SvgHelper {
                     if (sb != null) {
                         String[] split = sb.toString().split("\\}");
                         for (int i = 0; i < split.length; i++) {
-                            split[i] = split[i].trim().replace("\t", "").replace("\n", "");
+                            split[i] = split[i].trim().replace("\t", BuildConfig.APP_CENTER_HASH).replace("\n", BuildConfig.APP_CENTER_HASH);
                             if (split[i].length() != 0 && split[i].charAt(0) == '.' && (indexOf = split[i].indexOf(123)) >= 0) {
                                 this.globalStyles.put(split[i].substring(1, indexOf).trim(), new StyleSet(split[i].substring(indexOf + 1)));
                             }
@@ -1644,7 +1644,7 @@ public class SvgHelper {
             return sb.toString();
         } catch (Exception e) {
             FileLog.e(e);
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
     }
 }

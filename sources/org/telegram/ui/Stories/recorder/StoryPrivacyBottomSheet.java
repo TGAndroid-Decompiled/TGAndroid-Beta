@@ -45,6 +45,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -321,7 +322,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 }
 
                 @Override
-                protected void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
+                public void onMoveAnimationUpdate(RecyclerView.ViewHolder viewHolder) {
                     ((BottomSheet) StoryPrivacyBottomSheet.this).containerView.invalidate();
                     Page.this.contentView.invalidate();
                     Page.this.listView.invalidate();
@@ -458,7 +459,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                                     });
                                 }
                                 if (!TextUtils.isEmpty(this.query)) {
-                                    this.searchField.setText("");
+                                    this.searchField.setText(BuildConfig.APP_CENTER_HASH);
                                     this.query = null;
                                     updateItems(false);
                                 }
@@ -501,7 +502,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                                 }
                                 hashSet.add(Long.valueOf(j2));
                                 if (!TextUtils.isEmpty(this.query)) {
-                                    this.searchField.setText("");
+                                    this.searchField.setText(BuildConfig.APP_CENTER_HASH);
                                     this.query = null;
                                     updateItems(false);
                                 }
@@ -1053,7 +1054,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             adapter.reversedLayout = z;
             linearLayoutManager.setReverseLayout(z);
             updateSpans(false);
-            this.searchField.setText("");
+            this.searchField.setText(BuildConfig.APP_CENTER_HASH);
             this.searchField.setVisibility(i == 0 ? 8 : 0);
             this.searchField.scrollToBottom();
             this.query = null;

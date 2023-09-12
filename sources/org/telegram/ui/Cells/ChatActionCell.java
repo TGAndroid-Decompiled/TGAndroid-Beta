@@ -1323,10 +1323,6 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 int spanEnd = spannableStringBuilder.getSpanEnd(characterStyle);
                 spannableStringBuilder.removeSpan(characterStyle);
                 spannableStringBuilder.setSpan(new ClickableSpan() {
-                    {
-                        ChatActionCell.this = this;
-                    }
-
                     @Override
                     public void onClick(View view) {
                         if (ChatActionCell.this.delegate != null) {

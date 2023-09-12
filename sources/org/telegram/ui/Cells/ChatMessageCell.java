@@ -67,6 +67,7 @@ import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatMessageSharedResources;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
@@ -3399,7 +3400,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             this.commentAvatarDrawables[i].setInfo(tLRPC$Chat);
             this.commentAvatarImages[i].setForUserOrChat(tLRPC$Chat, this.commentAvatarDrawables[i]);
         } else {
-            this.commentAvatarDrawables[i].setInfo(j, "", "");
+            this.commentAvatarDrawables[i].setInfo(j, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
         }
     }
 
@@ -5944,7 +5945,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return tLRPC$TL_sponsoredWebPage.site_name;
         }
         TLRPC$ChatInvite tLRPC$ChatInvite = messageObject2.sponsoredChatInvite;
-        return (tLRPC$ChatInvite == null || (str2 = tLRPC$ChatInvite.title) == null) ? (tLRPC$ChatInvite == null || (tLRPC$Chat = tLRPC$ChatInvite.chat) == null || (str = tLRPC$Chat.title) == null) ? "" : str : str2;
+        return (tLRPC$ChatInvite == null || (str2 = tLRPC$ChatInvite.title) == null) ? (tLRPC$ChatInvite == null || (tLRPC$Chat = tLRPC$ChatInvite.chat) == null || (str = tLRPC$Chat.title) == null) ? BuildConfig.APP_CENTER_HASH : str : str2;
     }
 
     private Object getAuthorStatus() {
@@ -8938,11 +8939,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                         spannableStringBuilder.append((CharSequence) LocaleController.formatPluralString("AccDescrNumberOfReplies", ChatMessageCell.this.getRepliesCount(), new Object[0]));
                     }
                     if (ChatMessageCell.this.currentMessageObject.messageOwner.reactions != null && ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results != null) {
-                        String str4 = "";
-                        if (ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.size() == 1) {
+                        int size = ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.size();
+                        String str4 = BuildConfig.APP_CENTER_HASH;
+                        if (size == 1) {
                             TLRPC$ReactionCount tLRPC$ReactionCount2 = ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.get(0);
                             TLRPC$Reaction tLRPC$Reaction = tLRPC$ReactionCount2.reaction;
-                            String str5 = tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji ? ((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon : "";
+                            String str5 = tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji ? ((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon : BuildConfig.APP_CENTER_HASH;
                             int i7 = tLRPC$ReactionCount2.count;
                             if (i7 == 1) {
                                 spannableStringBuilder.append(charSequence3);
@@ -8966,11 +8968,11 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                             }
                         } else {
                             spannableStringBuilder.append((CharSequence) LocaleController.getString("Reactions", R.string.Reactions)).append((CharSequence) ": ");
-                            int size = ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.size();
-                            for (int i8 = 0; i8 < size; i8++) {
+                            int size2 = ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.size();
+                            for (int i8 = 0; i8 < size2; i8++) {
                                 TLRPC$Reaction tLRPC$Reaction2 = ChatMessageCell.this.currentMessageObject.messageOwner.reactions.results.get(i8).reaction;
-                                spannableStringBuilder.append((CharSequence) (tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji ? ((TLRPC$TL_reactionEmoji) tLRPC$Reaction2).emoticon : "")).append((CharSequence) " ").append((CharSequence) (tLRPC$ReactionCount.count + ""));
-                                if (i8 + 1 < size) {
+                                spannableStringBuilder.append((CharSequence) (tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji ? ((TLRPC$TL_reactionEmoji) tLRPC$Reaction2).emoticon : BuildConfig.APP_CENTER_HASH)).append((CharSequence) " ").append((CharSequence) (tLRPC$ReactionCount.count + BuildConfig.APP_CENTER_HASH));
+                                if (i8 + 1 < size2) {
                                     spannableStringBuilder.append(charSequence4);
                                 }
                             }

@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -134,7 +135,7 @@ public class StickerSetNameCell extends FrameLayout {
         this.stickerSetNameSearchLength = i3;
         if (charSequence == null) {
             this.empty = true;
-            this.textView.setText("");
+            this.textView.setText(BuildConfig.APP_CENTER_HASH);
             this.buttonView.setVisibility(4);
             return;
         }

@@ -12,7 +12,7 @@ import com.google.android.gms.maps.internal.zzcb;
 import com.google.android.gms.maps.model.RuntimeRemoteException;
 import java.util.ArrayList;
 import java.util.List;
-public final class zzah extends DeferredLifecycleHelper {
+final class zzah extends DeferredLifecycleHelper {
     protected OnDelegateCreatedListener zza;
     private final ViewGroup zzb;
     private final Context zzc;

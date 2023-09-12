@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.audioinfo.AudioInfo;
 public class ID3v2Info extends AudioInfo {
     static final Logger LOGGER = Logger.getLogger(ID3v2Info.class.getName());
@@ -269,7 +270,7 @@ public class ID3v2Info extends AudioInfo {
             case 0:
             case 17:
                 CommentOrUnsynchronizedLyrics parseCommentOrUnsynchronizedLyricsFrame = parseCommentOrUnsynchronizedLyricsFrame(iD3v2FrameBody);
-                if (this.comment == null || (str = parseCommentOrUnsynchronizedLyricsFrame.description) == null || "".equals(str)) {
+                if (this.comment == null || (str = parseCommentOrUnsynchronizedLyricsFrame.description) == null || BuildConfig.APP_CENTER_HASH.equals(str)) {
                     this.comment = parseCommentOrUnsynchronizedLyricsFrame.text;
                     return;
                 }

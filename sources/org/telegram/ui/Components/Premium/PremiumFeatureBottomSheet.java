@@ -24,6 +24,7 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.NotificationCenter;
@@ -667,8 +668,8 @@ public class PremiumFeatureBottomSheet extends BottomSheet implements Notificati
                     this.topViewOnFullHeight = false;
                 }
             } else {
-                this.title.setText("");
-                this.description.setText("");
+                this.title.setText(BuildConfig.APP_CENTER_HASH);
+                this.description.setText(BuildConfig.APP_CENTER_HASH);
                 this.topViewOnFullHeight = true;
             }
             requestLayout();

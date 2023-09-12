@@ -37,6 +37,7 @@ import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -99,7 +100,7 @@ public class ViewPagerFixed extends FrameLayout {
         }
 
         public String getItemTitle(int i) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
 
         public int getItemViewType(int i) {

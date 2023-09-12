@@ -168,7 +168,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         this.adjustPanLayoutHelper = createAdjustPanLayoutHelper();
     }
 
-    public class BackgroundView extends View {
+    private class BackgroundView extends View {
         public BackgroundView(Context context) {
             super(context);
         }

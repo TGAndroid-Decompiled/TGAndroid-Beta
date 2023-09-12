@@ -197,7 +197,7 @@ public class CopyUtilities {
         }
     }
 
-    public static class HTMLTagHandler implements HTMLTagAttributesHandler.TagHandler {
+    private static class HTMLTagHandler implements HTMLTagAttributesHandler.TagHandler {
         private HTMLTagHandler() {
         }
 

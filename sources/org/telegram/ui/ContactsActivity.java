@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -469,7 +470,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit();
             edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, false).apply();
             ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0);
-            String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
+            String trim = tLRPC$User == null ? BuildConfig.APP_CENTER_HASH : tLRPC$User.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
                 trim = trim.substring(0, indexOf);
@@ -481,7 +482,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
             SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(((BaseFragment) ContactsActivity.this).currentAccount).edit();
             edit.putBoolean(NotificationsSettingsFacade.PROPERTY_STORIES_NOTIFY + str, true).apply();
             ContactsActivity.this.getNotificationsController().updateServerNotificationsSettings(j, 0);
-            String trim = tLRPC$User == null ? "" : tLRPC$User.first_name.trim();
+            String trim = tLRPC$User == null ? BuildConfig.APP_CENTER_HASH : tLRPC$User.first_name.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
                 trim = trim.substring(0, indexOf);
@@ -610,9 +611,9 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                                     EditText editText2 = editTextBoldCursor;
                                     editText2.setSelection(editText2.length());
                                 } else {
-                                    if (!obj.equals("" + intValue)) {
+                                    if (!obj.equals(BuildConfig.APP_CENTER_HASH + intValue)) {
                                         EditText editText3 = editTextBoldCursor;
-                                        editText3.setText("" + intValue);
+                                        editText3.setText(BuildConfig.APP_CENTER_HASH + intValue);
                                         EditText editText4 = editTextBoldCursor;
                                         editText4.setSelection(editText4.length());
                                     }

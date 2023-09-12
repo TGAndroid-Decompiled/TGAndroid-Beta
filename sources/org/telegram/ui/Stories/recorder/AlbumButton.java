@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
@@ -50,8 +51,8 @@ public class AlbumButton extends View {
         textPaint2.setColor(Theme.getColor(i2, resourcesProvider));
         textPaint2.setAlpha(102);
         textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
-        this.title = "" + ((Object) charSequence);
-        this.subtitle = "" + i;
+        this.title = BuildConfig.APP_CENTER_HASH + ((Object) charSequence);
+        this.subtitle = BuildConfig.APP_CENTER_HASH + i;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         Drawable mutate = context.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, PorterDuff.Mode.MULTIPLY));

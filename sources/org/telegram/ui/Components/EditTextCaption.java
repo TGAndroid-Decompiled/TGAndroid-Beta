@@ -39,7 +39,6 @@ import org.telegram.ui.ActionBar.AlertDialogDecor;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.TextStyleSpan;
 public class EditTextCaption extends EditTextBoldCursor {
-    public boolean adaptiveCreateLinkDialog;
     private boolean allowTextEntitiesIntersection;
     private String caption;
     private StaticLayout captionLayout;
@@ -160,13 +159,8 @@ public class EditTextCaption extends EditTextBoldCursor {
     }
 
     public void makeSelectedUrl() {
-        AlertDialog.Builder builder;
         final int selectionEnd;
-        if (this.adaptiveCreateLinkDialog) {
-            builder = new AlertDialogDecor.Builder(getContext(), this.resourcesProvider);
-        } else {
-            builder = new AlertDialog.Builder(getContext(), this.resourcesProvider);
-        }
+        AlertDialogDecor.Builder builder = new AlertDialogDecor.Builder(getContext(), this.resourcesProvider);
         builder.setTitle(LocaleController.getString("CreateLink", R.string.CreateLink));
         final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(this, getContext()) {
             @Override
@@ -203,52 +197,31 @@ public class EditTextCaption extends EditTextBoldCursor {
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-        if (this.adaptiveCreateLinkDialog) {
-            AlertDialog create = builder.create();
-            this.creationLinkDialog = create;
-            create.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                @Override
-                public final void onDismiss(DialogInterface dialogInterface) {
-                    EditTextCaption.this.lambda$makeSelectedUrl$1(dialogInterface);
-                }
-            });
-            this.creationLinkDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public final void onShow(DialogInterface dialogInterface) {
-                    EditTextCaption.lambda$makeSelectedUrl$2(EditTextBoldCursor.this, dialogInterface);
-                }
-            });
-            this.creationLinkDialog.showDelayed(250L);
-            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) editTextBoldCursor.getLayoutParams();
-            if (marginLayoutParams != null) {
-                if (marginLayoutParams instanceof FrameLayout.LayoutParams) {
-                    ((FrameLayout.LayoutParams) marginLayoutParams).gravity = 1;
-                }
-                int dp = AndroidUtilities.dp(24.0f);
-                marginLayoutParams.leftMargin = dp;
-                marginLayoutParams.rightMargin = dp;
-                marginLayoutParams.height = AndroidUtilities.dp(36.0f);
-                editTextBoldCursor.setLayoutParams(marginLayoutParams);
-            }
-            editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
-            return;
-        }
-        builder.show().setOnShowListener(new DialogInterface.OnShowListener() {
+        AlertDialog create = builder.create();
+        this.creationLinkDialog = create;
+        create.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
-            public final void onShow(DialogInterface dialogInterface) {
-                EditTextCaption.lambda$makeSelectedUrl$3(EditTextBoldCursor.this, dialogInterface);
+            public final void onDismiss(DialogInterface dialogInterface) {
+                EditTextCaption.this.lambda$makeSelectedUrl$1(dialogInterface);
             }
         });
-        ViewGroup.MarginLayoutParams marginLayoutParams2 = (ViewGroup.MarginLayoutParams) editTextBoldCursor.getLayoutParams();
-        if (marginLayoutParams2 != null) {
-            if (marginLayoutParams2 instanceof FrameLayout.LayoutParams) {
-                ((FrameLayout.LayoutParams) marginLayoutParams2).gravity = 1;
+        this.creationLinkDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public final void onShow(DialogInterface dialogInterface) {
+                EditTextCaption.lambda$makeSelectedUrl$2(EditTextBoldCursor.this, dialogInterface);
             }
-            int dp2 = AndroidUtilities.dp(24.0f);
-            marginLayoutParams2.leftMargin = dp2;
-            marginLayoutParams2.rightMargin = dp2;
-            marginLayoutParams2.height = AndroidUtilities.dp(36.0f);
-            editTextBoldCursor.setLayoutParams(marginLayoutParams2);
+        });
+        this.creationLinkDialog.showDelayed(250L);
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) editTextBoldCursor.getLayoutParams();
+        if (marginLayoutParams != null) {
+            if (marginLayoutParams instanceof FrameLayout.LayoutParams) {
+                ((FrameLayout.LayoutParams) marginLayoutParams).gravity = 1;
+            }
+            int dp = AndroidUtilities.dp(24.0f);
+            marginLayoutParams.leftMargin = dp;
+            marginLayoutParams.rightMargin = dp;
+            marginLayoutParams.height = AndroidUtilities.dp(36.0f);
+            editTextBoldCursor.setLayoutParams(marginLayoutParams);
         }
         editTextBoldCursor.setSelection(0, editTextBoldCursor.getText().length());
     }
@@ -287,11 +260,6 @@ public class EditTextCaption extends EditTextBoldCursor {
     }
 
     public static void lambda$makeSelectedUrl$2(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
-        editTextBoldCursor.requestFocus();
-        AndroidUtilities.showKeyboard(editTextBoldCursor);
-    }
-
-    public static void lambda$makeSelectedUrl$3(EditTextBoldCursor editTextBoldCursor, DialogInterface dialogInterface) {
         editTextBoldCursor.requestFocus();
         AndroidUtilities.showKeyboard(editTextBoldCursor);
     }

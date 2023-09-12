@@ -5,6 +5,7 @@ import android.graphics.Rect;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
@@ -186,7 +187,7 @@ public class AnimatedEmojiEffect {
             return;
         }
         int i3 = R.raw.custom_emoji_reaction;
-        this.effectImageReceiver.setImageBitmap(new RLottieDrawable(i3, "" + i3, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
+        this.effectImageReceiver.setImageBitmap(new RLottieDrawable(i3, BuildConfig.APP_CENTER_HASH + i3, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
     }
 
     public void removeView(View view) {

@@ -29,6 +29,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
@@ -288,7 +289,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 boolean z2 = user.contact || ContactsController.getInstance(SelfStoryViewsPage.this.currentAccount).contactsDict.get(Long.valueOf(user.id)) != null;
                 boolean isStoryShownToUser = SelfStoryViewsPage.this.isStoryShownToUser(tLRPC$TL_storyView);
                 boolean isBlocked = messagesController.getStoriesController().isBlocked(tLRPC$TL_storyView);
-                String str = TextUtils.isEmpty(user.first_name) ? TextUtils.isEmpty(user.last_name) ? "" : user.last_name : user.first_name;
+                String str = TextUtils.isEmpty(user.first_name) ? TextUtils.isEmpty(user.last_name) ? BuildConfig.APP_CENTER_HASH : user.last_name : user.first_name;
                 int indexOf = str.indexOf(" ");
                 if (indexOf > 2) {
                     str = str.substring(0, indexOf);
@@ -1121,7 +1122,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             TLRPC$TL_stories_getStoryViewsList tLRPC$TL_stories_getStoryViewsList = new TLRPC$TL_stories_getStoryViewsList();
             tLRPC$TL_stories_getStoryViewsList.id = this.storyItem.id;
             if (this.useLocalFilters) {
-                tLRPC$TL_stories_getStoryViewsList.q = "";
+                tLRPC$TL_stories_getStoryViewsList.q = BuildConfig.APP_CENTER_HASH;
                 tLRPC$TL_stories_getStoryViewsList.just_contacts = false;
                 tLRPC$TL_stories_getStoryViewsList.reactions_first = true;
             } else {
@@ -1142,7 +1143,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             String str2 = this.offset;
             tLRPC$TL_stories_getStoryViewsList.offset = str2;
             if (str2 == null) {
-                tLRPC$TL_stories_getStoryViewsList.offset = "";
+                tLRPC$TL_stories_getStoryViewsList.offset = BuildConfig.APP_CENTER_HASH;
             }
             this.loading = true;
             FileLog.d("SelfStoryViewsPage load next " + this.storyItem.id + " " + this.initial + " offset=" + tLRPC$TL_stories_getStoryViewsList.offset + " q" + tLRPC$TL_stories_getStoryViewsList.q + " " + tLRPC$TL_stories_getStoryViewsList.just_contacts + " " + tLRPC$TL_stories_getStoryViewsList.reactions_first);
@@ -1331,7 +1332,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             this.initial = true;
             this.loading = false;
             this.hasNext = true;
-            this.offset = "";
+            this.offset = BuildConfig.APP_CENTER_HASH;
             loadNext();
         }
     }

@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
@@ -725,9 +726,9 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         TLRPC$Chat currentChat = this.parentFragment.getCurrentChat();
         boolean z2 = false;
         CharSequence printingString = MessagesController.getInstance(this.currentAccount).getPrintingString(this.parentFragment.getDialogId(), this.parentFragment.getThreadId(), false);
-        CharSequence charSequence = "";
+        CharSequence charSequence = BuildConfig.APP_CENTER_HASH;
         if (printingString != null) {
-            printingString = TextUtils.replace(printingString, new String[]{"..."}, new String[]{""});
+            printingString = TextUtils.replace(printingString, new String[]{"..."}, new String[]{BuildConfig.APP_CENTER_HASH});
         }
         if (printingString == null || printingString.length() == 0 || (ChatObject.isChannel(currentChat) && !currentChat.megagroup)) {
             if (this.parentFragment.isThreadChat() && !this.parentFragment.isTopic) {

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.PhoneFormat.PhoneFormat;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.GenericProvider;
@@ -547,7 +548,7 @@ public class PrivacyUsersActivity extends BaseFragment implements NotificationCe
                     }
                 } else if (i == PrivacyUsersActivity.this.usersDetailRow) {
                     textInfoPrivacyCell.setFixedSize(12);
-                    textInfoPrivacyCell.setText("");
+                    textInfoPrivacyCell.setText(BuildConfig.APP_CENTER_HASH);
                     textInfoPrivacyCell.setBackgroundDrawable(Theme.getThemedDrawableByKey(this.mContext, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                     return;
                 } else {

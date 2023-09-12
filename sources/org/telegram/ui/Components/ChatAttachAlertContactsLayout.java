@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Emoji;
@@ -127,8 +128,8 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
             if (tLRPC$User == null && charSequence == null && charSequence2 == null) {
                 this.currentStatus = null;
                 this.currentName = null;
-                this.nameTextView.setText("");
-                this.statusTextView.setText("");
+                this.nameTextView.setText(BuildConfig.APP_CENTER_HASH);
+                this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
                 this.avatarImageView.setImageDrawable(null);
                 return;
             }
@@ -174,7 +175,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
                 } else if (this.formattedPhoneNumberUser != this.currentUser && (charSequence2 = this.formattedPhoneNumber) != null) {
                     this.statusTextView.setText(charSequence2);
                 } else {
-                    this.statusTextView.setText("");
+                    this.statusTextView.setText(BuildConfig.APP_CENTER_HASH);
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
@@ -700,7 +701,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public static CharSequence lambda$onBindViewHolder$0(ContactsController.Contact contact) {
-            return contact.phones.isEmpty() ? "" : PhoneFormat.getInstance().format(contact.phones.get(0));
+            return contact.phones.isEmpty() ? BuildConfig.APP_CENTER_HASH : PhoneFormat.getInstance().format(contact.phones.get(0));
         }
 
         public static CharSequence lambda$onBindViewHolder$1(TLRPC$User tLRPC$User) {
@@ -876,7 +877,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
         }
 
         public static CharSequence lambda$onBindViewHolder$4(ContactsController.Contact contact) {
-            return contact.phones.isEmpty() ? "" : PhoneFormat.getInstance().format(contact.phones.get(0));
+            return contact.phones.isEmpty() ? BuildConfig.APP_CENTER_HASH : PhoneFormat.getInstance().format(contact.phones.get(0));
         }
 
         public static CharSequence lambda$onBindViewHolder$5(TLRPC$User tLRPC$User) {

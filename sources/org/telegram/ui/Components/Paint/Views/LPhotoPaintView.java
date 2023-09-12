@@ -52,6 +52,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Bitmaps;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Emoji;
@@ -330,9 +331,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
             @Override
             public ColorFilter getAnimatedEmojiColorFilter() {
-                ColorFilter colorFilter;
-                colorFilter = Theme.chat_animatedEmojiTextColorFilter;
-                return colorFilter;
+                return Theme.ResourcesProvider.CC.$default$getAnimatedEmojiColorFilter(this);
             }
 
             @Override
@@ -344,9 +343,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
             @Override
             public int getColorOrDefault(int i4) {
-                int color;
-                color = getColor(i4);
-                return color;
+                return getColor(i4);
             }
 
             @Override
@@ -363,9 +360,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
             @Override
             public Paint getPaint(String str) {
-                Paint themePaint;
-                themePaint = Theme.getThemePaint(str);
-                return themePaint;
+                return Theme.ResourcesProvider.CC.$default$getPaint(this, str);
             }
 
             @Override
@@ -1132,7 +1127,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         onTextAdd();
         Size paintingSize = getPaintingSize();
         Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
-        TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), "", this.colorSwatch, this.selectedTextType);
+        TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), BuildConfig.APP_CENTER_HASH, this.colorSwatch, this.selectedTextType);
         if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             textPaintView.setStickyX(2);
         }

@@ -252,7 +252,7 @@ public class LocaleController {
         public String getSaveString() {
             String str = this.baseLangCode;
             if (str == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             TextUtils.isEmpty(this.pluralLangCode);
             return this.name + "|" + this.nameEnglish + "|" + this.shortName + "|" + this.pathToFile + "|" + this.version + "|" + str + "|" + this.pluralLangCode + "|" + (this.isRtl ? 1 : 0) + "|" + this.baseVersion + "|" + this.serverIndex;
@@ -271,7 +271,7 @@ public class LocaleController {
                     if (split.length >= 5) {
                         localeInfo.version = Utilities.parseInt((CharSequence) split[4]).intValue();
                     }
-                    localeInfo.baseLangCode = split.length >= 6 ? split[5] : "";
+                    localeInfo.baseLangCode = split.length >= 6 ? split[5] : BuildConfig.APP_CENTER_HASH;
                     localeInfo.pluralLangCode = split.length >= 7 ? split[6] : localeInfo.shortName;
                     if (split.length >= 8) {
                         localeInfo.isRtl = Utilities.parseInt((CharSequence) split[7]).intValue() == 1;
@@ -350,7 +350,7 @@ public class LocaleController {
 
         public String getBaseLangCode() {
             String str = this.baseLangCode;
-            return str == null ? "" : str.replace("_", "-");
+            return str == null ? BuildConfig.APP_CENTER_HASH : str.replace("_", "-");
         }
     }
 
@@ -1090,7 +1090,7 @@ public class LocaleController {
                                 if (z) {
                                     str3 = trim.replace("<", "&lt;").replace(">", "&gt;").replace("'", "\\'").replace("& ", "&amp; ");
                                 } else {
-                                    String replace = trim.replace("\\n", "\n").replace("\\", "");
+                                    String replace = trim.replace("\\n", "\n").replace("\\", BuildConfig.APP_CENTER_HASH);
                                     str3 = replace.replace("&lt;", "<");
                                     if (!this.reloadLastFile && !str3.equals(replace)) {
                                         this.reloadLastFile = true;
@@ -1795,7 +1795,7 @@ public class LocaleController {
                 currencyInstance.setMaximumFractionDigits(0);
             }
             StringBuilder sb = new StringBuilder();
-            sb.append(z4 ? "-" : "");
+            sb.append(z4 ? "-" : BuildConfig.APP_CENTER_HASH);
             sb.append(currencyInstance.format(d));
             String sb2 = sb.toString();
             int indexOf = sb2.indexOf(upperCase);
@@ -1805,7 +1805,7 @@ public class LocaleController {
             return sb2.substring(0, length) + " " + sb2.substring(length);
         }
         StringBuilder sb3 = new StringBuilder();
-        sb3.append(z4 ? "-" : "");
+        sb3.append(z4 ? "-" : BuildConfig.APP_CENTER_HASH);
         sb3.append(String.format(Locale.US, upperCase + str3, Double.valueOf(d)));
         return sb3.toString();
     }
@@ -2279,7 +2279,7 @@ public class LocaleController {
         }
         Locale locale = Locale.US;
         if (!z) {
-            upperCase = "" + str2;
+            upperCase = BuildConfig.APP_CENTER_HASH + str2;
         }
         return String.format(locale, upperCase, Double.valueOf(d)).trim();
     }
@@ -2968,22 +2968,26 @@ public class LocaleController {
                 } else if (tLRPC$LangPackString instanceof TLRPC$TL_langPackStringPluralized) {
                     String str = tLRPC$LangPackString.key + "_zero";
                     String str2 = tLRPC$LangPackString.zero_value;
-                    localeFileStrings.put(str, str2 != null ? escapeString(str2) : "");
-                    String str3 = tLRPC$LangPackString.key + "_one";
-                    String str4 = tLRPC$LangPackString.one_value;
-                    localeFileStrings.put(str3, str4 != null ? escapeString(str4) : "");
-                    String str5 = tLRPC$LangPackString.key + "_two";
-                    String str6 = tLRPC$LangPackString.two_value;
-                    localeFileStrings.put(str5, str6 != null ? escapeString(str6) : "");
-                    String str7 = tLRPC$LangPackString.key + "_few";
-                    String str8 = tLRPC$LangPackString.few_value;
-                    localeFileStrings.put(str7, str8 != null ? escapeString(str8) : "");
-                    String str9 = tLRPC$LangPackString.key + "_many";
-                    String str10 = tLRPC$LangPackString.many_value;
-                    localeFileStrings.put(str9, str10 != null ? escapeString(str10) : "");
-                    String str11 = tLRPC$LangPackString.key + "_other";
-                    String str12 = tLRPC$LangPackString.other_value;
-                    localeFileStrings.put(str11, str12 != null ? escapeString(str12) : "");
+                    String str3 = BuildConfig.APP_CENTER_HASH;
+                    localeFileStrings.put(str, str2 != null ? escapeString(str2) : BuildConfig.APP_CENTER_HASH);
+                    String str4 = tLRPC$LangPackString.key + "_one";
+                    String str5 = tLRPC$LangPackString.one_value;
+                    localeFileStrings.put(str4, str5 != null ? escapeString(str5) : BuildConfig.APP_CENTER_HASH);
+                    String str6 = tLRPC$LangPackString.key + "_two";
+                    String str7 = tLRPC$LangPackString.two_value;
+                    localeFileStrings.put(str6, str7 != null ? escapeString(str7) : BuildConfig.APP_CENTER_HASH);
+                    String str8 = tLRPC$LangPackString.key + "_few";
+                    String str9 = tLRPC$LangPackString.few_value;
+                    localeFileStrings.put(str8, str9 != null ? escapeString(str9) : BuildConfig.APP_CENTER_HASH);
+                    String str10 = tLRPC$LangPackString.key + "_many";
+                    String str11 = tLRPC$LangPackString.many_value;
+                    localeFileStrings.put(str10, str11 != null ? escapeString(str11) : BuildConfig.APP_CENTER_HASH);
+                    String str12 = tLRPC$LangPackString.key + "_other";
+                    String str13 = tLRPC$LangPackString.other_value;
+                    if (str13 != null) {
+                        str3 = escapeString(str13);
+                    }
+                    localeFileStrings.put(str12, str3);
                 } else if (tLRPC$LangPackString instanceof TLRPC$TL_langPackStringDeleted) {
                     localeFileStrings.remove(tLRPC$LangPackString.key);
                 }
@@ -3145,7 +3149,7 @@ public class LocaleController {
             if (str != null) {
                 localeInfo.baseLangCode = str.replace('-', '_').toLowerCase();
             } else {
-                localeInfo.baseLangCode = "";
+                localeInfo.baseLangCode = BuildConfig.APP_CENTER_HASH;
             }
             localeInfo.pluralLangCode = tLRPC$TL_langPackLanguage.plural_code.replace('-', '_').toLowerCase();
             localeInfo.isRtl = tLRPC$TL_langPackLanguage.rtl;
@@ -3214,7 +3218,7 @@ public class LocaleController {
                     TLRPC$TL_langpack_getDifference tLRPC$TL_langpack_getDifference = new TLRPC$TL_langpack_getDifference();
                     tLRPC$TL_langpack_getDifference.from_version = localeInfo.baseVersion;
                     tLRPC$TL_langpack_getDifference.lang_code = localeInfo.getBaseLangCode();
-                    tLRPC$TL_langpack_getDifference.lang_pack = "";
+                    tLRPC$TL_langpack_getDifference.lang_pack = BuildConfig.APP_CENTER_HASH;
                     iArr2[0] = iArr2[0] + 1;
                     ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_langpack_getDifference, new RequestDelegate() {
                         @Override
@@ -3242,7 +3246,7 @@ public class LocaleController {
                 TLRPC$TL_langpack_getDifference tLRPC$TL_langpack_getDifference2 = new TLRPC$TL_langpack_getDifference();
                 tLRPC$TL_langpack_getDifference2.from_version = localeInfo.version;
                 tLRPC$TL_langpack_getDifference2.lang_code = localeInfo.getLangCode();
-                tLRPC$TL_langpack_getDifference2.lang_pack = "";
+                tLRPC$TL_langpack_getDifference2.lang_pack = BuildConfig.APP_CENTER_HASH;
                 iArr2[0] = iArr2[0] + 1;
                 return ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_langpack_getDifference2, new RequestDelegate() {
                     @Override
@@ -3382,8 +3386,8 @@ public class LocaleController {
             this.ruTranslitChars.put("ш", "sh");
             this.ruTranslitChars.put("щ", "sch");
             this.ruTranslitChars.put("ы", "i");
-            this.ruTranslitChars.put("ь", "");
-            this.ruTranslitChars.put("ъ", "");
+            this.ruTranslitChars.put("ь", BuildConfig.APP_CENTER_HASH);
+            this.ruTranslitChars.put("ъ", BuildConfig.APP_CENTER_HASH);
             this.ruTranslitChars.put("э", "e");
             this.ruTranslitChars.put("ю", "yu");
             this.ruTranslitChars.put("я", "ya");

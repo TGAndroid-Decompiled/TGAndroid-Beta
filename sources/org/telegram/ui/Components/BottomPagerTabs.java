@@ -15,6 +15,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.Theme;
 public class BottomPagerTabs extends View {
@@ -52,7 +53,7 @@ public class BottomPagerTabs extends View {
             this.nonscrollingT = new AnimatedFloat(BottomPagerTabs.this, 0L, 200L, CubicBezierInterpolator.EASE_OUT_QUINT);
             this.drawableColor = -1;
             this.i = i;
-            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f));
+            RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(29.0f), AndroidUtilities.dp(29.0f));
             this.drawable = rLottieDrawable;
             rLottieDrawable.setMasterParent(BottomPagerTabs.this);
             rLottieDrawable.setAllowDecodeSingleFrame(true);

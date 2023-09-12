@@ -40,6 +40,7 @@ import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -143,7 +144,7 @@ public class ChangeUsernameActivity extends BaseFragment {
 
     public ChangeUsernameActivity(Bundle bundle) {
         super(bundle);
-        this.username = "";
+        this.username = BuildConfig.APP_CENTER_HASH;
         this.notEditableUsernames = new ArrayList<>();
         this.usernames = new ArrayList<>();
         this.loadingUsernames = new ArrayList<>();
@@ -205,7 +206,7 @@ public class ChangeUsernameActivity extends BaseFragment {
                 this.username = str;
             }
             if (this.username == null) {
-                this.username = "";
+                this.username = BuildConfig.APP_CENTER_HASH;
             }
             this.notEditableUsernames.clear();
             this.usernames.clear();
@@ -691,8 +692,8 @@ public class ChangeUsernameActivity extends BaseFragment {
                 int indexOf = string.indexOf(42);
                 int lastIndexOf = string.lastIndexOf(42);
                 if (indexOf != -1 && lastIndexOf != -1 && indexOf != lastIndexOf) {
-                    spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) "");
-                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) "");
+                    spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                    spannableStringBuilder.replace(indexOf, indexOf + 1, (CharSequence) BuildConfig.APP_CENTER_HASH);
                     spannableStringBuilder.setSpan(new URLSpanNoUnderline("https://fragment.com"), indexOf, lastIndexOf - 1, 33);
                 }
                 this.text1View.setText(spannableStringBuilder);
@@ -784,14 +785,14 @@ public class ChangeUsernameActivity extends BaseFragment {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     String str = ChangeUsernameActivity.this.username;
-                    ChangeUsernameActivity.this.username = charSequence == null ? "" : charSequence.toString();
+                    ChangeUsernameActivity.this.username = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
                     updateUsernameCell(str);
                 }
 
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i2, int i3, int i4) {
                     String str = ChangeUsernameActivity.this.username;
-                    ChangeUsernameActivity.this.username = charSequence == null ? "" : charSequence.toString();
+                    ChangeUsernameActivity.this.username = charSequence == null ? BuildConfig.APP_CENTER_HASH : charSequence.toString();
                     updateUsernameCell(str);
                     if (ChangeUsernameActivity.this.ignoreCheck) {
                         return;
@@ -1299,7 +1300,7 @@ public class ChangeUsernameActivity extends BaseFragment {
             if (!z) {
                 String str2 = getUser().username;
                 if (str2 == null) {
-                    str2 = "";
+                    str2 = BuildConfig.APP_CENTER_HASH;
                 }
                 if (str.equals(str2)) {
                     LinkSpanDrawable.LinksTextView linksTextView12 = this.statusTextView;
@@ -1430,7 +1431,7 @@ public class ChangeUsernameActivity extends BaseFragment {
         }
         String publicUsername = UserObject.getPublicUsername(user);
         if (publicUsername == null) {
-            publicUsername = "";
+            publicUsername = BuildConfig.APP_CENTER_HASH;
         }
         if (publicUsername.equals(this.username)) {
             finishFragment();

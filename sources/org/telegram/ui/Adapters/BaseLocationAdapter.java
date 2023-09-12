@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.LocaleController;
@@ -192,9 +193,9 @@ public abstract class BaseLocationAdapter extends RecyclerListView.SelectionAdap
                 }
                 TLRPC$User tLRPC$User = (TLRPC$User) userOrChat;
                 TLRPC$TL_messages_getInlineBotResults tLRPC$TL_messages_getInlineBotResults = new TLRPC$TL_messages_getInlineBotResults();
-                tLRPC$TL_messages_getInlineBotResults.query = str == null ? "" : str;
+                tLRPC$TL_messages_getInlineBotResults.query = str == null ? BuildConfig.APP_CENTER_HASH : str;
                 tLRPC$TL_messages_getInlineBotResults.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tLRPC$User);
-                tLRPC$TL_messages_getInlineBotResults.offset = "";
+                tLRPC$TL_messages_getInlineBotResults.offset = BuildConfig.APP_CENTER_HASH;
                 if (location != null) {
                     TLRPC$TL_inputGeoPoint tLRPC$TL_inputGeoPoint = new TLRPC$TL_inputGeoPoint();
                     tLRPC$TL_messages_getInlineBotResults.geo_point = tLRPC$TL_inputGeoPoint;

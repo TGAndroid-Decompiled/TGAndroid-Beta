@@ -25,6 +25,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -128,7 +129,7 @@ public class WebviewActivity extends BaseFragment {
         sb.append("/");
         sb.append(this.currentBot);
         if (TextUtils.isEmpty(str4)) {
-            str5 = "";
+            str5 = BuildConfig.APP_CENTER_HASH;
         } else {
             str5 = "?game=" + str4;
         }
@@ -332,7 +333,7 @@ public class WebviewActivity extends BaseFragment {
         TLRPC$TL_messages_getStatsURL tLRPC$TL_messages_getStatsURL = new TLRPC$TL_messages_getStatsURL();
         tLRPC$TL_messages_getStatsURL.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.currentDialogId);
         if (str == null) {
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         }
         tLRPC$TL_messages_getStatsURL.params = str;
         tLRPC$TL_messages_getStatsURL.dark = Theme.getCurrentTheme().isDark();
@@ -365,11 +366,11 @@ public class WebviewActivity extends BaseFragment {
 
     public static void openGameInBrowser(String str, MessageObject messageObject, Activity activity, String str2, String str3) {
         String str4;
-        String str5 = "";
+        String str5 = BuildConfig.APP_CENTER_HASH;
         try {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("botshare", 0);
-            String string = sharedPreferences.getString("" + messageObject.getId(), null);
-            StringBuilder sb = new StringBuilder(string != null ? string : "");
+            String string = sharedPreferences.getString(BuildConfig.APP_CENTER_HASH + messageObject.getId(), null);
+            StringBuilder sb = new StringBuilder(string != null ? string : BuildConfig.APP_CENTER_HASH);
             StringBuilder sb2 = new StringBuilder("tgShareScoreUrl=" + URLEncoder.encode("tgb://share_game_score?hash=", "UTF-8"));
             if (string == null) {
                 char[] charArray = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();

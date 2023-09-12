@@ -82,7 +82,7 @@ public class ThemesHorizontalListCell extends RecyclerListView implements Notifi
     protected void updateRows() {
     }
 
-    public class ThemesListAdapter extends RecyclerListView.SelectionAdapter {
+    private class ThemesListAdapter extends RecyclerListView.SelectionAdapter {
         private Context mContext;
 
         @Override

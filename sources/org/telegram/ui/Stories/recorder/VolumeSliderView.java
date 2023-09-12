@@ -13,6 +13,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
@@ -73,7 +74,7 @@ public class VolumeSliderView extends View {
         animatedTextDrawable.setAnimationProperties(0.3f, 0L, 40L, cubicBezierInterpolator);
         animatedTextDrawable.setCallback(this);
         animatedTextDrawable.setTextColor(-1);
-        animatedTextDrawable.setText("");
+        animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH);
         paint2.setColor(-1);
         paint3.setColor(-1);
         paint4.setColor(-1);

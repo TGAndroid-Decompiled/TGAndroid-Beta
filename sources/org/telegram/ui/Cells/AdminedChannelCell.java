@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -97,7 +98,7 @@ public class AdminedChannelCell extends FrameLayout {
         this.avatarDrawable.setInfo(tLRPC$Chat);
         this.nameTextView.setText(tLRPC$Chat.title);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str + ChatObject.getPublicUsername(tLRPC$Chat));
-        spannableStringBuilder.setSpan(new URLSpanNoUnderline(""), str.length(), spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new URLSpanNoUnderline(BuildConfig.APP_CENTER_HASH), str.length(), spannableStringBuilder.length(), 33);
         this.statusTextView.setText(spannableStringBuilder);
         this.avatarImageView.setForUserOrChat(tLRPC$Chat, this.avatarDrawable);
         this.isLast = z;

@@ -18,6 +18,7 @@ import androidx.core.graphics.ColorUtils;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
@@ -899,12 +900,12 @@ public class StoriesUtilities {
         }
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$StoryItem.media;
         if (tLRPC$MessageMedia != null && tLRPC$MessageMedia.document != null) {
-            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$StoryItem.media.document, "", false);
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$StoryItem.media.document, BuildConfig.APP_CENTER_HASH, false);
             if (pathToAttach != null && pathToAttach.exists()) {
                 runnable.run();
                 return null;
             }
-            File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$StoryItem.media.document, "", true);
+            File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$StoryItem.media.document, BuildConfig.APP_CENTER_HASH, true);
             if (pathToAttach2 != null) {
                 try {
                     if (pathToAttach2.getName().lastIndexOf(".") > 0) {
@@ -920,7 +921,7 @@ public class StoriesUtilities {
         } else {
             TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia != null ? tLRPC$MessageMedia.photo : null;
             if (tLRPC$Photo != null && (arrayList = tLRPC$Photo.sizes) != null) {
-                File pathToAttach3 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(arrayList, ConnectionsManager.DEFAULT_DATACENTER_ID), "", false);
+                File pathToAttach3 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(FileLoader.getClosestPhotoSizeWithSize(arrayList, ConnectionsManager.DEFAULT_DATACENTER_ID), BuildConfig.APP_CENTER_HASH, false);
                 if (pathToAttach3 != null && pathToAttach3.exists()) {
                     runnable.run();
                     return null;

@@ -18,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
@@ -76,7 +77,7 @@ public class SharingLiveLocationCell extends FrameLayout {
                 AndroidUtilities.runOnUIThread(SharingLiveLocationCell.this.invalidateRunnable, 1000L);
             }
         };
-        this.lastName = "";
+        this.lastName = BuildConfig.APP_CENTER_HASH;
         this.resourcesProvider = resourcesProvider;
         BackupImageView backupImageView = new BackupImageView(context);
         this.avatarImageView = backupImageView;
@@ -137,8 +138,9 @@ public class SharingLiveLocationCell extends FrameLayout {
         this.currentAccount = UserConfig.selectedAccount;
         String str = tLRPC$TL_channelLocation.address;
         this.avatarDrawable = null;
-        String str2 = "";
-        if (DialogObject.isUserDialog(j)) {
+        boolean isUserDialog = DialogObject.isUserDialog(j);
+        String str2 = BuildConfig.APP_CENTER_HASH;
+        if (isUserDialog) {
             TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
             if (user != null) {
                 this.avatarDrawable = new AvatarDrawable(user);
@@ -184,7 +186,7 @@ public class SharingLiveLocationCell extends FrameLayout {
                 String detectOcean = LocationController.detectOcean(d2, d);
                 this.lastName = detectOcean;
                 if (detectOcean == null) {
-                    this.lastName = "";
+                    this.lastName = BuildConfig.APP_CENTER_HASH;
                 } else {
                     this.lastName = "🌊 " + ((Object) this.lastName);
                 }
@@ -268,7 +270,7 @@ public class SharingLiveLocationCell extends FrameLayout {
                 }
             }
         } else {
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         }
         if (TextUtils.isEmpty(str)) {
             if (this.loadingString == null) {
@@ -305,7 +307,7 @@ public class SharingLiveLocationCell extends FrameLayout {
         } else if (!z) {
             this.distanceTextView.setText(LocaleController.getString("Loading", R.string.Loading));
         } else {
-            this.distanceTextView.setText("");
+            this.distanceTextView.setText(BuildConfig.APP_CENTER_HASH);
         }
     }
 
