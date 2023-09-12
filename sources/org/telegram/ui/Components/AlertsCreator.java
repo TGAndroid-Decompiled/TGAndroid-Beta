@@ -122,6 +122,7 @@ import org.telegram.tgnet.TLRPC$TL_inputReportReasonSpam;
 import org.telegram.tgnet.TLRPC$TL_inputReportReasonViolence;
 import org.telegram.tgnet.TLRPC$TL_langPackLanguage;
 import org.telegram.tgnet.TLRPC$TL_messages_addChatUser;
+import org.telegram.tgnet.TLRPC$TL_messages_botApp;
 import org.telegram.tgnet.TLRPC$TL_messages_checkHistoryImport;
 import org.telegram.tgnet.TLRPC$TL_messages_checkHistoryImportPeer;
 import org.telegram.tgnet.TLRPC$TL_messages_createChat;
@@ -894,7 +895,7 @@ public class AlertsCreator {
     }
 
     public static void lambda$createLanguageAlert$8(LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
-        launchActivity.lambda$runLinkRequest$84(new LanguageSelectActivity());
+        launchActivity.lambda$runLinkRequest$77(new LanguageSelectActivity());
     }
 
     public static void lambda$createLanguageAlert$9(TLRPC$TL_langPackLanguage tLRPC$TL_langPackLanguage, LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
@@ -1630,6 +1631,131 @@ public class AlertsCreator {
         if (runnable != null) {
             runnable.run();
         }
+    }
+
+    public static void createBotLaunchAlert(final BaseFragment baseFragment, TLRPC$TL_messages_botApp tLRPC$TL_messages_botApp, final TLRPC$User tLRPC$User, final AtomicBoolean atomicBoolean, final Runnable runnable) {
+        float f;
+        int dp;
+        Context context = baseFragment.getContext();
+        final CheckBoxCell[] checkBoxCellArr = new CheckBoxCell[1];
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        TextView textView = new TextView(context) {
+            @Override
+            public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+                super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+            }
+        };
+        NotificationCenter.listenEmojiLoading(textView);
+        textView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack));
+        textView.setTextSize(1, 16.0f);
+        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
+        textView.setText(LocaleController.getString(R.string.BotWebViewStartPermission));
+        FrameLayout frameLayout = new FrameLayout(context) {
+            @Override
+            protected void onMeasure(int i, int i2) {
+                super.onMeasure(i, i2);
+                if (checkBoxCellArr[0] != null) {
+                    setMeasuredDimension(getMeasuredWidth(), getMeasuredHeight() + checkBoxCellArr[0].getMeasuredHeight() + AndroidUtilities.dp(7.0f));
+                }
+            }
+        };
+        builder.setCustomViewOffset(6);
+        builder.setView(frameLayout);
+        AvatarDrawable avatarDrawable = new AvatarDrawable();
+        avatarDrawable.setTextSize(AndroidUtilities.dp(18.0f));
+        BackupImageView backupImageView = new BackupImageView(context);
+        backupImageView.setRoundRadius(AndroidUtilities.dp(20.0f));
+        frameLayout.addView(backupImageView, LayoutHelper.createFrame(40, 40.0f, (LocaleController.isRTL ? 5 : 3) | 48, 22.0f, 5.0f, 22.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        textView2.setTextColor(Theme.getColor(Theme.key_actionBarDefaultSubmenuItem));
+        textView2.setTextSize(1, 20.0f);
+        textView2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        textView2.setLines(1);
+        textView2.setMaxLines(1);
+        textView2.setSingleLine(true);
+        textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        textView2.setEllipsize(TextUtils.TruncateAt.END);
+        textView2.setText(tLRPC$User.first_name);
+        TextView textView3 = new TextView(context);
+        textView3.setTextColor(Theme.getColor(Theme.key_dialogTextBlue));
+        textView3.setTextSize(1, 14.0f);
+        textView3.setLines(1);
+        textView3.setMaxLines(1);
+        textView3.setSingleLine(true);
+        textView3.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
+        textView3.setEllipsize(TextUtils.TruncateAt.END);
+        textView3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public final void onClick(View view) {
+                AlertsCreator.lambda$createBotLaunchAlert$28(TLRPC$User.this, baseFragment, builder, view);
+            }
+        });
+        SpannableString valueOf = SpannableString.valueOf(LocaleController.getString(R.string.MoreAboutThisBot) + "  ");
+        ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.attach_arrow_right);
+        coloredImageSpan.setTopOffset(1);
+        coloredImageSpan.setSize(AndroidUtilities.dp(10.0f));
+        valueOf.setSpan(coloredImageSpan, valueOf.length() - 1, valueOf.length(), 33);
+        textView3.setText(valueOf);
+        boolean z = LocaleController.isRTL;
+        frameLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, (z ? 5 : 3) | 48, z ? 21 : 76, 0.0f, z ? 76 : 21, 0.0f));
+        boolean z2 = LocaleController.isRTL;
+        frameLayout.addView(textView3, LayoutHelper.createFrame(-1, -2.0f, (z2 ? 5 : 3) | 48, z2 ? 21 : 76, 28.0f, z2 ? 76 : 21, 0.0f));
+        frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, (LocaleController.isRTL ? 5 : 3) | 48, 24.0f, 57.0f, 24.0f, 1.0f));
+        if (tLRPC$TL_messages_botApp.request_write_access) {
+            atomicBoolean.set(true);
+            checkBoxCellArr[0] = new CheckBoxCell(context, 1, baseFragment.getResourceProvider());
+            checkBoxCellArr[0].allowMultiline();
+            checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
+            checkBoxCellArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), "", true, false);
+            CheckBoxCell checkBoxCell = checkBoxCellArr[0];
+            if (LocaleController.isRTL) {
+                f = 16.0f;
+                dp = AndroidUtilities.dp(16.0f);
+            } else {
+                f = 16.0f;
+                dp = AndroidUtilities.dp(8.0f);
+            }
+            checkBoxCell.setPadding(dp, 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(f), 0);
+            checkBoxCellArr[0].setChecked(true, false);
+            frameLayout.addView(checkBoxCellArr[0], LayoutHelper.createFrame(-1, 48.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
+            checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    AlertsCreator.lambda$createBotLaunchAlert$29(atomicBoolean, view);
+                }
+            });
+        }
+        if (UserObject.isReplyUser(tLRPC$User)) {
+            avatarDrawable.setScaleSize(0.8f);
+            avatarDrawable.setAvatarType(12);
+            backupImageView.setImage((ImageLocation) null, (String) null, avatarDrawable, tLRPC$User);
+        } else {
+            avatarDrawable.setScaleSize(1.0f);
+            avatarDrawable.setInfo(tLRPC$User);
+            backupImageView.setForUserOrChat(tLRPC$User, avatarDrawable);
+        }
+        builder.setPositiveButton(LocaleController.getString(R.string.Start), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                runnable.run();
+            }
+        });
+        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+        baseFragment.showDialog(builder.create());
+    }
+
+    public static void lambda$createBotLaunchAlert$28(TLRPC$User tLRPC$User, BaseFragment baseFragment, AlertDialog.Builder builder, View view) {
+        Bundle bundle = new Bundle();
+        bundle.putLong("user_id", tLRPC$User.id);
+        if (baseFragment.getMessagesController().checkCanOpenChat(bundle, baseFragment)) {
+            baseFragment.presentFragment(new ChatActivity(bundle));
+        }
+        builder.getDismissRunnable().run();
+    }
+
+    public static void lambda$createBotLaunchAlert$29(AtomicBoolean atomicBoolean, View view) {
+        atomicBoolean.set(!atomicBoolean.get());
+        ((CheckBoxCell) view).setChecked(atomicBoolean.get(), true);
     }
 
     public static void createClearOrDeleteDialogAlert(BaseFragment baseFragment, boolean z, TLRPC$Chat tLRPC$Chat, TLRPC$User tLRPC$User, boolean z2, boolean z3, MessagesStorage.BooleanCallback booleanCallback) {
@@ -5311,7 +5437,7 @@ public class AlertsCreator {
     }
 
     public static void lambda$createFreeSpaceDialog$120(LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
-        launchActivity.lambda$runLinkRequest$84(new CacheControlActivity());
+        launchActivity.lambda$runLinkRequest$77(new CacheControlActivity());
     }
 
     public static Dialog createPrioritySelectDialog(Activity activity, long j, int i, int i2, Runnable runnable) {

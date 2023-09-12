@@ -244,12 +244,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
     private LinearLayout zoomOutButton;
     private ImageView zoomOutImage;
     private TextView zoomOutText;
-    private boolean zoomOutVisible;
-
-    @Override
-    public float adjustPanLayoutHelperProgress() {
-        return 0.0f;
-    }
 
     protected void didSetAnimatedSticker(RLottieDrawable rLottieDrawable) {
     }
@@ -257,7 +251,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
     protected void dismiss() {
     }
 
-    @Override
     public View getView() {
         return IPhotoPaintView.CC.$default$getView(this);
     }
@@ -308,17 +301,8 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
     public void setBlurManager(BlurringShader.BlurManager blurManager) {
     }
 
-    @Override
     public void setOffsetTranslationX(float f) {
         IPhotoPaintView.CC.$default$setOffsetTranslationX(this, f);
-    }
-
-    @Override
-    public void setOffsetTranslationY(float f, float f2, int i, boolean z) {
-    }
-
-    @Override
-    public void setTransform(float f, float f2, float f3, float f4, float f5) {
     }
 
     @SuppressLint({"NotifyDataSetChanged"})
@@ -348,7 +332,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.colorSwatchOutlinePaint = new Paint(1);
         this.colorSwatch = new Swatch(-1, 1.0f, 0.016773745f);
         this.toolsPaint = new Paint(1);
-        this.zoomOutVisible = false;
         this.pos = new int[2];
         this.openKeyboardRunnable = new Runnable() {
             @Override
@@ -1172,7 +1155,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.previewViewTranslationAnimator.start();
     }
 
-    @Override
     public void onAnimationStateChanged(boolean z) {
         this.weightChooserView.setLayerType(z ? 2 : 0, null);
     }
@@ -1296,7 +1278,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    @Override
     public void setOnDoneButtonClickedListener(Runnable runnable) {
         this.onDoneButtonClickedListener = runnable;
     }
@@ -1316,16 +1297,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         View focusedView = textPaintView.getFocusedView();
         focusedView.requestFocus();
         AndroidUtilities.showKeyboard(focusedView);
-    }
-
-    @Override
-    public void updateZoom(boolean z) {
-        boolean z2 = !z;
-        if (this.zoomOutVisible != z2) {
-            this.zoomOutVisible = z2;
-            this.zoomOutButton.animate().cancel();
-            this.zoomOutButton.animate().alpha(z ? 0.0f : 1.0f).setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT).setDuration(240L).start();
-        }
     }
 
     public boolean selectEntity(EntityView entityView) {
@@ -2000,7 +1971,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         return size2;
     }
 
-    @Override
     public void init() {
         this.entitiesView.setVisibility(0);
         this.renderView.setVisibility(0);
@@ -2146,7 +2116,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    @Override
     public void shutdown() {
         this.renderView.shutdown();
         this.entitiesView.setVisibility(8);
@@ -2179,17 +2148,14 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.renderView.redraw();
     }
 
-    @Override
     public float getOffsetTranslationY() {
         return this.offsetTranslationY;
     }
 
-    @Override
     public void updateColors() {
         this.toolsPaint.setColor(-15132391);
     }
 
-    @Override
     public boolean hasChanges() {
         return this.undoStore.canUndo() || this.forceChanges;
     }
@@ -2207,12 +2173,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         return false;
     }
 
-    @Override
-    public Bitmap getBitmap(ArrayList<VideoEditedInfo.MediaEntity> arrayList, Bitmap[] bitmapArr) {
-        Size size = this.paintingSize;
-        return getBitmap(arrayList, (int) size.width, (int) size.height, true, true, false);
-    }
-
     public android.graphics.Bitmap getBitmap(java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r21, int r22, int r23, boolean r24, boolean r25, boolean r26) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PaintView.getBitmap(java.util.ArrayList, int, int, boolean, boolean, boolean):android.graphics.Bitmap");
     }
@@ -2225,12 +2185,10 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         return this.renderView.getResultBitmap(true, false);
     }
 
-    @Override
     public void onCleanupEntities() {
         this.entitiesView.removeAllViews();
     }
 
-    @Override
     public long getLcm() {
         return this.lcm.longValue();
     }
@@ -2239,35 +2197,8 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         return this.doneButton;
     }
 
-    @Override
     public View getCancelView() {
         return this.cancelButton;
-    }
-
-    @Override
-    public void maybeShowDismissalAlert(PhotoViewer photoViewer, Activity activity, final Runnable runnable) {
-        if (this.isColorListShown) {
-            showColorList(false);
-        } else if (this.emojiViewVisible) {
-            hideEmojiPopup(true);
-        } else if (this.editingText) {
-            selectEntity(null);
-        } else if (!hasChanges()) {
-            runnable.run();
-        } else if (activity == null) {
-        } else {
-            AlertDialog.Builder builder = new AlertDialog.Builder(activity, this.resourcesProvider);
-            builder.setMessage(LocaleController.getString("PhotoEditorDiscardAlert", R.string.PhotoEditorDiscardAlert));
-            builder.setTitle(LocaleController.getString("DiscardChanges", R.string.DiscardChanges));
-            builder.setPositiveButton(LocaleController.getString("PassportDiscard", R.string.PassportDiscard), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    runnable.run();
-                }
-            });
-            builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-            photoViewer.showAlertDialog(builder);
-        }
     }
 
     @Override
@@ -2308,17 +2239,14 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         openStickersView();
     }
 
-    @Override
     public int getAdditionalTop() {
         return AndroidUtilities.dp(48.0f);
     }
 
-    @Override
     public int getAdditionalBottom() {
         return AndroidUtilities.dp(24.0f);
     }
 
-    @Override
     public RenderView getRenderView() {
         return this.renderView;
     }
@@ -2339,7 +2267,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         return this.selectionContainerView;
     }
 
-    @Override
     public List<TLRPC$InputDocument> getMasks() {
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
         int childCount = this.entitiesView.getChildCount();
@@ -2568,7 +2495,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    @Override
     public boolean onBackPressed() {
         if (this.isColorListShown) {
             showColorList(false);
@@ -3651,11 +3577,6 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
 
     public void lambda$hideEmojiPopup$51(ValueAnimator valueAnimator) {
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
-    }
-
-    @Override
-    public int getEmojiPadding(boolean z) {
-        return this.emojiPadding;
     }
 
     public void hideEmojiView() {

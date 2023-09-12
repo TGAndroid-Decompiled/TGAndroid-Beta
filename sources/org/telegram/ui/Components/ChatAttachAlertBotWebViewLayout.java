@@ -726,7 +726,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     public void lambda$showJustAddedBulletin$14(String str) {
-        BulletinFactory.of(this.parentAlert.getContainer(), this.resourcesProvider).createSimpleBulletin(R.raw.info, AndroidUtilities.replaceTags(str)).setDuration(5000).show(true);
+        BulletinFactory.of(this.parentAlert.getContainer(), this.resourcesProvider).createSimpleBulletin(R.raw.contact_check, AndroidUtilities.replaceTags(str)).setDuration(5000).show(true);
     }
 
     public static class WebViewSwipeContainer extends FrameLayout {

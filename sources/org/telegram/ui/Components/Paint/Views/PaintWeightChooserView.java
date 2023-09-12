@@ -23,7 +23,6 @@ public class PaintWeightChooserView extends View {
     private Paint colorPaint;
     private Swatch colorSwatch;
     private boolean drawCenter;
-    private int fromContentHeight;
     private GestureDetectorCompat gestureDetector;
     private float hideProgress;
     private boolean isPanTransitionInProgress;
@@ -32,9 +31,7 @@ public class PaintWeightChooserView extends View {
     private long lastUpdate;
     private float max;
     private float min;
-    private int newContentHeight;
     private Runnable onUpdate;
-    private float panProgress;
     private Path path;
     private RenderView renderView;
     private boolean showPreview;
@@ -115,30 +112,9 @@ public class PaintWeightChooserView extends View {
         invalidate();
     }
 
-    public void startPanTransition(int i, int i2) {
-        this.isPanTransitionInProgress = true;
-        this.fromContentHeight = i;
-        this.newContentHeight = i2;
-        invalidate();
-    }
-
     public void stopPanTransition() {
         this.isPanTransitionInProgress = false;
         invalidate();
-    }
-
-    public void updatePanTransition(float f, float f2) {
-        if (this.isPanTransitionInProgress) {
-            if (this.fromContentHeight < this.newContentHeight) {
-                f2 = 1.0f - f2;
-            }
-            this.panProgress = f2;
-            setTranslationY(f);
-            int lerp = AndroidUtilities.lerp(this.fromContentHeight, this.newContentHeight, this.panProgress);
-            int i = (int) (lerp * 0.3f);
-            this.touchRect.set(0.0f, (lerp - i) / 2.0f, AndroidUtilities.dp(32.0f), (lerp + i) / 2.0f);
-            invalidate();
-        }
     }
 
     public void setRenderView(RenderView renderView) {
