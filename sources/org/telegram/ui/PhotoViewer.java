@@ -1854,7 +1854,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             this.switchingInlineMode = false;
             if (Build.VERSION.SDK_INT >= 21) {
                 final View view = this.usedSurfaceView ? this.videoSurfaceView : this.videoTextureView;
-                this.aspectRatioFrameLayout.getLocationInWindow(this.pipPosition);
+                AspectRatioFrameLayout aspectRatioFrameLayout = this.aspectRatioFrameLayout;
+                if (aspectRatioFrameLayout == null) {
+                    return;
+                }
+                aspectRatioFrameLayout.getLocationInWindow(this.pipPosition);
                 int[] iArr = this.pipPosition;
                 iArr[1] = (int) (iArr[1] - this.containerView.getTranslationY());
                 ImageView imageView2 = this.textureImageView;

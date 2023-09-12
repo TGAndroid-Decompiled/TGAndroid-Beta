@@ -794,15 +794,13 @@ public class Painting {
             return;
         }
         GLES20.glBindFramebuffer(36160, 0);
-        Size size = this.size;
-        GLES20.glViewport(0, 0, (int) size.width, (int) size.height);
         Shader shader = this.shaders.get("videoBlur");
         if (shader == null) {
             return;
         }
         GLES20.glUseProgram(shader.program);
-        GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.projection));
-        GLES20.glUniform1f(shader.getUniform("flipy"), 1.0f);
+        GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.renderProjection));
+        GLES20.glUniform1f(shader.getUniform("flipy"), 0.0f);
         GLES20.glUniform1i(shader.getUniform("texture"), 0);
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, this.bitmapBlurTexture.texture());
@@ -981,7 +979,8 @@ public class Painting {
         GLES20.glUseProgram(shader2.program);
         Matrix matrix = new Matrix();
         matrix.preTranslate(-i, -i2);
-        GLES20.glUniformMatrix4fv(shader2.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(GLMatrix.MultiplyMat4f(this.projection, GLMatrix.LoadGraphicsMatrix(matrix))));
+        float[] MultiplyMat4f = GLMatrix.MultiplyMat4f(this.projection, GLMatrix.LoadGraphicsMatrix(matrix));
+        GLES20.glUniformMatrix4fv(shader2.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(MultiplyMat4f));
         GLES20.glUniform1i(shader2.getUniform("texture"), 0);
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, (!z2 || (texture = this.bitmapBlurTexture) == null) ? getTexture() : texture.texture());
@@ -995,7 +994,7 @@ public class Painting {
         GLES20.glDrawArrays(5, 0, 4);
         if (z3 && !z2 && (shader = this.shaders.get("videoBlur")) != null && this.blurManager != null) {
             GLES20.glUseProgram(shader.program);
-            GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(this.projection));
+            GLES20.glUniformMatrix4fv(shader.getUniform("mvpMatrix"), 1, false, FloatBuffer.wrap(MultiplyMat4f));
             GLES20.glUniform1f(shader.getUniform("flipy"), 0.0f);
             GLES20.glUniform1i(shader.getUniform("texture"), 0);
             GLES20.glActiveTexture(33984);
