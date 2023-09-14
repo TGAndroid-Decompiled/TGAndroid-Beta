@@ -29,7 +29,6 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -549,7 +548,7 @@ public class ChatAttachAlertAudioLayout extends ChatAttachAlert.AttachAlertLayou
                 tLRPC$TL_peerUser.user_id = clientUserId;
                 tLRPC$Peer.user_id = clientUserId;
                 tLRPC$TL_message.date = (int) (System.currentTimeMillis() / 1000);
-                tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_message.message = "";
                 tLRPC$TL_message.attachPath = audioEntry.path;
                 TLRPC$TL_messageMediaDocument tLRPC$TL_messageMediaDocument = new TLRPC$TL_messageMediaDocument();
                 tLRPC$TL_message.media = tLRPC$TL_messageMediaDocument;

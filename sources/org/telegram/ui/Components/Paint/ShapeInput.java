@@ -631,7 +631,7 @@ public class ShapeInput {
         canvas.drawCircle((point.x / size.width) * canvas.getWidth(), (point.y / size.height) * canvas.getHeight(), AndroidUtilities.dp(5.0f), point.green ? this.centerPointStrokePaint : this.controlPointStrokePaint);
     }
 
-    public class CornerPoint extends Point {
+    private class CornerPoint extends Point {
         public float rx;
         public float ry;
         public Shape shape;

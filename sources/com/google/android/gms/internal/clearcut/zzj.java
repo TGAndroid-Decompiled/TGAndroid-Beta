@@ -13,7 +13,7 @@ public final class zzj extends GmsClient<zzn> {
     }
 
     @Override
-    protected final IInterface createServiceInterface(IBinder iBinder) {
+    public final IInterface createServiceInterface(IBinder iBinder) {
         if (iBinder == null) {
             return null;
         }
@@ -27,7 +27,7 @@ public final class zzj extends GmsClient<zzn> {
     }
 
     @Override
-    protected final String getServiceDescriptor() {
+    public final String getServiceDescriptor() {
         return "com.google.android.gms.clearcut.internal.IClearcutLoggerService";
     }
 

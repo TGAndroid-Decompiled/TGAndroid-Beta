@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -129,7 +128,7 @@ public class LocationCell extends FrameLayout {
 
     private CharSequence getTitle(TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue) {
         if (tLRPC$TL_messageMediaVenue == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
         if (TextUtils.equals(this.lastEmoji, tLRPC$TL_messageMediaVenue.emoji) && TextUtils.equals(this.lastTitle, tLRPC$TL_messageMediaVenue.title)) {
             return this.lastCompleteTitle;

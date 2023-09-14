@@ -28,7 +28,6 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DownloadController;
@@ -197,13 +196,13 @@ public class StoriesController {
     }
 
     public StoriesController(final int i) {
-        this.state = BuildConfig.APP_CENTER_HASH;
+        this.state = "";
         this.currentAccount = i;
         this.storiesStorage = new StoriesStorage(i);
         SharedPreferences mainSettings = MessagesController.getInstance(i).getMainSettings();
         this.mainSettings = mainSettings;
-        this.state = mainSettings.getString("last_stories_state", BuildConfig.APP_CENTER_HASH);
-        this.stateHidden = this.mainSettings.getString("last_stories_state_hidden", BuildConfig.APP_CENTER_HASH);
+        this.state = mainSettings.getString("last_stories_state", "");
+        this.stateHidden = this.mainSettings.getString("last_stories_state_hidden", "");
         this.totalStoriesCountHidden = this.mainSettings.getInt("total_stores_hidden", 0);
         this.totalStoriesCount = this.mainSettings.getInt("total_stores", 0);
         this.storiesReadLoaded = this.mainSettings.getBoolean("read_loaded", false);
@@ -1266,8 +1265,8 @@ public class StoriesController {
 
     public void cleanup() {
         this.storiesReadLoaded = false;
-        this.stateHidden = BuildConfig.APP_CENTER_HASH;
-        this.state = BuildConfig.APP_CENTER_HASH;
+        this.stateHidden = "";
+        this.state = "";
         this.mainSettings.edit().putBoolean("stories_loaded", false).remove("last_stories_state").putBoolean("stories_loaded_hidden", false).remove("last_stories_state_hidden").putBoolean("read_loaded", false).apply();
         final DraftsController draftsController = this.draftsController;
         Objects.requireNonNull(draftsController);
@@ -2232,7 +2231,7 @@ public class StoriesController {
         if (list == null) {
             return "null";
         }
-        String str = BuildConfig.APP_CENTER_HASH;
+        String str = "";
         for (int i = 0; i < list.size(); i++) {
             try {
                 if (i > 0) {
@@ -2251,7 +2250,7 @@ public class StoriesController {
         if (list == null) {
             return "null";
         }
-        String str = BuildConfig.APP_CENTER_HASH;
+        String str = "";
         for (int i = 0; i < list.size(); i++) {
             try {
                 if (i > 0) {

@@ -26,7 +26,6 @@ import java.util.Iterator;
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLContext;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
@@ -522,7 +521,7 @@ public class BlurringShader {
         public void setFallbackBlur(Bitmap bitmap, int i) {
             ThumbBlurer thumbBlurer = this.thumbBlurer;
             StringBuilder sb = new StringBuilder();
-            sb.append(BuildConfig.APP_CENTER_HASH);
+            sb.append("");
             int i2 = this.i;
             this.i = i2 + 1;
             sb.append(i2);

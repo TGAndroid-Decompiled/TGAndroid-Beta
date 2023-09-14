@@ -41,8 +41,8 @@ public class EntityView extends FrameLayout {
     private float fromStickyAnimatedAngle;
     private float fromStickyToAngle;
     private boolean hadMultitouch;
-    private boolean hasPanned;
-    private boolean hasReleased;
+    public boolean hasPanned;
+    public boolean hasReleased;
     private boolean hasStickyAngle;
     private boolean hasTransformed;
     private boolean lastIsMultitouch;

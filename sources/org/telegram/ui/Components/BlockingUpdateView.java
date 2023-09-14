@@ -24,7 +24,6 @@ import java.io.File;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -348,7 +347,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
             } catch (Exception unused) {
             }
             if (tLRPC$TL_help_getAppUpdate.source == null) {
-                tLRPC$TL_help_getAppUpdate.source = BuildConfig.APP_CENTER_HASH;
+                tLRPC$TL_help_getAppUpdate.source = "";
             }
             ConnectionsManager.getInstance(this.accountNum).sendRequest(tLRPC$TL_help_getAppUpdate, new RequestDelegate() {
                 @Override

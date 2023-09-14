@@ -61,7 +61,6 @@ import java.util.Locale;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
@@ -113,6 +112,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AlertsCreator;
 import org.telegram.ui.Components.AnimationProperties;
 import org.telegram.ui.Components.BotWebViewContainer;
+import org.telegram.ui.Components.BotWebViewMenuContainer;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatAttachAlert;
 import org.telegram.ui.Components.ChatAttachAlertAudioLayout;
@@ -209,6 +209,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     private AttachAlertLayout nextAttachLayout;
     private boolean openTransitionFinished;
     protected boolean openWithFrontFaceCamera;
+    private boolean overrideBackgroundColor;
     private Paint paint;
     public ImageUpdater parentImageUpdater;
     public ChatActivity.ThemeDelegate parentThemeDelegate;
@@ -352,22 +353,31 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
 
         @Override
-        public void onWebAppSetActionBarColor(int i) {
+        public void onWebAppSetActionBarColor(final int i, boolean z) {
             final int color = ((ColorDrawable) ChatAttachAlert.this.actionBar.getBackground()).getColor();
-            final int themedColor = ChatAttachAlert.this.getThemedColor(i);
+            final BotWebViewMenuContainer.ActionBarColorsAnimating actionBarColorsAnimating = new BotWebViewMenuContainer.ActionBarColorsAnimating();
+            actionBarColorsAnimating.setFrom(ChatAttachAlert.this.overrideBackgroundColor ? color : 0, ((BottomSheet) ChatAttachAlert.this).resourcesProvider);
+            ChatAttachAlert.this.overrideBackgroundColor = z;
+            actionBarColorsAnimating.setTo(ChatAttachAlert.this.overrideBackgroundColor ? i : 0, ((BottomSheet) ChatAttachAlert.this).resourcesProvider);
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
             duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
+            final ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout = this.val$webViewLayout;
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    ChatAttachAlert.AnonymousClass1.this.lambda$onWebAppSetActionBarColor$1(color, themedColor, valueAnimator);
+                    ChatAttachAlert.AnonymousClass1.this.lambda$onWebAppSetActionBarColor$1(color, i, chatAttachAlertBotWebViewLayout, actionBarColorsAnimating, valueAnimator);
                 }
             });
             duration.start();
         }
 
-        public void lambda$onWebAppSetActionBarColor$1(int i, int i2, ValueAnimator valueAnimator) {
-            ChatAttachAlert.this.actionBar.setBackgroundColor(ColorUtils.blendARGB(i, i2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+        public void lambda$onWebAppSetActionBarColor$1(int i, int i2, ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout, BotWebViewMenuContainer.ActionBarColorsAnimating actionBarColorsAnimating, ValueAnimator valueAnimator) {
+            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            ChatAttachAlert.this.actionBar.setBackgroundColor(ColorUtils.blendARGB(i, i2, floatValue));
+            chatAttachAlertBotWebViewLayout.setCustomActionBarBackground(ColorUtils.blendARGB(i, i2, floatValue));
+            ChatAttachAlert.this.currentAttachLayout.invalidate();
+            ChatAttachAlert.this.sizeNotifierFrameLayout.invalidate();
+            actionBarColorsAnimating.updateActionBar(ChatAttachAlert.this.actionBar, floatValue);
         }
 
         @Override
@@ -699,6 +709,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             return 0;
         }
 
+        int getCustomActionBarBackground() {
+            return 0;
+        }
+
         int getCustomBackground() {
             return 0;
         }
@@ -717,6 +731,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
         ArrayList<ThemeDescription> getThemeDescriptions() {
             return null;
+        }
+
+        boolean hasCustomActionBarBackground() {
+            return false;
         }
 
         boolean hasCustomBackground() {
@@ -2218,11 +2236,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     measuredHeight += i22;
                     f = 1.0f - alpha42;
                 }
-                if (Build.VERSION.SDK_INT >= 21 && !ChatAttachAlert.this.inBubbleMode) {
-                    int i3 = AndroidUtilities.statusBarHeight;
-                    scrollOffsetY += i3;
-                    dp4 += i3;
-                    measuredHeight -= i3;
+                int i3 = Build.VERSION.SDK_INT;
+                if (i3 >= 21 && !ChatAttachAlert.this.inBubbleMode) {
+                    int i4 = AndroidUtilities.statusBarHeight;
+                    scrollOffsetY += i4;
+                    dp4 += i4;
+                    measuredHeight -= i4;
                 }
                 if (ChatAttachAlert.this.currentAttachLayout.hasCustomBackground()) {
                     themedColor = ChatAttachAlert.this.currentAttachLayout.getCustomBackground();
@@ -2244,8 +2263,12 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     canvas.drawRoundRect(this.rect, AndroidUtilities.dp(12.0f) * f, AndroidUtilities.dp(12.0f) * f, Theme.dialogs_onlineCirclePaint);
                     canvas.restore();
                 }
-                if (f != 1.0f && needsActionBar != 2) {
-                    Theme.dialogs_onlineCirclePaint.setColor(themedColor);
+                if ((f != 1.0f && needsActionBar != 2) || ChatAttachAlert.this.currentAttachLayout.hasCustomActionBarBackground()) {
+                    Paint paint = Theme.dialogs_onlineCirclePaint;
+                    if (ChatAttachAlert.this.currentAttachLayout.hasCustomActionBarBackground()) {
+                        themedColor = ChatAttachAlert.this.currentAttachLayout.getCustomActionBarBackground();
+                    }
+                    paint.setColor(themedColor);
                     Theme.dialogs_onlineCirclePaint.setAlpha(alpha2);
                     this.rect.set(((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, ((BottomSheet) ChatAttachAlert.this).backgroundPaddingTop + scrollOffsetY, getMeasuredWidth() - ((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, ((BottomSheet) ChatAttachAlert.this).backgroundPaddingTop + scrollOffsetY + AndroidUtilities.dp(24.0f));
                     canvas.save();
@@ -2254,6 +2277,18 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     float f6 = rectF2.top;
                     canvas.clipRect(f5, f6, rectF2.right, (rectF2.height() / 2.0f) + f6);
                     canvas.drawRoundRect(this.rect, AndroidUtilities.dp(12.0f) * f, AndroidUtilities.dp(12.0f) * f, Theme.dialogs_onlineCirclePaint);
+                    canvas.restore();
+                }
+                if (ChatAttachAlert.this.currentAttachLayout.hasCustomActionBarBackground()) {
+                    Theme.dialogs_onlineCirclePaint.setColor(ChatAttachAlert.this.currentAttachLayout.getCustomActionBarBackground());
+                    Theme.dialogs_onlineCirclePaint.setAlpha(alpha2);
+                    int scrollOffsetY2 = ChatAttachAlert.this.getScrollOffsetY(0);
+                    if (i3 >= 21 && !ChatAttachAlert.this.inBubbleMode) {
+                        scrollOffsetY2 += AndroidUtilities.statusBarHeight;
+                    }
+                    this.rect.set(((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, (((BottomSheet) ChatAttachAlert.this).backgroundPaddingTop + scrollOffsetY + AndroidUtilities.dp(12.0f)) * f, getMeasuredWidth() - ((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, scrollOffsetY2 + AndroidUtilities.dp(12.0f));
+                    canvas.save();
+                    canvas.drawRect(this.rect, Theme.dialogs_onlineCirclePaint);
                     canvas.restore();
                 }
                 FrameLayout frameLayout2 = ChatAttachAlert.this.headerView;
@@ -4394,7 +4429,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         }
         updateCountButton(0);
         this.buttonsAdapter.notifyDataSetChanged();
-        this.commentTextView.setText(BuildConfig.APP_CENTER_HASH);
+        this.commentTextView.setText("");
         this.buttonsLayoutManager.scrollToPositionWithOffset(0, MediaController.VIDEO_BITRATE_480);
     }
 

@@ -66,7 +66,6 @@ import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
@@ -3514,7 +3513,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
 
         public void lambda$new$0(View view) {
             if (this.searchStateDrawable.getIconState() == 1) {
-                this.input.setText(BuildConfig.APP_CENTER_HASH);
+                this.input.setText("");
                 SelectAnimatedEmojiDialog.this.search(null, true, false);
                 StickerCategoriesListView stickerCategoriesListView = this.categoriesListView;
                 if (stickerCategoriesListView != null) {
@@ -3588,7 +3587,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         }
 
         public void lambda$new$2(View view) {
-            this.input.setText(BuildConfig.APP_CENTER_HASH);
+            this.input.setText("");
             SelectAnimatedEmojiDialog.this.search(null, true, false);
             StickerCategoriesListView stickerCategoriesListView = this.categoriesListView;
             if (stickerCategoriesListView != null) {
@@ -3632,7 +3631,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 stickerCategoriesListView.setShownButtonsAtStart(SelectAnimatedEmojiDialog.this.type == 4 ? 6.5f : 4.5f);
                 StickerCategoriesListView stickerCategoriesListView2 = this.categoriesListView;
                 TextPaint paint = this.input.getPaint();
-                stickerCategoriesListView2.setDontOccupyWidth((int) paint.measureText(((Object) this.input.getHint()) + BuildConfig.APP_CENTER_HASH));
+                stickerCategoriesListView2.setDontOccupyWidth((int) paint.measureText(((Object) this.input.getHint()) + ""));
                 this.categoriesListView.setOnScrollIntoOccupiedWidth(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {

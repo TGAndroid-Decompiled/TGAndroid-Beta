@@ -15,7 +15,7 @@ public class PathAnimator {
     private float pathTime = -1.0f;
     private ArrayList<KeyFrame> keyFrames = new ArrayList<>();
 
-    private static class KeyFrame {
+    public static class KeyFrame {
         public ArrayList<Object> commands;
         public float time;
 
@@ -24,7 +24,7 @@ public class PathAnimator {
         }
     }
 
-    private static class MoveTo {
+    public static class MoveTo {
         public float x;
         public float y;
 
@@ -32,7 +32,7 @@ public class PathAnimator {
         }
     }
 
-    private static class LineTo {
+    public static class LineTo {
         public float x;
         public float y;
 
@@ -40,7 +40,7 @@ public class PathAnimator {
         }
     }
 
-    private static class CurveTo {
+    public static class CurveTo {
         public float x;
         public float x1;
         public float x2;

@@ -885,7 +885,7 @@ public class MessagesStorage extends BaseController {
                 if (key.startsWith(NotificationsSettingsFacade.PROPERTY_NOTIFY)) {
                     Integer num = (Integer) entry.getValue();
                     if (num.intValue() == 2 || num.intValue() == 3) {
-                        String replace = key.replace(NotificationsSettingsFacade.PROPERTY_NOTIFY, BuildConfig.APP_CENTER_HASH);
+                        String replace = key.replace(NotificationsSettingsFacade.PROPERTY_NOTIFY, "");
                         long j = 1;
                         if (num.intValue() != 2) {
                             Integer num2 = (Integer) all.get(NotificationsSettingsFacade.PROPERTY_NOTIFY_UNTIL + replace);
@@ -1174,7 +1174,7 @@ public class MessagesStorage extends BaseController {
                 executeFast.bindInteger(2, intValue);
                 executeFast.bindLong(3, longValue);
                 if (storyNotification.localName == null) {
-                    storyNotification.localName = BuildConfig.APP_CENTER_HASH;
+                    storyNotification.localName = "";
                 }
                 executeFast.bindString(4, storyNotification.localName);
                 if (!storyNotification.hidden) {
@@ -5687,7 +5687,7 @@ public class MessagesStorage extends BaseController {
             try {
                 ArrayList<Long> arrayList2 = new ArrayList<>();
                 ArrayList<TLRPC$EncryptedChat> arrayList3 = new ArrayList<>();
-                getEncryptedChatsInternal(BuildConfig.APP_CENTER_HASH + j, arrayList3, arrayList2);
+                getEncryptedChatsInternal("" + j, arrayList3, arrayList2);
                 if (!arrayList3.isEmpty() && !arrayList2.isEmpty()) {
                     ArrayList<TLRPC$User> arrayList4 = new ArrayList<>();
                     getUsersInternal(TextUtils.join(",", arrayList2), arrayList4);
@@ -5970,7 +5970,7 @@ public class MessagesStorage extends BaseController {
             if (str2 != null) {
                 executeFast.bindString(2, str2.toLowerCase());
             } else {
-                executeFast.bindString(2, BuildConfig.APP_CENTER_HASH);
+                executeFast.bindString(2, "");
             }
             executeFast.bindByteBuffer(3, nativeByteBuffer);
             executeFast.step();
@@ -8019,7 +8019,7 @@ public class MessagesStorage extends BaseController {
     public TLRPC$User getUser(long j) {
         try {
             ArrayList<TLRPC$User> arrayList = new ArrayList<>();
-            getUsersInternal(BuildConfig.APP_CENTER_HASH + j, arrayList);
+            getUsersInternal("" + j, arrayList);
             if (arrayList.isEmpty()) {
                 return null;
             }
@@ -8055,7 +8055,7 @@ public class MessagesStorage extends BaseController {
     public TLRPC$Chat getChat(long j) {
         try {
             ArrayList<TLRPC$Chat> arrayList = new ArrayList<>();
-            getChatsInternal(BuildConfig.APP_CENTER_HASH + j, arrayList);
+            getChatsInternal("" + j, arrayList);
             if (arrayList.isEmpty()) {
                 return null;
             }
@@ -8069,7 +8069,7 @@ public class MessagesStorage extends BaseController {
     public TLRPC$EncryptedChat getEncryptedChat(long j) {
         try {
             ArrayList<TLRPC$EncryptedChat> arrayList = new ArrayList<>();
-            getEncryptedChatsInternal(BuildConfig.APP_CENTER_HASH + j, arrayList, null);
+            getEncryptedChatsInternal("" + j, arrayList, null);
             if (arrayList.isEmpty()) {
                 return null;
             }

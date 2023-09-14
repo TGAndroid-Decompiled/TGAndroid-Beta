@@ -83,6 +83,7 @@ import org.telegram.ui.ActionBar.INavigationLayout;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BotWebViewContainer;
+import org.telegram.ui.Components.BotWebViewMenuContainer;
 import org.telegram.ui.Components.BotWebViewSheet;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatAttachAlertBotWebViewLayout;
@@ -108,6 +109,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }).setMultiplier(100.0f);
     private ActionBar actionBar;
     private int actionBarColor;
+    private boolean actionBarIsLight;
     private Paint actionBarPaint;
     private Drawable actionBarShadow;
     private float actionBarTransitionProgress;
@@ -267,7 +269,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
         };
         this.webViewContainer = botWebViewContainer;
-        botWebViewContainer.setDelegate(new AnonymousClass3(context, resourcesProvider));
+        botWebViewContainer.setDelegate(new AnonymousClass3(resourcesProvider, context));
         this.linePaint.setStyle(Paint.Style.FILL_AND_STROKE);
         this.linePaint.setStrokeWidth(AndroidUtilities.dp(4.0f));
         this.linePaint.setStrokeCap(Paint.Cap.ROUND);
@@ -288,7 +290,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                     RectF rectF = AndroidUtilities.rectTmp;
                     rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                     canvas.drawRect(rectF, BotWebViewSheet.this.dimPaint);
-                    BotWebViewSheet.this.actionBarPaint.setColor(ColorUtils.blendARGB(BotWebViewSheet.this.actionBarColor, BotWebViewSheet.this.getColor(Theme.key_windowBackgroundWhite), BotWebViewSheet.this.actionBarTransitionProgress));
+                    BotWebViewSheet.this.actionBarPaint.setColor(BotWebViewSheet.this.actionBarColor);
                     float dp = AndroidUtilities.dp(16.0f) * (AndroidUtilities.isTablet() ? 1.0f : 1.0f - BotWebViewSheet.this.actionBarTransitionProgress);
                     rectF.set(BotWebViewSheet.this.swipeContainer.getLeft(), AndroidUtilities.lerp(BotWebViewSheet.this.swipeContainer.getTranslationY(), 0.0f, BotWebViewSheet.this.actionBarTransitionProgress), BotWebViewSheet.this.swipeContainer.getRight(), BotWebViewSheet.this.swipeContainer.getTranslationY() + AndroidUtilities.dp(24.0f) + dp);
                     canvas.drawRoundRect(rectF, dp, dp, BotWebViewSheet.this.actionBarPaint);
@@ -521,9 +523,9 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             BotWebViewContainer.Delegate.CC.$default$onWebAppReady(this);
         }
 
-        AnonymousClass3(Context context, Theme.ResourcesProvider resourcesProvider) {
-            this.val$context = context;
+        AnonymousClass3(Theme.ResourcesProvider resourcesProvider, Context context) {
             this.val$resourcesProvider = resourcesProvider;
+            this.val$context = context;
         }
 
         @Override
@@ -569,28 +571,35 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
 
         @Override
-        public void onWebAppSetActionBarColor(int i) {
+        public void onWebAppSetActionBarColor(final int i, boolean z) {
             final int i2 = BotWebViewSheet.this.actionBarColor;
-            final int color = BotWebViewSheet.this.getColor(i);
+            final BotWebViewMenuContainer.ActionBarColorsAnimating actionBarColorsAnimating = new BotWebViewMenuContainer.ActionBarColorsAnimating();
+            actionBarColorsAnimating.setFrom(BotWebViewSheet.this.overrideBackgroundColor ? BotWebViewSheet.this.actionBarColor : 0, this.val$resourcesProvider);
+            BotWebViewSheet.this.overrideBackgroundColor = z;
+            BotWebViewSheet.this.actionBarIsLight = ColorUtils.calculateLuminance(i) < 0.5d;
+            actionBarColorsAnimating.setTo(BotWebViewSheet.this.overrideBackgroundColor ? i : 0, this.val$resourcesProvider);
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
             duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
             duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppSetActionBarColor$1(i2, color, valueAnimator);
+                    BotWebViewSheet.AnonymousClass3.this.lambda$onWebAppSetActionBarColor$1(i2, i, actionBarColorsAnimating, valueAnimator);
                 }
             });
             duration.start();
+            BotWebViewSheet.this.updateLightStatusBar();
         }
 
-        public void lambda$onWebAppSetActionBarColor$1(int i, int i2, ValueAnimator valueAnimator) {
-            BotWebViewSheet.this.actionBarColor = ColorUtils.blendARGB(i, i2, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+        public void lambda$onWebAppSetActionBarColor$1(int i, int i2, BotWebViewMenuContainer.ActionBarColorsAnimating actionBarColorsAnimating, ValueAnimator valueAnimator) {
+            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+            BotWebViewSheet.this.actionBarColor = ColorUtils.blendARGB(i, i2, floatValue);
+            BotWebViewSheet.this.actionBar.setBackgroundColor(BotWebViewSheet.this.actionBarColor);
+            actionBarColorsAnimating.updateActionBar(BotWebViewSheet.this.actionBar, floatValue);
             BotWebViewSheet.this.frameLayout.invalidate();
         }
 
         @Override
         public void onWebAppSetBackgroundColor(final int i) {
-            BotWebViewSheet.this.overrideBackgroundColor = true;
             final int color = BotWebViewSheet.this.backgroundPaint.getColor();
             ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(200L);
             duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -605,6 +614,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
 
         public void lambda$onWebAppSetBackgroundColor$2(int i, int i2, ValueAnimator valueAnimator) {
             BotWebViewSheet.this.backgroundPaint.setColor(ColorUtils.blendARGB(i, i2, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+            BotWebViewSheet.this.updateActionBarColors();
             BotWebViewSheet.this.frameLayout.invalidate();
         }
 
@@ -866,7 +876,10 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.parentActivity = activity;
     }
 
-    private void updateActionBarColors() {
+    public void updateActionBarColors() {
+        if (this.overrideBackgroundColor) {
+            return;
+        }
         ActionBar actionBar = this.actionBar;
         int i = Theme.key_windowBackgroundWhiteBlackText;
         actionBar.setTitleColor(getColor(i));
@@ -878,9 +891,14 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.actionBar.setPopupItemsSelectorColor(getColor(Theme.key_dialogButtonSelector), false);
     }
 
-    private void updateLightStatusBar() {
-        boolean z = true;
-        z = (AndroidUtilities.isTablet() || ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) < 0.9d || this.actionBarTransitionProgress < 0.85f) ? false : false;
+    public void updateLightStatusBar() {
+        boolean z;
+        boolean z2 = true;
+        if (this.overrideBackgroundColor) {
+            z = !this.actionBarIsLight;
+        } else {
+            z = (AndroidUtilities.isTablet() || ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite, null, true)) < 0.9d || this.actionBarTransitionProgress < 0.85f) ? false : false;
+        }
         Boolean bool = this.wasLightStatusBar;
         if (bool == null || bool.booleanValue() != z) {
             this.wasLightStatusBar = Boolean.valueOf(z);
@@ -1057,6 +1075,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 tLRPC$TL_dataJSON2.data = str4;
                 tLRPC$TL_messages_requestSimpleWebView.flags |= 1;
             }
+            tLRPC$TL_messages_requestSimpleWebView.flags |= 8;
             tLRPC$TL_messages_requestSimpleWebView.url = str2;
             ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_requestSimpleWebView, new RequestDelegate() {
                 @Override

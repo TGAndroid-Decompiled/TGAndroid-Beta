@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.PhoneFormat.PhoneFormat;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -122,8 +121,8 @@ public class SettingsSuggestionCell extends LinearLayout {
         int indexOf = string.indexOf("**");
         int lastIndexOf = string.lastIndexOf("**");
         if (indexOf >= 0 && lastIndexOf >= 0 && indexOf != lastIndexOf) {
-            spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) BuildConfig.APP_CENTER_HASH);
-            spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) BuildConfig.APP_CENTER_HASH);
+            spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
+            spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
             try {
                 spannableStringBuilder.setSpan(new URLSpanNoUnderline(LocaleController.getString("CheckPhoneNumberLearnMoreUrl", R.string.CheckPhoneNumberLearnMoreUrl)), indexOf, lastIndexOf - 2, 33);
             } catch (Exception e) {

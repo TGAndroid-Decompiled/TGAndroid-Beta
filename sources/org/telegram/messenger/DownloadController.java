@@ -324,13 +324,12 @@ public class DownloadController extends BaseController implements NotificationCe
                 StringBuilder sb = new StringBuilder();
                 String str2 = str;
                 sb.append("mobileDataDownloadMask");
-                Object obj = BuildConfig.APP_CENTER_HASH;
+                Object obj = "";
                 if (i2 == 0) {
-                    num = BuildConfig.APP_CENTER_HASH;
+                    num = "";
                 } else {
-                    Integer valueOf = Integer.valueOf(i2);
-                    num = BuildConfig.APP_CENTER_HASH;
-                    obj = valueOf;
+                    num = "";
+                    obj = Integer.valueOf(i2);
                 }
                 sb.append(obj);
                 String sb2 = sb.toString();

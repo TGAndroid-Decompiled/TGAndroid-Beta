@@ -23,7 +23,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -1014,7 +1013,7 @@ public class FiltersSetupActivity extends BaseFragment implements NotificationCe
                 drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_switchTrackChecked), PorterDuff.Mode.MULTIPLY));
                 drawable2.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_checkboxCheck), PorterDuff.Mode.MULTIPLY));
                 CombinedDrawable combinedDrawable = new CombinedDrawable(drawable, drawable2);
-                ((TextCell) viewHolder.itemView).setTextAndIcon(((Object) itemInner.text) + BuildConfig.APP_CENTER_HASH, combinedDrawable, false);
+                ((TextCell) viewHolder.itemView).setTextAndIcon(((Object) itemInner.text) + "", combinedDrawable, false);
             }
         }
 

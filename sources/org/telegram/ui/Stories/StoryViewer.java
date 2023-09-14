@@ -37,7 +37,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -2338,10 +2337,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
 
     public CharSequence getDraft(long j, TLRPC$StoryItem tLRPC$StoryItem) {
         if (j == 0 || tLRPC$StoryItem == null) {
-            return BuildConfig.APP_CENTER_HASH;
+            return "";
         }
-        Log.d("kek", "getDraft " + j + "_" + tLRPC$StoryItem.id + " " + ((Object) this.replyDrafts.get(draftHash(j, tLRPC$StoryItem), BuildConfig.APP_CENTER_HASH)));
-        return this.replyDrafts.get(draftHash(j, tLRPC$StoryItem), BuildConfig.APP_CENTER_HASH);
+        Log.d("kek", "getDraft " + j + "_" + tLRPC$StoryItem.id + " " + ((Object) this.replyDrafts.get(draftHash(j, tLRPC$StoryItem), "")));
+        return this.replyDrafts.get(draftHash(j, tLRPC$StoryItem), "");
     }
 
     public void clearDraft(long j, TLRPC$StoryItem tLRPC$StoryItem) {

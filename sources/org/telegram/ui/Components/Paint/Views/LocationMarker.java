@@ -16,7 +16,6 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -53,7 +52,7 @@ public class LocationMarker extends View {
 
     public LocationMarker(Context context, float f) {
         super(context);
-        this.text = BuildConfig.APP_CENTER_HASH;
+        this.text = "";
         this.padding = new RectF(4.0f, 4.33f, 7.66f, 3.0f);
         TextPaint textPaint = new TextPaint(1);
         this.textPaint = textPaint;

@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
@@ -815,8 +814,8 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
             limitParams.premiumLimit = 0;
             limitParams.icon = R.drawable.msg_limit_links;
             limitParams.descriptionStr = LocaleController.formatString("LimitReachedAccounts", R.string.LimitReachedAccounts, 0, Integer.valueOf(limitParams.premiumLimit));
-            limitParams.descriptionStrPremium = BuildConfig.APP_CENTER_HASH;
-            limitParams.descriptionStrLocked = BuildConfig.APP_CENTER_HASH;
+            limitParams.descriptionStrPremium = "";
+            limitParams.descriptionStrLocked = "";
         } else if (i == 14) {
             limitParams.defaultLimit = MessagesController.getInstance(i2).storyExpiringLimitDefault;
             limitParams.premiumLimit = MessagesController.getInstance(i2).storyExpiringLimitPremium;
@@ -982,7 +981,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             TLRPC$TL_channels_updateUsername tLRPC$TL_channels_updateUsername = new TLRPC$TL_channels_updateUsername();
             tLRPC$TL_channels_updateUsername.channel = MessagesController.getInputChannel((TLRPC$Chat) arrayList.get(i2));
-            tLRPC$TL_channels_updateUsername.username = BuildConfig.APP_CENTER_HASH;
+            tLRPC$TL_channels_updateUsername.username = "";
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_updateUsername, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

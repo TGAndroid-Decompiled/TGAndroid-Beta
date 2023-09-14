@@ -294,10 +294,6 @@ public interface INavigationLayout {
 
             public static void $default$onThemeProgress(INavigationLayoutDelegate iNavigationLayoutDelegate, float f) {
             }
-
-            public static boolean $default$needPresentFragment(INavigationLayoutDelegate _this, INavigationLayout iNavigationLayout, NavigationParams navigationParams) {
-                return _this.needPresentFragment(navigationParams.fragment, navigationParams.removeLast, navigationParams.noAnimation, iNavigationLayout);
-            }
         }
     }
 
@@ -376,12 +372,16 @@ public interface INavigationLayout {
 
         @Override
         public ColorFilter getAnimatedEmojiColorFilter() {
-            return Theme.ResourcesProvider.CC.$default$getAnimatedEmojiColorFilter(this);
+            ColorFilter colorFilter;
+            colorFilter = Theme.chat_animatedEmojiTextColorFilter;
+            return colorFilter;
         }
 
         @Override
         public int getColorOrDefault(int i) {
-            return getColor(i);
+            int color;
+            color = getColor(i);
+            return color;
         }
 
         @Override
@@ -391,7 +391,9 @@ public interface INavigationLayout {
 
         @Override
         public Paint getPaint(String str) {
-            return Theme.ResourcesProvider.CC.$default$getPaint(this, str);
+            Paint themePaint;
+            themePaint = Theme.getThemePaint(str);
+            return themePaint;
         }
 
         @Override

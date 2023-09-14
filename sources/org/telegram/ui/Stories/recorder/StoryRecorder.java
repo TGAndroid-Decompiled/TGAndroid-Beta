@@ -71,7 +71,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -1589,13 +1588,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 if (visibleBulletin == null || visibleBulletin.tag != 2) {
                     int i2 = MessagesController.getInstance(this.currentAccount).storyCaptionLengthLimitPremium;
                     int round = Math.round(i2 / MessagesController.getInstance(this.currentAccount).storyCaptionLengthLimitDefault);
-                    SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("CaptionPremiumSubtitle", round, BuildConfig.APP_CENTER_HASH + i2));
+                    SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatPluralString("CaptionPremiumSubtitle", round, "" + i2));
                     int indexOf = replaceTags.toString().indexOf("__");
                     if (indexOf >= 0) {
-                        replaceTags.replace(indexOf, indexOf + 2, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                        replaceTags.replace(indexOf, indexOf + 2, (CharSequence) "");
                         int indexOf2 = replaceTags.toString().indexOf("__");
                         if (indexOf2 >= 0) {
-                            replaceTags.replace(indexOf2, indexOf2 + 2, (CharSequence) BuildConfig.APP_CENTER_HASH);
+                            replaceTags.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
                             replaceTags.setSpan(new ForegroundColorSpan(Theme.getColor(Theme.key_chat_messageLinkIn, this.resourcesProvider)), indexOf, indexOf2, 33);
                             replaceTags.setSpan(new ClickableSpan() {
                                 {
@@ -3808,6 +3807,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 i4 = 0;
             }
             videoTimeView.setVisibility(i4);
+            this.captionContainer.setAlpha(1.0f);
+            this.captionContainer.setTranslationY(0.0f);
         }
         if (i2 == 0 && this.showSavedDraftHint) {
             getDraftSavedHint().setVisibility(0);

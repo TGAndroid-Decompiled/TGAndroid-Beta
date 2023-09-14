@@ -131,7 +131,7 @@ public class PaintTypeface {
         return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_COURIER_NEW_BOLD);
     }
 
-    private static class LazyTypeface {
+    public static class LazyTypeface {
         private final LazyTypefaceLoader loader;
         private Typeface typeface;
 

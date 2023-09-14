@@ -66,8 +66,10 @@ import org.telegram.ui.Components.SimpleFloatPropertyCompat;
 public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlertLayout implements NotificationCenter.NotificationCenterDelegate {
     private long botId;
     private int currentAccount;
+    private int customActionBarBackground;
     private int customBackground;
     private boolean destroyed;
+    private boolean hasCustomActionBarBackground;
     private boolean hasCustomBackground;
     private boolean ignoreLayout;
     private boolean ignoreMeasure;
@@ -354,6 +356,21 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
         return this.customBackground;
     }
 
+    @Override
+    boolean hasCustomActionBarBackground() {
+        return this.hasCustomActionBarBackground;
+    }
+
+    @Override
+    int getCustomActionBarBackground() {
+        return this.customActionBarBackground;
+    }
+
+    public void setCustomActionBarBackground(int i) {
+        this.hasCustomActionBarBackground = true;
+        this.customActionBarBackground = i;
+    }
+
     public boolean canExpandByRequest() {
         return !this.swipeContainer.isSwipeInProgress();
     }
@@ -496,14 +513,14 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     @Override
-    public void onHidden() {
+    void onHidden() {
         super.onHidden();
         this.parentAlert.setFocusable(false);
         this.parentAlert.getWindow().setSoftInputMode(48);
     }
 
     @Override
-    public int getCurrentItemTop() {
+    int getCurrentItemTop() {
         return (int) (this.swipeContainer.getSwipeOffsetY() + this.swipeContainer.getOffsetY());
     }
 
@@ -601,7 +618,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     @Override
-    public void onHide() {
+    void onHide() {
         super.onHide();
         this.otherItem.setVisibility(8);
         this.isBotButtonAvailable = false;
@@ -624,7 +641,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     @Override
-    public int getListTopPadding() {
+    int getListTopPadding() {
         return (int) this.swipeContainer.getOffsetY();
     }
 
@@ -634,7 +651,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     @Override
-    public void onPreMeasure(int r3, int r4) {
+    void onPreMeasure(int r3, int r4) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertBotWebViewLayout.onPreMeasure(int, int):void");
     }
 
@@ -644,7 +661,7 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
     }
 
     @Override
-    public boolean onBackPressed() {
+    boolean onBackPressed() {
         if (this.webViewContainer.onBackPressed()) {
             return true;
         }

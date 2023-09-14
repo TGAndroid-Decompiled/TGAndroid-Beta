@@ -52,7 +52,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Bitmaps;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.Emoji;
@@ -111,9 +110,9 @@ import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.Size;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.SizeNotifierFrameLayoutPhoto;
-import org.telegram.ui.Components.StickerMasksAlert;
 import org.telegram.ui.Components.TrendingStickersLayout;
 import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.Stories.recorder.EmojiBottomSheet;
 public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPaintView, PaintToolsView.Delegate, EntityView.EntityViewDelegate, PaintTextOptionsView.Delegate, SizeNotifierFrameLayout.SizeNotifierFrameLayoutDelegate, NotificationCenter.NotificationCenterDelegate {
     private float baseScale;
     private Bitmap bitmapToEdit;
@@ -331,7 +330,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
             @Override
             public ColorFilter getAnimatedEmojiColorFilter() {
-                return Theme.ResourcesProvider.CC.$default$getAnimatedEmojiColorFilter(this);
+                ColorFilter colorFilter;
+                colorFilter = Theme.chat_animatedEmojiTextColorFilter;
+                return colorFilter;
             }
 
             @Override
@@ -343,7 +344,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
             @Override
             public int getColorOrDefault(int i4) {
-                return getColor(i4);
+                int color;
+                color = getColor(i4);
+                return color;
             }
 
             @Override
@@ -360,7 +363,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
 
             @Override
             public Paint getPaint(String str) {
-                return Theme.ResourcesProvider.CC.$default$getPaint(this, str);
+                Paint themePaint;
+                themePaint = Theme.getThemePaint(str);
+                return themePaint;
             }
 
             @Override
@@ -890,7 +895,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             return -1;
         }
         if (i == Theme.key_dialogBackground) {
-            return -14803426;
+            return -14737633;
         }
         if (i == Theme.key_dialogTextBlack) {
             return -592138;
@@ -907,13 +912,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         if (i == Theme.key_chat_emojiBottomPanelIcon || i == Theme.key_chat_emojiPanelBackspace || i == Theme.key_chat_emojiPanelIcon) {
             return -9539985;
         }
-        if (i == Theme.key_chat_emojiPanelIconSelected) {
-            return -10177041;
-        }
-        if (i == Theme.key_windowBackgroundWhiteBlackText) {
+        if (i == Theme.key_chat_emojiPanelIconSelected || i == Theme.key_windowBackgroundWhiteBlackText) {
             return -1;
         }
-        if (i == Theme.key_featuredStickers_addedIcon) {
+        int i2 = Theme.key_featuredStickers_addedIcon;
+        if (i == i2) {
             return -11754001;
         }
         if (i == Theme.key_listSelector) {
@@ -924,6 +927,15 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
         if (i == Theme.key_profile_tabSelector) {
             return 352321535;
+        }
+        if (i == Theme.key_chat_emojiSearchIcon || i == i2) {
+            return -7895161;
+        }
+        if (i == Theme.key_chat_emojiSearchBackground) {
+            return 780633991;
+        }
+        if (i == Theme.key_windowBackgroundGray) {
+            return -15921907;
         }
         if (resourcesProvider != null) {
             return resourcesProvider.getColor(i);
@@ -1127,7 +1139,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         onTextAdd();
         Size paintingSize = getPaintingSize();
         Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
-        TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), BuildConfig.APP_CENTER_HASH, this.colorSwatch, this.selectedTextType);
+        TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), "", this.colorSwatch, this.selectedTextType);
         if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             textPaintView.setStickyX(2);
         }
@@ -1445,7 +1457,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         return null;
     }
 
-    public void switchTab(final int i) {
+    private void switchTab(final int i) {
         if (this.tabsSelectedIndex == i || this.tabsNewSelectedIndex == i) {
             return;
         }
@@ -1539,27 +1551,25 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 LPhotoPaintView.this.lambda$openStickersView$17();
             }
         }, 350L);
-        StickerMasksAlert stickerMasksAlert = new StickerMasksAlert(getContext(), this.facesBitmap == null, this.resourcesProvider) {
+        EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(this, getContext(), false, this.resourcesProvider) {
             @Override
-            public void onDismissAnimationStart() {
-                super.onDismissAnimationStart();
-                LPhotoPaintView.this.switchTab(i);
+            public boolean canShowWidget(Integer num) {
+                return false;
             }
         };
-        stickerMasksAlert.setImageReceiverNumLevel(28, 28);
-        stickerMasksAlert.setDelegate(new StickerMasksAlert.StickerMasksAlertDelegate() {
+        emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3() {
             @Override
-            public final void onStickerSelected(Object obj, TLRPC$Document tLRPC$Document) {
-                LPhotoPaintView.this.lambda$openStickersView$18(obj, tLRPC$Document);
+            public final void run(Object obj, Object obj2, Object obj3) {
+                LPhotoPaintView.this.lambda$openStickersView$18(obj, (TLRPC$Document) obj2, (Boolean) obj3);
             }
         });
-        stickerMasksAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+        emojiBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
                 LPhotoPaintView.this.lambda$openStickersView$19(i, dialogInterface);
             }
         });
-        stickerMasksAlert.show();
+        emojiBottomSheet.show();
         onOpenCloseStickersAlert(true);
     }
 
@@ -1569,8 +1579,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
     }
 
-    public void lambda$openStickersView$18(Object obj, TLRPC$Document tLRPC$Document) {
-        createSticker(obj, tLRPC$Document, true);
+    public void lambda$openStickersView$18(Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
+        StickerView createSticker = createSticker(obj, tLRPC$Document, true);
+        if (bool.booleanValue()) {
+            createSticker.setScale(1.5f);
+        }
     }
 
     public void lambda$openStickersView$19(int i, DialogInterface dialogInterface) {
@@ -3087,6 +3100,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 LPhotoPaintView.this.didSetAnimatedSticker(rLottieDrawable);
             }
         };
+        if (MessageObject.isTextColorEmoji(tLRPC$Document)) {
+            stickerView.centerImage.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        }
         stickerView.centerImage.setLayerNum(12);
         if (calculateStickerPosition.position.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             stickerView.setStickyX(2);

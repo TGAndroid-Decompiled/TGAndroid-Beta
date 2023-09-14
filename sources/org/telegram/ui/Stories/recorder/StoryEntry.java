@@ -20,7 +20,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -168,7 +167,7 @@ public class StoryEntry extends IStoryPart {
             abstractSerializedData.writeInt32(this.width);
             abstractSerializedData.writeInt32(this.height);
             File file = this.file;
-            abstractSerializedData.writeString(file == null ? BuildConfig.APP_CENTER_HASH : file.getAbsolutePath());
+            abstractSerializedData.writeString(file == null ? "" : file.getAbsolutePath());
             abstractSerializedData.writeBool(this.fileDeletable);
             abstractSerializedData.writeInt32(this.orientantion);
             abstractSerializedData.writeInt32(this.invert);

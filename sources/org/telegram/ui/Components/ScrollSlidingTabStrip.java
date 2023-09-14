@@ -230,7 +230,7 @@ public class ScrollSlidingTabStrip extends HorizontalScrollView {
         }
     }
 
-    static class AnonymousClass7 {
+    public static class AnonymousClass7 {
         static final int[] $SwitchMap$org$telegram$ui$Components$ScrollSlidingTabStrip$Type;
 
         static {

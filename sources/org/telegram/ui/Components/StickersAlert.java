@@ -42,7 +42,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -1451,7 +1450,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         }
 
         @Override
-        protected void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+        public void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -1593,7 +1592,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
                 }
                 if (!mediaDataController.areStickersLoaded(i)) {
                     mediaDataController.checkStickers(i);
-                    setButton(null, BuildConfig.APP_CENTER_HASH, -1, -1, -1);
+                    setButton(null, "", -1, -1, -1);
                     return;
                 }
             }
@@ -1950,7 +1949,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         textView2.setVisibility(0);
         editTextBoldCursor.setPadding(textView2.getMeasuredWidth(), AndroidUtilities.dp(4.0f), 0, 0);
         if (!z) {
-            editTextBoldCursor.setText(BuildConfig.APP_CENTER_HASH);
+            editTextBoldCursor.setText("");
         }
         iArr[0] = 2;
     }

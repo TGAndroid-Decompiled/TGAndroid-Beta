@@ -154,7 +154,7 @@ public class BotKeyboardView extends LinearLayout {
         this.delegate.didPressedButton((TLRPC$KeyboardButton) view.getTag());
     }
 
-    private class Button extends TextView {
+    public class Button extends TextView {
         public Button(BotKeyboardView botKeyboardView, Context context, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
             super(context);
             setTag(tLRPC$KeyboardButton);

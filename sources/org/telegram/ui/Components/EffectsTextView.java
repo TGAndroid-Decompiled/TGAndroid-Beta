@@ -137,7 +137,7 @@ public class EffectsTextView extends SpoilersTextView {
     }
 
     @Override
-    public void onDraw(Canvas canvas) {
+    protected void onDraw(Canvas canvas) {
         if (!this.isCustomLinkCollector) {
             canvas.save();
             if (!this.disablePaddingsOffset) {

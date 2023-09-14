@@ -18,7 +18,6 @@ import android.widget.Scroller;
 import androidx.core.graphics.ColorUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
@@ -459,7 +458,7 @@ public abstract class SelfStoriesPreviewView extends View {
                 StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, ConnectionsManager.DEFAULT_DATACENTER_ID, 1);
                 this.layout = createStaticLayout;
                 if (createStaticLayout.getLineCount() > 1) {
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(BuildConfig.APP_CENTER_HASH);
+                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("");
                     SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder2, this.storyItem.storyItem.views, true);
                     this.layout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, ConnectionsManager.DEFAULT_DATACENTER_ID, 2);
                     return;
