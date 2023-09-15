@@ -76,6 +76,7 @@ import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBot_layer162;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBots;
+import org.telegram.tgnet.TLRPC$TL_attachMenuBotsBot;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotsNotModified;
 import org.telegram.tgnet.TLRPC$TL_attachMenuPeerTypeBotPM;
 import org.telegram.tgnet.TLRPC$TL_attachMenuPeerTypeBroadcast;
@@ -7603,6 +7604,20 @@ public class MediaDataController extends BaseController {
                 }
             }
         }
+    }
+
+    public void applyAttachMenuBot(TLRPC$TL_attachMenuBotsBot tLRPC$TL_attachMenuBotsBot) {
+        this.attachMenuBots.bots.add(tLRPC$TL_attachMenuBotsBot.bot);
+        loadAttachMenuBots(false, true);
+    }
+
+    public boolean botInAttachMenu(long j) {
+        for (int i = 0; i < this.attachMenuBots.bots.size(); i++) {
+            if (this.attachMenuBots.bots.get(i).bot_id == j) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static class KeywordResult {

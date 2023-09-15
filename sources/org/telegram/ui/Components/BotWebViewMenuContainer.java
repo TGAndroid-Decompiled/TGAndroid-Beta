@@ -98,6 +98,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
     private boolean ignoreLayout;
     private boolean ignoreMeasure;
     private boolean isLoaded;
+    private int lineColor;
     private Paint linePaint;
     private boolean needCloseConfirmation;
     private int overrideActionBarBackground;
@@ -816,7 +817,9 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
     @Override
     public void draw(Canvas canvas) {
         super.draw(canvas);
-        this.linePaint.setColor(getColor(Theme.key_sheet_scrollUp));
+        int color = this.actionBarColors.getColor(Theme.key_sheet_scrollUp);
+        this.lineColor = color;
+        this.linePaint.setColor(color);
         Paint paint = this.linePaint;
         paint.setAlpha((int) (paint.getAlpha() * (1.0f - (Math.min(0.5f, this.actionBarTransitionProgress) / 0.5f))));
         canvas.save();
@@ -1082,7 +1085,7 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         public float progress;
         SparseIntArray fromColors = new SparseIntArray();
         SparseIntArray toColors = new SparseIntArray();
-        int[] colorKeys = {Theme.key_windowBackgroundWhiteBlackText, Theme.key_actionBarWhiteSelector, Theme.key_actionBarDefaultSubmenuBackground, Theme.key_actionBarDefaultSubmenuItem, Theme.key_actionBarDefaultSubmenuItemIcon, Theme.key_dialogButtonSelector};
+        int[] colorKeys = {Theme.key_windowBackgroundWhiteBlackText, Theme.key_actionBarWhiteSelector, Theme.key_actionBarDefaultSubmenuBackground, Theme.key_actionBarDefaultSubmenuItem, Theme.key_actionBarDefaultSubmenuItemIcon, Theme.key_dialogButtonSelector, Theme.key_sheet_scrollUp};
 
         public void setFrom(int i, Theme.ResourcesProvider resourcesProvider) {
             updateColors(this.fromColors, i, resourcesProvider);
@@ -1100,21 +1103,27 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
                     if (i2 >= iArr.length) {
                         return;
                     }
-                    sparseIntArray.put(iArr[i2], Theme.getColor(iArr[i2], resourcesProvider));
+                    int i3 = iArr[i2];
+                    sparseIntArray.put(i3, Theme.getColor(i3, resourcesProvider));
                     i2++;
                 }
             } else {
-                int i3 = ColorUtils.calculateLuminance(i) < 0.5d ? -1 : -16777216;
-                int alphaComponent = ColorUtils.setAlphaComponent(i3, 60);
+                int i4 = ColorUtils.calculateLuminance(i) < 0.5d ? -1 : -16777216;
+                int alphaComponent = ColorUtils.setAlphaComponent(i4, 60);
                 while (true) {
                     int[] iArr2 = this.colorKeys;
                     if (i2 >= iArr2.length) {
                         return;
                     }
-                    if (i2 == Theme.key_actionBarWhiteSelector || i2 == Theme.key_dialogButtonSelector) {
-                        sparseIntArray.put(iArr2[i2], alphaComponent);
+                    int i5 = iArr2[i2];
+                    if (i5 == Theme.key_actionBarDefaultSubmenuBackground) {
+                        sparseIntArray.put(i5, ColorUtils.blendARGB(i, i4 == -1 ? -16777216 : -1, 0.05f));
+                    } else if (i5 == Theme.key_sheet_scrollUp) {
+                        sparseIntArray.put(i5, ColorUtils.blendARGB(i, i4, 0.5f));
+                    } else if (i5 == Theme.key_actionBarWhiteSelector || i5 == Theme.key_dialogButtonSelector) {
+                        sparseIntArray.put(i5, alphaComponent);
                     } else {
-                        sparseIntArray.put(iArr2[i2], i3);
+                        sparseIntArray.put(i5, i4);
                     }
                     i2++;
                 }

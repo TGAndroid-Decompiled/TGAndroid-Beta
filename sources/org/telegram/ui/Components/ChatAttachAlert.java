@@ -2187,8 +2187,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             float dp2;
             float f;
             int themedColor;
+            float f2;
             int themedColor2;
             float alpha;
+            float f3;
             if (view instanceof AttachAlertLayout) {
                 canvas.save();
                 canvas.translate(0.0f, ChatAttachAlert.this.currentPanTranslationY);
@@ -2212,10 +2214,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 if (needsActionBar == 2) {
                     f = scrollOffsetY < i ? Math.max(0.0f, 1.0f - ((i - scrollOffsetY) / ((BottomSheet) ChatAttachAlert.this).backgroundPaddingTop)) : 1.0f;
                 } else {
-                    float f2 = alpha3;
+                    float f4 = alpha3;
                     if (attachAlertLayout != ChatAttachAlert.this.locationLayout) {
                         if (attachAlertLayout == ChatAttachAlert.this.pollLayout) {
-                            dp2 = f2 - AndroidUtilities.dp(3.0f);
+                            dp2 = f4 - AndroidUtilities.dp(3.0f);
                             float alpha4 = ChatAttachAlert.this.actionBar.getAlpha();
                             int i2 = (int) (((i - dp2) + AndroidUtilities.statusBarHeight) * alpha4);
                             scrollOffsetY -= i2;
@@ -2228,7 +2230,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     } else {
                         dp = AndroidUtilities.dp(11.0f);
                     }
-                    dp2 = f2 + dp;
+                    dp2 = f4 + dp;
                     float alpha42 = ChatAttachAlert.this.actionBar.getAlpha();
                     int i22 = (int) (((i - dp2) + AndroidUtilities.statusBarHeight) * alpha42);
                     scrollOffsetY -= i22;
@@ -2257,9 +2259,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     this.rect.set(((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, ((BottomSheet) ChatAttachAlert.this).backgroundPaddingTop + scrollOffsetY, getMeasuredWidth() - ((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, ((BottomSheet) ChatAttachAlert.this).backgroundPaddingTop + scrollOffsetY + AndroidUtilities.dp(24.0f));
                     canvas.save();
                     RectF rectF = this.rect;
-                    float f3 = rectF.left;
-                    float f4 = rectF.top;
-                    canvas.clipRect(f3, f4, rectF.right, (rectF.height() / 2.0f) + f4);
+                    float f5 = rectF.left;
+                    float f6 = rectF.top;
+                    canvas.clipRect(f5, f6, rectF.right, (rectF.height() / 2.0f) + f6);
                     canvas.drawRoundRect(this.rect, AndroidUtilities.dp(12.0f) * f, AndroidUtilities.dp(12.0f) * f, Theme.dialogs_onlineCirclePaint);
                     canvas.restore();
                 }
@@ -2273,9 +2275,9 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     this.rect.set(((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, ((BottomSheet) ChatAttachAlert.this).backgroundPaddingTop + scrollOffsetY, getMeasuredWidth() - ((BottomSheet) ChatAttachAlert.this).backgroundPaddingLeft, ((BottomSheet) ChatAttachAlert.this).backgroundPaddingTop + scrollOffsetY + AndroidUtilities.dp(24.0f));
                     canvas.save();
                     RectF rectF2 = this.rect;
-                    float f5 = rectF2.left;
-                    float f6 = rectF2.top;
-                    canvas.clipRect(f5, f6, rectF2.right, (rectF2.height() / 2.0f) + f6);
+                    float f7 = rectF2.left;
+                    float f8 = rectF2.top;
+                    canvas.clipRect(f7, f8, rectF2.right, (rectF2.height() / 2.0f) + f8);
                     canvas.drawRoundRect(this.rect, AndroidUtilities.dp(12.0f) * f, AndroidUtilities.dp(12.0f) * f, Theme.dialogs_onlineCirclePaint);
                     canvas.restore();
                 }
@@ -2297,15 +2299,30 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                     this.rect.set((getMeasuredWidth() - dp5) / 2, dp4, (getMeasuredWidth() + dp5) / 2, dp4 + AndroidUtilities.dp(4.0f));
                     if (needsActionBar == 2) {
                         themedColor2 = 536870912;
-                        alpha = f;
-                    } else {
-                        themedColor2 = ChatAttachAlert.this.getThemedColor(Theme.key_sheet_scrollUp);
+                        f3 = f;
+                    } else if (ChatAttachAlert.this.currentAttachLayout.hasCustomActionBarBackground()) {
+                        int customActionBarBackground = ChatAttachAlert.this.currentAttachLayout.getCustomActionBarBackground();
+                        themedColor2 = ColorUtils.blendARGB(customActionBarBackground, ColorUtils.calculateLuminance(customActionBarBackground) < 0.5d ? -1 : -16777216, 0.5f);
                         FrameLayout frameLayout3 = ChatAttachAlert.this.headerView;
-                        alpha = frameLayout3 == null ? 1.0f : 1.0f - frameLayout3.getAlpha();
+                        if (frameLayout3 != null) {
+                            alpha = frameLayout3.getAlpha();
+                            f2 = 1.0f;
+                            f3 = f2 - alpha;
+                        }
+                        f3 = 1.0f;
+                    } else {
+                        f2 = 1.0f;
+                        themedColor2 = ChatAttachAlert.this.getThemedColor(Theme.key_sheet_scrollUp);
+                        FrameLayout frameLayout4 = ChatAttachAlert.this.headerView;
+                        if (frameLayout4 != null) {
+                            alpha = frameLayout4.getAlpha();
+                            f3 = f2 - alpha;
+                        }
+                        f3 = 1.0f;
                     }
                     int alpha5 = Color.alpha(themedColor2);
                     Theme.dialogs_onlineCirclePaint.setColor(themedColor2);
-                    Theme.dialogs_onlineCirclePaint.setAlpha((int) (alpha5 * alpha * f * view.getAlpha()));
+                    Theme.dialogs_onlineCirclePaint.setAlpha((int) (alpha5 * f3 * f * view.getAlpha()));
                     canvas.drawRoundRect(this.rect, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), Theme.dialogs_onlineCirclePaint);
                 }
                 canvas.restore();

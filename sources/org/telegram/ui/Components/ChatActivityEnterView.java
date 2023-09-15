@@ -5583,7 +5583,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (baseFragment != null) {
             new PremiumFeatureBottomSheet(baseFragment, 11, false).show();
         } else if (baseFragment.getContext() instanceof LaunchActivity) {
-            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$77(new PremiumPreviewFragment(null));
+            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$75(new PremiumPreviewFragment(null));
         }
     }
 

@@ -121,6 +121,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     private boolean dismissed;
     private SizeNotifierFrameLayout frameLayout;
     private boolean ignoreLayout;
+    private int lineColor;
     private Paint linePaint;
     private TextView mainButton;
     private VerticalPositionAutoAnimator mainButtonAutoAnimator;
@@ -246,6 +247,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
         };
         this.resourcesProvider = resourcesProvider;
+        this.lineColor = Theme.getColor(Theme.key_sheet_scrollUp);
         this.swipeContainer = new ChatAttachAlertBotWebViewLayout.WebViewSwipeContainer(context) {
             @Override
             protected void onMeasure(int r5, int r6) {
@@ -303,7 +305,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             public void draw(Canvas canvas) {
                 super.draw(canvas);
                 float f = AndroidUtilities.isTablet() ? 0.0f : BotWebViewSheet.this.actionBarTransitionProgress;
-                BotWebViewSheet.this.linePaint.setColor(Theme.getColor(Theme.key_sheet_scrollUp));
+                BotWebViewSheet.this.linePaint.setColor(BotWebViewSheet.this.lineColor);
                 BotWebViewSheet.this.linePaint.setAlpha((int) (BotWebViewSheet.this.linePaint.getAlpha() * (1.0f - (Math.min(0.5f, f) / 0.5f))));
                 canvas.save();
                 float f2 = 1.0f - f;
@@ -595,6 +597,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             BotWebViewSheet.this.actionBarColor = ColorUtils.blendARGB(i, i2, floatValue);
             BotWebViewSheet.this.actionBar.setBackgroundColor(BotWebViewSheet.this.actionBarColor);
             actionBarColorsAnimating.updateActionBar(BotWebViewSheet.this.actionBar, floatValue);
+            BotWebViewSheet.this.lineColor = actionBarColorsAnimating.getColor(Theme.key_sheet_scrollUp);
             BotWebViewSheet.this.frameLayout.invalidate();
         }
 
@@ -1158,7 +1161,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", this.val$botId);
                 if (BotWebViewSheet.this.parentActivity instanceof LaunchActivity) {
-                    ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$77(new ChatActivity(bundle));
+                    ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$75(new ChatActivity(bundle));
                 }
                 BotWebViewSheet.this.dismiss();
             } else if (i == R.id.menu_reload_page) {
