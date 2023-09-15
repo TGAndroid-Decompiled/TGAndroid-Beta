@@ -995,6 +995,7 @@
     <string name="BotPublicLinks">Public Links</string>
     <string name="BotPublicLinksCount">%1$s/%2$s</string>
     <string name="BotRemoveFromMenu">This will remove **%1$s** shortcuts from all menus.</string>
+    <string name="BotRemoveFromMenuAll">This will remove **%1$s** shortcuts from all menus.</string>
     <string name="BotRemoveFromMenuTitle">Remove bot</string>
     <string name="BotRemoveInlineFromMenu">Remove **%1$s** from suggestions?</string>
     <string name="BotRequestAttachPermission">**%1$s** requests to be added as an option to your attachments menu so you can access it from any chat.</string>

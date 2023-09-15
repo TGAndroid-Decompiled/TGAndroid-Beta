@@ -4202,7 +4202,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             f = f5 + (measuredHeight * (1.0f - f6)) + (measuredHeight2 * f6) + this.tabsYOffset;
         }
         float f7 = f + this.storiesOverscroll;
-        if (this.dialogsHintCell != null) {
+        DialogsHintCell dialogsHintCell = this.dialogsHintCell;
+        if (dialogsHintCell != null && dialogsHintCell.getVisibility() == 0) {
             RightSlidingDialogContainer rightSlidingDialogContainer = this.rightSlidingDialogContainer;
             if (rightSlidingDialogContainer != null && rightSlidingDialogContainer.hasFragment()) {
                 f7 -= this.dialogsHintCell.getMeasuredHeight() * this.rightSlidingDialogContainer.openedProgress;
@@ -4210,14 +4211,15 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.dialogsHintCell.setTranslationY(f7);
             f7 += this.dialogsHintCell.getMeasuredHeight();
         }
-        if (this.authHintCell != null) {
+        UnconfirmedAuthHintCell unconfirmedAuthHintCell = this.authHintCell;
+        if (unconfirmedAuthHintCell != null && unconfirmedAuthHintCell.getVisibility() == 0) {
             RightSlidingDialogContainer rightSlidingDialogContainer2 = this.rightSlidingDialogContainer;
             if (rightSlidingDialogContainer2 != null && rightSlidingDialogContainer2.hasFragment()) {
                 f7 -= this.authHintCell.getMeasuredHeight() * this.rightSlidingDialogContainer.openedProgress;
             }
             float measuredHeight3 = this.authHintCell.getMeasuredHeight() * (1.0f - this.authHintCellProgress);
             this.authHintCell.setTranslationY((-measuredHeight3) + f7);
-            f7 += measuredHeight3;
+            f7 += this.authHintCell.getMeasuredHeight() - measuredHeight3;
         }
         if (this.fragmentContextView != null) {
             FragmentContextView fragmentContextView = this.fragmentLocationContextView;

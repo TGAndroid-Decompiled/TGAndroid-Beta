@@ -27,7 +27,7 @@ public class BuildVars {
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION = 3870;
+        BUILD_VERSION = 3871;
         BUILD_VERSION_STRING = "10.0.9";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";

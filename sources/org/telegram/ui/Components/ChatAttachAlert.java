@@ -3152,7 +3152,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
         while (it.hasNext() && it.next().bot_id != tLRPC$User.id) {
         }
-        String formatString = LocaleController.formatString("BotRemoveFromMenu", R.string.BotRemoveFromMenu, userName);
+        String formatString = LocaleController.formatString("BotRemoveFromMenuAll", R.string.BotRemoveFromMenuAll, userName);
         AlertDialog.Builder title = new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.BotRemoveFromMenuTitle));
         if (tLRPC$TL_attachMenuBot == null) {
             formatString = LocaleController.formatString("BotRemoveInlineFromMenu", R.string.BotRemoveInlineFromMenu, userName);
