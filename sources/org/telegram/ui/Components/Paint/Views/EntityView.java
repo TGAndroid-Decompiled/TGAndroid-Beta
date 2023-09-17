@@ -890,6 +890,10 @@ public class EntityView extends FrameLayout {
         }
     }
 
+    public boolean isSelectedProgress() {
+        return isSelected() || this.selectT > 0.0f;
+    }
+
     public void select(ViewGroup viewGroup) {
         this.lastSelectionContainer = viewGroup;
         updateSelect(viewGroup, true);

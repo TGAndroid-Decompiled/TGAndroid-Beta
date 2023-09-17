@@ -68,8 +68,6 @@
     </attr>
     <attr name="contentProviderUri" format="string">
     </attr>
-    <attr name="coordinatorLayoutStyle" format="reference">
-    </attr>
     <attr name="corpusId" format="string">
     </attr>
     <attr name="corpusVersion" format="string">
@@ -144,8 +142,6 @@
     </attr>
     <attr name="inputEnabled" format="boolean">
     </attr>
-    <attr name="keylines" format="reference">
-    </attr>
     <attr name="lStar" format="float">
     </attr>
     <attr name="latLngBoundsNorthEastLatitude" format="float">
@@ -155,47 +151,6 @@
     <attr name="latLngBoundsSouthWestLatitude" format="float">
     </attr>
     <attr name="latLngBoundsSouthWestLongitude" format="float">
-    </attr>
-    <attr name="layout_anchor" format="reference">
-    </attr>
-    <attr name="layout_anchorGravity">
-        <flag name="top" value="0x30" />
-        <flag name="bottom" value="0x50" />
-        <flag name="left" value="0x3" />
-        <flag name="right" value="0x5" />
-        <flag name="center_vertical" value="0x10" />
-        <flag name="fill_vertical" value="0x70" />
-        <flag name="center_horizontal" value="0x1" />
-        <flag name="fill_horizontal" value="0x7" />
-        <flag name="center" value="0x11" />
-        <flag name="fill" value="0x77" />
-        <flag name="clip_vertical" value="0x80" />
-        <flag name="clip_horizontal" value="0x8" />
-        <flag name="start" value="0x800003" />
-        <flag name="end" value="0x800005" />
-    </attr>
-    <attr name="layout_behavior" format="string">
-    </attr>
-    <attr name="layout_dodgeInsetEdges">
-        <flag name="none" value="0x0" />
-        <flag name="top" value="0x30" />
-        <flag name="bottom" value="0x50" />
-        <flag name="left" value="0x3" />
-        <flag name="right" value="0x5" />
-        <flag name="start" value="0x800003" />
-        <flag name="end" value="0x800005" />
-        <flag name="all" value="0x77" />
-    </attr>
-    <attr name="layout_insetEdge">
-        <enum name="none" value="0x0" />
-        <enum name="top" value="0x30" />
-        <enum name="bottom" value="0x50" />
-        <enum name="left" value="0x3" />
-        <enum name="right" value="0x5" />
-        <enum name="start" value="0x800003" />
-        <enum name="end" value="0x800005" />
-    </attr>
-    <attr name="layout_keyline" format="integer">
     </attr>
     <attr name="liteMode" format="boolean">
     </attr>
@@ -284,8 +239,6 @@
         <enum name="email" value="0" />
         <enum name="contact" value="1" />
         <enum name="instant_message" value="2" />
-    </attr>
-    <attr name="statusBarBackground" format="reference|color">
     </attr>
     <attr name="subsectionSeparator" format="string">
     </attr>

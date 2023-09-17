@@ -13,8 +13,8 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Build;
+import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -34,10 +34,7 @@ import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.BubbleActivity;
 import org.telegram.ui.Components.Crop.CropAreaView;
 import org.telegram.ui.Components.Crop.CropGestureDetector;
-import org.telegram.ui.Components.Paint.Swatch;
-import org.telegram.ui.Components.Paint.Views.TextPaintView;
 import org.telegram.ui.Components.PaintingOverlay;
-import org.telegram.ui.Components.Point;
 import org.telegram.ui.Components.VideoEditTextureView;
 public class CropView extends FrameLayout implements CropAreaView.AreaViewListener, CropGestureDetector.CropGestureListener {
     private boolean animating;
@@ -964,7 +961,6 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
     }
 
     public static void editBitmap(Context context, String str, Bitmap bitmap, Canvas canvas, Bitmap bitmap2, Bitmap.CompressFormat compressFormat, Matrix matrix, int i, int i2, float f, float f2, float f3, float f4, boolean z, ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z2) {
-        float f5 = f3;
         char c = 0;
         if (z2) {
             try {
@@ -977,14 +973,14 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         Bitmap decodeFile = bitmap == null ? BitmapFactory.decodeFile(str) : bitmap;
         float max = Math.max(decodeFile.getWidth(), decodeFile.getHeight()) / Math.max(i, i2);
         Matrix matrix2 = new Matrix();
-        int i3 = 2;
+        char c2 = 2;
         matrix2.postTranslate((-decodeFile.getWidth()) / 2, (-decodeFile.getHeight()) / 2);
         if (z) {
             matrix2.postScale(-1.0f, 1.0f);
         }
-        float f6 = 1.0f / max;
-        matrix2.postScale(f6, f6);
-        matrix2.postRotate(f5);
+        float f5 = 1.0f / max;
+        matrix2.postScale(f5, f5);
+        matrix2.postRotate(f3);
         matrix2.postConcat(matrix);
         matrix2.postScale(f4, f4);
         matrix2.postTranslate(bitmap2.getWidth() / 2, bitmap2.getHeight() / 2);
@@ -994,54 +990,40 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         fileOutputStream.close();
         if (arrayList != null && !arrayList.isEmpty()) {
             float[] fArr = new float[4];
-            float width = f6 * f4 * f * (decodeFile.getWidth() / bitmap2.getWidth());
-            TextPaintView textPaintView = null;
             int size = arrayList.size();
-            int i4 = 0;
-            while (i4 < size) {
-                VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i4);
-                fArr[c] = (mediaEntity.x * decodeFile.getWidth()) + ((mediaEntity.viewWidth * mediaEntity.scale) / 2.0f);
-                fArr[1] = (mediaEntity.y * decodeFile.getHeight()) + ((mediaEntity.viewHeight * mediaEntity.scale) / 2.0f);
-                fArr[i3] = mediaEntity.textViewX * decodeFile.getWidth();
+            int i3 = 0;
+            while (i3 < size) {
+                VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i3);
+                fArr[c] = (mediaEntity.x + (mediaEntity.width / 2.0f)) * decodeFile.getWidth();
+                fArr[1] = (mediaEntity.y + (mediaEntity.height / 2.0f)) * decodeFile.getHeight();
+                fArr[c2] = mediaEntity.textViewX * decodeFile.getWidth();
                 fArr[3] = mediaEntity.textViewY * decodeFile.getHeight();
                 matrix2.mapPoints(fArr);
-                byte b = mediaEntity.type;
-                if (b == 0) {
-                    int width2 = bitmap2.getWidth() / i3;
-                    mediaEntity.viewHeight = width2;
-                    mediaEntity.viewWidth = width2;
-                } else if (b == 1) {
-                    mediaEntity.fontSize = bitmap2.getWidth() / 9;
-                    if (textPaintView == null) {
-                        textPaintView = new TextPaintView(context, new Point(0.0f, 0.0f), mediaEntity.fontSize, "", new Swatch(-16777216, 0.85f, 0.1f), 0);
-                        textPaintView.setMaxWidth(bitmap2.getWidth() - 20);
-                    }
-                    byte b2 = mediaEntity.subType;
-                    textPaintView.setType((b2 & 1) != 0 ? 0 : (b2 & 4) != 0 ? 2 : 1);
-                    textPaintView.setText(mediaEntity.text);
-                    textPaintView.measure(View.MeasureSpec.makeMeasureSpec(bitmap2.getWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(bitmap2.getHeight(), Integer.MIN_VALUE));
-                    mediaEntity.viewWidth = textPaintView.getMeasuredWidth();
-                    mediaEntity.viewHeight = textPaintView.getMeasuredHeight();
+                if (mediaEntity.type == 1) {
+                    mediaEntity.width = ((mediaEntity.width * i) / bitmap2.getWidth()) * f4 * f;
+                    mediaEntity.height = ((mediaEntity.height * i2) / bitmap2.getHeight()) * f4 * f;
+                } else {
+                    float f6 = i;
+                    mediaEntity.viewWidth = (int) ((mediaEntity.viewWidth / f6) * decodeFile.getWidth());
+                    float f7 = i2;
+                    mediaEntity.viewHeight = (int) ((mediaEntity.viewHeight / f7) * decodeFile.getHeight());
+                    mediaEntity.width = ((mediaEntity.width * f6) / decodeFile.getWidth()) * f4 * f;
+                    mediaEntity.height = ((mediaEntity.height * f7) / decodeFile.getHeight()) * f4 * f;
                 }
-                float f7 = mediaEntity.scale * width;
-                mediaEntity.scale = f7;
-                c = 0;
-                mediaEntity.x = (fArr[0] - ((mediaEntity.viewWidth * f7) / 2.0f)) / bitmap2.getWidth();
-                mediaEntity.y = (fArr[1] - ((mediaEntity.viewHeight * mediaEntity.scale) / 2.0f)) / bitmap2.getHeight();
+                mediaEntity.x = (fArr[0] / bitmap2.getWidth()) - (mediaEntity.width / 2.0f);
+                mediaEntity.y = (fArr[1] / bitmap2.getHeight()) - (mediaEntity.height / 2.0f);
                 mediaEntity.textViewX = fArr[2] / bitmap2.getWidth();
                 mediaEntity.textViewY = fArr[3] / bitmap2.getHeight();
-                mediaEntity.width = (mediaEntity.viewWidth * mediaEntity.scale) / bitmap2.getWidth();
-                mediaEntity.height = (mediaEntity.viewHeight * mediaEntity.scale) / bitmap2.getHeight();
-                mediaEntity.textViewWidth = mediaEntity.viewWidth / bitmap2.getWidth();
-                mediaEntity.textViewHeight = mediaEntity.viewHeight / bitmap2.getHeight();
                 double d = mediaEntity.rotation;
-                double d2 = f2 + f5;
+                int i4 = i3;
+                double d2 = f2 + f3;
                 Double.isNaN(d2);
                 Double.isNaN(d);
                 mediaEntity.rotation = (float) (d - (d2 * 0.017453292519943295d));
-                i4++;
-                f5 = f3;
-                i3 = 2;
+                Log.i("lolkek", "entity TO {x=" + mediaEntity.x + ", y=" + mediaEntity.y + ", w=" + mediaEntity.width + ", h=" + mediaEntity.height + ", s=" + mediaEntity.scale + ", vw=" + mediaEntity.viewWidth + ", vh=" + mediaEntity.viewHeight + "}");
+                i3 = i4 + 1;
+                c = 0;
+                c2 = 2;
             }
         }
         decodeFile.recycle();

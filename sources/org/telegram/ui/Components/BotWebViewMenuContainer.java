@@ -1096,36 +1096,37 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         }
 
         private void updateColors(SparseIntArray sparseIntArray, int i, Theme.ResourcesProvider resourcesProvider) {
-            int i2 = 0;
+            int i2;
+            int i3 = 0;
             if (i == 0) {
                 while (true) {
                     int[] iArr = this.colorKeys;
-                    if (i2 >= iArr.length) {
+                    if (i3 >= iArr.length) {
                         return;
                     }
-                    int i3 = iArr[i2];
-                    sparseIntArray.put(i3, Theme.getColor(i3, resourcesProvider));
-                    i2++;
+                    int i4 = iArr[i3];
+                    sparseIntArray.put(i4, Theme.getColor(i4, resourcesProvider));
+                    i3++;
                 }
             } else {
-                int i4 = ColorUtils.calculateLuminance(i) < 0.5d ? -1 : -16777216;
-                int alphaComponent = ColorUtils.setAlphaComponent(i4, 60);
+                int i5 = ColorUtils.calculateLuminance(i) < 0.5d ? -1 : -16777216;
+                int alphaComponent = ColorUtils.setAlphaComponent(i5, 60);
                 while (true) {
                     int[] iArr2 = this.colorKeys;
-                    if (i2 >= iArr2.length) {
+                    if (i3 >= iArr2.length) {
                         return;
                     }
-                    int i5 = iArr2[i2];
-                    if (i5 == Theme.key_actionBarDefaultSubmenuBackground) {
-                        sparseIntArray.put(i5, ColorUtils.blendARGB(i, i4 == -1 ? -16777216 : -1, 0.05f));
-                    } else if (i5 == Theme.key_sheet_scrollUp) {
-                        sparseIntArray.put(i5, ColorUtils.blendARGB(i, i4, 0.5f));
-                    } else if (i5 == Theme.key_actionBarWhiteSelector || i5 == Theme.key_dialogButtonSelector) {
-                        sparseIntArray.put(i5, alphaComponent);
+                    int i6 = iArr2[i3];
+                    if (i6 == Theme.key_actionBarDefaultSubmenuBackground || i6 == Theme.key_actionBarDefaultSubmenuItem || i6 == Theme.key_actionBarDefaultSubmenuItemIcon || i6 == (i2 = Theme.key_dialogButtonSelector)) {
+                        sparseIntArray.put(i6, Theme.getColor(i6, resourcesProvider));
+                    } else if (i6 == Theme.key_sheet_scrollUp) {
+                        sparseIntArray.put(i6, ColorUtils.blendARGB(i, i5, 0.5f));
+                    } else if (i6 == Theme.key_actionBarWhiteSelector || i6 == i2) {
+                        sparseIntArray.put(i6, alphaComponent);
                     } else {
-                        sparseIntArray.put(i5, i4);
+                        sparseIntArray.put(i6, i5);
                     }
-                    i2++;
+                    i3++;
                 }
             }
         }

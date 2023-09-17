@@ -7608,7 +7608,6 @@ public class MediaDataController extends BaseController {
 
     public void applyAttachMenuBot(TLRPC$TL_attachMenuBotsBot tLRPC$TL_attachMenuBotsBot) {
         this.attachMenuBots.bots.add(tLRPC$TL_attachMenuBotsBot.bot);
-        loadAttachMenuBots(false, true);
     }
 
     public boolean botInAttachMenu(long j) {

@@ -278,6 +278,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     public LPhotoPaintView(final Context context, Activity activity, final int i, Bitmap bitmap, final Bitmap bitmap2, int i2, ArrayList<VideoEditedInfo.MediaEntity> arrayList, MediaController.CropState cropState, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
         super(context, activity, true);
         int i3;
+        Emoji.EmojiSpan[] emojiSpanArr;
         StickerView stickerView;
         this.tabsSelectedIndex = 0;
         this.tabsNewSelectedIndex = -1;
@@ -530,7 +531,13 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                         size = size;
                     }
                     i3 = size;
-                    createText.setText(Emoji.replaceEmoji(spannableString, createText.getFontMetricsInt(), (int) (createText.getFontSize() * 0.8f), false));
+                    CharSequence replaceEmoji = Emoji.replaceEmoji(spannableString, createText.getFontMetricsInt(), (int) (createText.getFontSize() * 0.8f), false);
+                    if ((replaceEmoji instanceof Spanned) && (emojiSpanArr = (Emoji.EmojiSpan[]) ((Spanned) replaceEmoji).getSpans(0, replaceEmoji.length(), Emoji.EmojiSpan.class)) != null) {
+                        for (Emoji.EmojiSpan emojiSpan : emojiSpanArr) {
+                            emojiSpan.scale = 0.85f;
+                        }
+                    }
+                    createText.setText(replaceEmoji);
                     setTextAlignment(createText, mediaEntity.textAlign);
                     Swatch swatch = createText.getSwatch();
                     swatch.color = mediaEntity.color;
@@ -1632,10 +1639,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.entitiesView.setScaleX(f4);
         this.entitiesView.setScaleY(this.baseScale);
         this.entitiesView.measure(View.MeasureSpec.makeMeasureSpec((int) this.paintingSize.width, 1073741824), View.MeasureSpec.makeMeasureSpec((int) this.paintingSize.height, 1073741824));
-        EntityView entityView = this.currentEntityView;
-        if (entityView != null) {
-            entityView.updateSelectionView();
-        }
+        updateEntitiesSelections();
         this.selectionContainerView.measure(View.MeasureSpec.makeMeasureSpec(i3, 1073741824), View.MeasureSpec.makeMeasureSpec(i4, 1073741824));
         measureChild(this.bottomLayout, i, i2);
         measureChild(this.weightChooserView, i, i2);
@@ -2210,7 +2214,17 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             view.setRotation(f11);
             view.invalidate();
         }
+        updateEntitiesSelections();
         invalidate();
+    }
+
+    public void updateEntitiesSelections() {
+        for (int i = 0; i < this.entitiesView.getChildCount(); i++) {
+            View childAt = this.entitiesView.getChildAt(i);
+            if (childAt == this.currentEntityView || ((childAt instanceof EntityView) && ((EntityView) childAt).isSelectedProgress())) {
+                ((EntityView) childAt).updateSelectionView();
+            }
+        }
     }
 
     public List<TLRPC$InputDocument> getMasks() {

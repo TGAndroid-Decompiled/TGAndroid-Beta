@@ -235,9 +235,6 @@
     </style>
     <style name="Widget.Compat.NotificationActionText" parent="">
     </style>
-    <style name="Widget.Support.CoordinatorLayout" parent="@android:style/Widget">
-        <item name="statusBarBackground">#000000</item>
-    </style>
     <style name="scrollbarShapeStyle" parent="">
         <item name="android:scrollbarSize">8dp</item>
         <item name="android:scrollbarThumbVertical">@drawable/scrollbar_vertical_thumb_inset</item>
