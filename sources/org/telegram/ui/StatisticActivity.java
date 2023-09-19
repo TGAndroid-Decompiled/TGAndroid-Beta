@@ -14,6 +14,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.SparseIntArray;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -35,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LruCache;
 import org.telegram.messenger.MessageObject;
@@ -42,6 +44,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -107,6 +110,7 @@ import org.telegram.ui.Charts.view_data.LegendSignatureView;
 import org.telegram.ui.Charts.view_data.LineViewData;
 import org.telegram.ui.Charts.view_data.TransitionParams;
 import org.telegram.ui.ChatRightsEditActivity;
+import org.telegram.ui.Components.BottomPagerTabs;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ChatAvatarContainer;
 import org.telegram.ui.Components.CombinedDrawable;
@@ -115,6 +119,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.ViewPagerFixed;
 import org.telegram.ui.PeopleNearbyActivity;
 import org.telegram.ui.StatisticActivity;
 public class StatisticActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
@@ -122,6 +127,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     private Adapter adapter;
     private RecyclerView.ItemAnimator animator;
     ChatAvatarContainer avatarContainer;
+    private ChannelBoostLayout boosLayout;
     private final TLRPC$ChatFull chat;
     private LruCache<ChartData> childDataCache;
     private DiffUtilsCallback diffUtilsCallback;
@@ -161,6 +167,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     private ArrayList<MemberData> topInviters;
     private ArrayList<MemberData> topMembersAll;
     private ArrayList<MemberData> topMembersVisible;
+    private ViewPagerFixed viewPagerFixed;
     private ChartViewData viewsBySourceData;
 
     public static class RecentPostInfo {
@@ -407,8 +414,69 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     @Override
     public View createView(Context context) {
         this.sharedUi = new BaseChartView.SharedUiComponents();
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
+        final boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.chat.id, this.currentAccount);
+        final BottomPagerTabs bottomPagerTabs = new BottomPagerTabs(this, context, getResourceProvider()) {
+            @Override
+            public BottomPagerTabs.Tab[] createTabs() {
+                BottomPagerTabs.Tab[] tabArr = {new BottomPagerTabs.Tab(0, R.raw.stats, LocaleController.getString("Statistics", R.string.Statistics)), new BottomPagerTabs.Tab(1, R.raw.boosts, LocaleController.getString("Boosts", R.string.Boosts))};
+                tabArr[1].customEndFrameMid = 25;
+                tabArr[1].customEndFrameEnd = 49;
+                return tabArr;
+            }
+        };
+        this.viewPagerFixed = new ViewPagerFixed(this, getContext()) {
+            @Override
+            protected void onTabAnimationUpdate(boolean z) {
+                if (z) {
+                    return;
+                }
+                float f = this.currentProgress;
+                if (this.currentPosition == 0) {
+                    f = 1.0f - f;
+                }
+                bottomPagerTabs.setScrolling(true);
+                bottomPagerTabs.setProgress(f);
+            }
+        };
+        bottomPagerTabs.setOnTabClick(new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                StatisticActivity.this.lambda$createView$3(bottomPagerTabs, (Integer) obj);
+            }
+        });
+        final FrameLayout frameLayout = new FrameLayout(context);
+        if (isChannelAndNotMegaGroup) {
+            this.boosLayout = new ChannelBoostLayout(this, -this.chat.id, getResourceProvider());
+        }
+        this.viewPagerFixed.setAdapter(new ViewPagerFixed.Adapter() {
+            @Override
+            public void bindView(View view, int i, int i2) {
+            }
+
+            @Override
+            public int getItemViewType(int i) {
+                return i;
+            }
+
+            @Override
+            public int getItemCount() {
+                return isChannelAndNotMegaGroup ? 2 : 1;
+            }
+
+            @Override
+            public View createView(int i) {
+                if (i != 0) {
+                    return StatisticActivity.this.boosLayout;
+                }
+                return frameLayout;
+            }
+        });
+        FrameLayout frameLayout2 = new FrameLayout(getContext());
+        frameLayout2.addView(this.viewPagerFixed, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 0.0f, 0.0f, isChannelAndNotMegaGroup ? 64.0f : 0.0f));
+        if (isChannelAndNotMegaGroup) {
+            frameLayout2.addView(bottomPagerTabs, LayoutHelper.createFrame(-1, -2, 87));
+        }
+        this.fragmentView = frameLayout2;
         this.recyclerListView = new RecyclerListView(context) {
             int lastH;
 
@@ -474,15 +542,15 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         this.recyclerListView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
-                StatisticActivity.this.lambda$createView$3(view, i3);
+                StatisticActivity.this.lambda$createView$4(view, i3);
             }
         });
         this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
             public final boolean onItemClick(View view, int i3) {
-                boolean lambda$createView$5;
-                lambda$createView$5 = StatisticActivity.this.lambda$createView$5(view, i3);
-                return lambda$createView$5;
+                boolean lambda$createView$6;
+                lambda$createView$6 = StatisticActivity.this.lambda$createView$6(view, i3);
+                return lambda$createView$6;
             }
         });
         frameLayout.addView(this.recyclerListView);
@@ -493,7 +561,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chat.id));
         this.avatarContainer.setChatAvatar(chat);
         this.avatarContainer.setTitle(chat.title);
-        this.avatarContainer.setSubtitle(LocaleController.getString("Statistics", R.string.Statistics));
+        this.avatarContainer.hideSubtitle();
         this.actionBar.setBackButtonDrawable(new BackDrawable(false));
         this.actionBar.setActionBarMenuOnItemClick(new ActionBar.ActionBarMenuOnItemClick() {
             @Override
@@ -521,7 +589,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         return this.fragmentView;
     }
 
-    public void lambda$createView$3(View view, int i) {
+    public void lambda$createView$3(BottomPagerTabs bottomPagerTabs, Integer num) {
+        if (this.viewPagerFixed.scrollToPosition(num.intValue())) {
+            bottomPagerTabs.setScrolling(false);
+            bottomPagerTabs.setProgress(num.intValue());
+        }
+    }
+
+    public void lambda$createView$4(View view, int i) {
         Adapter adapter = this.adapter;
         int i2 = adapter.recentPostsStartRow;
         if (i >= i2 && i <= adapter.recentPostsEndRow) {
@@ -556,7 +631,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public boolean lambda$createView$5(View view, int i) {
+    public boolean lambda$createView$6(View view, int i) {
         Adapter adapter = this.adapter;
         int i2 = adapter.recentPostsStartRow;
         if (i >= i2 && i <= adapter.recentPostsEndRow) {
@@ -574,7 +649,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             builder.setItems((CharSequence[]) arrayList.toArray(new CharSequence[arrayList2.size()]), AndroidUtilities.toIntArray(arrayList3), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i3) {
-                    StatisticActivity.this.lambda$createView$4(messageObject, dialogInterface, i3);
+                    StatisticActivity.this.lambda$createView$5(messageObject, dialogInterface, i3);
                 }
             });
             showDialog(builder.create());
@@ -598,7 +673,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         return false;
     }
 
-    public void lambda$createView$4(MessageObject messageObject, DialogInterface dialogInterface, int i) {
+    public void lambda$createView$5(MessageObject messageObject, DialogInterface dialogInterface, int i) {
         if (i == 0) {
             presentFragment(new MessageStatisticActivity(messageObject));
         } else if (i == 1) {
@@ -2077,12 +2152,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         getConnectionsManager().sendRequest(tLRPC$TL_channels_getMessages, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StatisticActivity.this.lambda$loadMessages$7(tLObject, tLRPC$TL_error);
+                StatisticActivity.this.lambda$loadMessages$8(tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$loadMessages$7(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadMessages$8(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         final ArrayList arrayList = new ArrayList();
         if (tLObject instanceof TLRPC$messages_Messages) {
             ArrayList<TLRPC$Message> arrayList2 = ((TLRPC$messages_Messages) tLObject).messages;
@@ -2094,12 +2169,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StatisticActivity.this.lambda$loadMessages$6(arrayList);
+                StatisticActivity.this.lambda$loadMessages$7(arrayList);
             }
         });
     }
 
-    public void lambda$loadMessages$6(ArrayList arrayList) {
+    public void lambda$loadMessages$7(ArrayList arrayList) {
         int i = 0;
         this.messagesIsLoading = false;
         if (arrayList.isEmpty()) {
@@ -2340,7 +2415,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         ThemeDescription.ThemeDescriptionDelegate themeDescriptionDelegate = new ThemeDescription.ThemeDescriptionDelegate() {
             @Override
             public final void didSetColor() {
-                StatisticActivity.this.lambda$getThemeDescriptions$8();
+                StatisticActivity.this.lambda$getThemeDescriptions$9();
             }
 
             @Override
@@ -2433,7 +2508,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         return arrayList;
     }
 
-    public void lambda$getThemeDescriptions$8() {
+    public void lambda$getThemeDescriptions$9() {
         RecyclerListView recyclerListView = this.recyclerListView;
         if (recyclerListView != null) {
             int childCount = recyclerListView.getChildCount();
@@ -2803,6 +2878,13 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             updateColors();
         }
 
+        public void setData(int i, String str, String str2, String str3) {
+            this.primary[i].setText(str);
+            this.secondary[i].setText(str2);
+            this.title[i].setText(str3);
+            updateColors();
+        }
+
         public void updateColors() {
             for (int i = 0; i < 4; i++) {
                 this.primary[i].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
@@ -3118,5 +3200,14 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     @Override
     public boolean isLightStatusBar() {
         return ColorUtils.calculateLuminance(Theme.getColor(Theme.key_windowBackgroundWhite)) > 0.699999988079071d;
+    }
+
+    @Override
+    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        ViewPagerFixed viewPagerFixed = this.viewPagerFixed;
+        if (viewPagerFixed == null || (viewPagerFixed.currentPosition == 0 && viewPagerFixed.currentProgress == 1.0f)) {
+            return super.isSwipeBackEnabled(motionEvent);
+        }
+        return false;
     }
 }

@@ -11,7 +11,9 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
@@ -26,6 +28,7 @@ public class VolumeSliderView extends View {
     private float maxVolume;
     private float minVolume;
     private Utilities.Callback<Float> onValueChange;
+    private long pressTime;
     private float r;
     private final Paint speaker1Paint;
     private final Path speaker1Path;
@@ -38,6 +41,8 @@ public class VolumeSliderView extends View {
     private final AnimatedTextView.AnimatedTextDrawable text;
     private final TextPaint textPaint;
     private float value;
+    private AnimatedFloat valueAnimated;
+    private boolean valueIsAnimated;
     private int w;
     private final AnimatedFloat wave1Alpha;
     private final AnimatedFloat wave2Alpha;
@@ -47,6 +52,8 @@ public class VolumeSliderView extends View {
         super(context);
         this.minVolume = 0.0f;
         this.maxVolume = 1.5f;
+        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
+        this.valueAnimated = new AnimatedFloat(this, 0L, 320L, cubicBezierInterpolator);
         Paint paint = new Paint(1);
         this.whitePaint = paint;
         Paint paint2 = new Paint(1);
@@ -64,7 +71,6 @@ public class VolumeSliderView extends View {
         this.speaker2Path = new Path();
         this.speakerWave1Path = new Path();
         this.speakerWave2Path = new Path();
-        CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.wave1Alpha = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.wave2Alpha = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.textPaint = new TextPaint(1);
@@ -102,40 +108,84 @@ public class VolumeSliderView extends View {
         canvas.save();
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(0.0f, 0.0f, this.w, this.h);
+        this.clipPath.rewind();
         Path path = this.clipPath;
         float f = this.r;
         path.addRoundRect(rectF, f, f, Path.Direction.CW);
         canvas.clipPath(this.clipPath);
+        float f2 = this.valueIsAnimated ? this.valueAnimated.set(this.value) : this.value;
         canvas.saveLayerAlpha(0.0f, 0.0f, this.w, this.h, 255, 31);
         this.text.setBounds(AndroidUtilities.dp(42.0f), -AndroidUtilities.dp(1.0f), this.w, this.h - AndroidUtilities.dp(1.0f));
         this.text.draw(canvas);
         canvas.drawPath(this.speaker1Path, this.speaker1Paint);
         canvas.drawPath(this.speaker2Path, this.speaker2Paint);
-        float f2 = this.maxVolume;
-        float f3 = this.minVolume;
-        double d = f2 - f3 != 0.0f ? f3 + (this.value * (f2 - f3)) : 0.0f;
-        float f4 = this.wave1Alpha.set(d > 0.25d);
+        float f3 = this.maxVolume;
+        float f4 = this.minVolume;
+        double d = f3 - f4 != 0.0f ? f4 + (this.value * (f3 - f4)) : 0.0f;
+        float f5 = this.wave1Alpha.set(d > 0.25d);
         canvas.save();
-        canvas.translate((-AndroidUtilities.dpf2(0.33f)) * (1.0f - f4), 0.0f);
-        this.speakerWave1Paint.setAlpha((int) (f4 * 255.0f));
+        canvas.translate((-AndroidUtilities.dpf2(0.33f)) * (1.0f - f5), 0.0f);
+        this.speakerWave1Paint.setAlpha((int) (f5 * 255.0f));
         canvas.drawPath(this.speakerWave1Path, this.speakerWave1Paint);
         canvas.restore();
-        float f5 = this.wave2Alpha.set(d > 0.5d);
+        float f6 = this.wave2Alpha.set(d > 0.5d);
         canvas.save();
-        canvas.translate((-AndroidUtilities.dpf2(0.66f)) * (1.0f - f5), 0.0f);
-        this.speakerWave2Paint.setAlpha((int) (f5 * 255.0f));
+        canvas.translate((-AndroidUtilities.dpf2(0.66f)) * (1.0f - f6), 0.0f);
+        this.speakerWave2Paint.setAlpha((int) (f6 * 255.0f));
         canvas.drawPath(this.speakerWave2Path, this.speakerWave2Paint);
         canvas.restore();
         canvas.save();
-        canvas.drawRect(0.0f, 0.0f, this.w * this.value, this.h, this.whitePaint);
+        canvas.drawRect(0.0f, 0.0f, this.w * f2, this.h, this.whitePaint);
         canvas.restore();
         canvas.restore();
         canvas.restore();
     }
 
     @Override
-    public boolean dispatchTouchEvent(android.view.MotionEvent r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.VolumeSliderView.dispatchTouchEvent(android.view.MotionEvent):boolean");
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        boolean z = false;
+        if (this.w <= 0) {
+            return false;
+        }
+        float x = motionEvent.getX();
+        if (motionEvent.getAction() == 0) {
+            this.pressTime = System.currentTimeMillis();
+            this.valueIsAnimated = false;
+        } else if (motionEvent.getAction() == 2 || motionEvent.getAction() == 1) {
+            float f = this.maxVolume;
+            float f2 = this.minVolume;
+            float f3 = f - f2 != 0.0f ? f2 + (this.value * (f - f2)) : 0.0f;
+            if (motionEvent.getAction() == 1 && System.currentTimeMillis() - this.pressTime < ViewConfiguration.getTapTimeout()) {
+                this.valueAnimated.set(this.value, true);
+                this.value = x / this.w;
+                this.valueIsAnimated = true;
+            } else {
+                this.value = Utilities.clamp(this.value + ((x - this.lastTouchX) / this.w), 1.0f, 0.0f);
+                this.valueIsAnimated = false;
+                z = true;
+            }
+            float f4 = this.maxVolume;
+            float f5 = this.minVolume;
+            float f6 = f4 - f5 != 0.0f ? f5 + (this.value * (f4 - f5)) : 0.0f;
+            if (z) {
+                try {
+                    if ((f6 <= f5 && f3 > f6) || (f6 >= f4 && f3 < f6)) {
+                        performHapticFeedback(3, 1);
+                    } else if (Math.floor(f3 * 5.0f) != Math.floor(5.0f * f6)) {
+                        performHapticFeedback(9, 1);
+                    }
+                } catch (Exception unused) {
+                }
+            }
+            updateText(f6);
+            Utilities.Callback<Float> callback = this.onValueChange;
+            if (callback != null) {
+                callback.run(Float.valueOf(f6));
+            }
+            invalidate();
+        }
+        this.lastTouchX = x;
+        return true;
     }
 
     private void updateText(float f) {
@@ -144,6 +194,7 @@ public class VolumeSliderView extends View {
             return;
         }
         this.text.cancelAnimation();
+        this.text.setAnimationProperties(0.3f, 0L, this.valueIsAnimated ? 320L : 40L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.text.setText(str);
     }
 

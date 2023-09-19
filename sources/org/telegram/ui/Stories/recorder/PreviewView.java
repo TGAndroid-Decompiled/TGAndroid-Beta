@@ -179,7 +179,7 @@ public class PreviewView extends FrameLayout {
         }
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer == null || videoPlayer.getDuration() == -9223372036854775807L) {
-            return 0L;
+            return 1L;
         }
         return this.videoPlayer.getDuration();
     }
@@ -286,6 +286,11 @@ public class PreviewView extends FrameLayout {
                 }
             });
             this.audioPlayer.preparePlayer(Uri.fromFile(new File(storyEntry.audioPath)), "other");
+            if (this.videoPlayer != null && getDuration() > 0) {
+                long duration = storyEntry.left * ((float) getDuration());
+                this.videoPlayer.seekTo(duration);
+                this.timelineView.setProgress(duration);
+            }
             updateAudioPlayer(true);
         }
     }
@@ -294,6 +299,7 @@ public class PreviewView extends FrameLayout {
         TLRPC$Message tLRPC$Message;
         StoryEntry storyEntry = this.entry;
         if (storyEntry != null) {
+            storyEntry.editedMedia = true;
             if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null) {
                 storyEntry.audioPath = null;
                 storyEntry.audioAuthor = null;
@@ -327,10 +333,14 @@ public class PreviewView extends FrameLayout {
                 }
                 StoryEntry storyEntry2 = this.entry;
                 storyEntry2.audioOffset = 0L;
-                storyEntry2.audioLeft = 0.0f;
-                long min = Math.min((storyEntry2 == null || !storyEntry2.isVideo) ? storyEntry2.audioDuration : getDuration(), 120000L);
+                if (storyEntry2.isVideo) {
+                    storyEntry2.audioOffset = storyEntry2.left * ((float) getDuration());
+                }
                 StoryEntry storyEntry3 = this.entry;
-                storyEntry3.audioRight = storyEntry3.audioDuration != 0 ? Math.min(1.0f, ((float) Math.min(min, 59000L)) / ((float) this.entry.audioDuration)) : 1.0f;
+                storyEntry3.audioLeft = 0.0f;
+                long min = Math.min((storyEntry3 == null || !storyEntry3.isVideo) ? storyEntry3.audioDuration : getDuration(), 120000L);
+                StoryEntry storyEntry4 = this.entry;
+                storyEntry4.audioRight = storyEntry4.audioDuration != 0 ? Math.min(1.0f, ((float) Math.min(min, 59000L)) / ((float) this.entry.audioDuration)) : 1.0f;
             }
         }
         setupAudio(this.entry, z);
@@ -375,6 +385,7 @@ public class PreviewView extends FrameLayout {
                         return;
                     }
                     PreviewView.this.entry.left = f;
+                    PreviewView.this.entry.editedMedia = true;
                     if (PreviewView.this.videoPlayer == null || PreviewView.this.videoPlayer.getDuration() == -9223372036854775807L) {
                         return;
                     }
@@ -388,6 +399,7 @@ public class PreviewView extends FrameLayout {
                         return;
                     }
                     PreviewView.this.entry.right = f;
+                    PreviewView.this.entry.editedMedia = true;
                 }
 
                 @Override
@@ -396,6 +408,7 @@ public class PreviewView extends FrameLayout {
                         return;
                     }
                     PreviewView.this.entry.audioLeft = f;
+                    PreviewView.this.entry.editedMedia = true;
                     PreviewView.this.updateAudioPlayer(true);
                 }
 
@@ -405,6 +418,7 @@ public class PreviewView extends FrameLayout {
                         return;
                     }
                     PreviewView.this.entry.audioRight = f;
+                    PreviewView.this.entry.editedMedia = true;
                     PreviewView.this.updateAudioPlayer(true);
                 }
 
@@ -414,6 +428,7 @@ public class PreviewView extends FrameLayout {
                         return;
                     }
                     PreviewView.this.entry.audioOffset = j;
+                    PreviewView.this.entry.editedMedia = true;
                     PreviewView.this.updateAudioPlayer(true);
                 }
 
@@ -428,6 +443,7 @@ public class PreviewView extends FrameLayout {
                         return;
                     }
                     PreviewView.this.entry.audioVolume = f;
+                    PreviewView.this.entry.editedMedia = true;
                     if (PreviewView.this.audioPlayer != null) {
                         PreviewView.this.audioPlayer.setVolume(f);
                     }

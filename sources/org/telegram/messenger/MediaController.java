@@ -3821,7 +3821,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             str = null;
                         }
                         if (str == null || str.length() == 0) {
-                            str = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject.messageOwner).toString();
+                            str = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject.messageOwner, true, !this.isMusic).toString();
                         }
                         File file = new File(str);
                         if (!file.exists()) {
@@ -3874,7 +3874,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                             str2 = null;
                         }
                         if (str2 == null || str2.length() == 0) {
-                            str2 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject2.messageOwner).toString();
+                            str2 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject2.messageOwner, true, !this.isMusic).toString();
                         }
                         File file4 = new File(str2);
                         if (!file4.exists()) {

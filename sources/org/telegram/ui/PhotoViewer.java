@@ -2064,9 +2064,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         public void restore() {
             PhotoViewer.this.placeProvider = this.provider;
             if (Build.VERSION.SDK_INT >= 21) {
-                PhotoViewer.this.windowLayoutParams.flags = -2147286784;
-            } else {
-                PhotoViewer.this.windowLayoutParams.flags = 131072;
+                PhotoViewer.this.windowLayoutParams.flags = -2147417856;
             }
             PhotoViewer.this.windowLayoutParams.softInputMode = 272;
             PhotoViewer.this.windowView.setFocusable(false);
@@ -4038,9 +4036,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             layoutParams.layoutInDisplayCutoutMode = 1;
         }
         if (i3 >= 21) {
-            layoutParams.flags = -2147286784;
-        } else {
-            layoutParams.flags = 131072;
+            layoutParams.flags = -2147417856;
         }
         PaintingOverlay paintingOverlay = new PaintingOverlay(this.parentActivity);
         this.paintingOverlay = paintingOverlay;
@@ -4648,6 +4644,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
             @Override
             protected void setupMentionContainer() {
+                this.mentionContainer.getAdapter().setAllowStickers(false);
+                this.mentionContainer.getAdapter().setAllowBots(false);
+                this.mentionContainer.getAdapter().setAllowChats(false);
+                this.mentionContainer.getAdapter().setSearchInDailogs(true);
                 if (PhotoViewer.this.parentChatActivity != null) {
                     this.mentionContainer.getAdapter().setChatInfo(PhotoViewer.this.parentChatActivity.chatInfo);
                     this.mentionContainer.getAdapter().setNeedUsernames(PhotoViewer.this.parentChatActivity.currentChat != null);
@@ -10175,7 +10175,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.photoPaintView.keyboardVisible = this.paintKeyboardNotifier.keyboardVisible();
         this.containerView.invalidate();
         Integer valueOf = Integer.valueOf(Math.max(num.intValue(), this.photoPaintView.getEmojiPadding(false)));
-        translateY((!this.photoPaintView.isCurrentText() || valueOf.intValue() <= 0) ? 0.0f : (((AndroidUtilities.displaySize.y - valueOf.intValue()) / 2.0f) - this.photoPaintView.getSelectedEntityCenterY()) / 2.5f);
+        translateY((!this.photoPaintView.isCurrentText() || valueOf.intValue() <= 0) ? 0.0f : ((AndroidUtilities.displaySize.y - valueOf.intValue()) - AndroidUtilities.dp(80.0f)) - this.photoPaintView.getSelectedEntityBottom());
         AnimatorSet animatorSet = this.paintKeyboardAnimator;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -12526,9 +12526,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 WindowManager.LayoutParams layoutParams = this.windowLayoutParams;
                 layoutParams.type = 99;
                 if (Build.VERSION.SDK_INT >= 21) {
-                    layoutParams.flags = -2147286784;
-                } else {
-                    layoutParams.flags = 131072;
+                    layoutParams.flags = -2147417856;
                 }
                 if (!(chatActivity == null || chatActivity.getCurrentEncryptedChat() == null) || ((this.avatarsDialogId != 0 && MessagesController.getInstance(this.currentAccount).isChatNoForwards(-this.avatarsDialogId)) || ((messageObject != null && (MessagesController.getInstance(this.currentAccount).isChatNoForwards(messageObject.getChatId()) || ((tLRPC$Message = messageObject.messageOwner) != null && tLRPC$Message.noforwards))) || (messageObject != null && messageObject.hasRevealedExtendedMedia())))) {
                     this.windowLayoutParams.flags |= LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM;

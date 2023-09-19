@@ -287,19 +287,43 @@ public class VideoEditedInfo {
             mediaEntity.rotation = this.rotation;
             mediaEntity.width = this.width;
             mediaEntity.height = this.height;
+            mediaEntity.additionalHeight = this.additionalHeight;
             mediaEntity.text = this.text;
-            mediaEntity.entities.addAll(this.entities);
+            if (this.entities != null) {
+                ArrayList<EmojiEntity> arrayList = new ArrayList<>();
+                mediaEntity.entities = arrayList;
+                arrayList.addAll(this.entities);
+            }
             mediaEntity.color = this.color;
             mediaEntity.fontSize = this.fontSize;
+            mediaEntity.textTypeface = this.textTypeface;
+            mediaEntity.textTypefaceKey = this.textTypefaceKey;
+            mediaEntity.textAlign = this.textAlign;
             mediaEntity.viewWidth = this.viewWidth;
             mediaEntity.viewHeight = this.viewHeight;
+            mediaEntity.roundRadius = this.roundRadius;
             mediaEntity.scale = this.scale;
             mediaEntity.textViewWidth = this.textViewWidth;
             mediaEntity.textViewHeight = this.textViewHeight;
             mediaEntity.textViewX = this.textViewX;
             mediaEntity.textViewY = this.textViewY;
-            mediaEntity.textAlign = this.textAlign;
-            mediaEntity.textTypeface = this.textTypeface;
+            mediaEntity.document = this.document;
+            mediaEntity.parentObject = this.parentObject;
+            mediaEntity.metadata = this.metadata;
+            mediaEntity.ptr = this.ptr;
+            mediaEntity.currentFrame = this.currentFrame;
+            mediaEntity.framesPerDraw = this.framesPerDraw;
+            mediaEntity.bitmap = this.bitmap;
+            mediaEntity.view = this.view;
+            mediaEntity.canvas = this.canvas;
+            mediaEntity.animatedFileDrawable = this.animatedFileDrawable;
+            mediaEntity.roundRadiusCanvas = this.roundRadiusCanvas;
+            mediaEntity.mediaArea = this.mediaArea;
+            mediaEntity.mediaGeo = this.mediaGeo;
+            mediaEntity.density = this.density;
+            mediaEntity.W = this.W;
+            mediaEntity.H = this.H;
+            mediaEntity.visibleReaction = this.visibleReaction;
             return mediaEntity;
         }
     }

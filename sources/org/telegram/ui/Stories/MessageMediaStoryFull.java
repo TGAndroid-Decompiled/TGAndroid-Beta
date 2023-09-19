@@ -1,5 +1,7 @@
 package org.telegram.ui.Stories;
 
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_messageMediaStory;
@@ -12,6 +14,7 @@ public class MessageMediaStoryFull extends TLRPC$TL_messageMediaStory {
         this.id = abstractSerializedData.readInt32(z);
         this.storyItem = TLRPC$StoryItem.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.via_mention = abstractSerializedData.readBool(z);
+        this.peer = MessagesController.getInstance(UserConfig.selectedAccount).getPeer(this.user_id);
     }
 
     @Override

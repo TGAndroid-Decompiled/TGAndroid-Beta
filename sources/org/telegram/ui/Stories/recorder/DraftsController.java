@@ -25,6 +25,7 @@ import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$InputDocument;
+import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputPrivacyRule;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
@@ -32,6 +33,7 @@ import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
 import org.telegram.tgnet.TLRPC$TL_jsonString;
 import org.telegram.tgnet.TLRPC$TL_null;
 import org.telegram.ui.ActionBar.Theme;
@@ -509,6 +511,7 @@ public class DraftsController {
         public String paintEntitiesFilePath;
         public String paintFilePath;
         private final ArrayList<StoryEntry.Part> parts;
+        public TLRPC$InputPeer peer;
         private int period;
         public final ArrayList<TLRPC$InputPrivacyRule> privacyRules;
         public int resultHeight;
@@ -579,6 +582,7 @@ public class DraftsController {
             this.audioLeft = storyEntry.audioLeft;
             this.audioRight = storyEntry.audioRight;
             this.audioVolume = storyEntry.audioVolume;
+            this.peer = storyEntry.peer;
         }
 
         public StoryEntry toEntry() {
@@ -661,6 +665,7 @@ public class DraftsController {
             storyEntry.audioLeft = this.audioLeft;
             storyEntry.audioRight = this.audioRight;
             storyEntry.audioVolume = this.audioVolume;
+            storyEntry.peer = this.peer;
             return storyEntry;
         }
 
@@ -762,27 +767,33 @@ public class DraftsController {
             abstractSerializedData.writeString(this.fullThumb);
             if (this.audioPath == null) {
                 abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
-                return;
-            }
-            abstractSerializedData.writeInt32(TLRPC$TL_documentAttributeAudio.constructor);
-            abstractSerializedData.writeString(this.audioPath);
-            if (this.audioAuthor == null) {
-                abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
             } else {
-                abstractSerializedData.writeInt32(TLRPC$TL_jsonString.constructor);
-                abstractSerializedData.writeString(this.audioAuthor);
+                abstractSerializedData.writeInt32(TLRPC$TL_documentAttributeAudio.constructor);
+                abstractSerializedData.writeString(this.audioPath);
+                if (this.audioAuthor == null) {
+                    abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+                } else {
+                    abstractSerializedData.writeInt32(TLRPC$TL_jsonString.constructor);
+                    abstractSerializedData.writeString(this.audioAuthor);
+                }
+                if (this.audioTitle == null) {
+                    abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+                } else {
+                    abstractSerializedData.writeInt32(TLRPC$TL_jsonString.constructor);
+                    abstractSerializedData.writeString(this.audioTitle);
+                }
+                abstractSerializedData.writeInt64(this.audioDuration);
+                abstractSerializedData.writeInt64(this.audioOffset);
+                abstractSerializedData.writeFloat(this.audioLeft);
+                abstractSerializedData.writeFloat(this.audioRight);
+                abstractSerializedData.writeFloat(this.audioVolume);
             }
-            if (this.audioTitle == null) {
-                abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+            TLRPC$InputPeer tLRPC$InputPeer = this.peer;
+            if (tLRPC$InputPeer != null) {
+                tLRPC$InputPeer.serializeToStream(abstractSerializedData);
             } else {
-                abstractSerializedData.writeInt32(TLRPC$TL_jsonString.constructor);
-                abstractSerializedData.writeString(this.audioTitle);
+                new TLRPC$TL_inputPeerSelf().serializeToStream(abstractSerializedData);
             }
-            abstractSerializedData.writeInt64(this.audioDuration);
-            abstractSerializedData.writeInt64(this.audioOffset);
-            abstractSerializedData.writeFloat(this.audioLeft);
-            abstractSerializedData.writeFloat(this.audioRight);
-            abstractSerializedData.writeFloat(this.audioVolume);
         }
 
         public int getObjectSize() {
@@ -955,21 +966,23 @@ public class DraftsController {
                 }
                 this.fullThumb = abstractSerializedData.readString(z);
             }
-            if (abstractSerializedData.remaining() <= 0 || abstractSerializedData.readInt32(z) != TLRPC$TL_documentAttributeAudio.constructor) {
-                return;
+            if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == TLRPC$TL_documentAttributeAudio.constructor) {
+                this.audioPath = abstractSerializedData.readString(z);
+                if (abstractSerializedData.readInt32(z) == TLRPC$TL_jsonString.constructor) {
+                    this.audioAuthor = abstractSerializedData.readString(z);
+                }
+                if (abstractSerializedData.readInt32(z) == TLRPC$TL_jsonString.constructor) {
+                    this.audioTitle = abstractSerializedData.readString(z);
+                }
+                this.audioDuration = abstractSerializedData.readInt64(z);
+                this.audioOffset = abstractSerializedData.readInt64(z);
+                this.audioLeft = abstractSerializedData.readFloat(z);
+                this.audioRight = abstractSerializedData.readFloat(z);
+                this.audioVolume = abstractSerializedData.readFloat(z);
             }
-            this.audioPath = abstractSerializedData.readString(z);
-            if (abstractSerializedData.readInt32(z) == TLRPC$TL_jsonString.constructor) {
-                this.audioAuthor = abstractSerializedData.readString(z);
+            if (abstractSerializedData.remaining() > 0) {
+                this.peer = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             }
-            if (abstractSerializedData.readInt32(z) == TLRPC$TL_jsonString.constructor) {
-                this.audioTitle = abstractSerializedData.readString(z);
-            }
-            this.audioDuration = abstractSerializedData.readInt64(z);
-            this.audioOffset = abstractSerializedData.readInt64(z);
-            this.audioLeft = abstractSerializedData.readFloat(z);
-            this.audioRight = abstractSerializedData.readFloat(z);
-            this.audioVolume = abstractSerializedData.readFloat(z);
         }
     }
 }

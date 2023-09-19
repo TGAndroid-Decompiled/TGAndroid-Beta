@@ -147,6 +147,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     public float radius;
     CustomEmojiReactionsWindow reactionsWindow;
     public RectF rect;
+    RectF rectF;
     public final RecyclerListView recyclerListView;
     Theme.ResourcesProvider resourcesProvider;
     private float rightAlpha;
@@ -166,7 +167,11 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     public interface ReactionsContainerDelegate {
 
         public final class CC {
-            public static void $default$drawRoundRect(ReactionsContainerDelegate reactionsContainerDelegate, Canvas canvas, RectF rectF, float f, float f2, float f3) {
+            public static boolean $default$drawBackground(ReactionsContainerDelegate reactionsContainerDelegate) {
+                return false;
+            }
+
+            public static void $default$drawRoundRect(ReactionsContainerDelegate reactionsContainerDelegate, Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
             }
 
             public static boolean $default$needEnterText(ReactionsContainerDelegate reactionsContainerDelegate) {
@@ -177,7 +182,9 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
             }
         }
 
-        void drawRoundRect(Canvas canvas, RectF rectF, float f, float f2, float f3);
+        boolean drawBackground();
+
+        void drawRoundRect(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z);
 
         boolean needEnterText();
 
@@ -203,7 +210,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         this.visibleReactionsList = new ArrayList(20);
         this.premiumLockedReactions = new ArrayList(10);
         this.allReactionsList = new ArrayList(20);
-        new RectF();
+        this.rectF = new RectF();
         this.selectedReactions = new HashSet<>();
         this.location = new int[2];
         this.shadowPad = new android.graphics.Rect();
@@ -738,7 +745,7 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r22) {
+    protected void dispatchDraw(android.graphics.Canvas r24) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ReactionsContainerLayout.dispatchDraw(android.graphics.Canvas):void");
     }
 
@@ -764,17 +771,31 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         int dp = AndroidUtilities.dp(3.0f);
         this.shadow.setAlpha(i);
         this.bgPaint.setAlpha(i);
-        float f5 = dp;
-        float f6 = f5 * f2;
-        this.shadow.setBounds((int) ((width - f) - f6), (int) ((paddingTop - f) - f6), (int) (width + f + f6), (int) (paddingTop + f + f6));
+        float f5 = width - f;
+        float f6 = dp;
+        float f7 = f6 * f2;
+        float f8 = paddingTop - f;
+        float f9 = width + f;
+        float f10 = paddingTop + f;
+        this.shadow.setBounds((int) (f5 - f7), (int) (f8 - f7), (int) (f9 + f7), (int) (f7 + f10));
         this.shadow.draw(canvas);
-        canvas.drawCircle(width, paddingTop, f, this.bgPaint);
+        if (this.delegate.drawBackground()) {
+            this.rectF.set(f5, f8, f9, f10);
+            this.delegate.drawRoundRect(canvas, this.rectF, f, getX(), getY(), i, false);
+        } else {
+            canvas.drawCircle(width, paddingTop, f, this.bgPaint);
+        }
         float width2 = ((LocaleController.isRTL || this.mirrorX) ? this.bigCircleOffset - this.bigCircleRadius : (getWidth() - this.bigCircleOffset) + this.bigCircleRadius) + this.bubblesOffset;
-        float lerp = AndroidUtilities.lerp(this.isTop ? (getPaddingTop() - expandSize()) - AndroidUtilities.dp(16.0f) : ((getHeight() - this.smallCircleRadius) - f5) + expandSize(), (this.smallCircleRadius + f5) - expandSize(), CubicBezierInterpolator.DEFAULT.getInterpolation(this.flipVerticalProgress));
-        float f7 = (-AndroidUtilities.dp(1.0f)) * f2;
-        this.shadow.setBounds((int) ((width2 - f) - f7), (int) ((lerp - f) - f7), (int) (width2 + f + f7), (int) (f + lerp + f7));
+        float lerp = AndroidUtilities.lerp(this.isTop ? (getPaddingTop() - expandSize()) - AndroidUtilities.dp(16.0f) : ((getHeight() - this.smallCircleRadius) - f6) + expandSize(), (this.smallCircleRadius + f6) - expandSize(), CubicBezierInterpolator.DEFAULT.getInterpolation(this.flipVerticalProgress));
+        float f11 = (-AndroidUtilities.dp(1.0f)) * f2;
+        this.shadow.setBounds((int) ((width2 - f) - f11), (int) ((lerp - f) - f11), (int) (width2 + f + f11), (int) (lerp + f + f11));
         this.shadow.draw(canvas);
-        canvas.drawCircle(width2, lerp, f3, this.bgPaint);
+        if (this.delegate.drawBackground()) {
+            this.rectF.set(width2 - f3, lerp - f3, width2 + f3, lerp + f3);
+            this.delegate.drawRoundRect(canvas, this.rectF, f3, getX(), getY(), i, false);
+        } else {
+            canvas.drawCircle(width2, lerp, f3, this.bgPaint);
+        }
         canvas.restore();
         this.shadow.setAlpha(255);
         this.bgPaint.setAlpha(255);

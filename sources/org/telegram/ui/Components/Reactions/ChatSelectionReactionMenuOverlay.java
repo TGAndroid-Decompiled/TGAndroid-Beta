@@ -118,8 +118,13 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
 
     public class AnonymousClass3 implements ReactionsContainerLayout.ReactionsContainerDelegate {
         @Override
-        public void drawRoundRect(Canvas canvas, RectF rectF, float f, float f2, float f3) {
-            ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawRoundRect(this, canvas, rectF, f, f2, f3);
+        public boolean drawBackground() {
+            return ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawBackground(this);
+        }
+
+        @Override
+        public void drawRoundRect(Canvas canvas, RectF rectF, float f, float f2, float f3, int i, boolean z) {
+            ReactionsContainerLayout.ReactionsContainerDelegate.CC.$default$drawRoundRect(this, canvas, rectF, f, f2, f3, i, z);
         }
 
         @Override
@@ -202,18 +207,13 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
 
     private void animateVisible(boolean z) {
         if (z) {
-            this.currentPrimaryObject = findPrimaryObject();
-            checkCreateReactionsLayout();
-            invalidatePosition(false);
             setVisibility(0);
-            if (this.reactionsContainerLayout.isEnabled()) {
-                this.messageSet = true;
-                this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, this.parentFragment.getCurrentChatInfo());
-                this.reactionsContainerLayout.startEnterAnimation(false);
-                return;
-            }
-            this.messageSet = false;
-            this.reactionsContainerLayout.setTransitionProgress(1.0f);
+            post(new Runnable() {
+                @Override
+                public final void run() {
+                    ChatSelectionReactionMenuOverlay.this.lambda$animateVisible$0();
+                }
+            });
             return;
         }
         this.messageSet = false;
@@ -221,7 +221,7 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                ChatSelectionReactionMenuOverlay.this.lambda$animateVisible$0(valueAnimator);
+                ChatSelectionReactionMenuOverlay.this.lambda$animateVisible$1(valueAnimator);
             }
         });
         duration.addListener(new AnimatorListenerAdapter() {
@@ -239,7 +239,21 @@ public class ChatSelectionReactionMenuOverlay extends FrameLayout {
         duration.start();
     }
 
-    public void lambda$animateVisible$0(ValueAnimator valueAnimator) {
+    public void lambda$animateVisible$0() {
+        this.currentPrimaryObject = findPrimaryObject();
+        checkCreateReactionsLayout();
+        invalidatePosition(false);
+        if (this.reactionsContainerLayout.isEnabled()) {
+            this.messageSet = true;
+            this.reactionsContainerLayout.setMessage(this.currentPrimaryObject, this.parentFragment.getCurrentChatInfo());
+            this.reactionsContainerLayout.startEnterAnimation(false);
+            return;
+        }
+        this.messageSet = false;
+        this.reactionsContainerLayout.setTransitionProgress(1.0f);
+    }
+
+    public void lambda$animateVisible$1(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         ReactionsContainerLayout reactionsContainerLayout = this.reactionsContainerLayout;
         if (reactionsContainerLayout != null) {

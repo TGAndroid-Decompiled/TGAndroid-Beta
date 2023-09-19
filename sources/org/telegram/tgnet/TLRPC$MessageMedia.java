@@ -20,6 +20,7 @@ public abstract class TLRPC$MessageMedia extends TLObject {
     public int id;
     public String last_name;
     public boolean nopremium;
+    public TLRPC$Peer peer;
     public int period;
     public String phone_number;
     public TLRPC$Photo photo;
@@ -232,7 +233,38 @@ public abstract class TLRPC$MessageMedia extends TLObject {
                 };
                 break;
             case -877523576:
-                tLRPC$MessageMedia = new TLRPC$TL_messageMediaStory();
+                tLRPC$MessageMedia = new TLRPC$MessageMedia() {
+                    public static int constructor = -877523576;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.via_mention = (readInt32 & 2) != 0;
+                        this.user_id = abstractSerializedData2.readInt64(z2);
+                        this.id = abstractSerializedData2.readInt32(z2);
+                        if ((this.flags & 1) != 0) {
+                            this.storyItem = TLRPC$StoryItem.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        }
+                        TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
+                        this.peer = tLRPC$TL_peerUser;
+                        tLRPC$TL_peerUser.user_id = this.user_id;
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        this.flags = this.storyItem != null ? this.flags | 1 : this.flags & (-2);
+                        abstractSerializedData2.writeInt32(constructor);
+                        int i2 = this.via_mention ? this.flags | 2 : this.flags & (-3);
+                        this.flags = i2;
+                        abstractSerializedData2.writeInt32(i2);
+                        abstractSerializedData2.writeInt64(this.peer.user_id);
+                        abstractSerializedData2.writeInt32(this.id);
+                        if ((this.flags & 1) != 0) {
+                            this.storyItem.serializeToStream(abstractSerializedData2);
+                        }
+                    }
+                };
                 break;
             case -873313984:
                 tLRPC$MessageMedia = new TLRPC$TL_messageMediaContact() {
@@ -377,6 +409,9 @@ public abstract class TLRPC$MessageMedia extends TLObject {
                         abstractSerializedData2.writeInt32(this.value);
                     }
                 };
+                break;
+            case 1758159491:
+                tLRPC$MessageMedia = new TLRPC$TL_messageMediaStory();
                 break;
             case 1766936791:
                 tLRPC$MessageMedia = new TLRPC$TL_messageMediaPhoto();

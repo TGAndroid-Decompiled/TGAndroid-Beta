@@ -2,9 +2,9 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_stories_getStoriesByID extends TLObject {
-    public static int constructor = 1779814214;
+    public static int constructor = 1467271796;
     public ArrayList<Integer> id = new ArrayList<>();
-    public TLRPC$InputUser user_id;
+    public TLRPC$InputPeer peer;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -14,7 +14,7 @@ public class TLRPC$TL_stories_getStoriesByID extends TLObject {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        this.user_id.serializeToStream(abstractSerializedData);
+        this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
         int size = this.id.size();
         abstractSerializedData.writeInt32(size);

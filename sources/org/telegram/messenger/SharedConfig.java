@@ -138,6 +138,9 @@ public class SharedConfig {
     public static boolean roundCamera16to9;
     public static boolean saveIncomingPhotos;
     public static boolean saveStreamMedia;
+    public static long scheduledHintSeenAt;
+    public static int scheduledHintShows;
+    public static long scheduledOrNoSoundHintSeenAt;
     public static int scheduledOrNoSoundHintShows;
     public static int searchMessagesAsListHintShows;
     public static boolean searchMessagesAsListUsed;
@@ -444,6 +447,9 @@ public class SharedConfig {
                 edit.putBoolean("sortFilesByName", sortFilesByName);
                 edit.putInt("textSelectionHintShows", textSelectionHintShows);
                 edit.putInt("scheduledOrNoSoundHintShows", scheduledOrNoSoundHintShows);
+                edit.putLong("scheduledOrNoSoundHintSeenAt", scheduledOrNoSoundHintSeenAt);
+                edit.putInt("scheduledHintShows", scheduledHintShows);
+                edit.putLong("scheduledHintSeenAt", scheduledHintSeenAt);
                 edit.putBoolean("forwardingOptionsHintShown", forwardingOptionsHintShown);
                 edit.putInt("lockRecordAudioVideoHint", lockRecordAudioVideoHint);
                 edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : "");
@@ -643,6 +649,9 @@ public class SharedConfig {
         lastUpdateVersion = BuildVars.BUILD_VERSION_STRING;
         textSelectionHintShows = 0;
         scheduledOrNoSoundHintShows = 0;
+        scheduledOrNoSoundHintSeenAt = 0L;
+        scheduledHintShows = 0;
+        scheduledHintSeenAt = 0L;
         lockRecordAudioVideoHint = 0;
         forwardingOptionsHintShown = false;
         messageSeenHintCount = 3;
@@ -703,11 +712,23 @@ public class SharedConfig {
         edit.apply();
     }
 
-    public static void increaseScheduledOrNoSuoundHintShowed() {
+    public static void increaseScheduledOrNoSoundHintShowed() {
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        scheduledOrNoSoundHintSeenAt = System.currentTimeMillis();
         int i = scheduledOrNoSoundHintShows + 1;
         scheduledOrNoSoundHintShows = i;
         edit.putInt("scheduledOrNoSoundHintShows", i);
+        edit.putLong("scheduledOrNoSoundHintSeenAt", scheduledOrNoSoundHintSeenAt);
+        edit.apply();
+    }
+
+    public static void increaseScheduledHintShowed() {
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        scheduledHintSeenAt = System.currentTimeMillis();
+        int i = scheduledHintShows + 1;
+        scheduledHintShows = i;
+        edit.putInt("scheduledHintShows", i);
+        edit.putLong("scheduledHintSeenAt", scheduledHintSeenAt);
         edit.apply();
     }
 
@@ -721,6 +742,12 @@ public class SharedConfig {
     public static void removeScheduledOrNoSoundHint() {
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putInt("scheduledOrNoSoundHintShows", 3);
+        edit.apply();
+    }
+
+    public static void removeScheduledHint() {
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putInt("scheduledHintShows", 3);
         edit.apply();
     }
 

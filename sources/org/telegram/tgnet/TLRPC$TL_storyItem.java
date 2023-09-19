@@ -16,6 +16,7 @@ public class TLRPC$TL_storyItem extends TLRPC$StoryItem {
         this.edited = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
         this.contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
         this.selected_contacts = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+        this.out = (readInt32 & 65536) != 0;
         this.id = abstractSerializedData.readInt32(z);
         this.date = abstractSerializedData.readInt32(z);
         this.expire_date = abstractSerializedData.readInt32(z);
@@ -101,7 +102,9 @@ public class TLRPC$TL_storyItem extends TLRPC$StoryItem {
         this.flags = i7;
         int i8 = this.selected_contacts ? i7 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i7 & (-8193);
         this.flags = i8;
-        abstractSerializedData.writeInt32(i8);
+        int i9 = this.out ? i8 | 65536 : i8 & (-65537);
+        this.flags = i9;
+        abstractSerializedData.writeInt32(i9);
         abstractSerializedData.writeInt32(this.id);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeInt32(this.expire_date);
@@ -112,8 +115,8 @@ public class TLRPC$TL_storyItem extends TLRPC$StoryItem {
             abstractSerializedData.writeInt32(481674261);
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
-            for (int i9 = 0; i9 < size; i9++) {
-                this.entities.get(i9).serializeToStream(abstractSerializedData);
+            for (int i10 = 0; i10 < size; i10++) {
+                this.entities.get(i10).serializeToStream(abstractSerializedData);
             }
         }
         this.media.serializeToStream(abstractSerializedData);
@@ -121,16 +124,16 @@ public class TLRPC$TL_storyItem extends TLRPC$StoryItem {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.media_areas.size();
             abstractSerializedData.writeInt32(size2);
-            for (int i10 = 0; i10 < size2; i10++) {
-                this.media_areas.get(i10).serializeToStream(abstractSerializedData);
+            for (int i11 = 0; i11 < size2; i11++) {
+                this.media_areas.get(i11).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 4) != 0) {
             abstractSerializedData.writeInt32(481674261);
             int size3 = this.privacy.size();
             abstractSerializedData.writeInt32(size3);
-            for (int i11 = 0; i11 < size3; i11++) {
-                this.privacy.get(i11).serializeToStream(abstractSerializedData);
+            for (int i12 = 0; i12 < size3; i12++) {
+                this.privacy.get(i12).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 8) != 0) {

@@ -94,6 +94,7 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
     private int[] pendingReplaceColors;
     protected boolean playInDirectionOfCustomEndFrame;
     boolean precache;
+    private Bitmap rawBackgroundBitmap;
     private int rawBackgroundBitmapFrame;
     protected volatile Bitmap renderingBitmap;
     private boolean resetVibrationAfterRestart;
@@ -1433,18 +1434,25 @@ public class RLottieDrawable extends BitmapDrawable implements Animatable, Bitma
         return i2 > this.metaData[0] ? 0 : 1;
     }
 
-    public void drawFrame(Canvas canvas, int i) {
-        if (this.rawBackgroundBitmapFrame != i || this.backgroundBitmap == null) {
-            if (this.backgroundBitmap == null) {
-                this.backgroundBitmap = Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888);
+    public void cacheFrame(int i) {
+        if (this.rawBackgroundBitmapFrame != i || this.rawBackgroundBitmap == null) {
+            if (this.rawBackgroundBitmap == null) {
+                this.rawBackgroundBitmap = Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888);
             }
             long j = this.nativePtr;
             this.rawBackgroundBitmapFrame = i;
-            getFrame(j, i, this.backgroundBitmap, this.width, this.height, this.backgroundBitmap.getRowBytes(), true);
+            Bitmap bitmap = this.rawBackgroundBitmap;
+            getFrame(j, i, bitmap, this.width, this.height, bitmap.getRowBytes(), true);
         }
-        android.graphics.Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(0, 0, this.width, this.height);
-        canvas.drawBitmap(this.backgroundBitmap, rect, getBounds(), getPaint());
+    }
+
+    public void drawFrame(Canvas canvas, int i) {
+        cacheFrame(i);
+        if (this.rawBackgroundBitmap != null) {
+            android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+            rect.set(0, 0, this.width, this.height);
+            canvas.drawBitmap(this.rawBackgroundBitmap, rect, getBounds(), getPaint());
+        }
     }
 
     @Override

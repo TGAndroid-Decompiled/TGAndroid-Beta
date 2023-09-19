@@ -28,11 +28,10 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC$PeerStories;
 import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_storyItemDeleted;
 import org.telegram.tgnet.TLRPC$TL_storyItemSkipped;
-import org.telegram.tgnet.TLRPC$TL_userStories;
-import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -51,6 +50,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private int count;
     private final int currentAccount;
     private float cy;
+    private final long dialogId;
     private float expandProgress;
     private float expandRight;
     private float expandY;
@@ -58,6 +58,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private StoryCircle mainCircle;
     private ValueAnimator newStoryBounce;
     private float newStoryBounceT;
+    private TLRPC$PeerStories peerStories;
     private final StoryViewer.PlaceProvider provider;
     private final Paint readPaint;
     private int readPaintAlpha;
@@ -74,8 +75,6 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private float tapY;
     private final AnimatedTextView.AnimatedTextDrawable titleDrawable;
     private int unreadCount;
-    private TLRPC$UserFull userFull;
-    private final long userId;
     float w;
     private final Paint whitePaint;
 
@@ -146,7 +145,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         this.rightAnimated = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.provider = new AnonymousClass2();
         this.currentAccount = i;
-        this.userId = j;
+        this.dialogId = j;
         this.avatarContainer = view;
         this.avatarImage = avatarImageView;
         StoriesGradientTools storiesGradientTools = new StoriesGradientTools();
@@ -174,8 +173,8 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         return drawable == this.titleDrawable || super.verifyDrawable(drawable);
     }
 
-    public void setUserFull(TLRPC$UserFull tLRPC$UserFull) {
-        this.userFull = tLRPC$UserFull;
+    public void setStories(TLRPC$PeerStories tLRPC$PeerStories) {
+        this.peerStories = tLRPC$PeerStories;
         updateStories(true, false);
     }
 
@@ -183,16 +182,15 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         ArrayList<TLRPC$StoryItem> arrayList;
         int i;
         TLRPC$StoryItem tLRPC$StoryItem;
-        boolean z3 = this.userId == UserConfig.getInstance(this.currentAccount).getClientUserId();
-        TLRPC$UserFull tLRPC$UserFull = this.userFull;
-        TLRPC$TL_userStories tLRPC$TL_userStories = (tLRPC$UserFull == null || z3) ? null : tLRPC$UserFull.stories;
-        TLRPC$TL_userStories stories = MessagesController.getInstance(this.currentAccount).getStoriesController().getStories(this.userId);
-        TLRPC$TL_userStories tLRPC$TL_userStories2 = this.userId == 0 ? null : tLRPC$TL_userStories;
-        int max = tLRPC$TL_userStories != null ? Math.max(0, tLRPC$TL_userStories.max_read_id) : 0;
+        boolean z3 = this.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId();
+        TLRPC$PeerStories tLRPC$PeerStories = this.peerStories;
+        TLRPC$PeerStories stories = MessagesController.getInstance(this.currentAccount).getStoriesController().getStories(this.dialogId);
+        TLRPC$PeerStories tLRPC$PeerStories2 = this.dialogId == 0 ? null : tLRPC$PeerStories;
+        int max = tLRPC$PeerStories != null ? Math.max(0, tLRPC$PeerStories.max_read_id) : 0;
         if (stories != null) {
             max = Math.max(max, stories.max_read_id);
         }
-        if (tLRPC$TL_userStories2 == null || (arrayList = tLRPC$TL_userStories2.stories) == null) {
+        if (tLRPC$PeerStories2 == null || (arrayList = tLRPC$PeerStories2.stories) == null) {
             arrayList = new ArrayList<>();
         }
         ArrayList arrayList2 = new ArrayList();
@@ -229,13 +227,13 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                         }
                         boolean z4 = tLRPC$StoryItem3 instanceof TLRPC$TL_storyItemSkipped;
                         if (z4) {
-                            if (tLRPC$TL_userStories != null) {
+                            if (tLRPC$PeerStories != null) {
                                 int i7 = 0;
                                 while (true) {
-                                    if (i7 >= tLRPC$TL_userStories.stories.size()) {
+                                    if (i7 >= tLRPC$PeerStories.stories.size()) {
                                         break;
-                                    } else if (tLRPC$TL_userStories.stories.get(i7).id == i5) {
-                                        tLRPC$TL_userStories.stories.get(i7);
+                                    } else if (tLRPC$PeerStories.stories.get(i7).id == i5) {
+                                        tLRPC$PeerStories.stories.get(i7);
                                         break;
                                     } else {
                                         i7++;
@@ -277,13 +275,13 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                     }
                     boolean z5 = tLRPC$StoryItem4 instanceof TLRPC$TL_storyItemSkipped;
                     if (z5) {
-                        if (tLRPC$TL_userStories != null) {
+                        if (tLRPC$PeerStories != null) {
                             int i11 = 0;
                             while (true) {
-                                if (i11 >= tLRPC$TL_userStories.stories.size()) {
+                                if (i11 >= tLRPC$PeerStories.stories.size()) {
                                     break;
-                                } else if (tLRPC$TL_userStories.stories.get(i11).id == i9) {
-                                    tLRPC$TL_userStories.stories.get(i11);
+                                } else if (tLRPC$PeerStories.stories.get(i11).id == i9) {
+                                    tLRPC$PeerStories.stories.get(i11);
                                     break;
                                 } else {
                                     i11++;
@@ -321,7 +319,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 storyCircle.scale = 0.0f;
             } else {
                 storyCircle.index = i13;
-                storyCircle.read = z3 || !(tLRPC$TL_userStories2 == null || tLRPC$StoryItem == null || tLRPC$StoryItem.id > tLRPC$TL_userStories2.max_read_id);
+                storyCircle.read = z3 || !(tLRPC$PeerStories2 == null || tLRPC$StoryItem == null || tLRPC$StoryItem.id > tLRPC$PeerStories2.max_read_id);
             }
             if (!z) {
                 storyCircle.apply();
@@ -341,12 +339,12 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 }
             }
             if (i15 == -1) {
-                tLRPC$StoryItem5.dialogId = this.userId;
+                tLRPC$StoryItem5.dialogId = this.dialogId;
                 StoryCircle storyCircle2 = new StoryCircle(tLRPC$StoryItem5);
                 storyCircle2.index = i14;
                 storyCircle2.scale = 1.0f;
                 storyCircle2.scaleAnimated.set(0.0f, true);
-                storyCircle2.read = z3 || (tLRPC$TL_userStories2 != null && tLRPC$StoryItem5.id <= tLRPC$TL_userStories2.max_read_id);
+                storyCircle2.read = z3 || (tLRPC$PeerStories2 != null && tLRPC$StoryItem5.id <= tLRPC$PeerStories2.max_read_id);
                 if (!z) {
                     storyCircle2.apply();
                 }
@@ -463,10 +461,12 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         float f2;
         float f3;
         this.rightAnimated.set(this.right);
-        float x = this.avatarContainer.getX() + (this.avatarContainer.getScaleX() * 0.0f);
-        float y = this.avatarContainer.getY() + (this.avatarContainer.getScaleY() * 0.0f);
-        this.rect1.set(x, y, ((this.avatarContainer.getWidth() - 0.0f) * this.avatarContainer.getScaleX()) + x, ((this.avatarContainer.getHeight() - 0.0f) * this.avatarContainer.getScaleY()) + y);
-        float f4 = this.left;
+        float dpf2 = this.dialogId < 0 ? AndroidUtilities.dpf2(3.5f) : 0.0f;
+        float x = this.avatarContainer.getX() + (this.avatarContainer.getScaleX() * dpf2);
+        float y = this.avatarContainer.getY() + (this.avatarContainer.getScaleY() * dpf2);
+        float f4 = dpf2 * 2.0f;
+        this.rect1.set(x, y, ((this.avatarContainer.getWidth() - f4) * this.avatarContainer.getScaleX()) + x, ((this.avatarContainer.getHeight() - f4) * this.avatarContainer.getScaleY()) + y);
+        float f5 = this.left;
         int i2 = 0;
         while (true) {
             if (i2 >= this.circles.size()) {
@@ -474,9 +474,9 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 break;
             }
             StoryCircle storyCircle = this.circles.get(i2);
-            float f5 = storyCircle.scaleAnimated.set(storyCircle.scale);
-            storyCircle.cachedScale = f5;
-            if (f5 <= 0.0f && storyCircle.scale <= 0.0f) {
+            float f6 = storyCircle.scaleAnimated.set(storyCircle.scale);
+            storyCircle.cachedScale = f6;
+            if (f6 <= 0.0f && storyCircle.scale <= 0.0f) {
                 storyCircle.destroy();
                 this.circles.remove(i2);
                 i2--;
@@ -501,12 +501,12 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             });
         }
         float clamp = Utilities.clamp(1.0f - (this.expandProgress / 0.2f), 1.0f, 0.0f);
-        float f6 = this.segmentsCountAnimated.set(this.count);
-        float f7 = this.segmentsUnreadCountAnimated.set(this.unreadCount);
+        float f7 = this.segmentsCountAnimated.set(this.count);
+        float f8 = this.segmentsUnreadCountAnimated.set(this.unreadCount);
         float lerp = AndroidUtilities.lerp(this.rect1.centerY(), this.expandY, this.expandProgress);
         this.storiesGradientTools.setBounds(this.left, lerp - AndroidUtilities.dp(24.0f), this.right, AndroidUtilities.dp(24.0f) + lerp);
         if (this.expandProgress <= 0.0f || clamp >= 1.0f) {
-            f = f6;
+            f = f7;
             i = 1526726655;
             f2 = 1.0f;
         } else {
@@ -514,22 +514,22 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             for (int i3 = 0; i3 < this.circles.size(); i3++) {
                 this.w += AndroidUtilities.dp(14.0f) * this.circles.get(i3).cachedScale;
             }
-            float f8 = 0.0f;
+            float f9 = 0.0f;
             for (int i4 = 0; i4 < this.circles.size(); i4++) {
                 StoryCircle storyCircle2 = this.circles.get(i4);
-                float f9 = storyCircle2.cachedScale;
-                float f10 = storyCircle2.cachedRead;
-                float dp = (AndroidUtilities.dp(28.0f) / 2.0f) * f9;
-                float f11 = (this.expandRight - this.w) + dp + f8;
-                f8 += AndroidUtilities.dp(18.0f) * f9;
-                float f12 = f11 + dp;
-                f4 = Math.max(f4, f12);
-                this.rect2.set(f11 - dp, lerp - dp, f12, dp + lerp);
+                float f10 = storyCircle2.cachedScale;
+                float f11 = storyCircle2.cachedRead;
+                float dp = (AndroidUtilities.dp(28.0f) / 2.0f) * f10;
+                float f12 = (this.expandRight - this.w) + dp + f9;
+                f9 += AndroidUtilities.dp(18.0f) * f10;
+                float f13 = f12 + dp;
+                f5 = Math.max(f5, f13);
+                this.rect2.set(f12 - dp, lerp - dp, f13, dp + lerp);
                 lerpCentered(this.rect1, this.rect2, this.expandProgress, this.rect3);
                 storyCircle2.cachedRect.set(this.rect3);
                 storyCircle2.borderRect.set(this.rect3);
-                float f13 = (-AndroidUtilities.lerp(AndroidUtilities.dpf2(2.66f), AndroidUtilities.lerp(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(2.33f), this.expandProgress), f10 * this.expandProgress)) * f9;
-                storyCircle2.borderRect.inset(f13, f13);
+                float f14 = (-AndroidUtilities.lerp(AndroidUtilities.dpf2(2.66f), AndroidUtilities.lerp(AndroidUtilities.dpf2(1.33f), AndroidUtilities.dpf2(2.33f), this.expandProgress), f11 * this.expandProgress)) * f10;
+                storyCircle2.borderRect.inset(f14, f14);
             }
             this.readPaint.setColor(ColorUtils.blendARGB(1526726655, -2135178036, this.expandProgress));
             this.readPaintAlpha = this.readPaint.getAlpha();
@@ -555,20 +555,20 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 StoryCircle nearest2 = nearest(i9 < this.circles.size() ? this.circles.get(i9) : null, i10 < this.circles.size() ? this.circles.get(i10) : null, storyCircle4);
                 StoryCircle storyCircle5 = (nearest == null || (Math.abs(nearest.borderRect.centerX() - storyCircle4.borderRect.centerX()) >= Math.abs((storyCircle4.borderRect.width() / 2.0f) - (nearest.borderRect.width() / 2.0f)) && Math.abs(nearest.borderRect.centerX() - storyCircle4.borderRect.centerX()) <= (nearest.borderRect.width() / 2.0f) + (storyCircle4.borderRect.width() / 2.0f))) ? nearest : null;
                 StoryCircle storyCircle6 = (nearest2 == null || (Math.abs(nearest2.borderRect.centerX() - storyCircle4.borderRect.centerX()) >= Math.abs((storyCircle4.borderRect.width() / 2.0f) - (nearest2.borderRect.width() / 2.0f)) && Math.abs(nearest2.borderRect.centerX() - storyCircle4.borderRect.centerX()) <= (nearest2.borderRect.width() / 2.0f) + (storyCircle4.borderRect.width() / 2.0f))) ? nearest2 : null;
-                float f14 = storyCircle4.cachedRead;
-                if (f14 < 1.0f) {
-                    this.storiesGradientTools.paint.setAlpha((int) (storyCircle4.cachedScale * 255.0f * (1.0f - f14) * (1.0f - clamp)));
+                float f15 = storyCircle4.cachedRead;
+                if (f15 < 1.0f) {
+                    this.storiesGradientTools.paint.setAlpha((int) (storyCircle4.cachedScale * 255.0f * (1.0f - f15) * (1.0f - clamp)));
                     drawArcs(canvas, storyCircle5, storyCircle4, storyCircle6, this.storiesGradientTools.paint);
                 }
-                float f15 = storyCircle4.cachedRead;
-                if (f15 > 0.0f) {
-                    this.readPaint.setAlpha((int) (this.readPaintAlpha * storyCircle4.cachedScale * f15 * (1.0f - clamp)));
+                float f16 = storyCircle4.cachedRead;
+                if (f16 > 0.0f) {
+                    this.readPaint.setAlpha((int) (this.readPaintAlpha * storyCircle4.cachedScale * f16 * (1.0f - clamp)));
                     drawArcs(canvas, storyCircle5, storyCircle4, storyCircle6, this.readPaint);
                 }
                 i6 = i9;
             }
             i = 1526726655;
-            f = f6;
+            f = f7;
             f2 = 1.0f;
             canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (this.expandProgress * 255.0f * (1.0f - clamp)), 31);
             for (int size = this.circles.size() - 1; size >= 0; size--) {
@@ -592,45 +592,45 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         this.rect2.inset(-AndroidUtilities.dpf2(3.775f), -AndroidUtilities.dpf2(3.775f));
         this.rect3.set(this.rect1);
         this.rect3.inset(-AndroidUtilities.dpf2(3.41f), -AndroidUtilities.dpf2(3.41f));
-        double dpf2 = AndroidUtilities.dpf2(4.23f);
+        double dpf22 = AndroidUtilities.dpf2(4.23f);
         double width = this.rect1.width();
         Double.isNaN(width);
-        Double.isNaN(dpf2);
-        float lerp2 = AndroidUtilities.lerp(0.0f, (float) ((dpf2 / (width * 3.141592653589793d)) * 360.0d), Utilities.clamp(f - f2, f2, 0.0f) * clamp);
+        Double.isNaN(dpf22);
+        float lerp2 = AndroidUtilities.lerp(0.0f, (float) ((dpf22 / (width * 3.141592653589793d)) * 360.0d), Utilities.clamp(f - f2, f2, 0.0f) * clamp);
         int min = Math.min(this.count, 50);
         float min2 = Math.min(f, 50.0f);
         float max = (360.0f - (Math.max(0.0f, min2) * lerp2)) / Math.max(f2, min2);
         this.readPaint.setColor(ColorUtils.blendARGB(i, 973078528, this.actionBarProgress));
         this.readPaintAlpha = this.readPaint.getAlpha();
-        float f16 = (-90.0f) - (lerp2 / 2.0f);
+        float f17 = (-90.0f) - (lerp2 / 2.0f);
         int i13 = 0;
         while (i13 < min) {
-            float f17 = i13;
-            float clamp2 = f2 - Utilities.clamp(f7 - f17, f2, 0.0f);
-            float clamp3 = f2 - Utilities.clamp((min - min2) - f17, f2, 0.0f);
+            float f18 = i13;
+            float clamp2 = f2 - Utilities.clamp(f8 - f18, f2, 0.0f);
+            float clamp3 = f2 - Utilities.clamp((min - min2) - f18, f2, 0.0f);
             if (clamp3 >= 0.0f) {
-                float f18 = i13 == 0 ? ((this.newStoryBounceT - f2) / 2.5f) + f2 : 1.0f;
-                if (f18 != f2) {
+                float f19 = i13 == 0 ? ((this.newStoryBounceT - f2) / 2.5f) + f2 : 1.0f;
+                if (f19 != f2) {
                     canvas.save();
-                    canvas.scale(f18, f18, this.rect2.centerX(), this.rect2.centerY());
+                    canvas.scale(f19, f19, this.rect2.centerX(), this.rect2.centerY());
                 }
                 if (clamp2 < f2) {
                     this.storiesGradientTools.paint.setAlpha((int) ((f2 - clamp2) * 255.0f * clamp));
                     this.storiesGradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.33f));
-                    f3 = f18;
-                    canvas.drawArc(this.rect2, f16, (-max) * clamp3, false, this.storiesGradientTools.paint);
+                    f3 = f19;
+                    canvas.drawArc(this.rect2, f17, (-max) * clamp3, false, this.storiesGradientTools.paint);
                 } else {
-                    f3 = f18;
+                    f3 = f19;
                 }
                 if (clamp2 > 0.0f) {
                     this.readPaint.setAlpha((int) (this.readPaintAlpha * clamp2 * clamp));
                     this.readPaint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
-                    canvas.drawArc(this.rect3, f16, (-max) * clamp3, false, this.readPaint);
+                    canvas.drawArc(this.rect3, f17, (-max) * clamp3, false, this.readPaint);
                 }
                 if (f3 != f2) {
                     canvas.restore();
                 }
-                f16 -= (max * clamp3) + (clamp3 * lerp2);
+                f17 -= (max * clamp3) + (clamp3 * lerp2);
             }
             i13++;
         }

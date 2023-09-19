@@ -1145,6 +1145,10 @@ public class FileLoader extends BaseController {
     }
 
     public File getPathToMessage(TLRPC$Message tLRPC$Message, boolean z) {
+        return getPathToMessage(tLRPC$Message, z, false);
+    }
+
+    public File getPathToMessage(TLRPC$Message tLRPC$Message, boolean z, boolean z2) {
         TLRPC$PhotoSize closestPhotoSizeWithSize;
         TLRPC$PhotoSize closestPhotoSizeWithSize2;
         TLRPC$PhotoSize closestPhotoSizeWithSize3;
@@ -1160,7 +1164,7 @@ public class FileLoader extends BaseController {
                 }
             }
         } else if (MessageObject.getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaDocument) {
-            return getPathToAttach(MessageObject.getMedia(tLRPC$Message).document, null, MessageObject.getMedia(tLRPC$Message).ttl_seconds != 0, z);
+            return getPathToAttach(MessageObject.getMedia(tLRPC$Message).document, null, null, MessageObject.getMedia(tLRPC$Message).ttl_seconds != 0, z, z2);
         } else if (MessageObject.getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPhoto) {
             ArrayList<TLRPC$PhotoSize> arrayList2 = MessageObject.getMedia(tLRPC$Message).photo.sizes;
             if (arrayList2.size() > 0 && (closestPhotoSizeWithSize2 = getClosestPhotoSizeWithSize(arrayList2, AndroidUtilities.getPhotoSize(), false, null, true)) != null) {
@@ -1191,15 +1195,15 @@ public class FileLoader extends BaseController {
     }
 
     public File getPathToAttach(TLObject tLObject, String str, boolean z) {
-        return getPathToAttach(tLObject, null, str, z, true);
+        return getPathToAttach(tLObject, null, str, z, true, false);
     }
 
     public File getPathToAttach(TLObject tLObject, String str, boolean z, boolean z2) {
-        return getPathToAttach(tLObject, null, str, z, z2);
+        return getPathToAttach(tLObject, null, str, z, z2, false);
     }
 
-    public java.io.File getPathToAttach(org.telegram.tgnet.TLObject r11, java.lang.String r12, java.lang.String r13, boolean r14, boolean r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.getPathToAttach(org.telegram.tgnet.TLObject, java.lang.String, java.lang.String, boolean, boolean):java.io.File");
+    public java.io.File getPathToAttach(org.telegram.tgnet.TLObject r18, java.lang.String r19, java.lang.String r20, boolean r21, boolean r22, boolean r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FileLoader.getPathToAttach(org.telegram.tgnet.TLObject, java.lang.String, java.lang.String, boolean, boolean, boolean):java.io.File");
     }
 
     public FilePathDatabase getFileDatabase() {

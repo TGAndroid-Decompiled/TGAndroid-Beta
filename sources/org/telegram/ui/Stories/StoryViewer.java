@@ -32,12 +32,12 @@ import android.widget.FrameLayout;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
-import com.google.android.exoplayer2.util.Log;
 import java.util.ArrayList;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileStreamLoadOperation;
@@ -53,8 +53,8 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$MessageMedia;
+import org.telegram.tgnet.TLRPC$PeerStories;
 import org.telegram.tgnet.TLRPC$StoryItem;
-import org.telegram.tgnet.TLRPC$TL_userStories;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -138,7 +138,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     ValueAnimator openCloseAnimator;
     boolean openedFromLightNavigationBar;
     private boolean opening;
-    TLRPC$TL_userStories overrideUserStories;
+    TLRPC$PeerStories overrideUserStories;
     LaunchActivity parentActivity;
     public PlaceProvider placeProvider;
     VideoPlayerHolder playerHolder;
@@ -170,6 +170,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     public SizeNotifierFrameLayout windowView;
     public static ArrayList<StoryViewer> globalInstances = new ArrayList<>();
     private static boolean checkSilentMode = true;
+    private static final LongSparseArray<CharSequence> replyDrafts = new LongSparseArray<>();
     public boolean USE_SURFACE_VIEW = SharedConfig.useSurfaceInStories;
     public boolean ATTACH_TO_FRAGMENT = true;
     public boolean foundViewToClose = false;
@@ -190,7 +191,6 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     };
     public LongSparseIntArray savedPositions = new LongSparseIntArray();
-    LongSparseArray<CharSequence> replyDrafts = new LongSparseArray<>();
 
     public interface HolderClip {
         void clip(Canvas canvas, RectF rectF, float f, boolean z);
@@ -254,10 +254,14 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         if (tLRPC$StoryItem == null) {
             return;
         }
-        this.currentAccount = UserConfig.selectedAccount;
-        ArrayList<Long> arrayList = new ArrayList<>();
-        arrayList.add(Long.valueOf(tLRPC$StoryItem.dialogId));
-        open(context, tLRPC$StoryItem, arrayList, 0, null, null, placeProvider, false);
+        if (tLRPC$StoryItem.dialogId <= 0 || MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$StoryItem.dialogId)) != null) {
+            if (tLRPC$StoryItem.dialogId >= 0 || MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$StoryItem.dialogId)) != null) {
+                this.currentAccount = UserConfig.selectedAccount;
+                ArrayList<Long> arrayList = new ArrayList<>();
+                arrayList.add(Long.valueOf(tLRPC$StoryItem.dialogId));
+                open(context, tLRPC$StoryItem, arrayList, 0, null, null, placeProvider, false);
+            }
+        }
     }
 
     public void open(Context context, long j, PlaceProvider placeProvider) {
@@ -276,16 +280,16 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         open(context, null, arrayList, 0, storiesList, null, placeProvider, false);
     }
 
-    public void open(Context context, TLRPC$TL_userStories tLRPC$TL_userStories, PlaceProvider placeProvider) {
+    public void open(Context context, TLRPC$PeerStories tLRPC$PeerStories, PlaceProvider placeProvider) {
         ArrayList<TLRPC$StoryItem> arrayList;
-        if (tLRPC$TL_userStories == null || (arrayList = tLRPC$TL_userStories.stories) == null || arrayList.isEmpty()) {
+        if (tLRPC$PeerStories == null || (arrayList = tLRPC$PeerStories.stories) == null || arrayList.isEmpty()) {
             this.doOnAnimationReadyRunnables.clear();
             return;
         }
         this.currentAccount = UserConfig.selectedAccount;
         ArrayList<Long> arrayList2 = new ArrayList<>();
-        arrayList2.add(Long.valueOf(tLRPC$TL_userStories.user_id));
-        open(context, tLRPC$TL_userStories.stories.get(0), arrayList2, 0, null, tLRPC$TL_userStories, placeProvider, false);
+        arrayList2.add(Long.valueOf(DialogObject.getPeerDialogId(tLRPC$PeerStories.peer)));
+        open(context, tLRPC$PeerStories.stories.get(0), arrayList2, 0, null, tLRPC$PeerStories, placeProvider, false);
     }
 
     public void open(Context context, TLRPC$StoryItem tLRPC$StoryItem, int i, StoriesController.StoriesList storiesList, boolean z, PlaceProvider placeProvider) {
@@ -297,7 +301,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @SuppressLint({"WrongConstant"})
-    public void open(Context context, TLRPC$StoryItem tLRPC$StoryItem, ArrayList<Long> arrayList, int i, StoriesController.StoriesList storiesList, TLRPC$TL_userStories tLRPC$TL_userStories, PlaceProvider placeProvider, boolean z) {
+    public void open(Context context, TLRPC$StoryItem tLRPC$StoryItem, ArrayList<Long> arrayList, int i, StoriesController.StoriesList storiesList, TLRPC$PeerStories tLRPC$PeerStories, PlaceProvider placeProvider, boolean z) {
         if (context == null) {
             this.doOnAnimationReadyRunnables.clear();
             return;
@@ -315,13 +319,13 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         this.ATTACH_TO_FRAGMENT = z2;
         this.USE_SURFACE_VIEW = SharedConfig.useSurfaceInStories && z2;
         this.messageId = tLRPC$StoryItem == null ? 0 : tLRPC$StoryItem.messageId;
-        this.isSingleStory = tLRPC$StoryItem != null && storiesList == null && tLRPC$TL_userStories == null;
+        this.isSingleStory = tLRPC$StoryItem != null && storiesList == null && tLRPC$PeerStories == null;
         if (tLRPC$StoryItem != null) {
             this.singleStory = tLRPC$StoryItem;
             lastStoryItem = tLRPC$StoryItem;
         }
         this.storiesList = storiesList;
-        this.overrideUserStories = tLRPC$TL_userStories;
+        this.overrideUserStories = tLRPC$PeerStories;
         this.placeProvider = placeProvider;
         this.reversed = z;
         this.currentAccount = UserConfig.selectedAccount;
@@ -756,9 +760,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                         if (currentPeerView != null) {
                             currentPeerView.cancelTextSelection();
                         }
+                        boolean z = currentPeerView != null && currentPeerView.viewsAllowed();
                         StoryViewer storyViewer8 = StoryViewer.this;
-                        boolean z = currentPeerView.isSelf;
-                        storyViewer8.allowSwipeToReply = !z;
+                        storyViewer8.allowSwipeToReply = (z || currentPeerView == null || currentPeerView.isChannel) ? false : true;
                         boolean z2 = (!z || currentPeerView.unsupported || currentPeerView.currentStory.storyItem == null) ? false : true;
                         storyViewer8.allowSelfStoriesView = z2;
                         if (z2 && this.keyboardHeight != 0) {
@@ -1137,12 +1141,11 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     if (storyViewer10.USE_SURFACE_VIEW) {
                         if (uri == null) {
                             storyViewer10.surfaceView.setVisibility(4);
-                            return;
                         } else {
                             storyViewer10.surfaceView.setVisibility(0);
-                            return;
                         }
                     }
+                    StoryViewer.this.updatePlayingMode();
                     return;
                 }
             }
@@ -1352,10 +1355,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 for (int i = 0; i < this.storiesList.messageObjects.size(); i++) {
                     arrayList.add(this.storiesList.messageObjects.get(i).storyItem);
                 }
-                this.selfStoryViewsView.setItems(arrayList, currentPeerView.getListPosition());
+                this.selfStoryViewsView.setItems(this.storiesList.dialogId, arrayList, currentPeerView.getListPosition());
                 return;
             }
-            this.selfStoryViewsView.setItems(currentPeerView.getStoryItems(), currentPeerView.getSelectedPosition());
+            this.selfStoryViewsView.setItems(currentPeerView.getCurrentPeer(), currentPeerView.getStoryItems(), currentPeerView.getSelectedPosition());
         }
     }
 
@@ -1486,7 +1489,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
         PeerStoriesView currentPeerView = this.storiesViewPager.getCurrentPeerView();
         if (currentPeerView != null && !currentPeerView.currentStory.hasSound() && currentPeerView.currentStory.isVideo()) {
-            currentPeerView.showNoSoundHint();
+            currentPeerView.showNoSoundHint(true);
         } else {
             this.volumeControl.onKeyDown(keyEvent.getKeyCode(), keyEvent);
         }
@@ -1506,6 +1509,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         if (currentPeerView != null) {
             currentPeerView.sharedResources.setIconMuted(!soundEnabled(), true);
         }
+        if (isInSilentMode) {
+            return;
+        }
+        this.volumeControl.unmute();
     }
 
     private void checkInSilentMode() {
@@ -1606,15 +1613,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                         }
                         if (this.transitionViewHolder.view.getParent() instanceof View) {
                             View view3 = (View) this.transitionViewHolder.view.getParent();
-                            float f = this.fromX;
-                            float f2 = this.fromWidth;
-                            this.fromX = f - (f2 / 2.0f);
-                            this.fromY -= this.fromHeight / 2.0f;
-                            this.fromWidth = f2 * view3.getScaleX();
-                            float scaleY = this.fromHeight * view3.getScaleY();
-                            this.fromHeight = scaleY;
-                            this.fromX += this.fromWidth / 2.0f;
-                            this.fromY += scaleY / 2.0f;
+                            this.fromX = iArr[0] + (this.transitionViewHolder.avatarImage.getCenterX() * view3.getScaleX());
+                            this.fromY = iArr[1] + (this.transitionViewHolder.avatarImage.getCenterY() * view3.getScaleY());
+                            this.fromWidth *= view3.getScaleX();
+                            this.fromHeight *= view3.getScaleY();
                         }
                         this.animateAvatar = true;
                     } else {
@@ -1629,13 +1631,13 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                     this.transitionViewHolder.clipParent.getLocationOnScreen(iArr);
                     TransitionViewHolder transitionViewHolder3 = this.transitionViewHolder;
-                    float f3 = transitionViewHolder3.clipTop;
-                    if (f3 == 0.0f && transitionViewHolder3.clipBottom == 0.0f) {
+                    float f = transitionViewHolder3.clipTop;
+                    if (f == 0.0f && transitionViewHolder3.clipBottom == 0.0f) {
                         this.clipTop = 0.0f;
                         this.clipBottom = 0.0f;
                         return;
                     }
-                    this.clipTop = iArr[1] + f3;
+                    this.clipTop = iArr[1] + f;
                     this.clipBottom = iArr[1] + transitionViewHolder3.clipBottom;
                     return;
                 }
@@ -1691,7 +1693,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public boolean isPaused() {
-        return this.isPopupVisible || this.isTranslating || this.isBulletinVisible || this.isCaption || this.isWaiting || this.isInTouchMode || this.keyboardVisible || this.currentDialog != null || this.allowTouchesByViewpager || this.isClosed || this.isRecording || this.progressToOpen != 1.0f || this.selfStoriesViewsOffset != 0.0f || this.isHintVisible || (this.isSwiping && this.USE_SURFACE_VIEW) || this.isOverlayVisible || this.isInTextSelectionMode || this.isLikesReactions;
+        return this.isPopupVisible || this.isTranslating || this.isBulletinVisible || this.isCaption || this.isWaiting || this.isInTouchMode || this.keyboardVisible || this.currentDialog != null || this.allowTouchesByViewpager || this.isClosed || this.isRecording || this.progressToOpen != 1.0f || this.selfStoriesViewsOffset != 0.0f || this.isHintVisible || (this.isSwiping && this.USE_SURFACE_VIEW) || this.isOverlayVisible || this.isInTextSelectionMode || this.isLikesReactions || this.progressToDismiss != 0.0f;
     }
 
     public void updatePlayingMode() {
@@ -2039,7 +2041,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             this.preparedPlayers.get(i).release(null);
         }
         this.preparedPlayers.clear();
-        MessagesController.getInstance(this.currentAccount).getStoriesController().pollViewsForSelfStories(false);
+        MessagesController.getInstance(this.currentAccount).getStoriesController().stopAllPollers();
         if (this.ATTACH_TO_FRAGMENT) {
             lockOrientation(false);
         }
@@ -2264,7 +2266,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
         TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
         TLRPC$StoryItem tLRPC$StoryItem = tLRPC$MessageMedia.storyItem;
-        tLRPC$StoryItem.dialogId = tLRPC$MessageMedia.user_id;
+        tLRPC$StoryItem.dialogId = DialogObject.getPeerDialogId(tLRPC$MessageMedia.peer);
         tLRPC$StoryItem.messageId = messageObject.getId();
         open(baseFragment.getContext(), messageObject.messageOwner.media.storyItem, StoriesListPlaceProvider.of(recyclerListView));
     }
@@ -2296,7 +2298,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                         arrayList.add(this.storiesList.messageObjects.get(i3).storyItem);
                         i3++;
                     }
-                    this.selfStoryViewsView.setItems(arrayList, i4);
+                    this.selfStoryViewsView.setItems(this.storiesList.dialogId, arrayList, i4);
                 }
             }
         } else if (i == NotificationCenter.storiesUpdated) {
@@ -2307,13 +2309,13 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     return;
                 }
                 StoriesController storiesController = MessagesController.getInstance(this.currentAccount).getStoriesController();
-                ArrayList<TLRPC$TL_userStories> hiddenList = storiesListPlaceProvider.hiddedStories ? storiesController.getHiddenList() : storiesController.getDialogListStories();
+                ArrayList<TLRPC$PeerStories> hiddenList = storiesListPlaceProvider.hiddedStories ? storiesController.getHiddenList() : storiesController.getDialogListStories();
                 ArrayList<Long> dialogIds = this.storiesViewPager.getDialogIds();
                 boolean z = false;
                 while (i3 < hiddenList.size()) {
-                    TLRPC$TL_userStories tLRPC$TL_userStories = hiddenList.get(i3);
-                    if ((!storiesListPlaceProvider.onlyUnreadStories || storiesController.hasUnreadStories(tLRPC$TL_userStories.user_id)) && !dialogIds.contains(Long.valueOf(tLRPC$TL_userStories.user_id))) {
-                        dialogIds.add(Long.valueOf(tLRPC$TL_userStories.user_id));
+                    long peerDialogId = DialogObject.getPeerDialogId(hiddenList.get(i3).peer);
+                    if ((!storiesListPlaceProvider.onlyUnreadStories || storiesController.hasUnreadStories(peerDialogId)) && !dialogIds.contains(Long.valueOf(peerDialogId))) {
+                        dialogIds.add(Long.valueOf(peerDialogId));
                         z = true;
                     }
                     i3++;
@@ -2321,6 +2323,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 if (z) {
                     this.storiesViewPager.getAdapter().notifyDataSetChanged();
                 }
+            }
+            SelfStoryViewsView selfStoryViewsView2 = this.selfStoryViewsView;
+            if (selfStoryViewsView2 != null) {
+                selfStoryViewsView2.selfStoriesPreviewView.update();
             }
         } else if (i == NotificationCenter.openArticle || i == NotificationCenter.articleClosed) {
             updatePlayingMode();
@@ -2331,27 +2337,28 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         if (j == 0 || tLRPC$StoryItem == null) {
             return;
         }
-        Log.d("kek", "saveDraft" + j + "_" + tLRPC$StoryItem.id + " " + ((Object) charSequence));
-        this.replyDrafts.put(draftHash(j, tLRPC$StoryItem), charSequence);
+        replyDrafts.put(draftHash(j, tLRPC$StoryItem), charSequence);
     }
 
     public CharSequence getDraft(long j, TLRPC$StoryItem tLRPC$StoryItem) {
-        if (j == 0 || tLRPC$StoryItem == null) {
-            return "";
-        }
-        Log.d("kek", "getDraft " + j + "_" + tLRPC$StoryItem.id + " " + ((Object) this.replyDrafts.get(draftHash(j, tLRPC$StoryItem), "")));
-        return this.replyDrafts.get(draftHash(j, tLRPC$StoryItem), "");
+        return (j == 0 || tLRPC$StoryItem == null) ? "" : replyDrafts.get(draftHash(j, tLRPC$StoryItem), "");
     }
 
     public void clearDraft(long j, TLRPC$StoryItem tLRPC$StoryItem) {
         if (j == 0 || tLRPC$StoryItem == null) {
             return;
         }
-        this.replyDrafts.remove(draftHash(j, tLRPC$StoryItem));
+        replyDrafts.remove(draftHash(j, tLRPC$StoryItem));
     }
 
     private long draftHash(long j, TLRPC$StoryItem tLRPC$StoryItem) {
         return j + (j >> 16) + (tLRPC$StoryItem.id << 16);
+    }
+
+    public void onResume() {
+        if (getCurrentPeerView() != null) {
+            getCurrentPeerView().updatePosition();
+        }
     }
 
     public static class TransitionViewHolder {
@@ -2413,6 +2420,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             videoPlayerSharedScope.firstFrameRendered = true;
             this.firstFrameRendered = true;
             videoPlayerSharedScope.invalidate();
+            if (!this.paused || StoryViewer.this.surfaceView == null) {
+                return;
+            }
+            prepareStub();
         }
 
         @Override

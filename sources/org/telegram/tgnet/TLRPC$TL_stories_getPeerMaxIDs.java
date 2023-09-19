@@ -1,9 +1,9 @@
 package org.telegram.tgnet;
 
 import java.util.ArrayList;
-public class TLRPC$TL_users_getStoriesMaxIDs extends TLObject {
-    public static int constructor = -904087125;
-    public ArrayList<TLRPC$InputUser> id = new ArrayList<>();
+public class TLRPC$TL_stories_getPeerMaxIDs extends TLObject {
+    public static int constructor = 1398375363;
+    public ArrayList<TLRPC$InputPeer> id = new ArrayList<>();
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {

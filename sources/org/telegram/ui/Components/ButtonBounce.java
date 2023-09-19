@@ -7,7 +7,8 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 public class ButtonBounce {
     private ValueAnimator animator;
-    private final float durationMultiplier;
+    private final float durationPressMultiplier;
+    private final float durationReleaseMultiplier;
     private boolean isPressed;
     private final float overshoot;
     private float pressedT;
@@ -17,15 +18,25 @@ public class ButtonBounce {
     public ButtonBounce(View view) {
         this.releaseDelay = 0L;
         this.view = view;
-        this.durationMultiplier = 1.0f;
+        this.durationReleaseMultiplier = 1.0f;
+        this.durationPressMultiplier = 1.0f;
         this.overshoot = 5.0f;
     }
 
     public ButtonBounce(View view, float f, float f2) {
         this.releaseDelay = 0L;
         this.view = view;
-        this.durationMultiplier = f;
+        this.durationReleaseMultiplier = f;
+        this.durationPressMultiplier = f;
         this.overshoot = f2;
+    }
+
+    public ButtonBounce(View view, float f, float f2, float f3) {
+        this.releaseDelay = 0L;
+        this.view = view;
+        this.durationPressMultiplier = f;
+        this.durationReleaseMultiplier = f2;
+        this.overshoot = f3;
     }
 
     public ButtonBounce setReleaseDelay(long j) {
@@ -68,11 +79,11 @@ public class ButtonBounce {
             });
             if (this.isPressed) {
                 this.animator.setInterpolator(CubicBezierInterpolator.DEFAULT);
-                this.animator.setDuration(this.durationMultiplier * 60.0f);
+                this.animator.setDuration(this.durationPressMultiplier * 60.0f);
                 this.animator.setStartDelay(0L);
             } else {
                 this.animator.setInterpolator(new OvershootInterpolator(this.overshoot));
-                this.animator.setDuration(this.durationMultiplier * 350.0f);
+                this.animator.setDuration(this.durationReleaseMultiplier * 350.0f);
                 this.animator.setStartDelay(this.releaseDelay);
             }
             this.animator.start();

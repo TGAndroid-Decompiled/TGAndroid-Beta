@@ -67,7 +67,6 @@ public class AnimatedEmojiDrawable extends Drawable {
     private long documentId;
     private ArrayList<AnimatedEmojiSpan.InvalidateHolder> holders;
     private ImageReceiver imageReceiver;
-    public int rawDrawIndex;
     public int sizedp;
     private ArrayList<View> views;
     private float alpha = 1.0f;
@@ -713,27 +712,6 @@ public class AnimatedEmojiDrawable extends Drawable {
         imageReceiver.setImageCoords(getBounds());
         this.imageReceiver.setAlpha(this.alpha);
         this.imageReceiver.draw(canvas);
-    }
-
-    public void drawRaw(Canvas canvas, boolean z, int i) {
-        ImageReceiver imageReceiver = this.imageReceiver;
-        if (imageReceiver == null) {
-            return;
-        }
-        if (imageReceiver.getLottieAnimation() != null) {
-            RLottieDrawable lottieAnimation = this.imageReceiver.getLottieAnimation();
-            if (z) {
-                lottieAnimation.currentFrame = (lottieAnimation.currentFrame + Math.round((lottieAnimation.getFramesCount() / (((float) lottieAnimation.getDuration()) / 1000.0f)) / 30.0f)) % lottieAnimation.getFramesCount();
-            }
-            lottieAnimation.setBounds(getBounds());
-            lottieAnimation.drawFrame(canvas, lottieAnimation.currentFrame);
-        } else if (this.imageReceiver.getAnimation() != null) {
-            this.imageReceiver.getAnimation().drawFrame(canvas, z ? i / 30 : 0);
-        } else {
-            this.imageReceiver.setImageCoords(getBounds());
-            this.imageReceiver.setAlpha(this.alpha);
-            this.imageReceiver.draw(canvas);
-        }
     }
 
     public void draw(Canvas canvas, android.graphics.Rect rect, float f) {

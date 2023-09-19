@@ -23,6 +23,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -65,6 +66,8 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
@@ -91,6 +94,7 @@ import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBot;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotIcon;
 import org.telegram.tgnet.TLRPC$TL_attachMenuBotIconColor;
+import org.telegram.tgnet.TLRPC$TL_document;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
 import org.telegram.tgnet.TLRPC$TL_messages_toggleBotInAttachMenu;
@@ -121,6 +125,7 @@ import org.telegram.ui.Components.ChatAttachAlertDocumentLayout;
 import org.telegram.ui.Components.ChatAttachAlertLocationLayout;
 import org.telegram.ui.Components.ChatAttachAlertPollLayout;
 import org.telegram.ui.Components.ImageUpdater;
+import org.telegram.ui.Components.MentionsContainerView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.DialogsActivity;
@@ -203,6 +208,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
     protected int maxSelectedPhotos;
     protected TextView mediaPreviewTextView;
     protected LinearLayout mediaPreviewView;
+    public MentionsContainerView mentionContainer;
     private AnimatorSet menuAnimator;
     private boolean menuShowed;
     private boolean musicEnabled;
@@ -2980,6 +2986,13 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             if (i3 - i2 >= 1) {
                 this.processChange = true;
             }
+            ChatAttachAlert chatAttachAlert = ChatAttachAlert.this;
+            if (chatAttachAlert.mentionContainer == null) {
+                chatAttachAlert.createMentionsContainer();
+            }
+            if (ChatAttachAlert.this.mentionContainer.getAdapter() != null) {
+                ChatAttachAlert.this.mentionContainer.getAdapter().searchUsernameOrHashtag(charSequence, ChatAttachAlert.this.commentTextView.getEditText().getSelectionStart(), null, false, false);
+            }
         }
 
         @Override
@@ -3111,6 +3124,13 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
     public void updateCommentTextViewPosition() {
         this.commentTextView.getLocationOnScreen(this.commentTextViewLocation);
+        if (this.mentionContainer != null) {
+            float f = -this.commentTextView.getHeight();
+            if (this.mentionContainer.getY() != f) {
+                this.mentionContainer.setTranslationY(f);
+                this.mentionContainer.invalidate();
+            }
+        }
     }
 
     public int getCommentTextViewTop() {
@@ -3152,7 +3172,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(this.currentAccount).getAttachMenuBots().bots.iterator();
         while (it.hasNext() && it.next().bot_id != tLRPC$User.id) {
         }
-        String formatString = LocaleController.formatString("BotRemoveFromMenuAll", R.string.BotRemoveFromMenuAll, userName);
+        String formatString = LocaleController.formatString("BotRemoveFromMenu", R.string.BotRemoveFromMenu, userName);
         AlertDialog.Builder title = new AlertDialog.Builder(getContext()).setTitle(LocaleController.getString(R.string.BotRemoveFromMenuTitle));
         if (tLRPC$TL_attachMenuBot == null) {
             formatString = LocaleController.formatString("BotRemoveInlineFromMenu", R.string.BotRemoveInlineFromMenu, userName);
@@ -4554,6 +4574,10 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.shadow.setVisibility(8);
     }
 
+    public void setStoryAudioPicker() {
+        this.isStoryAudioPicker = true;
+    }
+
     public void setMaxSelectedPhotos(int i, boolean z) {
         if (this.editingMessageObject != null) {
             return;
@@ -4989,5 +5013,94 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
 
     public void setDocumentsDelegate(ChatAttachAlertDocumentLayout.DocumentSelectActivityDelegate documentSelectActivityDelegate) {
         this.documentsDelegate = documentSelectActivityDelegate;
+    }
+
+    public void replaceWithText(int i, int i2, CharSequence charSequence, boolean z) {
+        if (this.commentTextView == null) {
+            return;
+        }
+        try {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.commentTextView.getText());
+            spannableStringBuilder.replace(i, i2 + i, charSequence);
+            if (z) {
+                Emoji.replaceEmoji(spannableStringBuilder, this.commentTextView.getEditText().getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
+            }
+            this.commentTextView.setText(spannableStringBuilder);
+            this.commentTextView.setSelection(i + charSequence.length());
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    public void createMentionsContainer() {
+        this.mentionContainer = new MentionsContainerView(getContext(), UserConfig.getInstance(this.currentAccount).getClientUserId(), 0, LaunchActivity.getLastFragment(), null, this.resourcesProvider) {
+            {
+                ChatAttachAlert.this = this;
+            }
+
+            @Override
+            protected void onScrolled(boolean z, boolean z2) {
+                if (ChatAttachAlert.this.photoLayout != null) {
+                    ChatAttachAlert.this.photoLayout.checkCameraViewPosition();
+                }
+            }
+
+            @Override
+            protected void onAnimationScroll() {
+                if (ChatAttachAlert.this.photoLayout != null) {
+                    ChatAttachAlert.this.photoLayout.checkCameraViewPosition();
+                }
+            }
+        };
+        setupMentionContainer();
+        this.mentionContainer.withDelegate(new MentionsContainerView.Delegate() {
+            @Override
+            public void addEmojiToRecent(String str) {
+                MentionsContainerView.Delegate.CC.$default$addEmojiToRecent(this, str);
+            }
+
+            @Override
+            public void onStickerSelected(TLRPC$TL_document tLRPC$TL_document, String str, Object obj) {
+                MentionsContainerView.Delegate.CC.$default$onStickerSelected(this, tLRPC$TL_document, str, obj);
+            }
+
+            @Override
+            public void sendBotInlineResult(TLRPC$BotInlineResult tLRPC$BotInlineResult, boolean z, int i) {
+                MentionsContainerView.Delegate.CC.$default$sendBotInlineResult(this, tLRPC$BotInlineResult, z, i);
+            }
+
+            {
+                ChatAttachAlert.this = this;
+            }
+
+            @Override
+            public void replaceText(int i, int i2, CharSequence charSequence, boolean z) {
+                ChatAttachAlert.this.replaceWithText(i, i2, charSequence, z);
+            }
+
+            @Override
+            public Paint.FontMetricsInt getFontMetrics() {
+                return ChatAttachAlert.this.commentTextView.getEditText().getPaint().getFontMetricsInt();
+            }
+        });
+        ViewGroup viewGroup = this.containerView;
+        viewGroup.addView(this.mentionContainer, viewGroup.indexOfChild(this.frameLayout2), LayoutHelper.createFrame(-1, -1, 83));
+        this.mentionContainer.setTranslationY(-this.commentTextView.getHeight());
+        setupMentionContainer();
+    }
+
+    protected void setupMentionContainer() {
+        this.mentionContainer.getAdapter().setAllowStickers(false);
+        this.mentionContainer.getAdapter().setAllowBots(false);
+        this.mentionContainer.getAdapter().setAllowChats(false);
+        this.mentionContainer.getAdapter().setSearchInDailogs(true);
+        if (this.baseFragment instanceof ChatActivity) {
+            this.mentionContainer.getAdapter().setChatInfo(((ChatActivity) this.baseFragment).getCurrentChatInfo());
+            this.mentionContainer.getAdapter().setNeedUsernames(((ChatActivity) this.baseFragment).getCurrentChat() != null);
+        } else {
+            this.mentionContainer.getAdapter().setChatInfo(null);
+            this.mentionContainer.getAdapter().setNeedUsernames(false);
+        }
+        this.mentionContainer.getAdapter().setNeedBotContext(false);
     }
 }

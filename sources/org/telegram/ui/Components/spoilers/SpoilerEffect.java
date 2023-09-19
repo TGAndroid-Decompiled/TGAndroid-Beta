@@ -47,6 +47,7 @@ import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.TextStyleSpan;
 public class SpoilerEffect extends Drawable {
     private static Paint xRefPaint;
+    private int bitmapSize;
     public boolean drawPoints;
     private boolean enableAlpha;
     private boolean invalidateParent;
@@ -101,7 +102,7 @@ public class SpoilerEffect extends Drawable {
         float[] fArr = ALPHAS;
         this.particlePaints = new Paint[fArr.length];
         this.particlesPool = new Stack<>();
-        this.particlePoints = (float[][]) Array.newInstance(float.class, fArr.length, MAX_PARTICLES_PER_ENTITY * 2);
+        this.particlePoints = (float[][]) Array.newInstance(float.class, fArr.length, MAX_PARTICLES_PER_ENTITY * 5);
         this.particleRands = new float[14];
         this.renderCount = new int[fArr.length];
         this.particles = new ArrayList<>();
@@ -282,42 +283,37 @@ public class SpoilerEffect extends Drawable {
                     float f3 = (particle2.velocity * f2) / 500.0f;
                     Particle.access$516(particle2, particle2.vecX * f3);
                     Particle.access$616(particle2, particle2.vecY * f3);
-                    int i8 = particle2.alpha;
-                    this.particlePoints[i8][this.renderCount[i8] * 2] = particle2.x;
-                    this.particlePoints[i8][(this.renderCount[i8] * 2) + 1] = particle2.y;
-                    int[] iArr = this.renderCount;
-                    iArr[i8] = iArr[i8] + 1;
                 }
                 i7++;
             }
             int size = this.particles.size();
-            int i9 = this.maxParticles;
-            if (size < i9) {
-                int size2 = i9 - this.particles.size();
+            int i8 = this.maxParticles;
+            if (size < i8) {
+                int size2 = i8 - this.particles.size();
                 float f4 = -1.0f;
                 Arrays.fill(this.particleRands, -1.0f);
-                int i10 = 0;
-                while (i10 < size2) {
+                int i9 = 0;
+                while (i9 < size2) {
                     float[] fArr = this.particleRands;
-                    int i11 = i10 % 14;
-                    float f5 = fArr[i11];
+                    int i10 = i9 % 14;
+                    float f5 = fArr[i10];
                     if (f5 == f4) {
                         f5 = Utilities.fastRandom.nextFloat();
-                        fArr[i11] = f5;
+                        fArr[i10] = f5;
                     }
                     float f6 = f5;
                     Particle pop = !this.particlesPool.isEmpty() ? this.particlesPool.pop() : new Particle();
-                    int i12 = 0;
+                    int i11 = 0;
                     while (true) {
-                        generateRandomLocation(pop, i10);
-                        int i13 = i12 + 1;
+                        generateRandomLocation(pop, i9);
+                        int i12 = i11 + 1;
                         particle = pop;
                         i = size2;
                         f = f6;
-                        if (isOutOfBounds(i2, i3, i4, i5, pop.x, pop.y) && i13 < 4) {
+                        if (isOutOfBounds(i2, i3, i4, i5, pop.x, pop.y) && i12 < 4) {
                             f6 = f;
                             pop = particle;
-                            i12 = i13;
+                            i11 = i12;
                             size2 = i;
                         }
                     }
@@ -331,32 +327,44 @@ public class SpoilerEffect extends Drawable {
                     particle.velocity = (f * 6.0f) + 4.0f;
                     particle.alpha = Utilities.fastRandom.nextInt(ALPHAS.length);
                     this.particles.add(particle);
-                    int i14 = particle.alpha;
-                    this.particlePoints[i14][this.renderCount[i14] * 2] = particle.x;
-                    this.particlePoints[i14][(this.renderCount[i14] * 2) + 1] = particle.y;
-                    int[] iArr2 = this.renderCount;
-                    iArr2[i14] = iArr2[i14] + 1;
-                    i10++;
+                    i9++;
                     size2 = i;
                     f4 = -1.0f;
                 }
             }
             for (int length = this.enableAlpha ? 0 : ALPHAS.length - 1; length < ALPHAS.length; length++) {
-                int i15 = 0;
-                int i16 = 0;
-                for (int i17 = 0; i17 < this.particles.size(); i17++) {
-                    Particle particle3 = this.particles.get(i17);
+                float strokeWidth = this.particlePaints[length].getStrokeWidth() / 2.0f;
+                int i13 = 0;
+                for (int i14 = 0; i14 < this.particles.size(); i14++) {
+                    Particle particle3 = this.particles.get(i14);
                     RectF rectF = this.visibleRect;
                     if ((rectF == null || rectF.contains(particle3.x, particle3.y)) && (particle3.alpha == length || !this.enableAlpha)) {
-                        int i18 = (i17 - i16) * 2;
-                        this.particlePoints[length][i18] = particle3.x;
-                        this.particlePoints[length][i18 + 1] = particle3.y;
-                        i15 += 2;
-                    } else {
-                        i16++;
+                        this.particlePoints[length][i13] = particle3.x;
+                        this.particlePoints[length][i13 + 1] = particle3.y;
+                        i13 += 2;
+                        if (particle3.x < strokeWidth) {
+                            this.particlePoints[length][i13] = particle3.x + this.bitmapSize;
+                            this.particlePoints[length][i13 + 1] = particle3.y;
+                            i13 += 2;
+                        }
+                        if (particle3.x > this.bitmapSize - strokeWidth) {
+                            this.particlePoints[length][i13] = particle3.x - this.bitmapSize;
+                            this.particlePoints[length][i13 + 1] = particle3.y;
+                            i13 += 2;
+                        }
+                        if (particle3.y < strokeWidth) {
+                            this.particlePoints[length][i13] = particle3.x;
+                            this.particlePoints[length][i13 + 1] = particle3.y + this.bitmapSize;
+                            i13 += 2;
+                        }
+                        if (particle3.y > this.bitmapSize - strokeWidth) {
+                            this.particlePoints[length][i13] = particle3.x;
+                            this.particlePoints[length][i13 + 1] = particle3.y - this.bitmapSize;
+                            i13 += 2;
+                        }
                     }
                 }
-                canvas.drawPoints(this.particlePoints[length], 0, i15, this.particlePaints[length]);
+                canvas.drawPoints(this.particlePoints[length], 0, i13, this.particlePaints[length]);
             }
             return;
         }
@@ -678,6 +686,10 @@ public class SpoilerEffect extends Drawable {
             canvas.drawPath(tempPath, xRefPaint);
         }
         canvas.restore();
+    }
+
+    public void setSize(int i) {
+        this.bitmapSize = i;
     }
 
     public static class Particle {

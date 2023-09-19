@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.media.AudioManager;
+import android.os.Build;
 import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
@@ -44,6 +45,25 @@ public class StoriesVolumeContorl extends View {
             return true;
         } else {
             return super.onKeyDown(i, keyEvent);
+        }
+    }
+
+    public void unmute() {
+        AudioManager audioManager = (AudioManager) getContext().getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
+        int streamMaxVolume = audioManager.getStreamMaxVolume(3);
+        int streamMinVolume = Build.VERSION.SDK_INT >= 28 ? audioManager.getStreamMinVolume(3) : 0;
+        int streamVolume = audioManager.getStreamVolume(3);
+        if (streamVolume <= streamMinVolume) {
+            adjustVolume(true);
+        } else if (this.isVisible) {
+        } else {
+            float f = streamVolume / streamMaxVolume;
+            this.currentProgress = f;
+            this.volumeProgress.set(f, true);
+            this.isVisible = true;
+            invalidate();
+            AndroidUtilities.cancelRunOnUIThread(this.hideRunnuble);
+            AndroidUtilities.runOnUIThread(this.hideRunnuble, 2000L);
         }
     }
 

@@ -92,6 +92,7 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private String currentThumbKey;
     private ImageLocation currentThumbLocation;
     private long currentTime;
+    private ArrayList<Decorator> decorators;
     private ImageReceiverDelegate delegate;
     private final RectF drawRegion;
     private long endTime;
@@ -160,6 +161,16 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
     private static PorterDuffColorFilter selectedColorFilter = new PorterDuffColorFilter(-2236963, PorterDuff.Mode.MULTIPLY);
     private static PorterDuffColorFilter selectedGroupColorFilter = new PorterDuffColorFilter(-4473925, PorterDuff.Mode.MULTIPLY);
     private static final float[] radii = new float[8];
+
+    public static abstract class Decorator {
+        public void onAttachedToWindow(ImageReceiver imageReceiver) {
+        }
+
+        public void onDetachedFromWidnow() {
+        }
+
+        protected abstract void onDraw(Canvas canvas, ImageReceiver imageReceiver);
+    }
 
     public interface ImageReceiverDelegate {
 
@@ -1022,6 +1033,11 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
             if (lottieAnimation != null) {
                 lottieAnimation.removeParentView(this);
             }
+            if (this.decorators != null) {
+                for (int i = 0; i < this.decorators.size(); i++) {
+                    this.decorators.get(i).onDetachedFromWidnow();
+                }
+            }
         }
     }
 
@@ -1107,6 +1123,11 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         Drawable drawable = this.staticThumbDrawable;
         if (drawable instanceof AttachableDrawable) {
             ((AttachableDrawable) drawable).onAttachedToWindow(this);
+        }
+        if (this.decorators != null) {
+            for (int i = 0; i < this.decorators.size(); i++) {
+                this.decorators.get(i).onAttachedToWindow(this);
+            }
         }
         return false;
     }
@@ -2303,6 +2324,27 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         backgroundThreadDrawHolder.imageH = this.imageH;
         backgroundThreadDrawHolder.overrideAlpha = this.overrideAlpha;
         return backgroundThreadDrawHolder;
+    }
+
+    public void clearDecorators() {
+        if (this.decorators != null) {
+            if (this.attachedToWindow) {
+                for (int i = 0; i < this.decorators.size(); i++) {
+                    this.decorators.get(i).onDetachedFromWidnow();
+                }
+            }
+            this.decorators.clear();
+        }
+    }
+
+    public void addDecorator(Decorator decorator) {
+        if (this.decorators == null) {
+            this.decorators = new ArrayList<>();
+        }
+        this.decorators.add(decorator);
+        if (this.attachedToWindow) {
+            decorator.onAttachedToWindow(this);
+        }
     }
 
     public static class BackgroundThreadDrawHolder {

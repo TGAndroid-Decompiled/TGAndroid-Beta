@@ -502,33 +502,25 @@ public class SpoilerEffect2 {
         }
 
         private void die() {
-            try {
-                int[] iArr = this.particlesData;
-                if (iArr != null) {
-                    GLES31.glDeleteBuffers(2, iArr, 0);
-                    this.particlesData = null;
-                }
-                int i = this.drawProgram;
-                if (i != 0) {
-                    GLES31.glDeleteProgram(i);
-                    this.drawProgram = 0;
-                }
-                EGL10 egl10 = this.egl;
-                if (egl10 != null) {
-                    EGLDisplay eGLDisplay = this.eglDisplay;
-                    EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
-                    egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
-                    this.egl.eglDestroySurface(this.eglDisplay, this.eglSurface);
-                    this.egl.eglDestroyContext(this.eglDisplay, this.eglContext);
-                }
-            } catch (Exception e) {
-                FileLog.e(e);
+            int[] iArr = this.particlesData;
+            if (iArr != null) {
+                GLES31.glDeleteBuffers(2, iArr, 0);
+                this.particlesData = null;
             }
-            try {
-                this.surfaceTexture.release();
-            } catch (Exception e2) {
-                FileLog.e(e2);
+            int i = this.drawProgram;
+            if (i != 0) {
+                GLES31.glDeleteProgram(i);
+                this.drawProgram = 0;
             }
+            EGL10 egl10 = this.egl;
+            if (egl10 != null) {
+                EGLDisplay eGLDisplay = this.eglDisplay;
+                EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
+                egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
+                this.egl.eglDestroySurface(this.eglDisplay, this.eglSurface);
+                this.egl.eglDestroyContext(this.eglDisplay, this.eglContext);
+            }
+            this.surfaceTexture.release();
             checkGlErrors();
         }
 

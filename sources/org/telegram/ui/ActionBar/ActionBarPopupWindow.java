@@ -440,7 +440,7 @@ public class ActionBarPopupWindow extends PopupWindow {
         }
 
         @Override
-        protected void dispatchDraw(android.graphics.Canvas r20) {
+        public void dispatchDraw(android.graphics.Canvas r20) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.ActionBarPopupWindow.ActionBarPopupWindowLayout.dispatchDraw(android.graphics.Canvas):void");
         }
 

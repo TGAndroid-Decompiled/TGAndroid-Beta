@@ -6,20 +6,16 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
-import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Build;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
@@ -960,73 +956,8 @@ public class CropView extends FrameLayout implements CropAreaView.AreaViewListen
         fitContentInBounds(true, true, false);
     }
 
-    public static void editBitmap(Context context, String str, Bitmap bitmap, Canvas canvas, Bitmap bitmap2, Bitmap.CompressFormat compressFormat, Matrix matrix, int i, int i2, float f, float f2, float f3, float f4, boolean z, ArrayList<VideoEditedInfo.MediaEntity> arrayList, boolean z2) {
-        char c = 0;
-        if (z2) {
-            try {
-                bitmap2.eraseColor(0);
-            } catch (Throwable th) {
-                FileLog.e(th);
-                return;
-            }
-        }
-        Bitmap decodeFile = bitmap == null ? BitmapFactory.decodeFile(str) : bitmap;
-        float max = Math.max(decodeFile.getWidth(), decodeFile.getHeight()) / Math.max(i, i2);
-        Matrix matrix2 = new Matrix();
-        char c2 = 2;
-        matrix2.postTranslate((-decodeFile.getWidth()) / 2, (-decodeFile.getHeight()) / 2);
-        if (z) {
-            matrix2.postScale(-1.0f, 1.0f);
-        }
-        float f5 = 1.0f / max;
-        matrix2.postScale(f5, f5);
-        matrix2.postRotate(f3);
-        matrix2.postConcat(matrix);
-        matrix2.postScale(f4, f4);
-        matrix2.postTranslate(bitmap2.getWidth() / 2, bitmap2.getHeight() / 2);
-        canvas.drawBitmap(decodeFile, matrix2, new Paint(2));
-        FileOutputStream fileOutputStream = new FileOutputStream(new File(str));
-        bitmap2.compress(compressFormat, 87, fileOutputStream);
-        fileOutputStream.close();
-        if (arrayList != null && !arrayList.isEmpty()) {
-            float[] fArr = new float[4];
-            int size = arrayList.size();
-            int i3 = 0;
-            while (i3 < size) {
-                VideoEditedInfo.MediaEntity mediaEntity = arrayList.get(i3);
-                fArr[c] = (mediaEntity.x + (mediaEntity.width / 2.0f)) * decodeFile.getWidth();
-                fArr[1] = (mediaEntity.y + (mediaEntity.height / 2.0f)) * decodeFile.getHeight();
-                fArr[c2] = mediaEntity.textViewX * decodeFile.getWidth();
-                fArr[3] = mediaEntity.textViewY * decodeFile.getHeight();
-                matrix2.mapPoints(fArr);
-                if (mediaEntity.type == 1) {
-                    mediaEntity.width = ((mediaEntity.width * i) / bitmap2.getWidth()) * f4 * f;
-                    mediaEntity.height = ((mediaEntity.height * i2) / bitmap2.getHeight()) * f4 * f;
-                } else {
-                    float f6 = i;
-                    mediaEntity.viewWidth = (int) ((mediaEntity.viewWidth / f6) * decodeFile.getWidth());
-                    float f7 = i2;
-                    mediaEntity.viewHeight = (int) ((mediaEntity.viewHeight / f7) * decodeFile.getHeight());
-                    mediaEntity.width = ((mediaEntity.width * f6) / decodeFile.getWidth()) * f4 * f;
-                    mediaEntity.height = ((mediaEntity.height * f7) / decodeFile.getHeight()) * f4 * f;
-                }
-                mediaEntity.x = (fArr[0] / bitmap2.getWidth()) - (mediaEntity.width / 2.0f);
-                mediaEntity.y = (fArr[1] / bitmap2.getHeight()) - (mediaEntity.height / 2.0f);
-                mediaEntity.textViewX = fArr[2] / bitmap2.getWidth();
-                mediaEntity.textViewY = fArr[3] / bitmap2.getHeight();
-                double d = mediaEntity.rotation;
-                int i4 = i3;
-                double d2 = f2 + f3;
-                Double.isNaN(d2);
-                Double.isNaN(d);
-                mediaEntity.rotation = (float) (d - (d2 * 0.017453292519943295d));
-                Log.i("lolkek", "entity TO {x=" + mediaEntity.x + ", y=" + mediaEntity.y + ", w=" + mediaEntity.width + ", h=" + mediaEntity.height + ", s=" + mediaEntity.scale + ", vw=" + mediaEntity.viewWidth + ", vh=" + mediaEntity.viewHeight + "}");
-                i3 = i4 + 1;
-                c = 0;
-                c2 = 2;
-            }
-        }
-        decodeFile.recycle();
+    public static void editBitmap(android.content.Context r19, java.lang.String r20, android.graphics.Bitmap r21, android.graphics.Canvas r22, android.graphics.Bitmap r23, android.graphics.Bitmap.CompressFormat r24, android.graphics.Matrix r25, int r26, int r27, float r28, float r29, float r30, float r31, boolean r32, java.util.ArrayList<org.telegram.messenger.VideoEditedInfo.MediaEntity> r33, boolean r34) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Crop.CropView.editBitmap(android.content.Context, java.lang.String, android.graphics.Bitmap, android.graphics.Canvas, android.graphics.Bitmap, android.graphics.Bitmap$CompressFormat, android.graphics.Matrix, int, int, float, float, float, float, boolean, java.util.ArrayList, boolean):void");
     }
 
     private void updateCropTransform() {

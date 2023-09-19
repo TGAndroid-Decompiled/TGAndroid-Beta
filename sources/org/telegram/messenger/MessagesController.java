@@ -478,6 +478,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public int captionLengthLimitDefault;
     public int captionLengthLimitPremium;
     private LongSparseArray<LongSparseArray<TLRPC$ChannelParticipant>> channelAdmins;
+    private ChannelBoostsController channelBoostsControler;
     private LongSparseArray<ArrayList<Integer>> channelViewsToSend;
     public int channelsLimitDefault;
     public int channelsLimitPremium;
@@ -882,6 +883,22 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
             tLRPC$TL_peerUser.user_id = tLRPC$InputPeer.user_id;
             return tLRPC$TL_peerUser;
+        }
+    }
+
+    public ChannelBoostsController getBoostsController() {
+        ChannelBoostsController channelBoostsController = this.channelBoostsControler;
+        if (channelBoostsController != null) {
+            return channelBoostsController;
+        }
+        synchronized (lockObjects[this.currentAccount]) {
+            ChannelBoostsController channelBoostsController2 = this.channelBoostsControler;
+            if (channelBoostsController2 != null) {
+                return channelBoostsController2;
+            }
+            ChannelBoostsController channelBoostsController3 = new ChannelBoostsController(this.currentAccount);
+            this.channelBoostsControler = channelBoostsController3;
+            return channelBoostsController3;
         }
     }
 
@@ -7257,6 +7274,9 @@ public class MessagesController extends BaseController implements NotificationCe
                         tLRPC$Chat2.flags &= -16385;
                     } else {
                         tLRPC$Chat2.flags |= LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM;
+                    }
+                    if (!tLRPC$Chat.stories_hidden_min) {
+                        tLRPC$Chat.stories_hidden = tLRPC$Chat2.stories_hidden;
                     }
                     if (i4 != i5 || i6 != i7) {
                         AndroidUtilities.runOnUIThread(new Runnable() {

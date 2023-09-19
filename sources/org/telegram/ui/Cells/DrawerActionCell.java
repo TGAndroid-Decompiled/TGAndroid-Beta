@@ -122,9 +122,9 @@ public class DrawerActionCell extends FrameLayout {
             } else {
                 this.textView.setText(tLRPC$TL_attachMenuBot.short_name);
             }
-            TLRPC$TL_attachMenuBotIcon sideMenuBotIcon = MediaDataController.getSideMenuBotIcon(tLRPC$TL_attachMenuBot);
-            if (sideMenuBotIcon != null) {
-                this.imageView.setImage(ImageLocation.getForDocument(sideMenuBotIcon.icon), "24_24", (Drawable) null, tLRPC$TL_attachMenuBot);
+            TLRPC$TL_attachMenuBotIcon sideAttachMenuBotIcon = MediaDataController.getSideAttachMenuBotIcon(tLRPC$TL_attachMenuBot);
+            if (sideAttachMenuBotIcon != null) {
+                this.imageView.setImage(ImageLocation.getForDocument(sideAttachMenuBotIcon.icon), "24_24", (Drawable) null, tLRPC$TL_attachMenuBot);
             } else {
                 this.imageView.setImageResource(R.drawable.msg_bot);
             }

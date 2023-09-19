@@ -22,6 +22,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputUser;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
@@ -148,10 +149,10 @@ public class StoryPrivacySelector extends View {
         StoryPrivacyBottomSheet storyPrivacyBottomSheet = new StoryPrivacyBottomSheet(getContext(), this.storyPeriod, this.resourcesProvider);
         storyPrivacyBottomSheet.setValue(getStoryPrivacy());
         storyPrivacyBottomSheet.isEdit(false);
-        storyPrivacyBottomSheet.whenSelectedRules(new Utilities.Callback4() {
+        storyPrivacyBottomSheet.whenSelectedRules(new StoryPrivacyBottomSheet.DoneCallback() {
             @Override
-            public final void run(Object obj, Object obj2, Object obj3, Object obj4) {
-                StoryPrivacySelector.this.lambda$open$1((StoryPrivacyBottomSheet.StoryPrivacy) obj, (Boolean) obj2, (Boolean) obj3, (Runnable) obj4);
+            public final void done(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, Runnable runnable) {
+                StoryPrivacySelector.this.lambda$open$1(storyPrivacy, z, z2, tLRPC$InputPeer, runnable);
             }
         }, true);
         storyPrivacyBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
@@ -163,7 +164,7 @@ public class StoryPrivacySelector extends View {
         storyPrivacyBottomSheet.show();
     }
 
-    public void lambda$open$1(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, Boolean bool, Boolean bool2, Runnable runnable) {
+    public void lambda$open$1(StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy, boolean z, boolean z2, TLRPC$InputPeer tLRPC$InputPeer, Runnable runnable) {
         this.value = storyPrivacy;
         String storyPrivacy2 = storyPrivacy.toString();
         this.textDrawable.setText(storyPrivacy2);

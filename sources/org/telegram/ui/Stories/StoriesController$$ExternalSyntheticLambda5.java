@@ -1,5 +1,5 @@
 package org.telegram.ui.Stories;
-public final class StoriesController$$ExternalSyntheticLambda4 implements Runnable {
+public final class StoriesController$$ExternalSyntheticLambda5 implements Runnable {
     public final StoriesController f$0;
 
     @Override

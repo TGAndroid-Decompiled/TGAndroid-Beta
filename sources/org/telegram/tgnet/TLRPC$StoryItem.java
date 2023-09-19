@@ -25,6 +25,7 @@ public abstract class TLRPC$StoryItem extends TLObject {
     public int messageType;
     public boolean min;
     public boolean noforwards;
+    public boolean out;
     public StoryPrivacyBottomSheet.StoryPrivacy parsedPrivacy;
     public boolean pinned;
     public boolean selected_contacts;

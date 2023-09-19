@@ -8,7 +8,9 @@ public class TLRPC$TL_chatAdminRights extends TLObject {
     public boolean ban_users;
     public boolean change_info;
     public boolean delete_messages;
+    public boolean delete_stories;
     public boolean edit_messages;
+    public boolean edit_stories;
     public int flags;
     public boolean invite_users;
     public boolean manage_call;
@@ -16,6 +18,7 @@ public class TLRPC$TL_chatAdminRights extends TLObject {
     public boolean other;
     public boolean pin_messages;
     public boolean post_messages;
+    public boolean post_stories;
 
     public static TLRPC$TL_chatAdminRights TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (constructor != i) {
@@ -45,6 +48,9 @@ public class TLRPC$TL_chatAdminRights extends TLObject {
         this.manage_call = (readInt32 & LiteMode.FLAG_AUTOPLAY_GIFS) != 0;
         this.other = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_CHAT_NOT_PREMIUM) != 0;
         this.manage_topics = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0;
+        this.post_stories = (readInt32 & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0;
+        this.edit_stories = (32768 & readInt32) != 0;
+        this.delete_stories = (readInt32 & 65536) != 0;
     }
 
     @Override
@@ -74,6 +80,12 @@ public class TLRPC$TL_chatAdminRights extends TLObject {
         this.flags = i11;
         int i12 = this.manage_topics ? i11 | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : i11 & (-8193);
         this.flags = i12;
-        abstractSerializedData.writeInt32(i12);
+        int i13 = this.post_stories ? i12 | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM : i12 & (-16385);
+        this.flags = i13;
+        int i14 = this.edit_stories ? i13 | LiteMode.FLAG_CHAT_SCALE : i13 & (-32769);
+        this.flags = i14;
+        int i15 = this.delete_stories ? i14 | 65536 : i14 & (-65537);
+        this.flags = i15;
+        abstractSerializedData.writeInt32(i15);
     }
 }

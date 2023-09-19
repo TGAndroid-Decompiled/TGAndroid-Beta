@@ -23,6 +23,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -1020,11 +1021,12 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         if (storiesController.getHiddenList().isEmpty()) {
             return;
         }
-        boolean z = storiesController.getUnreadState(storiesController.getHiddenList().get(0).user_id) != 0;
+        boolean z = storiesController.getUnreadState(DialogObject.getPeerDialogId(storiesController.getHiddenList().get(0).peer)) != 0;
         ArrayList<Long> arrayList = new ArrayList<>();
         for (int i = 0; i < storiesController.getHiddenList().size(); i++) {
-            if (!z || storiesController.getUnreadState(storiesController.getHiddenList().get(i).user_id) != 0) {
-                arrayList.add(Long.valueOf(storiesController.getHiddenList().get(i).user_id));
+            long peerDialogId = DialogObject.getPeerDialogId(storiesController.getHiddenList().get(i).peer);
+            if (!z || storiesController.getUnreadState(peerDialogId) != 0) {
+                arrayList.add(Long.valueOf(peerDialogId));
             }
         }
         this.parentFragment.getOrCreateStoryViewer().open(this.mContext, null, arrayList, 0, null, null, StoriesListPlaceProvider.of(this.recyclerListView, true), false);

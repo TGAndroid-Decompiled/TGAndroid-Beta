@@ -60,6 +60,7 @@ public class SpoilerEffectBitmapFactory {
             for (int i4 = 0; i4 < 10; i4++) {
                 for (int i5 = 0; i5 < 10; i5++) {
                     SpoilerEffect spoilerEffect = new SpoilerEffect();
+                    spoilerEffect.setSize(this.size);
                     int i6 = i3 * i4;
                     int i7 = i3 * i5;
                     spoilerEffect.setBounds(i6, i7 - AndroidUtilities.dp(5.0f), i6 + i3 + AndroidUtilities.dp(3.0f), i7 + i3 + AndroidUtilities.dp(5.0f));

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
@@ -28,6 +29,7 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
 import org.telegram.tgnet.TLRPC$StickerSet;
+import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -65,6 +67,18 @@ public final class BulletinFactory {
             return null;
         }
         return of(lastFragment);
+    }
+
+    public static void showForError(TLRPC$TL_error tLRPC$TL_error) {
+        BulletinFactory global = global();
+        if (global == null) {
+            return;
+        }
+        if (BuildVars.DEBUG_VERSION) {
+            global.createErrorBulletin(tLRPC$TL_error.code + " " + tLRPC$TL_error.text);
+            return;
+        }
+        global.createErrorBulletin(LocaleController.getString("UnknownError", R.string.UnknownError));
     }
 
     public static final class FileType {
@@ -274,6 +288,14 @@ public final class BulletinFactory {
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setMaxLines(2);
         return create(lottieLayout, 2750);
+    }
+
+    public Bulletin createSimpleBulletin(Drawable drawable, CharSequence charSequence, CharSequence charSequence2) {
+        Bulletin.TwoLineLottieLayout twoLineLottieLayout = new Bulletin.TwoLineLottieLayout(getContext(), this.resourcesProvider);
+        twoLineLottieLayout.imageView.setImageDrawable(drawable);
+        twoLineLottieLayout.titleTextView.setText(charSequence);
+        twoLineLottieLayout.subtitleTextView.setText(charSequence2);
+        return create(twoLineLottieLayout, 2750);
     }
 
     public Bulletin createSimpleBulletin(Drawable drawable, CharSequence charSequence, CharSequence charSequence2, String str, Runnable runnable) {

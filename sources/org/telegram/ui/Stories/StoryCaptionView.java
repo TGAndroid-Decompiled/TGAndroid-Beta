@@ -496,6 +496,7 @@ public class StoryCaptionView extends NestedScrollView {
         int horizontalPadding;
         private boolean isSpoilersRevealed;
         float progressToExpand;
+        boolean shouldCollapse;
         StaticLayout showMore;
         TextPaint showMorePaint;
         float showMoreX;
@@ -542,8 +543,9 @@ public class StoryCaptionView extends NestedScrollView {
                     return i - ((StoryCaptionTextView.this.verticalPadding * 2) + this.textHeight);
                 }
                 int lineCount = staticLayout.getLineCount();
-                if (lineCount <= 3) {
-                    return i - ((StoryCaptionTextView.this.verticalPadding * 2) + this.textHeight);
+                StoryCaptionTextView storyCaptionTextView = StoryCaptionTextView.this;
+                if (!storyCaptionTextView.shouldCollapse) {
+                    return i - ((storyCaptionTextView.verticalPadding * 2) + this.textHeight);
                 }
                 return i - (StoryCaptionTextView.this.textPaint.getFontMetricsInt(null) * (Math.min(3, lineCount) + 1));
             }
@@ -626,18 +628,25 @@ public class StoryCaptionView extends NestedScrollView {
                 this.fullLayout = makeTextLayout;
                 this.textHeight = makeTextLayout.getHeight();
                 float measureText = StoryCaptionTextView.this.textPaint.measureText(" ");
-                if (this.fullLayout.getLineCount() > 3) {
+                StoryCaptionTextView.this.shouldCollapse = this.fullLayout.getLineCount() > 3;
+                if (StoryCaptionTextView.this.shouldCollapse && this.fullLayout.getLineCount() == 4) {
+                    if (TextUtils.getTrimmedLength(this.text.subSequence(this.fullLayout.getLineStart(2), this.fullLayout.getLineEnd(2))) == 0) {
+                        StoryCaptionTextView.this.shouldCollapse = false;
+                    }
+                }
+                StoryCaptionTextView storyCaptionTextView4 = StoryCaptionTextView.this;
+                if (storyCaptionTextView4.shouldCollapse) {
                     float lineTop = this.fullLayout.getLineTop(2) + this.fullLayout.getTopPadding();
                     if (this == StoryCaptionTextView.this.state[0]) {
                         String string = LocaleController.getString("ShowMore", R.string.ShowMore);
-                        StoryCaptionTextView storyCaptionTextView4 = StoryCaptionTextView.this;
-                        storyCaptionTextView4.showMore = storyCaptionTextView4.makeTextLayout(storyCaptionTextView4.showMorePaint, string, i);
-                        StoryCaptionTextView.this.showMoreY = (storyCaptionTextView.verticalPadding + lineTop) - AndroidUtilities.dpf2(0.3f);
                         StoryCaptionTextView storyCaptionTextView5 = StoryCaptionTextView.this;
-                        storyCaptionTextView5.showMoreX = (storyCaptionTextView5.horizontalPadding + i) - storyCaptionTextView5.showMorePaint.measureText(string);
+                        storyCaptionTextView5.showMore = storyCaptionTextView5.makeTextLayout(storyCaptionTextView5.showMorePaint, string, i);
+                        StoryCaptionTextView.this.showMoreY = (storyCaptionTextView.verticalPadding + lineTop) - AndroidUtilities.dpf2(0.3f);
+                        StoryCaptionTextView storyCaptionTextView6 = StoryCaptionTextView.this;
+                        storyCaptionTextView6.showMoreX = (storyCaptionTextView6.horizontalPadding + i) - storyCaptionTextView6.showMorePaint.measureText(string);
                     }
-                    StoryCaptionTextView storyCaptionTextView6 = StoryCaptionTextView.this;
-                    this.firstLayout = storyCaptionTextView6.makeTextLayout(storyCaptionTextView6.textPaint, this.text.subSequence(0, this.fullLayout.getLineEnd(2)), i);
+                    StoryCaptionTextView storyCaptionTextView7 = StoryCaptionTextView.this;
+                    this.firstLayout = storyCaptionTextView7.makeTextLayout(storyCaptionTextView7.textPaint, this.text.subSequence(0, this.fullLayout.getLineEnd(2)), i);
                     this.spoilersPool.addAll(this.spoilers);
                     this.spoilers.clear();
                     SpoilerEffect.addSpoilers(StoryCaptionView.this, this.fullLayout, this.spoilersPool, this.spoilers);
@@ -664,8 +673,8 @@ public class StoryCaptionView extends NestedScrollView {
                             if (TextUtils.isEmpty(subSequence)) {
                                 this.nextLinesLayouts[i3 - 3] = null;
                             } else {
-                                StoryCaptionTextView storyCaptionTextView7 = StoryCaptionTextView.this;
-                                StaticLayout makeTextLayout2 = storyCaptionTextView7.makeTextLayout(storyCaptionTextView7.textPaint, subSequence, i);
+                                StoryCaptionTextView storyCaptionTextView8 = StoryCaptionTextView.this;
+                                StaticLayout makeTextLayout2 = storyCaptionTextView8.makeTextLayout(storyCaptionTextView8.textPaint, subSequence, i);
                                 LineInfo lineInfo = new LineInfo(StoryCaptionTextView.this);
                                 this.nextLinesLayouts[i3 - 3] = lineInfo;
                                 lineInfo.staticLayout = makeTextLayout2;
@@ -683,9 +692,8 @@ public class StoryCaptionView extends NestedScrollView {
                         }
                     }
                 } else {
-                    StoryCaptionTextView storyCaptionTextView8 = StoryCaptionTextView.this;
-                    if (this == storyCaptionTextView8.state[0]) {
-                        storyCaptionTextView8.showMore = null;
+                    if (this == storyCaptionTextView4.state[0]) {
+                        storyCaptionTextView4.showMore = null;
                     }
                     this.firstLayout = null;
                     this.spoilersPool.addAll(this.spoilers);

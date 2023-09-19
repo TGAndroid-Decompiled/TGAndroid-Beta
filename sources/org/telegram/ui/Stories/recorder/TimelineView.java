@@ -12,6 +12,7 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Region;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.media.MediaCodec;
@@ -28,7 +29,6 @@ import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.VelocityTracker;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -85,6 +85,7 @@ public class TimelineView extends View {
     private long lastTime;
     private float lastX;
     private final AnimatedFloat loopProgress;
+    private long loopProgressFrom;
     private final Runnable onLongPress;
     private int ph;
     private int pressHandle;
@@ -101,6 +102,7 @@ public class TimelineView extends View {
     private final Theme.ResourcesProvider resourcesProvider;
     private long scroll;
     private final Scroller scroller;
+    private boolean scrolling;
     private boolean scrollingVideo;
     private final Path selectedVideoClipPath;
     final float[] selectedVideoRadii;
@@ -120,7 +122,7 @@ public class TimelineView extends View {
     private final AnimatedFloat waveformLoaded;
     private final AnimatedFloat waveformMax;
     private final Paint waveformPaint;
-    private final Path waveformPath;
+    private final WaveformPath waveformPath;
     final float[] waveformRadii;
 
     public interface TimelineDelegate {
@@ -178,7 +180,7 @@ public class TimelineView extends View {
         this.audioClipPath = new Path();
         Paint paint6 = new Paint(1);
         this.waveformPaint = paint6;
-        this.waveformPath = new Path();
+        this.waveformPath = new WaveformPath();
         Paint paint7 = new Paint(1);
         this.audioDotPaint = paint7;
         TextPaint textPaint = new TextPaint(1);
@@ -191,10 +193,12 @@ public class TimelineView extends View {
         Paint paint8 = new Paint(1);
         this.ellipsizePaint = paint8;
         this.scroller = new Scroller(getContext());
-        this.loopProgress = new AnimatedFloat(0.0f, this, 0L, 200L, CubicBezierInterpolator.EASE_BOTH);
+        this.loopProgress = new AnimatedFloat(0.0f, this, 0L, 340L, cubicBezierInterpolator);
+        this.loopProgressFrom = -1L;
         this.pressHandle = -1;
         this.pressVideo = true;
         this.scrollingVideo = true;
+        this.scrolling = false;
         this.selectedVideoRadii = new float[8];
         this.waveformRadii = new float[8];
         this.resourcesProvider = resourcesProvider;
@@ -249,7 +253,7 @@ public class TimelineView extends View {
                 TimelineView.this.lambda$new$1();
             }
         }).setGravity(5).forceTop(true);
-        float dp = AndroidUtilities.dp(6.0f) - (this.w - min2);
+        float dp = (-(this.w - min2)) + AndroidUtilities.dp(18.0f);
         int dp2 = AndroidUtilities.dp(4.0f);
         if (this.hasVideo) {
             i = 0;
@@ -334,15 +338,18 @@ public class TimelineView extends View {
     public void setAudio(String str, String str2, String str3, long j, long j2, float f, float f2, float f3, boolean z) {
         String str4;
         String str5;
-        this.audioPath = str;
-        AudioWaveformLoader audioWaveformLoader = this.waveform;
-        if (audioWaveformLoader != null) {
-            audioWaveformLoader.destroy();
-            this.waveform = null;
-            this.waveformIsLoaded = false;
-            this.waveformLoaded.set(0.0f, true);
+        if (!TextUtils.equals(this.audioPath, str)) {
+            AudioWaveformLoader audioWaveformLoader = this.waveform;
+            if (audioWaveformLoader != null) {
+                audioWaveformLoader.destroy();
+                this.waveform = null;
+                this.waveformIsLoaded = false;
+                this.waveformLoaded.set(0.0f, true);
+            }
+            this.audioPath = str;
+            setupAudioWaveform();
         }
-        setupAudioWaveform();
+        this.audioPath = str;
         boolean z2 = !TextUtils.isEmpty(str);
         this.hasAudio = z2;
         if (z2) {
@@ -402,6 +409,7 @@ public class TimelineView extends View {
 
     private int detectHandle(MotionEvent motionEvent) {
         float f;
+        float f2;
         float x = motionEvent.getX();
         float y = motionEvent.getY();
         float min = (float) Math.min(getBaseDuration(), 120000L);
@@ -411,56 +419,60 @@ public class TimelineView extends View {
             if (z) {
                 int i = this.px;
                 int i2 = this.ph;
-                float f2 = this.videoLeft;
+                float f3 = this.videoLeft;
                 long j = this.videoDuration;
                 long j2 = this.scroll;
                 int i3 = this.sw;
-                float f3 = i + i2 + ((((f2 * ((float) j)) - ((float) j2)) / min) * i3);
-                float f4 = i + i2 + ((((this.videoRight * ((float) j)) - ((float) j2)) / min) * i3);
-                if (x >= f3 - AndroidUtilities.dp(15.0f) && x <= AndroidUtilities.dp(5.0f) + f3) {
+                float f4 = i + i2 + ((((f3 * ((float) j)) - ((float) j2)) / min) * i3);
+                float f5 = i + i2 + ((((this.videoRight * ((float) j)) - ((float) j2)) / min) * i3);
+                if (x >= f4 - AndroidUtilities.dp(15.0f) && x <= AndroidUtilities.dp(5.0f) + f4) {
                     return 2;
                 }
-                if (x >= f4 - AndroidUtilities.dp(5.0f) && x <= AndroidUtilities.dp(15.0f) + f4) {
+                if (x >= f5 - AndroidUtilities.dp(5.0f) && x <= AndroidUtilities.dp(15.0f) + f5) {
                     return 3;
                 }
-                if (x >= f3 && x <= f4 && (this.videoLeft > 0.01f || this.videoRight < 0.99f)) {
+                if (x >= f4 && x <= f5 && (this.videoLeft > 0.01f || this.videoRight < 0.99f)) {
                     return 4;
                 }
             } else if (this.hasAudio) {
                 int i4 = this.px;
                 int i5 = this.ph;
                 long j3 = this.audioOffset;
-                float f5 = this.audioLeft;
+                float f6 = this.audioLeft;
                 long j4 = this.audioDuration;
-                float f6 = ((float) j3) + (f5 * ((float) j4));
+                float f7 = ((float) j3) + (f6 * ((float) j4));
                 long j5 = this.scroll;
                 int i6 = this.sw;
-                float f7 = i4 + i5 + (((f6 - ((float) j5)) / min) * i6);
-                float f8 = i4 + i5 + ((((((float) j3) + (this.audioRight * ((float) j4))) - ((float) j5)) / min) * i6);
+                float f8 = i4 + i5 + (((f7 - ((float) j5)) / min) * i6);
+                float f9 = i4 + i5 + ((((((float) j3) + (this.audioRight * ((float) j4))) - ((float) j5)) / min) * i6);
                 if (this.audioSelected || !this.hasVideo) {
-                    if (x >= f7 - AndroidUtilities.dp(15.0f)) {
+                    if (x >= f8 - AndroidUtilities.dp(15.0f)) {
                         f = 5.0f;
-                        if (x <= AndroidUtilities.dp(5.0f) + f7) {
+                        if (x <= AndroidUtilities.dp(5.0f) + f8) {
                             return 6;
                         }
                     } else {
                         f = 5.0f;
                     }
-                    if (x >= f8 - AndroidUtilities.dp(f) && x <= AndroidUtilities.dp(15.0f) + f8) {
+                    if (x >= f9 - AndroidUtilities.dp(f) && x <= AndroidUtilities.dp(15.0f) + f9) {
                         return 7;
                     }
-                    if (x >= f7 && x <= f8) {
-                        return (this.audioLeft > (((float) Math.max(0L, this.scroll - this.audioOffset)) / ((float) this.audioDuration)) + 0.01f || this.audioRight < Math.min(1.0f, Math.max(0.0f, ((float) (this.scroll - this.audioOffset)) + ((float) Math.min(120000L, getBaseDuration()))) / ((float) this.audioDuration)) - 0.01f) ? 8 : 5;
+                    if (x >= f8 && x <= f9) {
+                        Math.max(0L, this.scroll - this.audioOffset);
+                        Math.min(1.0f, Math.max(0.0f, ((float) (this.scroll - this.audioOffset)) + ((float) Math.min(120000L, getBaseDuration()))) / ((float) this.audioDuration));
+                        return 5;
                     }
                     int i7 = this.px;
                     int i8 = this.ph;
                     long j6 = this.audioOffset;
                     long j7 = this.scroll;
                     int i9 = this.sw;
-                    f7 = i7 + i8 + ((((float) (j6 - j7)) / min) * i9);
-                    f8 = i7 + i8 + ((((float) ((j6 + this.audioDuration) - j7)) / min) * i9);
+                    f2 = i7 + i8 + ((((float) ((j6 + this.audioDuration) - j7)) / min) * i9);
+                    f8 = i7 + i8 + ((((float) (j6 - j7)) / min) * i9);
+                } else {
+                    f2 = f9;
                 }
-                if (x >= f7 && x <= f8) {
+                if (x >= f8 && x <= f2) {
                     return 5;
                 }
             }
@@ -481,7 +493,7 @@ public class TimelineView extends View {
         return this.dragged;
     }
 
-    private void setProgressAt(float f, boolean z) {
+    private boolean setProgressAt(float f, boolean z) {
         if (this.hasVideo || this.hasAudio) {
             float min = (((f - this.px) - this.ph) / this.sw) * ((float) Math.min(getBaseDuration(), 120000L));
             boolean z2 = this.hasVideo;
@@ -491,14 +503,14 @@ public class TimelineView extends View {
                 float f2 = (float) clamp;
                 long j = this.videoDuration;
                 if (f2 / ((float) j) < this.videoLeft || f2 / ((float) j) > this.videoRight) {
-                    return;
+                    return false;
                 }
             }
             if (this.hasAudio && !z3) {
                 float f3 = (float) clamp;
                 long j2 = this.audioDuration;
                 if (f3 / ((float) j2) < this.audioLeft || f3 / ((float) j2) > this.audioRight) {
-                    return;
+                    return false;
                 }
             }
             this.progress = clamp;
@@ -521,8 +533,11 @@ public class TimelineView extends View {
                 };
                 this.askExactSeek = runnable2;
                 AndroidUtilities.runOnUIThread(runnable2, 150L);
+                return true;
             }
+            return true;
         }
+        return false;
     }
 
     public void lambda$setProgressAt$3(long j) {
@@ -544,395 +559,13 @@ public class TimelineView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z;
-        TimelineDelegate timelineDelegate;
-        VelocityTracker velocityTracker;
-        int i;
-        int i2;
-        VelocityTracker velocityTracker2;
-        VelocityTracker velocityTracker3;
-        float max;
-        boolean z2;
-        boolean z3;
-        float max2;
-        boolean z4;
-        TimelineDelegate timelineDelegate2;
-        boolean z5;
-        boolean z6;
-        TimelineDelegate timelineDelegate3;
-        boolean z7;
-        int i3;
-        if (this.hasVideo || this.hasAudio) {
-            long currentTimeMillis = System.currentTimeMillis();
-            if (motionEvent.getAction() == 0) {
-                Runnable runnable = this.askExactSeek;
-                if (runnable != null) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable);
-                    this.askExactSeek = null;
-                }
-                this.scroller.abortAnimation();
-                this.pressHandle = detectHandle(motionEvent);
-                if (this.hasAudio) {
-                    if (motionEvent.getY() <= ((this.h - this.py) - getVideoHeight()) - (this.hasVideo ? AndroidUtilities.dp(4.0f) : 0)) {
-                        z7 = false;
-                        this.pressVideo = z7;
-                        this.pressTime = System.currentTimeMillis();
-                        i3 = this.pressHandle;
-                        this.draggingProgress = i3 != 0 || i3 == -1 || i3 == 1;
-                        this.hadDragChange = false;
-                        if (i3 != 1 || i3 == 5 || i3 == 8) {
-                            this.velocityTracker = VelocityTracker.obtain();
-                        } else {
-                            VelocityTracker velocityTracker4 = this.velocityTracker;
-                            if (velocityTracker4 != null) {
-                                velocityTracker4.recycle();
-                                this.velocityTracker = null;
-                            }
-                        }
-                        this.dragged = false;
-                        this.lastX = motionEvent.getX();
-                        AndroidUtilities.cancelRunOnUIThread(this.onLongPress);
-                        AndroidUtilities.runOnUIThread(this.onLongPress, ViewConfiguration.getLongPressTimeout());
-                    }
-                }
-                z7 = true;
-                this.pressVideo = z7;
-                this.pressTime = System.currentTimeMillis();
-                i3 = this.pressHandle;
-                this.draggingProgress = i3 != 0 || i3 == -1 || i3 == 1;
-                this.hadDragChange = false;
-                if (i3 != 1) {
-                }
-                this.velocityTracker = VelocityTracker.obtain();
-                this.dragged = false;
-                this.lastX = motionEvent.getX();
-                AndroidUtilities.cancelRunOnUIThread(this.onLongPress);
-                AndroidUtilities.runOnUIThread(this.onLongPress, ViewConfiguration.getLongPressTimeout());
-            } else if (motionEvent.getAction() == 2) {
-                float x = motionEvent.getX() - this.lastX;
-                if (this.dragged || Math.abs(x) > AndroidUtilities.touchSlop) {
-                    long min = Math.min(getBaseDuration(), 120000L);
-                    int i4 = this.pressHandle;
-                    if (i4 == 1) {
-                        this.scroll = Utilities.clamp(((float) this.scroll) - ((x / this.sw) * ((float) min)), (float) (this.videoDuration - min), 0.0f);
-                        invalidate();
-                        this.dragged = true;
-                        this.draggingProgress = false;
-                    } else if (i4 == 2 || i4 == 3 || i4 == 4) {
-                        long j = this.videoDuration;
-                        float f = (x / this.sw) * (((float) min) / ((float) j));
-                        if (i4 == 2) {
-                            float clamp = Utilities.clamp(this.videoLeft + f, this.videoRight - (1000.0f / ((float) j)), 0.0f);
-                            this.videoLeft = clamp;
-                            TimelineDelegate timelineDelegate4 = this.delegate;
-                            if (timelineDelegate4 != null) {
-                                timelineDelegate4.onVideoLeftChange(clamp);
-                            }
-                            float f2 = this.videoRight;
-                            float f3 = this.videoLeft;
-                            long j2 = this.videoDuration;
-                            if (f2 - f3 > 59000.0f / ((float) j2)) {
-                                float min2 = Math.min(1.0f, f3 + (59000.0f / ((float) j2)));
-                                this.videoRight = min2;
-                                TimelineDelegate timelineDelegate5 = this.delegate;
-                                if (timelineDelegate5 != null) {
-                                    timelineDelegate5.onVideoRightChange(min2);
-                                }
-                            }
-                        } else if (i4 == 3) {
-                            float clamp2 = Utilities.clamp(this.videoRight + f, 1.0f, this.videoLeft + (1000.0f / ((float) j)));
-                            this.videoRight = clamp2;
-                            TimelineDelegate timelineDelegate6 = this.delegate;
-                            if (timelineDelegate6 != null) {
-                                timelineDelegate6.onVideoRightChange(clamp2);
-                            }
-                            float f4 = this.videoRight;
-                            long j3 = this.videoDuration;
-                            if (f4 - this.videoLeft > 59000.0f / ((float) j3)) {
-                                float max3 = Math.max(0.0f, f4 - (59000.0f / ((float) j3)));
-                                this.videoLeft = max3;
-                                TimelineDelegate timelineDelegate7 = this.delegate;
-                                if (timelineDelegate7 != null) {
-                                    timelineDelegate7.onVideoLeftChange(max3);
-                                }
-                            }
-                        } else if (i4 == 4) {
-                            if (f > 0.0f) {
-                                max = Math.min(1.0f - this.videoRight, f);
-                            } else {
-                                max = Math.max(-this.videoLeft, f);
-                            }
-                            float f5 = this.videoLeft + max;
-                            this.videoLeft = f5;
-                            this.videoRight += max;
-                            TimelineDelegate timelineDelegate8 = this.delegate;
-                            if (timelineDelegate8 != null) {
-                                timelineDelegate8.onVideoLeftChange(f5);
-                                this.delegate.onVideoRightChange(this.videoRight);
-                            }
-                        }
-                        long j4 = this.progress;
-                        long j5 = this.videoDuration;
-                        float f6 = ((float) j4) / ((float) j5);
-                        float f7 = this.videoLeft;
-                        if (f6 < f7 || ((float) j4) / ((float) j5) > this.videoRight) {
-                            long j6 = f7 * ((float) j5);
-                            this.progress = j6;
-                            TimelineDelegate timelineDelegate9 = this.delegate;
-                            if (timelineDelegate9 != null) {
-                                z2 = false;
-                                timelineDelegate9.onProgressChange(j6, false);
-                                invalidate();
-                                this.dragged = true;
-                                this.draggingProgress = z2;
-                            }
-                        }
-                        z2 = false;
-                        invalidate();
-                        this.dragged = true;
-                        this.draggingProgress = z2;
-                    } else if (i4 == 6 || i4 == 7 || i4 == 8) {
-                        long j7 = this.audioDuration;
-                        float f8 = (x / this.sw) * (((float) min) / ((float) j7));
-                        if (i4 == 6) {
-                            float f9 = this.audioRight - (1000.0f / ((float) j7));
-                            float max4 = (float) Math.max(0L, this.scroll - this.audioOffset);
-                            long j8 = this.audioDuration;
-                            float f10 = max4 / ((float) j8);
-                            if (!this.hasVideo) {
-                                f10 = Math.max(f10, this.audioRight - (59000.0f / ((float) j8)));
-                                if (!this.hadDragChange && f8 < 0.0f && this.audioLeft <= this.audioRight - (59000.0f / ((float) this.audioDuration))) {
-                                    this.pressHandle = 8;
-                                }
-                            }
-                            float f11 = this.audioLeft;
-                            float clamp3 = Utilities.clamp(f11 + f8, f9, f10);
-                            this.audioLeft = clamp3;
-                            if (Math.abs(f11 - clamp3) > 0.01f) {
-                                this.hadDragChange = true;
-                            }
-                            TimelineDelegate timelineDelegate10 = this.delegate;
-                            if (timelineDelegate10 != null) {
-                                timelineDelegate10.onAudioOffsetChange(this.audioOffset + (this.audioLeft * ((float) this.audioDuration)));
-                            }
-                            TimelineDelegate timelineDelegate11 = this.delegate;
-                            if (timelineDelegate11 != null) {
-                                timelineDelegate11.onAudioLeftChange(this.audioLeft);
-                            }
-                        } else if (i4 == 7) {
-                            float min3 = Math.min(1.0f, ((float) Math.max(0L, (this.scroll - this.audioOffset) + min)) / ((float) this.audioDuration));
-                            float f12 = this.audioLeft;
-                            long j9 = this.audioDuration;
-                            float f13 = f12 + (1000.0f / ((float) j9));
-                            if (!this.hasVideo) {
-                                min3 = Math.min(min3, f12 + (59000.0f / ((float) j9)));
-                                if (!this.hadDragChange && f8 > 0.0f && this.audioRight >= this.audioLeft + (59000.0f / ((float) this.audioDuration))) {
-                                    this.pressHandle = 8;
-                                }
-                            }
-                            float f14 = this.audioRight;
-                            float clamp4 = Utilities.clamp(f14 + f8, min3, f13);
-                            this.audioRight = clamp4;
-                            if (Math.abs(f14 - clamp4) > 0.01f) {
-                                this.hadDragChange = true;
-                            }
-                            TimelineDelegate timelineDelegate12 = this.delegate;
-                            if (timelineDelegate12 != null) {
-                                timelineDelegate12.onAudioRightChange(this.audioRight);
-                            }
-                        }
-                        if (this.pressHandle == 8) {
-                            float max5 = ((float) Math.max(0L, this.scroll - this.audioOffset)) / ((float) this.audioDuration);
-                            float min4 = Math.min(1.0f, ((float) Math.max(0L, (this.scroll - this.audioOffset) + min)) / ((float) this.audioDuration));
-                            if (f8 > 0.0f) {
-                                max2 = Math.min(min4 - this.audioRight, f8);
-                            } else {
-                                max2 = Math.max(max5 - this.audioLeft, f8);
-                            }
-                            float f15 = this.audioLeft + max2;
-                            this.audioLeft = f15;
-                            this.audioRight += max2;
-                            TimelineDelegate timelineDelegate13 = this.delegate;
-                            if (timelineDelegate13 != null) {
-                                timelineDelegate13.onAudioLeftChange(f15);
-                                this.delegate.onAudioOffsetChange(this.audioOffset + (this.audioLeft * ((float) this.audioDuration)));
-                                this.delegate.onAudioRightChange(this.audioRight);
-                            }
-                        }
-                        if (!this.hasVideo) {
-                            long j10 = this.progress;
-                            long j11 = this.audioDuration;
-                            float f16 = ((float) j10) / ((float) j11);
-                            float f17 = this.audioLeft;
-                            if (f16 < f17 || ((float) j10) / ((float) j11) > this.audioRight) {
-                                long j12 = f17 * ((float) j11);
-                                this.progress = j12;
-                                TimelineDelegate timelineDelegate14 = this.delegate;
-                                if (timelineDelegate14 != null) {
-                                    z3 = false;
-                                    timelineDelegate14.onProgressChange(j12, false);
-                                    invalidate();
-                                    this.dragged = true;
-                                    this.draggingProgress = z3;
-                                }
-                            }
-                        }
-                        z3 = false;
-                        invalidate();
-                        this.dragged = true;
-                        this.draggingProgress = z3;
-                    } else if (i4 == 5) {
-                        float f18 = (x / this.sw) * ((float) min);
-                        if (!this.hasVideo) {
-                            this.audioOffset = Utilities.clamp(this.audioOffset + f18, 0L, -(this.audioDuration - Math.min(getBaseDuration(), 120000L)));
-                        } else if (this.audioSelected) {
-                            this.audioOffset = Utilities.clamp(this.audioOffset + f18, ((float) getBaseDuration()) - (((float) this.audioDuration) * this.audioRight), Math.min(getBaseDuration(), this.audioDuration) - Math.max(getBaseDuration(), this.audioDuration));
-                        } else {
-                            long j13 = this.audioOffset + f18;
-                            float baseDuration = (float) getBaseDuration();
-                            long j14 = this.audioDuration;
-                            this.audioOffset = Utilities.clamp(j13, baseDuration - (((float) j14) * this.audioRight), (-this.audioLeft) * ((float) j14));
-                        }
-                        float max6 = ((float) Math.max(0L, this.scroll - this.audioOffset)) / ((float) this.audioDuration);
-                        float min5 = Math.min(1.0f, ((float) Math.max(0L, (this.scroll - this.audioOffset) + min)) / ((float) this.audioDuration));
-                        float f19 = this.audioRight;
-                        float f20 = this.audioLeft;
-                        float f21 = f19 - f20;
-                        if (f20 < max6) {
-                            this.audioLeft = max6;
-                            this.audioRight = Math.min(1.0f, max6 + f21);
-                            z5 = true;
-                        } else {
-                            z5 = false;
-                        }
-                        if (this.audioRight > min5) {
-                            this.audioRight = min5;
-                            this.audioLeft = Math.max(0.0f, min5 - f21);
-                            z5 = true;
-                        }
-                        TimelineDelegate timelineDelegate15 = this.delegate;
-                        if (timelineDelegate15 != null && z5) {
-                            timelineDelegate15.onAudioLeftChange(this.audioLeft);
-                            this.delegate.onAudioRightChange(this.audioRight);
-                        }
-                        if (!this.hasVideo) {
-                            long j15 = this.progress;
-                            long j16 = this.audioDuration;
-                            float f22 = ((float) j15) / ((float) j16);
-                            float f23 = this.audioLeft;
-                            if (f22 < f23 || ((float) j15) / ((float) j16) > this.audioRight) {
-                                long j17 = f23 * ((float) j16);
-                                this.progress = j17;
-                                TimelineDelegate timelineDelegate16 = this.delegate;
-                                if (timelineDelegate16 != null) {
-                                    timelineDelegate16.onProgressChange(j17, false);
-                                }
-                            }
-                        }
-                        invalidate();
-                        TimelineDelegate timelineDelegate17 = this.delegate;
-                        if (timelineDelegate17 != null) {
-                            timelineDelegate17.onAudioOffsetChange(this.audioOffset + (this.audioLeft * ((float) this.audioDuration)));
-                        }
-                        if (this.dragged || (timelineDelegate3 = this.delegate) == null) {
-                            z6 = true;
-                        } else {
-                            z6 = true;
-                            timelineDelegate3.onProgressDragChange(true);
-                        }
-                        this.dragged = z6;
-                        this.draggingProgress = false;
-                    } else if (this.draggingProgress) {
-                        setProgressAt(motionEvent.getX(), currentTimeMillis - this.lastTime < 350);
-                        if (this.dragged || (timelineDelegate2 = this.delegate) == null) {
-                            z4 = true;
-                        } else {
-                            z4 = true;
-                            timelineDelegate2.onProgressDragChange(true);
-                        }
-                        this.dragged = z4;
-                    }
-                    this.lastX = motionEvent.getX();
-                }
-                if (this.dragged) {
-                    AndroidUtilities.cancelRunOnUIThread(this.onLongPress);
-                }
-                int i5 = this.pressHandle;
-                if ((i5 == 1 || i5 == 5 || i5 == 8) && (velocityTracker3 = this.velocityTracker) != null) {
-                    velocityTracker3.addMovement(motionEvent);
-                }
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                AndroidUtilities.cancelRunOnUIThread(this.onLongPress);
-                this.scroller.abortAnimation();
-                if (motionEvent.getAction() == 1) {
-                    if (System.currentTimeMillis() - this.pressTime <= ViewConfiguration.getTapTimeout() && !this.dragged) {
-                        boolean z8 = this.pressVideo;
-                        if (!z8 && !this.audioSelected) {
-                            this.audioSelected = true;
-                            invalidate();
-                        } else if (z8 && this.audioSelected) {
-                            this.audioSelected = false;
-                            invalidate();
-                        } else {
-                            setProgressAt(motionEvent.getX(), false);
-                        }
-                    } else {
-                        int i6 = this.pressHandle;
-                        if (i6 == 1 && (velocityTracker2 = this.velocityTracker) != null) {
-                            velocityTracker2.computeCurrentVelocity(1000);
-                            int xVelocity = (int) this.velocityTracker.getXVelocity();
-                            this.scrollingVideo = true;
-                            if (Math.abs(xVelocity) > AndroidUtilities.dp(100.0f)) {
-                                long min6 = Math.min(this.videoDuration, 120000L);
-                                int i7 = this.px;
-                                float f24 = (float) min6;
-                                int i8 = this.sw;
-                                this.scroller.fling((int) (i7 + ((((float) this.scroll) / f24) * i8)), 0, -xVelocity, 0, i7, (int) (i7 + ((((float) (this.videoDuration - min6)) / f24) * i8)), 0, 0);
-                            }
-                        } else if ((i6 == 5 || (i6 == 8 && !this.dragged)) && this.hasVideo && this.audioSelected && (velocityTracker = this.velocityTracker) != null) {
-                            velocityTracker.computeCurrentVelocity(1000);
-                            int xVelocity2 = (int) this.velocityTracker.getXVelocity();
-                            this.scrollingVideo = false;
-                            if (Math.abs(xVelocity2) > AndroidUtilities.dp(100.0f)) {
-                                float min7 = (float) Math.min(getBaseDuration(), 120000L);
-                                int i9 = (int) (this.px + ((((float) this.audioOffset) / min7) * this.sw));
-                                long max7 = Math.max(getBaseDuration(), this.audioDuration);
-                                long min8 = Math.min(getBaseDuration(), this.audioDuration);
-                                this.scroller.fling(i9, 0, xVelocity2, 0, (int) (i + i2 + ((((float) (min8 - max7)) / min7) * this.sw)), this.px + this.ph, 0, 0);
-                            }
-                        }
-                    }
-                }
-                Runnable runnable2 = this.askExactSeek;
-                if (runnable2 != null) {
-                    AndroidUtilities.cancelRunOnUIThread(runnable2);
-                    this.askExactSeek = null;
-                }
-                if (!this.dragged || (timelineDelegate = this.delegate) == null) {
-                    z = false;
-                } else {
-                    z = false;
-                    timelineDelegate.onProgressDragChange(false);
-                }
-                this.dragged = z;
-                this.draggingProgress = z;
-                this.pressTime = -1L;
-                this.pressHandle = -1;
-                VelocityTracker velocityTracker5 = this.velocityTracker;
-                if (velocityTracker5 != null) {
-                    velocityTracker5.recycle();
-                    this.velocityTracker = null;
-                }
-            }
-            this.lastTime = System.currentTimeMillis();
-            return true;
-        }
-        return false;
+    public boolean onTouchEvent(android.view.MotionEvent r32) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.TimelineView.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
     @Override
     public void computeScroll() {
+        boolean z = false;
         if (this.scroller.computeScrollOffset()) {
             float currX = this.scroller.getCurrX();
             long min = Math.min(getBaseDuration(), 120000L);
@@ -943,7 +576,6 @@ public class TimelineView extends View {
                 this.audioOffset = j;
                 float max = ((float) Math.max(0L, this.scroll - j)) / ((float) this.audioDuration);
                 float min2 = Math.min(1.0f, ((float) Math.max(0L, (this.scroll - this.audioOffset) + min)) / ((float) this.audioDuration));
-                boolean z = false;
                 float f = this.audioRight;
                 float f2 = this.audioLeft;
                 float f3 = f - f2;
@@ -966,15 +598,494 @@ public class TimelineView extends View {
                 }
             }
             invalidate();
+        } else if (this.scrolling) {
+            this.scrolling = false;
+            TimelineDelegate timelineDelegate2 = this.delegate;
+            if (timelineDelegate2 != null) {
+                timelineDelegate2.onProgressDragChange(false);
+            }
+        }
+    }
+
+    public class WaveformPath extends Path {
+        private float lastAnimatedLoaded;
+        private float lastAudioHeight;
+        private float lastAudioSelected;
+        private float lastBottom;
+        private float lastLeft;
+        private float lastMaxBar;
+        private float lastRight;
+        private long lastScrollDuration;
+        private float lastStart;
+        private int lastWaveformCount;
+
+        WaveformPath() {
+            TimelineView.this = r1;
+        }
+
+        public void check(float f, float f2, float f3, float f4, float f5, long j, float f6, float f7, float f8) {
+            if (TimelineView.this.waveform != null) {
+                if (this.lastWaveformCount != TimelineView.this.waveform.getCount() || Math.abs(this.lastAnimatedLoaded - f5) > 0.01f || this.lastScrollDuration != j || Math.abs(this.lastAudioHeight - f6) > 1.0f || Math.abs(this.lastMaxBar - f7) > 0.01f || Math.abs(this.lastAudioSelected - f4) > 0.1f || Math.abs(this.lastBottom - f8) > 1.0f || Math.abs(this.lastStart - f) > 1.0f || Math.abs(this.lastLeft - f2) > 1.0f || Math.abs(this.lastRight - f3) > 1.0f) {
+                    this.lastWaveformCount = TimelineView.this.waveform.getCount();
+                    this.lastStart = f;
+                    this.lastLeft = f2;
+                    this.lastRight = f3;
+                    this.lastAudioSelected = f4;
+                    this.lastAnimatedLoaded = f5;
+                    this.lastScrollDuration = j;
+                    this.lastMaxBar = f7;
+                    this.lastAudioHeight = f6;
+                    this.lastBottom = f8;
+                    layout(f, f2, f3, f4, f5, j, f7, f6, f8);
+                    return;
+                }
+                return;
+            }
+            rewind();
+        }
+
+        private void layout(float f, float f2, float f3, float f4, float f5, long j, float f6, float f7, float f8) {
+            TimelineView.this.waveformPath.rewind();
+            float round = Math.round(AndroidUtilities.dpf2(3.3333f));
+            int min = Math.min(TimelineView.this.waveform.getCount() - 1, (int) Math.ceil(((TimelineView.this.ph + f3) - f) / round));
+            for (int max = Math.max(0, (int) (((f2 - TimelineView.this.ph) - f) / round)); max <= min; max++) {
+                float f9 = max;
+                float dp = (f9 * round) + f + AndroidUtilities.dp(2.0f);
+                float bar = f6 <= 0.0f ? 0.0f : (TimelineView.this.waveform.getBar(max) / f6) * f7 * 0.6f;
+                if (f9 < f5 && max + 1 > f5) {
+                    bar *= f5 - f9;
+                } else if (f9 > f5) {
+                    bar = 0.0f;
+                }
+                if (dp < f2 || dp > f3) {
+                    bar *= f4;
+                    if (bar <= 0.0f) {
+                    }
+                }
+                float max2 = Math.max(bar, AndroidUtilities.lerp(AndroidUtilities.dpf2(0.66f), AndroidUtilities.dpf2(1.5f), f4));
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(dp, AndroidUtilities.lerp(f8 - max2, f8 - ((f7 + max2) / 2.0f), f4), AndroidUtilities.dpf2(1.66f) + dp, AndroidUtilities.lerp(f8, f8 - ((f7 - max2) / 2.0f), f4));
+                TimelineView.this.waveformPath.addRoundRect(rectF, TimelineView.this.waveformRadii, Path.Direction.CW);
+            }
         }
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.TimelineView.dispatchDraw(android.graphics.Canvas):void");
+    protected void dispatchDraw(Canvas canvas) {
+        float f;
+        long j;
+        Paint paint;
+        float f2;
+        float f3;
+        float f4;
+        float f5;
+        long j2;
+        double d;
+        float f6;
+        float f7;
+        float f8;
+        float f9;
+        float f10;
+        float f11;
+        int i;
+        int i2;
+        long j3;
+        float max;
+        float f12;
+        float f13;
+        float max2;
+        Paint paint2;
+        float f14;
+        long j4;
+        float f15;
+        float f16;
+        float f17;
+        long j5;
+        float f18;
+        float f19;
+        boolean z;
+        Bitmap bitmap;
+        TimelineView timelineView = this;
+        Paint paint3 = timelineView.backgroundBlur.getPaint(1.0f);
+        long min = Math.min(getBaseDuration(), 120000L);
+        boolean z2 = timelineView.hasVideo;
+        float f20 = z2 ? 1.0f : 0.0f;
+        if (z2) {
+            canvas.save();
+            float videoHeight = getVideoHeight();
+            long j6 = timelineView.videoDuration;
+            if (j6 <= 0) {
+                f18 = f20;
+                f19 = 0.0f;
+            } else {
+                f18 = f20;
+                f19 = (timelineView.px + timelineView.ph) - ((((float) timelineView.scroll) / ((float) min)) * timelineView.sw);
+            }
+            int i3 = timelineView.ph;
+            float f21 = f19 - i3;
+            float f22 = (j6 <= 0 ? 0.0f : ((((float) (j6 - timelineView.scroll)) / ((float) min)) * timelineView.sw) + timelineView.px + i3) + i3;
+            RectF rectF = timelineView.videoBounds;
+            int i4 = timelineView.h;
+            int i5 = timelineView.py;
+            rectF.set(f21, (i4 - i5) - videoHeight, f22, i4 - i5);
+            timelineView.videoClipPath.rewind();
+            timelineView.videoClipPath.addRoundRect(timelineView.videoBounds, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
+            canvas.clipPath(timelineView.videoClipPath);
+            VideoThumbsLoader videoThumbsLoader = timelineView.thumbs;
+            if (videoThumbsLoader != null) {
+                float frameWidth = videoThumbsLoader.getFrameWidth();
+                int max3 = (int) Math.max(0.0d, Math.floor((f21 - timelineView.px) / frameWidth));
+                int min2 = (int) Math.min(timelineView.thumbs.count, Math.ceil(((f22 - f21) - timelineView.px) / frameWidth) + 1.0d);
+                int i6 = (int) ((timelineView.h - timelineView.py) - videoHeight);
+                boolean z3 = timelineView.thumbs.frames.size() >= min2;
+                if (z3) {
+                    for (int i7 = max3; i7 < Math.min(timelineView.thumbs.frames.size(), min2); i7++) {
+                        if (((VideoThumbsLoader.BitmapFrame) timelineView.thumbs.frames.get(i7)).bitmap == null) {
+                            z = false;
+                            break;
+                        }
+                    }
+                }
+                z = z3;
+                if (!z) {
+                    if (paint3 == null) {
+                        canvas.drawColor(1073741824);
+                    } else {
+                        canvas.drawRect(timelineView.videoBounds, paint3);
+                        canvas.drawColor(AndroidUtilities.DARK_STATUS_BAR_OVERLAY);
+                    }
+                }
+                while (max3 < Math.min(timelineView.thumbs.frames.size(), min2)) {
+                    VideoThumbsLoader.BitmapFrame bitmapFrame = (VideoThumbsLoader.BitmapFrame) timelineView.thumbs.frames.get(max3);
+                    if (bitmapFrame.bitmap != null) {
+                        timelineView.videoFramePaint.setAlpha((int) (bitmapFrame.getAlpha() * 255.0f));
+                        canvas.drawBitmap(bitmapFrame.bitmap, f21, i6 - ((int) ((bitmap.getHeight() - videoHeight) / 2.0f)), timelineView.videoFramePaint);
+                    }
+                    f21 += frameWidth;
+                    max3++;
+                }
+                if (!z3) {
+                    timelineView.thumbs.load();
+                }
+            }
+            timelineView.selectedVideoClipPath.rewind();
+            RectF rectF2 = AndroidUtilities.rectTmp;
+            int i8 = timelineView.px;
+            int i9 = timelineView.ph;
+            float f23 = timelineView.videoLeft;
+            long j7 = timelineView.videoDuration;
+            f = f18;
+            paint = paint3;
+            long j8 = timelineView.scroll;
+            float f24 = (float) min;
+            j = min;
+            int i10 = timelineView.sw;
+            float f25 = ((i8 + i9) + ((((((float) j7) * f23) - ((float) j8)) / f24) * i10)) - (f23 <= 0.0f ? i9 : 0);
+            int i11 = timelineView.h;
+            int i12 = timelineView.py;
+            float f26 = (i11 - i12) - videoHeight;
+            float f27 = timelineView.videoRight;
+            float f28 = i8 + i9 + ((((((float) j7) * f27) - ((float) j8)) / f24) * i10);
+            if (f27 < 1.0f) {
+                i9 = 0;
+            }
+            rectF2.set(f25, f26, f28 + i9, i11 - i12);
+            timelineView.selectedVideoClipPath.addRoundRect(rectF2, timelineView.selectedVideoRadii, Path.Direction.CW);
+            canvas.clipPath(timelineView.selectedVideoClipPath, Region.Op.DIFFERENCE);
+            canvas.drawColor(1342177280);
+            canvas.restore();
+            f2 = videoHeight;
+        } else {
+            f = f20;
+            j = min;
+            paint = paint3;
+            f2 = 0.0f;
+        }
+        float f29 = timelineView.audioT.set(timelineView.hasAudio);
+        float f30 = timelineView.audioSelectedT.set(timelineView.hasAudio && timelineView.audioSelected);
+        float dp = AndroidUtilities.dp(4.0f);
+        float audioHeight = getAudioHeight() * f29;
+        if (f29 > 0.0f) {
+            Paint paint4 = timelineView.audioBlur.getPaint(f29);
+            canvas.save();
+            if (timelineView.hasVideo) {
+                long j9 = j;
+                float f31 = (float) j9;
+                paint2 = paint4;
+                f16 = timelineView.px + timelineView.ph + (((((float) (timelineView.audioOffset - timelineView.scroll)) + (AndroidUtilities.lerp(timelineView.audioLeft, 0.0f, f30) * ((float) timelineView.audioDuration))) / f31) * timelineView.sw);
+                f15 = timelineView.px + timelineView.ph + (((((float) (timelineView.audioOffset - timelineView.scroll)) + (AndroidUtilities.lerp(timelineView.audioRight, 1.0f, f30) * ((float) timelineView.audioDuration))) / f31) * timelineView.sw);
+                j4 = j9;
+                f14 = f29;
+                f7 = f30;
+            } else {
+                paint2 = paint4;
+                long j10 = j;
+                int i13 = timelineView.px;
+                int i14 = timelineView.ph;
+                long j11 = timelineView.audioOffset;
+                f14 = f29;
+                f7 = f30;
+                long j12 = timelineView.scroll;
+                float f32 = (float) j10;
+                timelineView = this;
+                j4 = j10;
+                int i15 = timelineView.sw;
+                float f33 = i13 + i14 + ((((float) (j11 - j12)) / f32) * i15);
+                f15 = i13 + i14 + ((((float) ((j11 - j12) + timelineView.audioDuration)) / f32) * i15);
+                f16 = f33;
+            }
+            float f34 = ((timelineView.h - timelineView.py) - f2) - (dp * f);
+            RectF rectF3 = timelineView.audioBounds;
+            int i16 = timelineView.ph;
+            float f35 = f34 - audioHeight;
+            rectF3.set(f16 - i16, f35, i16 + f15, f34);
+            timelineView.audioClipPath.rewind();
+            timelineView.audioClipPath.addRoundRect(timelineView.audioBounds, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
+            canvas.clipPath(timelineView.audioClipPath);
+            if (paint2 == null) {
+                f17 = f14;
+                canvas.drawColor(Theme.multAlpha(1073741824, f17));
+            } else {
+                f17 = f14;
+                canvas.drawRect(timelineView.audioBounds, paint2);
+                canvas.drawColor(Theme.multAlpha(AndroidUtilities.DARK_STATUS_BAR_OVERLAY, f17));
+            }
+            if (timelineView.waveform == null || paint2 == null) {
+                j5 = j4;
+                d = 0.0d;
+            } else {
+                Paint paint5 = timelineView.audioWaveformBlur.getPaint(0.4f * f17);
+                if (paint5 == null) {
+                    paint5 = timelineView.waveformPaint;
+                    paint5.setAlpha((int) (64.0f * f17));
+                }
+                float f36 = timelineView.waveformMax.set(timelineView.waveform.getMaxBar(), !timelineView.waveformIsLoaded);
+                timelineView.waveformIsLoaded = timelineView.waveform.getLoadedCount() > 0;
+                j5 = j4;
+                d = 0.0d;
+                timelineView.waveformPath.check(timelineView.px + timelineView.ph + ((((float) (timelineView.audioOffset - timelineView.scroll)) / ((float) j5)) * timelineView.sw), f16, f15, f7, timelineView.waveformLoaded.set(timelineView.waveform.getLoadedCount()), j5, audioHeight, f36, f34);
+                canvas.drawPath(timelineView.waveformPath, paint5);
+            }
+            if (f7 < 1.0f) {
+                int i17 = timelineView.px;
+                int i18 = timelineView.ph;
+                long j13 = timelineView.audioOffset;
+                long j14 = timelineView.scroll;
+                f6 = f17;
+                f4 = dp;
+                float f37 = timelineView.audioLeft;
+                f3 = f2;
+                long j15 = timelineView.audioDuration;
+                float f38 = (float) j5;
+                int i19 = timelineView.sw;
+                long j16 = j5;
+                float f39 = i17 + i18 + (((((float) (j13 - j14)) + (f37 * ((float) j15))) / f38) * i19);
+                float f40 = i18 + i17 + (((((float) (j13 - j14)) + (timelineView.audioRight * ((float) j15))) / f38) * i19);
+                float max4 = (Math.max(i17, f39) + Math.min(timelineView.w - timelineView.px, f40)) / 2.0f;
+                float dp2 = f35 + AndroidUtilities.dp(14.0f);
+                float max5 = Math.max(0.0f, (Math.min(timelineView.w - timelineView.px, f40) - Math.max(timelineView.px, f39)) - AndroidUtilities.dp(24.0f));
+                float dpf2 = AndroidUtilities.dpf2(13.0f) + ((timelineView.audioAuthor == null && timelineView.audioTitle == null) ? 0.0f : AndroidUtilities.dpf2(3.11f) + timelineView.audioAuthorWidth + AndroidUtilities.dpf2(9.66f) + timelineView.audioTitleWidth);
+                boolean z4 = dpf2 < max5;
+                float min3 = max4 - (Math.min(dpf2, max5) / 2.0f);
+                timelineView.audioIcon.setBounds((int) min3, (int) (dp2 - (AndroidUtilities.dp(13.0f) / 2.0f)), (int) (AndroidUtilities.dp(13.0f) + min3), (int) ((AndroidUtilities.dp(13.0f) / 2.0f) + dp2));
+                float f41 = 1.0f - f7;
+                float f42 = f41 * 255.0f;
+                timelineView.audioIcon.setAlpha((int) f42);
+                timelineView.audioIcon.draw(canvas);
+                float dpf22 = min3 + AndroidUtilities.dpf2(16.11f);
+                f5 = f;
+                j2 = j16;
+                canvas.saveLayerAlpha(0.0f, 0.0f, timelineView.w, timelineView.h, 255, 31);
+                float min4 = Math.min(f40, timelineView.w) - AndroidUtilities.dp(12.0f);
+                canvas.clipRect(dpf22, 0.0f, min4, timelineView.h);
+                if (timelineView.audioAuthor != null) {
+                    canvas.save();
+                    canvas.translate(dpf22 - timelineView.audioAuthorLeft, dp2 - (timelineView.audioAuthor.getHeight() / 2.0f));
+                    timelineView.audioAuthorPaint.setAlpha((int) (f42 * f6));
+                    timelineView.audioAuthor.draw(canvas);
+                    canvas.restore();
+                    dpf22 += timelineView.audioAuthorWidth;
+                }
+                if (timelineView.audioAuthor != null && timelineView.audioTitle != null) {
+                    float dpf23 = dpf22 + AndroidUtilities.dpf2(3.66f);
+                    int alpha = timelineView.audioDotPaint.getAlpha();
+                    timelineView.audioDotPaint.setAlpha((int) (alpha * f41));
+                    canvas.drawCircle(AndroidUtilities.dp(1.0f) + dpf23, dp2, AndroidUtilities.dp(1.0f), timelineView.audioDotPaint);
+                    timelineView.audioDotPaint.setAlpha(alpha);
+                    dpf22 = dpf23 + AndroidUtilities.dpf2(2.0f) + AndroidUtilities.dpf2(4.0f);
+                }
+                if (timelineView.audioTitle != null) {
+                    canvas.save();
+                    canvas.translate(dpf22 - timelineView.audioTitleLeft, dp2 - (timelineView.audioTitle.getHeight() / 2.0f));
+                    timelineView.audioTitlePaint.setAlpha((int) (f42 * f6));
+                    timelineView.audioTitle.draw(canvas);
+                    canvas.restore();
+                }
+                if (!z4) {
+                    timelineView.ellipsizeMatrix.reset();
+                    timelineView.ellipsizeMatrix.postScale(AndroidUtilities.dpf2(8.0f) / 16.0f, 1.0f);
+                    timelineView.ellipsizeMatrix.postTranslate(min4 - AndroidUtilities.dp(8.0f), 0.0f);
+                    timelineView.ellipsizeGradient.setLocalMatrix(timelineView.ellipsizeMatrix);
+                    canvas.drawRect(min4 - AndroidUtilities.dp(8.0f), f35, min4, f34, timelineView.ellipsizePaint);
+                }
+                canvas.restore();
+            } else {
+                j2 = j5;
+                f3 = f2;
+                f6 = f17;
+                f4 = dp;
+                f5 = f;
+            }
+            canvas.restore();
+        } else {
+            f3 = f2;
+            f4 = dp;
+            f5 = f;
+            j2 = j;
+            d = 0.0d;
+            f6 = f29;
+            f7 = f30;
+        }
+        int i20 = timelineView.h;
+        int i21 = timelineView.py;
+        float f43 = f5;
+        float f44 = f4 * f43;
+        float lerp = AndroidUtilities.lerp((i20 - i21) - f3, (((i20 - i21) - f3) - f44) - audioHeight, timelineView.hasVideo ? f7 : 1.0f);
+        int i22 = timelineView.h;
+        int i23 = timelineView.py;
+        float f45 = f7;
+        float lerp2 = AndroidUtilities.lerp(i22 - i23, ((i22 - i23) - f3) - f44, f45);
+        float lerp3 = AndroidUtilities.lerp(timelineView.videoLeft * ((float) timelineView.videoDuration), ((float) timelineView.audioOffset) + (timelineView.audioLeft * ((float) timelineView.audioDuration)), timelineView.hasVideo ? f45 : 1.0f);
+        float lerp4 = AndroidUtilities.lerp(timelineView.videoRight * ((float) timelineView.videoDuration), ((float) timelineView.audioOffset) + (timelineView.audioRight * ((float) timelineView.audioDuration)), timelineView.hasVideo ? f45 : 1.0f);
+        int i24 = timelineView.px;
+        int i25 = timelineView.ph;
+        long j17 = timelineView.scroll;
+        float f46 = (float) j2;
+        int i26 = timelineView.sw;
+        float f47 = i24 + i25 + (((lerp3 - ((float) j17)) / f46) * i26);
+        float f48 = i24 + i25 + (((lerp4 - ((float) j17)) / f46) * i26);
+        if (!timelineView.hasAudio || timelineView.hasVideo) {
+            f8 = f6;
+            f6 = f43;
+        } else {
+            f8 = f6;
+        }
+        if (f8 > d || f43 > d) {
+            f9 = 0.0f;
+            drawRegion(canvas, paint, lerp, lerp2, f47, f48, (timelineView.hasVideo ? 1.0f : AndroidUtilities.lerp(0.6f, 1.0f, f45) * f8) * f6);
+            if (timelineView.hasVideo && timelineView.hasAudio && f45 > 0.0f) {
+                float f49 = timelineView.h - timelineView.py;
+                int i27 = timelineView.ph;
+                int i28 = timelineView.px;
+                float f50 = timelineView.videoLeft;
+                long j18 = timelineView.videoDuration;
+                long j19 = timelineView.scroll;
+                int i29 = timelineView.sw;
+                drawRegion(canvas, paint, (i - i2) - f3, f49, ((((f50 * ((float) j18)) - ((float) j19)) / f46) * i29) + i27 + i28, i27 + i28 + ((((timelineView.videoRight * ((float) j18)) - ((float) j19)) / f46) * i29), 0.8f);
+            }
+            float f51 = timelineView.loopProgress.set(0.0f);
+            float dpf24 = (((timelineView.h - timelineView.py) - f3) - ((audioHeight + f44) * f8)) - AndroidUtilities.dpf2(4.3f);
+            float dpf25 = (timelineView.h - timelineView.py) + AndroidUtilities.dpf2(4.3f);
+            if (f51 > 0.0f) {
+                long j20 = timelineView.loopProgressFrom;
+                if (j20 == -1) {
+                    if (timelineView.hasVideo) {
+                        f10 = (float) timelineView.videoDuration;
+                        f11 = timelineView.videoRight;
+                    } else {
+                        f10 = (float) timelineView.audioDuration;
+                        f11 = timelineView.audioRight;
+                    }
+                    j20 = f10 * f11;
+                }
+                drawProgress(canvas, dpf24, dpf25, j20, f51 * f6);
+            }
+            drawProgress(canvas, dpf24, dpf25, timelineView.progress, (1.0f - f51) * f6);
+        } else {
+            f9 = 0.0f;
+        }
+        if (timelineView.dragged) {
+            long dp3 = (AndroidUtilities.dp(86.0f) / timelineView.sw) * f46 * (1.0f / (1000.0f / AndroidUtilities.screenRefreshRate));
+            int i30 = timelineView.pressHandle;
+            int i31 = -1;
+            if (i30 == 4) {
+                float f52 = timelineView.videoLeft;
+                long j21 = timelineView.scroll;
+                long j22 = timelineView.videoDuration;
+                if (f52 >= ((float) j21) / ((float) j22)) {
+                    i31 = timelineView.videoRight > ((float) (j21 + j2)) / ((float) j22) ? 1 : 0;
+                }
+                long j23 = i31 * dp3;
+                long clamp = Utilities.clamp(j21 + j23, j22 - j2, 0L);
+                timelineView.scroll = clamp;
+                timelineView.progress += j23;
+                float f53 = ((float) (clamp - j21)) / ((float) timelineView.videoDuration);
+                if (f53 > f9) {
+                    f13 = 1.0f;
+                    max2 = Math.min(1.0f - timelineView.videoRight, f53);
+                } else {
+                    f13 = 1.0f;
+                    max2 = Math.max(f9 - timelineView.videoLeft, f53);
+                }
+                timelineView.videoLeft = Utilities.clamp(timelineView.videoLeft + max2, f13, f9);
+                timelineView.videoRight = Utilities.clamp(timelineView.videoRight + max2, f13, f9);
+                TimelineDelegate timelineDelegate = timelineView.delegate;
+                if (timelineDelegate != null) {
+                    timelineDelegate.onVideoLeftChange(timelineView.videoLeft);
+                    timelineView.delegate.onVideoRightChange(timelineView.videoRight);
+                }
+                invalidate();
+            } else if (i30 == 8) {
+                float f54 = timelineView.audioLeft;
+                long j24 = timelineView.audioOffset;
+                float f55 = (float) ((-j24) + 100);
+                long j25 = timelineView.audioDuration;
+                if (f54 < f55 / ((float) j25)) {
+                    j3 = j25;
+                } else {
+                    j3 = j25;
+                    i31 = timelineView.audioRight >= ((float) (((-j24) + j2) - 100)) / ((float) j3) ? 1 : 0;
+                }
+                if (i31 != 0) {
+                    if (timelineView.audioSelected) {
+                        long j26 = j24 - (i31 * dp3);
+                        float f56 = timelineView.videoRight;
+                        long j27 = timelineView.videoDuration;
+                        timelineView.audioOffset = Utilities.clamp(j26, (f56 * ((float) j27)) - (f54 * ((float) j3)), (timelineView.videoLeft * ((float) j27)) - (timelineView.audioRight * ((float) j3)));
+                    } else {
+                        timelineView.audioOffset = Utilities.clamp(j24 - (i31 * dp3), 0L, -(j3 - Math.min(getBaseDuration(), 120000L)));
+                    }
+                    float f57 = ((float) (-(timelineView.audioOffset - j24))) / ((float) timelineView.audioDuration);
+                    if (f57 > 0.0f) {
+                        max = Math.min(1.0f - timelineView.audioRight, f57);
+                    } else {
+                        max = Math.max(0.0f - timelineView.audioLeft, f57);
+                    }
+                    if (timelineView.hasVideo) {
+                        f12 = 0.0f;
+                    } else {
+                        long j28 = timelineView.audioDuration;
+                        f12 = 0.0f;
+                        timelineView.progress = Utilities.clamp(((float) timelineView.progress) + (((float) j28) * max), (float) j28, 0.0f);
+                    }
+                    timelineView.audioLeft = Utilities.clamp(timelineView.audioLeft + max, 1.0f, f12);
+                    timelineView.audioRight = Utilities.clamp(timelineView.audioRight + max, 1.0f, f12);
+                    TimelineDelegate timelineDelegate2 = timelineView.delegate;
+                    if (timelineDelegate2 != null) {
+                        timelineDelegate2.onAudioLeftChange(timelineView.audioLeft);
+                        timelineView.delegate.onAudioRightChange(timelineView.audioRight);
+                        timelineView.delegate.onProgressChange(timelineView.progress, false);
+                    }
+                    invalidate();
+                }
+            }
+        }
     }
 
     private void drawRegion(Canvas canvas, Paint paint, float f, float f2, float f3, float f4, float f5) {
+        if (f5 <= 0.0f) {
+            return;
+        }
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(f3 - AndroidUtilities.dp(10.0f), f, f4 + AndroidUtilities.dp(10.0f), f2);
         canvas.saveLayerAlpha(0.0f, 0.0f, this.w, this.h, 255, 31);
@@ -986,14 +1097,23 @@ public class TimelineView extends View {
         float dp = AndroidUtilities.dp(2.0f);
         float dp2 = AndroidUtilities.dp(10.0f);
         Paint paint2 = paint != null ? paint : this.regionHandlePaint;
+        this.regionHandlePaint.setAlpha(255);
         paint2.setAlpha(i);
         float f6 = f + f2;
         float f7 = (f6 - dp2) / 2.0f;
         float f8 = (f6 + dp2) / 2.0f;
         rectF.set(f3 - ((AndroidUtilities.dp(10.0f) - dp) / 2.0f), f7, f3 - ((AndroidUtilities.dp(10.0f) + dp) / 2.0f), f8);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), paint2);
+        if (paint != null) {
+            this.regionHandlePaint.setAlpha((int) (f5 * 48.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), this.regionHandlePaint);
+        }
         rectF.set(f4 + ((AndroidUtilities.dp(10.0f) - dp) / 2.0f), f7, f4 + ((AndroidUtilities.dp(10.0f) + dp) / 2.0f), f8);
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), paint2);
+        if (paint != null) {
+            this.regionHandlePaint.setAlpha((int) (f5 * 48.0f));
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), this.regionHandlePaint);
+        }
         canvas.restore();
     }
 

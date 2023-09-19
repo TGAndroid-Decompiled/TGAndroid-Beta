@@ -3,7 +3,7 @@ package org.telegram.tgnet;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_userFull extends TLRPC$UserFull {
-    public static int constructor = 1340198022;
+    public static int constructor = -1179571092;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -80,7 +80,7 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
             this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
-            this.stories = TLRPC$TL_userStories.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.stories = TLRPC$PeerStories.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 

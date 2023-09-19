@@ -11,9 +11,10 @@ import org.telegram.messenger.support.LongSparseLongArray;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_error;
+import org.telegram.tgnet.TLRPC$TL_stories_getPeerMaxIDs;
 import org.telegram.tgnet.TLRPC$TL_userStatusEmpty;
-import org.telegram.tgnet.TLRPC$TL_users_getStoriesMaxIDs;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserStatus;
 import org.telegram.tgnet.TLRPC$Vector;
@@ -54,11 +55,11 @@ public class UserListPoller {
             }
             final ArrayList arrayList = new ArrayList(UserListPoller.this.collectedDialogIds);
             UserListPoller.this.collectedDialogIds.clear();
-            TLRPC$TL_users_getStoriesMaxIDs tLRPC$TL_users_getStoriesMaxIDs = new TLRPC$TL_users_getStoriesMaxIDs();
+            TLRPC$TL_stories_getPeerMaxIDs tLRPC$TL_stories_getPeerMaxIDs = new TLRPC$TL_stories_getPeerMaxIDs();
             for (int i = 0; i < arrayList.size(); i++) {
-                tLRPC$TL_users_getStoriesMaxIDs.id.add(MessagesController.getInstance(UserListPoller.this.currentAccount).getInputUser(((Long) arrayList.get(i)).longValue()));
+                tLRPC$TL_stories_getPeerMaxIDs.id.add(MessagesController.getInstance(UserListPoller.this.currentAccount).getInputPeer(((Long) arrayList.get(i)).longValue()));
             }
-            ConnectionsManager.getInstance(UserListPoller.this.currentAccount).sendRequest(tLRPC$TL_users_getStoriesMaxIDs, new RequestDelegate() {
+            ConnectionsManager.getInstance(UserListPoller.this.currentAccount).sendRequest(tLRPC$TL_stories_getPeerMaxIDs, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                     UserListPoller.AnonymousClass1.this.lambda$run$1(arrayList, tLObject, tLRPC$TL_error);
@@ -79,21 +80,35 @@ public class UserListPoller {
             if (tLObject != null) {
                 TLRPC$Vector tLRPC$Vector = (TLRPC$Vector) tLObject;
                 ArrayList arrayList2 = new ArrayList();
-                new ArrayList();
+                ArrayList arrayList3 = new ArrayList();
                 for (int i = 0; i < tLRPC$Vector.objects.size(); i++) {
-                    TLRPC$User user = MessagesController.getInstance(UserListPoller.this.currentAccount).getUser((Long) arrayList.get(i));
-                    if (user != null) {
-                        int intValue = ((Integer) tLRPC$Vector.objects.get(i)).intValue();
-                        user.stories_max_id = intValue;
-                        if (intValue != 0) {
-                            user.flags2 |= 32;
-                        } else {
-                            user.flags2 &= -33;
+                    if (((Long) arrayList.get(i)).longValue() > 0) {
+                        TLRPC$User user = MessagesController.getInstance(UserListPoller.this.currentAccount).getUser((Long) arrayList.get(i));
+                        if (user != null) {
+                            int intValue = ((Integer) tLRPC$Vector.objects.get(i)).intValue();
+                            user.stories_max_id = intValue;
+                            if (intValue != 0) {
+                                user.flags2 |= 32;
+                            } else {
+                                user.flags2 &= -33;
+                            }
+                            arrayList2.add(user);
                         }
-                        arrayList2.add(user);
+                    } else {
+                        TLRPC$Chat chat = MessagesController.getInstance(UserListPoller.this.currentAccount).getChat((Long) arrayList.get(i));
+                        if (chat != null) {
+                            int intValue2 = ((Integer) tLRPC$Vector.objects.get(i)).intValue();
+                            chat.stories_max_id = intValue2;
+                            if (intValue2 != 0) {
+                                chat.flags2 |= 16;
+                            } else {
+                                chat.flags2 &= -17;
+                            }
+                            arrayList3.add(chat);
+                        }
                     }
                 }
-                MessagesStorage.getInstance(UserListPoller.this.currentAccount).putUsersAndChats(arrayList2, null, true, true);
+                MessagesStorage.getInstance(UserListPoller.this.currentAccount).putUsersAndChats(arrayList2, arrayList3, true, true);
                 NotificationCenter.getInstance(UserListPoller.this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, 0);
             }
         }

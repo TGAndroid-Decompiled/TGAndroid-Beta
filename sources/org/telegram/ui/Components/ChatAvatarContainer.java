@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
@@ -51,6 +52,7 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AutoDeletePopupWrapper;
 import org.telegram.ui.Components.SharedMediaLayout;
+import org.telegram.ui.Stories.StoriesUtilities;
 import org.telegram.ui.TopicsFragment;
 public class ChatAvatarContainer extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public boolean allowDrawStories;
@@ -88,6 +90,10 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
 
     protected boolean onAvatarClick() {
         return false;
+    }
+
+    public void hideSubtitle() {
+        this.subtitleTextView.setVisibility(8);
     }
 
     private class SimpleTextConnectedView extends SimpleTextView {
@@ -148,7 +154,9 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
         }
         ChatActivity chatActivity = this.parentFragment;
         final boolean z3 = (chatActivity == null || chatActivity.getChatMode() != 0 || UserObject.isReplyUser(this.parentFragment.getCurrentUser())) ? false : true;
-        this.avatarImageView = new BackupImageView(this, context) {
+        this.avatarImageView = new BackupImageView(context) {
+            StoriesUtilities.AvatarStoryParams params = new StoriesUtilities.AvatarStoryParams(true);
+
             @Override
             public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
@@ -161,6 +169,20 @@ public class ChatAvatarContainer extends FrameLayout implements NotificationCent
                     return;
                 }
                 accessibilityNodeInfo.setVisibleToUser(false);
+            }
+
+            @Override
+            public void onDraw(Canvas canvas) {
+                if (ChatAvatarContainer.this.allowDrawStories && this.animatedEmojiDrawable == null) {
+                    this.params.originalAvatarRect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                    StoriesUtilities.AvatarStoryParams avatarStoryParams = this.params;
+                    avatarStoryParams.drawSegments = true;
+                    avatarStoryParams.drawInside = true;
+                    avatarStoryParams.resourcesProvider = resourcesProvider;
+                    StoriesUtilities.drawAvatarWithStory(ChatAvatarContainer.this.parentFragment.getDialogId(), canvas, this.imageReceiver, this.params);
+                    return;
+                }
+                super.onDraw(canvas);
             }
         };
         if (z2 || (baseFragment instanceof TopicsFragment)) {

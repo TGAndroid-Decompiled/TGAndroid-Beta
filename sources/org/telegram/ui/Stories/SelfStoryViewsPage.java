@@ -34,7 +34,6 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -43,6 +42,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
+import org.telegram.tgnet.TLRPC$PeerStories;
 import org.telegram.tgnet.TLRPC$Reaction;
 import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$StoryViews;
@@ -52,7 +52,6 @@ import org.telegram.tgnet.TLRPC$TL_stories_getStoryViewsList;
 import org.telegram.tgnet.TLRPC$TL_stories_storyViewsList;
 import org.telegram.tgnet.TLRPC$TL_storyView;
 import org.telegram.tgnet.TLRPC$TL_storyViews;
-import org.telegram.tgnet.TLRPC$TL_userStories;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -97,6 +96,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     int currentAccount;
     ViewsModel currentModel;
     ViewsModel defaultModel;
+    private long dialogId;
     HeaderView headerView;
     private boolean isAttachedToWindow;
     boolean isSearchDebounce;
@@ -294,7 +294,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                     str = str.substring(0, indexOf);
                 }
                 final String str2 = str;
-                ItemOptions cutTextInFancyHalf = ItemOptions.makeOptions(this.val$storyViewer.containerView, SelfStoryViewsPage.this.resourcesProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, SelfStoryViewsPage.this.resourcesProvider))).setDimAlpha(MessagesStorage.LAST_DB_VERSION).addIf((!isStoryShownToUser || isBlocked || z) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, str2), new Runnable() {
+                ItemOptions cutTextInFancyHalf = ItemOptions.makeOptions(this.val$storyViewer.containerView, SelfStoryViewsPage.this.resourcesProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, SelfStoryViewsPage.this.resourcesProvider))).setDimAlpha(133).addIf((!isStoryShownToUser || isBlocked || z) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, str2), new Runnable() {
                     @Override
                     public final void run() {
                         SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$0(messagesController, user, str2, reactedUserHolderView, tLRPC$TL_storyView);
@@ -536,7 +536,8 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         this.currentModel.loadNext();
     }
 
-    public void setStoryItem(SelfStoryViewsView.StoryItemInternal storyItemInternal) {
+    public void setStoryItem(long j, SelfStoryViewsView.StoryItemInternal storyItemInternal) {
+        this.dialogId = j;
         this.storyItem = storyItemInternal;
         updateViewsVisibility();
         updateViewState(false);
@@ -564,7 +565,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 if (viewsModel != null) {
                     viewsModel.release();
                 }
-                ViewsModel viewsModel2 = new ViewsModel(this.currentAccount, tLRPC$StoryItem, true);
+                ViewsModel viewsModel2 = new ViewsModel(this.currentAccount, this.dialogId, tLRPC$StoryItem, true);
                 this.defaultModel = viewsModel2;
                 viewsModel2.reloadIfNeed(this.state, this.showContactsFilter, this.showReactionsSort);
                 this.defaultModel.loadNext();
@@ -650,7 +651,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         ((ViewGroup.MarginLayoutParams) this.shadowView2.getLayoutParams()).topMargin = AndroidUtilities.dp(this.TOP_PADDING - 17);
     }
 
-    public static void preload(int i, TLRPC$StoryItem tLRPC$StoryItem) {
+    public static void preload(int i, long j, TLRPC$StoryItem tLRPC$StoryItem) {
         if (tLRPC$StoryItem == null) {
             return;
         }
@@ -661,7 +662,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             if (viewsModel != null) {
                 viewsModel.release();
             }
-            ViewsModel viewsModel2 = new ViewsModel(i, tLRPC$StoryItem, true);
+            ViewsModel viewsModel2 = new ViewsModel(i, j, tLRPC$StoryItem, true);
             viewsModel2.loadNext();
             MessagesController.getInstance(i).storiesController.selfViewsModel.put(tLRPC$StoryItem.id, viewsModel2);
         }
@@ -750,7 +751,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         int childAdapterPosition;
-        TLRPC$TL_userStories stories;
+        TLRPC$PeerStories stories;
         int i3 = 0;
         if (i == NotificationCenter.storiesUpdated) {
             if (this.storyItem.uploadingStory == null || (stories = MessagesController.getInstance(this.currentAccount).storiesController.getStories(UserConfig.getInstance(this.currentAccount).clientUserId)) == null) {
@@ -763,7 +764,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                     SelfStoryViewsView.StoryItemInternal storyItemInternal = this.storyItem;
                     storyItemInternal.uploadingStory = null;
                     storyItemInternal.storyItem = tLRPC$StoryItem;
-                    setStoryItem(storyItemInternal);
+                    setStoryItem(this.dialogId, storyItemInternal);
                     return;
                 }
                 i3++;
@@ -1064,6 +1065,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
 
     public static class ViewsModel {
         int currentAccount;
+        private long dialogId;
         boolean initial;
         boolean isExpiredViews;
         boolean loading;
@@ -1080,10 +1082,11 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         ArrayList<SelfStoryViewsPage> listeners = new ArrayList<>();
         FiltersState state = new FiltersState();
 
-        public ViewsModel(int i, TLRPC$StoryItem tLRPC$StoryItem, boolean z) {
+        public ViewsModel(int i, long j, TLRPC$StoryItem tLRPC$StoryItem, boolean z) {
             TLRPC$StoryViews tLRPC$StoryViews;
             this.currentAccount = i;
             this.storyItem = tLRPC$StoryItem;
+            this.dialogId = j;
             TLRPC$StoryViews tLRPC$StoryViews2 = tLRPC$StoryItem.views;
             int i2 = tLRPC$StoryViews2 == null ? 0 : tLRPC$StoryViews2.views_count;
             this.totalCount = i2;
@@ -1120,6 +1123,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             }
             TLRPC$TL_stories_getStoryViewsList tLRPC$TL_stories_getStoryViewsList = new TLRPC$TL_stories_getStoryViewsList();
             tLRPC$TL_stories_getStoryViewsList.id = this.storyItem.id;
+            tLRPC$TL_stories_getStoryViewsList.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
             if (this.useLocalFilters) {
                 tLRPC$TL_stories_getStoryViewsList.q = "";
                 tLRPC$TL_stories_getStoryViewsList.just_contacts = false;

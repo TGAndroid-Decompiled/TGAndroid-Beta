@@ -12,6 +12,7 @@ import org.telegram.SQLite.SQLiteException;
 import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -22,9 +23,12 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$MessageReplyHeader;
+import org.telegram.tgnet.TLRPC$PeerStories;
 import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messageReplyStoryHeader;
@@ -35,7 +39,6 @@ import org.telegram.tgnet.TLRPC$TL_storyItem;
 import org.telegram.tgnet.TLRPC$TL_storyItemDeleted;
 import org.telegram.tgnet.TLRPC$TL_storyItemSkipped;
 import org.telegram.tgnet.TLRPC$TL_updateStory;
-import org.telegram.tgnet.TLRPC$TL_userStories;
 import org.telegram.tgnet.TLRPC$TL_webPageAttributeStory;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
@@ -59,12 +62,12 @@ public class StoriesStorage {
         });
     }
 
-    public void lambda$getAllStories$3(final com.google.android.exoplayer2.util.Consumer r18) {
+    public void lambda$getAllStories$3(final com.google.android.exoplayer2.util.Consumer r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$getAllStories$3(com.google.android.exoplayer2.util.Consumer):void");
     }
 
-    public static int lambda$getAllStories$1(TLRPC$TL_userStories tLRPC$TL_userStories) {
-        ArrayList<TLRPC$StoryItem> arrayList = tLRPC$TL_userStories.stories;
+    public static int lambda$getAllStories$1(TLRPC$PeerStories tLRPC$PeerStories) {
+        ArrayList<TLRPC$StoryItem> arrayList = tLRPC$PeerStories.stories;
         return -arrayList.get(arrayList.size() - 1).date;
     }
 
@@ -97,11 +100,11 @@ public class StoriesStorage {
         }
     }
 
-    public void putStoriesInternal(long j, TLRPC$TL_userStories tLRPC$TL_userStories) {
+    public void putStoriesInternal(long j, TLRPC$PeerStories tLRPC$PeerStories) {
         SQLiteDatabase database = this.storage.getDatabase();
-        if (tLRPC$TL_userStories != null) {
+        if (tLRPC$PeerStories != null) {
             try {
-                ArrayList<TLRPC$StoryItem> arrayList = tLRPC$TL_userStories.stories;
+                ArrayList<TLRPC$StoryItem> arrayList = tLRPC$PeerStories.stories;
                 SQLitePreparedStatement executeFast = database.executeFast("REPLACE INTO stories VALUES(?, ?, ?, ?)");
                 for (int i = 0; i < arrayList.size(); i++) {
                     executeFast.requery();
@@ -128,7 +131,7 @@ public class StoriesStorage {
                     }
                 }
                 executeFast.dispose();
-                database.executeFast(String.format(Locale.US, "REPLACE INTO stories_counter VALUES(%d, %d, %d)", Long.valueOf(j), 0, Integer.valueOf(tLRPC$TL_userStories.max_read_id))).stepThis().dispose();
+                database.executeFast(String.format(Locale.US, "REPLACE INTO stories_counter VALUES(%d, %d, %d)", Long.valueOf(j), 0, Integer.valueOf(tLRPC$PeerStories.max_read_id))).stepThis().dispose();
             } catch (Exception e) {
                 FileLog.e(e);
             }
@@ -164,7 +167,7 @@ public class StoriesStorage {
         }
     }
 
-    public void saveAllStories(final ArrayList<TLRPC$TL_userStories> arrayList, final boolean z, final boolean z2, final Runnable runnable) {
+    public void saveAllStories(final ArrayList<TLRPC$PeerStories> arrayList, final boolean z, final boolean z2, final Runnable runnable) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
@@ -176,8 +179,8 @@ public class StoriesStorage {
     public void lambda$saveAllStories$4(ArrayList arrayList, boolean z, boolean z2, Runnable runnable) {
         SQLiteDatabase database = this.storage.getDatabase();
         for (int i = 0; i < arrayList.size(); i++) {
-            TLRPC$TL_userStories tLRPC$TL_userStories = (TLRPC$TL_userStories) arrayList.get(i);
-            fillSkippedStories(tLRPC$TL_userStories.user_id, tLRPC$TL_userStories);
+            TLRPC$PeerStories tLRPC$PeerStories = (TLRPC$PeerStories) arrayList.get(i);
+            fillSkippedStories(DialogObject.getPeerDialogId(tLRPC$PeerStories.peer), tLRPC$PeerStories);
         }
         if (!z) {
             try {
@@ -185,12 +188,23 @@ public class StoriesStorage {
                 ArrayList arrayList2 = new ArrayList();
                 while (queryFinalized.next()) {
                     long longValue = queryFinalized.longValue(0);
-                    TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(longValue));
-                    if (user == null) {
-                        user = MessagesStorage.getInstance(this.currentAccount).getUser(longValue);
-                    }
-                    if (user == null || (user.stories_hidden == z2 && !arrayList2.contains(Long.valueOf(longValue)))) {
-                        arrayList2.add(Long.valueOf(longValue));
+                    if (longValue > 0) {
+                        TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(longValue));
+                        if (user == null) {
+                            user = MessagesStorage.getInstance(this.currentAccount).getUser(longValue);
+                        }
+                        if (user == null || (user.stories_hidden == z2 && !arrayList2.contains(Long.valueOf(longValue)))) {
+                            arrayList2.add(Long.valueOf(longValue));
+                        }
+                    } else {
+                        long j = -longValue;
+                        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j));
+                        if (chat == null) {
+                            chat = MessagesStorage.getInstance(this.currentAccount).getChat(j);
+                        }
+                        if (chat == null || (chat.stories_hidden == z2 && !arrayList2.contains(Long.valueOf(longValue)))) {
+                            arrayList2.add(Long.valueOf(longValue));
+                        }
                     }
                 }
                 if (BuildVars.LOGS_ENABLED) {
@@ -202,18 +216,18 @@ public class StoriesStorage {
             }
         }
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
-            TLRPC$TL_userStories tLRPC$TL_userStories2 = (TLRPC$TL_userStories) arrayList.get(i2);
-            putStoriesInternal(tLRPC$TL_userStories2.user_id, tLRPC$TL_userStories2);
+            TLRPC$PeerStories tLRPC$PeerStories2 = (TLRPC$PeerStories) arrayList.get(i2);
+            putStoriesInternal(DialogObject.getPeerDialogId(tLRPC$PeerStories2.peer), tLRPC$PeerStories2);
         }
         if (runnable != null) {
             AndroidUtilities.runOnUIThread(runnable);
         }
     }
 
-    private void fillSkippedStories(long j, TLRPC$TL_userStories tLRPC$TL_userStories) {
-        if (tLRPC$TL_userStories != null) {
+    private void fillSkippedStories(long j, TLRPC$PeerStories tLRPC$PeerStories) {
+        if (tLRPC$PeerStories != null) {
             try {
-                ArrayList<TLRPC$StoryItem> arrayList = tLRPC$TL_userStories.stories;
+                ArrayList<TLRPC$StoryItem> arrayList = tLRPC$PeerStories.stories;
                 for (int i = 0; i < arrayList.size(); i++) {
                     if (arrayList.get(i) instanceof TLRPC$TL_storyItemSkipped) {
                         TLRPC$StoryItem storyInternal = getStoryInternal(j, arrayList.get(i).id);
@@ -301,11 +315,20 @@ public class StoriesStorage {
     }
 
     public void updateMaxReadId(final long j, final int i) {
-        TLRPC$TL_userStories tLRPC$TL_userStories;
-        TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j);
-        if (userFull != null && (tLRPC$TL_userStories = userFull.stories) != null) {
-            tLRPC$TL_userStories.max_read_id = i;
-            this.storage.updateUserInfo(userFull, false);
+        TLRPC$PeerStories tLRPC$PeerStories;
+        TLRPC$PeerStories tLRPC$PeerStories2;
+        if (j > 0) {
+            TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j);
+            if (userFull != null && (tLRPC$PeerStories2 = userFull.stories) != null) {
+                tLRPC$PeerStories2.max_read_id = i;
+                this.storage.updateUserInfo(userFull, false);
+            }
+        } else {
+            TLRPC$ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-j);
+            if (chatFull != null && (tLRPC$PeerStories = chatFull.stories) != null) {
+                tLRPC$PeerStories.max_read_id = i;
+                this.storage.updateChatInfo(chatFull, false);
+            }
         }
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
@@ -336,18 +359,18 @@ public class StoriesStorage {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.StoriesStorage.lambda$processUpdate$9(org.telegram.tgnet.TLRPC$TL_updateStory):void");
     }
 
-    public void updateStories(final TLRPC$TL_userStories tLRPC$TL_userStories) {
+    public void updateStories(final TLRPC$PeerStories tLRPC$PeerStories) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$updateStories$10(tLRPC$TL_userStories);
+                StoriesStorage.this.lambda$updateStories$10(tLRPC$PeerStories);
             }
         });
     }
 
-    public void lambda$updateStories$10(TLRPC$TL_userStories tLRPC$TL_userStories) {
-        for (int i = 0; i < tLRPC$TL_userStories.stories.size(); i++) {
-            lambda$updateStoryItem$7(tLRPC$TL_userStories.user_id, tLRPC$TL_userStories.stories.get(i));
+    public void lambda$updateStories$10(TLRPC$PeerStories tLRPC$PeerStories) {
+        for (int i = 0; i < tLRPC$PeerStories.stories.size(); i++) {
+            lambda$updateStoryItem$7(DialogObject.getPeerDialogId(tLRPC$PeerStories.peer), tLRPC$PeerStories.stories.get(i));
         }
     }
 
@@ -424,7 +447,7 @@ public class StoriesStorage {
                 final long keyAt2 = longSparseArray.keyAt(i4);
                 final ArrayList<MessageObject> valueAt2 = longSparseArray.valueAt(i4);
                 TLRPC$TL_stories_getStoriesByID tLRPC$TL_stories_getStoriesByID = new TLRPC$TL_stories_getStoriesByID();
-                tLRPC$TL_stories_getStoriesByID.user_id = MessagesController.getInstance(this.currentAccount).getInputUser(keyAt2);
+                tLRPC$TL_stories_getStoriesByID.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(keyAt2);
                 for (int i5 = 0; i5 < valueAt2.size(); i5++) {
                     tLRPC$TL_stories_getStoriesByID.id.add(Integer.valueOf(getStoryId(valueAt2.get(i5))));
                 }
@@ -491,8 +514,9 @@ public class StoriesStorage {
         int i2 = messageObject.type;
         if (i2 == 23 || i2 == 24) {
             MessageMediaStoryFull messageMediaStoryFull = new MessageMediaStoryFull();
+            messageMediaStoryFull.user_id = DialogObject.getPeerDialogId(messageObject.messageOwner.media.peer);
             TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
-            messageMediaStoryFull.user_id = tLRPC$MessageMedia.user_id;
+            messageMediaStoryFull.peer = tLRPC$MessageMedia.peer;
             messageMediaStoryFull.id = tLRPC$MessageMedia.id;
             messageMediaStoryFull.storyItem = checkExpiredStateLocal(i, j, tLRPC$StoryItem);
             TLRPC$Message tLRPC$Message2 = messageObject.messageOwner;
@@ -625,17 +649,17 @@ public class StoriesStorage {
         });
     }
 
-    public void putUserStories(final TLRPC$TL_userStories tLRPC$TL_userStories) {
+    public void putPeerStories(final TLRPC$PeerStories tLRPC$PeerStories) {
         this.storage.getStorageQueue().postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoriesStorage.this.lambda$putUserStories$17(tLRPC$TL_userStories);
+                StoriesStorage.this.lambda$putPeerStories$17(tLRPC$PeerStories);
             }
         });
     }
 
-    public void lambda$putUserStories$17(TLRPC$TL_userStories tLRPC$TL_userStories) {
-        putStoriesInternal(tLRPC$TL_userStories.user_id, tLRPC$TL_userStories);
+    public void lambda$putPeerStories$17(TLRPC$PeerStories tLRPC$PeerStories) {
+        putStoriesInternal(DialogObject.getPeerDialogId(tLRPC$PeerStories.peer), tLRPC$PeerStories);
     }
 
     public void deleteAllUserStories(final long j) {

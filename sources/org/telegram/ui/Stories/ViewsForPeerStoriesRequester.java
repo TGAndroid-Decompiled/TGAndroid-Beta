@@ -3,29 +3,30 @@ package org.telegram.ui.Stories;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$PeerStories;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_stories_getStoriesViews;
 import org.telegram.tgnet.TLRPC$TL_stories_storyViews;
-import org.telegram.tgnet.TLRPC$TL_userStories;
-public class ViewsForSelfStoriesRequester {
-    int currentAccount;
+public class ViewsForPeerStoriesRequester {
+    final int currentAccount;
     int currentReqId;
+    final long dialogId;
     boolean isRunning;
-    final Runnable scheduleRequestRunnuble = new Runnable() {
+    final Runnable scheduleRequestRunnable = new Runnable() {
         @Override
         public final void run() {
-            ViewsForSelfStoriesRequester.this.lambda$new$0();
+            ViewsForPeerStoriesRequester.this.lambda$new$0();
         }
     };
-    StoriesController storiesController;
+    final StoriesController storiesController;
 
-    public ViewsForSelfStoriesRequester(StoriesController storiesController, int i) {
+    public ViewsForPeerStoriesRequester(StoriesController storiesController, long j, int i) {
         this.currentAccount = i;
         this.storiesController = storiesController;
+        this.dialogId = j;
     }
 
     public void start(boolean z) {
@@ -37,13 +38,13 @@ public class ViewsForSelfStoriesRequester {
             return;
         }
         this.isRunning = false;
-        AndroidUtilities.cancelRunOnUIThread(this.scheduleRequestRunnuble);
+        AndroidUtilities.cancelRunOnUIThread(this.scheduleRequestRunnable);
         ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.currentReqId, false);
         this.currentReqId = 0;
     }
 
     public boolean lambda$new$0() {
-        TLRPC$TL_userStories stories = this.storiesController.getStories(UserConfig.getInstance(this.currentAccount).getClientUserId());
+        TLRPC$PeerStories stories = this.storiesController.getStories(this.dialogId);
         if (stories == null || stories.stories.isEmpty() || this.currentReqId != 0) {
             return false;
         }
@@ -51,10 +52,11 @@ public class ViewsForSelfStoriesRequester {
         for (int i = 0; i < stories.stories.size(); i++) {
             tLRPC$TL_stories_getStoriesViews.id.add(Integer.valueOf(stories.stories.get(i).id));
         }
+        tLRPC$TL_stories_getStoriesViews.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
         this.currentReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stories_getStoriesViews, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ViewsForSelfStoriesRequester.this.lambda$requestInternal$2(tLRPC$TL_stories_getStoriesViews, tLObject, tLRPC$TL_error);
+                ViewsForPeerStoriesRequester.this.lambda$requestInternal$2(tLRPC$TL_stories_getStoriesViews, tLObject, tLRPC$TL_error);
             }
         });
         return true;
@@ -64,14 +66,14 @@ public class ViewsForSelfStoriesRequester {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ViewsForSelfStoriesRequester.this.lambda$requestInternal$1(tLObject, tLRPC$TL_stories_getStoriesViews);
+                ViewsForPeerStoriesRequester.this.lambda$requestInternal$1(tLObject, tLRPC$TL_stories_getStoriesViews);
             }
         });
     }
 
     public void lambda$requestInternal$1(TLObject tLObject, TLRPC$TL_stories_getStoriesViews tLRPC$TL_stories_getStoriesViews) {
         if (tLObject != null) {
-            TLRPC$TL_userStories stories = this.storiesController.getStories(UserConfig.getInstance(this.currentAccount).getClientUserId());
+            TLRPC$PeerStories stories = this.storiesController.getStories(this.dialogId);
             if (stories == null || stories.stories.isEmpty()) {
                 this.currentReqId = 0;
                 this.isRunning = false;
@@ -91,8 +93,8 @@ public class ViewsForSelfStoriesRequester {
         }
         this.currentReqId = 0;
         if (this.isRunning) {
-            AndroidUtilities.cancelRunOnUIThread(this.scheduleRequestRunnuble);
-            AndroidUtilities.runOnUIThread(this.scheduleRequestRunnuble, 10000L);
+            AndroidUtilities.cancelRunOnUIThread(this.scheduleRequestRunnable);
+            AndroidUtilities.runOnUIThread(this.scheduleRequestRunnable, 10000L);
         }
     }
 }

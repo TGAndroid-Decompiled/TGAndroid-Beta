@@ -1334,7 +1334,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
             return false;
         }
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("present fragment " + baseFragment2.getClass().getSimpleName());
+            FileLog.d("present fragment " + baseFragment2.getClass().getSimpleName() + " args=" + baseFragment2.getArguments());
         }
         StoryViewer.closeGlobalInstances();
         if (this.inPreviewMode && this.transitionAnimationPreviewMode) {

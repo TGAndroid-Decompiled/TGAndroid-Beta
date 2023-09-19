@@ -490,6 +490,10 @@ public abstract class SelfStoriesPreviewView extends View {
                 canvas.restore();
             }
         }
+
+        public void update() {
+            updateLayout();
+        }
     }
 
     public void formatCounterText(SpannableStringBuilder spannableStringBuilder, TLRPC$StoryViews tLRPC$StoryViews, boolean z) {
@@ -522,5 +526,11 @@ public abstract class SelfStoriesPreviewView extends View {
             this.lastDrawnImageReceivers.get(i).onDetach();
         }
         this.lastDrawnImageReceivers.clear();
+    }
+
+    public void update() {
+        for (int i = 0; i < this.lastDrawnImageReceivers.size(); i++) {
+            this.lastDrawnImageReceivers.get(i).update();
+        }
     }
 }

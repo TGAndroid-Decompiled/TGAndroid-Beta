@@ -88,6 +88,7 @@ import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_channelParticipantAdmin;
 import org.telegram.tgnet.TLRPC$TL_channelParticipantCreator;
+import org.telegram.tgnet.TLRPC$TL_chatAdminRights;
 import org.telegram.tgnet.TLRPC$TL_chatChannelParticipant;
 import org.telegram.tgnet.TLRPC$TL_chatParticipantAdmin;
 import org.telegram.tgnet.TLRPC$TL_chatParticipantCreator;
@@ -356,7 +357,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     protected void onTabScroll(boolean z) {
     }
 
-    static int access$5108(SharedMediaLayout sharedMediaLayout) {
+    static int access$5308(SharedMediaLayout sharedMediaLayout) {
         int i = sharedMediaLayout.animationSupportingSortedCellsOffset;
         sharedMediaLayout.animationSupportingSortedCellsOffset = i + 1;
         return i;
@@ -813,7 +814,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             return i;
         }
 
-        static int access$7910(SharedMediaData sharedMediaData) {
+        static int access$8010(SharedMediaData sharedMediaData) {
             int i = sharedMediaData.endLoadingStubs;
             sharedMediaData.endLoadingStubs = i - 1;
             return i;
@@ -1006,7 +1007,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         iArr[5] = lastMediaCount[5];
         iArr[6] = i7 == 0 ? i : 0;
         this.hasMedia = iArr;
-        if ((tLRPC$UserFull != null && tLRPC$UserFull.stories_pinned_available) || isStoriesView()) {
+        if ((tLRPC$UserFull != null && tLRPC$UserFull.stories_pinned_available) || ((tLRPC$ChatFull3 != null && tLRPC$ChatFull3.stories_pinned_available) || isStoriesView())) {
             this.initialTab = getInitialTab();
         } else if (z && this.topicId == 0) {
             this.initialTab = 7;
@@ -1769,6 +1770,8 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
 
         @Override
         public void onClick(View view) {
+            TLRPC$Chat chat;
+            TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
             final DividerCell dividerCell = new DividerCell(this.val$context);
             ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this, this.val$context, this.val$resourcesProvider) {
                 @Override
@@ -1834,50 +1837,61 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                         }
                     }
                 });
+                if (SharedMediaLayout.this.info != null && !SharedMediaLayout.this.isStoriesView() && (chat = MessagesController.getInstance(SharedMediaLayout.this.profileActivity.getCurrentAccount()).getChat(Long.valueOf(SharedMediaLayout.this.info.id))) != null && (tLRPC$TL_chatAdminRights = chat.admin_rights) != null && tLRPC$TL_chatAdminRights.edit_stories) {
+                    ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(this.val$context, false, true, this.val$resourcesProvider);
+                    actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString(R.string.OpenChannelArchiveStories), R.drawable.msg_archive);
+                    actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view2) {
+                            SharedMediaLayout.AnonymousClass5.this.lambda$onClick$2(view2);
+                        }
+                    });
+                    actionBarPopupWindowLayout.addView(actionBarMenuSubItem2);
+                }
                 if (z2) {
                     actionBarPopupWindowLayout.addView(dividerCell);
-                    final ActionBarMenuSubItem actionBarMenuSubItem2 = new ActionBarMenuSubItem(this.val$context, true, false, false, this.val$resourcesProvider);
-                    final ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(this.val$context, true, false, true, this.val$resourcesProvider);
-                    actionBarMenuSubItem2.setTextAndIcon(LocaleController.getString("MediaShowPhotos", R.string.MediaShowPhotos), 0);
-                    actionBarPopupWindowLayout.addView(actionBarMenuSubItem2);
-                    actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("MediaShowVideos", R.string.MediaShowVideos), 0);
+                    final ActionBarMenuSubItem actionBarMenuSubItem3 = new ActionBarMenuSubItem(this.val$context, true, false, false, this.val$resourcesProvider);
+                    final ActionBarMenuSubItem actionBarMenuSubItem4 = new ActionBarMenuSubItem(this.val$context, true, false, true, this.val$resourcesProvider);
+                    actionBarMenuSubItem3.setTextAndIcon(LocaleController.getString("MediaShowPhotos", R.string.MediaShowPhotos), 0);
                     actionBarPopupWindowLayout.addView(actionBarMenuSubItem3);
+                    actionBarMenuSubItem4.setTextAndIcon(LocaleController.getString("MediaShowVideos", R.string.MediaShowVideos), 0);
+                    actionBarPopupWindowLayout.addView(actionBarMenuSubItem4);
                     if (c != 0) {
                         final StoriesAdapter storiesAdapter = closestTab == 8 ? SharedMediaLayout.this.storiesAdapter : SharedMediaLayout.this.archivedStoriesAdapter;
                         StoriesController.StoriesList storiesList = storiesAdapter.storiesList;
                         if (storiesList != null) {
-                            actionBarMenuSubItem2.setChecked(storiesList.showPhotos());
-                            actionBarMenuSubItem3.setChecked(storiesAdapter.storiesList.showVideos());
+                            actionBarMenuSubItem3.setChecked(storiesList.showPhotos());
+                            actionBarMenuSubItem4.setChecked(storiesAdapter.storiesList.showVideos());
                         }
-                        actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public final void onClick(View view2) {
-                                SharedMediaLayout.AnonymousClass5.this.lambda$onClick$2(actionBarMenuSubItem3, actionBarMenuSubItem2, storiesAdapter, view2);
-                            }
-                        });
                         actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view2) {
-                                SharedMediaLayout.AnonymousClass5.this.lambda$onClick$3(actionBarMenuSubItem2, actionBarMenuSubItem3, storiesAdapter, view2);
+                                SharedMediaLayout.AnonymousClass5.this.lambda$onClick$3(actionBarMenuSubItem4, actionBarMenuSubItem3, storiesAdapter, view2);
+                            }
+                        });
+                        actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public final void onClick(View view2) {
+                                SharedMediaLayout.AnonymousClass5.this.lambda$onClick$4(actionBarMenuSubItem3, actionBarMenuSubItem4, storiesAdapter, view2);
                             }
                         });
                     } else {
-                        actionBarMenuSubItem2.setChecked(SharedMediaLayout.this.sharedMediaData[0].filterType == 0 || SharedMediaLayout.this.sharedMediaData[0].filterType == 1);
-                        actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
+                        actionBarMenuSubItem3.setChecked(SharedMediaLayout.this.sharedMediaData[0].filterType == 0 || SharedMediaLayout.this.sharedMediaData[0].filterType == 1);
+                        actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view2) {
                                 if (SharedMediaLayout.this.changeTypeAnimation) {
                                     return;
                                 }
-                                if (!actionBarMenuSubItem3.getCheckView().isChecked() && actionBarMenuSubItem2.getCheckView().isChecked()) {
-                                    ActionBarMenuSubItem actionBarMenuSubItem4 = actionBarMenuSubItem2;
+                                if (!actionBarMenuSubItem4.getCheckView().isChecked() && actionBarMenuSubItem3.getCheckView().isChecked()) {
+                                    ActionBarMenuSubItem actionBarMenuSubItem5 = actionBarMenuSubItem3;
                                     SharedMediaLayout sharedMediaLayout = SharedMediaLayout.this;
-                                    AndroidUtilities.shakeViewSpring(actionBarMenuSubItem4, sharedMediaLayout.shiftDp = -sharedMediaLayout.shiftDp);
+                                    AndroidUtilities.shakeViewSpring(actionBarMenuSubItem5, sharedMediaLayout.shiftDp = -sharedMediaLayout.shiftDp);
                                     return;
                                 }
-                                ActionBarMenuSubItem actionBarMenuSubItem5 = actionBarMenuSubItem2;
-                                actionBarMenuSubItem5.setChecked(!actionBarMenuSubItem5.getCheckView().isChecked());
-                                if (!actionBarMenuSubItem2.getCheckView().isChecked() || !actionBarMenuSubItem3.getCheckView().isChecked()) {
+                                ActionBarMenuSubItem actionBarMenuSubItem6 = actionBarMenuSubItem3;
+                                actionBarMenuSubItem6.setChecked(!actionBarMenuSubItem6.getCheckView().isChecked());
+                                if (!actionBarMenuSubItem3.getCheckView().isChecked() || !actionBarMenuSubItem4.getCheckView().isChecked()) {
                                     SharedMediaLayout.this.sharedMediaData[0].filterType = 2;
                                 } else {
                                     SharedMediaLayout.this.sharedMediaData[0].filterType = 0;
@@ -1888,22 +1902,22 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
                         if (SharedMediaLayout.this.sharedMediaData[0].filterType != 0 && SharedMediaLayout.this.sharedMediaData[0].filterType != 2) {
                             z = false;
                         }
-                        actionBarMenuSubItem3.setChecked(z);
-                        actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
+                        actionBarMenuSubItem4.setChecked(z);
+                        actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view2) {
                                 if (SharedMediaLayout.this.changeTypeAnimation) {
                                     return;
                                 }
-                                if (!actionBarMenuSubItem2.getCheckView().isChecked() && actionBarMenuSubItem3.getCheckView().isChecked()) {
-                                    ActionBarMenuSubItem actionBarMenuSubItem4 = actionBarMenuSubItem3;
+                                if (!actionBarMenuSubItem3.getCheckView().isChecked() && actionBarMenuSubItem4.getCheckView().isChecked()) {
+                                    ActionBarMenuSubItem actionBarMenuSubItem5 = actionBarMenuSubItem4;
                                     SharedMediaLayout sharedMediaLayout = SharedMediaLayout.this;
-                                    AndroidUtilities.shakeViewSpring(actionBarMenuSubItem4, sharedMediaLayout.shiftDp = -sharedMediaLayout.shiftDp);
+                                    AndroidUtilities.shakeViewSpring(actionBarMenuSubItem5, sharedMediaLayout.shiftDp = -sharedMediaLayout.shiftDp);
                                     return;
                                 }
-                                ActionBarMenuSubItem actionBarMenuSubItem5 = actionBarMenuSubItem3;
-                                actionBarMenuSubItem5.setChecked(!actionBarMenuSubItem5.getCheckView().isChecked());
-                                if (!actionBarMenuSubItem2.getCheckView().isChecked() || !actionBarMenuSubItem3.getCheckView().isChecked()) {
+                                ActionBarMenuSubItem actionBarMenuSubItem6 = actionBarMenuSubItem4;
+                                actionBarMenuSubItem6.setChecked(!actionBarMenuSubItem6.getCheckView().isChecked());
+                                if (!actionBarMenuSubItem3.getCheckView().isChecked() || !actionBarMenuSubItem4.getCheckView().isChecked()) {
                                     SharedMediaLayout.this.sharedMediaData[0].filterType = 1;
                                 } else {
                                     SharedMediaLayout.this.sharedMediaData[0].filterType = 0;
@@ -1926,7 +1940,20 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             SharedMediaLayout.this.zoomOut();
         }
 
-        public void lambda$onClick$2(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, StoriesAdapter storiesAdapter, View view) {
+        public void lambda$onClick$2(View view) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("type", 2);
+            bundle.putLong("dialog_id", -SharedMediaLayout.this.info.id);
+            MediaActivity mediaActivity = new MediaActivity(bundle, null);
+            mediaActivity.setChatInfo(SharedMediaLayout.this.info);
+            SharedMediaLayout.this.profileActivity.presentFragment(mediaActivity);
+            ActionBarPopupWindow actionBarPopupWindow = SharedMediaLayout.this.optionsWindow;
+            if (actionBarPopupWindow != null) {
+                actionBarPopupWindow.dismiss();
+            }
+        }
+
+        public void lambda$onClick$3(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, StoriesAdapter storiesAdapter, View view) {
             if (SharedMediaLayout.this.changeTypeAnimation) {
                 return;
             }
@@ -1943,7 +1970,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             storiesList.updateFilters(actionBarMenuSubItem2.getCheckView().isChecked(), actionBarMenuSubItem.getCheckView().isChecked());
         }
 
-        public void lambda$onClick$3(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, StoriesAdapter storiesAdapter, View view) {
+        public void lambda$onClick$4(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, StoriesAdapter storiesAdapter, View view) {
             if (SharedMediaLayout.this.changeTypeAnimation) {
                 return;
             }
@@ -3992,25 +4019,35 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     }
 
     public void setChatInfo(TLRPC$ChatFull tLRPC$ChatFull) {
+        TLRPC$ChatFull tLRPC$ChatFull2 = this.info;
+        boolean z = tLRPC$ChatFull2 != null && tLRPC$ChatFull2.stories_pinned_available;
         this.info = tLRPC$ChatFull;
-        if (tLRPC$ChatFull == null) {
-            return;
-        }
-        long j = tLRPC$ChatFull.migrated_from_chat_id;
-        if (j == 0 || this.mergeDialogId != 0) {
-            return;
-        }
-        this.mergeDialogId = -j;
-        int i = 0;
-        while (true) {
-            SharedMediaData[] sharedMediaDataArr = this.sharedMediaData;
-            if (i >= sharedMediaDataArr.length) {
-                return;
+        if (tLRPC$ChatFull != null) {
+            long j = tLRPC$ChatFull.migrated_from_chat_id;
+            if (j != 0 && this.mergeDialogId == 0) {
+                this.mergeDialogId = -j;
+                int i = 0;
+                while (true) {
+                    SharedMediaData[] sharedMediaDataArr = this.sharedMediaData;
+                    if (i >= sharedMediaDataArr.length) {
+                        break;
+                    }
+                    sharedMediaDataArr[i].max_id[1] = this.info.migrated_from_max_id;
+                    sharedMediaDataArr[i].endReached[1] = false;
+                    i++;
+                }
             }
-            sharedMediaDataArr[i].max_id[1] = this.info.migrated_from_max_id;
-            sharedMediaDataArr[i].endReached[1] = false;
-            i++;
         }
+        TLRPC$ChatFull tLRPC$ChatFull3 = this.info;
+        if (tLRPC$ChatFull3 == null || z == tLRPC$ChatFull3.stories_pinned_available) {
+            return;
+        }
+        ScrollSlidingTextTabStripInner scrollSlidingTextTabStripInner = this.scrollSlidingTextTabStrip;
+        if (scrollSlidingTextTabStripInner != null) {
+            scrollSlidingTextTabStripInner.setInitialTabId(isArchivedOnlyStoriesView() ? 9 : 8);
+        }
+        updateTabs(true);
+        switchToCurrentSelectedMode(false);
     }
 
     public void setUserInfo(TLRPC$UserFull tLRPC$UserFull) {
@@ -4115,7 +4152,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.mergeDialogId = j;
     }
 
-    private void updateTabs(boolean r14) {
+    private void updateTabs(boolean r17) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.SharedMediaLayout.updateTabs(boolean):void");
     }
 

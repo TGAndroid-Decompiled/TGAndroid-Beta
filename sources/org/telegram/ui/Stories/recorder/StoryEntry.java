@@ -13,6 +13,7 @@ import android.media.MediaFormat;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.text.SpannableString;
+import android.util.Log;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.FileRefController;
+import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
@@ -122,6 +124,7 @@ public class StoryEntry extends IStoryPart {
     public List<TLRPC$InputDocument> stickers;
     public Bitmap thumbBitmap;
     public String thumbPath;
+    public Bitmap thumbPathBitmap;
     public File uploadThumbFile;
     public final int currentAccount = UserConfig.selectedAccount;
     public double fileDuration = -1.0d;
@@ -531,10 +534,10 @@ public class StoryEntry extends IStoryPart {
         if (!z) {
             clearPaint();
             clearFilter();
-            File file2 = this.file;
-            if (file2 != null) {
+            if (this.file != null) {
                 if (this.fileDeletable && (!this.isEdit || this.editedMedia)) {
-                    file2.delete();
+                    Log.e("lolkek", "deleting file (isedit = " + this.isEdit + ", editedMedia = " + this.editedMedia + ")", new Exception());
+                    this.file.delete();
                 }
                 this.file = null;
             }
@@ -553,20 +556,24 @@ public class StoryEntry extends IStoryPart {
                 next.file = null;
             }
         }
+        Bitmap bitmap2 = this.thumbPathBitmap;
+        if (bitmap2 != null) {
+            bitmap2.recycle();
+            this.thumbPathBitmap = null;
+        }
         cancelCheckStickers();
     }
 
     public static StoryEntry fromStoryItem(File file, TLRPC$StoryItem tLRPC$StoryItem) {
-        File pathToAttach;
         StoryEntry storyEntry = new StoryEntry();
         storyEntry.isEdit = true;
         storyEntry.editStoryId = tLRPC$StoryItem.id;
         storyEntry.file = file;
-        storyEntry.fileDeletable = true;
+        int i = 0;
+        storyEntry.fileDeletable = false;
         storyEntry.width = 720;
         storyEntry.height = 1280;
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$StoryItem.media;
-        int i = 0;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPhoto) {
             storyEntry.isVideo = false;
             if (file != null) {
@@ -602,7 +609,12 @@ public class StoryEntry extends IStoryPart {
                             break;
                         }
                         TLRPC$PhotoSize tLRPC$PhotoSize = tLRPC$StoryItem.media.document.thumbs.get(i);
-                        if (!(tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) && (pathToAttach = FileLoader.getInstance(storyEntry.currentAccount).getPathToAttach(tLRPC$PhotoSize, true)) != null && pathToAttach.exists()) {
+                        if (tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) {
+                            storyEntry.thumbPathBitmap = ImageLoader.getStrippedPhotoBitmap(tLRPC$PhotoSize.bytes, null);
+                            break;
+                        }
+                        File pathToAttach = FileLoader.getInstance(storyEntry.currentAccount).getPathToAttach(tLRPC$PhotoSize, true);
+                        if (pathToAttach != null && pathToAttach.exists()) {
                             storyEntry.thumbPath = pathToAttach.getAbsolutePath();
                             break;
                         }
@@ -716,35 +728,48 @@ public class StoryEntry extends IStoryPart {
     }
 
     public void setupGradient(final Runnable runnable) {
-        if (this.isVideo && this.gradientTopColor == 0 && this.gradientBottomColor == 0 && this.thumbPath != null) {
-            final Bitmap bitmap = null;
-            try {
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                if (this.thumbPath.startsWith("vthumb://")) {
-                    long parseInt = Integer.parseInt(this.thumbPath.substring(9));
-                    options.inJustDecodeBounds = true;
-                    MediaStore.Video.Thumbnails.getThumbnail(ApplicationLoader.applicationContext.getContentResolver(), parseInt, 1, options);
-                    options.inSampleSize = calculateInSampleSize(options, 240, 240);
-                    options.inJustDecodeBounds = false;
-                    options.inPreferredConfig = Bitmap.Config.RGB_565;
-                    options.inDither = true;
-                    bitmap = MediaStore.Video.Thumbnails.getThumbnail(ApplicationLoader.applicationContext.getContentResolver(), parseInt, 1, options);
-                } else {
-                    options.inJustDecodeBounds = true;
-                    BitmapFactory.decodeFile(this.thumbPath);
-                    options.inSampleSize = calculateInSampleSize(options, 240, 240);
-                    options.inJustDecodeBounds = false;
-                    options.inPreferredConfig = Bitmap.Config.RGB_565;
-                    options.inDither = true;
-                    bitmap = BitmapFactory.decodeFile(this.thumbPath);
+        if (this.isVideo && this.gradientTopColor == 0 && this.gradientBottomColor == 0) {
+            if (this.thumbPath != null) {
+                final Bitmap bitmap = null;
+                try {
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    if (this.thumbPath.startsWith("vthumb://")) {
+                        long parseInt = Integer.parseInt(this.thumbPath.substring(9));
+                        options.inJustDecodeBounds = true;
+                        MediaStore.Video.Thumbnails.getThumbnail(ApplicationLoader.applicationContext.getContentResolver(), parseInt, 1, options);
+                        options.inSampleSize = calculateInSampleSize(options, 240, 240);
+                        options.inJustDecodeBounds = false;
+                        options.inPreferredConfig = Bitmap.Config.RGB_565;
+                        options.inDither = true;
+                        bitmap = MediaStore.Video.Thumbnails.getThumbnail(ApplicationLoader.applicationContext.getContentResolver(), parseInt, 1, options);
+                    } else {
+                        options.inJustDecodeBounds = true;
+                        BitmapFactory.decodeFile(this.thumbPath);
+                        options.inSampleSize = calculateInSampleSize(options, 240, 240);
+                        options.inJustDecodeBounds = false;
+                        options.inPreferredConfig = Bitmap.Config.RGB_565;
+                        options.inDither = true;
+                        bitmap = BitmapFactory.decodeFile(this.thumbPath);
+                    }
+                } catch (Exception unused) {
                 }
-            } catch (Exception unused) {
+                if (bitmap != null) {
+                    DominantColors.getColors(true, bitmap, true, new Utilities.Callback() {
+                        @Override
+                        public final void run(Object obj) {
+                            StoryEntry.this.lambda$setupGradient$5(bitmap, runnable, (int[]) obj);
+                        }
+                    });
+                    return;
+                }
+                return;
             }
-            if (bitmap != null) {
-                DominantColors.getColors(true, bitmap, true, new Utilities.Callback() {
+            Bitmap bitmap2 = this.thumbPathBitmap;
+            if (bitmap2 != null) {
+                DominantColors.getColors(true, bitmap2, true, new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
-                        StoryEntry.this.lambda$setupGradient$5(bitmap, runnable, (int[]) obj);
+                        StoryEntry.this.lambda$setupGradient$6(runnable, (int[]) obj);
                     }
                 });
             }
@@ -755,6 +780,14 @@ public class StoryEntry extends IStoryPart {
         this.gradientTopColor = iArr[0];
         this.gradientBottomColor = iArr[1];
         bitmap.recycle();
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public void lambda$setupGradient$6(Runnable runnable, int[] iArr) {
+        this.gradientTopColor = iArr[0];
+        this.gradientBottomColor = iArr[1];
         if (runnable != null) {
             runnable.run();
         }
@@ -810,23 +843,23 @@ public class StoryEntry extends IStoryPart {
         Utilities.globalQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                StoryEntry.this.lambda$getVideoEditedInfo$7(absolutePath, callback);
+                StoryEntry.this.lambda$getVideoEditedInfo$8(absolutePath, callback);
             }
         });
     }
 
-    public void lambda$getVideoEditedInfo$7(final String str, final Utilities.Callback callback) {
+    public void lambda$getVideoEditedInfo$8(final String str, final Utilities.Callback callback) {
         final int[] iArr = new int[11];
         AnimatedFileDrawable.getVideoInfo(str, iArr);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoryEntry.this.lambda$getVideoEditedInfo$6(str, iArr, callback);
+                StoryEntry.this.lambda$getVideoEditedInfo$7(str, iArr, callback);
             }
         });
     }
 
-    public void lambda$getVideoEditedInfo$6(String str, int[] iArr, Utilities.Callback callback) {
+    public void lambda$getVideoEditedInfo$7(String str, int[] iArr, Utilities.Callback callback) {
         ArrayList<VideoEditedInfo.MediaEntity> arrayList;
         VideoEditedInfo videoEditedInfo = new VideoEditedInfo();
         videoEditedInfo.isStory = true;
@@ -987,13 +1020,13 @@ public class StoryEntry extends IStoryPart {
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryEntry.this.lambda$detectHDR$9(callback);
+                    StoryEntry.this.lambda$detectHDR$10(callback);
                 }
             });
         }
     }
 
-    public void lambda$detectHDR$9(final Utilities.Callback callback) {
+    public void lambda$detectHDR$10(final Utilities.Callback callback) {
         Runnable runnable;
         try {
             try {
@@ -1020,7 +1053,7 @@ public class StoryEntry extends IStoryPart {
                 runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        StoryEntry.this.lambda$detectHDR$8(callback);
+                        StoryEntry.this.lambda$detectHDR$9(callback);
                     }
                 };
             } catch (Exception e) {
@@ -1029,7 +1062,7 @@ public class StoryEntry extends IStoryPart {
                 runnable = new Runnable() {
                     @Override
                     public final void run() {
-                        StoryEntry.this.lambda$detectHDR$8(callback);
+                        StoryEntry.this.lambda$detectHDR$9(callback);
                     }
                 };
             }
@@ -1039,14 +1072,14 @@ public class StoryEntry extends IStoryPart {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StoryEntry.this.lambda$detectHDR$8(callback);
+                    StoryEntry.this.lambda$detectHDR$9(callback);
                 }
             });
             throw th;
         }
     }
 
-    public void lambda$detectHDR$8(Utilities.Callback callback) {
+    public void lambda$detectHDR$9(Utilities.Callback callback) {
         callback.run(this.hdrInfo);
     }
 
@@ -1092,27 +1125,27 @@ public class StoryEntry extends IStoryPart {
         final RequestDelegate requestDelegate = new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StoryEntry.this.lambda$checkStickers$11(tLObject, tLRPC$TL_error);
+                StoryEntry.this.lambda$checkStickers$12(tLObject, tLRPC$TL_error);
             }
         };
         this.checkStickersReqId = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_getAttachedStickers, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StoryEntry.this.lambda$checkStickers$12(tLRPC$StoryItem, tLRPC$TL_messages_getAttachedStickers, requestDelegate, tLObject, tLRPC$TL_error);
+                StoryEntry.this.lambda$checkStickers$13(tLRPC$StoryItem, tLRPC$TL_messages_getAttachedStickers, requestDelegate, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$checkStickers$11(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkStickers$12(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoryEntry.this.lambda$checkStickers$10(tLObject);
+                StoryEntry.this.lambda$checkStickers$11(tLObject);
             }
         });
     }
 
-    public void lambda$checkStickers$10(TLObject tLObject) {
+    public void lambda$checkStickers$11(TLObject tLObject) {
         this.checkStickersReqId = 0;
         if (tLObject instanceof TLRPC$Vector) {
             this.editStickers = new ArrayList();
@@ -1140,7 +1173,7 @@ public class StoryEntry extends IStoryPart {
         }
     }
 
-    public void lambda$checkStickers$12(TLRPC$StoryItem tLRPC$StoryItem, TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$checkStickers$13(TLRPC$StoryItem tLRPC$StoryItem, TLRPC$TL_messages_getAttachedStickers tLRPC$TL_messages_getAttachedStickers, RequestDelegate requestDelegate, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error != null && FileRefController.isFileRefError(tLRPC$TL_error.text) && tLRPC$StoryItem != null) {
             FileRefController.getInstance(this.currentAccount).requestReference(tLRPC$StoryItem, tLRPC$TL_messages_getAttachedStickers, requestDelegate);
         } else {
@@ -1152,5 +1185,86 @@ public class StoryEntry extends IStoryPart {
         if (this.checkStickersReqId != 0) {
             ConnectionsManager.getInstance(this.currentAccount).cancelRequest(this.checkStickersReqId, true);
         }
+    }
+
+    public StoryEntry copy() {
+        StoryEntry storyEntry = new StoryEntry();
+        storyEntry.draftId = this.draftId;
+        storyEntry.isDraft = this.isDraft;
+        storyEntry.draftDate = this.draftDate;
+        storyEntry.editStoryPeerId = this.editStoryPeerId;
+        storyEntry.editStoryId = this.editStoryId;
+        storyEntry.isEdit = this.isEdit;
+        storyEntry.isEditSaved = this.isEditSaved;
+        storyEntry.fileDuration = this.fileDuration;
+        storyEntry.editedMedia = this.editedMedia;
+        storyEntry.editedCaption = this.editedCaption;
+        storyEntry.editedPrivacy = this.editedPrivacy;
+        storyEntry.editedMediaAreas = this.editedMediaAreas;
+        storyEntry.isError = this.isError;
+        storyEntry.error = this.error;
+        storyEntry.audioPath = this.audioPath;
+        storyEntry.audioAuthor = this.audioAuthor;
+        storyEntry.audioTitle = this.audioTitle;
+        storyEntry.audioDuration = this.audioDuration;
+        storyEntry.audioOffset = this.audioOffset;
+        storyEntry.audioLeft = this.audioLeft;
+        storyEntry.audioRight = this.audioRight;
+        storyEntry.audioVolume = this.audioVolume;
+        storyEntry.editDocumentId = this.editDocumentId;
+        storyEntry.editPhotoId = this.editPhotoId;
+        storyEntry.editExpireDate = this.editExpireDate;
+        storyEntry.isVideo = this.isVideo;
+        storyEntry.file = this.file;
+        storyEntry.fileDeletable = this.fileDeletable;
+        storyEntry.thumbPath = this.thumbPath;
+        storyEntry.muted = this.muted;
+        storyEntry.left = this.left;
+        storyEntry.right = this.right;
+        storyEntry.duration = this.duration;
+        storyEntry.width = this.width;
+        storyEntry.height = this.height;
+        storyEntry.resultWidth = this.resultWidth;
+        storyEntry.resultHeight = this.resultHeight;
+        storyEntry.partsMaxId = this.partsMaxId;
+        storyEntry.parts.clear();
+        storyEntry.parts.addAll(this.parts);
+        storyEntry.peer = this.peer;
+        storyEntry.invert = this.invert;
+        storyEntry.matrix.set(this.matrix);
+        storyEntry.gradientTopColor = this.gradientTopColor;
+        storyEntry.gradientBottomColor = this.gradientBottomColor;
+        storyEntry.caption = this.caption;
+        storyEntry.captionEntitiesAllowed = this.captionEntitiesAllowed;
+        storyEntry.privacy = this.privacy;
+        storyEntry.privacyRules.clear();
+        storyEntry.privacyRules.addAll(this.privacyRules);
+        storyEntry.pinned = this.pinned;
+        storyEntry.allowScreenshots = this.allowScreenshots;
+        storyEntry.period = this.period;
+        storyEntry.shareUserIds = this.shareUserIds;
+        storyEntry.silent = this.silent;
+        storyEntry.scheduleDate = this.scheduleDate;
+        storyEntry.blurredVideoThumb = this.blurredVideoThumb;
+        storyEntry.uploadThumbFile = this.uploadThumbFile;
+        storyEntry.draftThumbFile = this.draftThumbFile;
+        storyEntry.paintFile = this.paintFile;
+        storyEntry.paintBlurFile = this.paintBlurFile;
+        storyEntry.paintEntitiesFile = this.paintEntitiesFile;
+        storyEntry.averageDuration = this.averageDuration;
+        storyEntry.mediaEntities = new ArrayList<>();
+        if (this.mediaEntities != null) {
+            for (int i = 0; i < this.mediaEntities.size(); i++) {
+                storyEntry.mediaEntities.add(this.mediaEntities.get(i).copy());
+            }
+        }
+        storyEntry.stickers = this.stickers;
+        storyEntry.editStickers = this.editStickers;
+        storyEntry.filterFile = this.filterFile;
+        storyEntry.filterState = this.filterState;
+        storyEntry.thumbBitmap = this.thumbBitmap;
+        storyEntry.fromCamera = this.fromCamera;
+        storyEntry.thumbPathBitmap = this.thumbPathBitmap;
+        return storyEntry;
     }
 }

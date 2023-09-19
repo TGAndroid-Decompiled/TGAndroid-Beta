@@ -35,6 +35,7 @@ import java.util.Comparator;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -45,7 +46,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$TL_userStories;
+import org.telegram.tgnet.TLRPC$PeerStories;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
@@ -116,7 +117,6 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     private int overscrollSelectedPosition;
     private StoryCell overscrollSelectedView;
     private HintView2 premiumHint;
-    boolean progressWasDrawn;
     public RadialProgress radialProgress;
     public RecyclerListView recyclerListView;
     StoriesController storiesController;
@@ -159,9 +159,9 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         this.comparator = new Comparator() {
             @Override
             public final int compare(Object obj, Object obj2) {
-                int lambda$new$5;
-                lambda$new$5 = DialogStoriesCell.lambda$new$5((DialogStoriesCell.StoryCell) obj, (DialogStoriesCell.StoryCell) obj2);
-                return lambda$new$5;
+                int lambda$new$6;
+                lambda$new$6 = DialogStoriesCell.lambda$new$6((DialogStoriesCell.StoryCell) obj, (DialogStoriesCell.StoryCell) obj2);
+                return lambda$new$6;
             }
         };
         this.K = 0.3f;
@@ -211,7 +211,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
                 super.onScrolled(recyclerView, i3, i4);
                 DialogStoriesCell.this.invalidate();
-                DialogStoriesCell.this.lambda$didReceivedNotification$6();
+                DialogStoriesCell.this.lambda$didReceivedNotification$7();
                 if (DialogStoriesCell.this.premiumHint != null) {
                     DialogStoriesCell.this.premiumHint.hide();
                 }
@@ -235,13 +235,10 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         });
         this.recyclerListView.setOnItemLongClickListener(new RecyclerListView.OnItemLongClickListener() {
             @Override
-            public boolean onItemClick(View view, int i3) {
-                DialogStoriesCell dialogStoriesCell = DialogStoriesCell.this;
-                if (dialogStoriesCell.collapsedProgress == 0.0f && dialogStoriesCell.overscrollPrgoress == 0.0f) {
-                    DialogStoriesCell.this.onUserLongPressed(view, ((StoryCell) view).dialogId);
-                    return false;
-                }
-                return false;
+            public final boolean onItemClick(View view, int i3) {
+                boolean lambda$new$2;
+                lambda$new$2 = DialogStoriesCell.this.lambda$new$2(view, i3);
+                return lambda$new$2;
             }
         });
         this.recyclerListView.setAdapter(this.adapter);
@@ -255,7 +252,6 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         this.titleView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
         this.titleView.setTextSize(AndroidUtilities.dp((AndroidUtilities.isTablet() || getResources().getConfiguration().orientation != 2) ? 20.0f : 18.0f));
         addView(this.titleView, LayoutHelper.createFrame(-1, -2.0f));
-        this.ellipsizeSpanAnimator.addView(this.titleView);
         this.titleView.setAlpha(0.0f);
         this.grayPaint.setColor(-2762018);
         this.grayPaint.setStyle(Paint.Style.STROKE);
@@ -352,6 +348,14 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         openStoryForCell((StoryCell) view, false);
     }
 
+    public boolean lambda$new$2(View view, int i) {
+        if (this.collapsedProgress == 0.0f && this.overscrollPrgoress == 0.0f) {
+            onUserLongPressed(view, ((StoryCell) view).dialogId);
+            return false;
+        }
+        return false;
+    }
+
     private void openStoryForCell(final StoryCell storyCell, boolean z) {
         if (storyCell == null) {
             return;
@@ -362,8 +366,8 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             } else {
                 openStoryRecorder();
             }
-        } else if (this.storiesController.hasStories(storyCell.dialogId) || (storyCell.isSelf && this.storiesController.hasUploadingStories())) {
-            TLRPC$TL_userStories stories = this.storiesController.getStories(storyCell.dialogId);
+        } else if (this.storiesController.hasStories(storyCell.dialogId) || this.storiesController.hasUploadingStories(storyCell.dialogId)) {
+            TLRPC$PeerStories stories = this.storiesController.getStories(storyCell.dialogId);
             final long j = storyCell.dialogId;
             StoriesUtilities.EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = this.globalCancelable;
             if (ensureStoryFileLoadedObject != null) {
@@ -373,7 +377,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             Runnable runnable = new Runnable() {
                 @Override
                 public final void run() {
-                    DialogStoriesCell.this.lambda$openStoryForCell$4(storyCell, j);
+                    DialogStoriesCell.this.lambda$openStoryForCell$5(storyCell, j);
                 }
             };
             if (z) {
@@ -389,21 +393,21 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void lambda$openStoryForCell$4(org.telegram.ui.Stories.DialogStoriesCell.StoryCell r11, final long r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.DialogStoriesCell.lambda$openStoryForCell$4(org.telegram.ui.Stories.DialogStoriesCell$StoryCell, long):void");
+    public void lambda$openStoryForCell$5(org.telegram.ui.Stories.DialogStoriesCell.StoryCell r11, final long r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.DialogStoriesCell.lambda$openStoryForCell$5(org.telegram.ui.Stories.DialogStoriesCell$StoryCell, long):void");
     }
 
-    public void lambda$openStoryForCell$2(long j) {
+    public void lambda$openStoryForCell$3(long j) {
         this.storiesController.setLoading(j, false);
     }
 
-    public void lambda$openStoryForCell$3(boolean z, boolean z2) {
+    public void lambda$openStoryForCell$4(boolean z, boolean z2) {
         if (!z && z2) {
             this.storiesController.loadNextStories(this.type == 1);
         }
     }
 
-    public void lambda$didReceivedNotification$6() {
+    public void lambda$didReceivedNotification$7() {
         if (this.layoutManager.findLastVisibleItemPosition() + 10 > this.items.size()) {
             this.storiesController.loadNextStories(this.type == 1);
         }
@@ -422,10 +426,11 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         if (this.type != 1) {
             this.items.add(new Item(this, UserConfig.getInstance(this.currentAccount).getClientUserId()));
         }
-        ArrayList<TLRPC$TL_userStories> hiddenList = this.type == 1 ? this.storiesController.getHiddenList() : this.storiesController.getDialogListStories();
+        ArrayList<TLRPC$PeerStories> hiddenList = this.type == 1 ? this.storiesController.getHiddenList() : this.storiesController.getDialogListStories();
         for (int i = 0; i < hiddenList.size(); i++) {
-            if (hiddenList.get(i).user_id != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
-                this.items.add(new Item(this, hiddenList.get(i).user_id));
+            long peerDialogId = DialogObject.getPeerDialogId(hiddenList.get(i).peer);
+            if (peerDialogId != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                this.items.add(new Item(this, peerDialogId));
             }
         }
         int size = this.items.size();
@@ -434,7 +439,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
         int max = Math.max(1, Math.max(this.storiesController.getTotalStoriesCount(this.type == 1), size));
         if (this.storiesController.hasOnlySelfStories()) {
-            if (!this.storiesController.getUploadingStories().isEmpty()) {
+            if (this.storiesController.hasUploadingStories(UserConfig.getInstance(this.currentAccount).getClientUserId())) {
                 String string = LocaleController.getString("UploadingStory", R.string.UploadingStory);
                 if (string.indexOf("…") > 0) {
                     if (this.uploadingString == null) {
@@ -491,7 +496,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         return this.storiesController.hasSelfStories() && this.storiesController.getDialogListStories().size() <= 3;
     }
 
-    public static int lambda$new$5(StoryCell storyCell, StoryCell storyCell2) {
+    public static int lambda$new$6(StoryCell storyCell, StoryCell storyCell2) {
         return storyCell2.position - storyCell.position;
     }
 
@@ -535,7 +540,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogStoriesCell.this.lambda$didReceivedNotification$6();
+                    DialogStoriesCell.this.lambda$didReceivedNotification$7();
                 }
             });
         }
@@ -574,7 +579,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 valueAnimator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator3) {
-                        DialogStoriesCell.this.lambda$setProgressToCollapse$7(valueAnimator3);
+                        DialogStoriesCell.this.lambda$setProgressToCollapse$8(valueAnimator3);
                     }
                 });
                 this.valueAnimator.addListener(new AnimatorListenerAdapter() {
@@ -591,7 +596,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
     }
 
-    public void lambda$setProgressToCollapse$7(ValueAnimator valueAnimator) {
+    public void lambda$setProgressToCollapse$8(ValueAnimator valueAnimator) {
         this.collapsedProgress2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         checkCollapsedProgres();
     }
@@ -619,24 +624,24 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         AndroidUtilities.forEachViews((RecyclerView) this.recyclerListView, (Consumer<View>) new Consumer() {
             @Override
             public final void accept(Object obj) {
-                DialogStoriesCell.lambda$updateColors$8(textColor, (View) obj);
+                DialogStoriesCell.lambda$updateColors$9(textColor, (View) obj);
             }
         });
         AndroidUtilities.forEachViews((RecyclerView) this.listViewMini, (Consumer<View>) new Consumer() {
             @Override
             public final void accept(Object obj) {
-                DialogStoriesCell.lambda$updateColors$9((View) obj);
+                DialogStoriesCell.lambda$updateColors$10((View) obj);
             }
         });
     }
 
-    public static void lambda$updateColors$8(int i, View view) {
+    public static void lambda$updateColors$9(int i, View view) {
         StoryCell storyCell = (StoryCell) view;
         storyCell.invalidate();
         storyCell.textView.setTextColor(i);
     }
 
-    public static void lambda$updateColors$9(View view) {
+    public static void lambda$updateColors$10(View view) {
         ((StoryCell) view).invalidate();
     }
 
@@ -695,7 +700,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     public void openStoryRecorder() {
         StoriesController.StoryLimit checkStoryLimit = MessagesController.getInstance(this.currentAccount).getStoriesController().checkStoryLimit();
         if (checkStoryLimit != null) {
-            this.fragment.showDialog(new LimitReachedBottomSheet(this.fragment, getContext(), checkStoryLimit.getLimitReachedType(), this.currentAccount, this.fragment.getResourceProvider()));
+            this.fragment.showDialog(new LimitReachedBottomSheet(this.fragment, getContext(), checkStoryLimit.getLimitReachedType(), this.currentAccount, null));
             return;
         }
         StoryCell storyCell = null;
@@ -718,6 +723,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     }
 
     public void setTitleOverlayText(String str, int i) {
+        boolean z = false;
         if (str != null) {
             this.hasOverlayText = true;
             if (this.overlayTextId != i) {
@@ -731,17 +737,22 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                     if (indexOf >= 0) {
                         SpannableString valueOf = SpannableString.valueOf(string);
                         this.ellipsizeSpanAnimator.wrap(valueOf, indexOf);
+                        z = true;
                         spannableString = valueOf;
                     }
                 }
                 this.titleView.setText(spannableString, true);
-                return;
             }
-            return;
+        } else {
+            this.hasOverlayText = false;
+            this.overlayTextId = 0;
+            this.titleView.setText(this.currentTitle, true);
         }
-        this.hasOverlayText = false;
-        this.overlayTextId = 0;
-        this.titleView.setText(this.currentTitle, true);
+        if (z) {
+            this.ellipsizeSpanAnimator.addView(this.titleView);
+        } else {
+            this.ellipsizeSpanAnimator.removeView(this.titleView);
+        }
     }
 
     public void setClipTop(int i) {
@@ -765,7 +776,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     public void onResume() {
         this.storiesController.checkExpiredStories();
         for (int i = 0; i < this.items.size(); i++) {
-            TLRPC$TL_userStories stories = this.storiesController.getStories(this.items.get(i).dialogId);
+            TLRPC$PeerStories stories = this.storiesController.getStories(this.items.get(i).dialogId);
             if (stories != null) {
                 this.storiesController.preloadUserStories(stories);
             }
@@ -777,10 +788,12 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         invalidate();
         this.recyclerListView.invalidate();
         if (this.overscrollPrgoress != 0.0f) {
+            setClipChildren(false);
+            this.recyclerListView.setClipChildren(false);
             ((ViewGroup) getParent()).setClipChildren(false);
-        } else {
-            ((ViewGroup) getParent()).setClipChildren(true);
+            return;
         }
+        ((ViewGroup) getParent()).setClipChildren(true);
     }
 
     public void openOverscrollSelectedStory() {
@@ -855,7 +868,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
     }
 
-    public StoryCell findSelfStoryCell() {
+    public StoryCell findStoryCell(long j) {
         RecyclerListView recyclerListView = this.recyclerListView;
         if (this.currentState == 2) {
             recyclerListView = this.listViewMini;
@@ -864,7 +877,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             View childAt = recyclerListView.getChildAt(i);
             if (childAt instanceof StoryCell) {
                 StoryCell storyCell = (StoryCell) childAt;
-                if (storyCell.isSelf) {
+                if (storyCell.dialogId == j) {
                     return storyCell;
                 }
             }
@@ -899,6 +912,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         public int position;
         float progressToCollapsed;
         float progressToCollapsed2;
+        boolean progressWasDrawn;
         public RadialProgress radialProgress;
         private boolean selectedForOverscroll;
         float textAlpha;
@@ -960,9 +974,8 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 this.cancellable = null;
             }
             this.dialogId = j;
-            boolean z2 = j == UserConfig.getInstance(DialogStoriesCell.this.currentAccount).getClientUserId();
-            this.isSelf = z2;
-            this.isFail = z2 && DialogStoriesCell.this.storiesController.isLastUploadingFailed();
+            this.isSelf = j == UserConfig.getInstance(DialogStoriesCell.this.currentAccount).getClientUserId();
+            this.isFail = DialogStoriesCell.this.storiesController.isLastUploadingFailed(j);
             if (j > 0) {
                 TLRPC$User user = MessagesController.getInstance(DialogStoriesCell.this.currentAccount).getUser(Long.valueOf(j));
                 this.user = user;
@@ -984,86 +997,81 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             if (this.mini) {
                 return;
             }
-            if (j == UserConfig.getInstance(DialogStoriesCell.this.currentAccount).getClientUserId()) {
-                this.textView.setRightDrawable((Drawable) null);
-                if (DialogStoriesCell.this.storiesController.isLastUploadingFailed()) {
-                    this.textView.setText(LocaleController.getString("FailedStory", R.string.FailedStory));
-                    this.isUploadingState = false;
-                    return;
-                } else if (!DialogStoriesCell.this.storiesController.getUploadingStories().isEmpty()) {
-                    StoriesUtilities.applyUploadingStr(this.textView, true, false);
-                    this.isUploadingState = true;
-                    return;
-                } else if (DialogStoriesCell.this.storiesController.getEditingStory() != null) {
-                    StoriesUtilities.applyUploadingStr(this.textView, true, false);
-                    this.isUploadingState = true;
-                    return;
-                } else {
-                    if (z && this.isUploadingState && !this.mini) {
-                        final SimpleTextView simpleTextView = this.textView;
-                        createTextView();
-                        if (DialogStoriesCell.this.textAnimator != null) {
-                            DialogStoriesCell.this.textAnimator.cancel();
-                            DialogStoriesCell.this.textAnimator = null;
-                        }
-                        DialogStoriesCell.this.textAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
-                        DialogStoriesCell.this.textAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                            @Override
-                            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                                float f = 1.0f - floatValue;
-                                simpleTextView.setAlpha(f);
-                                simpleTextView.setTranslationY((-AndroidUtilities.dp(5.0f)) * floatValue);
-                                StoryCell.this.textView.setAlpha(floatValue);
-                                StoryCell.this.textView.setTranslationY(AndroidUtilities.dp(5.0f) * f);
-                            }
-                        });
-                        DialogStoriesCell.this.textAnimator.addListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animator) {
-                                super.onAnimationEnd(animator);
-                                DialogStoriesCell.this.textAnimator = null;
-                                AndroidUtilities.removeFromParent(simpleTextView);
-                            }
-                        });
-                        DialogStoriesCell.this.textAnimator.setDuration(150L);
-                        this.textView.setAlpha(0.0f);
-                        this.textView.setTranslationY(AndroidUtilities.dp(5.0f));
-                        DialogStoriesCell.this.animationRunnable = new Runnable() {
-                            @Override
-                            public final void run() {
-                                DialogStoriesCell.StoryCell.this.lambda$setDialogId$0();
-                            }
-                        };
+            this.textView.setRightDrawable((Drawable) null);
+            if (DialogStoriesCell.this.storiesController.isLastUploadingFailed(j)) {
+                this.textView.setText(LocaleController.getString("FailedStory", R.string.FailedStory));
+                this.isUploadingState = false;
+            } else if (!Utilities.isNullOrEmpty(DialogStoriesCell.this.storiesController.getUploadingStories(j))) {
+                StoriesUtilities.applyUploadingStr(this.textView, true, false);
+                this.isUploadingState = true;
+            } else if (DialogStoriesCell.this.storiesController.getEditingStory(j) != null) {
+                StoriesUtilities.applyUploadingStr(this.textView, true, false);
+                this.isUploadingState = true;
+            } else if (this.isSelf) {
+                if (z && this.isUploadingState && !this.mini) {
+                    final SimpleTextView simpleTextView = this.textView;
+                    createTextView();
+                    if (DialogStoriesCell.this.textAnimator != null) {
+                        DialogStoriesCell.this.textAnimator.cancel();
+                        DialogStoriesCell.this.textAnimator = null;
                     }
-                    AndroidUtilities.runOnUIThread(DialogStoriesCell.this.animationRunnable, 500L);
-                    this.isUploadingState = false;
-                    this.textView.setText(LocaleController.getString("MyStory", R.string.MyStory));
-                    return;
+                    DialogStoriesCell.this.textAnimator = ValueAnimator.ofFloat(0.0f, 1.0f);
+                    DialogStoriesCell.this.textAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            float f = 1.0f - floatValue;
+                            simpleTextView.setAlpha(f);
+                            simpleTextView.setTranslationY((-AndroidUtilities.dp(5.0f)) * floatValue);
+                            StoryCell.this.textView.setAlpha(floatValue);
+                            StoryCell.this.textView.setTranslationY(AndroidUtilities.dp(5.0f) * f);
+                        }
+                    });
+                    DialogStoriesCell.this.textAnimator.addListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            super.onAnimationEnd(animator);
+                            DialogStoriesCell.this.textAnimator = null;
+                            AndroidUtilities.removeFromParent(simpleTextView);
+                        }
+                    });
+                    DialogStoriesCell.this.textAnimator.setDuration(150L);
+                    this.textView.setAlpha(0.0f);
+                    this.textView.setTranslationY(AndroidUtilities.dp(5.0f));
+                    DialogStoriesCell.this.animationRunnable = new Runnable() {
+                        @Override
+                        public final void run() {
+                            DialogStoriesCell.StoryCell.this.lambda$setDialogId$0();
+                        }
+                    };
                 }
-            }
-            TLRPC$User tLRPC$User2 = this.user;
-            if (tLRPC$User2 != null) {
-                String str = tLRPC$User2.first_name;
-                String trim = str != null ? str.trim() : "";
-                int indexOf = trim.indexOf(" ");
-                if (indexOf > 0) {
-                    trim = trim.substring(0, indexOf);
-                }
-                if (this.user.verified) {
-                    if (this.verifiedDrawable == null) {
-                        this.verifiedDrawable = DialogStoriesCell.this.createVerifiedDrawable();
+                AndroidUtilities.runOnUIThread(DialogStoriesCell.this.animationRunnable, 500L);
+                this.isUploadingState = false;
+                this.textView.setText(LocaleController.getString("MyStory", R.string.MyStory));
+            } else {
+                TLRPC$User tLRPC$User2 = this.user;
+                if (tLRPC$User2 != null) {
+                    String str = tLRPC$User2.first_name;
+                    String trim = str != null ? str.trim() : "";
+                    int indexOf = trim.indexOf(" ");
+                    if (indexOf > 0) {
+                        trim = trim.substring(0, indexOf);
+                    }
+                    if (this.user.verified) {
+                        if (this.verifiedDrawable == null) {
+                            this.verifiedDrawable = DialogStoriesCell.this.createVerifiedDrawable();
+                        }
+                        this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
+                        this.textView.setRightDrawable(this.verifiedDrawable);
+                        return;
                     }
                     this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
-                    this.textView.setRightDrawable(this.verifiedDrawable);
+                    this.textView.setRightDrawable((Drawable) null);
                     return;
                 }
-                this.textView.setText(Emoji.replaceEmoji(trim, this.textView.getPaint().getFontMetricsInt(), false));
+                this.textView.setText(Emoji.replaceEmoji(this.chat.title, this.textView.getPaint().getFontMetricsInt(), false));
                 this.textView.setRightDrawable((Drawable) null);
-                return;
             }
-            this.textView.setText(Emoji.replaceEmoji(this.chat.title, this.textView.getPaint().getFontMetricsInt(), false));
-            this.textView.setRightDrawable((Drawable) null);
         }
 
         public void lambda$setDialogId$0() {
@@ -1088,8 +1096,12 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             float f;
             float f2;
             float f3;
+            float f4;
+            float f5;
+            float f6;
+            float f7;
             float size;
-            boolean z;
+            boolean isCloseFriends;
             Paint activeCirclePaint;
             RadialProgress radialProgress;
             float dp = AndroidUtilities.dp(48.0f);
@@ -1099,8 +1111,8 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 dp3 += AndroidUtilities.dp(16.0f) * Utilities.clamp((DialogStoriesCell.this.overscrollPrgoress - 0.5f) / 0.5f, 1.0f, 0.0f);
             }
             float lerp = AndroidUtilities.lerp(dp + dp3, dp2, this.progressToCollapsed);
-            float f4 = lerp / 2.0f;
-            float measuredWidth = (getMeasuredWidth() / 2.0f) - f4;
+            float f8 = lerp / 2.0f;
+            float measuredWidth = (getMeasuredWidth() / 2.0f) - f8;
             float lerp2 = AndroidUtilities.lerp(measuredWidth, 0.0f, this.progressToCollapsed);
             float lerp3 = AndroidUtilities.lerp(AndroidUtilities.dp(5.0f), (ActionBar.getCurrentActionBarHeight() - dp2) / 2.0f, this.progressToCollapsed);
             float clamp = Utilities.clamp(this.progressToCollapsed / 0.5f, 1.0f, 0.0f);
@@ -1109,184 +1121,188 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             if (!avatarStoryParams.forceAnimateProgressToSegments) {
                 avatarStoryParams.progressToSegments = 1.0f - DialogStoriesCell.this.collapsedProgress2;
             }
-            float f5 = lerp3 + lerp;
-            this.params.originalAvatarRect.set(lerp2, lerp3, lerp2 + lerp, f5);
+            float f9 = lerp3 + lerp;
+            this.params.originalAvatarRect.set(lerp2, lerp3, lerp2 + lerp, f9);
             this.avatarImage.setAlpha(1.0f);
-            this.avatarImage.setRoundRadius((int) f4);
-            float f6 = lerp2 + f4;
-            this.cx = f6;
-            float f7 = lerp3 + f4;
-            this.cy = f7;
+            this.avatarImage.setRoundRadius((int) f8);
+            float f10 = lerp2 + f8;
+            this.cx = f10;
+            float f11 = lerp3 + f8;
+            this.cy = f11;
             if (DialogStoriesCell.this.type == 0) {
                 DialogStoriesCell.this.backgroundPaint.setColor(Theme.getColor(Theme.key_actionBarDefault));
             } else {
                 DialogStoriesCell.this.backgroundPaint.setColor(Theme.getColor(Theme.key_actionBarDefaultArchived));
             }
             if (this.progressToCollapsed != 0.0f) {
-                canvas.drawCircle(this.cx, this.cy, AndroidUtilities.dp(3.0f) + f4, DialogStoriesCell.this.backgroundPaint);
+                canvas.drawCircle(this.cx, this.cy, AndroidUtilities.dp(3.0f) + f8, DialogStoriesCell.this.backgroundPaint);
             }
-            if (this.isSelf) {
-                canvas.save();
-                float f8 = this.bounceScale;
-                canvas.scale(f8, f8, this.cx, this.cy);
-                if (this.radialProgress == null) {
-                    this.radialProgress = DialogStoriesCell.this.radialProgress;
-                }
-                if (!DialogStoriesCell.this.storiesController.getUploadingAndEditingStories().isEmpty() || (DialogStoriesCell.this.progressWasDrawn && (radialProgress = this.radialProgress) != null && radialProgress.getAnimatedProgress() < 0.98f)) {
-                    f = f5;
-                    f2 = lerp3;
-                    f3 = measuredWidth;
-                    if (DialogStoriesCell.this.storiesController.getUploadingAndEditingStories().isEmpty()) {
-                        z = DialogStoriesCell.this.lastUploadingCloseFriends;
-                        size = 1.0f;
-                    } else {
-                        float f9 = 0.0f;
-                        for (int i = 0; i < DialogStoriesCell.this.storiesController.getUploadingAndEditingStories().size(); i++) {
-                            f9 += DialogStoriesCell.this.storiesController.getUploadingAndEditingStories().get(i).progress;
-                        }
-                        DialogStoriesCell dialogStoriesCell = DialogStoriesCell.this;
-                        boolean isCloseFriends = dialogStoriesCell.storiesController.getUploadingAndEditingStories().get(DialogStoriesCell.this.storiesController.getUploadingAndEditingStories().size() - 1).isCloseFriends();
-                        dialogStoriesCell.lastUploadingCloseFriends = isCloseFriends;
-                        size = f9 / DialogStoriesCell.this.storiesController.getUploadingAndEditingStories().size();
-                        z = isCloseFriends;
-                    }
-                    invalidate();
-                    if (this.radialProgress == null) {
-                        DialogStoriesCell dialogStoriesCell2 = DialogStoriesCell.this;
-                        RadialProgress radialProgress2 = dialogStoriesCell2.radialProgress;
-                        if (radialProgress2 != null) {
-                            this.radialProgress = radialProgress2;
-                        } else {
-                            RadialProgress radialProgress3 = new RadialProgress(this);
-                            this.radialProgress = radialProgress3;
-                            dialogStoriesCell2.radialProgress = radialProgress3;
-                            radialProgress3.setBackground(null, true, false);
-                        }
-                    }
-                    if (this.drawAvatar) {
-                        canvas.save();
-                        canvas.scale(this.params.getScale(), this.params.getScale(), this.params.originalAvatarRect.centerX(), this.params.originalAvatarRect.centerY());
-                        this.avatarImage.setImageCoords(this.params.originalAvatarRect);
-                        this.avatarImage.draw(canvas);
-                        canvas.restore();
-                    }
-                    this.radialProgress.setDiff(0);
-                    if (z) {
-                        activeCirclePaint = StoriesUtilities.getCloseFriendsPaint(this.avatarImage);
-                    } else {
-                        activeCirclePaint = StoriesUtilities.getActiveCirclePaint(this.avatarImage, true);
-                    }
-                    activeCirclePaint.setAlpha(255);
-                    this.radialProgress.setPaint(activeCirclePaint);
-                    this.radialProgress.setProgressRect((int) (this.avatarImage.getImageX() - AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageY() - AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageX2() + AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageY2() + AndroidUtilities.dp(3.0f)));
-                    this.radialProgress.setProgress(Utilities.clamp(size, 1.0f, 0.0f), DialogStoriesCell.this.progressWasDrawn);
-                    if (this.avatarImage.getVisible()) {
-                        this.radialProgress.draw(canvas);
-                    }
-                    DialogStoriesCell dialogStoriesCell3 = DialogStoriesCell.this;
-                    dialogStoriesCell3.progressWasDrawn = true;
-                    dialogStoriesCell3.drawCircleForce = true;
-                    invalidate();
+            canvas.save();
+            float f12 = this.bounceScale;
+            canvas.scale(f12, f12, this.cx, this.cy);
+            if (this.radialProgress == null) {
+                this.radialProgress = DialogStoriesCell.this.radialProgress;
+            }
+            ArrayList<StoriesController.UploadingStory> uploadingAndEditingStories = DialogStoriesCell.this.storiesController.getUploadingAndEditingStories(this.dialogId);
+            boolean z = (uploadingAndEditingStories == null || uploadingAndEditingStories.isEmpty()) ? false : true;
+            if (z || (this.progressWasDrawn && (radialProgress = this.radialProgress) != null && radialProgress.getAnimatedProgress() < 0.98f)) {
+                if (!z) {
+                    isCloseFriends = DialogStoriesCell.this.lastUploadingCloseFriends;
+                    size = 1.0f;
                 } else {
-                    float f10 = this.failT.set(this.isFail);
-                    if (this.drawAvatar) {
-                        if (DialogStoriesCell.this.progressWasDrawn) {
-                            animateBounce();
-                            StoriesUtilities.AvatarStoryParams avatarStoryParams2 = this.params;
-                            avatarStoryParams2.forceAnimateProgressToSegments = true;
-                            avatarStoryParams2.progressToSegments = 0.0f;
-                            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                                @Override
-                                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                                    DialogStoriesCell.StoryCell.this.lambda$dispatchDraw$1(valueAnimator);
-                                }
-                            });
-                            ofFloat.addListener(new AnimatorListenerAdapter() {
-                                @Override
-                                public void onAnimationEnd(Animator animator) {
-                                    super.onAnimationEnd(animator);
-                                    StoryCell.this.params.forceAnimateProgressToSegments = false;
-                                }
-                            });
-                            ofFloat.setDuration(100L);
-                            ofFloat.start();
-                        }
-                        StoriesUtilities.AvatarStoryParams avatarStoryParams3 = this.params;
-                        float f11 = avatarStoryParams3.progressToSegments * f10;
-                        avatarStoryParams3.animate = !DialogStoriesCell.this.progressWasDrawn;
-                        avatarStoryParams3.progressToArc = getArcProgress(this.cx, f4);
-                        StoriesUtilities.AvatarStoryParams avatarStoryParams4 = this.params;
-                        avatarStoryParams4.isLast = this.isLast;
-                        avatarStoryParams4.isFirst = this.isFirst;
+                    float f13 = 0.0f;
+                    for (int i = 0; i < uploadingAndEditingStories.size(); i++) {
+                        f13 += uploadingAndEditingStories.get(i).progress;
+                    }
+                    size = f13 / uploadingAndEditingStories.size();
+                    DialogStoriesCell dialogStoriesCell = DialogStoriesCell.this;
+                    isCloseFriends = uploadingAndEditingStories.get(uploadingAndEditingStories.size() - 1).isCloseFriends();
+                    dialogStoriesCell.lastUploadingCloseFriends = isCloseFriends;
+                }
+                invalidate();
+                if (this.radialProgress == null) {
+                    DialogStoriesCell dialogStoriesCell2 = DialogStoriesCell.this;
+                    RadialProgress radialProgress2 = dialogStoriesCell2.radialProgress;
+                    if (radialProgress2 != null) {
+                        this.radialProgress = radialProgress2;
+                    } else {
+                        RadialProgress radialProgress3 = new RadialProgress(this);
+                        this.radialProgress = radialProgress3;
+                        dialogStoriesCell2.radialProgress = radialProgress3;
+                        radialProgress3.setBackground(null, true, false);
+                    }
+                }
+                if (this.drawAvatar) {
+                    canvas.save();
+                    canvas.scale(this.params.getScale(), this.params.getScale(), this.params.originalAvatarRect.centerX(), this.params.originalAvatarRect.centerY());
+                    this.avatarImage.setImageCoords(this.params.originalAvatarRect);
+                    this.avatarImage.draw(canvas);
+                    canvas.restore();
+                }
+                this.radialProgress.setDiff(0);
+                if (isCloseFriends) {
+                    activeCirclePaint = StoriesUtilities.getCloseFriendsPaint(this.avatarImage);
+                } else {
+                    activeCirclePaint = StoriesUtilities.getActiveCirclePaint(this.avatarImage, true);
+                }
+                activeCirclePaint.setAlpha(255);
+                this.radialProgress.setPaint(activeCirclePaint);
+                this.radialProgress.setProgressRect((int) (this.avatarImage.getImageX() - AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageY() - AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageX2() + AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageY2() + AndroidUtilities.dp(3.0f)));
+                this.radialProgress.setProgress(Utilities.clamp(size, 1.0f, 0.0f), this.progressWasDrawn);
+                if (this.avatarImage.getVisible()) {
+                    this.radialProgress.draw(canvas);
+                }
+                this.progressWasDrawn = true;
+                DialogStoriesCell.this.drawCircleForce = true;
+                invalidate();
+                f = f9;
+                f2 = lerp3;
+                f3 = lerp;
+                f4 = measuredWidth;
+            } else {
+                float f14 = this.failT.set(this.isFail);
+                if (this.drawAvatar) {
+                    if (this.progressWasDrawn) {
+                        animateBounce();
+                        StoriesUtilities.AvatarStoryParams avatarStoryParams2 = this.params;
+                        avatarStoryParams2.forceAnimateProgressToSegments = true;
+                        avatarStoryParams2.progressToSegments = 0.0f;
+                        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                        ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                                DialogStoriesCell.StoryCell.this.lambda$dispatchDraw$1(valueAnimator);
+                            }
+                        });
+                        ofFloat.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                super.onAnimationEnd(animator);
+                                StoryCell.this.params.forceAnimateProgressToSegments = false;
+                            }
+                        });
+                        f5 = lerp;
+                        ofFloat.setDuration(100L);
+                        ofFloat.start();
+                    } else {
+                        f5 = lerp;
+                    }
+                    StoriesUtilities.AvatarStoryParams avatarStoryParams3 = this.params;
+                    float f15 = avatarStoryParams3.progressToSegments * f14;
+                    avatarStoryParams3.animate = !this.progressWasDrawn;
+                    avatarStoryParams3.progressToArc = getArcProgress(this.cx, f8);
+                    StoriesUtilities.AvatarStoryParams avatarStoryParams4 = this.params;
+                    avatarStoryParams4.isLast = this.isLast;
+                    avatarStoryParams4.isFirst = this.isFirst;
+                    avatarStoryParams4.alpha = 1.0f - f15;
+                    boolean z2 = this.isSelf;
+                    if (!z2 && this.crossfadeToDialog) {
+                        avatarStoryParams4.crossfadeToDialog = this.crossfadeToDialogId;
+                        avatarStoryParams4.crossfadeToDialogProgress = this.progressToCollapsed2;
+                    } else {
                         avatarStoryParams4.crossfadeToDialog = 0L;
-                        avatarStoryParams4.alpha = 1.0f - f11;
-                        f3 = measuredWidth;
-                        f = f5;
+                    }
+                    if (z2) {
+                        f4 = measuredWidth;
+                        f6 = f11;
+                        f3 = f5;
+                        f7 = f10;
+                        f = f9;
                         f2 = lerp3;
                         StoriesUtilities.drawAvatarWithStory(this.dialogId, canvas, this.avatarImage, DialogStoriesCell.this.storiesController.hasSelfStories(), this.params);
-                        if (f11 > 0.0f) {
-                            Paint errorPaint = StoriesUtilities.getErrorPaint(this.avatarImage);
-                            errorPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
-                            errorPaint.setAlpha((int) (255.0f * f11));
-                            canvas.drawCircle(f6, f7, (f4 + AndroidUtilities.dp(4.0f)) * this.params.getScale(), errorPaint);
-                        }
-                        f10 = f11;
                     } else {
-                        f = f5;
+                        f = f9;
                         f2 = lerp3;
-                        f3 = measuredWidth;
+                        f3 = f5;
+                        f4 = measuredWidth;
+                        f6 = f11;
+                        f7 = f10;
+                        long j = this.dialogId;
+                        StoriesUtilities.drawAvatarWithStory(j, canvas, this.avatarImage, DialogStoriesCell.this.storiesController.hasStories(j), this.params);
                     }
-                    DialogStoriesCell.this.progressWasDrawn = false;
-                    if (this.drawAvatar) {
-                        canvas.save();
-                        float f12 = 1.0f - clamp;
-                        canvas.scale(f12, f12, this.cx + AndroidUtilities.dp(16.0f), this.cy + AndroidUtilities.dp(16.0f));
-                        drawPlus(canvas, this.cx, this.cy, 1.0f);
-                        drawFail(canvas, this.cx, this.cy, f10);
-                        canvas.restore();
+                    if (f15 > 0.0f) {
+                        Paint errorPaint = StoriesUtilities.getErrorPaint(this.avatarImage);
+                        errorPaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+                        errorPaint.setAlpha((int) (255.0f * f15));
+                        canvas.drawCircle(f7, f6, (f8 + AndroidUtilities.dp(4.0f)) * this.params.getScale(), errorPaint);
                     }
+                    f14 = f15;
+                } else {
+                    f = f9;
+                    f2 = lerp3;
+                    f3 = lerp;
+                    f4 = measuredWidth;
                 }
-                canvas.restore();
-            } else {
-                f = f5;
-                f2 = lerp3;
-                f3 = measuredWidth;
+                this.progressWasDrawn = false;
                 if (this.drawAvatar) {
-                    StoriesUtilities.AvatarStoryParams avatarStoryParams5 = this.params;
-                    avatarStoryParams5.animate = true;
-                    avatarStoryParams5.progressToArc = getArcProgress(this.cx, f4);
-                    StoriesUtilities.AvatarStoryParams avatarStoryParams6 = this.params;
-                    avatarStoryParams6.isLast = this.isLast;
-                    avatarStoryParams6.isFirst = this.isFirst;
-                    if (this.crossfadeToDialog) {
-                        avatarStoryParams6.crossfadeToDialog = this.crossfadeToDialogId;
-                        avatarStoryParams6.crossfadeToDialogProgress = this.progressToCollapsed2;
-                    } else {
-                        avatarStoryParams6.crossfadeToDialog = 0L;
-                    }
-                    long j = this.dialogId;
-                    StoriesUtilities.drawAvatarWithStory(j, canvas, this.avatarImage, DialogStoriesCell.this.storiesController.hasStories(j), this.params);
+                    canvas.save();
+                    float f16 = 1.0f - clamp;
+                    canvas.scale(f16, f16, this.cx + AndroidUtilities.dp(16.0f), this.cy + AndroidUtilities.dp(16.0f));
+                    drawPlus(canvas, this.cx, this.cy, 1.0f);
+                    drawFail(canvas, this.cx, this.cy, f14);
+                    canvas.restore();
                 }
             }
+            canvas.restore();
             if (this.crossfadeToDialog && this.progressToCollapsed2 > 0.0f) {
-                this.crossfageToAvatarImage.setImageCoords(lerp2, f2, lerp, lerp);
+                float f17 = f3;
+                this.crossfageToAvatarImage.setImageCoords(lerp2, f2, f17, f17);
                 this.crossfageToAvatarImage.setAlpha(this.progressToCollapsed2);
                 this.crossfageToAvatarImage.draw(canvas);
             }
             this.textViewContainer.setTranslationY(f + (AndroidUtilities.dp(7.0f) * (1.0f - this.progressToCollapsed)));
-            this.textViewContainer.setTranslationX(lerp2 - f3);
+            this.textViewContainer.setTranslationX(lerp2 - f4);
             if (!this.mini) {
                 if (this.isSelf) {
                     this.textAlpha = 1.0f;
                 } else {
-                    StoriesUtilities.AvatarStoryParams avatarStoryParams7 = this.params;
-                    if (avatarStoryParams7.progressToSate != 1.0f) {
-                        int i2 = avatarStoryParams7.currentState;
+                    StoriesUtilities.AvatarStoryParams avatarStoryParams5 = this.params;
+                    if (avatarStoryParams5.progressToSate != 1.0f) {
+                        int i2 = avatarStoryParams5.currentState;
                     } else {
-                        int i3 = avatarStoryParams7.currentState;
+                        int i3 = avatarStoryParams5.currentState;
                     }
-                    this.textAlpha = avatarStoryParams7.globalState == 2 ? 0.7f : 1.0f;
+                    this.textAlpha = avatarStoryParams5.globalState == 2 ? 0.7f : 1.0f;
                 }
                 this.textViewContainer.setAlpha(this.textAlphaTransition * this.textAlpha);
             }
@@ -1402,7 +1418,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
 
         public void drawPlus(Canvas canvas, float f, float f2, float f3) {
-            if (this.isSelf && !DialogStoriesCell.this.storiesController.hasStories(this.dialogId) && DialogStoriesCell.this.storiesController.getUploadingStories().isEmpty()) {
+            if (this.isSelf && !DialogStoriesCell.this.storiesController.hasStories(this.dialogId) && Utilities.isNullOrEmpty(DialogStoriesCell.this.storiesController.getUploadingStories(this.dialogId))) {
                 float dp = f + AndroidUtilities.dp(16.0f);
                 float dp2 = f2 + AndroidUtilities.dp(16.0f);
                 DialogStoriesCell dialogStoriesCell = DialogStoriesCell.this;
@@ -1425,7 +1441,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         }
 
         public void drawFail(Canvas canvas, float f, float f2, float f3) {
-            if (!this.isSelf || f3 <= 0.0f) {
+            if (f3 <= 0.0f) {
                 return;
             }
             float dp = f + AndroidUtilities.dp(17.0f);
@@ -1547,7 +1563,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    DialogStoriesCell.this.lambda$updateCurrentState$10();
+                    DialogStoriesCell.this.lambda$updateCurrentState$11();
                 }
             });
         }
@@ -1556,7 +1572,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             AndroidUtilities.forEachViews((RecyclerView) this.recyclerListView, (Consumer<View>) new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    DialogStoriesCell.lambda$updateCurrentState$11((View) obj);
+                    DialogStoriesCell.lambda$updateCurrentState$12((View) obj);
                 }
             });
             this.listViewMini.setVisibility(4);
@@ -1588,11 +1604,11 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         invalidate();
     }
 
-    public void lambda$updateCurrentState$10() {
+    public void lambda$updateCurrentState$11() {
         updateItems(true, false);
     }
 
-    public static void lambda$updateCurrentState$11(View view) {
+    public static void lambda$updateCurrentState$12(View view) {
         view.setAlpha(1.0f);
         view.setTranslationX(0.0f);
         view.setTranslationY(0.0f);
@@ -1632,7 +1648,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(LocaleController.getString("StoriesPremiumHint2").replace('\n', ' '), Theme.key_undo_cancelColor, 0, new Runnable() {
             @Override
             public final void run() {
-                DialogStoriesCell.this.lambda$makePremiumHint$12();
+                DialogStoriesCell.this.lambda$makePremiumHint$13();
             }
         });
         ClickableSpan[] clickableSpanArr = (ClickableSpan[]) replaceSingleTag.getSpans(0, replaceSingleTag.length(), ClickableSpan.class);
@@ -1649,7 +1665,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         return this.premiumHint;
     }
 
-    public void lambda$makePremiumHint$12() {
+    public void lambda$makePremiumHint$13() {
         HintView2 hintView2 = this.premiumHint;
         if (hintView2 != null) {
             hintView2.hide();

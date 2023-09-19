@@ -11,14 +11,6 @@ public class TLRPC$TL_upload_saveFilePart extends TLObject {
     }
 
     @Override
-    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt64(this.file_id);
-        abstractSerializedData.writeInt32(this.file_part);
-        abstractSerializedData.writeByteBuffer(this.bytes);
-    }
-
-    @Override
     public void freeResources() {
         NativeByteBuffer nativeByteBuffer;
         if (this.disableFree || (nativeByteBuffer = this.bytes) == null) {
@@ -26,5 +18,13 @@ public class TLRPC$TL_upload_saveFilePart extends TLObject {
         }
         nativeByteBuffer.reuse();
         this.bytes = null;
+    }
+
+    @Override
+    public void serializeToStream(AbstractSerializedData abstractSerializedData) {
+        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt64(this.file_id);
+        abstractSerializedData.writeInt32(this.file_part);
+        abstractSerializedData.writeByteBuffer(this.bytes);
     }
 }

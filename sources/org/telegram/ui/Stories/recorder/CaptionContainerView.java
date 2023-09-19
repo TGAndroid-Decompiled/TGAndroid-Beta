@@ -13,6 +13,7 @@ import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -62,6 +63,7 @@ import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.recorder.CaptionContainerView;
 public class CaptionContainerView extends FrameLayout {
     public ImageView applyButton;
+    private Drawable applyButtonCheck;
     private CombinedDrawable applyButtonDrawable;
     private final BlurringShader.StoryBlurDrawer backgroundBlur;
     private final Paint backgroundPaint;
@@ -319,7 +321,10 @@ public class CaptionContainerView extends FrameLayout {
         BounceableImageView bounceableImageView = new BounceableImageView(context);
         this.applyButton = bounceableImageView;
         ScaleStateListAnimator.apply(bounceableImageView, 0.05f, 1.25f);
-        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(16.0f), Theme.getColor(Theme.key_dialogFloatingButton, resourcesProvider)), context.getResources().getDrawable(R.drawable.input_done).mutate(), 0, AndroidUtilities.dp(1.0f));
+        Drawable mutate = context.getResources().getDrawable(R.drawable.input_done).mutate();
+        this.applyButtonCheck = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogFloatingIcon), PorterDuff.Mode.SRC_IN));
+        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(16.0f), Theme.getColor(Theme.key_dialogFloatingButton, resourcesProvider)), this.applyButtonCheck, 0, AndroidUtilities.dp(1.0f));
         this.applyButtonDrawable = combinedDrawable;
         combinedDrawable.setCustomSize(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
         this.applyButton.setImageDrawable(this.applyButtonDrawable);
@@ -468,7 +473,6 @@ public class CaptionContainerView extends FrameLayout {
                 }
             }
             this.editText.getEditText().requestFocus();
-            this.editText.getEditText().setSelection(this.editText.getEditText().length(), this.editText.getEditText().length());
             this.editText.openKeyboard();
             this.editText.getEditText().setScrollY(0);
             return true;
@@ -739,26 +743,26 @@ public class CaptionContainerView extends FrameLayout {
         drawBlurBitmap(this.blurBitmap, 12.0f);
         this.ignoreDraw = false;
         Bitmap bitmap = this.blurBitmap;
-        if (bitmap != null && bitmap.isRecycled()) {
-            this.blurBitmap = null;
+        if (bitmap != null && !bitmap.isRecycled()) {
+            Bitmap bitmap2 = this.blurBitmap;
+            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+            this.blurBitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
+            Matrix matrix = this.blurBitmapMatrix;
+            if (matrix == null) {
+                this.blurBitmapMatrix = new Matrix();
+            } else {
+                matrix.reset();
+            }
+            this.blurBitmapShader.setLocalMatrix(this.blurBitmapMatrix);
+            if (this.blurPaint == null) {
+                Paint paint = new Paint(3);
+                this.blurPaint = paint;
+                paint.setColor(-1);
+            }
+            this.blurPaint.setShader(this.blurBitmapShader);
             return;
         }
-        Bitmap bitmap2 = this.blurBitmap;
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.blurBitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-        Matrix matrix = this.blurBitmapMatrix;
-        if (matrix == null) {
-            this.blurBitmapMatrix = new Matrix();
-        } else {
-            matrix.reset();
-        }
-        this.blurBitmapShader.setLocalMatrix(this.blurBitmapMatrix);
-        if (this.blurPaint == null) {
-            Paint paint = new Paint(3);
-            this.blurPaint = paint;
-            paint.setColor(-1);
-        }
-        this.blurPaint.setShader(this.blurBitmapShader);
+        this.blurBitmap = null;
     }
 
     public void lambda$updateShowKeyboard$3(ValueAnimator valueAnimator) {
@@ -1032,6 +1036,7 @@ public class CaptionContainerView extends FrameLayout {
 
     public void updateColors(Theme.ResourcesProvider resourcesProvider) {
         this.resourcesProvider = resourcesProvider;
+        this.applyButtonCheck.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogFloatingIcon), PorterDuff.Mode.SRC_IN));
         this.applyButtonDrawable.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(16.0f), Theme.getColor(Theme.key_dialogFloatingButton, resourcesProvider)));
     }
 

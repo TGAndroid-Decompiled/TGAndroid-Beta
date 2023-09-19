@@ -2,13 +2,14 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_stories_allStories extends TLRPC$stories_AllStories {
-    public static int constructor = 1369278878;
+    public static int constructor = 1862033025;
     public int count;
     public int flags;
     public boolean has_more;
     public String state;
     public TLRPC$TL_storiesStealthMode stealth_mode;
-    public ArrayList<TLRPC$TL_userStories> user_stories = new ArrayList<>();
+    public ArrayList<TLRPC$PeerStories> peer_stories = new ArrayList<>();
+    public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
     @Override
@@ -27,11 +28,11 @@ public class TLRPC$TL_stories_allStories extends TLRPC$stories_AllStories {
         }
         int readInt323 = abstractSerializedData.readInt32(z);
         for (int i = 0; i < readInt323; i++) {
-            TLRPC$TL_userStories TLdeserialize = TLRPC$TL_userStories.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            TLRPC$PeerStories TLdeserialize = TLRPC$PeerStories.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             if (TLdeserialize == null) {
                 return;
             }
-            this.user_stories.add(TLdeserialize);
+            this.peer_stories.add(TLdeserialize);
         }
         int readInt324 = abstractSerializedData.readInt32(z);
         if (readInt324 != 481674261) {
@@ -42,11 +43,26 @@ public class TLRPC$TL_stories_allStories extends TLRPC$stories_AllStories {
         }
         int readInt325 = abstractSerializedData.readInt32(z);
         for (int i2 = 0; i2 < readInt325; i2++) {
-            TLRPC$User TLdeserialize2 = TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            TLRPC$Chat TLdeserialize2 = TLRPC$Chat.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
             if (TLdeserialize2 == null) {
                 return;
             }
-            this.users.add(TLdeserialize2);
+            this.chats.add(TLdeserialize2);
+        }
+        int readInt326 = abstractSerializedData.readInt32(z);
+        if (readInt326 != 481674261) {
+            if (z) {
+                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt326)));
+            }
+            return;
+        }
+        int readInt327 = abstractSerializedData.readInt32(z);
+        for (int i3 = 0; i3 < readInt327; i3++) {
+            TLRPC$User TLdeserialize3 = TLRPC$User.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            if (TLdeserialize3 == null) {
+                return;
+            }
+            this.users.add(TLdeserialize3);
         }
         this.stealth_mode = TLRPC$TL_storiesStealthMode.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
     }
@@ -60,16 +76,22 @@ public class TLRPC$TL_stories_allStories extends TLRPC$stories_AllStories {
         abstractSerializedData.writeInt32(this.count);
         abstractSerializedData.writeString(this.state);
         abstractSerializedData.writeInt32(481674261);
-        int size = this.user_stories.size();
+        int size = this.peer_stories.size();
         abstractSerializedData.writeInt32(size);
         for (int i2 = 0; i2 < size; i2++) {
-            this.user_stories.get(i2).serializeToStream(abstractSerializedData);
+            this.peer_stories.get(i2).serializeToStream(abstractSerializedData);
         }
         abstractSerializedData.writeInt32(481674261);
-        int size2 = this.users.size();
+        int size2 = this.chats.size();
         abstractSerializedData.writeInt32(size2);
         for (int i3 = 0; i3 < size2; i3++) {
-            this.users.get(i3).serializeToStream(abstractSerializedData);
+            this.chats.get(i3).serializeToStream(abstractSerializedData);
+        }
+        abstractSerializedData.writeInt32(481674261);
+        int size3 = this.users.size();
+        abstractSerializedData.writeInt32(size3);
+        for (int i4 = 0; i4 < size3; i4++) {
+            this.users.get(i4).serializeToStream(abstractSerializedData);
         }
         this.stealth_mode.serializeToStream(abstractSerializedData);
     }

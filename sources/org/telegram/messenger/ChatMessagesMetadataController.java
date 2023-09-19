@@ -97,7 +97,7 @@ public class ChatMessagesMetadataController {
                 }
             }
             final long j2 = tLRPC$StoryItem.dialogId;
-            tLRPC$TL_stories_getStoriesByID.user_id = this.chatActivity.getMessagesController().getInputUser(j2);
+            tLRPC$TL_stories_getStoriesByID.peer = this.chatActivity.getMessagesController().getInputPeer(j2);
             tLRPC$TL_stories_getStoriesByID.id.add(Integer.valueOf(tLRPC$StoryItem.id));
             final int i3 = tLRPC$StoryItem.id;
             this.extendedMediaRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tLRPC$TL_stories_getStoriesByID, new RequestDelegate() {

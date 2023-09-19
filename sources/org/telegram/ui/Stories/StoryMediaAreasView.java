@@ -22,8 +22,10 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC$MediaArea;
+import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_mediaAreaCoordinates;
 import org.telegram.tgnet.TLRPC$TL_mediaAreaGeoPoint;
+import org.telegram.tgnet.TLRPC$TL_mediaAreaSuggestedReaction;
 import org.telegram.tgnet.TLRPC$TL_mediaAreaVenue;
 import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.tgnet.TLRPC$TL_messageMediaGeo;
@@ -33,16 +35,21 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.ScaleStateListAnimator;
+import org.telegram.ui.EmojiAnimationsOverlay;
 import org.telegram.ui.LocationActivity;
 import org.telegram.ui.Stories.StoryMediaAreasView;
 import org.telegram.ui.Stories.recorder.HintView2;
+import org.telegram.ui.Stories.recorder.StoryEntry;
 public class StoryMediaAreasView extends FrameLayout implements View.OnClickListener {
     private final Paint cutPaint;
     private HintView2 hintView;
     private final FrameLayout hintsContainer;
     private ArrayList<TLRPC$MediaArea> lastMediaAreas;
     private boolean malicious;
+    Matrix matrix;
     public final AnimatedFloat parentHighlightAlpha;
+    float[] point;
     private final RectF rectF;
     private Theme.ResourcesProvider resourcesProvider;
     private AreaView selectedArea;
@@ -54,11 +61,15 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
     protected void presentFragment(BaseFragment baseFragment) {
     }
 
+    public void showEffect(StoryReactionWidgetView storyReactionWidgetView) {
+    }
+
     public StoryMediaAreasView(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.selectedArea = null;
         this.hintView = null;
-        new Matrix();
+        this.matrix = new Matrix();
+        this.point = new float[2];
         this.rectF = new RectF();
         Paint paint = new Paint(1);
         this.cutPaint = paint;
@@ -73,7 +84,25 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
         addView(frameLayout);
     }
 
-    public void set(ArrayList<TLRPC$MediaArea> arrayList) {
+    public static ArrayList<TLRPC$MediaArea> getMediaAreasFor(StoryEntry storyEntry) {
+        if (storyEntry == null || storyEntry.mediaEntities == null) {
+            return null;
+        }
+        ArrayList<TLRPC$MediaArea> arrayList = new ArrayList<>();
+        for (int i = 0; i < storyEntry.mediaEntities.size(); i++) {
+            if (storyEntry.mediaEntities.get(i).mediaArea instanceof TLRPC$TL_mediaAreaSuggestedReaction) {
+                arrayList.add(storyEntry.mediaEntities.get(i).mediaArea);
+            }
+        }
+        return arrayList;
+    }
+
+    public void set(TLRPC$StoryItem tLRPC$StoryItem, EmojiAnimationsOverlay emojiAnimationsOverlay) {
+        set(tLRPC$StoryItem, tLRPC$StoryItem != null ? tLRPC$StoryItem.media_areas : null, emojiAnimationsOverlay);
+    }
+
+    public void set(TLRPC$StoryItem tLRPC$StoryItem, ArrayList<TLRPC$MediaArea> arrayList, EmojiAnimationsOverlay emojiAnimationsOverlay) {
+        StoryReactionWidgetView storyReactionWidgetView;
         ArrayList<TLRPC$MediaArea> arrayList2 = this.lastMediaAreas;
         if (arrayList == arrayList2 && (arrayList == null || arrayList2 == null || arrayList.size() == this.lastMediaAreas.size())) {
             return;
@@ -105,9 +134,18 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             TLRPC$MediaArea tLRPC$MediaArea = arrayList.get(i2);
             if (tLRPC$MediaArea != null && tLRPC$MediaArea.coordinates != null) {
-                AreaView areaView = new AreaView(getContext(), this, tLRPC$MediaArea);
-                areaView.setOnClickListener(this);
-                addView(areaView);
+                if (tLRPC$MediaArea instanceof TLRPC$TL_mediaAreaSuggestedReaction) {
+                    StoryReactionWidgetView storyReactionWidgetView2 = new StoryReactionWidgetView(getContext(), this, (TLRPC$TL_mediaAreaSuggestedReaction) tLRPC$MediaArea, emojiAnimationsOverlay);
+                    if (tLRPC$StoryItem != null) {
+                        storyReactionWidgetView2.setViews(tLRPC$StoryItem.views, false);
+                    }
+                    ScaleStateListAnimator.apply(storyReactionWidgetView2);
+                    storyReactionWidgetView = storyReactionWidgetView2;
+                } else {
+                    storyReactionWidgetView = new AreaView(getContext(), this, tLRPC$MediaArea);
+                }
+                storyReactionWidgetView.setOnClickListener(this);
+                addView(storyReactionWidgetView);
                 TLRPC$TL_mediaAreaCoordinates tLRPC$TL_mediaAreaCoordinates = tLRPC$MediaArea.coordinates;
                 d += (tLRPC$TL_mediaAreaCoordinates.w / 100.0d) * 1080.0d * (tLRPC$TL_mediaAreaCoordinates.h / 100.0d) * 1920.0d;
             }
@@ -141,6 +179,10 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
     @Override
     public void onClick(View view) {
         if (view instanceof AreaView) {
+            if (view instanceof StoryReactionWidgetView) {
+                showEffect((StoryReactionWidgetView) view);
+                return;
+            }
             AreaView areaView = this.selectedArea;
             if (areaView == view) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -367,6 +409,34 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
 
     public boolean hasSelected() {
         return this.selectedArea != null;
+    }
+
+    public void onStoryItemUpdated(TLRPC$StoryItem tLRPC$StoryItem, boolean z) {
+        if (tLRPC$StoryItem == null) {
+            return;
+        }
+        for (int i = 0; i < getChildCount(); i++) {
+            if (getChildAt(i) instanceof StoryReactionWidgetView) {
+                ((StoryReactionWidgetView) getChildAt(i)).setViews(tLRPC$StoryItem.views, z);
+            }
+        }
+    }
+
+    public boolean hasClickableViews(float f, float f2) {
+        for (int i = 0; i < getChildCount(); i++) {
+            View childAt = getChildAt(i);
+            if (childAt != this.hintsContainer && (childAt instanceof StoryReactionWidgetView)) {
+                childAt.getMatrix().invert(this.matrix);
+                float[] fArr = this.point;
+                fArr[0] = f;
+                fArr[1] = f2;
+                this.matrix.mapPoints(fArr);
+                if (this.point[0] >= childAt.getLeft() && this.point[0] <= childAt.getRight() && this.point[1] >= childAt.getTop() && this.point[1] <= childAt.getBottom()) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public static class AreaView extends View {

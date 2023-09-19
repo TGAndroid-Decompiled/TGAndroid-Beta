@@ -79,11 +79,8 @@ public class KeyboardNotifier {
     }
 
     public void ignore(boolean z) {
-        boolean z2 = this.ignoring && z;
         this.ignoring = z;
-        if (z2) {
-            update();
-        }
+        update();
     }
 
     public void fire() {

@@ -254,7 +254,7 @@ public class FileRefController extends BaseController {
         if (obj instanceof TLRPC$StoryItem) {
             TLRPC$StoryItem tLRPC$StoryItem = (TLRPC$StoryItem) obj;
             TLRPC$TL_stories_getStoriesByID tLRPC$TL_stories_getStoriesByID = new TLRPC$TL_stories_getStoriesByID();
-            tLRPC$TL_stories_getStoriesByID.user_id = getMessagesController().getInputUser(tLRPC$StoryItem.dialogId);
+            tLRPC$TL_stories_getStoriesByID.peer = getMessagesController().getInputPeer(tLRPC$StoryItem.dialogId);
             tLRPC$TL_stories_getStoriesByID.id.add(Integer.valueOf(tLRPC$StoryItem.id));
             getConnectionsManager().sendRequest(tLRPC$TL_stories_getStoriesByID, new RequestDelegate() {
                 @Override

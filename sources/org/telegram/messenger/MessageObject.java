@@ -241,7 +241,6 @@ public class MessageObject {
     public Boolean cachedIsSupergroup;
     public boolean cancelEditing;
     public CharSequence caption;
-    public int captionHeight;
     private boolean captionTranslated;
     public ArrayList<TLRPC$TL_pollAnswer> checkedVotes;
     public int contentType;
@@ -4325,10 +4324,6 @@ public class MessageObject {
                     dp = (int) (min2 * 0.5f);
                 }
             }
-            CharSequence charSequence = this.caption;
-            if (charSequence != null && !TextUtils.isEmpty(charSequence)) {
-                dp += this.captionHeight;
-            }
             return dp + AndroidUtilities.dp(14.0f);
         }
     }
@@ -5529,10 +5524,9 @@ public class MessageObject {
             TLRPC$TL_webPage tLRPC$TL_webPage = new TLRPC$TL_webPage();
             tLRPC$TL_webPage.type = "telegram_story";
             TLRPC$TL_webPageAttributeStory tLRPC$TL_webPageAttributeStory = new TLRPC$TL_webPageAttributeStory();
-            TLRPC$MessageMedia tLRPC$MessageMedia = this.messageOwner.media;
-            tLRPC$TL_webPageAttributeStory.id = tLRPC$MessageMedia.id;
-            tLRPC$TL_webPageAttributeStory.user_id = tLRPC$MessageMedia.user_id;
-            TLRPC$StoryItem tLRPC$StoryItem = tLRPC$MessageMedia.storyItem;
+            tLRPC$TL_webPageAttributeStory.id = this.messageOwner.media.id;
+            tLRPC$TL_webPageAttributeStory.peer = MessagesController.getInstance(this.currentAccount).getPeer(this.messageOwner.media.user_id);
+            TLRPC$StoryItem tLRPC$StoryItem = this.messageOwner.media.storyItem;
             if (tLRPC$StoryItem != null) {
                 tLRPC$TL_webPageAttributeStory.flags |= 1;
                 tLRPC$TL_webPageAttributeStory.storyItem = tLRPC$StoryItem;

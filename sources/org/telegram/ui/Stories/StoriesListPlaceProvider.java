@@ -106,11 +106,12 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
                     transitionViewHolder.avatarImage = storyCell.avatarImage;
                     transitionViewHolder.params = storyCell.params;
                     transitionViewHolder.radialProgressUpload = storyCell.radialProgress;
-                    transitionViewHolder.clipParent = (DialogStoriesCell) storyCell.getParent().getParent();
+                    DialogStoriesCell dialogStoriesCell2 = (DialogStoriesCell) storyCell.getParent().getParent();
+                    transitionViewHolder.clipParent = dialogStoriesCell2;
                     transitionViewHolder.clipBottom = 0.0f;
                     transitionViewHolder.clipTop = 0.0f;
                     transitionViewHolder.alpha = 1.0f;
-                    if (storyCell.isFail) {
+                    if (storyCell.isFail && dialogStoriesCell2.isExpanded()) {
                         final Path path = new Path();
                         transitionViewHolder.drawClip = new StoryViewer.HolderClip() {
                             @Override
@@ -236,8 +237,11 @@ public class StoriesListPlaceProvider implements StoryViewer.PlaceProvider {
     }
 
     public static void lambda$findView$0(Path path, Canvas canvas, RectF rectF, float f, boolean z) {
+        if (z) {
+            return;
+        }
         path.rewind();
-        float pow = z ? 1.0f - ((float) Math.pow(1.0f - f, 2.0d)) : (float) Math.pow(f, 2.0d);
+        float pow = (float) Math.pow(f, 2.0d);
         path.addCircle((rectF.right + AndroidUtilities.dp(7.0f)) - (AndroidUtilities.dp(14.0f) * pow), (rectF.bottom + AndroidUtilities.dp(7.0f)) - (AndroidUtilities.dp(14.0f) * pow), AndroidUtilities.dp(11.0f), Path.Direction.CW);
         canvas.clipPath(path, Region.Op.DIFFERENCE);
     }

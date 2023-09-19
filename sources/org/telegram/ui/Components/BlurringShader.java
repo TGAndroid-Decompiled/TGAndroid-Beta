@@ -678,6 +678,7 @@ public class BlurringShader {
     public static class StoryBlurDrawer {
         private boolean animateBitmapChange;
         private BitmapShader bitmapShader;
+        RectF bounds;
         private ValueAnimator crossfadeAnimator;
         private boolean customOffset;
         private float customOffsetX;
@@ -700,7 +701,7 @@ public class BlurringShader {
             this.oldPaint = new Paint(3);
             this.paint = new Paint(3);
             this.matrix = new Matrix();
-            new RectF();
+            this.bounds = new RectF();
             this.manager = blurManager;
             this.view = view;
             this.animateBitmapChange = z;
@@ -758,6 +759,43 @@ public class BlurringShader {
                     StoryBlurDrawer.this.recycle();
                 }
             });
+        }
+
+        private void updateBounds() {
+            Bitmap bitmap = this.manager.getBitmap();
+            if (bitmap == null) {
+                return;
+            }
+            if (this.bitmapShader == null || this.lastBitmap != bitmap) {
+                this.lastBitmap = bitmap;
+                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+                this.bitmapShader = bitmapShader;
+                this.paint.setShader(bitmapShader);
+            }
+            float width = this.bounds.width() / this.lastBitmap.getWidth();
+            float height = this.bounds.height() / this.lastBitmap.getHeight();
+            this.matrix.reset();
+            Matrix matrix = this.matrix;
+            RectF rectF = this.bounds;
+            matrix.postTranslate(rectF.left, rectF.top);
+            this.matrix.preScale(width, height);
+            this.bitmapShader.setLocalMatrix(this.matrix);
+        }
+
+        public void setBounds(float f, float f2, float f3, float f4) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(f, f2, f3, f4);
+            setBounds(rectF);
+        }
+
+        public void setBounds(RectF rectF) {
+            RectF rectF2 = this.bounds;
+            if (rectF2.top == rectF.top && rectF2.bottom == rectF.bottom && rectF2.left == rectF.left && rectF2.right == rectF.right) {
+                return;
+            }
+            rectF2.set(rectF);
+            updateBounds();
         }
 
         public Paint getPaint(float f) {
@@ -878,10 +916,10 @@ public class BlurringShader {
             return true;
         }
 
-        public Drawable makeDrawable(final float f, final float f2, final Drawable drawable) {
+        public Drawable makeDrawable(final float f, final float f2, final Drawable drawable, final float f3) {
             return new Drawable() {
                 float alpha = 1.0f;
-                private final Paint dimPaint;
+                private final Paint dimPaint = new Paint(1);
 
                 @Override
                 public int getOpacity() {
@@ -890,12 +928,6 @@ public class BlurringShader {
 
                 @Override
                 public void setColorFilter(ColorFilter colorFilter) {
-                }
-
-                {
-                    Paint paint = new Paint(1);
-                    this.dimPaint = paint;
-                    paint.setColor(1375731712);
                 }
 
                 private Paint getPaint() {
@@ -926,20 +958,55 @@ public class BlurringShader {
                     Paint paint = getPaint();
                     android.graphics.Rect bounds = getBounds();
                     if (paint != null) {
-                        canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-                        drawable.setBounds(bounds);
-                        drawable.draw(canvas);
-                        canvas.drawRect(bounds, paint);
-                        canvas.restore();
-                        android.graphics.Rect rect = AndroidUtilities.rectTmp2;
-                        getPadding(rect);
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        rectF.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
-                        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.dimPaint);
+                        if (drawable != null) {
+                            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
+                            drawable.setBounds(bounds);
+                            drawable.draw(canvas);
+                            canvas.drawRect(bounds, paint);
+                            canvas.restore();
+                            android.graphics.Rect rect = AndroidUtilities.rectTmp2;
+                            getPadding(rect);
+                            RectF rectF = AndroidUtilities.rectTmp;
+                            rectF.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
+                            this.dimPaint.setColor(1711276032);
+                            float f4 = f3;
+                            canvas.drawRoundRect(rectF, f4, f4, this.dimPaint);
+                            return;
+                        }
+                        if (f3 > 0.0f) {
+                            RectF rectF2 = AndroidUtilities.rectTmp;
+                            rectF2.set(bounds);
+                            float f5 = f3;
+                            canvas.drawRoundRect(rectF2, f5, f5, paint);
+                        } else {
+                            canvas.drawRect(bounds, paint);
+                        }
+                        this.dimPaint.setColor(1711276032);
+                        if (f3 > 0.0f) {
+                            RectF rectF3 = AndroidUtilities.rectTmp;
+                            rectF3.set(bounds);
+                            float f6 = f3;
+                            canvas.drawRoundRect(rectF3, f6, f6, this.dimPaint);
+                            return;
+                        }
+                        canvas.drawRect(bounds, this.dimPaint);
                         return;
                     }
-                    drawable.setBounds(bounds);
-                    drawable.draw(canvas);
+                    Drawable drawable2 = drawable;
+                    if (drawable2 != null) {
+                        drawable2.setBounds(bounds);
+                        drawable.draw(canvas);
+                        return;
+                    }
+                    this.dimPaint.setColor(-14145495);
+                    if (f3 > 0.0f) {
+                        RectF rectF4 = AndroidUtilities.rectTmp;
+                        rectF4.set(bounds);
+                        float f7 = f3;
+                        canvas.drawRoundRect(rectF4, f7, f7, this.dimPaint);
+                        return;
+                    }
+                    canvas.drawRect(bounds, this.dimPaint);
                 }
 
                 @Override
@@ -949,7 +1016,12 @@ public class BlurringShader {
 
                 @Override
                 public boolean getPadding(android.graphics.Rect rect) {
-                    return drawable.getPadding(rect);
+                    Drawable drawable2 = drawable;
+                    if (drawable2 != null) {
+                        return drawable2.getPadding(rect);
+                    }
+                    rect.set(0, 0, 0, 0);
+                    return true;
                 }
             };
         }

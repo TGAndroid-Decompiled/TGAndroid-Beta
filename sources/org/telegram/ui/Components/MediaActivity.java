@@ -348,7 +348,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     public void lambda$createView$7(ArrayList arrayList, boolean z) {
-        getMessagesController().getStoriesController().updateStoriesPinned(arrayList, z, null);
+        getMessagesController().getStoriesController().updateStoriesPinned(this.dialogId, arrayList, z, null);
     }
 
     public void lambda$createView$8(boolean[] zArr, ArrayList arrayList, boolean[] zArr2) {
@@ -719,7 +719,10 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
 
         @Override
         public BottomPagerTabs.Tab[] createTabs() {
-            return new BottomPagerTabs.Tab[]{new BottomPagerTabs.Tab(0, R.raw.msg_stories_saved, LocaleController.getString("ProfileMyStoriesTab", R.string.ProfileMyStoriesTab)), new BottomPagerTabs.Tab(1, R.raw.msg_stories_archive, LocaleController.getString("ProfileStoriesArchiveTab", R.string.ProfileStoriesArchiveTab))};
+            BottomPagerTabs.Tab[] tabArr = {new BottomPagerTabs.Tab(0, R.raw.msg_stories_saved, LocaleController.getString("ProfileMyStoriesTab", R.string.ProfileMyStoriesTab)), new BottomPagerTabs.Tab(1, R.raw.msg_stories_archive, LocaleController.getString("ProfileStoriesArchiveTab", R.string.ProfileStoriesArchiveTab))};
+            tabArr[0].customEndFrameMid = 20;
+            tabArr[0].customEndFrameEnd = 40;
+            return tabArr;
         }
     }
 

@@ -43,11 +43,14 @@ import org.telegram.tgnet.TLRPC$TL_stickerPack;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.ui.Cells.ChatActionCell;
 import org.telegram.ui.Cells.ChatMessageCell;
+import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.Reactions.AnimatedEmojiEffect;
+import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.Components.StickerSetBulletinLayout;
 import org.telegram.ui.Components.StickersAlert;
+import org.telegram.ui.Stories.StoryReactionWidgetView;
 public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCenterDelegate {
     private static final HashSet<String> excludeEmojiFromPack;
     private static final HashSet<String> supportedEmoji = new HashSet<>();
@@ -74,7 +77,6 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
     ArrayList<DrawingObject> drawingObjects = new ArrayList<>();
 
     public void onAllEffectsEnd() {
-        throw null;
     }
 
     static {
@@ -90,6 +92,11 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         hashSet.add("7⃣");
         hashSet.add("8⃣");
         hashSet.add("9⃣");
+    }
+
+    public EmojiAnimationsOverlay(FrameLayout frameLayout, int i) {
+        this.contentLayout = frameLayout;
+        this.currentAccount = i;
     }
 
     public EmojiAnimationsOverlay(ChatActivity chatActivity, FrameLayout frameLayout, RecyclerListView recyclerListView, int i, long j, int i2) {
@@ -120,6 +127,16 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.diceStickersDidLoad);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.onEmojiInteractionsReceived);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.updateInterfaces);
+        for (int i = 0; i < this.drawingObjects.size(); i++) {
+            this.drawingObjects.get(i).imageReceiver.onDetachedFromWindow();
+            if (this.drawingObjects.get(i).genericEffect != null) {
+                this.drawingObjects.get(i).genericEffect.removeView(this.contentLayout);
+            }
+        }
+        this.drawingObjects.clear();
+    }
+
+    public void clear() {
         for (int i = 0; i < this.drawingObjects.size(); i++) {
             this.drawingObjects.get(i).imageReceiver.onDetachedFromWindow();
             if (this.drawingObjects.get(i).genericEffect != null) {
@@ -885,12 +902,126 @@ public class EmojiAnimationsOverlay implements NotificationCenter.NotificationCe
         }
     }
 
+    public boolean showAnimationForWidget(StoryReactionWidgetView storyReactionWidgetView) {
+        float f;
+        float f2;
+        boolean z;
+        int i;
+        float f3;
+        boolean z2;
+        if (this.drawingObjects.size() > 12) {
+            return false;
+        }
+        ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(storyReactionWidgetView.mediaArea.reaction);
+        String str = fromTLReaction.emojicon;
+        if (str == null) {
+            str = MessageObject.findAnimatedEmojiEmoticon(AnimatedEmojiDrawable.findDocument(this.currentAccount, fromTLReaction.documentId));
+        }
+        float measuredHeight = storyReactionWidgetView.getMeasuredHeight();
+        float measuredWidth = storyReactionWidgetView.getMeasuredWidth();
+        View view = (View) storyReactionWidgetView.getParent();
+        if (measuredWidth > view.getWidth() * 0.5f) {
+            f2 = view.getWidth() * 0.4f;
+            f = f2;
+        } else {
+            f = measuredHeight;
+            f2 = measuredWidth;
+        }
+        String unwrapEmoji = unwrapEmoji(str);
+        int hashCode = storyReactionWidgetView.hashCode();
+        boolean z3 = storyReactionWidgetView.getTranslationX() > ((float) this.contentLayout.getMeasuredWidth()) / 2.0f;
+        if (fromTLReaction.emojicon != null) {
+            z = z3;
+            z2 = true;
+            i = hashCode;
+            float f4 = f2;
+            if (createDrawingObject(unwrapEmoji, hashCode, null, null, -1, false, false, f2, f, z)) {
+                if (!this.drawingObjects.isEmpty()) {
+                    ArrayList<DrawingObject> arrayList = this.drawingObjects;
+                    DrawingObject drawingObject = arrayList.get(arrayList.size() - 1);
+                    drawingObject.isReaction = true;
+                    drawingObject.lastH = f;
+                    drawingObject.lastW = f4;
+                    drawingObject.lastX = storyReactionWidgetView.getTranslationX() - (drawingObject.lastW / 2.0f);
+                    float translationY = storyReactionWidgetView.getTranslationY();
+                    float f5 = drawingObject.lastW;
+                    drawingObject.lastY = translationY - (1.5f * f5);
+                    if (drawingObject.isOut) {
+                        drawingObject.lastX += (-f5) * 1.8f;
+                    } else {
+                        drawingObject.lastX += (-f5) * 0.2f;
+                    }
+                }
+                return true;
+            }
+            f3 = f4;
+        } else {
+            z = z3;
+            i = hashCode;
+            f3 = f2;
+            z2 = true;
+        }
+        if (fromTLReaction.documentId == 0 || storyReactionWidgetView.getAnimatedEmojiDrawable() == null) {
+            return false;
+        }
+        int i2 = 0;
+        for (int i3 = 0; i3 < this.drawingObjects.size(); i3++) {
+            if (this.drawingObjects.get(i3).documentId == fromTLReaction.documentId) {
+                i2++;
+            }
+        }
+        if (i2 >= 4) {
+            return false;
+        }
+        DrawingObject drawingObject2 = new DrawingObject(this);
+        drawingObject2.genericEffect = AnimatedEmojiEffect.createFrom(storyReactionWidgetView.getAnimatedEmojiDrawable(), z2, z2);
+        drawingObject2.randomOffsetX = (f3 / 4.0f) * ((this.random.nextInt() % FileLoader.MEDIA_DIR_VIDEO_PUBLIC) / 100.0f);
+        drawingObject2.randomOffsetY = (f / 4.0f) * ((this.random.nextInt() % FileLoader.MEDIA_DIR_VIDEO_PUBLIC) / 100.0f);
+        drawingObject2.messageId = i;
+        drawingObject2.document = null;
+        drawingObject2.documentId = fromTLReaction.documentId;
+        drawingObject2.isOut = z;
+        drawingObject2.lastH = f;
+        drawingObject2.lastW = f3;
+        drawingObject2.lastX = storyReactionWidgetView.getTranslationX() - (drawingObject2.lastW / 2.0f);
+        float translationY2 = storyReactionWidgetView.getTranslationY();
+        float f6 = drawingObject2.lastW;
+        drawingObject2.lastY = translationY2 - (1.5f * f6);
+        drawingObject2.lastX += (-f6) * 1.8f;
+        if (this.attached) {
+            drawingObject2.genericEffect.setView(this.contentLayout);
+        }
+        this.drawingObjects.add(drawingObject2);
+        return z2;
+    }
+
+    public void setAccount(int i) {
+        this.currentAccount = i;
+    }
+
+    public void preload(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
+        ArrayList<TLRPC$Document> arrayList;
+        String str = visibleReaction.emojicon;
+        if (str == null) {
+            str = MessageObject.findAnimatedEmojiEmoticon(AnimatedEmojiDrawable.findDocument(this.currentAccount, visibleReaction.documentId));
+        }
+        if (str == null || (arrayList = this.emojiInteractionsStickersMap.get(str)) == null || arrayList.isEmpty()) {
+            return;
+        }
+        int min = Math.min(1, arrayList.size());
+        for (int i = 0; i < min; i++) {
+            preloadAnimation(arrayList.get(i));
+        }
+    }
+
     public class DrawingObject {
         TLRPC$Document document;
+        public long documentId;
         public AnimatedEmojiEffect genericEffect;
         ImageReceiver imageReceiver;
         boolean isOut;
         public boolean isPremiumSticker;
+        public boolean isReaction;
         public float lastH;
         public float lastW;
         public float lastX;

@@ -3,14 +3,10 @@ package org.telegram.tgnet;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_channel extends TLRPC$Chat {
-    public static int constructor = -2094689180;
+    public static int constructor = -1795845413;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        readParams(abstractSerializedData, z, true);
-    }
-
-    public void readParams(AbstractSerializedData abstractSerializedData, boolean z, boolean z2) {
         int readInt32 = abstractSerializedData.readInt32(z);
         this.flags = readInt32;
         this.creator = (readInt32 & 1) != 0;
@@ -33,7 +29,11 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         this.join_to_send = (268435456 & readInt32) != 0;
         this.join_request = (536870912 & readInt32) != 0;
         this.forum = (readInt32 & 1073741824) != 0;
-        this.flags2 = abstractSerializedData.readInt32(z);
+        int readInt322 = abstractSerializedData.readInt32(z);
+        this.flags2 = readInt322;
+        this.stories_hidden = (readInt322 & 2) != 0;
+        this.stories_hidden_min = (readInt322 & 4) != 0;
+        this.stories_unavailable = (readInt322 & 8) != 0;
         this.id = abstractSerializedData.readInt64(z);
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
             this.access_hash = abstractSerializedData.readInt64(z);
@@ -42,18 +42,18 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         if ((this.flags & 64) != 0) {
             this.username = abstractSerializedData.readString(z);
         }
-        this.photo = TLRPC$ChatPhoto.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z, z2);
+        this.photo = TLRPC$ChatPhoto.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.date = abstractSerializedData.readInt32(z);
         if ((this.flags & LiteMode.FLAG_CALLS_ANIMATIONS) != 0) {
-            int readInt322 = abstractSerializedData.readInt32(z);
-            if (readInt322 != 481674261) {
+            int readInt323 = abstractSerializedData.readInt32(z);
+            if (readInt323 != 481674261) {
                 if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt323)));
                 }
                 return;
             }
-            int readInt323 = abstractSerializedData.readInt32(z);
-            for (int i = 0; i < readInt323; i++) {
+            int readInt324 = abstractSerializedData.readInt32(z);
+            for (int i = 0; i < readInt324; i++) {
                 TLRPC$TL_restrictionReason TLdeserialize = TLRPC$TL_restrictionReason.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize == null) {
                     return;
@@ -74,21 +74,24 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
             this.participants_count = abstractSerializedData.readInt32(z);
         }
         if ((this.flags2 & 1) != 0) {
-            int readInt324 = abstractSerializedData.readInt32(z);
-            if (readInt324 != 481674261) {
+            int readInt325 = abstractSerializedData.readInt32(z);
+            if (readInt325 != 481674261) {
                 if (z) {
-                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt324)));
+                    throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt325)));
                 }
                 return;
             }
-            int readInt325 = abstractSerializedData.readInt32(z);
-            for (int i2 = 0; i2 < readInt325; i2++) {
+            int readInt326 = abstractSerializedData.readInt32(z);
+            for (int i2 = 0; i2 < readInt326; i2++) {
                 TLRPC$TL_username TLdeserialize2 = TLRPC$TL_username.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
                 if (TLdeserialize2 == null) {
                     return;
                 }
                 this.usernames.add(TLdeserialize2);
             }
+        }
+        if ((this.flags2 & 16) != 0) {
+            this.stories_max_id = abstractSerializedData.readInt32(z);
         }
     }
 
@@ -136,7 +139,13 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
         int i20 = this.forum ? i19 | 1073741824 : i19 & (-1073741825);
         this.flags = i20;
         abstractSerializedData.writeInt32(i20);
-        abstractSerializedData.writeInt32(this.flags2);
+        int i21 = this.stories_hidden ? this.flags2 | 2 : this.flags2 & (-3);
+        this.flags2 = i21;
+        int i22 = this.stories_hidden_min ? i21 | 4 : i21 & (-5);
+        this.flags2 = i22;
+        int i23 = this.stories_unavailable ? i22 | 8 : i22 & (-9);
+        this.flags2 = i23;
+        abstractSerializedData.writeInt32(i23);
         abstractSerializedData.writeInt64(this.id);
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) != 0) {
             abstractSerializedData.writeInt64(this.access_hash);
@@ -151,8 +160,8 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
             abstractSerializedData.writeInt32(481674261);
             int size = this.restriction_reason.size();
             abstractSerializedData.writeInt32(size);
-            for (int i21 = 0; i21 < size; i21++) {
-                this.restriction_reason.get(i21).serializeToStream(abstractSerializedData);
+            for (int i24 = 0; i24 < size; i24++) {
+                this.restriction_reason.get(i24).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM) != 0) {
@@ -171,9 +180,12 @@ public class TLRPC$TL_channel extends TLRPC$Chat {
             abstractSerializedData.writeInt32(481674261);
             int size2 = this.usernames.size();
             abstractSerializedData.writeInt32(size2);
-            for (int i22 = 0; i22 < size2; i22++) {
-                this.usernames.get(i22).serializeToStream(abstractSerializedData);
+            for (int i25 = 0; i25 < size2; i25++) {
+                this.usernames.get(i25).serializeToStream(abstractSerializedData);
             }
+        }
+        if ((this.flags2 & 16) != 0) {
+            abstractSerializedData.writeInt32(this.stories_max_id);
         }
     }
 }

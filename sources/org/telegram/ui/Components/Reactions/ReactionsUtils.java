@@ -4,6 +4,9 @@ import android.graphics.Paint;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC$Reaction;
+import org.telegram.tgnet.TLRPC$ReactionCount;
+import org.telegram.tgnet.TLRPC$StoryViews;
+import org.telegram.tgnet.TLRPC$TL_reactionCount;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
@@ -18,6 +21,13 @@ public class ReactionsUtils {
             return j != 0 && ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id == j;
         }
         return false;
+    }
+
+    public static boolean compare(TLRPC$Reaction tLRPC$Reaction, TLRPC$Reaction tLRPC$Reaction2) {
+        if ((tLRPC$Reaction instanceof TLRPC$TL_reactionEmoji) && (tLRPC$Reaction2 instanceof TLRPC$TL_reactionEmoji) && TextUtils.equals(((TLRPC$TL_reactionEmoji) tLRPC$Reaction).emoticon, ((TLRPC$TL_reactionEmoji) tLRPC$Reaction2).emoticon)) {
+            return true;
+        }
+        return (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) && (tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji) && ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id == ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id;
     }
 
     public static TLRPC$Reaction toTLReaction(ReactionsLayoutInBubble.VisibleReaction visibleReaction) {
@@ -41,5 +51,37 @@ public class ReactionsUtils {
             return spannableStringBuilder;
         }
         return "";
+    }
+
+    public static void applyForStoryViews(TLRPC$Reaction tLRPC$Reaction, TLRPC$Reaction tLRPC$Reaction2, TLRPC$StoryViews tLRPC$StoryViews) {
+        if (tLRPC$StoryViews == null) {
+            return;
+        }
+        int i = 0;
+        boolean z = false;
+        while (i < tLRPC$StoryViews.reactions.size()) {
+            TLRPC$ReactionCount tLRPC$ReactionCount = tLRPC$StoryViews.reactions.get(i);
+            if (tLRPC$Reaction != null && compare(tLRPC$ReactionCount.reaction, tLRPC$Reaction)) {
+                int i2 = tLRPC$ReactionCount.count - 1;
+                tLRPC$ReactionCount.count = i2;
+                if (i2 <= 0) {
+                    tLRPC$StoryViews.reactions.remove(i);
+                    i--;
+                    i++;
+                }
+            }
+            if (tLRPC$Reaction2 != null && compare(tLRPC$ReactionCount.reaction, tLRPC$Reaction2)) {
+                tLRPC$ReactionCount.count++;
+                z = true;
+            }
+            i++;
+        }
+        if (z) {
+            return;
+        }
+        TLRPC$TL_reactionCount tLRPC$TL_reactionCount = new TLRPC$TL_reactionCount();
+        tLRPC$TL_reactionCount.count = 1;
+        tLRPC$TL_reactionCount.reaction = tLRPC$Reaction2;
+        tLRPC$StoryViews.reactions.add(tLRPC$TL_reactionCount);
     }
 }

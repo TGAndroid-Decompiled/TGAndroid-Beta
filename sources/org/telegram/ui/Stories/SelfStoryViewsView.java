@@ -21,6 +21,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
@@ -34,6 +35,7 @@ import org.telegram.ui.Stories.StoryViewer;
 public class SelfStoryViewsView extends FrameLayout {
     public float bottomPadding;
     private int currentState;
+    private long dialogId;
     ArrayList<SelfStoryViewsPage> itemViews;
     int keyboardHeight;
     boolean listenPager;
@@ -205,7 +207,7 @@ public class SelfStoryViewsView extends FrameLayout {
             selfStoryViewsPage.setTag(Integer.valueOf(i));
             selfStoryViewsPage.setShadowDrawable(SelfStoryViewsView.this.shadowDrawable);
             selfStoryViewsPage.setPadding(0, AndroidUtilities.dp(16.0f), 0, 0);
-            selfStoryViewsPage.setStoryItem(SelfStoryViewsView.this.storyItems.get(i));
+            selfStoryViewsPage.setStoryItem(SelfStoryViewsView.this.dialogId, SelfStoryViewsView.this.storyItems.get(i));
             selfStoryViewsPage.setListBottomPadding(SelfStoryViewsView.this.bottomPadding);
             viewGroup.addView(selfStoryViewsPage);
             SelfStoryViewsView.this.itemViews.add(selfStoryViewsPage);
@@ -327,14 +329,17 @@ public class SelfStoryViewsView extends FrameLayout {
         this.viewPagerContainer.setTranslationY(((-this.bottomPadding) + getMeasuredHeight()) - this.selfStoriesViewsOffset);
     }
 
-    public void setItems(ArrayList<TLRPC$StoryItem> arrayList, int i) {
+    public void setItems(long j, ArrayList<TLRPC$StoryItem> arrayList, int i) {
         this.storyItems.clear();
+        this.dialogId = j;
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
             this.storyItems.add(new StoryItemInternal(this, arrayList.get(i2)));
         }
-        ArrayList<StoriesController.UploadingStory> uploadingStories = MessagesController.getInstance(this.storyViewer.currentAccount).storiesController.getUploadingStories();
-        for (int i3 = 0; i3 < uploadingStories.size(); i3++) {
-            this.storyItems.add(new StoryItemInternal(this, uploadingStories.get(i3)));
+        ArrayList<StoriesController.UploadingStory> uploadingStories = MessagesController.getInstance(this.storyViewer.currentAccount).storiesController.getUploadingStories(UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId());
+        if (uploadingStories != null) {
+            for (int i3 = 0; i3 < uploadingStories.size(); i3++) {
+                this.storyItems.add(new StoryItemInternal(this, uploadingStories.get(i3)));
+            }
         }
         this.selfStoriesPreviewView.setItems(this.storyItems, i);
         this.viewPager.setAdapter(null);

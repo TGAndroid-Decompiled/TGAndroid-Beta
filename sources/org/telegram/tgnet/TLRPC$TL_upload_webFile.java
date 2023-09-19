@@ -7,16 +7,6 @@ public class TLRPC$TL_upload_webFile extends TLObject {
     public int mtime;
     public int size;
 
-    @Override
-    public void freeResources() {
-        NativeByteBuffer nativeByteBuffer;
-        if (this.disableFree || (nativeByteBuffer = this.bytes) == null) {
-            return;
-        }
-        nativeByteBuffer.reuse();
-        this.bytes = null;
-    }
-
     public static TLRPC$TL_upload_webFile TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         if (constructor != i) {
             if (z) {
@@ -27,6 +17,16 @@ public class TLRPC$TL_upload_webFile extends TLObject {
         TLRPC$TL_upload_webFile tLRPC$TL_upload_webFile = new TLRPC$TL_upload_webFile();
         tLRPC$TL_upload_webFile.readParams(abstractSerializedData, z);
         return tLRPC$TL_upload_webFile;
+    }
+
+    @Override
+    public void freeResources() {
+        NativeByteBuffer nativeByteBuffer;
+        if (this.disableFree || (nativeByteBuffer = this.bytes) == null) {
+            return;
+        }
+        nativeByteBuffer.reuse();
+        this.bytes = null;
     }
 
     @Override

@@ -1,16 +1,16 @@
 package org.telegram.tgnet;
-public class TLRPC$TL_stories_getUserStories extends TLObject {
-    public static int constructor = -1764415264;
-    public TLRPC$InputUser user_id;
+public class TLRPC$TL_stories_applyBoost extends TLObject {
+    public static int constructor = -224560085;
+    public TLRPC$InputPeer peer;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        return TLRPC$TL_stories_userStories.TLdeserialize(abstractSerializedData, i, z);
+        return TLRPC$Bool.TLdeserialize(abstractSerializedData, i, z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        this.user_id.serializeToStream(abstractSerializedData);
+        this.peer.serializeToStream(abstractSerializedData);
     }
 }

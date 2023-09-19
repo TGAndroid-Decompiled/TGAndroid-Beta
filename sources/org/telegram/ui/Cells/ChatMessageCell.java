@@ -4446,6 +4446,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                 string = LocaleController.getString("OpenLink").toUpperCase();
             } else if (i == 17) {
                 string = LocaleController.getString("ViewStory").toUpperCase();
+            } else if (i == 18) {
+                string = LocaleController.getString("BoostLinkButton", R.string.BoostLinkButton);
             } else {
                 string = LocaleController.getString("InstantView", R.string.InstantView);
             }

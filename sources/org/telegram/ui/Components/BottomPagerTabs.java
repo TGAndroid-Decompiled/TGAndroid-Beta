@@ -35,6 +35,8 @@ public class BottomPagerTabs extends View {
     public class Tab {
         private boolean active;
         final RectF clickRect;
+        public int customEndFrameEnd;
+        public int customEndFrameMid;
         final RLottieDrawable drawable;
         private int drawableColor;
         final int i;
@@ -73,26 +75,27 @@ public class BottomPagerTabs extends View {
             if (this.active == z) {
                 return;
             }
-            int i = this.i;
-            if (i == 0) {
+            if (BottomPagerTabs.this.tabs[this.i].customEndFrameMid != 0) {
                 if (z) {
-                    this.drawable.setCustomEndFrame(20);
-                    if (this.drawable.getCurrentFrame() >= 38) {
+                    this.drawable.setCustomEndFrame(this.customEndFrameMid);
+                    if (this.drawable.getCurrentFrame() >= this.customEndFrameEnd - 2) {
                         this.drawable.setCurrentFrame(0, false);
                     }
-                    if (this.drawable.getCurrentFrame() <= 20) {
+                    int currentFrame = this.drawable.getCurrentFrame();
+                    int i = this.customEndFrameMid;
+                    if (currentFrame <= i) {
                         this.drawable.start();
                     } else {
-                        this.drawable.setCurrentFrame(20);
+                        this.drawable.setCurrentFrame(i);
                     }
-                } else if (this.drawable.getCurrentFrame() >= 19) {
-                    this.drawable.setCustomEndFrame(39);
+                } else if (this.drawable.getCurrentFrame() >= this.customEndFrameMid - 1) {
+                    this.drawable.setCustomEndFrame(this.customEndFrameEnd - 1);
                     this.drawable.start();
                 } else {
                     this.drawable.setCustomEndFrame(0);
                     this.drawable.setCurrentFrame(0);
                 }
-            } else if (i == 1 && z) {
+            } else if (z) {
                 this.drawable.setCurrentFrame(0);
                 if (z2) {
                     this.drawable.start();

@@ -370,6 +370,10 @@ public class AnimatedTextView extends View {
             return this.currentWidth;
         }
 
+        public float getAnimateToWidth() {
+            return this.currentWidth;
+        }
+
         public float getHeight() {
             return this.currentHeight;
         }

@@ -2,8 +2,9 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_stories_togglePinned extends TLObject {
-    public static int constructor = 1365256516;
+    public static int constructor = -1703566865;
     public ArrayList<Integer> id = new ArrayList<>();
+    public TLRPC$InputPeer peer;
     public boolean pinned;
 
     @Override
@@ -19,6 +20,7 @@ public class TLRPC$TL_stories_togglePinned extends TLObject {
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
+        this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
         int size = this.id.size();
         abstractSerializedData.writeInt32(size);

@@ -466,6 +466,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
             DownloadController.getInstance(this.currentAccount).removeLoadingFileObserver(this);
             this.previousWidth = 0;
             this.imageReceiver.setAutoRepeatCount(0);
+            this.imageReceiver.clearDecorators();
             if (messageObject.isStoryMention()) {
                 TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(messageObject.messageOwner.media.user_id));
                 this.avatarDrawable.setInfo(user);

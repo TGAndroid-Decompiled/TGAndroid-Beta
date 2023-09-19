@@ -1,29 +1,11 @@
 package org.telegram.tgnet;
-
-import java.util.ArrayList;
-public class TLRPC$TL_userStories extends TLObject {
-    public static int constructor = -2045664768;
-    public int flags;
-    public int max_read_id;
-    public ArrayList<TLRPC$StoryItem> stories = new ArrayList<>();
-    public long user_id;
-
-    public static TLRPC$TL_userStories TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
-            if (z) {
-                throw new RuntimeException(String.format("can't parse magic %x in TL_userStories", Integer.valueOf(i)));
-            }
-            return null;
-        }
-        TLRPC$TL_userStories tLRPC$TL_userStories = new TLRPC$TL_userStories();
-        tLRPC$TL_userStories.readParams(abstractSerializedData, z);
-        return tLRPC$TL_userStories;
-    }
+public class TLRPC$TL_peerStories extends TLRPC$PeerStories {
+    public static int constructor = -1707742823;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.flags = abstractSerializedData.readInt32(z);
-        this.user_id = abstractSerializedData.readInt64(z);
+        this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         if ((this.flags & 1) != 0) {
             this.max_read_id = abstractSerializedData.readInt32(z);
         }
@@ -48,7 +30,7 @@ public class TLRPC$TL_userStories extends TLObject {
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
         abstractSerializedData.writeInt32(this.flags);
-        abstractSerializedData.writeInt64(this.user_id);
+        this.peer.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.max_read_id);
         }

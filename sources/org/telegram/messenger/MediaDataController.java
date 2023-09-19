@@ -226,6 +226,7 @@ public class MediaDataController extends BaseController {
     public static final String ATTACH_MENU_BOT_COLOR_LIGHT_TEXT = "light_text";
     public static final String ATTACH_MENU_BOT_PLACEHOLDER_STATIC_KEY = "placeholder_static";
     public static final String ATTACH_MENU_BOT_SIDE_MENU = "android_side_menu_static";
+    public static final String ATTACH_MENU_BOT_SIDE_MENU_ICON_KEY = "android_side_menu_static";
     public static final String ATTACH_MENU_BOT_STATIC_ICON_KEY = "default_static";
     public static final int MEDIA_AUDIO = 2;
     public static final int MEDIA_FILE = 1;
@@ -2144,7 +2145,7 @@ public class MediaDataController extends BaseController {
         Iterator<TLRPC$TL_attachMenuBotIcon> it = tLRPC$TL_attachMenuBot.icons.iterator();
         while (it.hasNext()) {
             TLRPC$TL_attachMenuBotIcon next = it.next();
-            if (next.name.equals(ATTACH_MENU_BOT_SIDE_MENU)) {
+            if (next.name.equals("android_side_menu_static")) {
                 return next;
             }
         }
@@ -2156,6 +2157,17 @@ public class MediaDataController extends BaseController {
         while (it.hasNext()) {
             TLRPC$TL_attachMenuBotIcon next = it.next();
             if (next.name.equals(ATTACH_MENU_BOT_STATIC_ICON_KEY)) {
+                return next;
+            }
+        }
+        return null;
+    }
+
+    public static TLRPC$TL_attachMenuBotIcon getSideAttachMenuBotIcon(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
+        Iterator<TLRPC$TL_attachMenuBotIcon> it = tLRPC$TL_attachMenuBot.icons.iterator();
+        while (it.hasNext()) {
+            TLRPC$TL_attachMenuBotIcon next = it.next();
+            if (next.name.equals("android_side_menu_static")) {
                 return next;
             }
         }
@@ -7608,6 +7620,7 @@ public class MediaDataController extends BaseController {
 
     public void applyAttachMenuBot(TLRPC$TL_attachMenuBotsBot tLRPC$TL_attachMenuBotsBot) {
         this.attachMenuBots.bots.add(tLRPC$TL_attachMenuBotsBot.bot);
+        loadAttachMenuBots(false, true);
     }
 
     public boolean botInAttachMenu(long j) {

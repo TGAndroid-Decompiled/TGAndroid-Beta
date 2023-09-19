@@ -1,19 +1,19 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputMediaStory extends TLRPC$InputMedia {
-    public static int constructor = -1702447729;
+    public static int constructor = -1979852936;
     public int id;
-    public TLRPC$InputUser user_id;
+    public TLRPC$InputPeer peer;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.user_id = TLRPC$InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+        this.peer = TLRPC$InputPeer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.id = abstractSerializedData.readInt32(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        this.user_id.serializeToStream(abstractSerializedData);
+        this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.id);
     }
 }

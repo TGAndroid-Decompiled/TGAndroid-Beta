@@ -10505,6 +10505,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         updateFieldHint(z);
     }
 
+    public void setOverrideHint(CharSequence charSequence, CharSequence charSequence2, boolean z) {
+        this.overrideHint = charSequence;
+        this.overrideHint2 = charSequence2;
+        updateFieldHint(z);
+    }
+
     public void setOverrideKeyboardAnimation(boolean z) {
         this.overrideKeyboardAnimation = z;
     }

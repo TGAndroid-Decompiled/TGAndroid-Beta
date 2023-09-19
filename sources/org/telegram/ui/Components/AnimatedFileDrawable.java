@@ -1238,22 +1238,6 @@ public class AnimatedFileDrawable extends BitmapDrawable implements Animatable, 
         return createBitmap;
     }
 
-    public void drawFrame(Canvas canvas, int i) {
-        if (this.nativePtr == 0) {
-            return;
-        }
-        for (int i2 = 0; i2 < i; i2++) {
-            getNextFrame();
-        }
-        Bitmap backgroundBitmap = getBackgroundBitmap();
-        if (backgroundBitmap == null) {
-            backgroundBitmap = getNextFrame();
-        }
-        android.graphics.Rect rect = AndroidUtilities.rectTmp2;
-        rect.set(0, 0, backgroundBitmap.getWidth(), backgroundBitmap.getHeight());
-        canvas.drawBitmap(getBackgroundBitmap(), rect, getBounds(), getPaint());
-    }
-
     public boolean canLoadFrames() {
         return this.precache ? this.bitmapsCache != null : (this.nativePtr == 0 && this.decoderCreated) ? false : true;
     }
