@@ -51,9 +51,12 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
         this.imageH = f;
         this.imageX = centerX - (imageWidth / 2.0f);
         this.imageY = centerY - (f / 2.0f);
+        canvas.save();
+        canvas.clipRect(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
         for (int i = 0; i < this.drawingObjects.size(); i++) {
             this.drawingObjects.get(i).draw(canvas, imageReceiver, alpha);
         }
+        canvas.restore();
     }
 
     @Override

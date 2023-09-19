@@ -93,6 +93,7 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     private boolean inBubbleMode;
     private boolean inPreviewMode;
     public float innerTranslationX;
+    private boolean isSheet;
     ArrayList<String> lastActions;
     private long lastFrameTime;
     private boolean maybeStartTracking;
@@ -583,6 +584,16 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
         for (BaseFragment baseFragment : this.fragmentsStack) {
             baseFragment.setParentLayout(this);
         }
+    }
+
+    @Override
+    public void setIsSheet(boolean z) {
+        this.isSheet = z;
+    }
+
+    @Override
+    public boolean isSheet() {
+        return this.isSheet;
     }
 
     @Override

@@ -923,6 +923,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
             TextView textView2 = this.title;
             int i = Theme.key_windowBackgroundWhiteBlackText;
             textView2.setTextColor(Theme.getColor(i, ((BottomSheet) LimitReachedBottomSheet.this).resourcesProvider));
+            this.title.setGravity(17);
             addView(this.title, indexOfChild, LayoutHelper.createLinear(-2, -2, 1, 0, 22, 0, 10));
             removeView(this.description);
             TextView textView3 = new TextView(getContext());

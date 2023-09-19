@@ -813,6 +813,7 @@ public abstract class BaseFragment {
                 return lambda$showAsSheet$1;
             }
         })};
+        LaunchActivity.instance.sheetFragmentsStack.add(iNavigationLayoutArr[0]);
         final BottomSheet[] bottomSheetArr = {new AnonymousClass1(this, getParentActivity(), true, baseFragment.getResourceProvider(), iNavigationLayoutArr, baseFragment, bottomSheetParams)};
         if (bottomSheetParams != null) {
             bottomSheetArr[0].setAllowNestedScroll(bottomSheetParams.allowNestedScroll);
@@ -821,6 +822,10 @@ public abstract class BaseFragment {
         baseFragment.setParentDialog(bottomSheetArr[0]);
         bottomSheetArr[0].show();
         return iNavigationLayoutArr;
+    }
+
+    public static BottomSheet lambda$showAsSheet$1(BottomSheet[] bottomSheetArr) {
+        return bottomSheetArr[0];
     }
 
     public class AnonymousClass1 extends BottomSheet {
@@ -841,6 +846,7 @@ public abstract class BaseFragment {
             this.drawNavigationBar = true;
             iNavigationLayoutArr[0].setFragmentStack(new ArrayList());
             iNavigationLayoutArr[0].addFragmentToStack(baseFragment2);
+            iNavigationLayoutArr[0].setIsSheet(true);
             iNavigationLayoutArr[0].showLastFragment();
             ViewGroup view = iNavigationLayoutArr[0].getView();
             int i = this.backgroundPaddingLeft;
@@ -890,6 +896,7 @@ public abstract class BaseFragment {
                 runnable.run();
             }
             super.dismiss();
+            LaunchActivity.instance.sheetFragmentsStack.remove(this.val$actionBarLayout[0]);
             this.val$actionBarLayout[0] = null;
         }
 
@@ -902,10 +909,6 @@ public abstract class BaseFragment {
             }
             runnable.run();
         }
-    }
-
-    public static BottomSheet lambda$showAsSheet$1(BottomSheet[] bottomSheetArr) {
-        return bottomSheetArr[0];
     }
 
     public int getThemedColor(int i) {
@@ -1044,6 +1047,9 @@ public abstract class BaseFragment {
     public StoryViewer getOrCreateStoryViewer() {
         if (this.storyViewer == null) {
             this.storyViewer = new StoryViewer(this);
+            if (this.parentLayout.isSheet()) {
+                this.storyViewer.fromBottomSheet = true;
+            }
         }
         return this.storyViewer;
     }

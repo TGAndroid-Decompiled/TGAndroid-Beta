@@ -60,6 +60,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     Paint paint;
     private TLRPC$PeerStories peerStories;
     private boolean progressIsDone;
+    private float progressToInsets;
     private final AnimatedFloat progressToUploading;
     private boolean progressWasDrawn;
     private final StoryViewer.PlaceProvider provider;
@@ -84,6 +85,14 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private final Paint whitePaint;
 
     protected void onTap(StoryViewer.PlaceProvider placeProvider) {
+    }
+
+    public void setProgressToStoriesInsets(float f) {
+        if (this.progressToInsets == f) {
+            return;
+        }
+        this.progressToInsets = f;
+        invalidate();
     }
 
     public class StoryCircle {
@@ -141,6 +150,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         this.circles = new ArrayList<>();
         this.paint = new Paint(1);
         this.bounceScale = 1.0f;
+        this.progressToInsets = 1.0f;
         this.rect1 = new RectF();
         this.rect2 = new RectF();
         this.rect3 = new RectF();
@@ -467,7 +477,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r26) {
+    protected void dispatchDraw(android.graphics.Canvas r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.ProfileStoriesView.dispatchDraw(android.graphics.Canvas):void");
     }
 

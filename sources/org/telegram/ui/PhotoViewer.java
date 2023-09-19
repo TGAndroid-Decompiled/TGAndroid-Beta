@@ -5250,9 +5250,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             marginLayoutParams.bottomMargin = (-i4) / 2;
             this.navigationBar.setLayoutParams(marginLayoutParams);
         }
-        FrameLayoutDrawer frameLayoutDrawer = this.containerView;
-        Rect rect2 = this.insets;
-        frameLayoutDrawer.setPadding(rect2.left, 0, rect2.right, 0);
+        this.containerView.setPadding(windowInsets.getSystemWindowInsetLeft(), 0, windowInsets.getSystemWindowInsetRight(), 0);
         if (this.actionBar != null) {
             AndroidUtilities.cancelRunOnUIThread(this.updateContainerFlagsRunnable);
             if (this.isVisible && this.animationInProgress == 0) {

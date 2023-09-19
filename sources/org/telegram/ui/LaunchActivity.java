@@ -321,6 +321,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private static ArrayList<BaseFragment> mainFragmentsStack = new ArrayList<>();
     private static ArrayList<BaseFragment> layerFragmentsStack = new ArrayList<>();
     private static ArrayList<BaseFragment> rightFragmentsStack = new ArrayList<>();
+    public ArrayList<INavigationLayout> sheetFragmentsStack = new ArrayList<>();
     private List<PasscodeView> overlayPasscodeViews = new ArrayList();
     private boolean isNavigationBarColorFrozen = false;
     private List<Runnable> onUserLeaveHintListeners = new ArrayList();
@@ -3533,18 +3534,22 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         boostsController.getBoostsStats(l.longValue(), new com.google.android.exoplayer2.util.Consumer() {
             @Override
             public final void accept(Object obj) {
-                LaunchActivity.this.lambda$processBoostDialog$94(boostsController, l, runnable, (TLRPC$TL_stories_boostsStatus) obj);
+                LaunchActivity.this.lambda$processBoostDialog$94(runnable, boostsController, l, (TLRPC$TL_stories_boostsStatus) obj);
             }
         });
     }
 
-    public void lambda$processBoostDialog$94(ChannelBoostsController channelBoostsController, final Long l, final Runnable runnable, final TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus) {
-        channelBoostsController.userCanBoostChannel(l.longValue(), new com.google.android.exoplayer2.util.Consumer() {
-            @Override
-            public final void accept(Object obj) {
-                LaunchActivity.this.lambda$processBoostDialog$93(l, tLRPC$TL_stories_boostsStatus, runnable, (ChannelBoostsController.CanApplyBoost) obj);
-            }
-        });
+    public void lambda$processBoostDialog$94(final Runnable runnable, ChannelBoostsController channelBoostsController, final Long l, final TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus) {
+        if (tLRPC$TL_stories_boostsStatus == null) {
+            runnable.run();
+        } else {
+            channelBoostsController.userCanBoostChannel(l.longValue(), new com.google.android.exoplayer2.util.Consumer() {
+                @Override
+                public final void accept(Object obj) {
+                    LaunchActivity.this.lambda$processBoostDialog$93(l, tLRPC$TL_stories_boostsStatus, runnable, (ChannelBoostsController.CanApplyBoost) obj);
+                }
+            });
+        }
     }
 
     public void lambda$processBoostDialog$93(Long l, TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus, Runnable runnable, ChannelBoostsController.CanApplyBoost canApplyBoost) {
@@ -5935,7 +5940,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public static BaseFragment getLastFragment() {
         LaunchActivity launchActivity = instance;
-        if (launchActivity == null || launchActivity.getActionBarLayout() == null) {
+        if (launchActivity != null && !launchActivity.sheetFragmentsStack.isEmpty()) {
+            ArrayList<INavigationLayout> arrayList = instance.sheetFragmentsStack;
+            return arrayList.get(arrayList.size() - 1).getLastFragment();
+        }
+        LaunchActivity launchActivity2 = instance;
+        if (launchActivity2 == null || launchActivity2.getActionBarLayout() == null) {
             return null;
         }
         return instance.getActionBarLayout().getLastFragment();

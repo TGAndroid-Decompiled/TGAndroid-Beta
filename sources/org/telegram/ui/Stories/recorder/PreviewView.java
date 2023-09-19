@@ -699,8 +699,7 @@ public class PreviewView extends FrameLayout {
                 PreviewView.this.lambda$setupVideoPlayer$4((StoryEntry.HDRInfo) obj);
             }
         });
-        Uri fromFile = Uri.fromFile(storyEntry.getOriginalFile());
-        this.videoPlayer.preparePlayer(fromFile, "other");
+        this.videoPlayer.preparePlayer(Uri.fromFile(storyEntry.getOriginalFile()), "other");
         this.videoPlayer.setPlayWhenReady(this.pauseLinks.isEmpty());
         this.videoPlayer.setLooping(true);
         if (j > 0) {
@@ -708,7 +707,7 @@ public class PreviewView extends FrameLayout {
         }
         this.videoPlayer.setMute(storyEntry.muted);
         updateAudioPlayer(true);
-        this.timelineView.setVideo(fromFile.toString(), getDuration());
+        this.timelineView.setVideo(storyEntry.getOriginalFile().getAbsolutePath(), getDuration());
         this.timelineView.setVideoLeft(storyEntry.left);
         this.timelineView.setVideoRight(storyEntry.right);
     }

@@ -75,10 +75,10 @@ public final class BulletinFactory {
             return;
         }
         if (BuildVars.DEBUG_VERSION) {
-            global.createErrorBulletin(tLRPC$TL_error.code + " " + tLRPC$TL_error.text);
+            global.createErrorBulletin(tLRPC$TL_error.code + " " + tLRPC$TL_error.text).show();
             return;
         }
-        global.createErrorBulletin(LocaleController.getString("UnknownError", R.string.UnknownError));
+        global.createErrorBulletin(LocaleController.getString("UnknownError", R.string.UnknownError)).show();
     }
 
     public static final class FileType {
