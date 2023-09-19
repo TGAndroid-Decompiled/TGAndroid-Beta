@@ -4644,6 +4644,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
             @Override
             protected void setupMentionContainer() {
+                if (PhotoViewer.this.parentChatActivity != null) {
+                    return;
+                }
                 this.mentionContainer.getAdapter().setAllowStickers(false);
                 this.mentionContainer.getAdapter().setAllowBots(false);
                 this.mentionContainer.getAdapter().setAllowChats(false);

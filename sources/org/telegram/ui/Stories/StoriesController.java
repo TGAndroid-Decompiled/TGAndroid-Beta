@@ -2,6 +2,7 @@ package org.telegram.ui.Stories;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.SparseArray;
 import android.webkit.MimeTypeMap;
@@ -132,11 +133,13 @@ import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.Premium.LimitReachedBottomSheet;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.SelfStoryViewsPage;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.recorder.DraftsController;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 import org.telegram.ui.Stories.recorder.StoryPrivacyBottomSheet;
+import org.telegram.ui.Stories.recorder.StoryRecorder;
 import org.telegram.ui.Stories.recorder.StoryUploadingService;
 public class StoriesController {
     public static final Comparator<TLRPC$StoryItem> storiesComparator = Comparator$CC.comparingInt(new ToIntFunction() {
@@ -372,7 +375,7 @@ public class StoriesController {
         if (j == 0) {
             return false;
         }
-        if (hasUploadingStories(j)) {
+        if (hasUploadingStories(j) || isLastUploadingFailed(j)) {
             return true;
         }
         TLRPC$PeerStories tLRPC$PeerStories = this.allStoriesMap.get(j);
@@ -1448,7 +1451,7 @@ public class StoriesController {
                     z = true;
                 }
             }
-            return z ? 1 : 0;
+            return (!isLastUploadingFailed(j) && z) ? 1 : 0;
         }
         return 1;
     }
@@ -3449,36 +3452,41 @@ public class StoriesController {
         checkStoryError(tLRPC$TL_error);
     }
 
-    public void canSendStoryFor(final long j, final Consumer<Boolean> consumer, final Theme.ResourcesProvider resourcesProvider) {
+    public void canSendStoryFor(final long j, final Consumer<Boolean> consumer, final boolean z, final Theme.ResourcesProvider resourcesProvider) {
         TLRPC$TL_stories_canSendStory tLRPC$TL_stories_canSendStory = new TLRPC$TL_stories_canSendStory();
         tLRPC$TL_stories_canSendStory.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stories_canSendStory, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StoriesController.this.lambda$canSendStoryFor$31(j, resourcesProvider, consumer, tLObject, tLRPC$TL_error);
+                StoriesController.this.lambda$canSendStoryFor$32(z, j, consumer, resourcesProvider, tLObject, tLRPC$TL_error);
             }
         }, 1024);
     }
 
-    public void lambda$canSendStoryFor$31(final long j, final Theme.ResourcesProvider resourcesProvider, final Consumer consumer, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$canSendStoryFor$32(final boolean z, final long j, final Consumer consumer, final Theme.ResourcesProvider resourcesProvider, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoriesController.this.lambda$canSendStoryFor$30(tLRPC$TL_error, j, resourcesProvider, consumer);
+                StoriesController.this.lambda$canSendStoryFor$31(tLRPC$TL_error, z, j, consumer, resourcesProvider);
             }
         });
     }
 
-    public void lambda$canSendStoryFor$30(TLRPC$TL_error tLRPC$TL_error, final long j, final Theme.ResourcesProvider resourcesProvider, final Consumer consumer) {
+    public void lambda$canSendStoryFor$31(TLRPC$TL_error tLRPC$TL_error, boolean z, final long j, final Consumer consumer, final Theme.ResourcesProvider resourcesProvider) {
         if (tLRPC$TL_error != null) {
             if (tLRPC$TL_error.text.contains("BOOSTS_REQUIRED")) {
-                MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(j, new Consumer() {
-                    @Override
-                    public final void accept(Object obj) {
-                        StoriesController.this.lambda$canSendStoryFor$29(resourcesProvider, j, consumer, (TLRPC$TL_stories_boostsStatus) obj);
-                    }
-                });
-                return;
+                if (z) {
+                    MessagesController.getInstance(this.currentAccount).getBoostsController().getBoostsStats(j, new Consumer() {
+                        @Override
+                        public final void accept(Object obj) {
+                            StoriesController.this.lambda$canSendStoryFor$30(consumer, resourcesProvider, j, (TLRPC$TL_stories_boostsStatus) obj);
+                        }
+                    });
+                    return;
+                } else {
+                    consumer.accept(Boolean.FALSE);
+                    return;
+                }
             }
             BulletinFactory global = BulletinFactory.global();
             if (global != null) {
@@ -3490,13 +3498,46 @@ public class StoriesController {
         consumer.accept(Boolean.TRUE);
     }
 
-    public void lambda$canSendStoryFor$29(Theme.ResourcesProvider resourcesProvider, long j, Consumer consumer, TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus) {
+    public void lambda$canSendStoryFor$30(Consumer consumer, Theme.ResourcesProvider resourcesProvider, final long j, TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus) {
+        if (tLRPC$TL_stories_boostsStatus == null) {
+            consumer.accept(Boolean.FALSE);
+            return;
+        }
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(lastFragment, lastFragment.getContext(), 18, this.currentAccount, resourcesProvider);
         limitReachedBottomSheet.setBoostsStats(tLRPC$TL_stories_boostsStatus, false);
         limitReachedBottomSheet.setDialogId(j);
+        if (canPostStories(j)) {
+            limitReachedBottomSheet.showStatisticButtonInLink(new Runnable() {
+                @Override
+                public final void run() {
+                    StoriesController.this.lambda$canSendStoryFor$29(j);
+                }
+            });
+        }
         limitReachedBottomSheet.show();
         consumer.accept(Boolean.FALSE);
+    }
+
+    public void lambda$canSendStoryFor$29(long j) {
+        long j2 = -j;
+        TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j2));
+        Bundle bundle = new Bundle();
+        bundle.putLong("chat_id", j2);
+        bundle.putBoolean("is_megagroup", chat.megagroup);
+        bundle.putBoolean("start_from_boosts", true);
+        bundle.putBoolean("only_boosts", true);
+        StatisticActivity statisticActivity = new StatisticActivity(bundle);
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment != null) {
+            if (StoryRecorder.isVisible()) {
+                BaseFragment.BottomSheetParams bottomSheetParams = new BaseFragment.BottomSheetParams();
+                bottomSheetParams.transitionFromLeft = true;
+                lastFragment.showAsSheet(statisticActivity, bottomSheetParams);
+                return;
+            }
+            lastFragment.presentFragment(statisticActivity);
+        }
     }
 
     public boolean checkStoryError(org.telegram.tgnet.TLRPC$TL_error r7) {
@@ -3556,21 +3597,21 @@ public class StoriesController {
         }, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StoriesController.this.lambda$loadSendAs$33(tLObject, tLRPC$TL_error);
+                StoriesController.this.lambda$loadSendAs$34(tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$loadSendAs$33(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadSendAs$34(final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                StoriesController.this.lambda$loadSendAs$32(tLObject);
+                StoriesController.this.lambda$loadSendAs$33(tLObject);
             }
         });
     }
 
-    public void lambda$loadSendAs$32(TLObject tLObject) {
+    public void lambda$loadSendAs$33(TLObject tLObject) {
         this.sendAs.clear();
         this.sendAs.add(new TLRPC$TL_inputPeerSelf());
         if (tLObject instanceof TLRPC$TL_messages_chats) {
@@ -3593,6 +3634,15 @@ public class StoriesController {
             return false;
         }
         return chat.creator || ((tLRPC$TL_chatAdminRights = chat.admin_rights) != null && tLRPC$TL_chatAdminRights.edit_stories);
+    }
+
+    public boolean canPostStories(long j) {
+        TLRPC$Chat chat;
+        TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
+        if (j >= 0 || (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j))) == null) {
+            return false;
+        }
+        return chat.creator || ((tLRPC$TL_chatAdminRights = chat.admin_rights) != null && tLRPC$TL_chatAdminRights.post_stories);
     }
 
     public boolean canEditStory(TLRPC$StoryItem tLRPC$StoryItem) {

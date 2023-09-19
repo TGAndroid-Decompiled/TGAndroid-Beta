@@ -869,6 +869,7 @@ public abstract class BaseFragment {
         protected void onCreate(Bundle bundle) {
             super.onCreate(bundle);
             fixNavigationBar(Theme.getColor(Theme.key_dialogBackgroundGray, this.val$fragment.getResourceProvider()));
+            AndroidUtilities.setLightStatusBar(getWindow(), this.val$fragment.isLightStatusBar());
         }
 
         @Override

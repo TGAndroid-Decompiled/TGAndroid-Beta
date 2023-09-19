@@ -129,6 +129,7 @@ import org.telegram.ui.Components.URLSpanUserMention;
 import org.telegram.ui.Components.VideoEditTextureView;
 import org.telegram.ui.Components.ZoomControlView;
 import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.DarkThemeResourceProvider;
 import org.telegram.ui.Stories.DialogStoriesCell;
 import org.telegram.ui.Stories.PeerStoriesView;
@@ -232,6 +233,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     private HintView2 savedDualHint;
     private boolean scrollingX;
     private boolean scrollingY;
+    long selectedDialogId;
     private boolean showSavedDraftHint;
     private boolean shownLimitReached;
     private TimelineView timelineView;
@@ -354,6 +356,39 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             throw null;
         }
 
+        public static SourceView fromAvatarImage(final ProfileActivity.AvatarImageView avatarImageView) {
+            if (avatarImageView == null || avatarImageView.getRootView() == null) {
+                return null;
+            }
+            float scaleX = ((View) avatarImageView.getParent()).getScaleX();
+            float imageWidth = avatarImageView.getImageReceiver().getImageWidth() * scaleX;
+            SourceView sourceView = new SourceView() {
+                @Override
+                protected void show() {
+                    ProfileActivity.AvatarImageView avatarImageView2 = avatarImageView;
+                    avatarImageView2.drawAvatar = true;
+                    avatarImageView2.invalidate();
+                }
+
+                @Override
+                protected void hide() {
+                    ProfileActivity.AvatarImageView avatarImageView2 = avatarImageView;
+                    avatarImageView2.drawAvatar = false;
+                    avatarImageView2.invalidate();
+                }
+            };
+            int[] iArr = new int[2];
+            float[] fArr = new float[2];
+            avatarImageView.getRootView().getLocationOnScreen(iArr);
+            AndroidUtilities.getViewPositionInParent(avatarImageView, (ViewGroup) avatarImageView.getRootView(), fArr);
+            float imageX = iArr[0] + fArr[0] + (avatarImageView.getImageReceiver().getImageX() * scaleX);
+            float imageY = iArr[1] + fArr[1] + (avatarImageView.getImageReceiver().getImageY() * scaleX);
+            sourceView.screenRect.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
+            sourceView.backgroundImageReceiver = avatarImageView.getImageReceiver();
+            sourceView.rounding = Math.max(sourceView.screenRect.width(), sourceView.screenRect.height()) / 2.0f;
+            return sourceView;
+        }
+
         public static SourceView fromStoryViewer(final StoryViewer storyViewer) {
             if (storyViewer == null) {
                 return null;
@@ -392,10 +427,10 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             return null;
         }
 
-        public class AnonymousClass2 extends SourceView {
+        public class AnonymousClass3 extends SourceView {
             final FrameLayout val$floatingButton;
 
-            AnonymousClass2(FrameLayout frameLayout) {
+            AnonymousClass3(FrameLayout frameLayout) {
                 this.val$floatingButton = frameLayout;
             }
 
@@ -420,18 +455,18 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             if (frameLayout == null) {
                 return null;
             }
-            AnonymousClass2 anonymousClass2 = new AnonymousClass2(frameLayout);
+            AnonymousClass3 anonymousClass3 = new AnonymousClass3(frameLayout);
             int[] iArr = new int[2];
             View childAt = frameLayout.getChildAt(0);
             childAt.getLocationOnScreen(iArr);
-            anonymousClass2.screenRect.set(iArr[0], iArr[1], iArr[0] + childAt.getWidth(), iArr[1] + childAt.getHeight());
+            anonymousClass3.screenRect.set(iArr[0], iArr[1], iArr[0] + childAt.getWidth(), iArr[1] + childAt.getHeight());
             Paint paint = new Paint(1);
-            anonymousClass2.backgroundPaint = paint;
+            anonymousClass3.backgroundPaint = paint;
             paint.setColor(Theme.getColor(Theme.key_chats_actionBackground));
-            anonymousClass2.iconDrawable = frameLayout.getContext().getResources().getDrawable(R.drawable.story_camera).mutate();
-            anonymousClass2.iconSize = AndroidUtilities.dp(56.0f);
-            anonymousClass2.rounding = Math.max(anonymousClass2.screenRect.width(), anonymousClass2.screenRect.height()) / 2.0f;
-            return anonymousClass2;
+            anonymousClass3.iconDrawable = frameLayout.getContext().getResources().getDrawable(R.drawable.story_camera).mutate();
+            anonymousClass3.iconSize = AndroidUtilities.dp(56.0f);
+            anonymousClass3.rounding = Math.max(anonymousClass3.screenRect.width(), anonymousClass3.screenRect.height()) / 2.0f;
+            return anonymousClass3;
         }
 
         public static SourceView fromStoryCell(DialogStoriesCell.StoryCell storyCell) {
@@ -439,24 +474,24 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 return null;
             }
             float imageWidth = storyCell.avatarImage.getImageWidth();
-            AnonymousClass3 anonymousClass3 = new AnonymousClass3(storyCell, imageWidth / 2.0f);
+            AnonymousClass4 anonymousClass4 = new AnonymousClass4(storyCell, imageWidth / 2.0f);
             int[] iArr = new int[2];
             float[] fArr = new float[2];
             storyCell.getRootView().getLocationOnScreen(iArr);
             AndroidUtilities.getViewPositionInParent(storyCell, (ViewGroup) storyCell.getRootView(), fArr);
             float imageX = iArr[0] + fArr[0] + storyCell.avatarImage.getImageX();
             float imageY = iArr[1] + fArr[1] + storyCell.avatarImage.getImageY();
-            anonymousClass3.screenRect.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
-            anonymousClass3.backgroundImageReceiver = storyCell.avatarImage;
-            anonymousClass3.rounding = Math.max(anonymousClass3.screenRect.width(), anonymousClass3.screenRect.height()) / 2.0f;
-            return anonymousClass3;
+            anonymousClass4.screenRect.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
+            anonymousClass4.backgroundImageReceiver = storyCell.avatarImage;
+            anonymousClass4.rounding = Math.max(anonymousClass4.screenRect.width(), anonymousClass4.screenRect.height()) / 2.0f;
+            return anonymousClass4;
         }
 
-        public class AnonymousClass3 extends SourceView {
+        public class AnonymousClass4 extends SourceView {
             final float val$radius;
             final DialogStoriesCell.StoryCell val$storyCell;
 
-            AnonymousClass3(DialogStoriesCell.StoryCell storyCell, float f) {
+            AnonymousClass4(DialogStoriesCell.StoryCell storyCell, float f) {
                 this.val$storyCell = storyCell;
                 this.val$radius = f;
             }
@@ -474,7 +509,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 storyCell.post(new Runnable() {
                     @Override
                     public final void run() {
-                        StoryRecorder.SourceView.AnonymousClass3.lambda$hide$0(DialogStoriesCell.StoryCell.this);
+                        StoryRecorder.SourceView.AnonymousClass4.lambda$hide$0(DialogStoriesCell.StoryCell.this);
                     }
                 });
             }
@@ -2184,6 +2219,9 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                     applyFilter(null);
                     upload(true);
                     return;
+                }
+                if (this.selectedDialogId != 0) {
+                    storyEntry.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.selectedDialogId);
                 }
                 this.previewView.updatePauseReason(3, true);
                 StoryPrivacyBottomSheet whenSelectedRules = new StoryPrivacyBottomSheet(this.activity, this.outputEntry.period, this.resourcesProvider).setValue(this.outputEntry.privacy).setPeer(this.outputEntry.peer).whenDismiss(new Utilities.Callback() {
@@ -5223,6 +5261,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             this.muteButtonDrawable.setCustomEndFrame(43);
             this.muteButtonDrawable.start();
         }
+    }
+
+    public StoryRecorder selectedPeerId(long j) {
+        this.selectedDialogId = j;
+        return this;
     }
 
     public static CharSequence cameraBtnSpan(Context context) {

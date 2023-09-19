@@ -965,6 +965,12 @@
     <string name="BoostChannel">Boost Channel</string>
     <string name="BoostExpireOn">boost expires on %s</string>
     <string name="BoostLinkButton">BOOST</string>
+    <string name="BoostStories_few">**%d** stories</string>
+    <string name="BoostStories_many">**%d** stories</string>
+    <string name="BoostStories_one">**%d** story</string>
+    <string name="BoostStories_other">**%d** stories</string>
+    <string name="BoostStories_two">**%d** stories</string>
+    <string name="BoostStories_zero">**%d** story</string>
     <string name="Boosters">Boosters</string>
     <string name="BoostersInfoDescription">Your channel is currently boosted by these users.</string>
     <string name="BoostingEnableStories">Enable Stories</string>
@@ -1204,7 +1210,7 @@
     <string name="ChannelBlockUser">Remove User</string>
     <string name="ChannelBlockedUsers">Removed users</string>
     <string name="ChannelBoostsJustReachedLevel1">This channel reached **Level 1** and can now post stories.</string>
-    <string name="ChannelBoostsJustReachedLevelNext">This channel reached **Level %1$d** and can now post **%2$d stories** per day.</string>
+    <string name="ChannelBoostsJustReachedLevelNext">This channel reached **Level %1$d** and can now post **%2$s** per day.</string>
     <string name="ChannelBots">Bots</string>
     <string name="ChannelBroadcast">Broadcast</string>
     <string name="ChannelCantOpenBanned">Unfortunately, you were banned from participating in public groups.</string>
@@ -1276,7 +1282,7 @@
     <string name="ChannelNeedBoostsAlreadyBoostedDescriptionLevel1">This channel need %s more boosts to enable stories.</string>
     <string name="ChannelNeedBoostsDescription">Your channel need %s to enable posting stories.\n\nAsk your Premium subscribers to boost your channel with this link:</string>
     <string name="ChannelNeedBoostsDescriptionLevel1">This channel need %s to enable stories. Help make it possible!</string>
-    <string name="ChannelNeedBoostsDescriptionLevelNext">This channel need %1$s to be able post **%2$d stories** per day. Help make it possible!</string>
+    <string name="ChannelNeedBoostsDescriptionLevelNext">This channel need %1$s to be able post **%2$s** per day. Help make it possible!</string>
     <string name="ChannelNotifyMembersInfoOff">Members will receive a silent notification</string>
     <string name="ChannelNotifyMembersInfoOn">Members will be notified when you post</string>
     <string name="ChannelOtherMembers">Other members</string>

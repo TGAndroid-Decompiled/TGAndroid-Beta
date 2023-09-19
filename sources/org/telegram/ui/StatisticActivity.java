@@ -128,7 +128,8 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     private RecyclerView.ItemAnimator animator;
     ChatAvatarContainer avatarContainer;
     private ChannelBoostLayout boosLayout;
-    private final TLRPC$ChatFull chat;
+    private TLRPC$ChatFull chat;
+    private final long chatId;
     private LruCache<ChartData> childDataCache;
     private DiffUtilsCallback diffUtilsCallback;
     private ChartViewData followersData;
@@ -151,6 +152,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     private ChartViewData newFollowersBySourceData;
     private ChartViewData newMembersBySourceData;
     private ChartViewData notificationsData;
+    private boolean onlyBoostsStat;
     private OverviewChannelData overviewChannelData;
     private OverviewChatData overviewChatData;
     private AlertDialog[] progressDialog;
@@ -161,6 +163,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     private RecyclerListView recyclerListView;
     private BaseChartView.SharedUiComponents sharedUi;
     private final Runnable showProgressbar;
+    private boolean startFromBoosts;
     private ArrayList<MemberData> topAdmins;
     private ChartViewData topDayOfWeeksData;
     private ChartViewData topHoursData;
@@ -200,33 +203,48 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             }
         };
         long j = bundle.getLong("chat_id");
+        this.chatId = j;
         this.isMegagroup = bundle.getBoolean("is_megagroup", false);
+        this.startFromBoosts = bundle.getBoolean("start_from_boosts", false);
+        this.onlyBoostsStat = bundle.getBoolean("only_boosts", false);
         this.chat = getMessagesController().getChatFull(j);
     }
 
     @Override
     public boolean onFragmentCreate() {
-        TLRPC$TL_stats_getBroadcastStats tLRPC$TL_stats_getBroadcastStats;
         getNotificationCenter().addObserver(this, NotificationCenter.messagesDidLoad);
+        getNotificationCenter().addObserver(this, NotificationCenter.chatInfoDidLoad);
+        if (this.chat != null) {
+            loadStatistic();
+        } else {
+            MessagesController.getInstance(this.currentAccount).loadFullChat(this.chatId, this.classGuid, true);
+        }
+        return super.onFragmentCreate();
+    }
+
+    private void loadStatistic() {
+        TLRPC$TL_stats_getBroadcastStats tLRPC$TL_stats_getBroadcastStats;
+        if (this.onlyBoostsStat) {
+            return;
+        }
         if (this.isMegagroup) {
             TLRPC$TL_stats_getMegagroupStats tLRPC$TL_stats_getMegagroupStats = new TLRPC$TL_stats_getMegagroupStats();
-            tLRPC$TL_stats_getMegagroupStats.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chat.id);
+            tLRPC$TL_stats_getMegagroupStats.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chatId);
             tLRPC$TL_stats_getBroadcastStats = tLRPC$TL_stats_getMegagroupStats;
         } else {
             TLRPC$TL_stats_getBroadcastStats tLRPC$TL_stats_getBroadcastStats2 = new TLRPC$TL_stats_getBroadcastStats();
-            tLRPC$TL_stats_getBroadcastStats2.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chat.id);
+            tLRPC$TL_stats_getBroadcastStats2.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chatId);
             tLRPC$TL_stats_getBroadcastStats = tLRPC$TL_stats_getBroadcastStats2;
         }
         getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_stats_getBroadcastStats, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                StatisticActivity.this.lambda$onFragmentCreate$2(tLObject, tLRPC$TL_error);
+                StatisticActivity.this.lambda$loadStatistic$2(tLObject, tLRPC$TL_error);
             }
         }, null, null, 0, this.chat.stats_dc, 1, true), this.classGuid);
-        return super.onFragmentCreate();
     }
 
-    public void lambda$onFragmentCreate$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadStatistic$2(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLObject instanceof TLRPC$TL_stats_broadcastStats) {
             TLRPC$TL_stats_broadcastStats tLRPC$TL_stats_broadcastStats = (TLRPC$TL_stats_broadcastStats) tLObject;
             final ChartViewData[] chartViewDataArr = {createViewData(tLRPC$TL_stats_broadcastStats.iv_interactions_graph, LocaleController.getString("IVInteractionsChartTitle", R.string.IVInteractionsChartTitle), 1), createViewData(tLRPC$TL_stats_broadcastStats.followers_graph, LocaleController.getString("FollowersChartTitle", R.string.FollowersChartTitle), 0), createViewData(tLRPC$TL_stats_broadcastStats.top_hours_graph, LocaleController.getString("TopHoursChartTitle", R.string.TopHoursChartTitle), 0), createViewData(tLRPC$TL_stats_broadcastStats.interactions_graph, LocaleController.getString("InteractionsChartTitle", R.string.InteractionsChartTitle), 1), createViewData(tLRPC$TL_stats_broadcastStats.growth_graph, LocaleController.getString("GrowthChartTitle", R.string.GrowthChartTitle), 0), createViewData(tLRPC$TL_stats_broadcastStats.views_by_source_graph, LocaleController.getString("ViewsBySourceChartTitle", R.string.ViewsBySourceChartTitle), 2), createViewData(tLRPC$TL_stats_broadcastStats.new_followers_by_source_graph, LocaleController.getString("NewFollowersBySourceChartTitle", R.string.NewFollowersBySourceChartTitle), 2), createViewData(tLRPC$TL_stats_broadcastStats.languages_graph, LocaleController.getString("LanguagesChartTitle", R.string.LanguagesChartTitle), 4, true), createViewData(tLRPC$TL_stats_broadcastStats.mute_graph, LocaleController.getString("NotificationsChartTitle", R.string.NotificationsChartTitle), 0)};
@@ -245,12 +263,12 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 this.recentPostIdtoIndexMap.put(recentPostInfo.counters.msg_id, i);
             }
             if (this.recentPostsAll.size() > 0) {
-                getMessagesStorage().getMessages(-this.chat.id, 0L, false, this.recentPostsAll.size(), this.recentPostsAll.get(0).counters.msg_id, 0, 0, this.classGuid, 0, false, 0, 0, true, false, null);
+                getMessagesStorage().getMessages(-this.chatId, 0L, false, this.recentPostsAll.size(), this.recentPostsAll.get(0).counters.msg_id, 0, 0, this.classGuid, 0, false, 0, 0, true, false, null);
             }
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StatisticActivity.this.lambda$onFragmentCreate$0(chartViewDataArr);
+                    StatisticActivity.this.lambda$loadStatistic$0(chartViewDataArr);
                 }
             });
         }
@@ -296,13 +314,13 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
-                    StatisticActivity.this.lambda$onFragmentCreate$1(chartViewDataArr2);
+                    StatisticActivity.this.lambda$loadStatistic$1(chartViewDataArr2);
                 }
             });
         }
     }
 
-    public void lambda$onFragmentCreate$0(ChartViewData[] chartViewDataArr) {
+    public void lambda$loadStatistic$0(ChartViewData[] chartViewDataArr) {
         this.ivInteractionsData = chartViewDataArr[0];
         this.followersData = chartViewDataArr[1];
         this.topHoursData = chartViewDataArr[2];
@@ -315,7 +333,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         dataLoaded(chartViewDataArr);
     }
 
-    public void lambda$onFragmentCreate$1(ChartViewData[] chartViewDataArr) {
+    public void lambda$loadStatistic$1(ChartViewData[] chartViewDataArr) {
         this.growthData = chartViewDataArr[0];
         this.groupMembersData = chartViewDataArr[1];
         this.newMembersBySourceData = chartViewDataArr[2];
@@ -359,6 +377,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     @Override
     public void onFragmentDestroy() {
         getNotificationCenter().removeObserver(this, NotificationCenter.messagesDidLoad);
+        getNotificationCenter().removeObserver(this, NotificationCenter.chatInfoDidLoad);
         AlertDialog[] alertDialogArr = this.progressDialog;
         if (alertDialogArr[0] != null) {
             alertDialogArr[0].dismiss();
@@ -369,44 +388,52 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        if (i == NotificationCenter.messagesDidLoad && ((Integer) objArr[10]).intValue() == this.classGuid) {
-            ArrayList arrayList = (ArrayList) objArr[2];
-            ArrayList arrayList2 = new ArrayList();
-            int size = arrayList.size();
-            int i3 = 0;
-            for (int i4 = 0; i4 < size; i4++) {
-                MessageObject messageObject = (MessageObject) arrayList.get(i4);
-                int i5 = this.recentPostIdtoIndexMap.get(messageObject.getId(), -1);
-                if (i5 >= 0 && this.recentPostsAll.get(i5).counters.msg_id == messageObject.getId()) {
-                    if (messageObject.deleted) {
-                        arrayList2.add(this.recentPostsAll.get(i5));
-                    } else {
-                        this.recentPostsAll.get(i5).message = messageObject;
+        int i3 = 0;
+        if (i == NotificationCenter.messagesDidLoad) {
+            if (((Integer) objArr[10]).intValue() == this.classGuid) {
+                ArrayList arrayList = (ArrayList) objArr[2];
+                ArrayList arrayList2 = new ArrayList();
+                int size = arrayList.size();
+                for (int i4 = 0; i4 < size; i4++) {
+                    MessageObject messageObject = (MessageObject) arrayList.get(i4);
+                    int i5 = this.recentPostIdtoIndexMap.get(messageObject.getId(), -1);
+                    if (i5 >= 0 && this.recentPostsAll.get(i5).counters.msg_id == messageObject.getId()) {
+                        if (messageObject.deleted) {
+                            arrayList2.add(this.recentPostsAll.get(i5));
+                        } else {
+                            this.recentPostsAll.get(i5).message = messageObject;
+                        }
                     }
                 }
-            }
-            this.recentPostsAll.removeAll(arrayList2);
-            this.recentPostsLoaded.clear();
-            int size2 = this.recentPostsAll.size();
-            while (true) {
-                if (i3 >= size2) {
-                    break;
+                this.recentPostsAll.removeAll(arrayList2);
+                this.recentPostsLoaded.clear();
+                int size2 = this.recentPostsAll.size();
+                while (true) {
+                    if (i3 >= size2) {
+                        break;
+                    }
+                    RecentPostInfo recentPostInfo = this.recentPostsAll.get(i3);
+                    if (recentPostInfo.message == null) {
+                        this.loadFromId = recentPostInfo.counters.msg_id;
+                        break;
+                    } else {
+                        this.recentPostsLoaded.add(recentPostInfo);
+                        i3++;
+                    }
                 }
-                RecentPostInfo recentPostInfo = this.recentPostsAll.get(i3);
-                if (recentPostInfo.message == null) {
-                    this.loadFromId = recentPostInfo.counters.msg_id;
-                    break;
-                } else {
-                    this.recentPostsLoaded.add(recentPostInfo);
-                    i3++;
+                if (this.recentPostsLoaded.size() < 20) {
+                    loadMessages();
+                }
+                if (this.adapter != null) {
+                    this.recyclerListView.setItemAnimator(null);
+                    this.diffUtilsCallback.update();
                 }
             }
-            if (this.recentPostsLoaded.size() < 20) {
-                loadMessages();
-            }
-            if (this.adapter != null) {
-                this.recyclerListView.setItemAnimator(null);
-                this.diffUtilsCallback.update();
+        } else if (i == NotificationCenter.chatInfoDidLoad) {
+            TLRPC$ChatFull tLRPC$ChatFull = (TLRPC$ChatFull) objArr[0];
+            if (tLRPC$ChatFull.id == this.chatId && this.chat == null) {
+                this.chat = tLRPC$ChatFull;
+                loadStatistic();
             }
         }
     }
@@ -414,7 +441,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     @Override
     public View createView(Context context) {
         this.sharedUi = new BaseChartView.SharedUiComponents();
-        final boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.chat.id, this.currentAccount);
+        final boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(this.chatId, this.currentAccount);
         final BottomPagerTabs bottomPagerTabs = new BottomPagerTabs(this, context, getResourceProvider()) {
             @Override
             public BottomPagerTabs.Tab[] createTabs() {
@@ -446,7 +473,11 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         });
         final FrameLayout frameLayout = new FrameLayout(context);
         if (isChannelAndNotMegaGroup) {
-            this.boosLayout = new ChannelBoostLayout(this, -this.chat.id, getResourceProvider());
+            this.boosLayout = new ChannelBoostLayout(this, -this.chatId, getResourceProvider());
+        }
+        boolean z = isChannelAndNotMegaGroup && !this.onlyBoostsStat;
+        if (z && this.startFromBoosts) {
+            this.viewPagerFixed.setPosition(1);
         }
         this.viewPagerFixed.setAdapter(new ViewPagerFixed.Adapter() {
             @Override
@@ -460,20 +491,20 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
 
             @Override
             public int getItemCount() {
-                return isChannelAndNotMegaGroup ? 2 : 1;
+                return (!StatisticActivity.this.onlyBoostsStat && isChannelAndNotMegaGroup) ? 2 : 1;
             }
 
             @Override
             public View createView(int i) {
-                if (i != 0) {
-                    return StatisticActivity.this.boosLayout;
+                if (!StatisticActivity.this.onlyBoostsStat && i == 0) {
+                    return frameLayout;
                 }
-                return frameLayout;
+                return StatisticActivity.this.boosLayout;
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(getContext());
-        frameLayout2.addView(this.viewPagerFixed, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 0.0f, 0.0f, isChannelAndNotMegaGroup ? 64.0f : 0.0f));
-        if (isChannelAndNotMegaGroup) {
+        frameLayout2.addView(this.viewPagerFixed, LayoutHelper.createFrame(-1, -1.0f, 0, 0.0f, 0.0f, 0.0f, z ? 64.0f : 0.0f));
+        if (z) {
             frameLayout2.addView(bottomPagerTabs, LayoutHelper.createFrame(-1, -2, 87));
         }
         this.fragmentView = frameLayout2;
@@ -558,7 +589,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         this.avatarContainer = chatAvatarContainer;
         chatAvatarContainer.setOccupyStatusBar(!AndroidUtilities.isTablet());
         this.actionBar.addView(this.avatarContainer, 0, LayoutHelper.createFrame(-2, -1.0f, 51, !this.inPreviewMode ? 56.0f : 0.0f, 0.0f, 40.0f, 0.0f));
-        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chat.id));
+        TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(this.chatId));
         this.avatarContainer.setChatAvatar(chat);
         this.avatarContainer.setTitle(chat.title);
         this.avatarContainer.hideSubtitle();
@@ -678,7 +709,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             presentFragment(new MessageStatisticActivity(messageObject));
         } else if (i == 1) {
             Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", this.chat.id);
+            bundle.putLong("chat_id", this.chatId);
             bundle.putInt("message_id", messageObject.getId());
             bundle.putBoolean("need_remove_previous_same_chat_activity", false);
             presentFragment(new ChatActivity(bundle), false);
@@ -2147,7 +2178,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 }
             }
         }
-        tLRPC$TL_channels_getMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chat.id);
+        tLRPC$TL_channels_getMessages.channel = MessagesController.getInstance(this.currentAccount).getInputChannel(this.chatId);
         this.messagesIsLoading = true;
         getConnectionsManager().sendRequest(tLRPC$TL_channels_getMessages, new RequestDelegate() {
             @Override

@@ -4088,7 +4088,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 public final void accept(Object obj) {
                     StoryPrivacyBottomSheet.ChoosePeerSheet.lambda$new$0(AlertDialog.this, callback, tLRPC$InputPeer, (Boolean) obj);
                 }
-            }, resourcesProvider);
+            }, true, resourcesProvider);
             dismiss();
         }
 

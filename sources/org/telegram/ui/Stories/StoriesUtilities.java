@@ -409,7 +409,7 @@ public class StoriesUtilities {
             paint4 = avatarStoryParams.isStoryCell ? storyCellGreyPaint[avatarStoryParams.isArchive ? 1 : 0] : grayPaint;
         }
         Paint paint6 = paint4;
-        if (i2 != 1) {
+        if (i2 > 1) {
             float f3 = 360.0f / i2;
             float f4 = (i2 > 20 ? 3 : 5) * avatarStoryParams.progressToSegments;
             float f5 = f4 > f3 ? 0.0f : f4;
@@ -669,6 +669,23 @@ public class StoriesUtilities {
             errorGradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
         }
         errorGradientTools.setBounds(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
+        return errorGradientTools.paint;
+    }
+
+    public static Paint getErrorPaint(RectF rectF) {
+        if (errorGradientTools == null) {
+            GradientTools gradientTools = new GradientTools();
+            errorGradientTools = gradientTools;
+            gradientTools.isDiagonal = true;
+            gradientTools.isRotate = true;
+            int color = Theme.getColor(Theme.key_color_orange);
+            int color2 = Theme.getColor(Theme.key_text_RedBold);
+            errorGradientTools.setColors(ColorUtils.blendARGB(color, color2, 0.25f), color2);
+            errorGradientTools.paint.setStrokeWidth(AndroidUtilities.dpf2(2.3f));
+            errorGradientTools.paint.setStyle(Paint.Style.STROKE);
+            errorGradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
+        }
+        errorGradientTools.setBounds(rectF.left, rectF.top, rectF.right, rectF.bottom);
         return errorGradientTools.paint;
     }
 

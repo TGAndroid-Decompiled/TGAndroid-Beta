@@ -1,11 +1,14 @@
 package org.telegram.ui;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,6 +46,7 @@ import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkActionView;
 import org.telegram.ui.Components.ListView.AdapterWithDiffUtils;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
+import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.StatisticActivity;
 import org.telegram.ui.Stories.ChannelBoostUtilities;
@@ -57,6 +61,7 @@ public class ChannelBoostLayout extends FrameLayout {
     ArrayList<ItemInternal> items;
     RecyclerListView listView;
     int nextRemaining;
+    private LinearLayout progressLayout;
     private final Theme.ResourcesProvider resourcesProvider;
     boolean usersLoading;
 
@@ -90,11 +95,10 @@ public class ChannelBoostLayout extends FrameLayout {
                         break;
                     case 3:
                         LinkActionView linkActionView = new LinkActionView(ChannelBoostLayout.this.getContext(), ChannelBoostLayout.this.fragment, null, 0L, false, false);
-                        linkActionView.setRevoke(true);
                         linkActionView.hideOptions();
                         ChannelBoostLayout channelBoostLayout = ChannelBoostLayout.this;
                         linkActionView.setLink(ChannelBoostUtilities.createLink(channelBoostLayout.currentAccount, channelBoostLayout.dialogId));
-                        linkActionView.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), 0);
+                        linkActionView.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f));
                         manageChatTextCell = linkActionView;
                         break;
                     case 4:
@@ -215,6 +219,9 @@ public class ChannelBoostLayout extends FrameLayout {
         loadStatistic();
         this.listView.setAdapter(this.adapter);
         updateRows(false);
+        createEmptyView(getContext());
+        this.progressLayout.setAlpha(0.0f);
+        this.progressLayout.animate().alpha(1.0f).setDuration(200L).setStartDelay(500L).start();
     }
 
     public void lambda$new$0(BaseFragment baseFragment, View view, int i) {
@@ -279,6 +286,13 @@ public class ChannelBoostLayout extends FrameLayout {
 
     public void lambda$loadStatistic$1(TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus) {
         this.boostsStatus = tLRPC$TL_stories_boostsStatus;
+        this.progressLayout.animate().cancel();
+        this.progressLayout.animate().alpha(0.0f).setDuration(100L).setStartDelay(0L).setListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animator) {
+                ChannelBoostLayout.this.progressLayout.setVisibility(8);
+            }
+        });
         updateRows(true);
         loadUsers();
     }
@@ -358,5 +372,34 @@ public class ChannelBoostLayout extends FrameLayout {
         public int hashCode() {
             return Objects.hash(this.title, this.booster);
         }
+    }
+
+    public void createEmptyView(Context context) {
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.progressLayout = linearLayout;
+        linearLayout.setOrientation(1);
+        RLottieImageView rLottieImageView = new RLottieImageView(context);
+        rLottieImageView.setAutoRepeat(true);
+        rLottieImageView.setAnimation(R.raw.statistic_preload, 120, 120);
+        rLottieImageView.playAnimation();
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, 20.0f);
+        textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        int i = Theme.key_player_actionBarTitle;
+        textView.setTextColor(Theme.getColor(i));
+        textView.setTag(Integer.valueOf(i));
+        textView.setText(LocaleController.getString("LoadingStats", R.string.LoadingStats));
+        textView.setGravity(1);
+        TextView textView2 = new TextView(context);
+        textView2.setTextSize(1, 15.0f);
+        int i2 = Theme.key_player_actionBarSubtitle;
+        textView2.setTextColor(Theme.getColor(i2));
+        textView2.setTag(Integer.valueOf(i2));
+        textView2.setText(LocaleController.getString("LoadingStatsDescription", R.string.LoadingStatsDescription));
+        textView2.setGravity(1);
+        this.progressLayout.addView(rLottieImageView, LayoutHelper.createLinear(120, 120, 1, 0, 0, 0, 20));
+        this.progressLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 0, 0, 10));
+        this.progressLayout.addView(textView2, LayoutHelper.createLinear(-2, -2, 1));
+        addView(this.progressLayout, LayoutHelper.createFrame(240, -2.0f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
     }
 }
