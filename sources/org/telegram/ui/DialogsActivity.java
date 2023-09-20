@@ -2220,11 +2220,21 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$updateStatus$2(View view) {
-        showSelectStatusDialog();
+        DialogStoriesCell dialogStoriesCell;
+        if (this.dialogStoriesCellVisible && (dialogStoriesCell = this.dialogStoriesCell) != null && !dialogStoriesCell.isExpanded()) {
+            scrollToTop(true, true);
+        } else {
+            showSelectStatusDialog();
+        }
     }
 
     public void lambda$updateStatus$3(View view) {
-        showSelectStatusDialog();
+        DialogStoriesCell dialogStoriesCell;
+        if (this.dialogStoriesCellVisible && (dialogStoriesCell = this.dialogStoriesCell) != null && !dialogStoriesCell.isExpanded()) {
+            scrollToTop(true, true);
+        } else {
+            showSelectStatusDialog();
+        }
     }
 
     @Override
@@ -3720,7 +3730,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     }
 
     private void updateDialogsHint() {
-        if (this.dialogsHintCell == null || getContext() == null) {
+        if (this.dialogsHintCell == null || this.fragmentView == null || getContext() == null) {
             return;
         }
         if (!getMessagesController().getUnconfirmedAuthController().auths.isEmpty() && this.folderId == 0 && this.initialDialogsType == 0) {

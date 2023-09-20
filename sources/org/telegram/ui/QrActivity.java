@@ -612,6 +612,7 @@ public class QrActivity extends BaseFragment {
         canvas.setBitmap(null);
         this.themeLayout.setVisibility(0);
         this.closeImageView.setVisibility(0);
+        this.logoImageView.setVisibility(0);
         ViewGroup viewGroup = (ViewGroup) this.fragmentView.getParent();
         this.fragmentView.layout(0, 0, viewGroup.getWidth(), viewGroup.getHeight());
         QrView qrView2 = this.qrView;

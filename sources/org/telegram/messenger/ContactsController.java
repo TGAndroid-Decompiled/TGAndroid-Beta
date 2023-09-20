@@ -2646,7 +2646,7 @@ public class ContactsController extends BaseController {
     }
 
     public static String formatName(TLRPC$User tLRPC$User) {
-        return formatName(tLRPC$User.first_name, tLRPC$User.last_name, 0);
+        return tLRPC$User == null ? "" : formatName(tLRPC$User.first_name, tLRPC$User.last_name, 0);
     }
 
     public static String formatName(String str, String str2) {

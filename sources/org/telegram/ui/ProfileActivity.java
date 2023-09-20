@@ -5152,7 +5152,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         bundle.putLong("chat_id", this.chatId);
         bundle.putBoolean("is_megagroup", chat.megagroup);
         bundle.putBoolean("start_from_boosts", true);
-        if (!this.chatInfo.can_view_stats) {
+        TLRPC$ChatFull tLRPC$ChatFull = this.chatInfo;
+        if (tLRPC$ChatFull == null || !tLRPC$ChatFull.can_view_stats) {
             bundle.putBoolean("only_boosts", chat.megagroup);
         }
         presentFragment(new StatisticActivity(bundle));

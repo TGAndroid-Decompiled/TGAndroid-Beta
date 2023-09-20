@@ -50,6 +50,7 @@ public class UnconfirmedAuthHintCell extends FrameLayout {
 
     public UnconfirmedAuthHintCell(Context context) {
         super(context);
+        setClickable(true);
         LinearLayout linearLayout = new LinearLayout(context);
         this.linearLayout = linearLayout;
         linearLayout.setOrientation(1);

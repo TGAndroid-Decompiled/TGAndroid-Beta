@@ -7429,6 +7429,10 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         invalidate();
     }
 
+    public boolean isCheckBoxVisible() {
+        return this.checkBoxVisible || this.checkBoxAnimationInProgress;
+    }
+
     public void setChecked(boolean z, boolean z2, boolean z3) {
         CheckBoxBase checkBoxBase = this.checkBox;
         if (checkBoxBase != null) {
