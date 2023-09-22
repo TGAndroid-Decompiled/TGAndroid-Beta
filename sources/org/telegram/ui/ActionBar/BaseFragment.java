@@ -499,7 +499,8 @@ public abstract class BaseFragment {
         }
         StoryViewer storyViewer = this.storyViewer;
         if (storyViewer != null) {
-            storyViewer.updatePlayingMode();
+            storyViewer.onPause();
+            this.storyViewer.updatePlayingMode();
         }
         StoryViewer storyViewer2 = this.overlayStoryViewer;
         if (storyViewer2 != null) {

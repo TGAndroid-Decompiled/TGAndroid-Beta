@@ -471,6 +471,7 @@ public class LimitPreviewView extends LinearLayout {
             textView2.setText(LocaleController.formatString("BoostsLevel", i5, Integer.valueOf(tLRPC$TL_stories_boostsStatus.level)));
             this.premiumCount.setText(LocaleController.formatString("BoostsLevel", i5, Integer.valueOf(tLRPC$TL_stories_boostsStatus.level + 1)));
         }
+        ((FrameLayout.LayoutParams) this.premiumCount.getLayoutParams()).gravity = 5;
         setType(17);
         this.defaultCount.setVisibility(8);
         this.premiumText.setVisibility(8);

@@ -120,6 +120,9 @@ public class VideoPlayerHolderBase {
         this.startTime = System.currentTimeMillis();
         this.audioDisabled = z2;
         this.paused = z;
+        if (j > 0) {
+            this.currentPosition = j;
+        }
         DispatchQueue dispatchQueue = this.dispatchQueue;
         Runnable runnable = new Runnable() {
             @Override

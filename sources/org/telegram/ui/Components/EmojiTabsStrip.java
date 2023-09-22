@@ -386,7 +386,7 @@ public class EmojiTabsStrip extends ScrollableHorizontalScrollView {
         return arrayList.get(0);
     }
 
-    public static class StabDrawable extends Drawable {
+    private static class StabDrawable extends Drawable {
         private final Paint paint;
         private final RectF rectF;
 

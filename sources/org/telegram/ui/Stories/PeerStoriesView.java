@@ -1789,18 +1789,33 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     }
 
     public void toggleArchiveForStory(final long j) {
-        final TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
-        final boolean z = !user.stories_hidden;
+        String str;
+        boolean z;
+        TLRPC$User tLRPC$User;
+        if (j > 0) {
+            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
+            str = user.first_name;
+            z = user.stories_hidden;
+            tLRPC$User = user;
+        } else {
+            TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+            str = chat.title;
+            z = chat.stories_hidden;
+            tLRPC$User = chat;
+        }
+        final boolean z2 = !z;
+        final TLRPC$Chat tLRPC$Chat = tLRPC$User;
+        final String str2 = str;
         final MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PeerStoriesView.this.lambda$toggleArchiveForStory$15(messagesController, j, z, user);
+                PeerStoriesView.this.lambda$toggleArchiveForStory$15(messagesController, j, z2, str2, tLRPC$Chat);
             }
         }, 200L);
     }
 
-    public void lambda$toggleArchiveForStory$15(final MessagesController messagesController, final long j, final boolean z, TLRPC$User tLRPC$User) {
+    public void lambda$toggleArchiveForStory$15(final MessagesController messagesController, final long j, final boolean z, String str, TLObject tLObject) {
         messagesController.getStoriesController().toggleHidden(j, z, false, true);
         BulletinFactory.UndoObject undoObject = new BulletinFactory.UndoObject();
         undoObject.onUndo = new Runnable() {
@@ -1815,7 +1830,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 PeerStoriesView.lambda$toggleArchiveForStory$14(MessagesController.this, j, z);
             }
         };
-        BulletinFactory.of(this.storyContainer, this.resourcesProvider).createUsersBulletin(Arrays.asList(tLRPC$User), !z ? AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, ContactsController.formatName(tLRPC$User.first_name, null, 10))) : AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(tLRPC$User.first_name, null, 10))), null, undoObject).setTag(2).show();
+        BulletinFactory.of(this.storyContainer, this.resourcesProvider).createUsersBulletin(Arrays.asList(tLObject), !z ? AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToDialogs", R.string.StoriesMovedToDialogs, ContactsController.formatName(str, null, 10))) : AndroidUtilities.replaceTags(LocaleController.formatString("StoriesMovedToContacts", R.string.StoriesMovedToContacts, ContactsController.formatName(str, null, 10))), null, undoObject).setTag(2).show();
     }
 
     public static void lambda$toggleArchiveForStory$13(MessagesController messagesController, long j, boolean z) {

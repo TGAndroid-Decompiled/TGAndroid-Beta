@@ -199,6 +199,11 @@ public class ViewPagerFixed extends FrameLayout {
         this.adapter = adapter;
         this.viewTypes[0] = adapter.getItemViewType(this.currentPosition);
         this.viewPages[0] = adapter.createView(this.viewTypes[0]);
+        if (this.viewPages[0] == null && this.currentPosition != 0) {
+            this.currentPosition = 0;
+            this.viewTypes[0] = adapter.getItemViewType(0);
+            this.viewPages[0] = adapter.createView(this.viewTypes[0]);
+        }
         adapter.bindView(this.viewPages[0], this.currentPosition, this.viewTypes[0]);
         addView(this.viewPages[0]);
         this.viewPages[0].setVisibility(0);

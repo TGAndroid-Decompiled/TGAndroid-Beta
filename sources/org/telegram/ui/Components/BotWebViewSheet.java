@@ -1078,8 +1078,10 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 tLRPC$TL_dataJSON2.data = str4;
                 tLRPC$TL_messages_requestSimpleWebView.flags |= 1;
             }
-            tLRPC$TL_messages_requestSimpleWebView.flags |= 8;
-            tLRPC$TL_messages_requestSimpleWebView.url = str2;
+            if (!TextUtils.isEmpty(str2)) {
+                tLRPC$TL_messages_requestSimpleWebView.flags |= 8;
+                tLRPC$TL_messages_requestSimpleWebView.url = str2;
+            }
             if (!TextUtils.isEmpty(str3)) {
                 tLRPC$TL_messages_requestSimpleWebView.start_param = str3;
                 tLRPC$TL_messages_requestSimpleWebView.flags |= 16;

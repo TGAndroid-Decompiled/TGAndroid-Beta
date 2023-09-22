@@ -140,8 +140,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     private boolean opening;
     TLRPC$PeerStories overrideUserStories;
     LaunchActivity parentActivity;
+    private boolean paused;
     public PlaceProvider placeProvider;
     VideoPlayerHolder playerHolder;
+    private long playerSavedPosition;
     float progressToDismiss;
     float progressToOpen;
     private int realKeyboardHeight;
@@ -1070,6 +1072,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
 
         @Override
         public void requestPlayer(TLRPC$Document tLRPC$Document, Uri uri, long j, PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope) {
+            long j2;
             StoryViewer storyViewer;
             VideoPlayerHolder videoPlayerHolder;
             if (!StoryViewer.this.isClosed) {
@@ -1126,8 +1129,15 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                             storyViewer7.currentPlayerScope.surfaceView = storyViewer7.surfaceView;
                             FileStreamLoadOperation.setPriorityForDocument(StoryViewer.this.playerHolder.document, 3);
                             FileLoader.getInstance(StoryViewer.this.currentAccount).changePriority(3, StoryViewer.this.playerHolder.document, null, null, null, null, null);
+                            if (j != 0 || StoryViewer.this.playerSavedPosition == 0) {
+                                j2 = j;
+                            } else {
+                                long j3 = StoryViewer.this.playerSavedPosition;
+                                StoryViewer.this.currentPlayerScope.firstFrameRendered = true;
+                                j2 = j3;
+                            }
                             StoryViewer storyViewer8 = StoryViewer.this;
-                            storyViewer8.currentPlayerScope.player.start(storyViewer8.isPaused(), uri, j, StoryViewer.isInSilentMode);
+                            storyViewer8.currentPlayerScope.player.start(storyViewer8.isPaused(), uri, j2, StoryViewer.isInSilentMode);
                             StoryViewer.this.currentPlayerScope.invalidate();
                         }
                     } else if (equals) {
@@ -1147,6 +1157,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                             storyViewer10.surfaceView.setVisibility(0);
                         }
                     }
+                    StoryViewer.this.playerSavedPosition = 0L;
                     StoryViewer.this.updatePlayingMode();
                     return;
                 }
@@ -2331,8 +2342,24 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             if (selfStoryViewsView2 != null) {
                 selfStoryViewsView2.selfStoriesPreviewView.update();
             }
-        } else if (i == NotificationCenter.openArticle || i == NotificationCenter.articleClosed) {
-            updatePlayingMode();
+        } else {
+            int i5 = NotificationCenter.openArticle;
+            if (i == i5 || i == NotificationCenter.articleClosed) {
+                updatePlayingMode();
+                if (i == i5) {
+                    VideoPlayerHolder videoPlayerHolder = this.playerHolder;
+                    if (videoPlayerHolder != null) {
+                        this.playerSavedPosition = videoPlayerHolder.currentPosition;
+                        videoPlayerHolder.release(null);
+                        this.playerHolder = null;
+                        return;
+                    }
+                    this.playerSavedPosition = 0L;
+                } else if (this.paused || getCurrentPeerView() == null) {
+                } else {
+                    getCurrentPeerView().updatePosition();
+                }
+            }
         }
     }
 
@@ -2359,8 +2386,19 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void onResume() {
-        if (getCurrentPeerView() != null) {
-            getCurrentPeerView().updatePosition();
+        this.paused = false;
+        if (ArticleViewer.getInstance().isVisible() || getCurrentPeerView() == null) {
+            return;
+        }
+        getCurrentPeerView().updatePosition();
+    }
+
+    public void onPause() {
+        this.paused = true;
+        VideoPlayerHolder videoPlayerHolder = this.playerHolder;
+        if (videoPlayerHolder != null) {
+            videoPlayerHolder.release(null);
+            this.playerHolder = null;
         }
     }
 
