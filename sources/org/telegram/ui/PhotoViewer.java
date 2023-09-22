@@ -823,6 +823,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
 
         @Override
+        public void onEditModeChanged(boolean z) {
+            PhotoViewerProvider.CC.$default$onEditModeChanged(this, z);
+        }
+
+        @Override
         public void onOpen() {
         }
 
@@ -918,6 +923,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 return true;
             }
 
+            public static void $default$onEditModeChanged(PhotoViewerProvider photoViewerProvider, boolean z) {
+            }
+
             public static void $default$onPreClose(PhotoViewerProvider photoViewerProvider) {
             }
 
@@ -975,6 +983,8 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         void onClose();
 
         boolean onDeletePhoto(int i);
+
+        void onEditModeChanged(boolean z);
 
         void onOpen();
 
@@ -4644,9 +4654,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
 
             @Override
             protected void setupMentionContainer() {
-                if (PhotoViewer.this.parentChatActivity != null) {
-                    return;
-                }
                 this.mentionContainer.getAdapter().setAllowStickers(false);
                 this.mentionContainer.getAdapter().setAllowBots(false);
                 this.mentionContainer.getAdapter().setAllowChats(false);
@@ -9262,6 +9269,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         int i11;
         if (this.currentEditMode != i) {
             if ((!this.isCurrentVideo || this.photoProgressViews[0].backgroundState == 3 || this.isCurrentVideo || (this.centerImage.getBitmap() != null && this.photoProgressViews[0].backgroundState == -1)) && this.changeModeAnimation == null && this.imageMoveAnimation == null && !isCaptionOpen()) {
+                PhotoViewerProvider photoViewerProvider = this.placeProvider;
+                if (photoViewerProvider != null && (this.currentEditMode == 0 || i == 0)) {
+                    photoViewerProvider.onEditModeChanged(i != 0);
+                }
                 this.windowView.setClipChildren(i == 2);
                 int i12 = 2130706432;
                 int color = this.navigationBar.getBackground() instanceof ColorDrawable ? ((ColorDrawable) this.navigationBar.getBackground()).getColor() : 2130706432;

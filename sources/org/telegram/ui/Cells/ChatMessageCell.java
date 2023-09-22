@@ -637,8 +637,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private float sideStartX;
     private float sideStartY;
     private StaticLayout siteNameLayout;
-    private boolean siteNameRtl;
-    private int siteNameWidth;
+    private float siteNameLeft;
     private boolean skipFrameUpdate;
     private float slidingOffsetX;
     private StaticLayout songLayout;

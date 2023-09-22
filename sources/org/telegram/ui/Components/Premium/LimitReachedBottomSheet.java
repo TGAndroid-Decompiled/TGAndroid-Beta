@@ -198,7 +198,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
     public void onViewCreated(FrameLayout frameLayout) {
         super.onViewCreated(frameLayout);
         final Context context = frameLayout.getContext();
-        this.premiumButtonView = new PremiumButtonView(context, true);
+        this.premiumButtonView = new PremiumButtonView(context, true, this.resourcesProvider);
         if (!this.hasFixedSize) {
             View view = new View(context) {
                 @Override

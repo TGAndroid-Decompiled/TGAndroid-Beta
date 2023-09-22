@@ -32,7 +32,7 @@ public class UnlockPremiumView extends FrameLayout {
             textView.setText(LocaleController.getString("UnlockPremiumReactionsDescription", R.string.UnlockPremiumReactionsDescription));
         }
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0, 16, 17, 17, 16));
-        PremiumButtonView premiumButtonView = new PremiumButtonView(context, false);
+        PremiumButtonView premiumButtonView = new PremiumButtonView(context, false, resourcesProvider);
         this.premiumButtonView = premiumButtonView;
         if (i == 0) {
             string = LocaleController.getString("UnlockPremiumStickers", R.string.UnlockPremiumStickers);

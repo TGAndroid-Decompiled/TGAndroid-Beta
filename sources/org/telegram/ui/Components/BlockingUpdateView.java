@@ -6,12 +6,10 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.net.Uri;
 import android.os.Build;
 import android.text.SpannableStringBuilder;
 import android.view.View;
@@ -19,19 +17,16 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import androidx.core.content.FileProvider;
-import java.io.File;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
@@ -58,7 +53,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
     private ScrollView scrollView;
     private TextView textView;
 
-    public BlockingUpdateView(Context context) {
+    public BlockingUpdateView(final Context context) {
         super(context);
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
         int i = Theme.key_windowBackgroundWhite;
@@ -143,7 +138,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         this.acceptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                BlockingUpdateView.this.lambda$new$1(view);
+                BlockingUpdateView.this.lambda$new$1(context, view);
             }
         });
         TextView textView3 = new TextView(context);
@@ -191,18 +186,24 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         }
     }
 
-    public void lambda$new$1(View view) {
-        if (checkApkInstallPermissions(getContext())) {
-            TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = this.appUpdate;
-            if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
-                if (openApkInstall((Activity) getContext(), this.appUpdate.document)) {
-                    return;
+    public void lambda$new$1(Context context, View view) {
+        if (BuildVars.isStandaloneApp() || BuildVars.DEBUG_VERSION) {
+            if (ApplicationLoader.applicationLoaderInstance.checkApkInstallPermissions(getContext())) {
+                TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = this.appUpdate;
+                if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
+                    if (ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document)) {
+                        return;
+                    }
+                    FileLoader.getInstance(this.accountNum).loadFile(this.appUpdate.document, "update", 3, 1);
+                    showProgress(true);
+                } else if (tLRPC$TL_help_appUpdate.url != null) {
+                    Browser.openUrl(getContext(), this.appUpdate.url);
                 }
-                FileLoader.getInstance(this.accountNum).loadFile(this.appUpdate.document, "update", 3, 1);
-                showProgress(true);
-            } else if (tLRPC$TL_help_appUpdate.url != null) {
-                Browser.openUrl(getContext(), this.appUpdate.url);
             }
+        } else if (BuildVars.isHuaweiStoreApp()) {
+            Browser.openUrl(context, BuildVars.HUAWEI_STORE_URL);
+        } else {
+            Browser.openUrl(context, BuildVars.PLAYSTORE_APP_URL);
         }
     }
 
@@ -225,7 +226,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
                 return;
             }
             showProgress(false);
-            openApkInstall((Activity) getContext(), this.appUpdate.document);
+            ApplicationLoader.applicationLoaderInstance.openApkInstall((Activity) getContext(), this.appUpdate.document);
         } else if (i == NotificationCenter.fileLoadFailed) {
             String str3 = (String) objArr[0];
             String str4 = this.fileName;
@@ -241,40 +242,6 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
             }
             this.radialProgress.setProgress(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
         }
-    }
-
-    public static boolean checkApkInstallPermissions(Context context) {
-        if (Build.VERSION.SDK_INT < 26 || ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls()) {
-            return true;
-        }
-        AlertsCreator.createApkRestrictedDialog(context, null).show();
-        return false;
-    }
-
-    public static boolean openApkInstall(Activity activity, TLRPC$Document tLRPC$Document) {
-        boolean z = false;
-        try {
-            FileLoader.getAttachFileName(tLRPC$Document);
-            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true);
-            z = pathToAttach.exists();
-            if (z) {
-                Intent intent = new Intent("android.intent.action.VIEW");
-                intent.setFlags(1);
-                if (Build.VERSION.SDK_INT >= 24) {
-                    intent.setDataAndType(FileProvider.getUriForFile(activity, ApplicationLoader.getApplicationId() + ".provider", pathToAttach), "application/vnd.android.package-archive");
-                } else {
-                    intent.setDataAndType(Uri.fromFile(pathToAttach), "application/vnd.android.package-archive");
-                }
-                try {
-                    activity.startActivityForResult(intent, 500);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-            }
-        } catch (Exception e2) {
-            FileLog.e(e2);
-        }
-        return z;
     }
 
     private void showProgress(final boolean z) {
@@ -340,7 +307,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadFailed);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadProgressChanged);
-        if (z) {
+        if (z && BuildVars.isStandaloneApp()) {
             TLRPC$TL_help_getAppUpdate tLRPC$TL_help_getAppUpdate = new TLRPC$TL_help_getAppUpdate();
             try {
                 tLRPC$TL_help_getAppUpdate.source = ApplicationLoader.applicationContext.getPackageManager().getInstallerPackageName(ApplicationLoader.applicationContext.getPackageName());

@@ -933,7 +933,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                         }
                     }, null);
                 } else {
-                    showAttachMenuBot(attachMenuBot);
+                    showAttachMenuBot(attachMenuBot, null);
                 }
             } else if (id == 2) {
                 lambda$runLinkRequest$75(new GroupCreateActivity(new Bundle()));
@@ -1022,7 +1022,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public void lambda$onCreate$3(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, Boolean bool) {
         tLRPC$TL_attachMenuBot.side_menu_disclaimer_needed = false;
-        showAttachMenuBot(tLRPC$TL_attachMenuBot);
+        showAttachMenuBot(tLRPC$TL_attachMenuBot, null);
         MediaDataController.getInstance(this.currentAccount).updateAttachMenuBotsInCache();
     }
 
@@ -1097,12 +1097,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    private void showAttachMenuBot(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot) {
+    private void showAttachMenuBot(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, String str) {
         BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, getLastFragment().getResourceProvider());
         botWebViewSheet.setParentActivity(this);
         int i = this.currentAccount;
         long j = tLRPC$TL_attachMenuBot.bot_id;
-        botWebViewSheet.requestWebView(i, j, j, tLRPC$TL_attachMenuBot.short_name, null, 1, 0, false, 2);
+        botWebViewSheet.requestWebView(i, j, j, tLRPC$TL_attachMenuBot.short_name, null, 1, 0, false, null, null, false, str, null, 2);
         botWebViewSheet.show();
     }
 
@@ -3426,7 +3426,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             if (!tLRPC$TL_messages_chats.chats.isEmpty()) {
                 MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_messages_chats.chats, false);
                 TLRPC$Chat tLRPC$Chat = tLRPC$TL_messages_chats.chats.get(0);
-                if (tLRPC$Chat != null && z) {
+                if (tLRPC$Chat != null && z && ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat)) {
                     processBoostDialog(Long.valueOf(-l.longValue()), null);
                 } else if (tLRPC$Chat != null && tLRPC$Chat.forum) {
                     if (num != null) {
@@ -3572,27 +3572,27 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    private void processAttachMenuBot(final int i, final long j, final String str, final TLRPC$User tLRPC$User, final String str2) {
+    private void processAttachMenuBot(final int i, final long j, final String str, final TLRPC$User tLRPC$User, final String str2, final String str3) {
         TLRPC$TL_messages_getAttachMenuBot tLRPC$TL_messages_getAttachMenuBot = new TLRPC$TL_messages_getAttachMenuBot();
         tLRPC$TL_messages_getAttachMenuBot.bot = MessagesController.getInstance(i).getInputUser(j);
         ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getAttachMenuBot, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LaunchActivity.this.lambda$processAttachMenuBot$101(i, str, tLRPC$User, str2, j, tLObject, tLRPC$TL_error);
+                LaunchActivity.this.lambda$processAttachMenuBot$101(i, str3, str, tLRPC$User, str2, j, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$processAttachMenuBot$101(final int i, final String str, final TLRPC$User tLRPC$User, final String str2, final long j, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$processAttachMenuBot$101(final int i, final String str, final String str2, final TLRPC$User tLRPC$User, final String str3, final long j, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$processAttachMenuBot$100(tLObject, i, str, tLRPC$User, str2, j);
+                LaunchActivity.this.lambda$processAttachMenuBot$100(tLObject, i, str, str2, tLRPC$User, str3, j);
             }
         });
     }
 
-    public void lambda$processAttachMenuBot$100(TLObject tLObject, final int i, String str, final TLRPC$User tLRPC$User, final String str2, final long j) {
+    public void lambda$processAttachMenuBot$100(TLObject tLObject, final int i, String str, String str2, final TLRPC$User tLRPC$User, final String str3, final long j) {
         final DialogsActivity dialogsActivity;
         String[] split;
         final TLRPC$User tLRPC$User2 = tLRPC$User;
@@ -3600,6 +3600,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             TLRPC$TL_attachMenuBotsBot tLRPC$TL_attachMenuBotsBot = (TLRPC$TL_attachMenuBotsBot) tLObject;
             MessagesController.getInstance(i).putUsers(tLRPC$TL_attachMenuBotsBot.users, false);
             TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = tLRPC$TL_attachMenuBotsBot.bot;
+            if (str != null) {
+                showAttachMenuBot(tLRPC$TL_attachMenuBot, str);
+                return;
+            }
             ArrayList<BaseFragment> arrayList = mainFragmentsStack;
             BaseFragment baseFragment = arrayList.get(arrayList.size() - 1);
             if (AndroidUtilities.isTablet() && !(baseFragment instanceof ChatActivity) && !rightFragmentsStack.isEmpty()) {
@@ -3608,10 +3612,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
             final BaseFragment baseFragment2 = baseFragment;
             ArrayList arrayList3 = new ArrayList();
-            if (!TextUtils.isEmpty(str)) {
-                for (String str3 : str.split(" ")) {
-                    if (MediaDataController.canShowAttachMenuBotForTarget(tLRPC$TL_attachMenuBot, str3)) {
-                        arrayList3.add(str3);
+            if (!TextUtils.isEmpty(str2)) {
+                for (String str4 : str2.split(" ")) {
+                    if (MediaDataController.canShowAttachMenuBotForTarget(tLRPC$TL_attachMenuBot, str4)) {
+                        arrayList3.add(str4);
                     }
                 }
             }
@@ -3632,7 +3636,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     @Override
                     public final boolean didSelectDialogs(DialogsActivity dialogsActivity3, ArrayList arrayList4, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
                         boolean lambda$processAttachMenuBot$95;
-                        lambda$processAttachMenuBot$95 = LaunchActivity.this.lambda$processAttachMenuBot$95(tLRPC$User2, str2, i, dialogsActivity3, arrayList4, charSequence, z, topicsFragment);
+                        lambda$processAttachMenuBot$95 = LaunchActivity.this.lambda$processAttachMenuBot$95(tLRPC$User2, str3, i, dialogsActivity3, arrayList4, charSequence, z, topicsFragment);
                         return lambda$processAttachMenuBot$95;
                     }
                 });
@@ -3647,7 +3651,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 com.google.android.exoplayer2.util.Consumer consumer = new com.google.android.exoplayer2.util.Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        LaunchActivity.this.lambda$processAttachMenuBot$99(i, j, atomicBoolean, dialogsActivity, baseFragment2, tLRPC$User, str2, (Boolean) obj);
+                        LaunchActivity.this.lambda$processAttachMenuBot$99(i, j, atomicBoolean, dialogsActivity, baseFragment2, tLRPC$User, str3, (Boolean) obj);
                     }
                 };
                 if (!tLRPC$TL_attachMenuBot.request_write_access) {
@@ -3664,7 +3668,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                     BulletinFactory.of(baseFragment2).createErrorBulletin(LocaleController.getString(R.string.BotAlreadyAddedToAttachMenu)).show();
                     return;
                 } else {
-                    chatActivity.openAttachBotLayout(tLRPC$User2.id, str2, false);
+                    chatActivity.openAttachBotLayout(tLRPC$User2.id, str3, false);
                     return;
                 }
             } else {

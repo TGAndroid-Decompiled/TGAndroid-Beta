@@ -102,6 +102,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     private static boolean mediaFromExternalCamera;
     private PhotoAttachAdapter adapter;
     float additionCloseCameraY;
+    private Runnable afterCameraInitRunnable;
     private int alertOnlyOnce;
     private int[] animateCameraValues;
     float animationClipBottom;
@@ -151,6 +152,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
     private android.graphics.Rect hitRect;
     private boolean ignoreLayout;
     private DecelerateInterpolator interpolator;
+    private Boolean isCameraFrontfaceBeforeEnteringEditMode;
     private boolean isHidden;
     private RecyclerViewItemRangeSelector itemRangeSelector;
     private int itemSize;
@@ -201,7 +203,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         return 1;
     }
 
-    static int access$2808(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+    static int access$2908(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
         int i = chatAttachAlertPhotoLayout.videoRecordTime;
         chatAttachAlertPhotoLayout.videoRecordTime = i + 1;
         return i;
@@ -367,6 +369,11 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
         public void lambda$onClose$0() {
             ChatAttachAlertPhotoLayout.this.setCurrentSpoilerVisible(-1, true);
+        }
+
+        @Override
+        public void onEditModeChanged(boolean z) {
+            ChatAttachAlertPhotoLayout.this.onPhotoEditModeChanged(z);
         }
 
         @Override
@@ -569,6 +576,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         this.viewPosition = new int[2];
         this.animateCameraValues = new int[5];
         this.interpolator = new DecelerateInterpolator(1.5f);
+        this.isCameraFrontfaceBeforeEnteringEditMode = null;
         this.hitRect = new android.graphics.Rect();
         int dp = AndroidUtilities.dp(80.0f);
         this.itemSize = dp;
@@ -1248,7 +1256,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             if (ChatAttachAlertPhotoLayout.this.videoRecordRunnable == null) {
                 return;
             }
-            ChatAttachAlertPhotoLayout.access$2808(ChatAttachAlertPhotoLayout.this);
+            ChatAttachAlertPhotoLayout.access$2908(ChatAttachAlertPhotoLayout.this);
             ChatAttachAlertPhotoLayout.this.recordTime.setText(AndroidUtilities.formatLongDuration(ChatAttachAlertPhotoLayout.this.videoRecordTime));
             AndroidUtilities.runOnUIThread(ChatAttachAlertPhotoLayout.this.videoRecordRunnable, 1000L);
         }
@@ -1948,6 +1956,21 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
 
         @Override
+        public void onOpen() {
+            ChatAttachAlertPhotoLayout.this.pauseCameraPreview();
+        }
+
+        @Override
+        public void onClose() {
+            ChatAttachAlertPhotoLayout.this.resumeCameraPreview();
+        }
+
+        @Override
+        public void onEditModeChanged(boolean z) {
+            ChatAttachAlertPhotoLayout.this.onPhotoEditModeChanged(z);
+        }
+
+        @Override
         public boolean cancelButtonPressed() {
             if (ChatAttachAlertPhotoLayout.this.cameraOpened && ChatAttachAlertPhotoLayout.this.cameraView != null) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
@@ -2419,7 +2442,9 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
         if (this.cameraView == null) {
             boolean z = !LiteMode.isEnabled(LiteMode.FLAGS_CHAT);
-            CameraView cameraView = new CameraView(getContext(), this.parentAlert.openWithFrontFaceCamera, z) {
+            Context context = getContext();
+            Boolean bool = this.isCameraFrontfaceBeforeEnteringEditMode;
+            CameraView cameraView = new CameraView(context, bool != null ? bool.booleanValue() : this.parentAlert.openWithFrontFaceCamera, z) {
                 Bulletin.Delegate bulletinDelegate = new Bulletin.Delegate() {
                     @Override
                     public boolean allowLayoutChanges() {
@@ -2571,38 +2596,40 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                     }
                     ChatAttachAlertPhotoLayout.this.switchCameraButton.setImageResource(ChatAttachAlertPhotoLayout.this.cameraView.isFrontface() ? R.drawable.camera_revert1 : R.drawable.camera_revert2);
                     ChatAttachAlertPhotoLayout.this.switchCameraButton.setVisibility(ChatAttachAlertPhotoLayout.this.cameraView.hasFrontFaceCamera() ? 0 : 4);
-                    if (ChatAttachAlertPhotoLayout.this.cameraOpened) {
-                        return;
-                    }
-                    ChatAttachAlertPhotoLayout.this.cameraInitAnimation = new AnimatorSet();
-                    ChatAttachAlertPhotoLayout.this.cameraInitAnimation.playTogether(ObjectAnimator.ofFloat(ChatAttachAlertPhotoLayout.this.cameraView, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(ChatAttachAlertPhotoLayout.this.cameraIcon, View.ALPHA, 0.0f, 1.0f));
-                    ChatAttachAlertPhotoLayout.this.cameraInitAnimation.setDuration(180L);
-                    ChatAttachAlertPhotoLayout.this.cameraInitAnimation.addListener(new AnimatorListenerAdapter() {
-                        @Override
-                        public void onAnimationEnd(Animator animator) {
-                            if (animator.equals(ChatAttachAlertPhotoLayout.this.cameraInitAnimation)) {
-                                ChatAttachAlertPhotoLayout.this.canSaveCameraPreview = true;
-                                ChatAttachAlertPhotoLayout.this.cameraInitAnimation = null;
-                                if (ChatAttachAlertPhotoLayout.this.isHidden) {
-                                    return;
-                                }
-                                int childCount = ChatAttachAlertPhotoLayout.this.gridView.getChildCount();
-                                for (int i4 = 0; i4 < childCount; i4++) {
-                                    View childAt = ChatAttachAlertPhotoLayout.this.gridView.getChildAt(i4);
-                                    if (childAt instanceof PhotoAttachCameraCell) {
-                                        childAt.setVisibility(4);
+                    if (!ChatAttachAlertPhotoLayout.this.cameraOpened) {
+                        ChatAttachAlertPhotoLayout.this.cameraInitAnimation = new AnimatorSet();
+                        ChatAttachAlertPhotoLayout.this.cameraInitAnimation.playTogether(ObjectAnimator.ofFloat(ChatAttachAlertPhotoLayout.this.cameraView, View.ALPHA, 0.0f, 1.0f), ObjectAnimator.ofFloat(ChatAttachAlertPhotoLayout.this.cameraIcon, View.ALPHA, 0.0f, 1.0f));
+                        ChatAttachAlertPhotoLayout.this.cameraInitAnimation.setDuration(180L);
+                        ChatAttachAlertPhotoLayout.this.cameraInitAnimation.addListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animator) {
+                                if (animator.equals(ChatAttachAlertPhotoLayout.this.cameraInitAnimation)) {
+                                    ChatAttachAlertPhotoLayout.this.canSaveCameraPreview = true;
+                                    ChatAttachAlertPhotoLayout.this.cameraInitAnimation = null;
+                                    if (ChatAttachAlertPhotoLayout.this.isHidden) {
                                         return;
+                                    }
+                                    int childCount = ChatAttachAlertPhotoLayout.this.gridView.getChildCount();
+                                    for (int i4 = 0; i4 < childCount; i4++) {
+                                        View childAt = ChatAttachAlertPhotoLayout.this.gridView.getChildAt(i4);
+                                        if (childAt instanceof PhotoAttachCameraCell) {
+                                            childAt.setVisibility(4);
+                                            return;
+                                        }
                                     }
                                 }
                             }
-                        }
 
-                        @Override
-                        public void onAnimationCancel(Animator animator) {
-                            ChatAttachAlertPhotoLayout.this.cameraInitAnimation = null;
-                        }
-                    });
-                    ChatAttachAlertPhotoLayout.this.cameraInitAnimation.start();
+                            @Override
+                            public void onAnimationCancel(Animator animator) {
+                                ChatAttachAlertPhotoLayout.this.cameraInitAnimation = null;
+                            }
+                        });
+                        ChatAttachAlertPhotoLayout.this.cameraInitAnimation.start();
+                    }
+                    if (ChatAttachAlertPhotoLayout.this.afterCameraInitRunnable != null) {
+                        ChatAttachAlertPhotoLayout.this.afterCameraInitRunnable.run();
+                    }
                 }
             });
             if (this.cameraIcon == null) {
@@ -2652,13 +2679,20 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 this.cameraView.setVisibility(8);
                 this.cameraIcon.setVisibility(8);
             }
-            checkCameraViewPosition();
+            if (this.cameraOpened) {
+                this.cameraIcon.setAlpha(0.0f);
+            } else {
+                checkCameraViewPosition();
+            }
             invalidate();
         }
         ZoomControlView zoomControlView = this.zoomControlView;
         if (zoomControlView != null) {
             zoomControlView.setZoom(0.0f, false);
             this.cameraZoom = 0.0f;
+        }
+        if (this.cameraOpened) {
+            return;
         }
         this.cameraView.setTranslationX(this.cameraViewLocation[0]);
         this.cameraView.setTranslationY(this.cameraViewLocation[1] + this.currentPanTranslationY);
@@ -3754,6 +3788,34 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         }
     }
 
+    public void onPhotoEditModeChanged(boolean z) {
+        if (!this.needCamera || this.noCameraPermissions) {
+            return;
+        }
+        if (z) {
+            CameraView cameraView = this.cameraView;
+            if (cameraView != null) {
+                this.isCameraFrontfaceBeforeEnteringEditMode = Boolean.valueOf(cameraView.isFrontface());
+                hideCamera(true);
+                return;
+            }
+            return;
+        }
+        this.afterCameraInitRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                ChatAttachAlertPhotoLayout.this.lambda$onPhotoEditModeChanged$24();
+            }
+        };
+        showCamera();
+    }
+
+    public void lambda$onPhotoEditModeChanged$24() {
+        pauseCameraPreview();
+        this.afterCameraInitRunnable = null;
+        this.isCameraFrontfaceBeforeEnteringEditMode = null;
+    }
+
     @Override
     public void onHidden() {
         CameraView cameraView = this.cameraView;
@@ -3788,7 +3850,7 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlertPhotoLayout.onPreMeasure(int, int):void");
     }
 
-    public void lambda$onPreMeasure$24() {
+    public void lambda$onPreMeasure$25() {
         this.adapter.notifyDataSetChanged();
     }
 

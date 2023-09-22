@@ -461,7 +461,7 @@ public class TimelineView extends View {
                     if (x >= f8 && x <= f9) {
                         Math.max(0L, this.scroll - this.audioOffset);
                         Math.min(1.0f, Math.max(0.0f, ((float) (this.scroll - this.audioOffset)) + ((float) Math.min(120000L, getBaseDuration()))) / ((float) this.audioDuration));
-                        return 5;
+                        return !this.hasVideo ? 8 : 5;
                     }
                     int i7 = this.px;
                     int i8 = this.ph;
@@ -565,135 +565,127 @@ public class TimelineView extends View {
     }
 
     private long minAudioSelect() {
-        return Math.max(1000.0f, ((float) Math.min(this.videoDuration, 59000L)) * 0.25f);
+        return Math.max(1000.0f, ((float) Math.min(this.videoDuration, 59000L)) * 0.15f);
     }
 
     private void moveAudioOffset(float f) {
         long j;
-        float clamp;
-        float clamp2;
-        boolean z;
+        long j2;
+        long j3;
+        long j4;
         TimelineDelegate timelineDelegate;
-        long min = Math.min(getBaseDuration(), 120000L);
+        Math.min(getBaseDuration(), 120000L);
         if (!this.hasVideo) {
             this.audioOffset = Utilities.clamp(this.audioOffset + f, 0L, -(this.audioDuration - Math.min(getBaseDuration(), 120000L)));
-            j = min;
         } else if (this.audioSelected) {
             float f2 = this.videoRight;
-            long j2 = this.videoDuration;
+            long j5 = this.videoDuration;
             float f3 = this.audioRight;
-            long j3 = this.audioDuration;
-            long j4 = (((float) j2) * f2) - (((float) j3) * f3);
+            long j6 = this.audioDuration;
+            long j7 = (((float) j5) * f2) - (((float) j6) * f3);
             float f4 = this.videoLeft;
             float f5 = this.audioLeft;
-            j = min;
-            long j5 = (((float) j2) * f4) - (((float) j3) * f5);
-            long j6 = this.audioOffset;
-            long j7 = f;
-            if (j6 + j7 > j4) {
-                float f6 = f3 - f5;
-                float clamp3 = Utilities.clamp((((f2 * ((float) j2)) - ((float) j6)) - ((float) j7)) / ((float) j3), 1.0f, f6);
-                this.audioRight = clamp3;
-                this.audioLeft = Utilities.clamp(clamp3 - f6, 1.0f, 0.0f);
-                long j8 = this.audioOffset + j7;
-                float f7 = this.videoRight;
-                long j9 = this.videoDuration;
-                float f8 = this.audioRight;
-                long j10 = this.audioDuration;
-                this.audioOffset = Utilities.clamp(j8, (f7 * ((float) j9)) - (f8 * ((float) j10)), (this.videoLeft * ((float) j9)) - (clamp2 * ((float) j10)));
+            long j8 = (((float) j5) * f4) - (((float) j6) * f5);
+            float min = Math.min(f3 - f5, ((f2 - f4) * ((float) j5)) / ((float) j6));
+            long j9 = this.audioOffset;
+            long j10 = f;
+            if (j9 + j10 > j7) {
+                float clamp = Utilities.clamp((((this.videoRight * ((float) this.videoDuration)) - ((float) j9)) - ((float) j10)) / ((float) this.audioDuration), 1.0f, min);
+                this.audioRight = clamp;
+                float clamp2 = Utilities.clamp(clamp - min, 1.0f, 0.0f);
+                this.audioLeft = clamp2;
+                float f6 = this.videoRight;
+                long j11 = this.videoDuration;
+                float f7 = this.audioRight;
+                long j12 = this.audioDuration;
+                long j13 = (f6 * ((float) j11)) - (f7 * ((float) j12));
+                long j14 = (this.videoLeft * ((float) j11)) - (clamp2 * ((float) j12));
+                if (j13 < j14) {
+                    j4 = j14;
+                    j3 = j13;
+                } else {
+                    j3 = j14;
+                    j4 = j13;
+                }
+                this.audioOffset = Utilities.clamp(this.audioOffset + j10, j4, j3);
                 TimelineDelegate timelineDelegate2 = this.delegate;
                 if (timelineDelegate2 != null) {
                     timelineDelegate2.onAudioRightChange(this.audioRight);
                 }
-            } else if (j6 + j7 < j5) {
-                float f9 = f3 - f5;
-                float clamp4 = Utilities.clamp((((((float) j2) * f4) - ((float) j6)) - ((float) j7)) / ((float) j3), 1.0f - f9, 0.0f);
-                this.audioLeft = clamp4;
-                this.audioRight = Utilities.clamp(clamp4 + f9, 1.0f, 0.0f);
-                long j11 = this.audioOffset + j7;
-                float f10 = this.videoRight;
-                long j12 = this.videoDuration;
-                long j13 = this.audioDuration;
-                this.audioOffset = Utilities.clamp(j11, (f10 * ((float) j12)) - (clamp * ((float) j13)), (this.videoLeft * ((float) j12)) - (this.audioLeft * ((float) j13)));
+            } else if (j9 + j10 < j8) {
+                float clamp3 = Utilities.clamp((((this.videoLeft * ((float) this.videoDuration)) - ((float) j9)) - ((float) j10)) / ((float) this.audioDuration), 1.0f - min, 0.0f);
+                this.audioLeft = clamp3;
+                float clamp4 = Utilities.clamp(clamp3 + min, 1.0f, 0.0f);
+                this.audioRight = clamp4;
+                float f8 = this.videoRight;
+                long j15 = this.videoDuration;
+                long j16 = this.audioDuration;
+                long j17 = (f8 * ((float) j15)) - (clamp4 * ((float) j16));
+                long j18 = (this.videoLeft * ((float) j15)) - (this.audioLeft * ((float) j16));
+                if (j17 < j18) {
+                    j2 = j17;
+                    j = j18;
+                } else {
+                    j = j17;
+                    j2 = j18;
+                }
+                this.audioOffset = Utilities.clamp(this.audioOffset + j10, j, j2);
                 TimelineDelegate timelineDelegate3 = this.delegate;
                 if (timelineDelegate3 != null) {
                     timelineDelegate3.onAudioLeftChange(this.audioLeft);
                 }
             } else {
-                this.audioOffset = j6 + j7;
+                this.audioOffset = j9 + j10;
             }
         } else {
-            j = min;
-            long j14 = this.audioOffset + f;
-            long j15 = this.audioDuration;
-            this.audioOffset = Utilities.clamp(j14, ((float) getBaseDuration()) - (((float) j15) * this.audioRight), (-this.audioLeft) * ((float) j15));
-        }
-        float max = ((float) Math.max(0L, this.scroll - this.audioOffset)) / ((float) this.audioDuration);
-        float min2 = Math.min(1.0f, ((float) Math.max(0L, (this.scroll - this.audioOffset) + j)) / ((float) this.audioDuration));
-        float f11 = this.audioRight;
-        float f12 = this.audioLeft;
-        float f13 = f11 - f12;
-        if (f12 < max) {
-            this.audioLeft = max;
-            this.audioRight = Math.min(1.0f, max + f13);
-            z = true;
-        } else {
-            z = false;
-        }
-        if (this.audioRight > min2) {
-            this.audioRight = min2;
-            this.audioLeft = Math.max(0.0f, min2 - f13);
-            z = true;
-        }
-        TimelineDelegate timelineDelegate4 = this.delegate;
-        if (timelineDelegate4 != null && z) {
-            timelineDelegate4.onAudioLeftChange(this.audioLeft);
-            this.delegate.onAudioRightChange(this.audioRight);
+            long j19 = this.audioOffset + f;
+            long j20 = this.audioDuration;
+            this.audioOffset = Utilities.clamp(j19, ((float) getBaseDuration()) - (((float) j20) * this.audioRight), (-this.audioLeft) * ((float) j20));
         }
         if (!this.hasVideo) {
-            long j16 = this.progress;
-            long j17 = this.audioDuration;
-            float f14 = ((float) j16) / ((float) j17);
-            float f15 = this.audioLeft;
-            if (f14 < f15 || ((float) j16) / ((float) j17) > this.audioRight) {
-                long j18 = f15 * ((float) j17);
-                this.progress = j18;
-                TimelineDelegate timelineDelegate5 = this.delegate;
-                if (timelineDelegate5 != null) {
-                    timelineDelegate5.onProgressChange(j18, false);
+            long j21 = this.progress;
+            long j22 = this.audioDuration;
+            float f9 = ((float) j21) / ((float) j22);
+            float f10 = this.audioLeft;
+            if (f9 < f10 || ((float) j21) / ((float) j22) > this.audioRight) {
+                long j23 = f10 * ((float) j22);
+                this.progress = j23;
+                TimelineDelegate timelineDelegate4 = this.delegate;
+                if (timelineDelegate4 != null) {
+                    timelineDelegate4.onProgressChange(j23, false);
                 }
             }
         }
         invalidate();
-        TimelineDelegate timelineDelegate6 = this.delegate;
-        if (timelineDelegate6 != null) {
-            timelineDelegate6.onAudioOffsetChange(this.audioOffset + (this.audioLeft * ((float) this.audioDuration)));
+        TimelineDelegate timelineDelegate5 = this.delegate;
+        if (timelineDelegate5 != null) {
+            timelineDelegate5.onAudioOffsetChange(this.audioOffset + (this.audioLeft * ((float) this.audioDuration)));
         }
-        boolean z2 = this.dragged;
-        if (!z2 && (timelineDelegate = this.delegate) != null) {
+        boolean z = this.dragged;
+        if (!z && (timelineDelegate = this.delegate) != null) {
             timelineDelegate.onProgressDragChange(true);
             if (this.hasVideo) {
-                long j19 = this.audioOffset + (this.audioLeft * ((float) this.audioDuration));
-                float f16 = this.videoRight;
-                long j20 = this.videoDuration;
-                long clamp5 = Utilities.clamp(j19, f16 * ((float) j20), this.videoLeft * ((float) j20));
+                long j24 = this.audioOffset + (this.audioLeft * ((float) this.audioDuration));
+                float f11 = this.videoRight;
+                long j25 = this.videoDuration;
+                long clamp5 = Utilities.clamp(j24, f11 * ((float) j25), this.videoLeft * ((float) j25));
                 if (Math.abs(this.progress - clamp5) > 400) {
                     this.loopProgressFrom = this.progress;
                     this.loopProgress.set(1.0f, true);
                 }
-                TimelineDelegate timelineDelegate7 = this.delegate;
+                TimelineDelegate timelineDelegate6 = this.delegate;
                 this.progress = clamp5;
-                timelineDelegate7.onProgressChange(clamp5, false);
+                timelineDelegate6.onProgressChange(clamp5, false);
             }
-        } else if (z2 || this.scrolling) {
-            long j21 = this.audioOffset + (this.audioLeft * ((float) this.audioDuration));
-            float f17 = this.videoRight;
-            long j22 = this.videoDuration;
-            long clamp6 = Utilities.clamp(j21, f17 * ((float) j22), this.videoLeft * ((float) j22));
+        } else if ((z || this.scrolling) && this.hasVideo) {
+            long j26 = this.audioOffset + (this.audioLeft * ((float) this.audioDuration));
+            float f12 = this.videoRight;
+            long j27 = this.videoDuration;
+            long clamp6 = Utilities.clamp(j26, f12 * ((float) j27), this.videoLeft * ((float) j27));
             this.progress = clamp6;
-            TimelineDelegate timelineDelegate8 = this.delegate;
-            if (timelineDelegate8 != null) {
-                timelineDelegate8.onProgressChange(clamp6, false);
+            TimelineDelegate timelineDelegate7 = this.delegate;
+            if (timelineDelegate7 != null) {
+                timelineDelegate7.onProgressChange(clamp6, false);
             }
         }
     }
@@ -1163,7 +1155,7 @@ public class TimelineView extends View {
                     i31 = timelineView.audioRight >= ((float) (((-j24) + j2) - 100)) / ((float) j3) ? 1 : 0;
                 }
                 if (i31 != 0) {
-                    if (timelineView.audioSelected) {
+                    if (timelineView.audioSelected && timelineView.hasVideo) {
                         long j26 = j24 - (i31 * dp3);
                         float f56 = timelineView.videoRight;
                         long j27 = timelineView.videoDuration;

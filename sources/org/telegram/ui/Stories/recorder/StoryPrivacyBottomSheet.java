@@ -131,6 +131,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
     private boolean allowSmallChats;
     private boolean applyWhenDismiss;
     private final Paint backgroundPaint;
+    private boolean canChangePeer;
     private final ArrayList<Long> excludedContacts;
     private final ArrayList<Long> excludedEveryone;
     private final HashMap<Long, ArrayList<Long>> excludedEveryoneByGroup;
@@ -420,7 +421,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             ItemInner itemInner = this.items.get(i);
             int i2 = itemInner.viewType;
             if (i2 == 3) {
-                if (itemInner.sendAs) {
+                if (itemInner.sendAs && StoryPrivacyBottomSheet.this.canChangePeer) {
                     new ChoosePeerSheet(context, ((BottomSheet) StoryPrivacyBottomSheet.this).currentAccount, StoryPrivacyBottomSheet.this.selectedPeer, new Utilities.Callback() {
                         @Override
                         public final void run(Object obj) {
@@ -1625,7 +1626,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
 
             @Override
             public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-                return viewHolder.getItemViewType() == 3 || viewHolder.getItemViewType() == 7;
+                return (viewHolder.getItemViewType() == 3 && StoryPrivacyBottomSheet.this.canChangePeer) || viewHolder.getItemViewType() == 7;
             }
 
             @Override
@@ -1726,6 +1727,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                     userCell.setChecked(z, false);
                     userCell.setDivider(z2);
                     userCell.setRedCheckbox(itemInner2.red);
+                    userCell.drawArrow = StoryPrivacyBottomSheet.this.canChangePeer;
                 } else if (itemViewType == 2) {
                 } else {
                     if (itemViewType == 0) {
@@ -1802,6 +1804,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         this.selectedContactsCount = 0;
         this.allowScreenshots = true;
         this.keepOnMyPage = false;
+        this.canChangePeer = true;
         this.messageUsers = new ArrayList<>();
         this.activePage = 1;
         this.selectedType = 4;
@@ -1987,6 +1990,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         this.selectedContactsCount = 0;
         this.allowScreenshots = true;
         this.keepOnMyPage = false;
+        this.canChangePeer = true;
         this.messageUsers = new ArrayList<>();
         this.activePage = 1;
         this.selectedType = 4;
@@ -2581,6 +2585,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
         private final AvatarDrawable avatarDrawable;
         private final CheckBox2 checkBox;
         private final Paint dividerPaint;
+        private boolean drawArrow;
         private final BackupImageView imageView;
         private boolean[] isOnline;
         private boolean needCheck;
@@ -2598,6 +2603,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             this.dividerPaint = new Paint(1);
             this.sendAs = false;
             this.needCheck = true;
+            this.drawArrow = true;
             this.isOnline = new boolean[1];
             this.resourcesProvider = resourcesProvider;
             avatarDrawable.setRoundRadius(AndroidUtilities.dp(40.0f));
@@ -2910,7 +2916,7 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
                 }
             }
             Path path = this.arrowPath;
-            if (path == null || (paint = this.arrowPaint) == null || this.needCheck || !this.sendAs) {
+            if (path == null || (paint = this.arrowPaint) == null || this.needCheck || !this.sendAs || !this.drawArrow) {
                 return;
             }
             canvas.drawPath(path, paint);
@@ -3995,6 +4001,11 @@ public class StoryPrivacyBottomSheet extends BottomSheet implements Notification
             sb2.append(TextUtils.join(",", entry2.getValue()));
         }
         MessagesController.getInstance(this.currentAccount).getMainSettings().edit().putString("story_prv_everyoneexcept", TextUtils.join(",", this.excludedEveryone)).putString("story_prv_grpeveryoneexcept", sb2.toString()).putString("story_prv_contacts", TextUtils.join(",", this.selectedContacts)).putString("story_prv_grpcontacts", sb.toString()).putString("story_prv_excluded", TextUtils.join(",", this.excludedContacts)).putBoolean("story_noforwards", !this.allowScreenshots).putBoolean("story_keep", this.keepOnMyPage).apply();
+    }
+
+    public StoryPrivacyBottomSheet setCanChangePeer(boolean z) {
+        this.canChangePeer = z;
+        return this;
     }
 
     public static class ChoosePeerSheet extends BottomSheet {

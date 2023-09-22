@@ -1,9 +1,13 @@
 package org.telegram.messenger;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import androidx.core.content.FileProvider;
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.CustomProperties;
 import com.microsoft.appcenter.analytics.Analytics;
@@ -11,6 +15,9 @@ import com.microsoft.appcenter.analytics.EventProperties;
 import com.microsoft.appcenter.crashes.Crashes;
 import com.microsoft.appcenter.distribute.Distribute;
 import com.microsoft.appcenter.utils.async.AppCenterConsumer;
+import java.io.File;
+import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.ui.Components.AlertsCreator;
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
 
@@ -92,5 +99,41 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
             Analytics.trackEvent(sb2, eventProperties.set("product", Build.PRODUCT + "").set("model", Build.MODEL));
         } catch (Throwable unused) {
         }
+    }
+
+    @Override
+    public boolean checkApkInstallPermissions(Context context) {
+        if (Build.VERSION.SDK_INT < 26 || ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls()) {
+            return true;
+        }
+        AlertsCreator.createApkRestrictedDialog(context, null).show();
+        return false;
+    }
+
+    @Override
+    public boolean openApkInstall(Activity activity, TLRPC$Document tLRPC$Document) {
+        boolean z = false;
+        try {
+            FileLoader.getAttachFileName(tLRPC$Document);
+            File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tLRPC$Document, true);
+            z = pathToAttach.exists();
+            if (z) {
+                Intent intent = new Intent("android.intent.action.VIEW");
+                intent.setFlags(1);
+                if (Build.VERSION.SDK_INT >= 24) {
+                    intent.setDataAndType(FileProvider.getUriForFile(activity, ApplicationLoader.getApplicationId() + ".provider", pathToAttach), "application/vnd.android.package-archive");
+                } else {
+                    intent.setDataAndType(Uri.fromFile(pathToAttach), "application/vnd.android.package-archive");
+                }
+                try {
+                    activity.startActivityForResult(intent, 500);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+        } catch (Exception e2) {
+            FileLog.e(e2);
+        }
+        return z;
     }
 }

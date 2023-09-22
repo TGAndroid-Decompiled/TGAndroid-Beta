@@ -86,6 +86,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     private int hintColor;
     private long hintLastUpdateTime;
     private StaticLayout hintLayout;
+    public float hintLayoutX;
     public boolean hintLayoutYFix;
     private boolean hintVisible;
     private int ignoreBottomCount;
@@ -784,9 +785,13 @@ public class EditTextBoldCursor extends EditTextEffects {
                     float lineWidth = this.hintLayout.getLineWidth(0);
                     int i = lineLeft != 0.0f ? (int) (0 - lineLeft) : 0;
                     if (this.supportRtlHint && LocaleController.isRTL) {
-                        canvas.translate(i + getScrollX() + (getMeasuredWidth() - lineWidth), (this.lineY - this.hintLayout.getHeight()) - AndroidUtilities.dp(7.0f));
+                        float scrollX = i + getScrollX() + (getMeasuredWidth() - lineWidth);
+                        this.hintLayoutX = scrollX;
+                        canvas.translate(scrollX, (this.lineY - this.hintLayout.getHeight()) - AndroidUtilities.dp(7.0f));
                     } else {
-                        canvas.translate(i + getScrollX(), (this.lineY - this.hintLayout.getHeight()) - AndroidUtilities.dp2(7.0f));
+                        float scrollX2 = i + getScrollX();
+                        this.hintLayoutX = scrollX2;
+                        canvas.translate(scrollX2, (this.lineY - this.hintLayout.getHeight()) - AndroidUtilities.dp2(7.0f));
                     }
                     if (this.transformHintToHeader) {
                         float f3 = 1.0f - (this.headerAnimationProgress * 0.3f);

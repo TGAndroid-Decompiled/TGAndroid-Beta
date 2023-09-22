@@ -24,12 +24,12 @@ public class NotificationsSettingsFacade {
     }
 
     public boolean isDefault(long j, int i) {
-        NotificationsController.getSharedPrefKey(j, i);
+        NotificationsController.getSharedPrefKey(j, i, true);
         return false;
     }
 
     public void clearPreference(long j, int i) {
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i);
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i, true);
         SharedPreferences.Editor edit = getPreferences().edit();
         SharedPreferences.Editor remove = edit.remove(PROPERTY_NOTIFY + sharedPrefKey);
         SharedPreferences.Editor remove2 = remove.remove(PROPERTY_CUSTOM + sharedPrefKey);
@@ -40,25 +40,25 @@ public class NotificationsSettingsFacade {
     }
 
     public int getProperty(String str, long j, int i, int i2) {
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i);
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i, true);
         SharedPreferences preferences = getPreferences();
         if (preferences.contains(str + sharedPrefKey)) {
             SharedPreferences preferences2 = getPreferences();
             return preferences2.getInt(str + sharedPrefKey, i2);
         }
-        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0);
+        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0, true);
         SharedPreferences preferences3 = getPreferences();
         return preferences3.getInt(str + sharedPrefKey2, i2);
     }
 
     public long getProperty(String str, long j, int i, long j2) {
-        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i);
+        String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i, true);
         SharedPreferences preferences = getPreferences();
         if (preferences.contains(str + sharedPrefKey)) {
             SharedPreferences preferences2 = getPreferences();
             return preferences2.getLong(str + sharedPrefKey, j2);
         }
-        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0);
+        String sharedPrefKey2 = NotificationsController.getSharedPrefKey(j, 0, true);
         SharedPreferences preferences3 = getPreferences();
         return preferences3.getLong(str + sharedPrefKey2, j2);
     }
@@ -125,7 +125,7 @@ public class NotificationsSettingsFacade {
             return;
         }
         if (j != 0) {
-            String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i);
+            String sharedPrefKey = NotificationsController.getSharedPrefKey(j, i, true);
             str = "sound_" + sharedPrefKey;
             str3 = "sound_path_" + sharedPrefKey;
             str2 = "sound_document_id_" + sharedPrefKey;

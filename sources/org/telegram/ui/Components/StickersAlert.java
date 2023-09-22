@@ -1152,7 +1152,7 @@ public class StickersAlert extends BottomSheet implements NotificationCenter.Not
         this.pickerBottomFrameLayout = frameLayout3;
         frameLayout3.addView(this.pickerBottomLayout, LayoutHelper.createFrame(-1, 48.0f));
         this.containerView.addView(this.pickerBottomFrameLayout, LayoutHelper.createFrame(-1, -2, 83));
-        PremiumButtonView premiumButtonView = new PremiumButtonView(context, false);
+        PremiumButtonView premiumButtonView = new PremiumButtonView(context, false, this.resourcesProvider);
         this.premiumButtonView = premiumButtonView;
         premiumButtonView.setIcon(R.raw.unlock_icon);
         this.premiumButtonView.setVisibility(4);

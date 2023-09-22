@@ -2388,8 +2388,7 @@ public class MessageObject {
     public static boolean canPreviewDocument(TLRPC$Document tLRPC$Document) {
         String str;
         if (tLRPC$Document != null && (str = tLRPC$Document.mime_type) != null) {
-            String lowerCase = str.toLowerCase();
-            if ((isDocumentHasThumb(tLRPC$Document) && (lowerCase.equals("image/png") || lowerCase.equals("image/jpg") || lowerCase.equals("image/jpeg"))) || (Build.VERSION.SDK_INT >= 26 && lowerCase.equals("image/heic"))) {
+            if ((isDocumentHasThumb(tLRPC$Document) && (str.equalsIgnoreCase("image/png") || str.equalsIgnoreCase("image/jpg") || str.equalsIgnoreCase("image/jpeg"))) || (Build.VERSION.SDK_INT >= 26 && str.equalsIgnoreCase("image/heic"))) {
                 for (int i = 0; i < tLRPC$Document.attributes.size(); i++) {
                     TLRPC$DocumentAttribute tLRPC$DocumentAttribute = tLRPC$Document.attributes.get(i);
                     if (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeImageSize) {

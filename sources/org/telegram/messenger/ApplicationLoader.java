@@ -23,6 +23,7 @@ import java.io.File;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.Components.ForegroundDetector;
 import org.telegram.ui.LauncherIconController;
@@ -31,7 +32,7 @@ public class ApplicationLoader extends Application {
     public static volatile Context applicationContext = null;
     public static volatile Handler applicationHandler = null;
     private static volatile boolean applicationInited = false;
-    private static ApplicationLoader applicationLoaderInstance = null;
+    public static ApplicationLoader applicationLoaderInstance = null;
     public static boolean canDrawOverlays = false;
     private static ConnectivityManager connectivityManager = null;
     public static volatile NetworkInfo currentNetworkInfo = null;
@@ -52,6 +53,10 @@ public class ApplicationLoader extends Application {
     protected void appCenterLogInternal(Throwable th) {
     }
 
+    public boolean checkApkInstallPermissions(Context context) {
+        return false;
+    }
+
     protected void checkForUpdatesInternal() {
     }
 
@@ -64,6 +69,10 @@ public class ApplicationLoader extends Application {
 
     protected String onGetApplicationId() {
         return null;
+    }
+
+    public boolean openApkInstall(Activity activity, TLRPC$Document tLRPC$Document) {
+        return false;
     }
 
     protected void startAppCenterInternal(Activity activity) {

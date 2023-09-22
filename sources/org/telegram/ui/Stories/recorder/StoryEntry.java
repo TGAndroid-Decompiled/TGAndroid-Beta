@@ -13,7 +13,6 @@ import android.media.MediaFormat;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.text.SpannableString;
-import android.util.Log;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -534,10 +533,10 @@ public class StoryEntry extends IStoryPart {
         if (!z) {
             clearPaint();
             clearFilter();
-            if (this.file != null) {
+            File file2 = this.file;
+            if (file2 != null) {
                 if (this.fileDeletable && (!this.isEdit || this.editedMedia)) {
-                    Log.e("lolkek", "deleting file (isedit = " + this.isEdit + ", editedMedia = " + this.editedMedia + ")", new Exception());
-                    this.file.delete();
+                    file2.delete();
                 }
                 this.file = null;
             }

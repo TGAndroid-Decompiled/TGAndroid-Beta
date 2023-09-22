@@ -18,6 +18,10 @@ public abstract class Brush {
         return 0.0f;
     }
 
+    public int getDefaultColor() {
+        return -16777216;
+    }
+
     public float getDefaultWeight() {
         return 0.25f;
     }
@@ -75,6 +79,11 @@ public abstract class Brush {
 
     public static class Radial extends Brush {
         @Override
+        public int getDefaultColor() {
+            return -47814;
+        }
+
+        @Override
         public int getIconRes() {
             return R.raw.photo_pen;
         }
@@ -84,6 +93,11 @@ public abstract class Brush {
         @Override
         public float getAlpha() {
             return 0.3f;
+        }
+
+        @Override
+        public int getDefaultColor() {
+            return -10742;
         }
 
         @Override
@@ -134,6 +148,11 @@ public abstract class Brush {
         }
 
         @Override
+        public int getDefaultColor() {
+            return -13318311;
+        }
+
+        @Override
         public float getDefaultWeight() {
             return 0.5f;
         }
@@ -179,6 +198,11 @@ public abstract class Brush {
     }
 
     public static class Arrow extends Brush {
+        @Override
+        public int getDefaultColor() {
+            return -30208;
+        }
+
         @Override
         public float getDefaultWeight() {
             return 0.25f;

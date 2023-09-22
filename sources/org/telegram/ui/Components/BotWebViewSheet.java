@@ -990,9 +990,9 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     public void requestWebView(final int i, long j, long j2, String str, String str2, int i2, int i3, boolean z, BaseFragment baseFragment, TLRPC$BotApp tLRPC$BotApp, boolean z2, String str3, TLRPC$User tLRPC$User, int i4) {
+        String str4;
         TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot;
         boolean z3;
-        String str4;
         TLRPC$InputPeer inputPeer;
         this.currentAccount = i;
         this.peerId = j;
@@ -1005,6 +1005,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         createMenu.removeAllViews();
         Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(i).getAttachMenuBots().bots.iterator();
         while (true) {
+            str4 = null;
             if (!it.hasNext()) {
                 tLRPC$TL_attachMenuBot = null;
                 break;
@@ -1036,7 +1037,6 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         } catch (Exception e) {
             FileLog.e(e);
             z3 = false;
-            str4 = null;
         }
         this.webViewContainer.setBotUser(MessagesController.getInstance(i).getUser(Long.valueOf(j2)));
         this.webViewContainer.loadFlickerAndSettingsItem(i, j2, this.settingsItem);
@@ -1051,7 +1051,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
             if (i3 != 0) {
                 tLRPC$TL_messages_requestWebView.reply_to = SendMessagesHelper.creteReplyInput(i3);
-                tLRPC$TL_messages_requestWebView.flags |= 1;
+                tLRPC$TL_messages_requestWebView.flags = 1 | tLRPC$TL_messages_requestWebView.flags;
             }
             if (z3) {
                 TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
@@ -1080,6 +1080,10 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             }
             tLRPC$TL_messages_requestSimpleWebView.flags |= 8;
             tLRPC$TL_messages_requestSimpleWebView.url = str2;
+            if (!TextUtils.isEmpty(str3)) {
+                tLRPC$TL_messages_requestSimpleWebView.start_param = str3;
+                tLRPC$TL_messages_requestSimpleWebView.flags |= 16;
+            }
             ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_requestSimpleWebView, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {

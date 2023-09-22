@@ -77,7 +77,11 @@ public class ReactedUserHolderView extends FrameLayout {
         reactDrawable = new MessageSeenCheckDrawable(R.drawable.msg_reactions, i2, 16, 16, 5.66f);
     }
 
-    public ReactedUserHolderView(final int i, int i2, Context context, Theme.ResourcesProvider resourcesProvider) {
+    public ReactedUserHolderView(int i, int i2, Context context, Theme.ResourcesProvider resourcesProvider) {
+        this(i, i2, context, resourcesProvider, true);
+    }
+
+    public ReactedUserHolderView(final int i, int i2, Context context, Theme.ResourcesProvider resourcesProvider, boolean z) {
         super(context);
         this.avatarDrawable = new AvatarDrawable();
         this.alphaInternal = 1.0f;
@@ -148,10 +152,12 @@ public class ReactedUserHolderView extends FrameLayout {
         BackupImageView backupImageView2 = new BackupImageView(context);
         this.reactView = backupImageView2;
         addView(backupImageView2, LayoutHelper.createFrameRelatively(24.0f, 24.0f, 8388629, 0.0f, 0.0f, 12.0f, 0.0f));
-        View view = new View(context);
-        this.overlaySelectorView = view;
-        view.setBackground(Theme.getSelectorDrawable(false));
-        addView(this.overlaySelectorView, LayoutHelper.createFrame(-1, -1.0f));
+        if (z) {
+            View view = new View(context);
+            this.overlaySelectorView = view;
+            view.setBackground(Theme.getSelectorDrawable(false));
+            addView(this.overlaySelectorView, LayoutHelper.createFrame(-1, -1.0f));
+        }
     }
 
     public void setUserReaction(TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, TLRPC$Reaction tLRPC$Reaction, boolean z, long j, boolean z2, boolean z3) {

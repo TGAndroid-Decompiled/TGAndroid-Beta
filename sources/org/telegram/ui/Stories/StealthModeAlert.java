@@ -133,7 +133,7 @@ public class StealthModeAlert extends BottomSheet {
         itemCell2.textView.setText(LocaleController.getString("HideNextViews", R.string.HideNextViews));
         itemCell2.description.setText(LocaleController.getString("HideNextViewsDescription", R.string.HideNextViewsDescription));
         linearLayout.addView(itemCell2, LayoutHelper.createLinear(-1, -2, 0, 0, 10, 0, 0));
-        PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(8.0f), true);
+        PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(8.0f), true, resourcesProvider);
         this.button = premiumButtonView;
         premiumButtonView.drawGradient = false;
         premiumButtonView.overlayTextView.getDrawable().setSplitByWords(false);

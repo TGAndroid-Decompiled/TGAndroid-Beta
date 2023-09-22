@@ -136,7 +136,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
     protected void onCloseByLink() {
     }
 
-    public static void access$6300(EmojiPacksAlert emojiPacksAlert, int i) {
+    public static void access$6400(EmojiPacksAlert emojiPacksAlert, int i) {
         emojiPacksAlert.onSubItemClick(i);
     }
 
@@ -1529,7 +1529,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 if (UserConfig.getInstance(((BottomSheet) EmojiPacksAlert.this).currentAccount).isPremium()) {
                     f2 = 8.0f;
                 } else {
-                    PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(4.0f), false);
+                    PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(4.0f), false, ((BottomSheet) EmojiPacksAlert.this).resourcesProvider);
                     this.unlockButtonView = premiumButtonView;
                     premiumButtonView.setButton(LocaleController.getString("Unlock", R.string.Unlock), new View.OnClickListener() {
                         @Override
@@ -1636,7 +1636,7 @@ public class EmojiPacksAlert extends BottomSheet implements NotificationCenter.N
                 this.optionsButton.setDelegate(new ActionBarMenuItem.ActionBarMenuItemDelegate() {
                     @Override
                     public final void onItemClick(int i2) {
-                        EmojiPacksAlert.access$6300(EmojiPacksAlert.this, i2);
+                        EmojiPacksAlert.access$6400(EmojiPacksAlert.this, i2);
                     }
                 });
                 this.optionsButton.setContentDescription(LocaleController.getString("AccDescrMoreOptions", R.string.AccDescrMoreOptions));

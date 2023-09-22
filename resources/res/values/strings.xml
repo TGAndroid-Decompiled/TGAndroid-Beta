@@ -1283,6 +1283,7 @@
     <string name="ChannelNeedBoostsDescription">Your channel need %s to enable posting stories.\n\nAsk your Premium subscribers to boost your channel with this link:</string>
     <string name="ChannelNeedBoostsDescriptionLevel1">This channel need %s to enable stories. Help make it possible!</string>
     <string name="ChannelNeedBoostsDescriptionLevelNext">This channel need %1$s to be able post **%2$s** per day. Help make it possible!</string>
+    <string name="ChannelNeedBoostsDescriptionNextLevel">Your channel need %1$s to be able post **%2$s** per day.\n\nAsk your Premium subscribers to boost your channel with this link:</string>
     <string name="ChannelNotifyMembersInfoOff">Members will receive a silent notification</string>
     <string name="ChannelNotifyMembersInfoOn">Members will be notified when you post</string>
     <string name="ChannelOtherMembers">Other members</string>
@@ -4521,6 +4522,7 @@
     <string name="PermissionDrawAboveOtherAppsGroupCall">Overlay mode lets you use push-to-talk and see who is talking even when you are outside of Telegram.</string>
     <string name="PermissionDrawAboveOtherAppsGroupCallTitle">Voice Chat Overlay</string>
     <string name="PermissionDrawAboveOtherAppsTitle">Picture-in-Picture</string>
+    <string name="PermissionNoAudioStorageStory">**Telegram** needs access to music files to upload with your story. Tap Settings -&gt; Permissions, and turn **Music and Audio** on.</string>
     <string name="PermissionNoAudioVideoWithHint">**Telegram** needs microphone access so that you can send voice messages. Tap Settings -&gt; Permissions, and turn **Microphone** on.</string>
     <string name="PermissionNoAudioWithHint">**Telegram** needs microphone access so that you can send voice messages. Tap Settings -&gt; Permissions, and turn **Microphone** on.</string>
     <string name="PermissionNoCameraMicVideo">**Telegram** needs camera and microphone access so that you can send video messages. Tap Settings -&gt; Permissions, and turn **Microphone** and **Camera** on.</string>

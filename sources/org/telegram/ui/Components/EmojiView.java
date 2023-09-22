@@ -3685,7 +3685,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
             frameLayout.setBackground(Theme.AdaptiveRipple.filledRect(emojiView.getThemedColor(Theme.key_featuredStickers_addButton), 8.0f));
             this.addButtonView.addView(this.addButtonTextView, LayoutHelper.createFrame(-1, -2, 17));
             addView(this.addButtonView, LayoutHelper.createFrame(-1, -1.0f));
-            PremiumButtonView premiumButtonView = new PremiumButtonView(getContext(), false);
+            PremiumButtonView premiumButtonView = new PremiumButtonView(getContext(), false, emojiView.resourcesProvider);
             this.premiumButtonView = premiumButtonView;
             premiumButtonView.setIcon(R.raw.unlock_icon);
             addView(this.premiumButtonView, LayoutHelper.createFrame(-1, -1.0f));
@@ -3783,7 +3783,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                 }
             });
             this.buttonsView.addView(this.removeButtonView, LayoutHelper.createFrameRelatively(-2.0f, 26.0f, 8388661));
-            PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(16.0f), false);
+            PremiumButtonView premiumButtonView = new PremiumButtonView(context, AndroidUtilities.dp(16.0f), false, r17.resourcesProvider);
             this.premiumButtonView = premiumButtonView;
             premiumButtonView.setIcon(i);
             this.premiumButtonView.setButton(LocaleController.getString("Unlock", R.string.Unlock), new View.OnClickListener() {

@@ -338,7 +338,14 @@ public class NotificationsController extends BaseController {
     }
 
     public static String getSharedPrefKey(long j, int i) {
+        return getSharedPrefKey(j, i, false);
+    }
+
+    public static String getSharedPrefKey(long j, int i, boolean z) {
         String valueOf;
+        if (z) {
+            return i != 0 ? String.format(Locale.US, "%d_%d", Long.valueOf(j), Integer.valueOf(i)) : String.valueOf(j);
+        }
         long j2 = (i << 12) + j;
         LongSparseArray<String> longSparseArray = sharedPrefCachedKeys;
         int indexOfKey = longSparseArray.indexOfKey(j2);

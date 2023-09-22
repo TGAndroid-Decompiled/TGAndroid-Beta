@@ -339,39 +339,42 @@ public class SpoilerEffect extends Drawable {
                     Particle particle3 = this.particles.get(i14);
                     RectF rectF = this.visibleRect;
                     if ((rectF == null || rectF.contains(particle3.x, particle3.y)) && (particle3.alpha == length || !this.enableAlpha)) {
-                        this.particlePoints[length][i13] = particle3.x;
-                        this.particlePoints[length][i13 + 1] = particle3.y;
-                        i13 += 2;
-                        if (particle3.x < strokeWidth) {
-                            float[][] fArr2 = this.particlePoints;
-                            if (i13 < fArr2[length].length - 2) {
-                                fArr2[length][i13] = particle3.x + this.bitmapSize;
-                                this.particlePoints[length][i13 + 1] = particle3.y;
-                                i13 += 2;
+                        float[][] fArr2 = this.particlePoints;
+                        if (i13 < fArr2[length].length - 2) {
+                            fArr2[length][i13] = particle3.x;
+                            this.particlePoints[length][i13 + 1] = particle3.y;
+                            i13 += 2;
+                            if (particle3.x < strokeWidth) {
+                                float[][] fArr3 = this.particlePoints;
+                                if (i13 < fArr3[length].length - 2) {
+                                    fArr3[length][i13] = particle3.x + this.bitmapSize;
+                                    this.particlePoints[length][i13 + 1] = particle3.y;
+                                    i13 += 2;
+                                }
                             }
-                        }
-                        if (particle3.x > this.bitmapSize - strokeWidth) {
-                            float[][] fArr3 = this.particlePoints;
-                            if (i13 < fArr3[length].length - 2) {
-                                fArr3[length][i13] = particle3.x - this.bitmapSize;
-                                this.particlePoints[length][i13 + 1] = particle3.y;
-                                i13 += 2;
+                            if (particle3.x > this.bitmapSize - strokeWidth) {
+                                float[][] fArr4 = this.particlePoints;
+                                if (i13 < fArr4[length].length - 2) {
+                                    fArr4[length][i13] = particle3.x - this.bitmapSize;
+                                    this.particlePoints[length][i13 + 1] = particle3.y;
+                                    i13 += 2;
+                                }
                             }
-                        }
-                        if (particle3.y < strokeWidth) {
-                            float[][] fArr4 = this.particlePoints;
-                            if (i13 < fArr4[length].length - 2) {
-                                fArr4[length][i13] = particle3.x;
-                                this.particlePoints[length][i13 + 1] = particle3.y + this.bitmapSize;
-                                i13 += 2;
+                            if (particle3.y < strokeWidth) {
+                                float[][] fArr5 = this.particlePoints;
+                                if (i13 < fArr5[length].length - 2) {
+                                    fArr5[length][i13] = particle3.x;
+                                    this.particlePoints[length][i13 + 1] = particle3.y + this.bitmapSize;
+                                    i13 += 2;
+                                }
                             }
-                        }
-                        if (particle3.y > this.bitmapSize - strokeWidth) {
-                            float[][] fArr5 = this.particlePoints;
-                            if (i13 < fArr5[length].length - 2) {
-                                fArr5[length][i13] = particle3.x;
-                                this.particlePoints[length][i13 + 1] = particle3.y - this.bitmapSize;
-                                i13 += 2;
+                            if (particle3.y > this.bitmapSize - strokeWidth) {
+                                float[][] fArr6 = this.particlePoints;
+                                if (i13 < fArr6[length].length - 2) {
+                                    fArr6[length][i13] = particle3.x;
+                                    this.particlePoints[length][i13 + 1] = particle3.y - this.bitmapSize;
+                                    i13 += 2;
+                                }
                             }
                         }
                     }

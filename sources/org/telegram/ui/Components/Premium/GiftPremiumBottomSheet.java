@@ -426,7 +426,7 @@ public class GiftPremiumBottomSheet extends BottomSheetWithRecyclerListView impl
     @Override
     public void onViewCreated(FrameLayout frameLayout) {
         super.onViewCreated(frameLayout);
-        this.premiumButtonView = new PremiumButtonView(getContext(), true);
+        this.premiumButtonView = new PremiumButtonView(getContext(), true, this.resourcesProvider);
         FrameLayout frameLayout2 = new FrameLayout(getContext());
         frameLayout2.addView(this.premiumButtonView, LayoutHelper.createFrame(-1, 48.0f, 16, 16.0f, 0.0f, 16.0f, 0.0f));
         frameLayout2.setBackgroundColor(getThemedColor(Theme.key_dialogBackground));

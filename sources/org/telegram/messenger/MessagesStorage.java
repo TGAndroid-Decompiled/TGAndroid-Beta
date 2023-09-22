@@ -7397,6 +7397,16 @@ public class MessagesStorage extends BaseController {
                     }
                 }
             }
+            TLRPC$Peer tLRPC$Peer3 = tLRPC$Message.media.peer;
+            if (tLRPC$Peer3 != null) {
+                long peerDialogId = DialogObject.getPeerDialogId(tLRPC$Peer3);
+                if (peerDialogId > 0) {
+                    arrayList.add(Long.valueOf(peerDialogId));
+                }
+                if (peerDialogId < 0) {
+                    arrayList2.add(Long.valueOf(-peerDialogId));
+                }
+            }
         }
         TLRPC$MessageReplies tLRPC$MessageReplies = tLRPC$Message.replies;
         if (tLRPC$MessageReplies != null) {
@@ -7431,33 +7441,33 @@ public class MessagesStorage extends BaseController {
         }
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from;
         if (tLRPC$MessageFwdHeader != null) {
-            TLRPC$Peer tLRPC$Peer3 = tLRPC$MessageFwdHeader.from_id;
-            if (tLRPC$Peer3 instanceof TLRPC$TL_peerUser) {
-                if (!arrayList.contains(Long.valueOf(tLRPC$Peer3.user_id))) {
+            TLRPC$Peer tLRPC$Peer4 = tLRPC$MessageFwdHeader.from_id;
+            if (tLRPC$Peer4 instanceof TLRPC$TL_peerUser) {
+                if (!arrayList.contains(Long.valueOf(tLRPC$Peer4.user_id))) {
                     arrayList.add(Long.valueOf(tLRPC$Message.fwd_from.from_id.user_id));
                 }
-            } else if (tLRPC$Peer3 instanceof TLRPC$TL_peerChannel) {
-                if (!arrayList2.contains(Long.valueOf(tLRPC$Peer3.channel_id))) {
+            } else if (tLRPC$Peer4 instanceof TLRPC$TL_peerChannel) {
+                if (!arrayList2.contains(Long.valueOf(tLRPC$Peer4.channel_id))) {
                     arrayList2.add(Long.valueOf(tLRPC$Message.fwd_from.from_id.channel_id));
                 }
-            } else if ((tLRPC$Peer3 instanceof TLRPC$TL_peerChat) && !arrayList2.contains(Long.valueOf(tLRPC$Peer3.chat_id))) {
+            } else if ((tLRPC$Peer4 instanceof TLRPC$TL_peerChat) && !arrayList2.contains(Long.valueOf(tLRPC$Peer4.chat_id))) {
                 arrayList2.add(Long.valueOf(tLRPC$Message.fwd_from.from_id.chat_id));
             }
-            TLRPC$Peer tLRPC$Peer4 = tLRPC$Message.fwd_from.saved_from_peer;
-            if (tLRPC$Peer4 != null) {
-                long j14 = tLRPC$Peer4.user_id;
+            TLRPC$Peer tLRPC$Peer5 = tLRPC$Message.fwd_from.saved_from_peer;
+            if (tLRPC$Peer5 != null) {
+                long j14 = tLRPC$Peer5.user_id;
                 if (j14 != 0) {
                     if (!arrayList2.contains(Long.valueOf(j14))) {
                         arrayList.add(Long.valueOf(tLRPC$Message.fwd_from.saved_from_peer.user_id));
                     }
                 } else {
-                    long j15 = tLRPC$Peer4.channel_id;
+                    long j15 = tLRPC$Peer5.channel_id;
                     if (j15 != 0) {
                         if (!arrayList2.contains(Long.valueOf(j15))) {
                             arrayList2.add(Long.valueOf(tLRPC$Message.fwd_from.saved_from_peer.channel_id));
                         }
                     } else {
-                        long j16 = tLRPC$Peer4.chat_id;
+                        long j16 = tLRPC$Peer5.chat_id;
                         if (j16 != 0 && !arrayList2.contains(Long.valueOf(j16))) {
                             arrayList2.add(Long.valueOf(tLRPC$Message.fwd_from.saved_from_peer.chat_id));
                         }

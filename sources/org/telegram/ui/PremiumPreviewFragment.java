@@ -712,7 +712,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             }
         });
         this.contentView.addView(this.listView);
-        this.premiumButtonView = new PremiumButtonView(context, false);
+        this.premiumButtonView = new PremiumButtonView(context, false, getResourceProvider());
         updateButtonText(false);
         this.buttonContainer = new FrameLayout(context);
         View view = new View(context);

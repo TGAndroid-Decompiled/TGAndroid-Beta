@@ -38,7 +38,7 @@ public class PaintColorsListView extends RecyclerListView {
         this.paint = new Paint(1);
         Paint paint = new Paint(1);
         this.outlinePaint = paint;
-        this.selectedColorIndex = 0;
+        this.selectedColorIndex = -1;
         paint.setStyle(Paint.Style.STROKE);
         this.outlinePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -75,7 +75,7 @@ public class PaintColorsListView extends RecyclerListView {
 
     public void lambda$new$0(View view, int i) {
         this.colorListener.accept(Integer.valueOf(this.colorPalette.getColor(i)));
-        this.colorPalette.selectColorIndex(i);
+        this.colorPalette.setCurrentBrushColorByColorIndex(i);
     }
 
     public static void drawCheckerboard(Canvas canvas, RectF rectF, int i) {
@@ -158,6 +158,10 @@ public class PaintColorsListView extends RecyclerListView {
     public void setSelectedColorIndex(int i) {
         this.selectedColorIndex = i;
         getAdapter().notifyDataSetChanged();
+    }
+
+    public int getSelectedColorIndex() {
+        return this.selectedColorIndex;
     }
 
     public void setProgress(float f, boolean z) {

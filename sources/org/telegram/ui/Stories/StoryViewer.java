@@ -255,9 +255,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         if (tLRPC$StoryItem == null) {
             return;
         }
-        if (tLRPC$StoryItem.dialogId <= 0 || MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$StoryItem.dialogId)) != null) {
+        int i = UserConfig.selectedAccount;
+        this.currentAccount = i;
+        if (tLRPC$StoryItem.dialogId <= 0 || MessagesController.getInstance(i).getUser(Long.valueOf(tLRPC$StoryItem.dialogId)) != null) {
             if (tLRPC$StoryItem.dialogId >= 0 || MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$StoryItem.dialogId)) != null) {
-                this.currentAccount = UserConfig.selectedAccount;
                 ArrayList<Long> arrayList = new ArrayList<>();
                 arrayList.add(Long.valueOf(tLRPC$StoryItem.dialogId));
                 open(context, tLRPC$StoryItem, arrayList, 0, null, null, placeProvider, false);

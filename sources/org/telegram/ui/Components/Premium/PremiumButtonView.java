@@ -44,11 +44,11 @@ public class PremiumButtonView extends FrameLayout {
     private int radius;
     private boolean showOverlay;
 
-    public PremiumButtonView(Context context, boolean z) {
-        this(context, AndroidUtilities.dp(8.0f), z);
+    public PremiumButtonView(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
+        this(context, AndroidUtilities.dp(8.0f), z, resourcesProvider);
     }
 
-    public PremiumButtonView(Context context, int i, boolean z) {
+    public PremiumButtonView(Context context, int i, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.paintOverlayPaint = new Paint(1);
         this.path = new Path();
@@ -86,13 +86,13 @@ public class PremiumButtonView extends FrameLayout {
             this.overlayTextView = animatedTextView2;
             animatedTextView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             this.overlayTextView.setGravity(17);
-            this.overlayTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText));
+            this.overlayTextView.setTextColor(Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
             this.overlayTextView.setTextSize(AndroidUtilities.dp(14.0f));
             this.overlayTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.overlayTextView.getDrawable().setAllowCancel(true);
             this.overlayTextView.setBackground(Theme.createSimpleSelectorRoundRectDrawable(AndroidUtilities.dp(8.0f), 0, ColorUtils.setAlphaComponent(-1, 120)));
             addView(this.overlayTextView);
-            this.paintOverlayPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton));
+            this.paintOverlayPaint.setColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
             updateOverlayProgress();
         }
     }

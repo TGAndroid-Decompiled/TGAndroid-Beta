@@ -836,7 +836,7 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 case 1:
                     int i2 = ReactedUserHolderView.STYLE_STORY;
                     SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
-                    linksTextView = new ReactedUserHolderView(i2, selfStoryViewsPage.currentAccount, selfStoryViewsPage.getContext(), SelfStoryViewsPage.this.resourcesProvider) {
+                    linksTextView = new ReactedUserHolderView(i2, selfStoryViewsPage.currentAccount, selfStoryViewsPage.getContext(), SelfStoryViewsPage.this.resourcesProvider, false) {
                         @Override
                         public void openStory(long j, Runnable runnable) {
                             BaseFragment lastFragment = LaunchActivity.getLastFragment();

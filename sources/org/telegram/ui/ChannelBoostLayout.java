@@ -154,6 +154,7 @@ public class ChannelBoostLayout extends FrameLayout {
             @Override
             public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
                 TLRPC$TL_booster tLRPC$TL_booster;
+                double d;
                 if (viewHolder.getItemViewType() == 4) {
                     return;
                 }
@@ -165,19 +166,18 @@ public class ChannelBoostLayout extends FrameLayout {
                     StatisticActivity.OverviewCell overviewCell = (StatisticActivity.OverviewCell) viewHolder.itemView;
                     overviewCell.setData(0, Integer.toString(ChannelBoostLayout.this.boostsStatus.level), null, LocaleController.getString("BoostsLevel2", R.string.BoostsLevel2));
                     TLRPC$TL_statsPercentValue tLRPC$TL_statsPercentValue = ChannelBoostLayout.this.boostsStatus.premium_audience;
-                    if (tLRPC$TL_statsPercentValue != null || tLRPC$TL_statsPercentValue.total == 0.0d) {
-                        StringBuilder sb = new StringBuilder();
-                        Locale locale = Locale.US;
-                        TLRPC$TL_statsPercentValue tLRPC$TL_statsPercentValue2 = ChannelBoostLayout.this.boostsStatus.premium_audience;
-                        sb.append(String.format(locale, "%.1f", Float.valueOf(((float) tLRPC$TL_statsPercentValue2.part) / ((float) tLRPC$TL_statsPercentValue2.total))));
-                        sb.append("%");
-                        overviewCell.setData(1, "~" + ((int) ChannelBoostLayout.this.boostsStatus.premium_audience.part), sb.toString(), LocaleController.getString("PremiumSubscribers", R.string.PremiumSubscribers));
-                    } else {
-                        overviewCell.setData(1, "~0", "0%", LocaleController.getString("PremiumSubscribers", R.string.PremiumSubscribers));
+                    if (tLRPC$TL_statsPercentValue != null) {
+                        if (tLRPC$TL_statsPercentValue.total == 0.0d) {
+                            overviewCell.setData(1, "~" + ((int) ChannelBoostLayout.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf((((float) tLRPC$TL_statsPercentValue.part) / ((float) d)) * 100.0f)) + "%", LocaleController.getString("PremiumSubscribers", R.string.PremiumSubscribers));
+                            overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString("BoostsExisting", R.string.BoostsExisting));
+                            TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus = ChannelBoostLayout.this.boostsStatus;
+                            overviewCell.setData(3, String.valueOf(tLRPC$TL_stories_boostsStatus.next_level_boosts - tLRPC$TL_stories_boostsStatus.boosts), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
+                        }
                     }
+                    overviewCell.setData(1, "~0", "0%", LocaleController.getString("PremiumSubscribers", R.string.PremiumSubscribers));
                     overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString("BoostsExisting", R.string.BoostsExisting));
-                    TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus = ChannelBoostLayout.this.boostsStatus;
-                    overviewCell.setData(3, String.valueOf(tLRPC$TL_stories_boostsStatus.next_level_boosts - tLRPC$TL_stories_boostsStatus.boosts), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
+                    TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus2 = ChannelBoostLayout.this.boostsStatus;
+                    overviewCell.setData(3, String.valueOf(tLRPC$TL_stories_boostsStatus2.next_level_boosts - tLRPC$TL_stories_boostsStatus2.boosts), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
                 } else if (viewHolder.getItemViewType() == 5) {
                     TLRPC$User user = MessagesController.getInstance(ChannelBoostLayout.this.currentAccount).getUser(Long.valueOf(ChannelBoostLayout.this.items.get(i).booster.user_id));
                     ((UserCell) viewHolder.itemView).setData(user, ContactsController.formatName(user), LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.formatDate(tLRPC$TL_booster.expires)), 0);
@@ -328,6 +328,7 @@ public class ChannelBoostLayout extends FrameLayout {
         this.usersLoading = false;
         if (tLObject != null) {
             TLRPC$TL_stories_boostersList tLRPC$TL_stories_boostersList = (TLRPC$TL_stories_boostersList) tLObject;
+            MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_stories_boostersList.users, false);
             this.boosters.addAll(tLRPC$TL_stories_boostersList.boosters);
             if (!TextUtils.isEmpty(tLRPC$TL_stories_boostersList.next_offset) && this.boosters.size() < tLRPC$TL_stories_boostersList.count) {
                 z = true;

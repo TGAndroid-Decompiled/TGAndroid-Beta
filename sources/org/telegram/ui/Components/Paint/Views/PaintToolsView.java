@@ -99,8 +99,8 @@ public class PaintToolsView extends LinearLayout {
 
     public void lambda$new$1(int i, Brush brush, View view) {
         animateNextIndex(i);
-        this.delegate.onBrushSelected(brush);
         this.delegate.onGetPalette().setCurrentBrush(i - 1);
+        this.delegate.onBrushSelected(brush);
     }
 
     public void lambda$new$2(View view) {

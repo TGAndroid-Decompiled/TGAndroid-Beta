@@ -579,6 +579,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private boolean videoCallItemVisible;
     private final ArrayList<TLRPC$ChatParticipant> visibleChatParticipants;
     private final ArrayList<Integer> visibleSortedUsers;
+    private boolean waitCanSendStoryRequest;
     private boolean wentToAddContacts;
     private Paint whitePaint;
     private RLottieImageView writeButton;
@@ -5040,6 +5041,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
         StoriesController storiesController = getMessagesController().getStoriesController();
         if (storiesController.canPostStories(getDialogId())) {
+            this.waitCanSendStoryRequest = true;
             storiesController.canSendStoryFor(getDialogId(), new com.google.android.exoplayer2.util.Consumer() {
                 @Override
                 public final void accept(Object obj) {
@@ -5090,7 +5092,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void lambda$createFloatingActionButton$19(Boolean bool) {
+        this.waitCanSendStoryRequest = false;
         this.showBoostsAlert = !bool.booleanValue();
+        hideFloatingButton(false);
     }
 
     public void lambda$createFloatingActionButton$22(final long j, View view) {
@@ -5108,7 +5112,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             });
             return;
         }
-        StoryRecorder.getInstance(getParentActivity(), this.currentAccount).selectedPeerId(getDialogId()).closeToWhenSent(new StoryRecorder.ClosingViewProvider() {
+        StoryRecorder.getInstance(getParentActivity(), this.currentAccount).selectedPeerId(getDialogId()).canChangePeer(false).closeToWhenSent(new StoryRecorder.ClosingViewProvider() {
             @Override
             public void preLayout(long j2, Runnable runnable) {
                 ProfileActivity.this.avatarImage.setHasStories(ProfileActivity.this.needInsetForStories());
@@ -5196,7 +5200,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     public void hideFloatingButton(boolean z) {
-        if (this.floatingHidden == z || this.floatingButtonContainer == null) {
+        if (this.floatingHidden == z || this.floatingButtonContainer == null || this.waitCanSendStoryRequest) {
             return;
         }
         this.floatingHidden = z;
@@ -6814,15 +6818,11 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             RLottieImageView rLottieImageView = this.writeButton;
             if (rLottieImageView != null) {
                 rLottieImageView.setTranslationY(((((this.actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + ActionBar.getCurrentActionBarHeight()) + this.extraHeight) + this.searchTransitionOffset) - AndroidUtilities.dp(29.5f));
-                ProfileStoriesView profileStoriesView = this.storyView;
-                if (profileStoriesView != null) {
-                    profileStoriesView.setExpandCoords(this.avatarContainer2.getMeasuredWidth() - AndroidUtilities.dp(111.0f), (this.actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + ActionBar.getCurrentActionBarHeight() + this.extraHeight + this.searchTransitionOffset);
+                boolean z2 = min > 0.2f && !this.searchMode && (this.imageUpdater == null || this.setAvatarRow == -1);
+                if (z2 && this.chatId != 0) {
+                    z2 = (!ChatObject.isChannel(this.currentChat) || this.currentChat.megagroup || (tLRPC$ChatFull = this.chatInfo) == null || tLRPC$ChatFull.linked_chat_id == 0 || this.infoHeaderRow == -1) ? false : true;
                 }
                 if (!this.openAnimationInProgress) {
-                    boolean z2 = min > 0.2f && !this.searchMode && (this.imageUpdater == null || this.setAvatarRow == -1);
-                    if (z2 && this.chatId != 0) {
-                        z2 = (!ChatObject.isChannel(this.currentChat) || this.currentChat.megagroup || (tLRPC$ChatFull = this.chatInfo) == null || tLRPC$ChatFull.linked_chat_id == 0 || this.infoHeaderRow == -1) ? false : true;
-                    }
                     if (z2 != (this.writeButton.getTag() == null)) {
                         if (z2) {
                             this.writeButton.setTag(null);
@@ -6872,6 +6872,10 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                             }
                         }
                     }
+                }
+                ProfileStoriesView profileStoriesView = this.storyView;
+                if (profileStoriesView != null) {
+                    profileStoriesView.setExpandCoords(this.avatarContainer2.getMeasuredWidth() - AndroidUtilities.dp(z2 ? 111.0f : 40.0f), (this.actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + ActionBar.getCurrentActionBarHeight() + this.extraHeight + this.searchTransitionOffset);
                 }
             }
             this.avatarX = (-AndroidUtilities.dpf2(47.0f)) * min;

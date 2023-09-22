@@ -2775,16 +2775,15 @@ public class LocaleController {
     public static String stringForMessageListDate(long j) {
         long j2 = j * 1000;
         try {
-            Calendar calendar = Calendar.getInstance();
-            int i = calendar.get(6);
-            calendar.setTimeInMillis(j2);
-            int i2 = calendar.get(6);
             if (Math.abs(System.currentTimeMillis() - j2) >= 31536000000L) {
                 return getInstance().formatterYear.format(new Date(j2));
             }
-            int i3 = i2 - i;
-            if (i3 != 0 && (i3 != -1 || System.currentTimeMillis() - j2 >= 28800000)) {
-                if (i3 > -7 && i3 <= -1) {
+            Calendar calendar = Calendar.getInstance();
+            int i = calendar.get(6);
+            calendar.setTimeInMillis(j2);
+            int i2 = calendar.get(6) - i;
+            if (i2 != 0 && (i2 != -1 || System.currentTimeMillis() - j2 >= 28800000)) {
+                if (i2 > -7 && i2 <= -1) {
                     return getInstance().formatterWeek.format(new Date(j2));
                 }
                 return getInstance().formatterDayMonth.format(new Date(j2));

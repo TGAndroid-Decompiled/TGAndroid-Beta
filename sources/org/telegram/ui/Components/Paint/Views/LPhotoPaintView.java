@@ -381,8 +381,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         };
         this.currentCropState = cropState;
         this.inBubbleMode = context instanceof BubbleActivity;
-        PersistColorPalette persistColorPalette = PersistColorPalette.getInstance(i);
-        this.colorSwatch.color = persistColorPalette.getColor(0);
+        final PersistColorPalette persistColorPalette = PersistColorPalette.getInstance(i);
+        persistColorPalette.resetCurrentColor();
+        this.colorSwatch.color = persistColorPalette.getCurrentColor();
         this.colorSwatch.brushWeight = persistColorPalette.getCurrentWeight();
         this.queue = new DispatchQueue("Paint");
         this.bitmapToEdit = bitmap;
@@ -719,6 +720,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                     int height = (view2.getHeight() - view2.getPaddingTop()) - view2.getPaddingBottom();
                     float x = view2.getX() + view2.getPaddingLeft() + (width / 2.0f);
                     float y = view2.getY() + view2.getPaddingTop() + (height / 2.0f);
+                    int i6 = LPhotoPaintView.this.colorSwatch.color;
                     if (LPhotoPaintView.this.tabsNewSelectedIndex != -1) {
                         LPhotoPaintView lPhotoPaintView = LPhotoPaintView.this;
                         ViewGroup viewGroup = (ViewGroup) lPhotoPaintView.getBarView(lPhotoPaintView.tabsNewSelectedIndex);
@@ -733,25 +735,31 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                         View childAt3 = LPhotoPaintView.this.colorsListView.getChildAt(0);
                         x = AndroidUtilities.lerp(x, (LPhotoPaintView.this.colorsListView.getX() - barView.getLeft()) + childAt3.getX() + (childAt3.getWidth() / 2.0f), LPhotoPaintView.this.toolsTransformProgress);
                         y = AndroidUtilities.lerp(y, (LPhotoPaintView.this.colorsListView.getY() - barView.getTop()) + childAt3.getY() + (childAt3.getHeight() / 2.0f), LPhotoPaintView.this.toolsTransformProgress);
+                        i6 = ColorUtils.blendARGB(LPhotoPaintView.this.colorSwatch.color, persistColorPalette.getColor(0), LPhotoPaintView.this.toolsTransformProgress);
                     }
-                    float f = y;
-                    float f2 = x;
-                    checkRainbow(f2, f);
+                    float f = x;
+                    checkRainbow(f, y);
                     float min = (Math.min(width, height) / 2.0f) - AndroidUtilities.dp(0.5f);
                     if (LPhotoPaintView.this.colorsListView != null && LPhotoPaintView.this.colorsListView.getChildCount() > 0) {
                         View childAt4 = LPhotoPaintView.this.colorsListView.getChildAt(0);
                         min = AndroidUtilities.lerp(min, (Math.min((childAt4.getWidth() - childAt4.getPaddingLeft()) - childAt4.getPaddingRight(), (childAt4.getHeight() - childAt4.getPaddingTop()) - childAt4.getPaddingBottom()) / 2.0f) - AndroidUtilities.dp(2.0f), LPhotoPaintView.this.toolsTransformProgress);
                     }
-                    float f3 = min;
-                    rectF.set(f2 - f3, f - f3, f2 + f3, f + f3);
+                    float f2 = min;
+                    rectF.set(f - f2, y - f2, f + f2, y + f2);
                     canvas.drawArc(rectF, 0.0f, 360.0f, false, LPhotoPaintView.this.colorPickerRainbowPaint);
-                    LPhotoPaintView.this.colorSwatchPaint.setColor(LPhotoPaintView.this.colorSwatch.color);
+                    LPhotoPaintView.this.colorSwatchPaint.setColor(i6);
                     LPhotoPaintView.this.colorSwatchPaint.setAlpha((int) (LPhotoPaintView.this.colorSwatchPaint.getAlpha() * view2.getAlpha()));
-                    LPhotoPaintView.this.colorSwatchOutlinePaint.setColor(LPhotoPaintView.this.colorSwatch.color);
+                    LPhotoPaintView.this.colorSwatchOutlinePaint.setColor(i6);
                     LPhotoPaintView.this.colorSwatchOutlinePaint.setAlpha((int) (view2.getAlpha() * 255.0f));
-                    PaintColorsListView.drawColorCircle(canvas, f2, f, f3 - AndroidUtilities.dp(3.0f), LPhotoPaintView.this.colorSwatchPaint.getColor());
-                    LPhotoPaintView.this.colorSwatchOutlinePaint.setAlpha((int) (LPhotoPaintView.this.colorSwatchOutlinePaint.getAlpha() * LPhotoPaintView.this.toolsTransformProgress * view2.getAlpha()));
-                    canvas.drawCircle(f2, f, f3 - ((AndroidUtilities.dp(3.0f) + LPhotoPaintView.this.colorSwatchOutlinePaint.getStrokeWidth()) * (1.0f - LPhotoPaintView.this.toolsTransformProgress)), LPhotoPaintView.this.colorSwatchOutlinePaint);
+                    float dp = f2 - AndroidUtilities.dp(3.0f);
+                    if (LPhotoPaintView.this.colorsListView != null && LPhotoPaintView.this.colorsListView.getSelectedColorIndex() != 0) {
+                        dp = AndroidUtilities.lerp(f2 - AndroidUtilities.dp(3.0f), AndroidUtilities.dp(2.0f) + f2, LPhotoPaintView.this.toolsTransformProgress);
+                    }
+                    PaintColorsListView.drawColorCircle(canvas, f, y, dp, LPhotoPaintView.this.colorSwatchPaint.getColor());
+                    if (LPhotoPaintView.this.colorsListView != null && LPhotoPaintView.this.colorsListView.getSelectedColorIndex() == 0) {
+                        LPhotoPaintView.this.colorSwatchOutlinePaint.setAlpha((int) (LPhotoPaintView.this.colorSwatchOutlinePaint.getAlpha() * LPhotoPaintView.this.toolsTransformProgress * view2.getAlpha()));
+                        canvas.drawCircle(f, y, f2 - ((AndroidUtilities.dp(3.0f) + LPhotoPaintView.this.colorSwatchOutlinePaint.getStrokeWidth()) * (1.0f - LPhotoPaintView.this.toolsTransformProgress)), LPhotoPaintView.this.colorSwatchOutlinePaint);
+                    }
                 }
                 canvas.restore();
             }
@@ -860,7 +868,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                LPhotoPaintView.this.lambda$new$10(context, bitmap2, i, view2);
+                LPhotoPaintView.this.lambda$new$10(context, bitmap2, persistColorPalette, view2);
             }
         });
         this.bottomLayout.addView(this.doneButton, LayoutHelper.createFrame(32, 32.0f, 85, 0.0f, 0.0f, 12.0f, 4.0f));
@@ -996,7 +1004,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         if (this.emojiViewVisible) {
             hideEmojiPopup(false);
         }
-        lambda$registerRemovalUndo$39(this.currentEntityView);
+        lambda$registerRemovalUndo$40(this.currentEntityView);
         selectEntity(null);
     }
 
@@ -1016,7 +1024,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         showColorList(false);
     }
 
-    public void lambda$new$10(Context context, final Bitmap bitmap, final int i, View view) {
+    public void lambda$new$10(Context context, final Bitmap bitmap, final PersistColorPalette persistColorPalette, View view) {
         if (this.isColorListShown) {
             new ColorPickerBottomSheet(context, this.resourcesProvider).setColor(this.colorSwatch.color).setPipetteDelegate(new ColorPickerBottomSheet.PipetteDelegate() {
                 private boolean hasPipette;
@@ -1063,17 +1071,18 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 }
 
                 @Override
-                public void onColorSelected(int i2) {
+                public void onColorSelected(int i) {
                     LPhotoPaintView.this.showColorList(false);
-                    PersistColorPalette.getInstance(i).selectColor(i2);
-                    PersistColorPalette.getInstance(i).saveColors();
-                    LPhotoPaintView.this.setNewColor(i2);
+                    persistColorPalette.selectColor(i);
+                    persistColorPalette.saveColors();
+                    LPhotoPaintView.this.setNewColor(i);
+                    LPhotoPaintView.this.colorsListView.setSelectedColorIndex(persistColorPalette.getCurrentColorPosition());
                     LPhotoPaintView.this.colorsListView.getAdapter().notifyDataSetChanged();
                 }
             }).setColorListener(new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    LPhotoPaintView.this.lambda$new$9(i, (Integer) obj);
+                    LPhotoPaintView.this.lambda$new$9(persistColorPalette, (Integer) obj);
                 }
             }).show();
             return;
@@ -1084,10 +1093,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
     }
 
-    public void lambda$new$9(int i, Integer num) {
-        PersistColorPalette.getInstance(i).selectColor(num.intValue());
-        PersistColorPalette.getInstance(i).saveColors();
+    public void lambda$new$9(PersistColorPalette persistColorPalette, Integer num) {
+        persistColorPalette.selectColor(num.intValue());
+        persistColorPalette.saveColors();
         setNewColor(num.intValue());
+        this.colorsListView.setSelectedColorIndex(persistColorPalette.getCurrentColorPosition());
         this.colorsListView.getAdapter().notifyDataSetChanged();
     }
 
@@ -1264,7 +1274,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         EntityView entityView4 = this.currentEntityView;
         this.currentEntityView = entityView;
         if ((entityView4 instanceof TextPaintView) && TextUtils.isEmpty(((TextPaintView) entityView4).getText())) {
-            lambda$registerRemovalUndo$39(entityView4);
+            lambda$registerRemovalUndo$40(entityView4);
         }
         EntityView entityView5 = this.currentEntityView;
         if (entityView5 != null) {
@@ -1477,6 +1487,9 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         final View barView = getBarView(this.tabsSelectedIndex);
         this.tabsNewSelectedIndex = i;
         final View barView2 = getBarView(i);
+        PersistColorPalette.getInstance(this.currentAccount).setInTextMode(i == 2);
+        this.colorSwatch.color = PersistColorPalette.getInstance(this.currentAccount).getCurrentColor();
+        setCurrentSwatch(this.colorSwatch, true);
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(300L);
         this.tabsSelectionAnimator = duration;
         duration.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -2292,8 +2305,11 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             this.ignoreToolChangeAnimationOnce = true;
         }
         this.renderView.setBrush(brush);
+        Swatch swatch = this.colorSwatch;
+        int i = swatch.color;
+        swatch.color = PersistColorPalette.getInstance(this.currentAccount).getCurrentColor();
         this.colorSwatch.brushWeight = this.weightDefaultValueOverride.get();
-        setCurrentSwatch(this.colorSwatch, true);
+        setCurrentSwatch(this.colorSwatch, true, Integer.valueOf(i));
         this.renderInputView.invalidate();
     }
 
@@ -2385,7 +2401,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             this.toolsTransformAnimation.start();
             if (z) {
                 this.colorsListView.setVisibility(0);
-                this.colorsListView.setSelectedColorIndex(0);
+                this.colorsListView.setSelectedColorIndex(PersistColorPalette.getInstance(this.currentAccount).getCurrentColorPosition());
             }
         }
     }
@@ -2428,7 +2444,10 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
     }
 
     public void setCurrentSwatch(Swatch swatch, boolean z) {
-        FrameLayout frameLayout;
+        setCurrentSwatch(swatch, z, null);
+    }
+
+    private void setCurrentSwatch(Swatch swatch, boolean z, final Integer num) {
         Swatch swatch2 = this.colorSwatch;
         if (swatch2 != swatch) {
             swatch2.color = swatch.color;
@@ -2439,12 +2458,36 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
         this.renderView.setColor(swatch.color);
         this.renderView.setBrushSize(swatch.brushWeight);
-        if (z && (frameLayout = this.bottomLayout) != null) {
-            frameLayout.invalidate();
+        if (z) {
+            final int i = this.colorSwatch.color;
+            if (num != null && num.intValue() != i) {
+                ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
+                duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                        LPhotoPaintView.this.lambda$setCurrentSwatch$27(num, i, valueAnimator);
+                    }
+                });
+                duration.start();
+            } else {
+                FrameLayout frameLayout = this.bottomLayout;
+                if (frameLayout != null) {
+                    frameLayout.invalidate();
+                }
+            }
         }
         EntityView entityView = this.currentEntityView;
         if (entityView instanceof TextPaintView) {
             ((TextPaintView) entityView).setSwatch(new Swatch(swatch.color, swatch.colorLocation, swatch.brushWeight));
+        }
+    }
+
+    public void lambda$setCurrentSwatch$27(Integer num, int i, ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.colorSwatch.color = ColorUtils.blendARGB(num.intValue(), i, floatValue);
+        FrameLayout frameLayout = this.bottomLayout;
+        if (frameLayout != null) {
+            frameLayout.invalidate();
         }
     }
 
@@ -2689,12 +2732,12 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         showPopup(new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.this.lambda$onAddButtonPressed$30();
+                LPhotoPaintView.this.lambda$onAddButtonPressed$31();
             }
         }, this, 53, 0, getHeight());
     }
 
-    public void lambda$onAddButtonPressed$30() {
+    public void lambda$onAddButtonPressed$31() {
         boolean fillShapes = PersistColorPalette.getInstance(this.currentAccount).getFillShapes();
         for (int i = 0; i < Brush.Shape.SHAPES_LIST.size(); i++) {
             final Brush.Shape shape = Brush.Shape.SHAPES_LIST.get(i);
@@ -2702,22 +2745,22 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             PopupButton buttonForPopup = buttonForPopup(shape.getShapeName(), filledIconRes, false, new Runnable() {
                 @Override
                 public final void run() {
-                    LPhotoPaintView.this.lambda$onAddButtonPressed$28(shape, filledIconRes);
+                    LPhotoPaintView.this.lambda$onAddButtonPressed$29(shape, filledIconRes);
                 }
             });
             buttonForPopup.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
-                    boolean lambda$onAddButtonPressed$29;
-                    lambda$onAddButtonPressed$29 = LPhotoPaintView.this.lambda$onAddButtonPressed$29(view);
-                    return lambda$onAddButtonPressed$29;
+                    boolean lambda$onAddButtonPressed$30;
+                    lambda$onAddButtonPressed$30 = LPhotoPaintView.this.lambda$onAddButtonPressed$30(view);
+                    return lambda$onAddButtonPressed$30;
                 }
             });
             this.popupLayout.addView((View) buttonForPopup, LayoutHelper.createLinear(-1, 48));
         }
     }
 
-    public void lambda$onAddButtonPressed$28(Brush.Shape shape, int i) {
+    public void lambda$onAddButtonPressed$29(Brush.Shape shape, int i) {
         if (this.renderView.getCurrentBrush() instanceof Brush.Shape) {
             this.ignoreToolChangeAnimationOnce = true;
         }
@@ -2725,7 +2768,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.paintToolsView.animatePlusToIcon(i);
     }
 
-    public boolean lambda$onAddButtonPressed$29(View view) {
+    public boolean lambda$onAddButtonPressed$30(View view) {
         if (this.popupLayout != null) {
             PersistColorPalette.getInstance(this.currentAccount).toggleFillShapes();
             boolean fillShapes = PersistColorPalette.getInstance(this.currentAccount).getFillShapes();
@@ -2745,12 +2788,12 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         showPopup(new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.this.lambda$showMenuForEntity$35(entityView);
+                LPhotoPaintView.this.lambda$showMenuForEntity$36(entityView);
             }
         }, this, 51, centerLocationInWindow[0], centerLocationInWindow[1] - AndroidUtilities.dp(32.0f));
     }
 
-    public void lambda$showMenuForEntity$35(final EntityView entityView) {
+    public void lambda$showMenuForEntity$36(final EntityView entityView) {
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(0);
         TextView textView = new TextView(getContext());
@@ -2766,7 +2809,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LPhotoPaintView.this.lambda$showMenuForEntity$31(entityView, view);
+                LPhotoPaintView.this.lambda$showMenuForEntity$32(entityView, view);
             }
         });
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, 48));
@@ -2783,7 +2826,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             textView2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    LPhotoPaintView.this.lambda$showMenuForEntity$32(view);
+                    LPhotoPaintView.this.lambda$showMenuForEntity$33(view);
                 }
             });
             linearLayout.addView(textView2, LayoutHelper.createLinear(-2, 48));
@@ -2801,7 +2844,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    LPhotoPaintView.this.lambda$showMenuForEntity$33(entityView, view);
+                    LPhotoPaintView.this.lambda$showMenuForEntity$34(entityView, view);
                 }
             });
             linearLayout.addView(textView3, LayoutHelper.createLinear(-2, 48));
@@ -2818,7 +2861,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         textView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                LPhotoPaintView.this.lambda$showMenuForEntity$34(view);
+                LPhotoPaintView.this.lambda$showMenuForEntity$35(view);
             }
         });
         linearLayout.addView(textView4, LayoutHelper.createLinear(-2, 48));
@@ -2829,8 +2872,8 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         linearLayout.setLayoutParams(layoutParams);
     }
 
-    public void lambda$showMenuForEntity$31(EntityView entityView, View view) {
-        lambda$registerRemovalUndo$39(entityView);
+    public void lambda$showMenuForEntity$32(EntityView entityView, View view) {
+        lambda$registerRemovalUndo$40(entityView);
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return;
@@ -2838,7 +2881,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$32(View view) {
+    public void lambda$showMenuForEntity$33(View view) {
         editSelectedTextEntity();
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
@@ -2847,7 +2890,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$33(EntityView entityView, View view) {
+    public void lambda$showMenuForEntity$34(EntityView entityView, View view) {
         ((StickerView) entityView).mirror(true);
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
@@ -2856,7 +2899,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$34(View view) {
+    public void lambda$showMenuForEntity$35(View view) {
         duplicateSelectedEntity();
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
@@ -2931,15 +2974,15 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             this.popupLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                    boolean lambda$showPopup$36;
-                    lambda$showPopup$36 = LPhotoPaintView.this.lambda$showPopup$36(view2, motionEvent);
-                    return lambda$showPopup$36;
+                    boolean lambda$showPopup$37;
+                    lambda$showPopup$37 = LPhotoPaintView.this.lambda$showPopup$37(view2, motionEvent);
+                    return lambda$showPopup$37;
                 }
             });
             this.popupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                 @Override
                 public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                    LPhotoPaintView.this.lambda$showPopup$37(keyEvent);
+                    LPhotoPaintView.this.lambda$showPopup$38(keyEvent);
                 }
             });
             this.popupLayout.setShownFromBottom(true);
@@ -2959,7 +3002,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             this.popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public final void onDismiss() {
-                    LPhotoPaintView.this.lambda$showPopup$38();
+                    LPhotoPaintView.this.lambda$showPopup$39();
                 }
             });
         }
@@ -2973,7 +3016,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         ActionBarPopupWindow.startAnimation(this.popupLayout);
     }
 
-    public boolean lambda$showPopup$36(View view, MotionEvent motionEvent) {
+    public boolean lambda$showPopup$37(View view, MotionEvent motionEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         if (motionEvent.getActionMasked() == 0 && (actionBarPopupWindow = this.popupWindow) != null && actionBarPopupWindow.isShowing()) {
             view.getHitRect(this.popupRect);
@@ -2986,14 +3029,14 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         return false;
     }
 
-    public void lambda$showPopup$37(KeyEvent keyEvent) {
+    public void lambda$showPopup$38(KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.popupWindow) != null && actionBarPopupWindow.isShowing()) {
             this.popupWindow.dismiss();
         }
     }
 
-    public void lambda$showPopup$38() {
+    public void lambda$showPopup$39() {
         this.popupLayout.removeInnerViews();
     }
 
@@ -3162,7 +3205,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         return stickerView;
     }
 
-    public void lambda$registerRemovalUndo$39(EntityView entityView) {
+    public void lambda$registerRemovalUndo$40(EntityView entityView) {
         EntityView entityView2 = this.currentEntityView;
         if (entityView == entityView2 && entityView2 != null) {
             entityView2.deselect();
@@ -3189,7 +3232,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         this.undoStore.registerUndo(entityView.getUUID(), new Runnable() {
             @Override
             public final void run() {
-                LPhotoPaintView.this.lambda$registerRemovalUndo$39(entityView);
+                LPhotoPaintView.this.lambda$registerRemovalUndo$40(entityView);
             }
         });
     }
@@ -3344,7 +3387,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
             ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    LPhotoPaintView.this.lambda$showEmojiPopup$40(valueAnimator);
+                    LPhotoPaintView.this.lambda$showEmojiPopup$41(valueAnimator);
                 }
             });
             ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -3375,7 +3418,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         onWindowSizeChanged();
     }
 
-    public void lambda$showEmojiPopup$40(ValueAnimator valueAnimator) {
+    public void lambda$showEmojiPopup$41(ValueAnimator valueAnimator) {
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -3391,7 +3434,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        LPhotoPaintView.this.lambda$hideEmojiPopup$41(valueAnimator);
+                        LPhotoPaintView.this.lambda$hideEmojiPopup$42(valueAnimator);
                     }
                 });
                 this.isAnimatePopupClosing = true;
@@ -3413,7 +3456,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         }
     }
 
-    public void lambda$hideEmojiPopup$41(ValueAnimator valueAnimator) {
+    public void lambda$hideEmojiPopup$42(ValueAnimator valueAnimator) {
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 

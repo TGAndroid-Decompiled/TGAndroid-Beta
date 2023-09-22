@@ -309,6 +309,7 @@ public class CaptionContainerView extends FrameLayout {
                 CaptionContainerView.this.drawHint((Canvas) obj, (Runnable) obj2);
             }
         };
+        editTextEmoji.getEditText().setSupportRtlHint(true);
         this.captionBlur = new BlurringShader.StoryBlurDrawer(blurManager, editTextEmoji.getEditText(), customBlur() ? 1 : 2);
         editTextEmoji.getEditText().setHintColor(-2130706433);
         editTextEmoji.getEditText().setHintText(LocaleController.getString("AddCaption", R.string.AddCaption), false);
@@ -877,6 +878,7 @@ public class CaptionContainerView extends FrameLayout {
                 return;
             }
             EditTextCaption editText = this.editText.getEditText();
+            canvas.translate(-editText.hintLayoutX, 0.0f);
             canvas.saveLayerAlpha(0.0f, 0.0f, this.hintTextBitmap.getWidth(), this.hintTextBitmap.getHeight(), 255, 31);
             this.rectF.set(0.0f, 1.0f, this.hintTextBitmap.getWidth(), this.hintTextBitmap.getHeight() - 1);
             drawBlur(this.captionBlur, canvas, this.rectF, 0.0f, true, (-this.editText.getX()) - editText.getPaddingLeft(), ((-this.editText.getY()) - editText.getPaddingTop()) - editText.getExtendedPaddingTop(), true);
