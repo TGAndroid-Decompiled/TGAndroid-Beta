@@ -2319,7 +2319,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 MediaFormat createVideoFormat = MediaFormat.createVideoFormat(this.outputMimeType, CameraView.this.videoWidth, CameraView.this.videoHeight);
                 createVideoFormat.setInteger("color-format", 2130708361);
                 createVideoFormat.setInteger("bitrate", this.videoBitrate);
-                createVideoFormat.setInteger("frame-rate", 30);
+                createVideoFormat.setInteger("frame-rate", FRAME_RATE);
                 createVideoFormat.setInteger("i-frame-interval", 1);
                 this.videoEncoder.configure(createVideoFormat, (Surface) null, (MediaCrypto) null, 1);
                 this.surface = this.videoEncoder.createInputSurface();

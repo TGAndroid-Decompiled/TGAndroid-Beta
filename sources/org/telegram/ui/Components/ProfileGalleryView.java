@@ -71,7 +71,6 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     private boolean isScrollingListView;
     private boolean isSwipingViewPager;
     private final ActionBar parentActionBar;
-    private final int parentClassGuid;
     private final RecyclerListView parentListView;
     Path path;
     private ArrayList<TLRPC$Photo> photos;
@@ -160,7 +159,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         setOffscreenPageLimit(2);
         this.isProfileFragment = false;
         this.parentListView = recyclerListView;
-        this.parentClassGuid = ConnectionsManager.generateClassGuid();
+        ConnectionsManager.generateClassGuid();
         this.parentActionBar = actionBar;
         this.touchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         this.callback = callback;
@@ -223,7 +222,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                     profileGalleryView.selectedPage = i;
                 }
                 if (profileGalleryView.dialogPhotos != null) {
-                    ProfileGalleryView.this.dialogPhotos.loadAfter(i - (ProfileGalleryView.this.adapter != null ? ProfileGalleryView.this.adapter.getExtraCount() : 0), z, ProfileGalleryView.this.parentClassGuid);
+                    ProfileGalleryView.this.dialogPhotos.loadAfter(i - (ProfileGalleryView.this.adapter != null ? ProfileGalleryView.this.adapter.getExtraCount() : 0), z);
                 }
             }
         });
@@ -269,7 +268,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         this.imagesLayerNum = i;
     }
 
-    public ProfileGalleryView(Context context, long j, ActionBar actionBar, RecyclerListView recyclerListView, ProfileActivity.AvatarImageView avatarImageView, final int i, Callback callback) {
+    public ProfileGalleryView(Context context, long j, ActionBar actionBar, RecyclerListView recyclerListView, ProfileActivity.AvatarImageView avatarImageView, int i, Callback callback) {
         super(context);
         this.downPoint = new PointF();
         this.isScrollingListView = true;
@@ -297,7 +296,6 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         this.isProfileFragment = true;
         this.dialogId = j;
         this.parentListView = recyclerListView;
-        this.parentClassGuid = i;
         this.parentActionBar = actionBar;
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext(), avatarImageView, actionBar);
         this.adapter = viewPagerAdapter;
@@ -357,7 +355,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                     profileGalleryView.selectedPage = i2;
                 }
                 if (profileGalleryView.dialogPhotos != null) {
-                    ProfileGalleryView.this.dialogPhotos.loadAfter(i2 - (ProfileGalleryView.this.adapter != null ? ProfileGalleryView.this.adapter.getExtraCount() : 0), z, i);
+                    ProfileGalleryView.this.dialogPhotos.loadAfter(i2 - (ProfileGalleryView.this.adapter != null ? ProfileGalleryView.this.adapter.getExtraCount() : 0), z);
                 }
             }
         });
@@ -557,7 +555,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                     MessagesController.DialogPhotos dialogPhotos3 = this.dialogPhotos;
                     int currentItem = getCurrentItem();
                     ViewPagerAdapter viewPagerAdapter = this.adapter;
-                    dialogPhotos3.loadAfter(currentItem - (viewPagerAdapter != null ? viewPagerAdapter.getExtraCount() : 0), true, this.parentClassGuid);
+                    dialogPhotos3.loadAfter(currentItem - (viewPagerAdapter != null ? viewPagerAdapter.getExtraCount() : 0), true);
                 }
                 return true;
             } else if (z && (dialogPhotos = this.dialogPhotos) != null) {
@@ -565,7 +563,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                 MessagesController.DialogPhotos dialogPhotos4 = this.dialogPhotos;
                 int currentItem2 = getCurrentItem();
                 ViewPagerAdapter viewPagerAdapter2 = this.adapter;
-                dialogPhotos4.loadAfter(currentItem2 - (viewPagerAdapter2 != null ? viewPagerAdapter2.getExtraCount() : 0), true, this.parentClassGuid);
+                dialogPhotos4.loadAfter(currentItem2 - (viewPagerAdapter2 != null ? viewPagerAdapter2.getExtraCount() : 0), true);
             }
         }
         if (this.imagesLocations.isEmpty()) {
@@ -1099,7 +1097,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
             MessagesController.DialogPhotos dialogPhotos3 = this.dialogPhotos;
             int currentItem = getCurrentItem();
             ViewPagerAdapter viewPagerAdapter = this.adapter;
-            dialogPhotos3.loadAfter(currentItem - (viewPagerAdapter != null ? viewPagerAdapter.getExtraCount() : 0), true, this.parentClassGuid);
+            dialogPhotos3.loadAfter(currentItem - (viewPagerAdapter != null ? viewPagerAdapter.getExtraCount() : 0), true);
         }
     }
 

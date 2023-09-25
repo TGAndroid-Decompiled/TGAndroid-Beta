@@ -985,13 +985,13 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
         this.actionModeTitle.setTextSize(AndroidUtilities.dp(18.0f));
         this.actionModeTitle.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         this.actionModeTitle.setTextColor(Theme.getColor(i));
-        frameLayout.addView(this.actionModeTitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, -11.0f, 0.0f, 0.0f));
+        frameLayout.addView(this.actionModeTitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, -11.0f, 18.0f, 0.0f));
         AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);
         this.actionModeSubtitle = animatedTextView2;
         animatedTextView2.setAnimationProperties(0.35f, 0L, 350L, cubicBezierInterpolator);
         this.actionModeSubtitle.setTextSize(AndroidUtilities.dp(14.0f));
         this.actionModeSubtitle.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
-        frameLayout.addView(this.actionModeSubtitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, 10.0f, 0.0f, 0.0f));
+        frameLayout.addView(this.actionModeSubtitle, LayoutHelper.createFrame(-1, 18.0f, 19, 0.0f, 10.0f, 18.0f, 0.0f));
         TextView textView = new TextView(context);
         this.actionModeClearButton = textView;
         textView.setTextSize(1, 14.0f);
@@ -1007,7 +1007,11 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 CacheControlActivity.this.lambda$createView$17(view);
             }
         });
-        frameLayout.addView(this.actionModeClearButton, LayoutHelper.createFrame(-2, 28.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
+        if (LocaleController.isRTL) {
+            frameLayout.addView(this.actionModeClearButton, LayoutHelper.createFrame(-2, 28.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
+        } else {
+            frameLayout.addView(this.actionModeClearButton, LayoutHelper.createFrame(-2, 28.0f, 21, 0.0f, 0.0f, 14.0f, 0.0f));
+        }
         ActionBarMenuItem addItem = this.actionBar.createMenu().addItem(2, R.drawable.ic_ab_other);
         int i2 = R.drawable.msg_delete;
         ActionBarMenuSubItem addSubItem = addItem.addSubItem(3, i2, LocaleController.getString("ClearLocalDatabase", R.string.ClearLocalDatabase));
@@ -2602,8 +2606,8 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                 } else {
                     formatPluralString = LocaleController.formatPluralString("Files", this.cacheModel.getSelectedFiles(), Integer.valueOf(this.cacheModel.getSelectedFiles()));
                 }
-                this.actionModeTitle.setText(AndroidUtilities.formatFileSize(this.cacheModel.getSelectedFilesSize()));
-                this.actionModeSubtitle.setText(formatPluralString);
+                this.actionModeTitle.setText(AndroidUtilities.formatFileSize(this.cacheModel.getSelectedFilesSize()), !LocaleController.isRTL);
+                this.actionModeSubtitle.setText(formatPluralString, !LocaleController.isRTL);
                 this.cachedMediaLayout.showActionMode(true);
                 return;
             }
@@ -2853,7 +2857,7 @@ public class CacheControlActivity extends BaseFragment implements NotificationCe
                     checkBox22.setColor(-1, Theme.key_windowBackgroundWhite, Theme.key_checkboxCheck);
                     this.checkBox.setDrawUnchecked(false);
                     this.checkBox.setDrawBackgroundAsArc(3);
-                    addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, 0, 38.0f, 25.0f, 0.0f, 0.0f));
+                    addView(this.checkBox, LayoutHelper.createFrame(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 48, 38.0f, 25.0f, 38.0f, 0.0f));
                 }
                 this.checkBox.setChecked(z, z2);
             }

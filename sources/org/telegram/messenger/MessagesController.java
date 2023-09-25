@@ -4222,7 +4222,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
                     size = i;
-                case DialogPhotos.STEP:
+                case 30:
                     i = size;
                     z = z7;
                     z2 = z8;
@@ -5526,7 +5526,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
                     size = i;
-                case 'P':
+                case DialogPhotos.STEP:
                     i = size;
                     TLRPC$JSONValue tLRPC$JSONValue92 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue92 instanceof TLRPC$TL_jsonNumber) {
@@ -6629,7 +6629,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 tLRPC$TL_userProfilePhoto.photo_big = closestPhotoSizeWithSize2.location;
             }
             getDialogPhotos(user.id).reset();
-            getDialogPhotos(user.id).load(0, 30, 0);
+            getDialogPhotos(user.id).load(0, 80);
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(user);
             getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
@@ -8541,7 +8541,7 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     public class DialogPhotos {
-        public static final int STEP = 30;
+        public static final int STEP = 80;
         public final long dialogId;
         private boolean loading;
         public final ArrayList<TLRPC$Photo> photos = new ArrayList<>();
@@ -8556,11 +8556,11 @@ public class MessagesController extends BaseController implements NotificationCe
             this.dialogId = j;
         }
 
-        public void loadAfter(int i, boolean z, int i2) {
+        public void loadAfter(int i, boolean z) {
             boolean z2;
-            int i3 = 0;
+            int i2 = 0;
             if (this.photos.isEmpty()) {
-                load(0, 30, i2);
+                load(0, 80);
                 return;
             }
             if (i < 0) {
@@ -8572,16 +8572,16 @@ public class MessagesController extends BaseController implements NotificationCe
             if (i < 0 || i >= this.photos.size()) {
                 return;
             }
-            int i4 = 0;
+            int i3 = 0;
             while (true) {
-                if (i4 >= this.photos.size()) {
+                if (i3 >= this.photos.size()) {
                     z2 = false;
                     break;
-                } else if (this.photos.get(i4) == null) {
+                } else if (this.photos.get(i3) == null) {
                     z2 = true;
                     break;
                 } else {
-                    i4++;
+                    i3++;
                 }
             }
             if (z2) {
@@ -8592,15 +8592,15 @@ public class MessagesController extends BaseController implements NotificationCe
                             i = 0;
                         }
                     }
-                    while (i3 <= 30) {
-                        int i5 = i + i3;
-                        if (i5 >= this.photos.size() || this.photos.get(i5) != null) {
+                    while (i2 <= 80) {
+                        int i4 = i + i2;
+                        if (i4 >= this.photos.size() || this.photos.get(i4) != null) {
                             break;
                         }
-                        i3++;
+                        i2++;
                     }
-                    if (i3 > 0) {
-                        load(i, i3, i2);
+                    if (i2 > 0) {
+                        load(i, i2);
                         return;
                     }
                     return;
@@ -8611,21 +8611,20 @@ public class MessagesController extends BaseController implements NotificationCe
                         i = this.photos.size() - 1;
                     }
                 }
-                while (i3 <= 30) {
-                    int i6 = i - i3;
-                    if (i6 < 0 || this.photos.get(i6) != null) {
+                while (i2 <= 80) {
+                    int i5 = i - i2;
+                    if (i5 < 0 || this.photos.get(i5) != null) {
                         break;
                     }
-                    i3++;
+                    i2++;
                 }
-                if (i3 > 0) {
-                    load(i - i3, i3, i2);
+                if (i2 > 0) {
+                    load(i - i2, i2);
                 }
             }
         }
 
-        public void load(final int i, final int i2, final int i3) {
-            int sendRequest;
+        public void load(final int i, final int i2) {
             if (this.loading || i2 <= 0 || i < 0) {
                 return;
             }
@@ -8642,77 +8641,76 @@ public class MessagesController extends BaseController implements NotificationCe
                 tLRPC$TL_photos_getUserPhotos.limit = i2;
                 tLRPC$TL_photos_getUserPhotos.max_id = 0L;
                 tLRPC$TL_photos_getUserPhotos.user_id = MessagesController.this.getInputUser(user);
-                sendRequest = MessagesController.this.getConnectionsManager().sendRequest(tLRPC$TL_photos_getUserPhotos, new RequestDelegate() {
+                MessagesController.this.getConnectionsManager().sendRequest(tLRPC$TL_photos_getUserPhotos, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        MessagesController.DialogPhotos.this.lambda$load$1(i, i2, i3, tLObject, tLRPC$TL_error);
+                        MessagesController.DialogPhotos.this.lambda$load$1(i, i2, tLObject, tLRPC$TL_error);
                     }
                 });
-            } else {
-                TLRPC$TL_messages_search tLRPC$TL_messages_search = new TLRPC$TL_messages_search();
-                tLRPC$TL_messages_search.filter = new TLRPC$TL_inputMessagesFilterChatPhotos();
-                tLRPC$TL_messages_search.add_offset = i;
-                tLRPC$TL_messages_search.limit = i2;
-                tLRPC$TL_messages_search.offset_id = 0;
-                tLRPC$TL_messages_search.q = "";
-                tLRPC$TL_messages_search.peer = MessagesController.this.getInputPeer(this.dialogId);
-                sendRequest = MessagesController.this.getConnectionsManager().sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        MessagesController.DialogPhotos.this.lambda$load$3(i, i2, i3, tLObject, tLRPC$TL_error);
-                    }
-                });
+                return;
             }
-            MessagesController.this.getConnectionsManager().bindRequestToGuid(sendRequest, i3);
+            TLRPC$TL_messages_search tLRPC$TL_messages_search = new TLRPC$TL_messages_search();
+            tLRPC$TL_messages_search.filter = new TLRPC$TL_inputMessagesFilterChatPhotos();
+            tLRPC$TL_messages_search.add_offset = i;
+            tLRPC$TL_messages_search.limit = i2;
+            tLRPC$TL_messages_search.offset_id = 0;
+            tLRPC$TL_messages_search.q = "";
+            tLRPC$TL_messages_search.peer = MessagesController.this.getInputPeer(this.dialogId);
+            MessagesController.this.getConnectionsManager().sendRequest(tLRPC$TL_messages_search, new RequestDelegate() {
+                @Override
+                public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+                    MessagesController.DialogPhotos.this.lambda$load$3(i, i2, tLObject, tLRPC$TL_error);
+                }
+            });
         }
 
-        public void lambda$load$1(final int i, final int i2, final int i3, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$load$1(final int i, final int i2, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
             if (tLRPC$TL_error == null) {
                 final TLRPC$photos_Photos tLRPC$photos_Photos = (TLRPC$photos_Photos) tLObject;
                 MessagesController.this.getMessagesStorage().putUsersAndChats(tLRPC$photos_Photos.users, null, true, true);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesController.DialogPhotos.this.lambda$load$0(tLRPC$photos_Photos, i, i2, i3);
+                        MessagesController.DialogPhotos.this.lambda$load$0(tLRPC$photos_Photos, i, i2);
                     }
                 });
             }
         }
 
-        public void lambda$load$0(TLRPC$photos_Photos tLRPC$photos_Photos, int i, int i2, int i3) {
+        public void lambda$load$0(TLRPC$photos_Photos tLRPC$photos_Photos, int i, int i2) {
             MessagesController.this.putUsers(tLRPC$photos_Photos.users, false);
-            onLoaded(i, i2, tLRPC$photos_Photos, i3);
+            onLoaded(i, i2, tLRPC$photos_Photos);
         }
 
-        public void lambda$load$3(final int i, final int i2, final int i3, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+        public void lambda$load$3(final int i, final int i2, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
             if (tLRPC$TL_error == null) {
                 final TLRPC$messages_Messages tLRPC$messages_Messages = (TLRPC$messages_Messages) tLObject;
                 MessagesController.this.getMessagesStorage().putUsersAndChats(tLRPC$messages_Messages.users, tLRPC$messages_Messages.chats, true, true);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        MessagesController.DialogPhotos.this.lambda$load$2(tLRPC$messages_Messages, i, i2, i3);
+                        MessagesController.DialogPhotos.this.lambda$load$2(tLRPC$messages_Messages, i, i2);
                     }
                 });
             }
         }
 
-        public void lambda$load$2(TLRPC$messages_Messages tLRPC$messages_Messages, int i, int i2, int i3) {
+        public void lambda$load$2(TLRPC$messages_Messages tLRPC$messages_Messages, int i, int i2) {
             TLRPC$Photo tLRPC$Photo;
             MessagesController.this.putUsers(tLRPC$messages_Messages.users, false);
             MessagesController.this.putChats(tLRPC$messages_Messages.chats, false);
             TLRPC$TL_photos_photos tLRPC$TL_photos_photos = new TLRPC$TL_photos_photos();
             tLRPC$TL_photos_photos.count = tLRPC$messages_Messages.count;
-            for (int i4 = 0; i4 < tLRPC$messages_Messages.messages.size(); i4++) {
-                TLRPC$MessageAction tLRPC$MessageAction = tLRPC$messages_Messages.messages.get(i4).action;
+            for (int i3 = 0; i3 < tLRPC$messages_Messages.messages.size(); i3++) {
+                TLRPC$MessageAction tLRPC$MessageAction = tLRPC$messages_Messages.messages.get(i3).action;
                 if (tLRPC$MessageAction != null && (tLRPC$Photo = tLRPC$MessageAction.photo) != null) {
                     tLRPC$TL_photos_photos.photos.add(tLRPC$Photo);
                 }
             }
-            onLoaded(i, i2, tLRPC$TL_photos_photos, i3);
+            onLoaded(i, i2, tLRPC$TL_photos_photos);
         }
 
-        private void onLoaded(int i, int i2, TLRPC$photos_Photos tLRPC$photos_Photos, int i3) {
+        private void onLoaded(int i, int i2, TLRPC$photos_Photos tLRPC$photos_Photos) {
             boolean z = this.loaded;
             this.loading = false;
             this.loaded = true;
@@ -8721,36 +8719,36 @@ public class MessagesController extends BaseController implements NotificationCe
             tLRPC$photos_Photos.count = max;
             boolean z2 = max != this.photos.size() || i + i2 > this.photos.size();
             if (!z2) {
-                int i4 = 0;
+                int i3 = 0;
                 while (true) {
-                    if (i4 >= tLRPC$photos_Photos.photos.size()) {
+                    if (i3 >= tLRPC$photos_Photos.photos.size()) {
                         break;
                     }
-                    int i5 = i + i4;
-                    if (this.photos.get(i5) != null && this.photos.get(i5).id != tLRPC$photos_Photos.photos.get(i4).id) {
+                    int i4 = i + i3;
+                    if (this.photos.get(i4) != null && this.photos.get(i4).id != tLRPC$photos_Photos.photos.get(i3).id) {
                         z2 = true;
                         break;
                     }
-                    i4++;
+                    i3++;
                 }
             }
             if (z2) {
                 this.photos.clear();
-                for (int i6 = 0; i6 < tLRPC$photos_Photos.count; i6++) {
-                    int i7 = i6 - i;
-                    this.photos.add((i7 < 0 || i7 >= tLRPC$photos_Photos.photos.size()) ? null : tLRPC$photos_Photos.photos.get(i7));
+                for (int i5 = 0; i5 < tLRPC$photos_Photos.count; i5++) {
+                    int i6 = i5 - i;
+                    this.photos.add((i6 < 0 || i6 >= tLRPC$photos_Photos.photos.size()) ? null : tLRPC$photos_Photos.photos.get(i6));
                 }
             } else {
-                for (int i8 = 0; i8 < tLRPC$photos_Photos.photos.size(); i8++) {
-                    this.photos.set(i + i8, tLRPC$photos_Photos.photos.get(i8));
+                for (int i7 = 0; i7 < tLRPC$photos_Photos.photos.size(); i7++) {
+                    this.photos.set(i + i7, tLRPC$photos_Photos.photos.get(i7));
                 }
             }
             saveCache();
             MessagesController.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogPhotosUpdate, this);
-            if (z || i != 0 || i2 >= this.photos.size() || this.photos.size() - i2 <= 30) {
+            if (z || i != 0 || i2 >= this.photos.size() || this.photos.size() - i2 <= 80) {
                 return;
             }
-            load(this.photos.size() - 30, 30, i3);
+            load(this.photos.size() - 80, 80);
         }
 
         public void removePhoto(long j) {
@@ -8811,7 +8809,7 @@ public class MessagesController extends BaseController implements NotificationCe
                 this.photos.set(((Integer) entry.getKey()).intValue(), (TLRPC$Photo) entry.getValue());
             }
             MessagesController.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.dialogPhotosUpdate, this);
-            load(0, 30, 0);
+            load(0, 80);
         }
 
         private void saveCache() {

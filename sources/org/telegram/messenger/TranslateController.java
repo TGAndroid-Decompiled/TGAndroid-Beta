@@ -817,7 +817,7 @@ public class TranslateController extends BaseController {
             this.messageIds = new ArrayList<>();
             this.messageTexts = new ArrayList<>();
             this.callbacks = new ArrayList<>();
-            this.delay = TranslateController.GROUPING_TRANSLATIONS_TIMEOUT;
+            this.delay = 80;
             this.reqId = -1;
         }
     }
