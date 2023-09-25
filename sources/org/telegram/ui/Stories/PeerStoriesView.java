@@ -926,18 +926,29 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         private void processExternalUrl(int i, String str, CharacterStyle characterStyle, boolean z) {
-            if (z || AndroidUtilities.shouldShowUrlInAlert(str)) {
-                if (i == 0 || i == 2) {
-                    AlertsCreator.showOpenUrlAlert(this.val$storyViewer.fragment, str, true, true, true, (characterStyle instanceof URLSpanReplacement) && (((URLSpanReplacement) characterStyle).getTextStyleRun().flags & 1024) != 0, null, this.val$resourcesProvider);
+            boolean z2;
+            if (!z && !AndroidUtilities.shouldShowUrlInAlert(str)) {
+                if (i == 0) {
+                    Browser.openUrl(getContext(), Uri.parse(str), true, true, null);
                 } else if (i == 1) {
+                    Browser.openUrl(getContext(), Uri.parse(str), false, false, null);
+                } else if (i == 2) {
+                    Browser.openUrl(getContext(), Uri.parse(str), false, true, null);
+                }
+            } else if (i != 0 && i != 2) {
+                if (i == 1) {
                     AlertsCreator.showOpenUrlAlert(this.val$storyViewer.fragment, str, true, true, false, null, this.val$resourcesProvider);
                 }
-            } else if (i == 0) {
-                Browser.openUrl(getContext(), Uri.parse(str), true, true, null);
-            } else if (i == 1) {
-                Browser.openUrl(getContext(), Uri.parse(str), false, false, null);
-            } else if (i == 2) {
-                Browser.openUrl(getContext(), Uri.parse(str), false, true, null);
+            } else {
+                if (characterStyle instanceof URLSpanReplacement) {
+                    URLSpanReplacement uRLSpanReplacement = (URLSpanReplacement) characterStyle;
+                    if (uRLSpanReplacement.getTextStyleRun() != null && (uRLSpanReplacement.getTextStyleRun().flags & 1024) != 0) {
+                        z2 = true;
+                        AlertsCreator.showOpenUrlAlert(this.val$storyViewer.fragment, str, true, true, true, z2, null, this.val$resourcesProvider);
+                    }
+                }
+                z2 = false;
+                AlertsCreator.showOpenUrlAlert(this.val$storyViewer.fragment, str, true, true, true, z2, null, this.val$resourcesProvider);
             }
         }
 
@@ -2615,7 +2626,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
-                protected void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                     super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     BulletinFactory of = BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider);
@@ -3338,7 +3349,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
                 @Override
                 public boolean presentFragment(BaseFragment baseFragment) {
-                    this.storyViewer.presentFragment(baseFragment);
+                    StoryViewer storyViewer2 = this.storyViewer;
+                    if (storyViewer2 != null) {
+                        storyViewer2.presentFragment(baseFragment);
+                        return true;
+                    }
                     return true;
                 }
             }, activity, checkStoryLimit.getLimitReachedType(), this.currentAccount, null));

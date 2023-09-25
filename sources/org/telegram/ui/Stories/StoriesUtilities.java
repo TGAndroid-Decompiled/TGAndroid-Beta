@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
+import androidx.recyclerview.widget.RecyclerView;
 import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -1244,7 +1245,8 @@ public class StoriesUtilities {
                 return;
             }
             lastFragment.getOrCreateStoryViewer().doOnAnimationReady(runnable);
-            lastFragment.getOrCreateStoryViewer().open(lastFragment.getContext(), j, StoriesListPlaceProvider.of((RecyclerListView) this.child.getParent()));
+            ViewParent parent = this.child.getParent();
+            lastFragment.getOrCreateStoryViewer().open(lastFragment.getContext(), j, parent instanceof RecyclerView ? StoriesListPlaceProvider.of((RecyclerListView) parent) : null);
         }
 
         public float getScale() {

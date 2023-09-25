@@ -6132,7 +6132,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             atomicReference.set(actionBarPopupWindow);
             float f3 = f;
             float f4 = f2;
-            while (view2 != getFragmentView()) {
+            while (view2 != getFragmentView() && view2 != null) {
                 f3 += view2.getX();
                 f4 += view2.getY();
                 view2 = (View) view2.getParent();

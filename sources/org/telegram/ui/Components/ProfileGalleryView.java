@@ -251,10 +251,10 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
             }
             if (realPosition == i2) {
                 f2 = 1.0f - f;
-            } else if ((realPosition - 1) % getRealCount() == i2) {
-                f2 = (1.0f - f) - 1.0f;
+            } else if (getRealCount() <= 0 || (realPosition - 1) % getRealCount() != i2) {
+                f2 = (getRealCount() <= 0 || (realPosition + 1) % getRealCount() != i2) ? 0.0f : (1.0f - f) + 1.0f;
             } else {
-                f2 = (realPosition + 1) % getRealCount() == i2 ? (1.0f - f) + 1.0f : 0.0f;
+                f2 = (1.0f - f) - 1.0f;
             }
             if (f2 > 1.0f) {
                 f2 = 2.0f - f2;
@@ -523,7 +523,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
 
     public void setChatInfo(TLRPC$ChatFull tLRPC$ChatFull) {
         this.chatInfo = tLRPC$ChatFull;
-        if (this.photos.isEmpty() || this.photos.get(0) != null || this.chatInfo == null || !FileLoader.isSamePhoto((TLRPC$FileLocation) this.imagesLocations.get(0).location, this.chatInfo.chat_photo)) {
+        if (this.photos.isEmpty() || this.photos.get(0) != null || this.chatInfo == null || this.imagesLocations.get(0) == null || !FileLoader.isSamePhoto((TLRPC$FileLocation) this.imagesLocations.get(0).location, this.chatInfo.chat_photo)) {
             return;
         }
         this.photos.set(0, this.chatInfo.chat_photo);

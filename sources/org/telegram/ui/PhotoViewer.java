@@ -8167,8 +8167,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer != null) {
             videoPlayer.play();
-        } else {
-            this.photoViewerWebView.playVideo();
+            return;
+        }
+        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
+        if (photoViewerWebView != null) {
+            photoViewerWebView.playVideo();
         }
     }
 
@@ -8176,8 +8179,11 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         VideoPlayer videoPlayer = this.videoPlayer;
         if (videoPlayer != null) {
             videoPlayer.pause();
-        } else {
-            this.photoViewerWebView.pauseVideo();
+            return;
+        }
+        PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
+        if (photoViewerWebView != null) {
+            photoViewerWebView.pauseVideo();
         }
     }
 
@@ -8188,7 +8194,9 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             return;
         }
         PhotoViewerWebView photoViewerWebView = this.photoViewerWebView;
-        photoViewerWebView.seekTo(f * photoViewerWebView.getVideoDuration());
+        if (photoViewerWebView != null) {
+            photoViewerWebView.seekTo(f * photoViewerWebView.getVideoDuration());
+        }
     }
 
     private void preparePlayer(Uri uri, boolean z, boolean z2) {
@@ -11014,7 +11022,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if (i >= this.imagesArrLocations.size()) {
                 return null;
             }
-            if (jArr != null) {
+            if (jArr != null && this.imagesArrLocationsSizes.get(i) != null) {
                 jArr[0] = this.imagesArrLocationsSizes.get(i).longValue();
             }
             return this.imagesArrLocationsVideo.get(i);
@@ -11095,10 +11103,13 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             if (i >= this.imagesArrLocations.size()) {
                 return null;
             }
-            if (jArr != null) {
+            if (jArr != null && this.imagesArrLocationsSizes.get(i) != null) {
                 jArr[0] = this.imagesArrLocationsSizes.get(i).longValue();
             }
-            return this.imagesArrLocationsVideo.get(i).location;
+            if (this.imagesArrLocationsVideo.get(i) != null) {
+                return this.imagesArrLocationsVideo.get(i).location;
+            }
+            return null;
         } else if (this.imagesArr.isEmpty() || i >= this.imagesArr.size()) {
             return null;
         } else {

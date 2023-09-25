@@ -8818,7 +8818,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     if (ChatMessageCell.this.drawForwardedName) {
                         int i6 = 0;
                         while (i6 < 2) {
-                            if (ChatMessageCell.this.forwardedNameLayout[i6] != null) {
+                            if (ChatMessageCell.this.forwardedNameLayout[i6] != null && ChatMessageCell.this.forwardedNameLayout[i6].getText() != null) {
                                 spannableStringBuilder.append(ChatMessageCell.this.forwardedNameLayout[i6].getText());
                                 spannableStringBuilder.append(i6 == 0 ? " " : charSequence);
                             }

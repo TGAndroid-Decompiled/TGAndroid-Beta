@@ -622,6 +622,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             this.storiesViewPager.setPeerIds(arrayList, this.currentAccount, i);
         }
         this.windowManager = (WindowManager) context.getSystemService("window");
+        if (lastFragment == null || lastFragment.getLayoutContainer() == null) {
+            this.ATTACH_TO_FRAGMENT = false;
+        }
         if (this.ATTACH_TO_FRAGMENT) {
             AndroidUtilities.removeFromParent(this.windowView);
             this.windowView.setFitsSystemWindows(true);

@@ -504,23 +504,47 @@ public class SpoilerEffect2 {
         private void die() {
             int[] iArr = this.particlesData;
             if (iArr != null) {
-                GLES31.glDeleteBuffers(2, iArr, 0);
+                try {
+                    GLES31.glDeleteBuffers(2, iArr, 0);
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
                 this.particlesData = null;
             }
             int i = this.drawProgram;
             if (i != 0) {
-                GLES31.glDeleteProgram(i);
+                try {
+                    GLES31.glDeleteProgram(i);
+                } catch (Exception e2) {
+                    FileLog.e(e2);
+                }
                 this.drawProgram = 0;
             }
             EGL10 egl10 = this.egl;
             if (egl10 != null) {
-                EGLDisplay eGLDisplay = this.eglDisplay;
-                EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
-                egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
-                this.egl.eglDestroySurface(this.eglDisplay, this.eglSurface);
-                this.egl.eglDestroyContext(this.eglDisplay, this.eglContext);
+                try {
+                    EGLDisplay eGLDisplay = this.eglDisplay;
+                    EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
+                    egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
+                } catch (Exception e3) {
+                    FileLog.e(e3);
+                }
+                try {
+                    this.egl.eglDestroySurface(this.eglDisplay, this.eglSurface);
+                } catch (Exception e4) {
+                    FileLog.e(e4);
+                }
+                try {
+                    this.egl.eglDestroyContext(this.eglDisplay, this.eglContext);
+                } catch (Exception e5) {
+                    FileLog.e(e5);
+                }
             }
-            this.surfaceTexture.release();
+            try {
+                this.surfaceTexture.release();
+            } catch (Exception e6) {
+                FileLog.e(e6);
+            }
             checkGlErrors();
         }
 
