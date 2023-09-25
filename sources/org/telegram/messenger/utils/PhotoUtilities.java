@@ -283,7 +283,7 @@ public class PhotoUtilities {
             } else if (closestPhotoSizeWithSize2 != null && tLRPC$FileLocationArr2[0] != null) {
                 FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(tLRPC$FileLocationArr2[0], true).renameTo(FileLoader.getInstance(chatActivity.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize2, true));
             }
-            chatActivity.getMessagesStorage().addDialogPhoto(user.id, tLRPC$TL_photos_photo.photo);
+            chatActivity.getMessagesController().getDialogPhotos(user.id).addPhotoAtStart(tLRPC$TL_photos_photo.photo);
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(user);
             chatActivity.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);

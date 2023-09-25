@@ -674,6 +674,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.hasSpoiler = (mediaEditState instanceof PhotoEntry) && ((PhotoEntry) mediaEditState).hasSpoiler;
         }
 
+        public PhotoEntry clone() {
+            int i = this.bucketId;
+            int i2 = this.imageId;
+            long j = this.dateTaken;
+            String str = this.path;
+            boolean z = this.isVideo;
+            PhotoEntry photoEntry = new PhotoEntry(i, i2, j, str, z ? this.duration : this.orientation, z, this.width, this.height, this.size);
+            photoEntry.invert = this.invert;
+            photoEntry.isMuted = this.isMuted;
+            photoEntry.canDeleteAfter = this.canDeleteAfter;
+            photoEntry.hasSpoiler = this.hasSpoiler;
+            photoEntry.isChatPreviewSpoilerRevealed = this.isChatPreviewSpoilerRevealed;
+            photoEntry.isAttachSpoilerRevealed = this.isAttachSpoilerRevealed;
+            photoEntry.emojiMarkup = this.emojiMarkup;
+            photoEntry.gradientTopColor = this.gradientTopColor;
+            photoEntry.gradientBottomColor = this.gradientBottomColor;
+            photoEntry.copyFrom(this);
+            return photoEntry;
+        }
+
         @Override
         public String getPath() {
             return this.path;
@@ -743,6 +763,26 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 return FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(this.document, true).getAbsolutePath();
             }
             return this.imageUrl;
+        }
+
+        public SearchImage clone() {
+            SearchImage searchImage = new SearchImage();
+            searchImage.id = this.id;
+            searchImage.imageUrl = this.imageUrl;
+            searchImage.thumbUrl = this.thumbUrl;
+            searchImage.width = this.width;
+            searchImage.height = this.height;
+            searchImage.size = this.size;
+            searchImage.type = this.type;
+            searchImage.date = this.date;
+            searchImage.caption = this.caption;
+            searchImage.document = this.document;
+            searchImage.photo = this.photo;
+            searchImage.photoSize = this.photoSize;
+            searchImage.thumbPhotoSize = this.thumbPhotoSize;
+            searchImage.inlineResult = this.inlineResult;
+            searchImage.params = this.params;
+            return searchImage;
         }
     }
 
@@ -3809,89 +3849,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
 
         public void lambda$start$2() {
-            File externalStoragePublicDirectory;
-            try {
-                if (Build.VERSION.SDK_INT >= 29) {
-                    int size = this.messageObjects.size();
-                    for (int i = 0; i < size; i++) {
-                        MessageObject messageObject = this.messageObjects.get(i);
-                        String str = messageObject.messageOwner.attachPath;
-                        String documentName = messageObject.getDocumentName();
-                        if (str != null && str.length() > 0 && !new File(str).exists()) {
-                            str = null;
-                        }
-                        if (str == null || str.length() == 0) {
-                            str = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject.messageOwner, true, !this.isMusic).toString();
-                        }
-                        File file = new File(str);
-                        if (!file.exists()) {
-                            this.waitingForFile = new CountDownLatch(1);
-                            addMessageToLoad(messageObject);
-                            this.waitingForFile.await();
-                        }
-                        if (this.cancelled) {
-                            break;
-                        }
-                        if (file.exists()) {
-                            MediaController.saveFileInternal(this.isMusic ? 3 : 2, file, documentName);
-                            this.copiedFiles++;
-                        }
-                    }
-                } else {
-                    if (this.isMusic) {
-                        externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC);
-                    } else {
-                        externalStoragePublicDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-                    }
-                    externalStoragePublicDirectory.mkdir();
-                    int size2 = this.messageObjects.size();
-                    for (int i2 = 0; i2 < size2; i2++) {
-                        MessageObject messageObject2 = this.messageObjects.get(i2);
-                        String documentName2 = messageObject2.getDocumentName();
-                        File file2 = new File(externalStoragePublicDirectory, documentName2);
-                        if (file2.exists()) {
-                            int lastIndexOf = documentName2.lastIndexOf(46);
-                            int i3 = 0;
-                            while (true) {
-                                if (i3 >= 10) {
-                                    break;
-                                }
-                                File file3 = new File(externalStoragePublicDirectory, lastIndexOf != -1 ? documentName2.substring(0, lastIndexOf) + "(" + (i3 + 1) + ")" + documentName2.substring(lastIndexOf) : documentName2 + "(" + (i3 + 1) + ")");
-                                if (!file3.exists()) {
-                                    file2 = file3;
-                                    break;
-                                } else {
-                                    i3++;
-                                    file2 = file3;
-                                }
-                            }
-                        }
-                        if (!file2.exists()) {
-                            file2.createNewFile();
-                        }
-                        String str2 = messageObject2.messageOwner.attachPath;
-                        if (str2 != null && str2.length() > 0 && !new File(str2).exists()) {
-                            str2 = null;
-                        }
-                        if (str2 == null || str2.length() == 0) {
-                            str2 = FileLoader.getInstance(this.currentAccount.getCurrentAccount()).getPathToMessage(messageObject2.messageOwner, true, !this.isMusic).toString();
-                        }
-                        File file4 = new File(str2);
-                        if (!file4.exists()) {
-                            this.waitingForFile = new CountDownLatch(1);
-                            addMessageToLoad(messageObject2);
-                            this.waitingForFile.await();
-                        }
-                        if (file4.exists()) {
-                            copyFile(file4, file2, messageObject2.getMimeType());
-                            this.copiedFiles++;
-                        }
-                    }
-                }
-                checkIfFinished();
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaController.MediaLoader.lambda$start$2():void");
         }
 
         private void checkIfFinished() {

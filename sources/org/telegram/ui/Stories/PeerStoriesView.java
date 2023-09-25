@@ -94,6 +94,7 @@ import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$DocumentAttribute;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
+import org.telegram.tgnet.TLRPC$MediaArea;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$PeerStories;
@@ -108,7 +109,9 @@ import org.telegram.tgnet.TLRPC$TL_document;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
+import org.telegram.tgnet.TLRPC$TL_mediaAreaSuggestedReaction;
 import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
+import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_storiesStealthMode;
 import org.telegram.tgnet.TLRPC$TL_stories_editStory;
 import org.telegram.tgnet.TLRPC$TL_stories_exportStoryLink;
@@ -1733,13 +1736,31 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     public ArrayList<TLRPC$InputStickerSet> getAnimatedEmojiSets(StoryItemHolder storyItemHolder) {
         StoryEntry storyEntry;
         AnimatedEmojiSpan[] animatedEmojiSpanArr;
+        TLRPC$MediaArea tLRPC$MediaArea;
+        TLRPC$InputStickerSet inputStickerSet;
         ArrayList<TLRPC$MessageEntity> arrayList;
+        TLRPC$InputStickerSet inputStickerSet2;
         if (storyItemHolder != null) {
-            TLRPC$StoryItem tLRPC$StoryItem = storyItemHolder.storyItem;
+            HashSet hashSet = new HashSet();
+            ArrayList<TLRPC$InputStickerSet> arrayList2 = new ArrayList<>();
             int i = 0;
+            if (storyItemHolder.storyItem.media_areas != null) {
+                for (int i2 = 0; i2 < storyItemHolder.storyItem.media_areas.size(); i2++) {
+                    TLRPC$MediaArea tLRPC$MediaArea2 = storyItemHolder.storyItem.media_areas.get(i2);
+                    if (tLRPC$MediaArea2 instanceof TLRPC$TL_mediaAreaSuggestedReaction) {
+                        TLRPC$Reaction tLRPC$Reaction = tLRPC$MediaArea2.reaction;
+                        if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
+                            TLRPC$Document findDocument = AnimatedEmojiDrawable.findDocument(this.currentAccount, ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id);
+                            if (findDocument != null && (inputStickerSet2 = MessageObject.getInputStickerSet(findDocument)) != null && !hashSet.contains(Long.valueOf(inputStickerSet2.id))) {
+                                hashSet.add(Long.valueOf(inputStickerSet2.id));
+                                arrayList2.add(inputStickerSet2);
+                            }
+                        }
+                    }
+                }
+            }
+            TLRPC$StoryItem tLRPC$StoryItem = storyItemHolder.storyItem;
             if (tLRPC$StoryItem != null && (arrayList = tLRPC$StoryItem.entities) != null && !arrayList.isEmpty()) {
-                HashSet hashSet = new HashSet();
-                ArrayList<TLRPC$InputStickerSet> arrayList2 = new ArrayList<>();
                 while (i < storyItemHolder.storyItem.entities.size()) {
                     TLRPC$MessageEntity tLRPC$MessageEntity = storyItemHolder.storyItem.entities.get(i);
                     if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityCustomEmoji) {
@@ -1749,41 +1770,54 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                             tLRPC$Document = AnimatedEmojiDrawable.findDocument(this.currentAccount, tLRPC$TL_messageEntityCustomEmoji.document_id);
                         }
                         if (tLRPC$Document != null) {
-                            TLRPC$InputStickerSet inputStickerSet = MessageObject.getInputStickerSet(tLRPC$Document);
-                            if (!hashSet.contains(Long.valueOf(inputStickerSet.id))) {
-                                hashSet.add(Long.valueOf(inputStickerSet.id));
-                                arrayList2.add(inputStickerSet);
+                            TLRPC$InputStickerSet inputStickerSet3 = MessageObject.getInputStickerSet(tLRPC$Document);
+                            if (!hashSet.contains(Long.valueOf(inputStickerSet3.id))) {
+                                hashSet.add(Long.valueOf(inputStickerSet3.id));
+                                arrayList2.add(inputStickerSet3);
                             }
                         }
                     }
                     i++;
                 }
-                return arrayList2;
-            }
-            StoriesController.UploadingStory uploadingStory = storyItemHolder.uploadingStory;
-            if (uploadingStory != null && (storyEntry = uploadingStory.entry) != null) {
-                CharSequence charSequence = storyEntry.caption;
-                if ((charSequence instanceof Spanned) && (animatedEmojiSpanArr = (AnimatedEmojiSpan[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), AnimatedEmojiSpan.class)) != null) {
-                    HashSet hashSet2 = new HashSet();
-                    ArrayList<TLRPC$InputStickerSet> arrayList3 = new ArrayList<>();
+            } else {
+                StoriesController.UploadingStory uploadingStory = storyItemHolder.uploadingStory;
+                if (uploadingStory != null && (storyEntry = uploadingStory.entry) != null) {
+                    if (storyEntry.mediaEntities != null) {
+                        for (int i3 = 0; i3 < storyItemHolder.uploadingStory.entry.mediaEntities.size(); i3++) {
+                            VideoEditedInfo.MediaEntity mediaEntity = storyItemHolder.uploadingStory.entry.mediaEntities.get(i3);
+                            if (mediaEntity.type == 4 && (tLRPC$MediaArea = mediaEntity.mediaArea) != null) {
+                                TLRPC$Reaction tLRPC$Reaction2 = tLRPC$MediaArea.reaction;
+                                if (tLRPC$Reaction2 instanceof TLRPC$TL_reactionCustomEmoji) {
+                                    TLRPC$Document findDocument2 = AnimatedEmojiDrawable.findDocument(this.currentAccount, ((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction2).document_id);
+                                    if (findDocument2 != null && (inputStickerSet = MessageObject.getInputStickerSet(findDocument2)) != null && !hashSet.contains(Long.valueOf(inputStickerSet.id))) {
+                                        hashSet.add(Long.valueOf(inputStickerSet.id));
+                                        arrayList2.add(inputStickerSet);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    CharSequence charSequence = storyItemHolder.uploadingStory.entry.caption;
+                    if (!(charSequence instanceof Spanned) || (animatedEmojiSpanArr = (AnimatedEmojiSpan[]) ((Spanned) charSequence).getSpans(0, charSequence.length(), AnimatedEmojiSpan.class)) == null) {
+                        return arrayList2;
+                    }
                     while (i < animatedEmojiSpanArr.length) {
                         TLRPC$Document tLRPC$Document2 = animatedEmojiSpanArr[i].document;
                         if (tLRPC$Document2 == null) {
                             tLRPC$Document2 = AnimatedEmojiDrawable.findDocument(this.currentAccount, animatedEmojiSpanArr[i].documentId);
                         }
                         if (tLRPC$Document2 != null) {
-                            TLRPC$InputStickerSet inputStickerSet2 = MessageObject.getInputStickerSet(tLRPC$Document2);
-                            if (!hashSet2.contains(Long.valueOf(inputStickerSet2.id))) {
-                                hashSet2.add(Long.valueOf(inputStickerSet2.id));
-                                arrayList3.add(inputStickerSet2);
+                            TLRPC$InputStickerSet inputStickerSet4 = MessageObject.getInputStickerSet(tLRPC$Document2);
+                            if (!hashSet.contains(Long.valueOf(inputStickerSet4.id))) {
+                                hashSet.add(Long.valueOf(inputStickerSet4.id));
+                                arrayList2.add(inputStickerSet4);
                             }
                         }
                         i++;
                     }
-                    return arrayList3;
                 }
-                return null;
             }
+            return arrayList2;
         }
         return null;
     }
@@ -2581,7 +2615,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 }
 
                 @Override
-                protected void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+                public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                     super.onSend(longSparseArray, i, tLRPC$TL_forumTopic);
                     PeerStoriesView peerStoriesView = PeerStoriesView.this;
                     BulletinFactory of = BulletinFactory.of(peerStoriesView.storyContainer, peerStoriesView.resourcesProvider);

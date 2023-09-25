@@ -17,8 +17,10 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 public class UserObject {
+    public static final long REPLY_BOT = 1271266957;
+
     public static boolean isReplyUser(long j) {
-        return j == 708513 || j == 1271266957;
+        return j == 708513 || j == REPLY_BOT;
     }
 
     public static boolean isService(long j) {
@@ -40,7 +42,7 @@ public class UserObject {
     public static boolean isReplyUser(TLRPC$User tLRPC$User) {
         if (tLRPC$User != null) {
             long j = tLRPC$User.id;
-            if (j == 708513 || j == 1271266957) {
+            if (j == 708513 || j == REPLY_BOT) {
                 return true;
             }
         }

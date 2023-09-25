@@ -9,6 +9,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.PushListenerController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$TL_help_saveAppLog;
@@ -411,7 +412,7 @@ public class PushListenerController {
                 return LocaleController.formatString("PushChatReactGame", R.string.PushChatReactGame, objArr);
             case 29:
                 return LocaleController.formatString("PushChatReactPoll", R.string.PushChatReactPoll, objArr);
-            case 30:
+            case MessagesController.DialogPhotos.STEP:
                 return LocaleController.formatString("PushChatReactQuiz", R.string.PushChatReactQuiz, objArr);
             case 31:
                 return LocaleController.formatString("PushChatReactText", R.string.PushChatReactText, objArr);

@@ -142,7 +142,6 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
@@ -170,7 +169,6 @@ import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageAction;
-import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$PageBlock;
 import org.telegram.tgnet.TLRPC$Photo;
@@ -392,6 +390,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     private boolean currentVideoFinishedLoading;
     private float currentVideoSpeed;
     private CharSequence customTitle;
+    private MessagesController.DialogPhotos dialogPhotos;
     private boolean disableShowCheck;
     private boolean discardTap;
     private TextView docInfoTextView;
@@ -3745,7 +3744,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.currentAvatarLocation = null;
         this.savedState = null;
         this.hitRect = new Rect();
-        this.transitionNotificationLocker = new AnimationNotificationsLocker(new int[]{NotificationCenter.dialogsNeedReload, NotificationCenter.closeChats, NotificationCenter.mediaCountDidLoad, NotificationCenter.mediaDidLoad, NotificationCenter.dialogPhotosLoaded});
+        this.transitionNotificationLocker = new AnimationNotificationsLocker(new int[]{NotificationCenter.dialogsNeedReload, NotificationCenter.closeChats, NotificationCenter.mediaCountDidLoad, NotificationCenter.mediaDidLoad, NotificationCenter.dialogPhotosUpdate});
         this.longPressRunnable = new Runnable() {
             @Override
             public final void run() {
@@ -3764,7 +3763,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     @Override
-    public void didReceivedNotification(int r32, int r33, java.lang.Object... r34) {
+    public void didReceivedNotification(int r28, int r29, java.lang.Object... r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.didReceivedNotification(int, int, java.lang.Object[]):void");
     }
 
@@ -7700,20 +7699,14 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
         Object obj = this.imagesArrLocals.get(this.currentIndex);
         CharSequence text = this.captionEdit.getText();
-        CharSequence[] charSequenceArr = {text};
         if (this.hasCaptionForAllMedia && !TextUtils.equals(this.captionForAllMedia, text) && this.placeProvider.getPhotoIndex(this.currentIndex) != 0 && this.placeProvider.getSelectedCount() > 0) {
             this.hasCaptionForAllMedia = false;
         }
-        ArrayList<TLRPC$MessageEntity> entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, supportsSendingNewEntities());
         this.captionForAllMedia = text;
         if (obj instanceof MediaController.PhotoEntry) {
-            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-            photoEntry.caption = charSequenceArr[0];
-            photoEntry.entities = entities;
+            ((MediaController.PhotoEntry) obj).caption = text;
         } else if (obj instanceof MediaController.SearchImage) {
-            MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-            searchImage.caption = charSequenceArr[0];
-            searchImage.entities = entities;
+            ((MediaController.SearchImage) obj).caption = text;
         }
         if (text.length() != 0 && !this.placeProvider.isPhotoChecked(this.currentIndex)) {
             setPhotoChecked();
@@ -7722,7 +7715,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         if (photoViewerProvider != null) {
             photoViewerProvider.onApplyCaption(text);
         }
-        return charSequenceArr[0];
+        return text;
     }
 
     public void updateVideoPlayerTime() {
@@ -11273,7 +11266,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    private void setIsAboutToSwitchToIndex(final int r37, boolean r38, boolean r39) {
+    private void setIsAboutToSwitchToIndex(final int r35, boolean r36, boolean r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PhotoViewer.setIsAboutToSwitchToIndex(int, boolean, boolean):void");
     }
 
@@ -12571,7 +12564,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoadProgressChanged);
                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.mediaCountDidLoad);
                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.mediaDidLoad);
-                NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogPhotosLoaded);
+                NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogPhotosUpdate);
                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.messagesDeleted);
                 NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.emojiLoaded);
                 NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.filePreparingFailed);
@@ -13282,7 +13275,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoadProgressChanged);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.mediaCountDidLoad);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.mediaDidLoad);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogPhotosLoaded);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogPhotosUpdate);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagesDeleted);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.emojiLoaded);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.filePreparingFailed);
@@ -13341,6 +13334,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.currentSecureDocument = null;
         this.currentPageBlock = null;
         this.currentPathObject = null;
+        this.dialogPhotos = null;
         if (this.videoPlayerControlFrameLayout != null) {
             setVideoPlayerControlVisible(false, false);
         }
@@ -13835,7 +13829,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             boolean[] zArr = this.drawPressedDrawable;
             if (!zArr[0] && !zArr[1]) {
                 float x = motionEvent.getX();
-                int min = Math.min(135, this.containerView.getMeasuredWidth() / 8);
+                int min = Math.min((int) MessagesStorage.LAST_DB_VERSION, this.containerView.getMeasuredWidth() / 8);
                 if (x < min) {
                     if (this.leftImage.hasImageSet()) {
                         this.drawPressedDrawable[0] = true;
@@ -13860,7 +13854,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 return true;
             }
             float x = motionEvent.getX();
-            int min = Math.min(135, this.containerView.getMeasuredWidth() / 8);
+            int min = Math.min((int) MessagesStorage.LAST_DB_VERSION, this.containerView.getMeasuredWidth() / 8);
             if ((x < min || x > this.containerView.getMeasuredWidth() - min) && (messageObject = this.currentMessageObject) != null) {
                 return (messageObject.isVideo() || ((photoViewerWebView = this.photoViewerWebView) != null && photoViewerWebView.isControllable())) && SystemClock.elapsedRealtime() - this.lastPhotoSetTime >= 500 && canDoubleTapSeekVideo(motionEvent);
             }
@@ -13946,7 +13940,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         float x = motionEvent.getX();
         float y = motionEvent.getY();
         if (this.checkImageView.getVisibility() != 0 && SharedConfig.nextMediaTap && y > ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(40.0f)) {
-            int min = Math.min(135, this.containerView.getMeasuredWidth() / 8);
+            int min = Math.min((int) MessagesStorage.LAST_DB_VERSION, this.containerView.getMeasuredWidth() / 8);
             if (x < min) {
                 if (this.leftImage.hasImageSet()) {
                     switchToNextIndex(-1, true);

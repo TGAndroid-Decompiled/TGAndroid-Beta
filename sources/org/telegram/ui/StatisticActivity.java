@@ -127,7 +127,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     private Adapter adapter;
     private RecyclerView.ItemAnimator animator;
     ChatAvatarContainer avatarContainer;
-    private ChannelBoostLayout boosLayout;
+    private ChannelBoostLayout boostLayout;
     private TLRPC$ChatFull chat;
     private final long chatId;
     private LruCache<ChartData> childDataCache;
@@ -473,7 +473,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         });
         final FrameLayout frameLayout = new FrameLayout(context);
         if (isChannelAndNotMegaGroup) {
-            this.boosLayout = new ChannelBoostLayout(this, -this.chatId, getResourceProvider());
+            this.boostLayout = new ChannelBoostLayout(this, -this.chatId, getResourceProvider());
         }
         boolean z = isChannelAndNotMegaGroup && !this.onlyBoostsStat;
         if (z && this.startFromBoosts) {
@@ -499,7 +499,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 if (!StatisticActivity.this.onlyBoostsStat && i == 0) {
                     return frameLayout;
                 }
-                return StatisticActivity.this.boosLayout;
+                return StatisticActivity.this.boostLayout;
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(getContext());
@@ -2918,11 +2918,15 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
 
         public void updateColors() {
             for (int i = 0; i < 4; i++) {
-                this.primary[i].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+                TextView textView = this.primary[i];
+                int i2 = Theme.key_windowBackgroundWhiteBlackText;
+                textView.setTextColor(Theme.getColor(i2));
                 this.title[i].setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2));
                 Integer num = (Integer) this.secondary[i].getTag();
                 if (num != null) {
                     this.secondary[i].setTextColor(Theme.getColor(num.intValue()));
+                } else {
+                    this.secondary[i].setTextColor(Theme.getColor(i2));
                 }
             }
         }

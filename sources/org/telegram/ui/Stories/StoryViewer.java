@@ -2241,35 +2241,38 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void allowScreenshots(boolean z) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION || this.allowScreenshots == z) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
             return;
         }
-        this.allowScreenshots = z;
-        SurfaceView surfaceView = this.surfaceView;
-        if (surfaceView != null) {
-            surfaceView.setSecure(!z);
-        }
-        if (this.ATTACH_TO_FRAGMENT) {
-            if (this.fragment.getParentActivity() != null) {
-                if (z) {
-                    this.fragment.getParentActivity().getWindow().clearFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
-                    return;
-                } else {
-                    this.fragment.getParentActivity().getWindow().addFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
-                    return;
-                }
+        boolean z2 = !this.isShowing || z;
+        if (this.allowScreenshots != z2) {
+            this.allowScreenshots = z2;
+            SurfaceView surfaceView = this.surfaceView;
+            if (surfaceView != null) {
+                surfaceView.setSecure(!z2);
             }
-            return;
-        }
-        if (z) {
-            this.windowLayoutParams.flags &= -8193;
-        } else {
-            this.windowLayoutParams.flags |= LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM;
-        }
-        try {
-            this.windowManager.updateViewLayout(this.windowView, this.windowLayoutParams);
-        } catch (Exception e) {
-            FileLog.e(e);
+            if (this.ATTACH_TO_FRAGMENT) {
+                if (this.fragment.getParentActivity() != null) {
+                    if (z2) {
+                        this.fragment.getParentActivity().getWindow().clearFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+                        return;
+                    } else {
+                        this.fragment.getParentActivity().getWindow().addFlags(LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM);
+                        return;
+                    }
+                }
+                return;
+            }
+            if (z2) {
+                this.windowLayoutParams.flags &= -8193;
+            } else {
+                this.windowLayoutParams.flags |= LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM;
+            }
+            try {
+                this.windowManager.updateViewLayout(this.windowView, this.windowLayoutParams);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
         }
     }
 

@@ -251,7 +251,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                     Bundle bundle = new Bundle();
                     bundle.putLong("user_id", tLRPC$User.id);
                     if (getMessagesController().checkCanOpenChat(bundle, this)) {
-                        presentFragment(new ChatActivity(bundle), true);
+                        presentFragment(new ChatActivity(bundle), this.needFinishFragment);
                         return;
                     }
                     return;
@@ -372,7 +372,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 Bundle bundle4 = new Bundle();
                 bundle4.putLong("user_id", tLRPC$User2.id);
                 if (getMessagesController().checkCanOpenChat(bundle4, this)) {
-                    presentFragment(new ChatActivity(bundle4), true);
+                    presentFragment(new ChatActivity(bundle4), this.needFinishFragment);
                 }
             }
         } else if (item2 instanceof ContactsController.Contact) {
@@ -844,7 +844,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
                 Bundle bundle = new Bundle();
                 bundle.putInt("enc_id", ((TLRPC$EncryptedChat) objArr[0]).id);
                 NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
-                presentFragment(new ChatActivity(bundle), true);
+                presentFragment(new ChatActivity(bundle), false);
             }
         } else if (i != NotificationCenter.closeChats || this.creatingChat) {
         } else {

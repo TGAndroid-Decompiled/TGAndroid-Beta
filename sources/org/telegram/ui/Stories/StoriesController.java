@@ -73,6 +73,7 @@ import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$PrivacyRule;
 import org.telegram.tgnet.TLRPC$Reaction;
 import org.telegram.tgnet.TLRPC$StoryItem;
+import org.telegram.tgnet.TLRPC$StoryViews;
 import org.telegram.tgnet.TLRPC$TL_boolTrue;
 import org.telegram.tgnet.TLRPC$TL_chatAdminRights;
 import org.telegram.tgnet.TLRPC$TL_contacts_block;
@@ -3063,6 +3064,29 @@ public class StoriesController {
             }
         }
 
+        public void updateStoryViews(List<Integer> list, ArrayList<TLRPC$StoryViews> arrayList) {
+            TLRPC$StoryItem tLRPC$StoryItem;
+            if (list == null || arrayList == null) {
+                return;
+            }
+            boolean z = false;
+            for (int i = 0; i < list.size(); i++) {
+                int intValue = list.get(i).intValue();
+                if (i >= arrayList.size()) {
+                    break;
+                }
+                TLRPC$StoryViews tLRPC$StoryViews = arrayList.get(i);
+                MessageObject messageObject = this.messageObjectsMap.get(Integer.valueOf(intValue));
+                if (messageObject != null && (tLRPC$StoryItem = messageObject.storyItem) != null) {
+                    tLRPC$StoryItem.views = tLRPC$StoryViews;
+                    z = true;
+                }
+            }
+            if (z) {
+                saveCache();
+            }
+        }
+
         public void updateStories(List<TLRPC$StoryItem> list) {
             MessageObject messageObject;
             FileLog.d("StoriesList " + this.type + "{" + this.dialogId + "} updateStories {" + StoriesController.storyItemIds(list) + "}");
@@ -3639,7 +3663,7 @@ public class StoriesController {
     public boolean canPostStories(long j) {
         TLRPC$Chat chat;
         TLRPC$TL_chatAdminRights tLRPC$TL_chatAdminRights;
-        if (j >= 0 || (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j))) == null) {
+        if (j >= 0 || (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j))) == null || !ChatObject.isChannelAndNotMegaGroup(chat)) {
             return false;
         }
         return chat.creator || ((tLRPC$TL_chatAdminRights = chat.admin_rights) != null && tLRPC$TL_chatAdminRights.post_stories);

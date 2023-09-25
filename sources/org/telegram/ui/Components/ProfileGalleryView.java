@@ -4,13 +4,13 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import androidx.viewpager.widget.ViewPager;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
@@ -26,13 +27,19 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.tgnet.TLRPC$Photo;
+import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated;
+import org.telegram.tgnet.TLRPC$TL_photoEmpty;
 import org.telegram.tgnet.TLRPC$TL_photoStrippedSize;
+import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.Components.CircularViewPager;
@@ -49,6 +56,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     ImageLocation currentUploadingImageLocation;
     private int customAvatarIndex;
     private long dialogId;
+    private MessagesController.DialogPhotos dialogPhotos;
     private final PointF downPoint;
     private int fallbackPhotoIndex;
     private boolean forceResetPosition;
@@ -181,22 +189,24 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                             }
                             ImageReceiver imageReceiver = ((BackupImageView) childAt).getImageReceiver();
                             boolean allowStartAnimation = imageReceiver.getAllowStartAnimation();
-                            if (realPosition2 == realPosition) {
-                                if (!allowStartAnimation) {
-                                    imageReceiver.setAllowStartAnimation(true);
-                                    imageReceiver.startAnimation();
+                            if (realPosition2 >= 0 && realPosition2 < ProfileGalleryView.this.videoLocations.size()) {
+                                if (realPosition2 == realPosition) {
+                                    if (!allowStartAnimation) {
+                                        imageReceiver.setAllowStartAnimation(true);
+                                        imageReceiver.startAnimation();
+                                    }
+                                    ImageLocation imageLocation2 = (ImageLocation) ProfileGalleryView.this.videoLocations.get(realPosition2);
+                                    if (imageLocation2 != null) {
+                                        FileLoader.getInstance(ProfileGalleryView.this.currentAccount).setForceStreamLoadingFile(imageLocation2.location, "mp4");
+                                    }
+                                } else if (allowStartAnimation) {
+                                    AnimatedFileDrawable animation = imageReceiver.getAnimation();
+                                    if (animation != null && (imageLocation = (ImageLocation) ProfileGalleryView.this.videoLocations.get(realPosition2)) != null) {
+                                        animation.seekTo(imageLocation.videoSeekTo, false, true);
+                                    }
+                                    imageReceiver.setAllowStartAnimation(false);
+                                    imageReceiver.stopAnimation();
                                 }
-                                ImageLocation imageLocation2 = (ImageLocation) ProfileGalleryView.this.videoLocations.get(realPosition2);
-                                if (imageLocation2 != null) {
-                                    FileLoader.getInstance(ProfileGalleryView.this.currentAccount).setForceStreamLoadingFile(imageLocation2.location, "mp4");
-                                }
-                            } else if (allowStartAnimation) {
-                                AnimatedFileDrawable animation = imageReceiver.getAnimation();
-                                if (animation != null && (imageLocation = (ImageLocation) ProfileGalleryView.this.videoLocations.get(realPosition2)) != null) {
-                                    animation.seekTo(imageLocation.videoSeekTo, false, true);
-                                }
-                                imageReceiver.setAllowStartAnimation(false);
-                                imageReceiver.stopAnimation();
                             }
                         }
                     }
@@ -207,9 +217,13 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
             public void onPageSelected(int i) {
                 ProfileGalleryView profileGalleryView = ProfileGalleryView.this;
                 int i2 = profileGalleryView.selectedPage;
+                boolean z = i >= i2;
                 if (i != i2) {
                     profileGalleryView.prevPage = i2;
                     profileGalleryView.selectedPage = i;
+                }
+                if (profileGalleryView.dialogPhotos != null) {
+                    ProfileGalleryView.this.dialogPhotos.loadAfter(i - (ProfileGalleryView.this.adapter != null ? ProfileGalleryView.this.adapter.getExtraCount() : 0), z, ProfileGalleryView.this.parentClassGuid);
                 }
             }
         });
@@ -220,6 +234,8 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoadProgressChanged);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.reloadDialogPhotos);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogPhotosUpdate);
+        this.dialogPhotos = null;
     }
 
     public void checkCustomAvatar(int i, float f) {
@@ -253,7 +269,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         this.imagesLayerNum = i;
     }
 
-    public ProfileGalleryView(Context context, long j, ActionBar actionBar, RecyclerListView recyclerListView, ProfileActivity.AvatarImageView avatarImageView, int i, Callback callback) {
+    public ProfileGalleryView(Context context, long j, ActionBar actionBar, RecyclerListView recyclerListView, ProfileActivity.AvatarImageView avatarImageView, final int i, Callback callback) {
         super(context);
         this.downPoint = new PointF();
         this.isScrollingListView = true;
@@ -307,22 +323,24 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
                             int realPosition2 = ProfileGalleryView.this.adapter.getRealPosition(ProfileGalleryView.this.adapter.imageViews.indexOf(childAt));
                             ImageReceiver imageReceiver = ((BackupImageView) childAt).getImageReceiver();
                             boolean allowStartAnimation = imageReceiver.getAllowStartAnimation();
-                            if (realPosition2 == realPosition) {
-                                if (!allowStartAnimation) {
-                                    imageReceiver.setAllowStartAnimation(true);
-                                    imageReceiver.startAnimation();
+                            if (realPosition2 >= 0 && realPosition2 < ProfileGalleryView.this.videoLocations.size()) {
+                                if (realPosition2 == realPosition) {
+                                    if (!allowStartAnimation) {
+                                        imageReceiver.setAllowStartAnimation(true);
+                                        imageReceiver.startAnimation();
+                                    }
+                                    ImageLocation imageLocation2 = (ImageLocation) ProfileGalleryView.this.videoLocations.get(realPosition2);
+                                    if (imageLocation2 != null) {
+                                        FileLoader.getInstance(ProfileGalleryView.this.currentAccount).setForceStreamLoadingFile(imageLocation2.location, "mp4");
+                                    }
+                                } else if (allowStartAnimation) {
+                                    AnimatedFileDrawable animation = imageReceiver.getAnimation();
+                                    if (animation != null && (imageLocation = (ImageLocation) ProfileGalleryView.this.videoLocations.get(realPosition2)) != null) {
+                                        animation.seekTo(imageLocation.videoSeekTo, false, true);
+                                    }
+                                    imageReceiver.setAllowStartAnimation(false);
+                                    imageReceiver.stopAnimation();
                                 }
-                                ImageLocation imageLocation2 = (ImageLocation) ProfileGalleryView.this.videoLocations.get(realPosition2);
-                                if (imageLocation2 != null) {
-                                    FileLoader.getInstance(ProfileGalleryView.this.currentAccount).setForceStreamLoadingFile(imageLocation2.location, "mp4");
-                                }
-                            } else if (allowStartAnimation) {
-                                AnimatedFileDrawable animation = imageReceiver.getAnimation();
-                                if (animation != null && (imageLocation = (ImageLocation) ProfileGalleryView.this.videoLocations.get(realPosition2)) != null) {
-                                    animation.seekTo(imageLocation.videoSeekTo, false, true);
-                                }
-                                imageReceiver.setAllowStartAnimation(false);
-                                imageReceiver.stopAnimation();
                             }
                         }
                     }
@@ -333,9 +351,13 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
             public void onPageSelected(int i2) {
                 ProfileGalleryView profileGalleryView = ProfileGalleryView.this;
                 int i3 = profileGalleryView.selectedPage;
+                boolean z = i2 >= i3;
                 if (i2 != i3) {
                     profileGalleryView.prevPage = i3;
                     profileGalleryView.selectedPage = i2;
+                }
+                if (profileGalleryView.dialogPhotos != null) {
+                    ProfileGalleryView.this.dialogPhotos.loadAfter(i2 - (ProfileGalleryView.this.adapter != null ? ProfileGalleryView.this.adapter.getExtraCount() : 0), z, i);
                 }
             }
         });
@@ -343,7 +365,10 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoadProgressChanged);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.reloadDialogPhotos);
-        MessagesController.getInstance(this.currentAccount).loadDialogPhotos(j, 80, 0, true, i);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.dialogPhotosUpdate);
+        MessagesController.DialogPhotos dialogPhotos = MessagesController.getInstance(this.currentAccount).getDialogPhotos(j);
+        this.dialogPhotos = dialogPhotos;
+        dialogPhotos.loadCache();
     }
 
     public void onDestroy() {
@@ -354,6 +379,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         notificationCenter.removeObserver(this, i);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, i);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.reloadDialogPhotos);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.dialogPhotosUpdate);
         int childCount = getChildCount();
         for (int i2 = 0; i2 < childCount; i2++) {
             View childAt = getChildAt(i2);
@@ -431,19 +457,23 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
             this.isDownReleased = false;
         } else if (action == 1) {
             if (!this.isDownReleased) {
-                int count = this.adapter.getCount();
+                MessagesController.DialogPhotos dialogPhotos = this.dialogPhotos;
+                int count = dialogPhotos == null ? 0 : dialogPhotos.getCount();
+                if (this.currentUploadingImageLocation != null) {
+                    count++;
+                }
                 int currentItem = getCurrentItem();
                 if (count > 1) {
                     if (motionEvent.getX() > getWidth() / 3.0f) {
                         i = this.adapter.getExtraCount();
                         int i2 = currentItem + 1;
-                        if (i2 < count - i) {
+                        if (i2 < count + i) {
                             i = i2;
                         }
                     } else {
                         int extraCount = this.adapter.getExtraCount();
                         int i3 = (-1) + currentItem;
-                        i = i3 < extraCount ? (count - extraCount) - 1 : i3;
+                        i = i3 < extraCount ? (count + extraCount) - 1 : i3;
                     }
                     this.callback.onRelease();
                     setCurrentItem(i, false);
@@ -513,6 +543,8 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     }
 
     public boolean initIfEmpty(VectorAvatarThumbDrawable vectorAvatarThumbDrawable, ImageLocation imageLocation, ImageLocation imageLocation2, boolean z) {
+        MessagesController.DialogPhotos dialogPhotos;
+        MessagesController.DialogPhotos dialogPhotos2;
         if (imageLocation == null || imageLocation2 == null || this.settingMainPhoto != 0) {
             return false;
         }
@@ -520,12 +552,20 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         if (imageLocation3 == null || imageLocation3.location.local_id != imageLocation.location.local_id) {
             if (!this.imagesLocations.isEmpty()) {
                 this.prevImageLocation = imageLocation;
-                if (z) {
-                    MessagesController.getInstance(this.currentAccount).loadDialogPhotos(this.dialogId, 80, 0, true, this.parentClassGuid);
+                if (z && (dialogPhotos2 = this.dialogPhotos) != null) {
+                    dialogPhotos2.reset();
+                    MessagesController.DialogPhotos dialogPhotos3 = this.dialogPhotos;
+                    int currentItem = getCurrentItem();
+                    ViewPagerAdapter viewPagerAdapter = this.adapter;
+                    dialogPhotos3.loadAfter(currentItem - (viewPagerAdapter != null ? viewPagerAdapter.getExtraCount() : 0), true, this.parentClassGuid);
                 }
                 return true;
-            } else if (z) {
-                MessagesController.getInstance(this.currentAccount).loadDialogPhotos(this.dialogId, 80, 0, true, this.parentClassGuid);
+            } else if (z && (dialogPhotos = this.dialogPhotos) != null) {
+                dialogPhotos.reset();
+                MessagesController.DialogPhotos dialogPhotos4 = this.dialogPhotos;
+                int currentItem2 = getCurrentItem();
+                ViewPagerAdapter viewPagerAdapter2 = this.adapter;
+                dialogPhotos4.loadAfter(currentItem2 - (viewPagerAdapter2 != null ? viewPagerAdapter2.getExtraCount() : 0), true, this.parentClassGuid);
             }
         }
         if (this.imagesLocations.isEmpty()) {
@@ -624,7 +664,7 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
             }
             realPosition--;
         }
-        return this.videoLocations.get(realPosition) != null;
+        return realPosition >= 0 && realPosition < this.videoLocations.size() && this.videoLocations.get(realPosition) != null;
     }
 
     public ImageLocation getCurrentVideoLocation(ImageLocation imageLocation, ImageLocation imageLocation2) {
@@ -699,29 +739,32 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     }
 
     public void startMovePhotoToBegin(int i) {
-        if (i <= 0 || i >= this.photos.size()) {
-            return;
+        MessagesController.DialogPhotos dialogPhotos = this.dialogPhotos;
+        if (dialogPhotos != null) {
+            dialogPhotos.moveToStart(i);
+        } else if (i <= 0 || i >= this.photos.size()) {
+        } else {
+            this.settingMainPhoto++;
+            this.photos.remove(i);
+            this.photos.add(0, this.photos.get(i));
+            this.thumbsFileNames.remove(i);
+            this.thumbsFileNames.add(0, this.thumbsFileNames.get(i));
+            ArrayList<String> arrayList = this.videoFileNames;
+            arrayList.add(0, arrayList.remove(i));
+            this.videoLocations.remove(i);
+            this.videoLocations.add(0, this.videoLocations.get(i));
+            this.imagesLocations.remove(i);
+            this.imagesLocations.add(0, this.imagesLocations.get(i));
+            this.thumbsLocations.remove(i);
+            this.thumbsLocations.add(0, this.thumbsLocations.get(i));
+            this.vectorAvatars.remove(i);
+            this.vectorAvatars.add(0, this.vectorAvatars.get(i));
+            this.imagesLocationsSizes.remove(i);
+            this.imagesLocationsSizes.add(0, this.imagesLocationsSizes.get(i));
+            this.imagesUploadProgress.remove(i);
+            this.imagesUploadProgress.add(0, this.imagesUploadProgress.get(i));
+            this.prevImageLocation = this.imagesLocations.get(0);
         }
-        this.settingMainPhoto++;
-        this.photos.remove(i);
-        this.photos.add(0, this.photos.get(i));
-        this.thumbsFileNames.remove(i);
-        this.thumbsFileNames.add(0, this.thumbsFileNames.get(i));
-        ArrayList<String> arrayList = this.videoFileNames;
-        arrayList.add(0, arrayList.remove(i));
-        this.videoLocations.remove(i);
-        this.videoLocations.add(0, this.videoLocations.get(i));
-        this.imagesLocations.remove(i);
-        this.imagesLocations.add(0, this.imagesLocations.get(i));
-        this.thumbsLocations.remove(i);
-        this.thumbsLocations.add(0, this.thumbsLocations.get(i));
-        this.vectorAvatars.remove(i);
-        this.vectorAvatars.add(0, this.vectorAvatars.get(i));
-        this.imagesLocationsSizes.remove(i);
-        this.imagesLocationsSizes.add(0, this.imagesLocationsSizes.get(i));
-        this.imagesUploadProgress.remove(i);
-        this.imagesUploadProgress.add(0, this.imagesUploadProgress.get(i));
-        this.prevImageLocation = this.imagesLocations.get(0);
     }
 
     public void commitMoveToBegin() {
@@ -730,8 +773,14 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     }
 
     public boolean removePhotoAtIndex(int i) {
+        MessagesController.DialogPhotos dialogPhotos;
         if (i < 0 || i >= this.photos.size()) {
             return false;
+        }
+        TLRPC$Photo tLRPC$Photo = this.photos.get(i);
+        if (tLRPC$Photo != null && (dialogPhotos = this.dialogPhotos) != null) {
+            dialogPhotos.removePhoto(tLRPC$Photo.id);
+            return true;
         }
         this.photos.remove(i);
         this.thumbsFileNames.remove(i);
@@ -779,8 +828,279 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
     }
 
     @Override
-    public void didReceivedNotification(int r18, int r19, java.lang.Object... r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ProfileGalleryView.didReceivedNotification(int, int, java.lang.Object[]):void");
+    public void didReceivedNotification(int i, int i2, Object... objArr) {
+        MessagesController.DialogPhotos dialogPhotos;
+        ImageLocation imageLocation;
+        ImageLocation imageLocation2;
+        ArrayList<TLRPC$PhotoSize> arrayList;
+        TLRPC$Photo tLRPC$Photo;
+        boolean z;
+        TLRPC$Photo tLRPC$Photo2;
+        if (i == NotificationCenter.dialogPhotosUpdate) {
+            MessagesController.DialogPhotos dialogPhotos2 = (MessagesController.DialogPhotos) objArr[0];
+            if (this.dialogPhotos == dialogPhotos2) {
+                ArrayList arrayList2 = new ArrayList(dialogPhotos2.photos);
+                if (arrayList2.isEmpty() && dialogPhotos2.fromCache) {
+                    return;
+                }
+                this.customAvatarIndex = -1;
+                this.fallbackPhotoIndex = -1;
+                TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.dialogId));
+                TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.dialogId);
+                if (userFull != null && (tLRPC$Photo2 = userFull.personal_photo) != null) {
+                    arrayList2.add(0, tLRPC$Photo2);
+                    this.customAvatarIndex = 0;
+                }
+                if (user != null && user.self && UserObject.hasFallbackPhoto(userFull)) {
+                    arrayList2.add(userFull.fallback_photo);
+                    this.fallbackPhotoIndex = arrayList2.size() - 1;
+                }
+                this.thumbsFileNames.clear();
+                this.videoFileNames.clear();
+                this.imagesLocations.clear();
+                this.videoLocations.clear();
+                this.thumbsLocations.clear();
+                this.vectorAvatars.clear();
+                this.photos.clear();
+                this.imagesLocationsSizes.clear();
+                this.imagesUploadProgress.clear();
+                TLRPC$Photo tLRPC$Photo3 = null;
+                if (DialogObject.isChatDialog(this.dialogId)) {
+                    TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-this.dialogId));
+                    imageLocation = ImageLocation.getForUserOrChat(chat, 0);
+                    if (imageLocation != null) {
+                        this.imagesLocations.add(imageLocation);
+                        this.thumbsLocations.add(ImageLocation.getForUserOrChat(chat, 1));
+                        this.vectorAvatars.add(null);
+                        this.thumbsFileNames.add(null);
+                        TLRPC$ChatFull tLRPC$ChatFull = this.chatInfo;
+                        if (tLRPC$ChatFull != null && FileLoader.isSamePhoto((TLRPC$FileLocation) imageLocation.location, tLRPC$ChatFull.chat_photo)) {
+                            this.photos.add(this.chatInfo.chat_photo);
+                            if (!this.chatInfo.chat_photo.video_sizes.isEmpty()) {
+                                TLRPC$VideoSize closestVideoSizeWithSize = FileLoader.getClosestVideoSizeWithSize(this.chatInfo.chat_photo.video_sizes, 1000);
+                                this.videoLocations.add(ImageLocation.getForPhoto(closestVideoSizeWithSize, this.chatInfo.chat_photo));
+                                this.videoFileNames.add(FileLoader.getAttachFileName(closestVideoSizeWithSize));
+                            } else {
+                                this.videoLocations.add(null);
+                                this.videoFileNames.add(null);
+                            }
+                        } else {
+                            this.photos.add(null);
+                            this.videoFileNames.add(null);
+                            this.videoLocations.add(null);
+                        }
+                        this.imagesLocationsSizes.add(-1);
+                        this.imagesUploadProgress.add(null);
+                    }
+                } else {
+                    imageLocation = null;
+                }
+                int i3 = 0;
+                while (i3 < arrayList2.size()) {
+                    TLRPC$Photo tLRPC$Photo4 = (TLRPC$Photo) arrayList2.get(i3);
+                    if (tLRPC$Photo4 == null || (tLRPC$Photo4 instanceof TLRPC$TL_photoEmpty) || (arrayList = tLRPC$Photo4.sizes) == null) {
+                        imageLocation2 = imageLocation;
+                        this.photos.add(tLRPC$Photo3);
+                        this.imagesLocations.add(tLRPC$Photo3);
+                        this.thumbsLocations.add(tLRPC$Photo3);
+                        this.vectorAvatars.add(tLRPC$Photo3);
+                        this.thumbsFileNames.add(tLRPC$Photo3);
+                        this.videoLocations.add(tLRPC$Photo3);
+                        this.videoFileNames.add(tLRPC$Photo3);
+                        this.imagesLocationsSizes.add(-1);
+                        this.imagesUploadProgress.add(tLRPC$Photo3);
+                    } else {
+                        TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, 50);
+                        int size = tLRPC$Photo4.sizes.size();
+                        int i4 = 0;
+                        while (true) {
+                            if (i4 >= size) {
+                                break;
+                            }
+                            TLRPC$PhotoSize tLRPC$PhotoSize = tLRPC$Photo4.sizes.get(i4);
+                            if (tLRPC$PhotoSize instanceof TLRPC$TL_photoStrippedSize) {
+                                closestPhotoSizeWithSize = tLRPC$PhotoSize;
+                                break;
+                            }
+                            i4++;
+                        }
+                        if (imageLocation != null) {
+                            int size2 = tLRPC$Photo4.sizes.size();
+                            int i5 = 0;
+                            while (true) {
+                                if (i5 >= size2) {
+                                    imageLocation2 = imageLocation;
+                                    z = false;
+                                    break;
+                                }
+                                TLRPC$FileLocation tLRPC$FileLocation = tLRPC$Photo4.sizes.get(i5).location;
+                                if (tLRPC$FileLocation != null) {
+                                    int i6 = tLRPC$FileLocation.local_id;
+                                    TLRPC$TL_fileLocationToBeDeprecated tLRPC$TL_fileLocationToBeDeprecated = imageLocation.location;
+                                    if (i6 == tLRPC$TL_fileLocationToBeDeprecated.local_id) {
+                                        imageLocation2 = imageLocation;
+                                        if (tLRPC$FileLocation.volume_id == tLRPC$TL_fileLocationToBeDeprecated.volume_id) {
+                                            this.photos.set(0, tLRPC$Photo4);
+                                            if (!tLRPC$Photo4.video_sizes.isEmpty()) {
+                                                this.videoLocations.set(0, ImageLocation.getForPhoto(FileLoader.getClosestVideoSizeWithSize(tLRPC$Photo4.video_sizes, 1000), tLRPC$Photo4));
+                                            }
+                                            z = true;
+                                        } else {
+                                            i5++;
+                                            imageLocation = imageLocation2;
+                                        }
+                                    }
+                                }
+                                imageLocation2 = imageLocation;
+                                i5++;
+                                imageLocation = imageLocation2;
+                            }
+                            if (z) {
+                                tLRPC$Photo3 = null;
+                            }
+                        } else {
+                            imageLocation2 = imageLocation;
+                        }
+                        TLRPC$PhotoSize closestPhotoSizeWithSize2 = FileLoader.getClosestPhotoSizeWithSize(tLRPC$Photo4.sizes, 640);
+                        if (closestPhotoSizeWithSize2 != null) {
+                            int i7 = tLRPC$Photo4.dc_id;
+                            if (i7 != 0) {
+                                TLRPC$FileLocation tLRPC$FileLocation2 = closestPhotoSizeWithSize2.location;
+                                tLRPC$FileLocation2.dc_id = i7;
+                                tLRPC$FileLocation2.file_reference = tLRPC$Photo4.file_reference;
+                            }
+                            ImageLocation forPhoto = ImageLocation.getForPhoto(closestPhotoSizeWithSize2, tLRPC$Photo4);
+                            if (forPhoto != null) {
+                                ImageLocation imageLocation3 = this.prevImageLocation;
+                                if (imageLocation3 != null && imageLocation3.photoId == forPhoto.photoId && !this.isProfileFragment && this.dialogId != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
+                                    this.thumbsFileNames.add(null);
+                                    this.imagesLocations.add(this.prevImageLocation);
+                                    ImageLocation imageLocation4 = this.prevThumbLocation;
+                                    if (imageLocation4 == null) {
+                                        imageLocation4 = ImageLocation.getForPhoto(closestPhotoSizeWithSize, tLRPC$Photo4);
+                                    }
+                                    this.thumbsLocations.add(imageLocation4);
+                                    if (!tLRPC$Photo4.video_sizes.isEmpty()) {
+                                        TLRPC$VideoSize closestVideoSizeWithSize2 = FileLoader.getClosestVideoSizeWithSize(tLRPC$Photo4.video_sizes, 1000);
+                                        TLRPC$VideoSize vectorMarkupVideoSize = FileLoader.getVectorMarkupVideoSize(tLRPC$Photo4);
+                                        if (vectorMarkupVideoSize != null) {
+                                            this.vectorAvatars.add(new VectorAvatarThumbDrawable(vectorMarkupVideoSize, user != null && user.premium, 2));
+                                            this.videoLocations.add(null);
+                                            this.videoFileNames.add(null);
+                                        } else {
+                                            this.vectorAvatars.add(null);
+                                            this.videoLocations.add(ImageLocation.getForPhoto(closestVideoSizeWithSize2, tLRPC$Photo4));
+                                            this.videoFileNames.add(FileLoader.getAttachFileName(closestVideoSizeWithSize2));
+                                        }
+                                        tLRPC$Photo = null;
+                                    } else {
+                                        this.vectorAvatars.add(this.prevVectorAvatarThumbDrawable);
+                                        tLRPC$Photo = null;
+                                        this.videoLocations.add(null);
+                                        this.videoFileNames.add(null);
+                                    }
+                                    this.photos.add(tLRPC$Photo);
+                                    this.imagesLocationsSizes.add(-1);
+                                    this.imagesUploadProgress.add(tLRPC$Photo);
+                                    tLRPC$Photo3 = tLRPC$Photo;
+                                } else {
+                                    this.imagesLocations.add(forPhoto);
+                                    this.thumbsFileNames.add(FileLoader.getAttachFileName(closestPhotoSizeWithSize instanceof TLRPC$TL_photoStrippedSize ? closestPhotoSizeWithSize2 : closestPhotoSizeWithSize));
+                                    this.thumbsLocations.add(ImageLocation.getForPhoto(closestPhotoSizeWithSize, tLRPC$Photo4));
+                                    if (!tLRPC$Photo4.video_sizes.isEmpty()) {
+                                        TLRPC$VideoSize closestVideoSizeWithSize3 = FileLoader.getClosestVideoSizeWithSize(tLRPC$Photo4.video_sizes, 1000);
+                                        TLRPC$VideoSize vectorMarkupVideoSize2 = FileLoader.getVectorMarkupVideoSize(tLRPC$Photo4);
+                                        if (vectorMarkupVideoSize2 != null) {
+                                            this.vectorAvatars.add(new VectorAvatarThumbDrawable(vectorMarkupVideoSize2, user != null && user.premium, 2));
+                                            tLRPC$Photo3 = null;
+                                            this.videoLocations.add(null);
+                                            this.videoFileNames.add(null);
+                                        } else {
+                                            tLRPC$Photo3 = null;
+                                            this.vectorAvatars.add(null);
+                                            this.videoLocations.add(ImageLocation.getForPhoto(closestVideoSizeWithSize3, tLRPC$Photo4));
+                                            this.videoFileNames.add(FileLoader.getAttachFileName(closestVideoSizeWithSize3));
+                                        }
+                                    } else {
+                                        tLRPC$Photo3 = null;
+                                        this.videoLocations.add(null);
+                                        this.videoFileNames.add(null);
+                                        this.vectorAvatars.add(null);
+                                    }
+                                    this.photos.add(tLRPC$Photo4);
+                                    this.imagesLocationsSizes.add(Integer.valueOf(closestPhotoSizeWithSize2.size));
+                                    this.imagesUploadProgress.add(tLRPC$Photo3);
+                                }
+                            }
+                        }
+                        tLRPC$Photo3 = null;
+                    }
+                    i3++;
+                    imageLocation = imageLocation2;
+                }
+                loadNeighboringThumbs();
+                getAdapter().notifyDataSetChanged();
+                if (this.isProfileFragment) {
+                    if (!this.scrolledByUser || this.forceResetPosition) {
+                        resetCurrentItem();
+                    }
+                } else if (!this.scrolledByUser || this.forceResetPosition) {
+                    resetCurrentItem();
+                    getAdapter().notifyDataSetChanged();
+                    checkCustomAvatar(getRealPosition(), 0.0f);
+                }
+                if (this.fallbackPhotoIndex < 0 && this.customAvatarIndex < 0) {
+                    checkCustomAvatar(0, 0.0f);
+                }
+                this.forceResetPosition = false;
+                Callback callback = this.callback;
+                if (callback != null) {
+                    callback.onPhotosLoaded();
+                }
+                ImageLocation imageLocation5 = this.currentUploadingImageLocation;
+                if (imageLocation5 != null) {
+                    addUploadingImage(imageLocation5, this.curreantUploadingThumbLocation);
+                }
+            }
+        } else if (i == NotificationCenter.fileLoaded) {
+            String str = (String) objArr[0];
+            while (r5 < this.thumbsFileNames.size()) {
+                String str2 = this.videoFileNames.get(r5);
+                if (str2 == null) {
+                    str2 = this.thumbsFileNames.get(r5);
+                }
+                if (str2 != null && TextUtils.equals(str, str2)) {
+                    RadialProgress2 radialProgress2 = this.radialProgresses.get(r5);
+                    if (radialProgress2 != null) {
+                        radialProgress2.setProgress(1.0f, true);
+                    }
+                    invalidate();
+                }
+                r5++;
+            }
+        } else if (i == NotificationCenter.fileLoadProgressChanged) {
+            String str3 = (String) objArr[0];
+            while (r5 < this.thumbsFileNames.size()) {
+                String str4 = this.videoFileNames.get(r5);
+                if (str4 == null) {
+                    str4 = this.thumbsFileNames.get(r5);
+                }
+                if (str4 != null && TextUtils.equals(str3, str4)) {
+                    RadialProgress2 radialProgress22 = this.radialProgresses.get(r5);
+                    if (radialProgress22 != null) {
+                        radialProgress22.setProgress(Math.min(1.0f, ((float) ((Long) objArr[1]).longValue()) / ((float) ((Long) objArr[2]).longValue())), true);
+                    }
+                    invalidate();
+                }
+                r5++;
+            }
+        } else if (i == NotificationCenter.reloadDialogPhotos && this.settingMainPhoto == 0 && (dialogPhotos = this.dialogPhotos) != null) {
+            dialogPhotos.reset();
+            MessagesController.DialogPhotos dialogPhotos3 = this.dialogPhotos;
+            int currentItem = getCurrentItem();
+            ViewPagerAdapter viewPagerAdapter = this.adapter;
+            dialogPhotos3.loadAfter(currentItem - (viewPagerAdapter != null ? viewPagerAdapter.getExtraCount() : 0), true, this.parentClassGuid);
+        }
     }
 
     public class ViewPagerAdapter extends CircularViewPager.Adapter {
@@ -819,97 +1139,8 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         }
 
         @Override
-        public Item instantiateItem(ViewGroup viewGroup, int i) {
-            boolean z;
-            Item item = this.objects.get(i);
-            int realPosition = getRealPosition(i);
-            if (ProfileGalleryView.this.hasActiveVideo && realPosition == 0) {
-                item.isActiveVideo = true;
-                if (item.textureViewStubView == null) {
-                    item.textureViewStubView = new TextureStubView(ProfileGalleryView.this, this.context);
-                }
-                if (item.textureViewStubView.getParent() == null) {
-                    viewGroup.addView(item.textureViewStubView);
-                }
-                return item;
-            }
-            item.isActiveVideo = false;
-            if (item.textureViewStubView != null && item.textureViewStubView.getParent() != null) {
-                viewGroup.removeView(item.textureViewStubView);
-            }
-            if (item.imageView == null) {
-                item.imageView = new AvatarImageView(this.context, i, this.placeholderPaint);
-                this.imageViews.set(i, item.imageView);
-            }
-            if (item.imageView.getParent() == null) {
-                viewGroup.addView(item.imageView);
-            }
-            item.imageView.getImageReceiver().setAllowDecodeSingleFrame(true);
-            int i2 = ProfileGalleryView.this.hasActiveVideo ? realPosition - 1 : realPosition;
-            if (i2 != 0) {
-                ImageLocation imageLocation = (ImageLocation) ProfileGalleryView.this.videoLocations.get(i2);
-                item.imageView.isVideo = imageLocation != null;
-                z = ProfileGalleryView.this.vectorAvatars.get(i2) == null;
-                ImageLocation imageLocation2 = (ImageLocation) ProfileGalleryView.this.thumbsLocations.get(i2);
-                item.imageView.setImageMedia((VectorAvatarThumbDrawable) ProfileGalleryView.this.vectorAvatars.get(i2), imageLocation, null, (ImageLocation) ProfileGalleryView.this.imagesLocations.get(i2), null, (ImageLocation) ProfileGalleryView.this.thumbsLocations.get(i2), (imageLocation2 == null || !(imageLocation2.photoSize instanceof TLRPC$TL_photoStrippedSize)) ? null : "b", null, ((Integer) ProfileGalleryView.this.imagesLocationsSizes.get(i2)).intValue(), 1, "avatar_" + ProfileGalleryView.this.dialogId);
-            } else {
-                BackupImageView backupImageView = this.parentAvatarImageView;
-                Drawable drawable = backupImageView == null ? null : backupImageView.getImageReceiver().getDrawable();
-                if (drawable instanceof AnimatedFileDrawable) {
-                    AnimatedFileDrawable animatedFileDrawable = (AnimatedFileDrawable) drawable;
-                    if (animatedFileDrawable.hasBitmap()) {
-                        item.imageView.setImageDrawable(drawable);
-                        animatedFileDrawable.addSecondParentView(item.imageView);
-                        animatedFileDrawable.setInvalidateParentViewWithSecond(true);
-                        z = false;
-                    }
-                }
-                ImageLocation imageLocation3 = (ImageLocation) ProfileGalleryView.this.videoLocations.get(i2);
-                item.imageView.isVideo = imageLocation3 != null;
-                z = ProfileGalleryView.this.vectorAvatars.get(i2) == null;
-                String str = (ProfileGalleryView.this.isProfileFragment && imageLocation3 != null && imageLocation3.imageType == 2) ? "avatar" : null;
-                ImageLocation imageLocation4 = (ImageLocation) ProfileGalleryView.this.thumbsLocations.get(i2);
-                Bitmap bitmap = (this.parentAvatarImageView == null || !ProfileGalleryView.this.createThumbFromParent) ? null : this.parentAvatarImageView.getImageReceiver().getBitmap();
-                String str2 = "avatar_" + ProfileGalleryView.this.dialogId;
-                if (bitmap == null || ProfileGalleryView.this.vectorAvatars.get(i2) != null) {
-                    if (ProfileGalleryView.this.uploadingImageLocation != null) {
-                        item.imageView.setImageMedia((VectorAvatarThumbDrawable) ProfileGalleryView.this.vectorAvatars.get(i2), (ImageLocation) ProfileGalleryView.this.videoLocations.get(i2), str, (ImageLocation) ProfileGalleryView.this.imagesLocations.get(i2), null, ProfileGalleryView.this.uploadingImageLocation, null, null, ((Integer) ProfileGalleryView.this.imagesLocationsSizes.get(i2)).intValue(), 1, str2);
-                    } else {
-                        item.imageView.setImageMedia((VectorAvatarThumbDrawable) ProfileGalleryView.this.vectorAvatars.get(i2), imageLocation3, null, (ImageLocation) ProfileGalleryView.this.imagesLocations.get(i2), null, (ImageLocation) ProfileGalleryView.this.thumbsLocations.get(i2), imageLocation4.photoSize instanceof TLRPC$TL_photoStrippedSize ? "b" : null, null, ((Integer) ProfileGalleryView.this.imagesLocationsSizes.get(i2)).intValue(), 1, str2);
-                    }
-                } else {
-                    item.imageView.setImageMedia((ImageLocation) ProfileGalleryView.this.videoLocations.get(i2), str, (ImageLocation) ProfileGalleryView.this.imagesLocations.get(i2), null, bitmap, ((Integer) ProfileGalleryView.this.imagesLocationsSizes.get(i2)).intValue(), 1, str2);
-                }
-            }
-            if (ProfileGalleryView.this.imagesUploadProgress.get(i2) == null ? z : true) {
-                item.imageView.radialProgress = (RadialProgress2) ProfileGalleryView.this.radialProgresses.get(i2);
-                if (item.imageView.radialProgress == null) {
-                    item.imageView.radialProgress = new RadialProgress2(item.imageView);
-                    item.imageView.radialProgress.setOverrideAlpha(0.0f);
-                    item.imageView.radialProgress.setIcon(10, false, false);
-                    item.imageView.radialProgress.setColors(1107296256, 1107296256, -1, -1);
-                    ProfileGalleryView.this.radialProgresses.append(i2, item.imageView.radialProgress);
-                }
-                if (ProfileGalleryView.this.invalidateWithParent) {
-                    ProfileGalleryView.this.invalidate();
-                } else {
-                    ProfileGalleryView.this.postInvalidateOnAnimation();
-                }
-            }
-            item.imageView.getImageReceiver().setDelegate(new ImageReceiver.ImageReceiverDelegate() {
-                @Override
-                public void didSetImage(ImageReceiver imageReceiver, boolean z2, boolean z3, boolean z4) {
-                }
-
-                @Override
-                public void onAnimationReady(ImageReceiver imageReceiver) {
-                    ProfileGalleryView.this.callback.onVideoSet();
-                }
-            });
-            item.imageView.getImageReceiver().setCrossfadeAlpha((byte) 2);
-            item.imageView.setRoundRadius(ProfileGalleryView.this.roundTopRadius, ProfileGalleryView.this.roundTopRadius, ProfileGalleryView.this.roundBottomRadius, ProfileGalleryView.this.roundBottomRadius);
-            item.imageView.setTag(Integer.valueOf(realPosition));
-            return item;
+        public org.telegram.ui.Components.ProfileGalleryView.Item instantiateItem(android.view.ViewGroup r27, int r28) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ProfileGalleryView.ViewPagerAdapter.instantiateItem(android.view.ViewGroup, int):org.telegram.ui.Components.ProfileGalleryView$Item");
         }
 
         @Override
@@ -935,7 +1166,11 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
 
         @Override
         public CharSequence getPageTitle(int i) {
-            return (getRealPosition(i) + 1) + "/" + (getCount() - (getExtraCount() * 2));
+            StringBuilder sb = new StringBuilder();
+            sb.append(getRealPosition(i) + 1);
+            sb.append("/");
+            sb.append(ProfileGalleryView.this.dialogPhotos == null ? 0 : ProfileGalleryView.this.dialogPhotos.getCount());
+            return sb.toString();
         }
 
         @Override
@@ -951,8 +1186,8 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
             if (ProfileGalleryView.this.hasActiveVideo) {
                 size++;
             }
-            int extraCount = size + (getExtraCount() * 2);
-            for (int i2 = 0; i2 < extraCount; i2++) {
+            int max = Math.max(ProfileGalleryView.this.dialogPhotos == null ? 0 : ProfileGalleryView.this.dialogPhotos.getCount(), size) + (getExtraCount() * 2);
+            for (int i2 = 0; i2 < max; i2++) {
                 this.objects.add(new Item());
                 this.imageViews.add(null);
             }
@@ -984,6 +1219,9 @@ public class ProfileGalleryView extends CircularViewPager implements Notificatio
         this.forceResetPosition = true;
         reset();
         this.dialogId = j;
+        MessagesController.DialogPhotos dialogPhotos = MessagesController.getInstance(this.currentAccount).getDialogPhotos(j);
+        this.dialogPhotos = dialogPhotos;
+        dialogPhotos.loadCache();
     }
 
     public long getDialogId() {

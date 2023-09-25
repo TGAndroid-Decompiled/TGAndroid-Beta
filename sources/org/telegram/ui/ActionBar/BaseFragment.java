@@ -1048,7 +1048,8 @@ public abstract class BaseFragment {
     public StoryViewer getOrCreateStoryViewer() {
         if (this.storyViewer == null) {
             this.storyViewer = new StoryViewer(this);
-            if (this.parentLayout.isSheet()) {
+            INavigationLayout iNavigationLayout = this.parentLayout;
+            if (iNavigationLayout != null && iNavigationLayout.isSheet()) {
                 this.storyViewer.fromBottomSheet = true;
             }
         }

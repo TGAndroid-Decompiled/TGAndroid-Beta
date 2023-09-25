@@ -79,6 +79,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
     private RadialProgressView avatarProgressView;
     private CheckBoxCell checkBoxCell;
     private ContactAddActivityDelegate delegate;
+    private MessagesController.DialogPhotos dialogPhotos;
     private View doneButton;
     private EditTextBoldCursor firstNameField;
     private String firstNameFromCard;
@@ -134,7 +135,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
     @Override
     public boolean onFragmentCreate() {
         getNotificationCenter().addObserver(this, NotificationCenter.updateInterfaces);
-        getNotificationCenter().addObserver(this, NotificationCenter.dialogPhotosLoaded);
+        getNotificationCenter().addObserver(this, NotificationCenter.dialogPhotosUpdate);
         this.user_id = getArguments().getLong("user_id", 0L);
         this.phone = getArguments().getString("phone");
         this.firstNameFromCard = getArguments().getString("first_name_card");
@@ -148,6 +149,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             imageUpdater.parentFragment = this;
             imageUpdater.setDelegate(this);
         }
+        this.dialogPhotos = MessagesController.getInstance(this.currentAccount).getDialogPhotos(this.user_id);
         return user != null && super.onFragmentCreate();
     }
 
@@ -155,7 +157,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
     public void onFragmentDestroy() {
         super.onFragmentDestroy();
         getNotificationCenter().removeObserver(this, NotificationCenter.updateInterfaces);
-        getNotificationCenter().removeObserver(this, NotificationCenter.dialogPhotosLoaded);
+        getNotificationCenter().removeObserver(this, NotificationCenter.dialogPhotosUpdate);
         ImageUpdater imageUpdater = this.imageUpdater;
         if (imageUpdater != null) {
             imageUpdater.clear();
@@ -452,7 +454,6 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
                 }
             });
             this.linearLayout.addView(this.oldPhotoCell, LayoutHelper.createLinear(-1, -2, 0, 0, 0, 0, 0));
-            getMessagesController().loadDialogPhotos(this.user_id, 2, 0, true, getClassGuid());
             TLRPC$UserFull userFull = getMessagesController().getUserFull(this.user_id);
             if (userFull != null) {
                 TLRPC$Photo tLRPC$Photo = userFull.profile_photo;
@@ -679,35 +680,26 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        int i3 = 0;
+        MessagesController.DialogPhotos dialogPhotos;
         if (i == NotificationCenter.updateInterfaces) {
             int intValue = ((Integer) objArr[0]).intValue();
             if ((MessagesController.UPDATE_MASK_AVATAR & intValue) == 0 && (intValue & MessagesController.UPDATE_MASK_STATUS) == 0) {
                 return;
             }
             updateAvatarLayout();
-        } else if (i == NotificationCenter.dialogPhotosLoaded) {
-            int intValue2 = ((Integer) objArr[3]).intValue();
-            long longValue = ((Long) objArr[0]).longValue();
-            boolean booleanValue = ((Boolean) objArr[2]).booleanValue();
-            if (this.user_id == longValue && this.classGuid == intValue2) {
-                ArrayList arrayList = (ArrayList) objArr[4];
-                if (arrayList != null) {
-                    while (true) {
-                        if (i3 >= arrayList.size()) {
-                            break;
-                        } else if (arrayList.get(i3) != null) {
-                            this.prevAvatar = (TLRPC$Photo) arrayList.get(i3);
-                            updateCustomPhotoInfo();
-                            break;
-                        } else {
-                            i3++;
-                        }
-                    }
+        } else if (i == NotificationCenter.dialogPhotosUpdate && (dialogPhotos = (MessagesController.DialogPhotos) objArr[0]) == this.dialogPhotos) {
+            ArrayList arrayList = new ArrayList(dialogPhotos.photos);
+            int i3 = 0;
+            while (i3 < arrayList.size()) {
+                if (arrayList.get(i3) == null) {
+                    arrayList.remove(i3);
+                    i3--;
                 }
-                if (this.prevAvatar == null && booleanValue) {
-                    MessagesController.getInstance(this.currentAccount).loadDialogPhotos(longValue, 80, 0, false, getClassGuid());
-                }
+                i3++;
+            }
+            if (arrayList.size() > 0) {
+                this.prevAvatar = (TLRPC$Photo) arrayList.get(0);
+                updateCustomPhotoInfo();
             }
         }
     }
@@ -946,7 +938,7 @@ public class ContactAddActivity extends BaseFragment implements NotificationCent
             ArrayList arrayList2 = new ArrayList();
             arrayList2.add(user);
             getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
-            getMessagesStorage().addDialogPhoto(this.user_id, tLRPC$TL_photos_photo.photo);
+            getMessagesController().getDialogPhotos(this.user_id).addPhotoAtStart(tLRPC$TL_photos_photo.photo);
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.reloadDialogPhotos, new Object[0]);
             getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.updateInterfaces, Integer.valueOf(MessagesController.UPDATE_MASK_AVATAR));
             if (getParentActivity() != null) {

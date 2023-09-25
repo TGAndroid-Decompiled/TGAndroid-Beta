@@ -716,7 +716,7 @@ public class AlertsCreator {
                     } else if (tLRPC$TL_error.text.startsWith("FLOOD_WAIT")) {
                         showSimpleAlert(baseFragment, LocaleController.getString("FloodWait", R.string.FloodWait));
                     } else if (tLRPC$TL_error.text.contains("FRESH_CHANGE_PHONE_FORBIDDEN")) {
-                        showSimpleAlert(baseFragment, LocaleController.getString("FreshChangePhoneForbidden", R.string.FreshChangePhoneForbidden));
+                        showSimpleAlert(baseFragment, LocaleController.getString(R.string.FreshChangePhoneForbiddenTitle), LocaleController.getString("FreshChangePhoneForbidden", R.string.FreshChangePhoneForbidden));
                     } else {
                         showSimpleAlert(baseFragment, tLRPC$TL_error.text);
                     }

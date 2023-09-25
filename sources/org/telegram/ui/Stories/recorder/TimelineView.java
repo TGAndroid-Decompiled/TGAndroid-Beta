@@ -610,7 +610,8 @@ public class TimelineView extends View {
                 this.audioOffset = Utilities.clamp(this.audioOffset + j10, j4, j3);
                 TimelineDelegate timelineDelegate2 = this.delegate;
                 if (timelineDelegate2 != null) {
-                    timelineDelegate2.onAudioRightChange(this.audioRight);
+                    timelineDelegate2.onAudioLeftChange(this.audioLeft);
+                    this.delegate.onAudioRightChange(this.audioRight);
                 }
             } else if (j9 + j10 < j8) {
                 float clamp3 = Utilities.clamp((((this.videoLeft * ((float) this.videoDuration)) - ((float) j9)) - ((float) j10)) / ((float) this.audioDuration), 1.0f - min, 0.0f);
@@ -633,6 +634,7 @@ public class TimelineView extends View {
                 TimelineDelegate timelineDelegate3 = this.delegate;
                 if (timelineDelegate3 != null) {
                     timelineDelegate3.onAudioLeftChange(this.audioLeft);
+                    this.delegate.onAudioRightChange(this.audioRight);
                 }
             } else {
                 this.audioOffset = j9 + j10;

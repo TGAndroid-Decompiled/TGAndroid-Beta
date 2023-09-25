@@ -976,6 +976,7 @@
     <string name="BoostingEnableStories">Enable Stories</string>
     <string name="BoostingEnableStoriesForChannel">Enable stories for the channel</string>
     <string name="BoostingEnableStoriesForChannel2">Enable stories for channel</string>
+    <string name="BoostingIncreaseLevel">Increase Story Limit</string>
     <string name="Boosts">Boosts</string>
     <string name="BoostsExisting">Existing Boosts</string>
     <string name="BoostsLevel">Level %d</string>
@@ -2749,6 +2750,7 @@
     <string name="ForwardsRestrictedInfoGroup">Сopying and forwarding is not allowed in this group.</string>
     <string name="FreeOfTotal">Free %1$s of %2$s</string>
     <string name="FreshChangePhoneForbidden">For security reasons, you can\'t change phone number from a device that you\'ve just connected. Please use an earlier connection or wait for a few hours.</string>
+    <string name="FreshChangePhoneForbiddenTitle">Unable to terminate</string>
     <string name="From">From</string>
     <string name="FromCamera">From camera</string>
     <string name="FromChats_few">from %1$d chats</string>

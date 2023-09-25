@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesStorage;
 public class BackDrawable extends Drawable {
     private boolean alwaysClose;
     private int arrowRotation;
@@ -110,7 +111,7 @@ public class BackDrawable extends Drawable {
             canvas.rotate((f3 * (this.reverseAngle ? -180 : 180)) + 135.0f);
             f = 1.0f;
         } else {
-            canvas.rotate((this.reverseAngle ? -225 : 135) * f3);
+            canvas.rotate((this.reverseAngle ? -225 : MessagesStorage.LAST_DB_VERSION) * f3);
             f = f3;
         }
         float f4 = 1.0f - f;

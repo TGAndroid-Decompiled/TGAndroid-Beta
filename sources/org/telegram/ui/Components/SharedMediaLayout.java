@@ -109,6 +109,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_getSearchResultsPositions;
 import org.telegram.tgnet.TLRPC$TL_messages_search;
 import org.telegram.tgnet.TLRPC$TL_messages_searchResultsPositions;
 import org.telegram.tgnet.TLRPC$TL_searchResultPosition;
+import org.telegram.tgnet.TLRPC$TL_stories_storyViews;
 import org.telegram.tgnet.TLRPC$TL_webPageEmpty;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
@@ -153,6 +154,7 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 import org.telegram.ui.Stories.UserListPoller;
+import org.telegram.ui.Stories.ViewsForPeerStoriesRequester;
 import org.telegram.ui.TopicsFragment;
 public class SharedMediaLayout extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private ActionBar actionBar;
@@ -346,9 +348,6 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     }
 
     protected void onSearchStateChanged(boolean z) {
-    }
-
-    protected void onSelectedTabChanged() {
     }
 
     public void onTabProgress(float f) {
@@ -814,7 +813,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             return i;
         }
 
-        static int access$8010(SharedMediaData sharedMediaData) {
+        static int access$8110(SharedMediaData sharedMediaData) {
             int i = sharedMediaData.endLoadingStubs;
             sharedMediaData.endLoadingStubs = i - 1;
             return i;
@@ -1060,6 +1059,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.profileActivity.getNotificationCenter().addObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
         this.profileActivity.getNotificationCenter().addObserver(this, NotificationCenter.messagePlayingDidStart);
         this.profileActivity.getNotificationCenter().addObserver(this, NotificationCenter.storiesListUpdated);
+        this.profileActivity.getNotificationCenter().addObserver(this, NotificationCenter.storiesUpdated);
         for (int i10 = 0; i10 < 10; i10++) {
             if (this.initialTab == 4) {
                 SharedAudioCell sharedAudioCell = new SharedAudioCell(context) {
@@ -2980,6 +2980,21 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         return this.mediaPages[1].selectedType;
     }
 
+    public void onSelectedTabChanged() {
+        boolean z = false;
+        boolean z2 = isStoriesView() || isArchivedOnlyStoriesView();
+        if (this.archivedStoriesAdapter.poller != null) {
+            this.archivedStoriesAdapter.poller.start(z2 && getClosestTab() == 9);
+        }
+        if (this.storiesAdapter.poller != null) {
+            ViewsForPeerStoriesRequester viewsForPeerStoriesRequester = this.storiesAdapter.poller;
+            if (z2 && getClosestTab() == 8) {
+                z = true;
+            }
+            viewsForPeerStoriesRequester.start(z);
+        }
+    }
+
     public void onDestroy() {
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.mediaDidLoad);
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.didReceiveNewMessages);
@@ -2989,6 +3004,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.messagePlayingPlayStateChanged);
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.messagePlayingDidStart);
         this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.storiesListUpdated);
+        this.profileActivity.getNotificationCenter().removeObserver(this, NotificationCenter.storiesUpdated);
         StoriesAdapter storiesAdapter = this.storiesAdapter;
         if (storiesAdapter != null && storiesAdapter.storiesList != null) {
             storiesAdapter.destroy();
@@ -5720,6 +5736,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
     public class StoriesAdapter extends SharedPhotoVideoAdapter {
         private int id;
         private final boolean isArchive;
+        private ViewsForPeerStoriesRequester poller;
         public final StoriesController.StoriesList storiesList;
         private StoriesAdapter supportingAdapter;
 
@@ -5749,6 +5766,43 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             StoriesController.StoriesList storiesList = this.storiesList;
             if (storiesList != null) {
                 this.id = storiesList.link();
+                this.poller = new ViewsForPeerStoriesRequester(SharedMediaLayout.this.profileActivity.getMessagesController().getStoriesController(), SharedMediaLayout.this.dialog_id, this.storiesList.currentAccount, SharedMediaLayout.this) {
+                    @Override
+                    protected void getStoryIds(ArrayList<Integer> arrayList) {
+                        InternalListView internalListView;
+                        MessageObject messageObject;
+                        int i = 0;
+                        while (true) {
+                            if (i >= SharedMediaLayout.this.mediaPages.length) {
+                                internalListView = null;
+                                break;
+                            }
+                            if (SharedMediaLayout.this.mediaPages[i].listView != null) {
+                                RecyclerView.Adapter adapter = SharedMediaLayout.this.mediaPages[i].listView.getAdapter();
+                                StoriesAdapter storiesAdapter = StoriesAdapter.this;
+                                if (adapter == storiesAdapter) {
+                                    internalListView = SharedMediaLayout.this.mediaPages[i].listView;
+                                    break;
+                                }
+                            }
+                            i++;
+                        }
+                        if (internalListView != null) {
+                            for (int i2 = 0; i2 < internalListView.getChildCount(); i2++) {
+                                View childAt = internalListView.getChildAt(i2);
+                                if ((childAt instanceof SharedPhotoVideoCell2) && (messageObject = ((SharedPhotoVideoCell2) childAt).getMessageObject()) != null && messageObject.isStory()) {
+                                    arrayList.add(Integer.valueOf(messageObject.storyItem.id));
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    protected boolean updateStories(ArrayList<Integer> arrayList, TLRPC$TL_stories_storyViews tLRPC$TL_stories_storyViews) {
+                        StoriesAdapter.this.storiesList.updateStoryViews(arrayList, tLRPC$TL_stories_storyViews.views);
+                        return true;
+                    }
+                };
             }
             checkColumns();
         }

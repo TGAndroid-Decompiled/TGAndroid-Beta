@@ -490,7 +490,9 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                         if (obj instanceof MediaController.PhotoEntry) {
                             MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
                             if (i3 == 0) {
-                                CharSequence charSequence = PhotoViewer.getInstance().captionForAllMedia;
+                                CharSequence[] charSequenceArr = {PhotoViewer.getInstance().captionForAllMedia};
+                                photoEntry.entities = MediaDataController.getInstance(UserConfig.selectedAccount).getEntities(charSequenceArr, false);
+                                CharSequence charSequence = charSequenceArr[0];
                                 photoEntry.caption = charSequence;
                                 if (ChatAttachAlertPhotoLayout.this.parentAlert.checkCaption(charSequence)) {
                                     return;
@@ -3382,18 +3384,29 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
 
     @Override
     public void applyCaption(CharSequence charSequence) {
+        MediaController.PhotoEntry photoEntry;
         for (int i = 0; i < selectedPhotosOrder.size(); i++) {
             if (i == 0) {
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i));
-                if (obj instanceof MediaController.PhotoEntry) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
-                    photoEntry.caption = charSequence;
-                    photoEntry.entities = MediaDataController.getInstance(UserConfig.selectedAccount).getEntities(new CharSequence[]{charSequence}, false);
-                } else if (obj instanceof MediaController.SearchImage) {
-                    MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                    searchImage.caption = charSequence;
-                    searchImage.entities = MediaDataController.getInstance(UserConfig.selectedAccount).getEntities(new CharSequence[]{charSequence}, false);
+                Object obj = selectedPhotosOrder.get(i);
+                Object obj2 = selectedPhotos.get(obj);
+                if (obj2 instanceof MediaController.PhotoEntry) {
+                    MediaController.PhotoEntry clone = ((MediaController.PhotoEntry) obj2).clone();
+                    CharSequence[] charSequenceArr = {charSequence};
+                    clone.entities = MediaDataController.getInstance(UserConfig.selectedAccount).getEntities(charSequenceArr, false);
+                    clone.caption = charSequenceArr[0];
+                    photoEntry = clone;
+                } else {
+                    boolean z = obj2 instanceof MediaController.SearchImage;
+                    photoEntry = obj2;
+                    if (z) {
+                        MediaController.SearchImage clone2 = ((MediaController.SearchImage) obj2).clone();
+                        CharSequence[] charSequenceArr2 = {charSequence};
+                        clone2.entities = MediaDataController.getInstance(UserConfig.selectedAccount).getEntities(charSequenceArr2, false);
+                        clone2.caption = charSequenceArr2[0];
+                        photoEntry = clone2;
+                    }
                 }
+                selectedPhotos.put(obj, photoEntry);
             }
         }
     }

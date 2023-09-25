@@ -959,7 +959,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 }
                 this.drawerLayoutContainer.closeDrawer(false);
             } else if (id == 6) {
-                lambda$runLinkRequest$75(new ContactsActivity(null));
+                Bundle bundle3 = new Bundle();
+                bundle3.putBoolean("needFinishFragment", false);
+                lambda$runLinkRequest$75(new ContactsActivity(bundle3));
                 this.drawerLayoutContainer.closeDrawer(false);
             } else if (id == 7) {
                 lambda$runLinkRequest$75(new InviteContactsActivity());
@@ -973,9 +975,9 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 lambda$runLinkRequest$75(new CallLogActivity());
                 this.drawerLayoutContainer.closeDrawer(false);
             } else if (id == 11) {
-                Bundle bundle3 = new Bundle();
-                bundle3.putLong("user_id", UserConfig.getInstance(this.currentAccount).getClientUserId());
-                lambda$runLinkRequest$75(new ChatActivity(bundle3));
+                Bundle bundle4 = new Bundle();
+                bundle4.putLong("user_id", UserConfig.getInstance(this.currentAccount).getClientUserId());
+                lambda$runLinkRequest$75(new ChatActivity(bundle4));
                 this.drawerLayoutContainer.closeDrawer(false);
             } else if (id == 12) {
                 int i4 = Build.VERSION.SDK_INT;
@@ -1007,11 +1009,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             } else if (id == 15) {
                 showSelectStatusDialog();
             } else if (id == 16) {
-                Bundle bundle4 = new Bundle();
-                bundle4.putLong("dialog_id", UserConfig.getInstance(this.currentAccount).getClientUserId());
-                bundle4.putInt("type", 1);
+                Bundle bundle5 = new Bundle();
+                bundle5.putLong("dialog_id", UserConfig.getInstance(this.currentAccount).getClientUserId());
+                bundle5.putInt("type", 1);
                 this.drawerLayoutContainer.closeDrawer(true);
-                lambda$runLinkRequest$75(new MediaActivity(bundle4, null));
+                lambda$runLinkRequest$75(new MediaActivity(bundle5, null));
             }
         }
     }
@@ -3553,16 +3555,24 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public void lambda$processBoostDialog$93(Long l, TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus, Runnable runnable, ChannelBoostsController.CanApplyBoost canApplyBoost) {
-        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(getLastFragment(), this, 19, this.currentAccount, null);
-        limitReachedBottomSheet.setCanApplyBoost(canApplyBoost);
         BaseFragment lastFragment = getLastFragment();
+        if (lastFragment == null) {
+            return;
+        }
+        Theme.ResourcesProvider resourceProvider = lastFragment.getResourceProvider();
+        StoryViewer storyViewer = lastFragment.storyViewer;
+        if (storyViewer != null && storyViewer.isFullyVisible()) {
+            resourceProvider = lastFragment.storyViewer.getResourceProvider();
+        }
+        LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(lastFragment, this, 19, this.currentAccount, resourceProvider);
+        limitReachedBottomSheet.setCanApplyBoost(canApplyBoost);
         boolean z = false;
         if ((lastFragment instanceof ChatActivity) && ((ChatActivity) lastFragment).getDialogId() == l.longValue()) {
             z = true;
         }
         limitReachedBottomSheet.setBoostsStats(tLRPC$TL_stories_boostsStatus, z);
         limitReachedBottomSheet.setDialogId(l.longValue());
-        limitReachedBottomSheet.show();
+        lastFragment.showDialog(limitReachedBottomSheet);
         if (runnable != null) {
             try {
                 runnable.run();

@@ -401,7 +401,11 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
     }
 
     public void updateMediaCount() {
-        int closestTab = this.sharedMediaLayout.getClosestTab();
+        SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
+        if (sharedMediaLayout == null) {
+            return;
+        }
+        int closestTab = sharedMediaLayout.getClosestTab();
         int[] lastMediaCount = this.sharedMediaPreloader.getLastMediaCount();
         boolean z = !LocaleController.isRTL;
         int i = (this.type == 1 && closestTab != 8) ? 1 : 0;
@@ -436,8 +440,8 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
                 hideFloatingButton(closestTab != 9 || this.sharedMediaLayout.getStoriesCount(9) > 0, true);
             }
             if (this.optionsItem != null) {
-                SharedMediaLayout sharedMediaLayout = this.sharedMediaLayout;
-                final boolean z2 = sharedMediaLayout.getStoriesCount(sharedMediaLayout.getClosestTab()) <= 0;
+                SharedMediaLayout sharedMediaLayout2 = this.sharedMediaLayout;
+                final boolean z2 = sharedMediaLayout2.getStoriesCount(sharedMediaLayout2.getClosestTab()) <= 0;
                 if (!z2) {
                     this.optionsItem.setVisibility(0);
                 }

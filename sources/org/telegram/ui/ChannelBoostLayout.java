@@ -59,6 +59,7 @@ public class ChannelBoostLayout extends FrameLayout {
     BaseFragment fragment;
     boolean hasNext;
     ArrayList<ItemInternal> items;
+    private String lastOffset;
     RecyclerListView listView;
     int nextRemaining;
     private LinearLayout progressLayout;
@@ -167,7 +168,7 @@ public class ChannelBoostLayout extends FrameLayout {
                     overviewCell.setData(0, Integer.toString(ChannelBoostLayout.this.boostsStatus.level), null, LocaleController.getString("BoostsLevel2", R.string.BoostsLevel2));
                     TLRPC$TL_statsPercentValue tLRPC$TL_statsPercentValue = ChannelBoostLayout.this.boostsStatus.premium_audience;
                     if (tLRPC$TL_statsPercentValue != null) {
-                        if (tLRPC$TL_statsPercentValue.total == 0.0d) {
+                        if (tLRPC$TL_statsPercentValue.total != 0.0d) {
                             overviewCell.setData(1, "~" + ((int) ChannelBoostLayout.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf((((float) tLRPC$TL_statsPercentValue.part) / ((float) d)) * 100.0f)) + "%", LocaleController.getString("PremiumSubscribers", R.string.PremiumSubscribers));
                             overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString("BoostsExisting", R.string.BoostsExisting));
                             TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus = ChannelBoostLayout.this.boostsStatus;
@@ -198,6 +199,7 @@ public class ChannelBoostLayout extends FrameLayout {
                 return ChannelBoostLayout.this.items.get(i).viewType;
             }
         };
+        this.lastOffset = "";
         this.fragment = baseFragment;
         Context context = baseFragment.getContext();
         this.resourcesProvider = resourcesProvider;
@@ -304,7 +306,7 @@ public class ChannelBoostLayout extends FrameLayout {
         this.usersLoading = true;
         TLRPC$TL_stories_getBoostersList tLRPC$TL_stories_getBoostersList = new TLRPC$TL_stories_getBoostersList();
         tLRPC$TL_stories_getBoostersList.limit = 25;
-        tLRPC$TL_stories_getBoostersList.offset = "";
+        tLRPC$TL_stories_getBoostersList.offset = this.lastOffset;
         tLRPC$TL_stories_getBoostersList.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stories_getBoostersList, new RequestDelegate() {
             @Override
@@ -329,6 +331,7 @@ public class ChannelBoostLayout extends FrameLayout {
         if (tLObject != null) {
             TLRPC$TL_stories_boostersList tLRPC$TL_stories_boostersList = (TLRPC$TL_stories_boostersList) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_stories_boostersList.users, false);
+            this.lastOffset = tLRPC$TL_stories_boostersList.next_offset;
             this.boosters.addAll(tLRPC$TL_stories_boostersList.boosters);
             if (!TextUtils.isEmpty(tLRPC$TL_stories_boostersList.next_offset) && this.boosters.size() < tLRPC$TL_stories_boostersList.count) {
                 z = true;

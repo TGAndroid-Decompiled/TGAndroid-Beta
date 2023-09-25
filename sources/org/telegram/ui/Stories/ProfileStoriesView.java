@@ -57,6 +57,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private StoryCircle mainCircle;
     private ValueAnimator newStoryBounce;
     private float newStoryBounceT;
+    private Runnable onLongPressRunnable;
     Paint paint;
     private TLRPC$PeerStories peerStories;
     private boolean progressIsDone;
@@ -83,6 +84,9 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private int unreadCount;
     float w;
     private final Paint whitePaint;
+
+    public void lambda$new$4() {
+    }
 
     protected void onTap(StoryViewer.PlaceProvider placeProvider) {
     }
@@ -164,6 +168,12 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         this.newStoryBounceT = 1.0f;
         this.rightAnimated = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.provider = new AnonymousClass3();
+        this.onLongPressRunnable = new Runnable() {
+            @Override
+            public final void run() {
+                ProfileStoriesView.this.lambda$new$4();
+            }
+        };
         this.currentAccount = i;
         this.dialogId = j;
         this.avatarContainer = view;
@@ -788,15 +798,19 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             this.tapTime = System.currentTimeMillis();
             this.tapX = motionEvent.getX();
             this.tapY = motionEvent.getY();
+            AndroidUtilities.cancelRunOnUIThread(this.onLongPressRunnable);
+            AndroidUtilities.runOnUIThread(this.onLongPressRunnable, ViewConfiguration.getLongPressTimeout());
             return true;
         }
         if (motionEvent.getAction() == 1) {
+            AndroidUtilities.cancelRunOnUIThread(this.onLongPressRunnable);
             if (z && System.currentTimeMillis() - this.tapTime <= ViewConfiguration.getTapTimeout() && MathUtils.distance(this.tapX, this.tapY, motionEvent.getX(), motionEvent.getY()) <= AndroidUtilities.dp(12.0f) && (this.storiesController.hasUploadingStories(this.dialogId) || this.storiesController.hasStories(this.dialogId) || !this.circles.isEmpty())) {
                 onTap(this.provider);
                 return true;
             }
         } else if (motionEvent.getAction() == 3) {
             this.tapTime = -1L;
+            AndroidUtilities.cancelRunOnUIThread(this.onLongPressRunnable);
         }
         return super.onTouchEvent(motionEvent);
     }

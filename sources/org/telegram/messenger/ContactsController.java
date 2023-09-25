@@ -1889,7 +1889,7 @@ public class ContactsController extends BaseController {
 
     public long addContactToPhoneBook(TLRPC$User tLRPC$User, boolean z) {
         long j = -1;
-        if (this.systemAccount == null || tLRPC$User == null || !hasContactsPermission()) {
+        if (this.systemAccount == null || tLRPC$User == null || !hasContactsWritePermission()) {
             return -1L;
         }
         synchronized (this.observerLock) {
@@ -1910,7 +1910,8 @@ public class ContactsController extends BaseController {
             if (applyBatch != null && applyBatch.length > 0 && applyBatch[0].uri != null) {
                 j = Long.parseLong(applyBatch[0].uri.getLastPathSegment());
             }
-        } catch (Exception unused2) {
+        } catch (Exception e) {
+            FileLog.e(e);
         }
         synchronized (this.observerLock) {
             this.ignoreChanges = false;

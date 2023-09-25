@@ -1284,6 +1284,13 @@ public class DatabaseMigrationHelper {
         if (i7 == 133) {
             sQLiteDatabase.executeFast("ALTER TABLE unread_push_messages ADD COLUMN topicId INTEGER default 0").stepThis().dispose();
             sQLiteDatabase.executeFast("PRAGMA user_version = 134").stepThis().dispose();
+            i7 = 134;
+        }
+        if (i7 == 134) {
+            sQLiteDatabase.executeFast("DROP TABLE user_photos").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE TABLE dialog_photos(uid INTEGER, id INTEGER, num INTEGER, data BLOB, PRIMARY KEY (uid, id))").stepThis().dispose();
+            sQLiteDatabase.executeFast("CREATE TABLE dialog_photos_count(uid INTEGER PRIMARY KEY, count INTEGER)").stepThis().dispose();
+            sQLiteDatabase.executeFast("PRAGMA user_version = 135").stepThis().dispose();
             return MessagesStorage.LAST_DB_VERSION;
         }
         return i7;
@@ -1328,7 +1335,7 @@ public class DatabaseMigrationHelper {
             FileLog.e(e2);
             z = false;
         }
-        if (intValue != 134) {
+        if (intValue != 135) {
             FileLog.e("can't restore database from version " + intValue);
             return false;
         }

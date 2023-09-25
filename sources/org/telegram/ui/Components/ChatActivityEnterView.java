@@ -1481,61 +1481,58 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 }
                 ChatActivityEnterView.this.audioToSendPath = null;
                 ChatActivityEnterView.this.audioToSend = null;
-                if (!ChatActivityEnterView.this.isInVideoMode()) {
-                    if (ChatActivityEnterView.this.parentFragment == null || Build.VERSION.SDK_INT < 23 || ChatActivityEnterView.this.parentActivity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
-                        ChatActivityEnterView.this.delegate.needStartRecordAudio(1);
-                        ChatActivityEnterView.this.startedDraggingX = -1.0f;
-                        MediaController.getInstance().startRecording(ChatActivityEnterView.this.currentAccount, ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.replyingMessageObject, ChatActivityEnterView.this.getThreadMessage(), ChatActivityEnterView.this.delegate != null ? ChatActivityEnterView.this.delegate.getReplyToStory() : null, ChatActivityEnterView.this.recordingGuid, true);
-                        ChatActivityEnterView.this.recordingAudioVideo = true;
-                        ChatActivityEnterView.this.updateRecordInterface(0);
-                        if (ChatActivityEnterView.this.recordTimerView != null) {
-                            ChatActivityEnterView.this.recordTimerView.start();
-                        }
-                        if (ChatActivityEnterView.this.recordDot != null) {
-                            ChatActivityEnterView.this.recordDot.enterAnimation = false;
-                        }
-                        ChatActivityEnterView.this.audioVideoButtonContainer.getParent().requestDisallowInterceptTouchEvent(true);
-                        if (ChatActivityEnterView.this.recordCircle != null) {
-                            ChatActivityEnterView.this.recordCircle.showWaves(true, false);
+                if (ChatActivityEnterView.this.isInVideoMode()) {
+                    if (Build.VERSION.SDK_INT >= 23) {
+                        boolean z2 = ChatActivityEnterView.this.parentActivity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0;
+                        boolean z3 = ChatActivityEnterView.this.parentActivity.checkSelfPermission("android.permission.CAMERA") == 0;
+                        if (!z2 || !z3) {
+                            String[] strArr = new String[(z2 || z3) ? 1 : 2];
+                            if (!z2 && !z3) {
+                                strArr[0] = "android.permission.RECORD_AUDIO";
+                                strArr[1] = "android.permission.CAMERA";
+                            } else if (!z2) {
+                                strArr[0] = "android.permission.RECORD_AUDIO";
+                            } else {
+                                strArr[0] = "android.permission.CAMERA";
+                            }
+                            ChatActivityEnterView.this.parentActivity.requestPermissions(strArr, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
                             return;
                         }
+                    }
+                    if (!CameraController.getInstance().isCameraInitied()) {
+                        CameraController.getInstance().initCamera(ChatActivityEnterView.this.onFinishInitCameraRunnable);
+                    } else {
+                        ChatActivityEnterView.this.onFinishInitCameraRunnable.run();
+                    }
+                    if (ChatActivityEnterView.this.recordingAudioVideo) {
                         return;
                     }
-                    ChatActivityEnterView.this.parentActivity.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 3);
-                    return;
-                }
-                if (Build.VERSION.SDK_INT >= 23) {
-                    boolean z2 = ChatActivityEnterView.this.parentActivity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0;
-                    boolean z3 = ChatActivityEnterView.this.parentActivity.checkSelfPermission("android.permission.CAMERA") == 0;
-                    if (!z2 || !z3) {
-                        String[] strArr = new String[(z2 || z3) ? 1 : 2];
-                        if (!z2 && !z3) {
-                            strArr[0] = "android.permission.RECORD_AUDIO";
-                            strArr[1] = "android.permission.CAMERA";
-                        } else if (!z2) {
-                            strArr[0] = "android.permission.RECORD_AUDIO";
-                        } else {
-                            strArr[0] = "android.permission.CAMERA";
-                        }
-                        ChatActivityEnterView.this.parentActivity.requestPermissions(strArr, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
-                        return;
+                    ChatActivityEnterView.this.recordingAudioVideo = true;
+                    ChatActivityEnterView.this.updateRecordInterface(0);
+                    if (ChatActivityEnterView.this.recordCircle != null) {
+                        ChatActivityEnterView.this.recordCircle.showWaves(false, false);
                     }
-                }
-                if (!CameraController.getInstance().isCameraInitied()) {
-                    CameraController.getInstance().initCamera(ChatActivityEnterView.this.onFinishInitCameraRunnable);
+                    if (ChatActivityEnterView.this.recordTimerView != null) {
+                        ChatActivityEnterView.this.recordTimerView.reset();
+                    }
+                } else if (Build.VERSION.SDK_INT < 23 || ChatActivityEnterView.this.parentActivity.checkSelfPermission("android.permission.RECORD_AUDIO") == 0) {
+                    ChatActivityEnterView.this.delegate.needStartRecordAudio(1);
+                    ChatActivityEnterView.this.startedDraggingX = -1.0f;
+                    MediaController.getInstance().startRecording(ChatActivityEnterView.this.currentAccount, ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.replyingMessageObject, ChatActivityEnterView.this.getThreadMessage(), ChatActivityEnterView.this.delegate != null ? ChatActivityEnterView.this.delegate.getReplyToStory() : null, ChatActivityEnterView.this.recordingGuid, true);
+                    ChatActivityEnterView.this.recordingAudioVideo = true;
+                    ChatActivityEnterView.this.updateRecordInterface(0);
+                    if (ChatActivityEnterView.this.recordTimerView != null) {
+                        ChatActivityEnterView.this.recordTimerView.start();
+                    }
+                    if (ChatActivityEnterView.this.recordDot != null) {
+                        ChatActivityEnterView.this.recordDot.enterAnimation = false;
+                    }
+                    ChatActivityEnterView.this.audioVideoButtonContainer.getParent().requestDisallowInterceptTouchEvent(true);
+                    if (ChatActivityEnterView.this.recordCircle != null) {
+                        ChatActivityEnterView.this.recordCircle.showWaves(true, false);
+                    }
                 } else {
-                    ChatActivityEnterView.this.onFinishInitCameraRunnable.run();
-                }
-                if (ChatActivityEnterView.this.recordingAudioVideo) {
-                    return;
-                }
-                ChatActivityEnterView.this.recordingAudioVideo = true;
-                ChatActivityEnterView.this.updateRecordInterface(0);
-                if (ChatActivityEnterView.this.recordCircle != null) {
-                    ChatActivityEnterView.this.recordCircle.showWaves(false, false);
-                }
-                if (ChatActivityEnterView.this.recordTimerView != null) {
-                    ChatActivityEnterView.this.recordTimerView.reset();
+                    ChatActivityEnterView.this.parentActivity.requestPermissions(new String[]{"android.permission.RECORD_AUDIO"}, 3);
                 }
             }
         };

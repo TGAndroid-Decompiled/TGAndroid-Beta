@@ -37,9 +37,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$StoryItem;
+import org.telegram.tgnet.TLRPC$StoryViews;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
 import org.telegram.tgnet.TLRPC$TL_messageMediaUnsupported;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AnimatedFloat;
+import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CanvasButton;
 import org.telegram.ui.Components.CheckBoxBase;
 import org.telegram.ui.Components.CombinedDrawable;
@@ -65,6 +68,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     MessageObject currentMessageObject;
     int currentParentColumnsCount;
     boolean drawVideoIcon;
+    boolean drawViews;
     FlickerLoadingView globalGradientView;
     private Drawable gradientDrawable;
     private boolean gradientDrawableLoading;
@@ -88,6 +92,8 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     private int style;
     StaticLayout videoInfoLayot;
     String videoText;
+    AnimatedFloat viewsAlpha;
+    AnimatedTextView.AnimatedTextDrawable viewsText;
 
     public void lambda$setStyle$1() {
     }
@@ -99,6 +105,8 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
         this.imageAlpha = 1.0f;
         this.imageScale = 1.0f;
         this.drawVideoIcon = true;
+        this.viewsAlpha = new AnimatedFloat(this, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
+        this.viewsText = new AnimatedTextView.AnimatedTextDrawable(false, true, true);
         this.path = new Path();
         this.mediaSpoilerEffect = new SpoilerEffect();
         this.style = 0;
@@ -119,6 +127,11 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                 ImageReceiver.ImageReceiverDelegate.CC.$default$onAnimationReady(this, imageReceiver);
             }
         });
+        this.viewsText.setCallback(this);
+        this.viewsText.setTextSize(AndroidUtilities.dp(12.0f));
+        this.viewsText.setTextColor(-1);
+        this.viewsText.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+        this.viewsText.setOverrideFullWidth(AndroidUtilities.displaySize.x);
         setWillNotDraw(false);
     }
 
@@ -160,6 +173,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     }
 
     public void setMessageObject(MessageObject messageObject, int i) {
+        TLRPC$StoryViews tLRPC$StoryViews;
         int i2 = this.currentParentColumnsCount;
         this.currentParentColumnsCount = i;
         MessageObject messageObject2 = this.currentMessageObject;
@@ -175,6 +189,9 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                 this.imageReceiver.onDetachedFromWindow();
                 this.blurImageReceiver.onDetachedFromWindow();
                 this.videoText = null;
+                this.drawViews = false;
+                this.viewsAlpha.set(0.0f, true);
+                this.viewsText.setText("", false);
                 this.videoInfoLayot = null;
                 this.showVideoLayout = false;
                 this.gradientDrawableLoading = false;
@@ -195,6 +212,16 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             this.videoInfoLayot = null;
             this.showVideoLayout = false;
             this.imageReceiver.clearDecorators();
+            if (this.isStory && (tLRPC$StoryViews = messageObject.storyItem.views) != null) {
+                int i4 = tLRPC$StoryViews.views_count;
+                this.drawViews = i4 > 0;
+                this.viewsText.setText(AndroidUtilities.formatWholeNumber(i4, 0), false);
+            } else {
+                this.drawViews = false;
+                this.viewsAlpha.set(0.0f, true);
+                this.viewsText.setText("", false);
+            }
+            this.viewsAlpha.set(this.drawViews ? 1.0f : 0.0f, true);
             if (TextUtils.isEmpty(restrictionReason)) {
                 TLRPC$StoryItem tLRPC$StoryItem = messageObject.storyItem;
                 if (tLRPC$StoryItem != null && (tLRPC$StoryItem.media instanceof TLRPC$TL_messageMediaUnsupported)) {
@@ -382,6 +409,57 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                     this.videoInfoLayot.draw(canvas);
                     this.sharedResources.textPaint.setAlpha(alpha2);
                 }
+                canvas.restore();
+            }
+        }
+    }
+
+    public void updateViews() {
+        MessageObject messageObject;
+        TLRPC$StoryItem tLRPC$StoryItem;
+        TLRPC$StoryViews tLRPC$StoryViews;
+        if (this.isStory && (messageObject = this.currentMessageObject) != null && (tLRPC$StoryItem = messageObject.storyItem) != null && (tLRPC$StoryViews = tLRPC$StoryItem.views) != null) {
+            int i = tLRPC$StoryViews.views_count;
+            this.drawViews = i > 0;
+            this.viewsText.setText(AndroidUtilities.formatWholeNumber(i, 0), true);
+            return;
+        }
+        this.drawViews = false;
+        this.viewsText.setText("", false);
+    }
+
+    public void drawViews(Canvas canvas, RectF rectF, float f) {
+        if (this.isStory) {
+            ImageReceiver imageReceiver = this.imageReceiver;
+            if ((imageReceiver == null || imageReceiver.getVisible()) && this.currentParentColumnsCount < 5) {
+                float f2 = this.viewsAlpha.set(this.drawViews);
+                float f3 = f * f2;
+                if (f3 < 1.0f) {
+                    f3 = (float) Math.pow(f3, 8.0d);
+                }
+                if (f2 <= 0.0f) {
+                    return;
+                }
+                canvas.save();
+                canvas.translate(rectF.left, rectF.top);
+                canvas.clipRect(0.0f, 0.0f, rectF.width(), rectF.height());
+                float dp = AndroidUtilities.dp(26.0f) + this.viewsText.getCurrentWidth();
+                canvas.translate((rectF.width() - AndroidUtilities.dp(5.0f)) - dp, ((AndroidUtilities.dp(1.0f) + rectF.height()) - AndroidUtilities.dp(17.0f)) - AndroidUtilities.dp(4.0f));
+                RectF rectF2 = AndroidUtilities.rectTmp;
+                rectF2.set(0.0f, 0.0f, dp, AndroidUtilities.dp(17.0f));
+                int alpha = Theme.chat_timeBackgroundPaint.getAlpha();
+                Theme.chat_timeBackgroundPaint.setAlpha((int) (alpha * f3));
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), Theme.chat_timeBackgroundPaint);
+                Theme.chat_timeBackgroundPaint.setAlpha(alpha);
+                canvas.save();
+                canvas.translate(AndroidUtilities.dp(3.0f), (AndroidUtilities.dp(17.0f) - this.sharedResources.viewDrawable.getBounds().height()) / 2.0f);
+                this.sharedResources.viewDrawable.setAlpha((int) (this.imageAlpha * 255.0f * f3));
+                this.sharedResources.viewDrawable.draw(canvas);
+                canvas.restore();
+                canvas.translate(AndroidUtilities.dp(22.0f), 0.0f);
+                this.viewsText.setBounds(0, 0, (int) dp, AndroidUtilities.dp(17.0f));
+                this.viewsText.setAlpha((int) (f3 * 255.0f));
+                this.viewsText.draw(canvas);
                 canvas.restore();
             }
         }
@@ -613,6 +691,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
 
     public static class SharedResources {
         Drawable playDrawable;
+        Drawable viewDrawable;
         TextPaint textPaint = new TextPaint(1);
         private Paint backgroundPaint = new Paint();
         Paint highlightPaint = new Paint();
@@ -625,6 +704,9 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             Drawable drawable = ContextCompat.getDrawable(context, R.drawable.play_mini_video);
             this.playDrawable = drawable;
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), this.playDrawable.getIntrinsicHeight());
+            Drawable drawable2 = ContextCompat.getDrawable(context, R.drawable.filled_views);
+            this.viewDrawable = drawable2;
+            drawable2.setBounds(0, 0, (int) (drawable2.getIntrinsicWidth() * 0.7f), (int) (this.viewDrawable.getIntrinsicHeight() * 0.7f));
             this.backgroundPaint.setColor(Theme.getColor(Theme.key_sharedMedia_photoPlaceholder, resourcesProvider));
         }
 
@@ -646,5 +728,10 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             return super.onTouchEvent(motionEvent);
         }
         return true;
+    }
+
+    @Override
+    protected boolean verifyDrawable(Drawable drawable) {
+        return this.viewsText == drawable || super.verifyDrawable(drawable);
     }
 }
