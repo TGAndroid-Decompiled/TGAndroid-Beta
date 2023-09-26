@@ -49,7 +49,6 @@ import org.telegram.ui.Components.Premium.LimitPreviewView;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RecyclerListView;
 import org.telegram.ui.StatisticActivity;
-import org.telegram.ui.Stories.ChannelBoostUtilities;
 public class ChannelBoostLayout extends FrameLayout {
     AdapterWithDiffUtils adapter;
     ArrayList<TLRPC$TL_booster> boosters;
@@ -97,8 +96,6 @@ public class ChannelBoostLayout extends FrameLayout {
                     case 3:
                         LinkActionView linkActionView = new LinkActionView(ChannelBoostLayout.this.getContext(), ChannelBoostLayout.this.fragment, null, 0L, false, false);
                         linkActionView.hideOptions();
-                        ChannelBoostLayout channelBoostLayout = ChannelBoostLayout.this;
-                        linkActionView.setLink(ChannelBoostUtilities.createLink(channelBoostLayout.currentAccount, channelBoostLayout.dialogId));
                         linkActionView.setPadding(AndroidUtilities.dp(11.0f), 0, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(24.0f));
                         manageChatTextCell = linkActionView;
                         break;
@@ -186,6 +183,8 @@ public class ChannelBoostLayout extends FrameLayout {
                     ((TextInfoPrivacyCell) viewHolder.itemView).setText(ChannelBoostLayout.this.items.get(i).title);
                 } else if (viewHolder.getItemViewType() == 9) {
                     ((ManageChatTextCell) viewHolder.itemView).setText(LocaleController.formatPluralString("ShowVotes", ChannelBoostLayout.this.nextRemaining, new Object[0]), null, R.drawable.arrow_more, false);
+                } else if (viewHolder.getItemViewType() == 3) {
+                    ((LinkActionView) viewHolder.itemView).setLink(ChannelBoostLayout.this.items.get(i).title);
                 }
             }
 
@@ -259,7 +258,7 @@ public class ChannelBoostLayout extends FrameLayout {
                 this.items.add(new ItemInternal(this, 6, LocaleController.getString("BoostersInfoDescription", R.string.BoostersInfoDescription)));
             }
             this.items.add(new ItemInternal(this, 1, LocaleController.getString("LinkForBoosting", R.string.LinkForBoosting)));
-            this.items.add(new ItemInternal(this, 3, false));
+            this.items.add(new ItemInternal(this, 3, this.boostsStatus.boosts_url));
         }
         if (z) {
             this.adapter.setItems(arrayList, this.items);

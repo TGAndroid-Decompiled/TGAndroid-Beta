@@ -408,7 +408,10 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                         }
                         max = 1.0f;
                     } else {
-                        max = ((float) Math.max(0L, this.destroyTime - (System.currentTimeMillis() + (ConnectionsManager.getInstance(SecretMediaViewer.this.currentAccount).getTimeDifference() * 1000)))) / (((float) this.destroyTtl) * 1000.0f);
+                        if (this.destroyTime != 0) {
+                            max = ((float) Math.max(0L, this.destroyTime - (System.currentTimeMillis() + (ConnectionsManager.getInstance(SecretMediaViewer.this.currentAccount).getTimeDifference() * 1000)))) / (((float) this.destroyTtl) * 1000.0f);
+                        }
+                        max = 1.0f;
                     }
                     if (this.once) {
                         canvas.save();
@@ -1351,11 +1354,13 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         MessagesController.getGlobalMainSettings().edit().putInt("viewoncehint", MessagesController.getGlobalMainSettings().getInt("viewoncehint", 0) + 1).commit();
     }
 
-    public void openMedia(MessageObject messageObject, PhotoViewer.PhotoViewerProvider photoViewerProvider, final Runnable runnable, Runnable runnable2) {
-        final PhotoViewer.PlaceProviderObject placeForPhoto;
+    public void openMedia(final MessageObject messageObject, PhotoViewer.PhotoViewerProvider photoViewerProvider, final Runnable runnable, Runnable runnable2) {
+        PhotoViewer.PlaceProviderObject placeForPhoto;
         int i;
+        PhotoViewer.PlaceProviderObject placeProviderObject;
         float f;
         char c;
+        float f2;
         ImageLocation forDocument;
         if (this.parentActivity == null || messageObject == null || !messageObject.needDrawBluredPreview() || photoViewerProvider == null || (placeForPhoto = photoViewerProvider.getPlaceForPhoto(messageObject, null, 0, true)) == null) {
             return;
@@ -1423,26 +1428,26 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         } else {
             this.animateFromRadius = null;
         }
-        float f2 = rectF.left;
-        this.translationX = ((placeForPhoto.viewX + f2) + (width / 2.0f)) - (i2 / 2);
+        float f3 = rectF.left;
+        this.translationX = ((placeForPhoto.viewX + f3) + (width / 2.0f)) - (i2 / 2);
         this.translationY = ((placeForPhoto.viewY + rectF.top) + (height / 2.0f)) - (i / 2);
-        this.clipHorizontal = Math.abs(f2 - placeForPhoto.imageReceiver.getImageX());
+        this.clipHorizontal = Math.abs(f3 - placeForPhoto.imageReceiver.getImageX());
         int abs = (int) Math.abs(rectF.top - placeForPhoto.imageReceiver.getImageY());
         int[] iArr3 = new int[2];
         placeForPhoto.parentView.getLocationInWindow(iArr3);
         int i4 = iArr3[1];
         int i5 = Build.VERSION.SDK_INT;
-        float f3 = ((i4 - (i5 >= 21 ? 0 : AndroidUtilities.statusBarHeight)) - (placeForPhoto.viewY + rectF.top)) + placeForPhoto.clipTopAddition;
-        this.clipTop = f3;
-        float f4 = abs;
-        this.clipTop = Math.max(0.0f, Math.max(f3, f4));
+        float f4 = ((i4 - (i5 >= 21 ? 0 : AndroidUtilities.statusBarHeight)) - (placeForPhoto.viewY + rectF.top)) + placeForPhoto.clipTopAddition;
+        this.clipTop = f4;
+        float f5 = abs;
+        this.clipTop = Math.max(0.0f, Math.max(f4, f5));
         float height2 = (((placeForPhoto.viewY + rectF.top) + ((int) height)) - ((iArr3[1] + placeForPhoto.parentView.getHeight()) - (i5 >= 21 ? 0 : AndroidUtilities.statusBarHeight))) + placeForPhoto.clipBottomAddition;
         this.clipBottom = height2;
-        this.clipBottom = Math.max(0.0f, Math.max(height2, f4));
+        this.clipBottom = Math.max(0.0f, Math.max(height2, f5));
         this.clipTopOrigin = 0.0f;
-        this.clipTopOrigin = Math.max(0.0f, Math.max(0.0f, f4));
+        this.clipTopOrigin = Math.max(0.0f, Math.max(0.0f, f5));
         this.clipBottomOrigin = 0.0f;
-        this.clipBottomOrigin = Math.max(0.0f, Math.max(0.0f, f4));
+        this.clipBottomOrigin = Math.max(0.0f, Math.max(0.0f, f5));
         this.animationStartTime = System.currentTimeMillis();
         this.animateToX = 0.0f;
         this.animateToY = 0.0f;
@@ -1490,15 +1495,16 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 } else {
                     forDocument = ImageLocation.getForDocument(document);
                 }
-                f = 1.0f;
+                f2 = 1.0f;
+                f = 0.0f;
                 c = 4;
+                placeProviderObject = placeForPhoto;
                 this.centerImage.setImage(forDocument, (String) null, this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null, -1L, (String) null, messageObject, 1);
-                SecretDeleteTimer secretDeleteTimer = this.secretDeleteTimer;
-                TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-                secretDeleteTimer.setDestroyTime(tLRPC$Message.destroyTime * 1000, tLRPC$Message.ttl, false);
             } else {
-                f = 1.0f;
+                placeProviderObject = placeForPhoto;
+                f = 0.0f;
                 c = 4;
+                f2 = 1.0f;
                 this.playerRetryPlayCount = 1;
                 this.actionBar.setTitle(LocaleController.getString("DisappearingVideo", R.string.DisappearingVideo));
                 File file = new File(messageObject.messageOwner.attachPath);
@@ -1515,23 +1521,15 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
                 this.isVideo = true;
                 this.seekbarContainer.setVisibility(0);
                 this.centerImage.setImage((ImageLocation) null, (String) null, this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null, -1L, (String) null, messageObject, 2);
-                int i7 = messageObject.messageOwner.destroyTime;
-                System.currentTimeMillis();
-                ConnectionsManager.getInstance(this.currentAccount).getTimeDifference();
-                messageObject.getDuration();
-                SecretDeleteTimer secretDeleteTimer2 = this.secretDeleteTimer;
-                TLRPC$Message tLRPC$Message2 = messageObject.messageOwner;
-                secretDeleteTimer2.setDestroyTime(tLRPC$Message2.destroyTime * 1000, tLRPC$Message2.ttl, false);
             }
         } else {
-            f = 1.0f;
+            placeProviderObject = placeForPhoto;
+            f = 0.0f;
             c = 4;
+            f2 = 1.0f;
             this.actionBar.setTitle(LocaleController.getString("DisappearingPhoto", R.string.DisappearingPhoto));
             TLRPC$PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize());
             this.centerImage.setImage(ImageLocation.getForObject(closestPhotoSizeWithSize, messageObject.photoThumbsObject), (String) null, this.currentThumb != null ? new BitmapDrawable(this.currentThumb.bitmap) : null, -1L, (String) null, messageObject, 2);
-            SecretDeleteTimer secretDeleteTimer3 = this.secretDeleteTimer;
-            TLRPC$Message tLRPC$Message3 = messageObject.messageOwner;
-            secretDeleteTimer3.setDestroyTime(tLRPC$Message3.destroyTime * 1000, tLRPC$Message3.ttl, false);
             if (closestPhotoSizeWithSize != null) {
                 this.videoWidth = closestPhotoSizeWithSize.w;
                 this.videoHeight = closestPhotoSizeWithSize.h;
@@ -1564,8 +1562,8 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.secretDeleteTimer.invalidate();
         this.isVisible = true;
         Window window = this.parentActivity.getWindow();
-        int i8 = Build.VERSION.SDK_INT;
-        if (i8 >= 21) {
+        int i7 = Build.VERSION.SDK_INT;
+        if (i7 >= 21) {
             this.wasLightNavigationBar = AndroidUtilities.getLightNavigationBar(window);
             AndroidUtilities.setLightNavigationBar(window, false);
             AndroidUtilities.setLightNavigationBar((View) this.windowView, false);
@@ -1587,12 +1585,12 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         animatorArr[3] = ObjectAnimator.ofInt(this.photoBackgroundDrawable, (Property<PhotoBackgroundDrawable, Integer>) AnimationProperties.COLOR_DRAWABLE_ALPHA, 0, 255);
         animatorArr[c] = ObjectAnimator.ofFloat(this, "animationValue", 0.0f, 1.0f);
         VideoPlayerControlFrameLayout videoPlayerControlFrameLayout = this.seekbarContainer;
-        animatorArr[5] = ObjectAnimator.ofFloat(videoPlayerControlFrameLayout, videoPlayerControlFrameLayout.SEEKBAR_ALPHA, f);
+        animatorArr[5] = ObjectAnimator.ofFloat(videoPlayerControlFrameLayout, videoPlayerControlFrameLayout.SEEKBAR_ALPHA, f2);
         VideoPlayerControlFrameLayout videoPlayerControlFrameLayout2 = this.seekbarContainer;
         Property property = View.ALPHA;
         float[] fArr = new float[1];
-        if (!this.isVideo) {
-            f = 0.0f;
+        if (this.isVideo) {
+            f = 1.0f;
         }
         fArr[0] = f;
         animatorArr[6] = ObjectAnimator.ofFloat(videoPlayerControlFrameLayout2, property, fArr);
@@ -1601,7 +1599,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         this.photoAnimationEndRunnable = new Runnable() {
             @Override
             public final void run() {
-                SecretMediaViewer.this.lambda$openMedia$4(runnable);
+                SecretMediaViewer.this.lambda$openMedia$4(runnable, messageObject);
             }
         };
         this.imageMoveAnimation.setDuration(250L);
@@ -1615,15 +1613,16 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             }
         });
         this.photoTransitionAnimationStartTime = System.currentTimeMillis();
-        if (i8 >= 18 && SharedConfig.getDevicePerformanceClass() == 0) {
+        if (i7 >= 18 && SharedConfig.getDevicePerformanceClass() == 0) {
             this.containerView.setLayerType(2, null);
         }
         this.imageMoveAnimation.setInterpolator(new DecelerateInterpolator());
         this.photoBackgroundDrawable.frame = 0;
+        final PhotoViewer.PlaceProviderObject placeProviderObject2 = placeProviderObject;
         this.photoBackgroundDrawable.drawRunnable = new Runnable() {
             @Override
             public final void run() {
-                SecretMediaViewer.this.lambda$openMedia$5(placeForPhoto);
+                SecretMediaViewer.this.lambda$openMedia$5(placeProviderObject2);
             }
         };
         this.imageMoveAnimation.start();
@@ -1643,7 +1642,7 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
         }
     }
 
-    public void lambda$openMedia$4(Runnable runnable) {
+    public void lambda$openMedia$4(Runnable runnable, MessageObject messageObject) {
         this.photoAnimationInProgress = 0;
         this.imageMoveAnimation = null;
         if (runnable != null) {
@@ -1657,6 +1656,9 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
             frameLayoutDrawer.setLayerType(0, null);
         }
         this.containerView.invalidate();
+        SecretDeleteTimer secretDeleteTimer = this.secretDeleteTimer;
+        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+        secretDeleteTimer.setDestroyTime(tLRPC$Message.destroyTimeMillis, tLRPC$Message.ttl, false);
         if (this.closeAfterAnimation) {
             closePhoto(true, true);
         } else if (!this.ignoreDelete || MessagesController.getGlobalMainSettings().getInt("viewoncehint", 0) >= 3) {

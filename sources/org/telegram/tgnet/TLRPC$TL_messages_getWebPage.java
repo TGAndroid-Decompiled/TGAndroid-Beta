@@ -6,7 +6,7 @@ public class TLRPC$TL_messages_getWebPage extends TLObject {
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        return TLRPC$WebPage.TLdeserialize(abstractSerializedData, i, z);
+        return TLRPC$TL_messages_webPage.TLdeserialize(abstractSerializedData, i, z);
     }
 
     @Override

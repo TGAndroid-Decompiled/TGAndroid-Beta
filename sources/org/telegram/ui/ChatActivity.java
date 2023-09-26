@@ -9416,26 +9416,36 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (tLRPC$Message.destroyTime != 0 || (i = tLRPC$Message.ttl) <= 0) {
             return null;
         }
-        final boolean z2 = i != Integer.MAX_VALUE;
-        final int i2 = i == Integer.MAX_VALUE ? 0 : i;
-        tLRPC$Message.destroyTime = getConnectionsManager().getCurrentTime() + i2;
         if (z) {
+            boolean z2 = i != Integer.MAX_VALUE;
+            if (i == Integer.MAX_VALUE) {
+                i = 0;
+            }
+            tLRPC$Message.destroyTime = getConnectionsManager().getCurrentTime() + i;
             if (this.currentEncryptedChat != null) {
-                getMessagesController().markMessageAsRead(this.dialog_id, messageObject.messageOwner.random_id, i2);
+                getMessagesController().markMessageAsRead(this.dialog_id, messageObject.messageOwner.random_id, i);
             } else {
-                getMessagesController().markMessageAsRead2(this.dialog_id, messageObject.getId(), null, i2, 0L, z2);
+                getMessagesController().markMessageAsRead2(this.dialog_id, messageObject.getId(), null, i, 0L, z2);
             }
             return null;
         }
         return new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$sendSecretMessageRead$110(messageObject, i2, z2);
+                ChatActivity.this.lambda$sendSecretMessageRead$110(messageObject);
             }
         };
     }
 
-    public void lambda$sendSecretMessageRead$110(MessageObject messageObject, int i, boolean z) {
+    public void lambda$sendSecretMessageRead$110(MessageObject messageObject) {
+        TLRPC$Message tLRPC$Message = messageObject.messageOwner;
+        int i = tLRPC$Message.ttl;
+        boolean z = i != Integer.MAX_VALUE;
+        if (i == Integer.MAX_VALUE) {
+            i = 0;
+        }
+        tLRPC$Message.destroyTime = getConnectionsManager().getCurrentTime() + i;
+        messageObject.messageOwner.destroyTimeMillis = (i * 1000) + getConnectionsManager().getCurrentTimeMillis();
         if (this.currentEncryptedChat != null) {
             getMessagesController().markMessageAsRead(this.dialog_id, messageObject.messageOwner.random_id, i);
         } else {

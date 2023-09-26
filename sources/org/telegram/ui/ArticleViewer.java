@@ -134,6 +134,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messageActionChatAddUser;
 import org.telegram.tgnet.TLRPC$TL_messages_getWebPage;
 import org.telegram.tgnet.TLRPC$TL_messages_messages;
+import org.telegram.tgnet.TLRPC$TL_messages_webPage;
 import org.telegram.tgnet.TLRPC$TL_page;
 import org.telegram.tgnet.TLRPC$TL_pageBlockAudio;
 import org.telegram.tgnet.TLRPC$TL_pageBlockAuthorDate;
@@ -2713,6 +2714,19 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         this.openUrlReqId = 0;
         showProgressView(true, false);
         if (this.isVisible) {
+            if (tLObject instanceof TLRPC$TL_messages_webPage) {
+                TLRPC$TL_messages_webPage tLRPC$TL_messages_webPage = (TLRPC$TL_messages_webPage) tLObject;
+                MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_messages_webPage.users, false);
+                MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_messages_webPage.chats, false);
+                TLRPC$WebPage tLRPC$WebPage = tLRPC$TL_messages_webPage.webpage;
+                if (tLRPC$WebPage != null && (tLRPC$WebPage.cached_page instanceof TLRPC$TL_page)) {
+                    addPageToStack(tLRPC$WebPage, str, 1);
+                    return;
+                } else {
+                    Browser.openUrl(this.parentActivity, tLRPC$TL_messages_getWebPage.url);
+                    return;
+                }
+            }
             if (tLObject instanceof TLRPC$TL_webPage) {
                 TLRPC$TL_webPage tLRPC$TL_webPage = (TLRPC$TL_webPage) tLObject;
                 if (tLRPC$TL_webPage.cached_page instanceof TLRPC$TL_page) {
@@ -4231,20 +4245,27 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.open(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$WebPage, java.lang.String, boolean):boolean");
     }
 
-    public void lambda$open$32(final TLRPC$WebPage tLRPC$WebPage, final MessageObject messageObject, final int i, final String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$open$32(final int i, final TLRPC$WebPage tLRPC$WebPage, final MessageObject messageObject, final String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ArticleViewer.this.lambda$open$31(tLObject, tLRPC$WebPage, messageObject, i, str);
+                ArticleViewer.this.lambda$open$31(tLObject, i, tLRPC$WebPage, messageObject, str);
             }
         });
     }
 
-    public void lambda$open$31(TLObject tLObject, TLRPC$WebPage tLRPC$WebPage, MessageObject messageObject, int i, String str) {
+    public void lambda$open$31(TLObject tLObject, int i, TLRPC$WebPage tLRPC$WebPage, MessageObject messageObject, String str) {
         TLRPC$Page tLRPC$Page;
+        TLObject tLObject2 = tLObject;
         int i2 = 0;
-        if (tLObject instanceof TLRPC$TL_webPage) {
-            TLRPC$TL_webPage tLRPC$TL_webPage = (TLRPC$TL_webPage) tLObject;
+        if (tLObject2 instanceof TLRPC$TL_messages_webPage) {
+            TLRPC$TL_messages_webPage tLRPC$TL_messages_webPage = (TLRPC$TL_messages_webPage) tLObject2;
+            MessagesController.getInstance(i).putUsers(tLRPC$TL_messages_webPage.users, false);
+            MessagesController.getInstance(i).putChats(tLRPC$TL_messages_webPage.chats, false);
+            tLObject2 = tLRPC$TL_messages_webPage.webpage;
+        }
+        if (tLObject2 instanceof TLRPC$TL_webPage) {
+            TLRPC$TL_webPage tLRPC$TL_webPage = (TLRPC$TL_webPage) tLObject2;
             if (tLRPC$TL_webPage.cached_page == null) {
                 return;
             }
@@ -4267,8 +4288,8 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             LongSparseArray<TLRPC$WebPage> longSparseArray = new LongSparseArray<>(1);
             longSparseArray.put(tLRPC$TL_webPage.id, tLRPC$TL_webPage);
             MessagesStorage.getInstance(i).putWebPages(longSparseArray);
-        } else if (tLObject instanceof TLRPC$TL_webPageNotModified) {
-            TLRPC$TL_webPageNotModified tLRPC$TL_webPageNotModified = (TLRPC$TL_webPageNotModified) tLObject;
+        } else if (tLObject2 instanceof TLRPC$TL_webPageNotModified) {
+            TLRPC$TL_webPageNotModified tLRPC$TL_webPageNotModified = (TLRPC$TL_webPageNotModified) tLObject2;
             if (tLRPC$WebPage == null || (tLRPC$Page = tLRPC$WebPage.cached_page) == null) {
                 return;
             }

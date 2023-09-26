@@ -13,6 +13,7 @@ import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.UserConfig;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.VoIPFragment;
+import org.webrtc.OrientationHelper;
 public class VoIPWindowView extends FrameLayout {
     Activity activity;
     boolean finished;
@@ -33,6 +34,7 @@ public class VoIPWindowView extends FrameLayout {
         setFitsSystemWindows(true);
         this.orientationBefore = activity.getRequestedOrientation();
         activity.setRequestedOrientation(1);
+        OrientationHelper.cameraRotationDisabled = true;
         if (z) {
             return;
         }
@@ -140,6 +142,7 @@ public class VoIPWindowView extends FrameLayout {
                         windowManager.removeView(VoIPWindowView.this);
                     } catch (Exception unused2) {
                     }
+                    OrientationHelper.cameraRotationDisabled = false;
                 }
             }
         }).setDuration(j).setInterpolator(CubicBezierInterpolator.DEFAULT).start();
@@ -195,6 +198,7 @@ public class VoIPWindowView extends FrameLayout {
             this.activity.setRequestedOrientation(this.orientationBefore);
             setVisibility(8);
             ((WindowManager) this.activity.getSystemService("window")).removeView(this);
+            OrientationHelper.cameraRotationDisabled = false;
         }
     }
 }

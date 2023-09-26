@@ -823,6 +823,10 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         if (listAdapter != null) {
             listAdapter.notifyDataSetChanged();
         }
+        Delegate delegate = this.delegate;
+        if (delegate != null) {
+            delegate.sessionsLoaded();
+        }
         int i = this.repeatLoad;
         if (i > 0) {
             int i2 = i - 1;
@@ -1527,7 +1531,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         if (this.sessions.size() == 0 && this.loading) {
             return 0;
         }
-        return this.sessions.size() + 1;
+        return this.sessions.size() + (this.currentType == 0 ? 1 : 0);
     }
 
     public void setDelegate(Delegate delegate) {

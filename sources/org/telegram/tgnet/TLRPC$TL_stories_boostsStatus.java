@@ -1,10 +1,12 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_stories_boostsStatus extends TLObject {
-    public static int constructor = 1726619631;
+    public static int constructor = -440292772;
     public int boosts;
+    public String boosts_url;
     public int current_level_boosts;
     public int flags;
     public int level;
+    public boolean my_boost;
     public int next_level_boosts;
     public TLRPC$TL_statsPercentValue premium_audience;
 
@@ -22,7 +24,9 @@ public class TLRPC$TL_stories_boostsStatus extends TLObject {
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
-        this.flags = abstractSerializedData.readInt32(z);
+        int readInt32 = abstractSerializedData.readInt32(z);
+        this.flags = readInt32;
+        this.my_boost = (readInt32 & 4) != 0;
         this.level = abstractSerializedData.readInt32(z);
         this.current_level_boosts = abstractSerializedData.readInt32(z);
         this.boosts = abstractSerializedData.readInt32(z);
@@ -32,12 +36,15 @@ public class TLRPC$TL_stories_boostsStatus extends TLObject {
         if ((this.flags & 2) != 0) {
             this.premium_audience = TLRPC$TL_statsPercentValue.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
+        this.boosts_url = abstractSerializedData.readString(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
         abstractSerializedData.writeInt32(constructor);
-        abstractSerializedData.writeInt32(this.flags);
+        int i = this.my_boost ? this.flags | 4 : this.flags & (-5);
+        this.flags = i;
+        abstractSerializedData.writeInt32(i);
         abstractSerializedData.writeInt32(this.level);
         abstractSerializedData.writeInt32(this.current_level_boosts);
         abstractSerializedData.writeInt32(this.boosts);
@@ -47,5 +54,6 @@ public class TLRPC$TL_stories_boostsStatus extends TLObject {
         if ((this.flags & 2) != 0) {
             this.premium_audience.serializeToStream(abstractSerializedData);
         }
+        abstractSerializedData.writeString(this.boosts_url);
     }
 }

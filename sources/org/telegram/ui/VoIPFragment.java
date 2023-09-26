@@ -1829,7 +1829,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                     this.speakerPhoneIcon.animate().alpha(0.0f).start();
                 }
                 setVideoAction(this.bottomButtons[1], sharedInstance, z);
-                setMicrohoneAction(this.bottomButtons[2], sharedInstance, z);
+                setMicrophoneAction(this.bottomButtons[2], sharedInstance, z);
             } else {
                 this.bottomButtons[0].setVisibility(8);
                 this.bottomButtons[1].setVisibility(8);
@@ -1851,7 +1851,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
                 this.speakerPhoneIcon.animate().alpha(0.0f).start();
             }
             setVideoAction(this.bottomButtons[1], sharedInstance, z);
-            setMicrohoneAction(this.bottomButtons[2], sharedInstance, z);
+            setMicrophoneAction(this.bottomButtons[2], sharedInstance, z);
             this.bottomButtons[3].setData(R.drawable.calls_decline, -1, -1041108, LocaleController.getString("VoipEndCall", R.string.VoipEndCall), false, z);
             this.bottomButtons[3].setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -1876,7 +1876,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         }
     }
 
-    private void setMicrohoneAction(VoIPToggleButton voIPToggleButton, VoIPService voIPService, boolean z) {
+    private void setMicrophoneAction(VoIPToggleButton voIPToggleButton, VoIPService voIPService, boolean z) {
         if (voIPService.isMicMute()) {
             voIPToggleButton.setData(R.drawable.calls_unmute, -16777216, -1, LocaleController.getString("VoipUnmute", R.string.VoipUnmute), true, z);
         } else {
@@ -1886,12 +1886,12 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         voIPToggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                VoIPFragment.this.lambda$setMicrohoneAction$23(view);
+                VoIPFragment.this.lambda$setMicrophoneAction$23(view);
             }
         });
     }
 
-    public void lambda$setMicrohoneAction$23(View view) {
+    public void lambda$setMicrophoneAction$23(View view) {
         String string;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
