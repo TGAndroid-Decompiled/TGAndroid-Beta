@@ -8128,7 +8128,7 @@ public class EmojiView extends FrameLayout implements NotificationCenter.Notific
                         EmojiSearchAdapter.this.notifyDataSetChanged();
                     }
                 }
-            }, null, true, false, true, 25);
+            }, null, SharedConfig.suggestAnimatedEmoji, false, true, 25);
         }
 
         public static void lambda$search$1(LinkedHashSet linkedHashSet, Runnable runnable, TLRPC$TL_emojiList tLRPC$TL_emojiList) {

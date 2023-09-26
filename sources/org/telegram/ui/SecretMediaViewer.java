@@ -1760,6 +1760,11 @@ public class SecretMediaViewer implements NotificationCenter.NotificationCenterD
 
     public void destroyPhotoViewer() {
         FrameLayout frameLayout;
+        Runnable runnable = this.onClose;
+        if (runnable != null) {
+            runnable.run();
+            this.onClose = null;
+        }
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.messagesDeleted);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.updateMessageMedia);
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.didCreatedNewDeleteTask);

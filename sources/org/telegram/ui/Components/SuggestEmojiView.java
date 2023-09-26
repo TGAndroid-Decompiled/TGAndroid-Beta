@@ -600,7 +600,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             public final void run(ArrayList arrayList, String str2) {
                 SuggestEmojiView.this.lambda$searchKeywords$3(i, str, arrayList, str2);
             }
-        }, true);
+        }, SharedConfig.suggestAnimatedEmoji);
     }
 
     public void lambda$searchKeywords$3(int i, String str, ArrayList arrayList, String str2) {

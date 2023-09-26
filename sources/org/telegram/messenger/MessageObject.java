@@ -5219,6 +5219,7 @@ public class MessageObject {
     }
 
     private void handleFoundWords(ArrayList<String> arrayList, String[] strArr) {
+        CharSequence charSequence;
         boolean z;
         if (arrayList.isEmpty()) {
             return;
@@ -5277,10 +5278,15 @@ public class MessageObject {
         this.highlightedWords = arrayList;
         if (this.messageOwner.message != null) {
             applyEntities();
-            CharSequence replaceCharSequence = AndroidUtilities.replaceCharSequence("\n", this.messageText, " ");
-            String charSequence = replaceCharSequence.toString();
-            int length = charSequence.length();
-            int indexOf = charSequence.toLowerCase().indexOf(arrayList.get(0));
+            if (!TextUtils.isEmpty(this.caption)) {
+                charSequence = this.caption;
+            } else {
+                charSequence = this.messageText;
+            }
+            CharSequence replaceCharSequence = AndroidUtilities.replaceCharSequence("\n", charSequence, " ");
+            String charSequence2 = replaceCharSequence.toString();
+            int length = charSequence2.length();
+            int indexOf = charSequence2.toLowerCase().indexOf(arrayList.get(0));
             if (indexOf < 0) {
                 indexOf = 0;
             }

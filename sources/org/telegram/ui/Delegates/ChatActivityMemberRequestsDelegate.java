@@ -80,7 +80,8 @@ public class ChatActivityMemberRequestsDelegate {
                 }
             };
             this.avatarsView = avatarsImageView;
-            avatarsImageView.reset();
+            avatarsImageView.setAvatarsTextSize(AndroidUtilities.dp(18.0f));
+            this.avatarsView.reset();
             linearLayout.addView(this.avatarsView, LayoutHelper.createFrame(-2, -1.0f, 48, 8.0f, 0.0f, 10.0f, 0.0f));
             TextView textView = new TextView(this.fragment.getParentActivity());
             this.requestsCountTextView = textView;
