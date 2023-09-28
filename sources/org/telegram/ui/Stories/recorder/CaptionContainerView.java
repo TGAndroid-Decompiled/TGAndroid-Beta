@@ -382,7 +382,7 @@ public class CaptionContainerView extends FrameLayout {
                 captionContainerView.createMentionsContainer();
             }
             if (CaptionContainerView.this.mentionContainer.getAdapter() != null) {
-                CaptionContainerView.this.mentionContainer.getAdapter().searchUsernameOrHashtag(charSequence, CaptionContainerView.this.editText.getEditText().getSelectionStart(), null, false, false);
+                CaptionContainerView.this.mentionContainer.getAdapter().lambda$searchUsernameOrHashtag$7(charSequence, CaptionContainerView.this.editText.getEditText().getSelectionStart(), null, false, false);
             }
         }
 

@@ -71,7 +71,7 @@ public final class FloatingToolbar {
             return lambda$static$0;
         }
     };
-    private static final List<Integer> premiumOptions = Arrays.asList(Integer.valueOf(R.id.menu_bold), Integer.valueOf(R.id.menu_italic), Integer.valueOf(R.id.menu_strike), Integer.valueOf(R.id.menu_link), Integer.valueOf(R.id.menu_mono), Integer.valueOf(R.id.menu_underline), Integer.valueOf(R.id.menu_spoiler));
+    public static final List<Integer> premiumOptions = Arrays.asList(Integer.valueOf(R.id.menu_bold), Integer.valueOf(R.id.menu_italic), Integer.valueOf(R.id.menu_strike), Integer.valueOf(R.id.menu_link), Integer.valueOf(R.id.menu_mono), Integer.valueOf(R.id.menu_underline), Integer.valueOf(R.id.menu_spoiler));
     private int currentStyle;
     private Menu mMenu;
     private final FloatingToolbarPopup mPopup;
@@ -970,7 +970,11 @@ public final class FloatingToolbar {
             boolean z = MessagesController.getInstance(UserConfig.selectedAccount).premiumLocked;
             for (int i = 0; i < size; i++) {
                 MenuItem menuItem = list.get(i);
-                if (FloatingToolbar.this.premiumLockClickListener == null || (z && !FloatingToolbar.premiumOptions.contains(Integer.valueOf(menuItem.getItemId())))) {
+                boolean z2 = true;
+                if (FloatingToolbar.this.premiumLockClickListener != null && FloatingToolbar.premiumOptions.contains(Integer.valueOf(menuItem.getItemId()))) {
+                    z2 = true ^ z;
+                }
+                if (z2) {
                     arrayAdapter.add(menuItem);
                 }
             }
@@ -986,7 +990,8 @@ public final class FloatingToolbar {
         }
 
         public static int lambda$layoutOverflowPanelItems$3(MenuItem menuItem, MenuItem menuItem2) {
-            return (FloatingToolbar.premiumOptions.contains(Integer.valueOf(menuItem.getItemId())) ? 1 : 0) - (FloatingToolbar.premiumOptions.contains(Integer.valueOf(menuItem2.getItemId())) ? 1 : 0);
+            List<Integer> list = FloatingToolbar.premiumOptions;
+            return (list.contains(Integer.valueOf(menuItem.getItemId())) ? 1 : 0) - (list.contains(Integer.valueOf(menuItem2.getItemId())) ? 1 : 0);
         }
 
         private void preparePopupContent() {

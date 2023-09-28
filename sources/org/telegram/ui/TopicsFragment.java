@@ -518,7 +518,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
         };
         SpannableString spannableString = new SpannableString("#");
-        ForumUtilities.GeneralTopicDrawable createGeneralTopicDrawable = ForumUtilities.createGeneralTopicDrawable(getContext(), 0.85f, -1);
+        ForumUtilities.GeneralTopicDrawable createGeneralTopicDrawable = ForumUtilities.createGeneralTopicDrawable(getContext(), 0.85f, -1, false);
         createGeneralTopicDrawable.setBounds(0, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(18.0f));
         spannableString.setSpan(new ImageSpan(createGeneralTopicDrawable, 2), 0, 1, 33);
         PullForegroundDrawable pullForegroundDrawable = new PullForegroundDrawable(AndroidUtilities.replaceCharSequence("#", LocaleController.getString("AccSwipeForGeneral", R.string.AccSwipeForGeneral), spannableString), AndroidUtilities.replaceCharSequence("#", LocaleController.getString("AccReleaseForGeneral", R.string.AccReleaseForGeneral), spannableString)) {
@@ -2983,7 +2983,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
             }
             if (tLRPC$TL_forumTopic != null && tLRPC$TL_forumTopic.id == 1) {
                 setAnimatedEmojiDrawable(null);
-                setForumIcon(ForumUtilities.createGeneralTopicDrawable(getContext(), 1.0f, TopicsFragment.this.getThemedColor(Theme.key_chat_inMenu)));
+                setForumIcon(ForumUtilities.createGeneralTopicDrawable(getContext(), 1.0f, TopicsFragment.this.getThemedColor(Theme.key_chat_inMenu), false));
             } else if (tLRPC$TL_forumTopic != null && tLRPC$TL_forumTopic.icon_emoji_id != 0) {
                 setForumIcon(null);
                 AnimatedEmojiDrawable animatedEmojiDrawable = this.animatedEmojiDrawable;
@@ -2992,7 +2992,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
                 }
             } else {
                 setAnimatedEmojiDrawable(null);
-                setForumIcon(ForumUtilities.createTopicDrawable(tLRPC$TL_forumTopic));
+                setForumIcon(ForumUtilities.createTopicDrawable(tLRPC$TL_forumTopic, false));
             }
             if (tLRPC$TL_forumTopic != null && tLRPC$TL_forumTopic.hidden) {
                 z = true;

@@ -245,7 +245,7 @@ public class TopicCreateFragment extends BaseFragment {
             selectAnimatedEmojiDialog.setAnimationsEnabled(this.fragmentBeginToShow);
             this.selectAnimatedEmojiDialog.setClipChildren(false);
             frameLayout2.addView(this.selectAnimatedEmojiDialog, LayoutHelper.createFrame(-1, -1.0f, 0, 12.0f, 12.0f, 12.0f, 12.0f));
-            Drawable createTopicDrawable = ForumUtilities.createTopicDrawable("", this.iconColor);
+            Drawable createTopicDrawable = ForumUtilities.createTopicDrawable("", this.iconColor, false);
             this.forumBubbleDrawable = (ForumBubbleDrawable) ((CombinedDrawable) createTopicDrawable).getBackgroundDrawable();
             this.replaceableIconDrawable = new ReplaceableIconDrawable(context);
             CombinedDrawable combinedDrawable2 = new CombinedDrawable(createTopicDrawable, this.replaceableIconDrawable, 0, 0);

@@ -970,7 +970,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
             }
             int i5 = R.string.ChannelNeedBoostsDescriptionLevelNext;
             int i6 = tLRPC$TL_stories_boostsStatus.next_level_boosts;
-            return LocaleController.formatString("ChannelNeedBoostsDescriptionLevelNext", i5, LocaleController.formatPluralString("MoreBoosts", i6 - i, Integer.valueOf(i6 - i)), LocaleController.formatPluralString("BoostStories", this.boostsStatus.level, new Object[0]));
+            return LocaleController.formatString("ChannelNeedBoostsDescriptionLevelNext", i5, LocaleController.formatPluralString("MoreBoosts", i6 - i, Integer.valueOf(i6 - i)), LocaleController.formatPluralString("BoostStories", this.boostsStatus.level + 1, new Object[0]));
         } else if (tLRPC$TL_stories_boostsStatus.level == 0) {
             int i7 = R.string.ChannelNeedBoostsDescriptionLevel1;
             int i8 = tLRPC$TL_stories_boostsStatus.next_level_boosts;
@@ -978,7 +978,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView {
         } else {
             int i9 = R.string.ChannelNeedBoostsDescriptionLevelNext;
             int i10 = tLRPC$TL_stories_boostsStatus.next_level_boosts;
-            return LocaleController.formatString("ChannelNeedBoostsDescriptionLevelNext", i9, LocaleController.formatPluralString("MoreBoosts", i10 - i, Integer.valueOf(i10 - i)), LocaleController.formatPluralString("BoostStories", this.boostsStatus.level, new Object[0]));
+            return LocaleController.formatString("ChannelNeedBoostsDescriptionLevelNext", i9, LocaleController.formatPluralString("MoreBoosts", i10 - i, Integer.valueOf(i10 - i)), LocaleController.formatPluralString("BoostStories", this.boostsStatus.level + 1, new Object[0]));
         }
     }
 

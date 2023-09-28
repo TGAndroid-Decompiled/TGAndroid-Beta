@@ -42,6 +42,7 @@ public class ItemOptions {
     private boolean ignoreX;
     private ActionBarPopupWindow.ActionBarPopupWindowLayout lastLayout;
     private ViewGroup layout;
+    private int maxHeight;
     private int minWidthDp;
     private float offsetX;
     private float offsetY;
@@ -103,7 +104,15 @@ public class ItemOptions {
     }
 
     private void init() {
-        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.context, this.resourcesProvider);
+        ActionBarPopupWindow.ActionBarPopupWindowLayout actionBarPopupWindowLayout = new ActionBarPopupWindow.ActionBarPopupWindowLayout(this.context, this.resourcesProvider) {
+            @Override
+            public void onMeasure(int i, int i2) {
+                if (this == ItemOptions.this.layout && ItemOptions.this.maxHeight > 0) {
+                    i2 = View.MeasureSpec.makeMeasureSpec(Math.min(ItemOptions.this.maxHeight, View.MeasureSpec.getSize(i2)), View.MeasureSpec.getMode(i2));
+                }
+                super.onMeasure(i, i2);
+            }
+        };
         this.lastLayout = actionBarPopupWindowLayout;
         actionBarPopupWindowLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
             @Override
@@ -134,6 +143,10 @@ public class ItemOptions {
         return !z ? this : add(i, charSequence, Theme.key_actionBarDefaultSubmenuItemIcon, Theme.key_actionBarDefaultSubmenuItem, runnable);
     }
 
+    public ItemOptions add(CharSequence charSequence, Runnable runnable) {
+        return add(0, charSequence, false, runnable);
+    }
+
     public ItemOptions add(int i, CharSequence charSequence, Runnable runnable) {
         return add(i, charSequence, false, runnable);
     }
@@ -152,7 +165,11 @@ public class ItemOptions {
         }
         ActionBarMenuSubItem actionBarMenuSubItem = new ActionBarMenuSubItem(this.context, false, false, this.resourcesProvider);
         actionBarMenuSubItem.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp((LocaleController.isRTL ? 0 : 8) + 18), 0);
-        actionBarMenuSubItem.setTextAndIcon(charSequence, i);
+        if (i != 0) {
+            actionBarMenuSubItem.setTextAndIcon(charSequence, i);
+        } else {
+            actionBarMenuSubItem.setText(charSequence);
+        }
         actionBarMenuSubItem.setColors(Theme.getColor(i3, this.resourcesProvider), Theme.getColor(i2, this.resourcesProvider));
         actionBarMenuSubItem.setSelectorColor(Theme.multAlpha(Theme.getColor(i3, this.resourcesProvider), 0.12f));
         actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
@@ -332,6 +349,11 @@ public class ItemOptions {
 
     public ItemOptions forceTop(boolean z) {
         this.forceTop = z;
+        return this;
+    }
+
+    public ItemOptions setMaxHeight(int i) {
+        this.maxHeight = i;
         return this;
     }
 

@@ -1,7 +1,6 @@
 package org.telegram.messenger;
 
 import android.content.SharedPreferences;
-import android.os.BatteryManager;
 import android.os.Build;
 import androidx.core.math.MathUtils;
 import java.util.ArrayList;
@@ -80,12 +79,7 @@ public class LiteMode {
     }
 
     public static int getBatteryLevel() {
-        BatteryManager batteryManager;
-        if ((lastBatteryLevelCached < 0 || System.currentTimeMillis() - lastBatteryLevelChecked > 12000) && (batteryManager = (BatteryManager) ApplicationLoader.applicationContext.getSystemService("batterymanager")) != null) {
-            lastBatteryLevelCached = batteryManager.getIntProperty(4);
-            lastBatteryLevelChecked = System.currentTimeMillis();
-        }
-        return lastBatteryLevelCached;
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LiteMode.getBatteryLevel():int");
     }
 
     private static int preprocessFlag(int i) {

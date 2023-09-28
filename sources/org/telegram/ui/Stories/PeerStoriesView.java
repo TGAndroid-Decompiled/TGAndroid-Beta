@@ -59,6 +59,7 @@ import java.util.Objects;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -718,6 +719,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
 
         @Override
         protected boolean drawChild(Canvas canvas, View view, long j) {
+            if (view == PeerStoriesView.this.storyAreasView) {
+                return true;
+            }
             if (this.splitDrawing) {
                 if (Bulletin.getVisibleBulletin() != null && view == Bulletin.getVisibleBulletin().getLayout()) {
                     if (this.drawOverlayed) {
@@ -2241,7 +2245,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             if (PeerStoriesView.this.mentionContainer.getAdapter() != null) {
                 PeerStoriesView.this.mentionContainer.setDialogId(PeerStoriesView.this.dialogId);
                 PeerStoriesView.this.mentionContainer.getAdapter().setUserOrChat(MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId)), null);
-                PeerStoriesView.this.mentionContainer.getAdapter().searchUsernameOrHashtag(charSequence, PeerStoriesView.this.chatActivityEnterView.getCursorPosition(), null, false, false);
+                PeerStoriesView.this.mentionContainer.getAdapter().lambda$searchUsernameOrHashtag$7(charSequence, PeerStoriesView.this.chatActivityEnterView.getCursorPosition(), null, false, false);
             }
             PeerStoriesView.this.invalidate();
         }
@@ -2894,7 +2898,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
     }
 
     public void lambda$createUnsupportedContainer$20(View view) {
-        if (BuildVars.isStandaloneApp()) {
+        if (ApplicationLoader.isStandaloneBuild()) {
             LaunchActivity launchActivity = LaunchActivity.instance;
             if (launchActivity != null) {
                 launchActivity.checkAppUpdate(true);

@@ -52,6 +52,8 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private final long dialogId;
     private float expandProgress;
     private float expandRight;
+    private boolean expandRightPad;
+    private final AnimatedFloat expandRightPadAnimated;
     private float expandY;
     private float left;
     private StoryCircle mainCircle;
@@ -166,6 +168,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         this.progressToUploading = new AnimatedFloat(this, 0L, 150L, cubicBezierInterpolator2);
         new AnimatedFloat(this, 0L, 150L, cubicBezierInterpolator2);
         this.newStoryBounceT = 1.0f;
+        this.expandRightPadAnimated = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.rightAnimated = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.provider = new AnonymousClass3();
         this.onLongPressRunnable = new Runnable() {
@@ -653,8 +656,9 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         }
     }
 
-    public void setExpandCoords(float f, float f2) {
+    public void setExpandCoords(float f, boolean z, float f2) {
         this.expandRight = f;
+        this.expandRightPad = z;
         this.expandY = f2;
         invalidate();
     }
@@ -786,13 +790,17 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         return this.circles.isEmpty();
     }
 
+    private float getExpandRight() {
+        return this.expandRight - (this.expandRightPadAnimated.set(this.expandRightPad) * AndroidUtilities.dp(71.0f));
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z;
         if (this.expandProgress < 0.9f) {
             z = this.rect2.contains(motionEvent.getX(), motionEvent.getY());
         } else {
-            z = motionEvent.getX() >= (this.expandRight - this.w) - ((float) AndroidUtilities.dp(32.0f)) && motionEvent.getX() <= this.expandRight + ((float) AndroidUtilities.dp(32.0f)) && Math.abs(motionEvent.getY() - this.expandY) < ((float) AndroidUtilities.dp(32.0f));
+            z = motionEvent.getX() >= (getExpandRight() - this.w) - ((float) AndroidUtilities.dp(32.0f)) && motionEvent.getX() <= getExpandRight() + ((float) AndroidUtilities.dp(32.0f)) && Math.abs(motionEvent.getY() - this.expandY) < ((float) AndroidUtilities.dp(32.0f));
         }
         if (z && motionEvent.getAction() == 0) {
             this.tapTime = System.currentTimeMillis();

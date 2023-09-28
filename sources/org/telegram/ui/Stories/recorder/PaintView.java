@@ -1034,7 +1034,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         if (this.emojiViewVisible) {
             hideEmojiPopup(false);
         }
-        lambda$registerRemovalUndo$52(this.currentEntityView);
+        lambda$registerRemovalUndo$53(this.currentEntityView);
         selectEntity(null);
     }
 
@@ -1257,6 +1257,13 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         Size paintingSize = getPaintingSize();
         Point startPositionRelativeToEntity = startPositionRelativeToEntity(null);
         TextPaintView textPaintView = new TextPaintView(getContext(), startPositionRelativeToEntity, (int) (paintingSize.width / 9.0f), "", this.colorSwatch, this.selectedTextType);
+        float f = paintingSize.width;
+        textPaintView.setMinMaxFontSize((int) ((f / 9.0f) * 0.5f), (int) ((f / 9.0f) * 2.0f), new Runnable() {
+            @Override
+            public final void run() {
+                PaintView.this.lambda$createText$15();
+            }
+        });
         if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             textPaintView.setStickyX(2);
         }
@@ -1285,6 +1292,13 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             this.textOptionsView.setOutlineType(PersistColorPalette.getInstance(this.currentAccount).getCurrentTextType());
         }
         return textPaintView;
+    }
+
+    public void lambda$createText$15() {
+        PaintWeightChooserView paintWeightChooserView = this.weightChooserView;
+        if (paintWeightChooserView != null) {
+            paintWeightChooserView.invalidate();
+        }
     }
 
     public void clearAll() {
@@ -1408,7 +1422,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         EntityView entityView5 = this.currentEntityView;
         this.currentEntityView = entityView;
         if ((entityView5 instanceof TextPaintView) && TextUtils.isEmpty(((TextPaintView) entityView5).getText())) {
-            lambda$registerRemovalUndo$52(entityView5);
+            lambda$registerRemovalUndo$53(entityView5);
         }
         EntityView entityView6 = this.currentEntityView;
         if (entityView6 != null) {
@@ -1418,6 +1432,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             if (entityView7 instanceof TextPaintView) {
                 final TextPaintView textPaintView2 = (TextPaintView) entityView7;
                 textPaintView2.getSwatch().brushWeight = this.colorSwatch.brushWeight;
+                textPaintView2.disableAutoresize(false);
                 setCurrentSwatch(textPaintView2.getSwatch(), true);
                 final float f = (int) (this.paintingSize.width / 9.0f);
                 this.weightChooserView.setValueOverride(new PaintWeightChooserView.ValueOverride(this) {
@@ -1428,6 +1443,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
 
                     @Override
                     public void set(float f2) {
+                        textPaintView2.disableAutoresize(true);
                         textPaintView2.setBaseFontSize((int) (f * f2));
                     }
                 });
@@ -1565,7 +1581,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            PaintView.this.lambda$showReactionsLayout$15(valueAnimator);
+                            PaintView.this.lambda$showReactionsLayout$16(valueAnimator);
                         }
                     });
                     ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -1599,7 +1615,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    public void lambda$showReactionsLayout$15(ValueAnimator valueAnimator) {
+    public void lambda$showReactionsLayout$16(ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.reactionShowProgress = floatValue;
         this.reactionLayout.setTransitionProgress(floatValue);
@@ -1691,7 +1707,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.drawTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PaintView.this.lambda$setupTabsLayout$16(view);
+                PaintView.this.lambda$setupTabsLayout$17(view);
             }
         });
         this.tabsLayout.addView(this.drawTab, LayoutHelper.createLinear(0, -2, 1.0f));
@@ -1703,7 +1719,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.stickerTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PaintView.this.lambda$setupTabsLayout$17(view);
+                PaintView.this.lambda$setupTabsLayout$18(view);
             }
         });
         this.stickerTab.setTextColor(-1);
@@ -1727,13 +1743,13 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.textTab.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PaintView.this.lambda$setupTabsLayout$18(view);
+                PaintView.this.lambda$setupTabsLayout$19(view);
             }
         });
         this.tabsLayout.addView(this.textTab, LayoutHelper.createLinear(0, -2, 1.0f));
     }
 
-    public void lambda$setupTabsLayout$16(View view) {
+    public void lambda$setupTabsLayout$17(View view) {
         if (this.editingText) {
             selectEntity(null);
         } else {
@@ -1741,11 +1757,11 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    public void lambda$setupTabsLayout$17(View view) {
+    public void lambda$setupTabsLayout$18(View view) {
         openStickersView();
     }
 
-    public void lambda$setupTabsLayout$18(View view) {
+    public void lambda$setupTabsLayout$19(View view) {
         switchTab(2);
         if (this.currentEntityView instanceof TextPaintView) {
             return;
@@ -1784,7 +1800,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.tabsSelectionAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
-                PaintView.this.lambda$switchTab$19(barView, barView2, valueAnimator2);
+                PaintView.this.lambda$switchTab$20(barView, barView2, valueAnimator2);
             }
         });
         this.tabsSelectionAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1824,7 +1840,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.tabsSelectionAnimator.start();
     }
 
-    public void lambda$switchTab$19(View view, View view2, ValueAnimator valueAnimator) {
+    public void lambda$switchTab$20(View view, View view2, ValueAnimator valueAnimator) {
         this.tabsSelectionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.tabsLayout.invalidate();
         this.bottomLayout.invalidate();
@@ -1857,7 +1873,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         postDelayed(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$openStickersView$20();
+                PaintView.this.lambda$openStickersView$21();
             }
         }, 350L);
         final EmojiBottomSheet emojiBottomSheet = new EmojiBottomSheet(getContext(), this.isVideo, this.resourcesProvider) {
@@ -1911,32 +1927,32 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         emojiBottomSheet.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                PaintView.this.lambda$openStickersView$21(zArr, i, dialogInterface);
+                PaintView.this.lambda$openStickersView$22(zArr, i, dialogInterface);
             }
         });
         emojiBottomSheet.whenDocumentSelected(new Utilities.Callback3() {
             @Override
             public final void run(Object obj, Object obj2, Object obj3) {
-                PaintView.this.lambda$openStickersView$22(obj, (TLRPC$Document) obj2, (Boolean) obj3);
+                PaintView.this.lambda$openStickersView$23(obj, (TLRPC$Document) obj2, (Boolean) obj3);
             }
         });
         emojiBottomSheet.whenWidgetSelected(new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                PaintView.this.lambda$openStickersView$24(zArr, emojiBottomSheet, (Integer) obj);
+                PaintView.this.lambda$openStickersView$25(zArr, emojiBottomSheet, (Integer) obj);
             }
         });
         emojiBottomSheet.show();
         onOpenCloseStickersAlert(true);
     }
 
-    public void lambda$openStickersView$20() {
+    public void lambda$openStickersView$21() {
         if (this.facesBitmap != null) {
             detectFaces();
         }
     }
 
-    public void lambda$openStickersView$21(boolean[] zArr, int i, DialogInterface dialogInterface) {
+    public void lambda$openStickersView$22(boolean[] zArr, int i, DialogInterface dialogInterface) {
         this.emojiPopup = null;
         if (zArr[0]) {
             onOpenCloseStickersAlert(false);
@@ -1944,7 +1960,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         switchTab(i);
     }
 
-    public void lambda$openStickersView$22(Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
+    public void lambda$openStickersView$23(Object obj, TLRPC$Document tLRPC$Document, Boolean bool) {
         this.forceChanges = true;
         StickerView createSticker = createSticker(obj, tLRPC$Document, false);
         if (bool.booleanValue()) {
@@ -1953,13 +1969,13 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         appearAnimation(createSticker);
     }
 
-    public void lambda$openStickersView$24(boolean[] zArr, EmojiBottomSheet emojiBottomSheet, Integer num) {
+    public void lambda$openStickersView$25(boolean[] zArr, EmojiBottomSheet emojiBottomSheet, Integer num) {
         if (num.intValue() == 0) {
             zArr[0] = false;
             showLocationAlert(null, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    PaintView.this.lambda$openStickersView$23((TLRPC$MessageMedia) obj, (TLRPC$MediaArea) obj2);
+                    PaintView.this.lambda$openStickersView$24((TLRPC$MessageMedia) obj, (TLRPC$MediaArea) obj2);
                 }
             });
         } else if (num.intValue() == 2) {
@@ -1979,7 +1995,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    public void lambda$openStickersView$23(TLRPC$MessageMedia tLRPC$MessageMedia, TLRPC$MediaArea tLRPC$MediaArea) {
+    public void lambda$openStickersView$24(TLRPC$MessageMedia tLRPC$MessageMedia, TLRPC$MediaArea tLRPC$MediaArea) {
         appearAnimation(createLocationSticker(tLRPC$MessageMedia, tLRPC$MediaArea, false));
     }
 
@@ -2118,14 +2134,14 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         chatAttachAlert.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                PaintView.this.lambda$showLocationAlert$25(dialogInterface);
+                PaintView.this.lambda$showLocationAlert$26(dialogInterface);
             }
         });
         chatAttachAlert.init();
         chatAttachAlert.show();
     }
 
-    public void lambda$showLocationAlert$25(DialogInterface dialogInterface) {
+    public void lambda$showLocationAlert$26(DialogInterface dialogInterface) {
         onOpenCloseStickersAlert(false);
     }
 
@@ -2217,7 +2233,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         chatAttachAlertArr[0].setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
             public final void onDismiss(DialogInterface dialogInterface) {
-                PaintView.this.lambda$showAudioAlert$26(dialogInterface);
+                PaintView.this.lambda$showAudioAlert$27(dialogInterface);
             }
         });
         chatAttachAlertArr[0].setStoryAudioPicker();
@@ -2225,7 +2241,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         chatAttachAlertArr[0].show();
     }
 
-    public void lambda$showAudioAlert$26(DialogInterface dialogInterface) {
+    public void lambda$showAudioAlert$27(DialogInterface dialogInterface) {
         onOpenCloseStickersAlert(false);
     }
 
@@ -2404,12 +2420,12 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.queue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$detectFaces$27();
+                PaintView.this.lambda$detectFaces$28();
             }
         }, 200L);
     }
 
-    public void lambda$detectFaces$27() {
+    public void lambda$detectFaces$28() {
         int i;
         FaceDetector faceDetector = null;
         try {
@@ -2459,7 +2475,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.queue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                PaintView.lambda$shutdown$28();
+                PaintView.lambda$shutdown$29();
             }
         });
         EmojiBottomSheet emojiBottomSheet = this.emojiPopup;
@@ -2472,7 +2488,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    public static void lambda$shutdown$28() {
+    public static void lambda$shutdown$29() {
         Looper myLooper = Looper.myLooper();
         if (myLooper != null) {
             myLooper.quit();
@@ -2696,20 +2712,20 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             this.typefaceMenuTransformAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    PaintView.this.lambda$showTypefaceMenu$31(dynamicAnimation, f, f2);
+                    PaintView.this.lambda$showTypefaceMenu$32(dynamicAnimation, f, f2);
                 }
             });
             this.typefaceMenuTransformAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
-                    PaintView.this.lambda$showTypefaceMenu$32(z, dynamicAnimation, z2, f, f2);
+                    PaintView.this.lambda$showTypefaceMenu$33(z, dynamicAnimation, z2, f, f2);
                 }
             });
             this.typefaceMenuTransformAnimation.start();
         }
     }
 
-    public void lambda$showTypefaceMenu$31(DynamicAnimation dynamicAnimation, float f, float f2) {
+    public void lambda$showTypefaceMenu$32(DynamicAnimation dynamicAnimation, float f, float f2) {
         float f3 = f / 1000.0f;
         this.typefaceMenuTransformProgress = f3;
         this.typefaceListView.setAlpha(f3);
@@ -2718,7 +2734,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.textOptionsView.getTypefaceCell().setAlpha(1.0f - this.typefaceMenuTransformProgress);
     }
 
-    public void lambda$showTypefaceMenu$32(boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
+    public void lambda$showTypefaceMenu$33(boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
         if (dynamicAnimation == this.typefaceMenuTransformAnimation) {
             this.typefaceMenuTransformAnimation = null;
             if (!z) {
@@ -2751,13 +2767,13 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             this.toolsTransformAnimation.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
                 @Override
                 public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                    PaintView.this.lambda$showColorList$33(barView, z, zArr, alpha, translationY, dynamicAnimation, f, f2);
+                    PaintView.this.lambda$showColorList$34(barView, z, zArr, alpha, translationY, dynamicAnimation, f, f2);
                 }
             });
             this.toolsTransformAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
                 @Override
                 public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z3, float f, float f2) {
-                    PaintView.this.lambda$showColorList$34(z, dynamicAnimation, z3, f, f2);
+                    PaintView.this.lambda$showColorList$35(z, dynamicAnimation, z3, f, f2);
                 }
             });
             this.toolsTransformAnimation.start();
@@ -2768,7 +2784,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    public void lambda$showColorList$33(View view, boolean z, boolean[] zArr, float f, float f2, DynamicAnimation dynamicAnimation, float f3, float f4) {
+    public void lambda$showColorList$34(View view, boolean z, boolean[] zArr, float f, float f2, DynamicAnimation dynamicAnimation, float f3, float f4) {
         float f5 = f3 / 1000.0f;
         this.toolsTransformProgress = f5;
         float f6 = ((1.0f - f5) * 0.4f) + 0.6f;
@@ -2799,7 +2815,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    public void lambda$showColorList$34(boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
+    public void lambda$showColorList$35(boolean z, DynamicAnimation dynamicAnimation, boolean z2, float f, float f2) {
         if (dynamicAnimation == this.toolsTransformAnimation) {
             this.toolsTransformAnimation = null;
             if (z) {
@@ -2833,7 +2849,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                 duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PaintView.this.lambda$setCurrentSwatch$35(num, i, valueAnimator);
+                        PaintView.this.lambda$setCurrentSwatch$36(num, i, valueAnimator);
                     }
                 });
                 duration.start();
@@ -2852,7 +2868,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    public void lambda$setCurrentSwatch$35(Integer num, int i, ValueAnimator valueAnimator) {
+    public void lambda$setCurrentSwatch$36(Integer num, int i, ValueAnimator valueAnimator) {
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.colorSwatch.color = ColorUtils.blendARGB(num.intValue(), i, floatValue);
         FrameLayout frameLayout = this.bottomLayout;
@@ -3157,12 +3173,12 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         showPopup(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$onAddButtonPressed$39();
+                PaintView.this.lambda$onAddButtonPressed$40();
             }
         }, this, 53, 0, getHeight(), false);
     }
 
-    public void lambda$onAddButtonPressed$39() {
+    public void lambda$onAddButtonPressed$40() {
         boolean fillShapes = PersistColorPalette.getInstance(this.currentAccount).getFillShapes();
         for (int i = 0; i < Brush.Shape.SHAPES_LIST.size(); i++) {
             final Brush.Shape shape = Brush.Shape.SHAPES_LIST.get(i);
@@ -3170,22 +3186,22 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             PopupButton buttonForPopup = buttonForPopup(shape.getShapeName(), filledIconRes, false, new Runnable() {
                 @Override
                 public final void run() {
-                    PaintView.this.lambda$onAddButtonPressed$37(shape, filledIconRes);
+                    PaintView.this.lambda$onAddButtonPressed$38(shape, filledIconRes);
                 }
             });
             buttonForPopup.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public final boolean onLongClick(View view) {
-                    boolean lambda$onAddButtonPressed$38;
-                    lambda$onAddButtonPressed$38 = PaintView.this.lambda$onAddButtonPressed$38(view);
-                    return lambda$onAddButtonPressed$38;
+                    boolean lambda$onAddButtonPressed$39;
+                    lambda$onAddButtonPressed$39 = PaintView.this.lambda$onAddButtonPressed$39(view);
+                    return lambda$onAddButtonPressed$39;
                 }
             });
             this.popupLayout.addView((View) buttonForPopup, LayoutHelper.createLinear(-1, 48));
         }
     }
 
-    public void lambda$onAddButtonPressed$37(Brush.Shape shape, int i) {
+    public void lambda$onAddButtonPressed$38(Brush.Shape shape, int i) {
         if (this.renderView.getCurrentBrush() instanceof Brush.Shape) {
             this.ignoreToolChangeAnimationOnce = true;
         }
@@ -3193,7 +3209,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.paintToolsView.animatePlusToIcon(i);
     }
 
-    public boolean lambda$onAddButtonPressed$38(View view) {
+    public boolean lambda$onAddButtonPressed$39(View view) {
         if (this.popupLayout != null) {
             PersistColorPalette.getInstance(this.currentAccount).toggleFillShapes();
             boolean fillShapes = PersistColorPalette.getInstance(this.currentAccount).getFillShapes();
@@ -3213,12 +3229,12 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         showPopup(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$showMenuForEntity$47(entityView);
+                PaintView.this.lambda$showMenuForEntity$48(entityView);
             }
         }, this, 51, centerLocationInWindow[0], centerLocationInWindow[1] - AndroidUtilities.dp(32.0f), true);
     }
 
-    public void lambda$showMenuForEntity$47(final EntityView entityView) {
+    public void lambda$showMenuForEntity$48(final EntityView entityView) {
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(0);
         TextView textView = new TextView(getContext());
@@ -3236,7 +3252,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PaintView.this.lambda$showMenuForEntity$40(entityView, view);
+                PaintView.this.lambda$showMenuForEntity$41(entityView, view);
             }
         });
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, 44));
@@ -3256,7 +3272,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                 textView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PaintView.this.lambda$showMenuForEntity$41(entityView, view);
+                        PaintView.this.lambda$showMenuForEntity$42(entityView, view);
                     }
                 });
             } else {
@@ -3265,7 +3281,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                 textView2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        PaintView.this.lambda$showMenuForEntity$42(entityView, view);
+                        PaintView.this.lambda$showMenuForEntity$43(entityView, view);
                     }
                 });
             }
@@ -3275,7 +3291,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             createActionLayoutButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.this.lambda$showMenuForEntity$44(entityView, view);
+                    PaintView.this.lambda$showMenuForEntity$45(entityView, view);
                 }
             });
             linearLayout.addView(createActionLayoutButton, LayoutHelper.createLinear(-2, 44));
@@ -3285,7 +3301,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             createActionLayoutButton2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.this.lambda$showMenuForEntity$45(entityView, view);
+                    PaintView.this.lambda$showMenuForEntity$46(entityView, view);
                 }
             });
             linearLayout.addView(createActionLayoutButton2, LayoutHelper.createLinear(-2, 44));
@@ -3305,7 +3321,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             textView3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
-                    PaintView.this.lambda$showMenuForEntity$46(entityView, view);
+                    PaintView.this.lambda$showMenuForEntity$47(entityView, view);
                 }
             });
             linearLayout.addView(textView3, LayoutHelper.createLinear(-2, 44));
@@ -3331,8 +3347,8 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         linearLayout.setLayoutParams(layoutParams);
     }
 
-    public void lambda$showMenuForEntity$40(EntityView entityView, View view) {
-        lambda$registerRemovalUndo$52(entityView);
+    public void lambda$showMenuForEntity$41(EntityView entityView, View view) {
+        lambda$registerRemovalUndo$53(entityView);
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
             return;
@@ -3340,7 +3356,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$41(EntityView entityView, View view) {
+    public void lambda$showMenuForEntity$42(EntityView entityView, View view) {
         try {
             ((TextPaintView) entityView).getEditText().onTextContextMenuItem(16908337);
         } catch (Exception e) {
@@ -3353,7 +3369,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$42(EntityView entityView, View view) {
+    public void lambda$showMenuForEntity$43(EntityView entityView, View view) {
         selectEntity(entityView);
         editSelectedTextEntity();
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
@@ -3363,12 +3379,12 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$44(final EntityView entityView, View view) {
+    public void lambda$showMenuForEntity$45(final EntityView entityView, View view) {
         selectEntity(null);
         showLocationAlert((LocationView) entityView, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PaintView.this.lambda$showMenuForEntity$43(entityView, (TLRPC$MessageMedia) obj, (TLRPC$MediaArea) obj2);
+                PaintView.this.lambda$showMenuForEntity$44(entityView, (TLRPC$MessageMedia) obj, (TLRPC$MediaArea) obj2);
             }
         });
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
@@ -3378,12 +3394,12 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$43(EntityView entityView, TLRPC$MessageMedia tLRPC$MessageMedia, TLRPC$MediaArea tLRPC$MediaArea) {
+    public void lambda$showMenuForEntity$44(EntityView entityView, TLRPC$MessageMedia tLRPC$MessageMedia, TLRPC$MediaArea tLRPC$MediaArea) {
         ((LocationView) entityView).setLocation(this.currentAccount, tLRPC$MessageMedia, tLRPC$MediaArea);
         appearAnimation(entityView);
     }
 
-    public void lambda$showMenuForEntity$45(EntityView entityView, View view) {
+    public void lambda$showMenuForEntity$46(EntityView entityView, View view) {
         if (entityView instanceof StickerView) {
             ((StickerView) entityView).mirror(true);
         } else if (entityView instanceof ReactionWidgetEntityView) {
@@ -3398,7 +3414,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$46(EntityView entityView, View view) {
+    public void lambda$showMenuForEntity$47(EntityView entityView, View view) {
         duplicateEntity(entityView);
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
         if (actionBarPopupWindow == null || !actionBarPopupWindow.isShowing()) {
@@ -3539,15 +3555,15 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             this.popupLayout.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                    boolean lambda$showPopup$48;
-                    lambda$showPopup$48 = PaintView.this.lambda$showPopup$48(view2, motionEvent);
-                    return lambda$showPopup$48;
+                    boolean lambda$showPopup$49;
+                    lambda$showPopup$49 = PaintView.this.lambda$showPopup$49(view2, motionEvent);
+                    return lambda$showPopup$49;
                 }
             });
             this.popupLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                 @Override
                 public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                    PaintView.this.lambda$showPopup$49(keyEvent);
+                    PaintView.this.lambda$showPopup$50(keyEvent);
                 }
             });
             this.popupLayout.setShownFromBottom(true);
@@ -3569,7 +3585,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             this.popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener() {
                 @Override
                 public final void onDismiss() {
-                    PaintView.this.lambda$showPopup$50();
+                    PaintView.this.lambda$showPopup$51();
                 }
             });
         }
@@ -3591,7 +3607,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.popupLayout.setBackgroundColor(-14145495);
     }
 
-    public boolean lambda$showPopup$48(View view, MotionEvent motionEvent) {
+    public boolean lambda$showPopup$49(View view, MotionEvent motionEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         if (motionEvent.getActionMasked() == 0 && (actionBarPopupWindow = this.popupWindow) != null && actionBarPopupWindow.isShowing()) {
             view.getHitRect(this.popupRect);
@@ -3604,14 +3620,14 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         return false;
     }
 
-    public void lambda$showPopup$49(KeyEvent keyEvent) {
+    public void lambda$showPopup$50(KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.popupWindow) != null && actionBarPopupWindow.isShowing()) {
             this.popupWindow.dismiss();
         }
     }
 
-    public void lambda$showPopup$50() {
+    public void lambda$showPopup$51() {
         this.popupLayout.removeInnerViews();
     }
 
@@ -3667,12 +3683,12 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         view.animate().scaleX(scaleX).scaleY(scaleY).alpha(1.0f).setInterpolator(new OvershootInterpolator(3.0f)).setDuration(240L).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$appearAnimation$51(view);
+                PaintView.this.lambda$appearAnimation$52(view);
             }
         }).start();
     }
 
-    public void lambda$appearAnimation$51(View view) {
+    public void lambda$appearAnimation$52(View view) {
         if (view instanceof EntityView) {
             EntityView entityView = (EntityView) view;
             entityView.updateSelectionView();
@@ -3832,11 +3848,11 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
     public void removeCurrentEntity() {
         EntityView entityView = this.currentEntityView;
         if (entityView != null) {
-            lambda$registerRemovalUndo$52(entityView);
+            lambda$registerRemovalUndo$53(entityView);
         }
     }
 
-    public void lambda$registerRemovalUndo$52(EntityView entityView) {
+    public void lambda$registerRemovalUndo$53(EntityView entityView) {
         EntityView entityView2 = this.currentEntityView;
         if (entityView == entityView2 && entityView2 != null) {
             entityView2.deselect();
@@ -3866,7 +3882,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.undoStore.registerUndo(entityView.getUUID(), new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$registerRemovalUndo$52(entityView);
+                PaintView.this.lambda$registerRemovalUndo$53(entityView);
             }
         });
     }
@@ -4008,7 +4024,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                     ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            PaintView.this.lambda$showEmojiPopup$53(valueAnimator);
+                            PaintView.this.lambda$showEmojiPopup$54(valueAnimator);
                         }
                     });
                     ofFloat.addListener(new AnimatorListenerAdapter() {
@@ -4043,7 +4059,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         updatePlusEmojiKeyboardButton();
     }
 
-    public void lambda$showEmojiPopup$53(ValueAnimator valueAnimator) {
+    public void lambda$showEmojiPopup$54(ValueAnimator valueAnimator) {
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -4058,7 +4074,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
                 ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                        PaintView.this.lambda$hideEmojiPopup$54(valueAnimator);
+                        PaintView.this.lambda$hideEmojiPopup$55(valueAnimator);
                     }
                 });
                 this.isAnimatePopupClosing = true;
@@ -4079,7 +4095,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    public void lambda$hideEmojiPopup$54(ValueAnimator valueAnimator) {
+    public void lambda$hideEmojiPopup$55(ValueAnimator valueAnimator) {
         this.emojiView.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
     }
 
@@ -4164,12 +4180,12 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.textDim.animate().alpha(z ? 1.0f : 0.0f).withEndAction(new Runnable() {
             @Override
             public final void run() {
-                PaintView.this.lambda$updateTextDim$55(z);
+                PaintView.this.lambda$updateTextDim$56(z);
             }
         }).start();
     }
 
-    public void lambda$updateTextDim$55(boolean z) {
+    public void lambda$updateTextDim$56(boolean z) {
         if (z) {
             return;
         }

@@ -2949,6 +2949,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         private int length;
         private ImageView missedCallArrowIcon;
         private TextView missedCallDescriptionSubtitle;
+        private TextView missedCallDescriptionSubtitle2;
         private ImageView missedCallPhoneIcon;
         private boolean nextPressed;
         private int nextType;
@@ -3147,7 +3148,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             int i = Theme.key_windowBackgroundWhiteBlackText;
             textView.setTextColor(Theme.getColor(i));
             if (this.currentType == 11) {
-                this.missedCallDescriptionSubtitle.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+                TextView textView2 = this.missedCallDescriptionSubtitle;
+                int i2 = Theme.key_windowBackgroundWhiteGrayText;
+                textView2.setTextColor(Theme.getColor(i2));
+                this.missedCallDescriptionSubtitle2.setTextColor(Theme.getColor(i2));
                 this.missedCallArrowIcon.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteInputFieldActivated), PorterDuff.Mode.SRC_IN));
                 this.missedCallPhoneIcon.setColorFilter(new PorterDuffColorFilter(Theme.getColor(i), PorterDuff.Mode.SRC_IN));
                 this.prefixTextView.setTextColor(Theme.getColor(i));

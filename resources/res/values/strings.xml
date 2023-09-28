@@ -3011,6 +3011,8 @@
     <string name="IncomingCallsCount_other">%1$d incoming calls</string>
     <string name="IncomingCallsCount_two">%1$d incoming calls</string>
     <string name="IncomingCallsCount_zero">%1$d incoming calls</string>
+    <string name="IncomingCallsSystemSetting">Internal calls notifications</string>
+    <string name="IncomingCallsSystemSettingDescription">You can change ringtone sound in Telegram -&gt; Settings -&gt; Notifications and Sounds.</string>
     <string name="IncorrectLocalization">Incorrect localization file</string>
     <string name="IncorrectTheme">Incorrect theme file</string>
     <string name="IncreaseLimit">Increase Limit</string>

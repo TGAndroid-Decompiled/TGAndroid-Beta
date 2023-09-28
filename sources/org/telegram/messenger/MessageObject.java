@@ -2724,7 +2724,7 @@ public class MessageObject {
                     str3 = "invite";
                     tLRPC$TL_chatInviteExported = tLRPC$TL_chatInviteExported2;
                 } else if (tLObject instanceof TLRPC$ForumTopic) {
-                    charSequence2 = ForumUtilities.getTopicSpannedName((TLRPC$ForumTopic) tLObject, null);
+                    charSequence2 = ForumUtilities.getTopicSpannedName((TLRPC$ForumTopic) tLObject, null, false);
                     str3 = "topic";
                     tLRPC$TL_chatInviteExported = tLObject;
                 } else {

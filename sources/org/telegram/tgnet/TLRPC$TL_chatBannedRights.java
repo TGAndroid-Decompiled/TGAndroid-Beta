@@ -85,7 +85,7 @@ public class TLRPC$TL_chatBannedRights extends TLObject {
             this.send_media = false;
         }
         boolean z2 = this.send_plain;
-        if (z2 && this.send_media) {
+        if (z2 && this.send_media && this.send_stickers) {
             this.send_messages = true;
         } else {
             this.send_messages = false;

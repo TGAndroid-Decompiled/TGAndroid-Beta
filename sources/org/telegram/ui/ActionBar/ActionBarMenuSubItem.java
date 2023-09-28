@@ -137,6 +137,13 @@ public class ActionBarMenuSubItem extends FrameLayout {
             }
             addView(this.rightIcon, LayoutHelper.createFrame(24, -1, (LocaleController.isRTL ? 3 : 5) | 16));
         }
+        FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) this.textView.getLayoutParams();
+        if (LocaleController.isRTL) {
+            layoutParams.leftMargin = this.rightIcon != null ? AndroidUtilities.dp(32.0f) : 0;
+        } else {
+            layoutParams.rightMargin = this.rightIcon != null ? AndroidUtilities.dp(32.0f) : 0;
+        }
+        this.textView.setLayoutParams(layoutParams);
         setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 8.0f : 18.0f), 0, AndroidUtilities.dp(LocaleController.isRTL ? 18.0f : 8.0f), 0);
         this.rightIcon.setImageResource(i);
     }

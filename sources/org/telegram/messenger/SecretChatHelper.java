@@ -772,7 +772,7 @@ public class SecretChatHelper extends BaseController {
     }
 
     public void lambda$performSendEncryptedRequest$7(TLRPC$DecryptedMessage tLRPC$DecryptedMessage, TLRPC$EncryptedChat tLRPC$EncryptedChat, final TLRPC$Message tLRPC$Message, MessageObject messageObject, String str, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-        final int i;
+        final int i = 0;
         if (tLRPC$TL_error == null && (tLRPC$DecryptedMessage.action instanceof TLRPC$TL_decryptedMessageActionNotifyLayer)) {
             TLRPC$EncryptedChat encryptedChat = getMessagesController().getEncryptedChat(Integer.valueOf(tLRPC$EncryptedChat.id));
             if (encryptedChat == null) {
@@ -799,7 +799,7 @@ public class SecretChatHelper extends BaseController {
             getMessagesStorage().updateEncryptedChatLayer(encryptedChat);
         }
         if (tLRPC$TL_error == null) {
-            final String str2 = tLRPC$Message.attachPath;
+            String str2 = tLRPC$Message.attachPath;
             final TLRPC$messages_SentEncryptedMessage tLRPC$messages_SentEncryptedMessage = (TLRPC$messages_SentEncryptedMessage) tLObject;
             if (isSecretVisibleMessage(tLRPC$Message)) {
                 tLRPC$Message.date = tLRPC$messages_SentEncryptedMessage.date;
@@ -809,20 +809,12 @@ public class SecretChatHelper extends BaseController {
                 if (tLRPC$EncryptedFile instanceof TLRPC$TL_encryptedFile) {
                     updateMediaPaths(messageObject, tLRPC$EncryptedFile, tLRPC$DecryptedMessage, str);
                     i = messageObject.getMediaExistanceFlags();
-                    getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
-                        @Override
-                        public final void run() {
-                            SecretChatHelper.this.lambda$performSendEncryptedRequest$5(tLRPC$Message, tLRPC$messages_SentEncryptedMessage, i, str2);
-                        }
-                    });
-                    return;
                 }
             }
-            i = 0;
             getMessagesStorage().getStorageQueue().postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    SecretChatHelper.this.lambda$performSendEncryptedRequest$5(tLRPC$Message, tLRPC$messages_SentEncryptedMessage, i, str2);
+                    SecretChatHelper.this.lambda$performSendEncryptedRequest$5(tLRPC$Message, tLRPC$messages_SentEncryptedMessage, i);
                 }
             });
             return;
@@ -836,7 +828,7 @@ public class SecretChatHelper extends BaseController {
         });
     }
 
-    public void lambda$performSendEncryptedRequest$5(final TLRPC$Message tLRPC$Message, TLRPC$messages_SentEncryptedMessage tLRPC$messages_SentEncryptedMessage, final int i, final String str) {
+    public void lambda$performSendEncryptedRequest$5(final TLRPC$Message tLRPC$Message, TLRPC$messages_SentEncryptedMessage tLRPC$messages_SentEncryptedMessage, final int i) {
         if (isSecretInvisibleMessage(tLRPC$Message)) {
             tLRPC$messages_SentEncryptedMessage.date = 0;
         }
@@ -844,18 +836,15 @@ public class SecretChatHelper extends BaseController {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                SecretChatHelper.this.lambda$performSendEncryptedRequest$4(tLRPC$Message, i, str);
+                SecretChatHelper.this.lambda$performSendEncryptedRequest$4(tLRPC$Message, i);
             }
         });
     }
 
-    public void lambda$performSendEncryptedRequest$4(TLRPC$Message tLRPC$Message, int i, String str) {
+    public void lambda$performSendEncryptedRequest$4(TLRPC$Message tLRPC$Message, int i) {
         tLRPC$Message.send_state = 0;
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageReceivedByServer, Integer.valueOf(tLRPC$Message.id), Integer.valueOf(tLRPC$Message.id), tLRPC$Message, Long.valueOf(tLRPC$Message.dialog_id), 0L, Integer.valueOf(i), Boolean.FALSE);
         getSendMessagesHelper().processSentMessage(tLRPC$Message.id);
-        if (MessageObject.isVideoMessage(tLRPC$Message) || MessageObject.isNewGifMessage(tLRPC$Message) || MessageObject.isRoundVideoMessage(tLRPC$Message)) {
-            getSendMessagesHelper().stopVideoService(str);
-        }
         getSendMessagesHelper().removeFromSendingMessages(tLRPC$Message.id, false);
     }
 
@@ -863,9 +852,6 @@ public class SecretChatHelper extends BaseController {
         tLRPC$Message.send_state = 2;
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.messageSendError, Integer.valueOf(tLRPC$Message.id));
         getSendMessagesHelper().processSentMessage(tLRPC$Message.id);
-        if (MessageObject.isVideoMessage(tLRPC$Message) || MessageObject.isNewGifMessage(tLRPC$Message) || MessageObject.isRoundVideoMessage(tLRPC$Message)) {
-            getSendMessagesHelper().stopVideoService(tLRPC$Message.attachPath);
-        }
         getSendMessagesHelper().removeFromSendingMessages(tLRPC$Message.id, false);
     }
 

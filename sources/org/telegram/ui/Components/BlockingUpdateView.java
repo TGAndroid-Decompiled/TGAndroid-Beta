@@ -187,7 +187,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
     }
 
     public void lambda$new$1(Context context, View view) {
-        if (BuildVars.isStandaloneApp() || BuildVars.DEBUG_VERSION) {
+        if (ApplicationLoader.isStandaloneBuild() || BuildVars.DEBUG_VERSION) {
             if (ApplicationLoader.applicationLoaderInstance.checkApkInstallPermissions(getContext())) {
                 TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate = this.appUpdate;
                 if (tLRPC$TL_help_appUpdate.document instanceof TLRPC$TL_document) {
@@ -307,7 +307,7 @@ public class BlockingUpdateView extends FrameLayout implements NotificationCente
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoaded);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadFailed);
         NotificationCenter.getInstance(this.accountNum).addObserver(this, NotificationCenter.fileLoadProgressChanged);
-        if (z && BuildVars.isStandaloneApp()) {
+        if (z && ApplicationLoader.isStandaloneBuild()) {
             TLRPC$TL_help_getAppUpdate tLRPC$TL_help_getAppUpdate = new TLRPC$TL_help_getAppUpdate();
             try {
                 tLRPC$TL_help_getAppUpdate.source = ApplicationLoader.applicationContext.getPackageManager().getInstallerPackageName(ApplicationLoader.applicationContext.getPackageName());

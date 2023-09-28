@@ -490,6 +490,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         private FlickerLoadingView progressView;
         private PullForegroundDrawable pullForegroundDrawable;
         private RecyclerItemsEnterAnimator recyclerItemsEnterAnimator;
+        Runnable saveScrollPositionRunnable;
         private RecyclerAnimationScrollHelper scrollHelper;
         public RecyclerListViewScroller scroller;
         private int selectedType;
@@ -499,10 +500,16 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
 
         public ViewPage(Context context) {
             super(context);
-            this.updateListRunnable = new Runnable() {
+            this.saveScrollPositionRunnable = new Runnable() {
                 @Override
                 public final void run() {
                     DialogsActivity.ViewPage.this.lambda$new$0();
+                }
+            };
+            this.updateListRunnable = new Runnable() {
+                @Override
+                public final void run() {
+                    DialogsActivity.ViewPage.this.lambda$new$1();
                 }
             };
         }
@@ -513,9 +520,45 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         }
 
         public void lambda$new$0() {
+            DialogsRecyclerView dialogsRecyclerView = this.listView;
+            if (dialogsRecyclerView == null || dialogsRecyclerView.getScrollState() != 0 || this.listView.getChildCount() <= 0 || this.listView.getLayoutManager() == null) {
+                return;
+            }
+            int i = 1;
+            boolean z = this.dialogsType == 0 && DialogsActivity.this.hasHiddenArchive() && this.archivePullViewState == 2;
             float f = DialogsActivity.this.scrollYOffset;
-            DialogsActivity dialogsActivity = DialogsActivity.this;
-            this.dialogsAdapter.updateList(this.listView, this.dialogsType == 0 && dialogsActivity.hasHiddenArchive() && this.archivePullViewState == 2, f, dialogsActivity.hasStories);
+            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) this.listView.getLayoutManager();
+            View view = null;
+            int i2 = ConnectionsManager.DEFAULT_DATACENTER_ID;
+            int i3 = -1;
+            for (int i4 = 0; i4 < this.listView.getChildCount(); i4++) {
+                DialogsRecyclerView dialogsRecyclerView2 = this.listView;
+                int childAdapterPosition = dialogsRecyclerView2.getChildAdapterPosition(dialogsRecyclerView2.getChildAt(i4));
+                View childAt = this.listView.getChildAt(i4);
+                if (childAdapterPosition != -1 && childAt != null && childAt.getTop() < i2) {
+                    i2 = childAt.getTop();
+                    i3 = childAdapterPosition;
+                    view = childAt;
+                }
+            }
+            if (view != null) {
+                float top = view.getTop() - this.listView.getPaddingTop();
+                if (DialogsActivity.this.hasStories) {
+                    f = 0.0f;
+                }
+                if (this.listView.getScrollState() != 1) {
+                    if (z && i3 == 0 && ((this.listView.getPaddingTop() - view.getTop()) - view.getMeasuredHeight()) + f < 0.0f) {
+                        top = f;
+                    } else {
+                        i = i3;
+                    }
+                    linearLayoutManager.scrollToPositionWithOffset(i, (int) top);
+                }
+            }
+        }
+
+        public void lambda$new$1() {
+            this.dialogsAdapter.updateList(this.saveScrollPositionRunnable);
             DialogsActivity.this.invalidateScrollY = true;
             this.listView.updateDialogsOnNextDraw = true;
             this.updating = false;
@@ -8466,6 +8509,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             }
         } else if (i == NotificationCenter.storiesUpdated) {
             updateStoriesVisibility(this.wasDrawn);
+            updateVisibleRows(0);
         } else if (i == NotificationCenter.storiesEnabledUpdate) {
             updateStoriesPosting();
         } else if (i == NotificationCenter.unconfirmedAuthUpdate) {

@@ -53,6 +53,10 @@ public class ReplaceableIconDrawable extends Drawable implements Animator.Animat
         this.currentResId = i;
     }
 
+    public Drawable getIcon() {
+        return this.currentDrawable;
+    }
+
     public void setIcon(Drawable drawable, boolean z) {
         if (drawable == null) {
             this.currentDrawable = null;

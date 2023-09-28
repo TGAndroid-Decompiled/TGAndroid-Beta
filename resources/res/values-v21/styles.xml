@@ -49,6 +49,40 @@
     <style name="Theme.TMessages.CalendarView" parent="@android:style/Widget.Material.CalendarView">
         <item name="android:weekDayTextAppearance">@style/Theme.TMessages.DayOfWeek</item>
     </style>
+    <style name="Theme.TMessages.Dark" parent="@android:style/Theme.Material">
+        <item name="android:colorBackground">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/black</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:listViewStyle">@style/Theme.TMessages.ListView</item>
+        <item name="android:textViewStyle">@style/MyTextViewStyle</item>
+        <item name="android:textColorHighlight">#60808080</item>
+        <item name="android:itemTextAppearance">@style/ActionBar.Transparent.TMessages.Item</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowActionBarOverlay">false</item>
+        <item name="android:alertDialogTheme">@style/Theme.TMessages.Dark.Dialog.Alert</item>
+        <item name="android:datePickerStyle">@style/Theme.TMessages.Dark.DatePicker</item>
+        <item name="android:calendarViewStyle">@style/Theme.TMessages.CalendarView</item>
+        <item name="android:actionBarItemBackground">@drawable/bar_selector_style</item>
+        <item name="android:colorControlActivated">#808080</item>
+        <item name="android:colorPrimary">#527da3</item>
+        <item name="android:colorPrimaryDark">#33000000</item>
+        <item name="android:navigationBarColor">#000000</item>
+        <item name="android:timePickerStyle">@style/Theme.TMessages.Dark.TimePicker</item>
+        <item name="android:timePickerDialogTheme">@style/Theme.TMessages.Dark.Dialog.Alert</item>
+        <item name="android:datePickerDialogTheme">@style/Theme.TMessages.Dark.Dialog.Alert</item>
+    </style>
+    <style name="Theme.TMessages.Dark.DatePicker" parent="@android:style/Widget.Material.DatePicker">
+        <item name="android:headerBackground">#408bc8</item>
+    </style>
+    <style name="Theme.TMessages.Dark.Dialog.Alert" parent="@android:style/Theme.Material.Dialog.Alert">
+        <item name="android:colorControlActivated">#808080</item>
+        <item name="android:colorPrimary">#527da3</item>
+        <item name="android:colorAccent">#4991cc</item>
+    </style>
+    <style name="Theme.TMessages.Dark.TimePicker" parent="@android:style/Widget.Material.TimePicker">
+        <item name="android:headerBackground">#408bc8</item>
+    </style>
     <style name="Theme.TMessages.DatePicker" parent="@android:style/Widget.Material.Light.DatePicker">
         <item name="android:headerBackground">#408bc8</item>
     </style>

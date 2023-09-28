@@ -30,7 +30,6 @@ import j$.util.Comparator$CC;
 import j$.util.function.ToIntFunction;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
@@ -81,6 +80,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserStatus;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsAdapter;
+import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AvatarDrawable;
@@ -326,11 +326,14 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     private int typingLeft;
     private int unreadCount;
     private final DialogUpdateHelper updateHelper;
+    private boolean updateLayout;
     public boolean useForceThreeLines;
     public boolean useFromUserAsAvatar;
     private boolean useMeForMyMessages;
     public boolean useSeparator;
     private TLRPC$User user;
+    private boolean visibleOnScreen;
+    private boolean wasDrawnOnline;
     protected float xOffset;
 
     public static class BounceInterpolator implements Interpolator {
@@ -372,6 +375,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         void showChatPreview(DialogCell dialogCell);
     }
 
+    public static class SharedResources {
+    }
+
     public boolean checkCurrentDialogIndex(boolean z) {
         return false;
     }
@@ -383,6 +389,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     @Override
     public boolean hasOverlappingRendering() {
         return false;
+    }
+
+    public void setSharedResources(SharedResources sharedResources) {
     }
 
     public void setMoving(boolean z) {
@@ -448,6 +457,16 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             return;
         }
         requestLayout();
+    }
+
+    public void setVisible(boolean z) {
+        if (this.visibleOnScreen == z) {
+            return;
+        }
+        this.visibleOnScreen = z;
+        if (z) {
+            invalidate();
+        }
     }
 
     public static class FixedWidthSpan extends ReplacementSpan {
@@ -520,6 +539,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         };
         this.storyParams = avatarStoryParams;
         this.thumbSpoiler = new SpoilerEffect();
+        this.visibleOnScreen = true;
         this.collapseOffset = 0.0f;
         this.hasUnmutedTopics = false;
         this.overrideSwipeAction = false;
@@ -841,7 +861,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             checkBox2.layout(dp2, dp, checkBox2.getMeasuredWidth() + dp2, this.checkBox.getMeasuredHeight() + dp);
         }
         int measuredHeight = (getMeasuredHeight() + getMeasuredWidth()) << 16;
-        if (measuredHeight != this.lastSize) {
+        if (measuredHeight != this.lastSize || this.updateLayout) {
+            this.updateLayout = false;
             this.lastSize = measuredHeight;
             try {
                 buildLayout();
@@ -929,6 +950,20 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.buildLayout():void");
     }
 
+    private SpannableStringBuilder formatInternal(int i, CharSequence charSequence, CharSequence charSequence2) {
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        if (i == 1) {
+            spannableStringBuilder.append(charSequence2).append((CharSequence) ": \u2068").append(charSequence).append((CharSequence) "\u2069");
+        } else if (i == 2) {
+            spannableStringBuilder.append((CharSequence) "\u2068").append(charSequence).append((CharSequence) "\u2069");
+        } else if (i == 3) {
+            spannableStringBuilder.append(charSequence2).append((CharSequence) ": ").append(charSequence);
+        } else if (i == 4) {
+            spannableStringBuilder.append(charSequence);
+        }
+        return spannableStringBuilder;
+    }
+
     private void updateThumbsPosition() {
         if (this.thumbsCount > 0) {
             StaticLayout staticLayout = isForumCell() ? this.buttonLayout : this.messageLayout;
@@ -976,85 +1011,12 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
     }
 
     private CharSequence formatTopicsNames() {
-        int i;
-        boolean z;
-        int i2;
-        this.topMessageTopicStartIndex = 0;
-        this.topMessageTopicEndIndex = 0;
-        if (this.chat != null) {
-            ArrayList<TLRPC$TL_forumTopic> topics = MessagesController.getInstance(this.currentAccount).getTopicsController().getTopics(this.chat.id);
-            if (topics != null && !topics.isEmpty()) {
-                ArrayList arrayList = new ArrayList(topics);
-                Collections.sort(arrayList, Comparator$CC.comparingInt(new ToIntFunction() {
-                    @Override
-                    public final int applyAsInt(Object obj) {
-                        int lambda$formatTopicsNames$0;
-                        lambda$formatTopicsNames$0 = DialogCell.lambda$formatTopicsNames$0((TLRPC$TL_forumTopic) obj);
-                        return lambda$formatTopicsNames$0;
-                    }
-                }));
-                SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                MessageObject messageObject = this.message;
-                boolean z2 = true;
-                if (messageObject != null) {
-                    i = MessageObject.getTopicId(messageObject.messageOwner, true);
-                    TLRPC$TL_forumTopic findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(this.chat.id, i);
-                    if (findTopic != null) {
-                        CharSequence topicSpannedName = ForumUtilities.getTopicSpannedName(findTopic, this.currentMessagePaint);
-                        spannableStringBuilder.append(topicSpannedName);
-                        i2 = findTopic.unread_count > 0 ? topicSpannedName.length() : 0;
-                        this.topMessageTopicStartIndex = 0;
-                        this.topMessageTopicEndIndex = topicSpannedName.length();
-                        if (this.message.isOutOwner()) {
-                            this.lastTopicMessageUnread = findTopic.read_inbox_max_id < this.message.getId();
-                        } else {
-                            this.lastTopicMessageUnread = findTopic.unread_count > 0;
-                        }
-                    } else {
-                        this.lastTopicMessageUnread = false;
-                        i2 = 0;
-                    }
-                    if (this.lastTopicMessageUnread) {
-                        spannableStringBuilder.append((CharSequence) " ");
-                        spannableStringBuilder.setSpan(new FixedWidthSpan(AndroidUtilities.dp(3.0f)), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
-                        z = true;
-                    } else {
-                        z = false;
-                    }
-                } else {
-                    i = 0;
-                    z = false;
-                    i2 = 0;
-                }
-                for (int i3 = 0; i3 < Math.min(5, arrayList.size()); i3++) {
-                    if (((TLRPC$TL_forumTopic) arrayList.get(i3)).id != i) {
-                        if (spannableStringBuilder.length() != 0) {
-                            if (z2 && z) {
-                                spannableStringBuilder.append((CharSequence) " ");
-                            } else {
-                                spannableStringBuilder.append((CharSequence) ", ");
-                            }
-                        }
-                        spannableStringBuilder.append(ForumUtilities.getTopicSpannedName((TLRPC$ForumTopic) arrayList.get(i3), this.currentMessagePaint));
-                        z2 = false;
-                    }
-                }
-                if (i2 > 0) {
-                    spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, Theme.key_chats_name, null), 0, Math.min(spannableStringBuilder.length(), i2 + 2), 0);
-                }
-                return spannableStringBuilder;
-            } else if (MessagesController.getInstance(this.currentAccount).getTopicsController().endIsReached(this.chat.id)) {
-                return "no created topics";
-            } else {
-                MessagesController.getInstance(this.currentAccount).getTopicsController().preloadTopics(this.chat.id);
-                return LocaleController.getString("Loading", R.string.Loading);
-            }
-        }
-        return null;
-    }
-
-    public static int lambda$formatTopicsNames$0(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
-        return -tLRPC$TL_forumTopic.top_message;
+        ForumFormattedNames forumFormattedNames = new ForumFormattedNames();
+        forumFormattedNames.formatTopicsNames(this.currentAccount, this.message, this.chat);
+        this.topMessageTopicStartIndex = forumFormattedNames.topMessageTopicStartIndex;
+        this.topMessageTopicEndIndex = forumFormattedNames.topMessageTopicEndIndex;
+        this.lastTopicMessageUnread = forumFormattedNames.lastTopicMessageUnread;
+        return forumFormattedNames.formattedNames;
     }
 
     public boolean isForumCell() {
@@ -1209,12 +1171,12 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.update(int, boolean):boolean");
     }
 
-    public void lambda$update$1(ValueAnimator valueAnimator) {
+    public void lambda$update$0(ValueAnimator valueAnimator) {
         this.countChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
 
-    public void lambda$update$2(ValueAnimator valueAnimator) {
+    public void lambda$update$1(ValueAnimator valueAnimator) {
         this.reactionsMentionsChangeProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
@@ -1274,14 +1236,14 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.DialogCell.onDraw(android.graphics.Canvas):void");
     }
 
-    public void lambda$onDraw$3() {
+    public void lambda$onDraw$2() {
         DialogCellDelegate dialogCellDelegate = this.delegate;
         if (dialogCellDelegate != null) {
             dialogCellDelegate.onButtonClicked(this);
         }
     }
 
-    public void lambda$onDraw$4() {
+    public void lambda$onDraw$3() {
         DialogCellDelegate dialogCellDelegate = this.delegate;
         if (dialogCellDelegate != null) {
             dialogCellDelegate.onButtonLongPress(this);
@@ -1476,7 +1438,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.statusDrawableAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                DialogCell.this.lambda$createStatusDrawableAnimator$5(valueAnimator);
+                DialogCell.this.lambda$createStatusDrawableAnimator$4(valueAnimator);
             }
         });
         this.statusDrawableAnimator.addListener(new AnimatorListenerAdapter() {
@@ -1498,7 +1460,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         this.statusDrawableAnimator.start();
     }
 
-    public void lambda$createStatusDrawableAnimator$5(ValueAnimator valueAnimator) {
+    public void lambda$createStatusDrawableAnimator$4(ValueAnimator valueAnimator) {
         this.statusDrawableProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidate();
     }
@@ -1756,14 +1718,12 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         if (arrayList != null && arrayList.size() > 1 && TextUtils.isEmpty(restrictionReason) && this.currentDialogFolderId == 0 && this.encryptedChat == null) {
             this.thumbsCount = 0;
             this.hasVideoThumb = false;
-            Collections.sort(this.groupMessages, new Comparator() {
+            Collections.sort(this.groupMessages, Comparator$CC.comparingInt(new ToIntFunction() {
                 @Override
-                public final int compare(Object obj, Object obj2) {
-                    int lambda$updateMessageThumbs$6;
-                    lambda$updateMessageThumbs$6 = DialogCell.lambda$updateMessageThumbs$6((MessageObject) obj, (MessageObject) obj2);
-                    return lambda$updateMessageThumbs$6;
+                public final int applyAsInt(Object obj) {
+                    return ((MessageObject) obj).getId();
                 }
-            });
+            }));
             for (int i = 0; i < Math.min(3, this.groupMessages.size()); i++) {
                 MessageObject messageObject2 = this.groupMessages.get(i);
                 if (messageObject2 != null && !messageObject2.needDrawBluredPreview() && (messageObject2.isPhoto() || messageObject2.isNewGif() || messageObject2.isVideo() || messageObject2.isRoundVideo() || messageObject2.isStoryMedia())) {
@@ -1793,10 +1753,6 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 setThumb(0, this.message);
             }
         }
-    }
-
-    public static int lambda$updateMessageThumbs$6(MessageObject messageObject, MessageObject messageObject2) {
-        return messageObject.getId() - messageObject2.getId();
     }
 
     private void setThumb(int i, MessageObject messageObject) {
@@ -1887,19 +1843,20 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         return str2;
     }
 
-    public SpannableStringBuilder getMessageStringFormatted(String str, String str2, CharSequence charSequence, boolean z) {
+    public SpannableStringBuilder getMessageStringFormatted(int i, String str, CharSequence charSequence, boolean z) {
         TLRPC$Message tLRPC$Message;
         String charSequence2;
         String formatPluralString;
         CharSequence charSequence3;
+        String str2;
         SpannableStringBuilder valueOf;
         TLRPC$TL_forumTopic findTopic;
         MessageObject captionMessage = getCaptionMessage();
         MessageObject messageObject = this.message;
         CharSequence charSequence4 = messageObject != null ? messageObject.messageText : null;
         this.applyName = true;
-        if (!TextUtils.isEmpty(str2)) {
-            return SpannableStringBuilder.valueOf(AndroidUtilities.formatSpannable(str, str2, charSequence));
+        if (!TextUtils.isEmpty(str)) {
+            return formatInternal(i, str, charSequence);
         }
         MessageObject messageObject2 = this.message;
         TLRPC$Message tLRPC$Message2 = messageObject2.messageOwner;
@@ -1909,7 +1866,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 charSequence5 = messageObject2.messageText;
             }
             if (MessageObject.isTopicActionMessage(messageObject2)) {
-                valueOf = AndroidUtilities.formatSpannable(str, charSequence5, charSequence);
+                valueOf = formatInternal(i, charSequence5, charSequence);
                 if ((this.message.topicIconDrawable[0] instanceof ForumBubbleDrawable) && (findTopic = MessagesController.getInstance(this.currentAccount).getTopicsController().findTopic(-this.message.getDialogId(), MessageObject.getTopicId(this.message.messageOwner, true))) != null) {
                     ((ForumBubbleDrawable) this.message.topicIconDrawable[0]).setColor(findTopic.icon_color);
                 }
@@ -1922,20 +1879,18 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 return valueOf;
             }
             return valueOf;
-        }
-        String str3 = "";
-        if (captionMessage != null && (charSequence3 = captionMessage.caption) != null) {
+        } else if (captionMessage != null && (charSequence3 = captionMessage.caption) != null) {
             CharSequence charSequence6 = charSequence3.toString();
-            if (this.needEmoji) {
-                if (captionMessage.isVideo()) {
-                    str3 = "📹 ";
-                } else if (captionMessage.isVoice()) {
-                    str3 = "🎤 ";
-                } else if (captionMessage.isMusic()) {
-                    str3 = "🎧 ";
-                } else {
-                    str3 = captionMessage.isPhoto() ? "🖼 " : "📎 ";
-                }
+            if (!this.needEmoji) {
+                str2 = "";
+            } else if (captionMessage.isVideo()) {
+                str2 = "📹 ";
+            } else if (captionMessage.isVoice()) {
+                str2 = "🎤 ";
+            } else if (captionMessage.isMusic()) {
+                str2 = "🎧 ";
+            } else {
+                str2 = captionMessage.isPhoto() ? "🖼 " : "📎 ";
             }
             if (captionMessage.hasHighlightedWords() && !TextUtils.isEmpty(captionMessage.messageOwner.message)) {
                 CharSequence charSequence7 = captionMessage.messageTrimmedToHighlight;
@@ -1949,7 +1904,7 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 if (measuredWidth > 0) {
                     charSequence7 = AndroidUtilities.ellipsizeCenterEnd(charSequence7, captionMessage.highlightedWords.get(0), measuredWidth, this.currentMessagePaint, 130).toString();
                 }
-                return new SpannableStringBuilder(str3).append(charSequence7);
+                return new SpannableStringBuilder(str2).append(charSequence7);
             }
             if (charSequence6.length() > 150) {
                 charSequence6 = charSequence6.subSequence(0, ImageReceiver.DEFAULT_CROSSFADE_DURATION);
@@ -1963,14 +1918,14 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 TextPaint textPaint = this.currentMessagePaint;
                 MediaDataController.addAnimatedEmojiSpans(arrayList, spannableStringBuilder, textPaint != null ? textPaint.getFontMetricsInt() : null);
             }
-            CharSequence append = new SpannableStringBuilder(str3).append(AndroidUtilities.replaceNewLines(spannableStringBuilder));
+            CharSequence append = new SpannableStringBuilder(str2).append(AndroidUtilities.replaceNewLines(spannableStringBuilder));
             if (z) {
                 append = applyThumbs(append);
             }
-            return AndroidUtilities.formatSpannable(str, append, charSequence);
+            return formatInternal(i, append, charSequence);
         } else if (tLRPC$Message2.media != null && !messageObject2.isMediaEmpty()) {
             this.currentMessagePaint = Theme.dialogs_messagePrintingPaint[this.paintIndex];
-            int i = Theme.key_chats_attachMessage;
+            int i2 = Theme.key_chats_attachMessage;
             MessageObject messageObject3 = this.message;
             TLRPC$MessageMedia tLRPC$MessageMedia = messageObject3.messageOwner.media;
             if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaPoll) {
@@ -1991,24 +1946,26 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                     formatPluralString = LocaleController.formatPluralString("Photos", arrayList3 == null ? 0 : arrayList3.size(), new Object[0]);
                 }
                 charSequence2 = formatPluralString;
-                i = Theme.key_chats_actionMessage;
+                i2 = Theme.key_chats_actionMessage;
             } else {
                 charSequence2 = charSequence4.toString();
-                i = Theme.key_chats_actionMessage;
+                i2 = Theme.key_chats_actionMessage;
             }
             CharSequence replace = charSequence2.replace('\n', ' ');
             if (z) {
                 replace = applyThumbs(replace);
             }
-            SpannableStringBuilder formatSpannable = AndroidUtilities.formatSpannable(str, replace, charSequence);
-            if (!isForumCell()) {
-                try {
-                    formatSpannable.setSpan(new ForegroundColorSpanThemable(i, this.resourcesProvider), this.hasNameInMessage ? charSequence.length() + 2 : 0, formatSpannable.length(), 33);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
+            SpannableStringBuilder formatInternal = formatInternal(i, replace, charSequence);
+            if (isForumCell()) {
+                return formatInternal;
             }
-            return formatSpannable;
+            try {
+                formatInternal.setSpan(new ForegroundColorSpanThemable(i2, this.resourcesProvider), this.hasNameInMessage ? charSequence.length() + 2 : 0, formatInternal.length(), 33);
+                return formatInternal;
+            } catch (Exception e) {
+                FileLog.e(e);
+                return formatInternal;
+            }
         } else {
             MessageObject messageObject4 = this.message;
             CharSequence charSequence8 = messageObject4.messageOwner.message;
@@ -2049,9 +2006,9 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
                 if (z) {
                     spannableStringBuilder2 = applyThumbs(spannableStringBuilder2);
                 }
-                return AndroidUtilities.formatSpannable(str, new CharSequence[]{spannableStringBuilder2, charSequence});
+                return formatInternal(i, spannableStringBuilder2, charSequence);
             }
-            return SpannableStringBuilder.valueOf("");
+            return new SpannableStringBuilder();
         }
     }
 
@@ -2189,5 +2146,105 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
             return;
         }
         super.invalidate(i, i2, i3, i4);
+    }
+
+    public static class ForumFormattedNames {
+        CharSequence formattedNames;
+        boolean isLoadingState;
+        int lastMessageId;
+        boolean lastTopicMessageUnread;
+        int topMessageTopicEndIndex;
+        int topMessageTopicStartIndex;
+
+        private ForumFormattedNames() {
+        }
+
+        public void formatTopicsNames(int i, MessageObject messageObject, TLRPC$Chat tLRPC$Chat) {
+            boolean z;
+            int i2;
+            int i3;
+            int id = (messageObject == null || tLRPC$Chat == null) ? 0 : messageObject.getId();
+            if (this.lastMessageId != id || this.isLoadingState) {
+                this.topMessageTopicStartIndex = 0;
+                this.topMessageTopicEndIndex = 0;
+                this.lastTopicMessageUnread = false;
+                this.isLoadingState = false;
+                this.lastMessageId = id;
+                TextPaint textPaint = Theme.dialogs_messagePaint[0];
+                if (tLRPC$Chat != null) {
+                    ArrayList<TLRPC$TL_forumTopic> topics = MessagesController.getInstance(i).getTopicsController().getTopics(tLRPC$Chat.id);
+                    boolean z2 = true;
+                    if (topics != null && !topics.isEmpty()) {
+                        ArrayList arrayList = new ArrayList(topics);
+                        Collections.sort(arrayList, Comparator$CC.comparingInt(new ToIntFunction() {
+                            @Override
+                            public final int applyAsInt(Object obj) {
+                                int lambda$formatTopicsNames$0;
+                                lambda$formatTopicsNames$0 = DialogCell.ForumFormattedNames.lambda$formatTopicsNames$0((TLRPC$TL_forumTopic) obj);
+                                return lambda$formatTopicsNames$0;
+                            }
+                        }));
+                        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                        if (messageObject != null) {
+                            i2 = MessageObject.getTopicId(messageObject.messageOwner, true);
+                            TLRPC$TL_forumTopic findTopic = MessagesController.getInstance(i).getTopicsController().findTopic(tLRPC$Chat.id, i2);
+                            if (findTopic != null) {
+                                CharSequence topicSpannedName = ForumUtilities.getTopicSpannedName(findTopic, textPaint, false);
+                                spannableStringBuilder.append(topicSpannedName);
+                                i3 = findTopic.unread_count > 0 ? topicSpannedName.length() : 0;
+                                this.topMessageTopicStartIndex = 0;
+                                this.topMessageTopicEndIndex = topicSpannedName.length();
+                                if (messageObject.isOutOwner()) {
+                                    this.lastTopicMessageUnread = false;
+                                } else {
+                                    this.lastTopicMessageUnread = findTopic.unread_count > 0;
+                                }
+                            } else {
+                                this.lastTopicMessageUnread = false;
+                                i3 = 0;
+                            }
+                            if (this.lastTopicMessageUnread) {
+                                spannableStringBuilder.append((CharSequence) " ");
+                                spannableStringBuilder.setSpan(new FixedWidthSpan(AndroidUtilities.dp(3.0f)), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+                                z = true;
+                            } else {
+                                z = false;
+                            }
+                        } else {
+                            z = false;
+                            i2 = 0;
+                            i3 = 0;
+                        }
+                        for (int i4 = 0; i4 < Math.min(4, arrayList.size()); i4++) {
+                            if (((TLRPC$TL_forumTopic) arrayList.get(i4)).id != i2) {
+                                if (spannableStringBuilder.length() != 0) {
+                                    if (z2 && z) {
+                                        spannableStringBuilder.append((CharSequence) " ");
+                                    } else {
+                                        spannableStringBuilder.append((CharSequence) ", ");
+                                    }
+                                }
+                                spannableStringBuilder.append(ForumUtilities.getTopicSpannedName((TLRPC$ForumTopic) arrayList.get(i4), textPaint, false));
+                                z2 = false;
+                            }
+                        }
+                        if (i3 > 0) {
+                            spannableStringBuilder.setSpan(new TypefaceSpan(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM), 0, Theme.key_chats_name, null), 0, Math.min(spannableStringBuilder.length(), i3 + 2), 0);
+                        }
+                        this.formattedNames = spannableStringBuilder;
+                    } else if (!MessagesController.getInstance(i).getTopicsController().endIsReached(tLRPC$Chat.id)) {
+                        MessagesController.getInstance(i).getTopicsController().preloadTopics(tLRPC$Chat.id);
+                        this.formattedNames = LocaleController.getString("Loading", R.string.Loading);
+                        this.isLoadingState = true;
+                    } else {
+                        this.formattedNames = "no created topics";
+                    }
+                }
+            }
+        }
+
+        public static int lambda$formatTopicsNames$0(TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+            return -tLRPC$TL_forumTopic.top_message;
+        }
     }
 }

@@ -428,7 +428,7 @@ public class TopicsController extends BaseController {
         if (i == 0 || (findTopic = findTopic(tLRPC$Chat.id, i)) == null) {
             return null;
         }
-        return ForumUtilities.getTopicSpannedName(findTopic, textPaint, drawableArr);
+        return ForumUtilities.getTopicSpannedName(findTopic, textPaint, drawableArr, false);
     }
 
     public int[] getForumUnreadCount(long j) {

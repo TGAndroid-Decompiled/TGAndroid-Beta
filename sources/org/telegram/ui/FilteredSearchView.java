@@ -511,7 +511,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         if (user != null && chat2 != null) {
             CharSequence charSequence2 = chat2.title;
             if (ChatObject.isForum(chat2) && (findTopic2 = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat2.id, MessageObject.getTopicId(messageObject.messageOwner, true))) != null) {
-                charSequence2 = ForumUtilities.getTopicSpannedName(findTopic2, null);
+                charSequence2 = ForumUtilities.getTopicSpannedName(findTopic2, null, false);
             }
             CharSequence replaceEmoji = Emoji.replaceEmoji(charSequence2, textPaint == null ? null : textPaint.getFontMetricsInt(), false);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -522,7 +522,7 @@ public class FilteredSearchView extends FrameLayout implements NotificationCente
         } else if (chat != null) {
             CharSequence charSequence3 = chat.title;
             if (ChatObject.isForum(chat) && (findTopic = MessagesController.getInstance(UserConfig.selectedAccount).getTopicsController().findTopic(chat.id, MessageObject.getTopicId(messageObject.messageOwner, true))) != null) {
-                charSequence3 = ForumUtilities.getTopicSpannedName(findTopic, null);
+                charSequence3 = ForumUtilities.getTopicSpannedName(findTopic, null, false);
             }
             charSequence = Emoji.replaceEmoji(charSequence3, textPaint != null ? textPaint.getFontMetricsInt() : null, false);
         }

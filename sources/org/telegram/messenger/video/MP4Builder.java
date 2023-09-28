@@ -50,6 +50,7 @@ public class MP4Builder {
     private boolean writeNewMdat = true;
     private HashMap<Track, long[]> track2SampleSizes = new HashMap<>();
     private ByteBuffer sizeBuffer = null;
+    private boolean allowSyncFiles = true;
 
     protected void createSidx(Track track, SampleTableBox sampleTableBox) {
     }
@@ -78,7 +79,9 @@ public class MP4Builder {
         this.mdat.setDataOffset(0L);
         this.mdat.setContentSize(0L);
         this.fos.flush();
-        this.fos.getFD().sync();
+        if (this.allowSyncFiles) {
+            this.fos.getFD().sync();
+        }
     }
 
     public long writeSampleData(int i, ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo, boolean z) throws Exception {
@@ -119,7 +122,9 @@ public class MP4Builder {
         this.dataOffset += bufferInfo.size;
         if (z2) {
             this.fos.flush();
-            this.fos.getFD().sync();
+            if (this.allowSyncFiles) {
+                this.fos.getFD().sync();
+            }
             return this.fc.position();
         }
         return 0L;
@@ -150,7 +155,9 @@ public class MP4Builder {
         }
         createMovieBox(this.currentMp4Movie).getBox(this.fc);
         this.fos.flush();
-        this.fos.getFD().sync();
+        if (this.allowSyncFiles) {
+            this.fos.getFD().sync();
+        }
         this.fc.close();
         this.fos.close();
     }
@@ -162,6 +169,10 @@ public class MP4Builder {
         linkedList.add(z ? "hvc1" : "avc1");
         linkedList.add("mp41");
         return new FileTypeBox("isom", 512L, linkedList);
+    }
+
+    public void setAllowSyncFiles(boolean z) {
+        this.allowSyncFiles = z;
     }
 
     public static class InterleaveChunkMdat implements Box {

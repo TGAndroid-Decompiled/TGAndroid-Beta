@@ -463,7 +463,7 @@ public class SeekBarView extends FrameLayout {
             return;
         }
         this.lastCaption = charSequence;
-        this.lastDuration = l.longValue();
+        this.lastDuration = l.longValue() * 10;
         if (!(charSequence instanceof Spanned)) {
             this.timestamps = null;
             this.currentTimestamp = -1;
@@ -675,10 +675,10 @@ public class SeekBarView extends FrameLayout {
         if (this.timestampLabel == null) {
             this.timestampLabel = new StaticLayout[2];
         }
-        float f = this.selectorWidth / 2.0f;
-        float abs = Math.abs(f - ((getMeasuredWidth() - (this.selectorWidth / 2.0f)) - (this.lastDuration > 600000 ? AndroidUtilities.dp(36.0f) : 0))) - AndroidUtilities.dp(66.0f);
-        float f2 = this.lastWidth;
-        if (f2 > 0.0f && Math.abs(f2 - abs) > 0.01f) {
+        float dp = (this.selectorWidth / 2.0f) + (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0);
+        float abs = Math.abs(dp - ((getMeasuredWidth() - (this.selectorWidth / 2.0f)) - (this.lastDuration > 600000 ? AndroidUtilities.dp(42.0f) : 0))) - AndroidUtilities.dp(66.0f);
+        float f = this.lastWidth;
+        if (f > 0.0f && Math.abs(f - abs) > 0.01f) {
             StaticLayout[] staticLayoutArr = this.timestampLabel;
             if (staticLayoutArr[0] != null) {
                 staticLayoutArr[0] = makeStaticLayout(staticLayoutArr[0].getText(), (int) abs);
@@ -735,7 +735,7 @@ public class SeekBarView extends FrameLayout {
         }
         float interpolation = CubicBezierInterpolator.DEFAULT.getInterpolation(this.timestampChangeT);
         canvas.save();
-        canvas.translate(f + AndroidUtilities.dp(25.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(14.0f));
+        canvas.translate(dp + AndroidUtilities.dp(25.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(14.0f));
         this.timestampLabelPaint.setColor(getThemedColor(Theme.key_player_time));
         if (this.timestampLabel[1] != null) {
             canvas.save();

@@ -75,7 +75,8 @@ public class ChatActivityBotWebViewButton extends FrameLayout {
         this.textView.setText(str);
         this.textView.setTextColor(i2);
         this.buttonColor = i;
-        this.rippleView.setBackground(Theme.createSelectorDrawable(BotWebViewContainer.getMainButtonRippleColor(i), 2));
+        this.backgroundColor = ColorUtils.blendARGB(Theme.getColor(Theme.key_chat_messagePanelVoiceBackground), this.buttonColor, this.progress);
+        this.rippleView.setBackground(Theme.createSelectorDrawable(BotWebViewContainer.getMainButtonRippleColor(this.buttonColor), 2));
         invalidate();
         this.progressView.setProgressColor(i2);
         if (this.progressWasVisible != z2) {

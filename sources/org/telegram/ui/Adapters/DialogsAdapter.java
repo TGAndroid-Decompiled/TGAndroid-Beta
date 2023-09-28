@@ -13,7 +13,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import androidx.core.util.Consumer;
 import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import java.util.ArrayList;
@@ -31,6 +30,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
@@ -81,6 +81,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     private boolean forceUpdatingContacts;
     private boolean hasChatlistHint;
     private boolean hasHints;
+    boolean isCalculatingDiff;
     public boolean isEmpty;
     private boolean isOnlySelect;
     private boolean isReordering;
@@ -95,6 +96,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     RecyclerListView recyclerListView;
     private TLRPC$RequestPeerType requestPeerType;
     private ArrayList<Long> selectedDialogs;
+    boolean updateListPending;
     ArrayList<ItemInternal> itemInternals = new ArrayList<>();
     ArrayList<ItemInternal> oldItems = new ArrayList<>();
     int stableIdPointer = 10;
@@ -405,39 +407,19 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         this.hasHints = this.folderId == 0 && this.dialogsType == 0 && !this.isOnlySelect && !MessagesController.getInstance(this.currentAccount).hintDialogs.isEmpty();
     }
 
-    public void updateList(RecyclerListView recyclerListView, boolean z, float f, boolean z2) {
-        this.oldItems.clear();
-        this.oldItems.addAll(this.itemInternals);
-        updateItemList();
-        if (recyclerListView != null && recyclerListView.getScrollState() == 0 && recyclerListView.getChildCount() > 0 && recyclerListView.getLayoutManager() != null) {
-            LinearLayoutManager linearLayoutManager = (LinearLayoutManager) recyclerListView.getLayoutManager();
-            View view = null;
-            int i = ConnectionsManager.DEFAULT_DATACENTER_ID;
-            int i2 = -1;
-            for (int i3 = 0; i3 < recyclerListView.getChildCount(); i3++) {
-                int childAdapterPosition = recyclerListView.getChildAdapterPosition(recyclerListView.getChildAt(i3));
-                View childAt = recyclerListView.getChildAt(i3);
-                if (childAdapterPosition != -1 && childAt != null && childAt.getTop() < i) {
-                    i = childAt.getTop();
-                    i2 = childAdapterPosition;
-                    view = childAt;
-                }
-            }
-            if (view != null) {
-                float top = view.getTop() - recyclerListView.getPaddingTop();
-                if (z2) {
-                    f = 0.0f;
-                }
-                if (recyclerListView.getScrollState() != 1) {
-                    if (z && i2 == 0 && ((recyclerListView.getPaddingTop() - view.getTop()) - view.getMeasuredHeight()) + f < 0.0f) {
-                        top = f;
-                        i2 = 1;
-                    }
-                    linearLayoutManager.scrollToPositionWithOffset(i2, (int) top);
-                }
-            }
+    public void updateList(final Runnable runnable) {
+        if (this.isCalculatingDiff) {
+            this.updateListPending = true;
+            return;
         }
-        DiffUtil.calculateDiff(new DiffUtil.Callback() {
+        this.isCalculatingDiff = true;
+        ArrayList<ItemInternal> arrayList = new ArrayList<>();
+        this.oldItems = arrayList;
+        arrayList.addAll(this.itemInternals);
+        updateItemList();
+        final ArrayList<ItemInternal> arrayList2 = this.itemInternals;
+        this.itemInternals = this.oldItems;
+        final DiffUtil.Callback callback = new DiffUtil.Callback() {
             @Override
             public int getOldListSize() {
                 return DialogsAdapter.this.oldItems.size();
@@ -445,19 +427,58 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
             @Override
             public int getNewListSize() {
-                return DialogsAdapter.this.itemInternals.size();
+                return arrayList2.size();
             }
 
             @Override
-            public boolean areItemsTheSame(int i4, int i5) {
-                return DialogsAdapter.this.oldItems.get(i4).compare(DialogsAdapter.this.itemInternals.get(i5));
+            public boolean areItemsTheSame(int i, int i2) {
+                return DialogsAdapter.this.oldItems.get(i).compare((ItemInternal) arrayList2.get(i2));
             }
 
             @Override
-            public boolean areContentsTheSame(int i4, int i5) {
-                return DialogsAdapter.this.oldItems.get(i4).viewType == DialogsAdapter.this.itemInternals.get(i5).viewType;
+            public boolean areContentsTheSame(int i, int i2) {
+                return DialogsAdapter.this.oldItems.get(i).viewType == ((ItemInternal) arrayList2.get(i2)).viewType;
             }
-        }).dispatchUpdatesTo(this);
+        };
+        if (this.itemInternals.size() < 50) {
+            DiffUtil.DiffResult calculateDiff = DiffUtil.calculateDiff(callback);
+            this.isCalculatingDiff = false;
+            if (runnable != null) {
+                runnable.run();
+            }
+            this.itemInternals = arrayList2;
+            calculateDiff.dispatchUpdatesTo(this);
+            return;
+        }
+        Utilities.searchQueue.postRunnable(new Runnable() {
+            @Override
+            public final void run() {
+                DialogsAdapter.this.lambda$updateList$2(callback, runnable, arrayList2);
+            }
+        });
+    }
+
+    public void lambda$updateList$2(DiffUtil.Callback callback, final Runnable runnable, final ArrayList arrayList) {
+        final DiffUtil.DiffResult calculateDiff = DiffUtil.calculateDiff(callback);
+        AndroidUtilities.runOnUIThread(new Runnable() {
+            @Override
+            public final void run() {
+                DialogsAdapter.this.lambda$updateList$1(runnable, arrayList, calculateDiff);
+            }
+        });
+    }
+
+    public void lambda$updateList$1(Runnable runnable, ArrayList arrayList, DiffUtil.DiffResult diffResult) {
+        this.isCalculatingDiff = false;
+        if (runnable != null) {
+            runnable.run();
+        }
+        this.itemInternals = arrayList;
+        diffResult.dispatchUpdatesTo(this);
+        if (this.updateListPending) {
+            this.updateListPending = false;
+            updateList(runnable);
+        }
     }
 
     @Override
@@ -483,7 +504,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         return (itemViewType == 1 || itemViewType == 5 || itemViewType == 3 || itemViewType == 8 || itemViewType == 7 || itemViewType == 10 || itemViewType == 11 || itemViewType == 13 || itemViewType == 15 || itemViewType == 16 || itemViewType == 18 || itemViewType == 19) ? false : true;
     }
 
-    public void lambda$onCreateViewHolder$1(View view) {
+    public void lambda$onCreateViewHolder$3(View view) {
         MessagesController.getInstance(this.currentAccount).hintDialogs.clear();
         MessagesController.getGlobalMainSettings().edit().remove("installReferer").commit();
         notifyDataSetChanged();
@@ -541,7 +562,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view3) {
-                        DialogsAdapter.this.lambda$onCreateViewHolder$1(view3);
+                        DialogsAdapter.this.lambda$onCreateViewHolder$3(view3);
                     }
                 });
                 break;
@@ -809,13 +830,13 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 dialogsEmptyCell.setOnUtyanAnimationEndListener(new Runnable() {
                     @Override
                     public final void run() {
-                        DialogsAdapter.this.lambda$onBindViewHolder$2();
+                        DialogsAdapter.this.lambda$onBindViewHolder$4();
                     }
                 });
                 dialogsEmptyCell.setOnUtyanAnimationUpdateListener(new Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        DialogsAdapter.this.lambda$onBindViewHolder$3((Float) obj);
+                        DialogsAdapter.this.lambda$onBindViewHolder$5((Float) obj);
                     }
                 });
                 if (!dialogsEmptyCell.isUtyanAnimationTriggered() && this.dialogsCount == 0) {
@@ -920,11 +941,11 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         }
     }
 
-    public void lambda$onBindViewHolder$2() {
+    public void lambda$onBindViewHolder$4() {
         this.parentFragment.setScrollDisabled(false);
     }
 
-    public void lambda$onBindViewHolder$3(Float f) {
+    public void lambda$onBindViewHolder$5(Float f) {
         this.parentFragment.setContactsAlpha(f.floatValue());
     }
 
@@ -963,7 +984,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
             tLRPC$Dialog2.pinnedNum = i5;
         }
         Collections.swap(dialogsArray, fixPosition, fixPosition2);
-        updateList(recyclerListView, false, 0.0f, false);
+        updateList(null);
     }
 
     @Override

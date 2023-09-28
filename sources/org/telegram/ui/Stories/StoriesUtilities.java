@@ -481,7 +481,7 @@ public class StoriesUtilities {
         paint6.setAlpha(255);
     }
 
-    private static int getPredictiveUnreadState(StoriesController storiesController, long j) {
+    public static int getPredictiveUnreadState(StoriesController storiesController, long j) {
         if (j == 0) {
             return 0;
         }

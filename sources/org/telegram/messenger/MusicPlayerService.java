@@ -42,6 +42,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
     private static boolean supportLockScreenControls;
     private Bitmap albumArtPlaceholder;
     private AudioManager audioManager;
+    private boolean foregroundServiceIsStarted;
     private BroadcastReceiver headsetPlugReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -215,12 +216,13 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
     @SuppressLint({"NewApi"})
     private void createNotification(MessageObject messageObject, boolean z) {
         String str;
-        float f;
-        int i;
         String str2;
+        int i;
         String str3;
-        int i2;
         String str4;
+        Bitmap bitmap;
+        int i2;
+        String str5;
         String musicTitle = messageObject.getMusicTitle();
         String musicAuthor = messageObject.getMusicAuthor();
         AudioInfo audioInfo = MediaController.getInstance().getAudioInfo();
@@ -247,7 +249,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             this.loadingFilePath = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(messageObject.getDocument()).getAbsolutePath();
         }
         int i3 = Build.VERSION.SDK_INT;
-        Bitmap bitmap = smallCover;
+        Bitmap bitmap2 = smallCover;
         if (i3 >= 21) {
             boolean z2 = !MediaController.getInstance().isMessagePaused();
             PendingIntent broadcast = PendingIntent.getBroadcast(getApplicationContext(), 0, new Intent(NOTIFY_PREVIOUS).setComponent(new ComponentName(this, MusicPlayerReceiver.class)), fixIntentFlags(301989888));
@@ -261,40 +263,48 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
                 NotificationsController.checkOtherNotificationsChannel();
                 builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
             }
-            if (bitmap != null) {
-                builder.setLargeIcon(bitmap);
+            if (bitmap2 != null) {
+                builder.setLargeIcon(bitmap2);
             } else {
                 builder.setLargeIcon(this.albumArtPlaceholder);
             }
             String string = LocaleController.getString("Next", R.string.Next);
             String string2 = LocaleController.getString("AccDescrPrevious", R.string.AccDescrPrevious);
             if (MediaController.getInstance().isDownloadingCurrentMessage()) {
-                f = 1.0f;
+                str3 = musicTitle;
+                str4 = musicAuthor;
                 this.playbackState.setState(6, 0L, 1.0f).setActions(0L);
                 builder.addAction(new Notification.Action.Builder(R.drawable.ic_action_previous, string2, broadcast).build()).addAction(new Notification.Action.Builder(R.drawable.loading_animation2, LocaleController.getString("Loading", R.string.Loading), (PendingIntent) null).build()).addAction(new Notification.Action.Builder(R.drawable.ic_action_next, string, broadcast3).build());
-                str2 = musicTitle;
-                str3 = musicAuthor;
+                bitmap = cover;
             } else {
-                f = 1.0f;
-                str2 = musicTitle;
-                str3 = musicAuthor;
+                str3 = musicTitle;
+                str4 = musicAuthor;
+                bitmap = cover;
                 this.playbackState.setState(z2 ? 3 : 2, MediaController.getInstance().getPlayingMessageObject().audioProgressSec * 1000, z2 ? 1.0f : 0.0f).setActions(822L);
                 if (z2) {
                     i2 = R.string.AccActionPause;
-                    str4 = "AccActionPause";
+                    str5 = "AccActionPause";
                 } else {
                     i2 = R.string.AccActionPlay;
-                    str4 = "AccActionPlay";
+                    str5 = "AccActionPlay";
                 }
-                builder.addAction(new Notification.Action.Builder(R.drawable.ic_action_previous, string2, broadcast).build()).addAction(new Notification.Action.Builder(z2 ? R.drawable.ic_action_pause : R.drawable.ic_action_play, LocaleController.getString(str4, i2), broadcast2).build()).addAction(new Notification.Action.Builder(R.drawable.ic_action_next, string, broadcast3).build());
+                builder.addAction(new Notification.Action.Builder(R.drawable.ic_action_previous, string2, broadcast).build()).addAction(new Notification.Action.Builder(z2 ? R.drawable.ic_action_pause : R.drawable.ic_action_play, LocaleController.getString(str5, i2), broadcast2).build()).addAction(new Notification.Action.Builder(R.drawable.ic_action_next, string, broadcast3).build());
             }
             this.mediaSession.setPlaybackState(this.playbackState.build());
-            musicAuthor = str3;
-            str = str2;
-            this.mediaSession.setMetadata(new MediaMetadata.Builder().putBitmap("android.media.metadata.ALBUM_ART", cover).putString("android.media.metadata.ALBUM_ARTIST", musicAuthor).putString("android.media.metadata.ARTIST", musicAuthor).putLong("android.media.metadata.DURATION", duration).putString("android.media.metadata.TITLE", str).putString("android.media.metadata.ALBUM", audioInfo != null ? audioInfo.getAlbum() : null).build());
+            cover = bitmap;
+            str2 = str4;
+            str = str3;
+            this.mediaSession.setMetadata(new MediaMetadata.Builder().putBitmap("android.media.metadata.ALBUM_ART", cover).putString("android.media.metadata.ALBUM_ARTIST", str2).putString("android.media.metadata.ARTIST", str2).putLong("android.media.metadata.DURATION", duration).putString("android.media.metadata.TITLE", str).putString("android.media.metadata.ALBUM", audioInfo != null ? audioInfo.getAlbum() : null).build());
             builder.setVisibility(1);
             Notification build = builder.build();
-            if (z2) {
+            if (i3 >= 31) {
+                if (!this.foregroundServiceIsStarted) {
+                    this.foregroundServiceIsStarted = true;
+                    startForeground(5, build);
+                } else {
+                    ((NotificationManager) getSystemService("notification")).notify(5, build);
+                }
+            } else if (z2) {
                 startForeground(5, build);
             } else {
                 stopForeground(false);
@@ -302,7 +312,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             }
         } else {
             str = musicTitle;
-            f = 1.0f;
+            str2 = musicAuthor;
             RemoteViews remoteViews = new RemoteViews(getApplicationContext().getPackageName(), R.layout.player_small_notification);
             RemoteViews remoteViews2 = supportBigNotifications ? new RemoteViews(getApplicationContext().getPackageName(), R.layout.player_big_notification) : null;
             Notification build2 = new NotificationCompat.Builder(getApplicationContext()).setSmallIcon(R.drawable.player).setContentIntent(activity).setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(str).build();
@@ -314,12 +324,12 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             if (supportBigNotifications) {
                 setListeners(remoteViews2);
             }
-            if (bitmap != null) {
+            if (bitmap2 != null) {
                 RemoteViews remoteViews3 = build2.contentView;
                 int i4 = R.id.player_album_art;
-                remoteViews3.setImageViewBitmap(i4, bitmap);
+                remoteViews3.setImageViewBitmap(i4, bitmap2);
                 if (supportBigNotifications) {
-                    build2.bigContentView.setImageViewBitmap(i4, bitmap);
+                    build2.bigContentView.setImageViewBitmap(i4, bitmap2);
                 }
             } else {
                 RemoteViews remoteViews4 = build2.contentView;
@@ -399,10 +409,10 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             remoteViews17.setTextViewText(i18, str);
             RemoteViews remoteViews18 = build2.contentView;
             int i19 = R.id.player_author_name;
-            remoteViews18.setTextViewText(i19, musicAuthor);
+            remoteViews18.setTextViewText(i19, str2);
             if (supportBigNotifications) {
                 build2.bigContentView.setTextViewText(i18, str);
-                build2.bigContentView.setTextViewText(i19, musicAuthor);
+                build2.bigContentView.setTextViewText(i19, str2);
                 build2.bigContentView.setTextViewText(R.id.player_album_title, (audioInfo == null || TextUtils.isEmpty(audioInfo.getAlbum())) ? "" : audioInfo.getAlbum());
             }
             build2.flags |= 2;
@@ -413,7 +423,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             if (this.notificationMessageID != id) {
                 this.notificationMessageID = id;
                 RemoteControlClient.MetadataEditor editMetadata = this.remoteControlClient.editMetadata(true);
-                editMetadata.putString(2, musicAuthor);
+                editMetadata.putString(2, str2);
                 editMetadata.putString(7, str);
                 if (audioInfo != null && !TextUtils.isEmpty(audioInfo.getAlbum())) {
                     editMetadata.putString(1, audioInfo.getAlbum());
@@ -457,16 +467,10 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
             editMetadata2.putLong(9, MediaController.getInstance().getPlayingMessageObject().audioPlayerDuration * 1000);
             editMetadata2.apply();
             if (Build.VERSION.SDK_INT >= 18) {
-                RemoteControlClient remoteControlClient = this.remoteControlClient;
-                int i20 = MediaController.getInstance().isMessagePaused() ? 2 : 3;
-                long max = Math.max(MediaController.getInstance().getPlayingMessageObject().audioProgressSec * 1000, 100L);
-                if (MediaController.getInstance().isMessagePaused()) {
-                    f = 0.0f;
-                }
-                remoteControlClient.setPlaybackState(i20, max, f);
-                return;
+                this.remoteControlClient.setPlaybackState(MediaController.getInstance().isMessagePaused() ? 2 : 3, Math.max(MediaController.getInstance().getPlayingMessageObject().audioProgressSec * 1000, 100L), MediaController.getInstance().isMessagePaused() ? 0.0f : 1.0f);
+            } else {
+                this.remoteControlClient.setPlaybackState(MediaController.getInstance().isMessagePaused() ? 2 : 3);
             }
-            this.remoteControlClient.setPlaybackState(MediaController.getInstance().isMessagePaused() ? 2 : 3);
         }
     }
 
@@ -500,6 +504,7 @@ public class MusicPlayerService extends Service implements NotificationCenter.No
     public void onDestroy() {
         unregisterReceiver(this.headsetPlugReceiver);
         super.onDestroy();
+        stopForeground(true);
         RemoteControlClient remoteControlClient = this.remoteControlClient;
         if (remoteControlClient != null) {
             RemoteControlClient.MetadataEditor editMetadata = remoteControlClient.editMetadata(true);

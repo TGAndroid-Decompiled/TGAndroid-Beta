@@ -1037,4 +1037,8 @@ public class EditTextBoldCursor extends EditTextEffects {
     public void setOnPremiumMenuLockClickListener(Runnable runnable) {
         this.onPremiumMenuLockClickListener = runnable;
     }
+
+    public Runnable getOnPremiumMenuLockClickListener() {
+        return this.onPremiumMenuLockClickListener;
+    }
 }

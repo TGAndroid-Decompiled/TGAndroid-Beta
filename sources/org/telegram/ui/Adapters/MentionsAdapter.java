@@ -79,6 +79,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
     private int channelLastReqId;
     private int channelReqId;
     private TLRPC$Chat chat;
+    private Runnable checkAgainRunnable;
     private boolean contextMedia;
     private int contextQueryReqid;
     private Runnable contextQueryRunnable;
@@ -220,15 +221,16 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             public void onSetHashtags(ArrayList<SearchAdapterHelper.HashtagObject> arrayList, HashMap<String, SearchAdapterHelper.HashtagObject> hashMap) {
                 if (MentionsAdapter.this.lastText != null) {
                     MentionsAdapter mentionsAdapter = MentionsAdapter.this;
-                    mentionsAdapter.searchUsernameOrHashtag(mentionsAdapter.lastText, MentionsAdapter.this.lastPosition, MentionsAdapter.this.messages, MentionsAdapter.this.lastUsernameOnly, MentionsAdapter.this.lastForSearch);
+                    mentionsAdapter.lambda$searchUsernameOrHashtag$7(mentionsAdapter.lastText, MentionsAdapter.this.lastPosition, MentionsAdapter.this.messages, MentionsAdapter.this.lastUsernameOnly, MentionsAdapter.this.lastForSearch);
                 }
             }
         });
-        if (z) {
-            return;
+        if (!z) {
+            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoadFailed);
         }
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoaded);
-        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.fileLoadFailed);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.recentDocumentsDidLoad);
+        NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.stickersDidLoad);
     }
 
     public TLRPC$User getFoundContextBot() {
@@ -237,13 +239,25 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
 
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
-        ArrayList<StickerResult> arrayList;
-        if ((i != NotificationCenter.fileLoaded && i != NotificationCenter.fileLoadFailed) || (arrayList = this.stickers) == null || arrayList.isEmpty() || this.stickersToLoad.isEmpty() || !this.visibleByStickersSearch) {
-            return;
-        }
-        this.stickersToLoad.remove((String) objArr[0]);
-        if (this.stickersToLoad.isEmpty()) {
-            this.delegate.needChangePanelVisibility(getItemCountInternal() > 0);
+        Runnable runnable;
+        if (i == NotificationCenter.fileLoaded || i == NotificationCenter.fileLoadFailed) {
+            ArrayList<StickerResult> arrayList = this.stickers;
+            if (arrayList == null || arrayList.isEmpty() || this.stickersToLoad.isEmpty() || !this.visibleByStickersSearch) {
+                return;
+            }
+            this.stickersToLoad.remove((String) objArr[0]);
+            if (this.stickersToLoad.isEmpty()) {
+                this.delegate.needChangePanelVisibility(getItemCountInternal() > 0);
+            }
+        } else if (i == NotificationCenter.recentDocumentsDidLoad) {
+            Runnable runnable2 = this.checkAgainRunnable;
+            if (runnable2 != null) {
+                AndroidUtilities.runOnUIThread(runnable2);
+                this.checkAgainRunnable = null;
+            }
+        } else if (i == NotificationCenter.stickersDidLoad && ((Integer) objArr[0]).intValue() == 0 && (runnable = this.checkAgainRunnable) != null) {
+            AndroidUtilities.runOnUIThread(runnable);
+            this.checkAgainRunnable = null;
         }
     }
 
@@ -490,11 +504,12 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         this.searchingContextUsername = null;
         this.searchingContextQuery = null;
         this.noUserName = false;
-        if (this.isDarkTheme) {
-            return;
+        if (!this.isDarkTheme) {
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoaded);
+            NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoadFailed);
         }
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoaded);
-        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileLoadFailed);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.recentDocumentsDidLoad);
+        NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.stickersDidLoad);
     }
 
     public void setParentFragment(ChatActivity chatActivity) {
@@ -518,7 +533,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
         String str = this.lastText;
         if (str != null) {
-            searchUsernameOrHashtag(str, this.lastPosition, this.messages, this.lastUsernameOnly, this.lastForSearch);
+            lambda$searchUsernameOrHashtag$7(str, this.lastPosition, this.messages, this.lastUsernameOnly, this.lastForSearch);
         }
     }
 
@@ -994,11 +1009,11 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public void searchUsernameOrHashtag(java.lang.CharSequence r27, int r28, java.util.ArrayList<org.telegram.messenger.MessageObject> r29, boolean r30, boolean r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.searchUsernameOrHashtag(java.lang.CharSequence, int, java.util.ArrayList, boolean, boolean):void");
+    public void lambda$searchUsernameOrHashtag$7(final java.lang.CharSequence r24, final int r25, final java.util.ArrayList<org.telegram.messenger.MessageObject> r26, final boolean r27, final boolean r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Adapters.MentionsAdapter.lambda$searchUsernameOrHashtag$7(java.lang.CharSequence, int, java.util.ArrayList, boolean, boolean):void");
     }
 
-    public void lambda$searchUsernameOrHashtag$7(ArrayList arrayList, LongSparseArray longSparseArray) {
+    public void lambda$searchUsernameOrHashtag$8(ArrayList arrayList, LongSparseArray longSparseArray) {
         this.cancelDelayRunnable = null;
         showUsersResult(arrayList, longSparseArray, true);
     }
@@ -1099,7 +1114,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         }
     }
 
-    public void lambda$searchUsernameOrHashtag$8(ArrayList arrayList, String str) {
+    public void lambda$searchUsernameOrHashtag$9(ArrayList arrayList, String str) {
         this.searchResultSuggestions = arrayList;
         this.searchResultHashtags = null;
         this.stickers = null;
@@ -1346,7 +1361,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
         return (this.foundContextBot == null || this.inlineMediaEnabled) && this.stickers == null;
     }
 
-    public void lambda$onCreateViewHolder$9(ContextLinkCell contextLinkCell) {
+    public void lambda$onCreateViewHolder$10(ContextLinkCell contextLinkCell) {
         this.delegate.onContextClick(contextLinkCell.getResult());
     }
 
@@ -1362,7 +1377,7 @@ public class MentionsAdapter extends RecyclerListView.SelectionAdapter implement
             contextLinkCell2.setDelegate(new ContextLinkCell.ContextLinkCellDelegate() {
                 @Override
                 public final void didPressedImage(ContextLinkCell contextLinkCell3) {
-                    MentionsAdapter.this.lambda$onCreateViewHolder$9(contextLinkCell3);
+                    MentionsAdapter.this.lambda$onCreateViewHolder$10(contextLinkCell3);
                 }
             });
             contextLinkCell = contextLinkCell2;

@@ -3378,7 +3378,8 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             contentIntent.setSmallIcon(isMicMute() ? R.drawable.voicechat_muted : R.drawable.voicechat_active);
         } else {
             contentIntent.setContentTitle(LocaleController.getString("VoipOutgoingCall", R.string.VoipOutgoingCall));
-            contentIntent.setSmallIcon(R.drawable.notification);
+            contentIntent.setSmallIcon(R.drawable.ic_call);
+            contentIntent.setOngoing(true);
         }
         int i3 = Build.VERSION.SDK_INT;
         if (i3 >= 16) {
@@ -4105,7 +4106,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         if (this.groupCall != null) {
             showWhen.setSmallIcon(isMicMute() ? R.drawable.voicechat_muted : R.drawable.voicechat_active);
         } else {
-            showWhen.setSmallIcon(R.drawable.notification);
+            showWhen.setSmallIcon(R.drawable.ic_call);
         }
         startForeground(ID_ONGOING_CALL_NOTIFICATION, showWhen.build());
     }

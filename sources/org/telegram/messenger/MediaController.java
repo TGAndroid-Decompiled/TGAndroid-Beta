@@ -10,7 +10,6 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Matrix;
@@ -74,12 +73,10 @@ import org.telegram.tgnet.TLRPC$DocumentAttribute;
 import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$InputDocument;
 import org.telegram.tgnet.TLRPC$MessageEntity;
-import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_document;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeAnimated;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
 import org.telegram.tgnet.TLRPC$TL_encryptedChat;
 import org.telegram.tgnet.TLRPC$TL_error;
@@ -138,6 +135,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private float currentAspectRatioFrameLayoutRatio;
     private boolean currentAspectRatioFrameLayoutReady;
     private int currentAspectRatioFrameLayoutRotation;
+    private VideoConvertMessage currentForegroundConvertingVideo;
     private int currentPlaylistNum;
     private TextureView currentTextureView;
     private FrameLayout currentTextureViewContainer;
@@ -234,6 +232,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private float[] gravityFast = new float[3];
     private float[] linearAcceleration = new float[3];
     private int audioFocus = 0;
+    private ArrayList<VideoConvertMessage> foregroundConvertingMessages = new ArrayList<>();
     private ArrayList<VideoConvertMessage> videoConvertQueue = new ArrayList<>();
     private final Object videoQueueSync = new Object();
     private HashMap<String, MessageObject> generatingWaveform = new HashMap<>();
@@ -349,6 +348,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             return videoPlayer.isBuffering();
         }
         return false;
+    }
+
+    public VideoConvertMessage getCurrentForegroundConverMessage() {
+        return this.currentForegroundConvertingVideo;
     }
 
     private static class AudioBuffer {
@@ -4275,7 +4278,12 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             if (z) {
                 new File(messageObject.messageOwner.attachPath).delete();
             }
-            this.videoConvertQueue.add(new VideoConvertMessage(messageObject, messageObject.videoEditedInfo, z2));
+            VideoConvertMessage videoConvertMessage = new VideoConvertMessage(messageObject, messageObject.videoEditedInfo, z2);
+            this.videoConvertQueue.add(videoConvertMessage);
+            if (videoConvertMessage.foreground) {
+                this.foregroundConvertingMessages.add(videoConvertMessage);
+                checkForegroundConvertMessage();
+            }
             if (this.videoConvertQueue.size() == 1) {
                 startVideoConvertFromQueue();
             }
@@ -4298,14 +4306,25 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     }
                     return;
                 }
-                this.videoConvertQueue.remove(i);
+                this.foregroundConvertingMessages.remove(this.videoConvertQueue.remove(i));
+                checkForegroundConvertMessage();
                 return;
             }
         }
     }
 
+    private void checkForegroundConvertMessage() {
+        if (!this.foregroundConvertingMessages.isEmpty()) {
+            this.currentForegroundConvertingVideo = this.foregroundConvertingMessages.get(0);
+        } else {
+            this.currentForegroundConvertingVideo = null;
+        }
+        if (this.currentForegroundConvertingVideo != null) {
+            VideoEncodingService.start();
+        }
+    }
+
     private boolean startVideoConvertFromQueue() {
-        int i = 0;
         if (this.videoConvertQueue.isEmpty()) {
             return false;
         }
@@ -4314,32 +4333,6 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         synchronized (this.videoConvertSync) {
             if (videoEditedInfo != null) {
                 videoEditedInfo.canceled = false;
-            }
-        }
-        if (videoConvertMessage.foreground) {
-            MessageObject messageObject = videoConvertMessage.messageObject;
-            Intent intent = new Intent(ApplicationLoader.applicationContext, VideoEncodingService.class);
-            intent.putExtra("path", messageObject.messageOwner.attachPath);
-            intent.putExtra("currentAccount", messageObject.currentAccount);
-            TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
-            if (tLRPC$MessageMedia != null && tLRPC$MessageMedia.document != null) {
-                while (true) {
-                    if (i >= messageObject.messageOwner.media.document.attributes.size()) {
-                        break;
-                    } else if (messageObject.messageOwner.media.document.attributes.get(i) instanceof TLRPC$TL_documentAttributeAnimated) {
-                        intent.putExtra("gif", true);
-                        break;
-                    } else {
-                        i++;
-                    }
-                }
-            }
-            if (messageObject.getId() != 0) {
-                try {
-                    ApplicationLoader.applicationContext.startService(intent);
-                } catch (Throwable th) {
-                    FileLog.e(th);
-                }
             }
         }
         VideoConvertRunnable.runConversion(videoConvertMessage);
@@ -4446,6 +4439,8 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                 videoConvertMessage.videoEditedInfo.canceled = false;
             }
             this.videoConvertQueue.remove(videoConvertMessage);
+            this.foregroundConvertingMessages.remove(videoConvertMessage);
+            checkForegroundConvertMessage();
             startVideoConvertFromQueue();
         }
         if (z) {

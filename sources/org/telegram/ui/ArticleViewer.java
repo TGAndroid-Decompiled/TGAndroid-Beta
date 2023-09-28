@@ -130,6 +130,7 @@ import org.telegram.tgnet.TLRPC$TL_channels_joinChannel;
 import org.telegram.tgnet.TLRPC$TL_contacts_resolveUsername;
 import org.telegram.tgnet.TLRPC$TL_contacts_resolvedPeer;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
+import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messageActionChatAddUser;
 import org.telegram.tgnet.TLRPC$TL_messages_getWebPage;
@@ -5643,7 +5644,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.channelCell = new BlockChannelCell(context, this.parentAdapter, 1);
             AspectRatioFrameLayout aspectRatioFrameLayout = new AspectRatioFrameLayout(context);
             this.aspectRatioFrameLayout = aspectRatioFrameLayout;
-            aspectRatioFrameLayout.setResizeMode(0);
+            aspectRatioFrameLayout.setResizeMode(4);
             TextureView textureView = new TextureView(context);
             this.textureView = textureView;
             textureView.setOpaque(false);
@@ -5856,7 +5857,14 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                         BlockVideoCell.this.textureView.setAlpha(1.0f);
                     }
                 }.with(this.textureView);
-                Uri prepareUri = FileStreamLoadOperation.prepareUri(ArticleViewer.this.currentAccount, this.currentDocument, this.parentAdapter.currentPage);
+                TLRPC$Document tLRPC$Document = this.currentDocument;
+                for (int i = 0; i < tLRPC$Document.attributes.size(); i++) {
+                    if (tLRPC$Document.attributes.get(i) instanceof TLRPC$TL_documentAttributeVideo) {
+                        TLRPC$TL_documentAttributeVideo tLRPC$TL_documentAttributeVideo = (TLRPC$TL_documentAttributeVideo) tLRPC$Document.attributes.get(i);
+                        this.aspectRatioFrameLayout.setAspectRatio(tLRPC$TL_documentAttributeVideo.w / tLRPC$TL_documentAttributeVideo.h, 0);
+                    }
+                }
+                Uri prepareUri = FileStreamLoadOperation.prepareUri(ArticleViewer.this.currentAccount, tLRPC$Document, this.parentAdapter.currentPage);
                 if (prepareUri == null) {
                     return;
                 }

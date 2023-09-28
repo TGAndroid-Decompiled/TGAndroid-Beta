@@ -4453,7 +4453,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 charSequenceArr[6] = LocaleController.getString("DebugMenuClearMediaCache", R.string.DebugMenuClearMediaCache);
                 charSequenceArr[7] = LocaleController.getString("DebugMenuCallSettings", R.string.DebugMenuCallSettings);
                 charSequenceArr[8] = null;
-                charSequenceArr[9] = (BuildVars.DEBUG_PRIVATE_VERSION || BuildVars.isStandaloneApp()) ? LocaleController.getString("DebugMenuCheckAppUpdate", R.string.DebugMenuCheckAppUpdate) : null;
+                charSequenceArr[9] = (BuildVars.DEBUG_PRIVATE_VERSION || ApplicationLoader.isStandaloneBuild()) ? LocaleController.getString("DebugMenuCheckAppUpdate", R.string.DebugMenuCheckAppUpdate) : null;
                 charSequenceArr[10] = LocaleController.getString("DebugMenuReadAllDialogs", R.string.DebugMenuReadAllDialogs);
                 charSequenceArr[11] = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.disableVoiceAudioEffects ? "Enable voip audio effects" : "Disable voip audio effects" : null;
                 boolean z = BuildVars.DEBUG_PRIVATE_VERSION;
@@ -6939,7 +6939,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 ProfileStoriesView profileStoriesView = this.storyView;
                 if (profileStoriesView != null) {
-                    profileStoriesView.setExpandCoords(this.avatarContainer2.getMeasuredWidth() - AndroidUtilities.dp(z2 ? 111.0f : 40.0f), (this.actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + ActionBar.getCurrentActionBarHeight() + this.extraHeight + this.searchTransitionOffset);
+                    profileStoriesView.setExpandCoords(this.avatarContainer2.getMeasuredWidth() - AndroidUtilities.dp(40.0f), z2, (this.actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0) + ActionBar.getCurrentActionBarHeight() + this.extraHeight + this.searchTransitionOffset);
                 }
             }
             this.avatarX = (-AndroidUtilities.dpf2(47.0f)) * min;
@@ -9139,7 +9139,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                         int i4 = i2 % 10;
                         if (i4 == 1 || i4 == 2) {
                             str = "store bundled " + Build.CPU_ABI + " " + Build.CPU_ABI2;
-                        } else if (BuildVars.isStandaloneApp()) {
+                        } else if (ApplicationLoader.isStandaloneBuild()) {
                             str = "direct " + Build.CPU_ABI + " " + Build.CPU_ABI2;
                         } else {
                             str = "universal " + Build.CPU_ABI + " " + Build.CPU_ABI2;

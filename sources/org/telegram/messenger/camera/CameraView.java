@@ -419,7 +419,7 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
 
     public CameraView(Context context, boolean z, boolean z2) {
         super(context, null);
-        this.WRITE_TO_FILE_IN_BACKGROUND = true;
+        this.WRITE_TO_FILE_IN_BACKGROUND = false;
         this.previewSize = new Size[2];
         this.pictureSize = new Size[2];
         this.info = new CameraInfo[2];
@@ -2338,7 +2338,9 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
                 mp4Movie.setCacheFile(this.fileToWrite);
                 mp4Movie.setRotation(0);
                 mp4Movie.setSize(CameraView.this.videoWidth, CameraView.this.videoHeight);
-                this.mediaMuxer = new MP4Builder().createMovie(mp4Movie, false, false);
+                MP4Builder createMovie = new MP4Builder().createMovie(mp4Movie, false, false);
+                this.mediaMuxer = createMovie;
+                createMovie.setAllowSyncFiles(false);
                 if (this.eglDisplay != EGL14.EGL_NO_DISPLAY) {
                     throw new RuntimeException("EGL already set up");
                 }

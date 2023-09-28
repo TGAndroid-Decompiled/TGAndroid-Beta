@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.view.ViewGroup;
 import androidx.multidex.MultiDex;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import java.io.File;
@@ -24,8 +25,10 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Document;
+import org.telegram.tgnet.TLRPC$TL_help_appUpdate;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.Components.ForegroundDetector;
+import org.telegram.ui.IUpdateLayout;
 import org.telegram.ui.LauncherIconController;
 public class ApplicationLoader extends Application {
     @SuppressLint({"StaticFieldLeak"})
@@ -64,6 +67,10 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
+    protected boolean isStandalone() {
+        return false;
+    }
+
     protected void logDualCameraInternal(boolean z, boolean z2) {
     }
 
@@ -75,7 +82,15 @@ public class ApplicationLoader extends Application {
         return false;
     }
 
+    public boolean showUpdateAppPopup(Context context, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, int i) {
+        return false;
+    }
+
     protected void startAppCenterInternal(Activity activity) {
+    }
+
+    public IUpdateLayout takeUpdateLayout(Activity activity, ViewGroup viewGroup, ViewGroup viewGroup2) {
+        return null;
     }
 
     @Override
@@ -125,6 +140,10 @@ public class ApplicationLoader extends Application {
 
     public static boolean isHuaweiStoreBuild() {
         return applicationLoaderInstance.isHuaweiBuild();
+    }
+
+    public static boolean isStandaloneBuild() {
+        return applicationLoaderInstance.isStandalone();
     }
 
     public static File getFilesDirFixed() {

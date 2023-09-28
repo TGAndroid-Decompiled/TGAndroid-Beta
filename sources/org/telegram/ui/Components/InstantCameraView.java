@@ -107,6 +107,7 @@ import org.webrtc.MediaStreamTrack;
 public class InstantCameraView extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private static final int[] ALLOW_BIG_CAMERA_WHITELIST = {285904780, -1394191079};
     public boolean WRITE_TO_FILE_IN_BACKGROUND;
+    private boolean allowSendingWhileRecording;
     private float animationTranslationY;
     private AnimatorSet animatorSet;
     private org.telegram.messenger.camera.Size aspectRatio;
@@ -2382,6 +2383,8 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 mp4Movie.setRotation(0);
                 mp4Movie.setSize(this.videoWidth, this.videoHeight);
                 this.mediaMuxer = new MP4Builder().createMovie(mp4Movie, InstantCameraView.this.isSecretChat, false);
+                InstantCameraView.this.allowSendingWhileRecording = SharedConfig.deviceIsHigh();
+                this.mediaMuxer.setAllowSyncFiles(InstantCameraView.this.allowSendingWhileRecording);
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -2555,7 +2558,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                                             });
                                         } else {
                                             long writeSampleData = this.mediaMuxer.writeSampleData(this.videoTrackIndex, outputBuffer, this.videoBufferInfo, true);
-                                            if (writeSampleData != 0 && !this.writingToDifferentFile) {
+                                            if (writeSampleData != 0 && !this.writingToDifferentFile && InstantCameraView.this.allowSendingWhileRecording) {
                                                 didWriteData(this.videoFile, writeSampleData, false);
                                             }
                                         }
@@ -2669,7 +2672,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                             }
                         } else {
                             long writeSampleData2 = this.mediaMuxer.writeSampleData(this.audioTrackIndex, outputBuffer2, bufferInfo5, false);
-                            if (writeSampleData2 != 0 && !this.writingToDifferentFile) {
+                            if (writeSampleData2 != 0 && !this.writingToDifferentFile && InstantCameraView.this.allowSendingWhileRecording) {
                                 didWriteData(this.videoFile, writeSampleData2, false);
                             }
                             MediaCodec mediaCodec2 = this.audioEncoder;
@@ -2698,7 +2701,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 e.printStackTrace();
                 j = 0;
             }
-            if (j == 0 || this.writingToDifferentFile) {
+            if (j == 0 || this.writingToDifferentFile || !InstantCameraView.this.allowSendingWhileRecording) {
                 return;
             }
             didWriteData(this.videoFile, j, false);
@@ -2712,7 +2715,7 @@ public class InstantCameraView extends FrameLayout implements NotificationCenter
                 e.printStackTrace();
                 j = 0;
             }
-            if (j == 0 || this.writingToDifferentFile) {
+            if (j == 0 || this.writingToDifferentFile || !InstantCameraView.this.allowSendingWhileRecording) {
                 return;
             }
             didWriteData(this.videoFile, j, false);
