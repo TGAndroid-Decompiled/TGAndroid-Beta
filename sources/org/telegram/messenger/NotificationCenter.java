@@ -228,6 +228,7 @@ public class NotificationCenter {
     public static final int storiesEnabledUpdate;
     public static final int storiesLimitUpdate;
     public static int storiesListUpdated = 0;
+    public static final int storiesReadUpdated;
     public static final int storiesSendAsUpdate;
     public static int storiesUpdated = 0;
     public static final int suggestedFiltersLoaded;
@@ -1036,8 +1037,11 @@ public class NotificationCenter {
         int i249 = i248 + 1;
         totalEvents = i249;
         stealthModeChanged = i248;
-        totalEvents = i249 + 1;
+        int i250 = i249 + 1;
+        totalEvents = i250;
         onReceivedChannelDifference = i249;
+        totalEvents = i250 + 1;
+        storiesReadUpdated = i250;
     }
 
     public static class DelayedPost {

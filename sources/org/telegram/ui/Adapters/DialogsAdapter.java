@@ -21,6 +21,7 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -68,6 +69,7 @@ import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements DialogCell.DialogCellDelegate {
+    private static final boolean ALLOW_UPDATE_IN_BACKGROUND = BuildVars.DEBUG_VERSION;
     private ArchiveHintCell archiveHintCell;
     private Drawable arrowDrawable;
     private boolean collapsedView;
@@ -440,7 +442,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                 return DialogsAdapter.this.oldItems.get(i).viewType == ((ItemInternal) arrayList2.get(i2)).viewType;
             }
         };
-        if (this.itemInternals.size() < 50) {
+        if (this.itemInternals.size() < 50 || !ALLOW_UPDATE_IN_BACKGROUND) {
             DiffUtil.DiffResult calculateDiff = DiffUtil.calculateDiff(callback);
             this.isCalculatingDiff = false;
             if (runnable != null) {
@@ -469,20 +471,23 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     public void lambda$updateList$1(Runnable runnable, ArrayList arrayList, DiffUtil.DiffResult diffResult) {
-        this.isCalculatingDiff = false;
-        if (runnable != null) {
-            runnable.run();
-        }
-        this.itemInternals = arrayList;
-        diffResult.dispatchUpdatesTo(this);
-        if (this.updateListPending) {
-            this.updateListPending = false;
-            updateList(runnable);
+        if (this.isCalculatingDiff) {
+            this.isCalculatingDiff = false;
+            if (runnable != null) {
+                runnable.run();
+            }
+            this.itemInternals = arrayList;
+            diffResult.dispatchUpdatesTo(this);
+            if (this.updateListPending) {
+                this.updateListPending = false;
+                updateList(runnable);
+            }
         }
     }
 
     @Override
     public void notifyDataSetChanged() {
+        this.isCalculatingDiff = false;
         updateItemList();
         super.notifyDataSetChanged();
     }

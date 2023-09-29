@@ -1672,7 +1672,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
 
     public void selectDialog(ShareDialogCell shareDialogCell, final TLRPC$Dialog tLRPC$Dialog) {
         DialogsSearchAdapter.CategoryAdapterRecycler categoryAdapterRecycler;
-        if (this.topicsGridView.getVisibility() != 8) {
+        if (this.topicsGridView.getVisibility() != 8 || this.parentActivity == null) {
             return;
         }
         if (DialogObject.isChatDialog(tLRPC$Dialog.id)) {

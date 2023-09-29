@@ -197,7 +197,7 @@ public class StoriesUtilities {
                 getCloseFriendsPaint(imageReceiver);
                 gradientTools = closeFriendsGradientTools;
             } else {
-                getActiveCirclePaint(imageReceiver, avatarStoryParams.isStoryCell);
+                getUnreadCirclePaint(imageReceiver, avatarStoryParams.isStoryCell);
                 gradientTools = storiesGradientTools[avatarStoryParams.isStoryCell ? 1 : 0];
             }
             boolean z3 = avatarStoryParams.prevState == 1 && avatarStoryParams.progressToSate != 1.0f;
@@ -230,12 +230,12 @@ public class StoriesUtilities {
             }
             Paint paint7 = paint4;
             if (avatarStoryParams.drawSegments) {
-                Paint activeCirclePaint = getActiveCirclePaint(imageReceiver, avatarStoryParams.isStoryCell);
-                activeCirclePaint.setAlpha((int) (avatarStoryParams.alpha * 255.0f));
+                Paint unreadCirclePaint = getUnreadCirclePaint(imageReceiver, avatarStoryParams.isStoryCell);
+                unreadCirclePaint.setAlpha((int) (avatarStoryParams.alpha * 255.0f));
                 Paint closeFriendsPaint = getCloseFriendsPaint(imageReceiver);
                 closeFriendsPaint.setAlpha((int) (avatarStoryParams.alpha * 255.0f));
                 checkGrayPaint(avatarStoryParams.resourcesProvider);
-                paint5 = activeCirclePaint;
+                paint5 = unreadCirclePaint;
                 paint6 = closeFriendsPaint;
             } else {
                 paint5 = null;
@@ -278,7 +278,7 @@ public class StoriesUtilities {
         }
         if ((avatarStoryParams.prevState == 3 && avatarStoryParams.progressToSate != f) || avatarStoryParams.currentState == 3) {
             if (avatarStoryParams.animateFromUnreadState == 1) {
-                getActiveCirclePaint(imageReceiver, avatarStoryParams.isStoryCell);
+                getUnreadCirclePaint(imageReceiver, avatarStoryParams.isStoryCell);
                 paint = storiesGradientTools[avatarStoryParams.isStoryCell ? 1 : 0].paint;
             } else if (avatarStoryParams.isStoryCell) {
                 checkStoryCellGrayPaint(avatarStoryParams.isArchive, avatarStoryParams.resourcesProvider);
@@ -290,12 +290,12 @@ public class StoriesUtilities {
             Paint paint8 = paint;
             paint8.setAlpha((int) (f6 * 255.0f));
             if (avatarStoryParams.drawSegments) {
-                Paint activeCirclePaint2 = getActiveCirclePaint(imageReceiver, avatarStoryParams.isStoryCell);
-                activeCirclePaint2.setAlpha((int) (avatarStoryParams.alpha * 255.0f));
+                Paint unreadCirclePaint2 = getUnreadCirclePaint(imageReceiver, avatarStoryParams.isStoryCell);
+                unreadCirclePaint2.setAlpha((int) (avatarStoryParams.alpha * 255.0f));
                 Paint closeFriendsPaint2 = getCloseFriendsPaint(imageReceiver);
                 closeFriendsPaint2.setAlpha((int) (avatarStoryParams.alpha * 255.0f));
                 checkGrayPaint(avatarStoryParams.resourcesProvider);
-                paint2 = activeCirclePaint2;
+                paint2 = unreadCirclePaint2;
                 paint3 = closeFriendsPaint2;
             } else {
                 paint2 = null;
@@ -404,7 +404,7 @@ public class StoriesUtilities {
             getCloseFriendsPaint(imageReceiver);
             paint4 = closeFriendsGradientTools.paint;
         } else if (unreadState == 1) {
-            getActiveCirclePaint(imageReceiver, avatarStoryParams.isStoryCell);
+            getUnreadCirclePaint(imageReceiver, avatarStoryParams.isStoryCell);
             paint4 = storiesGradientTools[avatarStoryParams.isStoryCell ? 1 : 0].paint;
         } else {
             paint4 = avatarStoryParams.isStoryCell ? storyCellGreyPaint[avatarStoryParams.isArchive ? 1 : 0] : grayPaint;
@@ -601,7 +601,19 @@ public class StoriesUtilities {
         return 0;
     }
 
-    public static Paint getActiveCirclePaint(ImageReceiver imageReceiver, boolean z) {
+    public static Paint getUnreadCirclePaint(ImageReceiver imageReceiver, boolean z) {
+        checkStoriesGradientTools(z);
+        storiesGradientTools[z ? 1 : 0].setBounds(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
+        return storiesGradientTools[z ? 1 : 0].paint;
+    }
+
+    public static Paint getUnreadCirclePaint(RectF rectF, boolean z) {
+        checkStoriesGradientTools(z);
+        storiesGradientTools[z ? 1 : 0].setBounds(rectF.left, rectF.top, rectF.right, rectF.bottom);
+        return storiesGradientTools[z ? 1 : 0].paint;
+    }
+
+    private static void checkStoriesGradientTools(boolean z) {
         GradientTools[] gradientToolsArr = storiesGradientTools;
         if (gradientToolsArr[z ? 1 : 0] == null) {
             gradientToolsArr[z ? 1 : 0] = new GradientTools();
@@ -617,8 +629,6 @@ public class StoriesUtilities {
             storiesGradientTools[z ? 1 : 0].paint.setStyle(Paint.Style.STROKE);
             storiesGradientTools[z ? 1 : 0].paint.setStrokeCap(Paint.Cap.ROUND);
         }
-        storiesGradientTools[z ? 1 : 0].setBounds(imageReceiver.getImageX(), imageReceiver.getImageY(), imageReceiver.getImageX2(), imageReceiver.getImageY2());
-        return storiesGradientTools[z ? 1 : 0].paint;
     }
 
     public static void updateColors() {

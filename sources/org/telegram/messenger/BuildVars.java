@@ -23,17 +23,16 @@ public class BuildVars {
     public static String SMS_HASH = null;
     public static boolean USE_CLOUD_STRINGS = true;
     private static Boolean betaApp;
-    private static Boolean standaloneApp;
 
     static {
         boolean z = true;
         NO_SCOPED_STORAGE = Build.VERSION.SDK_INT <= 29;
-        BUILD_VERSION = 3941;
+        BUILD_VERSION = 3943;
         BUILD_VERSION_STRING = "10.1.3";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
-        SMS_HASH = isStandaloneApp() ? "w0lkcmTZkKh" : DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT";
+        SMS_HASH = ApplicationLoader.isStandaloneBuild() ? "w0lkcmTZkKh" : DEBUG_VERSION ? "O2P2z+/jBpJ" : "oLeq9AcOZkT";
         PLAYSTORE_APP_URL = "https://play.google.com/store/apps/details?id=org.telegram.messenger";
         HUAWEI_STORE_URL = "https://appgallery.huawei.com/app/C101184875";
         GOOGLE_AUTH_CLIENT_ID = "760348033671-81kmi3pi84p11ub8hp9a1funsv0rn2p9.apps.googleusercontent.com";
@@ -50,7 +49,7 @@ public class BuildVars {
     }
 
     public static boolean useInvoiceBilling() {
-        return BillingController.billingClientEmpty || DEBUG_VERSION || isStandaloneApp() || isBetaApp() || isHuaweiStoreApp() || hasDirectCurrency();
+        return BillingController.billingClientEmpty || DEBUG_VERSION || ApplicationLoader.isStandaloneBuild() || isBetaApp() || isHuaweiStoreApp() || hasDirectCurrency();
     }
 
     private static boolean hasDirectCurrency() {
@@ -67,13 +66,6 @@ public class BuildVars {
             }
         }
         return false;
-    }
-
-    public static boolean isStandaloneApp() {
-        if (standaloneApp == null) {
-            standaloneApp = Boolean.valueOf(ApplicationLoader.applicationContext != null && "org.telegram.messenger.web".equals(ApplicationLoader.applicationContext.getPackageName()));
-        }
-        return standaloneApp.booleanValue();
     }
 
     public static boolean isBetaApp() {

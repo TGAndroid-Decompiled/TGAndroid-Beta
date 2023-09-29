@@ -78,7 +78,6 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private final AnimatedFloat segmentsCountAnimated;
     private final AnimatedFloat segmentsUnreadCountAnimated;
     StoriesController storiesController;
-    private final StoriesGradientTools storiesGradientTools;
     private long tapTime;
     private float tapX;
     private float tapY;
@@ -182,10 +181,6 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         this.avatarContainer = view;
         this.avatarImage = avatarImageView;
         this.storiesController = MessagesController.getInstance(i).getStoriesController();
-        StoriesGradientTools storiesGradientTools = new StoriesGradientTools();
-        this.storiesGradientTools = storiesGradientTools;
-        storiesGradientTools.paint.setStyle(Paint.Style.STROKE);
-        storiesGradientTools.paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setColor(1526726655);
         this.readPaintAlpha = paint.getAlpha();
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.5f));
@@ -355,7 +350,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 storyCircle.scale = 0.0f;
             } else {
                 storyCircle.index = i13;
-                storyCircle.read = z3 || !(tLRPC$PeerStories2 == null || tLRPC$StoryItem == null || tLRPC$StoryItem.id > tLRPC$PeerStories2.max_read_id);
+                storyCircle.read = z3 || !(tLRPC$PeerStories2 == null || tLRPC$StoryItem == null || tLRPC$StoryItem.id > this.storiesController.getMaxStoriesReadId(this.dialogId));
             }
             if (!z) {
                 storyCircle.apply();
@@ -412,8 +407,10 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     public void setExpandProgress(float f) {
-        this.expandProgress = f;
-        invalidate();
+        if (this.expandProgress != f) {
+            this.expandProgress = f;
+            invalidate();
+        }
     }
 
     public void setActionBarActionMode(float f) {
@@ -490,7 +487,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r30) {
+    protected void dispatchDraw(android.graphics.Canvas r29) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.ProfileStoriesView.dispatchDraw(android.graphics.Canvas):void");
     }
 

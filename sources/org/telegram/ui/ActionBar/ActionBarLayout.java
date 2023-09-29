@@ -597,6 +597,16 @@ public class ActionBarLayout extends FrameLayout implements INavigationLayout, F
     }
 
     @Override
+    public void updateTitleOverlay() {
+        ActionBar actionBar;
+        BaseFragment lastFragment = getLastFragment();
+        if (lastFragment == null || (actionBar = lastFragment.actionBar) == null) {
+            return;
+        }
+        actionBar.setTitleOverlayText(this.titleOverlayText, this.titleOverlayTextId, this.overlayAction);
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
         if (this.fragmentsStack.isEmpty()) {

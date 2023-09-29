@@ -1102,7 +1102,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
             float f7;
             float size;
             boolean isCloseFriends;
-            Paint activeCirclePaint;
+            Paint unreadCirclePaint;
             RadialProgress radialProgress;
             float dp = AndroidUtilities.dp(48.0f);
             float dp2 = AndroidUtilities.dp(28.0f);
@@ -1181,12 +1181,12 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 }
                 this.radialProgress.setDiff(0);
                 if (isCloseFriends) {
-                    activeCirclePaint = StoriesUtilities.getCloseFriendsPaint(this.avatarImage);
+                    unreadCirclePaint = StoriesUtilities.getCloseFriendsPaint(this.avatarImage);
                 } else {
-                    activeCirclePaint = StoriesUtilities.getActiveCirclePaint(this.avatarImage, true);
+                    unreadCirclePaint = StoriesUtilities.getUnreadCirclePaint(this.avatarImage, true);
                 }
-                activeCirclePaint.setAlpha(255);
-                this.radialProgress.setPaint(activeCirclePaint);
+                unreadCirclePaint.setAlpha(255);
+                this.radialProgress.setPaint(unreadCirclePaint);
                 this.radialProgress.setProgressRect((int) (this.avatarImage.getImageX() - AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageY() - AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageX2() + AndroidUtilities.dp(3.0f)), (int) (this.avatarImage.getImageY2() + AndroidUtilities.dp(3.0f)));
                 this.radialProgress.setProgress(Utilities.clamp(size, 1.0f, 0.0f), this.progressWasDrawn);
                 if (this.avatarImage.getVisible()) {

@@ -117,7 +117,7 @@ public class TextPaintView extends EntityView {
             @Override
             public void afterTextChanged(Editable editable) {
                 int clamp;
-                if (this.pasted && TextPaintView.this.minFontSize > 0 && TextPaintView.this.maxFontSize > 0 && !TextPaintView.this.disableAutoresize) {
+                if (this.pasted && TextPaintView.this.minFontSize > 0 && TextPaintView.this.maxFontSize > 0 && !TextPaintView.this.disableAutoresize && TextPaintView.this.editText.getLayout() != null) {
                     float f = AndroidUtilities.displaySize.y / 3.0f;
                     float height = TextPaintView.this.editText.getLayout().getHeight();
                     if (height > f && (clamp = Utilities.clamp((int) ((f / height) * TextPaintView.this.getBaseFontSize()), TextPaintView.this.maxFontSize, TextPaintView.this.minFontSize)) != TextPaintView.this.getBaseFontSize()) {

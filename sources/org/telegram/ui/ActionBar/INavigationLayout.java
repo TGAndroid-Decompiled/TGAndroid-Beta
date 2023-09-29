@@ -180,6 +180,8 @@ public interface INavigationLayout {
 
     void startActivityForResult(Intent intent, int i);
 
+    void updateTitleOverlay();
+
     public final class CC {
         public static BottomSheet $default$getBottomSheet(INavigationLayout iNavigationLayout) {
             return null;

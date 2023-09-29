@@ -4327,9 +4327,9 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
             if (z) {
                 if (f != 1.0f) {
-                    Paint activeCirclePaint = StoriesUtilities.getActiveCirclePaint(imageReceiver, false);
-                    activeCirclePaint.setAlpha((int) (this.progressToUploading * 255.0f));
-                    this.radialProgress.setPaint(activeCirclePaint);
+                    Paint unreadCirclePaint = StoriesUtilities.getUnreadCirclePaint(imageReceiver, false);
+                    unreadCirclePaint.setAlpha((int) (this.progressToUploading * 255.0f));
+                    this.radialProgress.setPaint(unreadCirclePaint);
                     this.radialProgress.draw(canvas);
                 }
                 if (this.radialProgressPaint == null) {

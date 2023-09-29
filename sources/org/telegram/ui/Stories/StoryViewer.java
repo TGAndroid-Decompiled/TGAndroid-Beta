@@ -166,7 +166,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     private TextureView textureView;
     public boolean unreadStateChanged;
     boolean verticalScrollDetected;
-    private StoriesVolumeContorl volumeControl;
+    private StoriesVolumeControl volumeControl;
     WindowManager.LayoutParams windowLayoutParams;
     WindowManager windowManager;
     public SizeNotifierFrameLayout windowView;
@@ -201,20 +201,6 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
 
     public interface HolderDrawAbove {
         void draw(Canvas canvas, RectF rectF, float f, boolean z);
-    }
-
-    public interface PlaceProvider {
-
-        public final class CC {
-            public static void $default$loadNext(PlaceProvider placeProvider, boolean z) {
-            }
-        }
-
-        boolean findView(long j, int i, int i2, int i3, TransitionViewHolder transitionViewHolder);
-
-        void loadNext(boolean z);
-
-        void preLayout(long j, int i, Runnable runnable);
     }
 
     public void lambda$new$0() {
@@ -597,9 +583,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 this.textureView = hwTextureView;
                 this.aspectRatioFrameLayout.addView(hwTextureView);
             }
-            StoriesVolumeContorl storiesVolumeContorl = new StoriesVolumeContorl(context);
-            this.volumeControl = storiesVolumeContorl;
-            this.containerView.addView(storiesVolumeContorl, LayoutHelper.createFrame(-1, -1.0f, 0, 4.0f, 0.0f, 4.0f, 0.0f));
+            StoriesVolumeControl storiesVolumeControl = new StoriesVolumeControl(context);
+            this.volumeControl = storiesVolumeControl;
+            this.containerView.addView(storiesVolumeControl, LayoutHelper.createFrame(-1, -1.0f, 0, 4.0f, 0.0f, 4.0f, 0.0f));
         }
         AndroidUtilities.removeFromParent(this.aspectRatioFrameLayout);
         this.windowView.addView(this.aspectRatioFrameLayout);
@@ -2408,6 +2394,19 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
+    public interface PlaceProvider {
+        boolean findView(long j, int i, int i2, int i3, TransitionViewHolder transitionViewHolder);
+
+        void loadNext(boolean z);
+
+        void preLayout(long j, int i, Runnable runnable);
+
+        public final class CC {
+            public static void $default$loadNext(PlaceProvider placeProvider, boolean z) {
+            }
+        }
+    }
+
     public static class TransitionViewHolder {
         public float alpha = 1.0f;
         public ImageReceiver avatarImage;
@@ -2418,7 +2417,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         public ImageReceiver crossfadeToAvatarImage;
         public HolderDrawAbove drawAbove;
         public HolderClip drawClip;
-        StoriesUtilities.AvatarStoryParams params;
+        public StoriesUtilities.AvatarStoryParams params;
         public RadialProgress radialProgressUpload;
         public int storyId;
         public ImageReceiver storyImage;

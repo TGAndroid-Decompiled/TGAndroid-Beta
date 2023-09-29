@@ -1087,6 +1087,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     private void showAttachMenuBot(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, String str) {
+        this.drawerLayoutContainer.closeDrawer();
         BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, getLastFragment().getResourceProvider());
         botWebViewSheet.setParentActivity(this);
         int i = this.currentAccount;
@@ -1853,6 +1854,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.drawerLayoutContainer.setAllowOpenDrawer(true, false);
         this.actionBarLayout.getView().setVisibility(0);
         this.actionBarLayout.rebuildFragments(1);
+        this.actionBarLayout.updateTitleOverlay();
         if (AndroidUtilities.isTablet()) {
             this.layersActionBarLayout.rebuildFragments(1);
             this.rightActionBarLayout.rebuildFragments(1);

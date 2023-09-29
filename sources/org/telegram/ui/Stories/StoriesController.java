@@ -1383,10 +1383,22 @@ public class StoriesController {
                         StoriesController.lambda$markStoryAsRead$17(tLObject, tLRPC$TL_error);
                     }
                 });
+                NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesReadUpdated, new Object[0]);
                 return true;
             }
         }
         return false;
+    }
+
+    public int getMaxStoriesReadId(long j) {
+        TLRPC$PeerStories stories = getStories(j);
+        if (stories == null) {
+            stories = getStoriesFromFullPeer(j);
+        }
+        if (stories != null) {
+            return Math.max(stories.max_read_id, this.dialogIdToMaxReadId.get(j, 0));
+        }
+        return this.dialogIdToMaxReadId.get(j, 0);
     }
 
     public void markStoriesAsReadFromServer(final long j, final int i) {
@@ -1412,6 +1424,9 @@ public class StoriesController {
 
     public boolean hasUnreadStories(long j) {
         TLRPC$PeerStories tLRPC$PeerStories = this.allStoriesMap.get(j);
+        if (tLRPC$PeerStories == null) {
+            tLRPC$PeerStories = getStoriesFromFullPeer(j);
+        }
         if (tLRPC$PeerStories == null) {
             return false;
         }

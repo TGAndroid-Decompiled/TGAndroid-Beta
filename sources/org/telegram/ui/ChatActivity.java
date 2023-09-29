@@ -12033,7 +12033,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                                 break;
                             }
                             TLRPC$FileLocation tLRPC$FileLocation3 = messageObject2.photoThumbs.get(i2).location;
-                            if (tLRPC$FileLocation3 != null && tLRPC$FileLocation3.volume_id == tLRPC$FileLocation.volume_id && tLRPC$FileLocation3.local_id == tLRPC$FileLocation.local_id) {
+                            if (tLRPC$FileLocation3 != null && tLRPC$FileLocation3.local_id == tLRPC$FileLocation.local_id) {
                                 imageReceiver = chatActionCell.getPhotoImage();
                                 break;
                             }

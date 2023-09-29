@@ -5840,8 +5840,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         MessagesController messagesController = MessagesController.getInstance(this.currentAccount);
         TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = this.currentMessageObject.messageOwner.fwd_from;
         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
-        if (tLRPC$MessageFwdHeader != null && (tLRPC$MessageFwdHeader.from_id instanceof TLRPC$TL_peerChannel)) {
-            this.currentMessageObject.getDialogId();
+        if (tLRPC$MessageFwdHeader != null && (tLRPC$MessageFwdHeader.from_id instanceof TLRPC$TL_peerChannel) && (this.currentMessageObject.getDialogId() == clientUserId || this.currentMessageObject.getDialogId() == UserObject.REPLY_BOT)) {
             this.currentChat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(tLRPC$MessageFwdHeader.from_id.channel_id));
         } else if (tLRPC$MessageFwdHeader != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.saved_from_peer) != null) {
             long j = tLRPC$Peer.user_id;

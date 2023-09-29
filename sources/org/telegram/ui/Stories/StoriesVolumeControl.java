@@ -6,28 +6,29 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.media.AudioManager;
 import android.os.Build;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.webrtc.MediaStreamTrack;
-public class StoriesVolumeContorl extends View {
+public class StoriesVolumeControl extends View {
     float currentProgress;
-    Runnable hideRunnuble;
+    Runnable hideRunnable;
     boolean isVisible;
     Paint paint;
     AnimatedFloat progressToVisible;
     AnimatedFloat volumeProgress;
 
-    public StoriesVolumeContorl(Context context) {
+    public StoriesVolumeControl(Context context) {
         super(context);
         this.paint = new Paint(1);
-        this.hideRunnuble = new Runnable() {
+        this.hideRunnable = new Runnable() {
             @Override
             public void run() {
-                StoriesVolumeContorl storiesVolumeContorl = StoriesVolumeContorl.this;
-                storiesVolumeContorl.isVisible = false;
-                storiesVolumeContorl.invalidate();
+                StoriesVolumeControl storiesVolumeControl = StoriesVolumeControl.this;
+                storiesVolumeControl.isVisible = false;
+                storiesVolumeControl.invalidate();
             }
         };
         this.progressToVisible = new AnimatedFloat(this);
@@ -37,10 +38,10 @@ public class StoriesVolumeContorl extends View {
 
     @Override
     public boolean onKeyDown(int i, KeyEvent keyEvent) {
-        if (i == 24) {
+        if (keyEvent.getAction() == 0 && i == 24) {
             adjustVolume(true);
             return true;
-        } else if (i == 25) {
+        } else if (keyEvent.getAction() == 0 && i == 25) {
             adjustVolume(false);
             return true;
         } else {
@@ -62,37 +63,38 @@ public class StoriesVolumeContorl extends View {
             this.volumeProgress.set(f, true);
             this.isVisible = true;
             invalidate();
-            AndroidUtilities.cancelRunOnUIThread(this.hideRunnuble);
-            AndroidUtilities.runOnUIThread(this.hideRunnuble, 2000L);
+            AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
+            AndroidUtilities.runOnUIThread(this.hideRunnable, 2000L);
         }
     }
 
     private void adjustVolume(boolean z) {
-        int i;
         AudioManager audioManager = (AudioManager) getContext().getSystemService(MediaStreamTrack.AUDIO_TRACK_KIND);
         int streamMaxVolume = audioManager.getStreamMaxVolume(3);
         int streamVolume = audioManager.getStreamVolume(3);
+        float f = streamMaxVolume;
+        int max = (int) Math.max(1.0f, f / 15.0f);
         if (z) {
-            i = streamVolume + 1;
-            if (i > streamMaxVolume) {
-                i = streamMaxVolume;
+            int i = streamVolume + max;
+            if (i <= streamMaxVolume) {
+                streamMaxVolume = i;
             }
         } else {
-            i = streamVolume - 1;
-            if (i < 0) {
-                i = 0;
+            streamMaxVolume = streamVolume - max;
+            if (streamMaxVolume < 0) {
+                streamMaxVolume = 0;
             }
         }
-        audioManager.setStreamVolume(3, i, 0);
-        float f = i / streamMaxVolume;
-        this.currentProgress = f;
+        audioManager.setStreamVolume(3, streamMaxVolume, 0);
+        this.currentProgress = streamMaxVolume / f;
+        Log.i("lolkek", "currentVolume=" + streamMaxVolume + " pr=" + this.currentProgress);
         if (!this.isVisible) {
-            this.volumeProgress.set(f, true);
+            this.volumeProgress.set(this.currentProgress, true);
         }
         invalidate();
         this.isVisible = true;
-        AndroidUtilities.cancelRunOnUIThread(this.hideRunnuble);
-        AndroidUtilities.runOnUIThread(this.hideRunnuble, 2000L);
+        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
+        AndroidUtilities.runOnUIThread(this.hideRunnable, 2000L);
     }
 
     @Override
@@ -110,7 +112,7 @@ public class StoriesVolumeContorl extends View {
     }
 
     public void hide() {
-        AndroidUtilities.cancelRunOnUIThread(this.hideRunnuble);
-        this.hideRunnuble.run();
+        AndroidUtilities.cancelRunOnUIThread(this.hideRunnable);
+        this.hideRunnable.run();
     }
 }
