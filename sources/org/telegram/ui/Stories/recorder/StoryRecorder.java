@@ -388,7 +388,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             float imageY = iArr[1] + fArr[1] + (avatarImageView.getImageReceiver().getImageY() * scaleX);
             sourceView.screenRect.set(imageX, imageY, imageX + imageWidth, imageWidth + imageY);
             sourceView.backgroundImageReceiver = avatarImageView.getImageReceiver();
-            sourceView.rounding = Math.max(sourceView.screenRect.width(), sourceView.screenRect.height()) / 2.0f;
+            sourceView.rounding = (imageWidth / 2.0f) * 2.0f;
             return sourceView;
         }
 
@@ -915,84 +915,8 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
         }
 
         @Override
-        public void dispatchDraw(Canvas canvas) {
-            float floatValue = StoryRecorder.this.frozenDismissProgress != null ? StoryRecorder.this.frozenDismissProgress.floatValue() : StoryRecorder.this.dismissProgress;
-            if (StoryRecorder.this.openType == 0) {
-                canvas.drawColor(ColorUtils.setAlphaComponent(-16777216, (int) (StoryRecorder.this.openProgress * 255.0f * (1.0f - floatValue))));
-            }
-            boolean z = false;
-            float lerp = AndroidUtilities.lerp(StoryRecorder.this.fromRounding, 0.0f, StoryRecorder.this.openProgress);
-            if (StoryRecorder.this.openProgress != 1.0f) {
-                if (StoryRecorder.this.openType != 0) {
-                    if (StoryRecorder.this.openType == 1) {
-                        this.fullRectF.set(StoryRecorder.this.previewContainer.getLeft(), StoryRecorder.this.previewContainer.getTop(), StoryRecorder.this.previewContainer.getMeasuredWidth(), StoryRecorder.this.previewContainer.getMeasuredHeight());
-                        this.fullRectF.offset(StoryRecorder.this.containerView.getX(), StoryRecorder.this.containerView.getY());
-                        AndroidUtilities.lerp(StoryRecorder.this.fromRect, this.fullRectF, StoryRecorder.this.openProgress, this.rectF);
-                        StoryRecorder.this.previewContainer.setAlpha(StoryRecorder.this.openProgress);
-                        StoryRecorder.this.previewContainer.setTranslationX((this.rectF.left - StoryRecorder.this.previewContainer.getLeft()) - StoryRecorder.this.containerView.getX());
-                        StoryRecorder.this.previewContainer.setTranslationY((this.rectF.top - StoryRecorder.this.previewContainer.getTop()) - StoryRecorder.this.containerView.getY());
-                        if (StoryRecorder.this.fromSourceView != null && StoryRecorder.this.fromSourceView.view != null) {
-                            StoryRecorder.this.fromSourceView.view.setTranslationX((this.fullRectF.left - StoryRecorder.this.fromRect.left) * StoryRecorder.this.openProgress);
-                            StoryRecorder.this.fromSourceView.view.setTranslationY((this.fullRectF.top - StoryRecorder.this.fromRect.top) * StoryRecorder.this.openProgress);
-                        }
-                        StoryRecorder.this.previewContainer.setScaleX(this.rectF.width() / StoryRecorder.this.previewContainer.getMeasuredWidth());
-                        StoryRecorder.this.previewContainer.setScaleY(this.rectF.height() / StoryRecorder.this.previewContainer.getMeasuredHeight());
-                        StoryRecorder.this.actionBarContainer.setAlpha(StoryRecorder.this.openProgress);
-                        StoryRecorder.this.controlContainer.setAlpha(StoryRecorder.this.openProgress);
-                        StoryRecorder.this.captionContainer.setAlpha(StoryRecorder.this.openProgress);
-                    }
-                } else {
-                    this.fullRectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                    this.fullRectF.offset(StoryRecorder.this.containerView.getTranslationX(), StoryRecorder.this.containerView.getTranslationY());
-                    AndroidUtilities.lerp(StoryRecorder.this.fromRect, this.fullRectF, StoryRecorder.this.openProgress, this.rectF);
-                    canvas.save();
-                    this.clipPath.rewind();
-                    this.clipPath.addRoundRect(this.rectF, lerp, lerp, Path.Direction.CW);
-                    canvas.clipPath(this.clipPath);
-                    canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (Utilities.clamp(StoryRecorder.this.openProgress * 3.0f, 1.0f, 0.0f) * 255.0f), 31);
-                    RectF rectF = this.rectF;
-                    canvas.translate(rectF.left, rectF.top - (StoryRecorder.this.containerView.getTranslationY() * StoryRecorder.this.openProgress));
-                    float max = Math.max(this.rectF.width() / getWidth(), this.rectF.height() / getHeight());
-                    canvas.scale(max, max);
-                    z = true;
-                }
-            }
-            if (StoryRecorder.this.paintView != null) {
-                StoryRecorder.this.paintView.onParentPreDraw();
-            }
-            super.dispatchDraw(canvas);
-            if (z) {
-                canvas.restore();
-                canvas.restore();
-                if (StoryRecorder.this.fromSourceView != null) {
-                    float clamp = Utilities.clamp(1.0f - (StoryRecorder.this.openProgress * 1.5f), 1.0f, 0.0f);
-                    float centerX = this.rectF.centerX();
-                    float centerY = this.rectF.centerY();
-                    Math.min(this.rectF.width(), this.rectF.height());
-                    if (StoryRecorder.this.fromSourceView.backgroundImageReceiver != null) {
-                        StoryRecorder.this.fromSourceView.backgroundImageReceiver.setImageCoords(this.rectF);
-                        StoryRecorder.this.fromSourceView.backgroundImageReceiver.setAlpha(clamp);
-                        StoryRecorder.this.fromSourceView.backgroundImageReceiver.draw(canvas);
-                    } else if (StoryRecorder.this.fromSourceView.backgroundPaint != null) {
-                        StoryRecorder.this.fromSourceView.backgroundPaint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(3.0f), Theme.multAlpha(AndroidUtilities.DARK_STATUS_BAR_OVERLAY, clamp));
-                        StoryRecorder.this.fromSourceView.backgroundPaint.setAlpha((int) (255.0f * clamp));
-                        canvas.drawRoundRect(this.rectF, lerp, lerp, StoryRecorder.this.fromSourceView.backgroundPaint);
-                    }
-                    if (StoryRecorder.this.fromSourceView.iconDrawable != null) {
-                        this.rect.set(StoryRecorder.this.fromSourceView.iconDrawable.getBounds());
-                        StoryRecorder.this.fromSourceView.iconDrawable.setBounds((int) (centerX - (StoryRecorder.this.fromSourceView.iconSize / 2)), (int) (centerY - (StoryRecorder.this.fromSourceView.iconSize / 2)), (int) (centerX + (StoryRecorder.this.fromSourceView.iconSize / 2)), (int) (centerY + (StoryRecorder.this.fromSourceView.iconSize / 2)));
-                        int alpha = StoryRecorder.this.fromSourceView.iconDrawable.getAlpha();
-                        StoryRecorder.this.fromSourceView.iconDrawable.setAlpha((int) (alpha * clamp));
-                        StoryRecorder.this.fromSourceView.iconDrawable.draw(canvas);
-                        StoryRecorder.this.fromSourceView.iconDrawable.setBounds(this.rect);
-                        StoryRecorder.this.fromSourceView.iconDrawable.setAlpha(alpha);
-                    }
-                    canvas.save();
-                    canvas.translate(StoryRecorder.this.fromRect.left, StoryRecorder.this.fromRect.top);
-                    StoryRecorder.this.fromSourceView.drawAbove(canvas, clamp);
-                    canvas.restore();
-                }
-            }
+        public void dispatchDraw(android.graphics.Canvas r17) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryRecorder.WindowView.dispatchDraw(android.graphics.Canvas):void");
         }
 
         @Override

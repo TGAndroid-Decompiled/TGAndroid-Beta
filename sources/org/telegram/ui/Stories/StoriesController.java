@@ -942,9 +942,10 @@ public class StoriesController {
         boolean z;
         boolean z2;
         boolean z3;
-        TLRPC$PeerStories tLRPC$PeerStories = this.allStoriesMap.get(j);
         FileLog.d("StoriesController update stories for dialog " + j);
         updateStoriesInLists(j, Collections.singletonList(tLRPC$TL_updateStory.story));
+        updateStoriesForFullPeer(j, Collections.singletonList(tLRPC$TL_updateStory.story));
+        TLRPC$PeerStories tLRPC$PeerStories = this.allStoriesMap.get(j);
         ArrayList arrayList = new ArrayList();
         int i = this.totalStoriesCount;
         boolean z4 = true;
@@ -1041,6 +1042,66 @@ public class StoriesController {
             NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
         }
         MessagesController.getInstance(this.currentAccount).checkArchiveFolder();
+    }
+
+    private void updateStoriesForFullPeer(long j, List<TLRPC$StoryItem> list) {
+        TLRPC$PeerStories tLRPC$PeerStories;
+        boolean z;
+        if (j > 0) {
+            TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(j);
+            if (userFull == null) {
+                return;
+            }
+            if (userFull.stories == null) {
+                TLRPC$TL_peerStories tLRPC$TL_peerStories = new TLRPC$TL_peerStories();
+                userFull.stories = tLRPC$TL_peerStories;
+                tLRPC$TL_peerStories.peer = MessagesController.getInstance(this.currentAccount).getPeer(j);
+                userFull.stories.max_read_id = getMaxStoriesReadId(j);
+            }
+            tLRPC$PeerStories = userFull.stories;
+        } else {
+            TLRPC$ChatFull chatFull = MessagesController.getInstance(this.currentAccount).getChatFull(-j);
+            if (chatFull == null) {
+                return;
+            }
+            if (chatFull.stories == null) {
+                TLRPC$TL_peerStories tLRPC$TL_peerStories2 = new TLRPC$TL_peerStories();
+                chatFull.stories = tLRPC$TL_peerStories2;
+                tLRPC$TL_peerStories2.peer = MessagesController.getInstance(this.currentAccount).getPeer(j);
+                chatFull.stories.max_read_id = getMaxStoriesReadId(j);
+            }
+            tLRPC$PeerStories = chatFull.stories;
+        }
+        for (int i = 0; i < list.size(); i++) {
+            TLRPC$StoryItem tLRPC$StoryItem = list.get(i);
+            int i2 = 0;
+            while (true) {
+                z = true;
+                if (i2 >= tLRPC$PeerStories.stories.size()) {
+                    z = false;
+                    break;
+                } else if (tLRPC$PeerStories.stories.get(i2).id != tLRPC$StoryItem.id) {
+                    i2++;
+                } else if (tLRPC$StoryItem instanceof TLRPC$TL_storyItemDeleted) {
+                    tLRPC$PeerStories.stories.remove(i2);
+                } else {
+                    TLRPC$StoryItem tLRPC$StoryItem2 = tLRPC$PeerStories.stories.get(i2);
+                    tLRPC$StoryItem = applyStoryUpdate(tLRPC$StoryItem2, tLRPC$StoryItem);
+                    tLRPC$PeerStories.stories.set(i2, tLRPC$StoryItem);
+                    if (tLRPC$StoryItem.attachPath == null) {
+                        tLRPC$StoryItem.attachPath = tLRPC$StoryItem2.attachPath;
+                    }
+                    if (tLRPC$StoryItem.firstFramePath == null) {
+                        tLRPC$StoryItem.firstFramePath = tLRPC$StoryItem2.firstFramePath;
+                    }
+                    FileLog.d("StoriesController update story for full peer storyId=" + tLRPC$StoryItem.id);
+                }
+            }
+            if (!z) {
+                FileLog.d("StoriesController add new story for full peer storyId=" + tLRPC$StoryItem.id);
+                tLRPC$PeerStories.stories.add(tLRPC$StoryItem);
+            }
+        }
     }
 
     private boolean isContactOrService(TLRPC$User tLRPC$User) {
@@ -1205,10 +1266,23 @@ public class StoriesController {
                         break;
                     } else if (tLRPC$PeerStories.stories.get(i2).id == tLRPC$StoryItem.id) {
                         tLRPC$PeerStories.stories.remove(i2);
-                        if (tLRPC$PeerStories.stories.size() == 0 && !hasUploadingStories(j)) {
-                            this.allStoriesMap.remove(j);
-                            this.dialogListStories.remove(tLRPC$PeerStories);
-                            this.hiddenListStories.remove(tLRPC$PeerStories);
+                        if (tLRPC$PeerStories.stories.size() == 0) {
+                            if (!hasUploadingStories(j)) {
+                                this.allStoriesMap.remove(j);
+                                this.dialogListStories.remove(tLRPC$PeerStories);
+                                this.hiddenListStories.remove(tLRPC$PeerStories);
+                            }
+                            if (j > 0) {
+                                TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j));
+                                if (user != null) {
+                                    user.stories_unavailable = true;
+                                }
+                            } else {
+                                TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j));
+                                if (chat != null) {
+                                    chat.stories_unavailable = true;
+                                }
+                            }
                         }
                     } else {
                         i2++;
@@ -1305,6 +1379,7 @@ public class StoriesController {
         }
         FileLog.d("StoriesController updateStoriesPinned");
         updateStoriesInLists(j, arrayList);
+        updateStoriesForFullPeer(j, arrayList);
         tLRPC$TL_stories_togglePinned.pinned = z;
         tLRPC$TL_stories_togglePinned.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stories_togglePinned, new RequestDelegate() {
@@ -1349,6 +1424,7 @@ public class StoriesController {
         FileLog.d(sb.toString());
         this.storiesStorage.updateStoryItem(j, tLRPC$StoryItem);
         updateStoriesInLists(j, Collections.singletonList(tLRPC$StoryItem));
+        updateStoriesForFullPeer(j, Collections.singletonList(tLRPC$StoryItem));
     }
 
     public boolean markStoryAsRead(long j, TLRPC$StoryItem tLRPC$StoryItem) {
@@ -1853,6 +1929,16 @@ public class StoriesController {
 
     public void onPremiumChanged() {
         this.selfViewsModel.clear();
+    }
+
+    public void updateStoriesFromFullPeer(long j, TLRPC$PeerStories tLRPC$PeerStories) {
+        TLRPC$PeerStories tLRPC$PeerStories2;
+        if (tLRPC$PeerStories == null || (tLRPC$PeerStories2 = this.allStoriesMap.get(j)) == null) {
+            return;
+        }
+        FileLog.d("StoriesController update stories from full peer " + j);
+        tLRPC$PeerStories2.stories.clear();
+        tLRPC$PeerStories2.stories.addAll(tLRPC$PeerStories.stories);
     }
 
     public class UploadingStory implements NotificationCenter.NotificationCenterDelegate {

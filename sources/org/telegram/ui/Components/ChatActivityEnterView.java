@@ -9,7 +9,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ClipData;
-import android.content.ClipDescription;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -53,6 +52,8 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.view.accessibility.AccessibilityManager;
 import android.view.accessibility.AccessibilityNodeInfo;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
 import android.webkit.MimeTypeMap;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -63,10 +64,12 @@ import androidx.collection.LongSparseArray;
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
-import androidx.core.view.ContentInfoCompat;
-import androidx.core.view.OnReceiveContentListener;
+import androidx.core.os.BuildCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat;
+import androidx.core.view.inputmethod.EditorInfoCompat;
+import androidx.core.view.inputmethod.InputConnectionCompat;
+import androidx.core.view.inputmethod.InputContentInfoCompat;
 import androidx.customview.widget.ExploreByTouchHelper;
 import androidx.dynamicanimation.animation.DynamicAnimation;
 import androidx.dynamicanimation.animation.SpringAnimation;
@@ -3669,42 +3672,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
         public ChatActivityEditTextCaption(Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context, resourcesProvider);
-            ChatActivityEnterView.this = r5;
-            ViewCompat.setOnReceiveContentListener(this, new String[]{"image/gif", "image/*", "image/jpg", "image/png", "image/webp"}, new AnonymousClass1(r5, resourcesProvider));
-        }
-
-        public class AnonymousClass1 implements OnReceiveContentListener {
-            final Theme.ResourcesProvider val$resourcesProvider;
-
-            AnonymousClass1(ChatActivityEnterView chatActivityEnterView, Theme.ResourcesProvider resourcesProvider) {
-                ChatActivityEditTextCaption.this = r1;
-                this.val$resourcesProvider = resourcesProvider;
-            }
-
-            @Override
-            public ContentInfoCompat onReceiveContent(View view, ContentInfoCompat contentInfoCompat) {
-                final ClipData clip = contentInfoCompat.getClip();
-                if (clip.getItemCount() != 1) {
-                    return contentInfoCompat;
-                }
-                if (!clip.getDescription().hasMimeType("image/gif") && !SendMessagesHelper.shouldSendWebPAsSticker(null, clip.getItemAt(0).getUri())) {
-                    ChatActivityEditTextCaption.this.editPhoto(clip.getItemAt(0).getUri(), clip.getDescription().getMimeType(0));
-                } else if (ChatActivityEnterView.this.isInScheduleMode()) {
-                    AlertsCreator.createScheduleDatePickerDialog(ChatActivityEnterView.this.parentActivity, ChatActivityEnterView.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
-                        @Override
-                        public final void didSelectDate(boolean z, int i) {
-                            ChatActivityEnterView.ChatActivityEditTextCaption.AnonymousClass1.this.lambda$onReceiveContent$0(clip, z, i);
-                        }
-                    }, this.val$resourcesProvider);
-                } else {
-                    ChatActivityEditTextCaption.this.send(clip.getItemAt(0).getUri(), clip.getDescription(), true, 0);
-                }
-                return null;
-            }
-
-            public void lambda$onReceiveContent$0(ClipData clipData, boolean z, int i) {
-                ChatActivityEditTextCaption.this.send(clipData.getItemAt(0).getUri(), clipData.getDescription(), z, i);
-            }
+            ChatActivityEnterView.this = r1;
         }
 
         @Override
@@ -3729,15 +3697,62 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
         }
 
-        public void send(Uri uri, ClipDescription clipDescription, boolean z, int i) {
-            if (clipDescription.hasMimeType("image/gif")) {
-                SendMessagesHelper.prepareSendingDocument(ChatActivityEnterView.this.accountInstance, null, null, uri, null, "image/gif", ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.replyingMessageObject, ChatActivityEnterView.this.getThreadMessage(), null, null, z, 0, clipDescription);
+        public void lambda$onCreateInputConnection$0(InputContentInfoCompat inputContentInfoCompat, boolean z, int i) {
+            if (inputContentInfoCompat.getDescription().hasMimeType("image/gif")) {
+                SendMessagesHelper.prepareSendingDocument(ChatActivityEnterView.this.accountInstance, null, null, inputContentInfoCompat.getContentUri(), null, "image/gif", ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.replyingMessageObject, ChatActivityEnterView.this.getThreadMessage(), null, null, z, 0, inputContentInfoCompat);
             } else {
-                SendMessagesHelper.prepareSendingPhoto(ChatActivityEnterView.this.accountInstance, null, uri, ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.replyingMessageObject, ChatActivityEnterView.this.getThreadMessage(), null, null, null, clipDescription, 0, null, z, 0);
+                SendMessagesHelper.prepareSendingPhoto(ChatActivityEnterView.this.accountInstance, null, inputContentInfoCompat.getContentUri(), ChatActivityEnterView.this.dialog_id, ChatActivityEnterView.this.replyingMessageObject, ChatActivityEnterView.this.getThreadMessage(), null, null, null, inputContentInfoCompat, 0, null, z, 0);
             }
             if (ChatActivityEnterView.this.delegate != null) {
                 ChatActivityEnterView.this.delegate.onMessageSend(null, true, i);
             }
+        }
+
+        @Override
+        public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+            InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+            if (onCreateInputConnection == null) {
+                return null;
+            }
+            try {
+                EditorInfoCompat.setContentMimeTypes(editorInfo, new String[]{"image/gif", "image/*", "image/jpg", "image/png", "image/webp"});
+                return InputConnectionCompat.createWrapper(onCreateInputConnection, editorInfo, new InputConnectionCompat.OnCommitContentListener() {
+                    @Override
+                    public final boolean onCommitContent(InputContentInfoCompat inputContentInfoCompat, int i, Bundle bundle) {
+                        boolean lambda$onCreateInputConnection$1;
+                        lambda$onCreateInputConnection$1 = ChatActivityEnterView.ChatActivityEditTextCaption.this.lambda$onCreateInputConnection$1(inputContentInfoCompat, i, bundle);
+                        return lambda$onCreateInputConnection$1;
+                    }
+                });
+            } catch (Throwable th) {
+                FileLog.e(th);
+                return onCreateInputConnection;
+            }
+        }
+
+        public boolean lambda$onCreateInputConnection$1(final InputContentInfoCompat inputContentInfoCompat, int i, Bundle bundle) {
+            if (BuildCompat.isAtLeastNMR1() && (i & 1) != 0) {
+                try {
+                    inputContentInfoCompat.requestPermission();
+                } catch (Exception unused) {
+                    return false;
+                }
+            }
+            if (inputContentInfoCompat.getDescription().hasMimeType("image/gif") || SendMessagesHelper.shouldSendWebPAsSticker(null, inputContentInfoCompat.getContentUri())) {
+                if (ChatActivityEnterView.this.isInScheduleMode()) {
+                    AlertsCreator.createScheduleDatePickerDialog(ChatActivityEnterView.this.parentActivity, ChatActivityEnterView.this.parentFragment.getDialogId(), new AlertsCreator.ScheduleDatePickerDelegate() {
+                        @Override
+                        public final void didSelectDate(boolean z, int i2) {
+                            ChatActivityEnterView.ChatActivityEditTextCaption.this.lambda$onCreateInputConnection$0(inputContentInfoCompat, z, i2);
+                        }
+                    }, ChatActivityEnterView.this.resourcesProvider);
+                } else {
+                    lambda$onCreateInputConnection$0(inputContentInfoCompat, true, 0);
+                }
+            } else {
+                editPhoto(inputContentInfoCompat.getContentUri(), inputContentInfoCompat.getDescription().getMimeType(0));
+            }
+            return true;
         }
 
         @Override
@@ -3750,7 +3765,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         canvasButton.setDelegate(new Runnable() {
                             @Override
                             public final void run() {
-                                ChatActivityEnterView.ChatActivityEditTextCaption.this.lambda$onTouchEvent$0();
+                                ChatActivityEnterView.ChatActivityEditTextCaption.this.lambda$onTouchEvent$2();
                             }
                         });
                     }
@@ -3771,7 +3786,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                ChatActivityEnterView.ChatActivityEditTextCaption.this.lambda$onTouchEvent$1();
+                                ChatActivityEnterView.ChatActivityEditTextCaption.this.lambda$onTouchEvent$3();
                             }
                         }, 200L);
                     }
@@ -3787,11 +3802,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             return false;
         }
 
-        public void lambda$onTouchEvent$0() {
+        public void lambda$onTouchEvent$2() {
             ChatActivityEnterView.this.showRestrictedHint();
         }
 
-        public void lambda$onTouchEvent$1() {
+        public void lambda$onTouchEvent$3() {
             ChatActivityEnterView.this.waitingForKeyboardOpenAfterAnimation = false;
             ChatActivityEnterView.this.openKeyboardInternal();
         }
@@ -3849,17 +3864,17 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             return super.onTextContextMenuItem(i);
         }
 
-        public void editPhoto(final Uri uri, String str) {
+        private void editPhoto(final Uri uri, String str) {
             final File generatePicturePath = AndroidUtilities.generatePicturePath(ChatActivityEnterView.this.parentFragment != null && ChatActivityEnterView.this.parentFragment.isSecretChat(), MimeTypeMap.getSingleton().getExtensionFromMimeType(str));
             Utilities.globalQueue.postRunnable(new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivityEnterView.ChatActivityEditTextCaption.this.lambda$editPhoto$3(uri, generatePicturePath);
+                    ChatActivityEnterView.ChatActivityEditTextCaption.this.lambda$editPhoto$5(uri, generatePicturePath);
                 }
             });
         }
 
-        public void lambda$editPhoto$3(Uri uri, final File file) {
+        public void lambda$editPhoto$5(Uri uri, final File file) {
             try {
                 InputStream openInputStream = getContext().getContentResolver().openInputStream(uri);
                 FileOutputStream fileOutputStream = new FileOutputStream(file);
@@ -3878,7 +3893,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         AndroidUtilities.runOnUIThread(new Runnable() {
                             @Override
                             public final void run() {
-                                ChatActivityEnterView.ChatActivityEditTextCaption.this.lambda$editPhoto$2(arrayList, file);
+                                ChatActivityEnterView.ChatActivityEditTextCaption.this.lambda$editPhoto$4(arrayList, file);
                             }
                         });
                         return;
@@ -3889,7 +3904,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
         }
 
-        public void lambda$editPhoto$2(final ArrayList<Object> arrayList, final File file) {
+        public void lambda$editPhoto$4(final ArrayList<Object> arrayList, final File file) {
             if (ChatActivityEnterView.this.parentFragment == null || ChatActivityEnterView.this.parentFragment.getParentActivity() == null) {
                 return;
             }
@@ -3963,7 +3978,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
 
                 @Override
                 public void run() {
-                    ChatActivityEditTextCaption.this.lambda$editPhoto$2(arrayList, file);
+                    ChatActivityEditTextCaption.this.lambda$editPhoto$4(arrayList, file);
                 }
             }, 100L);
         }

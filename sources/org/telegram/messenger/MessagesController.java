@@ -7733,11 +7733,12 @@ public class MessagesController extends BaseController implements NotificationCe
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesController.loadFullChat(long, int, boolean):void");
     }
 
-    public void lambda$loadFullChat$57(TLRPC$Chat tLRPC$Chat, long j, final long j2, final int i, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadFullChat$57(long j, TLRPC$Chat tLRPC$Chat, final long j2, final int i, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             final TLRPC$TL_messages_chatFull tLRPC$TL_messages_chatFull = (TLRPC$TL_messages_chatFull) tLObject;
             getMessagesStorage().putUsersAndChats(tLRPC$TL_messages_chatFull.users, tLRPC$TL_messages_chatFull.chats, true, true);
             getMessagesStorage().updateChatInfo(tLRPC$TL_messages_chatFull.full_chat, false);
+            getStoriesController().updateStoriesFromFullPeer(j, tLRPC$TL_messages_chatFull.full_chat.stories);
             if (ChatObject.isChannel(tLRPC$Chat)) {
                 Integer num = this.dialogs_read_inbox_max.get(Long.valueOf(j));
                 if (num == null) {
@@ -7849,20 +7850,20 @@ public class MessagesController extends BaseController implements NotificationCe
             this.loadingFullUsers.add(Long.valueOf(tLRPC$User.id));
             TLRPC$TL_users_getFullUser tLRPC$TL_users_getFullUser = new TLRPC$TL_users_getFullUser();
             tLRPC$TL_users_getFullUser.id = getInputUser(tLRPC$User);
-            long j = tLRPC$User.id;
+            final long j = tLRPC$User.id;
             if (this.dialogs_read_inbox_max.get(Long.valueOf(j)) == null || this.dialogs_read_outbox_max.get(Long.valueOf(j)) == null) {
                 reloadDialogsReadValue(null, j);
             }
             getConnectionsManager().bindRequestToGuid(getConnectionsManager().sendRequest(tLRPC$TL_users_getFullUser, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                    MessagesController.this.lambda$loadFullUser$60(tLRPC$User, i, tLObject, tLRPC$TL_error);
+                    MessagesController.this.lambda$loadFullUser$60(j, tLRPC$User, i, tLObject, tLRPC$TL_error);
                 }
             }), i);
         }
     }
 
-    public void lambda$loadFullUser$60(final TLRPC$User tLRPC$User, final int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadFullUser$60(long j, final TLRPC$User tLRPC$User, final int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             TLRPC$TL_users_userFull tLRPC$TL_users_userFull = (TLRPC$TL_users_userFull) tLObject;
             final TLRPC$UserFull tLRPC$UserFull = tLRPC$TL_users_userFull.full_user;
@@ -7871,6 +7872,7 @@ public class MessagesController extends BaseController implements NotificationCe
             TLRPC$UserFull tLRPC$UserFull2 = tLRPC$TL_users_userFull.full_user;
             tLRPC$UserFull2.user = getUser(Long.valueOf(tLRPC$UserFull2.id));
             getMessagesStorage().updateUserInfo(tLRPC$UserFull, false);
+            getStoriesController().updateStoriesFromFullPeer(j, tLRPC$UserFull.stories);
             ChatThemeController chatThemeController = ChatThemeController.getInstance(this.currentAccount);
             TLRPC$UserFull tLRPC$UserFull3 = tLRPC$TL_users_userFull.full_user;
             chatThemeController.saveChatWallpaper(tLRPC$UserFull3.id, tLRPC$UserFull3.wallpaper);

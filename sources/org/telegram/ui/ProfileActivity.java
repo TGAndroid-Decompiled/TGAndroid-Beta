@@ -745,24 +745,28 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             canvas.save();
             float f = this.bounceScale;
             canvas.scale(f, f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-            if (imageReceiver != null && (this.foregroundAlpha < 1.0f || !this.drawForeground)) {
-                float dpf2 = (this.hasStories ? (int) AndroidUtilities.dpf2(3.5f) : 0.0f) * (1.0f - this.progressToExpand) * this.progressToInsets;
-                float f2 = 2.0f * dpf2;
-                imageReceiver.setImageCoords(dpf2, dpf2, getMeasuredWidth() - f2, getMeasuredHeight() - f2);
+            float dpf2 = (this.hasStories ? (int) AndroidUtilities.dpf2(3.5f) : 0.0f) * (1.0f - this.progressToExpand);
+            float f2 = this.progressToInsets;
+            float f3 = this.foregroundAlpha;
+            float f4 = dpf2 * f2 * (1.0f - f3);
+            if (imageReceiver != null && (f3 < 1.0f || !this.drawForeground)) {
+                float f5 = f4 * 2.0f;
+                imageReceiver.setImageCoords(f4, f4, getMeasuredWidth() - f5, getMeasuredHeight() - f5);
                 if (this.drawAvatar) {
                     imageReceiver.draw(canvas);
                 }
             }
             if (this.foregroundAlpha > 0.0f && this.drawForeground) {
                 if (this.foregroundImageReceiver.getDrawable() != null) {
-                    this.foregroundImageReceiver.setImageCoords(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                    float f6 = 2.0f * f4;
+                    this.foregroundImageReceiver.setImageCoords(f4, f4, getMeasuredWidth() - f6, getMeasuredHeight() - f6);
                     this.foregroundImageReceiver.setAlpha(this.foregroundAlpha);
                     this.foregroundImageReceiver.draw(canvas);
                 } else {
                     this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     this.placeholderPaint.setAlpha((int) (this.foregroundAlpha * 255.0f));
-                    float f3 = this.foregroundImageReceiver.getRoundRadius()[0];
-                    canvas.drawRoundRect(this.rect, f3, f3, this.placeholderPaint);
+                    float f7 = this.foregroundImageReceiver.getRoundRadius()[0];
+                    canvas.drawRoundRect(this.rect, f7, f7, this.placeholderPaint);
                 }
             }
             canvas.restore();
@@ -8018,7 +8022,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     @Override
-    public android.animation.AnimatorSet onCustomTransitionAnimation(boolean r17, final java.lang.Runnable r18) {
+    public android.animation.AnimatorSet onCustomTransitionAnimation(boolean r18, final java.lang.Runnable r19) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ProfileActivity.onCustomTransitionAnimation(boolean, java.lang.Runnable):android.animation.AnimatorSet");
     }
 

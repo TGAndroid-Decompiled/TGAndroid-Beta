@@ -487,6 +487,9 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
 
     @Override
     public void notifyDataSetChanged() {
+        if (this.isCalculatingDiff) {
+            this.itemInternals = new ArrayList<>();
+        }
         this.isCalculatingDiff = false;
         updateItemList();
         super.notifyDataSetChanged();

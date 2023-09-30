@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import com.google.android.exoplayer2.util.Log;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
 public class VideoEncodingService extends Service implements NotificationCenter.NotificationCenterDelegate {
@@ -19,9 +20,21 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         return null;
     }
 
-    public static void start() {
+    public static void start(boolean z) {
         if (instance == null) {
             ApplicationLoader.applicationContext.startService(new Intent(ApplicationLoader.applicationContext, VideoEncodingService.class));
+        } else if (z) {
+            MediaController.VideoConvertMessage currentForegroundConverMessage = MediaController.getInstance().getCurrentForegroundConverMessage();
+            VideoEncodingService videoEncodingService = instance;
+            if (videoEncodingService.currentMessage != currentForegroundConverMessage) {
+                if (currentForegroundConverMessage != null) {
+                    videoEncodingService.setCurrentMessage(currentForegroundConverMessage);
+                    Log.d("kek", "VideoEncodingService: update message");
+                    return;
+                }
+                Log.d("kek", "VideoEncodingService: stop self");
+                instance.stopSelf();
+            }
         }
     }
 
@@ -46,7 +59,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploaded);
         this.currentMessage = null;
         if (BuildVars.LOGS_ENABLED) {
-            FileLog.d("destroy video service");
+            FileLog.d("VideoEncodingService: destroy video service");
         }
     }
 
@@ -70,14 +83,25 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         } else if (i == NotificationCenter.fileUploaded || i == NotificationCenter.fileUploadFailed) {
             String str4 = (String) objArr[0];
             if (i2 == this.currentAccount && (str = this.currentPath) != null && str.equals(str4)) {
-                MediaController.VideoConvertMessage currentForegroundConverMessage = MediaController.getInstance().getCurrentForegroundConverMessage();
-                if (currentForegroundConverMessage != null) {
-                    setCurrentMessage(currentForegroundConverMessage);
-                } else {
-                    stopSelf();
-                }
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        VideoEncodingService.this.lambda$didReceivedNotification$0();
+                    }
+                });
             }
         }
+    }
+
+    public void lambda$didReceivedNotification$0() {
+        MediaController.VideoConvertMessage currentForegroundConverMessage = MediaController.getInstance().getCurrentForegroundConverMessage();
+        if (currentForegroundConverMessage != null) {
+            setCurrentMessage(currentForegroundConverMessage);
+            Log.d("kek", "VideoEncodingService: update message");
+            return;
+        }
+        Log.d("kek", "VideoEncodingService: stop self");
+        stopSelf();
     }
 
     @Override
@@ -96,19 +120,19 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             this.builder.setChannelId(NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
             this.builder.setContentTitle(LocaleController.getString("AppName", R.string.AppName));
         }
-        startForeground(4, this.builder.build());
         setCurrentMessage(currentForegroundConverMessage);
+        startForeground(4, this.builder.build());
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                VideoEncodingService.this.lambda$onStartCommand$0();
+                VideoEncodingService.this.lambda$onStartCommand$1();
             }
         });
-        FileLog.d("VideoEncodingService: start foreground");
+        Log.d("kek", "VideoEncodingService: start foreground");
         return 2;
     }
 
-    public void lambda$onStartCommand$0() {
+    public void lambda$onStartCommand$1() {
         NotificationManagerCompat.from(ApplicationLoader.applicationContext).notify(4, this.builder.build());
     }
 
@@ -142,6 +166,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.fileUploaded);
         }
         updateBuilderForMessage(videoConvertMessage);
+        this.currentMessage = videoConvertMessage;
         int i = videoConvertMessage.currentAccount;
         this.currentAccount = i;
         this.currentPath = videoConvertMessage.messageObject.messageOwner.attachPath;

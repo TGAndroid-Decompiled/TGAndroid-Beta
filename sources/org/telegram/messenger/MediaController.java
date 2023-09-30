@@ -4282,7 +4282,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.videoConvertQueue.add(videoConvertMessage);
             if (videoConvertMessage.foreground) {
                 this.foregroundConvertingMessages.add(videoConvertMessage);
-                checkForegroundConvertMessage();
+                checkForegroundConvertMessage(false);
             }
             if (this.videoConvertQueue.size() == 1) {
                 startVideoConvertFromQueue();
@@ -4307,20 +4307,20 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
                     return;
                 }
                 this.foregroundConvertingMessages.remove(this.videoConvertQueue.remove(i));
-                checkForegroundConvertMessage();
+                checkForegroundConvertMessage(true);
                 return;
             }
         }
     }
 
-    private void checkForegroundConvertMessage() {
+    private void checkForegroundConvertMessage(boolean z) {
         if (!this.foregroundConvertingMessages.isEmpty()) {
             this.currentForegroundConvertingVideo = this.foregroundConvertingMessages.get(0);
         } else {
             this.currentForegroundConvertingVideo = null;
         }
-        if (this.currentForegroundConvertingVideo != null) {
-            VideoEncodingService.start();
+        if (this.currentForegroundConvertingVideo != null || z) {
+            VideoEncodingService.start(z);
         }
     }
 
@@ -4435,12 +4435,13 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
 
     public void lambda$didWriteData$44(boolean z, boolean z2, VideoConvertMessage videoConvertMessage, File file, float f, long j, boolean z3, long j2) {
         if (z || z2) {
+            boolean z4 = videoConvertMessage.videoEditedInfo.canceled;
             synchronized (this.videoConvertSync) {
                 videoConvertMessage.videoEditedInfo.canceled = false;
             }
             this.videoConvertQueue.remove(videoConvertMessage);
             this.foregroundConvertingMessages.remove(videoConvertMessage);
-            checkForegroundConvertMessage();
+            checkForegroundConvertMessage(z4 || z);
             startVideoConvertFromQueue();
         }
         if (z) {

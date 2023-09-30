@@ -16,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.OvershootInterpolator;
+import androidx.annotation.Keep;
 import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -36,6 +37,7 @@ import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.RadialProgress;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.Stories.ProfileStoriesView;
+import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoryViewer;
 public class ProfileStoriesView extends View implements NotificationCenter.NotificationCenterDelegate {
     private float actionBarProgress;
@@ -55,13 +57,14 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private boolean expandRightPad;
     private final AnimatedFloat expandRightPadAnimated;
     private float expandY;
+    private float fragmentTransitionProgress;
+    private StoriesController.UploadingStory lastUploadingStory;
     private float left;
     private StoryCircle mainCircle;
     private ValueAnimator newStoryBounce;
     private float newStoryBounceT;
     private Runnable onLongPressRunnable;
     Paint paint;
-    private TLRPC$PeerStories peerStories;
     private boolean progressIsDone;
     private float progressToInsets;
     private final AnimatedFloat progressToUploading;
@@ -83,6 +86,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     private float tapY;
     private final AnimatedTextView.AnimatedTextDrawable titleDrawable;
     private int unreadCount;
+    private int uploadingStoriesCount;
     float w;
     private final Paint whitePaint;
 
@@ -163,9 +167,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.EASE_OUT_QUINT;
         this.segmentsCountAnimated = new AnimatedFloat(this, 0L, 480L, cubicBezierInterpolator);
         this.segmentsUnreadCountAnimated = new AnimatedFloat(this, 0L, 240L, cubicBezierInterpolator);
-        CubicBezierInterpolator cubicBezierInterpolator2 = CubicBezierInterpolator.DEFAULT;
-        this.progressToUploading = new AnimatedFloat(this, 0L, 150L, cubicBezierInterpolator2);
-        new AnimatedFloat(this, 0L, 150L, cubicBezierInterpolator2);
+        this.progressToUploading = new AnimatedFloat(this, 0L, 150L, CubicBezierInterpolator.DEFAULT);
         this.newStoryBounceT = 1.0f;
         this.expandRightPadAnimated = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
         this.rightAnimated = new AnimatedFloat(this, 0L, 350L, cubicBezierInterpolator);
@@ -205,7 +207,6 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     public void setStories(TLRPC$PeerStories tLRPC$PeerStories) {
-        this.peerStories = tLRPC$PeerStories;
         updateStories(true, false);
     }
 
@@ -214,14 +215,14 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
         int i;
         TLRPC$StoryItem tLRPC$StoryItem;
         boolean z3 = this.dialogId == UserConfig.getInstance(this.currentAccount).getClientUserId();
-        TLRPC$PeerStories tLRPC$PeerStories = this.peerStories;
+        TLRPC$PeerStories storiesFromFullPeer = MessagesController.getInstance(this.currentAccount).getStoriesController().getStoriesFromFullPeer(this.dialogId);
         TLRPC$PeerStories stories = MessagesController.getInstance(this.currentAccount).getStoriesController().getStories(this.dialogId);
-        TLRPC$PeerStories tLRPC$PeerStories2 = this.dialogId == 0 ? null : tLRPC$PeerStories;
-        int max = tLRPC$PeerStories != null ? Math.max(0, tLRPC$PeerStories.max_read_id) : 0;
+        TLRPC$PeerStories tLRPC$PeerStories = this.dialogId == 0 ? null : storiesFromFullPeer;
+        int max = storiesFromFullPeer != null ? Math.max(0, storiesFromFullPeer.max_read_id) : 0;
         if (stories != null) {
             max = Math.max(max, stories.max_read_id);
         }
-        if (tLRPC$PeerStories2 == null || (arrayList = tLRPC$PeerStories2.stories) == null) {
+        if (tLRPC$PeerStories == null || (arrayList = tLRPC$PeerStories.stories) == null) {
             arrayList = new ArrayList<>();
         }
         ArrayList arrayList2 = new ArrayList();
@@ -258,13 +259,13 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                         }
                         boolean z4 = tLRPC$StoryItem3 instanceof TLRPC$TL_storyItemSkipped;
                         if (z4) {
-                            if (tLRPC$PeerStories != null) {
+                            if (storiesFromFullPeer != null) {
                                 int i7 = 0;
                                 while (true) {
-                                    if (i7 >= tLRPC$PeerStories.stories.size()) {
+                                    if (i7 >= storiesFromFullPeer.stories.size()) {
                                         break;
-                                    } else if (tLRPC$PeerStories.stories.get(i7).id == i5) {
-                                        tLRPC$PeerStories.stories.get(i7);
+                                    } else if (storiesFromFullPeer.stories.get(i7).id == i5) {
+                                        storiesFromFullPeer.stories.get(i7);
                                         break;
                                     } else {
                                         i7++;
@@ -306,13 +307,13 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                     }
                     boolean z5 = tLRPC$StoryItem4 instanceof TLRPC$TL_storyItemSkipped;
                     if (z5) {
-                        if (tLRPC$PeerStories != null) {
+                        if (storiesFromFullPeer != null) {
                             int i11 = 0;
                             while (true) {
-                                if (i11 >= tLRPC$PeerStories.stories.size()) {
+                                if (i11 >= storiesFromFullPeer.stories.size()) {
                                     break;
-                                } else if (tLRPC$PeerStories.stories.get(i11).id == i9) {
-                                    tLRPC$PeerStories.stories.get(i11);
+                                } else if (storiesFromFullPeer.stories.get(i11).id == i9) {
+                                    storiesFromFullPeer.stories.get(i11);
                                     break;
                                 } else {
                                     i11++;
@@ -350,7 +351,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 storyCircle.scale = 0.0f;
             } else {
                 storyCircle.index = i13;
-                storyCircle.read = z3 || !(tLRPC$PeerStories2 == null || tLRPC$StoryItem == null || tLRPC$StoryItem.id > this.storiesController.getMaxStoriesReadId(this.dialogId));
+                storyCircle.read = z3 || !(tLRPC$PeerStories == null || tLRPC$StoryItem == null || tLRPC$StoryItem.id > this.storiesController.getMaxStoriesReadId(this.dialogId));
             }
             if (!z) {
                 storyCircle.apply();
@@ -375,7 +376,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 storyCircle2.index = i14;
                 storyCircle2.scale = 1.0f;
                 storyCircle2.scaleAnimated.set(0.0f, true);
-                storyCircle2.read = z3 || (tLRPC$PeerStories2 != null && tLRPC$StoryItem5.id <= tLRPC$PeerStories2.max_read_id);
+                storyCircle2.read = z3 || (tLRPC$PeerStories != null && tLRPC$StoryItem5.id <= tLRPC$PeerStories.max_read_id);
                 if (!z) {
                     storyCircle2.apply();
                 }
@@ -395,7 +396,12 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             }
             i16++;
         }
+        ArrayList<StoriesController.UploadingStory> uploadingStories = this.storiesController.getUploadingStories(this.dialogId);
+        this.uploadingStoriesCount = uploadingStories == null ? 0 : uploadingStories.size();
         int max2 = Math.max(arrayList2.size(), i);
+        if (max2 == 0 && this.uploadingStoriesCount != 0) {
+            max2 = 1;
+        }
         if (z2 && z) {
             if (max2 == this.count + 1 && this.unreadCount == i2 + 1) {
                 animateNewStory();
@@ -487,7 +493,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
     }
 
     @Override
-    protected void dispatchDraw(android.graphics.Canvas r29) {
+    protected void dispatchDraw(android.graphics.Canvas r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.ProfileStoriesView.dispatchDraw(android.graphics.Canvas):void");
     }
 
@@ -710,6 +716,7 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
                 transitionViewHolder.clipTop = 0.0f;
                 transitionViewHolder.clipBottom = AndroidUtilities.displaySize.y;
                 transitionViewHolder.clipParent = (View) ProfileStoriesView.this.getParent();
+                transitionViewHolder.radialProgressUpload = ProfileStoriesView.this.radialProgress;
                 return true;
             }
             int i4 = 0;
@@ -818,5 +825,19 @@ public class ProfileStoriesView extends View implements NotificationCenter.Notif
             AndroidUtilities.cancelRunOnUIThread(this.onLongPressRunnable);
         }
         return super.onTouchEvent(motionEvent);
+    }
+
+    @Keep
+    public void setFragmentTransitionProgress(float f) {
+        if (this.fragmentTransitionProgress == f) {
+            return;
+        }
+        this.fragmentTransitionProgress = f;
+        invalidate();
+    }
+
+    @Keep
+    public float getFragmentTransitionProgress() {
+        return this.fragmentTransitionProgress;
     }
 }

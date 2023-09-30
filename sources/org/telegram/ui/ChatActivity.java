@@ -672,6 +672,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private boolean locationAlertShown;
     private int[] maxDate;
     private int[] maxMessageId;
+    private int maxPinnedMessageId;
     private boolean maybeStartTrackingSlidingView;
     private HintView mediaBanTooltip;
     public MentionsContainerView mentionContainer;
@@ -1056,13 +1057,13 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return i;
     }
 
-    static int access$21410(ChatActivity chatActivity) {
+    static int access$21210(ChatActivity chatActivity) {
         int i = chatActivity.newMentionsCount;
         chatActivity.newMentionsCount = i - 1;
         return i;
     }
 
-    static int access$27604(ChatActivity chatActivity) {
+    static int access$27404(ChatActivity chatActivity) {
         int i = chatActivity.pinBullerinTag + 1;
         chatActivity.pinBullerinTag = i;
         return i;
@@ -1080,11 +1081,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         return i2;
     }
 
-    public static void access$44000(ChatActivity chatActivity) {
+    public static void access$43900(ChatActivity chatActivity) {
         chatActivity.resetProgressDialogLoading();
     }
 
-    static int access$47808() {
+    static int access$47708() {
         int i = lastStableId;
         lastStableId = i + 1;
         return i;
@@ -2726,6 +2727,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         getNotificationCenter().removeObserver(this, NotificationCenter.messageTranslated);
         getNotificationCenter().removeObserver(this, NotificationCenter.messageTranslating);
         getNotificationCenter().removeObserver(this, NotificationCenter.onReceivedChannelDifference);
+        getNotificationCenter().removeObserver(this, NotificationCenter.storiesUpdated);
         if (this.currentEncryptedChat != null) {
             getNotificationCenter().removeObserver(this, NotificationCenter.didVerifyMessagesStickers);
         }
@@ -4432,12 +4434,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
                 View childAt = ChatActivity.this.chatListView.getChildAt(i3);
                 float f3 = ChatActivity.this.chatListViewPaddingTop;
-                if (ChatActivity.this.isThreadChat()) {
-                    ChatActivity chatActivity = ChatActivity.this;
-                    if (!chatActivity.isTopic || chatActivity.pinnedOnlyStarterMessage()) {
-                        f3 -= Math.max(0.0f, AndroidUtilities.dp(48.0f) + ChatActivity.this.pinnedMessageEnterOffset);
-                    }
-                }
                 if (ChatActivity.this.chatListView.getChildAdapterPosition(childAt) == ChatActivity.this.chatAdapter.getItemCount() - 1) {
                     i2 = super.scrollVerticallyBy(((float) (childAt.getTop() - i)) > f3 ? (int) (childAt.getTop() - f3) : i, recycler, state);
                     z = true;
@@ -4449,8 +4445,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 i2 = super.scrollVerticallyBy(i, recycler, state);
             }
             if (i > 0 && i2 == 0 && ChatObject.isChannel(ChatActivity.this.currentChat)) {
-                ChatActivity chatActivity2 = ChatActivity.this;
-                if (!chatActivity2.currentChat.megagroup && chatActivity2.chatListView.getScrollState() == 1 && !ChatActivity.this.chatListView.isFastScrollAnimationRunning() && !ChatActivity.this.chatListView.isMultiselect() && ChatActivity.this.reportType < 0) {
+                ChatActivity chatActivity = ChatActivity.this;
+                if (!chatActivity.currentChat.megagroup && chatActivity.chatListView.getScrollState() == 1 && !ChatActivity.this.chatListView.isFastScrollAnimationRunning() && !ChatActivity.this.chatListView.isMultiselect() && ChatActivity.this.reportType < 0) {
                     if (ChatActivity.this.pullingDownOffset == 0.0f && ChatActivity.this.pullingDownDrawable != null) {
                         ChatActivity.this.pullingDownDrawable.updateDialog();
                     }
@@ -6774,18 +6770,18 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ChatActivity.this.pinBulletin.hide();
             }
             ChatActivity.this.showPinBulletin = true;
-            final int access$27604 = ChatActivity.access$27604(ChatActivity.this);
+            final int access$27404 = ChatActivity.access$27404(ChatActivity.this);
             final int pinnedMessagesCount = ChatActivity.this.getPinnedMessagesCount();
             ChatActivity chatActivity = ChatActivity.this;
             chatActivity.pinBulletin = BulletinFactory.createUnpinAllMessagesBulletin(chatActivity, pinnedMessagesCount, z2, new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.AnonymousClass58.this.lambda$onUnpin$0(z2, arrayList, arrayList2, pinnedMessagesCount, access$27604);
+                    ChatActivity.AnonymousClass58.this.lambda$onUnpin$0(z2, arrayList, arrayList2, pinnedMessagesCount, access$27404);
                 }
             }, new Runnable() {
                 @Override
                 public final void run() {
-                    ChatActivity.AnonymousClass58.this.lambda$onUnpin$1(z2, access$27604);
+                    ChatActivity.AnonymousClass58.this.lambda$onUnpin$1(z2, access$27404);
                 }
             }, ChatActivity.this.themeDelegate);
         }
@@ -7092,9 +7088,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         }
                         if (this.chatListView.getChildAdapterPosition(this.chatListView.getChildAt(i3)) == this.chatAdapter.getItemCount() - 1) {
                             float f7 = this.chatListViewPaddingTop;
-                            if (isThreadChat() && (!this.isTopic || pinnedOnlyStarterMessage())) {
-                                f7 -= Math.max(0.0f, AndroidUtilities.dp(48.0f) + this.pinnedMessageEnterOffset);
-                            }
                             if (childAt.getTop() > f7) {
                                 this.chatListView.scrollBy(0, (int) (childAt.getTop() - f7));
                             }
@@ -9778,7 +9771,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         updatePinnedMessageView(this.openAnimationStartTime != 0 && SystemClock.elapsedRealtime() >= this.openAnimationStartTime + 150);
     }
 
-    public boolean pinnedOnlyStarterMessage() {
+    private boolean pinnedOnlyStarterMessage() {
         return this.pinnedMessageIds.size() == 1 && this.topicStarterMessageObject != null && this.pinnedMessageIds.get(0).intValue() == this.topicStarterMessageObject.getId();
     }
 
@@ -16660,7 +16653,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     private void updatePinnedTopicStarterMessage() {
         TLRPC$Message tLRPC$Message;
         TLRPC$TL_forumTopic tLRPC$TL_forumTopic;
-        MessageObject messageObject = (this.isTopic && !this.pinnedMessageObjects.isEmpty() && this.pinnedMessageIds.size() == 1) ? this.pinnedMessageObjects.get(this.pinnedMessageIds.get(0)) : null;
+        MessageObject messageObject = (this.isTopic && !this.pinnedMessageObjects.isEmpty() && this.pinnedMessageIds.size() == 1 && this.pinnedMessageIds.get(0).intValue() == getTopicId() + 1) ? this.pinnedMessageObjects.get(this.pinnedMessageIds.get(0)) : null;
         this.topicStarterMessageObject = messageObject;
         if (!this.isTopic || messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || (tLRPC$TL_forumTopic = this.forumTopic) == null || MessageObject.peersEqual(tLRPC$TL_forumTopic.from_id, tLRPC$Message.from_id) || MessageObject.peersEqual(this.currentChat, this.topicStarterMessageObject.messageOwner.from_id)) {
             return;
@@ -17865,19 +17858,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return chatActivityAdapter.messagesEndRow;
         }
 
-        static int access$24200(ChatActivityAdapter chatActivityAdapter) {
+        static int access$24000(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.botInfoRow;
         }
 
-        static int access$40400(ChatActivityAdapter chatActivityAdapter) {
+        static int access$40200(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.loadingDownRow;
         }
 
-        static int access$40500(ChatActivityAdapter chatActivityAdapter) {
+        static int access$40300(ChatActivityAdapter chatActivityAdapter) {
             return chatActivityAdapter.loadingUpRow;
         }
 
-        static void access$40600(ChatActivityAdapter chatActivityAdapter) {
+        static void access$40400(ChatActivityAdapter chatActivityAdapter) {
             chatActivityAdapter.updateRowsInternal();
         }
 
@@ -18440,7 +18433,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return null;
             }
             if (z2) {
-                messageObject.stableId = ChatActivity.access$47808();
+                messageObject.stableId = ChatActivity.access$47708();
                 notifyDataSetChanged(true);
             } else {
                 updateRowAtPosition(indexOf + this.messagesStartRow);
@@ -19768,7 +19761,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
-                        ChatActivity.access$44000(ChatActivity.this);
+                        ChatActivity.access$43900(ChatActivity.this);
                     }
                 }, 250L);
             }
@@ -20105,37 +20098,37 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         public ChatScrollCallback() {
         }
 
-        static MessageObject access$30502(ChatScrollCallback chatScrollCallback, MessageObject messageObject) {
+        static MessageObject access$30302(ChatScrollCallback chatScrollCallback, MessageObject messageObject) {
             chatScrollCallback.scrollTo = messageObject;
             return messageObject;
         }
 
-        static boolean access$30602(ChatScrollCallback chatScrollCallback, boolean z) {
+        static boolean access$30402(ChatScrollCallback chatScrollCallback, boolean z) {
             chatScrollCallback.lastBottom = z;
             return z;
         }
 
-        static int access$30702(ChatScrollCallback chatScrollCallback, int i) {
+        static int access$30502(ChatScrollCallback chatScrollCallback, int i) {
             chatScrollCallback.lastItemOffset = i;
             return i;
         }
 
-        static int access$30802(ChatScrollCallback chatScrollCallback, int i) {
+        static int access$30602(ChatScrollCallback chatScrollCallback, int i) {
             chatScrollCallback.lastPadding = i;
             return i;
         }
 
-        static int access$30902(ChatScrollCallback chatScrollCallback, int i) {
+        static int access$30702(ChatScrollCallback chatScrollCallback, int i) {
             chatScrollCallback.position = i;
             return i;
         }
 
-        static int access$31002(ChatScrollCallback chatScrollCallback, int i) {
+        static int access$30802(ChatScrollCallback chatScrollCallback, int i) {
             chatScrollCallback.offset = i;
             return i;
         }
 
-        static boolean access$31102(ChatScrollCallback chatScrollCallback, boolean z) {
+        static boolean access$30902(ChatScrollCallback chatScrollCallback, boolean z) {
             chatScrollCallback.bottom = z;
             return z;
         }
@@ -21348,11 +21341,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             return color;
         }
 
-        static TLRPC$WallPaper access$39700(ThemeDelegate themeDelegate) {
+        static TLRPC$WallPaper access$39500(ThemeDelegate themeDelegate) {
             return themeDelegate.wallpaper;
         }
 
-        static EmojiThemes access$40700(ThemeDelegate themeDelegate) {
+        static EmojiThemes access$40500(ThemeDelegate themeDelegate) {
             return themeDelegate.chatTheme;
         }
 
