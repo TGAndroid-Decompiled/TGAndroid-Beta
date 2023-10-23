@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_attachMenuBots extends TLRPC$AttachMenuBots {
-    public static int constructor = 1011024320;
     public long hash;
     public ArrayList<TLRPC$TL_attachMenuBot> bots = new ArrayList<>();
     public ArrayList<TLRPC$User> users = new ArrayList<>();
@@ -44,7 +43,7 @@ public class TLRPC$TL_attachMenuBots extends TLRPC$AttachMenuBots {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1011024320);
         abstractSerializedData.writeInt64(this.hash);
         abstractSerializedData.writeInt32(481674261);
         int size = this.bots.size();

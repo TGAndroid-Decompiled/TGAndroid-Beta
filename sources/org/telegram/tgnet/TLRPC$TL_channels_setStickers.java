@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_setStickers extends TLObject {
-    public static int constructor = -359881479;
     public TLRPC$InputChannel channel;
     public TLRPC$InputStickerSet stickerset;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_channels_setStickers extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-359881479);
         this.channel.serializeToStream(abstractSerializedData);
         this.stickerset.serializeToStream(abstractSerializedData);
     }

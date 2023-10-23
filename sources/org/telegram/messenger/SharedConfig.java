@@ -114,6 +114,7 @@ public class SharedConfig {
     private static HashMap<String, String> passportConfigMap;
     public static boolean pauseMusicOnMedia;
     public static boolean pauseMusicOnRecord;
+    public static boolean payByInvoice;
     public static TLRPC$TL_help_appUpdate pendingAppUpdate;
     public static int pendingAppUpdateBuildVersion;
     public static boolean photoViewerBlur;
@@ -135,6 +136,7 @@ public class SharedConfig {
     public static boolean readOnlyStorageDirAlertShowed;
     public static boolean recordViaSco;
     public static int repeatMode;
+    public static boolean replyingOptionsHintShown;
     public static boolean roundCamera16to9;
     public static boolean saveIncomingPhotos;
     public static boolean saveStreamMedia;
@@ -152,6 +154,7 @@ public class SharedConfig {
     public static boolean stickersReorderingHintUsed;
     public static String storageCacheDir;
     public static int storiesColumnsCount;
+    public static boolean storiesIntroShown;
     public static boolean storyReactionsLongPressHint;
     public static boolean streamAllVideo;
     public static boolean streamMedia;
@@ -265,6 +268,11 @@ public class SharedConfig {
             allowPreparingHevcPlayers = Boolean.valueOf(i2 >= 8);
         }
         return allowPreparingHevcPlayers.booleanValue();
+    }
+
+    public static void togglePaymentByInvoice() {
+        payByInvoice = !payByInvoice;
+        ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0).edit().putBoolean("payByInvoice", payByInvoice).apply();
     }
 
     public static void toggleSurfaceInStories() {
@@ -451,6 +459,7 @@ public class SharedConfig {
                 edit.putInt("scheduledHintShows", scheduledHintShows);
                 edit.putLong("scheduledHintSeenAt", scheduledHintSeenAt);
                 edit.putBoolean("forwardingOptionsHintShown", forwardingOptionsHintShown);
+                edit.putBoolean("replyingOptionsHintShown", replyingOptionsHintShown);
                 edit.putInt("lockRecordAudioVideoHint", lockRecordAudioVideoHint);
                 edit.putString("storageCacheDir", !TextUtils.isEmpty(storageCacheDir) ? storageCacheDir : "");
                 edit.putBoolean("proxyRotationEnabled", proxyRotationEnabled);
@@ -654,6 +663,7 @@ public class SharedConfig {
         scheduledHintSeenAt = 0L;
         lockRecordAudioVideoHint = 0;
         forwardingOptionsHintShown = false;
+        replyingOptionsHintShown = false;
         messageSeenHintCount = 3;
         emojiInteractionsHintCount = 3;
         dayNightThemeSwitchHintCount = 3;
@@ -687,6 +697,13 @@ public class SharedConfig {
         storyReactionsLongPressHint = z;
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         edit.putBoolean("storyReactionsLongPressHint", storyReactionsLongPressHint);
+        edit.apply();
+    }
+
+    public static void setStoriesIntroShown(boolean z) {
+        storiesIntroShown = z;
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        edit.putBoolean("storiesIntroShown", storiesIntroShown);
         edit.apply();
     }
 
@@ -736,6 +753,13 @@ public class SharedConfig {
         SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
         forwardingOptionsHintShown = true;
         edit.putBoolean("forwardingOptionsHintShown", true);
+        edit.apply();
+    }
+
+    public static void replyingOptionsHintHintShowed() {
+        SharedPreferences.Editor edit = MessagesController.getGlobalMainSettings().edit();
+        replyingOptionsHintShown = true;
+        edit.putBoolean("replyingOptionsHintShown", true);
         edit.apply();
     }
 

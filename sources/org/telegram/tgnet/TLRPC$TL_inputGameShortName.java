@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputGameShortName extends TLRPC$InputGame {
-    public static int constructor = -1020139510;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.bot_id = TLRPC$InputUser.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -10,7 +8,7 @@ public class TLRPC$TL_inputGameShortName extends TLRPC$InputGame {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1020139510);
         this.bot_id.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.short_name);
     }

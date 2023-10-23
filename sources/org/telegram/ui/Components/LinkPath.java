@@ -2,6 +2,7 @@ package org.telegram.ui.Components;
 
 import android.graphics.CornerPathEffect;
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.os.Build;
 import android.text.Layout;
 import org.telegram.messenger.AndroidUtilities;
@@ -14,12 +15,18 @@ public class LinkPath extends Path {
     public float centerY;
     private Layout currentLayout;
     private int currentLine;
+    private float insetHoriz;
+    private float insetVert;
     private int lineHeight;
+    private float maxX;
+    private float maxY;
     private boolean useRoundRect;
     private float xOffset;
     private float yOffset;
     private float lastTop = -1.0f;
     private boolean allowReset = true;
+    private float minX = Float.MAX_VALUE;
+    private float minY = Float.MAX_VALUE;
 
     public static int getRadius() {
         return AndroidUtilities.dp(5.0f);
@@ -75,11 +82,16 @@ public class LinkPath extends Path {
         this.baselineShift = i;
     }
 
+    public void setInset(float f, float f2) {
+        this.insetVert = f;
+        this.insetHoriz = f2;
+    }
+
     @Override
     public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
         Layout layout = this.currentLayout;
         if (layout == null) {
-            super.addRect(f, f2, f3, f4, direction);
+            superAddRect(f, f2, f3, f4, direction);
             return;
         }
         try {
@@ -123,14 +135,32 @@ public class LinkPath extends Path {
                     this.centerX = (f11 + f10) / 2.0f;
                     this.centerY = (f12 + f6) / 2.0f;
                     if (this.useRoundRect && LiteMode.isEnabled(LiteMode.FLAGS_CHAT)) {
-                        super.addRect(f10 - (getRadius() / 2.0f), f6, f11 + (getRadius() / 2.0f), f12, direction);
+                        superAddRect(f10 - (getRadius() / 2.0f), f6, f11 + (getRadius() / 2.0f), f12, direction);
                     } else {
-                        super.addRect(f10, f6, f11, f12, direction);
+                        superAddRect(f10, f6, f11, f12, direction);
                     }
                 }
             }
         } catch (Exception unused) {
         }
+    }
+
+    private void superAddRect(float f, float f2, float f3, float f4, Path.Direction direction) {
+        float f5 = this.insetHoriz;
+        float f6 = f - f5;
+        float f7 = this.insetVert;
+        float f8 = f2 - f7;
+        float f9 = f3 + f5;
+        float f10 = f4 + f7;
+        this.minX = Math.min(this.minX, Math.min(f6, f9));
+        this.minY = Math.min(this.minY, Math.min(f8, f10));
+        this.maxX = Math.max(this.maxX, Math.max(f6, f9));
+        this.maxY = Math.max(this.maxY, Math.max(f8, f10));
+        super.addRect(f6, f8, f9, f10, direction);
+    }
+
+    public void getBounds(RectF rectF) {
+        rectF.set(this.minX, this.minY, this.maxX, this.maxY);
     }
 
     @Override

@@ -29,8 +29,6 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                 break;
             case -1723033470:
                 tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeSticker() {
-                    public static int constructor = -1723033470;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.alt = abstractSerializedData2.readString(z2);
@@ -38,7 +36,7 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1723033470);
                         abstractSerializedData2.writeString(this.alt);
                     }
                 };
@@ -48,8 +46,6 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                 break;
             case -556656416:
                 tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeAudio() {
-                    public static int constructor = -556656416;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.duration = abstractSerializedData2.readInt32(z2);
@@ -59,7 +55,7 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-556656416);
                         abstractSerializedData2.writeInt32((int) this.duration);
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeString(this.performer);
@@ -68,15 +64,13 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                 break;
             case -83208409:
                 tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeSticker() {
-                    public static int constructor = -83208409;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-83208409);
                     }
                 };
                 break;
@@ -85,8 +79,6 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                 break;
             case 85215461:
                 tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeAudio() {
-                    public static int constructor = 85215461;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.duration = abstractSerializedData2.readInt32(z2);
@@ -94,7 +86,7 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(85215461);
                         abstractSerializedData2.writeInt32((int) this.duration);
                     }
                 };
@@ -113,8 +105,6 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
                 break;
             case 1494273227:
                 tLRPC$TL_documentAttributeHasStickers = new TLRPC$TL_documentAttributeVideo() {
-                    public static int constructor = 1494273227;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.duration = abstractSerializedData2.readInt32(z2);
@@ -124,7 +114,7 @@ public abstract class TLRPC$DocumentAttribute extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1494273227);
                         abstractSerializedData2.writeInt32((int) this.duration);
                         abstractSerializedData2.writeInt32(this.w);
                         abstractSerializedData2.writeInt32(this.h);

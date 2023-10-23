@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updatePeerSettings extends TLRPC$Update {
-    public static int constructor = 1786671974;
     public TLRPC$Peer peer;
     public TLRPC$TL_peerSettings settings;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_updatePeerSettings extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1786671974);
         this.peer.serializeToStream(abstractSerializedData);
         this.settings.serializeToStream(abstractSerializedData);
     }

@@ -3,6 +3,7 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
+import org.telegram.tgnet.tl.TL_stories$PeerStories;
 public abstract class TLRPC$ChatFull extends TLObject {
     public String about;
     public int admins_count;
@@ -50,7 +51,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
     public int slowmode_seconds;
     public int stats_dc;
     public TLRPC$StickerSet stickerset;
-    public TLRPC$PeerStories stories;
+    public TL_stories$PeerStories stories;
     public boolean stories_pinned_available;
     public String theme_emoticon;
     public boolean translations_disabled;
@@ -67,8 +68,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
         switch (i) {
             case -1977734781:
                 tLRPC$ChatFull = new TLRPC$TL_chatFull() {
-                    public static int constructor = -1977734781;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -121,7 +120,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1977734781);
                         int i2 = this.can_set_username ? this.flags | 128 : this.flags & (-129);
                         this.flags = i2;
                         int i3 = this.has_scheduled ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
@@ -165,8 +164,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -1781833897:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = -1781833897;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -224,7 +221,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1781833897);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -270,8 +267,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -1749097118:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = -1749097118;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -326,7 +321,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1749097118);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -369,8 +364,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -1736252138:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = -1736252138;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -447,7 +440,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1736252138);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -515,8 +508,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -1640751649:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = -1640751649;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -567,7 +558,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1640751649);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -605,8 +596,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -1009430225:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = -1009430225;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -661,7 +650,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1009430225);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -707,8 +696,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -877254512:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = -877254512;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -777,7 +764,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-877254512);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -836,8 +823,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -779165146:
                 tLRPC$ChatFull = new TLRPC$ChatFull() {
-                    public static int constructor = -779165146;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -922,7 +907,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-779165146);
                         int i2 = this.can_set_username ? this.flags | 128 : this.flags & (-129);
                         this.flags = i2;
                         int i3 = this.has_scheduled ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
@@ -988,8 +973,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -516145888:
                 tLRPC$ChatFull = new TLRPC$ChatFull() {
-                    public static int constructor = -516145888;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1137,7 +1120,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-516145888);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -1267,8 +1250,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -374179305:
                 tLRPC$ChatFull = new TLRPC$ChatFull() {
-                    public static int constructor = -374179305;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1384,7 +1365,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-374179305);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -1492,8 +1473,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -362240487:
                 tLRPC$ChatFull = new TLRPC$ChatFull() {
-                    public static int constructor = -362240487;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1644,7 +1623,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-362240487);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -1777,8 +1756,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -304961647:
                 tLRPC$ChatFull = new TLRPC$TL_chatFull() {
-                    public static int constructor = -304961647;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
@@ -1816,7 +1793,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-304961647);
                         abstractSerializedData2.writeInt32(this.flags);
                         abstractSerializedData2.writeInt32((int) this.id);
                         this.participants.serializeToStream(abstractSerializedData2);
@@ -1841,8 +1818,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -281384243:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = -281384243;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1937,7 +1912,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-281384243);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -2031,8 +2006,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -261341160:
                 tLRPC$ChatFull = new TLRPC$TL_chatFull() {
-                    public static int constructor = -261341160;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -2082,7 +2055,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-261341160);
                         int i2 = this.can_set_username ? this.flags | 128 : this.flags & (-129);
                         this.flags = i2;
                         int i3 = this.has_scheduled ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
@@ -2123,8 +2096,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -253335766:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = -253335766;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -2216,7 +2187,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-253335766);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -2302,8 +2273,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -231385849:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = -231385849;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -2447,7 +2416,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-231385849);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -2581,8 +2550,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -213431562:
                 tLRPC$ChatFull = new TLRPC$TL_chatFull() {
-                    public static int constructor = -213431562;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -2629,7 +2596,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-213431562);
                         int i2 = this.can_set_username ? this.flags | 128 : this.flags & (-129);
                         this.flags = i2;
                         int i3 = this.has_scheduled ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
@@ -2667,8 +2634,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case -88925533:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = -88925533;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -2698,7 +2663,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-88925533);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -2724,8 +2689,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 56920439:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = 56920439;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -2799,7 +2762,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(56920439);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -2864,8 +2827,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 231260545:
                 tLRPC$ChatFull = new TLRPC$TL_chatFull() {
-                    public static int constructor = 231260545;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -2913,7 +2874,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(231260545);
                         int i2 = this.can_set_username ? this.flags | 128 : this.flags & (-129);
                         this.flags = i2;
                         int i3 = this.has_scheduled ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
@@ -2949,8 +2910,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 277964371:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = 277964371;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -3031,7 +2990,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(277964371);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -3104,8 +3063,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 401891279:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = 401891279;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -3167,7 +3124,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(401891279);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -3218,8 +3175,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 461151667:
                 tLRPC$ChatFull = new TLRPC$TL_chatFull() {
-                    public static int constructor = 461151667;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -3264,7 +3219,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(461151667);
                         int i2 = this.can_set_username ? this.flags | 128 : this.flags & (-129);
                         this.flags = i2;
                         int i3 = this.has_scheduled ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
@@ -3297,8 +3252,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 478652186:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = 478652186;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -3368,7 +3321,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(478652186);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -3429,8 +3382,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 581055962:
                 tLRPC$ChatFull = new TLRPC$TL_chatFull() {
-                    public static int constructor = 581055962;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -3471,7 +3422,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(581055962);
                         int i2 = this.can_set_username ? this.flags | 128 : this.flags & (-129);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -3499,8 +3450,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 625524791:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = 625524791;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -3610,7 +3559,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(625524791);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -3712,8 +3661,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 763976820:
                 tLRPC$ChatFull = new TLRPC$ChatFull() {
-                    public static int constructor = 763976820;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -3801,7 +3748,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(763976820);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -3882,8 +3829,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 771925524:
                 tLRPC$ChatFull = new TLRPC$TL_chatFull() {
-                    public static int constructor = 771925524;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -3913,7 +3858,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(771925524);
                         abstractSerializedData2.writeInt32((int) this.id);
                         this.participants.serializeToStream(abstractSerializedData2);
                         this.chat_photo.serializeToStream(abstractSerializedData2);
@@ -3930,8 +3875,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 793980732:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = 793980732;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -4047,7 +3990,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(793980732);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -4155,8 +4098,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 1185349556:
                 tLRPC$ChatFull = new TLRPC$ChatFull() {
-                    public static int constructor = 1185349556;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -4228,7 +4169,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1185349556);
                         int i2 = this.can_set_username ? this.flags | 128 : this.flags & (-129);
                         this.flags = i2;
                         int i3 = this.has_scheduled ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
@@ -4286,8 +4227,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 1235264985:
                 tLRPC$ChatFull = new TLRPC$TL_chatFull() {
-                    public static int constructor = 1235264985;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -4343,7 +4282,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1235264985);
                         int i2 = this.can_set_username ? this.flags | 128 : this.flags & (-129);
                         this.flags = i2;
                         int i3 = this.has_scheduled ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
@@ -4390,8 +4329,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 1304281241:
                 tLRPC$ChatFull = new TLRPC$ChatFull() {
-                    public static int constructor = 1304281241;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -4447,7 +4384,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1304281241);
                         int i2 = this.can_set_username ? this.flags | 128 : this.flags & (-129);
                         this.flags = i2;
                         int i3 = this.has_scheduled ? i2 | LiteMode.FLAG_CHAT_BLUR : i2 & (-257);
@@ -4494,8 +4431,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 1418477459:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = 1418477459;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -4608,7 +4543,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1418477459);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -4713,8 +4648,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 1449537070:
                 tLRPC$ChatFull = new TLRPC$ChatFull() {
-                    public static int constructor = 1449537070;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -4849,7 +4782,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1449537070);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -4971,8 +4904,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 1506802019:
                 tLRPC$ChatFull = new TLRPC$ChatFull() {
-                    public static int constructor = 1506802019;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -5104,7 +5035,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1506802019);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -5226,8 +5157,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 1991201921:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = 1991201921;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -5293,7 +5222,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1991201921);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);
@@ -5349,8 +5278,6 @@ public abstract class TLRPC$ChatFull extends TLObject {
                 break;
             case 2055070967:
                 tLRPC$ChatFull = new TLRPC$TL_channelFull() {
-                    public static int constructor = 2055070967;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -5444,7 +5371,7 @@ public abstract class TLRPC$ChatFull extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(2055070967);
                         int i2 = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
                         this.flags = i2;
                         int i3 = this.can_set_username ? i2 | 64 : i2 & (-65);

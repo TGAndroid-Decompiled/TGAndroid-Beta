@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_inputMediaPoll extends TLRPC$InputMedia {
-    public static int constructor = 261416433;
     public TLRPC$Poll poll;
     public String solution;
     public ArrayList<byte[]> correct_answers = new ArrayList<>();
@@ -49,7 +48,7 @@ public class TLRPC$TL_inputMediaPoll extends TLRPC$InputMedia {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(261416433);
         abstractSerializedData.writeInt32(this.flags);
         this.poll.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {

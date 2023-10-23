@@ -10,10 +10,10 @@ import android.graphics.RectF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC$GeoPoint;
-import org.telegram.tgnet.TLRPC$MediaArea;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$TL_messageMediaGeo;
 import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
+import org.telegram.tgnet.tl.TL_stories$MediaArea;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Paint.Views.EntityView;
 import org.telegram.ui.Components.Point;
@@ -23,7 +23,7 @@ public class LocationView extends EntityView {
     private int currentType;
     public TLRPC$MessageMedia location;
     public final LocationMarker marker;
-    public TLRPC$MediaArea mediaArea;
+    public TL_stories$MediaArea mediaArea;
 
     @Override
     protected float getMaxScale() {
@@ -81,12 +81,12 @@ public class LocationView extends EntityView {
         return sb.toString();
     }
 
-    public LocationView(Context context, Point point, int i, TLRPC$MessageMedia tLRPC$MessageMedia, TLRPC$MediaArea tLRPC$MediaArea, float f, int i2, int i3, int i4) {
+    public LocationView(Context context, Point point, int i, TLRPC$MessageMedia tLRPC$MessageMedia, TL_stories$MediaArea tL_stories$MediaArea, float f, int i2, int i3, int i4) {
         super(context, point);
         LocationMarker locationMarker = new LocationMarker(context, f);
         this.marker = locationMarker;
         locationMarker.setMaxWidth(i2);
-        setLocation(i, tLRPC$MessageMedia, tLRPC$MediaArea);
+        setLocation(i, tLRPC$MessageMedia, tL_stories$MediaArea);
         this.currentType = i3;
         this.currentColor = i4;
         locationMarker.setType(i3, i4);
@@ -96,10 +96,10 @@ public class LocationView extends EntityView {
         updatePosition();
     }
 
-    public void setLocation(int i, TLRPC$MessageMedia tLRPC$MessageMedia, TLRPC$MediaArea tLRPC$MediaArea) {
+    public void setLocation(int i, TLRPC$MessageMedia tLRPC$MessageMedia, TL_stories$MediaArea tL_stories$MediaArea) {
         String str;
         this.location = tLRPC$MessageMedia;
-        this.mediaArea = tLRPC$MediaArea;
+        this.mediaArea = tL_stories$MediaArea;
         String str2 = null;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaGeo) {
             TLRPC$GeoPoint tLRPC$GeoPoint = tLRPC$MessageMedia.geo;

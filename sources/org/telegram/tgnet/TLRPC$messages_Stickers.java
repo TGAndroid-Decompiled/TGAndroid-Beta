@@ -4,11 +4,9 @@ public abstract class TLRPC$messages_Stickers extends TLObject {
         TLRPC$messages_Stickers tLRPC$messages_Stickers;
         if (i == -244016606) {
             tLRPC$messages_Stickers = new TLRPC$messages_Stickers() {
-                public static int constructor = -244016606;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-244016606);
                 }
             };
         } else {

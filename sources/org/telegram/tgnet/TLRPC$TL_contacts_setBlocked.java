@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_contacts_setBlocked extends TLObject {
-    public static int constructor = -1798939530;
     public int flags;
     public ArrayList<TLRPC$InputPeer> id = new ArrayList<>();
     public int limit;
@@ -15,7 +14,7 @@ public class TLRPC$TL_contacts_setBlocked extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1798939530);
         int i = this.my_stories_from ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

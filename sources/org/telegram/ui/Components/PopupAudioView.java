@@ -143,7 +143,7 @@ public class PopupAudioView extends BaseCell implements SeekBar.SeekBarDelegate,
             i2 = i3;
         }
         Theme.chat_msgInMediaDrawable.setTop((int) getY(), i, i2, false, false);
-        BaseCell.setDrawableBounds(Theme.chat_msgInMediaDrawable, 0, 0, getMeasuredWidth(), getMeasuredHeight());
+        BaseCell.setDrawableBounds((Drawable) Theme.chat_msgInMediaDrawable, 0, 0, getMeasuredWidth(), getMeasuredHeight());
         Theme.chat_msgInMediaDrawable.draw(canvas);
         if (this.currentMessageObject == null) {
             return;

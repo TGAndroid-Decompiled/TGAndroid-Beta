@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_auth_authorizationSignUpRequired extends TLRPC$auth_Authorization {
-    public static int constructor = 1148485274;
     public int flags;
     public TLRPC$TL_help_termsOfService terms_of_service;
 
@@ -15,7 +14,7 @@ public class TLRPC$TL_auth_authorizationSignUpRequired extends TLRPC$auth_Author
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1148485274);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             this.terms_of_service.serializeToStream(abstractSerializedData);

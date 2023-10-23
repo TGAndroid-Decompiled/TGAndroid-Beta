@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_payments_paymentForm extends TLObject {
-    public static int constructor = -1610250415;
     public long bot_id;
     public boolean can_save_credentials;
     public String description;
@@ -22,7 +21,7 @@ public class TLRPC$TL_payments_paymentForm extends TLObject {
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
     public static TLRPC$TL_payments_paymentForm TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1610250415 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_payments_paymentForm", Integer.valueOf(i)));
             }
@@ -111,7 +110,7 @@ public class TLRPC$TL_payments_paymentForm extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1610250415);
         int i = this.can_save_credentials ? this.flags | 4 : this.flags & (-5);
         this.flags = i;
         int i2 = this.password_missing ? i | 8 : i & (-9);

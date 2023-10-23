@@ -14,8 +14,6 @@ public abstract class TLRPC$LangPackString extends TLObject {
         TLRPC$LangPackString tLRPC$LangPackString;
         if (i == -892239370) {
             tLRPC$LangPackString = new TLRPC$LangPackString() {
-                public static int constructor = -892239370;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.key = abstractSerializedData2.readString(z2);
@@ -24,15 +22,13 @@ public abstract class TLRPC$LangPackString extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-892239370);
                     abstractSerializedData2.writeString(this.key);
                     abstractSerializedData2.writeString(this.value);
                 }
             };
         } else if (i != 695856818) {
             tLRPC$LangPackString = i != 1816636575 ? null : new TLRPC$LangPackString() {
-                public static int constructor = 1816636575;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.flags = abstractSerializedData2.readInt32(z2);
@@ -57,7 +53,7 @@ public abstract class TLRPC$LangPackString extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(1816636575);
                     abstractSerializedData2.writeInt32(this.flags);
                     abstractSerializedData2.writeString(this.key);
                     if ((this.flags & 1) != 0) {
@@ -80,8 +76,6 @@ public abstract class TLRPC$LangPackString extends TLObject {
             };
         } else {
             tLRPC$LangPackString = new TLRPC$LangPackString() {
-                public static int constructor = 695856818;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.key = abstractSerializedData2.readString(z2);
@@ -89,7 +83,7 @@ public abstract class TLRPC$LangPackString extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(695856818);
                     abstractSerializedData2.writeString(this.key);
                 }
             };

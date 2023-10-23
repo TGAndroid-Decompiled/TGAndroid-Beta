@@ -2,14 +2,14 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_messages_saveDraft extends TLObject {
-    public static int constructor = -1271718337;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
+    public boolean invert_media;
+    public TLRPC$InputMedia media;
     public String message;
     public boolean no_webpage;
     public TLRPC$InputPeer peer;
-    public int reply_to_msg_id;
-    public int top_msg_id;
+    public TLRPC$InputReplyTo reply_to;
 
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
@@ -18,15 +18,14 @@ public class TLRPC$TL_messages_saveDraft extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2146678790);
         int i = this.no_webpage ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
-        abstractSerializedData.writeInt32(i);
-        if ((this.flags & 1) != 0) {
-            abstractSerializedData.writeInt32(this.reply_to_msg_id);
-        }
-        if ((this.flags & 4) != 0) {
-            abstractSerializedData.writeInt32(this.top_msg_id);
+        int i2 = this.invert_media ? i | 64 : i & (-65);
+        this.flags = i2;
+        abstractSerializedData.writeInt32(i2);
+        if ((this.flags & 16) != 0) {
+            this.reply_to.serializeToStream(abstractSerializedData);
         }
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.message);
@@ -34,9 +33,12 @@ public class TLRPC$TL_messages_saveDraft extends TLObject {
             abstractSerializedData.writeInt32(481674261);
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
-            for (int i2 = 0; i2 < size; i2++) {
-                this.entities.get(i2).serializeToStream(abstractSerializedData);
+            for (int i3 = 0; i3 < size; i3++) {
+                this.entities.get(i3).serializeToStream(abstractSerializedData);
             }
+        }
+        if ((this.flags & 32) != 0) {
+            this.media.serializeToStream(abstractSerializedData);
         }
     }
 }

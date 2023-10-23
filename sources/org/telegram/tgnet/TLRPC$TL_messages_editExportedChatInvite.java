@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_editExportedChatInvite extends TLObject {
-    public static int constructor = -1110823051;
     public int expire_date;
     public int flags;
     public String link;
@@ -17,7 +16,7 @@ public class TLRPC$TL_messages_editExportedChatInvite extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1110823051);
         int i = this.revoked ? this.flags | 4 : this.flags & (-5);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

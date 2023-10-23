@@ -11,8 +11,6 @@ public abstract class TLRPC$RecentMeUrl extends TLObject {
         switch (i) {
             case -1294306862:
                 tLRPC$RecentMeUrl = new TLRPC$RecentMeUrl() {
-                    public static int constructor = -1294306862;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.url = abstractSerializedData2.readString(z2);
@@ -21,7 +19,7 @@ public abstract class TLRPC$RecentMeUrl extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1294306862);
                         abstractSerializedData2.writeString(this.url);
                         abstractSerializedData2.writeInt64(this.chat_id);
                     }
@@ -29,8 +27,6 @@ public abstract class TLRPC$RecentMeUrl extends TLObject {
                 break;
             case -1188296222:
                 tLRPC$RecentMeUrl = new TLRPC$RecentMeUrl() {
-                    public static int constructor = -1188296222;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.url = abstractSerializedData2.readString(z2);
@@ -39,7 +35,7 @@ public abstract class TLRPC$RecentMeUrl extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1188296222);
                         abstractSerializedData2.writeString(this.url);
                         abstractSerializedData2.writeInt64(this.user_id);
                     }
@@ -47,8 +43,6 @@ public abstract class TLRPC$RecentMeUrl extends TLObject {
                 break;
             case -1140172836:
                 tLRPC$RecentMeUrl = new TLRPC$RecentMeUrl() {
-                    public static int constructor = -1140172836;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.url = abstractSerializedData2.readString(z2);
@@ -57,7 +51,7 @@ public abstract class TLRPC$RecentMeUrl extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1140172836);
                         abstractSerializedData2.writeString(this.url);
                         this.set.serializeToStream(abstractSerializedData2);
                     }
@@ -65,8 +59,6 @@ public abstract class TLRPC$RecentMeUrl extends TLObject {
                 break;
             case -347535331:
                 tLRPC$RecentMeUrl = new TLRPC$RecentMeUrl() {
-                    public static int constructor = -347535331;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.url = abstractSerializedData2.readString(z2);
@@ -75,7 +67,7 @@ public abstract class TLRPC$RecentMeUrl extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-347535331);
                         abstractSerializedData2.writeString(this.url);
                         this.chat_invite.serializeToStream(abstractSerializedData2);
                     }
@@ -83,8 +75,6 @@ public abstract class TLRPC$RecentMeUrl extends TLObject {
                 break;
             case 1189204285:
                 tLRPC$RecentMeUrl = new TLRPC$RecentMeUrl() {
-                    public static int constructor = 1189204285;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.url = abstractSerializedData2.readString(z2);
@@ -92,7 +82,7 @@ public abstract class TLRPC$RecentMeUrl extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1189204285);
                         abstractSerializedData2.writeString(this.url);
                     }
                 };

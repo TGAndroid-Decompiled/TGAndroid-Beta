@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_securePlainPhone extends TLRPC$SecurePlainData {
-    public static int constructor = 2103482845;
     public String phone;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_securePlainPhone extends TLRPC$SecurePlainData {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2103482845);
         abstractSerializedData.writeString(this.phone);
     }
 }

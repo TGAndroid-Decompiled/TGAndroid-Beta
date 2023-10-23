@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_securePasswordKdfAlgoSHA512 extends TLRPC$SecurePasswordKdfAlgo {
-    public static int constructor = -2042159726;
     public byte[] salt;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_securePasswordKdfAlgoSHA512 extends TLRPC$SecurePasswordKd
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-2042159726);
         abstractSerializedData.writeByteArray(this.salt);
     }
 }

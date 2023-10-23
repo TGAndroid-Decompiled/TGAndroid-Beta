@@ -5,41 +5,33 @@ public abstract class TLRPC$TopPeerCategory extends TLObject {
         switch (i) {
             case -1472172887:
                 tLRPC$TopPeerCategory = new TLRPC$TopPeerCategory() {
-                    public static int constructor = -1472172887;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1472172887);
                     }
                 };
                 break;
             case -1419371685:
                 tLRPC$TopPeerCategory = new TLRPC$TopPeerCategory() {
-                    public static int constructor = -1419371685;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1419371685);
                     }
                 };
                 break;
             case -1122524854:
                 tLRPC$TopPeerCategory = new TLRPC$TopPeerCategory() {
-                    public static int constructor = -1122524854;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1122524854);
                     }
                 };
                 break;
             case -68239120:
                 tLRPC$TopPeerCategory = new TLRPC$TopPeerCategory() {
-                    public static int constructor = -68239120;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-68239120);
                     }
                 };
                 break;
@@ -51,21 +43,17 @@ public abstract class TLRPC$TopPeerCategory extends TLObject {
                 break;
             case 371037736:
                 tLRPC$TopPeerCategory = new TLRPC$TopPeerCategory() {
-                    public static int constructor = 371037736;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(371037736);
                     }
                 };
                 break;
             case 511092620:
                 tLRPC$TopPeerCategory = new TLRPC$TopPeerCategory() {
-                    public static int constructor = 511092620;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(511092620);
                     }
                 };
                 break;

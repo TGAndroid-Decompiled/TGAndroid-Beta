@@ -6,11 +6,9 @@ public abstract class TLRPC$help_AppUpdate extends TLObject {
             tLRPC$help_AppUpdate = i != -860107216 ? null : new TLRPC$TL_help_appUpdate();
         } else {
             tLRPC$help_AppUpdate = new TLRPC$help_AppUpdate() {
-                public static int constructor = -1000708810;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1000708810);
                 }
             };
         }

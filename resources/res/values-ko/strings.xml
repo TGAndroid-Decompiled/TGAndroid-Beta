@@ -3785,7 +3785,6 @@
     <string name="TermsOfService">이용 약관</string>
     <string name="TermsOfServiceLogin">가입함으로써 귀하는 *이용 약관*에 동의하게 됩니다.</string>
     <string name="TextCopied">텍스트를 클립보드에 복사했습니다</string>
-    <string name="TextSelectionHit">**낱말**을 꾹 잡고선, 커서를 움직여 복사할 글을 조정하세요.</string>
     <string name="TextSizeHeader">메시지 글자 크기</string>
     <string name="Theme">테마</string>
     <string name="ThemeArcticBlue">북극</string>

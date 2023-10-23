@@ -2,8 +2,6 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
-    public static int constructor = -908914376;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -78,7 +76,7 @@ public class TLRPC$TL_chatFull extends TLRPC$ChatFull {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-908914376);
         int i = this.can_set_username ? this.flags | 128 : this.flags & (-129);
         this.flags = i;
         int i2 = this.has_scheduled ? i | LiteMode.FLAG_CHAT_BLUR : i & (-257);

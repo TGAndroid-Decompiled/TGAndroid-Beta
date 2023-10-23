@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_textUrl extends TLRPC$RichText {
-    public static int constructor = 1009288385;
     public TLRPC$RichText text;
 
     @Override
@@ -12,7 +11,7 @@ public class TLRPC$TL_textUrl extends TLRPC$RichText {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1009288385);
         this.text.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.url);
         abstractSerializedData.writeInt64(this.webpage_id);

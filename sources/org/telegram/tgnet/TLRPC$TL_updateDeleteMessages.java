@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_updateDeleteMessages extends TLRPC$Update {
-    public static int constructor = -1576161051;
     public ArrayList<Integer> messages = new ArrayList<>();
     public int pts;
     public int pts_count;
@@ -26,7 +25,7 @@ public class TLRPC$TL_updateDeleteMessages extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1576161051);
         abstractSerializedData.writeInt32(481674261);
         int size = this.messages.size();
         abstractSerializedData.writeInt32(size);

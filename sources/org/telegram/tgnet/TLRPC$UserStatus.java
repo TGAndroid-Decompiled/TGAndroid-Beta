@@ -7,18 +7,14 @@ public abstract class TLRPC$UserStatus extends TLObject {
         switch (i) {
             case -496024847:
                 tLRPC$UserStatus = new TLRPC$UserStatus() {
-                    public static int constructor = -496024847;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-496024847);
                     }
                 };
                 break;
             case -306628279:
                 tLRPC$UserStatus = new TLRPC$UserStatus() {
-                    public static int constructor = -306628279;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.expires = abstractSerializedData2.readInt32(z2);
@@ -26,15 +22,13 @@ public abstract class TLRPC$UserStatus extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-306628279);
                         abstractSerializedData2.writeInt32(this.expires);
                     }
                 };
                 break;
             case 9203775:
                 tLRPC$UserStatus = new TLRPC$UserStatus() {
-                    public static int constructor = 9203775;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.expires = abstractSerializedData2.readInt32(z2);
@@ -42,38 +36,32 @@ public abstract class TLRPC$UserStatus extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(9203775);
                         abstractSerializedData2.writeInt32(this.expires);
                     }
                 };
                 break;
             case 129960444:
                 tLRPC$UserStatus = new TLRPC$UserStatus() {
-                    public static int constructor = 129960444;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(129960444);
                     }
                 };
                 break;
             case 164646985:
                 tLRPC$UserStatus = new TLRPC$UserStatus() {
-                    public static int constructor = 164646985;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(164646985);
                     }
                 };
                 break;
             case 2011940674:
                 tLRPC$UserStatus = new TLRPC$UserStatus() {
-                    public static int constructor = 2011940674;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(2011940674);
                     }
                 };
                 break;

@@ -4,11 +4,9 @@ public abstract class TLRPC$help_DeepLinkInfo extends TLObject {
         TLRPC$help_DeepLinkInfo tLRPC$help_DeepLinkInfo;
         if (i == 1722786150) {
             tLRPC$help_DeepLinkInfo = new TLRPC$help_DeepLinkInfo() {
-                public static int constructor = 1722786150;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(1722786150);
                 }
             };
         } else {

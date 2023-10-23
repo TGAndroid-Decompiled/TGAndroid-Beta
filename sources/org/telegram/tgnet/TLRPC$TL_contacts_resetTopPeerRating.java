@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_contacts_resetTopPeerRating extends TLObject {
-    public static int constructor = 451113900;
     public TLRPC$TopPeerCategory category;
     public TLRPC$InputPeer peer;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_contacts_resetTopPeerRating extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(451113900);
         this.category.serializeToStream(abstractSerializedData);
         this.peer.serializeToStream(abstractSerializedData);
     }

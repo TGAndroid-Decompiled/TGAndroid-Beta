@@ -2,13 +2,12 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_payments_validatedRequestedInfo extends TLObject {
-    public static int constructor = -784000893;
     public int flags;
     public String id;
     public ArrayList<TLRPC$TL_shippingOption> shipping_options = new ArrayList<>();
 
     public static TLRPC$TL_payments_validatedRequestedInfo TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-784000893 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_payments_validatedRequestedInfo", Integer.valueOf(i)));
             }
@@ -47,7 +46,7 @@ public class TLRPC$TL_payments_validatedRequestedInfo extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-784000893);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.id);

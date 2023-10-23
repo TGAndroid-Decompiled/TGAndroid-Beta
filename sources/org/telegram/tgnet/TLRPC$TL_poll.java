@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_poll extends TLRPC$Poll {
-    public static int constructor = -2032041631;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.id = abstractSerializedData.readInt64(z);
@@ -37,7 +35,7 @@ public class TLRPC$TL_poll extends TLRPC$Poll {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-2032041631);
         abstractSerializedData.writeInt64(this.id);
         int i = this.closed ? this.flags | 1 : this.flags & (-2);
         this.flags = i;

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_deleteAccount extends TLObject {
-    public static int constructor = 1099779595;
     public String reason;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_account_deleteAccount extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1099779595);
         abstractSerializedData.writeString(this.reason);
     }
 }

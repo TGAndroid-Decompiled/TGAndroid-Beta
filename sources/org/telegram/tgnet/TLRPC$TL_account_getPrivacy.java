@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_getPrivacy extends TLObject {
-    public static int constructor = -623130288;
     public TLRPC$InputPrivacyKey key;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_account_getPrivacy extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-623130288);
         this.key.serializeToStream(abstractSerializedData);
     }
 }

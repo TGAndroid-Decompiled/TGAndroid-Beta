@@ -217,7 +217,6 @@ import org.telegram.tgnet.TLRPC$TL_photo;
 import org.telegram.tgnet.TLRPC$TL_photos_photo;
 import org.telegram.tgnet.TLRPC$TL_photos_updateProfilePhoto;
 import org.telegram.tgnet.TLRPC$TL_photos_uploadProfilePhoto;
-import org.telegram.tgnet.TLRPC$TL_stories_boostsStatus;
 import org.telegram.tgnet.TLRPC$TL_userEmpty;
 import org.telegram.tgnet.TLRPC$TL_userProfilePhoto;
 import org.telegram.tgnet.TLRPC$TL_userProfilePhotoEmpty;
@@ -228,6 +227,7 @@ import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 import org.telegram.tgnet.TLRPC$UserStatus;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.tgnet.TLRPC$WebPage;
+import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -4430,7 +4430,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (i4 >= 2 || BuildVars.DEBUG_PRIVATE_VERSION) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getParentActivity(), ProfileActivity.this.resourcesProvider);
                 builder.setTitle(LocaleController.getString("DebugMenu", R.string.DebugMenu));
-                CharSequence[] charSequenceArr = new CharSequence[25];
+                CharSequence[] charSequenceArr = new CharSequence[26];
                 charSequenceArr[0] = LocaleController.getString("DebugMenuImportContacts", R.string.DebugMenuImportContacts);
                 charSequenceArr[1] = LocaleController.getString("DebugMenuReloadContacts", R.string.DebugMenuReloadContacts);
                 charSequenceArr[2] = LocaleController.getString("DebugMenuResetContacts", R.string.DebugMenuResetContacts);
@@ -4487,6 +4487,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 charSequenceArr[22] = LocaleController.getString(DualCameraView.dualAvailableStatic(ProfileActivity.this.getContext()) ? "DebugMenuDualOff" : "DebugMenuDualOn");
                 charSequenceArr[23] = BuildVars.DEBUG_VERSION ? SharedConfig.useSurfaceInStories ? "back to TextureView in stories" : "use SurfaceView in stories" : null;
                 charSequenceArr[24] = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.photoViewerBlur ? "do not blur in photoviewer" : "blur in photoviewer" : null;
+                charSequenceArr[25] = !SharedConfig.payByInvoice ? "Enable Invoice Payment" : "Disable Invoice Payment";
                 final Context context = this.val$context;
                 builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                     @Override
@@ -4537,6 +4538,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 SharedConfig.lockRecordAudioVideoHint = 0;
                 SharedConfig.stickersReorderingHintUsed = false;
                 SharedConfig.forwardingOptionsHintShown = false;
+                SharedConfig.replyingOptionsHintShown = false;
                 SharedConfig.messageSeenHintCount = 3;
                 SharedConfig.emojiInteractionsHintCount = 3;
                 SharedConfig.dayNightThemeSwitchHintCount = 3;
@@ -4544,6 +4546,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 SharedConfig.stealthModeSendMessageConfirm = 2;
                 SharedConfig.updateStealthModeSendMessageConfirm(2);
                 SharedConfig.setStoriesReactionsLongPressHintUsed(false);
+                SharedConfig.setStoriesIntroShown(false);
                 ChatThemeController.getInstance(((BaseFragment) ProfileActivity.this).currentAccount).clearCache();
                 ProfileActivity.this.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
                 RestrictedLanguagesSelectActivity.cleanup();
@@ -4595,59 +4598,52 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     }
                 });
             } else if (i != 19) {
-                if (i != 20) {
-                    if (i == 21) {
-                        SharedConfig.toggleRoundCamera();
-                        return;
-                    } else if (i == 22) {
-                        boolean dualAvailableStatic = DualCameraView.dualAvailableStatic(ProfileActivity.this.getContext());
-                        MessagesController.getGlobalMainSettings().edit().putBoolean("dual_available", !dualAvailableStatic).apply();
-                        try {
-                            Toast.makeText(ProfileActivity.this.getParentActivity(), LocaleController.getString(!dualAvailableStatic ? R.string.DebugMenuDualOnToast : R.string.DebugMenuDualOffToast), 0).show();
-                            return;
-                        } catch (Exception unused) {
-                            return;
+                if (i == 20) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getParentActivity(), ProfileActivity.this.resourcesProvider);
+                    builder.setTitle("Force performance class");
+                    int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+                    final int measureDevicePerformanceClass = SharedConfig.measureDevicePerformanceClass();
+                    CharSequence[] charSequenceArr = new CharSequence[3];
+                    StringBuilder sb = new StringBuilder();
+                    sb.append(devicePerformanceClass == 2 ? "**HIGH**" : "HIGH");
+                    sb.append(measureDevicePerformanceClass == 2 ? " (measured)" : "");
+                    charSequenceArr[0] = AndroidUtilities.replaceTags(sb.toString());
+                    StringBuilder sb2 = new StringBuilder();
+                    sb2.append(devicePerformanceClass == 1 ? "**AVERAGE**" : "AVERAGE");
+                    sb2.append(measureDevicePerformanceClass == 1 ? " (measured)" : "");
+                    charSequenceArr[1] = AndroidUtilities.replaceTags(sb2.toString());
+                    StringBuilder sb3 = new StringBuilder();
+                    sb3.append(devicePerformanceClass == 0 ? "**LOW**" : "LOW");
+                    sb3.append(measureDevicePerformanceClass != 0 ? "" : " (measured)");
+                    charSequenceArr[2] = AndroidUtilities.replaceTags(sb3.toString());
+                    builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
+                        @Override
+                        public final void onClick(DialogInterface dialogInterface2, int i3) {
+                            ProfileActivity.AnonymousClass15.lambda$onItemClick$2(measureDevicePerformanceClass, dialogInterface2, i3);
                         }
-                    } else if (i != 23) {
-                        if (i == 24) {
-                            SharedConfig.togglePhotoViewerBlur();
-                            return;
-                        }
-                        return;
-                    } else {
-                        SharedConfig.toggleSurfaceInStories();
-                        while (i2 < ProfileActivity.this.getParentLayout().getFragmentStack().size()) {
-                            ProfileActivity.this.getParentLayout().getFragmentStack().get(i2).storyViewer = null;
-                            i2++;
-                        }
-                        return;
+                    });
+                    builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
+                    builder.show();
+                } else if (i == 21) {
+                    SharedConfig.toggleRoundCamera();
+                } else if (i == 22) {
+                    boolean dualAvailableStatic = DualCameraView.dualAvailableStatic(ProfileActivity.this.getContext());
+                    MessagesController.getGlobalMainSettings().edit().putBoolean("dual_available", !dualAvailableStatic).apply();
+                    try {
+                        Toast.makeText(ProfileActivity.this.getParentActivity(), LocaleController.getString(!dualAvailableStatic ? R.string.DebugMenuDualOnToast : R.string.DebugMenuDualOffToast), 0).show();
+                    } catch (Exception unused) {
                     }
+                } else if (i == 23) {
+                    SharedConfig.toggleSurfaceInStories();
+                    while (i2 < ProfileActivity.this.getParentLayout().getFragmentStack().size()) {
+                        ProfileActivity.this.getParentLayout().getFragmentStack().get(i2).storyViewer = null;
+                        i2++;
+                    }
+                } else if (i == 24) {
+                    SharedConfig.togglePhotoViewerBlur();
+                } else if (i == 25) {
+                    SharedConfig.togglePaymentByInvoice();
                 }
-                AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getParentActivity(), ProfileActivity.this.resourcesProvider);
-                builder.setTitle("Force performance class");
-                int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
-                final int measureDevicePerformanceClass = SharedConfig.measureDevicePerformanceClass();
-                CharSequence[] charSequenceArr = new CharSequence[3];
-                StringBuilder sb = new StringBuilder();
-                sb.append(devicePerformanceClass == 2 ? "**HIGH**" : "HIGH");
-                sb.append(measureDevicePerformanceClass == 2 ? " (measured)" : "");
-                charSequenceArr[0] = AndroidUtilities.replaceTags(sb.toString());
-                StringBuilder sb2 = new StringBuilder();
-                sb2.append(devicePerformanceClass == 1 ? "**AVERAGE**" : "AVERAGE");
-                sb2.append(measureDevicePerformanceClass == 1 ? " (measured)" : "");
-                charSequenceArr[1] = AndroidUtilities.replaceTags(sb2.toString());
-                StringBuilder sb3 = new StringBuilder();
-                sb3.append(devicePerformanceClass == 0 ? "**LOW**" : "LOW");
-                sb3.append(measureDevicePerformanceClass != 0 ? "" : " (measured)");
-                charSequenceArr[2] = AndroidUtilities.replaceTags(sb3.toString());
-                builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
-                    @Override
-                    public final void onClick(DialogInterface dialogInterface2, int i3) {
-                        ProfileActivity.AnonymousClass15.lambda$onItemClick$2(measureDevicePerformanceClass, dialogInterface2, i3);
-                    }
-                });
-                builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), null);
-                builder.show();
             } else {
                 int i3 = ConnectionsManager.CPU_COUNT;
                 String str2 = "activity";
@@ -4841,7 +4837,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+            public void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -5153,7 +5149,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             messagesController.getBoostsController().getBoostsStats(j, new com.google.android.exoplayer2.util.Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    ProfileActivity.this.lambda$createFloatingActionButton$22(j, (TLRPC$TL_stories_boostsStatus) obj);
+                    ProfileActivity.this.lambda$createFloatingActionButton$22(j, (TL_stories$TL_premium_boostsStatus) obj);
                 }
             });
             return;
@@ -5178,14 +5174,14 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }).open(StoryRecorder.SourceView.fromFloatingButton(this.floatingButtonContainer), true);
     }
 
-    public void lambda$createFloatingActionButton$22(long j, TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus) {
+    public void lambda$createFloatingActionButton$22(long j, TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
         this.loadingBoostsStats = false;
-        if (tLRPC$TL_stories_boostsStatus == null) {
+        if (tL_stories$TL_premium_boostsStatus == null) {
             return;
         }
         BaseFragment lastFragment = LaunchActivity.getLastFragment();
         LimitReachedBottomSheet limitReachedBottomSheet = new LimitReachedBottomSheet(lastFragment, lastFragment.getContext(), 18, this.currentAccount, this.resourcesProvider);
-        limitReachedBottomSheet.setBoostsStats(tLRPC$TL_stories_boostsStatus, false);
+        limitReachedBottomSheet.setBoostsStats(tL_stories$TL_premium_boostsStatus, false);
         limitReachedBottomSheet.setDialogId(j);
         limitReachedBottomSheet.showStatisticButtonInLink(new Runnable() {
             @Override
@@ -6225,7 +6221,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        protected void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+        public void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

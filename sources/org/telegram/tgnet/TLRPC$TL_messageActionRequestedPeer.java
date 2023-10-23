@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messageActionRequestedPeer extends TLRPC$MessageAction {
-    public static int constructor = -25742243;
     public int button_id;
     public TLRPC$Peer peer;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_messageActionRequestedPeer extends TLRPC$MessageAction {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-25742243);
         abstractSerializedData.writeInt32(this.button_id);
         this.peer.serializeToStream(abstractSerializedData);
     }

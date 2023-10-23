@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateChatParticipantDelete extends TLRPC$Update {
-    public static int constructor = -483443337;
     public long chat_id;
     public long user_id;
     public int version;
@@ -14,7 +13,7 @@ public class TLRPC$TL_updateChatParticipantDelete extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-483443337);
         abstractSerializedData.writeInt64(this.chat_id);
         abstractSerializedData.writeInt64(this.user_id);
         abstractSerializedData.writeInt32(this.version);

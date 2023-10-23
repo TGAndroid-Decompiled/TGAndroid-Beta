@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_photoStrippedSize extends TLRPC$PhotoSize {
-    public static int constructor = -525288402;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.type = abstractSerializedData.readString(z);
@@ -12,7 +10,7 @@ public class TLRPC$TL_photoStrippedSize extends TLRPC$PhotoSize {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-525288402);
         abstractSerializedData.writeString(this.type);
         abstractSerializedData.writeByteArray(this.bytes);
     }

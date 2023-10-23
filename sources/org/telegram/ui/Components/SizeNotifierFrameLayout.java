@@ -10,11 +10,14 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Region;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.text.MeasuredText;
 import android.os.Build;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -165,7 +168,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         this.adjustPanLayoutHelper = createAdjustPanLayoutHelper();
     }
 
-    public class BackgroundView extends View {
+    private class BackgroundView extends View {
         public BackgroundView(Context context) {
             super(context);
         }
@@ -193,7 +196,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                 SizeNotifierFrameLayout.this.backgroundDrawable = newDrawable;
                 SizeNotifierFrameLayout sizeNotifierFrameLayout3 = SizeNotifierFrameLayout.this;
                 if (sizeNotifierFrameLayout3.attached && (sizeNotifierFrameLayout3.backgroundDrawable instanceof ChatBackgroundDrawable)) {
-                    ((ChatBackgroundDrawable) SizeNotifierFrameLayout.this.backgroundDrawable).onAttachedToWindow();
+                    ((ChatBackgroundDrawable) SizeNotifierFrameLayout.this.backgroundDrawable).onAttachedToWindow(this);
                 }
                 SizeNotifierFrameLayout.this.backgroundMotion = newDrawableMotion;
                 SizeNotifierFrameLayout.this.themeAnimationValue = 0.0f;
@@ -320,7 +323,7 @@ public class SizeNotifierFrameLayout extends FrameLayout {
                     if (i == 0 && SizeNotifierFrameLayout.this.oldBackgroundDrawable != null && SizeNotifierFrameLayout.this.themeAnimationValue >= 1.0f) {
                         SizeNotifierFrameLayout sizeNotifierFrameLayout7 = SizeNotifierFrameLayout.this;
                         if (sizeNotifierFrameLayout7.attached && (sizeNotifierFrameLayout7.oldBackgroundDrawable instanceof ChatBackgroundDrawable)) {
-                            ((ChatBackgroundDrawable) SizeNotifierFrameLayout.this.oldBackgroundDrawable).onDetachedFromWindow();
+                            ((ChatBackgroundDrawable) SizeNotifierFrameLayout.this.oldBackgroundDrawable).onDetachedFromWindow(SizeNotifierFrameLayout.this.backgroundView);
                         }
                         SizeNotifierFrameLayout.this.oldBackgroundDrawable = null;
                         SizeNotifierFrameLayout.this.oldBackgroundMotion = false;
@@ -352,12 +355,12 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         if (this.attached) {
             Drawable drawable2 = this.backgroundDrawable;
             if (drawable2 instanceof ChatBackgroundDrawable) {
-                ((ChatBackgroundDrawable) drawable2).onDetachedFromWindow();
+                ((ChatBackgroundDrawable) drawable2).onDetachedFromWindow(this.backgroundView);
             }
         }
         this.backgroundDrawable = drawable;
         if (this.attached && (drawable instanceof ChatBackgroundDrawable)) {
-            ((ChatBackgroundDrawable) drawable).onAttachedToWindow();
+            ((ChatBackgroundDrawable) drawable).onAttachedToWindow(this.backgroundView);
         }
         checkMotion();
         this.backgroundView.invalidate();
@@ -614,10 +617,10 @@ public class SizeNotifierFrameLayout extends FrameLayout {
             if (blurBitmap == null) {
                 blurBitmap = new BlurBitmap();
                 blurBitmap.topBitmap = Bitmap.createBitmap(i2, i, Bitmap.Config.ARGB_8888);
-                blurBitmap.topCanvas = new Canvas(blurBitmap.topBitmap);
+                blurBitmap.topCanvas = new SimplerCanvas(blurBitmap.topBitmap);
                 if (this.needBlurBottom) {
                     blurBitmap.bottomBitmap = Bitmap.createBitmap(i2, i, Bitmap.Config.ARGB_8888);
-                    blurBitmap.bottomCanvas = new Canvas(blurBitmap.bottomBitmap);
+                    blurBitmap.bottomCanvas = new SimplerCanvas(blurBitmap.bottomBitmap);
                 }
             } else {
                 blurBitmap.topBitmap.eraseColor(0);
@@ -813,11 +816,11 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         }
         Drawable drawable = this.backgroundDrawable;
         if (drawable instanceof ChatBackgroundDrawable) {
-            ((ChatBackgroundDrawable) drawable).onAttachedToWindow();
+            ((ChatBackgroundDrawable) drawable).onAttachedToWindow(this.backgroundView);
         }
         Drawable drawable2 = this.oldBackgroundDrawable;
         if (drawable2 instanceof ChatBackgroundDrawable) {
-            ((ChatBackgroundDrawable) drawable2).onAttachedToWindow();
+            ((ChatBackgroundDrawable) drawable2).onAttachedToWindow(this.backgroundView);
         }
     }
 
@@ -847,11 +850,11 @@ public class SizeNotifierFrameLayout extends FrameLayout {
         this.blurIsRunning = false;
         Drawable drawable = this.backgroundDrawable;
         if (drawable instanceof ChatBackgroundDrawable) {
-            ((ChatBackgroundDrawable) drawable).onDetachedFromWindow();
+            ((ChatBackgroundDrawable) drawable).onDetachedFromWindow(this.backgroundView);
         }
         Drawable drawable2 = this.oldBackgroundDrawable;
         if (drawable2 instanceof ChatBackgroundDrawable) {
-            ((ChatBackgroundDrawable) drawable2).onDetachedFromWindow();
+            ((ChatBackgroundDrawable) drawable2).onDetachedFromWindow(this.backgroundView);
         }
     }
 
@@ -972,6 +975,58 @@ public class SizeNotifierFrameLayout extends FrameLayout {
             if (bitmap != null) {
                 bitmap.recycle();
             }
+        }
+    }
+
+    public static class SimplerCanvas extends Canvas {
+        @Override
+        public boolean clipPath(Path path) {
+            return false;
+        }
+
+        @Override
+        public boolean clipPath(Path path, Region.Op op) {
+            return false;
+        }
+
+        @Override
+        public void drawText(CharSequence charSequence, int i, int i2, float f, float f2, Paint paint) {
+        }
+
+        @Override
+        public void drawText(String str, float f, float f2, Paint paint) {
+        }
+
+        @Override
+        public void drawText(String str, int i, int i2, float f, float f2, Paint paint) {
+        }
+
+        @Override
+        public void drawText(char[] cArr, int i, int i2, float f, float f2, Paint paint) {
+        }
+
+        @Override
+        public void drawTextOnPath(String str, Path path, float f, float f2, Paint paint) {
+        }
+
+        @Override
+        public void drawTextOnPath(char[] cArr, int i, int i2, Path path, float f, float f2, Paint paint) {
+        }
+
+        @Override
+        public void drawTextRun(MeasuredText measuredText, int i, int i2, int i3, int i4, float f, float f2, boolean z, Paint paint) {
+        }
+
+        @Override
+        public void drawTextRun(CharSequence charSequence, int i, int i2, int i3, int i4, float f, float f2, boolean z, Paint paint) {
+        }
+
+        @Override
+        public void drawTextRun(char[] cArr, int i, int i2, int i3, int i4, float f, float f2, boolean z, Paint paint) {
+        }
+
+        public SimplerCanvas(Bitmap bitmap) {
+            super(bitmap);
         }
     }
 }

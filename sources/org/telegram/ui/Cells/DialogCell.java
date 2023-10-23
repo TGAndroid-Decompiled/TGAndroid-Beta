@@ -66,7 +66,6 @@ import org.telegram.tgnet.TLRPC$MessageFwdHeader;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_dialogFolder;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$TL_messageActionSetChatTheme;
@@ -78,6 +77,7 @@ import org.telegram.tgnet.TLRPC$TL_messageService;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserStatus;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.Cells.DialogCell;
@@ -1760,8 +1760,8 @@ public class DialogCell extends BaseCell implements StoriesListPlaceProvider.Ava
         ArrayList<TLRPC$PhotoSize> arrayList = messageObject.photoThumbs;
         TLObject tLObject = messageObject.photoThumbsObject;
         if (messageObject.isStoryMedia()) {
-            TLRPC$StoryItem tLRPC$StoryItem = messageObject.messageOwner.media.storyItem;
-            if (tLRPC$StoryItem == null || (tLRPC$MessageMedia = tLRPC$StoryItem.media) == null) {
+            TL_stories$StoryItem tL_stories$StoryItem = messageObject.messageOwner.media.storyItem;
+            if (tL_stories$StoryItem == null || (tLRPC$MessageMedia = tL_stories$StoryItem.media) == null) {
                 return;
             }
             TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;

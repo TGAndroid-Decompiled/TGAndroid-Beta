@@ -6,7 +6,6 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.media.AudioManager;
 import android.os.Build;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
@@ -86,10 +85,10 @@ public class StoriesVolumeControl extends View {
             }
         }
         audioManager.setStreamVolume(3, streamMaxVolume, 0);
-        this.currentProgress = streamMaxVolume / f;
-        Log.i("lolkek", "currentVolume=" + streamMaxVolume + " pr=" + this.currentProgress);
+        float f2 = streamMaxVolume / f;
+        this.currentProgress = f2;
         if (!this.isVisible) {
-            this.volumeProgress.set(this.currentProgress, true);
+            this.volumeProgress.set(f2, true);
         }
         invalidate();
         this.isVisible = true;

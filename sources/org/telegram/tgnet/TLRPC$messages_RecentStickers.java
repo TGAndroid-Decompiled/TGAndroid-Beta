@@ -6,11 +6,9 @@ public abstract class TLRPC$messages_RecentStickers extends TLObject {
             tLRPC$TL_messages_recentStickers = new TLRPC$TL_messages_recentStickers();
         } else {
             tLRPC$TL_messages_recentStickers = i != 186120336 ? null : new TLRPC$messages_RecentStickers() {
-                public static int constructor = 186120336;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(186120336);
                 }
             };
         }

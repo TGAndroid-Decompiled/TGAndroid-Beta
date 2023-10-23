@@ -1,10 +1,9 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_stickers_suggestedShortName extends TLObject {
-    public static int constructor = -2046910401;
     public String short_name;
 
     public static TLRPC$TL_stickers_suggestedShortName TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-2046910401 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_stickers_suggestedShortName", Integer.valueOf(i)));
             }
@@ -22,7 +21,7 @@ public class TLRPC$TL_stickers_suggestedShortName extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-2046910401);
         abstractSerializedData.writeString(this.short_name);
     }
 }

@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 public class TLRPC$Message extends TLObject {
     public TLRPC$MessageAction action;
     public int date;
@@ -21,6 +22,7 @@ public class TLRPC$Message extends TLObject {
     public TLRPC$MessageFwdHeader fwd_from;
     public long grouped_id;
     public int id;
+    public boolean invert_media;
     public boolean isThreadMessage;
     public int layer;
     public boolean legacy;
@@ -42,14 +44,13 @@ public class TLRPC$Message extends TLObject {
     public int realId;
     public TLRPC$MessageReplies replies;
     public TLRPC$Message replyMessage;
-    public TLRPC$StoryItem replyStory;
+    public TL_stories$StoryItem replyStory;
     public TLRPC$ReplyMarkup reply_markup;
     public TLRPC$MessageReplyHeader reply_to;
     public int reqId;
     public int seq_in;
     public int seq_out;
     public boolean silent;
-    public boolean topic_start;
     public TLRPC$TL_textWithEntities translatedText;
     public String translatedToLanguage;
     public int ttl;
@@ -78,8 +79,6 @@ public class TLRPC$Message extends TLObject {
         switch (i) {
             case -2082087340:
                 tLRPC$Message = new TLRPC$TL_messageEmpty() {
-                    public static int constructor = -2082087340;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -88,15 +87,13 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-2082087340);
                         abstractSerializedData2.writeInt32(this.id);
                     }
                 };
                 break;
             case -2049520670:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = -2049520670;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -199,7 +196,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-2049520670);
                         int i2 = this.out ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
@@ -289,8 +286,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -1864508399:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = -1864508399;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -316,6 +311,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -363,7 +359,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1864508399);
                         int i2 = this.out ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
@@ -420,8 +416,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -1752573244:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = -1752573244;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -450,6 +444,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -520,7 +515,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1752573244);
                         int i2 = this.out ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
@@ -597,8 +592,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -1642487306:
                 tLRPC$Message = new TLRPC$TL_messageService() {
-                    public static int constructor = -1642487306;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -620,6 +613,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -628,7 +622,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1642487306);
                         int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.out ? i2 | 2 : i2 & (-3);
@@ -660,8 +654,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -1618124613:
                 tLRPC$Message = new TLRPC$TL_messageService() {
-                    public static int constructor = -1618124613;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -678,7 +670,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1618124613);
                         abstractSerializedData2.writeInt32(this.id);
                         abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         this.peer_id.serializeToStream(abstractSerializedData2);
@@ -694,8 +686,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -1481959023:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = -1481959023;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2) | LiteMode.FLAG_CHAT_BLUR | LiteMode.FLAG_CALLS_ANIMATIONS;
@@ -721,6 +711,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -735,7 +726,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1481959023);
                         int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.out ? i2 | 2 : i2 & (-3);
@@ -764,8 +755,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -1125940270:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = -1125940270;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -867,7 +856,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1125940270);
                         int i2 = this.out ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
@@ -952,8 +941,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -1066691065:
                 tLRPC$Message = new TLRPC$TL_messageService() {
-                    public static int constructor = -1066691065;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -981,7 +968,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1066691065);
                         int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.out ? i2 | 2 : i2 & (-3);
@@ -1007,8 +994,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -1063525281:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = -1063525281;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1040,6 +1025,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -1083,7 +1069,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1063525281);
                         int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.out ? i2 | 2 : i2 & (-3);
@@ -1141,8 +1127,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -1023016155:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = -1023016155;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2) | LiteMode.FLAG_CHAT_BLUR | LiteMode.FLAG_CALLS_ANIMATIONS;
@@ -1168,6 +1152,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -1184,7 +1169,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1023016155);
                         int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.out ? i2 | 2 : i2 & (-3);
@@ -1216,8 +1201,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -913120932:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = -913120932;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1253,6 +1236,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -1293,7 +1277,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-913120932);
                         int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.out ? i2 | 2 : i2 & (-3);
@@ -1346,8 +1330,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -260565816:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = -260565816;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2) | LiteMode.FLAG_CHAT_BLUR | LiteMode.FLAG_CALLS_ANIMATIONS;
@@ -1373,6 +1355,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -1406,7 +1389,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-260565816);
                         int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.out ? i2 | 2 : i2 & (-3);
@@ -1446,8 +1429,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case -181507201:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = -181507201;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1476,6 +1457,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -1546,7 +1528,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-181507201);
                         int i2 = this.out ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
@@ -1623,8 +1605,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case 99903492:
                 tLRPC$Message = new TLRPC$TL_messageForwarded_old2() {
-                    public static int constructor = 99903492;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -1654,7 +1634,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(99903492);
                         abstractSerializedData2.writeInt32(this.id);
                         abstractSerializedData2.writeInt32((int) this.fwd_from.from_id.user_id);
                         abstractSerializedData2.writeInt32(this.fwd_from.date);
@@ -1671,8 +1651,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case 479924263:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = 479924263;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1701,6 +1679,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -1757,7 +1736,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(479924263);
                         int i2 = this.out ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
@@ -1829,8 +1808,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case 495384334:
                 tLRPC$Message = new TLRPC$TL_messageService() {
-                    public static int constructor = 495384334;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1851,7 +1828,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(495384334);
                         int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.out ? i2 | 2 : i2 & (-3);
@@ -1871,8 +1848,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case 585853626:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = 585853626;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -1895,7 +1870,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(585853626);
                         abstractSerializedData2.writeInt32(this.id);
                         abstractSerializedData2.writeInt32((int) this.from_id.user_id);
                         this.peer_id.serializeToStream(abstractSerializedData2);
@@ -1910,8 +1885,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case 678405636:
                 tLRPC$Message = new TLRPC$TL_messageService() {
-                    public static int constructor = 678405636;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -1936,7 +1909,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(678405636);
                         int i2 = this.out ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
@@ -1969,8 +1942,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case 736885382:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = 736885382;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2) | LiteMode.FLAG_CHAT_BLUR;
@@ -1996,6 +1967,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -2033,7 +2005,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(736885382);
                         int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.out ? i2 | 2 : i2 & (-3);
@@ -2078,8 +2050,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case 1157215293:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = 1157215293;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -2107,6 +2077,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -2157,7 +2128,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1157215293);
                         int i2 = this.out ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
@@ -2221,8 +2192,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case 1160515173:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = 1160515173;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -2251,6 +2220,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -2318,7 +2288,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1160515173);
                         int i2 = this.out ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
@@ -2391,18 +2361,142 @@ public class TLRPC$Message extends TLObject {
                 };
                 break;
             case 1431655928:
-                tLRPC$Message = new TLRPC$TL_message_secret_old();
+                tLRPC$Message = new TLRPC$TL_message_secret() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2) | LiteMode.FLAG_CHAT_BLUR | LiteMode.FLAG_CALLS_ANIMATIONS;
+                        this.flags = readInt32;
+                        this.unread = (readInt32 & 1) != 0;
+                        this.out = (readInt32 & 2) != 0;
+                        this.mentioned = (readInt32 & 16) != 0;
+                        this.media_unread = (readInt32 & 32) != 0;
+                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.ttl = abstractSerializedData2.readInt32(z2);
+                        TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
+                        this.from_id = tLRPC$TL_peerUser;
+                        tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
+                        this.peer_id = TLRPC$Peer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        this.date = abstractSerializedData2.readInt32(z2);
+                        this.message = abstractSerializedData2.readString(z2);
+                        TLRPC$MessageMedia TLdeserialize = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        this.media = TLdeserialize;
+                        if (TLdeserialize == null || TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
+                            return;
+                        }
+                        this.message = this.media.captionLegacy;
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(1431655928);
+                        int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
+                        this.flags = i2;
+                        int i3 = this.out ? i2 | 2 : i2 & (-3);
+                        this.flags = i3;
+                        int i4 = this.mentioned ? i3 | 16 : i3 & (-17);
+                        this.flags = i4;
+                        int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
+                        this.flags = i5;
+                        abstractSerializedData2.writeInt32(i5);
+                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.ttl);
+                        abstractSerializedData2.writeInt32((int) this.from_id.user_id);
+                        this.peer_id.serializeToStream(abstractSerializedData2);
+                        abstractSerializedData2.writeInt32(this.date);
+                        abstractSerializedData2.writeString(this.message);
+                        this.media.serializeToStream(abstractSerializedData2);
+                        writeAttachPath(abstractSerializedData2);
+                    }
+                };
                 break;
             case 1431655929:
-                tLRPC$Message = new TLRPC$TL_message_secret_layer72();
+                tLRPC$Message = new TLRPC$TL_message() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        int readInt32 = abstractSerializedData2.readInt32(z2);
+                        this.flags = readInt32;
+                        this.unread = (readInt32 & 1) != 0;
+                        this.out = (readInt32 & 2) != 0;
+                        this.mentioned = (readInt32 & 16) != 0;
+                        this.media_unread = (readInt32 & 32) != 0;
+                        this.id = abstractSerializedData2.readInt32(z2);
+                        this.ttl = abstractSerializedData2.readInt32(z2);
+                        TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
+                        this.from_id = tLRPC$TL_peerUser;
+                        tLRPC$TL_peerUser.user_id = abstractSerializedData2.readInt32(z2);
+                        this.peer_id = TLRPC$Peer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        this.date = abstractSerializedData2.readInt32(z2);
+                        this.message = abstractSerializedData2.readString(z2);
+                        TLRPC$MessageMedia TLdeserialize = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                        this.media = TLdeserialize;
+                        if (TLdeserialize != null && !TextUtils.isEmpty(TLdeserialize.captionLegacy)) {
+                            this.message = this.media.captionLegacy;
+                        }
+                        int readInt322 = abstractSerializedData2.readInt32(z2);
+                        if (readInt322 != 481674261) {
+                            if (z2) {
+                                throw new RuntimeException(String.format("wrong Vector magic, got %x", Integer.valueOf(readInt322)));
+                            }
+                            return;
+                        }
+                        int readInt323 = abstractSerializedData2.readInt32(z2);
+                        for (int i2 = 0; i2 < readInt323; i2++) {
+                            TLRPC$MessageEntity TLdeserialize2 = TLRPC$MessageEntity.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                            if (TLdeserialize2 == null) {
+                                return;
+                            }
+                            this.entities.add(TLdeserialize2);
+                        }
+                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                            this.via_bot_name = abstractSerializedData2.readString(z2);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
+                            this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.reply_to_random_id = abstractSerializedData2.readInt64(z2);
+                        }
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(1431655929);
+                        int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
+                        this.flags = i2;
+                        int i3 = this.out ? i2 | 2 : i2 & (-3);
+                        this.flags = i3;
+                        int i4 = this.mentioned ? i3 | 16 : i3 & (-17);
+                        this.flags = i4;
+                        int i5 = this.media_unread ? i4 | 32 : i4 & (-33);
+                        this.flags = i5;
+                        abstractSerializedData2.writeInt32(i5);
+                        abstractSerializedData2.writeInt32(this.id);
+                        abstractSerializedData2.writeInt32(this.ttl);
+                        abstractSerializedData2.writeInt32((int) this.from_id.user_id);
+                        this.peer_id.serializeToStream(abstractSerializedData2);
+                        abstractSerializedData2.writeInt32(this.date);
+                        abstractSerializedData2.writeString(this.message);
+                        this.media.serializeToStream(abstractSerializedData2);
+                        abstractSerializedData2.writeInt32(481674261);
+                        int size = this.entities.size();
+                        abstractSerializedData2.writeInt32(size);
+                        for (int i6 = 0; i6 < size; i6++) {
+                            this.entities.get(i6).serializeToStream(abstractSerializedData2);
+                        }
+                        if ((this.flags & LiteMode.FLAG_AUTOPLAY_GIFS) != 0) {
+                            abstractSerializedData2.writeString(this.via_bot_name);
+                        }
+                        if ((this.flags & 8) != 0) {
+                            abstractSerializedData2.writeInt64(this.reply_to.reply_to_random_id);
+                        }
+                        writeAttachPath(abstractSerializedData2);
+                    }
+                };
                 break;
             case 1431655930:
                 tLRPC$Message = new TLRPC$TL_message_secret();
                 break;
             case 1450613171:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = 1450613171;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2) | LiteMode.FLAG_CHAT_BLUR | LiteMode.FLAG_CALLS_ANIMATIONS;
@@ -2428,7 +2522,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1450613171);
                         int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.out ? i2 | 2 : i2 & (-3);
@@ -2450,8 +2544,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case 1487813065:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = 1487813065;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -2550,7 +2642,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1487813065);
                         int i2 = this.out ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.mentioned ? i2 | 16 : i2 & (-17);
@@ -2632,8 +2724,6 @@ public class TLRPC$Message extends TLObject {
                 break;
             case 1537633299:
                 tLRPC$Message = new TLRPC$TL_message() {
-                    public static int constructor = 1537633299;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -2666,6 +2756,7 @@ public class TLRPC$Message extends TLObject {
                         if ((this.flags & 8) != 0) {
                             TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                             this.reply_to = tLRPC$TL_messageReplyHeader;
+                            tLRPC$TL_messageReplyHeader.flags |= 16;
                             tLRPC$TL_messageReplyHeader.reply_to_msg_id = abstractSerializedData2.readInt32(z2);
                         }
                         this.date = abstractSerializedData2.readInt32(z2);
@@ -2706,7 +2797,7 @@ public class TLRPC$Message extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1537633299);
                         int i2 = this.unread ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.out ? i2 | 2 : i2 & (-3);
@@ -2800,8 +2891,8 @@ public class TLRPC$Message extends TLObject {
             if (this.params == null) {
                 this.params = new HashMap<>();
             }
-            this.layer = 165;
-            this.params.put("legacy_layer", "165");
+            this.layer = 166;
+            this.params.put("legacy_layer", "166");
         }
         if ((this.id < 0 || this.send_state == 3 || this.legacy) && (hashMap2 = this.params) != null && hashMap2.size() > 0) {
             for (Map.Entry<String, String> entry2 : this.params.entrySet()) {

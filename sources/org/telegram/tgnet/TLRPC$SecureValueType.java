@@ -5,51 +5,41 @@ public abstract class TLRPC$SecureValueType extends TLObject {
         switch (i) {
             case -1995211763:
                 tLRPC$SecureValueType = new TLRPC$SecureValueType() {
-                    public static int constructor = -1995211763;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1995211763);
                     }
                 };
                 break;
             case -1954007928:
                 tLRPC$SecureValueType = new TLRPC$SecureValueType() {
-                    public static int constructor = -1954007928;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1954007928);
                     }
                 };
                 break;
             case -1908627474:
                 tLRPC$SecureValueType = new TLRPC$SecureValueType() {
-                    public static int constructor = -1908627474;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1908627474);
                     }
                 };
                 break;
             case -1717268701:
                 tLRPC$SecureValueType = new TLRPC$SecureValueType() {
-                    public static int constructor = -1717268701;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1717268701);
                     }
                 };
                 break;
             case -1713143702:
                 tLRPC$SecureValueType = new TLRPC$SecureValueType() {
-                    public static int constructor = -1713143702;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1713143702);
                     }
                 };
                 break;
@@ -58,21 +48,17 @@ public abstract class TLRPC$SecureValueType extends TLObject {
                 break;
             case -1596951477:
                 tLRPC$SecureValueType = new TLRPC$SecureValueType() {
-                    public static int constructor = -1596951477;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1596951477);
                     }
                 };
                 break;
             case -1289704741:
                 tLRPC$SecureValueType = new TLRPC$SecureValueType() {
-                    public static int constructor = -1289704741;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1289704741);
                     }
                 };
                 break;
@@ -81,41 +67,33 @@ public abstract class TLRPC$SecureValueType extends TLObject {
                 break;
             case -368907213:
                 tLRPC$SecureValueType = new TLRPC$SecureValueType() {
-                    public static int constructor = -368907213;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-368907213);
                     }
                 };
                 break;
             case -63531698:
                 tLRPC$SecureValueType = new TLRPC$SecureValueType() {
-                    public static int constructor = -63531698;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-63531698);
                     }
                 };
                 break;
             case 115615172:
                 tLRPC$SecureValueType = new TLRPC$SecureValueType() {
-                    public static int constructor = 115615172;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(115615172);
                     }
                 };
                 break;
             case 1034709504:
                 tLRPC$SecureValueType = new TLRPC$SecureValueType() {
-                    public static int constructor = 1034709504;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1034709504);
                     }
                 };
                 break;

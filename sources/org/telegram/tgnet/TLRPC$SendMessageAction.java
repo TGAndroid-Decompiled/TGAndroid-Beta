@@ -10,53 +10,45 @@ public abstract class TLRPC$SendMessageAction extends TLObject {
                 break;
             case -1884362354:
                 tLRPC$TL_sendMessageRecordRoundAction = new TLRPC$TL_sendMessageUploadDocumentAction() {
-                    public static int constructor = -1884362354;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1884362354);
                     }
                 };
                 break;
             case -1845219337:
                 tLRPC$TL_sendMessageRecordRoundAction = new TLRPC$TL_sendMessageUploadVideoAction() {
-                    public static int constructor = -1845219337;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1845219337);
                     }
                 };
                 break;
             case -1727382502:
                 tLRPC$TL_sendMessageRecordRoundAction = new TLRPC$TL_sendMessageUploadPhotoAction() {
-                    public static int constructor = -1727382502;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1727382502);
                     }
                 };
                 break;
             case -1584933265:
                 tLRPC$TL_sendMessageRecordRoundAction = new TLRPC$SendMessageAction() {
-                    public static int constructor = -1584933265;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1584933265);
                     }
                 };
                 break;
@@ -86,15 +78,13 @@ public abstract class TLRPC$SendMessageAction extends TLObject {
                 break;
             case -424899985:
                 tLRPC$TL_sendMessageRecordRoundAction = new TLRPC$TL_sendMessageUploadAudioAction() {
-                    public static int constructor = -424899985;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-424899985);
                     }
                 };
                 break;
@@ -112,11 +102,9 @@ public abstract class TLRPC$SendMessageAction extends TLObject {
                 break;
             case 393186209:
                 tLRPC$TL_sendMessageRecordRoundAction = new TLRPC$SendMessageAction() {
-                    public static int constructor = 393186209;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(393186209);
                     }
                 };
                 break;
@@ -128,11 +116,9 @@ public abstract class TLRPC$SendMessageAction extends TLObject {
                 break;
             case 1653390447:
                 tLRPC$TL_sendMessageRecordRoundAction = new TLRPC$SendMessageAction() {
-                    public static int constructor = 1653390447;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1653390447);
                     }
                 };
                 break;

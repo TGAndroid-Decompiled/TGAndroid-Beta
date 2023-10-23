@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelParticipantsMentions extends TLRPC$ChannelParticipantsFilter {
-    public static int constructor = -531931925;
     public int flags;
     public int top_msg_id;
 
@@ -18,7 +17,7 @@ public class TLRPC$TL_channelParticipantsMentions extends TLRPC$ChannelParticipa
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-531931925);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.q);

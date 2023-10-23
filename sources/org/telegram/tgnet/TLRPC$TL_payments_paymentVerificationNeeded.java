@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_payments_paymentVerificationNeeded extends TLRPC$payments_PaymentResult {
-    public static int constructor = -666824391;
     public String url;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_payments_paymentVerificationNeeded extends TLRPC$payments_
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-666824391);
         abstractSerializedData.writeString(this.url);
     }
 }

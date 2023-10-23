@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_webPageNotModified extends TLRPC$WebPage {
-    public static int constructor = 1930545681;
     public int cached_page_views;
 
     @Override
@@ -14,7 +13,7 @@ public class TLRPC$TL_webPageNotModified extends TLRPC$WebPage {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1930545681);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.cached_page_views);

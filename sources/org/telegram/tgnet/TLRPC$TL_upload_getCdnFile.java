@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_upload_getCdnFile extends TLObject {
-    public static int constructor = 962554330;
     public byte[] file_token;
     public int limit;
     public long offset;
@@ -12,7 +11,7 @@ public class TLRPC$TL_upload_getCdnFile extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(962554330);
         abstractSerializedData.writeByteArray(this.file_token);
         abstractSerializedData.writeInt64(this.offset);
         abstractSerializedData.writeInt32(this.limit);

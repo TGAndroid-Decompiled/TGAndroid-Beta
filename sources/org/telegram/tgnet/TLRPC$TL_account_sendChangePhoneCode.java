@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_sendChangePhoneCode extends TLObject {
-    public static int constructor = -2108208411;
     public String phone_number;
     public TLRPC$TL_codeSettings settings;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_account_sendChangePhoneCode extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-2108208411);
         abstractSerializedData.writeString(this.phone_number);
         this.settings.serializeToStream(abstractSerializedData);
     }

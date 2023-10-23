@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_getChatThemes extends TLObject {
-    public static int constructor = -700916087;
     public long hash;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_account_getChatThemes extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-700916087);
         abstractSerializedData.writeInt64(this.hash);
     }
 }

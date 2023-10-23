@@ -7,15 +7,18 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-public class ToggleButton extends View {
+import org.telegram.ui.Stories.recorder.FlashViews;
+public class ToggleButton extends View implements FlashViews.Invertable {
     private Bitmap activeBitmap;
     private final Paint activeBitmapPaint;
     private final Paint activePaint;
@@ -59,6 +62,12 @@ public class ToggleButton extends View {
     public void setValue(boolean z) {
         this.value = z ? 1.0f : 0.0f;
         invalidate();
+    }
+
+    @Override
+    public void setInvert(float f) {
+        this.drawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), PorterDuff.Mode.MULTIPLY));
+        this.activePaint.setColor(ColorUtils.blendARGB(-1, -16777216, f));
     }
 
     @Override

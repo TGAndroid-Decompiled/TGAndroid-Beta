@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionToggleNoForwards extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = -886388890;
     public boolean new_value;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_channelAdminLogEventActionToggleNoForwards extends TLRPC$C
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-886388890);
         abstractSerializedData.writeBool(this.new_value);
     }
 }

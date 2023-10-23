@@ -29,6 +29,7 @@ public class AvatarDrawable extends Drawable {
     private int avatarType;
     private int color;
     private int color2;
+    private boolean drawAvatarBackground;
     private boolean drawDeleted;
     private LinearGradient gradient;
     private int gradientBottom;
@@ -77,6 +78,7 @@ public class AvatarDrawable extends Drawable {
         this.scaleSize = 1.0f;
         this.stringBuilder = new StringBuilder(5);
         this.roundRadius = -1;
+        this.drawAvatarBackground = true;
         this.alpha = 255;
         this.resourcesProvider = resourcesProvider;
         TextPaint textPaint = new TextPaint(1);
@@ -103,13 +105,15 @@ public class AvatarDrawable extends Drawable {
 
     public AvatarDrawable(TLRPC$Chat tLRPC$Chat, boolean z) {
         this();
-        if (tLRPC$Chat != null) {
-            setInfo(tLRPC$Chat.id, tLRPC$Chat.title, null, null);
-        }
+        setInfo(tLRPC$Chat);
+    }
+
+    public void setDrawAvatarBackground(boolean z) {
+        this.drawAvatarBackground = z;
     }
 
     public static int getColorIndex(long j) {
-        return (j < 0 || j >= 7) ? (int) Math.abs(j % Theme.keys_avatar_background.length) : (int) j;
+        return (j < 0 || j >= ((long) Theme.keys_avatar_background.length)) ? (int) Math.abs(j % Theme.keys_avatar_background.length) : (int) j;
     }
 
     public static int getColorForId(long j) {
@@ -136,9 +140,85 @@ public class AvatarDrawable extends Drawable {
         return Theme.keys_avatar_nameInMessage[getColorIndex(j)];
     }
 
+    public static int getNameColorKey1For(TLRPC$User tLRPC$User) {
+        if (tLRPC$User == null) {
+            return Theme.keys_avatar_nameInMessage[0];
+        }
+        if ((tLRPC$User.flags2 & 128) != 0) {
+            return getNameColorKey1For(tLRPC$User.color);
+        }
+        return getNameColorNameForId(tLRPC$User.id);
+    }
+
+    public static int getNameColorKey2For(TLRPC$User tLRPC$User) {
+        if (tLRPC$User == null) {
+            return Theme.keys_avatar_nameInMessage[0];
+        }
+        if ((tLRPC$User.flags2 & 128) != 0) {
+            return getNameColorKey2For(tLRPC$User.color);
+        }
+        return getNameColorNameForId(tLRPC$User.id);
+    }
+
+    public static int getNameColorKey1For(TLRPC$Chat tLRPC$Chat) {
+        if (tLRPC$Chat == null) {
+            return Theme.keys_avatar_nameInMessage[0];
+        }
+        if ((tLRPC$Chat.flags2 & 64) != 0) {
+            return getNameColorKey1For(tLRPC$Chat.color);
+        }
+        return getNameColorNameForId(tLRPC$Chat.id);
+    }
+
+    public static int getNameColorKey2For(TLRPC$Chat tLRPC$Chat) {
+        if (tLRPC$Chat == null) {
+            return Theme.keys_avatar_nameInMessage[0];
+        }
+        if ((tLRPC$Chat.flags2 & 64) != 0) {
+            return getNameColorKey1For(tLRPC$Chat.color);
+        }
+        return getNameColorNameForId(tLRPC$Chat.id);
+    }
+
+    public static int getNameColorKey1For(int i) {
+        int length = i % (Theme.keys_avatar_nameInMessage.length + Theme.keys_avatar_composite_nameInMessage.length);
+        if (length >= 0) {
+            int[] iArr = Theme.keys_avatar_nameInMessage;
+            if (length < iArr.length) {
+                return iArr[length];
+            }
+        }
+        int length2 = length - Theme.keys_avatar_nameInMessage.length;
+        if (length2 >= 0) {
+            int[] iArr2 = Theme.keys_avatar_composite_nameInMessage;
+            if (length2 < iArr2.length) {
+                return iArr2[length2];
+            }
+        }
+        return Theme.keys_avatar_nameInMessage[0];
+    }
+
+    public static int getNameColorKey2For(int i) {
+        int length = i % (Theme.keys_avatar_nameInMessage.length + Theme.keys_avatar_composite_nameInMessage2.length);
+        if (length >= 0) {
+            int[] iArr = Theme.keys_avatar_nameInMessage;
+            if (length < iArr.length) {
+                return iArr[length];
+            }
+        }
+        int length2 = length - Theme.keys_avatar_nameInMessage.length;
+        if (length2 >= 0) {
+            int[] iArr2 = Theme.keys_avatar_composite_nameInMessage2;
+            if (length2 < iArr2.length) {
+                return iArr2[length2];
+            }
+        }
+        return Theme.keys_avatar_nameInMessage[0];
+    }
+
     public void setInfo(TLRPC$User tLRPC$User) {
         if (tLRPC$User != null) {
-            setInfo(tLRPC$User.id, tLRPC$User.first_name, tLRPC$User.last_name, null);
+            setInfo(tLRPC$User.id, tLRPC$User.first_name, tLRPC$User.last_name, null, (tLRPC$User.flags2 & 128) != 0 ? Integer.valueOf(tLRPC$User.color) : null);
             this.drawDeleted = UserObject.isDeleted(tLRPC$User);
         }
     }
@@ -206,6 +286,10 @@ public class AvatarDrawable extends Drawable {
             this.hasGradient = true;
             this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(5L)]);
             this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(5L)]);
+        } else if (i == 17) {
+            this.hasGradient = true;
+            this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(5L)]);
+            this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(5L)]);
         } else {
             this.hasGradient = true;
             this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(4L)]);
@@ -228,13 +312,15 @@ public class AvatarDrawable extends Drawable {
 
     public void setInfo(TLRPC$Chat tLRPC$Chat) {
         if (tLRPC$Chat != null) {
-            setInfo(tLRPC$Chat.id, tLRPC$Chat.title, null, null);
+            setInfo(tLRPC$Chat.id, tLRPC$Chat.title, null, null, (tLRPC$Chat.flags2 & 64) != 0 ? Integer.valueOf(tLRPC$Chat.color) : null);
         }
     }
 
     public void setInfo(TLRPC$ChatInvite tLRPC$ChatInvite) {
         if (tLRPC$ChatInvite != null) {
-            setInfo(0L, tLRPC$ChatInvite.title, null, null);
+            String str = tLRPC$ChatInvite.title;
+            TLRPC$Chat tLRPC$Chat = tLRPC$ChatInvite.chat;
+            setInfo(0L, str, null, null, (tLRPC$Chat == null || (tLRPC$Chat.flags2 & 64) == 0) ? null : Integer.valueOf(tLRPC$Chat.color));
         }
     }
 
@@ -257,7 +343,7 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(long j, String str, String str2) {
-        setInfo(j, str, str2, null);
+        setInfo(j, str, str2, null, null);
     }
 
     public int getColor() {
@@ -277,10 +363,19 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(long j, String str, String str2, String str3) {
+        setInfo(j, str, str2, str3, null);
+    }
+
+    public void setInfo(long j, String str, String str2, String str3, Integer num) {
         this.hasGradient = true;
         this.invalidateTextLayout = true;
-        this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(j)]);
-        this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(j)]);
+        if (num != null) {
+            this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(num.intValue())]);
+            this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(num.intValue())]);
+        } else {
+            this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(j)]);
+            this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(j)]);
+        }
         this.needApplyColorAccent = j == 5;
         this.avatarType = 0;
         this.drawDeleted = false;
@@ -349,15 +444,17 @@ public class AvatarDrawable extends Drawable {
         }
         canvas.save();
         canvas.translate(bounds.left, bounds.top);
-        if (this.roundRadius > 0) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            float f = width;
-            rectF.set(0.0f, 0.0f, f, f);
-            int i = this.roundRadius;
-            canvas.drawRoundRect(rectF, i, i, Theme.avatar_backgroundPaint);
-        } else {
-            float f2 = width / 2.0f;
-            canvas.drawCircle(f2, f2, f2, Theme.avatar_backgroundPaint);
+        if (this.drawAvatarBackground) {
+            if (this.roundRadius > 0) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                float f = width;
+                rectF.set(0.0f, 0.0f, f, f);
+                int i = this.roundRadius;
+                canvas.drawRoundRect(rectF, i, i, Theme.avatar_backgroundPaint);
+            } else {
+                float f2 = width / 2.0f;
+                canvas.drawCircle(f2, f2, f2, Theme.avatar_backgroundPaint);
+            }
         }
         int i2 = this.avatarType;
         if (i2 == 2) {
@@ -414,6 +511,12 @@ public class AvatarDrawable extends Drawable {
                 drawable = Theme.avatarDrawables[12];
             } else if (i2 == 15) {
                 drawable = Theme.avatarDrawables[13];
+            } else if (i2 == 16) {
+                drawable = Theme.avatarDrawables[14];
+            } else if (i2 == 19) {
+                drawable = Theme.avatarDrawables[15];
+            } else if (i2 == 18) {
+                drawable = Theme.avatarDrawables[16];
             } else {
                 drawable = Theme.avatarDrawables[9];
             }

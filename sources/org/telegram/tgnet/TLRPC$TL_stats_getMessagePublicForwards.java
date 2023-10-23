@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_stats_getMessagePublicForwards extends TLObject {
-    public static int constructor = 1445996571;
     public TLRPC$InputChannel channel;
     public int limit;
     public int msg_id;
@@ -15,7 +14,7 @@ public class TLRPC$TL_stats_getMessagePublicForwards extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1445996571);
         this.channel.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.msg_id);
         abstractSerializedData.writeInt32(this.offset_rate);

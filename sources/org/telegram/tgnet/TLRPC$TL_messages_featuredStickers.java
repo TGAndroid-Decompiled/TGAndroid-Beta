@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_messages_featuredStickers extends TLRPC$messages_FeaturedStickers {
-    public static int constructor = -1103615738;
     public int count;
     public int flags;
     public long hash;
@@ -47,7 +46,7 @@ public class TLRPC$TL_messages_featuredStickers extends TLRPC$messages_FeaturedS
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1103615738);
         int i = this.premium ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

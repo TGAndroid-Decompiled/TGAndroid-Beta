@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionParticipantJoinByRequest extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = -1347021750;
     public long approved_by;
     public TLRPC$ExportedChatInvite invite;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_channelAdminLogEventActionParticipantJoinByRequest extends
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1347021750);
         this.invite.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt64(this.approved_by);
     }

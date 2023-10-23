@@ -2,13 +2,12 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_account_privacyRules extends TLObject {
-    public static int constructor = 1352683077;
     public ArrayList<TLRPC$PrivacyRule> rules = new ArrayList<>();
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
     public static TLRPC$TL_account_privacyRules TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1352683077 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_account_privacyRules", Integer.valueOf(i)));
             }
@@ -70,7 +69,7 @@ public class TLRPC$TL_account_privacyRules extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1352683077);
         abstractSerializedData.writeInt32(481674261);
         int size = this.rules.size();
         abstractSerializedData.writeInt32(size);

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updatePhoneCallSignalingData extends TLRPC$Update {
-    public static int constructor = 643940105;
     public byte[] data;
     public long phone_call_id;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_updatePhoneCallSignalingData extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(643940105);
         abstractSerializedData.writeInt64(this.phone_call_id);
         abstractSerializedData.writeByteArray(this.data);
     }

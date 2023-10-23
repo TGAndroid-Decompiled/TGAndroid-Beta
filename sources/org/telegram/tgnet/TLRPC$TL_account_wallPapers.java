@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_account_wallPapers extends TLRPC$account_WallPapers {
-    public static int constructor = -842824308;
     public long hash;
     public ArrayList<TLRPC$WallPaper> wallpapers = new ArrayList<>();
 
@@ -28,7 +27,7 @@ public class TLRPC$TL_account_wallPapers extends TLRPC$account_WallPapers {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-842824308);
         abstractSerializedData.writeInt64(this.hash);
         abstractSerializedData.writeInt32(481674261);
         int size = this.wallpapers.size();

@@ -40,8 +40,6 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case -840826671:
                 tLRPC$TL_pageBlockAudio = new TLRPC$TL_pageBlockEmbed() {
-                    public static int constructor = -840826671;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -67,7 +65,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-840826671);
                         int i2 = this.full_width ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.allow_scrolling ? i2 | 8 : i2 & (-9);
@@ -93,7 +91,6 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case -650782469:
                 tLRPC$TL_pageBlockAudio = new TLRPC$TL_pageBlockEmbed() {
-                    public static int constructor = -650782469;
                     public boolean allow_scrolling;
                     public TLRPC$RichText caption;
                     public int flags;
@@ -122,7 +119,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-650782469);
                         int i2 = this.full_width ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.allow_scrolling ? i2 | 8 : i2 & (-9);
@@ -142,8 +139,6 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case -640214938:
                 tLRPC$TL_pageBlockAudio = new TLRPC$TL_pageBlockVideo() {
-                    public static int constructor = -640214938;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -159,7 +154,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-640214938);
                         int i2 = this.autoplay ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.loop ? i2 | 2 : i2 & (-3);
@@ -172,11 +167,9 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case -618614392:
                 tLRPC$TL_pageBlockAudio = new TLRPC$PageBlock() {
-                    public static int constructor = -618614392;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-618614392);
                     }
                 };
                 break;
@@ -185,8 +178,6 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case -372860542:
                 tLRPC$TL_pageBlockAudio = new TLRPC$TL_pageBlockPhoto() {
-                    public static int constructor = -372860542;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.photo_id = abstractSerializedData2.readInt64(z2);
@@ -198,7 +189,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-372860542);
                         abstractSerializedData2.writeInt64(this.photo_id);
                         this.caption.text.serializeToStream(abstractSerializedData2);
                     }
@@ -218,8 +209,6 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case 145955919:
                 tLRPC$TL_pageBlockAudio = new TLRPC$TL_pageBlockCollage() {
-                    public static int constructor = 145955919;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -245,7 +234,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(145955919);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.items.size();
                         abstractSerializedData2.writeInt32(size);
@@ -258,8 +247,6 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case 319588707:
                 tLRPC$TL_pageBlockAudio = new TLRPC$TL_pageBlockSlideshow() {
-                    public static int constructor = 319588707;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -285,7 +272,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(319588707);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.items.size();
                         abstractSerializedData2.writeInt32(size);
@@ -298,11 +285,9 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case 324435594:
                 tLRPC$TL_pageBlockAudio = new TLRPC$PageBlock() {
-                    public static int constructor = 324435594;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(324435594);
                     }
                 };
                 break;
@@ -320,8 +305,6 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case 690781161:
                 tLRPC$TL_pageBlockAudio = new TLRPC$TL_pageBlockEmbedPost() {
-                    public static int constructor = 690781161;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.url = abstractSerializedData2.readString(z2);
@@ -352,7 +335,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(690781161);
                         abstractSerializedData2.writeString(this.url);
                         abstractSerializedData2.writeInt64(this.webpage_id);
                         abstractSerializedData2.writeInt64(this.author_photo_id);
@@ -370,8 +353,6 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case 834148991:
                 tLRPC$TL_pageBlockAudio = new TLRPC$TL_pageBlockAudio() {
-                    public static int constructor = 834148991;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.audio_id = abstractSerializedData2.readInt64(z2);
@@ -383,7 +364,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(834148991);
                         abstractSerializedData2.writeInt64(this.audio_id);
                         this.caption.text.serializeToStream(abstractSerializedData2);
                     }
@@ -394,8 +375,6 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case 978896884:
                 tLRPC$TL_pageBlockAudio = new TLRPC$TL_pageBlockList() {
-                    public static int constructor = 978896884;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.ordered = abstractSerializedData2.readBool(z2);
@@ -420,7 +399,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(978896884);
                         abstractSerializedData2.writeBool(this.ordered);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.items.size();
@@ -433,8 +412,6 @@ public abstract class TLRPC$PageBlock extends TLObject {
                 break;
             case 1029399794:
                 tLRPC$TL_pageBlockAudio = new TLRPC$TL_pageBlockAuthorDate() {
-                    public static int constructor = 1029399794;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         String readString = abstractSerializedData2.readString(z2);
@@ -446,7 +423,7 @@ public abstract class TLRPC$PageBlock extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1029399794);
                         abstractSerializedData2.writeString(((TLRPC$TL_textPlain) this.author).text);
                         abstractSerializedData2.writeInt32(this.published_date);
                     }

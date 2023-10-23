@@ -5,10 +5,10 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC$Reaction;
 import org.telegram.tgnet.TLRPC$ReactionCount;
-import org.telegram.tgnet.TLRPC$StoryViews;
 import org.telegram.tgnet.TLRPC$TL_reactionCount;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
+import org.telegram.tgnet.tl.TL_stories$StoryViews;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 public class ReactionsUtils {
@@ -53,19 +53,19 @@ public class ReactionsUtils {
         return "";
     }
 
-    public static void applyForStoryViews(TLRPC$Reaction tLRPC$Reaction, TLRPC$Reaction tLRPC$Reaction2, TLRPC$StoryViews tLRPC$StoryViews) {
-        if (tLRPC$StoryViews == null) {
+    public static void applyForStoryViews(TLRPC$Reaction tLRPC$Reaction, TLRPC$Reaction tLRPC$Reaction2, TL_stories$StoryViews tL_stories$StoryViews) {
+        if (tL_stories$StoryViews == null) {
             return;
         }
         int i = 0;
         boolean z = false;
-        while (i < tLRPC$StoryViews.reactions.size()) {
-            TLRPC$ReactionCount tLRPC$ReactionCount = tLRPC$StoryViews.reactions.get(i);
+        while (i < tL_stories$StoryViews.reactions.size()) {
+            TLRPC$ReactionCount tLRPC$ReactionCount = tL_stories$StoryViews.reactions.get(i);
             if (tLRPC$Reaction != null && compare(tLRPC$ReactionCount.reaction, tLRPC$Reaction)) {
                 int i2 = tLRPC$ReactionCount.count - 1;
                 tLRPC$ReactionCount.count = i2;
                 if (i2 <= 0) {
-                    tLRPC$StoryViews.reactions.remove(i);
+                    tL_stories$StoryViews.reactions.remove(i);
                     i--;
                     i++;
                 }
@@ -82,6 +82,6 @@ public class ReactionsUtils {
         TLRPC$TL_reactionCount tLRPC$TL_reactionCount = new TLRPC$TL_reactionCount();
         tLRPC$TL_reactionCount.count = 1;
         tLRPC$TL_reactionCount.reaction = tLRPC$Reaction2;
-        tLRPC$StoryViews.reactions.add(tLRPC$TL_reactionCount);
+        tL_stories$StoryViews.reactions.add(tLRPC$TL_reactionCount);
     }
 }

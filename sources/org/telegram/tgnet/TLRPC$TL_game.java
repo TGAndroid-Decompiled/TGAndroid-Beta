@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_game extends TLObject {
-    public static int constructor = -1107729093;
     public long access_hash;
     public String description;
     public TLRPC$Document document;
@@ -11,7 +10,7 @@ public class TLRPC$TL_game extends TLObject {
     public String title;
 
     public static TLRPC$TL_game TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1107729093 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_game", Integer.valueOf(i)));
             }
@@ -38,7 +37,7 @@ public class TLRPC$TL_game extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1107729093);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt64(this.access_hash);

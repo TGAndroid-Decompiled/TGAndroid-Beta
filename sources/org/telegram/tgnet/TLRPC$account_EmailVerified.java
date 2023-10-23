@@ -4,7 +4,6 @@ public abstract class TLRPC$account_EmailVerified extends TLObject {
         TLRPC$account_EmailVerified tLRPC$TL_account_emailVerifiedLogin;
         if (i != -507835039) {
             tLRPC$TL_account_emailVerifiedLogin = i != 731303195 ? null : new TLRPC$account_EmailVerified() {
-                public static int constructor = 731303195;
                 public String email;
 
                 @Override
@@ -14,7 +13,7 @@ public abstract class TLRPC$account_EmailVerified extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(731303195);
                     abstractSerializedData2.writeString(this.email);
                 }
             };

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.audioinfo.AudioInfo;
 public class ID3v2Info extends AudioInfo {
     static final Logger LOGGER = Logger.getLogger(ID3v2Info.class.getName());
@@ -356,7 +357,7 @@ public class ID3v2Info extends AudioInfo {
                 this.copyright = parseTextFrame(iD3v2FrameBody);
                 return;
             case 7:
-            case 26:
+            case MessageObject.TYPE_GIVEAWAY:
                 String parseTextFrame2 = parseTextFrame(iD3v2FrameBody);
                 try {
                     this.duration = Long.valueOf(parseTextFrame2).longValue();

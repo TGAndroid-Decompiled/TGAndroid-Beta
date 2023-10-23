@@ -6,20 +6,35 @@ import android.view.View;
 import androidx.core.graphics.ColorUtils;
 import androidx.core.math.MathUtils;
 public class AnimatedColor {
+    private boolean firstSet;
     private Runnable invalidate;
     private View parent;
     private int startValue;
     private int targetValue;
     private boolean transition;
+    private long transitionDelay;
+    private long transitionDuration;
+    private TimeInterpolator transitionInterpolator;
     private long transitionStart;
     private int value;
-    private long transitionDelay = 0;
-    private long transitionDuration = 200;
-    private TimeInterpolator transitionInterpolator = CubicBezierInterpolator.DEFAULT;
-    private boolean firstSet = true;
 
     public AnimatedColor(View view) {
+        this.transitionDelay = 0L;
+        this.transitionDuration = 200L;
+        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
         this.parent = view;
+        this.firstSet = true;
+    }
+
+    public AnimatedColor(View view, long j, long j2, TimeInterpolator timeInterpolator) {
+        this.transitionDelay = 0L;
+        this.transitionDuration = 200L;
+        this.transitionInterpolator = CubicBezierInterpolator.DEFAULT;
+        this.parent = view;
+        this.transitionDelay = j;
+        this.transitionDuration = j2;
+        this.transitionInterpolator = timeInterpolator;
+        this.firstSet = true;
     }
 
     public int set(int i) {

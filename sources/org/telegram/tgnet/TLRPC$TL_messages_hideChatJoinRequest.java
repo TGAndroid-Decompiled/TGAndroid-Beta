@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_hideChatJoinRequest extends TLObject {
-    public static int constructor = 2145904661;
     public boolean approved;
     public int flags;
     public TLRPC$InputPeer peer;
@@ -13,7 +12,7 @@ public class TLRPC$TL_messages_hideChatJoinRequest extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2145904661);
         int i = this.approved ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

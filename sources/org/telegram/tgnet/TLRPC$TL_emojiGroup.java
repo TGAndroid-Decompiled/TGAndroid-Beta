@@ -2,13 +2,12 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_emojiGroup extends TLObject {
-    public static int constructor = 2056961449;
     public ArrayList<String> emoticons = new ArrayList<>();
     public long icon_emoji_id;
     public String title;
 
     public static TLRPC$TL_emojiGroup TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (2056961449 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_emojiGroup", Integer.valueOf(i)));
             }
@@ -38,7 +37,7 @@ public class TLRPC$TL_emojiGroup extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2056961449);
         abstractSerializedData.writeString(this.title);
         abstractSerializedData.writeInt64(this.icon_emoji_id);
         abstractSerializedData.writeInt32(481674261);

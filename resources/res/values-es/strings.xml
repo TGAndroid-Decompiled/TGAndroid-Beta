@@ -3785,7 +3785,6 @@
     <string name="TermsOfService">Términos de servicio</string>
     <string name="TermsOfServiceLogin">Al registrarte, aceptas\nlos *términos de servicio*.</string>
     <string name="TextCopied">Texto copiado al portapapeles</string>
-    <string name="TextSelectionHit">Mantén pulsada una **palabra**, luego mueve el cursor para seleccionar más texto para copiar.</string>
     <string name="TextSizeHeader">Tamaño del texto del mensaje</string>
     <string name="Theme">Tema</string>
     <string name="ThemeArcticBlue">Ártico</string>

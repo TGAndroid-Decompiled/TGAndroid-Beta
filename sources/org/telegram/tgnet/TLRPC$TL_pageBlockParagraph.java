@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_pageBlockParagraph extends TLRPC$PageBlock {
-    public static int constructor = 1182402406;
     public TLRPC$RichText text;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_pageBlockParagraph extends TLRPC$PageBlock {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1182402406);
         this.text.serializeToStream(abstractSerializedData);
     }
 }

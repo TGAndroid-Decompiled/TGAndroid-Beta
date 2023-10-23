@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getAllStickers extends TLObject {
-    public static int constructor = -1197432408;
     public long hash;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_messages_getAllStickers extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1197432408);
         abstractSerializedData.writeInt64(this.hash);
     }
 }

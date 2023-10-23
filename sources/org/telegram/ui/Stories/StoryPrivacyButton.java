@@ -15,7 +15,7 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC$StoryItem;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -54,20 +54,20 @@ public class StoryPrivacyButton extends View {
         paint.setColor(-1);
     }
 
-    public boolean set(boolean z, TLRPC$StoryItem tLRPC$StoryItem, boolean z2) {
+    public boolean set(boolean z, TL_stories$StoryItem tL_stories$StoryItem, boolean z2) {
         this.drawArrow = z;
         this.draw = true;
-        if (tLRPC$StoryItem == null) {
+        if (tL_stories$StoryItem == null) {
             this.draw = false;
-        } else if (tLRPC$StoryItem.close_friends) {
+        } else if (tL_stories$StoryItem.close_friends) {
             setIcon(R.drawable.msg_stories_closefriends, 15.0f);
             setupGradient(-7808710, -13781445);
             this.crossfadeT.set(z2, true);
-        } else if (tLRPC$StoryItem.contacts) {
+        } else if (tL_stories$StoryItem.contacts) {
             setIcon(R.drawable.msg_folders_private, 17.33f);
             setupGradient(-3905294, -6923014);
             this.crossfadeT.set(z2, true);
-        } else if (tLRPC$StoryItem.selected_contacts) {
+        } else if (tL_stories$StoryItem.selected_contacts) {
             setIcon(R.drawable.msg_folders_groups, 17.33f);
             setupGradient(-18621, -618956);
             this.crossfadeT.set(z2, true);

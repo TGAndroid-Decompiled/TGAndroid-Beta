@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_help_country extends TLObject {
-    public static int constructor = -1014526429;
     public ArrayList<TLRPC$TL_help_countryCode> country_codes = new ArrayList<>();
     public String default_name;
     public int flags;
@@ -11,7 +10,7 @@ public class TLRPC$TL_help_country extends TLObject {
     public String name;
 
     public static TLRPC$TL_help_country TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1014526429 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_help_country", Integer.valueOf(i)));
             }
@@ -51,7 +50,7 @@ public class TLRPC$TL_help_country extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1014526429);
         int i = this.hidden ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

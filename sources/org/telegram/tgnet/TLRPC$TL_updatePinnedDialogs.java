@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_updatePinnedDialogs extends TLRPC$Update {
-    public static int constructor = -99664734;
     public int flags;
     public int folder_id;
     public ArrayList<TLRPC$DialogPeer> order = new ArrayList<>();
@@ -35,7 +34,7 @@ public class TLRPC$TL_updatePinnedDialogs extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-99664734);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeInt32(this.folder_id);

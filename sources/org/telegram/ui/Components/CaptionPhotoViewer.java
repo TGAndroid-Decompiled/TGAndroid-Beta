@@ -39,6 +39,11 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     }
 
     @Override
+    protected int getEditTextStyle() {
+        return 3;
+    }
+
+    @Override
     protected void setupMentionContainer() {
     }
 

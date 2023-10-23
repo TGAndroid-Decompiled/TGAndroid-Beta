@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_pageBlockVideo extends TLRPC$PageBlock {
-    public static int constructor = 2089805750;
     public boolean autoplay;
     public TLRPC$TL_pageCaption caption;
     public int flags;
@@ -19,7 +18,7 @@ public class TLRPC$TL_pageBlockVideo extends TLRPC$PageBlock {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2089805750);
         int i = this.autoplay ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.loop ? i | 2 : i & (-3);

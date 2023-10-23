@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_checkChatInvite extends TLObject {
-    public static int constructor = 1051570619;
     public String hash;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_messages_checkChatInvite extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1051570619);
         abstractSerializedData.writeString(this.hash);
     }
 }

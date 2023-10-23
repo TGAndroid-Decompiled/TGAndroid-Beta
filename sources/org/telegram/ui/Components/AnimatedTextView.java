@@ -102,12 +102,18 @@ public class AnimatedTextView extends View {
 
             public Part(StaticLayout staticLayout, float f, int i) {
                 this.layout = staticLayout;
-                this.offset = f;
                 this.toOppositeIndex = i;
+                layout(f);
+            }
+
+            public void layout(float f) {
+                this.offset = f;
+                StaticLayout staticLayout = this.layout;
                 float f2 = 0.0f;
-                this.left = (staticLayout == null || staticLayout.getLineCount() <= 0) ? 0.0f : staticLayout.getLineLeft(0);
-                if (staticLayout != null && staticLayout.getLineCount() > 0) {
-                    f2 = staticLayout.getLineWidth(0);
+                this.left = (staticLayout == null || staticLayout.getLineCount() <= 0) ? 0.0f : this.layout.getLineLeft(0);
+                StaticLayout staticLayout2 = this.layout;
+                if (staticLayout2 != null && staticLayout2.getLineCount() > 0) {
+                    f2 = this.layout.getLineWidth(0);
                 }
                 this.width = f2;
             }
@@ -647,7 +653,53 @@ public class AnimatedTextView extends View {
         }
 
         public void setTextSize(float f) {
+            float textSize = this.textPaint.getTextSize();
             this.textPaint.setTextSize(f);
+            if (Math.abs(textSize - f) > 0.5f) {
+                int i = this.overrideFullWidth;
+                if (i <= 0) {
+                    i = this.bounds.width();
+                }
+                int i2 = 0;
+                if (this.currentParts != null) {
+                    this.currentWidth = 0.0f;
+                    this.currentHeight = 0.0f;
+                    int i3 = 0;
+                    while (true) {
+                        Part[] partArr = this.currentParts;
+                        if (i3 >= partArr.length) {
+                            break;
+                        }
+                        StaticLayout makeLayout = makeLayout(partArr[i3].layout.getText(), i - ((int) Math.ceil(Math.min(this.currentWidth, this.oldWidth))));
+                        Part[] partArr2 = this.currentParts;
+                        partArr2[i3] = new Part(makeLayout, partArr2[i3].offset, partArr2[i3].toOppositeIndex);
+                        float f2 = this.currentWidth;
+                        Part[] partArr3 = this.currentParts;
+                        this.currentWidth = f2 + partArr3[i3].width;
+                        this.currentHeight = Math.max(this.currentHeight, partArr3[i3].layout.getHeight());
+                        i3++;
+                    }
+                }
+                if (this.oldParts != null) {
+                    this.oldWidth = 0.0f;
+                    this.oldHeight = 0.0f;
+                    while (true) {
+                        Part[] partArr4 = this.oldParts;
+                        if (i2 >= partArr4.length) {
+                            break;
+                        }
+                        StaticLayout makeLayout2 = makeLayout(partArr4[i2].layout.getText(), i - ((int) Math.ceil(Math.min(this.currentWidth, this.oldWidth))));
+                        Part[] partArr5 = this.oldParts;
+                        partArr5[i2] = new Part(makeLayout2, partArr5[i2].offset, partArr5[i2].toOppositeIndex);
+                        float f3 = this.oldWidth;
+                        Part[] partArr6 = this.oldParts;
+                        this.oldWidth = f3 + partArr6[i2].width;
+                        this.oldHeight = Math.max(this.oldHeight, partArr6[i2].layout.getHeight());
+                        i2++;
+                    }
+                }
+                invalidateSelf();
+            }
         }
 
         public float getTextSize() {

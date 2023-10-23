@@ -39,10 +39,10 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$RecentMeUrl;
 import org.telegram.tgnet.TLRPC$RequestPeerType;
-import org.telegram.tgnet.TLRPC$TL_chatlists_chatlistUpdates;
 import org.telegram.tgnet.TLRPC$TL_contact;
 import org.telegram.tgnet.TLRPC$TL_requestPeerTypeBroadcast;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_chatlists$TL_chatlists_chatlistUpdates;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Adapters.DialogsAdapter;
 import org.telegram.ui.Cells.ArchiveHintCell;
@@ -213,7 +213,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
     }
 
     public class ItemInternal extends AdapterWithDiffUtils.Item {
-        TLRPC$TL_chatlists_chatlistUpdates chatlistUpdates;
+        TL_chatlists$TL_chatlists_chatlistUpdates chatlistUpdates;
         TLRPC$TL_contact contact;
         TLRPC$Dialog dialog;
         private int emptyType;
@@ -223,9 +223,9 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         TLRPC$RecentMeUrl recentMeUrl;
         private final int stableId;
 
-        public ItemInternal(DialogsAdapter dialogsAdapter, TLRPC$TL_chatlists_chatlistUpdates tLRPC$TL_chatlists_chatlistUpdates) {
+        public ItemInternal(DialogsAdapter dialogsAdapter, TL_chatlists$TL_chatlists_chatlistUpdates tL_chatlists$TL_chatlists_chatlistUpdates) {
             super(17, true);
-            this.chatlistUpdates = tLRPC$TL_chatlists_chatlistUpdates;
+            this.chatlistUpdates = tL_chatlists$TL_chatlists_chatlistUpdates;
             int i = dialogsAdapter.stableIdPointer;
             dialogsAdapter.stableIdPointer = i + 1;
             this.stableId = i;
@@ -915,9 +915,9 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
                     break;
                 case 17:
                     DialogsHintCell dialogsHintCell = (DialogsHintCell) viewHolder.itemView;
-                    TLRPC$TL_chatlists_chatlistUpdates tLRPC$TL_chatlists_chatlistUpdates = this.itemInternals.get(i).chatlistUpdates;
-                    if (tLRPC$TL_chatlists_chatlistUpdates != null) {
-                        int size = tLRPC$TL_chatlists_chatlistUpdates.missing_peers.size();
+                    TL_chatlists$TL_chatlists_chatlistUpdates tL_chatlists$TL_chatlists_chatlistUpdates = this.itemInternals.get(i).chatlistUpdates;
+                    if (tL_chatlists$TL_chatlists_chatlistUpdates != null) {
+                        int size = tL_chatlists$TL_chatlists_chatlistUpdates.missing_peers.size();
                         dialogsHintCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("FolderUpdatesTitle", size, new Object[0]), Theme.key_windowBackgroundWhiteValueText, 0, null), LocaleController.formatPluralString("FolderUpdatesSubtitle", size, new Object[0]));
                         break;
                     }
@@ -957,7 +957,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         this.parentFragment.setContactsAlpha(f.floatValue());
     }
 
-    public TLRPC$TL_chatlists_chatlistUpdates getChatlistUpdate() {
+    public TL_chatlists$TL_chatlists_chatlistUpdates getChatlistUpdate() {
         ItemInternal itemInternal = this.itemInternals.get(0);
         if (itemInternal == null || itemInternal.viewType != 17) {
             return null;

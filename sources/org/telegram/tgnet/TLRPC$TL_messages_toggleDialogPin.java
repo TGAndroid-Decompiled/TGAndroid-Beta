@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_toggleDialogPin extends TLObject {
-    public static int constructor = -1489903017;
     public int flags;
     public TLRPC$InputDialogPeer peer;
     public boolean pinned;
@@ -12,7 +11,7 @@ public class TLRPC$TL_messages_toggleDialogPin extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1489903017);
         int i = this.pinned ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

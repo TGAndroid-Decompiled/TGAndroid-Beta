@@ -17,6 +17,7 @@ import org.telegram.messenger.BuildVars;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.CircularProgressDrawable;
 import org.telegram.ui.Components.CounterView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
@@ -35,6 +36,10 @@ public class PremiumButtonView extends FrameLayout {
     private boolean inc;
     private boolean isButtonTextSet;
     private boolean isFlickerDisabled;
+    private boolean loading;
+    private ValueAnimator loadingAnimator;
+    private CircularProgressDrawable loadingDrawable;
+    private float loadingT;
     ValueAnimator overlayAnimator;
     private float overlayProgress;
     public AnimatedTextView overlayTextView;
@@ -55,6 +60,7 @@ public class PremiumButtonView extends FrameLayout {
         this.drawGradient = true;
         this.counterOffset = new AnimatedFloat(this);
         this.counterOffset2 = new AnimatedFloat(this);
+        this.loadingT = 0.0f;
         this.radius = i;
         CellFlickerDrawable cellFlickerDrawable = new CellFlickerDrawable();
         this.flickerDrawable = cellFlickerDrawable;
@@ -63,7 +69,32 @@ public class PremiumButtonView extends FrameLayout {
         cellFlickerDrawable.repeatProgress = 4.0f;
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
-        AnimatedTextView animatedTextView = new AnimatedTextView(context);
+        AnimatedTextView animatedTextView = new AnimatedTextView(context) {
+            @Override
+            public void onDraw(Canvas canvas) {
+                if (PremiumButtonView.this.loadingT > 0.0f) {
+                    if (PremiumButtonView.this.loadingDrawable == null) {
+                        PremiumButtonView.this.loadingDrawable = new CircularProgressDrawable(PremiumButtonView.this.buttonTextView.getTextColor());
+                    }
+                    int dp = (int) ((1.0f - PremiumButtonView.this.loadingT) * AndroidUtilities.dp(24.0f));
+                    PremiumButtonView.this.loadingDrawable.setBounds(0, dp, getWidth(), getHeight() + dp);
+                    PremiumButtonView.this.loadingDrawable.setAlpha((int) (PremiumButtonView.this.loadingT * 255.0f));
+                    PremiumButtonView.this.loadingDrawable.draw(canvas);
+                    invalidate();
+                }
+                if (PremiumButtonView.this.loadingT < 1.0f) {
+                    if (PremiumButtonView.this.loadingT != 0.0f) {
+                        canvas.save();
+                        canvas.translate(0.0f, (int) (PremiumButtonView.this.loadingT * AndroidUtilities.dp(-24.0f)));
+                        canvas.scale(1.0f, 1.0f - (PremiumButtonView.this.loadingT * 0.4f));
+                        super.onDraw(canvas);
+                        canvas.restore();
+                        return;
+                    }
+                    super.onDraw(canvas);
+                }
+            }
+        };
         this.buttonTextView = animatedTextView;
         animatedTextView.setAnimationProperties(0.35f, 0L, 350L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.buttonTextView.setGravity(17);
@@ -82,7 +113,32 @@ public class PremiumButtonView extends FrameLayout {
         linearLayout.addView(this.iconView, LayoutHelper.createLinear(24, 24, 0.0f, 16, 4, 0, 0, 0));
         addView(this.buttonLayout);
         if (z) {
-            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true);
+            AnimatedTextView animatedTextView2 = new AnimatedTextView(context, true, true, true) {
+                @Override
+                public void onDraw(Canvas canvas) {
+                    if (PremiumButtonView.this.loadingT > 0.0f) {
+                        if (PremiumButtonView.this.loadingDrawable == null) {
+                            PremiumButtonView.this.loadingDrawable = new CircularProgressDrawable(PremiumButtonView.this.buttonTextView.getTextColor());
+                        }
+                        int dp = (int) ((1.0f - PremiumButtonView.this.loadingT) * AndroidUtilities.dp(24.0f));
+                        PremiumButtonView.this.loadingDrawable.setBounds(0, dp, getWidth(), getHeight() + dp);
+                        PremiumButtonView.this.loadingDrawable.setAlpha((int) (PremiumButtonView.this.loadingT * 255.0f));
+                        PremiumButtonView.this.loadingDrawable.draw(canvas);
+                        invalidate();
+                    }
+                    if (PremiumButtonView.this.loadingT < 1.0f) {
+                        if (PremiumButtonView.this.loadingT != 0.0f) {
+                            canvas.save();
+                            canvas.translate(0.0f, (int) (PremiumButtonView.this.loadingT * AndroidUtilities.dp(-24.0f)));
+                            canvas.scale(1.0f, 1.0f - (PremiumButtonView.this.loadingT * 0.4f));
+                            super.onDraw(canvas);
+                            canvas.restore();
+                            return;
+                        }
+                        super.onDraw(canvas);
+                    }
+                }
+            };
             this.overlayTextView = animatedTextView2;
             animatedTextView2.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
             this.overlayTextView.setGravity(17);
@@ -108,6 +164,55 @@ public class PremiumButtonView extends FrameLayout {
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
+    }
+
+    public void setLoading(final boolean z) {
+        if (this.loading != z) {
+            ValueAnimator valueAnimator = this.loadingAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.loadingAnimator = null;
+            }
+            float[] fArr = new float[2];
+            fArr[0] = this.loadingT;
+            this.loading = z;
+            fArr[1] = z ? 1.0f : 0.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr);
+            this.loadingAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    PremiumButtonView.this.lambda$setLoading$0(valueAnimator2);
+                }
+            });
+            this.loadingAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    PremiumButtonView.this.loadingT = z ? 1.0f : 0.0f;
+                    PremiumButtonView.this.buttonTextView.invalidate();
+                    AnimatedTextView animatedTextView = PremiumButtonView.this.overlayTextView;
+                    if (animatedTextView != null) {
+                        animatedTextView.invalidate();
+                    }
+                }
+            });
+            this.loadingAnimator.setDuration(320L);
+            this.loadingAnimator.setInterpolator(CubicBezierInterpolator.EASE_OUT_QUINT);
+            this.loadingAnimator.start();
+        }
+    }
+
+    public void lambda$setLoading$0(ValueAnimator valueAnimator) {
+        this.loadingT = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        this.buttonTextView.invalidate();
+        AnimatedTextView animatedTextView = this.overlayTextView;
+        if (animatedTextView != null) {
+            animatedTextView.invalidate();
+        }
+    }
+
+    public boolean isLoading() {
+        return this.loading;
     }
 
     @Override
@@ -239,14 +344,14 @@ public class PremiumButtonView extends FrameLayout {
         cellFlickerDrawable.setOnRestartCallback(new Runnable() {
             @Override
             public final void run() {
-                PremiumButtonView.this.lambda$setIcon$0();
+                PremiumButtonView.this.lambda$setIcon$1();
             }
         });
         invalidate();
         this.iconView.setVisibility(0);
     }
 
-    public void lambda$setIcon$0() {
+    public void lambda$setIcon$1() {
         this.iconView.getAnimatedDrawable().setCurrentFrame(0, true);
         this.iconView.playAnimation();
     }

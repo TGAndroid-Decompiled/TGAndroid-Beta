@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_photos_uploadContactProfilePhoto extends TLObject {
-    public static int constructor = -515093903;
     public TLRPC$InputFile file;
     public int flags;
     public boolean save;
@@ -17,7 +16,7 @@ public class TLRPC$TL_photos_uploadContactProfilePhoto extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-515093903);
         int i = this.suggest ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
         int i2 = this.save ? i | 16 : i & (-17);

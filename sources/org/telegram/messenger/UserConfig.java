@@ -546,8 +546,6 @@ public class UserConfig extends BaseController {
         }
         this.ttlIsLoading = true;
         getConnectionsManager().sendRequest(new TLObject() {
-            public static int constructor = 1703637384;
-
             @Override
             public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
                 return TLRPC$TL_defaultHistoryTTL.TLdeserialize(abstractSerializedData, i, z);
@@ -555,7 +553,7 @@ public class UserConfig extends BaseController {
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(1703637384);
             }
         }, new RequestDelegate() {
             @Override

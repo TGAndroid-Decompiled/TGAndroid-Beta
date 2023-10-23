@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_fileLocation_layer97 extends TLRPC$FileLocation {
-    public static int constructor = 152900075;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.dc_id = abstractSerializedData.readInt32(z);
@@ -13,7 +11,7 @@ public class TLRPC$TL_fileLocation_layer97 extends TLRPC$FileLocation {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(152900075);
         abstractSerializedData.writeInt32(this.dc_id);
         abstractSerializedData.writeInt64(this.volume_id);
         abstractSerializedData.writeInt32(this.local_id);

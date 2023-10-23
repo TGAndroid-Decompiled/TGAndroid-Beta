@@ -2,14 +2,13 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_langPackDifference extends TLObject {
-    public static int constructor = -209337866;
     public int from_version;
     public String lang_code;
     public ArrayList<TLRPC$LangPackString> strings = new ArrayList<>();
     public int version;
 
     public static TLRPC$TL_langPackDifference TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-209337866 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_langPackDifference", Integer.valueOf(i)));
             }
@@ -44,7 +43,7 @@ public class TLRPC$TL_langPackDifference extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-209337866);
         abstractSerializedData.writeString(this.lang_code);
         abstractSerializedData.writeInt32(this.from_version);
         abstractSerializedData.writeInt32(this.version);

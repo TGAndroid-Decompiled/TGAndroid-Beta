@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_videoSizeEmojiMarkup extends TLRPC$VideoSize {
-    public static int constructor = -128171716;
     public long emoji_id;
 
     @Override
@@ -21,7 +20,7 @@ public class TLRPC$TL_videoSizeEmojiMarkup extends TLRPC$VideoSize {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-128171716);
         abstractSerializedData.writeInt64(this.emoji_id);
         abstractSerializedData.writeInt32(481674261);
         int size = this.background_colors.size();

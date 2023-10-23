@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_statsGraph extends TLRPC$StatsGraph {
-    public static int constructor = -1901828938;
     public int flags;
     public TLRPC$TL_dataJSON json;
     public String zoom_token;
@@ -16,7 +15,7 @@ public class TLRPC$TL_statsGraph extends TLRPC$StatsGraph {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1901828938);
         abstractSerializedData.writeInt32(this.flags);
         this.json.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {

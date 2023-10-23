@@ -9,7 +9,6 @@ public abstract class TLRPC$MessagePeerVote extends TLObject {
         TLRPC$MessagePeerVote tLRPC$MessagePeerVote;
         if (i == -1228133028) {
             tLRPC$MessagePeerVote = new TLRPC$MessagePeerVote() {
-                public static int constructor = -1228133028;
                 public byte[] option;
 
                 @Override
@@ -21,7 +20,7 @@ public abstract class TLRPC$MessagePeerVote extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1228133028);
                     this.peer.serializeToStream(abstractSerializedData2);
                     abstractSerializedData2.writeByteArray(this.option);
                     abstractSerializedData2.writeInt32(this.date);
@@ -29,7 +28,6 @@ public abstract class TLRPC$MessagePeerVote extends TLObject {
             };
         } else if (i == 1177089766) {
             tLRPC$MessagePeerVote = new TLRPC$MessagePeerVote() {
-                public static int constructor = 1177089766;
                 public ArrayList<byte[]> options = new ArrayList<>();
 
                 @Override
@@ -51,7 +49,7 @@ public abstract class TLRPC$MessagePeerVote extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(1177089766);
                     this.peer.serializeToStream(abstractSerializedData2);
                     abstractSerializedData2.writeInt32(481674261);
                     int size = this.options.size();

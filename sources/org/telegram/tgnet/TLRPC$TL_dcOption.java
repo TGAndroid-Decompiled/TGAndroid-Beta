@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_dcOption extends TLObject {
-    public static int constructor = 414687501;
     public boolean cdn;
     public int flags;
     public int id;
@@ -13,7 +12,7 @@ public class TLRPC$TL_dcOption extends TLObject {
     public boolean tcpo_only;
 
     public static TLRPC$TL_dcOption TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (414687501 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_dcOption", Integer.valueOf(i)));
             }
@@ -43,7 +42,7 @@ public class TLRPC$TL_dcOption extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(414687501);
         int i = this.ipv6 ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.media_only ? i | 2 : i & (-3);

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_langPackLanguage extends TLObject {
-    public static int constructor = -288727837;
     public String base_lang_code;
     public int flags;
     public String lang_code;
@@ -14,7 +13,7 @@ public class TLRPC$TL_langPackLanguage extends TLObject {
     public String translations_url;
 
     public static TLRPC$TL_langPackLanguage TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-288727837 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_langPackLanguage", Integer.valueOf(i)));
             }
@@ -45,7 +44,7 @@ public class TLRPC$TL_langPackLanguage extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-288727837);
         int i = this.official ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.rtl ? i | 4 : i & (-5);

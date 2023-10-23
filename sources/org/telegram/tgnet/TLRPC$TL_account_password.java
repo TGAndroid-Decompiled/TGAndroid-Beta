@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_password extends TLRPC$account_Password {
-    public static int constructor = -1787080453;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -37,7 +35,7 @@ public class TLRPC$TL_account_password extends TLRPC$account_Password {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1787080453);
         int i = this.has_recovery ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.has_secure_values ? i | 2 : i & (-3);

@@ -107,6 +107,14 @@ public class AudioVisualizerDrawable {
         }
     }
 
+    public void draw(Canvas canvas, float f, float f2, int i, float f3, Theme.ResourcesProvider resourcesProvider) {
+        if (LiteMode.isEnabled(32)) {
+            this.p1.setColor(i);
+            this.p1.setAlpha((int) (this.ALPHA * f3));
+            draw(canvas, f, f2);
+        }
+    }
+
     public void draw(Canvas canvas, float f, float f2, boolean z, float f3, Theme.ResourcesProvider resourcesProvider) {
         if (LiteMode.isEnabled(32)) {
             if (z) {

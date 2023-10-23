@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messageMediaInvoice extends TLRPC$MessageMedia {
-    public static int constructor = -156940077;
     public TLRPC$WebDocument webPhoto;
 
     @Override
@@ -27,7 +26,7 @@ public class TLRPC$TL_messageMediaInvoice extends TLRPC$MessageMedia {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-156940077);
         int i = this.shipping_address_requested ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.test ? i | 8 : i & (-9);

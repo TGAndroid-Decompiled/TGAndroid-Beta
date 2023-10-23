@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateReadChannelInbox extends TLRPC$Update {
-    public static int constructor = -1842450928;
     public long channel_id;
     public int flags;
     public int folder_id;
@@ -23,7 +22,7 @@ public class TLRPC$TL_updateReadChannelInbox extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1842450928);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.folder_id);

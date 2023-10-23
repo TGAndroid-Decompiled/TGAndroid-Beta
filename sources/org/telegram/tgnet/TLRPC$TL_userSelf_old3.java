@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_userSelf_old3 extends TLRPC$User {
-    public static int constructor = 476112392;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.id = abstractSerializedData.readInt32(z);
@@ -15,7 +13,7 @@ public class TLRPC$TL_userSelf_old3 extends TLRPC$User {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(476112392);
         abstractSerializedData.writeInt32((int) this.id);
         abstractSerializedData.writeString(this.first_name);
         abstractSerializedData.writeString(this.last_name);

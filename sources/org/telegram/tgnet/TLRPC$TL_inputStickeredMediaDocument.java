@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputStickeredMediaDocument extends TLRPC$InputStickeredMedia {
-    public static int constructor = 70813275;
     public TLRPC$InputDocument id;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_inputStickeredMediaDocument extends TLRPC$InputStickeredMe
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(70813275);
         this.id.serializeToStream(abstractSerializedData);
     }
 }

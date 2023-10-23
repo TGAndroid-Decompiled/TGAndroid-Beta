@@ -1,9 +1,10 @@
 package org.telegram.tgnet;
+
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 public class TLRPC$TL_webPageAttributeStory extends TLRPC$WebPageAttribute {
-    public int flags;
     public int id;
     public TLRPC$Peer peer;
-    public TLRPC$StoryItem storyItem;
+    public TL_stories$StoryItem storyItem;
 
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
@@ -11,7 +12,7 @@ public class TLRPC$TL_webPageAttributeStory extends TLRPC$WebPageAttribute {
         this.peer = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         this.id = abstractSerializedData.readInt32(z);
         if ((this.flags & 1) != 0) {
-            this.storyItem = TLRPC$StoryItem.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.storyItem = TL_stories$StoryItem.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 

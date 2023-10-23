@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputWebFileLocation extends TLRPC$InputWebFileLocation {
-    public static int constructor = -1036396922;
     public long access_hash;
     public String url;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_inputWebFileLocation extends TLRPC$InputWebFileLocation {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1036396922);
         abstractSerializedData.writeString(this.url);
         abstractSerializedData.writeInt64(this.access_hash);
     }

@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_account_registerDevice extends TLObject {
-    public static int constructor = -326762118;
     public boolean app_sandbox;
     public int flags;
     public boolean no_muted;
@@ -18,7 +17,7 @@ public class TLRPC$TL_account_registerDevice extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-326762118);
         int i = this.no_muted ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

@@ -7,8 +7,6 @@ public abstract class TLRPC$messages_SentEncryptedMessage extends TLObject {
         TLRPC$messages_SentEncryptedMessage tLRPC$messages_SentEncryptedMessage;
         if (i != -1802240206) {
             tLRPC$messages_SentEncryptedMessage = i != 1443858741 ? null : new TLRPC$messages_SentEncryptedMessage() {
-                public static int constructor = 1443858741;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.date = abstractSerializedData2.readInt32(z2);
@@ -16,14 +14,12 @@ public abstract class TLRPC$messages_SentEncryptedMessage extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(1443858741);
                     abstractSerializedData2.writeInt32(this.date);
                 }
             };
         } else {
             tLRPC$messages_SentEncryptedMessage = new TLRPC$messages_SentEncryptedMessage() {
-                public static int constructor = -1802240206;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.date = abstractSerializedData2.readInt32(z2);
@@ -32,7 +28,7 @@ public abstract class TLRPC$messages_SentEncryptedMessage extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1802240206);
                     abstractSerializedData2.writeInt32(this.date);
                     this.file.serializeToStream(abstractSerializedData2);
                 }

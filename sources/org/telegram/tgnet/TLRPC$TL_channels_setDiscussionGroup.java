@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_setDiscussionGroup extends TLObject {
-    public static int constructor = 1079520178;
     public TLRPC$InputChannel broadcast;
     public TLRPC$InputChannel group;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_channels_setDiscussionGroup extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1079520178);
         this.broadcast.serializeToStream(abstractSerializedData);
         this.group.serializeToStream(abstractSerializedData);
     }

@@ -26,9 +26,9 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC$ChatFull;
-import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
@@ -180,9 +180,9 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
             } else if (MediaActivity.this.actionModeMessageObjects != null) {
                 final ArrayList arrayList = new ArrayList();
                 for (int i3 = 0; i3 < MediaActivity.this.actionModeMessageObjects.size(); i3++) {
-                    TLRPC$StoryItem tLRPC$StoryItem = ((MessageObject) MediaActivity.this.actionModeMessageObjects.valueAt(i3)).storyItem;
-                    if (tLRPC$StoryItem != null) {
-                        arrayList.add(tLRPC$StoryItem);
+                    TL_stories$StoryItem tL_stories$StoryItem = ((MessageObject) MediaActivity.this.actionModeMessageObjects.valueAt(i3)).storyItem;
+                    if (tL_stories$StoryItem != null) {
+                        arrayList.add(tL_stories$StoryItem);
                     }
                 }
                 if (arrayList.isEmpty()) {
@@ -297,9 +297,9 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         if (this.actionModeMessageObjects != null) {
             i = 0;
             for (int i2 = 0; i2 < this.actionModeMessageObjects.size(); i2++) {
-                TLRPC$StoryItem tLRPC$StoryItem = this.actionModeMessageObjects.valueAt(i2).storyItem;
-                if (tLRPC$StoryItem != null) {
-                    arrayList.add(tLRPC$StoryItem);
+                TL_stories$StoryItem tL_stories$StoryItem = this.actionModeMessageObjects.valueAt(i2).storyItem;
+                if (tL_stories$StoryItem != null) {
+                    arrayList.add(tL_stories$StoryItem);
                     i++;
                 }
             }
@@ -316,9 +316,9 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         }
         final boolean[] zArr = new boolean[arrayList.size()];
         for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            TLRPC$StoryItem tLRPC$StoryItem2 = (TLRPC$StoryItem) arrayList.get(i3);
-            zArr[i3] = tLRPC$StoryItem2.pinned;
-            tLRPC$StoryItem2.pinned = z;
+            TL_stories$StoryItem tL_stories$StoryItem2 = (TL_stories$StoryItem) arrayList.get(i3);
+            zArr[i3] = tL_stories$StoryItem2.pinned;
+            tL_stories$StoryItem2.pinned = z;
         }
         getMessagesController().getStoriesController().updateStoriesInLists(this.dialogId, arrayList);
         final boolean[] zArr2 = {false};
@@ -355,7 +355,7 @@ public class MediaActivity extends BaseFragment implements SharedMediaLayout.Sha
         zArr[0] = true;
         AndroidUtilities.cancelRunOnUIThread(this.applyBulletin);
         for (int i = 0; i < arrayList.size(); i++) {
-            ((TLRPC$StoryItem) arrayList.get(i)).pinned = zArr2[i];
+            ((TL_stories$StoryItem) arrayList.get(i)).pinned = zArr2[i];
         }
         getMessagesController().getStoriesController().updateStoriesInLists(this.dialogId, arrayList);
     }

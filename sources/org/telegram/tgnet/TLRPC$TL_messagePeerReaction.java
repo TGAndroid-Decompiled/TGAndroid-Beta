@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messagePeerReaction extends TLRPC$MessagePeerReaction {
-    public static int constructor = -1938180548;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -15,7 +13,7 @@ public class TLRPC$TL_messagePeerReaction extends TLRPC$MessagePeerReaction {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1938180548);
         int i = this.big ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.unread ? i | 2 : i & (-3);

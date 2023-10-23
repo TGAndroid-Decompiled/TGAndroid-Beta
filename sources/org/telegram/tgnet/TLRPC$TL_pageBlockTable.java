@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_pageBlockTable extends TLRPC$PageBlock {
-    public static int constructor = -1085412734;
     public boolean bordered;
     public int flags;
     public ArrayList<TLRPC$TL_pageTableRow> rows = new ArrayList<>();
@@ -35,7 +34,7 @@ public class TLRPC$TL_pageBlockTable extends TLRPC$PageBlock {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1085412734);
         int i = this.bordered ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.striped ? i | 2 : i & (-3);

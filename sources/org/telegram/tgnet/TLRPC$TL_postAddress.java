@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_postAddress extends TLObject {
-    public static int constructor = 512535275;
     public String city;
     public String country_iso2;
     public String post_code;
@@ -9,7 +8,7 @@ public class TLRPC$TL_postAddress extends TLObject {
     public String street_line2;
 
     public static TLRPC$TL_postAddress TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (512535275 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_postAddress", Integer.valueOf(i)));
             }
@@ -32,7 +31,7 @@ public class TLRPC$TL_postAddress extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(512535275);
         abstractSerializedData.writeString(this.street_line1);
         abstractSerializedData.writeString(this.street_line2);
         abstractSerializedData.writeString(this.city);

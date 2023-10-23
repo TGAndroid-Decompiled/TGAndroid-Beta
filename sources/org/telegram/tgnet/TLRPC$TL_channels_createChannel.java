@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_createChannel extends TLObject {
-    public static int constructor = -1862244601;
     public String about;
     public String address;
     public boolean broadcast;
@@ -19,7 +18,7 @@ public class TLRPC$TL_channels_createChannel extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1862244601);
         int i = this.broadcast ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.megagroup ? i | 2 : i & (-3);

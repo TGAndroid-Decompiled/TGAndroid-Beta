@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_pageBlockAnchor extends TLRPC$PageBlock {
-    public static int constructor = -837994576;
     public String name;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_pageBlockAnchor extends TLRPC$PageBlock {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-837994576);
         abstractSerializedData.writeString(this.name);
     }
 }

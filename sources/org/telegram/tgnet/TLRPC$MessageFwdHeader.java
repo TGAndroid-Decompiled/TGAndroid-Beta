@@ -16,8 +16,6 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
         switch (i) {
             case -947462709:
                 tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader() {
-                    public static int constructor = -947462709;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -40,7 +38,7 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-947462709);
                         abstractSerializedData2.writeInt32(this.flags);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
@@ -57,8 +55,6 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
                 break;
             case -332168592:
                 tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader() {
-                    public static int constructor = -332168592;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -93,7 +89,7 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-332168592);
                         abstractSerializedData2.writeInt32(this.flags);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
@@ -122,8 +118,6 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
                 break;
             case -85986132:
                 tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader() {
-                    public static int constructor = -85986132;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -149,7 +143,7 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-85986132);
                         abstractSerializedData2.writeInt32(this.flags);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
@@ -169,8 +163,6 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
                 break;
             case 893020267:
                 tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader() {
-                    public static int constructor = 893020267;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -208,7 +200,7 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(893020267);
                         abstractSerializedData2.writeInt32(this.flags);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);
@@ -240,8 +232,6 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
                 break;
             case 1436466797:
                 tLRPC$TL_messageFwdHeader = new TLRPC$TL_messageFwdHeader() {
-                    public static int constructor = 1436466797;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -273,7 +263,7 @@ public abstract class TLRPC$MessageFwdHeader extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1436466797);
                         abstractSerializedData2.writeInt32(this.flags);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32((int) this.from_id.user_id);

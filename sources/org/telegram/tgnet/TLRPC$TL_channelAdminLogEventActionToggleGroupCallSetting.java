@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionToggleGroupCallSetting extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = 1456906823;
     public boolean join_muted;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_channelAdminLogEventActionToggleGroupCallSetting extends T
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1456906823);
         abstractSerializedData.writeBool(this.join_muted);
     }
 }

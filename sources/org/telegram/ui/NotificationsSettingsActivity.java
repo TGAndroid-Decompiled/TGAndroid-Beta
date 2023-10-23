@@ -589,8 +589,6 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
         }
         this.reseting = true;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-            public static int constructor = -612493497;
-
             @Override
             public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
                 return TLRPC$Bool.TLdeserialize(abstractSerializedData, i2, z);
@@ -598,7 +596,7 @@ public class NotificationsSettingsActivity extends BaseFragment implements Notif
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(-612493497);
             }
         }, new RequestDelegate() {
             @Override

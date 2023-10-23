@@ -22,9 +22,9 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC$PeerStories;
 import org.telegram.tgnet.TLRPC$TL_contact;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_stories$PeerStories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -58,12 +58,12 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
     private boolean scrolling;
     private int sortType;
     private int currentAccount = UserConfig.selectedAccount;
-    public ArrayList<TLRPC$PeerStories> userStories = new ArrayList<>();
+    public ArrayList<TL_stories$PeerStories> userStories = new ArrayList<>();
 
     public void onStoryLongPressed(View view, long j) {
     }
 
-    public void setStories(ArrayList<TLRPC$PeerStories> arrayList, boolean z) {
+    public void setStories(ArrayList<TL_stories$PeerStories> arrayList, boolean z) {
     }
 
     public ContactsAdapter(Context context, BaseFragment baseFragment, int i, boolean z, LongSparseArray<TLRPC$User> longSparseArray, int i2, boolean z2) {

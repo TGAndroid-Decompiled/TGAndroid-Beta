@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getWebPage extends TLObject {
-    public static int constructor = -1919511901;
     public int hash;
     public String url;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_messages_getWebPage extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1919511901);
         abstractSerializedData.writeString(this.url);
         abstractSerializedData.writeInt32(this.hash);
     }

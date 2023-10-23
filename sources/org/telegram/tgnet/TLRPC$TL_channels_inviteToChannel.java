@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_channels_inviteToChannel extends TLObject {
-    public static int constructor = 429865580;
     public TLRPC$InputChannel channel;
     public ArrayList<TLRPC$InputUser> users = new ArrayList<>();
 
@@ -13,7 +12,7 @@ public class TLRPC$TL_channels_inviteToChannel extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(429865580);
         this.channel.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
         int size = this.users.size();

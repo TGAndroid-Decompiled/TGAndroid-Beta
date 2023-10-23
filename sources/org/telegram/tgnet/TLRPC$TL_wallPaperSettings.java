@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_wallPaperSettings extends TLRPC$WallPaperSettings {
-    public static int constructor = 499236004;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -30,7 +28,7 @@ public class TLRPC$TL_wallPaperSettings extends TLRPC$WallPaperSettings {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(499236004);
         int i = this.blur ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.motion ? i | 4 : i & (-5);

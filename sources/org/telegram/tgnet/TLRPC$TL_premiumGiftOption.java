@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_premiumGiftOption extends TLObject {
-    public static int constructor = 1958953753;
     public long amount;
     public String bot_url;
     public String currency;
@@ -9,7 +8,7 @@ public class TLRPC$TL_premiumGiftOption extends TLObject {
     public String store_product;
 
     public static TLRPC$TL_premiumGiftOption TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1958953753 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_premiumGiftOption", Integer.valueOf(i)));
             }
@@ -34,7 +33,7 @@ public class TLRPC$TL_premiumGiftOption extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1958953753);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt32(this.months);
         abstractSerializedData.writeString(this.currency);

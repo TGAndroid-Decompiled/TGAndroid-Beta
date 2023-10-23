@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getSearchResultsPositions extends TLObject {
-    public static int constructor = 1855292323;
     public TLRPC$MessagesFilter filter;
     public int limit;
     public int offset_id;
@@ -13,7 +12,7 @@ public class TLRPC$TL_messages_getSearchResultsPositions extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1855292323);
         this.peer.serializeToStream(abstractSerializedData);
         this.filter.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.offset_id);

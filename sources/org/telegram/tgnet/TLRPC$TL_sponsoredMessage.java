@@ -3,7 +3,6 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_sponsoredMessage extends TLObject {
-    public static int constructor = -626000021;
     public String additional_info;
     public int channel_post;
     public TLRPC$ChatInvite chat_invite;
@@ -20,7 +19,7 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
     public TLRPC$TL_sponsoredWebPage webpage;
 
     public static TLRPC$TL_sponsoredMessage TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-626000021 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_sponsoredMessage", Integer.valueOf(i)));
             }
@@ -84,7 +83,7 @@ public class TLRPC$TL_sponsoredMessage extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-626000021);
         int i = this.recommended ? this.flags | 32 : this.flags & (-33);
         this.flags = i;
         int i2 = this.show_peer_photo ? i | 64 : i & (-65);

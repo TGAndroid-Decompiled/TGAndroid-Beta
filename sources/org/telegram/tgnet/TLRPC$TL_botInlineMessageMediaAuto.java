@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_botInlineMessageMediaAuto extends TLRPC$BotInlineMessage {
-    public static int constructor = 1984755728;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.flags = abstractSerializedData.readInt32(z);
@@ -30,7 +28,7 @@ public class TLRPC$TL_botInlineMessageMediaAuto extends TLRPC$BotInlineMessage {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1984755728);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeString(this.message);
         if ((this.flags & 2) != 0) {

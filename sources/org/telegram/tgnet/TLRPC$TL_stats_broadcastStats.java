@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_stats_broadcastStats extends TLObject {
-    public static int constructor = -1107852396;
     public TLRPC$TL_statsPercentValue enabled_notifications;
     public TLRPC$TL_statsAbsValueAndPrev followers;
     public TLRPC$StatsGraph followers_graph;
@@ -20,7 +19,7 @@ public class TLRPC$TL_stats_broadcastStats extends TLObject {
     public TLRPC$TL_statsAbsValueAndPrev views_per_post;
 
     public static TLRPC$TL_stats_broadcastStats TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1107852396 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_stats_broadcastStats", Integer.valueOf(i)));
             }
@@ -66,7 +65,7 @@ public class TLRPC$TL_stats_broadcastStats extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1107852396);
         this.period.serializeToStream(abstractSerializedData);
         this.followers.serializeToStream(abstractSerializedData);
         this.views_per_post.serializeToStream(abstractSerializedData);

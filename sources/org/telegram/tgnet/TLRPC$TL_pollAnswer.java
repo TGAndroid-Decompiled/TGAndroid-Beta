@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_pollAnswer extends TLObject {
-    public static int constructor = 1823064809;
     public byte[] option;
     public String text;
 
     public static TLRPC$TL_pollAnswer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1823064809 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_pollAnswer", Integer.valueOf(i)));
             }
@@ -24,7 +23,7 @@ public class TLRPC$TL_pollAnswer extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1823064809);
         abstractSerializedData.writeString(this.text);
         abstractSerializedData.writeByteArray(this.option);
     }

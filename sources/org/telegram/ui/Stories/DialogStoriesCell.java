@@ -46,8 +46,8 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
-import org.telegram.tgnet.TLRPC$PeerStories;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_stories$PeerStories;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.SimpleTextView;
@@ -367,7 +367,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
                 openStoryRecorder();
             }
         } else if (this.storiesController.hasStories(storyCell.dialogId) || this.storiesController.hasUploadingStories(storyCell.dialogId)) {
-            TLRPC$PeerStories stories = this.storiesController.getStories(storyCell.dialogId);
+            TL_stories$PeerStories stories = this.storiesController.getStories(storyCell.dialogId);
             final long j = storyCell.dialogId;
             StoriesUtilities.EnsureStoryFileLoadedObject ensureStoryFileLoadedObject = this.globalCancelable;
             if (ensureStoryFileLoadedObject != null) {
@@ -426,7 +426,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
         if (this.type != 1) {
             this.items.add(new Item(this, UserConfig.getInstance(this.currentAccount).getClientUserId()));
         }
-        ArrayList<TLRPC$PeerStories> hiddenList = this.type == 1 ? this.storiesController.getHiddenList() : this.storiesController.getDialogListStories();
+        ArrayList<TL_stories$PeerStories> hiddenList = this.type == 1 ? this.storiesController.getHiddenList() : this.storiesController.getDialogListStories();
         for (int i = 0; i < hiddenList.size(); i++) {
             long peerDialogId = DialogObject.getPeerDialogId(hiddenList.get(i).peer);
             if (peerDialogId != UserConfig.getInstance(this.currentAccount).getClientUserId()) {
@@ -776,7 +776,7 @@ public class DialogStoriesCell extends FrameLayout implements NotificationCenter
     public void onResume() {
         this.storiesController.checkExpiredStories();
         for (int i = 0; i < this.items.size(); i++) {
-            TLRPC$PeerStories stories = this.storiesController.getStories(this.items.get(i).dialogId);
+            TL_stories$PeerStories stories = this.storiesController.getStories(this.items.get(i).dialogId);
             if (stories != null) {
                 this.storiesController.preloadUserStories(stories);
             }

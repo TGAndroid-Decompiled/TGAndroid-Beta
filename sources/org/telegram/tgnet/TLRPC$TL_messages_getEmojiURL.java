@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getEmojiURL extends TLObject {
-    public static int constructor = -709817306;
     public String lang_code;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_messages_getEmojiURL extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-709817306);
         abstractSerializedData.writeString(this.lang_code);
     }
 }

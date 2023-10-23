@@ -1,10 +1,9 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_dataJSON extends TLObject {
-    public static int constructor = 2104790276;
     public String data;
 
     public static TLRPC$TL_dataJSON TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (2104790276 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_dataJSON", Integer.valueOf(i)));
             }
@@ -22,7 +21,7 @@ public class TLRPC$TL_dataJSON extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2104790276);
         abstractSerializedData.writeString(this.data);
     }
 }

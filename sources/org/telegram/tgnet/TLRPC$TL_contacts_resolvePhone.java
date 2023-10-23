@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_contacts_resolvePhone extends TLObject {
-    public static int constructor = -1963375804;
     public String phone;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_contacts_resolvePhone extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1963375804);
         abstractSerializedData.writeString(this.phone);
     }
 }

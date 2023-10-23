@@ -28,33 +28,28 @@ public abstract class TLRPC$InputMedia extends TLObject {
     public ArrayList<TLRPC$DocumentAttribute> attributes = new ArrayList<>();
 
     public static TLRPC$InputMedia TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        TLRPC$InputMedia tLRPC$InputMedia;
+        TLRPC$InputMedia tLRPC$TL_inputMediaEmpty;
         switch (i) {
             case -1771768449:
-                tLRPC$InputMedia = new TLRPC$InputMedia() {
-                    public static int constructor = -1771768449;
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
-                    }
-                };
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaEmpty();
                 break;
             case -1759532989:
-                tLRPC$InputMedia = new TLRPC$TL_inputMediaGeoLive();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaGeoLive();
                 break;
             case -1279654347:
-                tLRPC$InputMedia = new TLRPC$TL_inputMediaPhoto();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaPhoto();
                 break;
             case -1052959727:
-                tLRPC$InputMedia = new TLRPC$TL_inputMediaVenue();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaVenue();
+                break;
+            case -1038383031:
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaWebPage();
                 break;
             case -750828557:
-                tLRPC$InputMedia = new TLRPC$TL_inputMediaGame();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaGame();
                 break;
             case -440664550:
-                tLRPC$InputMedia = new TLRPC$InputMedia() {
-                    public static int constructor = -440664550;
+                tLRPC$TL_inputMediaEmpty = new TLRPC$InputMedia() {
                     public String url;
 
                     @Override
@@ -70,7 +65,7 @@ public abstract class TLRPC$InputMedia extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-440664550);
                         int i2 = this.spoiler ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -82,17 +77,16 @@ public abstract class TLRPC$InputMedia extends TLObject {
                 };
                 break;
             case -428884101:
-                tLRPC$InputMedia = new TLRPC$TL_inputMediaDice();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaDice();
                 break;
             case -122978821:
-                tLRPC$InputMedia = new TLRPC$TL_inputMediaContact();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaContact();
                 break;
             case -104578748:
-                tLRPC$InputMedia = new TLRPC$TL_inputMediaGeoPoint();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaGeoPoint();
                 break;
             case -78455655:
-                tLRPC$InputMedia = new TLRPC$InputMedia() {
-                    public static int constructor = -78455655;
+                tLRPC$TL_inputMediaEmpty = new TLRPC$InputMedia() {
                     public String url;
 
                     @Override
@@ -108,7 +102,7 @@ public abstract class TLRPC$InputMedia extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-78455655);
                         int i2 = this.spoiler ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -120,27 +114,27 @@ public abstract class TLRPC$InputMedia extends TLObject {
                 };
                 break;
             case 261416433:
-                tLRPC$InputMedia = new TLRPC$TL_inputMediaPoll();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaPoll();
                 break;
             case 505969924:
-                tLRPC$InputMedia = new TLRPC$TL_inputMediaUploadedPhoto();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaUploadedPhoto();
                 break;
             case 860303448:
-                tLRPC$InputMedia = new TLRPC$TL_inputMediaDocument();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaDocument();
                 break;
             case 1530447553:
-                tLRPC$InputMedia = new TLRPC$TL_inputMediaUploadedDocument();
+                tLRPC$TL_inputMediaEmpty = new TLRPC$TL_inputMediaUploadedDocument();
                 break;
             default:
-                tLRPC$InputMedia = null;
+                tLRPC$TL_inputMediaEmpty = null;
                 break;
         }
-        if (tLRPC$InputMedia == null && z) {
+        if (tLRPC$TL_inputMediaEmpty == null && z) {
             throw new RuntimeException(String.format("can't parse magic %x in InputMedia", Integer.valueOf(i)));
         }
-        if (tLRPC$InputMedia != null) {
-            tLRPC$InputMedia.readParams(abstractSerializedData, z);
+        if (tLRPC$TL_inputMediaEmpty != null) {
+            tLRPC$TL_inputMediaEmpty.readParams(abstractSerializedData, z);
         }
-        return tLRPC$InputMedia;
+        return tLRPC$TL_inputMediaEmpty;
     }
 }

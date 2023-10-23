@@ -2,9 +2,8 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
+import org.telegram.tgnet.tl.TL_stories$PeerStories;
 public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
-    public static int constructor = 1915758525;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -146,13 +145,13 @@ public class TLRPC$TL_channelFull extends TLRPC$ChatFull {
             this.available_reactions = TLRPC$ChatReactions.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags2 & 16) != 0) {
-            this.stories = TLRPC$PeerStories.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.stories = TL_stories$PeerStories.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1915758525);
         int i = this.can_view_participants ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
         int i2 = this.can_set_username ? i | 64 : i & (-65);

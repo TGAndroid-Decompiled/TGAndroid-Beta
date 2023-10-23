@@ -284,8 +284,6 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
     public void lambda$cancelPasswordReset$10(DialogInterface dialogInterface, int i) {
         getConnectionsManager().sendRequest(new TLObject() {
-            public static int constructor = 1284770294;
-
             @Override
             public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
                 return TLRPC$Bool.TLdeserialize(abstractSerializedData, i2, z);
@@ -293,7 +291,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(1284770294);
             }
         }, new RequestDelegate() {
             @Override
@@ -326,8 +324,6 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
     private void resetPassword() {
         needShowProgress(true);
         getConnectionsManager().sendRequest(new TLObject() {
-            public static int constructor = -1828139493;
-
             @Override
             public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
                 return TLRPC$account_ResetPasswordResult.TLdeserialize(abstractSerializedData, i, z);
@@ -335,7 +331,7 @@ public class TwoStepVerificationActivity extends BaseFragment implements Notific
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(-1828139493);
             }
         }, new RequestDelegate() {
             @Override

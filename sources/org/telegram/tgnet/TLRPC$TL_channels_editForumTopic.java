@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_editForumTopic extends TLObject {
-    public static int constructor = -186670715;
     public TLRPC$InputChannel channel;
     public boolean closed;
     public int flags;
@@ -16,7 +15,7 @@ public class TLRPC$TL_channels_editForumTopic extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-186670715);
         abstractSerializedData.writeInt32(this.flags);
         this.channel.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.topic_id);

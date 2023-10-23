@@ -17,8 +17,6 @@ public abstract class TLRPC$Page extends TLObject {
         switch (i) {
             case -1913754556:
                 tLRPC$Page = new TLRPC$TL_pagePart_layer82() {
-                    public static int constructor = -1913754556;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -70,7 +68,7 @@ public abstract class TLRPC$Page extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1913754556);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.blocks.size();
                         abstractSerializedData2.writeInt32(size);
@@ -100,8 +98,6 @@ public abstract class TLRPC$Page extends TLObject {
                 break;
             case -1366746132:
                 tLRPC$Page = new TLRPC$TL_page() {
-                    public static int constructor = -1366746132;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -158,7 +154,7 @@ public abstract class TLRPC$Page extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1366746132);
                         int i2 = this.part ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.rtl ? i2 | 2 : i2 & (-3);
@@ -188,8 +184,6 @@ public abstract class TLRPC$Page extends TLObject {
                 break;
             case -677274263:
                 tLRPC$Page = new TLRPC$TL_page() {
-                    public static int constructor = -677274263;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -241,7 +235,7 @@ public abstract class TLRPC$Page extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-677274263);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.blocks.size();
                         abstractSerializedData2.writeInt32(size);
@@ -265,8 +259,6 @@ public abstract class TLRPC$Page extends TLObject {
                 break;
             case 1433323434:
                 tLRPC$Page = new TLRPC$TL_page() {
-                    public static int constructor = 1433323434;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -318,7 +310,7 @@ public abstract class TLRPC$Page extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1433323434);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.blocks.size();
                         abstractSerializedData2.writeInt32(size);

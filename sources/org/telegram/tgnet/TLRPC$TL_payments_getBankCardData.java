@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_payments_getBankCardData extends TLObject {
-    public static int constructor = 779736953;
     public String number;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_payments_getBankCardData extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(779736953);
         abstractSerializedData.writeString(this.number);
     }
 }

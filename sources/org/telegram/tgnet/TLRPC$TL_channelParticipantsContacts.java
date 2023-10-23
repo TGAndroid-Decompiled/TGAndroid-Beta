@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelParticipantsContacts extends TLRPC$ChannelParticipantsFilter {
-    public static int constructor = -1150621555;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.q = abstractSerializedData.readString(z);
@@ -9,7 +7,7 @@ public class TLRPC$TL_channelParticipantsContacts extends TLRPC$ChannelParticipa
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1150621555);
         abstractSerializedData.writeString(this.q);
     }
 }

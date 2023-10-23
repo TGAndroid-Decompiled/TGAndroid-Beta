@@ -18,7 +18,6 @@ import android.graphics.Region;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.text.Layout;
-import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.StaticLayout;
@@ -34,6 +33,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
+import java.util.WeakHashMap;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
@@ -44,12 +44,16 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.Easings;
+import org.telegram.ui.Components.QuoteSpan;
+import org.telegram.ui.Components.SizeNotifierFrameLayout;
 import org.telegram.ui.Components.TextStyleSpan;
 public class SpoilerEffect extends Drawable {
+    private static WeakHashMap<Layout, ArrayList<RectF>> lazyLayoutLines;
     private static Paint xRefPaint;
     private int bitmapSize;
     public boolean drawPoints;
     private boolean enableAlpha;
+    public boolean insideQuote;
     private boolean invalidateParent;
     private int lastColor;
     private long lastDrawTime;
@@ -491,7 +495,12 @@ public class SpoilerEffect extends Drawable {
 
     public static void addSpoilers(TextView textView, Stack<SpoilerEffect> stack, List<SpoilerEffect> list) {
         int measuredWidth = textView.getMeasuredWidth();
-        addSpoilers(textView, textView.getLayout(), 0, measuredWidth > 0 ? measuredWidth : -2, (Spanned) textView.getText(), stack, list);
+        addSpoilers(textView, textView.getLayout(), 0, measuredWidth > 0 ? measuredWidth : -2, (Spanned) textView.getText(), stack, list, null);
+    }
+
+    public static void addSpoilers(TextView textView, Stack<SpoilerEffect> stack, List<SpoilerEffect> list, ArrayList<QuoteSpan.Block> arrayList) {
+        int measuredWidth = textView.getMeasuredWidth();
+        addSpoilers(textView, textView.getLayout(), 0, measuredWidth > 0 ? measuredWidth : -2, (Spanned) textView.getText(), stack, list, arrayList);
     }
 
     public static void addSpoilers(View view, Layout layout, Stack<SpoilerEffect> stack, List<SpoilerEffect> list) {
@@ -502,7 +511,7 @@ public class SpoilerEffect extends Drawable {
 
     public static void addSpoilers(View view, Layout layout, int i, int i2, Stack<SpoilerEffect> stack, List<SpoilerEffect> list) {
         if (layout.getText() instanceof Spanned) {
-            addSpoilers(view, layout, i, i2, (Spanned) layout.getText(), stack, list);
+            addSpoilers(view, layout, i, i2, (Spanned) layout.getText(), stack, list, null);
         }
     }
 
@@ -510,10 +519,10 @@ public class SpoilerEffect extends Drawable {
         if (layout == null) {
             return;
         }
-        addSpoilers(view, layout, -1, -1, spanned, stack, list);
+        addSpoilers(view, layout, -1, -1, spanned, stack, list, null);
     }
 
-    public static void addSpoilers(View view, Layout layout, int i, int i2, Spanned spanned, Stack<SpoilerEffect> stack, List<SpoilerEffect> list) {
+    public static void addSpoilers(View view, Layout layout, int i, int i2, Spanned spanned, Stack<SpoilerEffect> stack, List<SpoilerEffect> list, ArrayList<QuoteSpan.Block> arrayList) {
         int i3;
         int i4;
         if (layout == null) {
@@ -538,7 +547,7 @@ public class SpoilerEffect extends Drawable {
                     i3 = i;
                     i4 = i2;
                 }
-                addSpoilerRangesInternal(view, layout, i3, i4, spanStart, spanEnd, stack, list);
+                addSpoilerRangesInternal(view, layout, i3, i4, spanStart, spanEnd, stack, list, arrayList);
             }
         }
         if (!(view instanceof TextView) || stack == null) {
@@ -547,17 +556,33 @@ public class SpoilerEffect extends Drawable {
         stack.clear();
     }
 
-    private static void addSpoilerRangesInternal(final View view, final Layout layout, final int i, final int i2, int i3, int i4, final Stack<SpoilerEffect> stack, final List<SpoilerEffect> list) {
+    private static void addSpoilerRangesInternal(final View view, final Layout layout, final int i, final int i2, int i3, int i4, final Stack<SpoilerEffect> stack, final List<SpoilerEffect> list, final ArrayList<QuoteSpan.Block> arrayList) {
         layout.getSelectionPath(i3, i4, new Path() {
             @Override
             public void addRect(float f, float f2, float f3, float f4, Path.Direction direction) {
-                SpoilerEffect.addSpoilerRangeInternal(view, layout, f, f2, f3, f4, stack, list, i, i2);
+                SpoilerEffect.addSpoilerRangeInternal(view, layout, f, f2, f3, f4, stack, list, i, i2, arrayList);
             }
         });
     }
 
-    public static void addSpoilerRangeInternal(View view, Layout layout, float f, float f2, float f3, float f4, Stack<SpoilerEffect> stack, List<SpoilerEffect> list, int i, int i2) {
+    public static void addSpoilerRangeInternal(View view, Layout layout, float f, float f2, float f3, float f4, Stack<SpoilerEffect> stack, List<SpoilerEffect> list, int i, int i2, ArrayList<QuoteSpan.Block> arrayList) {
+        int i3 = 0;
         SpoilerEffect spoilerEffect = (stack == null || stack.isEmpty()) ? new SpoilerEffect() : stack.remove(0);
+        spoilerEffect.insideQuote = false;
+        if (arrayList != null) {
+            float f5 = (f2 + f4) / 2.0f;
+            while (true) {
+                if (i3 >= arrayList.size()) {
+                    break;
+                }
+                QuoteSpan.Block block = arrayList.get(i3);
+                if (f5 >= block.top && f5 <= block.bottom) {
+                    spoilerEffect.insideQuote = true;
+                    break;
+                }
+                i3++;
+            }
+        }
         spoilerEffect.setRippleProgress(-1.0f);
         spoilerEffect.setBounds((int) Math.max(f, i), (int) f2, (int) Math.min(f3, i2 <= 0 ? 2.14748365E9f : i2), (int) f4);
         spoilerEffect.setColor(layout.getPaint().getColor());
@@ -578,30 +603,59 @@ public class SpoilerEffect extends Drawable {
         canvas.clipPath(tempPath, Region.Op.DIFFERENCE);
     }
 
+    public static void layoutDrawMaybe(Layout layout, Canvas canvas) {
+        if (canvas instanceof SizeNotifierFrameLayout.SimplerCanvas) {
+            int alpha = layout.getPaint().getAlpha();
+            layout.getPaint().setAlpha((int) (alpha * 0.4f));
+            if (lazyLayoutLines == null) {
+                lazyLayoutLines = new WeakHashMap<>();
+            }
+            ArrayList<RectF> arrayList = lazyLayoutLines.get(layout);
+            if (arrayList == null) {
+                arrayList = new ArrayList<>();
+                int lineCount = layout.getLineCount();
+                for (int i = 0; i < lineCount; i++) {
+                    arrayList.add(new RectF(layout.getLineLeft(i), layout.getLineTop(i), layout.getLineRight(i), layout.getLineBottom(i)));
+                }
+                lazyLayoutLines.put(layout, arrayList);
+            }
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                canvas.drawRect(arrayList.get(i2), layout.getPaint());
+            }
+            layout.getPaint().setAlpha(alpha);
+            return;
+        }
+        layout.draw(canvas);
+    }
+
     @SuppressLint({"WrongConstant"})
     public static void renderWithRipple(View view, boolean z, int i, int i2, AtomicReference<Layout> atomicReference, Layout layout, List<SpoilerEffect> list, Canvas canvas, boolean z2) {
+        StaticLayout staticLayout;
         TextStyleSpan[] textStyleSpanArr;
         int i3;
         if (list.isEmpty()) {
-            layout.draw(canvas);
+            layoutDrawMaybe(layout, canvas);
             return;
         }
         Layout layout2 = atomicReference.get();
+        int i4 = 0;
         if (layout2 == null || !layout.getText().toString().equals(layout2.getText().toString()) || layout.getWidth() != layout2.getWidth() || layout.getHeight() != layout2.getHeight()) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(layout.getText());
-            if (layout.getText() instanceof Spannable) {
-                Spannable spannable = (Spannable) layout.getText();
-                TextStyleSpan[] textStyleSpanArr2 = (TextStyleSpan[]) spannable.getSpans(0, spannable.length(), TextStyleSpan.class);
+            if (layout.getText() instanceof Spanned) {
+                Spanned spanned = (Spanned) layout.getText();
+                TextStyleSpan[] textStyleSpanArr2 = (TextStyleSpan[]) spanned.getSpans(0, spanned.length(), TextStyleSpan.class);
                 int length = textStyleSpanArr2.length;
-                int i4 = 0;
-                while (i4 < length) {
-                    TextStyleSpan textStyleSpan = textStyleSpanArr2[i4];
+                int i5 = 0;
+                while (i5 < length) {
+                    TextStyleSpan textStyleSpan = textStyleSpanArr2[i5];
                     if (textStyleSpan.isSpoiler()) {
-                        Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spannable.getSpans(spannable.getSpanStart(textStyleSpan), spannable.getSpanEnd(textStyleSpan), Emoji.EmojiSpan.class);
+                        int spanStart = spanned.getSpanStart(textStyleSpan);
+                        int spanEnd = spanned.getSpanEnd(textStyleSpan);
+                        Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) spanned.getSpans(spanStart, spanEnd, Emoji.EmojiSpan.class);
                         int length2 = emojiSpanArr.length;
-                        int i5 = 0;
-                        while (i5 < length2) {
-                            final Emoji.EmojiSpan emojiSpan = emojiSpanArr[i5];
+                        while (i4 < length2) {
+                            TextStyleSpan[] textStyleSpanArr3 = textStyleSpanArr2;
+                            final Emoji.EmojiSpan emojiSpan = emojiSpanArr[i4];
                             spannableStringBuilder.setSpan(new ReplacementSpan() {
                                 @Override
                                 public void draw(Canvas canvas2, CharSequence charSequence, int i6, int i7, float f, int i8, int i9, int i10, Paint paint) {
@@ -611,31 +665,34 @@ public class SpoilerEffect extends Drawable {
                                 public int getSize(Paint paint, CharSequence charSequence, int i6, int i7, Paint.FontMetricsInt fontMetricsInt) {
                                     return Emoji.EmojiSpan.this.getSize(paint, charSequence, i6, i7, fontMetricsInt);
                                 }
-                            }, spannable.getSpanStart(emojiSpan), spannable.getSpanEnd(emojiSpan), spannable.getSpanFlags(textStyleSpan));
+                            }, spanned.getSpanStart(emojiSpan), spanned.getSpanEnd(emojiSpan), spanned.getSpanFlags(textStyleSpan));
                             spannableStringBuilder.removeSpan(emojiSpan);
-                            i5++;
-                            textStyleSpanArr2 = textStyleSpanArr2;
+                            i4++;
+                            textStyleSpanArr2 = textStyleSpanArr3;
                             length = length;
+                            length2 = length2;
                             emojiSpanArr = emojiSpanArr;
                         }
                         textStyleSpanArr = textStyleSpanArr2;
                         i3 = length;
-                        spannableStringBuilder.setSpan(new ForegroundColorSpan(0), spannable.getSpanStart(textStyleSpan), spannable.getSpanEnd(textStyleSpan), spannable.getSpanFlags(textStyleSpan));
+                        spannableStringBuilder.setSpan(new ForegroundColorSpan(0), spanStart, spanEnd, spanned.getSpanFlags(textStyleSpan));
                         spannableStringBuilder.removeSpan(textStyleSpan);
                     } else {
                         textStyleSpanArr = textStyleSpanArr2;
                         i3 = length;
                     }
-                    i4++;
+                    i5++;
                     textStyleSpanArr2 = textStyleSpanArr;
                     length = i3;
+                    i4 = 0;
                 }
             }
             if (Build.VERSION.SDK_INT >= 24) {
-                layout2 = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), layout.getPaint(), layout.getWidth()).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).setLineSpacing(layout.getSpacingAdd(), layout.getSpacingMultiplier()).build();
+                staticLayout = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), layout.getPaint(), layout.getWidth()).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).setLineSpacing(layout.getSpacingAdd(), layout.getSpacingMultiplier()).build();
             } else {
-                layout2 = new StaticLayout(spannableStringBuilder, layout.getPaint(), layout.getWidth(), layout.getAlignment(), layout.getSpacingMultiplier(), layout.getSpacingAdd(), false);
+                staticLayout = new StaticLayout(spannableStringBuilder, layout.getPaint(), layout.getWidth(), layout.getAlignment(), layout.getSpacingMultiplier(), layout.getSpacingAdd(), false);
             }
+            layout2 = staticLayout;
             atomicReference.set(layout2);
         }
         if (!list.isEmpty()) {
@@ -644,7 +701,7 @@ public class SpoilerEffect extends Drawable {
             layout2.draw(canvas);
             canvas.restore();
         } else {
-            layout.draw(canvas);
+            layoutDrawMaybe(layout, canvas);
         }
         if (list.isEmpty()) {
             return;
@@ -663,7 +720,7 @@ public class SpoilerEffect extends Drawable {
             }
             canvas.clipPath(tempPath);
             canvas.translate(0.0f, -view.getPaddingTop());
-            layout.draw(canvas);
+            layoutDrawMaybe(layout, canvas);
             canvas.restore();
         }
         boolean z3 = list.get(0).rippleProgress != -1.0f;

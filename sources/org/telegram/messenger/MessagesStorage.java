@@ -6835,7 +6835,7 @@ public class MessagesStorage extends BaseController {
     }
 
     public void lambda$broadcastScheduledMessagesChange$187(Long l, int i) {
-        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.scheduledMessagesUpdated, l, Integer.valueOf(i));
+        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.scheduledMessagesUpdated, l, Integer.valueOf(i), Boolean.TRUE);
     }
 
     public java.util.ArrayList<java.lang.Long> lambda$markMessagesAsDeleted$190(long r39, java.util.ArrayList<java.lang.Integer> r41, boolean r42, boolean r43) {
@@ -6907,12 +6907,12 @@ public class MessagesStorage extends BaseController {
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported_old) {
             if (tLRPC$MessageMedia.bytes.length == 0) {
-                tLRPC$MessageMedia.bytes = Utilities.intToBytes(165);
+                tLRPC$MessageMedia.bytes = Utilities.intToBytes(166);
             }
         } else if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaUnsupported) {
             TLRPC$TL_messageMediaUnsupported_old tLRPC$TL_messageMediaUnsupported_old = new TLRPC$TL_messageMediaUnsupported_old();
             tLRPC$Message.media = tLRPC$TL_messageMediaUnsupported_old;
-            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(165);
+            tLRPC$TL_messageMediaUnsupported_old.bytes = Utilities.intToBytes(166);
             tLRPC$Message.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
         }
     }
@@ -7127,7 +7127,9 @@ public class MessagesStorage extends BaseController {
 
     public static void addUsersAndChatsFromMessage(TLRPC$Message tLRPC$Message, ArrayList<Long> arrayList, ArrayList<Long> arrayList2, ArrayList<Long> arrayList3) {
         String str;
+        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader;
         TLRPC$Peer tLRPC$Peer;
+        TLRPC$Peer tLRPC$Peer2;
         long fromChatId = MessageObject.getFromChatId(tLRPC$Message);
         if (DialogObject.isUserDialog(fromChatId)) {
             if (!arrayList.contains(Long.valueOf(fromChatId))) {
@@ -7160,28 +7162,8 @@ public class MessagesStorage extends BaseController {
             TLRPC$MessageAction tLRPC$MessageAction2 = tLRPC$Message.action;
             if (tLRPC$MessageAction2 instanceof TLRPC$TL_messageActionGeoProximityReached) {
                 TLRPC$TL_messageActionGeoProximityReached tLRPC$TL_messageActionGeoProximityReached = (TLRPC$TL_messageActionGeoProximityReached) tLRPC$MessageAction2;
-                long peerId = MessageObject.getPeerId(tLRPC$TL_messageActionGeoProximityReached.from_id);
-                if (DialogObject.isUserDialog(peerId)) {
-                    if (!arrayList.contains(Long.valueOf(peerId))) {
-                        arrayList.add(Long.valueOf(peerId));
-                    }
-                } else {
-                    long j6 = -peerId;
-                    if (!arrayList2.contains(Long.valueOf(j6))) {
-                        arrayList2.add(Long.valueOf(j6));
-                    }
-                }
-                long peerId2 = MessageObject.getPeerId(tLRPC$TL_messageActionGeoProximityReached.to_id);
-                if (peerId2 > 0) {
-                    if (!arrayList.contains(Long.valueOf(peerId2))) {
-                        arrayList.add(Long.valueOf(peerId2));
-                    }
-                } else {
-                    long j7 = -peerId2;
-                    if (!arrayList2.contains(Long.valueOf(j7))) {
-                        arrayList2.add(Long.valueOf(j7));
-                    }
-                }
+                addLoadPeerInfo(tLRPC$TL_messageActionGeoProximityReached.from_id, arrayList, arrayList2);
+                addLoadPeerInfo(tLRPC$TL_messageActionGeoProximityReached.to_id, arrayList, arrayList2);
             }
             if (!tLRPC$Message.action.users.isEmpty()) {
                 for (int i = 0; i < tLRPC$Message.action.users.size(); i++) {
@@ -7206,8 +7188,8 @@ public class MessagesStorage extends BaseController {
         }
         TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$Message.media;
         if (tLRPC$MessageMedia != null) {
-            long j8 = tLRPC$MessageMedia.user_id;
-            if (j8 != 0 && !arrayList.contains(Long.valueOf(j8))) {
+            long j6 = tLRPC$MessageMedia.user_id;
+            if (j6 != 0 && !arrayList.contains(Long.valueOf(j6))) {
                 arrayList.add(Long.valueOf(tLRPC$Message.media.user_id));
             }
             TLRPC$MessageMedia tLRPC$MessageMedia2 = tLRPC$Message.media;
@@ -7215,101 +7197,34 @@ public class MessagesStorage extends BaseController {
                 TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia2;
                 if (!tLRPC$TL_messageMediaPoll.results.recent_voters.isEmpty()) {
                     for (int i3 = 0; i3 < tLRPC$TL_messageMediaPoll.results.recent_voters.size(); i3++) {
-                        TLRPC$Peer tLRPC$Peer2 = tLRPC$TL_messageMediaPoll.results.recent_voters.get(i3);
-                        long j9 = tLRPC$Peer2.user_id;
-                        if (j9 != 0) {
-                            arrayList.add(Long.valueOf(j9));
-                        } else {
-                            long j10 = tLRPC$Peer2.chat_id;
-                            if (j10 != 0) {
-                                arrayList2.add(Long.valueOf(-j10));
-                            } else {
-                                long j11 = tLRPC$Peer2.channel_id;
-                                if (j11 != 0) {
-                                    arrayList2.add(Long.valueOf(-j11));
-                                }
-                            }
-                        }
+                        addLoadPeerInfo(tLRPC$TL_messageMediaPoll.results.recent_voters.get(i3), arrayList, arrayList2);
                     }
                 }
             }
             TLRPC$Peer tLRPC$Peer3 = tLRPC$Message.media.peer;
             if (tLRPC$Peer3 != null) {
-                long peerDialogId = DialogObject.getPeerDialogId(tLRPC$Peer3);
-                if (peerDialogId > 0) {
-                    arrayList.add(Long.valueOf(peerDialogId));
-                }
-                if (peerDialogId < 0) {
-                    arrayList2.add(Long.valueOf(-peerDialogId));
-                }
+                addLoadPeerInfo(tLRPC$Peer3, arrayList, arrayList2);
             }
         }
         TLRPC$MessageReplies tLRPC$MessageReplies = tLRPC$Message.replies;
         if (tLRPC$MessageReplies != null) {
             int size = tLRPC$MessageReplies.recent_repliers.size();
             for (int i4 = 0; i4 < size; i4++) {
-                long peerId3 = MessageObject.getPeerId(tLRPC$Message.replies.recent_repliers.get(i4));
-                if (DialogObject.isUserDialog(peerId3)) {
-                    if (!arrayList.contains(Long.valueOf(peerId3))) {
-                        arrayList.add(Long.valueOf(peerId3));
-                    }
-                } else if (DialogObject.isChatDialog(peerId3)) {
-                    long j12 = -peerId3;
-                    if (!arrayList2.contains(Long.valueOf(j12))) {
-                        arrayList2.add(Long.valueOf(j12));
-                    }
-                }
+                addLoadPeerInfo(tLRPC$Message.replies.recent_repliers.get(i4), arrayList, arrayList2);
             }
         }
         TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader = tLRPC$Message.reply_to;
-        if (tLRPC$MessageReplyHeader != null && (tLRPC$Peer = tLRPC$MessageReplyHeader.reply_to_peer_id) != null) {
-            long peerId4 = MessageObject.getPeerId(tLRPC$Peer);
-            if (DialogObject.isUserDialog(peerId4)) {
-                if (!arrayList.contains(Long.valueOf(peerId4))) {
-                    arrayList.add(Long.valueOf(peerId4));
-                }
-            } else if (DialogObject.isChatDialog(peerId4)) {
-                long j13 = -peerId4;
-                if (!arrayList2.contains(Long.valueOf(j13))) {
-                    arrayList2.add(Long.valueOf(j13));
-                }
-            }
+        if (tLRPC$MessageReplyHeader != null && (tLRPC$Peer2 = tLRPC$MessageReplyHeader.reply_to_peer_id) != null) {
+            addLoadPeerInfo(tLRPC$Peer2, arrayList, arrayList2);
         }
-        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = tLRPC$Message.fwd_from;
-        if (tLRPC$MessageFwdHeader != null) {
-            TLRPC$Peer tLRPC$Peer4 = tLRPC$MessageFwdHeader.from_id;
-            if (tLRPC$Peer4 instanceof TLRPC$TL_peerUser) {
-                if (!arrayList.contains(Long.valueOf(tLRPC$Peer4.user_id))) {
-                    arrayList.add(Long.valueOf(tLRPC$Message.fwd_from.from_id.user_id));
-                }
-            } else if (tLRPC$Peer4 instanceof TLRPC$TL_peerChannel) {
-                if (!arrayList2.contains(Long.valueOf(tLRPC$Peer4.channel_id))) {
-                    arrayList2.add(Long.valueOf(tLRPC$Message.fwd_from.from_id.channel_id));
-                }
-            } else if ((tLRPC$Peer4 instanceof TLRPC$TL_peerChat) && !arrayList2.contains(Long.valueOf(tLRPC$Peer4.chat_id))) {
-                arrayList2.add(Long.valueOf(tLRPC$Message.fwd_from.from_id.chat_id));
-            }
-            TLRPC$Peer tLRPC$Peer5 = tLRPC$Message.fwd_from.saved_from_peer;
-            if (tLRPC$Peer5 != null) {
-                long j14 = tLRPC$Peer5.user_id;
-                if (j14 != 0) {
-                    if (!arrayList2.contains(Long.valueOf(j14))) {
-                        arrayList.add(Long.valueOf(tLRPC$Message.fwd_from.saved_from_peer.user_id));
-                    }
-                } else {
-                    long j15 = tLRPC$Peer5.channel_id;
-                    if (j15 != 0) {
-                        if (!arrayList2.contains(Long.valueOf(j15))) {
-                            arrayList2.add(Long.valueOf(tLRPC$Message.fwd_from.saved_from_peer.channel_id));
-                        }
-                    } else {
-                        long j16 = tLRPC$Peer5.chat_id;
-                        if (j16 != 0 && !arrayList2.contains(Long.valueOf(j16))) {
-                            arrayList2.add(Long.valueOf(tLRPC$Message.fwd_from.saved_from_peer.chat_id));
-                        }
-                    }
-                }
-            }
+        TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader2 = tLRPC$Message.fwd_from;
+        if (tLRPC$MessageFwdHeader2 != null) {
+            addLoadPeerInfo(tLRPC$MessageFwdHeader2.from_id, arrayList, arrayList2);
+            addLoadPeerInfo(tLRPC$Message.fwd_from.saved_from_peer, arrayList, arrayList2);
+        }
+        TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader2 = tLRPC$Message.reply_to;
+        if (tLRPC$MessageReplyHeader2 != null && (tLRPC$MessageFwdHeader = tLRPC$MessageReplyHeader2.reply_from) != null && (tLRPC$Peer = tLRPC$MessageFwdHeader.from_id) != null) {
+            addLoadPeerInfo(tLRPC$Peer, arrayList, arrayList2);
         }
         HashMap<String, String> hashMap = tLRPC$Message.params;
         if (hashMap == null || (str = hashMap.get("fwd_peer")) == null) {
@@ -7317,11 +7232,28 @@ public class MessagesStorage extends BaseController {
         }
         long longValue = Utilities.parseLong(str).longValue();
         if (longValue < 0) {
-            long j17 = -longValue;
-            if (arrayList2.contains(Long.valueOf(j17))) {
+            long j7 = -longValue;
+            if (arrayList2.contains(Long.valueOf(j7))) {
                 return;
             }
-            arrayList2.add(Long.valueOf(j17));
+            arrayList2.add(Long.valueOf(j7));
+        }
+    }
+
+    private static void addLoadPeerInfo(TLRPC$Peer tLRPC$Peer, ArrayList<Long> arrayList, ArrayList<Long> arrayList2) {
+        if (tLRPC$Peer instanceof TLRPC$TL_peerUser) {
+            if (arrayList.contains(Long.valueOf(tLRPC$Peer.user_id))) {
+                return;
+            }
+            arrayList.add(Long.valueOf(tLRPC$Peer.user_id));
+        } else if (tLRPC$Peer instanceof TLRPC$TL_peerChannel) {
+            if (arrayList2.contains(Long.valueOf(tLRPC$Peer.channel_id))) {
+                return;
+            }
+            arrayList2.add(Long.valueOf(tLRPC$Peer.channel_id));
+        } else if (!(tLRPC$Peer instanceof TLRPC$TL_peerChat) || arrayList2.contains(Long.valueOf(tLRPC$Peer.chat_id))) {
+        } else {
+            arrayList2.add(Long.valueOf(tLRPC$Peer.chat_id));
         }
     }
 

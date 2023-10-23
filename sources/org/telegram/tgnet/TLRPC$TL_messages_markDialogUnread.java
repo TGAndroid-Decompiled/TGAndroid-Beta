@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_markDialogUnread extends TLObject {
-    public static int constructor = -1031349873;
     public int flags;
     public TLRPC$InputDialogPeer peer;
     public boolean unread;
@@ -12,7 +11,7 @@ public class TLRPC$TL_messages_markDialogUnread extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1031349873);
         int i = this.unread ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

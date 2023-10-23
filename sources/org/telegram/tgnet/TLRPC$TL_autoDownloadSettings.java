@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_autoDownloadSettings extends TLObject {
-    public static int constructor = -1163561432;
     public boolean audio_preload_next;
     public boolean disabled;
     public long file_size_max;
@@ -14,7 +13,7 @@ public class TLRPC$TL_autoDownloadSettings extends TLObject {
     public int video_upload_maxbitrate;
 
     public static TLRPC$TL_autoDownloadSettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1163561432 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_autoDownloadSettings", Integer.valueOf(i)));
             }
@@ -43,7 +42,7 @@ public class TLRPC$TL_autoDownloadSettings extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1163561432);
         int i = this.disabled ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.video_preload_large ? i | 2 : i & (-3);

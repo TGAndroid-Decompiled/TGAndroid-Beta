@@ -12,8 +12,6 @@ public abstract class TLRPC$messages_Dialogs extends TLObject {
         TLRPC$messages_Dialogs tLRPC$messages_Dialogs;
         if (i == -253500010) {
             tLRPC$messages_Dialogs = new TLRPC$messages_Dialogs() {
-                public static int constructor = -253500010;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.count = abstractSerializedData2.readInt32(z2);
@@ -21,7 +19,7 @@ public abstract class TLRPC$messages_Dialogs extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-253500010);
                     abstractSerializedData2.writeInt32(this.count);
                 }
             };
@@ -29,8 +27,6 @@ public abstract class TLRPC$messages_Dialogs extends TLObject {
             tLRPC$messages_Dialogs = new TLRPC$TL_messages_dialogs();
         } else {
             tLRPC$messages_Dialogs = i != 1910543603 ? null : new TLRPC$messages_Dialogs() {
-                public static int constructor = 1910543603;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.count = abstractSerializedData2.readInt32(z2);
@@ -98,7 +94,7 @@ public abstract class TLRPC$messages_Dialogs extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(1910543603);
                     abstractSerializedData2.writeInt32(this.count);
                     abstractSerializedData2.writeInt32(481674261);
                     int size = this.dialogs.size();

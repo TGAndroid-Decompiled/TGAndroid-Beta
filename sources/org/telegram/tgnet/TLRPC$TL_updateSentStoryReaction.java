@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateSentStoryReaction extends TLRPC$Update {
-    public static int constructor = 2103604867;
     public TLRPC$Peer peer;
     public TLRPC$Reaction reaction;
     public int story_id;
@@ -14,7 +13,7 @@ public class TLRPC$TL_updateSentStoryReaction extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2103604867);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.story_id);
         this.reaction.serializeToStream(abstractSerializedData);

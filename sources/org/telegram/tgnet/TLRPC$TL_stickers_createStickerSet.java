@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_stickers_createStickerSet extends TLObject {
-    public static int constructor = -1876841625;
     public boolean animated;
     public boolean emojis;
     public int flags;
@@ -22,7 +21,7 @@ public class TLRPC$TL_stickers_createStickerSet extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1876841625);
         int i = this.masks ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.animated ? i | 2 : i & (-3);

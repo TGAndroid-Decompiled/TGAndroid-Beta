@@ -21,7 +21,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
     private CheckBox2 checkView;
     boolean expandIfMultiline;
     private int iconColor;
-    private RLottieImageView imageView;
+    public RLottieImageView imageView;
     private int itemHeight;
     Runnable openSwipeBackLayout;
     private final Theme.ResourcesProvider resourcesProvider;
@@ -275,7 +275,7 @@ public class ActionBarMenuSubItem extends FrameLayout {
         updateBackground();
     }
 
-    void updateBackground() {
+    public void updateBackground() {
         setBackground(Theme.createRadSelectorDrawable(this.selectorColor, this.top ? 6 : 0, this.bottom ? 6 : 0));
     }
 

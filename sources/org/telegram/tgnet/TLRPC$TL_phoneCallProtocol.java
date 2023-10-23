@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_phoneCallProtocol extends TLRPC$PhoneCallProtocol {
-    public static int constructor = -58224696;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -25,7 +23,7 @@ public class TLRPC$TL_phoneCallProtocol extends TLRPC$PhoneCallProtocol {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-58224696);
         int i = this.udp_p2p ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.udp_reflector ? i | 2 : i & (-3);

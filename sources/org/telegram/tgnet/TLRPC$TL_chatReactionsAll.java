@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_chatReactionsAll extends TLRPC$ChatReactions {
-    public static int constructor = 1385335754;
     public boolean allow_custom;
     public int flags;
 
@@ -13,7 +12,7 @@ public class TLRPC$TL_chatReactionsAll extends TLRPC$ChatReactions {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1385335754);
         int i = this.allow_custom ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

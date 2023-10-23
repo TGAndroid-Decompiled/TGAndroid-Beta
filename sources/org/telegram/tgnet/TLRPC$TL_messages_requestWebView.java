@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_requestWebView extends TLObject {
-    public static int constructor = 647873217;
     public TLRPC$InputUser bot;
     public int flags;
     public boolean from_bot_menu;
@@ -22,7 +21,7 @@ public class TLRPC$TL_messages_requestWebView extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(647873217);
         int i = this.from_bot_menu ? this.flags | 16 : this.flags & (-17);
         this.flags = i;
         int i2 = this.silent ? i | 32 : i & (-33);

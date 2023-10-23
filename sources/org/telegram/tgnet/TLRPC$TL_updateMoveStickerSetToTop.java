@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateMoveStickerSetToTop extends TLRPC$Update {
-    public static int constructor = -2030252155;
     public boolean emojis;
     public int flags;
     public boolean masks;
@@ -17,7 +16,7 @@ public class TLRPC$TL_updateMoveStickerSetToTop extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-2030252155);
         int i = this.masks ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.emojis ? i | 2 : i & (-3);

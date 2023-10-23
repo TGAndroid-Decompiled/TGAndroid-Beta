@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_inputPrivacyValueDisallowChatParticipants extends TLRPC$InputPrivacyRule {
-    public static int constructor = -380694650;
     public ArrayList<Long> chats = new ArrayList<>();
 
     @Override
@@ -22,7 +21,7 @@ public class TLRPC$TL_inputPrivacyValueDisallowChatParticipants extends TLRPC$In
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-380694650);
         abstractSerializedData.writeInt32(481674261);
         int size = this.chats.size();
         abstractSerializedData.writeInt32(size);

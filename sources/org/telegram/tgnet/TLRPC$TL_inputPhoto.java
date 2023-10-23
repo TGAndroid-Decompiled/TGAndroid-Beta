@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputPhoto extends TLRPC$InputPhoto {
-    public static int constructor = 1001634122;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.id = abstractSerializedData.readInt64(z);
@@ -11,7 +9,7 @@ public class TLRPC$TL_inputPhoto extends TLRPC$InputPhoto {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1001634122);
         abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeByteArray(this.file_reference);

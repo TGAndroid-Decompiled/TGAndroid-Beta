@@ -1208,7 +1208,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             if (i == 1) {
                 view = new PremiumFeatureCell(context) {
                     @Override
-                    public void dispatchDraw(Canvas canvas) {
+                    protected void dispatchDraw(Canvas canvas) {
                         RectF rectF = AndroidUtilities.rectTmp;
                         rectF.set(this.imageView.getLeft(), this.imageView.getTop(), this.imageView.getRight(), this.imageView.getBottom());
                         PremiumPreviewFragment.this.matrix.reset();
@@ -1420,7 +1420,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 final PremiumTierCell premiumTierCell = new PremiumTierCell(this.val$context) {
                     @Override
-                    public void dispatchDraw(Canvas canvas) {
+                    protected void dispatchDraw(Canvas canvas) {
                         if (this.discountView.getVisibility() == 0) {
                             RectF rectF = AndroidUtilities.rectTmp;
                             rectF.set(this.discountView.getLeft(), this.discountView.getTop(), this.discountView.getRight(), this.discountView.getBottom());

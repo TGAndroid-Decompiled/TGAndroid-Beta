@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_jsonNumber extends TLRPC$JSONValue {
-    public static int constructor = 736157604;
     public double value;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_jsonNumber extends TLRPC$JSONValue {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(736157604);
         abstractSerializedData.writeDouble(this.value);
     }
 }

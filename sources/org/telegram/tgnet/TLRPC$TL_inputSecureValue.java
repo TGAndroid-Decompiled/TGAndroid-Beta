@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_inputSecureValue extends TLObject {
-    public static int constructor = -618540889;
     public TLRPC$TL_secureData data;
     public int flags;
     public TLRPC$InputSecureFile front_side;
@@ -70,7 +69,7 @@ public class TLRPC$TL_inputSecureValue extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-618540889);
         abstractSerializedData.writeInt32(this.flags);
         this.type.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {

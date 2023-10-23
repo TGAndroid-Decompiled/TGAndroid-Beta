@@ -31,7 +31,6 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -167,6 +166,9 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
             this.botMenuItem = addItem;
             addItem.setVisibility(8);
             this.botMenuItem.addSubItem(R.id.menu_reload_page, R.drawable.msg_retry, LocaleController.getString(R.string.BotWebViewReloadPage));
+            ActionBarMenuSubItem addSubItem = this.botMenuItem.addSubItem(R.id.menu_settings, R.drawable.msg_settings, LocaleController.getString(R.string.BotWebViewSettings));
+            this.settingsItem = addSubItem;
+            addSubItem.setVisibility(8);
         }
     }
 
@@ -457,6 +459,13 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
                 } else {
                     AndroidUtilities.updateImageViewImageAnimated(this.val$actionBar.getBackButton(), R.drawable.ic_close_white);
                 }
+            }
+        }
+
+        @Override
+        public void onSetSettingsButtonVisible(boolean z) {
+            if (BotWebViewMenuContainer.this.settingsItem != null) {
+                BotWebViewMenuContainer.this.settingsItem.setVisibility(z ? 0 : 8);
             }
         }
     }
@@ -890,21 +899,13 @@ public class BotWebViewMenuContainer extends FrameLayout implements Notification
         tLRPC$TL_messages_requestWebView.platform = "android";
         tLRPC$TL_messages_requestWebView.url = this.botUrl;
         tLRPC$TL_messages_requestWebView.flags |= 2;
-        try {
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("bg_color", getColor(Theme.key_windowBackgroundWhite));
-            jSONObject.put("secondary_bg_color", getColor(Theme.key_windowBackgroundGray));
-            jSONObject.put("text_color", getColor(Theme.key_windowBackgroundWhiteBlackText));
-            jSONObject.put("hint_color", getColor(Theme.key_windowBackgroundWhiteHintText));
-            jSONObject.put("link_color", getColor(Theme.key_windowBackgroundWhiteLinkText));
-            jSONObject.put("button_color", getColor(Theme.key_featuredStickers_addButton));
-            jSONObject.put("button_text_color", getColor(Theme.key_featuredStickers_buttonText));
+        ChatActivityEnterView chatActivityEnterView = this.parentEnterView;
+        JSONObject makeThemeParams = BotWebViewSheet.makeThemeParams((chatActivityEnterView == null || chatActivityEnterView.getParentFragment() == null) ? null : this.parentEnterView.getParentFragment().getResourceProvider());
+        if (makeThemeParams != null) {
             TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
             tLRPC$TL_messages_requestWebView.theme_params = tLRPC$TL_dataJSON;
-            tLRPC$TL_dataJSON.data = jSONObject.toString();
+            tLRPC$TL_dataJSON.data = makeThemeParams.toString();
             tLRPC$TL_messages_requestWebView.flags |= 4;
-        } catch (Exception e) {
-            FileLog.e(e);
         }
         tLRPC$TL_messages_requestWebView.from_bot_menu = true;
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_requestWebView, new RequestDelegate() {

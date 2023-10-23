@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateReadHistoryInbox extends TLRPC$Update {
-    public static int constructor = -1667805217;
     public int flags;
     public int folder_id;
     public int max_id;
@@ -25,7 +24,7 @@ public class TLRPC$TL_updateReadHistoryInbox extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1667805217);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.folder_id);

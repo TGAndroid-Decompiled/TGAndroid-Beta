@@ -366,7 +366,7 @@ public class UndoView extends FrameLayout {
         showWithAction(arrayList, i, obj, obj2, runnable, runnable2);
     }
 
-    public void showWithAction(java.util.ArrayList<java.lang.Long> r19, int r20, java.lang.Object r21, java.lang.Object r22, java.lang.Runnable r23, java.lang.Runnable r24) {
+    public void showWithAction(java.util.ArrayList<java.lang.Long> r20, int r21, java.lang.Object r22, java.lang.Object r23, java.lang.Runnable r24, java.lang.Runnable r25) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.UndoView.showWithAction(java.util.ArrayList, int, java.lang.Object, java.lang.Object, java.lang.Runnable, java.lang.Runnable):void");
     }
 

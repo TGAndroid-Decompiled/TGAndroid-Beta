@@ -40,12 +40,14 @@ public class PopupSwipeBackLayout extends FrameLayout {
     private Path mPath;
     private RectF mRect;
     private AnimationNotificationsLocker notificationsLocker;
+    private Runnable onForegroundOpen;
     private IntCallback onHeightUpdateListener;
     private ArrayList<OnSwipeBackProgressListener> onSwipeBackProgressListeners;
     private Paint overlayPaint;
     private float overrideForegroundHeight;
     SparseIntArray overrideHeightIndex;
     Theme.ResourcesProvider resourcesProvider;
+    public boolean stickToRight;
     private float toProgress;
     public float transitionProgress;
 
@@ -293,6 +295,10 @@ public class PopupSwipeBackLayout extends FrameLayout {
                 }
                 PopupSwipeBackLayout.this.invalidateTransforms();
                 PopupSwipeBackLayout.this.isAnimationInProgress = false;
+                if (PopupSwipeBackLayout.this.onForegroundOpen == null || Math.abs(f - 1.0f) >= 0.01f) {
+                    return;
+                }
+                PopupSwipeBackLayout.this.onForegroundOpen.run();
             }
         });
         duration.start();
@@ -301,6 +307,10 @@ public class PopupSwipeBackLayout extends FrameLayout {
     public void lambda$animateToState$0(ValueAnimator valueAnimator) {
         this.transitionProgress = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         invalidateTransforms();
+    }
+
+    public void setOnForegroundOpenFinished(Runnable runnable) {
+        this.onForegroundOpen = runnable;
     }
 
     public void clearFlags() {
@@ -334,13 +344,26 @@ public class PopupSwipeBackLayout extends FrameLayout {
         animateToState(0.0f, 0.0f);
     }
 
+    public void setStickToRight(boolean z) {
+        this.stickToRight = z;
+    }
+
     @Override
     protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
         for (int i5 = 0; i5 < getChildCount(); i5++) {
             View childAt = getChildAt(i5);
             if ((childAt.getLayoutParams() instanceof FrameLayout.LayoutParams) && ((FrameLayout.LayoutParams) childAt.getLayoutParams()).gravity == 80) {
-                int i6 = i4 - i2;
-                childAt.layout(0, i6 - childAt.getMeasuredHeight(), childAt.getMeasuredWidth(), i6);
+                if (this.stickToRight) {
+                    int i6 = i3 - i;
+                    int i7 = i4 - i2;
+                    childAt.layout(i6 - childAt.getMeasuredWidth(), i7 - childAt.getMeasuredHeight(), i6, i7);
+                } else {
+                    int i8 = i4 - i2;
+                    childAt.layout(0, i8 - childAt.getMeasuredHeight(), childAt.getMeasuredWidth(), i8);
+                }
+            } else if (this.stickToRight) {
+                int i9 = i3 - i;
+                childAt.layout(i9 - childAt.getMeasuredWidth(), 0, i9, childAt.getMeasuredHeight());
             } else {
                 childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
             }
@@ -380,7 +403,11 @@ public class PopupSwipeBackLayout extends FrameLayout {
         int save = canvas.save();
         this.mPath.rewind();
         int dp = AndroidUtilities.dp(6.0f);
-        this.mRect.set(0.0f, top, measuredWidth, measuredHeight + top);
+        if (this.stickToRight) {
+            this.mRect.set(getWidth() - measuredWidth, top, getWidth(), measuredHeight + top);
+        } else {
+            this.mRect.set(0.0f, top, measuredWidth, measuredHeight + top);
+        }
         float f2 = dp;
         this.mPath.addRoundRect(this.mRect, f2, f2, Path.Direction.CW);
         canvas.clipPath(this.mPath);

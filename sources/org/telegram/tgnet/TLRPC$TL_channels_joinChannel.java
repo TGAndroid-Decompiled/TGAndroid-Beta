@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_joinChannel extends TLObject {
-    public static int constructor = 615851205;
     public TLRPC$InputChannel channel;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_channels_joinChannel extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(615851205);
         this.channel.serializeToStream(abstractSerializedData);
     }
 }

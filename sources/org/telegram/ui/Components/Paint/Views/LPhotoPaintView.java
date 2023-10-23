@@ -3587,7 +3587,7 @@ public class LPhotoPaintView extends SizeNotifierFrameLayoutPhoto implements IPh
         if (this.emojiView != null) {
             return;
         }
-        EmojiView emojiView2 = new EmojiView(null, true, false, false, getContext(), false, null, null, true, this.resourcesProvider);
+        EmojiView emojiView2 = new EmojiView(null, true, false, false, getContext(), false, null, null, true, this.resourcesProvider, false);
         this.emojiView = emojiView2;
         emojiView2.allowEmojisForNonPremium(true);
         this.emojiView.setVisibility(8);

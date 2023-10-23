@@ -14,11 +14,10 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$InputEncryptedFile;
 import org.telegram.tgnet.TLRPC$InputFile;
-import org.telegram.tgnet.TLRPC$MediaArea;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
-import org.telegram.tgnet.TLRPC$TL_null;
+import org.telegram.tgnet.tl.TL_stories$MediaArea;
 import org.telegram.ui.Components.AnimatedFileDrawable;
 import org.telegram.ui.Components.Paint.PaintTypeface;
 import org.telegram.ui.Components.PhotoFilterView;
@@ -121,7 +120,7 @@ public class VideoEditedInfo {
         public int fontSize;
         public float framesPerDraw;
         public float height;
-        public TLRPC$MediaArea mediaArea;
+        public TL_stories$MediaArea mediaArea;
         public TLRPC$MessageMedia mediaGeo;
         public int[] metadata;
         public Object parentObject;
@@ -186,7 +185,7 @@ public class VideoEditedInfo {
             this.textViewY = abstractSerializedData.readFloat(false);
             if (z) {
                 int readInt322 = abstractSerializedData.readInt32(false);
-                if (readInt322 == TLRPC$TL_null.constructor) {
+                if (readInt322 == 1450380236) {
                     this.document = null;
                 } else {
                     this.document = TLRPC$Document.TLdeserialize(abstractSerializedData, readInt322, false);
@@ -194,7 +193,7 @@ public class VideoEditedInfo {
             }
             if (this.type == 3) {
                 this.density = abstractSerializedData.readFloat(false);
-                this.mediaArea = TLRPC$MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(false), false);
+                this.mediaArea = TL_stories$MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(false), false);
                 this.mediaGeo = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(false), false);
                 if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(false) == -559038737) {
                     String readString2 = abstractSerializedData.readString(false);
@@ -205,7 +204,7 @@ public class VideoEditedInfo {
                 }
             }
             if (this.type == 4) {
-                this.mediaArea = TLRPC$MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(false), false);
+                this.mediaArea = TL_stories$MediaArea.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(false), false);
             }
         }
 
@@ -246,7 +245,7 @@ public class VideoEditedInfo {
             if (z) {
                 TLRPC$Document tLRPC$Document = this.document;
                 if (tLRPC$Document == null) {
-                    abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+                    abstractSerializedData.writeInt32(1450380236);
                 } else {
                     tLRPC$Document.serializeToStream(abstractSerializedData);
                 }
@@ -270,7 +269,7 @@ public class VideoEditedInfo {
                     abstractSerializedData.writeInt32(-559038737);
                     abstractSerializedData.writeString(((TLRPC$TL_messageMediaVenue) this.mediaGeo).emoji);
                 } else {
-                    abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+                    abstractSerializedData.writeInt32(1450380236);
                 }
             }
             if (this.type == 4) {

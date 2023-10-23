@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_sendMessageHistoryImportAction extends TLRPC$SendMessageAction {
-    public static int constructor = -606432698;
     public int progress;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_sendMessageHistoryImportAction extends TLRPC$SendMessageAc
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-606432698);
         abstractSerializedData.writeInt32(this.progress);
     }
 }

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_reportSpam extends TLObject {
-    public static int constructor = -820669733;
     public TLRPC$InputPeer peer;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_messages_reportSpam extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-820669733);
         this.peer.serializeToStream(abstractSerializedData);
     }
 }

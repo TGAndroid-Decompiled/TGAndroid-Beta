@@ -9,9 +9,9 @@ import android.graphics.Canvas;
 import android.graphics.LinearGradient;
 import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -67,11 +67,10 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     float progress;
     int replayFromColor;
     int replayObjectFromColor;
+    float replyFromStartWidth;
     float replyFromStartX;
     float replyFromStartY;
-    float replyMessageDx;
     float replyNameDx;
-    private Path replyRoundRect;
     private final Theme.ResourcesProvider resourcesProvider;
     private float[] roundRectRadii;
     StaticLayout rtlLayout;
@@ -88,6 +87,8 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     Paint bitmapPaint = new Paint(1);
     boolean initBitmaps = false;
     private AnimationNotificationsLocker notificationsLocker = new AnimationNotificationsLocker();
+    private final RectF replySelectorRect = new RectF();
+    private final RectF messageReplySelectorRect = new RectF();
 
     @SuppressLint({"WrongConstant"})
     public TextMessageEnterTransition(final ChatMessageCell chatMessageCell, final ChatActivity chatActivity, RecyclerListView recyclerListView, final MessageEnterTransitionContainer messageEnterTransitionContainer, Theme.ResourcesProvider resourcesProvider) {
@@ -308,6 +309,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         if (z3) {
             SimpleTextView replyNameTextView = chatActivity.getReplyNameTextView();
             this.replyFromStartX = replyNameTextView.getX() + ((View) replyNameTextView.getParent()).getX();
+            this.replyFromStartWidth = ((View) replyNameTextView.getParent()).getWidth();
             this.replyFromStartY = replyNameTextView.getY() + ((View) replyNameTextView.getParent().getParent()).getY() + ((View) replyNameTextView.getParent().getParent().getParent()).getY();
             SimpleTextView replyObjectTextView = chatActivity.getReplyObjectTextView();
             replyObjectTextView.getY();
@@ -330,10 +332,6 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
         StaticLayout staticLayout3 = chatMessageCell.replyNameLayout;
         if (staticLayout3 != null && staticLayout3.getText().length() > 1 && chatMessageCell.replyNameLayout.getPrimaryHorizontal(0) != 0.0f) {
             this.replyNameDx = chatMessageCell.replyNameLayout.getWidth() - chatMessageCell.replyNameLayout.getLineWidth(0);
-        }
-        StaticLayout staticLayout4 = chatMessageCell.replyTextLayout;
-        if (staticLayout4 != null && staticLayout4.getText().length() >= 1 && chatMessageCell.replyTextLayout.getPrimaryHorizontal(0) != 0.0f) {
-            this.replyMessageDx = chatMessageCell.replyTextLayout.getWidth() - chatMessageCell.replyTextLayout.getLineWidth(0);
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.animator = ofFloat;
@@ -385,7 +383,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r42) {
+    public void onDraw(android.graphics.Canvas r47) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TextMessageEnterTransition.onDraw(android.graphics.Canvas):void");
     }
 

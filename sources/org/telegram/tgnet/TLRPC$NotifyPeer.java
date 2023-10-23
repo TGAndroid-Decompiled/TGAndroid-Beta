@@ -8,31 +8,25 @@ public abstract class TLRPC$NotifyPeer extends TLObject {
                 break;
             case -1261946036:
                 tLRPC$TL_notifyPeer = new TLRPC$NotifyPeer() {
-                    public static int constructor = -1261946036;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1261946036);
                     }
                 };
                 break;
             case -1073230141:
                 tLRPC$TL_notifyPeer = new TLRPC$NotifyPeer() {
-                    public static int constructor = -1073230141;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1073230141);
                     }
                 };
                 break;
             case -703403793:
                 tLRPC$TL_notifyPeer = new TLRPC$NotifyPeer() {
-                    public static int constructor = -703403793;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-703403793);
                     }
                 };
                 break;

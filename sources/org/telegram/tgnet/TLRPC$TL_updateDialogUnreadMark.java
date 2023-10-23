@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateDialogUnreadMark extends TLRPC$Update {
-    public static int constructor = -513517117;
     public int flags;
     public TLRPC$DialogPeer peer;
     public boolean unread;
@@ -15,7 +14,7 @@ public class TLRPC$TL_updateDialogUnreadMark extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-513517117);
         int i = this.unread ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

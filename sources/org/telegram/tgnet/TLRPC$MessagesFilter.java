@@ -20,51 +20,41 @@ public abstract class TLRPC$MessagesFilter extends TLObject {
                 break;
             case -1253451181:
                 tLRPC$TL_inputMessagesFilterPhoneCalls = new TLRPC$MessagesFilter() {
-                    public static int constructor = -1253451181;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1253451181);
                     }
                 };
                 break;
             case -1040652646:
                 tLRPC$TL_inputMessagesFilterPhoneCalls = new TLRPC$MessagesFilter() {
-                    public static int constructor = -1040652646;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1040652646);
                     }
                 };
                 break;
             case -648121413:
                 tLRPC$TL_inputMessagesFilterPhoneCalls = new TLRPC$MessagesFilter() {
-                    public static int constructor = -648121413;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-648121413);
                     }
                 };
                 break;
             case -530392189:
                 tLRPC$TL_inputMessagesFilterPhoneCalls = new TLRPC$MessagesFilter() {
-                    public static int constructor = -530392189;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-530392189);
                     }
                 };
                 break;
             case -419271411:
                 tLRPC$TL_inputMessagesFilterPhoneCalls = new TLRPC$MessagesFilter() {
-                    public static int constructor = -419271411;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-419271411);
                     }
                 };
                 break;
@@ -82,11 +72,9 @@ public abstract class TLRPC$MessagesFilter extends TLObject {
                 break;
             case 1358283666:
                 tLRPC$TL_inputMessagesFilterPhoneCalls = new TLRPC$MessagesFilter() {
-                    public static int constructor = 1358283666;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1358283666);
                     }
                 };
                 break;

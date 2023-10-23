@@ -1342,7 +1342,6 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             if (ChatAttachAlertPhotoLayout.this.takingPhoto || (cameraView = ChatAttachAlertPhotoLayout.this.cameraView) == null || cameraView.getCameraSession() == null) {
                 return;
             }
-            boolean z = true;
             if (ChatAttachAlertPhotoLayout.this.shutterButton.getState() == ShutterButton.State.RECORDING) {
                 ChatAttachAlertPhotoLayout.this.resetRecordState();
                 CameraController.getInstance().stopVideoRecording(ChatAttachAlertPhotoLayout.this.cameraView.getCameraSession(), false);
@@ -1355,17 +1354,14 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
                 final boolean isSameTakePictureOrientation = ChatAttachAlertPhotoLayout.this.cameraView.getCameraSession().isSameTakePictureOrientation();
                 CameraSession cameraSession = ChatAttachAlertPhotoLayout.this.cameraView.getCameraSession();
                 ChatAttachAlert chatAttachAlert = ChatAttachAlertPhotoLayout.this.parentAlert;
-                if (!(chatAttachAlert.baseFragment instanceof ChatActivity) && chatAttachAlert.avatarPicker != 2) {
-                    z = false;
-                }
-                cameraSession.setFlipFront(z);
+                cameraSession.setFlipFront((chatAttachAlert.baseFragment instanceof ChatActivity) || chatAttachAlert.avatarPicker == 2);
                 ChatAttachAlertPhotoLayout.this.takingPhoto = CameraController.getInstance().takePicture(generatePicturePath, false, ChatAttachAlertPhotoLayout.this.cameraView.getCameraSession(), new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
                         ChatAttachAlertPhotoLayout.AnonymousClass10.this.lambda$shutterReleased$3(generatePicturePath, isSameTakePictureOrientation, (Integer) obj);
                     }
                 });
-                ChatAttachAlertPhotoLayout.this.cameraView.startTakePictureAnimation();
+                ChatAttachAlertPhotoLayout.this.cameraView.startTakePictureAnimation(true);
             }
         }
 

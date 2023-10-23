@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_sendEncrypted extends TLObject {
-    public static int constructor = 1157265941;
     public NativeByteBuffer data;
     public int flags;
     public TLRPC$TL_inputEncryptedChat peer;
@@ -23,7 +22,7 @@ public class TLRPC$TL_messages_sendEncrypted extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1157265941);
         int i = this.silent ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

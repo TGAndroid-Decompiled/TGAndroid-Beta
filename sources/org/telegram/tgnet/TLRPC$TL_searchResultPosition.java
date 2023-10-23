@@ -1,12 +1,11 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_searchResultPosition extends TLObject {
-    public static int constructor = 2137295719;
     public int date;
     public int msg_id;
     public int offset;
 
     public static TLRPC$TL_searchResultPosition TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (2137295719 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_searchResultPosition", Integer.valueOf(i)));
             }
@@ -26,7 +25,7 @@ public class TLRPC$TL_searchResultPosition extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2137295719);
         abstractSerializedData.writeInt32(this.msg_id);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeInt32(this.offset);

@@ -6,9 +6,9 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.tgnet.TLRPC$StoryItem;
-import org.telegram.tgnet.TLRPC$TL_mediaAreaCoordinates;
-import org.telegram.tgnet.TLRPC$TL_mediaAreaSuggestedReaction;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaCoordinates;
+import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaSuggestedReaction;
 import org.telegram.ui.Components.Reactions.ReactionImageHolder;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
@@ -26,13 +26,13 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
         public abstract void setParent(View view);
     }
 
-    public StoryWidgetsImageDecorator(TLRPC$StoryItem tLRPC$StoryItem) {
-        for (int i = 0; i < tLRPC$StoryItem.media_areas.size(); i++) {
-            if (tLRPC$StoryItem.media_areas.get(i) instanceof TLRPC$TL_mediaAreaSuggestedReaction) {
+    public StoryWidgetsImageDecorator(TL_stories$StoryItem tL_stories$StoryItem) {
+        for (int i = 0; i < tL_stories$StoryItem.media_areas.size(); i++) {
+            if (tL_stories$StoryItem.media_areas.get(i) instanceof TL_stories$TL_mediaAreaSuggestedReaction) {
                 if (this.drawingObjects == null) {
                     this.drawingObjects = new ArrayList<>();
                 }
-                this.drawingObjects.add(new ReactionWidget((TLRPC$TL_mediaAreaSuggestedReaction) tLRPC$StoryItem.media_areas.get(i)));
+                this.drawingObjects.add(new ReactionWidget((TL_stories$TL_mediaAreaSuggestedReaction) tL_stories$StoryItem.media_areas.get(i)));
             }
         }
     }
@@ -81,20 +81,20 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
     }
 
     public class ReactionWidget extends DrawingObject {
-        TLRPC$TL_mediaAreaSuggestedReaction mediaArea;
+        TL_stories$TL_mediaAreaSuggestedReaction mediaArea;
         StoryReactionWidgetBackground storyReactionWidgetBackground = new StoryReactionWidgetBackground(null);
         ReactionImageHolder imageHolder = new ReactionImageHolder(null);
 
-        public ReactionWidget(TLRPC$TL_mediaAreaSuggestedReaction tLRPC$TL_mediaAreaSuggestedReaction) {
-            this.mediaArea = tLRPC$TL_mediaAreaSuggestedReaction;
-            if (tLRPC$TL_mediaAreaSuggestedReaction.flipped) {
+        public ReactionWidget(TL_stories$TL_mediaAreaSuggestedReaction tL_stories$TL_mediaAreaSuggestedReaction) {
+            this.mediaArea = tL_stories$TL_mediaAreaSuggestedReaction;
+            if (tL_stories$TL_mediaAreaSuggestedReaction.flipped) {
                 this.storyReactionWidgetBackground.setMirror(true, false);
             }
-            if (tLRPC$TL_mediaAreaSuggestedReaction.dark) {
+            if (tL_stories$TL_mediaAreaSuggestedReaction.dark) {
                 this.storyReactionWidgetBackground.nextStyle();
             }
             this.imageHolder.setStatic();
-            this.imageHolder.setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$TL_mediaAreaSuggestedReaction.reaction));
+            this.imageHolder.setVisibleReaction(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tL_stories$TL_mediaAreaSuggestedReaction.reaction));
         }
 
         @Override
@@ -103,23 +103,23 @@ public class StoryWidgetsImageDecorator extends ImageReceiver.Decorator {
             double d = storyWidgetsImageDecorator.imageX;
             float f2 = storyWidgetsImageDecorator.imageW;
             double d2 = f2;
-            TLRPC$TL_mediaAreaCoordinates tLRPC$TL_mediaAreaCoordinates = this.mediaArea.coordinates;
-            double d3 = tLRPC$TL_mediaAreaCoordinates.x;
+            TL_stories$TL_mediaAreaCoordinates tL_stories$TL_mediaAreaCoordinates = this.mediaArea.coordinates;
+            double d3 = tL_stories$TL_mediaAreaCoordinates.x;
             Double.isNaN(d2);
             Double.isNaN(d);
             float f3 = (float) (d + ((d2 * d3) / 100.0d));
             double d4 = storyWidgetsImageDecorator.imageY;
             float f4 = storyWidgetsImageDecorator.imageH;
             double d5 = f4;
-            double d6 = tLRPC$TL_mediaAreaCoordinates.y;
+            double d6 = tL_stories$TL_mediaAreaCoordinates.y;
             Double.isNaN(d5);
             Double.isNaN(d4);
             float f5 = (float) (d4 + ((d5 * d6) / 100.0d));
             double d7 = f2;
-            double d8 = tLRPC$TL_mediaAreaCoordinates.w;
+            double d8 = tL_stories$TL_mediaAreaCoordinates.w;
             Double.isNaN(d7);
             double d9 = f4;
-            double d10 = tLRPC$TL_mediaAreaCoordinates.h;
+            double d10 = tL_stories$TL_mediaAreaCoordinates.h;
             Double.isNaN(d9);
             float f6 = ((float) ((d7 * d8) / 100.0d)) / 2.0f;
             float f7 = ((float) ((d9 * d10) / 100.0d)) / 2.0f;

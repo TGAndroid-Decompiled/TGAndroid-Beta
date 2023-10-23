@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_checkUsername extends TLObject {
-    public static int constructor = 283557164;
     public TLRPC$InputChannel channel;
     public String username;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_channels_checkUsername extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(283557164);
         this.channel.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.username);
     }

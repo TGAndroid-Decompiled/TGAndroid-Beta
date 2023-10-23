@@ -22,8 +22,6 @@ public abstract class TLRPC$messages_Messages extends TLObject {
                 break;
             case -948520370:
                 tLRPC$TL_messages_messages = new TLRPC$messages_Messages() {
-                    public static int constructor = -948520370;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -98,7 +96,7 @@ public abstract class TLRPC$messages_Messages extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-948520370);
                         int i2 = this.inexact ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -136,8 +134,6 @@ public abstract class TLRPC$messages_Messages extends TLObject {
                 break;
             case 978610270:
                 tLRPC$TL_messages_messages = new TLRPC$messages_Messages() {
-                    public static int constructor = 978610270;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -199,7 +195,7 @@ public abstract class TLRPC$messages_Messages extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(978610270);
                         int i2 = this.inexact ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -233,8 +229,6 @@ public abstract class TLRPC$messages_Messages extends TLObject {
                 break;
             case 1951620897:
                 tLRPC$TL_messages_messages = new TLRPC$messages_Messages() {
-                    public static int constructor = 1951620897;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.count = abstractSerializedData2.readInt32(z2);
@@ -242,7 +236,7 @@ public abstract class TLRPC$messages_Messages extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1951620897);
                         abstractSerializedData2.writeInt32(this.count);
                     }
                 };

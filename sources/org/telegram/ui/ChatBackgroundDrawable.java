@@ -14,6 +14,7 @@ import android.text.TextUtils;
 import android.util.Pair;
 import android.view.View;
 import androidx.core.graphics.ColorUtils;
+import java.util.ArrayList;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageLoader;
@@ -30,16 +31,25 @@ import org.telegram.ui.ActionBar.EmojiThemes;
 import org.telegram.ui.Components.BackgroundGradientDrawable;
 import org.telegram.ui.Components.MotionBackgroundDrawable;
 public class ChatBackgroundDrawable extends Drawable {
-    int alpha = 255;
-    boolean attached;
+    private boolean attached;
     private boolean colorFilterSetted;
     float dimAmount;
-    ImageReceiver imageReceiver;
     boolean isPattern;
     MotionBackgroundDrawable motionBackgroundDrawable;
     View parent;
     private final boolean themeIsDark;
     final TLRPC$WallPaper wallpaper;
+    int alpha = 255;
+    ImageReceiver imageReceiver = new ImageReceiver() {
+        @Override
+        public void invalidate() {
+            View view = ChatBackgroundDrawable.this.parent;
+            if (view != null) {
+                view.invalidate();
+            }
+        }
+    };
+    private final ArrayList<View> attachedViews = new ArrayList<>();
 
     @Override
     public int getOpacity() {
@@ -79,17 +89,7 @@ public class ChatBackgroundDrawable extends Drawable {
         TLRPC$WallPaperSettings tLRPC$WallPaperSettings;
         String str;
         TLRPC$WallPaperSettings tLRPC$WallPaperSettings2;
-        ImageReceiver imageReceiver = new ImageReceiver() {
-            @Override
-            public void invalidate() {
-                View view = ChatBackgroundDrawable.this.parent;
-                if (view != null) {
-                    view.invalidate();
-                }
-            }
-        };
-        this.imageReceiver = imageReceiver;
-        imageReceiver.setInvalidateAll(true);
+        this.imageReceiver.setInvalidateAll(true);
         boolean z3 = tLRPC$WallPaper.pattern;
         this.isPattern = z3;
         this.wallpaper = tLRPC$WallPaper;
@@ -227,16 +227,33 @@ public class ChatBackgroundDrawable extends Drawable {
         }
     }
 
-    public void onAttachedToWindow() {
-        if (this.attached) {
-            return;
-        }
-        this.attached = true;
-        this.imageReceiver.onAttachedToWindow();
+    private boolean isAttached() {
+        return this.attachedViews.size() > 0;
     }
 
-    public void onDetachedFromWindow() {
-        if (this.attached) {
+    public void onAttachedToWindow(View view) {
+        if (!this.attachedViews.contains(view)) {
+            this.attachedViews.add(view);
+        }
+        if (isAttached() && !this.attached) {
+            this.attached = true;
+            this.imageReceiver.onAttachedToWindow();
+        } else if (isAttached() || !this.attached) {
+        } else {
+            this.attached = false;
+            this.imageReceiver.onDetachedFromWindow();
+        }
+    }
+
+    public void onDetachedFromWindow(View view) {
+        if (!this.attachedViews.contains(view)) {
+            this.attachedViews.remove(view);
+        }
+        if (isAttached() && !this.attached) {
+            this.attached = true;
+            this.imageReceiver.onAttachedToWindow();
+        } else if (isAttached() || !this.attached) {
+        } else {
             this.attached = false;
             this.imageReceiver.onDetachedFromWindow();
         }

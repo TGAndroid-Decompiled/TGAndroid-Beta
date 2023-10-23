@@ -30,12 +30,9 @@ import org.telegram.tgnet.TLRPC$InputPrivacyRule;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$Photo;
-import org.telegram.tgnet.TLRPC$StoryItem;
-import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputPeerSelf;
-import org.telegram.tgnet.TLRPC$TL_jsonString;
-import org.telegram.tgnet.TLRPC$TL_null;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Stories.recorder.StoryEntry;
 public class DraftsController {
@@ -321,15 +318,15 @@ public class DraftsController {
         }
     }
 
-    public void saveForEdit(StoryEntry storyEntry, long j, TLRPC$StoryItem tLRPC$StoryItem) {
-        if (storyEntry == null || tLRPC$StoryItem == null || tLRPC$StoryItem.media == null) {
+    public void saveForEdit(StoryEntry storyEntry, long j, TL_stories$StoryItem tL_stories$StoryItem) {
+        if (storyEntry == null || tL_stories$StoryItem == null || tL_stories$StoryItem.media == null) {
             return;
         }
         ArrayList<StoryEntry> arrayList = new ArrayList<>();
         Iterator<StoryEntry> it = this.drafts.iterator();
         while (it.hasNext()) {
             StoryEntry next = it.next();
-            if (next.isEdit && next.editStoryId == tLRPC$StoryItem.id) {
+            if (next.isEdit && next.editStoryId == tL_stories$StoryItem.id) {
                 arrayList.add(next);
             }
         }
@@ -341,13 +338,13 @@ public class DraftsController {
         storyDraft.isEdit = true;
         storyEntry.editStoryPeerId = j;
         storyDraft.editStoryPeerId = j;
-        int i = tLRPC$StoryItem.id;
+        int i = tL_stories$StoryItem.id;
         storyEntry.editStoryId = i;
         storyDraft.editStoryId = i;
-        long j2 = tLRPC$StoryItem.expire_date * 1000;
+        long j2 = tL_stories$StoryItem.expire_date * 1000;
         storyEntry.editExpireDate = j2;
         storyDraft.editExpireDate = j2;
-        TLRPC$MessageMedia tLRPC$MessageMedia = tLRPC$StoryItem.media;
+        TLRPC$MessageMedia tLRPC$MessageMedia = tL_stories$StoryItem.media;
         TLRPC$Document tLRPC$Document = tLRPC$MessageMedia.document;
         if (tLRPC$Document != null) {
             long j3 = tLRPC$Document.id;
@@ -366,16 +363,16 @@ public class DraftsController {
         append(storyDraft);
     }
 
-    public StoryEntry getForEdit(long j, TLRPC$StoryItem tLRPC$StoryItem) {
+    public StoryEntry getForEdit(long j, TL_stories$StoryItem tL_stories$StoryItem) {
         TLRPC$MessageMedia tLRPC$MessageMedia;
         TLRPC$Document tLRPC$Document;
-        if (tLRPC$StoryItem == null) {
+        if (tL_stories$StoryItem == null) {
             return null;
         }
         Iterator<StoryEntry> it = this.drafts.iterator();
         while (it.hasNext()) {
             StoryEntry next = it.next();
-            if (next.isEdit && tLRPC$StoryItem.id == next.editStoryId && j == next.editStoryPeerId && ((tLRPC$Document = (tLRPC$MessageMedia = tLRPC$StoryItem.media).document) == null || tLRPC$Document.id == next.editDocumentId)) {
+            if (next.isEdit && tL_stories$StoryItem.id == next.editStoryId && j == next.editStoryPeerId && ((tLRPC$Document = (tLRPC$MessageMedia = tL_stories$StoryItem.media).document) == null || tLRPC$Document.id == next.editDocumentId)) {
                 TLRPC$Photo tLRPC$Photo = tLRPC$MessageMedia.photo;
                 if (tLRPC$Photo == null || tLRPC$Photo.id == next.editPhotoId) {
                     next.isEditSaved = true;
@@ -760,26 +757,26 @@ public class DraftsController {
             abstractSerializedData.writeBool(this.isError);
             TLRPC$TL_error tLRPC$TL_error = this.error;
             if (tLRPC$TL_error == null) {
-                abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+                abstractSerializedData.writeInt32(1450380236);
             } else {
                 tLRPC$TL_error.serializeToStream(abstractSerializedData);
             }
             abstractSerializedData.writeString(this.fullThumb);
             if (this.audioPath == null) {
-                abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+                abstractSerializedData.writeInt32(1450380236);
             } else {
-                abstractSerializedData.writeInt32(TLRPC$TL_documentAttributeAudio.constructor);
+                abstractSerializedData.writeInt32(-1739392570);
                 abstractSerializedData.writeString(this.audioPath);
                 if (this.audioAuthor == null) {
-                    abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+                    abstractSerializedData.writeInt32(1450380236);
                 } else {
-                    abstractSerializedData.writeInt32(TLRPC$TL_jsonString.constructor);
+                    abstractSerializedData.writeInt32(-1222740358);
                     abstractSerializedData.writeString(this.audioAuthor);
                 }
                 if (this.audioTitle == null) {
-                    abstractSerializedData.writeInt32(TLRPC$TL_null.constructor);
+                    abstractSerializedData.writeInt32(1450380236);
                 } else {
-                    abstractSerializedData.writeInt32(TLRPC$TL_jsonString.constructor);
+                    abstractSerializedData.writeInt32(-1222740358);
                     abstractSerializedData.writeString(this.audioTitle);
                 }
                 abstractSerializedData.writeInt64(this.audioDuration);
@@ -959,19 +956,19 @@ public class DraftsController {
             if (abstractSerializedData.remaining() > 0) {
                 this.isError = abstractSerializedData.readBool(z);
                 int readInt327 = abstractSerializedData.readInt32(z);
-                if (readInt327 == TLRPC$TL_null.constructor) {
+                if (readInt327 == 1450380236) {
                     this.error = null;
                 } else {
                     this.error = TLRPC$TL_error.TLdeserialize(abstractSerializedData, readInt327, z);
                 }
                 this.fullThumb = abstractSerializedData.readString(z);
             }
-            if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == TLRPC$TL_documentAttributeAudio.constructor) {
+            if (abstractSerializedData.remaining() > 0 && abstractSerializedData.readInt32(z) == -1739392570) {
                 this.audioPath = abstractSerializedData.readString(z);
-                if (abstractSerializedData.readInt32(z) == TLRPC$TL_jsonString.constructor) {
+                if (abstractSerializedData.readInt32(z) == -1222740358) {
                     this.audioAuthor = abstractSerializedData.readString(z);
                 }
-                if (abstractSerializedData.readInt32(z) == TLRPC$TL_jsonString.constructor) {
+                if (abstractSerializedData.readInt32(z) == -1222740358) {
                     this.audioTitle = abstractSerializedData.readString(z);
                 }
                 this.audioDuration = abstractSerializedData.readInt64(z);

@@ -23,7 +23,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$StoryItem;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
@@ -329,7 +329,7 @@ public class SelfStoryViewsView extends FrameLayout {
         this.viewPagerContainer.setTranslationY(((-this.bottomPadding) + getMeasuredHeight()) - this.selfStoriesViewsOffset);
     }
 
-    public void setItems(long j, ArrayList<TLRPC$StoryItem> arrayList, int i) {
+    public void setItems(long j, ArrayList<TL_stories$StoryItem> arrayList, int i) {
         this.storyItems.clear();
         this.dialogId = j;
         for (int i2 = 0; i2 < arrayList.size(); i2++) {
@@ -364,7 +364,7 @@ public class SelfStoryViewsView extends FrameLayout {
         return false;
     }
 
-    public TLRPC$StoryItem getSelectedStory() {
+    public TL_stories$StoryItem getSelectedStory() {
         int closestPosition = this.selfStoriesPreviewView.getClosestPosition();
         if (closestPosition < 0 || closestPosition >= this.storyItems.size()) {
             return null;
@@ -468,11 +468,11 @@ public class SelfStoryViewsView extends FrameLayout {
     }
 
     public class StoryItemInternal {
-        public TLRPC$StoryItem storyItem;
+        public TL_stories$StoryItem storyItem;
         public StoriesController.UploadingStory uploadingStory;
 
-        public StoryItemInternal(SelfStoryViewsView selfStoryViewsView, TLRPC$StoryItem tLRPC$StoryItem) {
-            this.storyItem = tLRPC$StoryItem;
+        public StoryItemInternal(SelfStoryViewsView selfStoryViewsView, TL_stories$StoryItem tL_stories$StoryItem) {
+            this.storyItem = tL_stories$StoryItem;
         }
 
         public StoryItemInternal(SelfStoryViewsView selfStoryViewsView, StoriesController.UploadingStory uploadingStory) {

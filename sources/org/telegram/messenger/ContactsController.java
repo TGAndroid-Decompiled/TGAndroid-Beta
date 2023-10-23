@@ -383,8 +383,6 @@ public class ContactsController extends BaseController {
         if (this.inviteLink == null || Math.abs((System.currentTimeMillis() / 1000) - i) >= 86400) {
             this.updatingInviteLink = true;
             getConnectionsManager().sendRequest(new TLObject() {
-                public static int constructor = 1295590211;
-
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
                     return TLRPC$TL_help_inviteText.TLdeserialize(abstractSerializedData, i2, z);
@@ -392,7 +390,7 @@ public class ContactsController extends BaseController {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(1295590211);
                 }
             }, new RequestDelegate() {
                 @Override
@@ -663,8 +661,6 @@ public class ContactsController extends BaseController {
 
     public void resetImportedContacts() {
         getConnectionsManager().sendRequest(new TLObject() {
-            public static int constructor = -2020263951;
-
             @Override
             public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
                 return TLRPC$Bool.TLdeserialize(abstractSerializedData, i, z);
@@ -672,7 +668,7 @@ public class ContactsController extends BaseController {
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(-2020263951);
             }
         }, new RequestDelegate() {
             @Override
@@ -2186,8 +2182,6 @@ public class ContactsController extends BaseController {
         final SharedPreferences.Editor edit = MessagesController.getMainSettings(this.currentAccount).edit();
         edit.putBoolean("needGetStatuses", true).commit();
         getConnectionsManager().sendRequest(new TLObject() {
-            public static int constructor = -995929106;
-
             @Override
             public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
                 TLRPC$Vector tLRPC$Vector = new TLRPC$Vector();
@@ -2204,7 +2198,7 @@ public class ContactsController extends BaseController {
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(-995929106);
             }
         }, new RequestDelegate() {
             @Override
@@ -2261,8 +2255,6 @@ public class ContactsController extends BaseController {
         if (this.loadingGlobalSettings == 0) {
             this.loadingGlobalSettings = 1;
             getConnectionsManager().sendRequest(new TLObject() {
-                public static int constructor = -349483786;
-
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
                     return TLRPC$TL_globalPrivacySettings.TLdeserialize(abstractSerializedData, i, z);
@@ -2270,7 +2262,7 @@ public class ContactsController extends BaseController {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(-349483786);
                 }
             }, new RequestDelegate() {
                 @Override
@@ -2304,8 +2296,6 @@ public class ContactsController extends BaseController {
         if (this.loadingDeleteInfo == 0) {
             this.loadingDeleteInfo = 1;
             getConnectionsManager().sendRequest(new TLObject() {
-                public static int constructor = 150761757;
-
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
                     return TLRPC$TL_accountDaysTTL.TLdeserialize(abstractSerializedData, i, z);
@@ -2313,7 +2303,7 @@ public class ContactsController extends BaseController {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(150761757);
                 }
             }, new RequestDelegate() {
                 @Override

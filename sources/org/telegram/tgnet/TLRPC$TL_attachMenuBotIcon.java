@@ -2,14 +2,13 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_attachMenuBotIcon extends TLObject {
-    public static int constructor = -1297663893;
     public ArrayList<TLRPC$TL_attachMenuBotIconColor> colors = new ArrayList<>();
     public int flags;
     public TLRPC$Document icon;
     public String name;
 
     public static TLRPC$TL_attachMenuBotIcon TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1297663893 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_attachMenuBotIcon", Integer.valueOf(i)));
             }
@@ -46,7 +45,7 @@ public class TLRPC$TL_attachMenuBotIcon extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1297663893);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeString(this.name);
         this.icon.serializeToStream(abstractSerializedData);

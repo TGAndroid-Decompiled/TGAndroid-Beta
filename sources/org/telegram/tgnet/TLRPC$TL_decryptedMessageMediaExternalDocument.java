@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_decryptedMessageMediaExternalDocument extends TLRPC$DecryptedMessageMedia {
-    public static int constructor = -90853155;
     public TLRPC$PhotoSize thumb;
 
     @Override
@@ -31,7 +30,7 @@ public class TLRPC$TL_decryptedMessageMediaExternalDocument extends TLRPC$Decryp
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-90853155);
         abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeInt32(this.date);

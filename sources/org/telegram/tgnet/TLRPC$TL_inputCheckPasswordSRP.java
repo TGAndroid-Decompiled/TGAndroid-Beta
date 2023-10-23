@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputCheckPasswordSRP extends TLRPC$InputCheckPasswordSRP {
-    public static int constructor = -763367294;
     public byte[] A;
     public byte[] M1;
     public long srp_id;
@@ -14,7 +13,7 @@ public class TLRPC$TL_inputCheckPasswordSRP extends TLRPC$InputCheckPasswordSRP 
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-763367294);
         abstractSerializedData.writeInt64(this.srp_id);
         abstractSerializedData.writeByteArray(this.A);
         abstractSerializedData.writeByteArray(this.M1);

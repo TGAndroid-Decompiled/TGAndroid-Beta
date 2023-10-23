@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_getPassword extends TLObject {
-    public static int constructor = 1418342645;
-
     @Override
     public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         return TLRPC$account_Password.TLdeserialize(abstractSerializedData, i, z);
@@ -9,6 +7,6 @@ public class TLRPC$TL_account_getPassword extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1418342645);
     }
 }

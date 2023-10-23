@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateChannelPinnedTopic extends TLRPC$Update {
-    public static int constructor = 422509539;
     public long channel_id;
     public int flags;
     public boolean pinned;
@@ -17,7 +16,7 @@ public class TLRPC$TL_updateChannelPinnedTopic extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(422509539);
         int i = this.pinned ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

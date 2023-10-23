@@ -1,12 +1,11 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_sendAsPeer extends TLObject {
-    public static int constructor = -1206095820;
     public int flags;
     public TLRPC$Peer peer;
     public boolean premium_required;
 
     public static TLRPC$TL_sendAsPeer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1206095820 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_sendAsPeer", Integer.valueOf(i)));
             }
@@ -27,7 +26,7 @@ public class TLRPC$TL_sendAsPeer extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1206095820);
         int i = this.premium_required ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

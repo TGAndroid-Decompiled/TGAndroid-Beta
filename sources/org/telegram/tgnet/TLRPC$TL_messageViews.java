@@ -1,13 +1,12 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messageViews extends TLObject {
-    public static int constructor = 1163625789;
     public int flags;
     public int forwards;
     public TLRPC$MessageReplies replies;
     public int views;
 
     public static TLRPC$TL_messageViews TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1163625789 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_messageViews", Integer.valueOf(i)));
             }
@@ -35,7 +34,7 @@ public class TLRPC$TL_messageViews extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1163625789);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.views);

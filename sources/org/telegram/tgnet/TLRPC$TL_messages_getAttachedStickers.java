@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getAttachedStickers extends TLObject {
-    public static int constructor = -866424884;
     public TLRPC$InputStickeredMedia media;
 
     @Override
@@ -19,7 +18,7 @@ public class TLRPC$TL_messages_getAttachedStickers extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-866424884);
         this.media.serializeToStream(abstractSerializedData);
     }
 }

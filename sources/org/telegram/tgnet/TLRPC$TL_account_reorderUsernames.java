@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_account_reorderUsernames extends TLObject {
-    public static int constructor = -279966037;
     public ArrayList<String> order = new ArrayList<>();
 
     @Override
@@ -12,7 +11,7 @@ public class TLRPC$TL_account_reorderUsernames extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-279966037);
         abstractSerializedData.writeInt32(481674261);
         int size = this.order.size();
         abstractSerializedData.writeInt32(size);

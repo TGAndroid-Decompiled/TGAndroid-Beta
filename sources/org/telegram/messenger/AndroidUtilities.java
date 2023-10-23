@@ -198,6 +198,7 @@ public class AndroidUtilities {
     public static final int LIGHT_STATUS_BAR_OVERLAY = 251658240;
     public static final int REPLACING_TAG_TYPE_BOLD = 1;
     public static final int REPLACING_TAG_TYPE_LINK = 0;
+    public static final int REPLACING_TAG_TYPE_LINKBOLD = 2;
     public static final String STICKERS_PLACEHOLDER_PACK_NAME = "tg_placeholders_android";
     public static final String TYPEFACE_COURIER_NEW_BOLD = "fonts/courier_new_bold.ttf";
     public static final String TYPEFACE_MERRIWEATHER_BOLD = "fonts/mw_bold.ttf";
@@ -485,6 +486,10 @@ public class AndroidUtilities {
         return null;
     }
 
+    public static CharSequence premiumText(String str, Runnable runnable) {
+        return replaceSingleTag(str, -1, 2, runnable);
+    }
+
     public static CharSequence replaceSingleTag(String str, Runnable runnable) {
         return replaceSingleTag(str, -1, 0, runnable);
     }
@@ -493,7 +498,7 @@ public class AndroidUtilities {
         return replaceSingleTag(str, i, i2, runnable, null);
     }
 
-    public static SpannableStringBuilder replaceSingleTag(String str, final int i, int i2, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
+    public static SpannableStringBuilder replaceSingleTag(String str, final int i, final int i2, final Runnable runnable, final Theme.ResourcesProvider resourcesProvider) {
         int i3;
         int i4;
         int indexOf = str.indexOf("**");
@@ -507,7 +512,7 @@ public class AndroidUtilities {
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replace);
         if (indexOf >= 0) {
-            if (i2 == 0) {
+            if (i2 == 0 || i2 == 2) {
                 spannableStringBuilder.setSpan(new ClickableSpan() {
                     @Override
                     public void updateDrawState(TextPaint textPaint) {
@@ -516,6 +521,9 @@ public class AndroidUtilities {
                         int i5 = i;
                         if (i5 >= 0) {
                             textPaint.setColor(Theme.getColor(i5, resourcesProvider));
+                        }
+                        if (i2 == 2) {
+                            textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                         }
                     }
 
@@ -634,7 +642,12 @@ public class AndroidUtilities {
         }
         for (int i = 0; i < viewGroup.getChildCount(); i++) {
             View childAt = viewGroup.getChildAt(i);
-            if (childAt.getVisibility() == 0 && ((!(childAt instanceof PeerStoriesView) || childAt == view) && (!(childAt instanceof StoryMediaAreasView.AreaView) || ((StoryMediaAreasView) viewGroup).hasSelected() || (f >= dp(60.0f) && f <= viewGroup.getWidth() - dp(60.0f))))) {
+            if (childAt.getVisibility() == 0 && (!(childAt instanceof PeerStoriesView) || childAt == view)) {
+                if (childAt instanceof StoryMediaAreasView.AreaView) {
+                    StoryMediaAreasView storyMediaAreasView = (StoryMediaAreasView) viewGroup;
+                    if ((!storyMediaAreasView.hasSelected() || (f >= dp(60.0f) && f <= viewGroup.getWidth() - dp(60.0f))) && !storyMediaAreasView.hasAreaAboveAt(f, f2)) {
+                    }
+                }
                 Rect rect = rectTmp2;
                 childAt.getHitRect(rect);
                 if (rect.contains((int) f, (int) f2) && childAt.isClickable()) {
@@ -4142,6 +4155,16 @@ public class AndroidUtilities {
         }
     }
 
+    public static void setLightStatusBar(View view, boolean z) {
+        if (view == null || Build.VERSION.SDK_INT < 26) {
+            return;
+        }
+        int systemUiVisibility = view.getSystemUiVisibility();
+        if (((systemUiVisibility & LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM) > 0) != z) {
+            view.setSystemUiVisibility(z ? systemUiVisibility | LiteMode.FLAG_ANIMATED_EMOJI_REACTIONS_NOT_PREMIUM : systemUiVisibility & (-8193));
+        }
+    }
+
     public static void setLightNavigationBar(Window window, boolean z) {
         if (window != null) {
             setLightNavigationBar(window.getDecorView(), z);
@@ -4740,6 +4763,10 @@ public class AndroidUtilities {
 
     public static boolean intersect1d(int i, int i2, int i3, int i4) {
         return Math.max(i, i2) > Math.min(i3, i4) && Math.max(i3, i4) > Math.min(i, i2);
+    }
+
+    public static boolean intersect1dInclusive(int i, int i2, int i3, int i4) {
+        return Math.max(i, i2) >= Math.min(i3, i4) && Math.max(i3, i4) >= Math.min(i, i2);
     }
 
     public static java.lang.String getSysInfoString(java.lang.String r3) {

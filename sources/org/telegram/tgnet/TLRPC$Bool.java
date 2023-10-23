@@ -4,20 +4,16 @@ public abstract class TLRPC$Bool extends TLObject {
         TLRPC$Bool tLRPC$Bool;
         if (i == -1720552011) {
             tLRPC$Bool = new TLRPC$Bool() {
-                public static int constructor = -1720552011;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1720552011);
                 }
             };
         } else {
             tLRPC$Bool = i != -1132882121 ? null : new TLRPC$Bool() {
-                public static int constructor = -1132882121;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1132882121);
                 }
             };
         }

@@ -2,12 +2,11 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_channels_deleteMessages extends TLObject {
-    public static int constructor = -2067661490;
     public TLRPC$InputChannel channel;
     public ArrayList<Integer> id = new ArrayList<>();
 
     public static TLRPC$TL_channels_deleteMessages TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-2067661490 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_channels_deleteMessages", Integer.valueOf(i)));
             }
@@ -41,7 +40,7 @@ public class TLRPC$TL_channels_deleteMessages extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-2067661490);
         this.channel.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
         int size = this.id.size();

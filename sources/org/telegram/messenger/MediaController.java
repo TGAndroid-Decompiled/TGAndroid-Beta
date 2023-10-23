@@ -75,7 +75,6 @@ import org.telegram.tgnet.TLRPC$InputDocument;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_document;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeAudio;
 import org.telegram.tgnet.TLRPC$TL_encryptedChat;
@@ -84,6 +83,7 @@ import org.telegram.tgnet.TLRPC$TL_messages_messages;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.tgnet.TLRPC$messages_Messages;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -192,7 +192,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     private long recordDialogId;
     private DispatchQueue recordQueue;
     private MessageObject recordReplyingMsg;
-    private TLRPC$StoryItem recordReplyingStory;
+    private TL_stories$StoryItem recordReplyingStory;
     private MessageObject recordReplyingTopMsg;
     private Runnable recordStartRunnable;
     private long recordStartTime;
@@ -3418,10 +3418,10 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         return this.downloadingCurrentMessage;
     }
 
-    public void setReplyingMessage(MessageObject messageObject, MessageObject messageObject2, TLRPC$StoryItem tLRPC$StoryItem) {
+    public void setReplyingMessage(MessageObject messageObject, MessageObject messageObject2, TL_stories$StoryItem tL_stories$StoryItem) {
         this.recordReplyingMsg = messageObject;
         this.recordReplyingTopMsg = messageObject2;
-        this.recordReplyingStory = tLRPC$StoryItem;
+        this.recordReplyingStory = tL_stories$StoryItem;
     }
 
     public void requestAudioFocus(boolean z) {
@@ -3435,7 +3435,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         }
     }
 
-    public void startRecording(final int i, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TLRPC$StoryItem tLRPC$StoryItem, final int i2, boolean z) {
+    public void startRecording(final int i, final long j, final MessageObject messageObject, final MessageObject messageObject2, final TL_stories$StoryItem tL_stories$StoryItem, final int i2, boolean z) {
         boolean z2;
         boolean z3;
         MessageObject messageObject3 = this.playingMessageObject;
@@ -3456,14 +3456,14 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
         Runnable runnable = new Runnable() {
             @Override
             public final void run() {
-                MediaController.this.lambda$startRecording$27(i, i2, j, messageObject, messageObject2, tLRPC$StoryItem);
+                MediaController.this.lambda$startRecording$27(i, i2, j, messageObject, messageObject2, tL_stories$StoryItem);
             }
         };
         this.recordStartRunnable = runnable;
         dispatchQueue.postRunnable(runnable, z3 ? 500L : 50L);
     }
 
-    public void lambda$startRecording$27(final int i, final int i2, long j, MessageObject messageObject, MessageObject messageObject2, TLRPC$StoryItem tLRPC$StoryItem) {
+    public void lambda$startRecording$27(final int i, final int i2, long j, MessageObject messageObject, MessageObject messageObject2, TL_stories$StoryItem tL_stories$StoryItem) {
         if (this.audioRecorder != null) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
@@ -3524,7 +3524,7 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
             this.recordingCurrentAccount = i;
             this.recordReplyingMsg = messageObject;
             this.recordReplyingTopMsg = messageObject2;
-            this.recordReplyingStory = tLRPC$StoryItem;
+            this.recordReplyingStory = tL_stories$StoryItem;
             this.fileBuffer.rewind();
             this.audioRecorder.startRecording();
             this.recordQueue.postRunnable(this.recordRunnable);

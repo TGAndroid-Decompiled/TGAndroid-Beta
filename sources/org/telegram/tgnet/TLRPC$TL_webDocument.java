@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_webDocument extends TLRPC$WebDocument {
-    public static int constructor = 475467473;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.url = abstractSerializedData.readString(z);
@@ -27,7 +25,7 @@ public class TLRPC$TL_webDocument extends TLRPC$WebDocument {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(475467473);
         abstractSerializedData.writeString(this.url);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeInt32(this.size);

@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_help_saveAppLog extends TLObject {
-    public static int constructor = 1862465352;
     public ArrayList<TLRPC$TL_inputAppEvent> events = new ArrayList<>();
 
     @Override
@@ -12,7 +11,7 @@ public class TLRPC$TL_help_saveAppLog extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1862465352);
         abstractSerializedData.writeInt32(481674261);
         int size = this.events.size();
         abstractSerializedData.writeInt32(size);

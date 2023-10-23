@@ -2,13 +2,12 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_channels_adminLogResults extends TLObject {
-    public static int constructor = -309659827;
     public ArrayList<TLRPC$TL_channelAdminLogEvent> events = new ArrayList<>();
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
     public static TLRPC$TL_channels_adminLogResults TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-309659827 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_channels_adminLogResults", Integer.valueOf(i)));
             }
@@ -70,7 +69,7 @@ public class TLRPC$TL_channels_adminLogResults extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-309659827);
         abstractSerializedData.writeInt32(481674261);
         int size = this.events.size();
         abstractSerializedData.writeInt32(size);

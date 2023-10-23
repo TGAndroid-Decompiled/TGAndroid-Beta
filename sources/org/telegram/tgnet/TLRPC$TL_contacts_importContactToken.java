@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_contacts_importContactToken extends TLObject {
-    public static int constructor = 318789512;
     public String token;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_contacts_importContactToken extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(318789512);
         abstractSerializedData.writeString(this.token);
     }
 }

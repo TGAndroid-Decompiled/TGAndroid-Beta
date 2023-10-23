@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getChatInviteImporters extends TLObject {
-    public static int constructor = -553329330;
     public int flags;
     public int limit;
     public String link;
@@ -17,7 +16,7 @@ public class TLRPC$TL_messages_getChatInviteImporters extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-553329330);
         int i = this.requested ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

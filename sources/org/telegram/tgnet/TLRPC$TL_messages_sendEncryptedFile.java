@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_sendEncryptedFile extends TLObject {
-    public static int constructor = 1431914525;
     public NativeByteBuffer data;
     public TLRPC$InputEncryptedFile file;
     public int flags;
@@ -24,7 +23,7 @@ public class TLRPC$TL_messages_sendEncryptedFile extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1431914525);
         int i = this.silent ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

@@ -93,6 +93,14 @@ public abstract class BaseCell extends ViewGroup {
         }
     }
 
+    public static void setDrawableBounds(Drawable drawable, float f, float f2, int i, int i2) {
+        if (drawable != null) {
+            int i3 = (int) f;
+            int i4 = (int) f2;
+            drawable.setBounds(i3, i4, i + i3, i2 + i4);
+        }
+    }
+
     public void startCheckLongPress() {
         if (this.checkingForLongPress) {
             return;

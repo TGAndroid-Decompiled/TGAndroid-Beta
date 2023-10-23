@@ -42,17 +42,17 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
-import org.telegram.tgnet.TLRPC$PeerStories;
 import org.telegram.tgnet.TLRPC$Reaction;
-import org.telegram.tgnet.TLRPC$StoryItem;
-import org.telegram.tgnet.TLRPC$StoryViews;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
-import org.telegram.tgnet.TLRPC$TL_stories_getStoryViewsList;
-import org.telegram.tgnet.TLRPC$TL_stories_storyViewsList;
-import org.telegram.tgnet.TLRPC$TL_storyView;
-import org.telegram.tgnet.TLRPC$TL_storyViews;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_stories$PeerStories;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.tl.TL_stories$StoryViews;
+import org.telegram.tgnet.tl.TL_stories$TL_stories_getStoryViewsList;
+import org.telegram.tgnet.tl.TL_stories$TL_stories_storyViewsList;
+import org.telegram.tgnet.tl.TL_stories$TL_storyView;
+import org.telegram.tgnet.tl.TL_stories$TL_storyViews;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -134,17 +134,17 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         selfStoryViewsPage.showPremiumAlert();
     }
 
-    public boolean isStoryShownToUser(TLRPC$TL_storyView tLRPC$TL_storyView) {
+    public boolean isStoryShownToUser(TL_stories$TL_storyView tL_stories$TL_storyView) {
         StoryEntry storyEntry;
         StoryPrivacyBottomSheet.StoryPrivacy storyPrivacy;
-        if (!MessagesController.getInstance(this.currentAccount).getStoriesController().isBlocked(tLRPC$TL_storyView) && MessagesController.getInstance(this.currentAccount).blockePeers.indexOfKey(tLRPC$TL_storyView.user_id) < 0) {
-            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tLRPC$TL_storyView.user_id));
+        if (!MessagesController.getInstance(this.currentAccount).getStoriesController().isBlocked(tL_stories$TL_storyView) && MessagesController.getInstance(this.currentAccount).blockePeers.indexOfKey(tL_stories$TL_storyView.user_id) < 0) {
+            TLRPC$User user = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(tL_stories$TL_storyView.user_id));
             SelfStoryViewsView.StoryItemInternal storyItemInternal = this.storyItem;
             if (storyItemInternal != null) {
-                TLRPC$StoryItem tLRPC$StoryItem = storyItemInternal.storyItem;
-                if (tLRPC$StoryItem != null) {
-                    if (tLRPC$StoryItem.parsedPrivacy == null) {
-                        tLRPC$StoryItem.parsedPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(this.currentAccount, tLRPC$StoryItem.privacy);
+                TL_stories$StoryItem tL_stories$StoryItem = storyItemInternal.storyItem;
+                if (tL_stories$StoryItem != null) {
+                    if (tL_stories$StoryItem.parsedPrivacy == null) {
+                        tL_stories$StoryItem.parsedPrivacy = new StoryPrivacyBottomSheet.StoryPrivacy(this.currentAccount, tL_stories$StoryItem.privacy);
                     }
                     return this.storyItem.storyItem.parsedPrivacy.containsUser(user);
                 }
@@ -255,11 +255,11 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     }
 
     public void lambda$new$0(StoryViewer storyViewer, View view, int i) {
-        TLRPC$TL_storyView tLRPC$TL_storyView;
-        if (i < 0 || i >= this.listAdapter.items.size() || (tLRPC$TL_storyView = this.listAdapter.items.get(i).user) == null) {
+        TL_stories$TL_storyView tL_stories$TL_storyView;
+        if (i < 0 || i >= this.listAdapter.items.size() || (tL_stories$TL_storyView = this.listAdapter.items.get(i).user) == null) {
             return;
         }
-        storyViewer.presentFragment(ProfileActivity.of(tLRPC$TL_storyView.user_id));
+        storyViewer.presentFragment(ProfileActivity.of(tL_stories$TL_storyView.user_id));
     }
 
     public class AnonymousClass4 implements RecyclerListView.OnItemLongClickListener {
@@ -280,14 +280,14 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 if (storyViewer == null || storyViewer.containerView == null) {
                     return false;
                 }
-                final TLRPC$TL_storyView tLRPC$TL_storyView = SelfStoryViewsPage.this.listAdapter.items.get(i).user;
-                if (tLRPC$TL_storyView == null || (user = (messagesController = MessagesController.getInstance(SelfStoryViewsPage.this.currentAccount)).getUser(Long.valueOf(tLRPC$TL_storyView.user_id))) == null) {
+                final TL_stories$TL_storyView tL_stories$TL_storyView = SelfStoryViewsPage.this.listAdapter.items.get(i).user;
+                if (tL_stories$TL_storyView == null || (user = (messagesController = MessagesController.getInstance(SelfStoryViewsPage.this.currentAccount)).getUser(Long.valueOf(tL_stories$TL_storyView.user_id))) == null) {
                     return false;
                 }
                 boolean z = messagesController.blockePeers.indexOfKey(user.id) >= 0;
                 boolean z2 = user.contact || ContactsController.getInstance(SelfStoryViewsPage.this.currentAccount).contactsDict.get(Long.valueOf(user.id)) != null;
-                boolean isStoryShownToUser = SelfStoryViewsPage.this.isStoryShownToUser(tLRPC$TL_storyView);
-                boolean isBlocked = messagesController.getStoriesController().isBlocked(tLRPC$TL_storyView);
+                boolean isStoryShownToUser = SelfStoryViewsPage.this.isStoryShownToUser(tL_stories$TL_storyView);
+                boolean isBlocked = messagesController.getStoriesController().isBlocked(tL_stories$TL_storyView);
                 String str = TextUtils.isEmpty(user.first_name) ? TextUtils.isEmpty(user.last_name) ? "" : user.last_name : user.first_name;
                 int indexOf = str.indexOf(" ");
                 if (indexOf > 2) {
@@ -297,12 +297,12 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 ItemOptions cutTextInFancyHalf = ItemOptions.makeOptions(this.val$storyViewer.containerView, SelfStoryViewsPage.this.resourcesProvider, view).setGravity(3).ignoreX().setScrimViewBackground(new ColorDrawable(Theme.getColor(Theme.key_dialogBackground, SelfStoryViewsPage.this.resourcesProvider))).setDimAlpha(133).addIf((!isStoryShownToUser || isBlocked || z) ? false : true, R.drawable.msg_stories_myhide, LocaleController.formatString(R.string.StoryHideFrom, str2), new Runnable() {
                     @Override
                     public final void run() {
-                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$0(messagesController, user, str2, reactedUserHolderView, tLRPC$TL_storyView);
+                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$0(messagesController, user, str2, reactedUserHolderView, tL_stories$TL_storyView);
                     }
                 }).makeMultiline(false).cutTextInFancyHalf().addIf(isBlocked && !z, R.drawable.msg_menu_stories, LocaleController.formatString(R.string.StoryShowBackTo, str2), new Runnable() {
                     @Override
                     public final void run() {
-                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$1(messagesController, user, str2, reactedUserHolderView, tLRPC$TL_storyView);
+                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$1(messagesController, user, str2, reactedUserHolderView, tL_stories$TL_storyView);
                     }
                 }).makeMultiline(false).cutTextInFancyHalf();
                 boolean z3 = (z2 || z) ? false : true;
@@ -310,20 +310,20 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 final ItemOptions addIf = cutTextInFancyHalf.addIf(z3, i2, LocaleController.getString(R.string.BlockUser), true, new Runnable() {
                     @Override
                     public final void run() {
-                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$2(messagesController, user, reactedUserHolderView, tLRPC$TL_storyView);
+                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$2(messagesController, user, reactedUserHolderView, tL_stories$TL_storyView);
                     }
                 }).addIf(!z2 && z, R.drawable.msg_block, LocaleController.getString(R.string.Unblock), new Runnable() {
                     @Override
                     public final void run() {
-                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$3(messagesController, user, reactedUserHolderView, tLRPC$TL_storyView);
+                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$3(messagesController, user, reactedUserHolderView, tL_stories$TL_storyView);
                     }
                 }).addIf(z2, i2, LocaleController.getString(R.string.StoryDeleteContact), true, new Runnable() {
                     @Override
                     public final void run() {
-                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$4(user, str2, reactedUserHolderView, tLRPC$TL_storyView);
+                        SelfStoryViewsPage.AnonymousClass4.this.lambda$onItemClick$4(user, str2, reactedUserHolderView, tL_stories$TL_storyView);
                     }
                 });
-                TLRPC$Reaction tLRPC$Reaction = tLRPC$TL_storyView.reaction;
+                TLRPC$Reaction tLRPC$Reaction = tL_stories$TL_storyView.reaction;
                 if (tLRPC$Reaction instanceof TLRPC$TL_reactionCustomEmoji) {
                     anonymousClass4 = this;
                     TLRPC$InputStickerSet findStickerSet = AnimatedEmojiDrawable.getDocumentFetcher(SelfStoryViewsPage.this.currentAccount).findStickerSet(((TLRPC$TL_reactionCustomEmoji) tLRPC$Reaction).document_id);
@@ -359,42 +359,42 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             return false;
         }
 
-        public void lambda$onItemClick$0(MessagesController messagesController, TLRPC$User tLRPC$User, String str, ReactedUserHolderView reactedUserHolderView, TLRPC$TL_storyView tLRPC$TL_storyView) {
+        public void lambda$onItemClick$0(MessagesController messagesController, TLRPC$User tLRPC$User, String str, ReactedUserHolderView reactedUserHolderView, TL_stories$TL_storyView tL_stories$TL_storyView) {
             messagesController.getStoriesController().updateBlockUser(tLRPC$User.id, true);
             SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
             BulletinFactory.of(selfStoryViewsPage, selfStoryViewsPage.resourcesProvider).createSimpleBulletin(R.raw.ic_ban, LocaleController.formatString(R.string.StoryHidFromToast, str)).show();
-            reactedUserHolderView.animateAlpha(SelfStoryViewsPage.this.isStoryShownToUser(tLRPC$TL_storyView) ? 1.0f : 0.5f, true);
+            reactedUserHolderView.animateAlpha(SelfStoryViewsPage.this.isStoryShownToUser(tL_stories$TL_storyView) ? 1.0f : 0.5f, true);
         }
 
-        public void lambda$onItemClick$1(MessagesController messagesController, TLRPC$User tLRPC$User, String str, ReactedUserHolderView reactedUserHolderView, TLRPC$TL_storyView tLRPC$TL_storyView) {
+        public void lambda$onItemClick$1(MessagesController messagesController, TLRPC$User tLRPC$User, String str, ReactedUserHolderView reactedUserHolderView, TL_stories$TL_storyView tL_stories$TL_storyView) {
             messagesController.getStoriesController().updateBlockUser(tLRPC$User.id, false);
             SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
             BulletinFactory.of(selfStoryViewsPage, selfStoryViewsPage.resourcesProvider).createSimpleBulletin(R.raw.contact_check, LocaleController.formatString(R.string.StoryShownBackToToast, str)).show();
-            reactedUserHolderView.animateAlpha(SelfStoryViewsPage.this.isStoryShownToUser(tLRPC$TL_storyView) ? 1.0f : 0.5f, true);
+            reactedUserHolderView.animateAlpha(SelfStoryViewsPage.this.isStoryShownToUser(tL_stories$TL_storyView) ? 1.0f : 0.5f, true);
         }
 
-        public void lambda$onItemClick$2(MessagesController messagesController, TLRPC$User tLRPC$User, ReactedUserHolderView reactedUserHolderView, TLRPC$TL_storyView tLRPC$TL_storyView) {
+        public void lambda$onItemClick$2(MessagesController messagesController, TLRPC$User tLRPC$User, ReactedUserHolderView reactedUserHolderView, TL_stories$TL_storyView tL_stories$TL_storyView) {
             messagesController.blockPeer(tLRPC$User.id);
             SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
             BulletinFactory.of(selfStoryViewsPage, selfStoryViewsPage.resourcesProvider).createBanBulletin(true).show();
-            reactedUserHolderView.animateAlpha(SelfStoryViewsPage.this.isStoryShownToUser(tLRPC$TL_storyView) ? 1.0f : 0.5f, true);
+            reactedUserHolderView.animateAlpha(SelfStoryViewsPage.this.isStoryShownToUser(tL_stories$TL_storyView) ? 1.0f : 0.5f, true);
         }
 
-        public void lambda$onItemClick$3(MessagesController messagesController, TLRPC$User tLRPC$User, ReactedUserHolderView reactedUserHolderView, TLRPC$TL_storyView tLRPC$TL_storyView) {
+        public void lambda$onItemClick$3(MessagesController messagesController, TLRPC$User tLRPC$User, ReactedUserHolderView reactedUserHolderView, TL_stories$TL_storyView tL_stories$TL_storyView) {
             messagesController.getStoriesController().updateBlockUser(tLRPC$User.id, false);
             messagesController.unblockPeer(tLRPC$User.id);
             SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
             BulletinFactory.of(selfStoryViewsPage, selfStoryViewsPage.resourcesProvider).createBanBulletin(false).show();
-            reactedUserHolderView.animateAlpha(SelfStoryViewsPage.this.isStoryShownToUser(tLRPC$TL_storyView) ? 1.0f : 0.5f, true);
+            reactedUserHolderView.animateAlpha(SelfStoryViewsPage.this.isStoryShownToUser(tL_stories$TL_storyView) ? 1.0f : 0.5f, true);
         }
 
-        public void lambda$onItemClick$4(TLRPC$User tLRPC$User, String str, ReactedUserHolderView reactedUserHolderView, TLRPC$TL_storyView tLRPC$TL_storyView) {
+        public void lambda$onItemClick$4(TLRPC$User tLRPC$User, String str, ReactedUserHolderView reactedUserHolderView, TL_stories$TL_storyView tL_stories$TL_storyView) {
             ArrayList<TLRPC$User> arrayList = new ArrayList<>();
             arrayList.add(tLRPC$User);
             ContactsController.getInstance(SelfStoryViewsPage.this.currentAccount).deleteContact(arrayList, false);
             SelfStoryViewsPage selfStoryViewsPage = SelfStoryViewsPage.this;
             BulletinFactory.of(selfStoryViewsPage, selfStoryViewsPage.resourcesProvider).createSimpleBulletin(R.raw.ic_ban, LocaleController.formatString(R.string.DeletedFromYourContacts, str)).show();
-            reactedUserHolderView.animateAlpha(SelfStoryViewsPage.this.isStoryShownToUser(tLRPC$TL_storyView) ? 1.0f : 0.5f, true);
+            reactedUserHolderView.animateAlpha(SelfStoryViewsPage.this.isStoryShownToUser(tL_stories$TL_storyView) ? 1.0f : 0.5f, true);
         }
 
         public void lambda$onItemClick$5(ArrayList arrayList, ItemOptions itemOptions, View view) {
@@ -547,29 +547,29 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         this.showSearch = false;
         this.showContactsFilter = false;
         this.showReactionsSort = false;
-        TLRPC$StoryItem tLRPC$StoryItem = this.storyItem.storyItem;
-        if (tLRPC$StoryItem != null) {
-            TLRPC$StoryViews tLRPC$StoryViews = tLRPC$StoryItem.views;
+        TL_stories$StoryItem tL_stories$StoryItem = this.storyItem.storyItem;
+        if (tL_stories$StoryItem != null) {
+            TL_stories$StoryViews tL_stories$StoryViews = tL_stories$StoryItem.views;
             boolean z = true;
-            if (tLRPC$StoryViews != null) {
-                int i = tLRPC$StoryViews.views_count;
+            if (tL_stories$StoryViews != null) {
+                int i = tL_stories$StoryViews.views_count;
                 this.showSearch = i >= 15;
-                this.showReactionsSort = tLRPC$StoryViews.reactions_count >= (BuildVars.DEBUG_PRIVATE_VERSION ? 5 : 10);
-                this.showContactsFilter = (i < 20 || tLRPC$StoryItem.contacts || tLRPC$StoryItem.close_friends || tLRPC$StoryItem.selected_contacts) ? false : true;
+                this.showReactionsSort = tL_stories$StoryViews.reactions_count >= (BuildVars.DEBUG_PRIVATE_VERSION ? 5 : 10);
+                this.showContactsFilter = (i < 20 || tL_stories$StoryItem.contacts || tL_stories$StoryItem.close_friends || tL_stories$StoryItem.selected_contacts) ? false : true;
             }
-            ViewsModel viewsModel = MessagesController.getInstance(this.currentAccount).storiesController.selfViewsModel.get(tLRPC$StoryItem.id);
+            ViewsModel viewsModel = MessagesController.getInstance(this.currentAccount).storiesController.selfViewsModel.get(tL_stories$StoryItem.id);
             this.defaultModel = viewsModel;
-            TLRPC$StoryViews tLRPC$StoryViews2 = tLRPC$StoryItem.views;
-            int i2 = tLRPC$StoryViews2 == null ? 0 : tLRPC$StoryViews2.views_count;
+            TL_stories$StoryViews tL_stories$StoryViews2 = tL_stories$StoryItem.views;
+            int i2 = tL_stories$StoryViews2 == null ? 0 : tL_stories$StoryViews2.views_count;
             if (viewsModel == null || viewsModel.totalCount != i2) {
                 if (viewsModel != null) {
                     viewsModel.release();
                 }
-                ViewsModel viewsModel2 = new ViewsModel(this.currentAccount, this.dialogId, tLRPC$StoryItem, true);
+                ViewsModel viewsModel2 = new ViewsModel(this.currentAccount, this.dialogId, tL_stories$StoryItem, true);
                 this.defaultModel = viewsModel2;
                 viewsModel2.reloadIfNeed(this.state, this.showContactsFilter, this.showReactionsSort);
                 this.defaultModel.loadNext();
-                MessagesController.getInstance(this.currentAccount).storiesController.selfViewsModel.put(tLRPC$StoryItem.id, this.defaultModel);
+                MessagesController.getInstance(this.currentAccount).storiesController.selfViewsModel.put(tL_stories$StoryItem.id, this.defaultModel);
             } else {
                 viewsModel.reloadIfNeed(this.state, this.showContactsFilter, this.showReactionsSort);
             }
@@ -585,8 +585,8 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             if (!this.currentModel.isExpiredViews || UserConfig.getInstance(this.currentAccount).isPremium()) {
                 ViewsModel viewsModel5 = this.currentModel;
                 if (viewsModel5.loading || viewsModel5.hasNext || !viewsModel5.views.isEmpty() || !TextUtils.isEmpty(this.currentModel.state.searchQuery)) {
-                    TLRPC$StoryViews tLRPC$StoryViews3 = tLRPC$StoryItem.views;
-                    if (tLRPC$StoryViews3 == null || tLRPC$StoryViews3.views_count == 0) {
+                    TL_stories$StoryViews tL_stories$StoryViews3 = tL_stories$StoryItem.views;
+                    if (tL_stories$StoryViews3 == null || tL_stories$StoryViews3.views_count == 0) {
                         this.showSearch = false;
                         this.showReactionsSort = false;
                         this.showContactsFilter = false;
@@ -599,13 +599,13 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                         ViewsModel viewsModel6 = this.currentModel;
                         if (viewsModel6.showReactionOnly) {
                             TextView textView = this.titleView;
-                            int i3 = tLRPC$StoryItem.views.reactions_count;
+                            int i3 = tL_stories$StoryItem.views.reactions_count;
                             textView.setText(LocaleController.formatPluralString("Likes", i3, Integer.valueOf(i3)));
                             this.showSearch = false;
                             this.showReactionsSort = false;
                             this.showContactsFilter = false;
                         } else {
-                            if (viewsModel6.views.size() < 20 && this.currentModel.views.size() < tLRPC$StoryItem.views.views_count) {
+                            if (viewsModel6.views.size() < 20 && this.currentModel.views.size() < tL_stories$StoryItem.views.views_count) {
                                 ViewsModel viewsModel7 = this.currentModel;
                                 if (!viewsModel7.loading && !viewsModel7.hasNext) {
                                     this.showSearch = false;
@@ -614,11 +614,11 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                                     this.titleView.setText(LocaleController.getString("Viewers", R.string.Viewers));
                                 }
                             }
-                            TLRPC$StoryViews tLRPC$StoryViews4 = tLRPC$StoryItem.views;
-                            int i4 = tLRPC$StoryViews4.views_count;
+                            TL_stories$StoryViews tL_stories$StoryViews4 = tL_stories$StoryItem.views;
+                            int i4 = tL_stories$StoryViews4.views_count;
                             this.showSearch = i4 >= 15;
-                            this.showReactionsSort = tLRPC$StoryViews4.reactions_count >= (BuildVars.DEBUG_VERSION ? 5 : 10);
-                            this.showContactsFilter = (i4 < 20 || tLRPC$StoryItem.contacts || tLRPC$StoryItem.close_friends || tLRPC$StoryItem.selected_contacts) ? false : false;
+                            this.showReactionsSort = tL_stories$StoryViews4.reactions_count >= (BuildVars.DEBUG_VERSION ? 5 : 10);
+                            this.showContactsFilter = (i4 < 20 || tL_stories$StoryItem.contacts || tL_stories$StoryItem.close_friends || tL_stories$StoryItem.selected_contacts) ? false : false;
                             this.titleView.setText(LocaleController.getString("Viewers", R.string.Viewers));
                         }
                         this.searchField.setVisibility(this.showSearch ? 0 : 8);
@@ -651,20 +651,20 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         ((ViewGroup.MarginLayoutParams) this.shadowView2.getLayoutParams()).topMargin = AndroidUtilities.dp(this.TOP_PADDING - 17);
     }
 
-    public static void preload(int i, long j, TLRPC$StoryItem tLRPC$StoryItem) {
-        if (tLRPC$StoryItem == null) {
+    public static void preload(int i, long j, TL_stories$StoryItem tL_stories$StoryItem) {
+        if (tL_stories$StoryItem == null) {
             return;
         }
-        ViewsModel viewsModel = MessagesController.getInstance(i).storiesController.selfViewsModel.get(tLRPC$StoryItem.id);
-        TLRPC$StoryViews tLRPC$StoryViews = tLRPC$StoryItem.views;
-        int i2 = tLRPC$StoryViews == null ? 0 : tLRPC$StoryViews.views_count;
+        ViewsModel viewsModel = MessagesController.getInstance(i).storiesController.selfViewsModel.get(tL_stories$StoryItem.id);
+        TL_stories$StoryViews tL_stories$StoryViews = tL_stories$StoryItem.views;
+        int i2 = tL_stories$StoryViews == null ? 0 : tL_stories$StoryViews.views_count;
         if (viewsModel == null || viewsModel.totalCount != i2) {
             if (viewsModel != null) {
                 viewsModel.release();
             }
-            ViewsModel viewsModel2 = new ViewsModel(i, j, tLRPC$StoryItem, true);
+            ViewsModel viewsModel2 = new ViewsModel(i, j, tL_stories$StoryItem, true);
             viewsModel2.loadNext();
-            MessagesController.getInstance(i).storiesController.selfViewsModel.put(tLRPC$StoryItem.id, viewsModel2);
+            MessagesController.getInstance(i).storiesController.selfViewsModel.put(tL_stories$StoryItem.id, viewsModel2);
         }
     }
 
@@ -751,19 +751,19 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         int childAdapterPosition;
-        TLRPC$PeerStories stories;
+        TL_stories$PeerStories stories;
         int i3 = 0;
         if (i == NotificationCenter.storiesUpdated) {
             if (this.storyItem.uploadingStory == null || (stories = MessagesController.getInstance(this.currentAccount).storiesController.getStories(UserConfig.getInstance(this.currentAccount).clientUserId)) == null) {
                 return;
             }
             while (i3 < stories.stories.size()) {
-                TLRPC$StoryItem tLRPC$StoryItem = stories.stories.get(i3);
-                String str = tLRPC$StoryItem.attachPath;
+                TL_stories$StoryItem tL_stories$StoryItem = stories.stories.get(i3);
+                String str = tL_stories$StoryItem.attachPath;
                 if (str != null && str.equals(this.storyItem.uploadingStory.path)) {
                     SelfStoryViewsView.StoryItemInternal storyItemInternal = this.storyItem;
                     storyItemInternal.uploadingStory = null;
-                    storyItemInternal.storyItem = tLRPC$StoryItem;
+                    storyItemInternal.storyItem = tL_stories$StoryItem;
                     setStoryItem(this.dialogId, storyItemInternal);
                     return;
                 }
@@ -1050,16 +1050,16 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
     }
 
     public class Item {
-        TLRPC$TL_storyView user;
+        TL_stories$TL_storyView user;
         final int viewType;
 
         private Item(SelfStoryViewsPage selfStoryViewsPage, int i) {
             this.viewType = i;
         }
 
-        private Item(SelfStoryViewsPage selfStoryViewsPage, int i, TLRPC$TL_storyView tLRPC$TL_storyView) {
+        private Item(SelfStoryViewsPage selfStoryViewsPage, int i, TL_stories$TL_storyView tL_stories$TL_storyView) {
             this.viewType = i;
-            this.user = tLRPC$TL_storyView;
+            this.user = tL_stories$TL_storyView;
         }
     }
 
@@ -1071,31 +1071,31 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
         boolean loading;
         String offset;
         boolean showReactionOnly;
-        TLRPC$StoryItem storyItem;
+        TL_stories$StoryItem storyItem;
         public int totalCount;
         boolean useLocalFilters;
-        ArrayList<TLRPC$TL_storyView> views = new ArrayList<>();
-        ArrayList<TLRPC$TL_storyView> originalViews = new ArrayList<>();
+        ArrayList<TL_stories$TL_storyView> views = new ArrayList<>();
+        ArrayList<TL_stories$TL_storyView> originalViews = new ArrayList<>();
         boolean hasNext = true;
         int reqId = -1;
         HashSet<Long> animateDateForUsers = new HashSet<>();
         ArrayList<SelfStoryViewsPage> listeners = new ArrayList<>();
         FiltersState state = new FiltersState();
 
-        public ViewsModel(int i, long j, TLRPC$StoryItem tLRPC$StoryItem, boolean z) {
-            TLRPC$StoryViews tLRPC$StoryViews;
+        public ViewsModel(int i, long j, TL_stories$StoryItem tL_stories$StoryItem, boolean z) {
+            TL_stories$StoryViews tL_stories$StoryViews;
             this.currentAccount = i;
-            this.storyItem = tLRPC$StoryItem;
+            this.storyItem = tL_stories$StoryItem;
             this.dialogId = j;
-            TLRPC$StoryViews tLRPC$StoryViews2 = tLRPC$StoryItem.views;
-            int i2 = tLRPC$StoryViews2 == null ? 0 : tLRPC$StoryViews2.views_count;
+            TL_stories$StoryViews tL_stories$StoryViews2 = tL_stories$StoryItem.views;
+            int i2 = tL_stories$StoryViews2 == null ? 0 : tL_stories$StoryViews2.views_count;
             this.totalCount = i2;
             if (i2 < 200) {
                 this.useLocalFilters = true;
             }
-            boolean z2 = StoriesUtilities.hasExpiredViews(tLRPC$StoryItem) && !UserConfig.getInstance(i).isPremium();
+            boolean z2 = StoriesUtilities.hasExpiredViews(tL_stories$StoryItem) && !UserConfig.getInstance(i).isPremium();
             this.isExpiredViews = z2;
-            if (z2 && (tLRPC$StoryViews = tLRPC$StoryItem.views) != null && tLRPC$StoryViews.reactions_count > 0) {
+            if (z2 && (tL_stories$StoryViews = tL_stories$StoryItem.views) != null && tL_stories$StoryViews.reactions_count > 0) {
                 this.isExpiredViews = false;
                 this.showReactionOnly = true;
             }
@@ -1103,16 +1103,16 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 return;
             }
             this.initial = true;
-            if (tLRPC$StoryItem.views == null || !z) {
+            if (tL_stories$StoryItem.views == null || !z) {
                 return;
             }
-            for (int i3 = 0; i3 < tLRPC$StoryItem.views.recent_viewers.size(); i3++) {
-                long longValue = tLRPC$StoryItem.views.recent_viewers.get(i3).longValue();
+            for (int i3 = 0; i3 < tL_stories$StoryItem.views.recent_viewers.size(); i3++) {
+                long longValue = tL_stories$StoryItem.views.recent_viewers.get(i3).longValue();
                 if (MessagesController.getInstance(i).getUser(Long.valueOf(longValue)) != null) {
-                    TLRPC$TL_storyView tLRPC$TL_storyView = new TLRPC$TL_storyView();
-                    tLRPC$TL_storyView.user_id = longValue;
-                    tLRPC$TL_storyView.date = 0;
-                    this.views.add(tLRPC$TL_storyView);
+                    TL_stories$TL_storyView tL_stories$TL_storyView = new TL_stories$TL_storyView();
+                    tL_stories$TL_storyView.user_id = longValue;
+                    tL_stories$TL_storyView.date = 0;
+                    this.views.add(tL_stories$TL_storyView);
                 }
             }
         }
@@ -1121,36 +1121,36 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             if (this.loading || !this.hasNext || this.isExpiredViews) {
                 return;
             }
-            TLRPC$TL_stories_getStoryViewsList tLRPC$TL_stories_getStoryViewsList = new TLRPC$TL_stories_getStoryViewsList();
-            tLRPC$TL_stories_getStoryViewsList.id = this.storyItem.id;
-            tLRPC$TL_stories_getStoryViewsList.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
+            TL_stories$TL_stories_getStoryViewsList tL_stories$TL_stories_getStoryViewsList = new TL_stories$TL_stories_getStoryViewsList();
+            tL_stories$TL_stories_getStoryViewsList.id = this.storyItem.id;
+            tL_stories$TL_stories_getStoryViewsList.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.dialogId);
             if (this.useLocalFilters) {
-                tLRPC$TL_stories_getStoryViewsList.q = "";
-                tLRPC$TL_stories_getStoryViewsList.just_contacts = false;
-                tLRPC$TL_stories_getStoryViewsList.reactions_first = true;
+                tL_stories$TL_stories_getStoryViewsList.q = "";
+                tL_stories$TL_stories_getStoryViewsList.just_contacts = false;
+                tL_stories$TL_stories_getStoryViewsList.reactions_first = true;
             } else {
                 String str = this.state.searchQuery;
-                tLRPC$TL_stories_getStoryViewsList.q = str;
+                tL_stories$TL_stories_getStoryViewsList.q = str;
                 if (!TextUtils.isEmpty(str)) {
-                    tLRPC$TL_stories_getStoryViewsList.flags |= 2;
+                    tL_stories$TL_stories_getStoryViewsList.flags |= 2;
                 }
                 FiltersState filtersState = this.state;
-                tLRPC$TL_stories_getStoryViewsList.just_contacts = filtersState.contactsOnly;
-                tLRPC$TL_stories_getStoryViewsList.reactions_first = filtersState.sortByReactions;
+                tL_stories$TL_stories_getStoryViewsList.just_contacts = filtersState.contactsOnly;
+                tL_stories$TL_stories_getStoryViewsList.reactions_first = filtersState.sortByReactions;
             }
             int i = 20;
             if (!this.initial && this.views.size() >= 20) {
                 i = 100;
             }
-            tLRPC$TL_stories_getStoryViewsList.limit = i;
+            tL_stories$TL_stories_getStoryViewsList.limit = i;
             String str2 = this.offset;
-            tLRPC$TL_stories_getStoryViewsList.offset = str2;
+            tL_stories$TL_stories_getStoryViewsList.offset = str2;
             if (str2 == null) {
-                tLRPC$TL_stories_getStoryViewsList.offset = "";
+                tL_stories$TL_stories_getStoryViewsList.offset = "";
             }
             this.loading = true;
-            FileLog.d("SelfStoryViewsPage load next " + this.storyItem.id + " " + this.initial + " offset=" + tLRPC$TL_stories_getStoryViewsList.offset + " q" + tLRPC$TL_stories_getStoryViewsList.q + " " + tLRPC$TL_stories_getStoryViewsList.just_contacts + " " + tLRPC$TL_stories_getStoryViewsList.reactions_first);
-            int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_stories_getStoryViewsList, new RequestDelegate() {
+            FileLog.d("SelfStoryViewsPage load next " + this.storyItem.id + " " + this.initial + " offset=" + tL_stories$TL_stories_getStoryViewsList.offset + " q" + tL_stories$TL_stories_getStoryViewsList.q + " " + tL_stories$TL_stories_getStoryViewsList.just_contacts + " " + tL_stories$TL_stories_getStoryViewsList.reactions_first);
+            int sendRequest = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tL_stories$TL_stories_getStoryViewsList, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                     SelfStoryViewsPage.ViewsModel.this.lambda$loadNext$1(r2, tLObject, tLRPC$TL_error);
@@ -1178,9 +1178,9 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
             this.loading = false;
             this.reqId = -1;
             if (tLObject != null) {
-                TLRPC$TL_stories_storyViewsList tLRPC$TL_stories_storyViewsList = (TLRPC$TL_stories_storyViewsList) tLObject;
-                MessagesController.getInstance(this.currentAccount).getStoriesController().applyStoryViewsBlocked(tLRPC$TL_stories_storyViewsList);
-                MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_stories_storyViewsList.users, false);
+                TL_stories$TL_stories_storyViewsList tL_stories$TL_stories_storyViewsList = (TL_stories$TL_stories_storyViewsList) tLObject;
+                MessagesController.getInstance(this.currentAccount).getStoriesController().applyStoryViewsBlocked(tL_stories$TL_stories_storyViewsList);
+                MessagesController.getInstance(this.currentAccount).putUsers(tL_stories$TL_stories_storyViewsList.users, false);
                 if (this.initial) {
                     this.initial = false;
                     for (int i = 0; i < this.views.size(); i++) {
@@ -1190,43 +1190,43 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                     this.originalViews.clear();
                 }
                 if (this.useLocalFilters) {
-                    this.originalViews.addAll(tLRPC$TL_stories_storyViewsList.views);
+                    this.originalViews.addAll(tL_stories$TL_stories_storyViewsList.views);
                     applyLocalFilter();
                 } else {
-                    this.views.addAll(tLRPC$TL_stories_storyViewsList.views);
+                    this.views.addAll(tL_stories$TL_stories_storyViewsList.views);
                 }
                 boolean z2 = true;
-                if (!tLRPC$TL_stories_storyViewsList.views.isEmpty()) {
+                if (!tL_stories$TL_stories_storyViewsList.views.isEmpty()) {
                     this.hasNext = true;
                 } else {
                     this.hasNext = false;
                 }
-                String str = tLRPC$TL_stories_storyViewsList.next_offset;
+                String str = tL_stories$TL_stories_storyViewsList.next_offset;
                 this.offset = str;
                 if (TextUtils.isEmpty(str)) {
                     this.hasNext = false;
                 }
-                TLRPC$StoryItem tLRPC$StoryItem = this.storyItem;
-                if (tLRPC$StoryItem.views == null) {
-                    tLRPC$StoryItem.views = new TLRPC$TL_storyViews();
+                TL_stories$StoryItem tL_stories$StoryItem = this.storyItem;
+                if (tL_stories$StoryItem.views == null) {
+                    tL_stories$StoryItem.views = new TL_stories$TL_storyViews();
                 }
-                int i2 = tLRPC$TL_stories_storyViewsList.count;
-                TLRPC$StoryViews tLRPC$StoryViews = this.storyItem.views;
-                if (i2 > tLRPC$StoryViews.views_count) {
-                    tLRPC$StoryViews.recent_viewers.clear();
-                    for (int i3 = 0; i3 < Math.min(3, tLRPC$TL_stories_storyViewsList.users.size()); i3++) {
-                        this.storyItem.views.recent_viewers.add(Long.valueOf(tLRPC$TL_stories_storyViewsList.users.get(i3).id));
+                int i2 = tL_stories$TL_stories_storyViewsList.count;
+                TL_stories$StoryViews tL_stories$StoryViews = this.storyItem.views;
+                if (i2 > tL_stories$StoryViews.views_count) {
+                    tL_stories$StoryViews.recent_viewers.clear();
+                    for (int i3 = 0; i3 < Math.min(3, tL_stories$TL_stories_storyViewsList.users.size()); i3++) {
+                        this.storyItem.views.recent_viewers.add(Long.valueOf(tL_stories$TL_stories_storyViewsList.users.get(i3).id));
                     }
-                    this.storyItem.views.views_count = tLRPC$TL_stories_storyViewsList.count;
+                    this.storyItem.views.views_count = tL_stories$TL_stories_storyViewsList.count;
                     z = true;
                 } else {
                     z = false;
                 }
-                TLRPC$StoryViews tLRPC$StoryViews2 = this.storyItem.views;
-                int i4 = tLRPC$StoryViews2.reactions_count;
-                int i5 = tLRPC$TL_stories_storyViewsList.reactions_count;
+                TL_stories$StoryViews tL_stories$StoryViews2 = this.storyItem.views;
+                int i4 = tL_stories$StoryViews2.reactions_count;
+                int i5 = tL_stories$TL_stories_storyViewsList.reactions_count;
                 if (i4 != i5) {
-                    tLRPC$StoryViews2.reactions_count = i5;
+                    tL_stories$StoryViews2.reactions_count = i5;
                 } else {
                     z2 = z;
                 }
@@ -1282,14 +1282,14 @@ public class SelfStoryViewsPage extends FrameLayout implements NotificationCente
                 @Override
                 public final int applyAsInt(Object obj) {
                     int lambda$applyLocalFilter$2;
-                    lambda$applyLocalFilter$2 = SelfStoryViewsPage.ViewsModel.lambda$applyLocalFilter$2((TLRPC$TL_storyView) obj);
+                    lambda$applyLocalFilter$2 = SelfStoryViewsPage.ViewsModel.lambda$applyLocalFilter$2((TL_stories$TL_storyView) obj);
                     return lambda$applyLocalFilter$2;
                 }
             }));
         }
 
-        public static int lambda$applyLocalFilter$2(TLRPC$TL_storyView tLRPC$TL_storyView) {
-            return -tLRPC$TL_storyView.date;
+        public static int lambda$applyLocalFilter$2(TL_stories$TL_storyView tL_stories$TL_storyView) {
+            return -tL_stories$TL_storyView.date;
         }
 
         public void addListener(SelfStoryViewsPage selfStoryViewsPage) {

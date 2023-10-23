@@ -5,11 +5,9 @@ public abstract class TLRPC$PrivacyRule extends TLObject {
         switch (i) {
             case -1955338397:
                 tLRPC$PrivacyRule = new TLRPC$PrivacyRule() {
-                    public static int constructor = -1955338397;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1955338397);
                     }
                 };
                 break;
@@ -24,11 +22,9 @@ public abstract class TLRPC$PrivacyRule extends TLObject {
                 break;
             case -125240806:
                 tLRPC$PrivacyRule = new TLRPC$PrivacyRule() {
-                    public static int constructor = -125240806;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-125240806);
                     }
                 };
                 break;

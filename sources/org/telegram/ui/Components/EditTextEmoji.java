@@ -186,7 +186,8 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
 
             @Override
             public int getActionModeStyle() {
-                if (i == 2) {
+                int i2 = i;
+                if (i2 == 2 || i2 == 3) {
                     return 2;
                 }
                 return super.getActionModeStyle();
@@ -195,7 +196,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             @Override
             public void extendActionMode(ActionMode actionMode, Menu menu) {
                 if (EditTextEmoji.this.allowEntities()) {
-                    ChatActivity.fillActionModeMenu(menu, null);
+                    ChatActivity.fillActionModeMenu(menu, null, EditTextEmoji.this.currentStyle == 3);
                 }
                 super.extendActionMode(actionMode, menu);
             }
@@ -213,7 +214,8 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
                 if (EditTextEmoji.this.emojiIconDrawable != null) {
                     boolean z2 = false;
                     boolean z3 = i3 != i2;
-                    if (EditTextEmoji.this.allowEntities() && z3 && XiaomiUtilities.isMIUI()) {
+                    if (EditTextEmoji.this.allowEntities() && z3) {
+                        XiaomiUtilities.isMIUI();
                         z2 = true;
                     }
                     if (EditTextEmoji.this.shownFormatButton != z2) {
@@ -267,7 +269,11 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             this.editText.setHandlesColor(-1);
             this.editText.setHighlightColor(822083583);
             this.editText.setLinkTextColor(-12147733);
-            this.editText.setTextIsSelectable(true);
+            EditTextCaption editTextCaption6 = this.editText;
+            editTextCaption6.quoteColor = -1;
+            editTextCaption6.setTextIsSelectable(true);
+            setClipChildren(false);
+            setClipToPadding(false);
             addView(this.editText, LayoutHelper.createFrame(-1, -1.0f, 19, 40.0f, 0.0f, 24.0f, 0.0f));
         } else {
             this.editText.setTextSize(1, 18.0f);
@@ -470,6 +476,7 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
             this.editText.setCursorColor(-1);
             this.editText.setHandlesColor(-1);
             this.editText.setHighlightColor(822083583);
+            this.editText.quoteColor = -1;
         } else {
             this.editText.setHintTextColor(getThemedColor(Theme.key_dialogTextHint));
             this.editText.setTextColor(getThemedColor(Theme.key_dialogTextBlack));
@@ -548,9 +555,10 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     }
 
     public void lambda$hidePopup$1(int i, ValueAnimator valueAnimator) {
+        int i2;
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.emojiView.setTranslationY(floatValue);
-        if (i > 0 && this.currentStyle == 2) {
+        if (i > 0 && ((i2 = this.currentStyle) == 2 || i2 == 3)) {
             this.emojiView.setAlpha(1.0f - (floatValue / i));
         }
         bottomPanelTranslationY(floatValue - i);
@@ -674,11 +682,12 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
     }
 
     public void lambda$showPopup$2(ValueAnimator valueAnimator) {
+        int i;
         float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         this.emojiView.setTranslationY(floatValue);
-        int i = this.emojiPadding;
-        if (i > 0 && this.currentStyle == 2) {
-            this.emojiView.setAlpha(1.0f - (floatValue / i));
+        int i2 = this.emojiPadding;
+        if (i2 > 0 && ((i = this.currentStyle) == 2 || i == 3)) {
+            this.emojiView.setAlpha(1.0f - (floatValue / i2));
         }
         bottomPanelTranslationY(floatValue);
     }
@@ -703,10 +712,14 @@ public class EditTextEmoji extends FrameLayout implements NotificationCenter.Not
         if (this.emojiView != null) {
             return;
         }
-        EmojiView emojiView2 = new EmojiView(this.parentFragment, this.allowAnimatedEmoji, false, false, getContext(), false, null, null, this.currentStyle != 2, this.resourcesProvider) {
+        BaseFragment baseFragment = this.parentFragment;
+        boolean z = this.allowAnimatedEmoji;
+        Context context = getContext();
+        int i = this.currentStyle;
+        EmojiView emojiView2 = new EmojiView(baseFragment, z, false, false, context, false, null, null, (i == 2 || i == 3) ? false : true, this.resourcesProvider, false) {
             @Override
             protected void dispatchDraw(Canvas canvas) {
-                if (EditTextEmoji.this.currentStyle == 2) {
+                if (EditTextEmoji.this.currentStyle == 2 || EditTextEmoji.this.currentStyle == 3) {
                     EditTextEmoji.this.drawEmojiBackground(canvas, this);
                 }
                 super.dispatchDraw(canvas);

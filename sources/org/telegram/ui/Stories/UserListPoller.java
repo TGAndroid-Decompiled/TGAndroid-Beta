@@ -13,11 +13,11 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_stories_getPeerMaxIDs;
 import org.telegram.tgnet.TLRPC$TL_userStatusEmpty;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserStatus;
 import org.telegram.tgnet.TLRPC$Vector;
+import org.telegram.tgnet.tl.TL_stories$TL_stories_getPeerMaxIDs;
 import org.telegram.ui.Cells.DialogCell;
 import org.telegram.ui.Cells.UserCell;
 import org.telegram.ui.Components.RecyclerListView;
@@ -55,11 +55,11 @@ public class UserListPoller {
             }
             final ArrayList arrayList = new ArrayList(UserListPoller.this.collectedDialogIds);
             UserListPoller.this.collectedDialogIds.clear();
-            TLRPC$TL_stories_getPeerMaxIDs tLRPC$TL_stories_getPeerMaxIDs = new TLRPC$TL_stories_getPeerMaxIDs();
+            TL_stories$TL_stories_getPeerMaxIDs tL_stories$TL_stories_getPeerMaxIDs = new TL_stories$TL_stories_getPeerMaxIDs();
             for (int i = 0; i < arrayList.size(); i++) {
-                tLRPC$TL_stories_getPeerMaxIDs.id.add(MessagesController.getInstance(UserListPoller.this.currentAccount).getInputPeer(((Long) arrayList.get(i)).longValue()));
+                tL_stories$TL_stories_getPeerMaxIDs.id.add(MessagesController.getInstance(UserListPoller.this.currentAccount).getInputPeer(((Long) arrayList.get(i)).longValue()));
             }
-            ConnectionsManager.getInstance(UserListPoller.this.currentAccount).sendRequest(tLRPC$TL_stories_getPeerMaxIDs, new RequestDelegate() {
+            ConnectionsManager.getInstance(UserListPoller.this.currentAccount).sendRequest(tL_stories$TL_stories_getPeerMaxIDs, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                     UserListPoller.AnonymousClass1.this.lambda$run$1(arrayList, tLObject, tLRPC$TL_error);

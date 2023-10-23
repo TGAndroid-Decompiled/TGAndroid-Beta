@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_emojiList extends TLRPC$EmojiList {
-    public static int constructor = 2048790993;
     public ArrayList<Long> document_id = new ArrayList<>();
     public long hash;
 
@@ -24,7 +23,7 @@ public class TLRPC$TL_emojiList extends TLRPC$EmojiList {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2048790993);
         abstractSerializedData.writeInt64(this.hash);
         abstractSerializedData.writeInt32(481674261);
         int size = this.document_id.size();

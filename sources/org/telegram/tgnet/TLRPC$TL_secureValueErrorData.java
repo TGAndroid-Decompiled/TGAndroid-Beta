@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_secureValueErrorData extends TLRPC$SecureValueError {
-    public static int constructor = -391902247;
     public byte[] data_hash;
     public String field;
     public String text;
@@ -16,7 +15,7 @@ public class TLRPC$TL_secureValueErrorData extends TLRPC$SecureValueError {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-391902247);
         this.type.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeByteArray(this.data_hash);
         abstractSerializedData.writeString(this.field);

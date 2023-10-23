@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_secureRequiredTypeOneOf extends TLRPC$SecureRequiredType {
-    public static int constructor = 41187252;
     public ArrayList<TLRPC$SecureRequiredType> types = new ArrayList<>();
 
     @Override
@@ -26,7 +25,7 @@ public class TLRPC$TL_secureRequiredTypeOneOf extends TLRPC$SecureRequiredType {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(41187252);
         abstractSerializedData.writeInt32(481674261);
         int size = this.types.size();
         abstractSerializedData.writeInt32(size);

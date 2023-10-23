@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_installTheme extends TLObject {
-    public static int constructor = 2061776695;
     public boolean dark;
     public int flags;
     public String format;
@@ -13,7 +12,7 @@ public class TLRPC$TL_account_installTheme extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2061776695);
         int i = this.dark ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

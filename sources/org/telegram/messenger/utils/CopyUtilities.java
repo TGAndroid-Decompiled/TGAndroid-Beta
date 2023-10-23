@@ -7,12 +7,14 @@ import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.StrikethroughSpan;
 import android.text.style.StyleSpan;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.tgnet.TLRPC$MessageEntity;
@@ -24,6 +26,7 @@ import org.telegram.tgnet.TLRPC$TL_messageEntitySpoiler;
 import org.telegram.tgnet.TLRPC$TL_messageEntityStrike;
 import org.telegram.tgnet.TLRPC$TL_messageEntityUnderline;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.URLSpanReplacement;
 import org.xml.sax.Attributes;
 import org.xml.sax.ContentHandler;
@@ -39,6 +42,8 @@ public class CopyUtilities {
             }
             Object[] spans = fromHtml.getSpans(0, fromHtml.length(), Object.class);
             ArrayList arrayList = new ArrayList(spans.length);
+            ArrayList arrayList2 = new ArrayList();
+            ArrayList arrayList3 = new ArrayList();
             for (Object obj : spans) {
                 int spanStart = fromHtml.getSpanStart(obj);
                 int spanEnd = fromHtml.getSpanEnd(obj);
@@ -55,11 +60,18 @@ public class CopyUtilities {
                 } else if (obj instanceof StrikethroughSpan) {
                     arrayList.add(setEntityStartEnd(new TLRPC$TL_messageEntityStrike(), spanStart, spanEnd));
                 } else if (obj instanceof ParsedSpan) {
-                    int i = ((ParsedSpan) obj).type;
+                    ParsedSpan parsedSpan = (ParsedSpan) obj;
+                    int i = parsedSpan.type;
                     if (i == 0) {
                         arrayList.add(setEntityStartEnd(new TLRPC$TL_messageEntitySpoiler(), spanStart, spanEnd));
                     } else if (i == 1) {
-                        arrayList.add(setEntityStartEnd(new TLRPC$TL_messageEntityPre(), spanStart, spanEnd));
+                        if (!TextUtils.isEmpty(parsedSpan.lng)) {
+                            arrayList2.add(parsedSpan);
+                        } else {
+                            arrayList.add(setEntityStartEnd(new TLRPC$TL_messageEntityPre(), spanStart, spanEnd));
+                        }
+                    } else if (i == 2) {
+                        arrayList3.add(parsedSpan);
                     }
                 } else if (obj instanceof AnimatedEmojiSpan) {
                     TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji = new TLRPC$TL_messageEntityCustomEmoji();
@@ -85,6 +97,16 @@ public class CopyUtilities {
                 }
             }
             MediaDataController.addAnimatedEmojiSpans(arrayList, spannableString, null);
+            for (int i2 = 0; i2 < arrayList2.size(); i2++) {
+                ParsedSpan parsedSpan2 = (ParsedSpan) arrayList2.get(i2);
+                int spanStart3 = fromHtml.getSpanStart(parsedSpan2);
+                int spanEnd3 = fromHtml.getSpanEnd(parsedSpan2);
+                spannableString.setSpan(new CodeHighlighting.Span(true, 0, null, parsedSpan2.lng, spannableString.subSequence(spanStart3, spanEnd3).toString()), spanStart3, spanEnd3, 33);
+            }
+            for (int i3 = 0; i3 < arrayList3.size(); i3++) {
+                ParsedSpan parsedSpan3 = (ParsedSpan) arrayList3.get(i3);
+                QuoteSpan.putQuote(spannableString, fromHtml.getSpanStart(parsedSpan3), fromHtml.getSpanEnd(parsedSpan3));
+            }
             return spannableString;
         } catch (Exception e) {
             FileLog.e("Html.fromHtml", e);
@@ -237,7 +259,7 @@ public class CopyUtilities {
                 }
             } else if (str.equals("pre")) {
                 if (z) {
-                    editable.setSpan(new ParsedSpan(1), editable.length(), editable.length(), 17);
+                    editable.setSpan(new ParsedSpan(1, HTMLTagAttributesHandler.getValue(attributes, "lang")), editable.length(), editable.length(), 17);
                     return true;
                 }
                 ParsedSpan last2 = getLast(editable, ParsedSpan.class, 1);
@@ -246,6 +268,20 @@ public class CopyUtilities {
                     editable.removeSpan(last2);
                     if (spanStart3 != editable.length()) {
                         editable.setSpan(last2, spanStart3, editable.length(), 33);
+                    }
+                    return true;
+                }
+            } else if (str.equals("blockquote")) {
+                if (z) {
+                    editable.setSpan(new ParsedSpan(2), editable.length(), editable.length(), 17);
+                    return true;
+                }
+                ParsedSpan last3 = getLast(editable, ParsedSpan.class, 2);
+                if (last3 != null) {
+                    int spanStart4 = editable.getSpanStart(last3);
+                    editable.removeSpan(last3);
+                    if (spanStart4 != editable.length()) {
+                        editable.setSpan(last3, spanStart4, editable.length(), 33);
                     }
                     return true;
                 }
@@ -283,10 +319,17 @@ public class CopyUtilities {
     }
 
     public static class ParsedSpan {
+        final String lng;
         final int type;
 
         private ParsedSpan(int i) {
             this.type = i;
+            this.lng = null;
+        }
+
+        private ParsedSpan(int i, String str) {
+            this.type = i;
+            this.lng = str;
         }
     }
 }

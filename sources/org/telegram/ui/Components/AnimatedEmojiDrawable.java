@@ -559,6 +559,7 @@ public class AnimatedEmojiDrawable extends Drawable {
                 this.imageReceiver.setVideoThumbIsSame(true);
                 boolean z2 = (SharedConfig.getDevicePerformanceClass() == 0 && this.cacheType == 5) || ((i = this.cacheType) == 2 && !liteModeKeyboard) || (i == 3 && !liteModeReactions);
                 if (this.cacheType == 13) {
+                    this.imageReceiver.setCrossfadeWithOldImage(true);
                     z2 = true;
                 }
                 String str2 = this.sizedp + "_" + this.sizedp;
@@ -954,6 +955,7 @@ public class AnimatedEmojiDrawable extends Drawable {
         public boolean center;
         private AnimatedFloat changeProgress;
         private ColorFilter colorFilter;
+        private int colorFilterLastColor;
         private Drawable[] drawables;
         private boolean invalidateParent;
         private Integer lastColor;
@@ -1013,13 +1015,23 @@ public class AnimatedEmojiDrawable extends Drawable {
         }
 
         public void setColor(Integer num) {
+            PorterDuffColorFilter porterDuffColorFilter;
             Integer num2 = this.lastColor;
             if (num2 == null && num == null) {
                 return;
             }
             if (num2 == null || !num2.equals(num)) {
                 this.lastColor = num;
-                this.colorFilter = num != null ? new PorterDuffColorFilter(num.intValue(), PorterDuff.Mode.SRC_IN) : null;
+                if (num == null || this.colorFilterLastColor != num.intValue()) {
+                    if (num != null) {
+                        int intValue = num.intValue();
+                        this.colorFilterLastColor = intValue;
+                        porterDuffColorFilter = new PorterDuffColorFilter(intValue, PorterDuff.Mode.SRC_IN);
+                    } else {
+                        porterDuffColorFilter = null;
+                    }
+                    this.colorFilter = porterDuffColorFilter;
+                }
             }
         }
 
@@ -1087,6 +1099,10 @@ public class AnimatedEmojiDrawable extends Drawable {
             set(j, this.cacheType, z);
         }
 
+        public void resetAnimation() {
+            this.changeProgress.set(1.0f, true);
+        }
+
         public void set(long j, int i, boolean z) {
             Drawable[] drawableArr = this.drawables;
             if ((drawableArr[0] instanceof AnimatedEmojiDrawable) && ((AnimatedEmojiDrawable) drawableArr[0]).getDocumentId() == j) {
@@ -1120,6 +1136,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
             this.lastColor = null;
             this.colorFilter = null;
+            this.colorFilterLastColor = 0;
             play();
             invalidate();
         }
@@ -1169,6 +1186,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
             this.lastColor = null;
             this.colorFilter = null;
+            this.colorFilterLastColor = 0;
             play();
             invalidate();
         }
@@ -1202,6 +1220,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             }
             this.lastColor = null;
             this.colorFilter = null;
+            this.colorFilterLastColor = 0;
             play();
             invalidate();
         }

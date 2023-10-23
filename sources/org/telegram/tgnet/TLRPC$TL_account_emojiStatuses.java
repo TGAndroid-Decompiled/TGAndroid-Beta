@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_emojiStatuses extends TLRPC$account_EmojiStatuses {
-    public static int constructor = -1866176559;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.hash = abstractSerializedData.readInt64(z);
@@ -24,7 +22,7 @@ public class TLRPC$TL_account_emojiStatuses extends TLRPC$account_EmojiStatuses 
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1866176559);
         abstractSerializedData.writeInt64(this.hash);
         abstractSerializedData.writeInt32(481674261);
         int size = this.statuses.size();

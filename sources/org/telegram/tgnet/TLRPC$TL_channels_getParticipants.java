@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_getParticipants extends TLObject {
-    public static int constructor = 2010044880;
     public TLRPC$InputChannel channel;
     public TLRPC$ChannelParticipantsFilter filter;
     public long hash;
@@ -14,7 +13,7 @@ public class TLRPC$TL_channels_getParticipants extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2010044880);
         this.channel.serializeToStream(abstractSerializedData);
         this.filter.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.offset);

@@ -14,6 +14,7 @@ import android.os.SystemClock;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
+import androidx.core.graphics.ColorUtils;
 import com.google.zxing.common.detector.MathUtils;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
@@ -29,7 +30,8 @@ import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.Point;
-public class RecordControl extends View {
+import org.telegram.ui.Stories.recorder.FlashViews;
+public class RecordControl extends View implements FlashViews.Invertable {
     private final Paint buttonPaint;
     private final Paint buttonPaintWhite;
     private Path circlePath;
@@ -208,9 +210,9 @@ public class RecordControl extends View {
         paint3.setColor(1677721600);
         paint4.setColor(-1);
         paint6.setColor(1493172223);
+        paint7.setColor(402653184);
         paint6.setStyle(Paint.Style.STROKE);
         paint6.setStrokeCap(Paint.Cap.ROUND);
-        paint7.setColor(402653184);
         paint7.setStyle(Paint.Style.STROKE);
         paint7.setStrokeCap(Paint.Cap.ROUND);
         imageReceiver.setParentView(this);
@@ -282,6 +284,16 @@ public class RecordControl extends View {
     protected void onDetachedFromWindow() {
         this.galleryImage.onDetachedFromWindow();
         super.onDetachedFromWindow();
+    }
+
+    @Override
+    public void setInvert(float f) {
+        this.outlinePaint.setColor(ColorUtils.blendARGB(-1, -16777216, f));
+        this.buttonPaint.setColor(ColorUtils.blendARGB(1677721600, 369098752, f));
+        this.hintLinePaintWhite.setColor(ColorUtils.blendARGB(1493172223, 285212671, f));
+        this.hintLinePaintBlack.setColor(ColorUtils.blendARGB(402653184, 805306368, f));
+        this.flipDrawableWhite.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), PorterDuff.Mode.MULTIPLY));
+        this.unlockDrawable.setColorFilter(new PorterDuffColorFilter(ColorUtils.blendARGB(-1, -16777216, f), PorterDuff.Mode.MULTIPLY));
     }
 
     @Override

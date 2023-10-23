@@ -12,8 +12,6 @@ public abstract class TLRPC$InputPeer extends TLObject {
         switch (i) {
             case -1667893317:
                 tLRPC$InputPeer = new TLRPC$TL_inputPeerChannelFromMessage() {
-                    public static int constructor = -1667893317;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.peer = TLRPC$InputPeer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -23,7 +21,7 @@ public abstract class TLRPC$InputPeer extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1667893317);
                         this.peer.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.msg_id);
                         abstractSerializedData2.writeInt32((int) this.channel_id);
@@ -41,8 +39,6 @@ public abstract class TLRPC$InputPeer extends TLObject {
                 break;
             case 396093539:
                 tLRPC$InputPeer = new TLRPC$TL_inputPeerChat() {
-                    public static int constructor = 396093539;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.chat_id = abstractSerializedData2.readInt32(z2);
@@ -50,15 +46,13 @@ public abstract class TLRPC$InputPeer extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(396093539);
                         abstractSerializedData2.writeInt32((int) this.chat_id);
                     }
                 };
                 break;
             case 398123750:
                 tLRPC$InputPeer = new TLRPC$TL_inputPeerUserFromMessage() {
-                    public static int constructor = 398123750;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.peer = TLRPC$InputPeer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -68,7 +62,7 @@ public abstract class TLRPC$InputPeer extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(398123750);
                         this.peer.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.msg_id);
                         abstractSerializedData2.writeInt32((int) this.user_id);
@@ -77,8 +71,6 @@ public abstract class TLRPC$InputPeer extends TLObject {
                 break;
             case 548253432:
                 tLRPC$InputPeer = new TLRPC$TL_inputPeerChannel() {
-                    public static int constructor = 548253432;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.channel_id = abstractSerializedData2.readInt32(z2);
@@ -87,7 +79,7 @@ public abstract class TLRPC$InputPeer extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(548253432);
                         abstractSerializedData2.writeInt32((int) this.channel_id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                     }
@@ -101,8 +93,6 @@ public abstract class TLRPC$InputPeer extends TLObject {
                 break;
             case 2072935910:
                 tLRPC$InputPeer = new TLRPC$TL_inputPeerUser() {
-                    public static int constructor = 2072935910;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.user_id = abstractSerializedData2.readInt32(z2);
@@ -111,7 +101,7 @@ public abstract class TLRPC$InputPeer extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(2072935910);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                     }

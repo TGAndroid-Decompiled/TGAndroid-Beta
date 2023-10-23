@@ -2,9 +2,8 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
+import org.telegram.tgnet.tl.TL_stories$PeerStories;
 public class TLRPC$TL_userFull extends TLRPC$UserFull {
-    public static int constructor = -1179571092;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -80,13 +79,13 @@ public class TLRPC$TL_userFull extends TLRPC$UserFull {
             this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         if ((this.flags & ConnectionsManager.FileTypeVideo) != 0) {
-            this.stories = TLRPC$PeerStories.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.stories = TL_stories$PeerStories.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1179571092);
         int i = this.blocked ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.phone_calls_available ? i | 16 : i & (-17);

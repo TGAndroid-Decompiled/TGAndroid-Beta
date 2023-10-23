@@ -814,8 +814,10 @@ public abstract class BaseFragment {
                 return lambda$showAsSheet$1;
             }
         })};
+        iNavigationLayoutArr[0].setIsSheet(true);
         LaunchActivity.instance.sheetFragmentsStack.add(iNavigationLayoutArr[0]);
-        final BottomSheet[] bottomSheetArr = {new AnonymousClass1(this, getParentActivity(), true, baseFragment.getResourceProvider(), iNavigationLayoutArr, baseFragment, bottomSheetParams)};
+        baseFragment.onTransitionAnimationStart(true, false);
+        final BottomSheet[] bottomSheetArr = {new AnonymousClass1(this, getParentActivity(), true, baseFragment.getResourceProvider(), iNavigationLayoutArr, baseFragment, bottomSheetParams, bottomSheetArr)};
         if (bottomSheetParams != null) {
             bottomSheetArr[0].setAllowNestedScroll(bottomSheetParams.allowNestedScroll);
             bottomSheetArr[0].transitionFromRight(bottomSheetParams.transitionFromLeft);
@@ -831,6 +833,7 @@ public abstract class BaseFragment {
 
     public class AnonymousClass1 extends BottomSheet {
         final INavigationLayout[] val$actionBarLayout;
+        final BottomSheet[] val$bottomSheet;
         final BaseFragment val$fragment;
         final BottomSheetParams val$params;
 
@@ -839,15 +842,15 @@ public abstract class BaseFragment {
             return false;
         }
 
-        AnonymousClass1(BaseFragment baseFragment, Context context, boolean z, Theme.ResourcesProvider resourcesProvider, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment2, final BottomSheetParams bottomSheetParams) {
+        AnonymousClass1(BaseFragment baseFragment, Context context, boolean z, Theme.ResourcesProvider resourcesProvider, INavigationLayout[] iNavigationLayoutArr, final BaseFragment baseFragment2, final BottomSheetParams bottomSheetParams, BottomSheet[] bottomSheetArr) {
             super(context, z, resourcesProvider);
             this.val$actionBarLayout = iNavigationLayoutArr;
             this.val$fragment = baseFragment2;
             this.val$params = bottomSheetParams;
+            this.val$bottomSheet = bottomSheetArr;
             this.drawNavigationBar = true;
             iNavigationLayoutArr[0].setFragmentStack(new ArrayList());
             iNavigationLayoutArr[0].addFragmentToStack(baseFragment2);
-            iNavigationLayoutArr[0].setIsSheet(true);
             iNavigationLayoutArr[0].showLastFragment();
             ViewGroup view = iNavigationLayoutArr[0].getView();
             int i = this.backgroundPaddingLeft;
@@ -875,8 +878,20 @@ public abstract class BaseFragment {
         @Override
         protected void onCreate(Bundle bundle) {
             super.onCreate(bundle);
+            this.val$actionBarLayout[0].setWindow(this.val$bottomSheet[0].getWindow());
             fixNavigationBar(Theme.getColor(Theme.key_dialogBackgroundGray, this.val$fragment.getResourceProvider()));
             AndroidUtilities.setLightStatusBar(getWindow(), this.val$fragment.isLightStatusBar());
+        }
+
+        @Override
+        protected boolean canSwipeToBack() {
+            if (this.val$params.transitionFromLeft) {
+                INavigationLayout[] iNavigationLayoutArr = this.val$actionBarLayout;
+                if (iNavigationLayoutArr[0] != null && iNavigationLayoutArr[0].getFragmentStack().size() <= 1) {
+                    return true;
+                }
+            }
+            return false;
         }
 
         @Override
@@ -904,11 +919,24 @@ public abstract class BaseFragment {
         @Override
         public void onOpenAnimationEnd() {
             Runnable runnable;
+            this.val$fragment.onTransitionAnimationEnd(true, false);
             BottomSheetParams bottomSheetParams = this.val$params;
             if (bottomSheetParams == null || (runnable = bottomSheetParams.onOpenAnimationFinished) == null) {
                 return;
             }
             runnable.run();
+        }
+
+        @Override
+        protected void onInsetsChanged() {
+            INavigationLayout[] iNavigationLayoutArr = this.val$actionBarLayout;
+            if (iNavigationLayoutArr[0] != null) {
+                for (BaseFragment baseFragment : iNavigationLayoutArr[0].getFragmentStack()) {
+                    if (baseFragment.getFragmentView() != null) {
+                        baseFragment.getFragmentView().requestLayout();
+                    }
+                }
+            }
         }
     }
 

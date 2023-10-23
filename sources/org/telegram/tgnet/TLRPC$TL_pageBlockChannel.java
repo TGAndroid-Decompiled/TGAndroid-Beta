@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_pageBlockChannel extends TLRPC$PageBlock {
-    public static int constructor = -283684427;
     public TLRPC$Chat channel;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_pageBlockChannel extends TLRPC$PageBlock {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-283684427);
         this.channel.serializeToStream(abstractSerializedData);
     }
 }

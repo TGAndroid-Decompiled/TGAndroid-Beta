@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_statsGraphError extends TLRPC$StatsGraph {
-    public static int constructor = -1092839390;
     public String error;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_statsGraphError extends TLRPC$StatsGraph {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1092839390);
         abstractSerializedData.writeString(this.error);
     }
 }

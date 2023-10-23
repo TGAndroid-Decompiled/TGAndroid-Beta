@@ -17,11 +17,9 @@ public abstract class TLRPC$InputPrivacyRule extends TLObject {
                 break;
             case 195371015:
                 tLRPC$TL_inputPrivacyValueAllowChatParticipants = new TLRPC$InputPrivacyRule() {
-                    public static int constructor = 195371015;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(195371015);
                     }
                 };
                 break;

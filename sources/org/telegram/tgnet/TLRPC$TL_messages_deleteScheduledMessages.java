@@ -2,12 +2,11 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_messages_deleteScheduledMessages extends TLObject {
-    public static int constructor = 1504586518;
     public ArrayList<Integer> id = new ArrayList<>();
     public TLRPC$InputPeer peer;
 
     public static TLRPC$TL_messages_deleteScheduledMessages TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1504586518 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_messages_deleteScheduledMessages", Integer.valueOf(i)));
             }
@@ -41,7 +40,7 @@ public class TLRPC$TL_messages_deleteScheduledMessages extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1504586518);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
         int size = this.id.size();

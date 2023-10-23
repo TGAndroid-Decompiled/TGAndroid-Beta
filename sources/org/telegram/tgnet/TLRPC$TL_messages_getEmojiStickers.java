@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getEmojiStickers extends TLObject {
-    public static int constructor = -67329649;
     public long hash;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_messages_getEmojiStickers extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-67329649);
         abstractSerializedData.writeInt64(this.hash);
     }
 }

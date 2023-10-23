@@ -1741,7 +1741,7 @@ public class NotificationsController extends BaseController {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.createNotificationShortcut(androidx.core.app.NotificationCompat$Builder, long, java.lang.String, org.telegram.tgnet.TLRPC$User, org.telegram.tgnet.TLRPC$Chat, androidx.core.app.Person, boolean):java.lang.String");
     }
 
-    @TargetApi(26)
+    @TargetApi(MessageObject.TYPE_GIVEAWAY)
     protected void ensureGroupsCreated() {
         SharedPreferences notificationsSettings = getAccountInstance().getNotificationsSettings();
         if (this.groupsCreated == null) {
@@ -1851,7 +1851,7 @@ public class NotificationsController extends BaseController {
         this.channelGroupsCreated = true;
     }
 
-    @android.annotation.TargetApi(26)
+    @android.annotation.TargetApi(org.telegram.messenger.MessageObject.TYPE_GIVEAWAY)
     private java.lang.String validateChannelId(long r29, int r31, java.lang.String r32, long[] r33, int r34, android.net.Uri r35, int r36, boolean r37, boolean r38, boolean r39, int r40) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.NotificationsController.validateChannelId(long, int, java.lang.String, long[], int, android.net.Uri, int, boolean, boolean, boolean, int):java.lang.String");
     }

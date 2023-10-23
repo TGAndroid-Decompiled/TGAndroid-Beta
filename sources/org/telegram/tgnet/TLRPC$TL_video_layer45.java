@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_video_layer45 extends TLRPC$Video {
-    public static int constructor = -148338733;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.id = abstractSerializedData.readInt64(z);
@@ -18,7 +16,7 @@ public class TLRPC$TL_video_layer45 extends TLRPC$Video {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-148338733);
         abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeInt32(this.date);

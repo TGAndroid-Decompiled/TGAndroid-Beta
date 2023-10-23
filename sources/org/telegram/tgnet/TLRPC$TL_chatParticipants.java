@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_chatParticipants extends TLRPC$ChatParticipants {
-    public static int constructor = 1018991608;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.chat_id = abstractSerializedData.readInt64(z);
@@ -25,7 +23,7 @@ public class TLRPC$TL_chatParticipants extends TLRPC$ChatParticipants {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1018991608);
         abstractSerializedData.writeInt64(this.chat_id);
         abstractSerializedData.writeInt32(481674261);
         int size = this.participants.size();

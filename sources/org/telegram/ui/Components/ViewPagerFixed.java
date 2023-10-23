@@ -259,6 +259,7 @@ public class ViewPagerFixed extends FrameLayout {
                 }
                 ViewPagerFixed.this.manualScrolling = null;
                 ViewPagerFixed.this.onTabAnimationUpdate(true);
+                ViewPagerFixed.this.onScrollEnd();
             }
         });
         this.manualScrolling.setDuration(540L);

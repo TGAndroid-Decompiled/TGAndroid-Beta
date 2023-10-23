@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_secureFile extends TLRPC$SecureFile {
-    public static int constructor = 2097791614;
     public long access_hash;
     public int date;
     public int dc_id;
@@ -22,7 +21,7 @@ public class TLRPC$TL_secureFile extends TLRPC$SecureFile {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2097791614);
         abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt64(this.access_hash);
         abstractSerializedData.writeInt64(this.size);

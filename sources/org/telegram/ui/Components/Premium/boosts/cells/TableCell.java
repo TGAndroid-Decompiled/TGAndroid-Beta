@@ -1,0 +1,287 @@
+package org.telegram.ui.Components.Premium.boosts.cells;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Outline;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.os.Build;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewOutlineProvider;
+import android.widget.FrameLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+import java.util.Date;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$Chat;
+import org.telegram.tgnet.TLRPC$TL_payments_checkedGiftCode;
+import org.telegram.tgnet.TLRPC$User;
+import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.BackupImageView;
+import org.telegram.ui.Components.LayoutHelper;
+@SuppressLint({"ViewConstructor"})
+public class TableCell extends FrameLayout {
+    private final TextView dateNameTextView;
+    private final TextView dateTextView;
+    private FrameLayout fromFrameLayout;
+    private final BackupImageView fromImageView;
+    private final TextView fromNameTextView;
+    private final TextView fromTextView;
+    private final TextView giftNameTextView;
+    private final TextView giftTextView;
+    private final Paint linePaint;
+    private final TextView reasonNameTextView;
+    private final TextView reasonTextView;
+    private final Theme.ResourcesProvider resourcesProvider;
+    private final Path roundPath;
+    private final RectF roundRect;
+    private FrameLayout toFrameLayout;
+    private final BackupImageView toImageView;
+    private final TextView toNameTextView;
+    private final TextView toTextView;
+
+    public TableCell(Context context, final Theme.ResourcesProvider resourcesProvider) {
+        super(context);
+        Paint paint = new Paint();
+        this.linePaint = paint;
+        this.roundPath = new Path();
+        this.roundRect = new RectF();
+        paint.setStyle(Paint.Style.STROKE);
+        this.resourcesProvider = resourcesProvider;
+        TextView createTextView = createTextView(LocaleController.getString("BoostingFrom", R.string.BoostingFrom), false);
+        this.fromNameTextView = createTextView;
+        TextView createTextView2 = createTextView(LocaleController.getString("BoostingTo", R.string.BoostingTo), false);
+        this.toNameTextView = createTextView2;
+        TextView createTextView3 = createTextView(LocaleController.getString("BoostingGift", R.string.BoostingGift), false);
+        this.giftNameTextView = createTextView3;
+        TextView createTextView4 = createTextView(LocaleController.getString("BoostingReason", R.string.BoostingReason), false);
+        this.reasonNameTextView = createTextView4;
+        TextView createTextView5 = createTextView(LocaleController.getString("BoostingDate", R.string.BoostingDate), false);
+        this.dateNameTextView = createTextView5;
+        TextView createTextView6 = createTextView(true);
+        this.fromTextView = createTextView6;
+        TextView createTextView7 = createTextView(true);
+        this.toTextView = createTextView7;
+        TextView createTextView8 = createTextView(false);
+        this.giftTextView = createTextView8;
+        TextView createTextView9 = createTextView(true);
+        this.reasonTextView = createTextView9;
+        TextView createTextView10 = createTextView(false);
+        this.dateTextView = createTextView10;
+        BackupImageView backupImageView = new BackupImageView(context);
+        this.fromImageView = backupImageView;
+        backupImageView.setRoundRadius(AndroidUtilities.dp(12.0f));
+        BackupImageView backupImageView2 = new BackupImageView(context);
+        this.toImageView = backupImageView2;
+        backupImageView2.setRoundRadius(AndroidUtilities.dp(12.0f));
+        TableRow tableRow = new TableRow(context);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fromFrameLayout = frameLayout;
+        boolean z = LocaleController.isRTL;
+        frameLayout.addView(backupImageView, LayoutHelper.createFrame(24, 24.0f, z ? 5 : 3, z ? 0.0f : 12.0f, 0.0f, z ? 12.0f : 0.0f, 0.0f));
+        FrameLayout frameLayout2 = this.fromFrameLayout;
+        boolean z2 = LocaleController.isRTL;
+        frameLayout2.addView(createTextView6, LayoutHelper.createFrame(-2, -2.0f, (z2 ? 5 : 3) | 16, z2 ? 0.0f : 29.0f, 0.0f, z2 ? 29.0f : 0.0f, 0.0f));
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(-2, -2, LocaleController.isRTL ? 1.0f : 0.0f);
+        layoutParams.gravity = 16;
+        if (LocaleController.isRTL) {
+            tableRow.addView(this.fromFrameLayout, layoutParams);
+            tableRow.addView(createTextView, new TableRow.LayoutParams(-2, -2));
+        } else {
+            tableRow.addView(createTextView, new TableRow.LayoutParams(-2, -2));
+            tableRow.addView(this.fromFrameLayout, layoutParams);
+        }
+        this.fromFrameLayout.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
+        TableRow tableRow2 = new TableRow(context);
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        this.toFrameLayout = frameLayout3;
+        boolean z3 = LocaleController.isRTL;
+        frameLayout3.addView(backupImageView2, LayoutHelper.createFrame(24, 24.0f, z3 ? 5 : 3, z3 ? 0.0f : 12.0f, 0.0f, z3 ? 12.0f : 0.0f, 0.0f));
+        FrameLayout frameLayout4 = this.toFrameLayout;
+        boolean z4 = LocaleController.isRTL;
+        frameLayout4.addView(createTextView7, LayoutHelper.createFrame(-2, -2.0f, (z4 ? 5 : 3) | 16, z4 ? 0.0f : 29.0f, 0.0f, z4 ? 29.0f : 0.0f, 0.0f));
+        TableRow.LayoutParams layoutParams2 = new TableRow.LayoutParams(-2, -2, LocaleController.isRTL ? 1.0f : 0.0f);
+        layoutParams2.gravity = 16;
+        if (LocaleController.isRTL) {
+            tableRow2.addView(this.toFrameLayout, layoutParams2);
+            tableRow2.addView(createTextView2, new TableRow.LayoutParams(-2, -2));
+        } else {
+            tableRow2.addView(createTextView2, new TableRow.LayoutParams(-2, -2));
+            tableRow2.addView(this.toFrameLayout, layoutParams2);
+        }
+        this.toFrameLayout.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
+        TableRow tableRow3 = new TableRow(context);
+        if (LocaleController.isRTL) {
+            tableRow3.addView(createTextView8, new TableRow.LayoutParams(-2, -2, 1.0f));
+            tableRow3.addView(createTextView3, new TableRow.LayoutParams(-2, -2));
+        } else {
+            tableRow3.addView(createTextView3, new TableRow.LayoutParams(-2, -2));
+            tableRow3.addView(createTextView8, new TableRow.LayoutParams(-2, -2));
+        }
+        TableRow tableRow4 = new TableRow(context);
+        if (LocaleController.isRTL) {
+            tableRow4.addView(createTextView9, new TableRow.LayoutParams(-2, -2, 1.0f));
+            tableRow4.addView(createTextView4, new TableRow.LayoutParams(-2, -2));
+        } else {
+            tableRow4.addView(createTextView4, new TableRow.LayoutParams(-2, -2));
+            tableRow4.addView(createTextView9, new TableRow.LayoutParams(-2, -2));
+        }
+        TableRow tableRow5 = new TableRow(context);
+        if (LocaleController.isRTL) {
+            tableRow5.addView(createTextView10, new TableRow.LayoutParams(-2, -2, 1.0f));
+            tableRow5.addView(createTextView5, new TableRow.LayoutParams(-2, -2));
+        } else {
+            tableRow5.addView(createTextView5, new TableRow.LayoutParams(-2, -2));
+            tableRow5.addView(createTextView10, new TableRow.LayoutParams(-2, -2));
+        }
+        TableLayout tableLayout = new TableLayout(context) {
+            @Override
+            protected void dispatchDraw(Canvas canvas) {
+                TableCell.this.roundRect.set(0.0f, 0.0f, getWidth(), getHeight());
+                TableCell.this.roundPath.rewind();
+                TableCell.this.roundPath.addRoundRect(TableCell.this.roundRect, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), Path.Direction.CW);
+                if (Build.VERSION.SDK_INT < 21) {
+                    canvas.clipPath(TableCell.this.roundPath);
+                }
+                super.dispatchDraw(canvas);
+                TableCell.this.linePaint.setColor(Theme.getColor(Theme.key_divider, resourcesProvider));
+                TableCell.this.linePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
+                float height = getHeight() / 5.0f;
+                for (int i = 1; i <= 4; i++) {
+                    float f = height * i;
+                    canvas.drawLine(0.0f, f, getWidth(), f, TableCell.this.linePaint);
+                }
+                float right = LocaleController.isRTL ? TableCell.this.dateTextView.getRight() : TableCell.this.dateTextView.getLeft();
+                canvas.drawLine(right, 0.0f, right, getHeight(), TableCell.this.linePaint);
+                TableCell.this.linePaint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+                canvas.drawPath(TableCell.this.roundPath, TableCell.this.linePaint);
+            }
+        };
+        tableLayout.addView(tableRow);
+        tableLayout.addView(tableRow2);
+        tableLayout.addView(tableRow3);
+        tableLayout.addView(tableRow4);
+        tableLayout.addView(tableRow5);
+        if (LocaleController.isRTL) {
+            tableLayout.setColumnShrinkable(0, true);
+        } else {
+            tableLayout.setColumnShrinkable(1, true);
+        }
+        addView(tableLayout, LayoutHelper.createFrame(-1, -2.0f));
+        if (Build.VERSION.SDK_INT >= 21) {
+            tableLayout.setOutlineProvider(new ViewOutlineProvider(this) {
+                @Override
+                public void getOutline(View view, Outline outline) {
+                    outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), AndroidUtilities.dp(6.0f));
+                }
+            });
+            tableLayout.setClipToOutline(true);
+        }
+        setPaddingRelative(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(14.0f), 0);
+    }
+
+    public void setData(final TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, final Utilities.Callback<TLObject> callback) {
+        String string;
+        Date date = new Date(tLRPC$TL_payments_checkedGiftCode.date * 1000);
+        this.dateTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().formatterYear.format(date), LocaleController.getInstance().formatterDay.format(date)));
+        this.reasonTextView.setTextColor(Theme.getColor(tLRPC$TL_payments_checkedGiftCode.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
+        TextView textView = this.reasonTextView;
+        if (tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
+            string = LocaleController.getString("BoostingGiveaway", R.string.BoostingGiveaway);
+        } else {
+            string = LocaleController.getString("BoostingYouWereSelected", R.string.BoostingYouWereSelected);
+        }
+        textView.setText(string);
+        if (tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
+            this.reasonTextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    Utilities.Callback.this.run(tLRPC$TL_payments_checkedGiftCode);
+                }
+            });
+        } else {
+            this.reasonTextView.setOnClickListener(null);
+        }
+        int i = tLRPC$TL_payments_checkedGiftCode.months;
+        this.giftTextView.setText(LocaleController.formatString("BoostingTelegramPremiumFor", R.string.BoostingTelegramPremiumFor, i == 12 ? LocaleController.formatPluralString("Years", 1, new Object[0]) : LocaleController.formatPluralString("Months", i, new Object[0])));
+        final TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$TL_payments_checkedGiftCode.from_id)));
+        if (chat != null) {
+            TextView textView2 = this.fromTextView;
+            textView2.setText(Emoji.replaceEmoji(chat.title, textView2.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+            this.fromImageView.setForUserOrChat(chat, new AvatarDrawable(chat));
+            this.fromFrameLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    Utilities.Callback.this.run(chat);
+                }
+            });
+        } else {
+            final TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$TL_payments_checkedGiftCode.from_id.user_id));
+            this.fromTextView.setText(Emoji.replaceEmoji(UserObject.getFirstName(user), this.fromTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+            this.fromImageView.setForUserOrChat(user, new AvatarDrawable(user));
+            this.fromFrameLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    Utilities.Callback.this.run(user);
+                }
+            });
+        }
+        if (tLRPC$TL_payments_checkedGiftCode.to_id == -1 && tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
+            this.reasonTextView.setText("Incomplete Giveaway");
+            this.toTextView.setText("No recipient");
+            this.toTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
+            ((ViewGroup.MarginLayoutParams) this.toTextView.getLayoutParams()).leftMargin = 0;
+            ((ViewGroup.MarginLayoutParams) this.toTextView.getLayoutParams()).rightMargin = 0;
+            this.toImageView.setVisibility(8);
+            return;
+        }
+        final TLRPC$User user2 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$TL_payments_checkedGiftCode.to_id));
+        if (user2 != null) {
+            this.toTextView.setText(Emoji.replaceEmoji(UserObject.getFirstName(user2), this.fromTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+            this.toImageView.setForUserOrChat(user2, new AvatarDrawable(user2));
+            this.toFrameLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public final void onClick(View view) {
+                    Utilities.Callback.this.run(user2);
+                }
+            });
+        }
+    }
+
+    private TextView createTextView(boolean z) {
+        return createTextView(null, z);
+    }
+
+    private TextView createTextView(String str, boolean z) {
+        TextView textView = new TextView(getContext());
+        textView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
+        textView.setTextSize(1, 14.0f);
+        textView.setGravity(LocaleController.isRTL ? 5 : 3);
+        if (str != null) {
+            textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            textView.setText(str);
+            textView.setBackgroundColor(Theme.getColor(Theme.key_graySection, this.resourcesProvider));
+            textView.setPadding(AndroidUtilities.dp(LocaleController.isRTL ? 32.0f : 12.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(LocaleController.isRTL ? 12.0f : 32.0f), AndroidUtilities.dp(11.0f));
+        } else {
+            textView.setSingleLine(true);
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            textView.setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
+        }
+        return textView;
+    }
+}

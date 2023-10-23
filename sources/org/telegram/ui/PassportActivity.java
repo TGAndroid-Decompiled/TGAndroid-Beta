@@ -197,6 +197,7 @@ import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.EmptyTextProgressView;
 import org.telegram.ui.Components.HintEditText;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository$$ExternalSyntheticLambda29;
 import org.telegram.ui.Components.RadialProgress;
 import org.telegram.ui.Components.SlideView;
 import org.telegram.ui.CountrySelectActivity;
@@ -1857,8 +1858,6 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
             if (PassportActivity.checkSecret(passportActivity2.decryptSecret(passportActivity2.secureSecret, PassportActivity.this.saltedPassword), Long.valueOf(PassportActivity.this.secureSecretId)) && bArr.length != 0 && PassportActivity.this.secureSecretId != 0) {
                 if (PassportActivity.this.currentBotId == 0) {
                     ConnectionsManager.getInstance(((BaseFragment) PassportActivity.this).currentAccount).sendRequest(new TLObject() {
-                        public static int constructor = -1299661699;
-
                         @Override
                         public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
                             TLRPC$Vector tLRPC$Vector = new TLRPC$Vector();
@@ -1875,7 +1874,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
 
                         @Override
                         public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                            abstractSerializedData.writeInt32(constructor);
+                            abstractSerializedData.writeInt32(-1299661699);
                         }
                     }, new RequestDelegate() {
                         @Override
@@ -2556,7 +2555,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         } catch (Exception e) {
             FileLog.e(e);
         }
-        Collections.sort(this.countriesArray, CountrySelectActivity$CountryAdapter$$ExternalSyntheticLambda2.INSTANCE);
+        Collections.sort(this.countriesArray, BoostRepository$$ExternalSyntheticLambda29.INSTANCE);
         String str3 = UserConfig.getInstance(this.currentAccount).getCurrentUser().phone;
         TextSettingsCell textSettingsCell = new TextSettingsCell(context);
         textSettingsCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4));
@@ -5790,7 +5789,7 @@ public class PassportActivity extends BaseFragment implements NotificationCenter
         tLRPC$TL_codeSettings.allow_app_hash = PushListenerController.GooglePushListenerServiceProvider.INSTANCE.hasServices();
         SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
         if (tLRPC$TL_account_sendVerifyPhoneCode.settings.allow_app_hash) {
-            sharedPreferences.edit().putString("sms_hash", BuildVars.SMS_HASH).commit();
+            sharedPreferences.edit().putString("sms_hash", BuildVars.getSmsHash()).commit();
         } else {
             sharedPreferences.edit().remove("sms_hash").commit();
         }

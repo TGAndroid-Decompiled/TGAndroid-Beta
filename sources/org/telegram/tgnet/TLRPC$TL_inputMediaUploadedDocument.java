@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputMediaUploadedDocument extends TLRPC$InputMedia {
-    public static int constructor = 1530447553;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -53,7 +51,7 @@ public class TLRPC$TL_inputMediaUploadedDocument extends TLRPC$InputMedia {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1530447553);
         int i = this.nosound_video ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
         int i2 = this.force_file ? i | 16 : i & (-17);

@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_messages_getWebPagePreview extends TLObject {
-    public static int constructor = -1956073268;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
     public String message;
@@ -14,7 +13,7 @@ public class TLRPC$TL_messages_getWebPagePreview extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1956073268);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeString(this.message);
         if ((this.flags & 8) != 0) {

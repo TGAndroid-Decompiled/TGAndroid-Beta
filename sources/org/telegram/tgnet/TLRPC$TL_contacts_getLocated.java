@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_contacts_getLocated extends TLObject {
-    public static int constructor = -750207932;
     public boolean background;
     public int flags;
     public TLRPC$InputGeoPoint geo_point;
@@ -13,7 +12,7 @@ public class TLRPC$TL_contacts_getLocated extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-750207932);
         int i = this.background ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

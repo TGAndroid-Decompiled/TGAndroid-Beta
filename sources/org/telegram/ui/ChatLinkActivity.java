@@ -733,8 +733,6 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         if (!this.loadingChats && this.isChannel && this.info.linked_chat_id == 0) {
             this.loadingChats = true;
             getConnectionsManager().sendRequest(new TLObject() {
-                public static int constructor = -170208392;
-
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
                     return TLRPC$messages_Chats.TLdeserialize(abstractSerializedData, i, z);
@@ -742,7 +740,7 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(-170208392);
                 }
             }, new RequestDelegate() {
                 @Override

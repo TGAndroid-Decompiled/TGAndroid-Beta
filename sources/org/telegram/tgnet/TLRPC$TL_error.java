@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_error extends TLObject {
-    public static int constructor = -994444869;
     public int code;
     public String text;
 
     public static TLRPC$TL_error TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-994444869 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_error", Integer.valueOf(i)));
             }
@@ -24,7 +23,7 @@ public class TLRPC$TL_error extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-994444869);
         abstractSerializedData.writeInt32(this.code);
         abstractSerializedData.writeString(this.text);
     }

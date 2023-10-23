@@ -219,17 +219,17 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
             this.backupImageView.setImage(ImageLocation.getForDocument(emojiAnimatedSticker), "50_50", svgThumb, (Object) null);
             if (chatThemeItem.chatTheme.wallpaper != null) {
                 if (this.attached && (chatBackgroundDrawable2 = this.chatBackgroundDrawable) != null) {
-                    chatBackgroundDrawable2.onDetachedFromWindow();
+                    chatBackgroundDrawable2.onDetachedFromWindow(this);
                 }
                 ChatBackgroundDrawable chatBackgroundDrawable3 = new ChatBackgroundDrawable(chatThemeItem.chatTheme.wallpaper, false, true);
                 this.chatBackgroundDrawable = chatBackgroundDrawable3;
                 chatBackgroundDrawable3.setParent(this);
                 if (this.attached) {
-                    this.chatBackgroundDrawable.onAttachedToWindow();
+                    this.chatBackgroundDrawable.onAttachedToWindow(this);
                 }
             } else {
                 if (this.attached && (chatBackgroundDrawable = this.chatBackgroundDrawable) != null) {
-                    chatBackgroundDrawable.onDetachedFromWindow();
+                    chatBackgroundDrawable.onDetachedFromWindow(this);
                 }
                 this.chatBackgroundDrawable = null;
             }
@@ -750,7 +750,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         this.attached = true;
         ChatBackgroundDrawable chatBackgroundDrawable = this.chatBackgroundDrawable;
         if (chatBackgroundDrawable != null) {
-            chatBackgroundDrawable.onAttachedToWindow();
+            chatBackgroundDrawable.onAttachedToWindow(this);
         }
     }
 
@@ -761,7 +761,7 @@ public class ThemeSmallPreviewView extends FrameLayout implements NotificationCe
         this.attached = false;
         ChatBackgroundDrawable chatBackgroundDrawable = this.chatBackgroundDrawable;
         if (chatBackgroundDrawable != null) {
-            chatBackgroundDrawable.onDetachedFromWindow();
+            chatBackgroundDrawable.onDetachedFromWindow(this);
         }
     }
 

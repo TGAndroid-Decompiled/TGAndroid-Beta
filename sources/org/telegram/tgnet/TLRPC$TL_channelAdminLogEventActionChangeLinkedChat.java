@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionChangeLinkedChat extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = 84703944;
     public long new_value;
     public long prev_value;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_channelAdminLogEventActionChangeLinkedChat extends TLRPC$C
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(84703944);
         abstractSerializedData.writeInt64(this.prev_value);
         abstractSerializedData.writeInt64(this.new_value);
     }

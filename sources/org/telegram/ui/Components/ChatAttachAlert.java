@@ -597,6 +597,14 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         public void onSetBackButtonVisible(boolean z) {
             AndroidUtilities.updateImageViewImageAnimated(ChatAttachAlert.this.actionBar.getBackButton(), z ? R.drawable.ic_ab_back : R.drawable.ic_close_white);
         }
+
+        @Override
+        public void onSetSettingsButtonVisible(boolean z) {
+            ActionBarMenuSubItem actionBarMenuSubItem = this.val$webViewLayout.settingsItem;
+            if (actionBarMenuSubItem != null) {
+                actionBarMenuSubItem.setVisibility(z ? 0 : 8);
+            }
+        }
     }
 
     public boolean checkCaption(CharSequence charSequence) {

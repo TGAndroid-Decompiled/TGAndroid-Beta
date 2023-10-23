@@ -81,7 +81,7 @@ public class TextSelectionHint extends View {
                 animator.removeAllListeners();
                 this.a.cancel();
             }
-            String string = LocaleController.getString("TextSelectionHit", R.string.TextSelectionHit);
+            String string = LocaleController.getString(R.string.TextSelectionHint);
             Matcher matcher = Pattern.compile("\\*\\*.*\\*\\*").matcher(string);
             String group = matcher.matches() ? matcher.group() : null;
             String replace = string.replace("**", "");

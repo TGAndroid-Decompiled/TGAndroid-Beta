@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_upload_getWebFile extends TLObject {
-    public static int constructor = 619086221;
     public int limit;
     public TLRPC$InputWebFileLocation location;
     public int offset;
@@ -12,7 +11,7 @@ public class TLRPC$TL_upload_getWebFile extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(619086221);
         this.location.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.offset);
         abstractSerializedData.writeInt32(this.limit);

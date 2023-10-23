@@ -70,6 +70,7 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.browser.Browser;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
@@ -112,6 +113,7 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.tgnet.TLRPC$WallPaper;
 import org.telegram.tgnet.TLRPC$WallPaperSettings;
+import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -3334,6 +3336,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     tLRPC$TL_message4.id = 1;
                     TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader = new TLRPC$TL_messageReplyHeader();
                     tLRPC$TL_message4.reply_to = tLRPC$TL_messageReplyHeader;
+                    tLRPC$TL_messageReplyHeader.flags |= 16;
                     tLRPC$TL_messageReplyHeader.reply_to_msg_id = 5;
                     tLRPC$TL_message4.media = new TLRPC$TL_messageMediaEmpty();
                     tLRPC$TL_message4.out = false;
@@ -3501,6 +3504,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     tLRPC$TL_message12.id = 1;
                     TLRPC$TL_messageReplyHeader tLRPC$TL_messageReplyHeader2 = new TLRPC$TL_messageReplyHeader();
                     tLRPC$TL_message12.reply_to = tLRPC$TL_messageReplyHeader2;
+                    tLRPC$TL_messageReplyHeader2.flags |= 16;
                     tLRPC$TL_messageReplyHeader2.reply_to_msg_id = 5;
                     tLRPC$TL_message12.media = new TLRPC$TL_messageMediaEmpty();
                     tLRPC$TL_message12.out = false;
@@ -3812,6 +3816,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell2, int i2) {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell2, i2);
+                    }
+
+                    @Override
                     public void didPressHiddenForward(ChatMessageCell chatMessageCell2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHiddenForward(this, chatMessageCell2);
                     }
@@ -3852,6 +3861,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     }
 
                     @Override
+                    public void didPressSponsoredClose() {
+                        ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                    }
+
+                    @Override
                     public void didPressTime(ChatMessageCell chatMessageCell2) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell2);
                     }
@@ -3884,6 +3898,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public void didPressVoteButtons(ChatMessageCell chatMessageCell2, ArrayList arrayList, int i2, int i3, int i4) {
                         ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell2, arrayList, i2, i3, i4);
+                    }
+
+                    @Override
+                    public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC$WebPage tLRPC$WebPage, String str, boolean z) {
+                        Browser.openUrl(chatMessageCell2.getContext(), str);
                     }
 
                     @Override
@@ -4023,6 +4042,11 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                     @Override
                     public void didOpenPremiumGift(ChatActionCell chatActionCell2, TLRPC$TL_premiumGiftOption tLRPC$TL_premiumGiftOption, boolean z) {
                         ChatActionCell.ChatActionCellDelegate.CC.$default$didOpenPremiumGift(this, chatActionCell2, tLRPC$TL_premiumGiftOption, z);
+                    }
+
+                    @Override
+                    public void didOpenPremiumGiftChannel(ChatActionCell chatActionCell2, String str, boolean z) {
+                        ChatActionCell.ChatActionCellDelegate.CC.$default$didOpenPremiumGiftChannel(this, chatActionCell2, str, z);
                     }
 
                     @Override

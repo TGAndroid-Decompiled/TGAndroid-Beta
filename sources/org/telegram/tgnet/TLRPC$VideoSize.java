@@ -29,8 +29,6 @@ public abstract class TLRPC$VideoSize extends TLObject {
                 break;
             case 1130084743:
                 tLRPC$TL_videoSize = new TLRPC$TL_videoSize() {
-                    public static int constructor = 1130084743;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.type = abstractSerializedData2.readString(z2);
@@ -42,7 +40,7 @@ public abstract class TLRPC$VideoSize extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1130084743);
                         abstractSerializedData2.writeString(this.type);
                         this.location.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.w);

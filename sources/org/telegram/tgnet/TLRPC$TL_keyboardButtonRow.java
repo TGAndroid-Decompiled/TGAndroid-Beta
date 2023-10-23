@@ -2,11 +2,10 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_keyboardButtonRow extends TLObject {
-    public static int constructor = 2002815875;
     public ArrayList<TLRPC$KeyboardButton> buttons = new ArrayList<>();
 
     public static TLRPC$TL_keyboardButtonRow TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (2002815875 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_keyboardButtonRow", Integer.valueOf(i)));
             }
@@ -38,7 +37,7 @@ public class TLRPC$TL_keyboardButtonRow extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2002815875);
         abstractSerializedData.writeInt32(481674261);
         int size = this.buttons.size();
         abstractSerializedData.writeInt32(size);

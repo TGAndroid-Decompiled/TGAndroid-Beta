@@ -42,7 +42,7 @@ import org.telegram.ui.Stories.StoriesUtilities;
 public class UserCell extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     private TextView addButton;
     private TextView adminTextView;
-    private AvatarDrawable avatarDrawable;
+    protected AvatarDrawable avatarDrawable;
     public BackupImageView avatarImageView;
     private CheckBox checkBox;
     private CheckBoxSquare checkBoxBig;
@@ -58,14 +58,14 @@ public class UserCell extends FrameLayout implements NotificationCenter.Notifica
     private TLRPC$FileLocation lastAvatar;
     private String lastName;
     private int lastStatus;
-    private SimpleTextView nameTextView;
+    protected SimpleTextView nameTextView;
     public boolean needDivider;
     private Drawable premiumDrawable;
-    private Theme.ResourcesProvider resourcesProvider;
+    protected Theme.ResourcesProvider resourcesProvider;
     private boolean selfAsSavedMessages;
     private int statusColor;
     private int statusOnlineColor;
-    private SimpleTextView statusTextView;
+    protected SimpleTextView statusTextView;
     private boolean storiable;
     public StoriesUtilities.AvatarStoryParams storyParams;
 

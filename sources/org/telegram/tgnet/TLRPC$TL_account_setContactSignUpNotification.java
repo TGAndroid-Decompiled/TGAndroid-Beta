@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_setContactSignUpNotification extends TLObject {
-    public static int constructor = -806076575;
     public boolean silent;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_account_setContactSignUpNotification extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-806076575);
         abstractSerializedData.writeBool(this.silent);
     }
 }

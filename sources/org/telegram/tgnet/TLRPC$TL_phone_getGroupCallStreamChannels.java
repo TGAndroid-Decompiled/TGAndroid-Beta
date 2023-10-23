@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_phone_getGroupCallStreamChannels extends TLObject {
-    public static int constructor = 447879488;
     public TLRPC$TL_inputGroupCall call;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_phone_getGroupCallStreamChannels extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(447879488);
         this.call.serializeToStream(abstractSerializedData);
     }
 }

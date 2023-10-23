@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_auth_loggedOut extends TLObject {
-    public static int constructor = -1012759713;
     public int flags;
     public byte[] future_auth_token;
 
     public static TLRPC$TL_auth_loggedOut TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1012759713 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_auth_loggedOut", Integer.valueOf(i)));
             }
@@ -27,7 +26,7 @@ public class TLRPC$TL_auth_loggedOut extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1012759713);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeByteArray(this.future_auth_token);

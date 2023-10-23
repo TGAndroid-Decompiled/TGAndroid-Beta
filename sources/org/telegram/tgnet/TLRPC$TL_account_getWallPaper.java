@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_getWallPaper extends TLObject {
-    public static int constructor = -57811990;
     public TLRPC$InputWallPaper wallpaper;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_account_getWallPaper extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-57811990);
         this.wallpaper.serializeToStream(abstractSerializedData);
     }
 }

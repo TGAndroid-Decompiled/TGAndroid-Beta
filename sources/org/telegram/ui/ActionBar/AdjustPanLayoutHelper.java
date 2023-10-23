@@ -22,7 +22,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.messenger.UserConfig;
 public class AdjustPanLayoutHelper {
     public static boolean USE_ANDROID11_INSET_ANIMATOR = false;
     public static final Interpolator keyboardInterpolator = ChatListItemAnimator.DEFAULT_INTERPOLATOR;
@@ -80,7 +79,6 @@ public class AdjustPanLayoutHelper {
                     AdjustPanLayoutHelper.this.lambda$animateHeight$0(valueAnimator);
                 }
             });
-            int i3 = UserConfig.selectedAccount;
             this.animator.addListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animator) {

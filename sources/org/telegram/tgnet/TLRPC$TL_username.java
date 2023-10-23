@@ -1,13 +1,12 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_username extends TLObject {
-    public static int constructor = -1274595769;
     public boolean active;
     public boolean editable;
     public int flags;
     public String username;
 
     public static TLRPC$TL_username TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1274595769 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_username", Integer.valueOf(i)));
             }
@@ -29,7 +28,7 @@ public class TLRPC$TL_username extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1274595769);
         int i = this.editable ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.active ? i | 2 : i & (-3);

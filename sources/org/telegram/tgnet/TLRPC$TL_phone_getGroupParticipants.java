@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_phone_getGroupParticipants extends TLObject {
-    public static int constructor = -984033109;
     public TLRPC$TL_inputGroupCall call;
     public int limit;
     public String offset;
@@ -16,7 +15,7 @@ public class TLRPC$TL_phone_getGroupParticipants extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-984033109);
         this.call.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
         int size = this.ids.size();

@@ -37,6 +37,8 @@ import org.telegram.tgnet.TLRPC$InputStorePaymentPurpose;
 import org.telegram.tgnet.TLRPC$TL_dataJSON;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_inputStorePaymentGiftPremium;
+import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiftCode;
+import org.telegram.tgnet.TLRPC$TL_inputStorePaymentPremiumGiveaway;
 import org.telegram.tgnet.TLRPC$TL_payments_assignPlayMarketTransaction;
 import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.ui.PremiumPreviewFragment;
@@ -48,6 +50,7 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
     private boolean isDisconnected;
     private String lastPremiumToken;
     private String lastPremiumTransaction;
+    private Runnable onCanceled;
     public static final String PREMIUM_PRODUCT_ID = "telegram_premium";
     public static final QueryProductDetailsParams.Product PREMIUM_PRODUCT = QueryProductDetailsParams.Product.newBuilder().setProductType("subs").setProductId(PREMIUM_PRODUCT_ID).build();
     private final Map<String, Consumer<BillingResult>> resultListeners = new HashMap();
@@ -66,6 +69,10 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
 
     private BillingController(Context context) {
         this.billingClient = BillingClient.newBuilder(context).enablePendingPurchases().setListener(this).build();
+    }
+
+    public void setOnCanceled(Runnable runnable) {
+        this.onCanceled = runnable;
     }
 
     public String getLastPremiumTransaction() {
@@ -240,6 +247,11 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             if (billingResult.getResponseCode() == 1) {
                 PremiumPreviewFragment.sentPremiumBuyCanceled();
             }
+            Runnable runnable = this.onCanceled;
+            if (runnable != null) {
+                runnable.run();
+                this.onCanceled = null;
+            }
         } else if (list != null && !list.isEmpty()) {
             this.lastPremiumTransaction = null;
             for (final Purchase purchase : list) {
@@ -282,13 +294,17 @@ public class BillingController implements PurchasesUpdatedListener, BillingClien
             }
             consumeGiftPurchase(purchase, tLRPC$TL_payments_assignPlayMarketTransaction.purpose);
         } else if (tLRPC$TL_error != null) {
-            FileLog.d("Billing: Confirmation Error: " + tLRPC$TL_error.code + " " + tLRPC$TL_error.text);
+            Runnable runnable = this.onCanceled;
+            if (runnable != null) {
+                runnable.run();
+                this.onCanceled = null;
+            }
             NotificationCenter.getGlobalInstance().postNotificationNameOnUIThread(NotificationCenter.billingConfirmPurchaseError, tLRPC$TL_payments_assignPlayMarketTransaction, tLRPC$TL_error);
         }
     }
 
     private void consumeGiftPurchase(Purchase purchase, TLRPC$InputStorePaymentPurpose tLRPC$InputStorePaymentPurpose) {
-        if (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentGiftPremium) {
+        if ((tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentGiftPremium) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiftCode) || (tLRPC$InputStorePaymentPurpose instanceof TLRPC$TL_inputStorePaymentPremiumGiveaway)) {
             this.billingClient.consumeAsync(ConsumeParams.newBuilder().setPurchaseToken(purchase.getPurchaseToken()).build(), new ConsumeResponseListener() {
                 @Override
                 public final void onConsumeResponse(BillingResult billingResult, String str) {

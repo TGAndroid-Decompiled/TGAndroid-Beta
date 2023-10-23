@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_hidePeerSettingsBar extends TLObject {
-    public static int constructor = 1336717624;
     public TLRPC$InputPeer peer;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_messages_hidePeerSettingsBar extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1336717624);
         this.peer.serializeToStream(abstractSerializedData);
     }
 }

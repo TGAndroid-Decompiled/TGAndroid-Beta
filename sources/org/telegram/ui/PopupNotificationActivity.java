@@ -42,15 +42,16 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$KeyboardButton;
 import org.telegram.tgnet.TLRPC$ReplyMarkup;
-import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_channels_sendAsPeers;
 import org.telegram.tgnet.TLRPC$TL_keyboardButtonCallback;
 import org.telegram.tgnet.TLRPC$TL_keyboardButtonRow;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.Theme;
+import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.ChatActivityEnterView;
@@ -238,7 +239,12 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
-            public TLRPC$StoryItem getReplyToStory() {
+            public ChatActivity.ReplyQuote getReplyQuote() {
+                return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$getReplyQuote(this);
+            }
+
+            @Override
+            public TL_stories$StoryItem getReplyToStory() {
                 return ChatActivityEnterView.ChatActivityEnterViewDelegate.CC.$default$getReplyToStory(this);
             }
 
@@ -335,7 +341,7 @@ public class PopupNotificationActivity extends Activity implements NotificationC
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, boolean z) {
+            public void onTextChanged(CharSequence charSequence, boolean z, boolean z2) {
             }
 
             @Override

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_sendScreenshotNotification extends TLObject {
-    public static int constructor = -1589618665;
     public TLRPC$InputPeer peer;
     public long random_id;
     public TLRPC$InputReplyTo reply_to;
@@ -12,7 +11,7 @@ public class TLRPC$TL_messages_sendScreenshotNotification extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1589618665);
         this.peer.serializeToStream(abstractSerializedData);
         this.reply_to.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt64(this.random_id);

@@ -3,11 +3,11 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_sendMessage extends TLObject {
-    public static int constructor = 671943023;
     public boolean background;
     public boolean clear_draft;
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
+    public boolean invert_media;
     public String message;
     public boolean no_webpage;
     public boolean noforwards;
@@ -27,7 +27,7 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(671943023);
         int i = this.no_webpage ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.silent ? i | 32 : i & (-33);
@@ -40,7 +40,9 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
         this.flags = i5;
         int i6 = this.update_stickersets_order ? i5 | LiteMode.FLAG_CHAT_SCALE : i5 & (-32769);
         this.flags = i6;
-        abstractSerializedData.writeInt32(i6);
+        int i7 = this.invert_media ? i6 | 65536 : i6 & (-65537);
+        this.flags = i7;
+        abstractSerializedData.writeInt32(i7);
         this.peer.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {
             this.reply_to.serializeToStream(abstractSerializedData);
@@ -54,8 +56,8 @@ public class TLRPC$TL_messages_sendMessage extends TLObject {
             abstractSerializedData.writeInt32(481674261);
             int size = this.entities.size();
             abstractSerializedData.writeInt32(size);
-            for (int i7 = 0; i7 < size; i7++) {
-                this.entities.get(i7).serializeToStream(abstractSerializedData);
+            for (int i8 = 0; i8 < size; i8++) {
+                this.entities.get(i8).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 1024) != 0) {

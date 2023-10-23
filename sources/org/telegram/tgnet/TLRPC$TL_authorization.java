@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_authorization extends TLObject {
-    public static int constructor = -1392388579;
     public int api_id;
     public String app_name;
     public String app_version;
@@ -22,7 +21,7 @@ public class TLRPC$TL_authorization extends TLObject {
     public boolean unconfirmed;
 
     public static TLRPC$TL_authorization TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1392388579 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_authorization", Integer.valueOf(i)));
             }
@@ -59,7 +58,7 @@ public class TLRPC$TL_authorization extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1392388579);
         int i = this.current ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.official_app ? i | 2 : i & (-3);

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_help_getAppUpdate extends TLObject {
-    public static int constructor = 1378703997;
     public String source;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_help_getAppUpdate extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1378703997);
         abstractSerializedData.writeString(this.source);
     }
 }

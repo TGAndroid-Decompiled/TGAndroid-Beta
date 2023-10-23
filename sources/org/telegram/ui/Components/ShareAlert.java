@@ -64,6 +64,7 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -84,7 +85,6 @@ import org.telegram.tgnet.TLRPC$Dialog;
 import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_channels_exportMessageLink;
 import org.telegram.tgnet.TLRPC$TL_chatAdminRights;
 import org.telegram.tgnet.TLRPC$TL_dialog;
@@ -94,6 +94,7 @@ import org.telegram.tgnet.TLRPC$TL_exportedMessageLink;
 import org.telegram.tgnet.TLRPC$TL_forumTopic;
 import org.telegram.tgnet.TLRPC$TL_topPeer;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenuSubItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -170,7 +171,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     private LinearLayout sharesCountLayout;
     private boolean showSendersName;
     private SizeNotifierFrameLayout sizeNotifierFrameLayout;
-    TLRPC$StoryItem storyItem;
+    TL_stories$StoryItem storyItem;
     private SwitchView switchView;
     private TextPaint textPaint;
     private ValueAnimator topBackgroundAnimator;
@@ -201,7 +202,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         void didShare();
     }
 
-    public static boolean lambda$new$7(View view, MotionEvent motionEvent) {
+    public static boolean lambda$new$10(View view, MotionEvent motionEvent) {
         return true;
     }
 
@@ -213,8 +214,8 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
     public void onSend(LongSparseArray<TLRPC$Dialog> longSparseArray, int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
     }
 
-    public void setStoryToShare(TLRPC$StoryItem tLRPC$StoryItem) {
-        this.storyItem = tLRPC$StoryItem;
+    public void setStoryToShare(TL_stories$StoryItem tL_stories$StoryItem) {
+        this.storyItem = tL_stories$StoryItem;
     }
 
     public class SwitchView extends FrameLayout {
@@ -984,6 +985,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.topicsGridView.setHorizontalScrollBarEnabled(false);
         this.topicsGridView.setOverScrollMode(2);
         this.topicsGridView.setSelectorDrawableColor(0);
+        this.topicsGridView.setItemSelectorColorProvider(new GenericProvider() {
+            @Override
+            public final Object provide(Object obj) {
+                Integer lambda$new$2;
+                lambda$new$2 = ShareAlert.lambda$new$2((Integer) obj);
+                return lambda$new$2;
+            }
+        });
         this.topicsGridView.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
         this.topicsGridView.setClipToPadding(false);
         this.topicsGridView.addItemDecoration(new RecyclerView.ItemDecoration(this) {
@@ -1003,7 +1012,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.topicsGridView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i5) {
-                ShareAlert.this.lambda$new$2(view, i5);
+                ShareAlert.this.lambda$new$3(view, i5);
             }
         });
         this.topicsGridView.setVisibility(8);
@@ -1032,6 +1041,14 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         };
         this.gridView = recyclerListView3;
         recyclerListView3.setSelectorDrawableColor(0);
+        this.gridView.setItemSelectorColorProvider(new GenericProvider() {
+            @Override
+            public final Object provide(Object obj) {
+                Integer lambda$new$4;
+                lambda$new$4 = ShareAlert.lambda$new$4((Integer) obj);
+                return lambda$new$4;
+            }
+        });
         this.gridView.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
         this.gridView.setClipToPadding(false);
         RecyclerListView recyclerListView4 = this.gridView;
@@ -1077,7 +1094,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.gridView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i5) {
-                ShareAlert.this.lambda$new$3(view, i5);
+                ShareAlert.this.lambda$new$5(view, i5);
             }
         });
         this.gridView.setOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -1117,7 +1134,15 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             }
         };
         this.searchGridView = recyclerListView6;
-        recyclerListView6.setSelectorDrawableColor(0);
+        recyclerListView6.setItemSelectorColorProvider(new GenericProvider() {
+            @Override
+            public final Object provide(Object obj) {
+                Integer lambda$new$6;
+                lambda$new$6 = ShareAlert.lambda$new$6((Integer) obj);
+                return lambda$new$6;
+            }
+        });
+        this.searchGridView.setSelectorDrawableColor(0);
         this.searchGridView.setPadding(0, 0, 0, AndroidUtilities.dp(48.0f));
         this.searchGridView.setClipToPadding(false);
         RecyclerListView recyclerListView7 = this.searchGridView;
@@ -1137,7 +1162,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.searchGridView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i5) {
-                ShareAlert.this.lambda$new$4(view, i5);
+                ShareAlert.this.lambda$new$7(view, i5);
             }
         });
         this.searchGridView.setHasFixedSize(true);
@@ -1226,7 +1251,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             this.pickerBottomLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ShareAlert.this.lambda$new$5(view2);
+                    ShareAlert.this.lambda$new$8(view2);
                 }
             });
             this.containerView.addView(this.pickerBottomLayout, LayoutHelper.createFrame(-1, 48, 83));
@@ -1243,7 +1268,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                     this.sharesCountLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view2) {
-                            ShareAlert.this.lambda$new$6(messageObject2, view2);
+                            ShareAlert.this.lambda$new$9(messageObject2, view2);
                         }
                     });
                     ImageView imageView = new ImageView(context);
@@ -1271,9 +1296,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.frameLayout2.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public final boolean onTouch(View view2, MotionEvent motionEvent) {
-                boolean lambda$new$7;
-                lambda$new$7 = ShareAlert.lambda$new$7(view2, motionEvent);
-                return lambda$new$7;
+                boolean lambda$new$10;
+                lambda$new$10 = ShareAlert.lambda$new$10(view2, motionEvent);
+                return lambda$new$10;
             }
         });
         AnonymousClass17 anonymousClass17 = new AnonymousClass17(context, this.sizeNotifierFrameLayout, null, 1, true, resourcesProvider);
@@ -1345,15 +1370,15 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         imageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ShareAlert.this.lambda$new$8(view2);
+                ShareAlert.this.lambda$new$11(view2);
             }
         });
         imageView2.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public final boolean onLongClick(View view2) {
-                boolean lambda$new$9;
-                lambda$new$9 = ShareAlert.this.lambda$new$9(imageView2, view2);
-                return lambda$new$9;
+                boolean lambda$new$12;
+                lambda$new$12 = ShareAlert.this.lambda$new$12(imageView2, view2);
+                return lambda$new$12;
             }
         });
         this.textPaint.setTextSize(AndroidUtilities.dp(12.0f));
@@ -1442,7 +1467,11 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         this.loadingLink = false;
     }
 
-    public void lambda$new$2(View view, int i) {
+    public static Integer lambda$new$2(Integer num) {
+        return 0;
+    }
+
+    public void lambda$new$3(View view, int i) {
         TLRPC$Dialog tLRPC$Dialog;
         TLRPC$TL_forumTopic item = this.shareTopicsAdapter.getItem(i);
         if (item == null || (tLRPC$Dialog = this.selectedTopicDialog) == null) {
@@ -1474,21 +1503,29 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         collapseTopics();
     }
 
-    public void lambda$new$3(View view, int i) {
+    public static Integer lambda$new$4(Integer num) {
+        return 0;
+    }
+
+    public void lambda$new$5(View view, int i) {
         TLRPC$Dialog item;
         if (i >= 0 && (item = this.listAdapter.getItem(i)) != null) {
             selectDialog((ShareDialogCell) view, item);
         }
     }
 
-    public void lambda$new$4(View view, int i) {
+    public static Integer lambda$new$6(Integer num) {
+        return 0;
+    }
+
+    public void lambda$new$7(View view, int i) {
         TLRPC$Dialog item;
         if (i >= 0 && (item = this.searchAdapter.getItem(i)) != null) {
             selectDialog((ShareDialogCell) view, item);
         }
     }
 
-    public void lambda$new$5(View view) {
+    public void lambda$new$8(View view) {
         if (this.selectedDialogs.size() == 0) {
             if (this.isChannel || this.linkToCopy[0] != null) {
                 dismiss();
@@ -1502,7 +1539,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public void lambda$new$6(MessageObject messageObject, View view) {
+    public void lambda$new$9(MessageObject messageObject, View view) {
         this.parentFragment.presentFragment(new MessageStatisticActivity(messageObject));
     }
 
@@ -1662,11 +1699,11 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public void lambda$new$8(View view) {
+    public void lambda$new$11(View view) {
         sendInternal(true);
     }
 
-    public boolean lambda$new$9(ImageView imageView, View view) {
+    public boolean lambda$new$12(ImageView imageView, View view) {
         return onSendLongClick(imageView);
     }
 
@@ -1722,7 +1759,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             atomicReference.set(new Runnable() {
                 @Override
                 public final void run() {
-                    ShareAlert.this.lambda$selectDialog$10(atomicReference, anonymousClass22, tLRPC$Dialog);
+                    ShareAlert.this.lambda$selectDialog$13(atomicReference, anonymousClass22, tLRPC$Dialog);
                 }
             });
             NotificationCenter.getInstance(this.currentAccount).addObserver(anonymousClass22, NotificationCenter.topicsDidLoaded);
@@ -1839,7 +1876,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public void lambda$selectDialog$10(AtomicReference atomicReference, NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLRPC$Dialog tLRPC$Dialog) {
+    public void lambda$selectDialog$13(AtomicReference atomicReference, NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, TLRPC$Dialog tLRPC$Dialog) {
         atomicReference.set(null);
         notificationCenterDelegate.didReceivedNotification(NotificationCenter.topicsDidLoaded, this.currentAccount, Long.valueOf(-tLRPC$Dialog.id));
     }
@@ -1881,23 +1918,23 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         spring.addUpdateListener(new DynamicAnimation.OnAnimationUpdateListener() {
             @Override
             public final void onAnimationUpdate(DynamicAnimation dynamicAnimation, float f, float f2) {
-                ShareAlert.this.lambda$collapseTopics$11(view, iArr, dynamicAnimation, f, f2);
+                ShareAlert.this.lambda$collapseTopics$14(view, iArr, dynamicAnimation, f, f2);
             }
         });
         this.topicsAnimation.addEndListener(new DynamicAnimation.OnAnimationEndListener() {
             @Override
             public final void onAnimationEnd(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
-                ShareAlert.this.lambda$collapseTopics$12(dynamicAnimation, z, f, f2);
+                ShareAlert.this.lambda$collapseTopics$15(dynamicAnimation, z, f, f2);
             }
         });
         this.topicsAnimation.start();
     }
 
-    public void lambda$collapseTopics$11(View view, int[] iArr, DynamicAnimation dynamicAnimation, float f, float f2) {
+    public void lambda$collapseTopics$14(View view, int[] iArr, DynamicAnimation dynamicAnimation, float f, float f2) {
         invalidateTopicsAnimation(view, iArr, f / 1000.0f);
     }
 
-    public void lambda$collapseTopics$12(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
+    public void lambda$collapseTopics$15(DynamicAnimation dynamicAnimation, boolean z, float f, float f2) {
         this.topicsGridView.setVisibility(8);
         this.topicsBackActionBar.setVisibility(8);
         this.shareTopicsAdapter.topics = null;
@@ -2007,7 +2044,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             actionBarPopupWindowLayout.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
                 @Override
                 public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                    ShareAlert.this.lambda$onSendLongClick$13(keyEvent);
+                    ShareAlert.this.lambda$onSendLongClick$16(keyEvent);
                 }
             });
             actionBarPopupWindowLayout.setShownFromBottom(false);
@@ -2029,13 +2066,13 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
             actionBarMenuSubItem.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ShareAlert.this.lambda$onSendLongClick$14(actionBarMenuSubItem, actionBarMenuSubItem2, view2);
+                    ShareAlert.this.lambda$onSendLongClick$17(actionBarMenuSubItem, actionBarMenuSubItem2, view2);
                 }
             });
             actionBarMenuSubItem2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view2) {
-                    ShareAlert.this.lambda$onSendLongClick$15(actionBarMenuSubItem, actionBarMenuSubItem2, view2);
+                    ShareAlert.this.lambda$onSendLongClick$18(actionBarMenuSubItem, actionBarMenuSubItem2, view2);
                 }
             });
             actionBarPopupWindowLayout.setupRadialSelectors(getThemedColor(this.darkTheme ? Theme.key_voipgroup_listSelector : Theme.key_dialogButtonSelector));
@@ -2069,7 +2106,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         actionBarPopupWindowLayout2.setDispatchKeyEventListener(new ActionBarPopupWindow.OnDispatchKeyEventListener() {
             @Override
             public final void onDispatchKeyEvent(KeyEvent keyEvent) {
-                ShareAlert.this.lambda$onSendLongClick$16(keyEvent);
+                ShareAlert.this.lambda$onSendLongClick$19(keyEvent);
             }
         });
         actionBarPopupWindowLayout2.setShownFromBottom(false);
@@ -2084,7 +2121,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         actionBarMenuSubItem3.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ShareAlert.this.lambda$onSendLongClick$17(view2);
+                ShareAlert.this.lambda$onSendLongClick$20(view2);
             }
         });
         ActionBarMenuSubItem actionBarMenuSubItem4 = new ActionBarMenuSubItem(getContext(), true, true, this.resourcesProvider);
@@ -2098,7 +2135,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         actionBarMenuSubItem4.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view2) {
-                ShareAlert.this.lambda$onSendLongClick$18(view2);
+                ShareAlert.this.lambda$onSendLongClick$21(view2);
             }
         });
         actionBarPopupWindowLayout2.setupRadialSelectors(getThemedColor(this.darkTheme ? Theme.key_voipgroup_listSelector : Theme.key_dialogButtonSelector));
@@ -2128,25 +2165,6 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         return true;
     }
 
-    public void lambda$onSendLongClick$13(KeyEvent keyEvent) {
-        ActionBarPopupWindow actionBarPopupWindow;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.sendPopupWindow) != null && actionBarPopupWindow.isShowing()) {
-            this.sendPopupWindow.dismiss();
-        }
-    }
-
-    public void lambda$onSendLongClick$14(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
-        this.showSendersName = true;
-        actionBarMenuSubItem.setChecked(true);
-        actionBarMenuSubItem2.setChecked(!this.showSendersName);
-    }
-
-    public void lambda$onSendLongClick$15(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
-        this.showSendersName = false;
-        actionBarMenuSubItem.setChecked(false);
-        actionBarMenuSubItem2.setChecked(!this.showSendersName);
-    }
-
     public void lambda$onSendLongClick$16(KeyEvent keyEvent) {
         ActionBarPopupWindow actionBarPopupWindow;
         if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.sendPopupWindow) != null && actionBarPopupWindow.isShowing()) {
@@ -2154,7 +2172,26 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public void lambda$onSendLongClick$17(View view) {
+    public void lambda$onSendLongClick$17(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
+        this.showSendersName = true;
+        actionBarMenuSubItem.setChecked(true);
+        actionBarMenuSubItem2.setChecked(!this.showSendersName);
+    }
+
+    public void lambda$onSendLongClick$18(ActionBarMenuSubItem actionBarMenuSubItem, ActionBarMenuSubItem actionBarMenuSubItem2, View view) {
+        this.showSendersName = false;
+        actionBarMenuSubItem.setChecked(false);
+        actionBarMenuSubItem2.setChecked(!this.showSendersName);
+    }
+
+    public void lambda$onSendLongClick$19(KeyEvent keyEvent) {
+        ActionBarPopupWindow actionBarPopupWindow;
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (actionBarPopupWindow = this.sendPopupWindow) != null && actionBarPopupWindow.isShowing()) {
+            this.sendPopupWindow.dismiss();
+        }
+    }
+
+    public void lambda$onSendLongClick$20(View view) {
         ActionBarPopupWindow actionBarPopupWindow = this.sendPopupWindow;
         if (actionBarPopupWindow != null && actionBarPopupWindow.isShowing()) {
             this.sendPopupWindow.dismiss();
@@ -2162,7 +2199,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         sendInternal(false);
     }
 
-    public void lambda$onSendLongClick$18(View view) {
+    public void lambda$onSendLongClick$21(View view) {
         ActionBarPopupWindow actionBarPopupWindow = this.sendPopupWindow;
         if (actionBarPopupWindow != null && actionBarPopupWindow.isShowing()) {
             this.sendPopupWindow.dismiss();
@@ -2543,9 +2580,9 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
                 ((LaunchActivity) this.parentActivity).showBulletin(new Function() {
                     @Override
                     public final Object apply(Object obj) {
-                        Bulletin lambda$copyLink$19;
-                        lambda$copyLink$19 = ShareAlert.this.lambda$copyLink$19(z, (BulletinFactory) obj);
-                        return lambda$copyLink$19;
+                        Bulletin lambda$copyLink$22;
+                        lambda$copyLink$22 = ShareAlert.this.lambda$copyLink$22(z, (BulletinFactory) obj);
+                        return lambda$copyLink$22;
                     }
                 });
             }
@@ -2554,7 +2591,7 @@ public class ShareAlert extends BottomSheet implements NotificationCenter.Notifi
         }
     }
 
-    public Bulletin lambda$copyLink$19(boolean z, BulletinFactory bulletinFactory) {
+    public Bulletin lambda$copyLink$22(boolean z, BulletinFactory bulletinFactory) {
         return bulletinFactory.createCopyLinkBulletin(z, this.resourcesProvider);
     }
 

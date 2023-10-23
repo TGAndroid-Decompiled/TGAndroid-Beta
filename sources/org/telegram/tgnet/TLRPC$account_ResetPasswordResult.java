@@ -8,11 +8,9 @@ public abstract class TLRPC$account_ResetPasswordResult extends TLObject {
             tLRPC$TL_account_resetPasswordFailedWait = i != -370148227 ? null : new TLRPC$TL_account_resetPasswordRequestedWait();
         } else {
             tLRPC$TL_account_resetPasswordFailedWait = new TLRPC$account_ResetPasswordResult() {
-                public static int constructor = -383330754;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-383330754);
                 }
             };
         }

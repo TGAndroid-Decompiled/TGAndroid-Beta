@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionDefaultBannedRights extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = 771095562;
     public TLRPC$TL_chatBannedRights new_banned_rights;
     public TLRPC$TL_chatBannedRights prev_banned_rights;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_channelAdminLogEventActionDefaultBannedRights extends TLRP
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(771095562);
         this.prev_banned_rights.serializeToStream(abstractSerializedData);
         this.new_banned_rights.serializeToStream(abstractSerializedData);
     }

@@ -200,9 +200,8 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         tLRPC$TL_messages_prolongWebView.peer = MessagesController.getInstance(this.currentAccount).getInputPeer(this.peerId);
         tLRPC$TL_messages_prolongWebView.query_id = this.queryId;
         tLRPC$TL_messages_prolongWebView.silent = this.silent;
-        int i = this.replyToMsgId;
-        if (i != 0) {
-            tLRPC$TL_messages_prolongWebView.reply_to = SendMessagesHelper.creteReplyInput(i);
+        if (this.replyToMsgId != 0) {
+            tLRPC$TL_messages_prolongWebView.reply_to = SendMessagesHelper.getInstance(this.currentAccount).createReplyInput(this.replyToMsgId);
             tLRPC$TL_messages_prolongWebView.flags |= 1;
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_prolongWebView, new RequestDelegate() {
@@ -627,6 +626,13 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
 
         @Override
+        public void onSetSettingsButtonVisible(boolean z) {
+            if (BotWebViewSheet.this.settingsItem != null) {
+                BotWebViewSheet.this.settingsItem.setVisibility(z ? 0 : 8);
+            }
+        }
+
+        @Override
         public void onWebAppOpenInvoice(final String str, TLObject tLObject) {
             PaymentFormActivity paymentFormActivity;
             BaseFragment lastFragment = ((LaunchActivity) BotWebViewSheet.this.parentActivity).getActionBarLayout().getLastFragment();
@@ -977,6 +983,29 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
     }
 
+    public static JSONObject makeThemeParams(Theme.ResourcesProvider resourcesProvider) {
+        try {
+            JSONObject jSONObject = new JSONObject();
+            jSONObject.put("bg_color", Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
+            jSONObject.put("section_bg_color", Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
+            jSONObject.put("secondary_bg_color", Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider));
+            jSONObject.put("text_color", Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
+            jSONObject.put("hint_color", Theme.getColor(Theme.key_windowBackgroundWhiteHintText, resourcesProvider));
+            jSONObject.put("link_color", Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, resourcesProvider));
+            jSONObject.put("button_color", Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
+            jSONObject.put("button_text_color", Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
+            jSONObject.put("header_bg_color", Theme.getColor(Theme.key_actionBarDefault, resourcesProvider));
+            jSONObject.put("accent_text_color", Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider));
+            jSONObject.put("section_header_text_color", Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider));
+            jSONObject.put("subtitle_text_color", Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
+            jSONObject.put("destructive_text_color", Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
+            return jSONObject;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return null;
+        }
+    }
+
     public void requestWebView(int i, long j, long j2, String str, String str2, int i2, int i3, boolean z, int i4) {
         requestWebView(i, j, j2, str, str2, i2, i3, z, null, null, false, null, null, i4);
     }
@@ -990,9 +1019,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     }
 
     public void requestWebView(final int i, long j, long j2, String str, String str2, int i2, int i3, boolean z, BaseFragment baseFragment, TLRPC$BotApp tLRPC$BotApp, boolean z2, String str3, TLRPC$User tLRPC$User, int i4) {
-        String str4;
         TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot;
-        boolean z3;
         TLRPC$InputPeer inputPeer;
         this.currentAccount = i;
         this.peerId = j;
@@ -1005,7 +1032,6 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         createMenu.removeAllViews();
         Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(i).getAttachMenuBots().bots.iterator();
         while (true) {
-            str4 = null;
             if (!it.hasNext()) {
                 tLRPC$TL_attachMenuBot = null;
                 break;
@@ -1017,27 +1043,15 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         }
         ActionBarMenuItem addItem = createMenu.addItem(0, R.drawable.ic_ab_other);
         addItem.addSubItem(R.id.menu_open_bot, R.drawable.msg_bot, LocaleController.getString(R.string.BotWebViewOpenBot));
-        this.settingsItem = addItem.addSubItem(R.id.menu_settings, R.drawable.msg_settings, LocaleController.getString(R.string.BotWebViewSettings));
+        ActionBarMenuSubItem addSubItem = addItem.addSubItem(R.id.menu_settings, R.drawable.msg_settings, LocaleController.getString(R.string.BotWebViewSettings));
+        this.settingsItem = addSubItem;
+        addSubItem.setVisibility(8);
         addItem.addSubItem(R.id.menu_reload_page, R.drawable.msg_retry, LocaleController.getString(R.string.BotWebViewReloadPage));
         if (tLRPC$TL_attachMenuBot != null && (tLRPC$TL_attachMenuBot.show_in_side_menu || tLRPC$TL_attachMenuBot.show_in_attach_menu)) {
             addItem.addSubItem(R.id.menu_delete_bot, R.drawable.msg_delete, LocaleController.getString(R.string.BotWebViewDeleteBot));
         }
         this.actionBar.setActionBarMenuOnItemClick(new AnonymousClass11(j2, i));
-        try {
-            JSONObject jSONObject = new JSONObject();
-            jSONObject.put("bg_color", getColor(Theme.key_windowBackgroundWhite));
-            jSONObject.put("secondary_bg_color", getColor(Theme.key_windowBackgroundGray));
-            jSONObject.put("text_color", getColor(Theme.key_windowBackgroundWhiteBlackText));
-            jSONObject.put("hint_color", getColor(Theme.key_windowBackgroundWhiteHintText));
-            jSONObject.put("link_color", getColor(Theme.key_windowBackgroundWhiteLinkText));
-            jSONObject.put("button_color", getColor(Theme.key_featuredStickers_addButton));
-            jSONObject.put("button_text_color", getColor(Theme.key_featuredStickers_buttonText));
-            str4 = jSONObject.toString();
-            z3 = true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            z3 = false;
-        }
+        JSONObject makeThemeParams = makeThemeParams(this.resourcesProvider);
         this.webViewContainer.setBotUser(MessagesController.getInstance(i).getUser(Long.valueOf(j2)));
         this.webViewContainer.loadFlickerAndSettingsItem(i, j2, this.settingsItem);
         if (i2 == 0) {
@@ -1050,13 +1064,13 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 tLRPC$TL_messages_requestWebView.flags |= 2;
             }
             if (i3 != 0) {
-                tLRPC$TL_messages_requestWebView.reply_to = SendMessagesHelper.creteReplyInput(i3);
-                tLRPC$TL_messages_requestWebView.flags = 1 | tLRPC$TL_messages_requestWebView.flags;
+                tLRPC$TL_messages_requestWebView.reply_to = SendMessagesHelper.getInstance(i).createReplyInput(i3);
+                tLRPC$TL_messages_requestWebView.flags |= 1;
             }
-            if (z3) {
+            if (makeThemeParams != null) {
                 TLRPC$TL_dataJSON tLRPC$TL_dataJSON = new TLRPC$TL_dataJSON();
                 tLRPC$TL_messages_requestWebView.theme_params = tLRPC$TL_dataJSON;
-                tLRPC$TL_dataJSON.data = str4;
+                tLRPC$TL_dataJSON.data = makeThemeParams.toString();
                 tLRPC$TL_messages_requestWebView.flags |= 4;
             }
             ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_requestWebView, new RequestDelegate() {
@@ -1072,10 +1086,10 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             tLRPC$TL_messages_requestSimpleWebView.bot = MessagesController.getInstance(i).getInputUser(j2);
             tLRPC$TL_messages_requestSimpleWebView.platform = "android";
             tLRPC$TL_messages_requestSimpleWebView.from_side_menu = (i4 & 2) != 0;
-            if (z3) {
+            if (makeThemeParams != null) {
                 TLRPC$TL_dataJSON tLRPC$TL_dataJSON2 = new TLRPC$TL_dataJSON();
                 tLRPC$TL_messages_requestSimpleWebView.theme_params = tLRPC$TL_dataJSON2;
-                tLRPC$TL_dataJSON2.data = str4;
+                tLRPC$TL_dataJSON2.data = makeThemeParams.toString();
                 tLRPC$TL_messages_requestSimpleWebView.flags |= 1;
             }
             if (!TextUtils.isEmpty(str2)) {
@@ -1099,10 +1113,10 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             tLRPC$TL_messages_requestWebView2.platform = "android";
             tLRPC$TL_messages_requestWebView2.url = str2;
             tLRPC$TL_messages_requestWebView2.flags |= 2;
-            if (z3) {
+            if (makeThemeParams != null) {
                 TLRPC$TL_dataJSON tLRPC$TL_dataJSON3 = new TLRPC$TL_dataJSON();
                 tLRPC$TL_messages_requestWebView2.theme_params = tLRPC$TL_dataJSON3;
-                tLRPC$TL_dataJSON3.data = str4;
+                tLRPC$TL_dataJSON3.data = makeThemeParams.toString();
                 tLRPC$TL_messages_requestWebView2.flags |= 4;
             }
             ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_requestWebView2, new RequestDelegate() {
@@ -1132,10 +1146,10 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 tLRPC$TL_messages_requestAppWebView.start_param = str3;
                 tLRPC$TL_messages_requestAppWebView.flags |= 2;
             }
-            if (z3) {
+            if (makeThemeParams != null) {
                 TLRPC$TL_dataJSON tLRPC$TL_dataJSON4 = new TLRPC$TL_dataJSON();
                 tLRPC$TL_messages_requestAppWebView.theme_params = tLRPC$TL_dataJSON4;
-                tLRPC$TL_dataJSON4.data = str4;
+                tLRPC$TL_dataJSON4.data = makeThemeParams.toString();
                 tLRPC$TL_messages_requestAppWebView.flags |= 4;
             }
             ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_requestAppWebView, new RequestDelegate() {
@@ -1167,7 +1181,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", this.val$botId);
                 if (BotWebViewSheet.this.parentActivity instanceof LaunchActivity) {
-                    ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$75(new ChatActivity(bundle));
+                    ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$81(new ChatActivity(bundle));
                 }
                 BotWebViewSheet.this.dismiss();
             } else if (i == R.id.menu_reload_page) {

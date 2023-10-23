@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getExportedChatInvite extends TLObject {
-    public static int constructor = 1937010524;
     public String link;
     public TLRPC$InputPeer peer;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_messages_getExportedChatInvite extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1937010524);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.link);
     }

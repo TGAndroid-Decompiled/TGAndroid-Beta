@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateGroupCallConnection extends TLRPC$Update {
-    public static int constructor = 192428418;
     public int flags;
     public TLRPC$TL_dataJSON params;
     public boolean presentation;
@@ -15,7 +14,7 @@ public class TLRPC$TL_updateGroupCallConnection extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(192428418);
         int i = this.presentation ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

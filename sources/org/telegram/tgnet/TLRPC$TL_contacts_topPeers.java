@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_contacts_topPeers extends TLRPC$contacts_TopPeers {
-    public static int constructor = 1891070632;
     public ArrayList<TLRPC$TL_topPeerCategoryPeers> categories = new ArrayList<>();
     public ArrayList<TLRPC$Chat> chats = new ArrayList<>();
     public ArrayList<TLRPC$User> users = new ArrayList<>();
@@ -58,7 +57,7 @@ public class TLRPC$TL_contacts_topPeers extends TLRPC$contacts_TopPeers {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1891070632);
         abstractSerializedData.writeInt32(481674261);
         int size = this.categories.size();
         abstractSerializedData.writeInt32(size);

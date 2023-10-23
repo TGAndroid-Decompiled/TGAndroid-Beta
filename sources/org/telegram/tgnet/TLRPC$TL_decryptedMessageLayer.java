@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_decryptedMessageLayer extends TLObject {
-    public static int constructor = 467867529;
     public int in_seq_no;
     public int layer;
     public TLRPC$DecryptedMessage message;
@@ -8,7 +7,7 @@ public class TLRPC$TL_decryptedMessageLayer extends TLObject {
     public byte[] random_bytes;
 
     public static TLRPC$TL_decryptedMessageLayer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (467867529 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_decryptedMessageLayer", Integer.valueOf(i)));
             }
@@ -30,7 +29,7 @@ public class TLRPC$TL_decryptedMessageLayer extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(467867529);
         abstractSerializedData.writeByteArray(this.random_bytes);
         abstractSerializedData.writeInt32(this.layer);
         abstractSerializedData.writeInt32(this.in_seq_no);

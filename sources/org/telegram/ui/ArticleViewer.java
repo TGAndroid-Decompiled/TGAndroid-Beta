@@ -5245,7 +5245,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     case 25:
                         textView = new BlockTableCell(this.context, this);
                         break;
-                    case 26:
+                    case MessageObject.TYPE_GIVEAWAY:
                         textView = new BlockRelatedArticlesHeaderCell(this.context, this);
                         break;
                     case 27:
@@ -5383,7 +5383,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
                     case 25:
                         ((BlockTableCell) viewHolder.itemView).setBlock((TLRPC$TL_pageBlockTable) tLRPC$PageBlock2);
                         return;
-                    case 26:
+                    case MessageObject.TYPE_GIVEAWAY:
                         ((BlockRelatedArticlesHeaderCell) viewHolder.itemView).setBlock((TLRPC$TL_pageBlockRelatedArticles) tLRPC$PageBlock2);
                         return;
                     case 27:
@@ -5596,6 +5596,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
     public class BlockVideoCell extends FrameLayout implements DownloadController.FileDownloadProgressListener, TextSelectionHelper.ArticleSelectableView {
         private int TAG;
         private AspectRatioFrameLayout aspectRatioFrameLayout;
+        FrameLayout aspectRationContainer;
         private boolean autoDownload;
         private int buttonPressed;
         private int buttonState;
@@ -5644,18 +5645,20 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
             this.channelCell = new BlockChannelCell(context, this.parentAdapter, 1);
             AspectRatioFrameLayout aspectRatioFrameLayout = new AspectRatioFrameLayout(context);
             this.aspectRatioFrameLayout = aspectRatioFrameLayout;
-            aspectRatioFrameLayout.setResizeMode(4);
+            aspectRatioFrameLayout.setResizeMode(0);
             TextureView textureView = new TextureView(context);
             this.textureView = textureView;
             textureView.setOpaque(false);
-            this.aspectRatioFrameLayout.addView(this.textureView);
-            addView(this.aspectRatioFrameLayout);
+            this.aspectRationContainer = new FrameLayout(getContext());
+            this.aspectRatioFrameLayout.addView(this.textureView, LayoutHelper.createFrame(-1, -2, 1));
+            this.aspectRationContainer.addView(this.aspectRatioFrameLayout, LayoutHelper.createFrame(-1, -1, 17));
+            addView(this.aspectRationContainer, LayoutHelper.createFrame(-1, -2.0f));
             addView(this.channelCell, LayoutHelper.createFrame(-1, -2.0f));
         }
 
         @Override
         protected boolean drawChild(Canvas canvas, View view, long j) {
-            if (view == this.aspectRatioFrameLayout && ArticleViewer.this.pinchToZoomHelper.isInOverlayModeFor(this)) {
+            if (view == this.aspectRationContainer && ArticleViewer.this.pinchToZoomHelper.isInOverlayModeFor(this)) {
                 return true;
             }
             return super.drawChild(canvas, view, j);
@@ -5689,7 +5692,7 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
 
         @Override
         @android.annotation.SuppressLint({"NewApi"})
-        protected void onMeasure(int r31, int r32) {
+        protected void onMeasure(int r32, int r33) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ArticleViewer.BlockVideoCell.onMeasure(int, int):void");
         }
 
@@ -5749,12 +5752,12 @@ public class ArticleViewer implements NotificationCenter.NotificationCenterDeleg
         public void updateButtonState(boolean z) {
             String attachFileName = FileLoader.getAttachFileName(this.currentDocument);
             boolean z2 = true;
-            boolean exists = FileLoader.getInstance(ArticleViewer.this.currentAccount).getPathToAttach(this.currentDocument, true).exists();
+            boolean z3 = FileLoader.getInstance(ArticleViewer.this.currentAccount).getPathToAttach(this.currentDocument).exists() || FileLoader.getInstance(ArticleViewer.this.currentAccount).getPathToAttach(this.currentDocument, true).exists();
             if (TextUtils.isEmpty(attachFileName)) {
                 this.radialProgress.setIcon(4, false, false);
                 return;
             }
-            if (exists) {
+            if (z3) {
                 DownloadController.getInstance(ArticleViewer.this.currentAccount).removeLoadingFileObserver(this);
                 if (!this.isGif) {
                     this.buttonState = 3;

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_toggleJoinRequest extends TLObject {
-    public static int constructor = 1277789622;
     public TLRPC$InputChannel channel;
     public boolean enabled;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_channels_toggleJoinRequest extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1277789622);
         this.channel.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeBool(this.enabled);
     }

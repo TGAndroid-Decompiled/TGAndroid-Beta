@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_updatePinnedForumTopic extends TLObject {
-    public static int constructor = 1814925350;
     public TLRPC$InputChannel channel;
     public boolean pinned;
     public int topic_id;
@@ -12,7 +11,7 @@ public class TLRPC$TL_channels_updatePinnedForumTopic extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1814925350);
         this.channel.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.topic_id);
         abstractSerializedData.writeBool(this.pinned);

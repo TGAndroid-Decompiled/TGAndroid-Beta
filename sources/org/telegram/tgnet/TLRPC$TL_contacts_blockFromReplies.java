@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_contacts_blockFromReplies extends TLObject {
-    public static int constructor = 698914348;
     public boolean delete_history;
     public boolean delete_message;
     public int flags;
@@ -14,7 +13,7 @@ public class TLRPC$TL_contacts_blockFromReplies extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(698914348);
         int i = this.delete_message ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.delete_history ? i | 2 : i & (-3);

@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_peerSettings extends TLObject {
-    public static int constructor = -1525149427;
     public boolean add_contact;
     public boolean autoarchived;
     public boolean block_contact;
@@ -18,7 +17,7 @@ public class TLRPC$TL_peerSettings extends TLObject {
     public boolean share_contact;
 
     public static TLRPC$TL_peerSettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1525149427 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_peerSettings", Integer.valueOf(i)));
             }
@@ -55,7 +54,7 @@ public class TLRPC$TL_peerSettings extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1525149427);
         int i = this.report_spam ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.add_contact ? i | 2 : i & (-3);

@@ -9,9 +9,9 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC$StoryViews;
 import org.telegram.tgnet.TLRPC$TL_availableReaction;
-import org.telegram.tgnet.TLRPC$TL_mediaAreaSuggestedReaction;
+import org.telegram.tgnet.tl.TL_stories$StoryViews;
+import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaSuggestedReaction;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -29,17 +29,17 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
     StoryReactionWidgetBackground storyReactionWidgetBackground;
     private final ReactionsLayoutInBubble.VisibleReaction visibleReaction;
 
-    public StoryReactionWidgetView(Context context, View view, TLRPC$TL_mediaAreaSuggestedReaction tLRPC$TL_mediaAreaSuggestedReaction, EmojiAnimationsOverlay emojiAnimationsOverlay) {
-        super(context, view, tLRPC$TL_mediaAreaSuggestedReaction);
+    public StoryReactionWidgetView(Context context, View view, TL_stories$TL_mediaAreaSuggestedReaction tL_stories$TL_mediaAreaSuggestedReaction, EmojiAnimationsOverlay emojiAnimationsOverlay) {
+        super(context, view, tL_stories$TL_mediaAreaSuggestedReaction);
         TLRPC$TL_availableReaction tLRPC$TL_availableReaction;
         this.storyReactionWidgetBackground = new StoryReactionWidgetBackground(this);
         this.holder = new ReactionImageHolder(this);
         this.preloadSmallReaction = new ImageReceiver(this);
         this.progressToCount = new AnimatedFloat(this);
         this.animatedTextDrawable = new AnimatedTextView.AnimatedTextDrawable();
-        ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$TL_mediaAreaSuggestedReaction.reaction);
+        ReactionsLayoutInBubble.VisibleReaction fromTLReaction = ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tL_stories$TL_mediaAreaSuggestedReaction.reaction);
         this.visibleReaction = fromTLReaction;
-        if (tLRPC$TL_mediaAreaSuggestedReaction.flipped) {
+        if (tL_stories$TL_mediaAreaSuggestedReaction.flipped) {
             this.storyReactionWidgetBackground.setMirror(true, false);
         }
         this.storyReactionWidgetBackground.updateShadowLayer(getScaleX());
@@ -49,21 +49,28 @@ public class StoryReactionWidgetView extends StoryMediaAreasView.AreaView {
             this.preloadSmallReaction.setImage(ImageLocation.getForDocument(tLRPC$TL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tLRPC$TL_availableReaction, 1);
         }
         this.animatedTextDrawable.setGravity(17);
-        this.animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        this.animatedTextDrawable.setTextSize(AndroidUtilities.dp(14.0f));
-        if (tLRPC$TL_mediaAreaSuggestedReaction.dark) {
+        this.animatedTextDrawable.setTypeface(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
+        this.animatedTextDrawable.setTextSize(AndroidUtilities.dp(18.0f));
+        this.animatedTextDrawable.setOverrideFullWidth(AndroidUtilities.displaySize.x);
+        if (tL_stories$TL_mediaAreaSuggestedReaction.dark) {
             this.storyReactionWidgetBackground.nextStyle();
             this.animatedTextDrawable.setTextColor(-1);
         }
     }
 
-    public void setViews(TLRPC$StoryViews tLRPC$StoryViews, boolean z) {
-        if (tLRPC$StoryViews != null) {
-            for (int i = 0; i < tLRPC$StoryViews.reactions.size(); i++) {
-                if (ReactionsUtils.compare(tLRPC$StoryViews.reactions.get(i).reaction, this.visibleReaction)) {
+    @Override
+    protected void onMeasure(int i, int i2) {
+        super.onMeasure(i, i2);
+        this.animatedTextDrawable.setTextSize(Math.min(AndroidUtilities.dp(18.0f), getMeasuredHeight() * 0.156f));
+    }
+
+    public void setViews(TL_stories$StoryViews tL_stories$StoryViews, boolean z) {
+        if (tL_stories$StoryViews != null) {
+            for (int i = 0; i < tL_stories$StoryViews.reactions.size(); i++) {
+                if (ReactionsUtils.compare(tL_stories$StoryViews.reactions.get(i).reaction, this.visibleReaction)) {
                     boolean z2 = z && this.hasCounter;
-                    this.hasCounter = tLRPC$StoryViews.reactions.get(i).count > 0;
-                    this.animatedTextDrawable.setText(AndroidUtilities.formatWholeNumber(tLRPC$StoryViews.reactions.get(i).count, 0), z2);
+                    this.hasCounter = tL_stories$StoryViews.reactions.get(i).count > 0;
+                    this.animatedTextDrawable.setText(AndroidUtilities.formatWholeNumber(tL_stories$StoryViews.reactions.get(i).count, 0), z2);
                     if (z) {
                         return;
                     }

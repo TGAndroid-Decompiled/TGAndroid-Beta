@@ -27,8 +27,6 @@ public abstract class TLRPC$DecryptedMessageAction extends TLObject {
                 break;
             case -860719551:
                 tLRPC$TL_decryptedMessageActionScreenshotMessages = new TLRPC$DecryptedMessageAction() {
-                    public static int constructor = -860719551;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.action = TLRPC$SendMessageAction.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -36,7 +34,7 @@ public abstract class TLRPC$DecryptedMessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-860719551);
                         this.action.serializeToStream(abstractSerializedData2);
                     }
                 };

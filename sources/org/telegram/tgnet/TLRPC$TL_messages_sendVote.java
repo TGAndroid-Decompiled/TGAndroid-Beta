@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_messages_sendVote extends TLObject {
-    public static int constructor = 283795844;
     public int msg_id;
     public ArrayList<byte[]> options = new ArrayList<>();
     public TLRPC$InputPeer peer;
@@ -14,7 +13,7 @@ public class TLRPC$TL_messages_sendVote extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(283795844);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.msg_id);
         abstractSerializedData.writeInt32(481674261);

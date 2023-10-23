@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_exportMessageLink extends TLObject {
-    public static int constructor = -432034325;
     public TLRPC$InputChannel channel;
     public int flags;
     public boolean grouped;
@@ -14,7 +13,7 @@ public class TLRPC$TL_channels_exportMessageLink extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-432034325);
         int i = this.grouped ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.thread ? i | 2 : i & (-3);

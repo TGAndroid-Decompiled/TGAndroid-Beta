@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateMessagePoll extends TLRPC$Update {
-    public static int constructor = -1398708869;
     public int flags;
     public TLRPC$Poll poll;
     public long poll_id;
@@ -18,7 +17,7 @@ public class TLRPC$TL_updateMessagePoll extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1398708869);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt64(this.poll_id);
         if ((this.flags & 1) != 0) {

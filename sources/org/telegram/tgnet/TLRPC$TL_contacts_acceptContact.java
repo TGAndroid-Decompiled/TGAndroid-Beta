@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_contacts_acceptContact extends TLObject {
-    public static int constructor = -130964977;
     public TLRPC$InputUser id;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_contacts_acceptContact extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-130964977);
         this.id.serializeToStream(abstractSerializedData);
     }
 }

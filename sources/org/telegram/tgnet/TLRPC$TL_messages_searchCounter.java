@@ -1,13 +1,12 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_searchCounter extends TLObject {
-    public static int constructor = -398136321;
     public int count;
     public TLRPC$MessagesFilter filter;
     public int flags;
     public boolean inexact;
 
     public static TLRPC$TL_messages_searchCounter TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-398136321 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_messages_searchCounter", Integer.valueOf(i)));
             }
@@ -29,7 +28,7 @@ public class TLRPC$TL_messages_searchCounter extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-398136321);
         int i = this.inexact ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

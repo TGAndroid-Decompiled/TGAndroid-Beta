@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_availableReaction extends TLObject {
-    public static int constructor = -1065882623;
     public TLRPC$Document activate_animation;
     public TLRPC$Document appear_animation;
     public TLRPC$Document around_animation;
@@ -16,7 +15,7 @@ public class TLRPC$TL_availableReaction extends TLObject {
     public String title;
 
     public static TLRPC$TL_availableReaction TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1065882623 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_availableReaction", Integer.valueOf(i)));
             }
@@ -50,7 +49,7 @@ public class TLRPC$TL_availableReaction extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1065882623);
         int i = this.inactive ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.premium ? i | 4 : i & (-5);

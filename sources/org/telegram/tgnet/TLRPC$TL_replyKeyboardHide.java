@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_replyKeyboardHide extends TLRPC$ReplyMarkup {
-    public static int constructor = -1606526075;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -11,7 +9,7 @@ public class TLRPC$TL_replyKeyboardHide extends TLRPC$ReplyMarkup {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1606526075);
         int i = this.selective ? this.flags | 4 : this.flags & (-5);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

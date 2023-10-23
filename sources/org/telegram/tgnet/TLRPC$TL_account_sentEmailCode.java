@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_sentEmailCode extends TLObject {
-    public static int constructor = -2128640689;
     public String email_pattern;
     public int length;
 
     public static TLRPC$TL_account_sentEmailCode TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-2128640689 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_account_sentEmailCode", Integer.valueOf(i)));
             }
@@ -24,7 +23,7 @@ public class TLRPC$TL_account_sentEmailCode extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-2128640689);
         abstractSerializedData.writeString(this.email_pattern);
         abstractSerializedData.writeInt32(this.length);
     }

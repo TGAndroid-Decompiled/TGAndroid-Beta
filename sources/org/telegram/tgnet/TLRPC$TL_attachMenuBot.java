@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
-    public static int constructor = -653423106;
     public long bot_id;
     public int flags;
     public boolean has_settings;
@@ -61,7 +60,7 @@ public class TLRPC$TL_attachMenuBot extends TLRPC$AttachMenuBot {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-653423106);
         int i = this.inactive ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.has_settings ? i | 2 : i & (-3);

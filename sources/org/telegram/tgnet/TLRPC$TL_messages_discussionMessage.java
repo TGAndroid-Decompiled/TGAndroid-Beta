@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_messages_discussionMessage extends TLObject {
-    public static int constructor = -1506535550;
     public int flags;
     public int max_id;
     public int read_inbox_max_id;
@@ -13,7 +12,7 @@ public class TLRPC$TL_messages_discussionMessage extends TLObject {
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
     public static TLRPC$TL_messages_discussionMessage TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1506535550 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_messages_discussionMessage", Integer.valueOf(i)));
             }
@@ -86,7 +85,7 @@ public class TLRPC$TL_messages_discussionMessage extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1506535550);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt32(481674261);
         int size = this.messages.size();

@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_documentAttributeVideo_layer159 extends TLRPC$TL_documentAttributeVideo {
-    public static int constructor = 250621158;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -15,7 +13,7 @@ public class TLRPC$TL_documentAttributeVideo_layer159 extends TLRPC$TL_documentA
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(250621158);
         int i = this.round_message ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.supports_streaming ? i | 2 : i & (-3);

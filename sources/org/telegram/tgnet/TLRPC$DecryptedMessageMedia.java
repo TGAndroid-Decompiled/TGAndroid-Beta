@@ -41,7 +41,6 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                 break;
             case -1332395189:
                 tLRPC$TL_decryptedMessageMediaVenue = new TLRPC$TL_decryptedMessageMediaDocument() {
-                    public static int constructor = -1332395189;
                     public byte[] thumb;
 
                     @Override
@@ -58,7 +57,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1332395189);
                         abstractSerializedData2.writeByteArray(this.thumb);
                         abstractSerializedData2.writeInt32(this.thumb_w);
                         abstractSerializedData2.writeInt32(this.thumb_h);
@@ -84,7 +83,6 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                 break;
             case 846826124:
                 tLRPC$TL_decryptedMessageMediaVenue = new TLRPC$TL_decryptedMessageMediaPhoto() {
-                    public static int constructor = 846826124;
                     public byte[] thumb;
 
                     @Override
@@ -101,7 +99,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(846826124);
                         abstractSerializedData2.writeByteArray(this.thumb);
                         abstractSerializedData2.writeInt32(this.thumb_w);
                         abstractSerializedData2.writeInt32(this.thumb_h);
@@ -118,7 +116,6 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                 break;
             case 1290694387:
                 tLRPC$TL_decryptedMessageMediaVenue = new TLRPC$TL_decryptedMessageMediaVideo() {
-                    public static int constructor = 1290694387;
                     public byte[] thumb;
 
                     @Override
@@ -136,7 +133,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1290694387);
                         abstractSerializedData2.writeByteArray(this.thumb);
                         abstractSerializedData2.writeInt32(this.thumb_w);
                         abstractSerializedData2.writeInt32(this.thumb_h);
@@ -151,7 +148,6 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                 break;
             case 1380598109:
                 tLRPC$TL_decryptedMessageMediaVenue = new TLRPC$TL_decryptedMessageMediaVideo() {
-                    public static int constructor = 1380598109;
                     public byte[] thumb;
 
                     @Override
@@ -170,7 +166,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1380598109);
                         abstractSerializedData2.writeByteArray(this.thumb);
                         abstractSerializedData2.writeInt32(this.thumb_w);
                         abstractSerializedData2.writeInt32(this.thumb_h);
@@ -192,8 +188,6 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                 break;
             case 1619031439:
                 tLRPC$TL_decryptedMessageMediaVenue = new TLRPC$TL_decryptedMessageMediaAudio() {
-                    public static int constructor = 1619031439;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.duration = abstractSerializedData2.readInt32(z2);
@@ -204,7 +198,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1619031439);
                         abstractSerializedData2.writeInt32(this.duration);
                         abstractSerializedData2.writeInt32((int) this.size);
                         abstractSerializedData2.writeByteArray(this.key);
@@ -217,7 +211,6 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
                 break;
             case 2063502050:
                 tLRPC$TL_decryptedMessageMediaVenue = new TLRPC$TL_decryptedMessageMediaDocument() {
-                    public static int constructor = 2063502050;
                     public byte[] thumb;
 
                     @Override
@@ -249,7 +242,7 @@ public abstract class TLRPC$DecryptedMessageMedia extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(2063502050);
                         abstractSerializedData2.writeByteArray(this.thumb);
                         abstractSerializedData2.writeInt32(this.thumb_w);
                         abstractSerializedData2.writeInt32(this.thumb_h);

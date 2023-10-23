@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionCreateTopic extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = 1483767080;
     public TLRPC$ForumTopic topic;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_channelAdminLogEventActionCreateTopic extends TLRPC$Channe
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1483767080);
         this.topic.serializeToStream(abstractSerializedData);
     }
 }

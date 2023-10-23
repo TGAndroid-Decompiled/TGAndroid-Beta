@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_stats_megagroupStats extends TLObject {
-    public static int constructor = -276825834;
     public TLRPC$StatsGraph actions_graph;
     public TLRPC$StatsGraph growth_graph;
     public TLRPC$StatsGraph languages_graph;
@@ -22,7 +21,7 @@ public class TLRPC$TL_stats_megagroupStats extends TLObject {
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
     public static TLRPC$TL_stats_megagroupStats TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-276825834 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_stats_megagroupStats", Integer.valueOf(i)));
             }
@@ -112,7 +111,7 @@ public class TLRPC$TL_stats_megagroupStats extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-276825834);
         this.period.serializeToStream(abstractSerializedData);
         this.members.serializeToStream(abstractSerializedData);
         this.messages.serializeToStream(abstractSerializedData);

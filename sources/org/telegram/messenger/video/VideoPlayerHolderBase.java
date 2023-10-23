@@ -23,10 +23,12 @@ public class VideoPlayerHolderBase {
     private int currentAccount;
     public long currentPosition;
     public TLRPC$Document document;
+    private volatile long duration;
     public boolean firstFrameRendered;
     Runnable initRunnable;
     int lastState;
     private Runnable onReadyListener;
+    private Runnable onSeekUpdate;
     public boolean paused;
     public long pendingSeekTo;
     long playerDuration;
@@ -34,6 +36,7 @@ public class VideoPlayerHolderBase {
     public Paint playerStubPaint;
     public float progress;
     volatile boolean released;
+    private volatile boolean seeking;
     long startTime;
     public boolean stubAvailable;
     private SurfaceView surfaceView;
@@ -63,6 +66,26 @@ public class VideoPlayerHolderBase {
             }
         }
     };
+    private volatile boolean firstSeek = true;
+    private volatile long lastSeek = -1;
+    private long lastBetterSeek = -1;
+    public float currentSeek = 0.0f;
+    public volatile float currentSeekThread = 0.0f;
+    private final Runnable betterSeek = new Runnable() {
+        @Override
+        public final void run() {
+            VideoPlayerHolderBase.this.lambda$new$11();
+        }
+    };
+    private final Runnable updateSeek = new Runnable() {
+        @Override
+        public final void run() {
+            VideoPlayerHolderBase.this.lambda$new$12();
+        }
+    };
+
+    public void lambda$new$11() {
+    }
 
     public boolean needRepeat() {
         return false;
@@ -437,11 +460,11 @@ public class VideoPlayerHolderBase {
             } else {
                 f = ((float) this.currentPosition) / ((float) this.playerDuration);
             }
-            float f2 = this.progress;
-            if (f < f2) {
-                return f2;
-            }
             this.progress = f;
+            if (!this.seeking) {
+                this.currentSeek = this.progress;
+                this.lastSeek = this.currentPosition;
+            }
         }
         return this.progress;
     }
@@ -535,5 +558,52 @@ public class VideoPlayerHolderBase {
             return;
         }
         videoPlayer.setPlaybackSpeed(f);
+    }
+
+    public void setOnSeekUpdate(Runnable runnable) {
+        this.onSeekUpdate = runnable;
+    }
+
+    public void lambda$new$12() {
+        if (this.videoPlayer == null) {
+            return;
+        }
+        long j = this.currentSeekThread * ((float) this.duration);
+        if (this.lastSeek <= -1) {
+            this.lastSeek = j;
+        }
+        if (Math.abs(j - this.lastSeek) >= (this.firstSeek ? 350 : 40)) {
+            this.firstSeek = false;
+            this.lastBetterSeek = j;
+            this.dispatchQueue.cancelRunnable(this.betterSeek);
+            this.dispatchQueue.postRunnable(this.betterSeek, 300L);
+            VideoPlayer videoPlayer = this.videoPlayer;
+            this.lastSeek = j;
+            videoPlayer.seekTo(j, true);
+        }
+    }
+
+    public void setSeeking(boolean z) {
+        if (z && !this.seeking) {
+            this.firstSeek = true;
+        }
+        this.seeking = z;
+        if (z) {
+            return;
+        }
+        this.dispatchQueue.cancelRunnable(this.betterSeek);
+    }
+
+    public float seek(float f, long j) {
+        if (this.videoPlayer == null) {
+            return this.currentSeek;
+        }
+        this.duration = j;
+        float clamp = Utilities.clamp(this.currentSeek + f, 1.0f, 0.0f);
+        this.currentSeek = clamp;
+        this.currentSeekThread = clamp;
+        this.dispatchQueue.cancelRunnable(this.updateSeek);
+        this.dispatchQueue.postRunnable(this.updateSeek);
+        return this.currentSeek;
     }
 }

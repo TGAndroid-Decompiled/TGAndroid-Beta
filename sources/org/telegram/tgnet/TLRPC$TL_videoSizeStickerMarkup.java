@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_videoSizeStickerMarkup extends TLRPC$VideoSize {
-    public static int constructor = 228623102;
     public long sticker_id;
     public TLRPC$InputStickerSet stickerset;
 
@@ -23,7 +22,7 @@ public class TLRPC$TL_videoSizeStickerMarkup extends TLRPC$VideoSize {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(228623102);
         this.stickerset.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt64(this.sticker_id);
         abstractSerializedData.writeInt32(481674261);

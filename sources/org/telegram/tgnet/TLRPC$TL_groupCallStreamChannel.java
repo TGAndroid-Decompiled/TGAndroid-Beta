@@ -1,12 +1,11 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_groupCallStreamChannel extends TLObject {
-    public static int constructor = -2132064081;
     public int channel;
     public long last_timestamp_ms;
     public int scale;
 
     public static TLRPC$TL_groupCallStreamChannel TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-2132064081 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_groupCallStreamChannel", Integer.valueOf(i)));
             }
@@ -26,7 +25,7 @@ public class TLRPC$TL_groupCallStreamChannel extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-2132064081);
         abstractSerializedData.writeInt32(this.channel);
         abstractSerializedData.writeInt32(this.scale);
         abstractSerializedData.writeInt64(this.last_timestamp_ms);

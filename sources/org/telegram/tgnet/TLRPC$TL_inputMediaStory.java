@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputMediaStory extends TLRPC$InputMedia {
-    public static int constructor = -1979852936;
     public int id;
     public TLRPC$InputPeer peer;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_inputMediaStory extends TLRPC$InputMedia {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1979852936);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.id);
     }

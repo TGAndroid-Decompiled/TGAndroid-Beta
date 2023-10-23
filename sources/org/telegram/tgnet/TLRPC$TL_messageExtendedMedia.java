@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messageExtendedMedia extends TLRPC$MessageExtendedMedia {
-    public static int constructor = -297296796;
     public TLRPC$MessageMedia media;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_messageExtendedMedia extends TLRPC$MessageExtendedMedia {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-297296796);
         this.media.serializeToStream(abstractSerializedData);
     }
 }

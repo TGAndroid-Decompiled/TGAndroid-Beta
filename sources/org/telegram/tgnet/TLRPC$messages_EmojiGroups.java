@@ -4,11 +4,9 @@ public abstract class TLRPC$messages_EmojiGroups extends TLObject {
         TLRPC$messages_EmojiGroups tLRPC$TL_messages_emojiGroups;
         if (i != -2011186869) {
             tLRPC$TL_messages_emojiGroups = i != 1874111879 ? null : new TLRPC$messages_EmojiGroups() {
-                public static int constructor = 1874111879;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(1874111879);
                 }
             };
         } else {

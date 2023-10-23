@@ -11,8 +11,6 @@ public abstract class TLRPC$StickerSetCovered extends TLObject {
         switch (i) {
             case 451763941:
                 tLRPC$StickerSetCovered = new TLRPC$TL_stickerSetFullCovered() {
-                    public static int constructor = 451763941;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.set = TLRPC$StickerSet.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -50,7 +48,7 @@ public abstract class TLRPC$StickerSetCovered extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(451763941);
                         this.set.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.packs.size();
@@ -69,8 +67,6 @@ public abstract class TLRPC$StickerSetCovered extends TLObject {
                 break;
             case 872932635:
                 tLRPC$StickerSetCovered = new TLRPC$StickerSetCovered() {
-                    public static int constructor = 872932635;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.set = TLRPC$StickerSet.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -93,7 +89,7 @@ public abstract class TLRPC$StickerSetCovered extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(872932635);
                         this.set.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.covers.size();
@@ -109,8 +105,6 @@ public abstract class TLRPC$StickerSetCovered extends TLObject {
                 break;
             case 1678812626:
                 tLRPC$StickerSetCovered = new TLRPC$StickerSetCovered() {
-                    public static int constructor = 1678812626;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.set = TLRPC$StickerSet.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -119,7 +113,7 @@ public abstract class TLRPC$StickerSetCovered extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1678812626);
                         this.set.serializeToStream(abstractSerializedData2);
                         this.cover.serializeToStream(abstractSerializedData2);
                     }

@@ -30,18 +30,14 @@ public abstract class TLRPC$WebPage extends TLObject {
         switch (i) {
             case -2054908813:
                 tLRPC$WebPage = new TLRPC$TL_webPageNotModified() {
-                    public static int constructor = -2054908813;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-2054908813);
                     }
                 };
                 break;
             case -1558273867:
                 tLRPC$WebPage = new TLRPC$TL_webPage() {
-                    public static int constructor = -1558273867;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
@@ -85,7 +81,7 @@ public abstract class TLRPC$WebPage extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1558273867);
                         abstractSerializedData2.writeInt32(this.flags);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeString(this.url);
@@ -126,13 +122,27 @@ public abstract class TLRPC$WebPage extends TLObject {
                     }
                 };
                 break;
-            case -981018084:
+            case -1328464313:
                 tLRPC$WebPage = new TLRPC$TL_webPagePending();
+                break;
+            case -981018084:
+                tLRPC$WebPage = new TLRPC$TL_webPagePending() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.id = abstractSerializedData2.readInt64(z2);
+                        this.date = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-981018084);
+                        abstractSerializedData2.writeInt64(this.id);
+                        abstractSerializedData2.writeInt32(this.date);
+                    }
+                };
                 break;
             case -897446185:
                 tLRPC$WebPage = new TLRPC$TL_webPage() {
-                    public static int constructor = -897446185;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
@@ -179,7 +189,7 @@ public abstract class TLRPC$WebPage extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-897446185);
                         abstractSerializedData2.writeInt32(this.flags);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeString(this.url);
@@ -230,12 +240,21 @@ public abstract class TLRPC$WebPage extends TLObject {
                 tLRPC$WebPage = new TLRPC$TL_webPage();
                 break;
             case -350980120:
-                tLRPC$WebPage = new TLRPC$TL_webPageEmpty();
+                tLRPC$WebPage = new TLRPC$TL_webPageEmpty() {
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.id = abstractSerializedData2.readInt64(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(-350980120);
+                        abstractSerializedData2.writeInt64(this.id);
+                    }
+                };
                 break;
             case -94051982:
                 tLRPC$WebPage = new TLRPC$TL_webPage() {
-                    public static int constructor = -94051982;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
@@ -305,7 +324,7 @@ public abstract class TLRPC$WebPage extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-94051982);
                         abstractSerializedData2.writeInt32(this.flags);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeString(this.url);
@@ -357,10 +376,11 @@ public abstract class TLRPC$WebPage extends TLObject {
                     }
                 };
                 break;
+            case 555358088:
+                tLRPC$WebPage = new TLRPC$TL_webPageEmpty();
+                break;
             case 1594340540:
                 tLRPC$WebPage = new TLRPC$TL_webPage() {
-                    public static int constructor = 1594340540;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
@@ -411,7 +431,7 @@ public abstract class TLRPC$WebPage extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1594340540);
                         abstractSerializedData2.writeInt32(this.flags);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeString(this.url);

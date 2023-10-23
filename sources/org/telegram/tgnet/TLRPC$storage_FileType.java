@@ -5,101 +5,81 @@ public abstract class TLRPC$storage_FileType extends TLObject {
         switch (i) {
             case -1432995067:
                 tLRPC$storage_FileType = new TLRPC$storage_FileType() {
-                    public static int constructor = -1432995067;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1432995067);
                     }
                 };
                 break;
             case -1373745011:
                 tLRPC$storage_FileType = new TLRPC$storage_FileType() {
-                    public static int constructor = -1373745011;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1373745011);
                     }
                 };
                 break;
             case -1278304028:
                 tLRPC$storage_FileType = new TLRPC$storage_FileType() {
-                    public static int constructor = -1278304028;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1278304028);
                     }
                 };
                 break;
             case -891180321:
                 tLRPC$storage_FileType = new TLRPC$storage_FileType() {
-                    public static int constructor = -891180321;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-891180321);
                     }
                 };
                 break;
             case 8322574:
                 tLRPC$storage_FileType = new TLRPC$storage_FileType() {
-                    public static int constructor = 8322574;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(8322574);
                     }
                 };
                 break;
             case 172975040:
                 tLRPC$storage_FileType = new TLRPC$storage_FileType() {
-                    public static int constructor = 172975040;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(172975040);
                     }
                 };
                 break;
             case 276907596:
                 tLRPC$storage_FileType = new TLRPC$storage_FileType() {
-                    public static int constructor = 276907596;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(276907596);
                     }
                 };
                 break;
             case 1086091090:
                 tLRPC$storage_FileType = new TLRPC$storage_FileType() {
-                    public static int constructor = 1086091090;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1086091090);
                     }
                 };
                 break;
             case 1258941372:
                 tLRPC$storage_FileType = new TLRPC$storage_FileType() {
-                    public static int constructor = 1258941372;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1258941372);
                     }
                 };
                 break;
             case 1384777335:
                 tLRPC$storage_FileType = new TLRPC$storage_FileType() {
-                    public static int constructor = 1384777335;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1384777335);
                     }
                 };
                 break;

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messageActionSetMessagesTTL extends TLRPC$MessageAction {
-    public static int constructor = 1007897979;
     public long auto_setting_from;
     public int period;
 
@@ -15,7 +14,7 @@ public class TLRPC$TL_messageActionSetMessagesTTL extends TLRPC$MessageAction {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1007897979);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt32(this.period);
         if ((this.flags & 1) != 0) {

@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_messages_getSearchCounters extends TLObject {
-    public static int constructor = 11435201;
     public ArrayList<TLRPC$MessagesFilter> filters = new ArrayList<>();
     public int flags;
     public TLRPC$InputPeer peer;
@@ -24,7 +23,7 @@ public class TLRPC$TL_messages_getSearchCounters extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(11435201);
         abstractSerializedData.writeInt32(this.flags);
         this.peer.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {

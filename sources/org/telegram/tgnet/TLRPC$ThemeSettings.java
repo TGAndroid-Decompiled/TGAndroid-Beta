@@ -14,8 +14,6 @@ public abstract class TLRPC$ThemeSettings extends TLObject {
         TLRPC$ThemeSettings tLRPC$ThemeSettings;
         if (i == -1917524116) {
             tLRPC$ThemeSettings = new TLRPC$ThemeSettings() {
-                public static int constructor = -1917524116;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -43,7 +41,7 @@ public abstract class TLRPC$ThemeSettings extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1917524116);
                     int i2 = this.message_colors_animated ? this.flags | 4 : this.flags & (-5);
                     this.flags = i2;
                     abstractSerializedData2.writeInt32(i2);
@@ -66,8 +64,6 @@ public abstract class TLRPC$ThemeSettings extends TLObject {
             tLRPC$ThemeSettings = i != -94849324 ? null : new TLRPC$TL_themeSettings();
         } else {
             tLRPC$ThemeSettings = new TLRPC$ThemeSettings() {
-                public static int constructor = -1676371894;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     int readInt32;
@@ -88,7 +84,7 @@ public abstract class TLRPC$ThemeSettings extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1676371894);
                     abstractSerializedData2.writeInt32(this.flags);
                     this.base_theme.serializeToStream(abstractSerializedData2);
                     abstractSerializedData2.writeInt32(this.accent_color);

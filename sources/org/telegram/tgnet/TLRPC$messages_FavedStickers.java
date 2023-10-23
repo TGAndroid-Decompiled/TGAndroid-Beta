@@ -10,17 +10,13 @@ public abstract class TLRPC$messages_FavedStickers extends TLObject {
         TLRPC$messages_FavedStickers tLRPC$messages_FavedStickers;
         if (i == -1634752813) {
             tLRPC$messages_FavedStickers = new TLRPC$messages_FavedStickers() {
-                public static int constructor = -1634752813;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1634752813);
                 }
             };
         } else {
             tLRPC$messages_FavedStickers = i != 750063767 ? null : new TLRPC$messages_FavedStickers() {
-                public static int constructor = 750063767;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.hash = abstractSerializedData2.readInt64(z2);
@@ -58,7 +54,7 @@ public abstract class TLRPC$messages_FavedStickers extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(750063767);
                     abstractSerializedData2.writeInt64(this.hash);
                     abstractSerializedData2.writeInt32(481674261);
                     int size = this.packs.size();

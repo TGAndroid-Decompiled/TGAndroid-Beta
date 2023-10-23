@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputChatUploadedPhoto extends TLRPC$InputChatPhoto {
-    public static int constructor = -1110593856;
     public TLRPC$InputFile file;
     public int flags;
     public TLRPC$InputFile video;
@@ -27,7 +26,7 @@ public class TLRPC$TL_inputChatUploadedPhoto extends TLRPC$InputChatPhoto {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1110593856);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             this.file.serializeToStream(abstractSerializedData);

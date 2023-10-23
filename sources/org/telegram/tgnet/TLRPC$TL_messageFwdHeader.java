@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messageFwdHeader extends TLRPC$MessageFwdHeader {
-    public static int constructor = 1601666510;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -33,7 +31,7 @@ public class TLRPC$TL_messageFwdHeader extends TLRPC$MessageFwdHeader {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1601666510);
         int i = this.imported ? this.flags | 128 : this.flags & (-129);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

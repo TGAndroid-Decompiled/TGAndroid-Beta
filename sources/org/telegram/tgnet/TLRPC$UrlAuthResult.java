@@ -6,11 +6,9 @@ public abstract class TLRPC$UrlAuthResult extends TLObject {
             tLRPC$TL_urlAuthResultAccepted = new TLRPC$TL_urlAuthResultAccepted();
         } else if (i != -1831650802) {
             tLRPC$TL_urlAuthResultAccepted = i != -1445536993 ? null : new TLRPC$UrlAuthResult() {
-                public static int constructor = -1445536993;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1445536993);
                 }
             };
         } else {

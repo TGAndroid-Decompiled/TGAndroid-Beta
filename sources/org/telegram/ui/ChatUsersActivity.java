@@ -1876,11 +1876,9 @@ public class ChatUsersActivity extends BaseFragment implements NotificationCente
                 arrayList.addAll(loadChatParticipantsRequests(0, 200, false));
             } else if (!this.botsEndReached) {
                 tLRPC$TL_channels_getParticipants.filter = new TLRPC$ChannelParticipantsFilter() {
-                    public static int constructor = -1328445861;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                        abstractSerializedData.writeInt32(constructor);
+                        abstractSerializedData.writeInt32(-1328445861);
                     }
                 };
                 this.botsEndReached = true;

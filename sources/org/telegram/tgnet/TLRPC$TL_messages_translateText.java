@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_messages_translateText extends TLObject {
-    public static int constructor = 1662529584;
     public int flags;
     public TLRPC$InputPeer peer;
     public String to_lang;
@@ -16,7 +15,7 @@ public class TLRPC$TL_messages_translateText extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1662529584);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             this.peer.serializeToStream(abstractSerializedData);

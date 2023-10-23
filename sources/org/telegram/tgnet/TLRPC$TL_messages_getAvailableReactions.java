@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getAvailableReactions extends TLObject {
-    public static int constructor = 417243308;
     public int hash;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_messages_getAvailableReactions extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(417243308);
         abstractSerializedData.writeInt32(this.hash);
     }
 }

@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_statsGroupTopInviter extends TLObject {
-    public static int constructor = 1398765469;
     public int invitations;
     public long user_id;
 
     public static TLRPC$TL_statsGroupTopInviter TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1398765469 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_statsGroupTopInviter", Integer.valueOf(i)));
             }
@@ -24,7 +23,7 @@ public class TLRPC$TL_statsGroupTopInviter extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1398765469);
         abstractSerializedData.writeInt64(this.user_id);
         abstractSerializedData.writeInt32(this.invitations);
     }

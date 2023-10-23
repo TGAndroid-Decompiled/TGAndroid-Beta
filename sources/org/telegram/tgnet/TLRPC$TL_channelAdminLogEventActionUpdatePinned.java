@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionUpdatePinned extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = -370660328;
     public TLRPC$Message message;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_channelAdminLogEventActionUpdatePinned extends TLRPC$Chann
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-370660328);
         this.message.serializeToStream(abstractSerializedData);
     }
 }

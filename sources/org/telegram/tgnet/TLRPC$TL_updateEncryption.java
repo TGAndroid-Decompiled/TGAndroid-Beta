@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateEncryption extends TLRPC$Update {
-    public static int constructor = -1264392051;
     public TLRPC$EncryptedChat chat;
     public int date;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_updateEncryption extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1264392051);
         this.chat.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.date);
     }

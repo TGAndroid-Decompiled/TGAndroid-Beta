@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelParticipantAdmin extends TLRPC$ChannelParticipant {
-    public static int constructor = 885242707;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -24,7 +22,7 @@ public class TLRPC$TL_channelParticipantAdmin extends TLRPC$ChannelParticipant {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(885242707);
         int i = this.can_edit ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.self ? i | 2 : i & (-3);

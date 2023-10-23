@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_pageBlockEmbed extends TLRPC$PageBlock {
-    public static int constructor = -1468953147;
     public boolean allow_scrolling;
     public TLRPC$TL_pageCaption caption;
     public int flags;
@@ -37,7 +36,7 @@ public class TLRPC$TL_pageBlockEmbed extends TLRPC$PageBlock {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1468953147);
         int i = this.full_width ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.allow_scrolling ? i | 8 : i & (-9);

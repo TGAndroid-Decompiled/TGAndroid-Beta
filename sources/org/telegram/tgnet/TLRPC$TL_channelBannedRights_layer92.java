@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelBannedRights_layer92 extends TLObject {
-    public static int constructor = 1489977929;
     public boolean embed_links;
     public int flags;
     public boolean send_games;
@@ -13,7 +12,7 @@ public class TLRPC$TL_channelBannedRights_layer92 extends TLObject {
     public boolean view_messages;
 
     public static TLRPC$TL_channelBannedRights_layer92 TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1489977929 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_channelBannedRights_layer92", Integer.valueOf(i)));
             }
@@ -41,7 +40,7 @@ public class TLRPC$TL_channelBannedRights_layer92 extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1489977929);
         int i = this.view_messages ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.send_messages ? i | 2 : i & (-3);

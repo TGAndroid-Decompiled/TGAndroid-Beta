@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionExportedInviteRevoke extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = 1091179342;
     public TLRPC$TL_chatInviteExported invite;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_channelAdminLogEventActionExportedInviteRevoke extends TLR
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1091179342);
         this.invite.serializeToStream(abstractSerializedData);
     }
 }

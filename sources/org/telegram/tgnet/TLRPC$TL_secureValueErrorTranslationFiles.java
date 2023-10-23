@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_secureValueErrorTranslationFiles extends TLRPC$SecureValueError {
-    public static int constructor = 878931416;
     public ArrayList<byte[]> file_hash = new ArrayList<>();
     public String text;
     public TLRPC$SecureValueType type;
@@ -26,7 +25,7 @@ public class TLRPC$TL_secureValueErrorTranslationFiles extends TLRPC$SecureValue
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(878931416);
         this.type.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
         int size = this.file_hash.size();

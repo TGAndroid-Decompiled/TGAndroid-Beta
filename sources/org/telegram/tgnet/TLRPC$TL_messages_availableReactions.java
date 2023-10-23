@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_messages_availableReactions extends TLRPC$messages_AvailableReactions {
-    public static int constructor = 1989032621;
     public int hash;
     public ArrayList<TLRPC$TL_availableReaction> reactions = new ArrayList<>();
 
@@ -28,7 +27,7 @@ public class TLRPC$TL_messages_availableReactions extends TLRPC$messages_Availab
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1989032621);
         abstractSerializedData.writeInt32(this.hash);
         abstractSerializedData.writeInt32(481674261);
         int size = this.reactions.size();

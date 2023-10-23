@@ -600,7 +600,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
             public final void run(ArrayList arrayList, String str2) {
                 SuggestEmojiView.this.lambda$searchKeywords$3(i, str, arrayList, str2);
             }
-        }, SharedConfig.suggestAnimatedEmoji);
+        }, SharedConfig.suggestAnimatedEmoji && UserConfig.getInstance(this.currentAccount).isPremium());
     }
 
     public void lambda$searchKeywords$3(int i, String str, ArrayList arrayList, String str2) {
@@ -676,7 +676,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
     public void lambda$searchAnimated$6(final String str, final int i) {
         final ArrayList<MediaDataController.KeywordResult> arrayList = new ArrayList<>(1);
         arrayList.add(new MediaDataController.KeywordResult(str, null));
-        MediaDataController.getInstance(this.currentAccount).fillWithAnimatedEmoji(arrayList, 15, false, false, new Runnable() {
+        MediaDataController.getInstance(this.currentAccount).fillWithAnimatedEmoji(arrayList, 15, false, false, false, new Runnable() {
             @Override
             public final void run() {
                 SuggestEmojiView.this.lambda$searchAnimated$5(i, str, arrayList);

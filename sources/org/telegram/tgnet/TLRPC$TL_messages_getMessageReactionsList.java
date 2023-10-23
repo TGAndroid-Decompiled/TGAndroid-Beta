@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getMessageReactionsList extends TLObject {
-    public static int constructor = 1176190792;
     public int flags;
     public int id;
     public int limit;
@@ -15,7 +14,7 @@ public class TLRPC$TL_messages_getMessageReactionsList extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1176190792);
         abstractSerializedData.writeInt32(this.flags);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.id);

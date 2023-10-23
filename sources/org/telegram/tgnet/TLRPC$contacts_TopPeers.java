@@ -4,22 +4,18 @@ public abstract class TLRPC$contacts_TopPeers extends TLObject {
         TLRPC$contacts_TopPeers tLRPC$contacts_TopPeers;
         if (i == -1255369827) {
             tLRPC$contacts_TopPeers = new TLRPC$contacts_TopPeers() {
-                public static int constructor = -1255369827;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1255369827);
                 }
             };
         } else if (i != -567906571) {
             tLRPC$contacts_TopPeers = i != 1891070632 ? null : new TLRPC$TL_contacts_topPeers();
         } else {
             tLRPC$contacts_TopPeers = new TLRPC$contacts_TopPeers() {
-                public static int constructor = -567906571;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-567906571);
                 }
             };
         }

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getAttachMenuBot extends TLObject {
-    public static int constructor = 1998676370;
     public TLRPC$InputUser bot;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_messages_getAttachMenuBot extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1998676370);
         this.bot.serializeToStream(abstractSerializedData);
     }
 }

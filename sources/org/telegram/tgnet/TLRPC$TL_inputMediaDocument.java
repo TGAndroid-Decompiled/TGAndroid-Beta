@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputMediaDocument extends TLRPC$InputMedia {
-    public static int constructor = 860303448;
     public TLRPC$InputDocument id;
     public String query;
 
@@ -20,7 +19,7 @@ public class TLRPC$TL_inputMediaDocument extends TLRPC$InputMedia {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(860303448);
         int i = this.spoiler ? this.flags | 4 : this.flags & (-5);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

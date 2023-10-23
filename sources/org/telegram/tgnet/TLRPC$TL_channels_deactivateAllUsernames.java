@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_deactivateAllUsernames extends TLObject {
-    public static int constructor = 170155475;
     public TLRPC$InputChannel channel;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_channels_deactivateAllUsernames extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(170155475);
         this.channel.serializeToStream(abstractSerializedData);
     }
 }

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_toggleUsername extends TLObject {
-    public static int constructor = 1358053637;
     public boolean active;
     public TLRPC$InputChannel channel;
     public String username;
@@ -12,7 +11,7 @@ public class TLRPC$TL_channels_toggleUsername extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1358053637);
         this.channel.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.username);
         abstractSerializedData.writeBool(this.active);

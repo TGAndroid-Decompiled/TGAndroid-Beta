@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_notifyForumTopic extends TLRPC$NotifyPeer {
-    public static int constructor = 577659656;
     public TLRPC$Peer peer;
     public int top_msg_id;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_notifyForumTopic extends TLRPC$NotifyPeer {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(577659656);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.top_msg_id);
     }

@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_channelAdminLogEventsFilter extends TLObject {
-    public static int constructor = -368018716;
     public boolean ban;
     public boolean delete;
     public boolean demote;
@@ -45,7 +44,7 @@ public class TLRPC$TL_channelAdminLogEventsFilter extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-368018716);
         int i = this.join ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.leave ? i | 2 : i & (-3);

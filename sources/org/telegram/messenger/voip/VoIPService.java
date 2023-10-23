@@ -3855,7 +3855,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return LaunchActivity.class;
     }
 
-    @TargetApi(26)
+    @TargetApi(MessageObject.TYPE_GIVEAWAY)
     public CallConnection getConnectionAndStartCall() {
         if (this.systemCallConnection == null) {
             if (BuildVars.LOGS_ENABLED) {
@@ -3934,8 +3934,6 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         final SharedPreferences mainSettings = MessagesController.getMainSettings(this.currentAccount);
         Instance.setGlobalServerConfig(mainSettings.getString("voip_server_config", "{}"));
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-            public static int constructor = 1430593449;
-
             @Override
             public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
                 return TLRPC$TL_dataJSON.TLdeserialize(abstractSerializedData, i, z);
@@ -3943,7 +3941,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(1430593449);
             }
         }, new RequestDelegate() {
             @Override
@@ -4993,7 +4991,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         return this.remoteVideoState;
     }
 
-    @TargetApi(26)
+    @TargetApi(MessageObject.TYPE_GIVEAWAY)
     private PhoneAccountHandle addAccountToTelecomManager() {
         TLRPC$User currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
         ComponentName componentName = new ComponentName(this, TelegramConnectionService.class);

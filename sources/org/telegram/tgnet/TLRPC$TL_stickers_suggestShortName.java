@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_stickers_suggestShortName extends TLObject {
-    public static int constructor = 1303364867;
     public String title;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_stickers_suggestShortName extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1303364867);
         abstractSerializedData.writeString(this.title);
     }
 }

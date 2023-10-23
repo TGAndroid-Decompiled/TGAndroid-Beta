@@ -4,11 +4,9 @@ public abstract class TLRPC$account_WallPapers extends TLObject {
         TLRPC$account_WallPapers tLRPC$TL_account_wallPapers;
         if (i != -842824308) {
             tLRPC$TL_account_wallPapers = i != 471437699 ? null : new TLRPC$account_WallPapers() {
-                public static int constructor = 471437699;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(471437699);
                 }
             };
         } else {

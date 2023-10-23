@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messageEntityMentionName extends TLRPC$MessageEntity {
-    public static int constructor = -595914432;
     public long user_id;
 
     @Override
@@ -12,7 +11,7 @@ public class TLRPC$TL_messageEntityMentionName extends TLRPC$MessageEntity {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-595914432);
         abstractSerializedData.writeInt32(this.offset);
         abstractSerializedData.writeInt32(this.length);
         abstractSerializedData.writeInt64(this.user_id);

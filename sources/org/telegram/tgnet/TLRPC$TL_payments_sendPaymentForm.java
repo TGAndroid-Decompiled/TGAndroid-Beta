@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_payments_sendPaymentForm extends TLObject {
-    public static int constructor = 755192367;
     public TLRPC$InputPaymentCredentials credentials;
     public int flags;
     public long form_id;
@@ -16,7 +15,7 @@ public class TLRPC$TL_payments_sendPaymentForm extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(755192367);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt64(this.form_id);
         this.invoice.serializeToStream(abstractSerializedData);

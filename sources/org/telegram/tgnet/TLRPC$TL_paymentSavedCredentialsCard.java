@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_paymentSavedCredentialsCard extends TLObject {
-    public static int constructor = -842892769;
     public String id;
     public String title;
 
     public static TLRPC$TL_paymentSavedCredentialsCard TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-842892769 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_paymentSavedCredentialsCard", Integer.valueOf(i)));
             }
@@ -24,7 +23,7 @@ public class TLRPC$TL_paymentSavedCredentialsCard extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-842892769);
         abstractSerializedData.writeString(this.id);
         abstractSerializedData.writeString(this.title);
     }

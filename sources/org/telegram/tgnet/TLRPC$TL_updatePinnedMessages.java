@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_updatePinnedMessages extends TLRPC$Update {
-    public static int constructor = -309990731;
     public int flags;
     public ArrayList<Integer> messages = new ArrayList<>();
     public TLRPC$Peer peer;
@@ -33,7 +32,7 @@ public class TLRPC$TL_updatePinnedMessages extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-309990731);
         int i = this.pinned ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

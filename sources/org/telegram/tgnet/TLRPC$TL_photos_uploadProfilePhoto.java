@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_photos_uploadProfilePhoto extends TLObject {
-    public static int constructor = 59286453;
     public TLRPC$InputUser bot;
     public boolean fallback;
     public TLRPC$InputFile file;
@@ -16,7 +15,7 @@ public class TLRPC$TL_photos_uploadProfilePhoto extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(59286453);
         int i = this.fallback ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_urlAuthResultAccepted extends TLRPC$UrlAuthResult {
-    public static int constructor = -1886646706;
     public String url;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_urlAuthResultAccepted extends TLRPC$UrlAuthResult {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1886646706);
         abstractSerializedData.writeString(this.url);
     }
 }

@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_pageCaption extends TLObject {
-    public static int constructor = 1869903447;
     public TLRPC$RichText credit;
     public TLRPC$RichText text;
 
     public static TLRPC$TL_pageCaption TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1869903447 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_pageCaption", Integer.valueOf(i)));
             }
@@ -24,7 +23,7 @@ public class TLRPC$TL_pageCaption extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1869903447);
         this.text.serializeToStream(abstractSerializedData);
         this.credit.serializeToStream(abstractSerializedData);
     }

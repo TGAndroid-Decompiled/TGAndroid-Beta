@@ -15,8 +15,6 @@ public abstract class TLRPC$MessageReplies extends TLObject {
         TLRPC$TL_messageReplies tLRPC$TL_messageReplies;
         if (i != -2083123262) {
             tLRPC$TL_messageReplies = i != 1093204652 ? null : new TLRPC$TL_messageReplies() {
-                public static int constructor = 1093204652;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -54,7 +52,7 @@ public abstract class TLRPC$MessageReplies extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(1093204652);
                     int i2 = this.comments ? this.flags | 1 : this.flags & (-2);
                     this.flags = i2;
                     abstractSerializedData2.writeInt32(i2);

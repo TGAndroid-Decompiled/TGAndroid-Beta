@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_textSubscript extends TLRPC$RichText {
-    public static int constructor = -311786236;
     public TLRPC$RichText text;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_textSubscript extends TLRPC$RichText {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-311786236);
         this.text.serializeToStream(abstractSerializedData);
     }
 }

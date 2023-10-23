@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_decryptedMessageActionCommitKey extends TLRPC$DecryptedMessageAction {
-    public static int constructor = -332526693;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.exchange_id = abstractSerializedData.readInt64(z);
@@ -10,7 +8,7 @@ public class TLRPC$TL_decryptedMessageActionCommitKey extends TLRPC$DecryptedMes
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-332526693);
         abstractSerializedData.writeInt64(this.exchange_id);
         abstractSerializedData.writeInt64(this.key_fingerprint);
     }

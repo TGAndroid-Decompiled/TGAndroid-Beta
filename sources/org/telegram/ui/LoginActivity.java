@@ -23,6 +23,7 @@ import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -32,6 +33,7 @@ import android.os.Bundle;
 import android.os.Looper;
 import android.telephony.TelephonyManager;
 import android.text.Editable;
+import android.text.Layout;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
@@ -197,6 +199,8 @@ import org.telegram.ui.Components.Easings;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.ImageUpdater;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkPath;
+import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.LoginOrView;
 import org.telegram.ui.Components.OutlineTextContainerView;
 import org.telegram.ui.Components.ProxyDrawable;
@@ -2172,8 +2176,6 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 FileLog.e(e2);
             }
             LoginActivity.this.getAccountInstance().getConnectionsManager().sendRequest(new TLObject() {
-                public static int constructor = 531836966;
-
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i6, boolean z) {
                     return TLRPC$TL_nearestDc.TLdeserialize(abstractSerializedData, i6, z);
@@ -2181,7 +2183,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(531836966);
                 }
             }, new RequestDelegate() {
                 @Override
@@ -2663,6 +2665,12 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     boolean z2 = LoginActivity.this.getParentActivity().checkSelfPermission("android.permission.CALL_PHONE") == 0;
                     boolean z3 = i2 < 28 || LoginActivity.this.getParentActivity().checkSelfPermission("android.permission.READ_CALL_LOG") == 0;
                     boolean z4 = i2 < 26 || LoginActivity.this.getParentActivity().checkSelfPermission("android.permission.READ_PHONE_NUMBERS") == 0;
+                    if (PhoneView.this.codeField != null && "888".equals(PhoneView.this.codeField.getText())) {
+                        z = true;
+                        z2 = true;
+                        z3 = true;
+                        z4 = true;
+                    }
                     if (LoginActivity.this.checkPermissions) {
                         LoginActivity.this.permissionsItems.clear();
                         if (!z) {
@@ -2964,12 +2972,13 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         private String prefix;
         private TextView prefixTextView;
         private FrameLayout problemFrame;
-        private TextView problemText;
+        private LoadingTextView problemText;
         private ProgressView progressView;
         private String requestPhone;
         private RLottieDrawable starsToDotsDrawable;
         private int time;
-        private TextView timeText;
+        private LoadingTextView timeText;
+        private LoadingDrawable timeTextLoadingDrawable;
         private Timer timeTimer;
         private final Object timerSync;
         private TextView titleTextView;
@@ -2985,7 +2994,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return true;
         }
 
-        static int access$10026(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$8626(LoginActivitySmsView loginActivitySmsView, double d) {
             double d2 = loginActivitySmsView.time;
             Double.isNaN(d2);
             int i = (int) (d2 - d);
@@ -2993,7 +3002,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             return i;
         }
 
-        static int access$9326(LoginActivitySmsView loginActivitySmsView, double d) {
+        static int access$9826(LoginActivitySmsView loginActivitySmsView, double d) {
             double d2 = loginActivitySmsView.codeTime;
             Double.isNaN(d2);
             int i = (int) (d2 - d);
@@ -3017,13 +3026,14 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
-        public LoginActivitySmsView(final android.content.Context r41, int r42) {
+        public LoginActivitySmsView(final android.content.Context r42, int r43) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LoginActivity.LoginActivitySmsView.<init>(org.telegram.ui.LoginActivity, android.content.Context, int):void");
         }
 
         public void lambda$new$4(View view) {
             if (this.time <= 0 || this.timeTimer == null) {
                 this.isResendingCode = true;
+                this.timeTextLoadingDrawable.reset();
                 this.timeText.invalidate();
                 this.timeText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteValueText));
                 int i = this.nextType;
@@ -3038,9 +3048,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     }
                     return;
                 }
-                this.timeText.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText6));
-                int i2 = this.nextType;
-                if (i2 == 4 || i2 == 11) {
+                if (i == 4 || i == 11) {
                     this.timeText.setText(LocaleController.getString("Calling", R.string.Calling));
                 } else {
                     this.timeText.setText(LocaleController.getString("SendingSms", R.string.SendingSms));
@@ -3098,27 +3106,30 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
         }
 
         public void lambda$new$8(Context context, View view) {
-            if (this.nextPressed || this.timeText.getVisibility() != 8 || this.isResendingCode) {
+            if (this.nextPressed) {
                 return;
             }
-            if (!(this.nextType == 0)) {
-                if (LoginActivity.this.radialProgressView.getTag() != null) {
+            LoadingTextView loadingTextView = this.timeText;
+            if ((loadingTextView == null || loadingTextView.getVisibility() == 8) && !this.isResendingCode) {
+                if (!(this.nextType == 0)) {
+                    if (LoginActivity.this.radialProgressView.getTag() != null) {
+                        return;
+                    }
+                    resendCode();
                     return;
                 }
-                resendCode();
-                return;
+                new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.RestorePasswordNoEmailTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DidNotGetTheCodeInfo", R.string.DidNotGetTheCodeInfo, this.phone))).setNeutralButton(LocaleController.getString(R.string.DidNotGetTheCodeHelpButton), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i) {
+                        LoginActivity.LoginActivitySmsView.this.lambda$new$6(dialogInterface, i);
+                    }
+                }).setPositiveButton(LocaleController.getString(R.string.Close), null).setNegativeButton(LocaleController.getString(R.string.DidNotGetTheCodeEditNumberButton), new DialogInterface.OnClickListener() {
+                    @Override
+                    public final void onClick(DialogInterface dialogInterface, int i) {
+                        LoginActivity.LoginActivitySmsView.this.lambda$new$7(dialogInterface, i);
+                    }
+                }).show();
             }
-            new AlertDialog.Builder(context).setTitle(LocaleController.getString(R.string.RestorePasswordNoEmailTitle)).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("DidNotGetTheCodeInfo", R.string.DidNotGetTheCodeInfo, this.phone))).setNeutralButton(LocaleController.getString(R.string.DidNotGetTheCodeHelpButton), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    LoginActivity.LoginActivitySmsView.this.lambda$new$6(dialogInterface, i);
-                }
-            }).setPositiveButton(LocaleController.getString(R.string.Close), null).setNegativeButton(LocaleController.getString(R.string.DidNotGetTheCodeEditNumberButton), new DialogInterface.OnClickListener() {
-                @Override
-                public final void onClick(DialogInterface dialogInterface, int i) {
-                    LoginActivity.LoginActivitySmsView.this.lambda$new$7(dialogInterface, i);
-                }
-            }).show();
         }
 
         public void lambda$new$6(DialogInterface dialogInterface, int i) {
@@ -3403,13 +3414,100 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             }
         }
 
+        public class LoadingTextView extends TextView {
+            public final LoadingDrawable loadingDrawable;
+            private final Drawable rippleDrawable;
+
+            protected boolean isRippleEnabled() {
+                throw null;
+            }
+
+            public LoadingTextView(Context context) {
+                super(context);
+                Drawable createSelectorDrawable = Theme.createSelectorDrawable(Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhiteValueText), 0.1f), 7);
+                this.rippleDrawable = createSelectorDrawable;
+                LoadingDrawable loadingDrawable = new LoadingDrawable();
+                this.loadingDrawable = loadingDrawable;
+                createSelectorDrawable.setCallback(this);
+                loadingDrawable.setAppearByGradient(true);
+                loadingDrawable.setSpeed(0.8f);
+            }
+
+            @Override
+            public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+                super.setText(charSequence, bufferType);
+                updateLoadingLayout();
+            }
+
+            @Override
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                super.onLayout(z, i, i2, i3, i4);
+                updateLoadingLayout();
+            }
+
+            private void updateLoadingLayout() {
+                CharSequence text;
+                Layout layout = getLayout();
+                if (layout == null || (text = layout.getText()) == null) {
+                    return;
+                }
+                LinkPath linkPath = new LinkPath(true);
+                linkPath.setInset(AndroidUtilities.dp(3.0f), AndroidUtilities.dp(6.0f));
+                int length = text.length();
+                linkPath.setCurrentLayout(layout, 0, 0.0f);
+                layout.getSelectionPath(0, length, linkPath);
+                RectF rectF = AndroidUtilities.rectTmp;
+                linkPath.getBounds(rectF);
+                this.rippleDrawable.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+                this.loadingDrawable.usePath(linkPath);
+                this.loadingDrawable.setRadiiDp(4.0f);
+                int themedColor = LoginActivity.this.getThemedColor(Theme.key_chat_linkSelectBackground);
+                this.loadingDrawable.setColors(Theme.multAlpha(themedColor, 0.85f), Theme.multAlpha(themedColor, 2.0f), Theme.multAlpha(themedColor, 3.5f), Theme.multAlpha(themedColor, 6.0f));
+                this.loadingDrawable.updateBounds();
+            }
+
+            @Override
+            protected void onDraw(Canvas canvas) {
+                canvas.save();
+                canvas.translate(getPaddingLeft(), getPaddingTop());
+                this.rippleDrawable.draw(canvas);
+                canvas.restore();
+                super.onDraw(canvas);
+                if (LoginActivitySmsView.this.isResendingCode || this.loadingDrawable.isDisappearing()) {
+                    canvas.save();
+                    canvas.translate(getPaddingLeft(), getPaddingTop());
+                    this.loadingDrawable.draw(canvas);
+                    canvas.restore();
+                    invalidate();
+                }
+            }
+
+            @Override
+            protected boolean verifyDrawable(Drawable drawable) {
+                return drawable == this.rippleDrawable || drawable == LoginActivitySmsView.this.timeTextLoadingDrawable || super.verifyDrawable(drawable);
+            }
+
+            @Override
+            public boolean onTouchEvent(MotionEvent motionEvent) {
+                if (isRippleEnabled() && motionEvent.getAction() == 0) {
+                    if (Build.VERSION.SDK_INT >= 21) {
+                        this.rippleDrawable.setHotspot(motionEvent.getX(), motionEvent.getY());
+                    }
+                    this.rippleDrawable.setState(new int[]{16842910, 16842919});
+                } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 1) {
+                    this.rippleDrawable.setState(new int[0]);
+                }
+                return super.onTouchEvent(motionEvent);
+            }
+        }
+
         public void setProblemTextVisible(boolean z) {
-            TextView textView = this.problemText;
-            if (textView == null) {
+            LoadingTextView loadingTextView = this.problemText;
+            if (loadingTextView == null) {
                 return;
             }
             float f = z ? 1.0f : 0.0f;
-            if (textView.getAlpha() != f) {
+            if (loadingTextView.getAlpha() != f) {
                 this.problemText.animate().cancel();
                 this.problemText.animate().alpha(f).setDuration(150L).start();
             }
@@ -3448,7 +3546,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 double d = LoginActivitySmsView.this.lastCodeTime;
                 Double.isNaN(currentTimeMillis);
                 LoginActivitySmsView.this.lastCodeTime = currentTimeMillis;
-                LoginActivitySmsView.access$9326(LoginActivitySmsView.this, currentTimeMillis - d);
+                LoginActivitySmsView.access$9826(LoginActivitySmsView.this, currentTimeMillis - d);
                 if (LoginActivitySmsView.this.codeTime <= 1000) {
                     LoginActivitySmsView.this.setProblemTextVisible(true);
                     LoginActivitySmsView.this.timeText.setVisibility(8);
@@ -3478,9 +3576,9 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             if (this.timeTimer != null) {
                 return;
             }
-            TextView textView = this.timeText;
+            LoadingTextView loadingTextView = this.timeText;
             int i = Theme.key_windowBackgroundWhiteGrayText6;
-            textView.setTextColor(Theme.getColor(i));
+            loadingTextView.setTextColor(Theme.getColor(i));
             this.timeText.setTag(R.id.color_key_tag, Integer.valueOf(i));
             Timer timer = new Timer();
             this.timeTimer = timer;
@@ -3509,7 +3607,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 double d = LoginActivitySmsView.this.lastCurrentTime;
                 Double.isNaN(currentTimeMillis);
                 LoginActivitySmsView.this.lastCurrentTime = currentTimeMillis;
-                LoginActivitySmsView.access$10026(LoginActivitySmsView.this, currentTimeMillis - d);
+                LoginActivitySmsView.access$8626(LoginActivitySmsView.this, currentTimeMillis - d);
                 if (LoginActivitySmsView.this.time >= 1000) {
                     int i = (LoginActivitySmsView.this.time / 1000) / 60;
                     int i2 = (LoginActivitySmsView.this.time / 1000) - (i * 60);
@@ -3534,18 +3632,18 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                     } else {
                         LoginActivitySmsView.this.timeText.setText(LocaleController.getString("RequestSmsButton", R.string.RequestSmsButton));
                     }
-                    TextView textView = LoginActivitySmsView.this.timeText;
+                    LoadingTextView loadingTextView = LoginActivitySmsView.this.timeText;
                     int i3 = Theme.key_chats_actionBackground;
-                    textView.setTextColor(Theme.getColor(i3));
+                    loadingTextView.setTextColor(Theme.getColor(i3));
                     LoginActivitySmsView.this.timeText.setTag(R.id.color_key_tag, Integer.valueOf(i3));
                 }
             }
         }
 
         public void destroyTimer() {
-            TextView textView = this.timeText;
+            LoadingTextView loadingTextView = this.timeText;
             int i = Theme.key_windowBackgroundWhiteGrayText6;
-            textView.setTextColor(Theme.getColor(i));
+            loadingTextView.setTextColor(Theme.getColor(i));
             this.timeText.setTag(R.id.color_key_tag, Integer.valueOf(i));
             try {
                 synchronized (this.timerSync) {
@@ -4064,6 +4162,10 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
             super.onHide();
             this.isResendingCode = false;
             this.nextPressed = false;
+            LoadingDrawable loadingDrawable = this.timeTextLoadingDrawable;
+            if (loadingDrawable != null) {
+                loadingDrawable.disappear();
+            }
         }
 
         @Override

@@ -2,14 +2,13 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_emojiKeywordsDifference extends TLObject {
-    public static int constructor = 1556570557;
     public int from_version;
     public ArrayList<TLRPC$EmojiKeyword> keywords = new ArrayList<>();
     public String lang_code;
     public int version;
 
     public static TLRPC$TL_emojiKeywordsDifference TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1556570557 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_emojiKeywordsDifference", Integer.valueOf(i)));
             }
@@ -44,7 +43,7 @@ public class TLRPC$TL_emojiKeywordsDifference extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1556570557);
         abstractSerializedData.writeString(this.lang_code);
         abstractSerializedData.writeInt32(this.from_version);
         abstractSerializedData.writeInt32(this.version);

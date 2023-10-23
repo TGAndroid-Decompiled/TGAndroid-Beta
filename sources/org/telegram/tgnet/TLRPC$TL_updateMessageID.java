@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateMessageID extends TLRPC$Update {
-    public static int constructor = 1318109142;
     public int id;
     public long random_id;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_updateMessageID extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1318109142);
         abstractSerializedData.writeInt32(this.id);
         abstractSerializedData.writeInt64(this.random_id);
     }

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputEncryptedChat extends TLObject {
-    public static int constructor = -247351839;
     public long access_hash;
     public int chat_id;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_inputEncryptedChat extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-247351839);
         abstractSerializedData.writeInt32(this.chat_id);
         abstractSerializedData.writeInt64(this.access_hash);
     }

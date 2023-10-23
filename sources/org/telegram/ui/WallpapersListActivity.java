@@ -724,8 +724,6 @@ public class WallpapersListActivity extends BaseFragment implements Notification
         alertDialog.setCanCancel(false);
         this.progressDialog.show();
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-            public static int constructor = -1153722364;
-
             @Override
             public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
                 return TLRPC$Bool.TLdeserialize(abstractSerializedData, i2, z);
@@ -733,7 +731,7 @@ public class WallpapersListActivity extends BaseFragment implements Notification
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(-1153722364);
             }
         }, new RequestDelegate() {
             @Override

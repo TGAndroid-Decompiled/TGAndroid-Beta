@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_setEncryptedTyping extends TLObject {
-    public static int constructor = 2031374829;
     public TLRPC$TL_inputEncryptedChat peer;
     public boolean typing;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_messages_setEncryptedTyping extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(2031374829);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeBool(this.typing);
     }

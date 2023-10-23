@@ -75,6 +75,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
     private BitmapShader blurShader;
     private boolean blurredBackground;
     private boolean blurredNativeBackground;
+    private View bottomView;
     protected ViewGroup buttonsLayout;
     private boolean canCacnel;
     private AlertDialog cancelDialog;
@@ -673,6 +674,10 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             this.progressViewContainer.addView(radialProgressView, LayoutHelper.createFrame(86, 86, 17));
         } else {
             this.scrollContainer.addView(this.messageTextView, LayoutHelper.createLinear(-2, -2, (this.topAnimationIsNew ? 1 : LocaleController.isRTL ? 5 : 3) | 48, 24, 0, 24, (this.customView == null && this.items == null) ? 0 : this.customViewOffset));
+            View view2 = this.bottomView;
+            if (view2 != null) {
+                this.scrollContainer.addView(view2, LayoutHelper.createLinear(-1, -2, 24.0f, -16.0f, 24.0f, 0.0f));
+            }
         }
         if (!TextUtils.isEmpty(this.message)) {
             this.messageTextView.setText(this.message);
@@ -697,17 +702,17 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                     this.scrollContainer.addView(alertDialogCell, LayoutHelper.createLinear(-1, 50));
                     alertDialogCell.setOnClickListener(new View.OnClickListener() {
                         @Override
-                        public final void onClick(View view2) {
-                            AlertDialog.this.lambda$inflateContent$1(view2);
+                        public final void onClick(View view3) {
+                            AlertDialog.this.lambda$inflateContent$1(view3);
                         }
                     });
                 }
                 i5++;
             }
         }
-        View view2 = this.customView;
-        if (view2 != null) {
-            if (view2.getParent() != null) {
+        View view3 = this.customView;
+        if (view3 != null) {
+            if (view3.getParent() != null) {
                 ((ViewGroup) this.customView.getParent()).removeView(this.customView);
             }
             this.scrollContainer.addView(this.customView, LayoutHelper.createLinear(-1, this.customViewHeight));
@@ -742,7 +747,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                         int i11;
                         int childCount = getChildCount();
                         int i12 = i8 - i6;
-                        View view3 = null;
+                        View view4 = null;
                         for (int i13 = 0; i13 < childCount; i13++) {
                             View childAt = getChildAt(i13);
                             Integer num = (Integer) childAt.getTag();
@@ -753,18 +758,18 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                                     } else {
                                         childAt.layout((i12 - getPaddingRight()) - childAt.getMeasuredWidth(), getPaddingTop(), i12 - getPaddingRight(), getPaddingTop() + childAt.getMeasuredHeight());
                                     }
-                                    view3 = childAt;
+                                    view4 = childAt;
                                 } else if (num.intValue() == -2) {
                                     if (LocaleController.isRTL) {
                                         int paddingLeft = getPaddingLeft();
-                                        if (view3 != null) {
-                                            paddingLeft += view3.getMeasuredWidth() + AndroidUtilities.dp(8.0f);
+                                        if (view4 != null) {
+                                            paddingLeft += view4.getMeasuredWidth() + AndroidUtilities.dp(8.0f);
                                         }
                                         childAt.layout(paddingLeft, getPaddingTop(), childAt.getMeasuredWidth() + paddingLeft, getPaddingTop() + childAt.getMeasuredHeight());
                                     } else {
                                         int paddingRight = (i12 - getPaddingRight()) - childAt.getMeasuredWidth();
-                                        if (view3 != null) {
-                                            paddingRight -= view3.getMeasuredWidth() + AndroidUtilities.dp(8.0f);
+                                        if (view4 != null) {
+                                            paddingRight -= view4.getMeasuredWidth() + AndroidUtilities.dp(8.0f);
                                         }
                                         childAt.layout(paddingRight, getPaddingTop(), childAt.getMeasuredWidth() + paddingRight, getPaddingTop() + childAt.getMeasuredHeight());
                                     }
@@ -778,9 +783,9 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                             } else {
                                 int measuredWidth = childAt.getMeasuredWidth();
                                 int measuredHeight = childAt.getMeasuredHeight();
-                                if (view3 != null) {
-                                    i10 = view3.getLeft() + ((view3.getMeasuredWidth() - measuredWidth) / 2);
-                                    i11 = view3.getTop() + ((view3.getMeasuredHeight() - measuredHeight) / 2);
+                                if (view4 != null) {
+                                    i10 = view4.getLeft() + ((view4.getMeasuredWidth() - measuredWidth) / 2);
+                                    i11 = view4.getTop() + ((view4.getMeasuredHeight() - measuredHeight) / 2);
                                 } else {
                                     i10 = 0;
                                     i11 = 0;
@@ -852,8 +857,8 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 }
                 textView5.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view3) {
-                        AlertDialog.this.lambda$inflateContent$2(view3);
+                    public final void onClick(View view4) {
+                        AlertDialog.this.lambda$inflateContent$2(view4);
                     }
                 });
             }
@@ -889,8 +894,8 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 }
                 textView6.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view3) {
-                        AlertDialog.this.lambda$inflateContent$3(view3);
+                    public final void onClick(View view4) {
+                        AlertDialog.this.lambda$inflateContent$3(view4);
                     }
                 });
             }
@@ -926,8 +931,8 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                 }
                 textView7.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public final void onClick(View view3) {
-                        AlertDialog.this.lambda$inflateContent$4(view3);
+                    public final void onClick(View view4) {
+                        AlertDialog.this.lambda$inflateContent$4(view4);
                     }
                 });
             }
@@ -966,8 +971,8 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             Rect rect2 = this.backgroundPaddings;
             layoutParams.width = min + rect2.left + rect2.right;
         }
-        View view3 = this.customView;
-        if (view3 != null && this.checkFocusable && canTextInput(view3)) {
+        View view4 = this.customView;
+        if (view4 != null && this.checkFocusable && canTextInput(view4)) {
             layoutParams.softInputMode = 4;
         } else {
             layoutParams.flags |= 131072;
@@ -1439,6 +1444,11 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
         public Builder setView(View view, int i) {
             this.alertDialog.customView = view;
             this.alertDialog.customViewHeight = i;
+            return this;
+        }
+
+        public Builder addBottomView(View view) {
+            this.alertDialog.bottomView = view;
             return this;
         }
 

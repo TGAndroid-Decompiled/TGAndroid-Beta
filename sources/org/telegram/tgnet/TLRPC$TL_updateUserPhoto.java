@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateUserPhoto extends TLRPC$Update {
-    public static int constructor = -232290676;
     public int date;
     public TLRPC$UserProfilePhoto photo;
     public boolean previous;
@@ -16,7 +15,7 @@ public class TLRPC$TL_updateUserPhoto extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-232290676);
         abstractSerializedData.writeInt64(this.user_id);
         abstractSerializedData.writeInt32(this.date);
         this.photo.serializeToStream(abstractSerializedData);

@@ -3,7 +3,6 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_forwardMessages extends TLObject {
-    public static int constructor = -966673468;
     public boolean background;
     public boolean drop_author;
     public boolean drop_media_captions;
@@ -26,7 +25,7 @@ public class TLRPC$TL_messages_forwardMessages extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-966673468);
         int i = this.silent ? this.flags | 32 : this.flags & (-33);
         this.flags = i;
         int i2 = this.background ? i | 64 : i & (-65);

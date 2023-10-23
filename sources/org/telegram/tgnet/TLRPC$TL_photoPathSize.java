@@ -3,7 +3,6 @@ package org.telegram.tgnet;
 import android.graphics.Path;
 import org.telegram.messenger.SvgHelper;
 public class TLRPC$TL_photoPathSize extends TLRPC$PhotoSize {
-    public static int constructor = -668906175;
     public Path svgPath;
 
     @Override
@@ -18,7 +17,7 @@ public class TLRPC$TL_photoPathSize extends TLRPC$PhotoSize {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-668906175);
         abstractSerializedData.writeString(this.type);
         abstractSerializedData.writeByteArray(this.bytes);
     }

@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_decryptedMessageActionReadMessages extends TLRPC$DecryptedMessageAction {
-    public static int constructor = 206520510;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -19,7 +17,7 @@ public class TLRPC$TL_decryptedMessageActionReadMessages extends TLRPC$Decrypted
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(206520510);
         abstractSerializedData.writeInt32(481674261);
         int size = this.random_ids.size();
         abstractSerializedData.writeInt32(size);

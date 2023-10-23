@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_pageBlockEmbedPost extends TLRPC$PageBlock {
-    public static int constructor = -229005301;
     public String author;
     public long author_photo_id;
     public ArrayList<TLRPC$PageBlock> blocks = new ArrayList<>();
@@ -38,7 +37,7 @@ public class TLRPC$TL_pageBlockEmbedPost extends TLRPC$PageBlock {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-229005301);
         abstractSerializedData.writeString(this.url);
         abstractSerializedData.writeInt64(this.webpage_id);
         abstractSerializedData.writeInt64(this.author_photo_id);

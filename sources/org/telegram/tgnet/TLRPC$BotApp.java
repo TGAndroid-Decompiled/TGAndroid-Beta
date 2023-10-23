@@ -12,19 +12,15 @@ public abstract class TLRPC$BotApp extends TLObject {
 
     public static TLRPC$BotApp TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
         TLRPC$BotApp tLRPC$BotApp = i != -1778593322 ? i != 1571189943 ? null : new TLRPC$BotApp() {
-            public static int constructor = 1571189943;
-
             @Override
             public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
             }
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                abstractSerializedData2.writeInt32(constructor);
+                abstractSerializedData2.writeInt32(1571189943);
             }
         } : new TLRPC$BotApp() {
-            public static int constructor = -1778593322;
-
             @Override
             public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                 this.flags = abstractSerializedData2.readInt32(z2);
@@ -42,7 +38,7 @@ public abstract class TLRPC$BotApp extends TLObject {
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                abstractSerializedData2.writeInt32(constructor);
+                abstractSerializedData2.writeInt32(-1778593322);
                 abstractSerializedData2.writeInt32(this.flags);
                 abstractSerializedData2.writeInt64(this.id);
                 abstractSerializedData2.writeInt64(this.access_hash);

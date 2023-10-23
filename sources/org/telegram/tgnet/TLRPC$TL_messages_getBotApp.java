@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getBotApp extends TLObject {
-    public static int constructor = 889046467;
     public TLRPC$InputBotApp app;
     public long hash;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_messages_getBotApp extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(889046467);
         this.app.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt64(this.hash);
     }

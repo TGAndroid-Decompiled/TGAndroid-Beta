@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_exportedChatInviteReplaced extends TLRPC$messages_ExportedChatInvite {
-    public static int constructor = 572915951;
     public TLRPC$ExportedChatInvite new_invite;
 
     @Override
@@ -26,7 +25,7 @@ public class TLRPC$TL_messages_exportedChatInviteReplaced extends TLRPC$messages
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(572915951);
         this.invite.serializeToStream(abstractSerializedData);
         this.new_invite.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);

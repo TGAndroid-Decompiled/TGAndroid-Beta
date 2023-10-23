@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputPeerPhotoFileLocation extends TLRPC$InputFileLocation {
-    public static int constructor = 925204121;
     public boolean big;
     public TLRPC$InputPeer peer;
     public long photo_id;
@@ -16,7 +15,7 @@ public class TLRPC$TL_inputPeerPhotoFileLocation extends TLRPC$InputFileLocation
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(925204121);
         int i = this.big ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

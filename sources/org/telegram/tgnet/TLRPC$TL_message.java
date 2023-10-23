@@ -4,8 +4,6 @@ import android.text.TextUtils;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_message extends TLRPC$Message {
-    public static int constructor = 940666592;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -20,7 +18,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
         this.edit_hide = (2097152 & readInt32) != 0;
         this.pinned = (16777216 & readInt32) != 0;
         this.noforwards = (67108864 & readInt32) != 0;
-        this.topic_start = (readInt32 & 134217728) != 0;
+        this.invert_media = (readInt32 & 134217728) != 0;
         this.id = abstractSerializedData.readInt32(z);
         if ((this.flags & LiteMode.FLAG_CHAT_BLUR) != 0) {
             this.from_id = TLRPC$Peer.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -112,7 +110,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(940666592);
         int i = this.out ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.mentioned ? i | 16 : i & (-17);
@@ -133,7 +131,7 @@ public class TLRPC$TL_message extends TLRPC$Message {
         this.flags = i9;
         int i10 = this.noforwards ? i9 | ConnectionsManager.FileTypeFile : i9 & (-67108865);
         this.flags = i10;
-        int i11 = this.topic_start ? i10 | 134217728 : i10 & (-134217729);
+        int i11 = this.invert_media ? i10 | 134217728 : i10 & (-134217729);
         this.flags = i11;
         abstractSerializedData.writeInt32(i11);
         abstractSerializedData.writeInt32(this.id);

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_peerLocated extends TLRPC$PeerLocated {
-    public static int constructor = -901375139;
     public int distance;
     public int expires;
     public TLRPC$Peer peer;
@@ -14,7 +13,7 @@ public class TLRPC$TL_peerLocated extends TLRPC$PeerLocated {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-901375139);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.expires);
         abstractSerializedData.writeInt32(this.distance);

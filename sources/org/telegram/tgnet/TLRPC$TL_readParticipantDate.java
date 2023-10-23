@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_readParticipantDate extends TLObject {
-    public static int constructor = 1246753138;
     public int date;
     public long user_id;
 
     public static TLRPC$TL_readParticipantDate TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1246753138 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_readParticipantDate", Integer.valueOf(i)));
             }
@@ -24,7 +23,7 @@ public class TLRPC$TL_readParticipantDate extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1246753138);
         abstractSerializedData.writeInt64(this.user_id);
         abstractSerializedData.writeInt32(this.date);
     }

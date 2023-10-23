@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updates extends TLRPC$Updates {
-    public static int constructor = 1957577280;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);

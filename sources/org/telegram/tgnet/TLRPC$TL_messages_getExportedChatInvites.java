@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getExportedChatInvites extends TLObject {
-    public static int constructor = -1565154314;
     public TLRPC$InputUser admin_id;
     public int flags;
     public int limit;
@@ -16,7 +15,7 @@ public class TLRPC$TL_messages_getExportedChatInvites extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1565154314);
         int i = this.revoked ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

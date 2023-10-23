@@ -1234,7 +1234,7 @@ public class Bulletin {
             if (this.bulletin == null) {
                 return;
             }
-            this.background.setBounds(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), getMeasuredHeight() - AndroidUtilities.dp(8.0f));
+            this.background.setBounds(getPaddingLeft(), getPaddingTop(), getMeasuredWidth() - getPaddingRight(), getMeasuredHeight() - getPaddingBottom());
             if (isTransitionRunning() && (delegate = this.delegate) != null) {
                 float topOffset = delegate.getTopOffset(this.bulletin.tag) - getY();
                 float measuredHeight = (((View) getParent()).getMeasuredHeight() - getBottomOffset()) - getY();

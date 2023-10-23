@@ -17,6 +17,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
     public boolean masks;
     public boolean official;
     public String short_name;
+    public boolean text_color;
     public int thumb_dc_id;
     public long thumb_document_id;
     public int thumb_version;
@@ -29,8 +30,6 @@ public abstract class TLRPC$StickerSet extends TLObject {
         switch (i) {
             case -1482409193:
                 tLRPC$TL_stickerSet = new TLRPC$TL_stickerSet() {
-                    public static int constructor = -1482409193;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt64(z2);
@@ -41,7 +40,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1482409193);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeString(this.title);
@@ -51,8 +50,6 @@ public abstract class TLRPC$StickerSet extends TLObject {
                 break;
             case -852477119:
                 tLRPC$TL_stickerSet = new TLRPC$TL_stickerSet() {
-                    public static int constructor = -852477119;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -71,7 +68,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-852477119);
                         int i2 = this.installed ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.archived ? i2 | 2 : i2 & (-3);
@@ -92,8 +89,6 @@ public abstract class TLRPC$StickerSet extends TLObject {
                 break;
             case -673242758:
                 tLRPC$TL_stickerSet = new TLRPC$TL_stickerSet() {
-                    public static int constructor = -673242758;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -143,7 +138,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-673242758);
                         int i2 = this.archived ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.official ? i2 | 4 : i2 & (-5);
@@ -188,8 +183,6 @@ public abstract class TLRPC$StickerSet extends TLObject {
                 break;
             case -290164953:
                 tLRPC$TL_stickerSet = new TLRPC$TL_stickerSet() {
-                    public static int constructor = -290164953;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         TLRPC$PhotoSize TLdeserialize;
@@ -218,7 +211,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-290164953);
                         int i2 = this.archived ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.official ? i2 | 4 : i2 & (-5);
@@ -251,8 +244,6 @@ public abstract class TLRPC$StickerSet extends TLObject {
                 break;
             case 1088567208:
                 tLRPC$TL_stickerSet = new TLRPC$TL_stickerSet() {
-                    public static int constructor = 1088567208;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -294,7 +285,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1088567208);
                         int i2 = this.archived ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.official ? i2 | 4 : i2 & (-5);
@@ -329,8 +320,6 @@ public abstract class TLRPC$StickerSet extends TLObject {
                 break;
             case 1434820921:
                 tLRPC$TL_stickerSet = new TLRPC$TL_stickerSet() {
-                    public static int constructor = 1434820921;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -351,7 +340,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1434820921);
                         int i2 = this.archived ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.official ? i2 | 4 : i2 & (-5);
@@ -373,8 +362,6 @@ public abstract class TLRPC$StickerSet extends TLObject {
                 break;
             case 1787870391:
                 tLRPC$TL_stickerSet = new TLRPC$TL_stickerSet() {
-                    public static int constructor = 1787870391;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         TLRPC$PhotoSize TLdeserialize;
@@ -399,7 +386,7 @@ public abstract class TLRPC$StickerSet extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1787870391);
                         int i2 = this.archived ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.official ? i2 | 4 : i2 & (-5);

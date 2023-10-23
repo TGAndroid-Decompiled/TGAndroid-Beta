@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionTogglePreHistoryHidden extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = 1599903217;
     public boolean new_value;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_channelAdminLogEventActionTogglePreHistoryHidden extends T
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1599903217);
         abstractSerializedData.writeBool(this.new_value);
     }
 }

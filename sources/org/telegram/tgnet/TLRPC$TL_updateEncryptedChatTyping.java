@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateEncryptedChatTyping extends TLRPC$Update {
-    public static int constructor = 386986326;
     public int chat_id;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_updateEncryptedChatTyping extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(386986326);
         abstractSerializedData.writeInt32(this.chat_id);
     }
 }

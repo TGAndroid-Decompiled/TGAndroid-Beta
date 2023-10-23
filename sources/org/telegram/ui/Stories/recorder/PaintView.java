@@ -81,7 +81,6 @@ import org.telegram.tgnet.TLRPC$DocumentAttribute;
 import org.telegram.tgnet.TLRPC$GeoPoint;
 import org.telegram.tgnet.TLRPC$InputDocument;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
-import org.telegram.tgnet.TLRPC$MediaArea;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$StickerSetCovered;
@@ -89,12 +88,13 @@ import org.telegram.tgnet.TLRPC$TL_documentAttributeCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeSticker;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeVideo;
 import org.telegram.tgnet.TLRPC$TL_inputDocument;
-import org.telegram.tgnet.TLRPC$TL_inputMediaAreaVenue;
 import org.telegram.tgnet.TLRPC$TL_maskCoords;
-import org.telegram.tgnet.TLRPC$TL_mediaAreaGeoPoint;
 import org.telegram.tgnet.TLRPC$TL_messageMediaGeo;
 import org.telegram.tgnet.TLRPC$TL_messageMediaVenue;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_stories$MediaArea;
+import org.telegram.tgnet.tl.TL_stories$TL_inputMediaAreaVenue;
+import org.telegram.tgnet.tl.TL_stories$TL_mediaAreaGeoPoint;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
@@ -1218,7 +1218,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.bottomLayout.invalidate();
     }
 
-    private LocationView createLocationSticker(TLRPC$MessageMedia tLRPC$MessageMedia, TLRPC$MediaArea tLRPC$MediaArea, boolean z) {
+    private LocationView createLocationSticker(TLRPC$MessageMedia tLRPC$MessageMedia, TL_stories$MediaArea tL_stories$MediaArea, boolean z) {
         MediaController.CropState cropState;
         onTextAdd();
         this.forceChanges = true;
@@ -1230,7 +1230,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         int i = this.currentAccount;
         float f = measuredWidth / 240.0f;
         Swatch swatch = this.colorSwatch;
-        LocationView locationView = new LocationView(context, startPositionRelativeToEntity, i, tLRPC$MessageMedia, tLRPC$MediaArea, f, dp, 3, swatch == null ? -1 : swatch.color);
+        LocationView locationView = new LocationView(context, startPositionRelativeToEntity, i, tLRPC$MessageMedia, tL_stories$MediaArea, f, dp, 3, swatch == null ? -1 : swatch.color);
         if (startPositionRelativeToEntity.x == this.entitiesView.getMeasuredWidth() / 2.0f) {
             locationView.setStickyX(2);
         }
@@ -1975,7 +1975,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
             showLocationAlert(null, new Utilities.Callback2() {
                 @Override
                 public final void run(Object obj, Object obj2) {
-                    PaintView.this.lambda$openStickersView$24((TLRPC$MessageMedia) obj, (TLRPC$MediaArea) obj2);
+                    PaintView.this.lambda$openStickersView$24((TLRPC$MessageMedia) obj, (TL_stories$MediaArea) obj2);
                 }
             });
         } else if (num.intValue() == 2) {
@@ -1995,8 +1995,8 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         }
     }
 
-    public void lambda$openStickersView$24(TLRPC$MessageMedia tLRPC$MessageMedia, TLRPC$MediaArea tLRPC$MediaArea) {
-        appearAnimation(createLocationSticker(tLRPC$MessageMedia, tLRPC$MediaArea, false));
+    public void lambda$openStickersView$24(TLRPC$MessageMedia tLRPC$MessageMedia, TL_stories$MediaArea tL_stories$MediaArea) {
+        appearAnimation(createLocationSticker(tLRPC$MessageMedia, tL_stories$MediaArea, false));
     }
 
     public class AnonymousClass23 extends ChatActivity {
@@ -2039,48 +2039,48 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
 
         @Override
         public void didSelectLocation(final TLRPC$MessageMedia tLRPC$MessageMedia, int i, boolean z, int i2) {
-            final TLRPC$TL_mediaAreaGeoPoint tLRPC$TL_mediaAreaGeoPoint;
+            final TL_stories$TL_mediaAreaGeoPoint tL_stories$TL_mediaAreaGeoPoint;
             if (tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaGeo) {
-                tLRPC$TL_mediaAreaGeoPoint = new TLRPC$TL_mediaAreaGeoPoint();
-                tLRPC$TL_mediaAreaGeoPoint.geo = tLRPC$MessageMedia.geo;
+                tL_stories$TL_mediaAreaGeoPoint = new TL_stories$TL_mediaAreaGeoPoint();
+                tL_stories$TL_mediaAreaGeoPoint.geo = tLRPC$MessageMedia.geo;
             } else if (!(tLRPC$MessageMedia instanceof TLRPC$TL_messageMediaVenue)) {
                 return;
             } else {
                 TLRPC$TL_messageMediaVenue tLRPC$TL_messageMediaVenue = (TLRPC$TL_messageMediaVenue) tLRPC$MessageMedia;
                 long j = tLRPC$TL_messageMediaVenue.query_id;
                 if (j == -1 || j == -2) {
-                    tLRPC$TL_mediaAreaGeoPoint = new TLRPC$TL_mediaAreaGeoPoint();
-                    tLRPC$TL_mediaAreaGeoPoint.geo = tLRPC$MessageMedia.geo;
+                    tL_stories$TL_mediaAreaGeoPoint = new TL_stories$TL_mediaAreaGeoPoint();
+                    tL_stories$TL_mediaAreaGeoPoint.geo = tLRPC$MessageMedia.geo;
                     Utilities.globalQueue.postRunnable(new Runnable() {
                         @Override
                         public final void run() {
-                            PaintView.AnonymousClass23.lambda$didSelectLocation$0(TLRPC$MessageMedia.this, tLRPC$TL_mediaAreaGeoPoint);
+                            PaintView.AnonymousClass23.lambda$didSelectLocation$0(TLRPC$MessageMedia.this, tL_stories$TL_mediaAreaGeoPoint);
                         }
                     });
                 } else {
-                    TLRPC$TL_inputMediaAreaVenue tLRPC$TL_inputMediaAreaVenue = new TLRPC$TL_inputMediaAreaVenue();
-                    tLRPC$TL_inputMediaAreaVenue.query_id = tLRPC$TL_messageMediaVenue.query_id;
-                    tLRPC$TL_inputMediaAreaVenue.result_id = tLRPC$TL_messageMediaVenue.result_id;
-                    tLRPC$TL_mediaAreaGeoPoint = tLRPC$TL_inputMediaAreaVenue;
+                    TL_stories$TL_inputMediaAreaVenue tL_stories$TL_inputMediaAreaVenue = new TL_stories$TL_inputMediaAreaVenue();
+                    tL_stories$TL_inputMediaAreaVenue.query_id = tLRPC$TL_messageMediaVenue.query_id;
+                    tL_stories$TL_inputMediaAreaVenue.result_id = tLRPC$TL_messageMediaVenue.result_id;
+                    tL_stories$TL_mediaAreaGeoPoint = tL_stories$TL_inputMediaAreaVenue;
                 }
             }
-            this.val$onLocationSelected.run(tLRPC$MessageMedia, tLRPC$TL_mediaAreaGeoPoint);
+            this.val$onLocationSelected.run(tLRPC$MessageMedia, tL_stories$TL_mediaAreaGeoPoint);
         }
 
-        public static void lambda$didSelectLocation$0(TLRPC$MessageMedia tLRPC$MessageMedia, TLRPC$TL_mediaAreaGeoPoint tLRPC$TL_mediaAreaGeoPoint) {
+        public static void lambda$didSelectLocation$0(TLRPC$MessageMedia tLRPC$MessageMedia, TL_stories$TL_mediaAreaGeoPoint tL_stories$TL_mediaAreaGeoPoint) {
             try {
                 List<Address> fromLocationName = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocationName(tLRPC$MessageMedia.title, 1);
                 if (fromLocationName.size() <= 0) {
                     return;
                 }
-                tLRPC$TL_mediaAreaGeoPoint.geo.lat = fromLocationName.get(0).getLatitude();
-                tLRPC$TL_mediaAreaGeoPoint.geo._long = fromLocationName.get(0).getLongitude();
+                tL_stories$TL_mediaAreaGeoPoint.geo.lat = fromLocationName.get(0).getLatitude();
+                tL_stories$TL_mediaAreaGeoPoint.geo._long = fromLocationName.get(0).getLongitude();
             } catch (Exception unused) {
             }
         }
     }
 
-    private void showLocationAlert(LocationView locationView, Utilities.Callback2<TLRPC$MessageMedia, TLRPC$MediaArea> callback2) {
+    private void showLocationAlert(LocationView locationView, Utilities.Callback2<TLRPC$MessageMedia, TL_stories$MediaArea> callback2) {
         TLRPC$MessageMedia tLRPC$MessageMedia;
         TLRPC$GeoPoint tLRPC$GeoPoint;
         ChatAttachAlert chatAttachAlert = new ChatAttachAlert(getContext(), new AnonymousClass23(null, callback2), false, true, false, this.resourcesProvider);
@@ -3384,7 +3384,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         showLocationAlert((LocationView) entityView, new Utilities.Callback2() {
             @Override
             public final void run(Object obj, Object obj2) {
-                PaintView.this.lambda$showMenuForEntity$44(entityView, (TLRPC$MessageMedia) obj, (TLRPC$MediaArea) obj2);
+                PaintView.this.lambda$showMenuForEntity$44(entityView, (TLRPC$MessageMedia) obj, (TL_stories$MediaArea) obj2);
             }
         });
         ActionBarPopupWindow actionBarPopupWindow = this.popupWindow;
@@ -3394,8 +3394,8 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         this.popupWindow.dismiss(true);
     }
 
-    public void lambda$showMenuForEntity$44(EntityView entityView, TLRPC$MessageMedia tLRPC$MessageMedia, TLRPC$MediaArea tLRPC$MediaArea) {
-        ((LocationView) entityView).setLocation(this.currentAccount, tLRPC$MessageMedia, tLRPC$MediaArea);
+    public void lambda$showMenuForEntity$44(EntityView entityView, TLRPC$MessageMedia tLRPC$MessageMedia, TL_stories$MediaArea tL_stories$MediaArea) {
+        ((LocationView) entityView).setLocation(this.currentAccount, tLRPC$MessageMedia, tL_stories$MediaArea);
         appearAnimation(entityView);
     }
 
@@ -4219,7 +4219,7 @@ public class PaintView extends SizeNotifierFrameLayoutPhoto implements IPhotoPai
         if (this.emojiView != null) {
             return;
         }
-        EmojiView emojiView2 = new EmojiView(null, true, false, false, getContext(), false, null, null, true, this.resourcesProvider);
+        EmojiView emojiView2 = new EmojiView(null, true, false, false, getContext(), false, null, null, true, this.resourcesProvider, false);
         this.emojiView = emojiView2;
         emojiView2.fixBottomTabContainerTranslation = false;
         emojiView2.allowEmojisForNonPremium(true);

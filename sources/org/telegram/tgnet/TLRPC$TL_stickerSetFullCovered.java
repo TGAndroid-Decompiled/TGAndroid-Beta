@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_stickerSetFullCovered extends TLRPC$StickerSetCovered {
-    public static int constructor = 1087454222;
     public ArrayList<TLRPC$TL_stickerPack> packs = new ArrayList<>();
     public ArrayList<TLRPC$TL_stickerKeyword> keywords = new ArrayList<>();
     public ArrayList<TLRPC$Document> documents = new ArrayList<>();
@@ -59,7 +58,7 @@ public class TLRPC$TL_stickerSetFullCovered extends TLRPC$StickerSetCovered {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1087454222);
         this.set.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
         int size = this.packs.size();

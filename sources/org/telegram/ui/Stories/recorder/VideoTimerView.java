@@ -6,12 +6,14 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
+import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-public class VideoTimerView extends View {
+import org.telegram.ui.Stories.recorder.FlashViews;
+public class VideoTimerView extends View implements FlashViews.Invertable {
     private Paint backgroundPaint;
     private Paint recordPaint;
     private boolean recording;
@@ -90,5 +92,11 @@ public class VideoTimerView extends View {
         }
         this.textDrawable.setBounds((int) (rectF.left + dp), ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
         this.textDrawable.draw(canvas);
+    }
+
+    @Override
+    public void setInvert(float f) {
+        this.backgroundPaint.setColor(ColorUtils.blendARGB(1056964608, 268435456, f));
+        this.textDrawable.setTextColor(ColorUtils.blendARGB(-1, -16777216, f));
     }
 }

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateNewStickerSet extends TLRPC$Update {
-    public static int constructor = 1753886890;
     public TLRPC$TL_messages_stickerSet stickerset;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_updateNewStickerSet extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1753886890);
         this.stickerset.serializeToStream(abstractSerializedData);
     }
 }

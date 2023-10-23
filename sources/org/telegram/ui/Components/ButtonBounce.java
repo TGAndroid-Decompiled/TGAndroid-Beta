@@ -16,11 +16,7 @@ public class ButtonBounce {
     private View view;
 
     public ButtonBounce(View view) {
-        this.releaseDelay = 0L;
-        this.view = view;
-        this.durationReleaseMultiplier = 1.0f;
-        this.durationPressMultiplier = 1.0f;
-        this.overshoot = 5.0f;
+        this(view, 1.0f, 5.0f);
     }
 
     public ButtonBounce(View view, float f, float f2) {

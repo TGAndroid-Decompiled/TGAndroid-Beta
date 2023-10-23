@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_uploadTheme extends TLObject {
-    public static int constructor = 473805619;
     public TLRPC$InputFile file;
     public String file_name;
     public int flags;
@@ -14,7 +13,7 @@ public class TLRPC$TL_account_uploadTheme extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(473805619);
         abstractSerializedData.writeInt32(this.flags);
         this.file.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {

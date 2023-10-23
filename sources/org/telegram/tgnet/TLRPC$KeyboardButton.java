@@ -23,8 +23,6 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
         switch (i) {
             case -1816527947:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = -1816527947;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -53,7 +51,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1816527947);
                         int i2 = this.same_peer ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -72,8 +70,6 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 break;
             case -1598009252:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = -1598009252;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.text = abstractSerializedData2.readString(z2);
@@ -82,7 +78,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1598009252);
                         abstractSerializedData2.writeString(this.text);
                         abstractSerializedData2.writeString(this.url);
                     }
@@ -90,8 +86,6 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 break;
             case -1560655744:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = -1560655744;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.text = abstractSerializedData2.readString(z2);
@@ -99,15 +93,13 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1560655744);
                         abstractSerializedData2.writeString(this.text);
                     }
                 };
                 break;
             case -1344716869:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = -1344716869;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.text = abstractSerializedData2.readString(z2);
@@ -115,15 +107,13 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1344716869);
                         abstractSerializedData2.writeString(this.text);
                     }
                 };
                 break;
             case -1318425559:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = -1318425559;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.text = abstractSerializedData2.readString(z2);
@@ -131,15 +121,13 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1318425559);
                         abstractSerializedData2.writeString(this.text);
                     }
                 };
                 break;
             case -1144565411:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = -1144565411;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -152,7 +140,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1144565411);
                         abstractSerializedData2.writeInt32(this.flags);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeBool(this.quiz);
@@ -163,8 +151,6 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 break;
             case -802258988:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = -802258988;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -180,7 +166,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-802258988);
                         int i2 = this.request_write_access ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -195,8 +181,6 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 break;
             case -376962181:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = -376962181;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.text = abstractSerializedData2.readString(z2);
@@ -205,7 +189,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-376962181);
                         abstractSerializedData2.writeString(this.text);
                         this.inputUser.serializeToStream(abstractSerializedData2);
                     }
@@ -213,8 +197,6 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 break;
             case -59151553:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = -59151553;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.text = abstractSerializedData2.readString(z2);
@@ -222,15 +204,13 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-59151553);
                         abstractSerializedData2.writeString(this.text);
                     }
                 };
                 break;
             case 90744648:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = 90744648;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -242,7 +222,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(90744648);
                         int i2 = this.same_peer ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -259,8 +239,6 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 break;
             case 326529584:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = 326529584;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.text = abstractSerializedData2.readString(z2);
@@ -269,7 +247,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(326529584);
                         abstractSerializedData2.writeString(this.text);
                         abstractSerializedData2.writeString(this.url);
                     }
@@ -277,8 +255,6 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 break;
             case 629866245:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = 629866245;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.text = abstractSerializedData2.readString(z2);
@@ -287,7 +263,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(629866245);
                         abstractSerializedData2.writeString(this.text);
                         abstractSerializedData2.writeString(this.url);
                     }
@@ -295,8 +271,6 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 break;
             case 814112961:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = 814112961;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.text = abstractSerializedData2.readString(z2);
@@ -305,7 +279,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(814112961);
                         abstractSerializedData2.writeString(this.text);
                         abstractSerializedData2.writeInt64(this.user_id);
                     }
@@ -316,8 +290,6 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
                 break;
             case 1358175439:
                 tLRPC$KeyboardButton = new TLRPC$KeyboardButton() {
-                    public static int constructor = 1358175439;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.text = abstractSerializedData2.readString(z2);
@@ -325,15 +297,13 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1358175439);
                         abstractSerializedData2.writeString(this.text);
                     }
                 };
                 break;
             case 1748655686:
                 tLRPC$KeyboardButton = new TLRPC$TL_keyboardButtonCallback() {
-                    public static int constructor = 1748655686;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.text = abstractSerializedData2.readString(z2);
@@ -342,7 +312,7 @@ public abstract class TLRPC$KeyboardButton extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1748655686);
                         abstractSerializedData2.writeString(this.text);
                         abstractSerializedData2.writeByteArray(this.data);
                     }

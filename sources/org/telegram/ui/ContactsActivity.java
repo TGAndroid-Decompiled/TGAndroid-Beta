@@ -948,7 +948,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         final boolean z2 = dialogsActivity.storiesEnabled;
         final RLottieImageView floatingButton = dialogsActivity.getFloatingButton();
         View view = floatingButton.getParent() != null ? (View) floatingButton.getParent() : null;
-        if (this.floatingButtonContainer == null || view == null || floatingButton.getVisibility() != 0 || Math.abs(view.getTranslationY()) > AndroidUtilities.dp(4.0f) || Math.abs(this.floatingButtonContainer.getTranslationY()) > AndroidUtilities.dp(4.0f)) {
+        if (this.floatingButton != null && (this.floatingButtonContainer == null || view == null || floatingButton.getVisibility() != 0 || Math.abs(view.getTranslationY()) > AndroidUtilities.dp(4.0f) || Math.abs(this.floatingButtonContainer.getTranslationY()) > AndroidUtilities.dp(4.0f))) {
             if (z2) {
                 this.floatingButton.setAnimation(R.raw.write_contacts_fab_icon_camera, 56, 56);
             } else {

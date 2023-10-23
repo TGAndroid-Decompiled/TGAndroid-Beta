@@ -2,7 +2,9 @@ package org.telegram.messenger.utils;
 
 import android.text.Spanned;
 import org.telegram.messenger.CharacterCompat;
+import org.telegram.messenger.CodeHighlighting;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
+import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.URLSpanMono;
 import org.telegram.ui.Components.URLSpanReplacement;
@@ -117,7 +119,7 @@ public class CustomHtml {
                     }
                 }
             }
-            toHTML_4_wrapAnimatedEmoji(sb, spanned, i, nextSpanTransition);
+            toHTML_4_wrapMonoscape2(sb, spanned, i, nextSpanTransition);
             if (uRLSpanMonoArr != null) {
                 for (URLSpanMono uRLSpanMono2 : uRLSpanMonoArr) {
                     if (uRLSpanMono2 != null) {
@@ -129,7 +131,57 @@ public class CustomHtml {
         }
     }
 
-    private static void toHTML_4_wrapAnimatedEmoji(StringBuilder sb, Spanned spanned, int i, int i2) {
+    private static void toHTML_4_wrapMonoscape2(StringBuilder sb, Spanned spanned, int i, int i2) {
+        while (i < i2) {
+            int nextSpanTransition = spanned.nextSpanTransition(i, i2, CodeHighlighting.Span.class);
+            if (nextSpanTransition < 0) {
+                nextSpanTransition = i2;
+            }
+            CodeHighlighting.Span[] spanArr = (CodeHighlighting.Span[]) spanned.getSpans(i, nextSpanTransition, CodeHighlighting.Span.class);
+            if (spanArr != null) {
+                for (CodeHighlighting.Span span : spanArr) {
+                    if (span != null) {
+                        sb.append("<pre lang=\"");
+                        sb.append(span.lng);
+                        sb.append("\">");
+                    }
+                }
+            }
+            toHTML_5_wrapQuote(sb, spanned, i, nextSpanTransition);
+            if (spanArr != null) {
+                for (CodeHighlighting.Span span2 : spanArr) {
+                    if (span2 != null) {
+                        sb.append("</pre>");
+                    }
+                }
+            }
+            i = nextSpanTransition;
+        }
+    }
+
+    private static void toHTML_5_wrapQuote(StringBuilder sb, Spanned spanned, int i, int i2) {
+        while (i < i2) {
+            int nextSpanTransition = spanned.nextSpanTransition(i, i2, QuoteSpan.class);
+            if (nextSpanTransition < 0) {
+                nextSpanTransition = i2;
+            }
+            QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spanned.getSpans(i, nextSpanTransition, QuoteSpan.class);
+            if (quoteSpanArr != null) {
+                for (int i3 = 0; i3 < quoteSpanArr.length; i3++) {
+                    sb.append("<blockquote>");
+                }
+            }
+            toHTML_6_wrapAnimatedEmoji(sb, spanned, i, nextSpanTransition);
+            if (quoteSpanArr != null) {
+                for (int i4 = 0; i4 < quoteSpanArr.length; i4++) {
+                    sb.append("</blockquote>");
+                }
+            }
+            i = nextSpanTransition;
+        }
+    }
+
+    private static void toHTML_6_wrapAnimatedEmoji(StringBuilder sb, Spanned spanned, int i, int i2) {
         while (i < i2) {
             int nextSpanTransition = spanned.nextSpanTransition(i, i2, AnimatedEmojiSpan.class);
             if (nextSpanTransition < 0) {
@@ -143,7 +195,7 @@ public class CustomHtml {
                     }
                 }
             }
-            toHTML_5_withinStyle(sb, spanned, i, nextSpanTransition);
+            toHTML_7_withinStyle(sb, spanned, i, nextSpanTransition);
             if (animatedEmojiSpanArr != null) {
                 for (AnimatedEmojiSpan animatedEmojiSpan2 : animatedEmojiSpanArr) {
                     if (animatedEmojiSpan2 != null && !animatedEmojiSpan2.standard) {
@@ -155,7 +207,7 @@ public class CustomHtml {
         }
     }
 
-    private static void toHTML_5_withinStyle(StringBuilder sb, CharSequence charSequence, int i, int i2) {
+    private static void toHTML_7_withinStyle(StringBuilder sb, CharSequence charSequence, int i, int i2) {
         int i3;
         char charAt;
         while (i < i2) {

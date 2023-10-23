@@ -30,7 +30,6 @@ import org.telegram.tgnet.TLRPC$InputFile;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
 import org.telegram.tgnet.TLRPC$TL_fileLocationToBeDeprecated;
 import org.telegram.tgnet.TLRPC$TL_fileLocationUnavailable;
@@ -49,6 +48,7 @@ import org.telegram.tgnet.TLRPC$TL_videoSizeStickerMarkup;
 import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 import org.telegram.tgnet.TLRPC$VideoSize;
 import org.telegram.tgnet.TLRPC$WebDocument;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.LaunchActivity;
 public class FileLoader extends BaseController {
     public static final long DEFAULT_MAX_FILE_SIZE = 2097152000;
@@ -171,9 +171,9 @@ public class FileLoader extends BaseController {
             fileMeta2.messageType = messageObject.type;
             fileMeta2.messageSize = messageObject.getSize();
             return fileMeta2;
-        } else if (obj instanceof TLRPC$StoryItem) {
+        } else if (obj instanceof TL_stories$StoryItem) {
             FilePathDatabase.FileMeta fileMeta3 = new FilePathDatabase.FileMeta();
-            fileMeta3.dialogId = ((TLRPC$StoryItem) obj).dialogId;
+            fileMeta3.dialogId = ((TL_stories$StoryItem) obj).dialogId;
             fileMeta3.messageType = 23;
             return fileMeta3;
         } else {

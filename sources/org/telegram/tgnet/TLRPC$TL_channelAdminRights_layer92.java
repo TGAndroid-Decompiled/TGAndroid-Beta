@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_channelAdminRights_layer92 extends TLObject {
-    public static int constructor = 1568467877;
     public boolean add_admins;
     public boolean ban_users;
     public boolean change_info;
@@ -15,7 +14,7 @@ public class TLRPC$TL_channelAdminRights_layer92 extends TLObject {
     public boolean post_messages;
 
     public static TLRPC$TL_channelAdminRights_layer92 TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1568467877 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_channelAdminRights_layer92", Integer.valueOf(i)));
             }
@@ -43,7 +42,7 @@ public class TLRPC$TL_channelAdminRights_layer92 extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1568467877);
         int i = this.change_info ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.post_messages ? i | 2 : i & (-3);

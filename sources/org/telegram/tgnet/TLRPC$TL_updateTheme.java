@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateTheme extends TLRPC$Update {
-    public static int constructor = -2112423005;
     public TLRPC$Theme theme;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_updateTheme extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-2112423005);
         this.theme.serializeToStream(abstractSerializedData);
     }
 }

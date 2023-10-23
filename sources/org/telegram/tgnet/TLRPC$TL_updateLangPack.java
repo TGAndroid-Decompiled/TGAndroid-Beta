@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateLangPack extends TLRPC$Update {
-    public static int constructor = 1442983757;
     public TLRPC$TL_langPackDifference difference;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_updateLangPack extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1442983757);
         this.difference.serializeToStream(abstractSerializedData);
     }
 }

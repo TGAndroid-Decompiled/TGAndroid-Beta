@@ -14,8 +14,6 @@ public abstract class TLRPC$GeoPoint extends TLObject {
                 break;
             case 43446532:
                 tLRPC$TL_geoPoint = new TLRPC$TL_geoPoint() {
-                    public static int constructor = 43446532;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this._long = abstractSerializedData2.readDouble(z2);
@@ -25,7 +23,7 @@ public abstract class TLRPC$GeoPoint extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(43446532);
                         abstractSerializedData2.writeDouble(this._long);
                         abstractSerializedData2.writeDouble(this.lat);
                         abstractSerializedData2.writeInt64(this.access_hash);
@@ -34,18 +32,14 @@ public abstract class TLRPC$GeoPoint extends TLObject {
                 break;
             case 286776671:
                 tLRPC$TL_geoPoint = new TLRPC$GeoPoint() {
-                    public static int constructor = 286776671;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(286776671);
                     }
                 };
                 break;
             case 541710092:
                 tLRPC$TL_geoPoint = new TLRPC$TL_geoPoint() {
-                    public static int constructor = 541710092;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this._long = abstractSerializedData2.readDouble(z2);
@@ -54,7 +48,7 @@ public abstract class TLRPC$GeoPoint extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(541710092);
                         abstractSerializedData2.writeDouble(this._long);
                         abstractSerializedData2.writeDouble(this.lat);
                     }

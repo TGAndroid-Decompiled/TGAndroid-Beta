@@ -25,7 +25,6 @@ import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$StickerSet;
 import org.telegram.tgnet.TLRPC$StickerSetCovered;
-import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_account_getTheme;
 import org.telegram.tgnet.TLRPC$TL_account_getWallPaper;
 import org.telegram.tgnet.TLRPC$TL_account_getWallPapers;
@@ -75,8 +74,6 @@ import org.telegram.tgnet.TLRPC$TL_messages_sendMedia;
 import org.telegram.tgnet.TLRPC$TL_messages_sendMultiMedia;
 import org.telegram.tgnet.TLRPC$TL_messages_stickerSet;
 import org.telegram.tgnet.TLRPC$TL_photos_getUserPhotos;
-import org.telegram.tgnet.TLRPC$TL_stories_getStoriesByID;
-import org.telegram.tgnet.TLRPC$TL_storyItem;
 import org.telegram.tgnet.TLRPC$TL_theme;
 import org.telegram.tgnet.TLRPC$TL_users_getFullUser;
 import org.telegram.tgnet.TLRPC$TL_users_getUsers;
@@ -86,6 +83,9 @@ import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserProfilePhoto;
 import org.telegram.tgnet.TLRPC$WebPage;
 import org.telegram.tgnet.TLRPC$WebPageAttribute;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.tl.TL_stories$TL_stories_getStoriesByID;
+import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
 public class FileRefController extends BaseController {
     private static volatile FileRefController[] Instance = new FileRefController[4];
     private ArrayList<Waiter> favStickersWaiter;
@@ -165,13 +165,13 @@ public class FileRefController extends BaseController {
     }
 
     public static String getKeyForParentObject(Object obj) {
-        if (obj instanceof TLRPC$StoryItem) {
-            TLRPC$StoryItem tLRPC$StoryItem = (TLRPC$StoryItem) obj;
-            if (tLRPC$StoryItem.dialogId == 0) {
+        if (obj instanceof TL_stories$StoryItem) {
+            TL_stories$StoryItem tL_stories$StoryItem = (TL_stories$StoryItem) obj;
+            if (tL_stories$StoryItem.dialogId == 0) {
                 FileLog.d("failed request reference can't find dialogId");
                 return null;
             }
-            return "story_" + tLRPC$StoryItem.dialogId + "_" + tLRPC$StoryItem.id;
+            return "story_" + tL_stories$StoryItem.dialogId + "_" + tL_stories$StoryItem.id;
         } else if (obj instanceof TLRPC$TL_help_premiumPromo) {
             return "premium_promo";
         } else {
@@ -225,9 +225,9 @@ public class FileRefController extends BaseController {
         if (obj instanceof String) {
             return (String) obj;
         }
-        if (obj instanceof TLRPC$StoryItem) {
-            TLRPC$StoryItem tLRPC$StoryItem = (TLRPC$StoryItem) obj;
-            return "story(dialogId=" + tLRPC$StoryItem.dialogId + " id=" + tLRPC$StoryItem.id + ")";
+        if (obj instanceof TL_stories$StoryItem) {
+            TL_stories$StoryItem tL_stories$StoryItem = (TL_stories$StoryItem) obj;
+            return "story(dialogId=" + tL_stories$StoryItem.dialogId + " id=" + tL_stories$StoryItem.id + ")";
         } else if (!(obj instanceof MessageObject)) {
             if (obj == null) {
                 return null;
@@ -251,12 +251,12 @@ public class FileRefController extends BaseController {
     }
 
     private void requestReferenceFromServer(Object obj, final String str, final String str2, Object[] objArr) {
-        if (obj instanceof TLRPC$StoryItem) {
-            TLRPC$StoryItem tLRPC$StoryItem = (TLRPC$StoryItem) obj;
-            TLRPC$TL_stories_getStoriesByID tLRPC$TL_stories_getStoriesByID = new TLRPC$TL_stories_getStoriesByID();
-            tLRPC$TL_stories_getStoriesByID.peer = getMessagesController().getInputPeer(tLRPC$StoryItem.dialogId);
-            tLRPC$TL_stories_getStoriesByID.id.add(Integer.valueOf(tLRPC$StoryItem.id));
-            getConnectionsManager().sendRequest(tLRPC$TL_stories_getStoriesByID, new RequestDelegate() {
+        if (obj instanceof TL_stories$StoryItem) {
+            TL_stories$StoryItem tL_stories$StoryItem = (TL_stories$StoryItem) obj;
+            TL_stories$TL_stories_getStoriesByID tL_stories$TL_stories_getStoriesByID = new TL_stories$TL_stories_getStoriesByID();
+            tL_stories$TL_stories_getStoriesByID.peer = getMessagesController().getInputPeer(tL_stories$StoryItem.dialogId);
+            tL_stories$TL_stories_getStoriesByID.id.add(Integer.valueOf(tL_stories$StoryItem.id));
+            getConnectionsManager().sendRequest(tL_stories$TL_stories_getStoriesByID, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                     FileRefController.this.lambda$requestReferenceFromServer$0(str, str2, tLObject, tLRPC$TL_error);
@@ -668,7 +668,7 @@ public class FileRefController extends BaseController {
         if (BuildVars.DEBUG_VERSION) {
             FileLog.d("fileref updated for " + requester.args[0] + " " + requester.locationKey);
         }
-        if (!(requester.args[0] instanceof TLRPC$TL_storyItem)) {
+        if (!(requester.args[0] instanceof TL_stories$TL_storyItem)) {
             if (requester.args[0] instanceof TLRPC$TL_inputSingleMedia) {
                 final TLRPC$TL_messages_sendMultiMedia tLRPC$TL_messages_sendMultiMedia = (TLRPC$TL_messages_sendMultiMedia) requester.args[1];
                 final Object[] objArr = this.multiMediaCache.get(tLRPC$TL_messages_sendMultiMedia);
@@ -839,7 +839,7 @@ public class FileRefController extends BaseController {
             }
             return true;
         }
-        ((TLRPC$TL_storyItem) requester.args[0]).media.document.file_reference = bArr;
+        ((TL_stories$TL_storyItem) requester.args[0]).media.document.file_reference = bArr;
         return true;
     }
 

@@ -5,8 +5,6 @@ import android.os.Build;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 public class TLRPC$TL_userProfilePhoto extends TLRPC$UserProfilePhoto {
-    public static int constructor = -2100168954;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -38,7 +36,7 @@ public class TLRPC$TL_userProfilePhoto extends TLRPC$UserProfilePhoto {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-2100168954);
         int i = this.has_video ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.personal ? i | 4 : i & (-5);

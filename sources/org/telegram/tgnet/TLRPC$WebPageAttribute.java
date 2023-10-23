@@ -1,4 +1,6 @@
 package org.telegram.tgnet;
+
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 public class TLRPC$WebPageAttribute extends TLObject {
     public int flags;
 
@@ -8,29 +10,29 @@ public class TLRPC$WebPageAttribute extends TLObject {
             tLRPC$WebPageAttribute = new TLRPC$TL_webPageAttributeStory() {
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                    ((TLRPC$TL_webPageAttributeStory) this).flags = abstractSerializedData2.readInt32(z2);
+                    this.flags = abstractSerializedData2.readInt32(z2);
                     long readInt64 = abstractSerializedData2.readInt64(z2);
                     TLRPC$TL_peerUser tLRPC$TL_peerUser = new TLRPC$TL_peerUser();
                     this.peer = tLRPC$TL_peerUser;
                     tLRPC$TL_peerUser.user_id = readInt64;
                     this.id = abstractSerializedData2.readInt32(z2);
-                    if ((((TLRPC$TL_webPageAttributeStory) this).flags & 1) != 0) {
-                        this.storyItem = TLRPC$StoryItem.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
+                    if ((this.flags & 1) != 0) {
+                        this.storyItem = TL_stories$StoryItem.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
                     }
                 }
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
                     if (this.storyItem != null) {
-                        ((TLRPC$TL_webPageAttributeStory) this).flags |= 1;
+                        this.flags |= 1;
                     } else {
-                        ((TLRPC$TL_webPageAttributeStory) this).flags &= -2;
+                        this.flags &= -2;
                     }
                     abstractSerializedData2.writeInt32(-1818605967);
-                    abstractSerializedData2.writeInt32(((TLRPC$TL_webPageAttributeStory) this).flags);
+                    abstractSerializedData2.writeInt32(this.flags);
                     abstractSerializedData2.writeInt64(this.peer.user_id);
                     abstractSerializedData2.writeInt32(this.id);
-                    if ((((TLRPC$TL_webPageAttributeStory) this).flags & 1) != 0) {
+                    if ((this.flags & 1) != 0) {
                         this.storyItem.serializeToStream(abstractSerializedData2);
                     }
                 }

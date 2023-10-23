@@ -13,6 +13,7 @@ import android.view.View;
 import java.util.Random;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.Theme;
@@ -794,7 +795,7 @@ public class FlickerLoadingView extends View {
                 return AndroidUtilities.dp((SharedConfig.useThreeLinesLayout ? 76 : 64) + 1);
             case 25:
                 return AndroidUtilities.dp(51.0f);
-            case 26:
+            case MessageObject.TYPE_GIVEAWAY:
                 return AndroidUtilities.dp(50.0f) + 1;
             case 28:
                 return AndroidUtilities.dp(58.0f);

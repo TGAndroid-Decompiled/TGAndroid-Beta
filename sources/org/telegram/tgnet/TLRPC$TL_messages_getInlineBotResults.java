@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getInlineBotResults extends TLObject {
-    public static int constructor = 1364105629;
     public TLRPC$InputUser bot;
     public int flags;
     public TLRPC$InputGeoPoint geo_point;
@@ -15,7 +14,7 @@ public class TLRPC$TL_messages_getInlineBotResults extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1364105629);
         abstractSerializedData.writeInt32(this.flags);
         this.bot.serializeToStream(abstractSerializedData);
         this.peer.serializeToStream(abstractSerializedData);

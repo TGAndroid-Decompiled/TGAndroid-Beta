@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_documentAttributeCustomEmoji extends TLRPC$DocumentAttribute {
-    public static int constructor = -48981863;
     public boolean free;
     public boolean text_color;
 
@@ -16,7 +15,7 @@ public class TLRPC$TL_documentAttributeCustomEmoji extends TLRPC$DocumentAttribu
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-48981863);
         int i = this.free ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.text_color ? i | 2 : i & (-3);

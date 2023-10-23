@@ -11,8 +11,6 @@ public abstract class TLRPC$messages_StickerSet extends TLObject {
         TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet;
         if (i == -1240849242) {
             tLRPC$TL_messages_stickerSet = new TLRPC$TL_messages_stickerSet() {
-                public static int constructor = -1240849242;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.set = TLRPC$StickerSet.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -50,7 +48,7 @@ public abstract class TLRPC$messages_StickerSet extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1240849242);
                     this.set.serializeToStream(abstractSerializedData2);
                     abstractSerializedData2.writeInt32(481674261);
                     int size = this.packs.size();
@@ -70,11 +68,9 @@ public abstract class TLRPC$messages_StickerSet extends TLObject {
             tLRPC$TL_messages_stickerSet = i != 1846886166 ? null : new TLRPC$TL_messages_stickerSet();
         } else {
             tLRPC$TL_messages_stickerSet = new TLRPC$TL_messages_stickerSet() {
-                public static int constructor = -738646805;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-738646805);
                 }
             };
         }

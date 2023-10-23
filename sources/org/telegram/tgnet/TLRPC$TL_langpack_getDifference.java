@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_langpack_getDifference extends TLObject {
-    public static int constructor = -845657435;
     public int from_version;
     public String lang_code;
     public String lang_pack;
@@ -12,7 +11,7 @@ public class TLRPC$TL_langpack_getDifference extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-845657435);
         abstractSerializedData.writeString(this.lang_pack);
         abstractSerializedData.writeString(this.lang_code);
         abstractSerializedData.writeInt32(this.from_version);

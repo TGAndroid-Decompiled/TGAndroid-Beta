@@ -6,6 +6,8 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
@@ -13,7 +15,9 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
+import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -28,6 +32,7 @@ public class ButtonWithCounterView extends FrameLayout {
     private boolean countFilled;
     private float countScale;
     private final AnimatedTextView.AnimatedTextDrawable countText;
+    private Drawable counterDrawable;
     private boolean enabled;
     private ValueAnimator enabledAnimator;
     private float enabledT;
@@ -41,9 +46,10 @@ public class ButtonWithCounterView extends FrameLayout {
     private Theme.ResourcesProvider resourcesProvider;
     private final View rippleView;
     private boolean showZero;
-    private final AnimatedTextView.AnimatedTextDrawable text;
+    public final AnimatedTextView.AnimatedTextDrawable text;
     private Runnable tick;
     private int timerSeconds;
+    private boolean withCounterIcon;
 
     @Override
     protected boolean drawChild(Canvas canvas, View view, long j) {
@@ -98,6 +104,11 @@ public class ButtonWithCounterView extends FrameLayout {
         animatedTextDrawable2.setText("");
         animatedTextDrawable2.setGravity(1);
         setWillNotDraw(false);
+    }
+
+    public void setCounterColor(int i) {
+        this.countText.setTextColor(i);
+        this.counterDrawable.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
     }
 
     public void setCountFilled(boolean z) {
@@ -228,6 +239,13 @@ public class ButtonWithCounterView extends FrameLayout {
         invalidate();
     }
 
+    public void withCounterIcon() {
+        this.withCounterIcon = true;
+        Drawable mutate = ContextCompat.getDrawable(getContext(), R.drawable.mini_boost_button).mutate();
+        this.counterDrawable = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_featuredStickers_addButton, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
+    }
+
     public void setShowZero(boolean z) {
         this.showZero = z;
     }
@@ -282,7 +300,7 @@ public class ButtonWithCounterView extends FrameLayout {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         this.rippleView.draw(canvas);
         boolean z = false;
         if (this.loadingT > 0.0f) {
@@ -305,13 +323,14 @@ public class ButtonWithCounterView extends FrameLayout {
             }
             float currentWidth = this.text.getCurrentWidth();
             float f2 = this.countAlphaAnimated.set(this.countAlpha);
-            float dp2 = ((AndroidUtilities.dp(15.66f) + this.countText.getCurrentWidth()) * f2) + currentWidth;
+            float dp2 = this.withCounterIcon ? AndroidUtilities.dp(12.0f) : 0.0f;
+            float dp3 = currentWidth + dp2 + ((AndroidUtilities.dp(15.66f) + this.countText.getCurrentWidth()) * f2);
             Rect rect = AndroidUtilities.rectTmp2;
-            rect.set((int) (((getMeasuredWidth() - dp2) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - dp2) + getWidth()) / 2.0f) + currentWidth), (int) (((getMeasuredHeight() + this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
+            rect.set((int) (((getMeasuredWidth() - dp3) - getWidth()) / 2.0f), (int) (((getMeasuredHeight() - this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)), (int) ((((getMeasuredWidth() - dp3) + getWidth()) / 2.0f) + currentWidth), (int) (((getMeasuredHeight() + this.text.getHeight()) / 2.0f) - AndroidUtilities.dp(1.0f)));
             this.text.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
             this.text.setBounds(rect);
             this.text.draw(canvas);
-            rect.set((int) (((getMeasuredWidth() - dp2) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - dp2) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 4 + 4) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth())), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
+            rect.set((int) (((getMeasuredWidth() - dp3) / 2.0f) + currentWidth + AndroidUtilities.dp(this.countFilled ? 5.0f : 2.0f)), (int) ((getMeasuredHeight() - AndroidUtilities.dp(18.0f)) / 2.0f), (int) (((getMeasuredWidth() - dp3) / 2.0f) + currentWidth + AndroidUtilities.dp((this.countFilled ? 5 : 2) + 4 + 4) + Math.max(AndroidUtilities.dp(9.0f), this.countText.getCurrentWidth() + dp2)), (int) ((getMeasuredHeight() + AndroidUtilities.dp(18.0f)) / 2.0f));
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(rect);
             if (this.countScale != 1.0f) {
@@ -321,12 +340,21 @@ public class ButtonWithCounterView extends FrameLayout {
             }
             if (this.countFilled) {
                 this.paint.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * f2 * AndroidUtilities.lerp(0.5f, 1.0f, this.enabledT)));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.paint);
+                float dp4 = AndroidUtilities.dp(this.withCounterIcon ? 4.0f : 10.0f);
+                canvas.drawRoundRect(rectF, dp4, dp4, this.paint);
             }
             rect.offset(-AndroidUtilities.dp(0.3f), -AndroidUtilities.dp(0.4f));
             this.countText.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * (this.countFilled ? 1.0f : 0.5f)));
             this.countText.setBounds(rect);
+            canvas.save();
+            if (this.countFilled && this.withCounterIcon) {
+                this.counterDrawable.setAlpha((int) (this.globalAlpha * (1.0f - this.loadingT) * f2 * 1.0f));
+                this.counterDrawable.setBounds(AndroidUtilities.dp(1.0f) + rect.left, AndroidUtilities.dp(2.0f) + rect.top, AndroidUtilities.dp(1.0f) + rect.left + this.counterDrawable.getIntrinsicWidth(), AndroidUtilities.dp(2.0f) + rect.top + this.counterDrawable.getIntrinsicHeight());
+                this.counterDrawable.draw(canvas);
+                canvas.translate(dp2 / 2.0f, 0.0f);
+            }
             this.countText.draw(canvas);
+            canvas.restore();
             if (this.countScale != 1.0f) {
                 canvas.restore();
             }

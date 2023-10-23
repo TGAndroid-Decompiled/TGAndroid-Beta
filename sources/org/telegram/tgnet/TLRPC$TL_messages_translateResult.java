@@ -2,11 +2,10 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_messages_translateResult extends TLObject {
-    public static int constructor = 870003448;
     public ArrayList<TLRPC$TL_textWithEntities> result = new ArrayList<>();
 
     public static TLRPC$TL_messages_translateResult TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (870003448 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_messages_translateResult", Integer.valueOf(i)));
             }
@@ -38,7 +37,7 @@ public class TLRPC$TL_messages_translateResult extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(870003448);
         abstractSerializedData.writeInt32(481674261);
         int size = this.result.size();
         abstractSerializedData.writeInt32(size);

@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_messages_getExtendedMedia extends TLObject {
-    public static int constructor = -2064119788;
     public ArrayList<Integer> id = new ArrayList<>();
     public TLRPC$InputPeer peer;
 
@@ -13,7 +12,7 @@ public class TLRPC$TL_messages_getExtendedMedia extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-2064119788);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);
         int size = this.id.size();

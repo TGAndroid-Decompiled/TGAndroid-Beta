@@ -21,8 +21,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC$StoryItem;
-import org.telegram.tgnet.TLRPC$StoryViews;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.tl.TL_stories$StoryViews;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.StaticLayoutEx;
@@ -439,9 +439,9 @@ public abstract class SelfStoriesPreviewView extends View {
                 this.receiver.onAttachedToWindow();
             }
             SelfStoryViewsView.StoryItemInternal storyItemInternal = this.storyItem;
-            TLRPC$StoryItem tLRPC$StoryItem = storyItemInternal.storyItem;
-            if (tLRPC$StoryItem != null) {
-                StoriesUtilities.setImage(this.receiver, tLRPC$StoryItem);
+            TL_stories$StoryItem tL_stories$StoryItem = storyItemInternal.storyItem;
+            if (tL_stories$StoryItem != null) {
+                StoriesUtilities.setImage(this.receiver, tL_stories$StoryItem);
             } else {
                 StoriesUtilities.setImage(this.receiver, storyItemInternal.uploadingStory);
             }
@@ -450,9 +450,9 @@ public abstract class SelfStoriesPreviewView extends View {
 
         private void updateLayout() {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-            TLRPC$StoryItem tLRPC$StoryItem = this.storyItem.storyItem;
-            if (tLRPC$StoryItem != null) {
-                SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder, tLRPC$StoryItem.views, false);
+            TL_stories$StoryItem tL_stories$StoryItem = this.storyItem.storyItem;
+            if (tL_stories$StoryItem != null) {
+                SelfStoriesPreviewView.this.formatCounterText(spannableStringBuilder, tL_stories$StoryItem.views, false);
             }
             if (spannableStringBuilder.length() != 0) {
                 StaticLayout createStaticLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.paint, (int) (SelfStoriesPreviewView.this.textWidth + 1.0f), Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, null, ConnectionsManager.DEFAULT_DATACENTER_ID, 1);
@@ -496,19 +496,19 @@ public abstract class SelfStoriesPreviewView extends View {
         }
     }
 
-    public void formatCounterText(SpannableStringBuilder spannableStringBuilder, TLRPC$StoryViews tLRPC$StoryViews, boolean z) {
-        int i = tLRPC$StoryViews == null ? 0 : tLRPC$StoryViews.views_count;
+    public void formatCounterText(SpannableStringBuilder spannableStringBuilder, TL_stories$StoryViews tL_stories$StoryViews, boolean z) {
+        int i = tL_stories$StoryViews == null ? 0 : tL_stories$StoryViews.views_count;
         if (i > 0) {
             spannableStringBuilder.append("d");
             spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.msg_views), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
             spannableStringBuilder.append(" ").append((CharSequence) AndroidUtilities.formatWholeNumber(i, 0));
-            if (tLRPC$StoryViews == null || tLRPC$StoryViews.reactions_count <= 0) {
+            if (tL_stories$StoryViews == null || tL_stories$StoryViews.reactions_count <= 0) {
                 return;
             }
             spannableStringBuilder.append((CharSequence) (z ? "\n" : "  "));
             spannableStringBuilder.append("d");
             spannableStringBuilder.setSpan(new ColoredImageSpan(R.drawable.mini_like_filled), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
-            spannableStringBuilder.append(" ").append((CharSequence) AndroidUtilities.formatWholeNumber(tLRPC$StoryViews.reactions_count, 0));
+            spannableStringBuilder.append(" ").append((CharSequence) AndroidUtilities.formatWholeNumber(tL_stories$StoryViews.reactions_count, 0));
         }
     }
 

@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_contacts_importContacts extends TLObject {
-    public static int constructor = 746589157;
     public ArrayList<TLRPC$TL_inputPhoneContact> contacts = new ArrayList<>();
 
     @Override
@@ -12,7 +11,7 @@ public class TLRPC$TL_contacts_importContacts extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(746589157);
         abstractSerializedData.writeInt32(481674261);
         int size = this.contacts.size();
         abstractSerializedData.writeInt32(size);

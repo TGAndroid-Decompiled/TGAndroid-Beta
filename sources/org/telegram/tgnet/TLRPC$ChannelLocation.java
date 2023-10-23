@@ -4,11 +4,9 @@ public abstract class TLRPC$ChannelLocation extends TLObject {
         TLRPC$ChannelLocation tLRPC$ChannelLocation;
         if (i == -1078612597) {
             tLRPC$ChannelLocation = new TLRPC$ChannelLocation() {
-                public static int constructor = -1078612597;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1078612597);
                 }
             };
         } else {

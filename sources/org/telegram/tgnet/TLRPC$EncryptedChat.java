@@ -34,8 +34,6 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
         switch (i) {
             case -1417756512:
                 tLRPC$EncryptedChat = new TLRPC$EncryptedChat() {
-                    public static int constructor = -1417756512;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -43,15 +41,13 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1417756512);
                         abstractSerializedData2.writeInt32(this.id);
                     }
                 };
                 break;
             case -931638658:
                 tLRPC$EncryptedChat = new TLRPC$EncryptedChat() {
-                    public static int constructor = -931638658;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -64,7 +60,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-931638658);
                         abstractSerializedData2.writeInt32(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
@@ -76,8 +72,6 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                 break;
             case -94974410:
                 tLRPC$EncryptedChat = new TLRPC$TL_encryptedChat() {
-                    public static int constructor = -94974410;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -91,7 +85,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-94974410);
                         abstractSerializedData2.writeInt32(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
@@ -104,8 +98,6 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                 break;
             case -39213129:
                 tLRPC$EncryptedChat = new TLRPC$TL_encryptedChatRequested() {
-                    public static int constructor = -39213129;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -119,7 +111,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-39213129);
                         abstractSerializedData2.writeInt32(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
@@ -132,8 +124,6 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                 break;
             case 332848423:
                 tLRPC$EncryptedChat = new TLRPC$TL_encryptedChatDiscarded() {
-                    public static int constructor = 332848423;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -141,7 +131,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(332848423);
                         abstractSerializedData2.writeInt32(this.id);
                     }
                 };
@@ -151,8 +141,6 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                 break;
             case 1006044124:
                 tLRPC$EncryptedChat = new TLRPC$TL_encryptedChatWaiting() {
-                    public static int constructor = 1006044124;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -164,7 +152,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1006044124);
                         abstractSerializedData2.writeInt32(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
@@ -181,8 +169,6 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                 break;
             case 1651608194:
                 tLRPC$EncryptedChat = new TLRPC$TL_encryptedChatRequested() {
-                    public static int constructor = 1651608194;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -200,7 +186,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1651608194);
                         abstractSerializedData2.writeInt32(this.flags);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeInt32(this.folder_id);
@@ -216,8 +202,6 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
                 break;
             case 1711395151:
                 tLRPC$EncryptedChat = new TLRPC$TL_encryptedChat() {
-                    public static int constructor = 1711395151;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt32(z2);
@@ -232,7 +216,7 @@ public abstract class TLRPC$EncryptedChat extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1711395151);
                         abstractSerializedData2.writeInt32(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);

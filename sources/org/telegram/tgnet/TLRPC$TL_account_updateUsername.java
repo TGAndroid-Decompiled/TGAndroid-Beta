@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_updateUsername extends TLObject {
-    public static int constructor = 1040964988;
     public String username;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_account_updateUsername extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1040964988);
         abstractSerializedData.writeString(this.username);
     }
 }

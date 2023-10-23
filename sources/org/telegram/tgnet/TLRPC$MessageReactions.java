@@ -12,8 +12,6 @@ public abstract class TLRPC$MessageReactions extends TLObject {
         TLRPC$TL_messageReactions tLRPC$TL_messageReactions;
         if (i == -1199954735) {
             tLRPC$TL_messageReactions = new TLRPC$TL_messageReactions() {
-                public static int constructor = -1199954735;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -38,7 +36,7 @@ public abstract class TLRPC$MessageReactions extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1199954735);
                     int i2 = this.min ? this.flags | 1 : this.flags & (-2);
                     this.flags = i2;
                     abstractSerializedData2.writeInt32(i2);
@@ -52,8 +50,6 @@ public abstract class TLRPC$MessageReactions extends TLObject {
             };
         } else if (i == 142306870) {
             tLRPC$TL_messageReactions = new TLRPC$TL_messageReactions() {
-                public static int constructor = 142306870;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -96,7 +92,7 @@ public abstract class TLRPC$MessageReactions extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(142306870);
                     int i2 = this.min ? this.flags | 1 : this.flags & (-2);
                     this.flags = i2;
                     int i3 = this.can_see_list ? i2 | 4 : i2 & (-5);

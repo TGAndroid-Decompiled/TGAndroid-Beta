@@ -1576,8 +1576,8 @@ public class ImageReceiver implements NotificationCenter.NotificationCenterDeleg
         animation.setParentView(this.parentView);
     }
 
-    public void setImageX(int i) {
-        this.imageX = i;
+    public void setImageX(float f) {
+        this.imageX = f;
     }
 
     public void setImageY(float f) {

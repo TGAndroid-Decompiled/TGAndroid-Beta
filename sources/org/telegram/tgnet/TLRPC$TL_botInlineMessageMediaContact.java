@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_botInlineMessageMediaContact extends TLRPC$BotInlineMessage {
-    public static int constructor = 416402882;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         this.flags = abstractSerializedData.readInt32(z);
@@ -16,7 +14,7 @@ public class TLRPC$TL_botInlineMessageMediaContact extends TLRPC$BotInlineMessag
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(416402882);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeString(this.phone_number);
         abstractSerializedData.writeString(this.first_name);

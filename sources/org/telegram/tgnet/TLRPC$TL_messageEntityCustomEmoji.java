@@ -1,6 +1,6 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messageEntityCustomEmoji extends TLRPC$MessageEntity {
-    public static int constructor = -925956616;
+    public static final int constructor = -925956616;
     public TLRPC$Document document;
     public long document_id;
 

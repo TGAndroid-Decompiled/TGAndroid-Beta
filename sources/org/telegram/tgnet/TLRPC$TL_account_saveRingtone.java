@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_saveRingtone extends TLObject {
-    public static int constructor = 1038768899;
     public TLRPC$InputDocument id;
     public boolean unsave;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_account_saveRingtone extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1038768899);
         this.id.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeBool(this.unsave);
     }

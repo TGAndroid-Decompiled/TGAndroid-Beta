@@ -403,7 +403,7 @@ public class PushListenerController {
                 return LocaleController.formatString("PushReactVideo", R.string.PushReactVideo, objArr);
             case 25:
                 return LocaleController.formatString("PushReactDoc", R.string.PushReactDoc, objArr);
-            case 26:
+            case MessageObject.TYPE_GIVEAWAY:
                 return LocaleController.formatString("PushReactGeo", R.string.PushReactGeo, objArr);
             case 27:
                 return LocaleController.formatString("PushReactGif", R.string.PushReactGif, objArr);

@@ -23,8 +23,6 @@ public abstract class TLRPC$PhotoSize extends TLObject {
                 break;
             case -374917894:
                 tLRPC$TL_photoPathSize = new TLRPC$TL_photoCachedSize() {
-                    public static int constructor = -374917894;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.type = abstractSerializedData2.readString(z2);
@@ -36,7 +34,7 @@ public abstract class TLRPC$PhotoSize extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-374917894);
                         abstractSerializedData2.writeString(this.type);
                         this.location.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.w);
@@ -56,8 +54,6 @@ public abstract class TLRPC$PhotoSize extends TLObject {
                 break;
             case 1520986705:
                 tLRPC$TL_photoPathSize = new TLRPC$TL_photoSizeProgressive() {
-                    public static int constructor = 1520986705;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.type = abstractSerializedData2.readString(z2);
@@ -84,7 +80,7 @@ public abstract class TLRPC$PhotoSize extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1520986705);
                         abstractSerializedData2.writeString(this.type);
                         this.location.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.w);

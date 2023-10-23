@@ -3,7 +3,6 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_codeSettings extends TLObject {
-    public static int constructor = -1390068360;
     public boolean allow_app_hash;
     public boolean allow_firebase;
     public boolean allow_flashcall;
@@ -48,7 +47,7 @@ public class TLRPC$TL_codeSettings extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1390068360);
         int i = this.allow_flashcall ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.current_number ? i | 2 : i & (-3);

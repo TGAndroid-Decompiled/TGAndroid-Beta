@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_saveSecureValue extends TLObject {
-    public static int constructor = -1986010339;
     public long secure_secret_id;
     public TLRPC$TL_inputSecureValue value;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_account_saveSecureValue extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1986010339);
         this.value.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt64(this.secure_secret_id);
     }

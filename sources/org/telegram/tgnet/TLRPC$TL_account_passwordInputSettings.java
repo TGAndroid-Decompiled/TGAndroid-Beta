@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_passwordInputSettings extends TLObject {
-    public static int constructor = -1036572727;
     public String email;
     public int flags;
     public String hint;
@@ -31,7 +30,7 @@ public class TLRPC$TL_account_passwordInputSettings extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1036572727);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             this.new_algo.serializeToStream(abstractSerializedData);

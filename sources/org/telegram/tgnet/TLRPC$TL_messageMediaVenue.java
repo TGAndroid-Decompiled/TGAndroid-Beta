@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messageMediaVenue extends TLRPC$MessageMedia {
-    public static int constructor = 784356159;
     public String emoji;
     public String icon;
     public long query_id;
@@ -18,7 +17,7 @@ public class TLRPC$TL_messageMediaVenue extends TLRPC$MessageMedia {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(784356159);
         this.geo.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.title);
         abstractSerializedData.writeString(this.address);

@@ -2,8 +2,6 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_chat extends TLRPC$Chat {
-    public static int constructor = 1103884886;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         readParams(abstractSerializedData, z, true);
@@ -38,7 +36,7 @@ public class TLRPC$TL_chat extends TLRPC$Chat {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1103884886);
         int i = this.creator ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.kicked ? i | 2 : i & (-3);

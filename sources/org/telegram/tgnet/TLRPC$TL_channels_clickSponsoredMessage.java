@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_clickSponsoredMessage extends TLObject {
-    public static int constructor = 414170259;
     public TLRPC$InputChannel channel;
     public byte[] random_id;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_channels_clickSponsoredMessage extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(414170259);
         this.channel.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeByteArray(this.random_id);
     }

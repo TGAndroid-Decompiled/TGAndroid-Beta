@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getOnlines extends TLObject {
-    public static int constructor = 1848369232;
     public TLRPC$InputPeer peer;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_messages_getOnlines extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1848369232);
         this.peer.serializeToStream(abstractSerializedData);
     }
 }

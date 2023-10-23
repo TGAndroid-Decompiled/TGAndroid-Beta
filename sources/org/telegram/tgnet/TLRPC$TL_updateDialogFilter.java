@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateDialogFilter extends TLRPC$Update {
-    public static int constructor = 654302845;
     public TLRPC$DialogFilter filter;
     public int flags;
     public int id;
@@ -16,7 +15,7 @@ public class TLRPC$TL_updateDialogFilter extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(654302845);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt32(this.id);
         if ((this.flags & 1) != 0) {

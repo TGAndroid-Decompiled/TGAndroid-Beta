@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getHistory extends TLObject {
-    public static int constructor = 1143203525;
     public int add_offset;
     public long hash;
     public int limit;
@@ -17,7 +16,7 @@ public class TLRPC$TL_messages_getHistory extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1143203525);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.offset_id);
         abstractSerializedData.writeInt32(this.offset_date);

@@ -3,10 +3,10 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
-    public static int constructor = 1164872071;
     public boolean background;
     public boolean clear_draft;
     public int flags;
+    public boolean invert_media;
     public ArrayList<TLRPC$TL_inputSingleMedia> multi_media = new ArrayList<>();
     public boolean noforwards;
     public TLRPC$InputPeer peer;
@@ -23,7 +23,7 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1164872071);
         int i = this.silent ? this.flags | 32 : this.flags & (-33);
         this.flags = i;
         int i2 = this.background ? i | 64 : i & (-65);
@@ -34,7 +34,9 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
         this.flags = i4;
         int i5 = this.update_stickersets_order ? i4 | LiteMode.FLAG_CHAT_SCALE : i4 & (-32769);
         this.flags = i5;
-        abstractSerializedData.writeInt32(i5);
+        int i6 = this.invert_media ? i5 | 65536 : i5 & (-65537);
+        this.flags = i6;
+        abstractSerializedData.writeInt32(i6);
         this.peer.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {
             this.reply_to.serializeToStream(abstractSerializedData);
@@ -42,8 +44,8 @@ public class TLRPC$TL_messages_sendMultiMedia extends TLObject {
         abstractSerializedData.writeInt32(481674261);
         int size = this.multi_media.size();
         abstractSerializedData.writeInt32(size);
-        for (int i6 = 0; i6 < size; i6++) {
-            this.multi_media.get(i6).serializeToStream(abstractSerializedData);
+        for (int i7 = 0; i7 < size; i7++) {
+            this.multi_media.get(i7).serializeToStream(abstractSerializedData);
         }
         if ((this.flags & 1024) != 0) {
             abstractSerializedData.writeInt32(this.schedule_date);

@@ -40,7 +40,7 @@ import org.telegram.tgnet.TLRPC$TL_documentAttributeFilename;
 import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
 import org.telegram.tgnet.TLRPC$TL_peerUser;
-import org.telegram.tgnet.TLRPC$TL_storyItem;
+import org.telegram.tgnet.tl.TL_stories$TL_storyItem;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
@@ -244,13 +244,13 @@ public class CachedMediaLayout extends FrameLayout implements NestedSizeNotifier
                             CachedMediaLayout.this.openPhoto(itemInner, mediaAdapter, recyclerListView, (SharedPhotoVideoCell2) view);
                             return;
                         }
-                        TLRPC$TL_storyItem tLRPC$TL_storyItem = new TLRPC$TL_storyItem();
+                        TL_stories$TL_storyItem tL_stories$TL_storyItem = new TL_stories$TL_storyItem();
                         CacheModel.FileInfo fileInfo = itemInner.file;
-                        tLRPC$TL_storyItem.dialogId = fileInfo.dialogId;
-                        tLRPC$TL_storyItem.id = Objects.hash(fileInfo.file.getAbsolutePath());
-                        tLRPC$TL_storyItem.attachPath = itemInner.file.file.getAbsolutePath();
-                        tLRPC$TL_storyItem.date = -1;
-                        AnonymousClass1.this.val$parentFragment.getOrCreateStoryViewer().open(AnonymousClass1.this.val$context, tLRPC$TL_storyItem, StoriesListPlaceProvider.of(recyclerListView));
+                        tL_stories$TL_storyItem.dialogId = fileInfo.dialogId;
+                        tL_stories$TL_storyItem.id = Objects.hash(fileInfo.file.getAbsolutePath());
+                        tL_stories$TL_storyItem.attachPath = itemInner.file.file.getAbsolutePath();
+                        tL_stories$TL_storyItem.date = -1;
+                        AnonymousClass1.this.val$parentFragment.getOrCreateStoryViewer().open(AnonymousClass1.this.val$context, tL_stories$TL_storyItem, StoriesListPlaceProvider.of(recyclerListView));
                         return;
                     }
                     Delegate delegate = CachedMediaLayout.this.delegate;

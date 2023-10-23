@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_help_getDeepLinkInfo extends TLObject {
-    public static int constructor = 1072547679;
     public String path;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_help_getDeepLinkInfo extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1072547679);
         abstractSerializedData.writeString(this.path);
     }
 }

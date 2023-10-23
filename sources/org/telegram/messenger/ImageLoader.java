@@ -1680,7 +1680,7 @@ public class ImageLoader {
         this.testWebFile.remove(str);
     }
 
-    @TargetApi(26)
+    @TargetApi(MessageObject.TYPE_GIVEAWAY)
     private static void moveDirectory(File file, final File file2) {
         if (file.exists()) {
             if (file2.exists() || file2.mkdir()) {

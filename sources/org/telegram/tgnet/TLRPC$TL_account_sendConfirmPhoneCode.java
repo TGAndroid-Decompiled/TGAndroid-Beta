@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_sendConfirmPhoneCode extends TLObject {
-    public static int constructor = 457157256;
     public String hash;
     public TLRPC$TL_codeSettings settings;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_account_sendConfirmPhoneCode extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(457157256);
         abstractSerializedData.writeString(this.hash);
         this.settings.serializeToStream(abstractSerializedData);
     }

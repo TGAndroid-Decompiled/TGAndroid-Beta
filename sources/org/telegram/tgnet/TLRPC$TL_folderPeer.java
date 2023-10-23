@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_folderPeer extends TLObject {
-    public static int constructor = -373643672;
     public int folder_id;
     public TLRPC$Peer peer;
 
     public static TLRPC$TL_folderPeer TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-373643672 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_folderPeer", Integer.valueOf(i)));
             }
@@ -24,7 +23,7 @@ public class TLRPC$TL_folderPeer extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-373643672);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.folder_id);
     }

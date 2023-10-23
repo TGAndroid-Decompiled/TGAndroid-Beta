@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_emailVerifiedLogin extends TLRPC$account_EmailVerified {
-    public static int constructor = -507835039;
     public String email;
     public TLRPC$auth_SentCode sent_code;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_account_emailVerifiedLogin extends TLRPC$account_EmailVeri
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-507835039);
         abstractSerializedData.writeString(this.email);
         this.sent_code.serializeToStream(abstractSerializedData);
     }

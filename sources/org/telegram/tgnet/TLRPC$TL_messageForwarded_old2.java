@@ -2,8 +2,6 @@ package org.telegram.tgnet;
 
 import android.text.TextUtils;
 public class TLRPC$TL_messageForwarded_old2 extends TLRPC$Message {
-    public static int constructor = -1553471722;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -37,7 +35,7 @@ public class TLRPC$TL_messageForwarded_old2 extends TLRPC$Message {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1553471722);
         int i = this.unread ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.out ? i | 2 : i & (-3);

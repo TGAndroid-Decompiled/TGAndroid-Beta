@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputChatPhoto extends TLRPC$InputChatPhoto {
-    public static int constructor = -1991004873;
     public TLRPC$InputPhoto id;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_inputChatPhoto extends TLRPC$InputChatPhoto {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1991004873);
         this.id.serializeToStream(abstractSerializedData);
     }
 }

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_editPhoto extends TLObject {
-    public static int constructor = -248621111;
     public TLRPC$InputChannel channel;
     public TLRPC$InputChatPhoto photo;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_channels_editPhoto extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-248621111);
         this.channel.serializeToStream(abstractSerializedData);
         this.photo.serializeToStream(abstractSerializedData);
     }

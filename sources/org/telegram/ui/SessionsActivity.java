@@ -391,8 +391,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
     public void lambda$createView$6(DialogInterface dialogInterface, int i) {
         if (this.currentType == 0) {
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-                public static int constructor = -1616179942;
-
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
                     return TLRPC$Bool.TLdeserialize(abstractSerializedData, i2, z);
@@ -400,7 +398,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(-1616179942);
                 }
             }, new RequestDelegate() {
                 @Override
@@ -411,8 +409,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             return;
         }
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-            public static int constructor = 1747789204;
-
             @Override
             public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
                 return TLRPC$Bool.TLdeserialize(abstractSerializedData, i2, z);
@@ -420,7 +416,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(1747789204);
             }
         }, new RequestDelegate() {
             @Override
@@ -702,8 +698,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
         }
         if (this.currentType == 0) {
             ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-                public static int constructor = -484392616;
-
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
                     return TLRPC$TL_account_authorizations.TLdeserialize(abstractSerializedData, i, z2);
@@ -711,7 +705,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(-484392616);
                 }
             }, new RequestDelegate() {
                 @Override
@@ -722,8 +716,6 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
             return;
         }
         ConnectionsManager.getInstance(this.currentAccount).bindRequestToGuid(ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-            public static int constructor = 405695855;
-
             @Override
             public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
                 return TLRPC$TL_account_webAuthorizations.TLdeserialize(abstractSerializedData, i, z2);
@@ -731,7 +723,7 @@ public class SessionsActivity extends BaseFragment implements NotificationCenter
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(405695855);
             }
         }, new RequestDelegate() {
             @Override

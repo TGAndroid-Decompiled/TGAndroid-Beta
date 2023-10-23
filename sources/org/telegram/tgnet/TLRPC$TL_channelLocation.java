@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelLocation extends TLRPC$ChannelLocation {
-    public static int constructor = 547062491;
     public String address;
     public TLRPC$GeoPoint geo_point;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_channelLocation extends TLRPC$ChannelLocation {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(547062491);
         this.geo_point.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.address);
     }

@@ -942,6 +942,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                     this.gradients.add(backgroundGradient);
                     i++;
                 } else {
+                    this.useLayoutPositionOnClick = true;
                     setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
                         @Override
                         public final void onItemClick(View view, int i3) {

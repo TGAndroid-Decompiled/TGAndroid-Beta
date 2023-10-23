@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputSecureFileUploaded extends TLRPC$InputSecureFile {
-    public static int constructor = 859091184;
     public byte[] file_hash;
     public long id;
     public String md5_checksum;
@@ -18,7 +17,7 @@ public class TLRPC$TL_inputSecureFileUploaded extends TLRPC$InputSecureFile {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(859091184);
         abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt32(this.parts);
         abstractSerializedData.writeString(this.md5_checksum);

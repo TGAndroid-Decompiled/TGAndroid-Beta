@@ -3,7 +3,6 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_config extends TLObject {
-    public static int constructor = -870702050;
     public String autologin_token;
     public String autoupdate_url_prefix;
     public int base_lang_pack_version;
@@ -54,7 +53,7 @@ public class TLRPC$TL_config extends TLObject {
     public int webfile_dc_id;
 
     public static TLRPC$TL_config TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-870702050 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_config", Integer.valueOf(i)));
             }
@@ -156,7 +155,7 @@ public class TLRPC$TL_config extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-870702050);
         int i = this.default_p2p_contacts ? this.flags | 8 : this.flags & (-9);
         this.flags = i;
         int i2 = this.preload_featured_stickers ? i | 16 : i & (-17);

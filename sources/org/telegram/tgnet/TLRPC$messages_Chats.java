@@ -9,8 +9,6 @@ public abstract class TLRPC$messages_Chats extends TLObject {
         TLRPC$messages_Chats tLRPC$messages_Chats;
         if (i != -1663561404) {
             tLRPC$messages_Chats = i != 1694474197 ? null : new TLRPC$messages_Chats() {
-                public static int constructor = 1694474197;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -32,7 +30,7 @@ public abstract class TLRPC$messages_Chats extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(1694474197);
                     abstractSerializedData2.writeInt32(481674261);
                     int size = this.chats.size();
                     abstractSerializedData2.writeInt32(size);
@@ -43,8 +41,6 @@ public abstract class TLRPC$messages_Chats extends TLObject {
             };
         } else {
             tLRPC$messages_Chats = new TLRPC$messages_Chats() {
-                public static int constructor = -1663561404;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.count = abstractSerializedData2.readInt32(z2);
@@ -67,7 +63,7 @@ public abstract class TLRPC$messages_Chats extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1663561404);
                     abstractSerializedData2.writeInt32(this.count);
                     abstractSerializedData2.writeInt32(481674261);
                     int size = this.chats.size();

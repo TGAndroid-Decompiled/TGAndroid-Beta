@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_help_getCountriesList extends TLObject {
-    public static int constructor = 1935116200;
     public int hash;
     public String lang_code;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_help_getCountriesList extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1935116200);
         abstractSerializedData.writeString(this.lang_code);
         abstractSerializedData.writeInt32(this.hash);
     }

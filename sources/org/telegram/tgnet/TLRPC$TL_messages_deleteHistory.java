@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_deleteHistory extends TLObject {
-    public static int constructor = -1332768214;
     public int flags;
     public boolean just_clear;
     public int max_date;
@@ -16,7 +15,7 @@ public class TLRPC$TL_messages_deleteHistory extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1332768214);
         int i = this.just_clear ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.revoke ? i | 2 : i & (-3);

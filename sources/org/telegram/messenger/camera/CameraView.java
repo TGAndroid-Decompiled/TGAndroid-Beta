@@ -1044,10 +1044,12 @@ public class CameraView extends FrameLayout implements TextureView.SurfaceTextur
         return drawChild;
     }
 
-    public void startTakePictureAnimation() {
+    public void startTakePictureAnimation(boolean z) {
         this.takePictureProgress = 0.0f;
         invalidate();
-        runHaptic();
+        if (z) {
+            runHaptic();
+        }
     }
 
     public void runHaptic() {

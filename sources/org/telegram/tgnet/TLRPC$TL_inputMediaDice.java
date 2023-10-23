@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputMediaDice extends TLRPC$InputMedia {
-    public static int constructor = -428884101;
     public String emoticon;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_inputMediaDice extends TLRPC$InputMedia {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-428884101);
         abstractSerializedData.writeString(this.emoticon);
     }
 }

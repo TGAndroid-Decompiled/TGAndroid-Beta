@@ -9,8 +9,6 @@ public abstract class TLRPC$messages_DhConfig extends TLObject {
         TLRPC$messages_DhConfig tLRPC$messages_DhConfig;
         if (i == -1058912715) {
             tLRPC$messages_DhConfig = new TLRPC$messages_DhConfig() {
-                public static int constructor = -1058912715;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.random = abstractSerializedData2.readByteArray(z2);
@@ -18,14 +16,12 @@ public abstract class TLRPC$messages_DhConfig extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1058912715);
                     abstractSerializedData2.writeByteArray(this.random);
                 }
             };
         } else {
             tLRPC$messages_DhConfig = i != 740433629 ? null : new TLRPC$messages_DhConfig() {
-                public static int constructor = 740433629;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.g = abstractSerializedData2.readInt32(z2);
@@ -36,7 +32,7 @@ public abstract class TLRPC$messages_DhConfig extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(740433629);
                     abstractSerializedData2.writeInt32(this.g);
                     abstractSerializedData2.writeByteArray(this.p);
                     abstractSerializedData2.writeInt32(this.version);

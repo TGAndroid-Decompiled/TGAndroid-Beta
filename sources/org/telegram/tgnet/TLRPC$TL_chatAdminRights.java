@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_chatAdminRights extends TLObject {
-    public static int constructor = 1605510357;
     public boolean add_admins;
     public boolean anonymous;
     public boolean ban_users;
@@ -21,7 +20,7 @@ public class TLRPC$TL_chatAdminRights extends TLObject {
     public boolean post_stories;
 
     public static TLRPC$TL_chatAdminRights TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1605510357 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_chatAdminRights", Integer.valueOf(i)));
             }
@@ -55,7 +54,7 @@ public class TLRPC$TL_chatAdminRights extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1605510357);
         int i = this.change_info ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.post_messages ? i | 2 : i & (-3);

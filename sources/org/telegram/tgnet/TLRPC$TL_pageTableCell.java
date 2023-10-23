@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_pageTableCell extends TLObject {
-    public static int constructor = 878078826;
     public boolean align_center;
     public boolean align_right;
     public int colspan;
@@ -12,7 +11,7 @@ public class TLRPC$TL_pageTableCell extends TLObject {
     public boolean valign_middle;
 
     public static TLRPC$TL_pageTableCell TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (878078826 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_pageTableCell", Integer.valueOf(i)));
             }
@@ -45,7 +44,7 @@ public class TLRPC$TL_pageTableCell extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(878078826);
         int i = this.header ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.align_center ? i | 8 : i & (-9);

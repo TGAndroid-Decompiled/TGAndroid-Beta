@@ -38,8 +38,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
         switch (i) {
             case -2132731265:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -2132731265;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -56,7 +54,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-2132731265);
                         int i2 = this.video ? this.flags | 4 : this.flags & (-5);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -72,7 +70,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1892568281:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -1892568281;
                     public int flags;
                     public TLRPC$TL_paymentRequestedInfo info;
                     public byte[] payload;
@@ -97,7 +94,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1892568281);
                         int i2 = this.recurring_init ? this.flags | 4 : this.flags & (-5);
                         this.flags = i2;
                         int i3 = this.recurring_used ? i2 | 8 : i2 & (-9);
@@ -117,8 +114,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1834538890:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -1834538890;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.game_id = abstractSerializedData2.readInt64(z2);
@@ -127,7 +122,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1834538890);
                         abstractSerializedData2.writeInt64(this.game_id);
                         abstractSerializedData2.writeInt32(this.score);
                     }
@@ -138,8 +133,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1781355374:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -1781355374;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.title = abstractSerializedData2.readString(z2);
@@ -147,7 +140,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1781355374);
                         abstractSerializedData2.writeString(this.title);
                     }
                 };
@@ -169,8 +162,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1503425638:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatCreate() {
-                    public static int constructor = -1503425638;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.title = abstractSerializedData2.readString(z2);
@@ -189,7 +180,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1503425638);
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.users.size();
@@ -202,8 +193,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1441072131:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionSetMessagesTTL() {
-                    public static int constructor = -1441072131;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.period = abstractSerializedData2.readInt32(z2);
@@ -211,7 +200,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1441072131);
                         abstractSerializedData2.writeInt32(this.period);
                     }
                 };
@@ -221,7 +210,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1410748418:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -1410748418;
                     public String domain;
 
                     @Override
@@ -231,15 +219,13 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1410748418);
                         abstractSerializedData2.writeString(this.domain);
                     }
                 };
                 break;
             case -1336546578:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChannelMigrateFrom() {
-                    public static int constructor = -1336546578;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.title = abstractSerializedData2.readString(z2);
@@ -248,7 +234,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1336546578);
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeInt32((int) this.chat_id);
                     }
@@ -256,8 +242,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1316338916:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionTopicEdit() {
-                    public static int constructor = -1316338916;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -275,7 +259,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1316338916);
                         abstractSerializedData2.writeInt32(this.flags);
                         if ((this.flags & 1) != 0) {
                             abstractSerializedData2.writeString(this.title);
@@ -291,8 +275,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1297179892:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatDeleteUser() {
-                    public static int constructor = -1297179892;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.user_id = abstractSerializedData2.readInt32(z2);
@@ -300,7 +282,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1297179892);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                     }
                 };
@@ -313,8 +295,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1247687078:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -1247687078;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.title = abstractSerializedData2.readString(z2);
@@ -322,7 +302,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1247687078);
                         abstractSerializedData2.writeString(this.title);
                     }
                 };
@@ -338,8 +318,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -1065845395:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -1065845395;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.wallpaper = TLRPC$WallPaper.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -347,7 +325,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1065845395);
                         this.wallpaper.serializeToStream(abstractSerializedData2);
                     }
                 };
@@ -360,8 +338,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -935499028:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -935499028;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
@@ -376,7 +352,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-935499028);
                         abstractSerializedData2.writeInt32(this.flags);
                         abstractSerializedData2.writeString(this.currency);
                         abstractSerializedData2.writeInt64(this.amount);
@@ -388,6 +364,9 @@ public abstract class TLRPC$MessageAction extends TLObject {
                     }
                 };
                 break;
+            case -758129906:
+                tLRPC$MessageAction = new TLRPC$TL_messageActionGiftCode();
+                break;
             case -648257196:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionSecureValuesSent();
                 break;
@@ -396,15 +375,13 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -404267113:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -404267113;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-404267113);
                     }
                 };
                 break;
@@ -416,18 +393,14 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case -202219658:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -202219658;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-202219658);
                     }
                 };
                 break;
             case -123931160:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatJoinedByLink() {
-                    public static int constructor = -123931160;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.inviter_id = abstractSerializedData2.readInt32(z2);
@@ -435,15 +408,13 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-123931160);
                         abstractSerializedData2.writeInt32((int) this.inviter_id);
                     }
                 };
                 break;
             case -85549226:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = -85549226;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.message = abstractSerializedData2.readString(z2);
@@ -451,7 +422,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-85549226);
                         abstractSerializedData2.writeString(this.message);
                     }
                 };
@@ -461,11 +432,9 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case 29007925:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = 29007925;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(29007925);
                     }
                 };
                 break;
@@ -478,13 +447,21 @@ public abstract class TLRPC$MessageAction extends TLObject {
             case 365886720:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatAddUser();
                 break;
+            case 858499565:
+                tLRPC$MessageAction = new TLRPC$MessageAction() {
+                    public static int constructor = 858499565;
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(constructor);
+                    }
+                };
+                break;
             case 1007897979:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionSetMessagesTTL();
                 break;
             case 1080663248:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionPaymentSent() {
-                    public static int constructor = 1080663248;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.currency = abstractSerializedData2.readString(z2);
@@ -493,7 +470,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1080663248);
                         abstractSerializedData2.writeString(this.currency);
                         abstractSerializedData2.writeInt64(this.total_amount);
                     }
@@ -504,7 +481,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case 1205698681:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = 1205698681;
                     public String data;
                     public String text;
 
@@ -516,7 +492,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1205698681);
                         abstractSerializedData2.writeString(this.text);
                         abstractSerializedData2.writeString(this.data);
                     }
@@ -524,8 +500,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case 1217033015:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatAddUser() {
-                    public static int constructor = 1217033015;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -543,7 +517,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1217033015);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.users.size();
                         abstractSerializedData2.writeInt32(size);
@@ -558,8 +532,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case 1371385889:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatMigrateTo() {
-                    public static int constructor = 1371385889;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.channel_id = abstractSerializedData2.readInt32(z2);
@@ -567,25 +539,21 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1371385889);
                         abstractSerializedData2.writeInt32((int) this.channel_id);
                     }
                 };
                 break;
             case 1431655760:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = 1431655760;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1431655760);
                     }
                 };
                 break;
             case 1431655761:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = 1431655761;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.newUserPhoto = TLRPC$UserProfilePhoto.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -593,15 +561,13 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1431655761);
                         this.newUserPhoto.serializeToStream(abstractSerializedData2);
                     }
                 };
                 break;
             case 1431655762:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = 1431655762;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.ttl = abstractSerializedData2.readInt32(z2);
@@ -609,25 +575,21 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1431655762);
                         abstractSerializedData2.writeInt32(this.ttl);
                     }
                 };
                 break;
             case 1431655767:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = 1431655767;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1431655767);
                     }
                 };
                 break;
             case 1431655925:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = 1431655925;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.title = abstractSerializedData2.readString(z2);
@@ -636,7 +598,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1431655925);
                         abstractSerializedData2.writeString(this.title);
                         abstractSerializedData2.writeString(this.address);
                     }
@@ -650,8 +612,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case 1581055051:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionChatAddUser() {
-                    public static int constructor = 1581055051;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.user_id = abstractSerializedData2.readInt32(z2);
@@ -659,15 +619,13 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1581055051);
                         abstractSerializedData2.writeInt32((int) this.user_id);
                     }
                 };
                 break;
             case 1991897370:
                 tLRPC$MessageAction = new TLRPC$TL_messageActionInviteToGroupCall() {
-                    public static int constructor = 1991897370;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.call = TLRPC$TL_inputGroupCall.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -686,7 +644,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1991897370);
                         this.call.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(481674261);
                         int size = this.users.size();
@@ -699,8 +657,6 @@ public abstract class TLRPC$MessageAction extends TLObject {
                 break;
             case 2047704898:
                 tLRPC$MessageAction = new TLRPC$MessageAction() {
-                    public static int constructor = 2047704898;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
@@ -712,7 +668,7 @@ public abstract class TLRPC$MessageAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(2047704898);
                         abstractSerializedData2.writeInt32(this.flags);
                         this.call.serializeToStream(abstractSerializedData2);
                         if ((this.flags & 1) != 0) {

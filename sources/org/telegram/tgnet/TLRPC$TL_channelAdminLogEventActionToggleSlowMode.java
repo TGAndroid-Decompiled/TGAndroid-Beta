@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionToggleSlowMode extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = 1401984889;
     public int new_value;
     public int prev_value;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_channelAdminLogEventActionToggleSlowMode extends TLRPC$Cha
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1401984889);
         abstractSerializedData.writeInt32(this.prev_value);
         abstractSerializedData.writeInt32(this.new_value);
     }

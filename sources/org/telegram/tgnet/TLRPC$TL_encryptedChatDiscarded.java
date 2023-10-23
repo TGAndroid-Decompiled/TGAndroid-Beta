@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_encryptedChatDiscarded extends TLRPC$EncryptedChat {
-    public static int constructor = 505183301;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -12,7 +10,7 @@ public class TLRPC$TL_encryptedChatDiscarded extends TLRPC$EncryptedChat {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(505183301);
         int i = this.history_deleted ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

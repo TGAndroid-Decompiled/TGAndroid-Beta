@@ -1,7 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_keyboardButtonCallback extends TLRPC$KeyboardButton {
-    public static int constructor = 901503851;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -13,7 +11,7 @@ public class TLRPC$TL_keyboardButtonCallback extends TLRPC$KeyboardButton {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(901503851);
         int i = this.requires_password ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

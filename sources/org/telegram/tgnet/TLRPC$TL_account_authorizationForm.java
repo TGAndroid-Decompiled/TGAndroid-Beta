@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_account_authorizationForm extends TLObject {
-    public static int constructor = -1389486888;
     public int flags;
     public String privacy_policy_url;
     public ArrayList<TLRPC$SecureRequiredType> required_types = new ArrayList<>();
@@ -11,7 +10,7 @@ public class TLRPC$TL_account_authorizationForm extends TLObject {
     public ArrayList<TLRPC$User> users = new ArrayList<>();
 
     public static TLRPC$TL_account_authorizationForm TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1389486888 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_account_authorizationForm", Integer.valueOf(i)));
             }
@@ -92,7 +91,7 @@ public class TLRPC$TL_account_authorizationForm extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1389486888);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeInt32(481674261);
         int size = this.required_types.size();

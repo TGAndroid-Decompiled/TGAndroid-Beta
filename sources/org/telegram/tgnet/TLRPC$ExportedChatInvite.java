@@ -5,8 +5,6 @@ public abstract class TLRPC$ExportedChatInvite extends TLObject {
         switch (i) {
             case -1316944408:
                 tLRPC$TL_chatInviteExported = new TLRPC$TL_chatInviteExported() {
-                    public static int constructor = -1316944408;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -32,7 +30,7 @@ public abstract class TLRPC$ExportedChatInvite extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1316944408);
                         int i2 = this.revoked ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.permanent ? i2 | 32 : i2 & (-33);
@@ -58,22 +56,18 @@ public abstract class TLRPC$ExportedChatInvite extends TLObject {
                 break;
             case -317687113:
                 tLRPC$TL_chatInviteExported = new TLRPC$TL_chatInviteExported() {
-                    public static int constructor = -317687113;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     }
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-317687113);
                     }
                 };
                 break;
             case -64092740:
                 tLRPC$TL_chatInviteExported = new TLRPC$TL_chatInviteExported() {
-                    public static int constructor = -64092740;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.link = abstractSerializedData2.readString(z2);
@@ -81,7 +75,7 @@ public abstract class TLRPC$ExportedChatInvite extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-64092740);
                         abstractSerializedData2.writeString(this.link);
                     }
                 };
@@ -94,8 +88,6 @@ public abstract class TLRPC$ExportedChatInvite extends TLObject {
                 break;
             case 1847917725:
                 tLRPC$TL_chatInviteExported = new TLRPC$TL_chatInviteExported() {
-                    public static int constructor = 1847917725;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -121,7 +113,7 @@ public abstract class TLRPC$ExportedChatInvite extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1847917725);
                         int i2 = this.revoked ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         int i3 = this.permanent ? i2 | 32 : i2 & (-33);

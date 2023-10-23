@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_inputThemeSettings extends TLObject {
-    public static int constructor = -1881255857;
     public int accent_color;
     public TLRPC$BaseTheme base_theme;
     public int flags;
@@ -45,7 +44,7 @@ public class TLRPC$TL_inputThemeSettings extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1881255857);
         int i = this.message_colors_animated ? this.flags | 4 : this.flags & (-5);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

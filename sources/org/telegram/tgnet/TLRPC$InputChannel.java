@@ -8,8 +8,6 @@ public abstract class TLRPC$InputChannel extends TLObject {
         switch (i) {
             case -1343524562:
                 tLRPC$InputChannel = new TLRPC$TL_inputChannel() {
-                    public static int constructor = -1343524562;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.channel_id = abstractSerializedData2.readInt32(z2);
@@ -18,7 +16,7 @@ public abstract class TLRPC$InputChannel extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1343524562);
                         abstractSerializedData2.writeInt32((int) this.channel_id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                     }
@@ -32,8 +30,6 @@ public abstract class TLRPC$InputChannel extends TLObject {
                 break;
             case 707290417:
                 tLRPC$InputChannel = new TLRPC$TL_inputChannelFromMessage() {
-                    public static int constructor = 707290417;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.peer = TLRPC$InputPeer.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -43,7 +39,7 @@ public abstract class TLRPC$InputChannel extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(707290417);
                         this.peer.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.msg_id);
                         abstractSerializedData2.writeInt32((int) this.channel_id);

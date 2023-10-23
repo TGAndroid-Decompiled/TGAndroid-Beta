@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateLangPackTooLong extends TLRPC$Update {
-    public static int constructor = 1180041828;
     public String lang_code;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_updateLangPackTooLong extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1180041828);
         abstractSerializedData.writeString(this.lang_code);
     }
 }

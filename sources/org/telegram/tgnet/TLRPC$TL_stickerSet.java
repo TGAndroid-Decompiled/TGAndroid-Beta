@@ -2,8 +2,6 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
-    public static int constructor = 768691932;
-
     @Override
     public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
         int readInt32 = abstractSerializedData.readInt32(z);
@@ -14,6 +12,7 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         this.animated = (readInt32 & 32) != 0;
         this.videos = (readInt32 & 64) != 0;
         this.emojis = (readInt32 & 128) != 0;
+        this.text_color = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
         if ((readInt32 & 1) != 0) {
             this.installed_date = abstractSerializedData.readInt32(z);
         }
@@ -53,7 +52,7 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(768691932);
         int i = this.archived ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.official ? i | 4 : i & (-5);
@@ -66,7 +65,9 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
         this.flags = i5;
         int i6 = this.emojis ? i5 | 128 : i5 & (-129);
         this.flags = i6;
-        abstractSerializedData.writeInt32(i6);
+        int i7 = this.text_color ? i6 | LiteMode.FLAG_CALLS_ANIMATIONS : i6 & (-513);
+        this.flags = i7;
+        abstractSerializedData.writeInt32(i7);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeInt32(this.installed_date);
         }
@@ -78,8 +79,8 @@ public class TLRPC$TL_stickerSet extends TLRPC$StickerSet {
             abstractSerializedData.writeInt32(481674261);
             int size = this.thumbs.size();
             abstractSerializedData.writeInt32(size);
-            for (int i7 = 0; i7 < size; i7++) {
-                this.thumbs.get(i7).serializeToStream(abstractSerializedData);
+            for (int i8 = 0; i8 < size; i8++) {
+                this.thumbs.get(i8).serializeToStream(abstractSerializedData);
             }
         }
         if ((this.flags & 16) != 0) {

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channels_getAdminedPublicChannels extends TLObject {
-    public static int constructor = -122669393;
     public boolean by_location;
     public boolean check_limit;
     public int flags;
@@ -12,7 +11,7 @@ public class TLRPC$TL_channels_getAdminedPublicChannels extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-122669393);
         int i = this.by_location ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.check_limit ? i | 2 : i & (-3);

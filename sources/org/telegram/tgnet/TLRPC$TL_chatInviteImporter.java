@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_chatInviteImporter extends TLObject {
-    public static int constructor = -1940201511;
     public String about;
     public long approved_by;
     public int date;
@@ -10,7 +9,7 @@ public class TLRPC$TL_chatInviteImporter extends TLObject {
     public boolean via_chatlist;
 
     public static TLRPC$TL_chatInviteImporter TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1940201511 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_chatInviteImporter", Integer.valueOf(i)));
             }
@@ -39,7 +38,7 @@ public class TLRPC$TL_chatInviteImporter extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1940201511);
         int i = this.requested ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.via_chatlist ? i | 8 : i & (-9);

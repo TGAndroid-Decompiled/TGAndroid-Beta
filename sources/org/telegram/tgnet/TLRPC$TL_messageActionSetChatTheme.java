@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messageActionSetChatTheme extends TLRPC$MessageAction {
-    public static int constructor = -1434950843;
     public String emoticon;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_messageActionSetChatTheme extends TLRPC$MessageAction {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1434950843);
         abstractSerializedData.writeString(this.emoticon);
     }
 }

@@ -20,8 +20,6 @@ public abstract class TLRPC$WallPaper extends TLObject {
         switch (i) {
             case -1963717851:
                 tLRPC$WallPaper = new TLRPC$TL_wallPaperNoFile() {
-                    public static int constructor = -1963717851;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -35,7 +33,7 @@ public abstract class TLRPC$WallPaper extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1963717851);
                         int i2 = this.isDefault ? this.flags | 2 : this.flags & (-3);
                         this.flags = i2;
                         int i3 = this.dark ? i2 | 16 : i2 & (-17);
@@ -55,8 +53,6 @@ public abstract class TLRPC$WallPaper extends TLObject {
                 break;
             case -263220756:
                 tLRPC$WallPaper = new TLRPC$TL_wallPaper() {
-                    public static int constructor = -263220756;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt64(z2);
@@ -71,7 +67,7 @@ public abstract class TLRPC$WallPaper extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-263220756);
                         abstractSerializedData2.writeInt64(this.id);
                         int i2 = this.creator ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;

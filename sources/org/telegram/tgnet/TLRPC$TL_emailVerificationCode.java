@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_emailVerificationCode extends TLRPC$EmailVerification {
-    public static int constructor = -1842457175;
     public String code;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_emailVerificationCode extends TLRPC$EmailVerification {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1842457175);
         abstractSerializedData.writeString(this.code);
     }
 }

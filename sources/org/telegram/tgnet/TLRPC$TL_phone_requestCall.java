@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_phone_requestCall extends TLObject {
-    public static int constructor = 1124046573;
     public int flags;
     public byte[] g_a_hash;
     public TLRPC$TL_phoneCallProtocol protocol;
@@ -15,7 +14,7 @@ public class TLRPC$TL_phone_requestCall extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1124046573);
         int i = this.video ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

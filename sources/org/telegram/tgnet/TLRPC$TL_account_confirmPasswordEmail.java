@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_confirmPasswordEmail extends TLObject {
-    public static int constructor = -1881204448;
     public String code;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_account_confirmPasswordEmail extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1881204448);
         abstractSerializedData.writeString(this.code);
     }
 }

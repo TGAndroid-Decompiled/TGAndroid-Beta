@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputStorePaymentGiftPremium extends TLRPC$InputStorePaymentPurpose {
-    public static int constructor = 1634697192;
     public long amount;
     public String currency;
     public TLRPC$InputUser user_id;
@@ -14,7 +13,7 @@ public class TLRPC$TL_inputStorePaymentGiftPremium extends TLRPC$InputStorePayme
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1634697192);
         this.user_id.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeString(this.currency);
         abstractSerializedData.writeInt64(this.amount);

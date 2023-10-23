@@ -23,8 +23,6 @@ public abstract class TLRPC$ChatPhoto extends TLObject {
         switch (i) {
             case -770990276:
                 tLRPC$ChatPhoto = new TLRPC$TL_chatPhoto() {
-                    public static int constructor = -770990276;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z3) {
                         int readInt32 = abstractSerializedData2.readInt32(z3);
@@ -37,7 +35,7 @@ public abstract class TLRPC$ChatPhoto extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-770990276);
                         int i2 = this.has_video ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -52,18 +50,14 @@ public abstract class TLRPC$ChatPhoto extends TLObject {
                 break;
             case 935395612:
                 tLRPC$ChatPhoto = new TLRPC$ChatPhoto() {
-                    public static int constructor = 935395612;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(935395612);
                     }
                 };
                 break;
             case 1197267925:
                 tLRPC$ChatPhoto = new TLRPC$TL_chatPhoto() {
-                    public static int constructor = 1197267925;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z3) {
                         this.photo_small = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z3), z3);
@@ -73,7 +67,7 @@ public abstract class TLRPC$ChatPhoto extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1197267925);
                         this.photo_small.serializeToStream(abstractSerializedData2);
                         this.photo_big.serializeToStream(abstractSerializedData2);
                         abstractSerializedData2.writeInt32(this.dc_id);
@@ -82,8 +76,6 @@ public abstract class TLRPC$ChatPhoto extends TLObject {
                 break;
             case 1200680453:
                 tLRPC$ChatPhoto = new TLRPC$TL_chatPhoto() {
-                    public static int constructor = 1200680453;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z3) {
                         int readInt32 = abstractSerializedData2.readInt32(z3);
@@ -106,7 +98,7 @@ public abstract class TLRPC$ChatPhoto extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1200680453);
                         int i2 = this.has_video ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -121,8 +113,6 @@ public abstract class TLRPC$ChatPhoto extends TLObject {
                 break;
             case 1632839530:
                 tLRPC$ChatPhoto = new TLRPC$TL_chatPhoto() {
-                    public static int constructor = 1632839530;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z3) {
                         this.photo_small = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z3), z3);
@@ -131,7 +121,7 @@ public abstract class TLRPC$ChatPhoto extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1632839530);
                         this.photo_small.serializeToStream(abstractSerializedData2);
                         this.photo_big.serializeToStream(abstractSerializedData2);
                     }

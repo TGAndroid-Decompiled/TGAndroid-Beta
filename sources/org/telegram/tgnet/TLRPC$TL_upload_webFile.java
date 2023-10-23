@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_upload_webFile extends TLObject {
-    public static int constructor = 568808380;
     public NativeByteBuffer bytes;
     public TLRPC$storage_FileType file_type;
     public String mime_type;
@@ -8,7 +7,7 @@ public class TLRPC$TL_upload_webFile extends TLObject {
     public int size;
 
     public static TLRPC$TL_upload_webFile TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (568808380 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_upload_webFile", Integer.valueOf(i)));
             }
@@ -40,7 +39,7 @@ public class TLRPC$TL_upload_webFile extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(568808380);
         abstractSerializedData.writeInt32(this.size);
         abstractSerializedData.writeString(this.mime_type);
         this.file_type.serializeToStream(abstractSerializedData);

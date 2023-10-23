@@ -20,6 +20,10 @@ public class PremiumFeatureCell extends FrameLayout {
     private final SimpleTextView title;
 
     public PremiumFeatureCell(Context context) {
+        this(context, null);
+    }
+
+    public PremiumFeatureCell(Context context, Theme.ResourcesProvider resourcesProvider) {
         super(context);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -29,12 +33,12 @@ public class PremiumFeatureCell extends FrameLayout {
         this.title = simpleTextView;
         simpleTextView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         simpleTextView.setTextSize(15);
-        simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
+        simpleTextView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
         linearLayout.addView(simpleTextView, LayoutHelper.createLinear(-1, -2));
         TextView textView = new TextView(context);
         this.description = textView;
         textView.setTextSize(1, 14.0f);
-        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText));
+        textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText, resourcesProvider));
         textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
         linearLayout.addView(textView, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 1, 0, 0));
         addView(linearLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 62.0f, 8.0f, 48.0f, 9.0f));
@@ -45,7 +49,7 @@ public class PremiumFeatureCell extends FrameLayout {
         ImageView imageView2 = new ImageView(context);
         imageView2.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
         imageView2.setImageResource(R.drawable.msg_arrowright);
-        imageView2.setColorFilter(Theme.getColor(Theme.key_switchTrack));
+        imageView2.setColorFilter(Theme.getColor(Theme.key_switchTrack, resourcesProvider));
         addView(imageView2, LayoutHelper.createFrame(24, 24.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
     }
 

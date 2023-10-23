@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_channels_reportSpam extends TLObject {
-    public static int constructor = -196443371;
     public TLRPC$InputChannel channel;
     public ArrayList<Integer> id = new ArrayList<>();
     public TLRPC$InputPeer participant;
@@ -14,7 +13,7 @@ public class TLRPC$TL_channels_reportSpam extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-196443371);
         this.channel.serializeToStream(abstractSerializedData);
         this.participant.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(481674261);

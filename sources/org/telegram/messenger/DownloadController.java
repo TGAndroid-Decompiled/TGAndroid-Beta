@@ -408,8 +408,6 @@ public class DownloadController extends BaseController implements NotificationCe
         if (z || Math.abs(System.currentTimeMillis() - getUserConfig().autoDownloadConfigLoadTime) >= 86400000) {
             this.loadingAutoDownloadConfig = true;
             getConnectionsManager().sendRequest(new TLObject() {
-                public static int constructor = 1457130303;
-
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
                     return TLRPC$TL_account_autoDownloadSettings.TLdeserialize(abstractSerializedData, i, z2);
@@ -417,7 +415,7 @@ public class DownloadController extends BaseController implements NotificationCe
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(1457130303);
                 }
             }, new RequestDelegate() {
                 @Override

@@ -64,7 +64,7 @@ public class TextStyleSpan extends MetricAffectingSpan {
 
         public Typeface getTypeface() {
             int i = this.flags;
-            if ((i & 4) == 0 && (i & 32) == 0) {
+            if ((i & 4) == 0 && (i & LiteMode.FLAG_AUTOPLAY_GIFS) == 0) {
                 if ((i & 1) == 0 || (i & 2) == 0) {
                     if ((i & 1) != 0) {
                         return AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM);

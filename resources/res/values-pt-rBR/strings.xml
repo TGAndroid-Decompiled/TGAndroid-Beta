@@ -3785,7 +3785,6 @@
     <string name="TermsOfService">Termos de Serviço</string>
     <string name="TermsOfServiceLogin">Ao se cadastrar,\nvocê concorda com os *Termos de Serviço*.</string>
     <string name="TextCopied">O texto foi copiado.</string>
-    <string name="TextSelectionHit">Segure na **palavra** e depois mova o cursor para selecionar mais texto para copiar.</string>
     <string name="TextSizeHeader">Tamanho do texto das mensagens</string>
     <string name="Theme">Tema</string>
     <string name="ThemeArcticBlue">Ártico</string>

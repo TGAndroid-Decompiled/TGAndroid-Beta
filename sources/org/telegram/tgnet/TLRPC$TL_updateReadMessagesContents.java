@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_updateReadMessagesContents extends TLRPC$Update {
-    public static int constructor = -131960447;
     public int date;
     public int flags;
     public ArrayList<Integer> messages = new ArrayList<>();
@@ -32,7 +31,7 @@ public class TLRPC$TL_updateReadMessagesContents extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-131960447);
         abstractSerializedData.writeInt32(481674261);
         int size = this.messages.size();
         abstractSerializedData.writeInt32(size);

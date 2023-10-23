@@ -28,7 +28,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC$TL_stories_boostsStatus;
+import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.ColoredImageSpan;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -454,22 +454,22 @@ public class LimitPreviewView extends LinearLayout {
         this.premiumLocked = true;
     }
 
-    public void setBoosts(TLRPC$TL_stories_boostsStatus tLRPC$TL_stories_boostsStatus, boolean z) {
+    public void setBoosts(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus, boolean z) {
         int i;
-        int i2 = tLRPC$TL_stories_boostsStatus.current_level_boosts;
-        int i3 = tLRPC$TL_stories_boostsStatus.boosts;
-        if (((i2 == i3) && z) || (i = tLRPC$TL_stories_boostsStatus.next_level_boosts) == 0) {
+        int i2 = tL_stories$TL_premium_boostsStatus.current_level_boosts;
+        int i3 = tL_stories$TL_premium_boostsStatus.boosts;
+        if (((i2 == i3) && z) || (i = tL_stories$TL_premium_boostsStatus.next_level_boosts) == 0) {
             this.percent = 1.0f;
             TextView textView = this.defaultText;
             int i4 = R.string.BoostsLevel;
-            textView.setText(LocaleController.formatString("BoostsLevel", i4, Integer.valueOf(tLRPC$TL_stories_boostsStatus.level - 1)));
-            this.premiumCount.setText(LocaleController.formatString("BoostsLevel", i4, Integer.valueOf(tLRPC$TL_stories_boostsStatus.level)));
+            textView.setText(LocaleController.formatString("BoostsLevel", i4, Integer.valueOf(tL_stories$TL_premium_boostsStatus.level - 1)));
+            this.premiumCount.setText(LocaleController.formatString("BoostsLevel", i4, Integer.valueOf(tL_stories$TL_premium_boostsStatus.level)));
         } else {
             this.percent = MathUtils.clamp((i3 - i2) / (i - i2), 0.0f, 1.0f);
             TextView textView2 = this.defaultText;
             int i5 = R.string.BoostsLevel;
-            textView2.setText(LocaleController.formatString("BoostsLevel", i5, Integer.valueOf(tLRPC$TL_stories_boostsStatus.level)));
-            this.premiumCount.setText(LocaleController.formatString("BoostsLevel", i5, Integer.valueOf(tLRPC$TL_stories_boostsStatus.level + 1)));
+            textView2.setText(LocaleController.formatString("BoostsLevel", i5, Integer.valueOf(tL_stories$TL_premium_boostsStatus.level)));
+            this.premiumCount.setText(LocaleController.formatString("BoostsLevel", i5, Integer.valueOf(tL_stories$TL_premium_boostsStatus.level + 1)));
         }
         ((FrameLayout.LayoutParams) this.premiumCount.getLayoutParams()).gravity = 5;
         setType(17);
@@ -477,16 +477,16 @@ public class LimitPreviewView extends LinearLayout {
         this.premiumText.setVisibility(8);
         this.premiumCount.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, this.resourcesProvider));
         this.defaultText.setTextColor(-1);
-        setIconValue(tLRPC$TL_stories_boostsStatus.boosts, false);
+        setIconValue(tL_stories$TL_premium_boostsStatus.boosts, false);
         this.isBoostsStyle = true;
     }
 
-    public void increaseCurrentValue(int i, int i2) {
+    public void increaseCurrentValue(int i, int i2, int i3) {
         this.currentValue++;
-        this.percent = MathUtils.clamp(i / i2, 0.0f, 1.0f);
+        this.percent = MathUtils.clamp(i2 / i3, 0.0f, 1.0f);
         this.animateIncrease = true;
         this.animateIncreaseWidth = this.width1;
-        setIconValue(this.currentValue, true);
+        setIconValue(i, true);
         this.limitsContainer.requestLayout();
         requestLayout();
     }

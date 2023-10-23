@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updatePeerBlocked extends TLRPC$Update {
-    public static int constructor = -337610926;
     public boolean blocked;
     public boolean blocked_my_stories_from;
     public int flags;
@@ -17,7 +16,7 @@ public class TLRPC$TL_updatePeerBlocked extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-337610926);
         int i = this.blocked ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.blocked_my_stories_from ? i | 2 : i & (-3);

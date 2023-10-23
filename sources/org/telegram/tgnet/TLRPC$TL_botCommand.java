@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_botCommand extends TLObject {
-    public static int constructor = -1032140601;
     public String command;
     public String description;
 
     public static TLRPC$TL_botCommand TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1032140601 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_botCommand", Integer.valueOf(i)));
             }
@@ -24,7 +23,7 @@ public class TLRPC$TL_botCommand extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1032140601);
         abstractSerializedData.writeString(this.command);
         abstractSerializedData.writeString(this.description);
     }

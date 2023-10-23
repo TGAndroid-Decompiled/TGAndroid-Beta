@@ -11,11 +11,13 @@ import android.text.TextPaint;
 import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
+import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
-public class PhotoVideoSwitcherView extends View {
+import org.telegram.ui.Stories.recorder.FlashViews;
+public class PhotoVideoSwitcherView extends View implements FlashViews.Invertable {
     private ValueAnimator animator;
     private boolean mIsScrolling;
     private long mLastTouchTime;
@@ -178,5 +180,11 @@ public class PhotoVideoSwitcherView extends View {
     @Override
     public boolean onTouchEvent(android.view.MotionEvent r7) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.PhotoVideoSwitcherView.onTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public void setInvert(float f) {
+        this.selectorPaint.setColor(ColorUtils.blendARGB(855638015, 536870912, f));
+        this.textPaint.setColor(ColorUtils.blendARGB(-1, -16777216, f));
     }
 }

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_stats_getMegagroupStats extends TLObject {
-    public static int constructor = -589330937;
     public TLRPC$InputChannel channel;
     public boolean dark;
     public int flags;
@@ -12,7 +11,7 @@ public class TLRPC$TL_stats_getMegagroupStats extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-589330937);
         int i = this.dark ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

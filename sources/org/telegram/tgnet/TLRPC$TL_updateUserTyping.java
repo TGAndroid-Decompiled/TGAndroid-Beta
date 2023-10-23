@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateUserTyping extends TLRPC$Update {
-    public static int constructor = -1071741569;
     public TLRPC$SendMessageAction action;
     public long user_id;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_updateUserTyping extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1071741569);
         abstractSerializedData.writeInt64(this.user_id);
         this.action.serializeToStream(abstractSerializedData);
     }

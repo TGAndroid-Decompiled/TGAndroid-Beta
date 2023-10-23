@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionStopPoll extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = -1895328189;
     public TLRPC$Message message;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_channelAdminLogEventActionStopPoll extends TLRPC$ChannelAd
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1895328189);
         this.message.serializeToStream(abstractSerializedData);
     }
 }

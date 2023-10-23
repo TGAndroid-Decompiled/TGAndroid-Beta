@@ -2198,8 +2198,6 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
         if (z && this.waitingForEmail && this.currentPassword.has_password) {
             needShowProgress();
             ConnectionsManager.getInstance(this.currentAccount).sendRequest(new TLObject() {
-                public static int constructor = -1043606090;
-
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z2) {
                     return TLRPC$Bool.TLdeserialize(abstractSerializedData, i, z2);
@@ -2207,7 +2205,7 @@ public class TwoStepVerificationSetupActivity extends BaseFragment {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(-1043606090);
                 }
             }, new RequestDelegate() {
                 @Override

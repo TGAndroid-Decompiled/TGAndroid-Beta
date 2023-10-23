@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -116,6 +117,7 @@ import org.telegram.ui.Components.ChatAvatarContainer;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.FlatCheckBox;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.Premium.boosts.BoostDialogs;
 import org.telegram.ui.Components.RLottieImageView;
 import org.telegram.ui.Components.RadialProgressView;
 import org.telegram.ui.Components.RecyclerListView;
@@ -214,6 +216,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     public boolean onFragmentCreate() {
         getNotificationCenter().addObserver(this, NotificationCenter.messagesDidLoad);
         getNotificationCenter().addObserver(this, NotificationCenter.chatInfoDidLoad);
+        getNotificationCenter().addObserver(this, NotificationCenter.boostByChannelCreated);
         if (this.chat != null) {
             loadStatistic();
         } else {
@@ -376,6 +379,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
 
     @Override
     public void onFragmentDestroy() {
+        getNotificationCenter().removeObserver(this, NotificationCenter.boostByChannelCreated);
         getNotificationCenter().removeObserver(this, NotificationCenter.messagesDidLoad);
         getNotificationCenter().removeObserver(this, NotificationCenter.chatInfoDidLoad);
         AlertDialog[] alertDialogArr = this.progressDialog;
@@ -389,7 +393,24 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
     @Override
     public void didReceivedNotification(int i, int i2, Object... objArr) {
         int i3 = 0;
-        if (i == NotificationCenter.messagesDidLoad) {
+        if (i == NotificationCenter.boostByChannelCreated) {
+            TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) objArr[0];
+            if (((Boolean) objArr[1]).booleanValue()) {
+                List<BaseFragment> fragmentStack = getParentLayout().getFragmentStack();
+                BaseFragment baseFragment = fragmentStack.size() >= 2 ? fragmentStack.get(fragmentStack.size() - 2) : null;
+                BaseFragment baseFragment2 = fragmentStack.size() >= 3 ? fragmentStack.get(fragmentStack.size() - 3) : null;
+                if (baseFragment instanceof ProfileActivity) {
+                    getParentLayout().removeFragmentFromStack(baseFragment);
+                }
+                finishFragment();
+                if (baseFragment2 instanceof ChatActivity) {
+                    BoostDialogs.showBulletin(baseFragment2, tLRPC$Chat, true);
+                    return;
+                }
+                return;
+            }
+            BoostDialogs.showBulletin(this, tLRPC$Chat, false);
+        } else if (i == NotificationCenter.messagesDidLoad) {
             if (((Integer) objArr[10]).intValue() == this.classGuid) {
                 ArrayList arrayList = (ArrayList) objArr[2];
                 ArrayList arrayList2 = new ArrayList();

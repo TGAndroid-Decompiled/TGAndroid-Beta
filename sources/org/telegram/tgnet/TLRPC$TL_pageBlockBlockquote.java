@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_pageBlockBlockquote extends TLRPC$PageBlock {
-    public static int constructor = 641563686;
     public TLRPC$RichText caption;
     public TLRPC$RichText text;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_pageBlockBlockquote extends TLRPC$PageBlock {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(641563686);
         this.text.serializeToStream(abstractSerializedData);
         this.caption.serializeToStream(abstractSerializedData);
     }

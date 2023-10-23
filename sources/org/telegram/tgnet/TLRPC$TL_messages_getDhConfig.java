@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getDhConfig extends TLObject {
-    public static int constructor = 651135312;
     public int random_length;
     public int version;
 
@@ -11,7 +10,7 @@ public class TLRPC$TL_messages_getDhConfig extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(651135312);
         abstractSerializedData.writeInt32(this.version);
         abstractSerializedData.writeInt32(this.random_length);
     }

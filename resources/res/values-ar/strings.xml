@@ -3785,7 +3785,6 @@
     <string name="TermsOfService">شروط الخدمة</string>
     <string name="TermsOfServiceLogin">عبر تسجيلك\nأنت توافق على *شروط الخدمة*.</string>
     <string name="TextCopied">تم نسخ النص للحافظة</string>
-    <string name="TextSelectionHit">اضغط باستمرار على **كلمة** ما، ثم حرّك المؤشر لتحديد المزيد والنسخ.</string>
     <string name="TextSizeHeader">حجم خط الرسائل</string>
     <string name="Theme">النمط</string>
     <string name="ThemeArcticBlue">ثلجي</string>

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getReplies extends TLObject {
-    public static int constructor = 584962828;
     public int add_offset;
     public long hash;
     public int limit;
@@ -18,7 +17,7 @@ public class TLRPC$TL_messages_getReplies extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(584962828);
         this.peer.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.msg_id);
         abstractSerializedData.writeInt32(this.offset_id);

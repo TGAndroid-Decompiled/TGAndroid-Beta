@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputStorePaymentPremiumSubscription extends TLRPC$InputStorePaymentPurpose {
-    public static int constructor = -1502273946;
     public int flags;
     public boolean restore;
     public boolean upgrade;
@@ -15,7 +14,7 @@ public class TLRPC$TL_inputStorePaymentPremiumSubscription extends TLRPC$InputSt
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1502273946);
         int i = this.restore ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.upgrade ? i | 2 : i & (-3);

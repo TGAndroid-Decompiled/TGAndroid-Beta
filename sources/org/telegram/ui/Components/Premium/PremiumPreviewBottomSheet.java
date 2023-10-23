@@ -400,10 +400,13 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.TelegramPremiumUserGiftedPremiumDialogSubtitle)));
                 return;
             }
-            LinkSpanDrawable.LinksTextView linksTextView3 = linksTextViewArr[0];
-            int i8 = R.string.TelegramPremiumUserDialogTitle;
             TLRPC$User tLRPC$User8 = this.user;
-            linksTextView3.setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(i8, ContactsController.formatName(tLRPC$User8.first_name, tLRPC$User8.last_name)), Theme.key_windowBackgroundWhiteBlueButton, 0, null));
+            if (tLRPC$User8 == null) {
+                linksTextViewArr[0].setText(LocaleController.getString(R.string.TelegramPremium));
+                this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.TelegramPremiumSubscribedSubtitle)));
+                return;
+            }
+            linksTextViewArr[0].setText(AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.TelegramPremiumUserDialogTitle, ContactsController.formatName(tLRPC$User8.first_name, tLRPC$User8.last_name)), Theme.key_windowBackgroundWhiteBlueButton, 0, null));
             this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.TelegramPremiumUserDialogSubtitle)));
         }
     }
@@ -638,7 +641,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                     }
                 };
             } else if (i != 4) {
-                view = new PremiumFeatureCell(context) {
+                view = new PremiumFeatureCell(context, ((BottomSheet) PremiumPreviewBottomSheet.this).resourcesProvider) {
                     @Override
                     public void dispatchDraw(Canvas canvas2) {
                         RectF rectF = AndroidUtilities.rectTmp;

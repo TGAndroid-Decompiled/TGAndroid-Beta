@@ -1,11 +1,10 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_peerBlocked extends TLObject {
-    public static int constructor = -386039788;
     public int date;
     public TLRPC$Peer peer_id;
 
     public static TLRPC$TL_peerBlocked TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-386039788 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_peerBlocked", Integer.valueOf(i)));
             }
@@ -24,7 +23,7 @@ public class TLRPC$TL_peerBlocked extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-386039788);
         this.peer_id.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.date);
     }

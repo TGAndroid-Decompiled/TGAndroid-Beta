@@ -793,12 +793,12 @@ public class ProfileSearchCell extends BaseCell implements NotificationCenter.No
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.user == null || !this.avatarStoryParams.checkOnTouchEvent(motionEvent, this)) {
-            CanvasButton canvasButton = this.actionButton;
-            if (canvasButton == null || !canvasButton.checkTouchEvent(motionEvent)) {
-                return super.onTouchEvent(motionEvent);
-            }
+        if (!(this.user == null && this.chat == null) && this.avatarStoryParams.checkOnTouchEvent(motionEvent, this)) {
             return true;
+        }
+        CanvasButton canvasButton = this.actionButton;
+        if (canvasButton == null || !canvasButton.checkTouchEvent(motionEvent)) {
+            return super.onTouchEvent(motionEvent);
         }
         return true;
     }

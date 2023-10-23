@@ -146,12 +146,12 @@ import org.telegram.tgnet.TLRPC$TL_payments_assignPlayMarketTransaction;
 import org.telegram.tgnet.TLRPC$TL_payments_sendPaymentForm;
 import org.telegram.tgnet.TLRPC$TL_payments_validateRequestedInfo;
 import org.telegram.tgnet.TLRPC$TL_phone_inviteToGroupCall;
-import org.telegram.tgnet.TLRPC$TL_stories_report;
 import org.telegram.tgnet.TLRPC$TL_updateGroupInvitePrivacyForbidden;
 import org.telegram.tgnet.TLRPC$Updates;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.TLRPC$UserFull;
 import org.telegram.tgnet.TLRPC$UserStatus;
+import org.telegram.tgnet.tl.TL_stories$TL_stories_report;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow;
 import org.telegram.ui.ActionBar.AlertDialog;
@@ -393,11 +393,11 @@ public class AlertsCreator {
     }
 
     public static Dialog processError(int i, TLRPC$TL_error tLRPC$TL_error, BaseFragment baseFragment, TLObject tLObject, Object... objArr) {
+        int i2;
         String str;
         TLRPC$InputPeer tLRPC$InputPeer;
         long peerDialogId;
-        int i2 = tLRPC$TL_error.code;
-        if (i2 == 406 || (str = tLRPC$TL_error.text) == null) {
+        if (tLRPC$TL_error == null || (i2 = tLRPC$TL_error.code) == 406 || (str = tLRPC$TL_error.text) == null) {
             return null;
         }
         boolean z = tLObject instanceof TLRPC$TL_messages_initHistoryImport;
@@ -895,7 +895,7 @@ public class AlertsCreator {
     }
 
     public static void lambda$createLanguageAlert$8(LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
-        launchActivity.lambda$runLinkRequest$75(new LanguageSelectActivity());
+        launchActivity.lambda$runLinkRequest$81(new LanguageSelectActivity());
     }
 
     public static void lambda$createLanguageAlert$9(TLRPC$TL_langPackLanguage tLRPC$TL_langPackLanguage, LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
@@ -1418,8 +1418,6 @@ public class AlertsCreator {
             alertDialog.setCanCancel(false);
             alertDialog.show();
             ConnectionsManager.getInstance(currentAccount).sendRequest(new TLObject() {
-                public static int constructor = -1663104819;
-
                 @Override
                 public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i, boolean z) {
                     return TLRPC$TL_help_support.TLdeserialize(abstractSerializedData, i, z);
@@ -1427,7 +1425,7 @@ public class AlertsCreator {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(-1663104819);
                 }
             }, new RequestDelegate() {
                 @Override
@@ -2797,7 +2795,7 @@ public class AlertsCreator {
             this((Theme.ResourcesProvider) null);
         }
 
-        private ScheduleDatePickerColors(org.telegram.ui.ActionBar.Theme.ResourcesProvider r13) {
+        public ScheduleDatePickerColors(org.telegram.ui.ActionBar.Theme.ResourcesProvider r13) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AlertsCreator.ScheduleDatePickerColors.<init>(org.telegram.ui.ActionBar.Theme$ResourcesProvider):void");
         }
 
@@ -4343,11 +4341,9 @@ public class AlertsCreator {
             tLRPC$ReportReason = new TLRPC$TL_inputReportReasonPersonalDetails();
         } else {
             tLRPC$ReportReason = i == 100 ? new TLRPC$ReportReason() {
-                public static int constructor = -1041980751;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(-1041980751);
                 }
             } : null;
         }
@@ -4355,12 +4351,12 @@ public class AlertsCreator {
             return;
         }
         if (i2 != 0) {
-            TLRPC$TL_stories_report tLRPC$TL_stories_report = new TLRPC$TL_stories_report();
-            tLRPC$TL_stories_report.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(tLRPC$InputPeer.user_id);
-            tLRPC$TL_stories_report.id.add(Integer.valueOf(i2));
-            tLRPC$TL_stories_report.message = str;
-            tLRPC$TL_stories_report.reason = tLRPC$ReportReason;
-            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tLRPC$TL_stories_report, new RequestDelegate() {
+            TL_stories$TL_stories_report tL_stories$TL_stories_report = new TL_stories$TL_stories_report();
+            tL_stories$TL_stories_report.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(tLRPC$InputPeer.user_id);
+            tL_stories$TL_stories_report.id.add(Integer.valueOf(i2));
+            tL_stories$TL_stories_report.message = str;
+            tL_stories$TL_stories_report.reason = tLRPC$ReportReason;
+            ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(tL_stories$TL_stories_report, new RequestDelegate() {
                 @Override
                 public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                     AlertsCreator.lambda$sendReport$101(tLObject, tLRPC$TL_error);
@@ -4436,7 +4432,7 @@ public class AlertsCreator {
         } else {
             TLRPC$InputPeer inputPeer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(j);
             if (i2 != 0) {
-                r8 = new TLRPC$TL_stories_report();
+                r8 = new TL_stories$TL_stories_report();
                 r8.id.add(Integer.valueOf(i2));
                 r8.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(j);
                 r8.message = "";
@@ -5437,7 +5433,7 @@ public class AlertsCreator {
     }
 
     public static void lambda$createFreeSpaceDialog$120(LaunchActivity launchActivity, DialogInterface dialogInterface, int i) {
-        launchActivity.lambda$runLinkRequest$75(new CacheControlActivity());
+        launchActivity.lambda$runLinkRequest$81(new CacheControlActivity());
     }
 
     public static Dialog createPrioritySelectDialog(Activity activity, long j, int i, int i2, Runnable runnable) {

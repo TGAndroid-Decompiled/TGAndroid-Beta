@@ -186,6 +186,10 @@ public class TextInfoPrivacyCell extends FrameLayout {
         this.textView.setAlpha(z ? 1.0f : 0.5f);
     }
 
+    public void setTextGravity(int i) {
+        this.textView.setGravity(i);
+    }
+
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);

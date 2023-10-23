@@ -1,13 +1,12 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_globalPrivacySettings extends TLObject {
-    public static int constructor = 1934380235;
     public boolean archive_and_mute_new_noncontact_peers;
     public int flags;
     public boolean keep_archived_folders;
     public boolean keep_archived_unmuted;
 
     public static TLRPC$TL_globalPrivacySettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1934380235 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_globalPrivacySettings", Integer.valueOf(i)));
             }
@@ -29,7 +28,7 @@ public class TLRPC$TL_globalPrivacySettings extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1934380235);
         int i = this.archive_and_mute_new_noncontact_peers ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.keep_archived_unmuted ? i | 2 : i & (-3);

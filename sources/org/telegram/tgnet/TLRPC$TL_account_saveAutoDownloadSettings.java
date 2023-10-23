@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_saveAutoDownloadSettings extends TLObject {
-    public static int constructor = 1995661875;
     public int flags;
     public boolean high;
     public boolean low;
@@ -13,7 +12,7 @@ public class TLRPC$TL_account_saveAutoDownloadSettings extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1995661875);
         int i = this.low ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.high ? i | 2 : i & (-3);

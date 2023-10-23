@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateEditMessage extends TLRPC$Update {
-    public static int constructor = -469536605;
     public TLRPC$Message message;
     public int pts;
     public int pts_count;
@@ -14,7 +13,7 @@ public class TLRPC$TL_updateEditMessage extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-469536605);
         this.message.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.pts);
         abstractSerializedData.writeInt32(this.pts_count);

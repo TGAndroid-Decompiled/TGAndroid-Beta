@@ -52,12 +52,12 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$Dialog;
-import org.telegram.tgnet.TLRPC$TL_chatlists_deleteExportedInvite;
-import org.telegram.tgnet.TLRPC$TL_chatlists_editExportedInvite;
 import org.telegram.tgnet.TLRPC$TL_error;
-import org.telegram.tgnet.TLRPC$TL_exportedChatlistInvite;
-import org.telegram.tgnet.TLRPC$TL_inputChatlistDialogFilter;
 import org.telegram.tgnet.TLRPC$User;
+import org.telegram.tgnet.tl.TL_chatlists$TL_chatlists_deleteExportedInvite;
+import org.telegram.tgnet.tl.TL_chatlists$TL_chatlists_editExportedInvite;
+import org.telegram.tgnet.tl.TL_chatlists$TL_exportedChatlistInvite;
+import org.telegram.tgnet.tl.TL_chatlists$TL_inputChatlistDialogFilter;
 import org.telegram.ui.ActionBar.ActionBar;
 import org.telegram.ui.ActionBar.ActionBarMenu;
 import org.telegram.ui.ActionBar.ActionBarMenuItem;
@@ -92,12 +92,12 @@ public class FilterChatlistActivity extends BaseFragment {
     MessagesController.DialogFilter filter;
     private FolderBottomSheet.HeaderCell headerCountCell;
     private HintInnerCell hintCountCell;
-    TLRPC$TL_exportedChatlistInvite invite;
+    TL_chatlists$TL_exportedChatlistInvite invite;
     private long lastClicked;
     private long lastClickedDialogId;
     private RecyclerListView listView;
-    private Utilities.Callback<TLRPC$TL_exportedChatlistInvite> onDelete;
-    private Utilities.Callback<TLRPC$TL_exportedChatlistInvite> onEdit;
+    private Utilities.Callback<TL_chatlists$TL_exportedChatlistInvite> onDelete;
+    private Utilities.Callback<TL_chatlists$TL_exportedChatlistInvite> onEdit;
     private boolean peersChanged;
     private int savingTitleReqId;
     private boolean titleChanged;
@@ -122,22 +122,22 @@ public class FilterChatlistActivity extends BaseFragment {
     };
     private float doneButtonAlpha = 1.0f;
 
-    public FilterChatlistActivity(MessagesController.DialogFilter dialogFilter, TLRPC$TL_exportedChatlistInvite tLRPC$TL_exportedChatlistInvite) {
+    public FilterChatlistActivity(MessagesController.DialogFilter dialogFilter, TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite) {
         this.filter = dialogFilter;
-        this.invite = tLRPC$TL_exportedChatlistInvite;
+        this.invite = tL_chatlists$TL_exportedChatlistInvite;
     }
 
-    public void setOnDelete(Utilities.Callback<TLRPC$TL_exportedChatlistInvite> callback) {
+    public void setOnDelete(Utilities.Callback<TL_chatlists$TL_exportedChatlistInvite> callback) {
         this.onDelete = callback;
     }
 
-    public void setOnEdit(Utilities.Callback<TLRPC$TL_exportedChatlistInvite> callback) {
+    public void setOnEdit(Utilities.Callback<TL_chatlists$TL_exportedChatlistInvite> callback) {
         this.onEdit = callback;
     }
 
     public void updateActionBarTitle(boolean z) {
-        TLRPC$TL_exportedChatlistInvite tLRPC$TL_exportedChatlistInvite = this.invite;
-        String string = TextUtils.isEmpty(tLRPC$TL_exportedChatlistInvite == null ? null : tLRPC$TL_exportedChatlistInvite.title) ? LocaleController.getString("FilterShare", R.string.FilterShare) : this.invite.title;
+        TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite = this.invite;
+        String string = TextUtils.isEmpty(tL_chatlists$TL_exportedChatlistInvite == null ? null : tL_chatlists$TL_exportedChatlistInvite.title) ? LocaleController.getString("FilterShare", R.string.FilterShare) : this.invite.title;
         if (z) {
             this.actionBar.setTitleAnimated(string, false, 220L);
         } else {
@@ -296,8 +296,8 @@ public class FilterChatlistActivity extends BaseFragment {
     }
 
     private void checkPeersChanged() {
-        TLRPC$TL_exportedChatlistInvite tLRPC$TL_exportedChatlistInvite = this.invite;
-        if (tLRPC$TL_exportedChatlistInvite == null || tLRPC$TL_exportedChatlistInvite.url == null || !this.peersChanged) {
+        TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite = this.invite;
+        if (tL_chatlists$TL_exportedChatlistInvite == null || tL_chatlists$TL_exportedChatlistInvite.url == null || !this.peersChanged) {
             return;
         }
         boolean z = true;
@@ -337,23 +337,23 @@ public class FilterChatlistActivity extends BaseFragment {
         for (int i = 0; i < this.selectedPeers.size(); i++) {
             this.invite.peers.add(getMessagesController().getPeer(this.selectedPeers.get(i).longValue()));
         }
-        TLRPC$TL_chatlists_editExportedInvite tLRPC$TL_chatlists_editExportedInvite = new TLRPC$TL_chatlists_editExportedInvite();
-        TLRPC$TL_inputChatlistDialogFilter tLRPC$TL_inputChatlistDialogFilter = new TLRPC$TL_inputChatlistDialogFilter();
-        tLRPC$TL_chatlists_editExportedInvite.chatlist = tLRPC$TL_inputChatlistDialogFilter;
-        tLRPC$TL_inputChatlistDialogFilter.filter_id = this.filter.id;
-        tLRPC$TL_chatlists_editExportedInvite.slug = getSlug();
-        tLRPC$TL_chatlists_editExportedInvite.revoked = this.invite.revoked;
-        tLRPC$TL_chatlists_editExportedInvite.flags |= 4;
+        TL_chatlists$TL_chatlists_editExportedInvite tL_chatlists$TL_chatlists_editExportedInvite = new TL_chatlists$TL_chatlists_editExportedInvite();
+        TL_chatlists$TL_inputChatlistDialogFilter tL_chatlists$TL_inputChatlistDialogFilter = new TL_chatlists$TL_inputChatlistDialogFilter();
+        tL_chatlists$TL_chatlists_editExportedInvite.chatlist = tL_chatlists$TL_inputChatlistDialogFilter;
+        tL_chatlists$TL_inputChatlistDialogFilter.filter_id = this.filter.id;
+        tL_chatlists$TL_chatlists_editExportedInvite.slug = getSlug();
+        tL_chatlists$TL_chatlists_editExportedInvite.revoked = this.invite.revoked;
+        tL_chatlists$TL_chatlists_editExportedInvite.flags |= 4;
         for (int i2 = 0; i2 < this.selectedPeers.size(); i2++) {
-            tLRPC$TL_chatlists_editExportedInvite.peers.add(getMessagesController().getInputPeer(this.selectedPeers.get(i2).longValue()));
+            tL_chatlists$TL_chatlists_editExportedInvite.peers.add(getMessagesController().getInputPeer(this.selectedPeers.get(i2).longValue()));
         }
-        getConnectionsManager().sendRequest(tLRPC$TL_chatlists_editExportedInvite, new RequestDelegate() {
+        getConnectionsManager().sendRequest(tL_chatlists$TL_chatlists_editExportedInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 FilterChatlistActivity.this.lambda$save$2(tLObject, tLRPC$TL_error);
             }
         });
-        Utilities.Callback<TLRPC$TL_exportedChatlistInvite> callback = this.onEdit;
+        Utilities.Callback<TL_chatlists$TL_exportedChatlistInvite> callback = this.onEdit;
         if (callback != null) {
             callback.run(this.invite);
         }
@@ -387,22 +387,22 @@ public class FilterChatlistActivity extends BaseFragment {
             getConnectionsManager().cancelRequest(this.savingTitleReqId, true);
             this.savingTitleReqId = 0;
         }
-        TLRPC$TL_chatlists_editExportedInvite tLRPC$TL_chatlists_editExportedInvite = new TLRPC$TL_chatlists_editExportedInvite();
-        TLRPC$TL_inputChatlistDialogFilter tLRPC$TL_inputChatlistDialogFilter = new TLRPC$TL_inputChatlistDialogFilter();
-        tLRPC$TL_chatlists_editExportedInvite.chatlist = tLRPC$TL_inputChatlistDialogFilter;
-        tLRPC$TL_inputChatlistDialogFilter.filter_id = this.filter.id;
-        tLRPC$TL_chatlists_editExportedInvite.slug = getSlug();
-        TLRPC$TL_exportedChatlistInvite tLRPC$TL_exportedChatlistInvite = this.invite;
-        tLRPC$TL_chatlists_editExportedInvite.revoked = tLRPC$TL_exportedChatlistInvite.revoked;
-        tLRPC$TL_chatlists_editExportedInvite.flags |= 2;
-        tLRPC$TL_chatlists_editExportedInvite.title = tLRPC$TL_exportedChatlistInvite.title;
-        this.savingTitleReqId = getConnectionsManager().sendRequest(tLRPC$TL_chatlists_editExportedInvite, new RequestDelegate() {
+        TL_chatlists$TL_chatlists_editExportedInvite tL_chatlists$TL_chatlists_editExportedInvite = new TL_chatlists$TL_chatlists_editExportedInvite();
+        TL_chatlists$TL_inputChatlistDialogFilter tL_chatlists$TL_inputChatlistDialogFilter = new TL_chatlists$TL_inputChatlistDialogFilter();
+        tL_chatlists$TL_chatlists_editExportedInvite.chatlist = tL_chatlists$TL_inputChatlistDialogFilter;
+        tL_chatlists$TL_inputChatlistDialogFilter.filter_id = this.filter.id;
+        tL_chatlists$TL_chatlists_editExportedInvite.slug = getSlug();
+        TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite = this.invite;
+        tL_chatlists$TL_chatlists_editExportedInvite.revoked = tL_chatlists$TL_exportedChatlistInvite.revoked;
+        tL_chatlists$TL_chatlists_editExportedInvite.flags |= 2;
+        tL_chatlists$TL_chatlists_editExportedInvite.title = tL_chatlists$TL_exportedChatlistInvite.title;
+        this.savingTitleReqId = getConnectionsManager().sendRequest(tL_chatlists$TL_chatlists_editExportedInvite, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                 FilterChatlistActivity.this.lambda$saveTitle$4(tLObject, tLRPC$TL_error);
             }
         });
-        Utilities.Callback<TLRPC$TL_exportedChatlistInvite> callback = this.onEdit;
+        Utilities.Callback<TL_chatlists$TL_exportedChatlistInvite> callback = this.onEdit;
         if (callback != null) {
             callback.run(this.invite);
         }
@@ -475,8 +475,8 @@ public class FilterChatlistActivity extends BaseFragment {
         this.rowsCount = 0;
         int i = 0 + 1;
         this.rowsCount = i;
-        TLRPC$TL_exportedChatlistInvite tLRPC$TL_exportedChatlistInvite = this.invite;
-        if (tLRPC$TL_exportedChatlistInvite != null) {
+        TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite = this.invite;
+        if (tL_chatlists$TL_exportedChatlistInvite != null) {
             int i2 = i + 1;
             this.rowsCount = i2;
             this.linkHeaderRow = i;
@@ -490,7 +490,7 @@ public class FilterChatlistActivity extends BaseFragment {
             this.linkRow = -1;
             this.linkSectionRow = -1;
         }
-        if (tLRPC$TL_exportedChatlistInvite == null && this.peers.isEmpty()) {
+        if (tL_chatlists$TL_exportedChatlistInvite == null && this.peers.isEmpty()) {
             this.chatsHeaderRow = -1;
             this.chatsStartRow = -1;
             this.chatsEndRow = -1;
@@ -517,8 +517,8 @@ public class FilterChatlistActivity extends BaseFragment {
 
     public String getSlug() {
         String str;
-        TLRPC$TL_exportedChatlistInvite tLRPC$TL_exportedChatlistInvite = this.invite;
-        if (tLRPC$TL_exportedChatlistInvite == null || (str = tLRPC$TL_exportedChatlistInvite.url) == null) {
+        TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite = this.invite;
+        if (tL_chatlists$TL_exportedChatlistInvite == null || (str = tL_chatlists$TL_exportedChatlistInvite.url) == null) {
             return null;
         }
         return str.substring(str.lastIndexOf(47) + 1);
@@ -558,15 +558,15 @@ public class FilterChatlistActivity extends BaseFragment {
 
             @Override
             protected void deleteLink() {
-                TLRPC$TL_chatlists_deleteExportedInvite tLRPC$TL_chatlists_deleteExportedInvite = new TLRPC$TL_chatlists_deleteExportedInvite();
-                TLRPC$TL_inputChatlistDialogFilter tLRPC$TL_inputChatlistDialogFilter = new TLRPC$TL_inputChatlistDialogFilter();
-                tLRPC$TL_chatlists_deleteExportedInvite.chatlist = tLRPC$TL_inputChatlistDialogFilter;
+                TL_chatlists$TL_chatlists_deleteExportedInvite tL_chatlists$TL_chatlists_deleteExportedInvite = new TL_chatlists$TL_chatlists_deleteExportedInvite();
+                TL_chatlists$TL_inputChatlistDialogFilter tL_chatlists$TL_inputChatlistDialogFilter = new TL_chatlists$TL_inputChatlistDialogFilter();
+                tL_chatlists$TL_chatlists_deleteExportedInvite.chatlist = tL_chatlists$TL_inputChatlistDialogFilter;
                 FilterChatlistActivity filterChatlistActivity = FilterChatlistActivity.this;
-                tLRPC$TL_inputChatlistDialogFilter.filter_id = filterChatlistActivity.filter.id;
-                tLRPC$TL_chatlists_deleteExportedInvite.slug = filterChatlistActivity.getSlug();
+                tL_chatlists$TL_inputChatlistDialogFilter.filter_id = filterChatlistActivity.filter.id;
+                tL_chatlists$TL_chatlists_deleteExportedInvite.slug = filterChatlistActivity.getSlug();
                 final AlertDialog alertDialog = new AlertDialog(getContext(), 3);
                 alertDialog.showDelayed(180L);
-                FilterChatlistActivity.this.getConnectionsManager().sendRequest(tLRPC$TL_chatlists_deleteExportedInvite, new RequestDelegate() {
+                FilterChatlistActivity.this.getConnectionsManager().sendRequest(tL_chatlists$TL_chatlists_deleteExportedInvite, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
                         FilterChatlistActivity.ListAdapter.AnonymousClass1.this.lambda$deleteLink$3(alertDialog, tLObject, tLRPC$TL_error);
@@ -593,8 +593,8 @@ public class FilterChatlistActivity extends BaseFragment {
 
             @Override
             public void editname() {
-                TLRPC$TL_exportedChatlistInvite tLRPC$TL_exportedChatlistInvite = FilterChatlistActivity.this.invite;
-                if (tLRPC$TL_exportedChatlistInvite == null || tLRPC$TL_exportedChatlistInvite.url == null) {
+                TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite = FilterChatlistActivity.this.invite;
+                if (tL_chatlists$TL_exportedChatlistInvite == null || tL_chatlists$TL_exportedChatlistInvite.url == null) {
                     return;
                 }
                 final EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
@@ -742,8 +742,8 @@ public class FilterChatlistActivity extends BaseFragment {
             } else {
                 if (itemViewType == 3) {
                     InviteLinkCell inviteLinkCell = (InviteLinkCell) viewHolder.itemView;
-                    TLRPC$TL_exportedChatlistInvite tLRPC$TL_exportedChatlistInvite = FilterChatlistActivity.this.invite;
-                    inviteLinkCell.setLink(tLRPC$TL_exportedChatlistInvite != null ? tLRPC$TL_exportedChatlistInvite.url : null, false);
+                    TL_chatlists$TL_exportedChatlistInvite tL_chatlists$TL_exportedChatlistInvite = FilterChatlistActivity.this.invite;
+                    inviteLinkCell.setLink(tL_chatlists$TL_exportedChatlistInvite != null ? tL_chatlists$TL_exportedChatlistInvite.url : null, false);
                 } else if (itemViewType != 4) {
                     if (itemViewType == 5) {
                         FolderBottomSheet.HeaderCell headerCell = (FolderBottomSheet.HeaderCell) viewHolder.itemView;

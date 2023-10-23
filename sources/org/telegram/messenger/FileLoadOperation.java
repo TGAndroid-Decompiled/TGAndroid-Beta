@@ -295,8 +295,6 @@ public class FileLoadOperation {
         this.isStream = imageLocation.imageType == 2;
         if (imageLocation.isEncrypted()) {
             TLRPC$InputFileLocation tLRPC$InputFileLocation = new TLRPC$InputFileLocation() {
-                public static int constructor = -182231723;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData, boolean z2) {
                     this.id = abstractSerializedData.readInt64(z2);
@@ -305,7 +303,7 @@ public class FileLoadOperation {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(-182231723);
                     abstractSerializedData.writeInt64(this.id);
                     abstractSerializedData.writeInt64(this.access_hash);
                 }
@@ -373,8 +371,6 @@ public class FileLoadOperation {
             }
         } else {
             TLRPC$InputFileLocation tLRPC$InputFileLocation3 = new TLRPC$InputFileLocation() {
-                public static int constructor = -539317279;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData, boolean z2) {
                     this.volume_id = abstractSerializedData.readInt64(z2);
@@ -385,7 +381,7 @@ public class FileLoadOperation {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                    abstractSerializedData.writeInt32(constructor);
+                    abstractSerializedData.writeInt32(-539317279);
                     abstractSerializedData.writeInt64(this.volume_id);
                     abstractSerializedData.writeInt32(this.local_id);
                     abstractSerializedData.writeInt64(this.secret);
@@ -429,8 +425,6 @@ public class FileLoadOperation {
         this.state = 0;
         updateParams();
         TLRPC$InputFileLocation tLRPC$InputFileLocation = new TLRPC$InputFileLocation() {
-            public static int constructor = -876089816;
-
             @Override
             public void readParams(AbstractSerializedData abstractSerializedData, boolean z) {
                 this.id = abstractSerializedData.readInt64(z);
@@ -439,7 +433,7 @@ public class FileLoadOperation {
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(-876089816);
                 abstractSerializedData.writeInt64(this.id);
                 abstractSerializedData.writeInt64(this.access_hash);
             }

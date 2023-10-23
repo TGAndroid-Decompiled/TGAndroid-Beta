@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEventActionChangeStickerSet extends TLRPC$ChannelAdminLogEventAction {
-    public static int constructor = -1312568665;
     public TLRPC$InputStickerSet new_stickerset;
     public TLRPC$InputStickerSet prev_stickerset;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_channelAdminLogEventActionChangeStickerSet extends TLRPC$C
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1312568665);
         this.prev_stickerset.serializeToStream(abstractSerializedData);
         this.new_stickerset.serializeToStream(abstractSerializedData);
     }

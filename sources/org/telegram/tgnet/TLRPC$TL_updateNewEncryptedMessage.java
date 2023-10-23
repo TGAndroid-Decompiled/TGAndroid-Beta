@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateNewEncryptedMessage extends TLRPC$Update {
-    public static int constructor = 314359194;
     public TLRPC$EncryptedMessage message;
     public int qts;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_updateNewEncryptedMessage extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(314359194);
         this.message.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.qts);
     }

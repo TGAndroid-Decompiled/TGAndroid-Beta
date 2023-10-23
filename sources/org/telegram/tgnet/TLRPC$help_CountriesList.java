@@ -4,11 +4,9 @@ public abstract class TLRPC$help_CountriesList extends TLObject {
         TLRPC$help_CountriesList tLRPC$TL_help_countriesList;
         if (i != -2016381538) {
             tLRPC$TL_help_countriesList = i != -1815339214 ? null : new TLRPC$help_CountriesList() {
-                public static int constructor = -1815339214;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1815339214);
                 }
             };
         } else {

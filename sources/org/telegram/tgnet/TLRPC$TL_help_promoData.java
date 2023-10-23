@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_help_promoData extends TLRPC$help_PromoData {
-    public static int constructor = -1942390465;
     public int expires;
     public int flags;
     public TLRPC$Peer peer;
@@ -59,7 +58,7 @@ public class TLRPC$TL_help_promoData extends TLRPC$help_PromoData {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1942390465);
         int i = this.proxy ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

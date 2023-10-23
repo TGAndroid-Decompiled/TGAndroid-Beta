@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.IBinder;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import com.google.android.exoplayer2.util.Log;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
 public class VideoEncodingService extends Service implements NotificationCenter.NotificationCenterDelegate {
@@ -29,11 +28,9 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             if (videoEncodingService.currentMessage != currentForegroundConverMessage) {
                 if (currentForegroundConverMessage != null) {
                     videoEncodingService.setCurrentMessage(currentForegroundConverMessage);
-                    Log.d("kek", "VideoEncodingService: update message");
-                    return;
+                } else {
+                    videoEncodingService.stopSelf();
                 }
-                Log.d("kek", "VideoEncodingService: stop self");
-                instance.stopSelf();
             }
         }
     }
@@ -97,11 +94,9 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         MediaController.VideoConvertMessage currentForegroundConverMessage = MediaController.getInstance().getCurrentForegroundConverMessage();
         if (currentForegroundConverMessage != null) {
             setCurrentMessage(currentForegroundConverMessage);
-            Log.d("kek", "VideoEncodingService: update message");
-            return;
+        } else {
+            stopSelf();
         }
-        Log.d("kek", "VideoEncodingService: stop self");
-        stopSelf();
     }
 
     @Override
@@ -121,14 +116,17 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             this.builder.setContentTitle(LocaleController.getString("AppName", R.string.AppName));
         }
         setCurrentMessage(currentForegroundConverMessage);
-        startForeground(4, this.builder.build());
+        try {
+            startForeground(4, this.builder.build());
+        } catch (Throwable th) {
+            FileLog.e(th);
+        }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
                 VideoEncodingService.this.lambda$onStartCommand$1();
             }
         });
-        Log.d("kek", "VideoEncodingService: start foreground");
         return 2;
     }
 

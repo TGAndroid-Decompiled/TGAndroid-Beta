@@ -36,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLoader;
@@ -53,8 +54,8 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$MessageMedia;
-import org.telegram.tgnet.TLRPC$PeerStories;
-import org.telegram.tgnet.TLRPC$StoryItem;
+import org.telegram.tgnet.tl.TL_stories$PeerStories;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -79,7 +80,7 @@ import org.webrtc.MediaStreamTrack;
 public class StoryViewer implements NotificationCenter.NotificationCenterDelegate {
     public static boolean animationInProgress;
     private static boolean isInSilentMode;
-    private static TLRPC$StoryItem lastStoryItem;
+    private static TL_stories$StoryItem lastStoryItem;
     private static boolean runOpenAnimationAfterLayout;
     boolean allowIntercept;
     boolean allowSelfStoriesView;
@@ -110,6 +111,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     private boolean fullyVisible;
     GestureDetector gestureDetector;
     private float hideEnterViewProgress;
+    boolean inSeekingMode;
     boolean inSwipeToDissmissMode;
     private boolean invalidateOutRect;
     private boolean isBulletinVisible;
@@ -138,7 +140,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     ValueAnimator openCloseAnimator;
     boolean openedFromLightNavigationBar;
     private boolean opening;
-    TLRPC$PeerStories overrideUserStories;
+    TL_stories$PeerStories overrideUserStories;
     LaunchActivity parentActivity;
     private boolean paused;
     public PlaceProvider placeProvider;
@@ -150,7 +152,8 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     boolean reversed;
     float selfStoriesViewsOffset;
     SelfStoryViewsView selfStoryViewsView;
-    TLRPC$StoryItem singleStory;
+    TL_stories$StoryItem singleStory;
+    private StoriesIntro storiesIntro;
     StoriesController.StoriesList storiesList;
     public StoriesViewPager storiesViewPager;
     private SurfaceView surfaceView;
@@ -223,8 +226,23 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
 
     public void setLongPressed(boolean z) {
         PeerStoriesView currentPeerView;
+        PeerStoriesView currentPeerView2;
+        PeerStoriesView.StoryItemHolder storyItemHolder;
+        VideoPlayerHolder videoPlayerHolder;
+        PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope;
         if (this.isLongpressed != z) {
             this.isLongpressed = z;
+            if (z && !this.isInPinchToZoom && (currentPeerView2 = this.storiesViewPager.getCurrentPeerView()) != null && (storyItemHolder = currentPeerView2.currentStory) != null && storyItemHolder.uploadingStory == null) {
+                if (!this.inSeekingMode && !this.inSwipeToDissmissMode && (videoPlayerSharedScope = this.currentPlayerScope) != null && videoPlayerSharedScope.player != null) {
+                    currentPeerView2.storyContainer.invalidate();
+                    BotWebViewVibrationEffect.IMPACT_LIGHT.vibrate();
+                }
+                PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope2 = this.currentPlayerScope;
+                if (videoPlayerSharedScope2 != null && (videoPlayerHolder = videoPlayerSharedScope2.player) != null && !this.inSeekingMode) {
+                    videoPlayerHolder.setSeeking(true);
+                }
+                this.inSeekingMode = true;
+            }
             updatePlayingMode();
             StoriesViewPager storiesViewPager = this.storiesViewPager;
             if (storiesViewPager == null || (currentPeerView = storiesViewPager.getCurrentPeerView()) == null) {
@@ -239,17 +257,17 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         this.fragment = baseFragment;
     }
 
-    public void open(Context context, TLRPC$StoryItem tLRPC$StoryItem, PlaceProvider placeProvider) {
-        if (tLRPC$StoryItem == null) {
+    public void open(Context context, TL_stories$StoryItem tL_stories$StoryItem, PlaceProvider placeProvider) {
+        if (tL_stories$StoryItem == null) {
             return;
         }
         int i = UserConfig.selectedAccount;
         this.currentAccount = i;
-        if (tLRPC$StoryItem.dialogId <= 0 || MessagesController.getInstance(i).getUser(Long.valueOf(tLRPC$StoryItem.dialogId)) != null) {
-            if (tLRPC$StoryItem.dialogId >= 0 || MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tLRPC$StoryItem.dialogId)) != null) {
+        if (tL_stories$StoryItem.dialogId <= 0 || MessagesController.getInstance(i).getUser(Long.valueOf(tL_stories$StoryItem.dialogId)) != null) {
+            if (tL_stories$StoryItem.dialogId >= 0 || MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-tL_stories$StoryItem.dialogId)) != null) {
                 ArrayList<Long> arrayList = new ArrayList<>();
-                arrayList.add(Long.valueOf(tLRPC$StoryItem.dialogId));
-                open(context, tLRPC$StoryItem, arrayList, 0, null, null, placeProvider, false);
+                arrayList.add(Long.valueOf(tL_stories$StoryItem.dialogId));
+                open(context, tL_stories$StoryItem, arrayList, 0, null, null, placeProvider, false);
             }
         }
     }
@@ -270,28 +288,28 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         open(context, null, arrayList, 0, storiesList, null, placeProvider, false);
     }
 
-    public void open(Context context, TLRPC$PeerStories tLRPC$PeerStories, PlaceProvider placeProvider) {
-        ArrayList<TLRPC$StoryItem> arrayList;
-        if (tLRPC$PeerStories == null || (arrayList = tLRPC$PeerStories.stories) == null || arrayList.isEmpty()) {
+    public void open(Context context, TL_stories$PeerStories tL_stories$PeerStories, PlaceProvider placeProvider) {
+        ArrayList<TL_stories$StoryItem> arrayList;
+        if (tL_stories$PeerStories == null || (arrayList = tL_stories$PeerStories.stories) == null || arrayList.isEmpty()) {
             this.doOnAnimationReadyRunnables.clear();
             return;
         }
         this.currentAccount = UserConfig.selectedAccount;
         ArrayList<Long> arrayList2 = new ArrayList<>();
-        arrayList2.add(Long.valueOf(DialogObject.getPeerDialogId(tLRPC$PeerStories.peer)));
-        open(context, tLRPC$PeerStories.stories.get(0), arrayList2, 0, null, tLRPC$PeerStories, placeProvider, false);
+        arrayList2.add(Long.valueOf(DialogObject.getPeerDialogId(tL_stories$PeerStories.peer)));
+        open(context, tL_stories$PeerStories.stories.get(0), arrayList2, 0, null, tL_stories$PeerStories, placeProvider, false);
     }
 
-    public void open(Context context, TLRPC$StoryItem tLRPC$StoryItem, int i, StoriesController.StoriesList storiesList, boolean z, PlaceProvider placeProvider) {
+    public void open(Context context, TL_stories$StoryItem tL_stories$StoryItem, int i, StoriesController.StoriesList storiesList, boolean z, PlaceProvider placeProvider) {
         this.currentAccount = UserConfig.selectedAccount;
         ArrayList<Long> arrayList = new ArrayList<>();
         arrayList.add(Long.valueOf(storiesList.dialogId));
         this.dayStoryId = i;
-        open(context, tLRPC$StoryItem, arrayList, 0, storiesList, null, placeProvider, z);
+        open(context, tL_stories$StoryItem, arrayList, 0, storiesList, null, placeProvider, z);
     }
 
     @SuppressLint({"WrongConstant"})
-    public void open(Context context, TLRPC$StoryItem tLRPC$StoryItem, ArrayList<Long> arrayList, int i, StoriesController.StoriesList storiesList, TLRPC$PeerStories tLRPC$PeerStories, PlaceProvider placeProvider, boolean z) {
+    public void open(Context context, TL_stories$StoryItem tL_stories$StoryItem, ArrayList<Long> arrayList, int i, StoriesController.StoriesList storiesList, TL_stories$PeerStories tL_stories$PeerStories, PlaceProvider placeProvider, boolean z) {
         if (context == null) {
             this.doOnAnimationReadyRunnables.clear();
             return;
@@ -308,14 +326,14 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         boolean z2 = (AndroidUtilities.isTablet() || this.fromBottomSheet) ? false : true;
         this.ATTACH_TO_FRAGMENT = z2;
         this.USE_SURFACE_VIEW = SharedConfig.useSurfaceInStories && z2;
-        this.messageId = tLRPC$StoryItem == null ? 0 : tLRPC$StoryItem.messageId;
-        this.isSingleStory = tLRPC$StoryItem != null && storiesList == null && tLRPC$PeerStories == null;
-        if (tLRPC$StoryItem != null) {
-            this.singleStory = tLRPC$StoryItem;
-            lastStoryItem = tLRPC$StoryItem;
+        this.messageId = tL_stories$StoryItem == null ? 0 : tL_stories$StoryItem.messageId;
+        this.isSingleStory = tL_stories$StoryItem != null && storiesList == null && tL_stories$PeerStories == null;
+        if (tL_stories$StoryItem != null) {
+            this.singleStory = tL_stories$StoryItem;
+            lastStoryItem = tL_stories$StoryItem;
         }
         this.storiesList = storiesList;
-        this.overrideUserStories = tLRPC$PeerStories;
+        this.overrideUserStories = tL_stories$PeerStories;
         this.placeProvider = placeProvider;
         this.reversed = z;
         this.currentAccount = UserConfig.selectedAccount;
@@ -324,6 +342,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         StoriesViewPager storiesViewPager = this.storiesViewPager;
         if (storiesViewPager != null) {
             storiesViewPager.setHorizontalProgressToDismiss(0.0f);
+            this.storiesViewPager.currentState = 0;
         }
         this.swipeToReplyProgress = 0.0f;
         this.swipeToReplyOffset = 0.0f;
@@ -443,19 +462,22 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 @Override
                 public boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f, float f2) {
                     StoryViewer storyViewer = StoryViewer.this;
-                    if (storyViewer.swipeToReplyOffset != 0.0f && f2 < -1000.0f && !storyViewer.swipeToReplyWaitingKeyboard) {
-                        storyViewer.swipeToReplyWaitingKeyboard = true;
-                        storyViewer.windowView.performHapticFeedback(3);
-                        StoryViewer.this.showKeyboard();
+                    if (storyViewer.swipeToReplyOffset != 0.0f && storyViewer.storiesIntro == null && f2 < -1000.0f) {
+                        StoryViewer storyViewer2 = StoryViewer.this;
+                        if (!storyViewer2.swipeToReplyWaitingKeyboard) {
+                            storyViewer2.swipeToReplyWaitingKeyboard = true;
+                            storyViewer2.windowView.performHapticFeedback(3);
+                            StoryViewer.this.showKeyboard();
+                        }
                     }
-                    StoryViewer storyViewer2 = StoryViewer.this;
-                    if (storyViewer2.selfStoriesViewsOffset != 0.0f) {
+                    StoryViewer storyViewer3 = StoryViewer.this;
+                    if (storyViewer3.selfStoriesViewsOffset != 0.0f) {
                         if (f2 < -1000.0f) {
-                            storyViewer2.cancelSwipeToViews(true);
+                            storyViewer3.cancelSwipeToViews(true);
                         } else if (f2 > 1000.0f) {
-                            storyViewer2.cancelSwipeToViews(false);
+                            storyViewer3.cancelSwipeToViews(false);
                         } else {
-                            storyViewer2.cancelSwipeToViews(storyViewer2.selfStoryViewsView.progressToOpen > 0.5f);
+                            storyViewer3.cancelSwipeToViews(storyViewer3.selfStoryViewsView.progressToOpen > 0.5f);
                         }
                     }
                     StoryViewer.this.flingCalled = true;
@@ -658,6 +680,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public class AnonymousClass2 extends SizeNotifierFrameLayout {
+        float lastTouchX;
         SparseArray<Float> lastX;
         final RectF outFromRectAvatar;
         final RectF outFromRectContainer;
@@ -712,8 +735,17 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
 
         @Override
         public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+            VideoPlayerHolder videoPlayerHolder;
+            PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope;
+            PeerStoriesView currentPeerView;
+            PeerStoriesView.StoryItemHolder storyItemHolder;
+            TL_stories$StoryItem tL_stories$StoryItem;
+            TLRPC$MessageMedia tLRPC$MessageMedia;
+            TLRPC$Document tLRPC$Document;
             if (motionEvent.getAction() == 0 && StoryViewer.this.progressToOpen == 1.0f) {
-                this.startX = motionEvent.getX();
+                float x = motionEvent.getX();
+                this.lastTouchX = x;
+                this.startX = x;
                 this.startY = motionEvent.getY();
                 StoryViewer storyViewer = StoryViewer.this;
                 storyViewer.verticalScrollDetected = false;
@@ -739,34 +771,57 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             } else if (motionEvent.getAction() == 2) {
                 float abs = Math.abs(this.startY - motionEvent.getY());
                 float abs2 = Math.abs(this.startX - motionEvent.getX());
-                if (abs > abs2) {
-                    StoryViewer storyViewer6 = StoryViewer.this;
-                    if (!storyViewer6.verticalScrollDetected && abs > AndroidUtilities.touchSlop * 2.0f) {
-                        storyViewer6.verticalScrollDetected = true;
+                StoryViewer storyViewer6 = StoryViewer.this;
+                if (storyViewer6.isLongpressed && storyViewer6.inSeekingMode && !storyViewer6.isInPinchToZoom) {
+                    StoryViewer storyViewer7 = StoryViewer.this;
+                    if (!storyViewer7.inSwipeToDissmissMode && (videoPlayerSharedScope = storyViewer7.currentPlayerScope) != null && videoPlayerSharedScope.player != null && (currentPeerView = storyViewer7.storiesViewPager.getCurrentPeerView()) != null && (storyItemHolder = currentPeerView.currentStory) != null && storyItemHolder.uploadingStory == null && storyItemHolder.isVideo()) {
+                        long j = currentPeerView.videoDuration;
+                        if (j <= 0 && (tL_stories$StoryItem = currentPeerView.currentStory.storyItem) != null && (tLRPC$MessageMedia = tL_stories$StoryItem.media) != null && (tLRPC$Document = tLRPC$MessageMedia.document) != null) {
+                            j = (long) (MessageObject.getDocumentDuration(tLRPC$Document) * 1000.0d);
+                        }
+                        if (j > 0) {
+                            float x2 = motionEvent.getX();
+                            VideoPlayerHolder videoPlayerHolder2 = StoryViewer.this.currentPlayerScope.player;
+                            if (((int) (videoPlayerHolder2.seek((x2 - this.lastTouchX) / AndroidUtilities.dp(220.0f), j) * 10.0f)) != ((int) (videoPlayerHolder2.currentSeek * 10.0f))) {
+                                try {
+                                    currentPeerView.performHapticFeedback(9, 1);
+                                } catch (Exception unused) {
+                                }
+                            }
+                            currentPeerView.storyContainer.invalidate();
+                            this.lastTouchX = x2;
+                        }
                     }
                 }
-                StoryViewer storyViewer7 = StoryViewer.this;
-                if (!storyViewer7.inSwipeToDissmissMode && !storyViewer7.keyboardVisible && storyViewer7.allowSwipeToDissmiss) {
+                if (abs > abs2) {
+                    StoryViewer storyViewer8 = StoryViewer.this;
+                    if (!storyViewer8.inSeekingMode && !storyViewer8.verticalScrollDetected && abs > AndroidUtilities.touchSlop * 2.0f) {
+                        storyViewer8.verticalScrollDetected = true;
+                    }
+                }
+                StoryViewer storyViewer9 = StoryViewer.this;
+                if (!storyViewer9.inSwipeToDissmissMode && !storyViewer9.inSeekingMode && !storyViewer9.keyboardVisible && storyViewer9.allowSwipeToDissmiss) {
                     if (abs > abs2 && abs > AndroidUtilities.touchSlop * 2.0f) {
-                        storyViewer7.inSwipeToDissmissMode = true;
-                        PeerStoriesView currentPeerView = storyViewer7.storiesViewPager.getCurrentPeerView();
-                        if (currentPeerView != null) {
-                            currentPeerView.cancelTextSelection();
+                        storyViewer9.inSwipeToDissmissMode = true;
+                        PeerStoriesView currentPeerView2 = storyViewer9.storiesViewPager.getCurrentPeerView();
+                        if (currentPeerView2 != null) {
+                            currentPeerView2.cancelTextSelection();
                         }
-                        boolean z = currentPeerView != null && currentPeerView.viewsAllowed();
-                        StoryViewer storyViewer8 = StoryViewer.this;
-                        storyViewer8.allowSwipeToReply = (z || currentPeerView == null || currentPeerView.isChannel) ? false : true;
-                        boolean z2 = (!z || currentPeerView.unsupported || currentPeerView.currentStory.storyItem == null) ? false : true;
-                        storyViewer8.allowSelfStoriesView = z2;
-                        if (z2 && this.keyboardHeight != 0) {
-                            storyViewer8.allowSelfStoriesView = false;
+                        boolean z = currentPeerView2 != null && currentPeerView2.viewsAllowed();
+                        StoryViewer storyViewer10 = StoryViewer.this;
+                        storyViewer10.allowSwipeToReply = (z || currentPeerView2 == null || currentPeerView2.isChannel || storyViewer10.storiesIntro != null) ? false : true;
+                        StoryViewer storyViewer11 = StoryViewer.this;
+                        storyViewer11.allowSelfStoriesView = z && !currentPeerView2.unsupported && currentPeerView2.currentStory.storyItem != null && storyViewer11.storiesIntro == null;
+                        StoryViewer storyViewer12 = StoryViewer.this;
+                        if (storyViewer12.allowSelfStoriesView && this.keyboardHeight != 0) {
+                            storyViewer12.allowSelfStoriesView = false;
                         }
-                        if (storyViewer8.allowSelfStoriesView) {
-                            storyViewer8.checkSelfStoriesView();
+                        if (storyViewer12.allowSelfStoriesView) {
+                            storyViewer12.checkSelfStoriesView();
                         }
-                        StoryViewer storyViewer9 = StoryViewer.this;
-                        storyViewer9.swipeToReplyOffset = 0.0f;
-                        if (storyViewer9.delayedTapRunnable != null) {
+                        StoryViewer storyViewer13 = StoryViewer.this;
+                        storyViewer13.swipeToReplyOffset = 0.0f;
+                        if (storyViewer13.delayedTapRunnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(StoryViewer.this.delayedTapRunnable);
                             StoryViewer.this.delayedTapRunnable.run();
                             StoryViewer.this.delayedTapRunnable = null;
@@ -782,13 +837,19 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     StoryViewer.this.delayedTapRunnable = null;
                 }
                 StoryViewer.this.setInTouchMode(false);
-                StoryViewer.this.verticalScrollDetected = false;
+                StoryViewer storyViewer14 = StoryViewer.this;
+                storyViewer14.verticalScrollDetected = false;
+                storyViewer14.inSeekingMode = false;
+                PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope2 = storyViewer14.currentPlayerScope;
+                if (videoPlayerSharedScope2 != null && (videoPlayerHolder = videoPlayerSharedScope2.player) != null) {
+                    videoPlayerHolder.setSeeking(false);
+                }
             }
-            StoryViewer storyViewer10 = StoryViewer.this;
-            SelfStoryViewsView selfStoryViewsView = storyViewer10.selfStoryViewsView;
-            boolean z3 = selfStoryViewsView != null && selfStoryViewsView.progressToOpen == 1.0f;
-            if (!storyViewer10.inSwipeToDissmissMode && !z3) {
-                storyViewer10.gestureDetector.onTouchEvent(motionEvent);
+            StoryViewer storyViewer15 = StoryViewer.this;
+            SelfStoryViewsView selfStoryViewsView = storyViewer15.selfStoryViewsView;
+            boolean z2 = selfStoryViewsView != null && selfStoryViewsView.progressToOpen == 1.0f;
+            if (!storyViewer15.inSwipeToDissmissMode && !z2) {
+                storyViewer15.gestureDetector.onTouchEvent(motionEvent);
             }
             return StoryViewer.this.inSwipeToDissmissMode || super.onInterceptTouchEvent(motionEvent);
         }
@@ -1209,6 +1270,21 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
 
         @Override
         public void setIsInPinchToZoom(boolean z) {
+            VideoPlayerHolder videoPlayerHolder;
+            if (!StoryViewer.this.isInPinchToZoom && z) {
+                StoryViewer storyViewer = StoryViewer.this;
+                if (storyViewer.inSeekingMode) {
+                    storyViewer.inSeekingMode = false;
+                    PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope = storyViewer.currentPlayerScope;
+                    if (videoPlayerSharedScope != null && (videoPlayerHolder = videoPlayerSharedScope.player) != null) {
+                        videoPlayerHolder.setSeeking(false);
+                    }
+                    PeerStoriesView currentPeerView = StoryViewer.this.getCurrentPeerView();
+                    if (currentPeerView != null) {
+                        currentPeerView.invalidate();
+                    }
+                }
+            }
             StoryViewer.this.isInPinchToZoom = z;
             StoryViewer.this.updatePlayingMode();
         }
@@ -1255,7 +1331,13 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 for (int i3 = 0; i3 < arrayList2.size(); i3++) {
                     Uri uri = arrayList2.get(i3);
                     StoryViewer storyViewer = StoryViewer.this;
-                    VideoPlayerHolder videoPlayerHolder = new VideoPlayerHolder(storyViewer.surfaceView, StoryViewer.this.textureView);
+                    final VideoPlayerHolder videoPlayerHolder = new VideoPlayerHolder(storyViewer.surfaceView, StoryViewer.this.textureView);
+                    videoPlayerHolder.setOnSeekUpdate(new Runnable() {
+                        @Override
+                        public final void run() {
+                            StoryViewer.AnonymousClass5.this.lambda$preparePlayer$2(videoPlayerHolder);
+                        }
+                    });
                     videoPlayerHolder.uri = uri;
                     TLRPC$Document tLRPC$Document = arrayList.get(i3);
                     videoPlayerHolder.document = tLRPC$Document;
@@ -1267,6 +1349,16 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     }
                 }
             }
+        }
+
+        public void lambda$preparePlayer$2(VideoPlayerHolder videoPlayerHolder) {
+            FrameLayout frameLayout;
+            PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope;
+            PeerStoriesView currentPeerView = StoryViewer.this.storiesViewPager.getCurrentPeerView();
+            if (currentPeerView == null || (frameLayout = currentPeerView.storyContainer) == null || (videoPlayerSharedScope = StoryViewer.this.currentPlayerScope) == null || videoPlayerSharedScope.player != videoPlayerHolder) {
+                return;
+            }
+            frameLayout.invalidate();
         }
     }
 
@@ -1353,7 +1445,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         PeerStoriesView currentPeerView = this.storiesViewPager.getCurrentPeerView();
         if (currentPeerView != null) {
             if (this.storiesList != null) {
-                ArrayList<TLRPC$StoryItem> arrayList = new ArrayList<>();
+                ArrayList<TL_stories$StoryItem> arrayList = new ArrayList<>();
                 for (int i = 0; i < this.storiesList.messageObjects.size(); i++) {
                     arrayList.add(this.storiesList.messageObjects.get(i).storyItem);
                 }
@@ -1577,15 +1669,15 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             PeerStoriesView currentPeerView = this.storiesViewPager.getCurrentPeerView();
             int selectedPosition = currentPeerView == null ? 0 : currentPeerView.getSelectedPosition();
             int i = (currentPeerView == null || selectedPosition < 0 || selectedPosition >= currentPeerView.storyItems.size()) ? 0 : currentPeerView.storyItems.get(selectedPosition).id;
-            TLRPC$StoryItem tLRPC$StoryItem = (currentPeerView == null || selectedPosition < 0 || selectedPosition >= currentPeerView.storyItems.size()) ? null : currentPeerView.storyItems.get(selectedPosition);
-            if (tLRPC$StoryItem == null && this.isSingleStory) {
-                tLRPC$StoryItem = this.singleStory;
+            TL_stories$StoryItem tL_stories$StoryItem = (currentPeerView == null || selectedPosition < 0 || selectedPosition >= currentPeerView.storyItems.size()) ? null : currentPeerView.storyItems.get(selectedPosition);
+            if (tL_stories$StoryItem == null && this.isSingleStory) {
+                tL_stories$StoryItem = this.singleStory;
             }
             if (this.storiesList != null) {
                 i = this.dayStoryId;
             }
             this.transitionViewHolder.clear();
-            if (this.placeProvider.findView(this.storiesViewPager.getCurrentDialogId(), this.messageId, i, tLRPC$StoryItem == null ? -1 : tLRPC$StoryItem.messageType, this.transitionViewHolder)) {
+            if (this.placeProvider.findView(this.storiesViewPager.getCurrentDialogId(), this.messageId, i, tL_stories$StoryItem == null ? -1 : tL_stories$StoryItem.messageType, this.transitionViewHolder)) {
                 TransitionViewHolder transitionViewHolder = this.transitionViewHolder;
                 transitionViewHolder.storyId = i;
                 View view = transitionViewHolder.view;
@@ -1695,7 +1787,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public boolean isPaused() {
-        return this.isPopupVisible || this.isTranslating || this.isBulletinVisible || this.isCaption || this.isWaiting || this.isInTouchMode || this.keyboardVisible || this.currentDialog != null || this.allowTouchesByViewpager || this.isClosed || this.isRecording || this.progressToOpen != 1.0f || this.selfStoriesViewsOffset != 0.0f || this.isHintVisible || (this.isSwiping && this.USE_SURFACE_VIEW) || this.isOverlayVisible || this.isInTextSelectionMode || this.isLikesReactions || this.progressToDismiss != 0.0f;
+        return this.isPopupVisible || this.isTranslating || this.isBulletinVisible || this.isCaption || this.isWaiting || this.isInTouchMode || this.keyboardVisible || this.currentDialog != null || this.allowTouchesByViewpager || this.isClosed || this.isRecording || this.progressToOpen != 1.0f || this.selfStoriesViewsOffset != 0.0f || this.isHintVisible || (this.isSwiping && this.USE_SURFACE_VIEW) || this.isOverlayVisible || this.isInTextSelectionMode || this.isLikesReactions || this.progressToDismiss != 0.0f || this.storiesIntro != null;
     }
 
     public void updatePlayingMode() {
@@ -1745,7 +1837,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 return false;
             }
             if (currentPeerView == null || (chatActivityEnterView2 = currentPeerView.chatActivityEnterView) == null || chatActivityEnterView2.getVisibility() != 0 || f2 <= this.containerView.getY() + this.storiesViewPager.getY() + currentPeerView.getY() + currentPeerView.chatActivityEnterView.getY()) {
-                if (currentPeerView == null || (chatActivityEnterView = currentPeerView.chatActivityEnterView) == null || !chatActivityEnterView.isRecordingAudioVideo()) {
+                if ((currentPeerView == null || (chatActivityEnterView = currentPeerView.chatActivityEnterView) == null || !chatActivityEnterView.isRecordingAudioVideo()) && this.storiesIntro == null) {
                     return AndroidUtilities.findClickableView(frameLayout, f, f2, currentPeerView);
                 }
                 return true;
@@ -1809,39 +1901,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         });
         this.locker.lock();
         this.containerView.enableHwAcceleration();
-        this.openCloseAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                StoryViewer storyViewer = StoryViewer.this;
-                storyViewer.progressToOpen = 1.0f;
-                storyViewer.checkNavBarColor();
-                StoryViewer.animationInProgress = false;
-                StoryViewer.this.containerView.disableHwAcceleration();
-                SizeNotifierFrameLayout sizeNotifierFrameLayout = StoryViewer.this.windowView;
-                if (sizeNotifierFrameLayout != null) {
-                    sizeNotifierFrameLayout.invalidate();
-                }
-                StoryViewer storyViewer2 = StoryViewer.this;
-                ImageReceiver imageReceiver = storyViewer2.transitionViewHolder.avatarImage;
-                if (imageReceiver != null && !storyViewer2.foundViewToClose) {
-                    imageReceiver.setVisible(true, true);
-                    StoryViewer.this.transitionViewHolder.avatarImage = null;
-                }
-                StoryViewer storyViewer3 = StoryViewer.this;
-                ImageReceiver imageReceiver2 = storyViewer3.transitionViewHolder.storyImage;
-                if (imageReceiver2 != null && !storyViewer3.foundViewToClose) {
-                    imageReceiver2.setAlpha(1.0f);
-                    StoryViewer.this.transitionViewHolder.storyImage.setVisible(true, true);
-                    StoryViewer.this.transitionViewHolder.storyImage = null;
-                }
-                PeerStoriesView currentPeerView2 = StoryViewer.this.getCurrentPeerView();
-                if (currentPeerView2 != null) {
-                    currentPeerView2.updatePosition();
-                }
-                StoryViewer.this.updatePlayingMode();
-                StoryViewer.this.locker.unlock();
-            }
-        });
+        this.openCloseAnimator.addListener(new AnonymousClass10());
         this.openCloseAnimator.setStartDelay(40L);
         this.openCloseAnimator.setDuration(250L);
         this.openCloseAnimator.setInterpolator(CubicBezierInterpolator.DEFAULT);
@@ -1863,6 +1923,79 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         SizeNotifierFrameLayout sizeNotifierFrameLayout = this.windowView;
         if (sizeNotifierFrameLayout != null) {
             sizeNotifierFrameLayout.invalidate();
+        }
+    }
+
+    public class AnonymousClass10 extends AnimatorListenerAdapter {
+        AnonymousClass10() {
+        }
+
+        @Override
+        public void onAnimationEnd(Animator animator) {
+            StoryViewer storyViewer = StoryViewer.this;
+            storyViewer.progressToOpen = 1.0f;
+            storyViewer.checkNavBarColor();
+            StoryViewer.animationInProgress = false;
+            StoryViewer.this.containerView.disableHwAcceleration();
+            SizeNotifierFrameLayout sizeNotifierFrameLayout = StoryViewer.this.windowView;
+            if (sizeNotifierFrameLayout != null) {
+                sizeNotifierFrameLayout.invalidate();
+            }
+            StoryViewer storyViewer2 = StoryViewer.this;
+            ImageReceiver imageReceiver = storyViewer2.transitionViewHolder.avatarImage;
+            if (imageReceiver != null && !storyViewer2.foundViewToClose) {
+                imageReceiver.setVisible(true, true);
+                StoryViewer.this.transitionViewHolder.avatarImage = null;
+            }
+            StoryViewer storyViewer3 = StoryViewer.this;
+            ImageReceiver imageReceiver2 = storyViewer3.transitionViewHolder.storyImage;
+            if (imageReceiver2 != null && !storyViewer3.foundViewToClose) {
+                imageReceiver2.setAlpha(1.0f);
+                StoryViewer.this.transitionViewHolder.storyImage.setVisible(true, true);
+                StoryViewer.this.transitionViewHolder.storyImage = null;
+            }
+            PeerStoriesView currentPeerView = StoryViewer.this.getCurrentPeerView();
+            if (currentPeerView != null) {
+                currentPeerView.updatePosition();
+            }
+            if (!SharedConfig.storiesIntroShown) {
+                if (StoryViewer.this.storiesIntro == null) {
+                    StoryViewer.this.storiesIntro = new StoriesIntro(StoryViewer.this.containerView.getContext(), StoryViewer.this.windowView);
+                    StoryViewer.this.storiesIntro.setAlpha(0.0f);
+                    StoryViewer storyViewer4 = StoryViewer.this;
+                    storyViewer4.containerView.addView(storyViewer4.storiesIntro);
+                }
+                StoryViewer.this.storiesIntro.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        StoryViewer.AnonymousClass10.this.lambda$onAnimationEnd$0(view);
+                    }
+                });
+                StoryViewer.this.storiesIntro.animate().alpha(1.0f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animator2) {
+                        super.onAnimationEnd(animator2);
+                        StoryViewer.this.storiesIntro.startAnimation(true);
+                    }
+                }).start();
+                SharedConfig.setStoriesIntroShown(true);
+            }
+            StoryViewer.this.updatePlayingMode();
+            StoryViewer.this.locker.unlock();
+        }
+
+        public void lambda$onAnimationEnd$0(View view) {
+            StoryViewer.this.storiesIntro.animate().alpha(0.0f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animator) {
+                    super.onAnimationEnd(animator);
+                    StoryViewer.this.storiesIntro.stopAnimation();
+                    StoryViewer storyViewer = StoryViewer.this;
+                    storyViewer.containerView.removeView(storyViewer.storiesIntro);
+                    StoryViewer.this.storiesIntro = null;
+                    StoryViewer.this.updatePlayingMode();
+                }
+            }).start();
         }
     }
 
@@ -1979,6 +2112,12 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             StoryViewer.this.containerView.disableHwAcceleration();
             StoryViewer.this.checkNavBarColor();
             StoryViewer.this.locker.unlock();
+            if (StoryViewer.this.storiesIntro != null) {
+                StoryViewer.this.storiesIntro.stopAnimation();
+                StoryViewer storyViewer = StoryViewer.this;
+                storyViewer.containerView.removeView(storyViewer.storiesIntro);
+                StoryViewer.this.storiesIntro = null;
+            }
             ImageReceiver imageReceiver = StoryViewer.this.transitionViewHolder.avatarImage;
             if (imageReceiver != null) {
                 imageReceiver.setVisible(true, true);
@@ -1989,8 +2128,8 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 imageReceiver2.setAlpha(1.0f);
                 StoryViewer.this.transitionViewHolder.storyImage.setVisible(true, true);
             }
-            StoryViewer storyViewer = StoryViewer.this;
-            if (storyViewer.transitionViewHolder.radialProgressUpload != null && (currentPeerView = storyViewer.getCurrentPeerView()) != null && (radialProgress = currentPeerView.headerView.radialProgress) != null) {
+            StoryViewer storyViewer2 = StoryViewer.this;
+            if (storyViewer2.transitionViewHolder.radialProgressUpload != null && (currentPeerView = storyViewer2.getCurrentPeerView()) != null && (radialProgress = currentPeerView.headerView.radialProgress) != null) {
                 StoryViewer.this.transitionViewHolder.radialProgressUpload.copyParams(radialProgress);
             }
             PeerStoriesView.VideoPlayerSharedScope videoPlayerSharedScope = StoryViewer.this.currentPlayerScope;
@@ -2007,10 +2146,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 });
             } catch (Exception unused) {
             }
-            StoryViewer storyViewer2 = StoryViewer.this;
-            storyViewer2.isShowing = false;
-            storyViewer2.foundViewToClose = false;
-            if (storyViewer2.onCloseListener != null) {
+            StoryViewer storyViewer3 = StoryViewer.this;
+            storyViewer3.isShowing = false;
+            storyViewer3.foundViewToClose = false;
+            if (storyViewer3.onCloseListener != null) {
                 StoryViewer.this.onCloseListener.run();
                 StoryViewer.this.onCloseListener = null;
             }
@@ -2271,9 +2410,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
             return;
         }
         TLRPC$MessageMedia tLRPC$MessageMedia = messageObject.messageOwner.media;
-        TLRPC$StoryItem tLRPC$StoryItem = tLRPC$MessageMedia.storyItem;
-        tLRPC$StoryItem.dialogId = DialogObject.getPeerDialogId(tLRPC$MessageMedia.peer);
-        tLRPC$StoryItem.messageId = messageObject.getId();
+        TL_stories$StoryItem tL_stories$StoryItem = tLRPC$MessageMedia.storyItem;
+        tL_stories$StoryItem.dialogId = DialogObject.getPeerDialogId(tLRPC$MessageMedia.peer);
+        tL_stories$StoryItem.messageId = messageObject.getId();
         open(baseFragment.getContext(), messageObject.messageOwner.media.storyItem, StoriesListPlaceProvider.of(recyclerListView));
     }
 
@@ -2294,8 +2433,8 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 storiesViewPager.setDays(storiesList.dialogId, storiesList.getDays(), this.currentAccount);
                 SelfStoryViewsView selfStoryViewsView = this.selfStoryViewsView;
                 if (selfStoryViewsView != null) {
-                    TLRPC$StoryItem selectedStory = selfStoryViewsView.getSelectedStory();
-                    ArrayList<TLRPC$StoryItem> arrayList = new ArrayList<>();
+                    TL_stories$StoryItem selectedStory = selfStoryViewsView.getSelectedStory();
+                    ArrayList<TL_stories$StoryItem> arrayList = new ArrayList<>();
                     int i4 = 0;
                     while (i3 < this.storiesList.messageObjects.size()) {
                         if (selectedStory != null && selectedStory.id == this.storiesList.messageObjects.get(i3).storyItem.id) {
@@ -2315,7 +2454,7 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     return;
                 }
                 StoriesController storiesController = MessagesController.getInstance(this.currentAccount).getStoriesController();
-                ArrayList<TLRPC$PeerStories> hiddenList = storiesListPlaceProvider.hiddedStories ? storiesController.getHiddenList() : storiesController.getDialogListStories();
+                ArrayList<TL_stories$PeerStories> hiddenList = storiesListPlaceProvider.hiddedStories ? storiesController.getHiddenList() : storiesController.getDialogListStories();
                 ArrayList<Long> dialogIds = this.storiesViewPager.getDialogIds();
                 boolean z = false;
                 while (i3 < hiddenList.size()) {
@@ -2355,34 +2494,37 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         }
     }
 
-    public void saveDraft(long j, TLRPC$StoryItem tLRPC$StoryItem, CharSequence charSequence) {
-        if (j == 0 || tLRPC$StoryItem == null) {
+    public void saveDraft(long j, TL_stories$StoryItem tL_stories$StoryItem, CharSequence charSequence) {
+        if (j == 0 || tL_stories$StoryItem == null) {
             return;
         }
-        replyDrafts.put(draftHash(j, tLRPC$StoryItem), charSequence);
+        replyDrafts.put(draftHash(j, tL_stories$StoryItem), charSequence);
     }
 
-    public CharSequence getDraft(long j, TLRPC$StoryItem tLRPC$StoryItem) {
-        return (j == 0 || tLRPC$StoryItem == null) ? "" : replyDrafts.get(draftHash(j, tLRPC$StoryItem), "");
+    public CharSequence getDraft(long j, TL_stories$StoryItem tL_stories$StoryItem) {
+        return (j == 0 || tL_stories$StoryItem == null) ? "" : replyDrafts.get(draftHash(j, tL_stories$StoryItem), "");
     }
 
-    public void clearDraft(long j, TLRPC$StoryItem tLRPC$StoryItem) {
-        if (j == 0 || tLRPC$StoryItem == null) {
+    public void clearDraft(long j, TL_stories$StoryItem tL_stories$StoryItem) {
+        if (j == 0 || tL_stories$StoryItem == null) {
             return;
         }
-        replyDrafts.remove(draftHash(j, tLRPC$StoryItem));
+        replyDrafts.remove(draftHash(j, tL_stories$StoryItem));
     }
 
-    private long draftHash(long j, TLRPC$StoryItem tLRPC$StoryItem) {
-        return j + (j >> 16) + (tLRPC$StoryItem.id << 16);
+    private long draftHash(long j, TL_stories$StoryItem tL_stories$StoryItem) {
+        return j + (j >> 16) + (tL_stories$StoryItem.id << 16);
     }
 
     public void onResume() {
         this.paused = false;
-        if (ArticleViewer.getInstance().isVisible() || getCurrentPeerView() == null) {
-            return;
+        if (!ArticleViewer.getInstance().isVisible() && getCurrentPeerView() != null) {
+            getCurrentPeerView().updatePosition();
         }
-        getCurrentPeerView().updatePosition();
+        StoriesIntro storiesIntro = this.storiesIntro;
+        if (storiesIntro != null) {
+            storiesIntro.startAnimation(false);
+        }
     }
 
     public void onPause() {
@@ -2391,6 +2533,10 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
         if (videoPlayerHolder != null) {
             videoPlayerHolder.release(null);
             this.playerHolder = null;
+        }
+        StoriesIntro storiesIntro = this.storiesIntro;
+        if (storiesIntro != null) {
+            storiesIntro.stopAnimation();
         }
     }
 

@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateChannelAvailableMessages extends TLRPC$Update {
-    public static int constructor = -1304443240;
     public int available_min_id;
     public long channel_id;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_updateChannelAvailableMessages extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1304443240);
         abstractSerializedData.writeInt64(this.channel_id);
         abstractSerializedData.writeInt32(this.available_min_id);
     }

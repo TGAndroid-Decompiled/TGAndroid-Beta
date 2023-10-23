@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_auth_requestFirebaseSms extends TLObject {
-    public static int constructor = -1991881904;
     public int flags;
     public String ios_push_secret;
     public String phone_code_hash;
@@ -14,7 +13,7 @@ public class TLRPC$TL_auth_requestFirebaseSms extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1991881904);
         abstractSerializedData.writeInt32(this.flags);
         abstractSerializedData.writeString(this.phone_number);
         abstractSerializedData.writeString(this.phone_code_hash);

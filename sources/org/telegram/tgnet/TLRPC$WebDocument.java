@@ -12,8 +12,6 @@ public abstract class TLRPC$WebDocument extends TLObject {
         TLRPC$WebDocument tLRPC$WebDocument;
         if (i == -971322408) {
             tLRPC$WebDocument = new TLRPC$TL_webDocument() {
-                public static int constructor = -971322408;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.url = abstractSerializedData2.readString(z2);
@@ -40,7 +38,7 @@ public abstract class TLRPC$WebDocument extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-971322408);
                     abstractSerializedData2.writeString(this.url);
                     abstractSerializedData2.writeInt64(this.access_hash);
                     abstractSerializedData2.writeInt32(this.size);
@@ -56,8 +54,6 @@ public abstract class TLRPC$WebDocument extends TLObject {
             };
         } else if (i == -104284986) {
             tLRPC$WebDocument = new TLRPC$WebDocument() {
-                public static int constructor = -104284986;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.url = abstractSerializedData2.readString(z2);
@@ -82,7 +78,7 @@ public abstract class TLRPC$WebDocument extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-104284986);
                     abstractSerializedData2.writeString(this.url);
                     abstractSerializedData2.writeInt32(this.size);
                     abstractSerializedData2.writeString(this.mime_type);

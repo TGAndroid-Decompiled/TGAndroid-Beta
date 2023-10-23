@@ -23,8 +23,6 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                 break;
             case -1727196013:
                 tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto() {
-                    public static int constructor = -1727196013;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.photo_small = TLRPC$FileLocation.TLdeserialize(abstractSerializedData2, abstractSerializedData2.readInt32(z2), z2);
@@ -33,7 +31,7 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1727196013);
                         this.photo_small.serializeToStream(abstractSerializedData2);
                         this.photo_big.serializeToStream(abstractSerializedData2);
                     }
@@ -41,8 +39,6 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                 break;
             case -865771401:
                 tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto() {
-                    public static int constructor = -865771401;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -66,7 +62,7 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-865771401);
                         int i2 = this.has_video ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -82,8 +78,6 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                 break;
             case -715532088:
                 tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto() {
-                    public static int constructor = -715532088;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.photo_id = abstractSerializedData2.readInt64(z2);
@@ -93,7 +87,7 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-715532088);
                         abstractSerializedData2.writeInt64(this.photo_id);
                         this.photo_small.serializeToStream(abstractSerializedData2);
                         this.photo_big.serializeToStream(abstractSerializedData2);
@@ -102,8 +96,6 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                 break;
             case -321430132:
                 tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto() {
-                    public static int constructor = -321430132;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.photo_id = abstractSerializedData2.readInt64(z2);
@@ -114,7 +106,7 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-321430132);
                         abstractSerializedData2.writeInt64(this.photo_id);
                         this.photo_small.serializeToStream(abstractSerializedData2);
                         this.photo_big.serializeToStream(abstractSerializedData2);
@@ -127,8 +119,6 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
                 break;
             case 1775479590:
                 tLRPC$TL_userProfilePhoto = new TLRPC$TL_userProfilePhoto() {
-                    public static int constructor = 1775479590;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -142,7 +132,7 @@ public abstract class TLRPC$UserProfilePhoto extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1775479590);
                         int i2 = this.has_video ? this.flags | 1 : this.flags & (-2);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);

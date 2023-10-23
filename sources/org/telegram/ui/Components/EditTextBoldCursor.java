@@ -15,6 +15,7 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.RectShape;
 import android.os.Build;
+import android.text.Editable;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -39,6 +40,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLoaderPriorityQueue;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.XiaomiUtilities;
@@ -46,6 +48,7 @@ import org.telegram.ui.ActionBar.FloatingActionMode;
 import org.telegram.ui.ActionBar.FloatingToolbar;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
+import org.telegram.ui.Components.QuoteSpan;
 public class EditTextBoldCursor extends EditTextEffects {
     private static Class editorClass;
     private static Method getVerticalOffsetMethod;
@@ -124,7 +127,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    @TargetApi(26)
+    @TargetApi(MessageObject.TYPE_GIVEAWAY)
     public int getAutofillType() {
         return 0;
     }
@@ -911,7 +914,7 @@ public class EditTextBoldCursor extends EditTextEffects {
     }
 
     @Override
-    protected void onAttachedToWindow() {
+    public void onAttachedToWindow() {
         try {
             super.onAttachedToWindow();
         } catch (Exception e) {
@@ -944,6 +947,14 @@ public class EditTextBoldCursor extends EditTextEffects {
             FloatingToolbar floatingToolbar = new FloatingToolbar(context, view, getActionModeStyle(), getResourcesProvider());
             this.floatingToolbar = floatingToolbar;
             floatingToolbar.setOnPremiumLockClick(this.onPremiumMenuLockClickListener);
+            this.floatingToolbar.setQuoteShowVisible(new Utilities.Callback0Return() {
+                @Override
+                public final Object run() {
+                    boolean shouldShowQuoteButton;
+                    shouldShowQuoteButton = EditTextBoldCursor.this.shouldShowQuoteButton();
+                    return Boolean.valueOf(shouldShowQuoteButton);
+                }
+            });
             this.floatingActionMode = new FloatingActionMode(getContext(), new ActionModeCallback2Wrapper(callback), this, this.floatingToolbar);
             this.floatingToolbarPreDrawListener = new ViewTreeObserver.OnPreDrawListener() {
                 @Override
@@ -972,6 +983,15 @@ public class EditTextBoldCursor extends EditTextEffects {
             return true;
         }
         return true;
+    }
+
+    public boolean shouldShowQuoteButton() {
+        Editable text;
+        if (!hasSelection() || getSelectionStart() < 0 || getSelectionEnd() < 0 || getSelectionStart() == getSelectionEnd() || (text = getText()) == null) {
+            return false;
+        }
+        QuoteSpan.QuoteStyleSpan[] quoteStyleSpanArr = (QuoteSpan.QuoteStyleSpan[]) text.getSpans(getSelectionStart(), getSelectionEnd(), QuoteSpan.QuoteStyleSpan.class);
+        return quoteStyleSpanArr == null || quoteStyleSpanArr.length == 0;
     }
 
     @Override

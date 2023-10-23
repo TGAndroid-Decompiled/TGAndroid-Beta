@@ -150,13 +150,27 @@ public class ThemeColors {
         iArr[Theme.key_avatar_subtitleInProfileBlue] = -2626822;
         iArr[Theme.key_avatar_actionBarSelectorBlue] = -11959891;
         iArr[Theme.key_avatar_actionBarIconBlue] = -1;
-        iArr[Theme.key_avatar_nameInMessageRed] = -3516848;
-        iArr[Theme.key_avatar_nameInMessageOrange] = -2589911;
-        iArr[Theme.key_avatar_nameInMessageViolet] = -6592804;
-        iArr[Theme.key_avatar_nameInMessageGreen] = -11488718;
-        iArr[Theme.key_avatar_nameInMessageCyan] = -13132104;
-        iArr[Theme.key_avatar_nameInMessageBlue] = -11627828;
-        iArr[Theme.key_avatar_nameInMessagePink] = -3187563;
+        iArr[Theme.key_avatar_nameInMessageRed] = -3387319;
+        iArr[Theme.key_avatar_nameInMessageOrange] = -2722014;
+        iArr[Theme.key_avatar_nameInMessageViolet] = -6988581;
+        iArr[Theme.key_avatar_nameInMessageGreen] = -12539616;
+        iArr[Theme.key_avatar_nameInMessageCyan] = -13590854;
+        iArr[Theme.key_avatar_nameInMessageBlue] = -13202735;
+        iArr[Theme.key_avatar_nameInMessagePink] = -3714933;
+        iArr[Theme.key_avatar_composite_nameInMessageRed] = -2011054;
+        iArr[Theme.key_avatar_composite_nameInMessageOrange] = -2064341;
+        iArr[Theme.key_avatar_composite_nameInMessageViolet] = -6266893;
+        iArr[Theme.key_avatar_composite_nameInMessageGreen] = -14178032;
+        iArr[Theme.key_avatar_composite_nameInMessageCyan] = -14177074;
+        iArr[Theme.key_avatar_composite_nameInMessageBlue] = -13397548;
+        iArr[Theme.key_avatar_composite_nameInMessagePink] = -3061390;
+        iArr[Theme.key_avatar_composite_nameInMessageRed2] = -414109;
+        iArr[Theme.key_avatar_composite_nameInMessageOrange2] = -342732;
+        iArr[Theme.key_avatar_composite_nameInMessageViolet2] = -749569;
+        iArr[Theme.key_avatar_composite_nameInMessageGreen2] = -5776297;
+        iArr[Theme.key_avatar_composite_nameInMessageCyan2] = -8197930;
+        iArr[Theme.key_avatar_composite_nameInMessageBlue2] = -8530960;
+        iArr[Theme.key_avatar_composite_nameInMessagePink2] = -16737;
         iArr[Theme.key_actionBarDefault] = -11371101;
         iArr[Theme.key_actionBarDefaultIcon] = -1;
         iArr[Theme.key_actionBarActionModeDefault] = -1;
@@ -490,6 +504,8 @@ public class ThemeColors {
         iArr[Theme.key_chat_mediaLoaderPhotoIcon] = -1;
         iArr[Theme.key_chat_mediaLoaderPhotoIconSelected] = -2500135;
         iArr[Theme.key_chat_serviceBackgroundSelector] = 553648127;
+        iArr[Theme.key_chat_inQuote] = -12215336;
+        iArr[Theme.key_chat_outQuote] = -9783200;
         iArr[Theme.key_profile_creatorIcon] = -12937771;
         iArr[Theme.key_profile_actionIcon] = -8288630;
         iArr[Theme.key_profile_actionBackground] = -1;
@@ -710,6 +726,16 @@ public class ThemeColors {
         iArr[Theme.key_stories_circle_dialog2] = -11680769;
         iArr[Theme.key_stories_circle_closeFriends1] = -3544264;
         iArr[Theme.key_stories_circle_closeFriends2] = -16137881;
+        iArr[Theme.key_code_background] = 536870912;
+        iArr[Theme.key_chat_inCodeBackground] = 138954824;
+        iArr[Theme.key_chat_outCodeBackground] = 305952003;
+        iArr[Theme.key_code_keyword] = -2075818;
+        iArr[Theme.key_code_operator] = -11682817;
+        iArr[Theme.key_code_constant] = -8422925;
+        iArr[Theme.key_code_string] = -10369198;
+        iArr[Theme.key_code_number] = -13467675;
+        iArr[Theme.key_code_comment] = Integer.MIN_VALUE;
+        iArr[Theme.key_code_function] = -881607;
         return iArr;
     }
 
@@ -875,6 +901,20 @@ public class ThemeColors {
         sparseArray.put(Theme.key_avatar_nameInMessageCyan, "avatar_nameInMessageCyan");
         sparseArray.put(Theme.key_avatar_nameInMessageBlue, "avatar_nameInMessageBlue");
         sparseArray.put(Theme.key_avatar_nameInMessagePink, "avatar_nameInMessagePink");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageRed, "avatar_composite_nameInMessageRed");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageOrange, "avatar_composite_nameInMessageOrange");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageViolet, "avatar_composite_nameInMessageViolet");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageGreen, "avatar_composite_nameInMessageGreen");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageCyan, "avatar_composite_nameInMessageCyan");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageBlue, "avatar_composite_nameInMessageBlue");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessagePink, "avatar_composite_nameInMessagePink");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageRed2, "avatar_composite_nameInMessageRed2");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageOrange2, "avatar_composite_nameInMessageOrange2");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageViolet2, "avatar_composite_nameInMessageViolet2");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageGreen2, "avatar_composite_nameInMessageGreen2");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageCyan2, "avatar_composite_nameInMessageCyan2");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessageBlue2, "avatar_composite_nameInMessageBlue2");
+        sparseArray.put(Theme.key_avatar_composite_nameInMessagePink2, "avatar_composite_nameInMessagePink2");
         sparseArray.put(Theme.key_actionBarDefault, "actionBarDefault");
         sparseArray.put(Theme.key_actionBarDefaultSelector, "actionBarDefaultSelector");
         sparseArray.put(Theme.key_actionBarWhiteSelector, "actionBarWhiteSelector");
@@ -1007,6 +1047,8 @@ public class ThemeColors {
         sparseArray.put(Theme.key_chat_serviceBackground, "chat_serviceBackground");
         sparseArray.put(Theme.key_chat_serviceBackgroundSelected, "chat_serviceBackgroundSelected");
         sparseArray.put(Theme.key_chat_serviceBackgroundSelector, "chat_serviceBackgroundSelector");
+        sparseArray.put(Theme.key_chat_inQuote, "chat_inQuote");
+        sparseArray.put(Theme.key_chat_outQuote, "chat_outQuote");
         sparseArray.put(Theme.key_chat_muteIcon, "chat_muteIcon");
         sparseArray.put(Theme.key_chat_lockIcon, "chat_lockIcon");
         sparseArray.put(Theme.key_chat_outSentCheck, "chat_outSentCheck");
@@ -1435,6 +1477,16 @@ public class ThemeColors {
         sparseArray.put(Theme.key_stories_circle_dialog2, "stories_circle_dialog2");
         sparseArray.put(Theme.key_stories_circle_closeFriends1, "stories_circle_closeFriends1");
         sparseArray.put(Theme.key_stories_circle_closeFriends2, "stories_circle_closeFriends2");
+        sparseArray.put(Theme.key_code_background, "code_background");
+        sparseArray.put(Theme.key_chat_inCodeBackground, "chat_inCodeBackground");
+        sparseArray.put(Theme.key_chat_outCodeBackground, "chat_outCodeBackground");
+        sparseArray.put(Theme.key_code_keyword, "code_keyword");
+        sparseArray.put(Theme.key_code_operator, "code_operator");
+        sparseArray.put(Theme.key_code_constant, "code_constant");
+        sparseArray.put(Theme.key_code_string, "code_string");
+        sparseArray.put(Theme.key_code_number, "code_number");
+        sparseArray.put(Theme.key_code_comment, "code_comment");
+        sparseArray.put(Theme.key_code_function, "code_function");
         return sparseArray;
     }
 

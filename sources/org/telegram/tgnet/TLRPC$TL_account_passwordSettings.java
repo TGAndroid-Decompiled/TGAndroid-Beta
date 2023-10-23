@@ -1,12 +1,11 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_account_passwordSettings extends TLObject {
-    public static int constructor = -1705233435;
     public String email;
     public int flags;
     public TLRPC$TL_secureSecretSettings secure_settings;
 
     public static TLRPC$TL_account_passwordSettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1705233435 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_account_passwordSettings", Integer.valueOf(i)));
             }
@@ -31,7 +30,7 @@ public class TLRPC$TL_account_passwordSettings extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1705233435);
         abstractSerializedData.writeInt32(this.flags);
         if ((this.flags & 1) != 0) {
             abstractSerializedData.writeString(this.email);

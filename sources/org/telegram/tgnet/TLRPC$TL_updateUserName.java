@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_updateUserName extends TLRPC$Update {
-    public static int constructor = -1484486364;
     public String first_name;
     public String last_name;
     public long user_id;
@@ -32,7 +31,7 @@ public class TLRPC$TL_updateUserName extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1484486364);
         abstractSerializedData.writeInt64(this.user_id);
         abstractSerializedData.writeString(this.first_name);
         abstractSerializedData.writeString(this.last_name);

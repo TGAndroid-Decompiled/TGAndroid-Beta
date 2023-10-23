@@ -8,17 +8,13 @@ public abstract class TLRPC$messages_StickerSetInstallResult extends TLObject {
         TLRPC$messages_StickerSetInstallResult tLRPC$messages_StickerSetInstallResult;
         if (i != 904138920) {
             tLRPC$messages_StickerSetInstallResult = i != 946083368 ? null : new TLRPC$messages_StickerSetInstallResult() {
-                public static int constructor = 946083368;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(946083368);
                 }
             };
         } else {
             tLRPC$messages_StickerSetInstallResult = new TLRPC$messages_StickerSetInstallResult() {
-                public static int constructor = 904138920;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -40,7 +36,7 @@ public abstract class TLRPC$messages_StickerSetInstallResult extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(904138920);
                     abstractSerializedData2.writeInt32(481674261);
                     int size = this.sets.size();
                     abstractSerializedData2.writeInt32(size);

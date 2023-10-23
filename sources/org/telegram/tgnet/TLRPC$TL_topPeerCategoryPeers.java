@@ -2,13 +2,12 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_topPeerCategoryPeers extends TLObject {
-    public static int constructor = -75283823;
     public TLRPC$TopPeerCategory category;
     public int count;
     public ArrayList<TLRPC$TL_topPeer> peers = new ArrayList<>();
 
     public static TLRPC$TL_topPeerCategoryPeers TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-75283823 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_topPeerCategoryPeers", Integer.valueOf(i)));
             }
@@ -42,7 +41,7 @@ public class TLRPC$TL_topPeerCategoryPeers extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-75283823);
         this.category.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.count);
         abstractSerializedData.writeInt32(481674261);

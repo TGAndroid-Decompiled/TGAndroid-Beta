@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_contacts_getTopPeers extends TLObject {
-    public static int constructor = -1758168906;
     public boolean bots_inline;
     public boolean bots_pm;
     public boolean channels;
@@ -23,7 +22,7 @@ public class TLRPC$TL_contacts_getTopPeers extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1758168906);
         int i = this.correspondents ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.bots_pm ? i | 2 : i & (-3);

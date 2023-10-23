@@ -37,6 +37,10 @@ public class Utilities {
         void run(T t);
     }
 
+    public interface Callback0Return<ReturnType> {
+        ReturnType run();
+    }
+
     public interface Callback2<T, T2> {
         void run(T t, T2 t2);
     }

@@ -10,7 +10,6 @@ public class WrappedResourceProvider implements Theme.ResourcesProvider {
     public SparseIntArray sparseIntArray = new SparseIntArray();
 
     public void appendColors() {
-        throw null;
     }
 
     public WrappedResourceProvider(Theme.ResourcesProvider resourcesProvider) {

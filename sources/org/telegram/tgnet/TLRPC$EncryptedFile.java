@@ -10,8 +10,6 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
         TLRPC$EncryptedFile tLRPC$EncryptedFile;
         if (i == -1476358952) {
             tLRPC$EncryptedFile = new TLRPC$EncryptedFile() {
-                public static int constructor = -1476358952;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.id = abstractSerializedData2.readInt64(z2);
@@ -23,7 +21,7 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1476358952);
                     abstractSerializedData2.writeInt64(this.id);
                     abstractSerializedData2.writeInt64(this.access_hash);
                     abstractSerializedData2.writeInt64(this.size);
@@ -33,8 +31,6 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
             };
         } else if (i != -1038136962) {
             tLRPC$EncryptedFile = i != 1248893260 ? null : new TLRPC$EncryptedFile() {
-                public static int constructor = 1248893260;
-
                 @Override
                 public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                     this.id = abstractSerializedData2.readInt64(z2);
@@ -46,7 +42,7 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
 
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(1248893260);
                     abstractSerializedData2.writeInt64(this.id);
                     abstractSerializedData2.writeInt64(this.access_hash);
                     abstractSerializedData2.writeInt32((int) this.size);
@@ -56,11 +52,9 @@ public abstract class TLRPC$EncryptedFile extends TLObject {
             };
         } else {
             tLRPC$EncryptedFile = new TLRPC$EncryptedFile() {
-                public static int constructor = -1038136962;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1038136962);
                 }
             };
         }

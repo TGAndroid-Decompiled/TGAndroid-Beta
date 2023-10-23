@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_updateFolderPeers extends TLRPC$Update {
-    public static int constructor = 422972864;
     public ArrayList<TLRPC$TL_folderPeer> folder_peers = new ArrayList<>();
     public int pts;
     public int pts_count;
@@ -30,7 +29,7 @@ public class TLRPC$TL_updateFolderPeers extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(422972864);
         abstractSerializedData.writeInt32(481674261);
         int size = this.folder_peers.size();
         abstractSerializedData.writeInt32(size);

@@ -28,8 +28,6 @@ public abstract class TLRPC$PhoneCall extends TLObject {
         switch (i) {
             case -1770029977:
                 tLRPC$PhoneCall = new TLRPC$PhoneCall() {
-                    public static int constructor = -1770029977;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -64,7 +62,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1770029977);
                         int i2 = this.p2p_allowed ? this.flags | 32 : this.flags & (-33);
                         this.flags = i2;
                         int i3 = this.video ? i2 | 64 : i2 & (-65);
@@ -90,8 +88,6 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                 break;
             case -987599081:
                 tLRPC$PhoneCall = new TLRPC$PhoneCall() {
-                    public static int constructor = -987599081;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -110,7 +106,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-987599081);
                         int i2 = this.video ? this.flags | 64 : this.flags & (-65);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -128,8 +124,6 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                 break;
             case 347139340:
                 tLRPC$PhoneCall = new TLRPC$PhoneCall() {
-                    public static int constructor = 347139340;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -146,7 +140,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(347139340);
                         int i2 = this.video ? this.flags | 64 : this.flags & (-65);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -162,8 +156,6 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                 break;
             case 912311057:
                 tLRPC$PhoneCall = new TLRPC$PhoneCall() {
-                    public static int constructor = 912311057;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -180,7 +172,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(912311057);
                         int i2 = this.video ? this.flags | 64 : this.flags & (-65);
                         this.flags = i2;
                         abstractSerializedData2.writeInt32(i2);
@@ -196,8 +188,6 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                 break;
             case 1355435489:
                 tLRPC$PhoneCall = new TLRPC$PhoneCall() {
-                    public static int constructor = 1355435489;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         int readInt32 = abstractSerializedData2.readInt32(z2);
@@ -216,7 +206,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1355435489);
                         int i2 = this.need_rating ? this.flags | 4 : this.flags & (-5);
                         this.flags = i2;
                         int i3 = this.need_debug ? i2 | 8 : i2 & (-9);
@@ -236,8 +226,6 @@ public abstract class TLRPC$PhoneCall extends TLObject {
                 break;
             case 1399245077:
                 tLRPC$PhoneCall = new TLRPC$PhoneCall() {
-                    public static int constructor = 1399245077;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt64(z2);
@@ -245,7 +233,7 @@ public abstract class TLRPC$PhoneCall extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1399245077);
                         abstractSerializedData2.writeInt64(this.id);
                     }
                 };

@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_pageBlockList extends TLRPC$PageBlock {
-    public static int constructor = -454524911;
     public ArrayList<TLRPC$PageListItem> items = new ArrayList<>();
     public boolean ordered;
 
@@ -27,7 +26,7 @@ public class TLRPC$TL_pageBlockList extends TLRPC$PageBlock {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-454524911);
         abstractSerializedData.writeInt32(481674261);
         int size = this.items.size();
         abstractSerializedData.writeInt32(size);

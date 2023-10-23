@@ -59,7 +59,6 @@ import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
 import org.telegram.tgnet.TLRPC$ChatReactions;
 import org.telegram.tgnet.TLRPC$Reaction;
-import org.telegram.tgnet.TLRPC$StoryItem;
 import org.telegram.tgnet.TLRPC$TL_availableReaction;
 import org.telegram.tgnet.TLRPC$TL_chatReactionsAll;
 import org.telegram.tgnet.TLRPC$TL_chatReactionsNone;
@@ -67,6 +66,7 @@ import org.telegram.tgnet.TLRPC$TL_chatReactionsSome;
 import org.telegram.tgnet.TLRPC$TL_messageReactions;
 import org.telegram.tgnet.TLRPC$TL_reactionCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_reactionEmoji;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
 import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
@@ -963,10 +963,10 @@ public class ReactionsContainerLayout extends FrameLayout implements Notificatio
         }
     }
 
-    public void setStoryItem(TLRPC$StoryItem tLRPC$StoryItem) {
+    public void setStoryItem(TL_stories$StoryItem tL_stories$StoryItem) {
         TLRPC$Reaction tLRPC$Reaction;
         this.selectedReactions.clear();
-        if (tLRPC$StoryItem != null && (tLRPC$Reaction = tLRPC$StoryItem.sent_reaction) != null) {
+        if (tL_stories$StoryItem != null && (tLRPC$Reaction = tL_stories$StoryItem.sent_reaction) != null) {
             this.selectedReactions.add(ReactionsLayoutInBubble.VisibleReaction.fromTLReaction(tLRPC$Reaction));
         }
         this.listAdapter.notifyDataSetChanged();

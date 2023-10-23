@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_phone_discardCall extends TLObject {
-    public static int constructor = -1295269440;
     public long connection_id;
     public int duration;
     public int flags;
@@ -15,7 +14,7 @@ public class TLRPC$TL_phone_discardCall extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1295269440);
         int i = this.video ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

@@ -440,8 +440,6 @@ public class DataSettingsActivity extends BaseFragment {
 
     public void lambda$createView$7(DialogInterface dialogInterface, int i) {
         getConnectionsManager().sendRequest(new TLObject() {
-            public static int constructor = 2119757468;
-
             @Override
             public TLObject deserializeResponse(AbstractSerializedData abstractSerializedData, int i2, boolean z) {
                 return TLRPC$Bool.TLdeserialize(abstractSerializedData, i2, z);
@@ -449,7 +447,7 @@ public class DataSettingsActivity extends BaseFragment {
 
             @Override
             public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-                abstractSerializedData.writeInt32(constructor);
+                abstractSerializedData.writeInt32(2119757468);
             }
         }, new RequestDelegate() {
             @Override

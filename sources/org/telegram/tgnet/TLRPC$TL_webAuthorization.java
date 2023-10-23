@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_webAuthorization extends TLObject {
-    public static int constructor = -1493633966;
     public long bot_id;
     public String browser;
     public int date_active;
@@ -12,7 +11,7 @@ public class TLRPC$TL_webAuthorization extends TLObject {
     public String region;
 
     public static TLRPC$TL_webAuthorization TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-1493633966 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_webAuthorization", Integer.valueOf(i)));
             }
@@ -38,7 +37,7 @@ public class TLRPC$TL_webAuthorization extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1493633966);
         abstractSerializedData.writeInt64(this.hash);
         abstractSerializedData.writeInt64(this.bot_id);
         abstractSerializedData.writeString(this.domain);

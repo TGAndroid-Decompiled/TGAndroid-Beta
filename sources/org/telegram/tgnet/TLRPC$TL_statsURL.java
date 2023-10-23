@@ -1,10 +1,9 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_statsURL extends TLObject {
-    public static int constructor = 1202287072;
     public String url;
 
     public static TLRPC$TL_statsURL TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (1202287072 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_statsURL", Integer.valueOf(i)));
             }
@@ -22,7 +21,7 @@ public class TLRPC$TL_statsURL extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1202287072);
         abstractSerializedData.writeString(this.url);
     }
 }

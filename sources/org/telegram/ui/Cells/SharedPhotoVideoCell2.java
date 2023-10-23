@@ -36,10 +36,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$PhotoSize;
-import org.telegram.tgnet.TLRPC$StoryItem;
-import org.telegram.tgnet.TLRPC$StoryViews;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
 import org.telegram.tgnet.TLRPC$TL_messageMediaUnsupported;
+import org.telegram.tgnet.tl.TL_stories$StoryItem;
+import org.telegram.tgnet.tl.TL_stories$StoryViews;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
 import org.telegram.ui.Components.AnimatedTextView;
@@ -173,7 +173,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
     }
 
     public void setMessageObject(MessageObject messageObject, int i) {
-        TLRPC$StoryViews tLRPC$StoryViews;
+        TL_stories$StoryViews tL_stories$StoryViews;
         int i2 = this.currentParentColumnsCount;
         this.currentParentColumnsCount = i;
         MessageObject messageObject2 = this.currentMessageObject;
@@ -212,8 +212,8 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             this.videoInfoLayot = null;
             this.showVideoLayout = false;
             this.imageReceiver.clearDecorators();
-            if (this.isStory && (tLRPC$StoryViews = messageObject.storyItem.views) != null) {
-                int i4 = tLRPC$StoryViews.views_count;
+            if (this.isStory && (tL_stories$StoryViews = messageObject.storyItem.views) != null) {
+                int i4 = tL_stories$StoryViews.views_count;
                 this.drawViews = i4 > 0;
                 this.viewsText.setText(AndroidUtilities.formatWholeNumber(i4, 0), false);
             } else {
@@ -223,9 +223,9 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             }
             this.viewsAlpha.set(this.drawViews ? 1.0f : 0.0f, true);
             if (TextUtils.isEmpty(restrictionReason)) {
-                TLRPC$StoryItem tLRPC$StoryItem = messageObject.storyItem;
-                if (tLRPC$StoryItem != null && (tLRPC$StoryItem.media instanceof TLRPC$TL_messageMediaUnsupported)) {
-                    tLRPC$StoryItem.dialogId = messageObject.getDialogId();
+                TL_stories$StoryItem tL_stories$StoryItem = messageObject.storyItem;
+                if (tL_stories$StoryItem != null && (tL_stories$StoryItem.media instanceof TLRPC$TL_messageMediaUnsupported)) {
+                    tL_stories$StoryItem.dialogId = messageObject.getDialogId();
                     Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_emoji_recent).mutate();
                     mutate.setColorFilter(new PorterDuffColorFilter(1090519039, PorterDuff.Mode.SRC_IN));
                     this.imageReceiver.setImageBitmap(new CombinedDrawable(new ColorDrawable(-13421773), mutate));
@@ -300,9 +300,9 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             if (this.imageReceiver.getBitmap() != null && this.currentMessageObject.hasMediaSpoilers() && !this.currentMessageObject.isMediaSpoilersRevealed) {
                 this.blurImageReceiver.setImageBitmap(Utilities.stackBlurBitmapMax(this.imageReceiver.getBitmap()));
             }
-            TLRPC$StoryItem tLRPC$StoryItem2 = messageObject.storyItem;
-            if (tLRPC$StoryItem2 != null) {
-                this.imageReceiver.addDecorator(new StoryWidgetsImageDecorator(tLRPC$StoryItem2));
+            TL_stories$StoryItem tL_stories$StoryItem2 = messageObject.storyItem;
+            if (tL_stories$StoryItem2 != null) {
+                this.imageReceiver.addDecorator(new StoryWidgetsImageDecorator(tL_stories$StoryItem2));
             }
             invalidate();
         }
@@ -416,10 +416,10 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
 
     public void updateViews() {
         MessageObject messageObject;
-        TLRPC$StoryItem tLRPC$StoryItem;
-        TLRPC$StoryViews tLRPC$StoryViews;
-        if (this.isStory && (messageObject = this.currentMessageObject) != null && (tLRPC$StoryItem = messageObject.storyItem) != null && (tLRPC$StoryViews = tLRPC$StoryItem.views) != null) {
-            int i = tLRPC$StoryViews.views_count;
+        TL_stories$StoryItem tL_stories$StoryItem;
+        TL_stories$StoryViews tL_stories$StoryViews;
+        if (this.isStory && (messageObject = this.currentMessageObject) != null && (tL_stories$StoryItem = messageObject.storyItem) != null && (tL_stories$StoryViews = tL_stories$StoryItem.views) != null) {
+            int i = tL_stories$StoryViews.views_count;
             this.drawViews = i > 0;
             this.viewsText.setText(AndroidUtilities.formatWholeNumber(i, 0), true);
             return;

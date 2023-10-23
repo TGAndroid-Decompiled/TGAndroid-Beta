@@ -1,13 +1,12 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_channelAdminLogEvent extends TLObject {
-    public static int constructor = 531458253;
     public TLRPC$ChannelAdminLogEventAction action;
     public int date;
     public long id;
     public long user_id;
 
     public static TLRPC$TL_channelAdminLogEvent TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (531458253 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_channelAdminLogEvent", Integer.valueOf(i)));
             }
@@ -28,7 +27,7 @@ public class TLRPC$TL_channelAdminLogEvent extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(531458253);
         abstractSerializedData.writeInt64(this.id);
         abstractSerializedData.writeInt32(this.date);
         abstractSerializedData.writeInt64(this.user_id);

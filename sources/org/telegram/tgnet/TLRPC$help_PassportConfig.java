@@ -4,11 +4,9 @@ public abstract class TLRPC$help_PassportConfig extends TLObject {
         TLRPC$help_PassportConfig tLRPC$TL_help_passportConfig;
         if (i != -1600596305) {
             tLRPC$TL_help_passportConfig = i != -1078332329 ? null : new TLRPC$help_PassportConfig() {
-                public static int constructor = -1078332329;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(-1078332329);
                 }
             };
         } else {

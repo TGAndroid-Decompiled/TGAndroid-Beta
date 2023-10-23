@@ -26,7 +26,6 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
                 break;
             case -610299584:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$ChannelAdminLogEventAction() {
-                    public static int constructor = -610299584;
                     public TLRPC$TL_inputGroupCall call;
 
                     @Override
@@ -36,7 +35,7 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-610299584);
                         this.call.serializeToStream(abstractSerializedData2);
                     }
                 };
@@ -67,11 +66,9 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
                 break;
             case -124291086:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$ChannelAdminLogEventAction() {
-                    public static int constructor = -124291086;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-124291086);
                     }
                 };
                 break;
@@ -95,11 +92,9 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
                 break;
             case 405815507:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$ChannelAdminLogEventAction() {
-                    public static int constructor = 405815507;
-
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(405815507);
                     }
                 };
                 break;
@@ -108,7 +103,6 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
                 break;
             case 589338437:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$ChannelAdminLogEventAction() {
-                    public static int constructor = 589338437;
                     public TLRPC$TL_inputGroupCall call;
 
                     @Override
@@ -118,7 +112,7 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(589338437);
                         this.call.serializeToStream(abstractSerializedData2);
                     }
                 };
@@ -128,6 +122,25 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
                 break;
             case 771095562:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionDefaultBannedRights();
+                break;
+            case 1009460347:
+                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$ChannelAdminLogEventAction() {
+                    public int new_value;
+                    public int prev_value;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.prev_value = abstractSerializedData2.readInt32(z2);
+                        this.new_value = abstractSerializedData2.readInt32(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(1009460347);
+                        abstractSerializedData2.writeInt32(this.prev_value);
+                        abstractSerializedData2.writeInt32(this.new_value);
+                    }
+                };
                 break;
             case 1048537159:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionParticipantVolume();
@@ -140,6 +153,25 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
                 break;
             case 1129042607:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangePhoto();
+                break;
+            case 1147126836:
+                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$ChannelAdminLogEventAction() {
+                    public long new_value;
+                    public long prev_value;
+
+                    @Override
+                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
+                        this.prev_value = abstractSerializedData2.readInt64(z2);
+                        this.new_value = abstractSerializedData2.readInt64(z2);
+                    }
+
+                    @Override
+                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
+                        abstractSerializedData2.writeInt32(1147126836);
+                        abstractSerializedData2.writeInt64(this.prev_value);
+                        abstractSerializedData2.writeInt64(this.new_value);
+                    }
+                };
                 break;
             case 1401984889:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionToggleSlowMode();

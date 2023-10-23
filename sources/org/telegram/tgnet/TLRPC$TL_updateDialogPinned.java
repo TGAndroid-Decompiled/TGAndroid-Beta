@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateDialogPinned extends TLRPC$Update {
-    public static int constructor = 1852826908;
     public int flags;
     public int folder_id;
     public TLRPC$DialogPeer peer;
@@ -19,7 +18,7 @@ public class TLRPC$TL_updateDialogPinned extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1852826908);
         int i = this.pinned ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

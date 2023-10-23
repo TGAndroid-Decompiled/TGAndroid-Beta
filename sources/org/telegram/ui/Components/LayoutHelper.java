@@ -34,6 +34,12 @@ public class LayoutHelper {
         return layoutParams;
     }
 
+    public static FrameLayout.LayoutParams createFrameMarginPx(int i, float f, int i2, int i3, int i4, int i5, int i6) {
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(getSize(i), getSize(f), i2);
+        layoutParams.setMargins(i3, i4, i5, i6);
+        return layoutParams;
+    }
+
     public static FrameLayout.LayoutParams createFrame(int i, int i2, int i3) {
         return new FrameLayout.LayoutParams(getSize(i), getSize(i2), i3);
     }

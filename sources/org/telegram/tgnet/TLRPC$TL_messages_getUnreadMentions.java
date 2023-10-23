@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getUnreadMentions extends TLObject {
-    public static int constructor = -251140208;
     public int add_offset;
     public int flags;
     public int limit;
@@ -17,7 +16,7 @@ public class TLRPC$TL_messages_getUnreadMentions extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-251140208);
         abstractSerializedData.writeInt32(this.flags);
         this.peer.serializeToStream(abstractSerializedData);
         if ((this.flags & 1) != 0) {

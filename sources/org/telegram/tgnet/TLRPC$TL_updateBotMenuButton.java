@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateBotMenuButton extends TLRPC$Update {
-    public static int constructor = 347625491;
     public long bot_id;
     public TLRPC$BotMenuButton button;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_updateBotMenuButton extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(347625491);
         abstractSerializedData.writeInt64(this.bot_id);
         this.button.serializeToStream(abstractSerializedData);
     }

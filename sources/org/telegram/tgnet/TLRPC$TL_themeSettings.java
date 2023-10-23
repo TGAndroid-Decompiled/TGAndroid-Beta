@@ -1,9 +1,7 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_themeSettings extends TLRPC$ThemeSettings {
-    public static int constructor = -94849324;
-
     public static TLRPC$TL_themeSettings TLdeserialize(AbstractSerializedData abstractSerializedData, int i, boolean z) {
-        if (constructor != i) {
+        if (-94849324 != i) {
             if (z) {
                 throw new RuntimeException(String.format("can't parse magic %x in TL_themeSettings", Integer.valueOf(i)));
             }
@@ -44,7 +42,7 @@ public class TLRPC$TL_themeSettings extends TLRPC$ThemeSettings {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-94849324);
         int i = this.message_colors_animated ? this.flags | 4 : this.flags & (-5);
         this.flags = i;
         abstractSerializedData.writeInt32(i);

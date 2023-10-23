@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_messages_getArchivedStickers extends TLObject {
-    public static int constructor = 1475442322;
     public boolean emojis;
     public int flags;
     public int limit;
@@ -14,7 +13,7 @@ public class TLRPC$TL_messages_getArchivedStickers extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(1475442322);
         int i = this.masks ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.emojis ? i | 2 : i & (-3);

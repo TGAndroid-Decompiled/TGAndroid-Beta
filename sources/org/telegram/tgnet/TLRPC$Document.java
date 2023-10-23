@@ -28,13 +28,11 @@ public abstract class TLRPC$Document extends TLObject {
             case -2027738169:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document_layer82();
                 break;
-            case -1881881384:
+            case TLRPC$TL_document.constructor:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document();
                 break;
             case -1683841855:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document() {
-                    public static int constructor = -1683841855;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
@@ -84,7 +82,7 @@ public abstract class TLRPC$Document extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1683841855);
                         abstractSerializedData2.writeInt32(this.flags);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
@@ -112,8 +110,6 @@ public abstract class TLRPC$Document extends TLObject {
                 break;
             case -1627626714:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document() {
-                    public static int constructor = -1627626714;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt64(z2);
@@ -129,7 +125,7 @@ public abstract class TLRPC$Document extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-1627626714);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
@@ -144,8 +140,6 @@ public abstract class TLRPC$Document extends TLObject {
                 break;
             case -106717361:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document() {
-                    public static int constructor = -106717361;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt64(z2);
@@ -174,7 +168,7 @@ public abstract class TLRPC$Document extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(-106717361);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32(this.date);
@@ -193,8 +187,6 @@ public abstract class TLRPC$Document extends TLObject {
                 break;
             case 512177195:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document() {
-                    public static int constructor = 512177195;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.flags = abstractSerializedData2.readInt32(z2);
@@ -261,7 +253,7 @@ public abstract class TLRPC$Document extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(512177195);
                         abstractSerializedData2.writeInt32(this.flags);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
@@ -300,8 +292,6 @@ public abstract class TLRPC$Document extends TLObject {
                 break;
             case 1431655766:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document() {
-                    public static int constructor = 1431655766;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt64(z2);
@@ -319,7 +309,7 @@ public abstract class TLRPC$Document extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1431655766);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeInt32((int) this.user_id);
@@ -339,8 +329,6 @@ public abstract class TLRPC$Document extends TLObject {
                 break;
             case 1498631756:
                 tLRPC$TL_document_layer82 = new TLRPC$TL_document() {
-                    public static int constructor = 1498631756;
-
                     @Override
                     public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
                         this.id = abstractSerializedData2.readInt64(z2);
@@ -370,7 +358,7 @@ public abstract class TLRPC$Document extends TLObject {
 
                     @Override
                     public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(constructor);
+                        abstractSerializedData2.writeInt32(1498631756);
                         abstractSerializedData2.writeInt64(this.id);
                         abstractSerializedData2.writeInt64(this.access_hash);
                         abstractSerializedData2.writeByteArray(this.file_reference);

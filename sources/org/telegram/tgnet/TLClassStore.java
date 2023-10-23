@@ -9,26 +9,26 @@ public class TLClassStore {
     public TLClassStore() {
         SparseArray<Class> sparseArray = new SparseArray<>();
         this.classStore = sparseArray;
-        sparseArray.put(TLRPC$TL_error.constructor, TLRPC$TL_error.class);
-        this.classStore.put(TLRPC$TL_decryptedMessageService.constructor, TLRPC$TL_decryptedMessageService.class);
-        this.classStore.put(TLRPC$TL_decryptedMessage.constructor, TLRPC$TL_decryptedMessage.class);
-        this.classStore.put(TLRPC$TL_decryptedMessageLayer.constructor, TLRPC$TL_decryptedMessageLayer.class);
-        this.classStore.put(TLRPC$TL_decryptedMessage_layer17.constructor, TLRPC$TL_decryptedMessage.class);
-        this.classStore.put(TLRPC$TL_decryptedMessage_layer45.constructor, TLRPC$TL_decryptedMessage_layer45.class);
-        this.classStore.put(TLRPC$TL_decryptedMessageService_layer8.constructor, TLRPC$TL_decryptedMessageService_layer8.class);
-        this.classStore.put(TLRPC$TL_decryptedMessage_layer8.constructor, TLRPC$TL_decryptedMessage_layer8.class);
-        this.classStore.put(TLRPC$TL_message_secret.constructor, TLRPC$TL_message_secret.class);
-        this.classStore.put(TLRPC$TL_message_secret_layer72.constructor, TLRPC$TL_message_secret_layer72.class);
-        this.classStore.put(TLRPC$TL_message_secret_old.constructor, TLRPC$TL_message_secret_old.class);
-        this.classStore.put(TLRPC$TL_messageEncryptedAction.constructor, TLRPC$TL_messageEncryptedAction.class);
-        this.classStore.put(TLRPC$TL_null.constructor, TLRPC$TL_null.class);
-        this.classStore.put(TLRPC$TL_updateShortChatMessage.constructor, TLRPC$TL_updateShortChatMessage.class);
-        this.classStore.put(TLRPC$TL_updates.constructor, TLRPC$TL_updates.class);
-        this.classStore.put(TLRPC$TL_updateShortMessage.constructor, TLRPC$TL_updateShortMessage.class);
-        this.classStore.put(TLRPC$TL_updateShort.constructor, TLRPC$TL_updateShort.class);
-        this.classStore.put(TLRPC$TL_updatesCombined.constructor, TLRPC$TL_updatesCombined.class);
-        this.classStore.put(TLRPC$TL_updateShortSentMessage.constructor, TLRPC$TL_updateShortSentMessage.class);
-        this.classStore.put(TLRPC$TL_updatesTooLong.constructor, TLRPC$TL_updatesTooLong.class);
+        sparseArray.put(-994444869, TLRPC$TL_error.class);
+        this.classStore.put(1930838368, TLRPC$TL_decryptedMessageService.class);
+        this.classStore.put(-1848883596, TLRPC$TL_decryptedMessage.class);
+        this.classStore.put(467867529, TLRPC$TL_decryptedMessageLayer.class);
+        this.classStore.put(541931640, TLRPC$TL_decryptedMessage.class);
+        this.classStore.put(917541342, TLRPC$TL_decryptedMessage_layer45.class);
+        this.classStore.put(-1438109059, TLRPC$TL_decryptedMessageService_layer8.class);
+        this.classStore.put(528568095, TLRPC$TL_decryptedMessage_layer8.class);
+        this.classStore.put(1431655930, TLRPC$TL_message_secret.class);
+        this.classStore.put(1431655929, TLRPC$TL_message_secret_layer72.class);
+        this.classStore.put(1431655928, TLRPC$TL_message_secret_old.class);
+        this.classStore.put(1431655927, TLRPC$TL_messageEncryptedAction.class);
+        this.classStore.put(1450380236, TLRPC$TL_null.class);
+        this.classStore.put(1299050149, TLRPC$TL_updateShortChatMessage.class);
+        this.classStore.put(1957577280, TLRPC$TL_updates.class);
+        this.classStore.put(826001400, TLRPC$TL_updateShortMessage.class);
+        this.classStore.put(2027216577, TLRPC$TL_updateShort.class);
+        this.classStore.put(1918567619, TLRPC$TL_updatesCombined.class);
+        this.classStore.put(-1877614335, TLRPC$TL_updateShortSentMessage.class);
+        this.classStore.put(-484987010, TLRPC$TL_updatesTooLong.class);
     }
 
     public static TLClassStore Instance() {

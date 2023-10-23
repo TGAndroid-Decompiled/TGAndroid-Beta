@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_updateWebViewResultSent extends TLRPC$Update {
-    public static int constructor = 361936797;
     public long query_id;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_updateWebViewResultSent extends TLRPC$Update {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(361936797);
         abstractSerializedData.writeInt64(this.query_id);
     }
 }

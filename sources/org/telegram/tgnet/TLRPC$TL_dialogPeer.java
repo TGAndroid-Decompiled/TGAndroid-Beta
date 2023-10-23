@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_dialogPeer extends TLRPC$DialogPeer {
-    public static int constructor = -445792507;
     public TLRPC$Peer peer;
 
     @Override
@@ -10,7 +9,7 @@ public class TLRPC$TL_dialogPeer extends TLRPC$DialogPeer {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-445792507);
         this.peer.serializeToStream(abstractSerializedData);
     }
 }

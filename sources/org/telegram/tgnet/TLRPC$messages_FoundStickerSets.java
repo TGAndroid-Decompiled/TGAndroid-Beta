@@ -4,11 +4,9 @@ public abstract class TLRPC$messages_FoundStickerSets extends TLObject {
         TLRPC$messages_FoundStickerSets tLRPC$TL_messages_foundStickerSets;
         if (i != -1963942446) {
             tLRPC$TL_messages_foundStickerSets = i != 223655517 ? null : new TLRPC$messages_FoundStickerSets() {
-                public static int constructor = 223655517;
-
                 @Override
                 public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                    abstractSerializedData2.writeInt32(constructor);
+                    abstractSerializedData2.writeInt32(223655517);
                 }
             };
         } else {

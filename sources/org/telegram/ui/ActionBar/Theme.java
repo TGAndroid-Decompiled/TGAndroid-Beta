@@ -217,6 +217,7 @@ public class Theme {
     public static Drawable chat_inlineResultAudio;
     public static Drawable chat_inlineResultFile;
     public static Drawable chat_inlineResultLocation;
+    public static Paint chat_instantViewButtonPaint;
     public static TextPaint chat_instantViewPaint;
     public static Paint chat_instantViewRectPaint;
     public static TextPaint chat_livePaint;
@@ -230,6 +231,7 @@ public class Theme {
     public static Drawable chat_msgCallDownRedDrawable;
     public static Drawable chat_msgCallUpGreenDrawable;
     public static MsgClockDrawable chat_msgClockDrawable;
+    public static TextPaint chat_msgCodeBgPaint;
     public static Drawable chat_msgErrorDrawable;
     public static Paint chat_msgErrorPaint;
     public static TextPaint chat_msgGameTextPaint;
@@ -285,8 +287,10 @@ public class Theme {
     public static Drawable chat_msgUnlockDrawable;
     public static Drawable chat_muteIconDrawable;
     public static TextPaint chat_namePaint;
+    public static PorterDuffColorFilter chat_outAnimatedEmojiTextColorFilter;
     public static Paint chat_outUrlPaint;
     public static Paint chat_pollTimerPaint;
+    public static TextPaint chat_quoteTextPaint;
     public static Paint chat_radialProgress2Paint;
     public static Paint chat_radialProgressPaint;
     public static Paint chat_radialProgressPausedSeekbarPaint;
@@ -445,6 +449,20 @@ public class Theme {
     public static final int key_avatar_backgroundRed;
     public static final int key_avatar_backgroundSaved;
     public static final int key_avatar_backgroundViolet;
+    public static final int key_avatar_composite_nameInMessageBlue;
+    public static final int key_avatar_composite_nameInMessageBlue2;
+    public static final int key_avatar_composite_nameInMessageCyan;
+    public static final int key_avatar_composite_nameInMessageCyan2;
+    public static final int key_avatar_composite_nameInMessageGreen;
+    public static final int key_avatar_composite_nameInMessageGreen2;
+    public static final int key_avatar_composite_nameInMessageOrange;
+    public static final int key_avatar_composite_nameInMessageOrange2;
+    public static final int key_avatar_composite_nameInMessagePink;
+    public static final int key_avatar_composite_nameInMessagePink2;
+    public static final int key_avatar_composite_nameInMessageRed;
+    public static final int key_avatar_composite_nameInMessageRed2;
+    public static final int key_avatar_composite_nameInMessageViolet;
+    public static final int key_avatar_composite_nameInMessageViolet2;
     public static final int key_avatar_nameInMessageBlue;
     public static final int key_avatar_nameInMessageCyan;
     public static final int key_avatar_nameInMessageGreen;
@@ -529,6 +547,7 @@ public class Theme {
     public static final int key_chat_inBubbleSelected;
     public static final int key_chat_inBubbleSelectedOverlay;
     public static final int key_chat_inBubbleShadow;
+    public static final int key_chat_inCodeBackground;
     public static final int key_chat_inContactBackground;
     public static final int key_chat_inContactIcon;
     public static final int key_chat_inContactNameText;
@@ -559,6 +578,7 @@ public class Theme {
     public static final int key_chat_inPreviewInstantText;
     public static final int key_chat_inPreviewLine;
     public static final int key_chat_inPsaNameText;
+    public static final int key_chat_inQuote;
     public static final int key_chat_inReactionButtonBackground;
     public static final int key_chat_inReactionButtonText;
     public static final int key_chat_inReactionButtonTextSelected;
@@ -639,6 +659,7 @@ public class Theme {
     public static final int key_chat_outBubbleSelected;
     public static final int key_chat_outBubbleSelectedOverlay;
     public static final int key_chat_outBubbleShadow;
+    public static final int key_chat_outCodeBackground;
     public static final int key_chat_outContactBackground;
     public static final int key_chat_outContactIcon;
     public static final int key_chat_outContactNameText;
@@ -668,6 +689,7 @@ public class Theme {
     public static final int key_chat_outPreviewInstantText;
     public static final int key_chat_outPreviewLine;
     public static final int key_chat_outPsaNameText;
+    public static final int key_chat_outQuote;
     public static final int key_chat_outReactionButtonBackground;
     public static final int key_chat_outReactionButtonText;
     public static final int key_chat_outReactionButtonTextSelected;
@@ -802,6 +824,14 @@ public class Theme {
     public static final int key_checkboxSquareCheck;
     public static final int key_checkboxSquareDisabled;
     public static final int key_checkboxSquareUnchecked;
+    public static final int key_code_background;
+    public static final int key_code_comment;
+    public static final int key_code_constant;
+    public static final int key_code_function;
+    public static final int key_code_keyword;
+    public static final int key_code_number;
+    public static final int key_code_operator;
+    public static final int key_code_string;
     public static final int key_color_blue;
     public static final int key_color_cyan;
     public static final int key_color_green;
@@ -1118,6 +1148,8 @@ public class Theme {
     public static final int key_windowBackgroundWhiteValueText;
     public static int[] keys_avatar_background;
     public static int[] keys_avatar_background2;
+    public static int[] keys_avatar_composite_nameInMessage;
+    public static int[] keys_avatar_composite_nameInMessage2;
     public static int[] keys_avatar_nameInMessage;
     public static final int[] keys_colors;
     private static long lastDelayUpdateTime;
@@ -1189,7 +1221,7 @@ public class Theme {
     private static boolean[] loadingRemoteThemes = new boolean[4];
     private static int[] lastLoadingThemesTime = new int[4];
     private static long[] remoteThemesHash = new long[4];
-    public static Drawable[] avatarDrawables = new Drawable[14];
+    public static Drawable[] avatarDrawables = new Drawable[17];
     private static StatusDrawable[] chat_status_drawables = new StatusDrawable[6];
     public static Drawable[] chat_msgInCallDrawable = new Drawable[2];
     public static Drawable[] chat_msgInCallSelectedDrawable = new Drawable[2];
@@ -1774,8 +1806,287 @@ public class Theme {
             draw(canvas, null);
         }
 
-        public void draw(android.graphics.Canvas r22, android.graphics.Paint r23) {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.Theme.MessageDrawable.draw(android.graphics.Canvas, android.graphics.Paint):void");
+        public void draw(Canvas canvas, Paint paint) {
+            int dp;
+            int dp2;
+            int i;
+            int i2;
+            boolean z;
+            boolean z2;
+            Path path;
+            boolean z3;
+            Drawable backgroundDrawable;
+            Rect bounds = getBounds();
+            if (paint == null && this.gradientShader == null && this.overrideRoundRadius == 0 && this.overrideRounding <= 0.0f && (backgroundDrawable = getBackgroundDrawable()) != null) {
+                backgroundDrawable.setBounds(bounds);
+                backgroundDrawable.draw(canvas);
+                return;
+            }
+            int dp3 = dp(2.0f);
+            int i3 = this.overrideRoundRadius;
+            if (i3 != 0) {
+                i2 = i3;
+                i = i2;
+            } else {
+                if (this.overrideRounding > 0.0f) {
+                    dp = AndroidUtilities.lerp(dp(SharedConfig.bubbleRadius), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
+                    dp2 = AndroidUtilities.lerp(dp(Math.min(6, SharedConfig.bubbleRadius)), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
+                } else if (this.currentType == 2) {
+                    dp = dp(6.0f);
+                    dp2 = dp(6.0f);
+                } else {
+                    dp = dp(SharedConfig.bubbleRadius);
+                    dp2 = dp(Math.min(6, SharedConfig.bubbleRadius));
+                }
+                i = dp2;
+                i2 = dp;
+            }
+            int dp4 = dp(6.0f);
+            Paint paint2 = paint == null ? this.paint : paint;
+            if (paint == null && this.gradientShader != null) {
+                this.matrix.reset();
+                applyMatrixScale();
+                this.matrix.postTranslate(0.0f, -this.topY);
+                this.gradientShader.setLocalMatrix(this.matrix);
+            }
+            int max = Math.max(bounds.top, 0);
+            if (this.pathDrawCacheParams == null || bounds.height() >= this.currentBackgroundHeight) {
+                boolean z4 = this.currentType != 1 ? (this.topY + bounds.bottom) - i2 < this.currentBackgroundHeight : (this.topY + bounds.bottom) - (dp4 * 2) < this.currentBackgroundHeight;
+                z = this.topY + (i2 * 2) >= 0;
+                z2 = z4;
+            } else {
+                z2 = true;
+                z = true;
+            }
+            PathDrawParams pathDrawParams = this.pathDrawCacheParams;
+            if (pathDrawParams != null) {
+                path = pathDrawParams.path;
+                z3 = pathDrawParams.invalidatePath(bounds, z2, z);
+            } else {
+                path = this.path;
+                z3 = true;
+            }
+            if (z3 || this.overrideRoundRadius != 0) {
+                generatePath(path, bounds, dp3, i2, dp4, i, max, z2, z, paint != null);
+            }
+            canvas.drawPath(path, paint2);
+            if (this.gradientShader != null && this.isSelected && paint == null) {
+                int color = getColor(Theme.key_chat_outBubbleGradientSelectedOverlay);
+                this.selectedPaint.setColor(ColorUtils.setAlphaComponent(color, (int) ((Color.alpha(color) * this.alpha) / 255.0f)));
+                canvas.drawPath(path, this.selectedPaint);
+            }
+        }
+
+        public Path makePath() {
+            return makePath(this.pathDrawCacheParams);
+        }
+
+        public Path makePath(PathDrawParams pathDrawParams) {
+            int dp;
+            int dp2;
+            int i;
+            int i2;
+            boolean z;
+            boolean z2;
+            Path path;
+            Rect bounds = getBounds();
+            int dp3 = dp(2.0f);
+            int i3 = this.overrideRoundRadius;
+            if (i3 != 0) {
+                i2 = i3;
+                i = i2;
+            } else {
+                if (this.overrideRounding > 0.0f) {
+                    dp = AndroidUtilities.lerp(dp(SharedConfig.bubbleRadius), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
+                    dp2 = AndroidUtilities.lerp(dp(Math.min(6, SharedConfig.bubbleRadius)), Math.min(bounds.width(), bounds.height()) / 2, this.overrideRounding);
+                } else if (this.currentType == 2) {
+                    dp = dp(6.0f);
+                    dp2 = dp(6.0f);
+                } else {
+                    dp = dp(SharedConfig.bubbleRadius);
+                    dp2 = dp(Math.min(6, SharedConfig.bubbleRadius));
+                }
+                i = dp2;
+                i2 = dp;
+            }
+            int dp4 = dp(6.0f);
+            int max = Math.max(bounds.top, 0);
+            boolean z3 = true;
+            if (pathDrawParams == null || bounds.height() >= this.currentBackgroundHeight) {
+                z = this.currentType != 1 ? (this.topY + bounds.bottom) - i2 < this.currentBackgroundHeight : (this.topY + bounds.bottom) - (dp4 * 2) < this.currentBackgroundHeight;
+                z2 = this.topY + (i2 * 2) >= 0;
+            } else {
+                z = true;
+                z2 = true;
+            }
+            if (pathDrawParams != null) {
+                Path path2 = pathDrawParams.path;
+                z3 = pathDrawParams.invalidatePath(bounds, z, z2);
+                path = path2;
+            } else {
+                path = this.path;
+            }
+            if (z3 || this.overrideRoundRadius != 0) {
+                generatePath(path, bounds, dp3, i2, dp4, i, max, z, z2, true);
+            }
+            return path;
+        }
+
+        private void generatePath(Path path, Rect rect, int i, int i2, int i3, int i4, int i5, boolean z, boolean z2, boolean z3) {
+            path.rewind();
+            int height = (rect.height() - i) >> 1;
+            int i6 = i2;
+            if (i6 > height) {
+                i6 = height;
+            }
+            if (this.isOut) {
+                if (this.drawFullBubble || this.currentType == 2 || z3 || z) {
+                    int i7 = this.botButtonsBottom ? i4 : i6;
+                    if (this.currentType == 1) {
+                        path.moveTo((rect.right - dp(8.0f)) - i7, rect.bottom - i);
+                    } else {
+                        path.moveTo(rect.right - dp(2.6f), rect.bottom - i);
+                    }
+                    path.lineTo(rect.left + i + i7, rect.bottom - i);
+                    RectF rectF = this.rect;
+                    int i8 = rect.left;
+                    int i9 = rect.bottom;
+                    int i10 = i7 * 2;
+                    rectF.set(i8 + i, (i9 - i) - i10, i8 + i + i10, i9 - i);
+                    path.arcTo(this.rect, 90.0f, 90.0f, false);
+                } else {
+                    path.moveTo(rect.right - dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
+                    path.lineTo(rect.left + i, (i5 - this.topY) + this.currentBackgroundHeight);
+                }
+                if (this.drawFullBubble || this.currentType == 2 || z3 || z2) {
+                    path.lineTo(rect.left + i, rect.top + i + i6);
+                    RectF rectF2 = this.rect;
+                    int i11 = rect.left;
+                    int i12 = rect.top;
+                    int i13 = i6 * 2;
+                    rectF2.set(i11 + i, i12 + i, i11 + i + i13, i12 + i + i13);
+                    path.arcTo(this.rect, 180.0f, 90.0f, false);
+                    int i14 = this.isTopNear ? i4 : i6;
+                    if (this.currentType == 1) {
+                        path.lineTo((rect.right - i) - i14, rect.top + i);
+                        RectF rectF3 = this.rect;
+                        int i15 = rect.right;
+                        int i16 = i14 * 2;
+                        int i17 = rect.top;
+                        rectF3.set((i15 - i) - i16, i17 + i, i15 - i, i17 + i + i16);
+                    } else {
+                        path.lineTo((rect.right - dp(8.0f)) - i14, rect.top + i);
+                        int i18 = i14 * 2;
+                        this.rect.set((rect.right - dp(8.0f)) - i18, rect.top + i, rect.right - dp(8.0f), rect.top + i + i18);
+                    }
+                    path.arcTo(this.rect, 270.0f, 90.0f, false);
+                } else {
+                    path.lineTo(rect.left + i, (i5 - this.topY) - dp(2.0f));
+                    if (this.currentType == 1) {
+                        path.lineTo(rect.right - i, (i5 - this.topY) - dp(2.0f));
+                    } else {
+                        path.lineTo(rect.right - dp(8.0f), (i5 - this.topY) - dp(2.0f));
+                    }
+                }
+                int i19 = this.currentType;
+                if (i19 == 1) {
+                    if (z3 || z) {
+                        if (this.isBottomNear) {
+                            i6 = i4;
+                        }
+                        path.lineTo(rect.right - i, (rect.bottom - i) - i6);
+                        RectF rectF4 = this.rect;
+                        int i20 = rect.right;
+                        int i21 = i6 * 2;
+                        int i22 = rect.bottom;
+                        rectF4.set((i20 - i) - i21, (i22 - i) - i21, i20 - i, i22 - i);
+                        path.arcTo(this.rect, 0.0f, 90.0f, false);
+                    } else {
+                        path.lineTo(rect.right - i, (i5 - this.topY) + this.currentBackgroundHeight);
+                    }
+                } else if (this.drawFullBubble || i19 == 2 || z3 || z) {
+                    path.lineTo(rect.right - dp(8.0f), ((rect.bottom - i) - i3) - dp(3.0f));
+                    int i23 = i3 * 2;
+                    this.rect.set(rect.right - dp(8.0f), ((rect.bottom - i) - i23) - dp(9.0f), (rect.right - dp(7.0f)) + i23, (rect.bottom - i) - dp(1.0f));
+                    path.arcTo(this.rect, 180.0f, -83.0f, false);
+                } else {
+                    path.lineTo(rect.right - dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
+                }
+            } else {
+                if (this.drawFullBubble || this.currentType == 2 || z3 || z) {
+                    int i24 = this.botButtonsBottom ? i4 : i6;
+                    if (this.currentType == 1) {
+                        path.moveTo(rect.left + dp(8.0f) + i24, rect.bottom - i);
+                    } else {
+                        path.moveTo(rect.left + dp(2.6f), rect.bottom - i);
+                    }
+                    path.lineTo((rect.right - i) - i24, rect.bottom - i);
+                    RectF rectF5 = this.rect;
+                    int i25 = rect.right;
+                    int i26 = i24 * 2;
+                    int i27 = rect.bottom;
+                    rectF5.set((i25 - i) - i26, (i27 - i) - i26, i25 - i, i27 - i);
+                    path.arcTo(this.rect, 90.0f, -90.0f, false);
+                } else {
+                    path.moveTo(rect.left + dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
+                    path.lineTo(rect.right - i, (i5 - this.topY) + this.currentBackgroundHeight);
+                }
+                if (this.drawFullBubble || this.currentType == 2 || z3 || z2) {
+                    path.lineTo(rect.right - i, rect.top + i + i6);
+                    RectF rectF6 = this.rect;
+                    int i28 = rect.right;
+                    int i29 = i6 * 2;
+                    int i30 = rect.top;
+                    rectF6.set((i28 - i) - i29, i30 + i, i28 - i, i30 + i + i29);
+                    path.arcTo(this.rect, 0.0f, -90.0f, false);
+                    int i31 = this.isTopNear ? i4 : i6;
+                    if (this.currentType == 1) {
+                        path.lineTo(rect.left + i + i31, rect.top + i);
+                        RectF rectF7 = this.rect;
+                        int i32 = rect.left;
+                        int i33 = rect.top;
+                        int i34 = i31 * 2;
+                        rectF7.set(i32 + i, i33 + i, i32 + i + i34, i33 + i + i34);
+                    } else {
+                        path.lineTo(rect.left + dp(8.0f) + i31, rect.top + i);
+                        int i35 = i31 * 2;
+                        this.rect.set(rect.left + dp(8.0f), rect.top + i, rect.left + dp(8.0f) + i35, rect.top + i + i35);
+                    }
+                    path.arcTo(this.rect, 270.0f, -90.0f, false);
+                } else {
+                    path.lineTo(rect.right - i, (i5 - this.topY) - dp(2.0f));
+                    if (this.currentType == 1) {
+                        path.lineTo(rect.left + i, (i5 - this.topY) - dp(2.0f));
+                    } else {
+                        path.lineTo(rect.left + dp(8.0f), (i5 - this.topY) - dp(2.0f));
+                    }
+                }
+                int i36 = this.currentType;
+                if (i36 == 1) {
+                    if (z3 || z) {
+                        if (this.isBottomNear) {
+                            i6 = i4;
+                        }
+                        path.lineTo(rect.left + i, (rect.bottom - i) - i6);
+                        RectF rectF8 = this.rect;
+                        int i37 = rect.left;
+                        int i38 = rect.bottom;
+                        int i39 = i6 * 2;
+                        rectF8.set(i37 + i, (i38 - i) - i39, i37 + i + i39, i38 - i);
+                        path.arcTo(this.rect, 180.0f, -90.0f, false);
+                    } else {
+                        path.lineTo(rect.left + i, (i5 - this.topY) + this.currentBackgroundHeight);
+                    }
+                } else if (this.drawFullBubble || i36 == 2 || z3 || z) {
+                    path.lineTo(rect.left + dp(8.0f), ((rect.bottom - i) - i3) - dp(3.0f));
+                    int i40 = i3 * 2;
+                    this.rect.set((rect.left + dp(7.0f)) - i40, ((rect.bottom - i) - i40) - dp(9.0f), rect.left + dp(8.0f), (rect.bottom - i) - dp(1.0f));
+                    path.arcTo(this.rect, 0.0f, 83.0f, false);
+                } else {
+                    path.lineTo(rect.left + dp(8.0f), (i5 - this.topY) + this.currentBackgroundHeight);
+                }
+            }
+            path.close();
         }
 
         public void setDrawFullBubble(boolean z) {
@@ -2504,6 +2815,20 @@ public class Theme {
                 i37 = Theme.getColor(i36);
             }
             sparseIntArray2.put(Theme.key_actionBarDefaultSubmenuSeparator, Color.argb(Color.alpha(i37), Math.max(0, Color.red(i37) - 10), Math.max(0, Color.green(i37) - 10), Math.max(0, Color.blue(i37) - 10)));
+            sparseIntArray2.put(Theme.key_chat_inCodeBackground, codeBackground(i31, isDark));
+            if (isDark) {
+                int i38 = Theme.key_chat_outBubbleGradient1;
+                if (sparseIntArray2.get(i38) != 0) {
+                    Color.colorToHSV(averageColor(sparseIntArray2, i38, Theme.key_chat_outBubbleGradient2, Theme.key_chat_outBubbleGradient3), this.tempHSV);
+                    float[] fArr = this.tempHSV;
+                    fArr[1] = Utilities.clamp(fArr[1] + 0.3f, 1.0f, 0.0f);
+                    float[] fArr2 = this.tempHSV;
+                    fArr2[2] = Utilities.clamp(fArr2[2] - 0.4f, 1.0f, 0.0f);
+                    sparseIntArray2.put(Theme.key_chat_outCodeBackground, Color.HSVToColor(112, this.tempHSV));
+                    return !z;
+                }
+            }
+            sparseIntArray2.put(Theme.key_chat_outCodeBackground, codeBackground(i29, isDark));
             return !z;
         }
 
@@ -2564,6 +2889,25 @@ public class Theme {
             float[] fArr2 = this.tempHSV;
             fArr2[2] = Math.max(0.0f, Math.min(1.0f, fArr2[2] + (z ? 0.1f : 0.0f)));
             return Color.HSVToColor(51, this.tempHSV);
+        }
+
+        private int codeBackground(int i, boolean z) {
+            int i2;
+            Color.colorToHSV(i, this.tempHSV);
+            float[] fArr = this.tempHSV;
+            if (fArr[1] <= 0.0f || fArr[2] >= 1.0f || fArr[2] <= 0.0f) {
+                fArr[2] = Math.max(0.0f, Math.min(1.0f, fArr[2] + (z ? 0.3f : -0.2f)));
+            } else {
+                fArr[1] = Math.max(0.0f, Math.min(1.0f, fArr[1] + (z ? -0.3f : 0.28f)));
+                float[] fArr2 = this.tempHSV;
+                fArr2[2] = Math.max(0.0f, Math.min(1.0f, fArr2[2] + (z ? 0.1f : -0.1f)));
+                if (z) {
+                    i2 = 96;
+                    return Color.HSVToColor(i2, this.tempHSV);
+                }
+            }
+            i2 = 32;
+            return Color.HSVToColor(i2, this.tempHSV);
         }
 
         private int locationPlaceholderColor(float f, int i, boolean z) {
@@ -2668,7 +3012,7 @@ public class Theme {
     }
 
     public static int multAlpha(int i, float f) {
-        return ColorUtils.setAlphaComponent(i, MathUtils.clamp((int) (Color.alpha(i) * f), 0, 255));
+        return f == 1.0f ? i : ColorUtils.setAlphaComponent(i, MathUtils.clamp((int) (Color.alpha(i) * f), 0, 255));
     }
 
     public static class OverrideWallpaperInfo {
@@ -5812,6 +6156,9 @@ public class Theme {
             avatarDrawables[11] = resources.getDrawable(R.drawable.chats_replies);
             avatarDrawables[12] = resources.getDrawable(R.drawable.other_chats);
             avatarDrawables[13] = resources.getDrawable(R.drawable.msg_stories_closefriends);
+            avatarDrawables[14] = resources.getDrawable(R.drawable.filled_gift_premium);
+            avatarDrawables[15] = resources.getDrawable(R.drawable.filled_unknown);
+            avatarDrawables[16] = resources.getDrawable(R.drawable.filled_unclaimed);
             RLottieDrawable rLottieDrawable = dialogs_archiveAvatarDrawable;
             if (rLottieDrawable != null) {
                 rLottieDrawable.setCallback(null);
@@ -5913,6 +6260,7 @@ public class Theme {
                 dialogs_unarchiveDrawable.setLayerColor("Box1.**", getNonAnimatedColor(i4));
                 dialogs_unarchiveDrawable.commitApplyLayerColors();
                 chat_animatedEmojiTextColorFilter = new PorterDuffColorFilter(getColor(key_windowBackgroundWhiteBlackText), PorterDuff.Mode.SRC_IN);
+                chat_outAnimatedEmojiTextColorFilter = new PorterDuffColorFilter(getColor(key_chat_messageTextOut), PorterDuff.Mode.SRC_IN);
                 PremiumGradient.getInstance().checkIconColors();
                 return;
             }
@@ -6122,12 +6470,14 @@ public class Theme {
                 chat_replyNamePaint = textPaint3;
                 textPaint3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 chat_replyTextPaint = new TextPaint(1);
+                chat_quoteTextPaint = new TextPaint(1);
                 TextPaint textPaint4 = new TextPaint(1);
                 chat_topicTextPaint = textPaint4;
                 textPaint4.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 chat_forwardNamePaint = new TextPaint(1);
                 chat_adminPaint = new TextPaint(1);
                 chat_timePaint = new TextPaint(1);
+                chat_msgCodeBgPaint = new TextPaint(1);
             }
             int i = 0;
             float[] fArr = {0.68f, 0.46f, 0.34f, 0.28f, 0.22f, 0.19f};
@@ -6149,6 +6499,7 @@ public class Theme {
                     chat_replyNamePaint.setTextSize(AndroidUtilities.dp(f));
                     chat_replyTextPaint.setTextSize(AndroidUtilities.dp(f));
                     float f2 = f - 1.0f;
+                    chat_quoteTextPaint.setTextSize(AndroidUtilities.dp(f2));
                     chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f2));
                     chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(f));
                     chat_adminPaint.setTextSize(AndroidUtilities.dp(f2));
@@ -6238,6 +6589,7 @@ public class Theme {
             chat_instantViewRectPaint = paint7;
             paint7.setStyle(Paint.Style.STROKE);
             chat_instantViewRectPaint.setStrokeCap(Paint.Cap.ROUND);
+            chat_instantViewButtonPaint = new Paint(1);
             Paint paint8 = new Paint(1);
             chat_pollTimerPaint = paint8;
             paint8.setStyle(Paint.Style.STROKE);

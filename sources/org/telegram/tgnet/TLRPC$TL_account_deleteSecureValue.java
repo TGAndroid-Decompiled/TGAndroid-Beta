@@ -2,7 +2,6 @@ package org.telegram.tgnet;
 
 import java.util.ArrayList;
 public class TLRPC$TL_account_deleteSecureValue extends TLObject {
-    public static int constructor = -1199522741;
     public ArrayList<TLRPC$SecureValueType> types = new ArrayList<>();
 
     @Override
@@ -12,7 +11,7 @@ public class TLRPC$TL_account_deleteSecureValue extends TLObject {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1199522741);
         abstractSerializedData.writeInt32(481674261);
         int size = this.types.size();
         abstractSerializedData.writeInt32(size);

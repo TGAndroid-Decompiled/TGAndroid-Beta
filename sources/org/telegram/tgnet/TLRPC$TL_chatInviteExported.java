@@ -3,7 +3,6 @@ package org.telegram.tgnet;
 import java.util.ArrayList;
 import org.telegram.messenger.LiteMode;
 public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
-    public static int constructor = 179611673;
     public long admin_id;
     public int date;
     public int expire_date;
@@ -52,7 +51,7 @@ public class TLRPC$TL_chatInviteExported extends TLRPC$ExportedChatInvite {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(179611673);
         int i = this.revoked ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
         int i2 = this.permanent ? i | 32 : i & (-33);

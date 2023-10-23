@@ -1,6 +1,5 @@
 package org.telegram.tgnet;
 public class TLRPC$TL_inputStickerSetThumb extends TLRPC$InputFileLocation {
-    public static int constructor = -1652231205;
     public TLRPC$InputStickerSet stickerset;
     public int thumb_version;
 
@@ -12,7 +11,7 @@ public class TLRPC$TL_inputStickerSetThumb extends TLRPC$InputFileLocation {
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(constructor);
+        abstractSerializedData.writeInt32(-1652231205);
         this.stickerset.serializeToStream(abstractSerializedData);
         abstractSerializedData.writeInt32(this.thumb_version);
     }
