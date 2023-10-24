@@ -35,6 +35,7 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
+import org.telegram.tgnet.TLRPC$InputChannel;
 import org.telegram.tgnet.TLRPC$TL_account_updateColor;
 import org.telegram.tgnet.TLRPC$TL_channels_updateColor;
 import org.telegram.tgnet.TLRPC$TL_error;
@@ -441,7 +442,11 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                     }
                 }
                 TLRPC$TL_channels_updateColor tLRPC$TL_channels_updateColor = new TLRPC$TL_channels_updateColor();
-                tLRPC$TL_channels_updateColor.channel = getMessagesController().getInputChannel(-this.dialogId);
+                TLRPC$InputChannel inputChannel = getMessagesController().getInputChannel(-this.dialogId);
+                tLRPC$TL_channels_updateColor.channel = inputChannel;
+                if (inputChannel == null) {
+                    return;
+                }
                 int i = chat.flags2 | 64;
                 chat.flags2 = i;
                 int i2 = this.selectedColor;
