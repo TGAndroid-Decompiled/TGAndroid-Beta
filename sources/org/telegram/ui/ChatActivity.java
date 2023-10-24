@@ -2864,7 +2864,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         protected boolean canShowQuote() {
             Cell cell;
             ChatActivity chatActivity = this.chatActivity;
-            return (chatActivity == null || chatActivity.getCurrentEncryptedChat() != null || this.chatActivity.textSelectionHelper.isDescription || (cell = this.selectedView) == 0 || ((ChatMessageCell) cell).getMessageObject() == null || ((ChatMessageCell) this.selectedView).getMessageObject().type == 23 || this.chatActivity.getMessagesController().getTranslateController().isTranslatingDialog(this.chatActivity.dialog_id)) ? false : true;
+            return (chatActivity == null || chatActivity.getCurrentEncryptedChat() != null || this.chatActivity.textSelectionHelper.isDescription || (cell = this.selectedView) == 0 || ((ChatMessageCell) cell).getMessageObject() == null || ((ChatMessageCell) this.selectedView).getMessageObject().type == 23 || ((ChatMessageCell) this.selectedView).getMessageObject().isVoiceTranscriptionOpen() || this.chatActivity.getMessagesController().getTranslateController().isTranslatingDialog(this.chatActivity.dialog_id)) ? false : true;
         }
 
         @Override
@@ -9859,16 +9859,27 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         public static ReplyQuote from(MessageObject messageObject, String str) {
+            TLRPC$Message tLRPC$Message;
             String str2;
             int indexOf;
-            TLRPC$Message tLRPC$Message = messageObject.messageOwner;
-            if (tLRPC$Message == null || (str2 = tLRPC$Message.message) == null || str == null || (indexOf = str2.indexOf(str)) < 0) {
+            if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || (str2 = tLRPC$Message.message) == null || str == null || (indexOf = str2.indexOf(str)) < 0) {
                 return null;
             }
             return new ReplyQuote(messageObject.getDialogId(), messageObject, indexOf, indexOf + str.length());
         }
 
+        public static ReplyQuote from(MessageObject messageObject) {
+            TLRPC$Message tLRPC$Message;
+            if (messageObject == null || (tLRPC$Message = messageObject.messageOwner) == null || tLRPC$Message.message == null) {
+                return null;
+            }
+            return from(messageObject, 0, Math.min(MessagesController.getInstance(messageObject.currentAccount).quoteLengthMax, messageObject.messageOwner.message.length()));
+        }
+
         public static ReplyQuote from(MessageObject messageObject, int i, int i2) {
+            if (messageObject == null) {
+                return null;
+            }
             return new ReplyQuote(messageObject.getDialogId(), messageObject, i, i2);
         }
 
@@ -10590,6 +10601,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             this.unselectRunnable = null;
         }
         this.highlightMessageId = ConnectionsManager.DEFAULT_DATACENTER_ID;
+        this.highlightMessageQuote = null;
     }
 
     public void resetProgressDialogLoading() {

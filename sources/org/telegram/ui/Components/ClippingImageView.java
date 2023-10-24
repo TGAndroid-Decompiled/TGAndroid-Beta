@@ -301,6 +301,9 @@ public class ClippingImageView extends View {
             bitmapHolder2.release();
             this.bitmapShader = null;
         }
+        if (bitmapHolder != null && bitmapHolder.isRecycled()) {
+            bitmapHolder = null;
+        }
         this.bmp = bitmapHolder;
         if (bitmapHolder != null && bitmapHolder.bitmap != null) {
             this.bitmapRect.set(0.0f, 0.0f, bitmapHolder.getWidth(), bitmapHolder.getHeight());

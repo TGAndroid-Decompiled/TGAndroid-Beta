@@ -84,4 +84,11 @@ public class ActionBtnCell extends FrameLayout {
         this.button.setEnabled(true);
         this.button.setText(z ? LocaleController.formatString("BoostingUseLink", R.string.BoostingUseLink, new Object[0]) : LocaleController.formatString("OK", R.string.OK, new Object[0]), false);
     }
+
+    public void setCloseStyle() {
+        this.drawDivider = false;
+        this.button.setShowZero(false);
+        this.button.setEnabled(true);
+        this.button.setText(LocaleController.formatString("Close", R.string.Close, new Object[0]), false);
+    }
 }

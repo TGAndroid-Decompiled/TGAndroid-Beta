@@ -36,6 +36,7 @@ public class ItemOptions {
     private Context context;
     private int dimAlpha;
     private View dimView;
+    private Runnable dismissListener;
     private boolean forceTop;
     private BaseFragment fragment;
     private int gravity;
@@ -462,6 +463,10 @@ public class ItemOptions {
                     public void dismiss() {
                         super.dismiss();
                         ItemOptions.this.dismissDim(viewGroup2);
+                        if (ItemOptions.this.dismissListener != null) {
+                            ItemOptions.this.dismissListener.run();
+                            ItemOptions.this.dismissListener = null;
+                        }
                     }
                 };
                 this.actionBarPopupWindow = actionBarPopupWindow;
@@ -470,6 +475,10 @@ public class ItemOptions {
                     public void onDismiss() {
                         ItemOptions.this.actionBarPopupWindow = null;
                         ItemOptions.this.dismissDim(viewGroup);
+                        if (ItemOptions.this.dismissListener != null) {
+                            ItemOptions.this.dismissListener.run();
+                            ItemOptions.this.dismissListener = null;
+                        }
                     }
                 });
                 this.actionBarPopupWindow.setOutsideTouchable(true);
@@ -523,6 +532,18 @@ public class ItemOptions {
         return true;
     }
 
+    public ItemOptions setBackgroundColor(int i) {
+        int i2 = 0;
+        while (i2 < this.layout.getChildCount()) {
+            View childAt = i2 == this.layout.getChildCount() + (-1) ? this.lastLayout : this.layout.getChildAt(i2);
+            if (childAt instanceof ActionBarPopupWindow.ActionBarPopupWindowLayout) {
+                childAt.setBackgroundColor(i);
+            }
+            i2++;
+        }
+        return this;
+    }
+
     public void dismissDim(final ViewGroup viewGroup) {
         final View view = this.dimView;
         if (view == null) {
@@ -542,6 +563,11 @@ public class ItemOptions {
     public boolean isShown() {
         ActionBarPopupWindow actionBarPopupWindow = this.actionBarPopupWindow;
         return actionBarPopupWindow != null && actionBarPopupWindow.isShowing();
+    }
+
+    public ItemOptions setOnDismiss(Runnable runnable) {
+        this.dismissListener = runnable;
+        return this;
     }
 
     public void dismiss() {

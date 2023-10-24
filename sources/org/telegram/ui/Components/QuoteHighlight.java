@@ -13,11 +13,14 @@ import org.telegram.messenger.MessageObject;
 public class QuoteHighlight extends Path {
     private float currentOffsetX;
     private float currentOffsetY;
+    public final int end;
     public final int id;
     private Rect lastRect;
+    private float minX;
     public final Paint paint;
     private final Path path;
     private final ArrayList<Rect> rectangles;
+    public final int start;
     private final AnimatedFloat t;
 
     public static class Rect {
@@ -47,6 +50,8 @@ public class QuoteHighlight extends Path {
             }
         }, 350L, 420L, CubicBezierInterpolator.EASE_OUT_QUINT);
         this.id = i;
+        this.start = i2;
+        this.end = i3;
         if (arrayList == null) {
             return;
         }
@@ -60,6 +65,7 @@ public class QuoteHighlight extends Path {
                 int min = Math.min(i3 - i6, textLayoutBlock.charactersEnd - i6);
                 this.currentOffsetX = -f;
                 this.currentOffsetY = textLayoutBlock.textYOffset + textLayoutBlock.padTop;
+                this.minX = textLayoutBlock.quote ? AndroidUtilities.dp(10.0f) : 0.0f;
                 z = z || textLayoutBlock.isRtl();
                 if (z) {
                     textLayoutBlock.textLayout.getSelectionPath(max, min, this);
@@ -156,11 +162,13 @@ public class QuoteHighlight extends Path {
             rect3.right = Math.min(rect3.right, f3);
             return;
         }
+        float max = Math.max(this.minX, f);
+        float max2 = Math.max(this.minX, f3);
         float f5 = this.currentOffsetX;
-        float f6 = f + f5;
+        float f6 = max + f5;
         float f7 = this.currentOffsetY;
         float f8 = f2 + f7;
-        float f9 = f3 + f5;
+        float f9 = max2 + f5;
         Rect rect4 = new Rect();
         rect4.left = f6 - AndroidUtilities.dp(3.0f);
         rect4.right = f9 + AndroidUtilities.dp(3.0f);

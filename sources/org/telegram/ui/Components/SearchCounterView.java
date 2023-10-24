@@ -135,9 +135,9 @@ public class SearchCounterView extends View {
                     boolean z3 = Integer.toString(this.currentCount).length() != Integer.toString(i).length();
                     int min = Math.min(str4.length(), str2.length());
                     if (indexOf > 0) {
-                        spannableStringBuilder.setSpan(new EmptyStubSpan(), 0, indexOf, 33);
-                        spannableStringBuilder2.setSpan(new EmptyStubSpan(), 0, indexOf, 33);
-                        spannableStringBuilder3.setSpan(new EmptyStubSpan(), 0, indexOf, 33);
+                        spannableStringBuilder.setSpan(new EmptyStubSpan(), 0, Math.min(spannableStringBuilder.length(), indexOf), 33);
+                        spannableStringBuilder2.setSpan(new EmptyStubSpan(), 0, Math.min(spannableStringBuilder2.length(), indexOf), 33);
+                        spannableStringBuilder3.setSpan(new EmptyStubSpan(), 0, Math.min(spannableStringBuilder3.length(), indexOf), 33);
                     }
                     int i2 = 0;
                     boolean z4 = false;

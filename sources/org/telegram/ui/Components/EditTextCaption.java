@@ -356,6 +356,9 @@ public class EditTextCaption extends EditTextBoldCursor {
                 text.removeSpan(quoteSpanArr[i2]);
                 text.removeSpan(quoteSpanArr[i2].styleSpan);
             }
+            if (quoteSpanArr.length > 0) {
+                invalidateQuotes(true);
+            }
         }
         EditTextCaptionDelegate editTextCaptionDelegate = this.delegate;
         if (editTextCaptionDelegate != null) {

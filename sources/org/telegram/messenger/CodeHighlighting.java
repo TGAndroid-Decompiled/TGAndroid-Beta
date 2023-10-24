@@ -9,6 +9,7 @@ import android.text.style.CharacterStyle;
 import android.text.style.MetricAffectingSpan;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -33,6 +34,7 @@ public class CodeHighlighting {
     public static class Span extends MetricAffectingSpan {
         public final String code;
         public final int currentType;
+        public final float decrementSize;
         public final String lng;
         public final boolean smallerSize;
         public final TextStyleSpan.TextStyleRun style;
@@ -41,6 +43,7 @@ public class CodeHighlighting {
             this.smallerSize = z;
             this.lng = str;
             this.code = str2;
+            this.decrementSize = str2.length() > 50 ? 4.0f : 2.5f;
             this.currentType = i;
             this.style = textStyleRun;
         }
@@ -62,7 +65,7 @@ public class CodeHighlighting {
         @Override
         public void updateDrawState(TextPaint textPaint) {
             if (this.smallerSize) {
-                textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 4));
+                textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - this.decrementSize));
             }
             int i = this.currentType;
             if (i == 2) {
@@ -116,6 +119,52 @@ public class CodeHighlighting {
         }
     }
 
+    public static class LockedSpannableString extends SpannableString {
+        private boolean ready;
+
+        public LockedSpannableString(CharSequence charSequence) {
+            super(charSequence);
+        }
+
+        public void unlock() {
+            this.ready = true;
+        }
+
+        @Override
+        public <T> T[] getSpans(int i, int i2, Class<T> cls) {
+            return !this.ready ? (T[]) ((Object[]) Array.newInstance((Class<?>) cls, 0)) : (T[]) super.getSpans(i, i2, cls);
+        }
+
+        @Override
+        public int nextSpanTransition(int i, int i2, Class cls) {
+            return !this.ready ? i2 : super.nextSpanTransition(i, i2, cls);
+        }
+
+        @Override
+        public int getSpanStart(Object obj) {
+            if (this.ready) {
+                return super.getSpanStart(obj);
+            }
+            return -1;
+        }
+
+        @Override
+        public int getSpanEnd(Object obj) {
+            if (this.ready) {
+                return super.getSpanEnd(obj);
+            }
+            return -1;
+        }
+
+        @Override
+        public int getSpanFlags(Object obj) {
+            if (this.ready) {
+                return super.getSpanFlags(obj);
+            }
+            return 0;
+        }
+    }
+
     public static class Highlighting {
         String language;
         SpannableString result;
@@ -127,29 +176,24 @@ public class CodeHighlighting {
 
     public static SpannableString getHighlighted(String str, String str2) {
         if (TextUtils.isEmpty(str2)) {
-            SpannableString spannableString = new SpannableString(str);
-            spannableString.setSpan(new Span(true, 0, null, str2, str), 0, spannableString.length(), 33);
-            return spannableString;
+            return new SpannableString(str);
         }
         String str3 = str2 + "`" + str;
         HashMap<String, Highlighting> hashMap = processedHighlighting;
         Highlighting highlighting = hashMap.get(str3);
         if (highlighting == null) {
-            Highlighting highlighting2 = new Highlighting();
-            highlighting2.text = str;
-            highlighting2.language = str2;
-            SpannableString spannableString2 = new SpannableString(str);
-            highlighting2.result = spannableString2;
-            spannableString2.setSpan(new Span(true, 0, null, str2, str), 0, highlighting2.result.length(), 33);
-            SpannableString spannableString3 = highlighting2.result;
-            highlight(spannableString3, 0, spannableString3.length(), str2, 0, null, true);
+            highlighting = new Highlighting();
+            highlighting.text = str;
+            highlighting.language = str2;
+            LockedSpannableString lockedSpannableString = new LockedSpannableString(str);
+            highlighting.result = lockedSpannableString;
+            highlight(lockedSpannableString, 0, lockedSpannableString.length(), str2, 0, null, true);
             Iterator<String> it = hashMap.keySet().iterator();
             while (it.hasNext() && processedHighlighting.size() > 8) {
                 it.next();
                 it.remove();
             }
-            processedHighlighting.put(str3, highlighting2);
-            highlighting = highlighting2;
+            processedHighlighting.put(str3, highlighting);
         }
         return highlighting.result;
     }
@@ -158,15 +202,15 @@ public class CodeHighlighting {
         if (spannable == null) {
             return;
         }
-        Utilities.themeQueue.postRunnable(new Runnable() {
+        Utilities.searchQueue.postRunnable(new Runnable() {
             @Override
             public final void run() {
-                CodeHighlighting.lambda$highlight$1(spannable, i, i2, str);
+                CodeHighlighting.lambda$highlight$2(spannable, i, i2, str);
             }
         });
     }
 
-    public static void lambda$highlight$1(final Spannable spannable, int i, int i2, String str) {
+    public static void lambda$highlight$2(final Spannable spannable, int i, int i2, String str) {
         if (compiledPatterns == null) {
             parse();
         }
@@ -187,15 +231,35 @@ public class CodeHighlighting {
         if (arrayList.isEmpty()) {
             return;
         }
+        if (spannable instanceof LockedSpannableString) {
+            long currentTimeMillis3 = System.currentTimeMillis();
+            for (int i3 = 0; i3 < arrayList.size(); i3++) {
+                CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i3);
+                spannable.setSpan(new ColorSpan(cachedToSpan.group), cachedToSpan.start, cachedToSpan.end, 33);
+            }
+            FileLog.d("[CodeHighlighter] applying " + arrayList.size() + " colorize spans took " + (System.currentTimeMillis() - currentTimeMillis3) + "ms in another thread");
+            AndroidUtilities.runOnUIThread(new Runnable() {
+                @Override
+                public final void run() {
+                    CodeHighlighting.lambda$highlight$0(spannable);
+                }
+            });
+            return;
+        }
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                CodeHighlighting.lambda$highlight$0(arrayList, spannable);
+                CodeHighlighting.lambda$highlight$1(arrayList, spannable);
             }
         });
     }
 
-    public static void lambda$highlight$0(ArrayList arrayList, Spannable spannable) {
+    public static void lambda$highlight$0(Spannable spannable) {
+        ((LockedSpannableString) spannable).unlock();
+        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.emojiLoaded, new Object[0]);
+    }
+
+    public static void lambda$highlight$1(ArrayList arrayList, Spannable spannable) {
         long currentTimeMillis = System.currentTimeMillis();
         for (int i = 0; i < arrayList.size(); i++) {
             CachedToSpan cachedToSpan = (CachedToSpan) arrayList.get(i);

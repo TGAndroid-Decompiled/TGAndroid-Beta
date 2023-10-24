@@ -131,10 +131,6 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
     public interface Delegate {
 
         public final class CC {
-            public static boolean $default$isClipboardAvailable(Delegate delegate) {
-                return false;
-            }
-
             public static void $default$onSendWebViewData(Delegate delegate, String str) {
             }
 

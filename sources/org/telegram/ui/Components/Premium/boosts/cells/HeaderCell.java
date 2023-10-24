@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Outline;
 import android.os.Build;
+import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
@@ -14,10 +16,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.core.graphics.ColorUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC$User;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconRenderer;
 import org.telegram.ui.Components.Premium.GLIcon.GLIconTextureView;
 import org.telegram.ui.Components.Premium.StarParticlesView;
@@ -25,9 +36,10 @@ import org.telegram.ui.Components.Premium.StarParticlesView;
 public class HeaderCell extends FrameLayout {
     private final GLIconTextureView iconTextureView;
     private final LinearLayout linearLayout;
+    private LinkSpanDrawable.LinkCollector links;
     private final Theme.ResourcesProvider resourcesProvider;
     private final StarParticlesView starParticlesView;
-    private final TextView subtitleView;
+    private final LinkSpanDrawable.LinksTextView subtitleView;
     private final TextView titleView;
 
     public HeaderCell(Context context, Theme.ResourcesProvider resourcesProvider) {
@@ -95,15 +107,21 @@ public class HeaderCell extends FrameLayout {
         textView.setTextColor(Theme.getColor(i2, resourcesProvider));
         textView.setGravity(1);
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2, 1, 24, -8, 24, 0));
-        TextView textView2 = new TextView(context);
-        this.subtitleView = textView2;
-        textView2.setTextSize(1, 15.0f);
-        textView2.setTextColor(Theme.getColor(i2, resourcesProvider));
-        textView2.setGravity(17);
-        linearLayout.addView(textView2, LayoutHelper.createFrame(-1, -2.0f, 17, 24.0f, 8.0f, 24.0f, 18.0f));
+        LinkSpanDrawable.LinkCollector linkCollector = new LinkSpanDrawable.LinkCollector(this);
+        this.links = linkCollector;
+        LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context, linkCollector, resourcesProvider);
+        this.subtitleView = linksTextView;
+        linksTextView.setTextSize(1, 15.0f);
+        linksTextView.setGravity(17);
+        linksTextView.setTextColor(Theme.getColor(i2, resourcesProvider));
+        linksTextView.setMovementMethod(LinkMovementMethod.getInstance());
+        linksTextView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, resourcesProvider));
+        linksTextView.setImportantForAccessibility(2);
+        linearLayout.addView(linksTextView, LayoutHelper.createFrame(-1, -2.0f, 17, 24.0f, 8.0f, 24.0f, 18.0f));
         setClipChildren(false);
         addView(starParticlesView, LayoutHelper.createFrame(-1, 234, 48));
         addView(linearLayout);
+        setWillNotDraw(false);
     }
 
     public void setBoostViaGifsText() {
@@ -136,6 +154,38 @@ public class HeaderCell extends FrameLayout {
         this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllows", R.string.BoostingLinkAllows, new Object[0])));
     }
 
+    public void setUnclaimedText() {
+        this.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+        this.subtitleView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingLinkAllowsAnyone", R.string.BoostingLinkAllowsAnyone, new Object[0])));
+    }
+
+    public void setGiftLinkToUserText(long j, final Utilities.Callback<TLObject> callback) {
+        this.titleView.setText(LocaleController.formatString("BoostingGiftLink", R.string.BoostingGiftLink, new Object[0]));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        try {
+            String string = LocaleController.getString("BoostingLinkAllowsToUser", R.string.BoostingLinkAllowsToUser);
+            String substring = string.substring(0, string.indexOf("**%1s**") + 7);
+            String substring2 = string.substring(string.indexOf("**%1s**") + 7);
+            final TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            spannableStringBuilder2.append((CharSequence) "**");
+            spannableStringBuilder2.append(Emoji.replaceEmoji(UserObject.getUserName(user), this.subtitleView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+            spannableStringBuilder2.append((CharSequence) "**");
+            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(substring.toString().replace("**%1s**", spannableStringBuilder2), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+                @Override
+                public final void run() {
+                    Utilities.Callback.this.run(user);
+                }
+            }, this.resourcesProvider);
+            SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(substring2.toString());
+            spannableStringBuilder.append((CharSequence) replaceSingleTag);
+            spannableStringBuilder.append((CharSequence) replaceTags);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+        this.subtitleView.setText(spannableStringBuilder);
+    }
+
     @Override
     protected void onMeasure(int i, int i2) {
         super.onMeasure(i, i2);
@@ -147,5 +197,18 @@ public class HeaderCell extends FrameLayout {
     public void setPaused(boolean z) {
         this.iconTextureView.setPaused(z);
         this.starParticlesView.setPaused(z);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.links != null) {
+            canvas.save();
+            canvas.translate(this.subtitleView.getLeft(), this.subtitleView.getTop());
+            if (this.links.draw(canvas)) {
+                invalidate();
+            }
+            canvas.restore();
+        }
     }
 }

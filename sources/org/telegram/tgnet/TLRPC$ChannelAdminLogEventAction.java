@@ -124,23 +124,7 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionDefaultBannedRights();
                 break;
             case 1009460347:
-                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$ChannelAdminLogEventAction() {
-                    public int new_value;
-                    public int prev_value;
-
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.prev_value = abstractSerializedData2.readInt32(z2);
-                        this.new_value = abstractSerializedData2.readInt32(z2);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(1009460347);
-                        abstractSerializedData2.writeInt32(this.prev_value);
-                        abstractSerializedData2.writeInt32(this.new_value);
-                    }
-                };
+                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangeColor();
                 break;
             case 1048537159:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionParticipantVolume();
@@ -155,23 +139,7 @@ public abstract class TLRPC$ChannelAdminLogEventAction extends TLObject {
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangePhoto();
                 break;
             case 1147126836:
-                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$ChannelAdminLogEventAction() {
-                    public long new_value;
-                    public long prev_value;
-
-                    @Override
-                    public void readParams(AbstractSerializedData abstractSerializedData2, boolean z2) {
-                        this.prev_value = abstractSerializedData2.readInt64(z2);
-                        this.new_value = abstractSerializedData2.readInt64(z2);
-                    }
-
-                    @Override
-                    public void serializeToStream(AbstractSerializedData abstractSerializedData2) {
-                        abstractSerializedData2.writeInt32(1147126836);
-                        abstractSerializedData2.writeInt64(this.prev_value);
-                        abstractSerializedData2.writeInt64(this.new_value);
-                    }
-                };
+                tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionChangeBackgroundEmoji();
                 break;
             case 1401984889:
                 tLRPC$TL_channelAdminLogEventActionStopPoll = new TLRPC$TL_channelAdminLogEventActionToggleSlowMode();

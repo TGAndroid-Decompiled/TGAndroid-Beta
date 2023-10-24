@@ -2,7 +2,6 @@ package org.telegram.ui.Components.Premium.boosts.adapters;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,9 +45,32 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
     }
 
     @Override
+    public int getItemViewType(int i) {
+        if (i != 0) {
+            int i2 = 1;
+            if (i != 1) {
+                i2 = 2;
+                if (i != 2) {
+                    i2 = 3;
+                    if (i != 3) {
+                        i2 = 4;
+                        if (i != 4) {
+                            return 5;
+                        }
+                    }
+                }
+            }
+            return i2;
+        }
+        return 0;
+    }
+
+    @Override
     public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
         return false;
     }
+
+    public abstract void onHiddenLinkClicked();
 
     public abstract void onObjectClicked(TLObject tLObject);
 
@@ -61,32 +83,6 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         this.baseFragment = baseFragment;
         this.giftCode = tLRPC$TL_payments_checkedGiftCode;
         this.slug = str;
-    }
-
-    private boolean hasSlug() {
-        String str = this.slug;
-        return (str == null || TextUtils.isEmpty(str)) ? false : true;
-    }
-
-    @Override
-    public int getItemViewType(int i) {
-        if (i != 0) {
-            if (i == 1) {
-                return !hasSlug() ? 5 : 1;
-            }
-            int i2 = 2;
-            if (i != 2) {
-                i2 = 3;
-                if (i != 3) {
-                    i2 = 4;
-                    if (i != 4) {
-                        return 5;
-                    }
-                }
-            }
-            return i2;
-        }
-        return 0;
     }
 
     @Override
@@ -112,6 +108,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        String string;
         int itemViewType = viewHolder.getItemViewType();
         if (itemViewType == 0) {
             HeaderCell headerCell = (HeaderCell) viewHolder.itemView;
@@ -120,11 +117,29 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             } else {
                 headerCell.setUsedGiftLinkText();
             }
-            if (this.giftCode.boost != null) {
-                headerCell.setGiftLinkText();
+            TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode = this.giftCode;
+            if (tLRPC$TL_payments_checkedGiftCode.boost != null) {
+                headerCell.setGiftLinkToUserText(tLRPC$TL_payments_checkedGiftCode.to_id, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj) {
+                        GiftInfoAdapter.this.onObjectClicked((TLObject) obj);
+                    }
+                });
+            }
+            if (this.giftCode.to_id == -1) {
+                headerCell.setUnclaimedText();
             }
         } else if (itemViewType == 1) {
-            ((LinkCell) viewHolder.itemView).setSlug(this.slug);
+            LinkCell linkCell = (LinkCell) viewHolder.itemView;
+            linkCell.setSlug(this.slug);
+            if (this.giftCode.boost != null) {
+                linkCell.hideSlug(new Runnable() {
+                    @Override
+                    public final void run() {
+                        GiftInfoAdapter.this.onHiddenLinkClicked();
+                    }
+                });
+            }
         } else if (itemViewType == 2) {
             ((TableCell) viewHolder.itemView).setData(this.giftCode, new Utilities.Callback() {
                 @Override
@@ -144,8 +159,9 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                     GiftInfoAdapter.this.lambda$onBindViewHolder$4(actionBtnCell, view);
                 }
             });
-            if (this.giftCode.boost != null) {
-                actionBtnCell.setOkStyle(false);
+            TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode2 = this.giftCode;
+            if (tLRPC$TL_payments_checkedGiftCode2.boost != null || tLRPC$TL_payments_checkedGiftCode2.to_id == -1) {
+                actionBtnCell.setCloseStyle();
                 actionBtnCell.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
@@ -159,20 +175,30 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             textInfoCell.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
             textInfoCell.setTopPadding(14);
             textInfoCell.setBottomPadding(15);
-            if (!hasSlug()) {
-                textInfoCell.setVisibility(4);
-            }
-            if (this.isUnused) {
-                textInfoCell.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString("BoostingSendLinkToFriends", R.string.BoostingSendLinkToFriends), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+            TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode3 = this.giftCode;
+            if (tLRPC$TL_payments_checkedGiftCode3.boost != null) {
+                String str = this.slug;
+                if (str == null || str.isEmpty()) {
+                    textInfoCell.setText(LocaleController.getString("BoostingLinkNotActivated", R.string.BoostingLinkNotActivated));
+                } else {
+                    textInfoCell.setText("");
+                }
+            } else if (this.isUnused) {
+                if (tLRPC$TL_payments_checkedGiftCode3.to_id == -1) {
+                    string = LocaleController.getString("BoostingSendLinkToAnyone", R.string.BoostingSendLinkToAnyone);
+                } else {
+                    string = LocaleController.getString("BoostingSendLinkToFriends", R.string.BoostingSendLinkToFriends);
+                }
+                textInfoCell.setText(AndroidUtilities.replaceSingleTag(string, Theme.key_chat_messageLinkIn, 0, new Runnable() {
                     @Override
                     public final void run() {
                         GiftInfoAdapter.this.lambda$onBindViewHolder$1();
                     }
                 }, this.resourcesProvider));
-                return;
+            } else {
+                Date date = new Date(this.giftCode.used_date * 1000);
+                textInfoCell.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().formatterYear.format(date), LocaleController.getInstance().formatterDay.format(date))));
             }
-            Date date = new Date(this.giftCode.used_date * 1000);
-            textInfoCell.setText(LocaleController.formatString("BoostingUsedLinkDate", R.string.BoostingUsedLinkDate, LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().formatterYear.format(date), LocaleController.getInstance().formatterDay.format(date))));
         }
     }
 

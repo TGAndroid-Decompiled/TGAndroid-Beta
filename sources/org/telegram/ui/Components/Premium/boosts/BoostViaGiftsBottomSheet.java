@@ -525,6 +525,6 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
     public void onCountrySelected(List<TLRPC$TL_help_country> list) {
         this.selectedCountries.clear();
         this.selectedCountries.addAll(list);
-        updateRows(true, true);
+        updateRows(false, true);
     }
 }

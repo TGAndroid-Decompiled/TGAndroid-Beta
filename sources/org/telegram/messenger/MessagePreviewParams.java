@@ -374,7 +374,11 @@ public class MessagePreviewParams {
     public boolean hasLink(CharSequence charSequence, String str) {
         if (str != null) {
             SpannableString valueOf = SpannableString.valueOf(charSequence);
-            AndroidUtilities.addLinks(valueOf, 1);
+            try {
+                AndroidUtilities.addLinks(valueOf, 1);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
             for (URLSpan uRLSpan : (URLSpan[]) valueOf.getSpans(0, valueOf.length(), URLSpan.class)) {
                 if (areUrlsEqual(uRLSpan.getURL(), str)) {
                     return true;

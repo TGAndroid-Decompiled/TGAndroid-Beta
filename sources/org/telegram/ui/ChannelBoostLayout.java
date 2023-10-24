@@ -256,13 +256,13 @@ public class ChannelBoostLayout extends FrameLayout {
                             overviewCell.setData(1, "~" + ((int) ChannelBoostLayout.this.boostsStatus.premium_audience.part), String.format(Locale.US, "%.1f", Float.valueOf((((float) tLRPC$TL_statsPercentValue.part) / ((float) d)) * 100.0f)) + "%", LocaleController.getString("PremiumSubscribers", R.string.PremiumSubscribers));
                             overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString("BoostsExisting", R.string.BoostsExisting));
                             TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = ChannelBoostLayout.this.boostsStatus;
-                            overviewCell.setData(3, String.valueOf(tL_stories$TL_premium_boostsStatus.next_level_boosts - tL_stories$TL_premium_boostsStatus.boosts), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
+                            overviewCell.setData(3, String.valueOf(Math.max(0, tL_stories$TL_premium_boostsStatus.next_level_boosts - tL_stories$TL_premium_boostsStatus.boosts)), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
                         }
                     }
                     overviewCell.setData(1, "~0", "0%", LocaleController.getString("PremiumSubscribers", R.string.PremiumSubscribers));
                     overviewCell.setData(2, String.valueOf(ChannelBoostLayout.this.boostsStatus.boosts), null, LocaleController.getString("BoostsExisting", R.string.BoostsExisting));
                     TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus2 = ChannelBoostLayout.this.boostsStatus;
-                    overviewCell.setData(3, String.valueOf(tL_stories$TL_premium_boostsStatus2.next_level_boosts - tL_stories$TL_premium_boostsStatus2.boosts), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
+                    overviewCell.setData(3, String.valueOf(Math.max(0, tL_stories$TL_premium_boostsStatus2.next_level_boosts - tL_stories$TL_premium_boostsStatus2.boosts)), null, LocaleController.getString("BoostsToLevel", R.string.BoostsToLevel));
                 } else if (viewHolder.getItemViewType() == 5) {
                     TL_stories$TL_boost tL_stories$TL_boost = ((ItemInternal) ChannelBoostLayout.this.items.get(i)).booster;
                     TLRPC$User user = MessagesController.getInstance(ChannelBoostLayout.this.currentAccount).getUser(Long.valueOf(tL_stories$TL_boost.user_id));
@@ -353,7 +353,8 @@ public class ChannelBoostLayout extends FrameLayout {
         if (view instanceof GiftedUserCell) {
             GiftedUserCell giftedUserCell = (GiftedUserCell) view;
             TL_stories$TL_boost boost = giftedUserCell.getBoost();
-            if (boost.gift || boost.giveaway) {
+            boolean z = boost.gift;
+            if (((z || boost.giveaway) && boost.user_id >= 0) || boost.unclaimed) {
                 TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode = new TLRPC$TL_payments_checkedGiftCode();
                 tLRPC$TL_payments_checkedGiftCode.giveaway_msg_id = boost.giveaway_msg_id;
                 tLRPC$TL_payments_checkedGiftCode.to_id = boost.user_id;
@@ -362,9 +363,13 @@ public class ChannelBoostLayout extends FrameLayout {
                 tLRPC$TL_payments_checkedGiftCode.date = i2;
                 tLRPC$TL_payments_checkedGiftCode.via_giveaway = boost.giveaway;
                 tLRPC$TL_payments_checkedGiftCode.months = ((boost.expires - i2) / 30) / 86400;
-                tLRPC$TL_payments_checkedGiftCode.boost = boost;
+                if (boost.unclaimed) {
+                    tLRPC$TL_payments_checkedGiftCode.to_id = -1L;
+                } else {
+                    tLRPC$TL_payments_checkedGiftCode.boost = boost;
+                }
                 new GiftInfoBottomSheet(baseFragment, false, true, tLRPC$TL_payments_checkedGiftCode, boost.used_gift_slug).show();
-            } else {
+            } else if (!z && !boost.giveaway) {
                 baseFragment.presentFragment(ProfileActivity.of(giftedUserCell.getDialogId()));
             }
         }

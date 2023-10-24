@@ -64,7 +64,7 @@ public class StoriesIntro extends FrameLayout {
         textView.setTextColor(-1);
         textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView.setText(LocaleController.getString("StoriesIntroHeader", R.string.StoriesIntroHeader));
-        textView.setTextSize(1, 24.0f);
+        textView.setTextSize(1, 20.0f);
         linearLayout.addView(textView, LayoutHelper.createLinear(-2, -2));
         final TextView textView2 = new TextView(context);
         textView2.setTextColor(-1761607681);
@@ -96,7 +96,7 @@ public class StoriesIntro extends FrameLayout {
         textView3.setTextColor(-1);
         textView3.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textView3.setText(LocaleController.getString("StoriesIntroDismiss", R.string.StoriesIntroDismiss));
-        textView3.setTextSize(1, 16.0f);
+        textView3.setTextSize(1, 14.0f);
         linearLayout.addView(textView3, LayoutHelper.createLinear(-2, -2, 0.0f, 73.0f, 0.0f, 0.0f));
         addView(linearLayout, LayoutHelper.createFrame(-1, -2, 17));
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getContext().getResources(), AndroidUtilities.makeBlurBitmap(view, 12.0f, 10));
@@ -211,7 +211,7 @@ public class StoriesIntro extends FrameLayout {
             TextPaint textPaint = new TextPaint(1);
             this.headerTextPaint = textPaint;
             textPaint.setColor(-1);
-            textPaint.setTextSize(TypedValue.applyDimension(1, 18.0f, getResources().getDisplayMetrics()));
+            textPaint.setTextSize(TypedValue.applyDimension(1, 16.0f, getResources().getDisplayMetrics()));
             textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             TextPaint textPaint2 = new TextPaint(1);
             this.subHeaderTextPaint = textPaint2;

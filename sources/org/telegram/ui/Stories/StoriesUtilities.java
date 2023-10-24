@@ -840,7 +840,7 @@ public class StoriesUtilities {
         spannableStringBuilder.append((CharSequence) "d ").append((CharSequence) LocaleController.formatString(str, i, objArr));
         ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.msg_mini_bomb);
         if (z) {
-            coloredImageSpan.setScale(0.8f);
+            coloredImageSpan.setScale(0.8f, 0.8f);
         } else {
             coloredImageSpan.setTopOffset(-1);
         }

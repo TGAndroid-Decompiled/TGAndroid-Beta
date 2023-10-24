@@ -90,13 +90,13 @@ public class SpoilerEffect2 {
         int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
         if (devicePerformanceClass == 1) {
             Point point = AndroidUtilities.displaySize;
-            return Math.min((int) LiteMode.FLAG_CALLS_ANIMATIONS, (int) (Math.min(point.x, point.y) * 0.6f));
+            return Math.min((int) LiteMode.FLAG_CALLS_ANIMATIONS, (int) (Math.min(point.x, point.y) * 0.95f));
         } else if (devicePerformanceClass == 2) {
             Point point2 = AndroidUtilities.displaySize;
-            return Math.min(900, (int) (Math.min(point2.x, point2.y) * 0.9f));
+            return Math.min(900, (int) (Math.min(point2.x, point2.y) * 1.0f));
         } else {
             Point point3 = AndroidUtilities.displaySize;
-            return Math.min(400, (int) (Math.min(point3.x, point3.y) * 0.5f));
+            return Math.min(400, (int) (Math.min(point3.x, point3.y) * 0.85f));
         }
     }
 

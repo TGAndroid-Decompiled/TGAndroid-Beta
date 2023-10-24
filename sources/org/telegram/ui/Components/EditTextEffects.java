@@ -7,6 +7,7 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Region;
+import android.os.Build;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.Layout;
@@ -288,7 +289,7 @@ public class EditTextEffects extends EditText {
     @Override
     public void onDraw(Canvas canvas) {
         canvas.save();
-        if ((this.clipToPadding && getScrollY() != 0) || this.wrapCanvasToFixClipping) {
+        if (this.clipToPadding && ((getScrollY() != 0 || this.wrapCanvasToFixClipping) && Build.VERSION.SDK_INT > 29)) {
             canvas.clipRect(-AndroidUtilities.dp(3.0f), (getScrollY() - getExtendedPaddingTop()) - this.offsetY, getMeasuredWidth(), ((getMeasuredHeight() + getScrollY()) + getExtendedPaddingBottom()) - this.offsetY);
         }
         this.path.rewind();

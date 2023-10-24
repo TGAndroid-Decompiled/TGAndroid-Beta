@@ -1975,7 +1975,9 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                     @Override
                     public void onAnimationEnd(Animator animator2) {
                         super.onAnimationEnd(animator2);
-                        StoryViewer.this.storiesIntro.startAnimation(true);
+                        if (StoryViewer.this.storiesIntro != null) {
+                            StoryViewer.this.storiesIntro.startAnimation(true);
+                        }
                     }
                 }).start();
                 SharedConfig.setStoriesIntroShown(true);
@@ -1989,9 +1991,11 @@ public class StoryViewer implements NotificationCenter.NotificationCenterDelegat
                 @Override
                 public void onAnimationEnd(Animator animator) {
                     super.onAnimationEnd(animator);
-                    StoryViewer.this.storiesIntro.stopAnimation();
-                    StoryViewer storyViewer = StoryViewer.this;
-                    storyViewer.containerView.removeView(storyViewer.storiesIntro);
+                    if (StoryViewer.this.storiesIntro != null) {
+                        StoryViewer.this.storiesIntro.stopAnimation();
+                        StoryViewer storyViewer = StoryViewer.this;
+                        storyViewer.containerView.removeView(storyViewer.storiesIntro);
+                    }
                     StoryViewer.this.storiesIntro = null;
                     StoryViewer.this.updatePlayingMode();
                 }

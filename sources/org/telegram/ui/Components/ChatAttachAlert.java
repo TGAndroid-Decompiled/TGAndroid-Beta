@@ -59,7 +59,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ChatObject;
@@ -288,32 +287,15 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         showBotLayout(j, null, false, z);
     }
 
-    public void showBotLayout(long j, String str, boolean z, boolean z2) {
-        if ((this.botAttachLayouts.get(j) == null || !Objects.equals(str, this.botAttachLayouts.get(j).getStartCommand()) || this.botAttachLayouts.get(j).needReload()) && (this.baseFragment instanceof ChatActivity)) {
-            ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout = new ChatAttachAlertBotWebViewLayout(this, getContext(), this.resourcesProvider);
-            this.botAttachLayouts.put(j, chatAttachAlertBotWebViewLayout);
-            this.botAttachLayouts.get(j).setDelegate(new AnonymousClass1(chatAttachAlertBotWebViewLayout, str));
-            MessageObject replyingMessageObject = ((ChatActivity) this.baseFragment).getChatActivityEnterView().getReplyingMessageObject();
-            this.botAttachLayouts.get(j).requestWebView(this.currentAccount, ((ChatActivity) this.baseFragment).getDialogId(), j, false, replyingMessageObject != null ? replyingMessageObject.messageOwner.id : 0, str);
-        }
-        if (this.botAttachLayouts.get(j) != null) {
-            this.botAttachLayouts.get(j).disallowSwipeOffsetAnimation();
-            showLayout(this.botAttachLayouts.get(j), -j, z2);
-            if (z) {
-                this.botAttachLayouts.get(j).showJustAddedBulletin();
-            }
-        }
+    public void showBotLayout(long r17, java.lang.String r19, boolean r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatAttachAlert.showBotLayout(long, java.lang.String, boolean, boolean):void");
     }
 
     public class AnonymousClass1 implements BotWebViewContainer.Delegate {
         private ValueAnimator botButtonAnimator;
+        final long val$id;
         final String val$startCommand;
         final ChatAttachAlertBotWebViewLayout val$webViewLayout;
-
-        @Override
-        public boolean isClipboardAvailable() {
-            return true;
-        }
 
         @Override
         public void onSendWebViewData(String str) {
@@ -325,10 +307,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             BotWebViewContainer.Delegate.CC.$default$onWebAppReady(this);
         }
 
-        AnonymousClass1(ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout, String str) {
+        AnonymousClass1(ChatAttachAlertBotWebViewLayout chatAttachAlertBotWebViewLayout, String str, long j) {
             ChatAttachAlert.this = r1;
             this.val$webViewLayout = chatAttachAlertBotWebViewLayout;
             this.val$startCommand = str;
+            this.val$id = j;
         }
 
         @Override
@@ -604,6 +587,11 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             if (actionBarMenuSubItem != null) {
                 actionBarMenuSubItem.setVisibility(z ? 0 : 8);
             }
+        }
+
+        @Override
+        public boolean isClipboardAvailable() {
+            return MediaDataController.getInstance(ChatAttachAlert.this.currentAccount).botInAttachMenu(this.val$id);
         }
     }
 

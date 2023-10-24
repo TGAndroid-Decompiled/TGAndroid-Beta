@@ -885,7 +885,8 @@ public abstract class BaseFragment {
 
         @Override
         protected boolean canSwipeToBack() {
-            if (this.val$params.transitionFromLeft) {
+            BottomSheetParams bottomSheetParams = this.val$params;
+            if (bottomSheetParams != null && bottomSheetParams.transitionFromLeft) {
                 INavigationLayout[] iNavigationLayoutArr = this.val$actionBarLayout;
                 if (iNavigationLayoutArr[0] != null && iNavigationLayoutArr[0].getFragmentStack().size() <= 1) {
                     return true;

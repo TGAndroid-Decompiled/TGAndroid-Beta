@@ -140,7 +140,8 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         this.sparseIntArray.put(Theme.key_windowBackgroundWhiteGrayText4, -8355712);
         this.sparseIntArray.put(Theme.key_switchTrack, -10263709);
         this.sparseIntArray.put(Theme.key_switchTrackChecked, -15033089);
-        this.sparseIntArray.put(Theme.key_dialogRoundCheckBox, -10177041);
+        this.sparseIntArray.put(Theme.key_dialogRoundCheckBox, -15033089);
+        this.sparseIntArray.put(Theme.key_dialogRadioBackgroundChecked, -15033089);
         this.sparseIntArray.put(Theme.key_dialogTextBlue2, -15033089);
         this.sparseIntArray.put(Theme.key_color_red, -832444);
         this.sparseIntArray.put(Theme.key_checkboxDisabled, -10329502);

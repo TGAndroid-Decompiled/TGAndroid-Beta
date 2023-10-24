@@ -246,8 +246,10 @@ public class StoryMediaAreasView extends FrameLayout implements View.OnClickList
                 coloredImageSpan2.translate(AndroidUtilities.dp(-2.0f), AndroidUtilities.dp(1.0f));
                 coloredImageSpan2.setScale(-1.0f, 1.0f);
                 spannableString2.setSpan(coloredImageSpan2, 0, spannableString2.length(), 33);
+                if (AndroidUtilities.isRTL(spannableStringBuilder)) {
+                    spannableString = spannableString2;
+                }
                 AndroidUtilities.replaceCharSequence(">", spannableStringBuilder, spannableString);
-                AndroidUtilities.replaceCharSequence("<", spannableStringBuilder, spannableString2);
                 final HintView2 duration = new HintView2(getContext(), z ? 1 : 3).setText(spannableStringBuilder).setSelectorColor(687865855).setJointPx(0.0f, this.selectedArea.getTranslationX() - AndroidUtilities.dp(8.0f)).setDuration(5000L);
                 this.hintView = duration;
                 duration.setOnHiddenListener(new Runnable() {

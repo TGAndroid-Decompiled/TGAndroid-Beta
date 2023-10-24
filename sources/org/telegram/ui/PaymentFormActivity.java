@@ -442,7 +442,7 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
     }
 
     private void setCurrentPassword(TLRPC$account_Password tLRPC$account_Password) {
-        if (tLRPC$account_Password.has_password) {
+        if (tLRPC$account_Password != null && tLRPC$account_Password.has_password) {
             if (getParentActivity() == null) {
                 return;
             }

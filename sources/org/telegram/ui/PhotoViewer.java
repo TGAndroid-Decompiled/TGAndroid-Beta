@@ -3926,50 +3926,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         clippingImageView.setAnimationValues(this.animationValues);
         this.windowView.addView(this.animatingImageView, LayoutHelper.createFrame(40, 40.0f));
         FrameLayoutDrawer frameLayoutDrawer = new FrameLayoutDrawer(parentActivity, parentActivity) {
-            private Bulletin.Delegate delegate = new Bulletin.Delegate() {
-                @Override
-                public boolean allowLayoutChanges() {
-                    return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
-                }
-
-                @Override
-                public boolean clipWithGradient(int i3) {
-                    return Bulletin.Delegate.CC.$default$clipWithGradient(this, i3);
-                }
-
-                @Override
-                public int getTopOffset(int i3) {
-                    return Bulletin.Delegate.CC.$default$getTopOffset(this, i3);
-                }
-
-                @Override
-                public void onBottomOffsetChange(float f) {
-                    Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
-                }
-
-                @Override
-                public void onHide(Bulletin bulletin) {
-                    Bulletin.Delegate.CC.$default$onHide(this, bulletin);
-                }
-
-                @Override
-                public void onShow(Bulletin bulletin) {
-                    Bulletin.Delegate.CC.$default$onShow(this, bulletin);
-                }
-
-                {
-                    AnonymousClass13.this = this;
-                }
-
-                @Override
-                public int getBottomOffset(int i3) {
-                    if (PhotoViewer.this.captionEdit.editText.getVisibility() == 8) {
-                        return 0;
-                    }
-                    return getHeight() - PhotoViewer.this.captionEdit.editText.getTop();
-                }
-            };
-
             {
                 PhotoViewer.this = this;
             }
@@ -3987,18 +3943,6 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     return true;
                 }
                 return super.dispatchTouchEvent(motionEvent);
-            }
-
-            @Override
-            protected void onAttachedToWindow() {
-                super.onAttachedToWindow();
-                Bulletin.addDelegate(this, this.delegate);
-            }
-
-            @Override
-            protected void onDetachedFromWindow() {
-                super.onDetachedFromWindow();
-                Bulletin.removeDelegate(this);
             }
 
             @Override

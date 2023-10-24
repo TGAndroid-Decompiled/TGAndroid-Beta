@@ -21,7 +21,6 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 public class FlashViews {
-    public static final int[] COLORS = {-1, -70004, -7544833};
     private ValueAnimator animator;
     public final View backgroundView;
     private int color;
@@ -37,12 +36,21 @@ public class FlashViews {
     private final WindowManager.LayoutParams windowViewParams;
     private final ArrayList<Invertable> invertableViews = new ArrayList<>();
     private float invert = 0.0f;
+    public float warmth = 0.75f;
+    public float intensity = 1.0f;
     private final Matrix gradientMatrix = new Matrix();
 
     public interface Invertable {
         void invalidate();
 
         void setInvert(float f);
+    }
+
+    public static int getColor(float f) {
+        if (f < 0.5f) {
+            return ColorUtils.blendARGB(-7544833, -1, Utilities.clamp(f / 0.5f, 1.0f, 0.0f));
+        }
+        return ColorUtils.blendARGB(-1, -70004, Utilities.clamp((f - 0.5f) / 0.5f, 1.0f, 0.0f));
     }
 
     public FlashViews(Context context, WindowManager windowManager, View view, WindowManager.LayoutParams layoutParams) {
@@ -74,13 +82,11 @@ public class FlashViews {
             }
         };
         paint.setAlpha(0);
-        setColor(2);
     }
 
     public void flash(final Utilities.Callback<Utilities.Callback<Runnable>> callback) {
-        WindowManager.LayoutParams layoutParams = this.windowViewParams;
-        layoutParams.screenBrightness = 1.0f;
-        this.windowManager.updateViewLayout(this.windowView, layoutParams);
+        this.windowViewParams.screenBrightness = intensityValue();
+        this.windowManager.updateViewLayout(this.windowView, this.windowViewParams);
         flashTo(1.0f, 320L, new Runnable() {
             @Override
             public final void run() {
@@ -123,10 +129,17 @@ public class FlashViews {
         flashTo(0.0f, 240L, runnable);
     }
 
+    public void previewStart() {
+        flashTo(0.85f, 240L, null);
+    }
+
+    public void previewEnd() {
+        flashTo(0.0f, 240L, null);
+    }
+
     public void flashIn(Runnable runnable) {
-        WindowManager.LayoutParams layoutParams = this.windowViewParams;
-        layoutParams.screenBrightness = 1.0f;
-        this.windowManager.updateViewLayout(this.windowView, layoutParams);
+        this.windowViewParams.screenBrightness = intensityValue();
+        this.windowManager.updateViewLayout(this.windowView, this.windowViewParams);
         flashTo(1.0f, 320L, runnable);
     }
 
@@ -145,14 +158,7 @@ public class FlashViews {
         }
         if (j <= 0) {
             this.invert = f;
-            for (int i = 0; i < this.invertableViews.size(); i++) {
-                this.invertableViews.get(i).setInvert(this.invert);
-                this.invertableViews.get(i).invalidate();
-            }
-            this.paint.setAlpha((int) (this.invert * 255.0f));
-            this.backgroundView.invalidate();
-            this.foregroundView.invalidate();
-            this.paint.setAlpha((int) (this.invert * 255.0f));
+            update();
             if (runnable != null) {
                 runnable.run();
                 return;
@@ -171,13 +177,7 @@ public class FlashViews {
             @Override
             public void onAnimationEnd(Animator animator) {
                 FlashViews.this.invert = f;
-                for (int i2 = 0; i2 < FlashViews.this.invertableViews.size(); i2++) {
-                    ((Invertable) FlashViews.this.invertableViews.get(i2)).setInvert(FlashViews.this.invert);
-                    ((Invertable) FlashViews.this.invertableViews.get(i2)).invalidate();
-                }
-                FlashViews.this.paint.setAlpha((int) (FlashViews.this.invert * 255.0f));
-                FlashViews.this.backgroundView.invalidate();
-                FlashViews.this.foregroundView.invalidate();
+                FlashViews.this.update();
                 Runnable runnable2 = runnable;
                 if (runnable2 != null) {
                     runnable2.run();
@@ -191,14 +191,21 @@ public class FlashViews {
 
     public void lambda$flashTo$4(ValueAnimator valueAnimator) {
         this.invert = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        update();
+    }
+
+    public void update() {
         for (int i = 0; i < this.invertableViews.size(); i++) {
             this.invertableViews.get(i).setInvert(this.invert);
             this.invertableViews.get(i).invalidate();
         }
-        this.paint.setAlpha((int) (this.invert * 255.0f));
+        this.paint.setAlpha((int) (intensityValue() * 255.0f * this.invert));
         this.backgroundView.invalidate();
         this.foregroundView.invalidate();
-        this.paint.setAlpha((int) (this.invert * 255.0f));
+    }
+
+    private float intensityValue() {
+        return this.intensity;
     }
 
     public void add(Invertable invertable) {
@@ -206,8 +213,14 @@ public class FlashViews {
         this.invertableViews.add(invertable);
     }
 
-    public void setColor(int i) {
-        this.color = COLORS[i];
+    public void setIntensity(float f) {
+        this.intensity = f;
+        update();
+    }
+
+    public void setWarmth(float f) {
+        this.warmth = f;
+        this.color = getColor(f);
         invalidateGradient();
     }
 

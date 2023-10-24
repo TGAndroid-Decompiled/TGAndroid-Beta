@@ -2044,7 +2044,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.authorizationAutoconfirmPeriod = this.mainPreferences.getInt("authorization_autoconfirm_period", 604800);
         this.channelColorLevelMin = this.mainPreferences.getInt("channelColorLevelMin", 1);
         this.quoteLengthMax = this.mainPreferences.getInt("quoteLengthMax", 1024);
-        this.giveawayGiftsPurchaseAvailable = false;
+        this.giveawayGiftsPurchaseAvailable = this.mainPreferences.getBoolean("giveawayGiftsPurchaseAvailable", false);
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {
             this.dcDomainName = this.mainPreferences.getString("dcDomainName2", "apv3.stel.com");
@@ -4685,8 +4685,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 case '3':
                     TLRPC$JSONValue tLRPC$JSONValue57 = tLRPC$TL_jsonObjectValue.value;
                     if ((tLRPC$JSONValue57 instanceof TLRPC$TL_jsonBool) && this.giveawayGiftsPurchaseAvailable != ((TLRPC$TL_jsonBool) tLRPC$JSONValue57).value) {
-                        this.giveawayGiftsPurchaseAvailable = false;
-                        edit.putBoolean("giveawayGiftsPurchaseAvailable", false);
+                        boolean z15 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue57).value;
+                        this.giveawayGiftsPurchaseAvailable = z15;
+                        edit.putBoolean("giveawayGiftsPurchaseAvailable", z15);
                         z5 = z6;
                         z4 = z7;
                         z3 = true;
@@ -4703,10 +4704,10 @@ public class MessagesController extends BaseController implements NotificationCe
                 case '4':
                     TLRPC$JSONValue tLRPC$JSONValue58 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue58 instanceof TLRPC$TL_jsonBool) {
-                        boolean z15 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue58).value;
-                        if (z15 != this.suggestStickersApiOnly) {
-                            this.suggestStickersApiOnly = z15;
-                            edit.putBoolean("suggestStickersApiOnly", z15);
+                        boolean z16 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue58).value;
+                        if (z16 != this.suggestStickersApiOnly) {
+                            this.suggestStickersApiOnly = z16;
+                            edit.putBoolean("suggestStickersApiOnly", z16);
                             z3 = true;
                         }
                         z5 = z6;
@@ -4840,10 +4841,10 @@ public class MessagesController extends BaseController implements NotificationCe
                 case '9':
                     TLRPC$JSONValue tLRPC$JSONValue66 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue66 instanceof TLRPC$TL_jsonBool) {
-                        boolean z16 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue66).value;
-                        if (z16 != this.getfileExperimentalParams) {
-                            this.getfileExperimentalParams = z16;
-                            edit.putBoolean("getfileExperimentalParams", z16);
+                        boolean z17 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue66).value;
+                        if (z17 != this.getfileExperimentalParams) {
+                            this.getfileExperimentalParams = z17;
+                            edit.putBoolean("getfileExperimentalParams", z17);
                             z3 = true;
                         }
                         z5 = z6;
@@ -5050,10 +5051,10 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 'C':
                     TLRPC$JSONValue tLRPC$JSONValue76 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue76 instanceof TLRPC$TL_jsonBool) {
-                        boolean z17 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue76).value;
-                        if (z17 != this.saveGifsWithStickers) {
-                            this.saveGifsWithStickers = z17;
-                            edit.putBoolean("saveGifsWithStickers", z17);
+                        boolean z18 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue76).value;
+                        if (z18 != this.saveGifsWithStickers) {
+                            this.saveGifsWithStickers = z18;
+                            edit.putBoolean("saveGifsWithStickers", z18);
                             z3 = true;
                         }
                         z5 = z6;
@@ -5225,9 +5226,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 'K':
                     TLRPC$JSONValue tLRPC$JSONValue84 = tLRPC$TL_jsonObjectValue.value;
                     if ((tLRPC$JSONValue84 instanceof TLRPC$TL_jsonBool) && this.premiumLocked != ((TLRPC$TL_jsonBool) tLRPC$JSONValue84).value) {
-                        boolean z18 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue84).value;
-                        this.premiumLocked = z18;
-                        edit.putBoolean("premiumLocked", z18);
+                        boolean z19 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue84).value;
+                        this.premiumLocked = z19;
+                        edit.putBoolean("premiumLocked", z19);
                         z5 = z6;
                         z4 = z7;
                         z3 = true;
@@ -5265,9 +5266,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 'M':
                     TLRPC$JSONValue tLRPC$JSONValue86 = tLRPC$TL_jsonObjectValue.value;
                     if ((tLRPC$JSONValue86 instanceof TLRPC$TL_jsonBool) && this.giftAttachMenuIcon != ((TLRPC$TL_jsonBool) tLRPC$JSONValue86).value) {
-                        boolean z19 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue86).value;
-                        this.giftAttachMenuIcon = z19;
-                        edit.putBoolean("giftAttachMenuIcon", z19);
+                        boolean z20 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue86).value;
+                        this.giftAttachMenuIcon = z20;
+                        edit.putBoolean("giftAttachMenuIcon", z20);
                         z5 = z6;
                         z4 = z7;
                         z3 = true;
@@ -5466,9 +5467,9 @@ public class MessagesController extends BaseController implements NotificationCe
                 case 'S':
                     TLRPC$JSONValue tLRPC$JSONValue95 = tLRPC$TL_jsonObjectValue.value;
                     if ((tLRPC$JSONValue95 instanceof TLRPC$TL_jsonBool) && this.uploadMarkupVideo != ((TLRPC$TL_jsonBool) tLRPC$JSONValue95).value) {
-                        boolean z20 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue95).value;
-                        this.uploadMarkupVideo = z20;
-                        edit.putBoolean("uploadMarkupVideo", z20);
+                        boolean z21 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue95).value;
+                        this.uploadMarkupVideo = z21;
+                        edit.putBoolean("uploadMarkupVideo", z21);
                         z5 = z6;
                         z4 = z7;
                         z3 = true;
@@ -5864,10 +5865,10 @@ public class MessagesController extends BaseController implements NotificationCe
                 case FileLoader.MEDIA_DIR_IMAGE_PUBLIC:
                     TLRPC$JSONValue tLRPC$JSONValue114 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue114 instanceof TLRPC$TL_jsonBool) {
-                        boolean z21 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue114).value;
-                        if (z21 != this.filtersEnabled) {
-                            this.filtersEnabled = z21;
-                            edit.putBoolean("filtersEnabled", z21);
+                        boolean z22 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue114).value;
+                        if (z22 != this.filtersEnabled) {
+                            this.filtersEnabled = z22;
+                            edit.putBoolean("filtersEnabled", z22);
                             z3 = true;
                         }
                         z5 = z6;
@@ -5889,20 +5890,20 @@ public class MessagesController extends BaseController implements NotificationCe
                     size = i7;
             }
         }
-        boolean z22 = z4;
-        boolean z23 = z5;
+        boolean z23 = z4;
+        boolean z24 = z5;
         if (z3) {
             edit.apply();
         }
         if (tLRPC$TL_jsonObject5 != null) {
             LiteMode.updatePresets(tLRPC$TL_jsonObject5);
         }
-        if (z22) {
+        if (z23) {
             ApplicationLoader.startPushService();
             ConnectionsManager connectionsManager = getConnectionsManager();
             connectionsManager.setPushConnectionEnabled(connectionsManager.isPushConnectionEnabled());
         }
-        if (z23) {
+        if (z24) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

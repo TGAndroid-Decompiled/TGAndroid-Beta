@@ -29,6 +29,8 @@ public class ReplyMessageLine {
     public final AnimatedColor color2Animated;
     private AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable emoji;
     private long emojiDocumentId;
+    private boolean emojiLoaded;
+    public final AnimatedFloat emojiLoadedT;
     public boolean hasColor2;
     private IconCoords[] iconCoords;
     private float lastColor2Height;
@@ -73,6 +75,7 @@ public class ReplyMessageLine {
         this.color2Animated = new AnimatedColor(view, 0L, 400L, cubicBezierInterpolator);
         this.nameColorAnimated = new AnimatedColor(view, 0L, 400L, cubicBezierInterpolator);
         this.color2Alpha = new AnimatedFloat(view, 0L, 400L, cubicBezierInterpolator);
+        this.emojiLoadedT = new AnimatedFloat(view, 0L, 440L, cubicBezierInterpolator);
     }
 
     public int getColor() {
@@ -191,7 +194,7 @@ public class ReplyMessageLine {
             this.backgroundColor = Theme.multAlpha(color4, Theme.isCurrentThemeDark() ? 0.12f : 0.1f);
             this.nameColor = Theme.getColor(Theme.key_chat_inReplyNameText, resourcesProvider);
         }
-        if (messageObject.isOutOwner()) {
+        if (messageObject.isOutOwner() && !messageObject.shouldDrawWithoutBackground()) {
             int color5 = Theme.getColor(Theme.key_chat_outReplyLine, resourcesProvider);
             this.color2 = color5;
             this.color1 = color5;
@@ -216,8 +219,8 @@ public class ReplyMessageLine {
             }
         }
         AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
-        if (swapAnimatedEmojiDrawable != null) {
-            swapAnimatedEmojiDrawable.set(this.emojiDocumentId, true);
+        if (swapAnimatedEmojiDrawable != null && swapAnimatedEmojiDrawable.set(this.emojiDocumentId, true)) {
+            this.emojiLoaded = false;
         }
         return this.nameColorAnimated.set(this.nameColor);
     }
@@ -369,7 +372,10 @@ public class ReplyMessageLine {
         if (this.emoji == null) {
             return;
         }
-        int i = 0;
+        float f2 = this.emojiLoadedT.set(isEmojiLoaded());
+        if (f2 <= 0.0f) {
+            return;
+        }
         if (this.iconCoords == null) {
             this.iconCoords = new IconCoords[]{new IconCoords(4.0f, -6.33f, 1.0f, 1.0f), new IconCoords(30.0f, 3.0f, 0.78f, 0.9f), new IconCoords(46.0f, -17.0f, 0.6f, 0.6f), new IconCoords(69.66f, -0.666f, 0.87f, 0.7f), new IconCoords(107.0f, -12.6f, 1.03f, 0.3f), new IconCoords(51.0f, 24.0f, 1.0f, 0.5f), new IconCoords(6.33f, 20.0f, 0.77f, 0.7f), new IconCoords(-19.0f, 12.0f, 0.8f, 0.6f, true), new IconCoords(26.0f, 42.0f, 0.78f, 0.9f), new IconCoords(-22.0f, 36.0f, 0.7f, 0.5f, true), new IconCoords(-1.0f, 48.0f, 1.0f, 0.4f)};
         }
@@ -381,7 +387,8 @@ public class ReplyMessageLine {
         }
         float min = Math.min(rectF.centerY(), rectF.top + AndroidUtilities.dp(21.0f));
         this.emoji.setColor(Integer.valueOf(getColor()));
-        this.emoji.setAlpha((int) (255.0f * f * 0.5f));
+        this.emoji.setAlpha((int) (255.0f * f * (rectF.width() < ((float) AndroidUtilities.dp(140.0f)) ? 0.27f : 0.5f)));
+        int i = 0;
         while (true) {
             IconCoords[] iconCoordsArr = this.iconCoords;
             if (i < iconCoordsArr.length) {
@@ -390,7 +397,7 @@ public class ReplyMessageLine {
                     this.emoji.setAlpha((int) (iconCoords.a * 76.5f));
                     float dp = max - AndroidUtilities.dp(iconCoords.x);
                     float dp2 = AndroidUtilities.dp(iconCoords.y) + min;
-                    float dp3 = AndroidUtilities.dp(10.0f) * iconCoords.s;
+                    float dp3 = AndroidUtilities.dp(10.0f) * iconCoords.s * f2;
                     this.emoji.setBounds((int) (dp - dp3), (int) (dp2 - dp3), (int) (dp + dp3), (int) (dp2 + dp3));
                     this.emoji.draw(canvas);
                 }
@@ -400,6 +407,22 @@ public class ReplyMessageLine {
                 return;
             }
         }
+    }
+
+    private boolean isEmojiLoaded() {
+        if (this.emojiLoaded) {
+            return true;
+        }
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.emoji;
+        if (swapAnimatedEmojiDrawable == null || !(swapAnimatedEmojiDrawable.getDrawable() instanceof AnimatedEmojiDrawable)) {
+            return false;
+        }
+        AnimatedEmojiDrawable animatedEmojiDrawable = (AnimatedEmojiDrawable) this.emoji.getDrawable();
+        if (animatedEmojiDrawable.getImageReceiver() == null || !animatedEmojiDrawable.getImageReceiver().hasImageLoaded()) {
+            return false;
+        }
+        this.emojiLoaded = true;
+        return true;
     }
 
     public void drawLoadingBackground(Canvas canvas, RectF rectF, float f, float f2, float f3, float f4) {

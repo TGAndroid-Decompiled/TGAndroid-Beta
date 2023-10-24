@@ -50,6 +50,7 @@ public class TableCell extends FrameLayout {
     private final Theme.ResourcesProvider resourcesProvider;
     private final Path roundPath;
     private final RectF roundRect;
+    private TableRow tableRow4;
     private FrameLayout toFrameLayout;
     private final BackupImageView toImageView;
     private final TextView toNameTextView;
@@ -134,12 +135,13 @@ public class TableCell extends FrameLayout {
             tableRow3.addView(createTextView8, new TableRow.LayoutParams(-2, -2));
         }
         TableRow tableRow4 = new TableRow(context);
+        this.tableRow4 = tableRow4;
         if (LocaleController.isRTL) {
             tableRow4.addView(createTextView9, new TableRow.LayoutParams(-2, -2, 1.0f));
-            tableRow4.addView(createTextView4, new TableRow.LayoutParams(-2, -2));
+            this.tableRow4.addView(createTextView4, new TableRow.LayoutParams(-2, -2));
         } else {
             tableRow4.addView(createTextView4, new TableRow.LayoutParams(-2, -2));
-            tableRow4.addView(createTextView9, new TableRow.LayoutParams(-2, -2));
+            this.tableRow4.addView(createTextView9, new TableRow.LayoutParams(-2, -2));
         }
         TableRow tableRow5 = new TableRow(context);
         if (LocaleController.isRTL) {
@@ -161,7 +163,7 @@ public class TableCell extends FrameLayout {
                 super.dispatchDraw(canvas);
                 TableCell.this.linePaint.setColor(Theme.getColor(Theme.key_divider, resourcesProvider));
                 TableCell.this.linePaint.setStrokeWidth(AndroidUtilities.dp(1.0f));
-                float height = getHeight() / 5.0f;
+                float height = getHeight() / (TableCell.this.tableRow4.getVisibility() == 0 ? 5.0f : 4.0f);
                 for (int i = 1; i <= 4; i++) {
                     float f = height * i;
                     canvas.drawLine(0.0f, f, getWidth(), f, TableCell.this.linePaint);
@@ -175,7 +177,7 @@ public class TableCell extends FrameLayout {
         tableLayout.addView(tableRow);
         tableLayout.addView(tableRow2);
         tableLayout.addView(tableRow3);
-        tableLayout.addView(tableRow4);
+        tableLayout.addView(this.tableRow4);
         tableLayout.addView(tableRow5);
         if (LocaleController.isRTL) {
             tableLayout.setColumnShrinkable(0, true);
@@ -248,18 +250,21 @@ public class TableCell extends FrameLayout {
             ((ViewGroup.MarginLayoutParams) this.toTextView.getLayoutParams()).leftMargin = 0;
             ((ViewGroup.MarginLayoutParams) this.toTextView.getLayoutParams()).rightMargin = 0;
             this.toImageView.setVisibility(8);
-            return;
+        } else {
+            final TLRPC$User user2 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$TL_payments_checkedGiftCode.to_id));
+            if (user2 != null) {
+                this.toTextView.setText(Emoji.replaceEmoji(UserObject.getFirstName(user2), this.fromTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+                this.toImageView.setForUserOrChat(user2, new AvatarDrawable(user2));
+                this.toFrameLayout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public final void onClick(View view) {
+                        Utilities.Callback.this.run(user2);
+                    }
+                });
+            }
         }
-        final TLRPC$User user2 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$TL_payments_checkedGiftCode.to_id));
-        if (user2 != null) {
-            this.toTextView.setText(Emoji.replaceEmoji(UserObject.getFirstName(user2), this.fromTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
-            this.toImageView.setForUserOrChat(user2, new AvatarDrawable(user2));
-            this.toFrameLayout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public final void onClick(View view) {
-                    Utilities.Callback.this.run(user2);
-                }
-            });
+        if (tLRPC$TL_payments_checkedGiftCode.boost != null) {
+            this.tableRow4.setVisibility(8);
         }
     }
 

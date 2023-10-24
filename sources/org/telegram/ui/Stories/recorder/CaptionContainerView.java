@@ -73,6 +73,7 @@ public class CaptionContainerView extends FrameLayout {
     private BitmapShader blurBitmapShader;
     private final BlurringShader.BlurManager blurManager;
     private Paint blurPaint;
+    private final ButtonBounce bounce;
     private final RectF bounds;
     private final BlurringShader.StoryBlurDrawer captionBlur;
     private int codePointCount;
@@ -192,6 +193,7 @@ public class CaptionContainerView extends FrameLayout {
                 CaptionContainerView.this.lambda$new$1();
             }
         };
+        this.bounce = new ButtonBounce(this, 1.0f, 3.0f);
         this.updateShowKeyboard = new Runnable() {
             @Override
             public final void run() {
@@ -473,12 +475,23 @@ public class CaptionContainerView extends FrameLayout {
                     }
                 }
             }
+            this.editText.getEditText().setForceCursorEnd(true);
             this.editText.getEditText().requestFocus();
             this.editText.openKeyboard();
             this.editText.getEditText().setScrollY(0);
+            this.bounce.setPressed(true);
             return true;
         }
+        if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+            this.bounce.setPressed(false);
+        }
         return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public void setPressed(boolean z) {
+        super.setPressed(z);
+        this.bounce.setPressed(z && !this.keyboardShown);
     }
 
     private void animateScrollTo(boolean z) {
@@ -493,6 +506,7 @@ public class CaptionContainerView extends FrameLayout {
         int scrollY = editText.getScrollY();
         EditTextEmoji editTextEmoji = this.editText;
         editTextEmoji.setSelection(z ? editTextEmoji.length() : 0);
+        this.editText.getEditText().setForceCursorEnd(false);
         ObjectAnimator ofInt = ObjectAnimator.ofInt(editText, "scrollY", scrollY, z ? editText.getLayout().getLineTop(editText.getLineCount()) - ((editText.getHeight() - editText.getPaddingTop()) - editText.getPaddingBottom()) : 0);
         this.scrollAnimator = ofInt;
         ofInt.setDuration(360L);
@@ -843,6 +857,9 @@ public class CaptionContainerView extends FrameLayout {
         this.lastHeightTranslation = dpf2;
         float lerp = AndroidUtilities.lerp(AndroidUtilities.dp(12.0f), 0, this.keyboardT);
         this.bounds.set(lerp, (getHeight() - lerp) - f2, getWidth() - lerp, getHeight() - lerp);
+        canvas.save();
+        float scale = this.bounce.getScale(0.018f);
+        canvas.scale(scale, scale, this.bounds.centerX(), this.bounds.centerY());
         float lerp2 = AndroidUtilities.lerp(AndroidUtilities.dp(21.0f), 0, this.keyboardT);
         if (customBlur()) {
             drawBlur(this.backgroundBlur, canvas, this.bounds, lerp2, false, 0.0f, 0.0f, true);
@@ -865,6 +882,7 @@ public class CaptionContainerView extends FrameLayout {
             }
         }
         super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
     public RectF getBounds() {

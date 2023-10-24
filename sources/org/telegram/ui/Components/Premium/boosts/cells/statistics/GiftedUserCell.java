@@ -66,11 +66,13 @@ public class GiftedUserCell extends UserCell {
                 this.nameTextView.setText(LocaleController.getString("BoostingUnclaimed", R.string.BoostingUnclaimed));
                 this.avatarDrawable.setAvatarType(18);
                 this.avatarDrawable.setColor(-6631068, -11945404);
+                this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
                 this.nameTextView.setRightDrawable((Drawable) null);
             } else if (tL_stories$TL_boost.user_id == -1) {
                 this.nameTextView.setText(LocaleController.getString("BoostingToBeDistributed", R.string.BoostingToBeDistributed));
                 this.avatarDrawable.setAvatarType(19);
                 this.avatarDrawable.setColor(-10703110, -12481584);
+                this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
                 this.nameTextView.setRightDrawable((Drawable) null);
             }
             String format = LocaleController.getInstance().formatterScheduleDay.format(new Date(tL_stories$TL_boost.date * 1000));

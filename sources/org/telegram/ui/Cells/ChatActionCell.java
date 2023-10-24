@@ -3,8 +3,11 @@ package org.telegram.ui.Cells;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
@@ -94,6 +97,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private static Map<Integer, String> monthsToEmoticon;
     private int TAG;
     private SpannableStringBuilder accessibilityText;
+    private int adaptiveEmojiColor;
+    private ColorFilter adaptiveEmojiColorFilter;
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojiStack;
     private AvatarDrawable avatarDrawable;
     StoriesUtilities.AvatarStoryParams avatarStoryParams;
@@ -1030,6 +1035,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     private void createGiftPremiumChannelLayouts() {
+        String string;
         SpannableStringBuilder spannableStringBuilder;
         int dp = this.giftRectSize - AndroidUtilities.dp(16.0f);
         this.giftTitlePaint.setTextSize(AndroidUtilities.dp(14.0f));
@@ -1039,12 +1045,22 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         TLRPC$Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$TL_messageActionGiftCode.boost_peer)));
         String str = chat == null ? null : chat.title;
         boolean z = tLRPC$TL_messageActionGiftCode.via_giveaway;
-        String string = LocaleController.getString("BoostingCongratulations", R.string.BoostingCongratulations);
+        if (tLRPC$TL_messageActionGiftCode.unclaimed) {
+            string = LocaleController.getString("BoostingUnclaimedPrize", R.string.BoostingUnclaimedPrize);
+        } else {
+            string = LocaleController.getString("BoostingCongratulations", R.string.BoostingCongratulations);
+        }
         String formatPluralString = i == 12 ? LocaleController.formatPluralString("BoldYears", 1, new Object[0]) : LocaleController.formatPluralString("BoldMonths", i, new Object[0]);
         if (z) {
-            spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReceivedPrizeFrom", R.string.BoostingReceivedPrizeFrom, str)));
-            spannableStringBuilder.append((CharSequence) "\n\n");
-            spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReceivedPrizeDuration", R.string.BoostingReceivedPrizeDuration, formatPluralString)));
+            if (tLRPC$TL_messageActionGiftCode.unclaimed) {
+                spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingYouHaveUnclaimedPrize", R.string.BoostingYouHaveUnclaimedPrize, str)));
+                spannableStringBuilder.append((CharSequence) "\n\n");
+                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingUnclaimedPrizeDuration", R.string.BoostingUnclaimedPrizeDuration, formatPluralString)));
+            } else {
+                spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReceivedPrizeFrom", R.string.BoostingReceivedPrizeFrom, str)));
+                spannableStringBuilder.append((CharSequence) "\n\n");
+                spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReceivedPrizeDuration", R.string.BoostingReceivedPrizeDuration, formatPluralString)));
+            }
         } else {
             spannableStringBuilder = new SpannableStringBuilder(AndroidUtilities.replaceTags(str == null ? LocaleController.getString("BoostingReceivedGiftNoName", R.string.BoostingReceivedGiftNoName) : LocaleController.formatString("BoostingReceivedGiftFrom", R.string.BoostingReceivedGiftFrom, str)));
             spannableStringBuilder.append((CharSequence) "\n\n");
@@ -1106,7 +1122,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r30) {
+    public void onDraw(android.graphics.Canvas r28) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -1445,7 +1461,8 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     public void drawOutboundsContent(Canvas canvas) {
         canvas.save();
         canvas.translate(this.textXLeft, this.textY);
-        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, this.textLayout, this.animatedEmojiStack, 0.0f, this.spoilers, 0.0f, 0.0f, 0.0f, 1.0f);
+        StaticLayout staticLayout = this.textLayout;
+        AnimatedEmojiSpan.drawAnimatedEmojis(canvas, staticLayout, this.animatedEmojiStack, 0.0f, this.spoilers, 0.0f, 0.0f, 0.0f, 1.0f, staticLayout != null ? getAdaptiveEmojiColorFilter(staticLayout.getPaint().getColor()) : null);
         canvas.restore();
     }
 
@@ -1483,5 +1500,13 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         if (view != null) {
             view.invalidate();
         }
+    }
+
+    private ColorFilter getAdaptiveEmojiColorFilter(int i) {
+        if (i != this.adaptiveEmojiColor || this.adaptiveEmojiColorFilter == null) {
+            this.adaptiveEmojiColor = i;
+            this.adaptiveEmojiColorFilter = new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN);
+        }
+        return this.adaptiveEmojiColorFilter;
     }
 }

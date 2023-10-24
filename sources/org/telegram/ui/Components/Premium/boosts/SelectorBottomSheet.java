@@ -283,7 +283,10 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                     SelectorBottomSheet.this.lambda$new$4();
                 }
             }, this.countriesList);
-            updateList(true, false);
+            this.query = null;
+            this.searchField.setText("");
+            updateList(false, false);
+            updateList(true, true);
         }
     }
 
@@ -363,7 +366,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         if (z) {
             LinearSmoothScrollerCustom linearSmoothScrollerCustom = new LinearSmoothScrollerCustom(getContext(), 2, 0.6f);
             linearSmoothScrollerCustom.setTargetPosition(1);
-            linearSmoothScrollerCustom.setOffset(AndroidUtilities.dp(36.0f));
+            linearSmoothScrollerCustom.setOffset(AndroidUtilities.dp(38.0f));
             this.recyclerListView.getLayoutManager().startSmoothScroll(linearSmoothScrollerCustom);
             return;
         }
@@ -551,10 +554,15 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
         int i = this.type;
         if (i == 1) {
             formatPluralStringComma = LocaleController.formatPluralStringComma("Subscribers", Math.max(0, this.selectorAdapter.getParticipantsCount(this.currentChat) - 1));
+            this.sectionCell.setLayerHeight(32);
         } else if (i == 2) {
             formatPluralStringComma = LocaleController.formatString("BoostingSelectUpTo", R.string.BoostingSelectUpTo, Long.valueOf(BoostRepository.giveawayAddPeersMax()));
+            this.sectionCell.setLayerHeight(32);
+        } else if (i != 3) {
+            formatPluralStringComma = "";
         } else {
-            formatPluralStringComma = i != 3 ? "" : LocaleController.formatString("BoostingSelectUpTo", R.string.BoostingSelectUpToCountries, Long.valueOf(BoostRepository.giveawayCountriesMax()));
+            formatPluralStringComma = LocaleController.formatString("BoostingSelectUpTo", R.string.BoostingSelectUpToCountries, Long.valueOf(BoostRepository.giveawayCountriesMax()));
+            this.sectionCell.setLayerHeight(1);
         }
         this.sectionCell.setText(formatPluralStringComma);
     }
@@ -653,7 +661,7 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     private void updateSectionCell(boolean z) {
-        if (this.selectedIds.size() > 0) {
+        if (this.selectedIds.size() > 0 && this.type != 3) {
             this.sectionCell.setRightText(LocaleController.getString(R.string.UsersDeselectAll), true, new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {

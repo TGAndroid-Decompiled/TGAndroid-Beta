@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -136,6 +138,10 @@ public class AvatarDrawable extends Drawable {
         return Theme.getColor(Theme.key_avatar_backgroundActionBarBlue, resourcesProvider);
     }
 
+    public static String colorName(int i) {
+        return LocaleController.getString(new int[]{R.string.ColorRed, R.string.ColorOrange, R.string.ColorViolet, R.string.ColorGreen, R.string.ColorCyan, R.string.ColorBlue, R.string.ColorPink}[i % 7]);
+    }
+
     public static int getNameColorNameForId(long j) {
         return Theme.keys_avatar_nameInMessage[getColorIndex(j)];
     }
@@ -175,7 +181,7 @@ public class AvatarDrawable extends Drawable {
             return Theme.keys_avatar_nameInMessage[0];
         }
         if ((tLRPC$Chat.flags2 & 64) != 0) {
-            return getNameColorKey1For(tLRPC$Chat.color);
+            return getNameColorKey2For(tLRPC$Chat.color);
         }
         return getNameColorNameForId(tLRPC$Chat.id);
     }

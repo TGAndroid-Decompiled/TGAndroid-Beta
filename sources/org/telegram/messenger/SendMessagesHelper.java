@@ -82,7 +82,6 @@ import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$MessageReplies;
 import org.telegram.tgnet.TLRPC$MessageReplyHeader;
 import org.telegram.tgnet.TLRPC$Peer;
-import org.telegram.tgnet.TLRPC$Photo;
 import org.telegram.tgnet.TLRPC$PhotoSize;
 import org.telegram.tgnet.TLRPC$ReplyMarkup;
 import org.telegram.tgnet.TLRPC$TL_account_getPassword;
@@ -201,7 +200,6 @@ import org.telegram.tgnet.TLRPC$TL_urlAuthResultAccepted;
 import org.telegram.tgnet.TLRPC$TL_urlAuthResultDefault;
 import org.telegram.tgnet.TLRPC$TL_urlAuthResultRequest;
 import org.telegram.tgnet.TLRPC$TL_user;
-import org.telegram.tgnet.TLRPC$TL_webPage;
 import org.telegram.tgnet.TLRPC$TL_webPagePending;
 import org.telegram.tgnet.TLRPC$Update;
 import org.telegram.tgnet.TLRPC$Updates;
@@ -4781,36 +4779,11 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_messageMediaInvoice.start_param = "";
             accountInstance.getSendMessagesHelper().sendMessage(SendMessageParams.of(tLRPC$TL_messageMediaInvoice, j, messageObject, messageObject2, tLRPC$BotInlineResult.send_message.reply_markup, hashMap, z, i));
         } else if (tLRPC$BotInlineMessage instanceof TLRPC$TL_botInlineMessageMediaWebPage) {
-            TLRPC$TL_botInlineMessageMediaWebPage tLRPC$TL_botInlineMessageMediaWebPage = (TLRPC$TL_botInlineMessageMediaWebPage) tLRPC$BotInlineMessage;
-            TLRPC$TL_webPage tLRPC$TL_webPage = new TLRPC$TL_webPage();
-            int i5 = tLRPC$TL_webPage.flags | 4;
-            tLRPC$TL_webPage.flags = i5;
-            tLRPC$TL_webPage.title = tLRPC$BotInlineResult.title;
-            int i6 = i5 | 8;
-            tLRPC$TL_webPage.flags = i6;
-            tLRPC$TL_webPage.description = tLRPC$BotInlineResult.description;
-            TLRPC$Photo tLRPC$Photo = tLRPC$BotInlineResult.photo;
-            if (tLRPC$Photo != null) {
-                tLRPC$TL_webPage.flags = i6 | 16;
-                tLRPC$TL_webPage.photo = tLRPC$Photo;
-            }
-            TLRPC$Document tLRPC$Document = tLRPC$BotInlineResult.document;
-            if (tLRPC$Document != null) {
-                tLRPC$TL_webPage.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
-                tLRPC$TL_webPage.document = tLRPC$Document;
-            }
-            tLRPC$TL_webPage.url = tLRPC$TL_botInlineMessageMediaWebPage.url;
-            tLRPC$TL_webPage.display_url = "";
-            SendMessageParams of = SendMessageParams.of(tLRPC$TL_botInlineMessageMediaWebPage.message, j, messageObject, messageObject2, null, false, tLRPC$TL_botInlineMessageMediaWebPage.entities, tLRPC$BotInlineResult.send_message.reply_markup, null, true, 0, null, false);
-            TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage = new TLRPC$TL_messageMediaWebPage();
-            of.mediaWebPage = tLRPC$TL_messageMediaWebPage;
-            tLRPC$TL_messageMediaWebPage.webpage = tLRPC$TL_webPage;
-            tLRPC$TL_messageMediaWebPage.force_large_media = tLRPC$TL_botInlineMessageMediaWebPage.force_large_media;
-            tLRPC$TL_messageMediaWebPage.force_small_media = tLRPC$TL_botInlineMessageMediaWebPage.force_small_media;
-            tLRPC$TL_messageMediaWebPage.manual = tLRPC$TL_botInlineMessageMediaWebPage.manual;
-            tLRPC$TL_messageMediaWebPage.safe = tLRPC$TL_botInlineMessageMediaWebPage.safe;
-            of.invert_media = tLRPC$TL_botInlineMessageMediaWebPage.invert_media;
-            accountInstance.getSendMessagesHelper().sendMessage(of);
+            TLRPC$TL_webPagePending tLRPC$TL_webPagePending3 = new TLRPC$TL_webPagePending();
+            tLRPC$TL_webPagePending3.url = ((TLRPC$TL_botInlineMessageMediaWebPage) tLRPC$BotInlineMessage).url;
+            SendMessagesHelper sendMessagesHelper2 = accountInstance.getSendMessagesHelper();
+            TLRPC$BotInlineMessage tLRPC$BotInlineMessage7 = tLRPC$BotInlineResult.send_message;
+            sendMessagesHelper2.sendMessage(SendMessageParams.of(tLRPC$BotInlineMessage7.message, j, messageObject, messageObject2, tLRPC$TL_webPagePending3, !tLRPC$BotInlineMessage7.no_webpage, tLRPC$BotInlineMessage7.entities, tLRPC$BotInlineMessage7.reply_markup, hashMap, z, i, null, false));
         }
     }
 

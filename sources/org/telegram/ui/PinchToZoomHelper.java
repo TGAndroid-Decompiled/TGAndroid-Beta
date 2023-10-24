@@ -296,6 +296,9 @@ public class PinchToZoomHelper {
             }
             f2 += view.getLeft();
             f3 += view.getTop();
+            if (!(view.getParent() instanceof View)) {
+                break;
+            }
         }
         float f4 = 0.0f;
         for (View view2 = this.child; view2 != this.fragmentView; view2 = (View) view2.getParent()) {

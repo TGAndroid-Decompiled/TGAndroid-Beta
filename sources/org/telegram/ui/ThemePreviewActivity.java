@@ -1224,12 +1224,16 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
                 }
             }
         } else {
-            this.accent.backgroundRotation += 45;
+            Theme.ThemeAccent themeAccent = this.accent;
+            if (themeAccent == null) {
+                return;
+            }
+            themeAccent.backgroundRotation += 45;
             while (true) {
-                Theme.ThemeAccent themeAccent = this.accent;
-                int i2 = themeAccent.backgroundRotation;
+                Theme.ThemeAccent themeAccent2 = this.accent;
+                int i2 = themeAccent2.backgroundRotation;
                 if (i2 >= 360) {
-                    themeAccent.backgroundRotation = i2 - 360;
+                    themeAccent2.backgroundRotation = i2 - 360;
                 } else {
                     Theme.refreshThemeColors();
                     return;
@@ -1244,7 +1248,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
 
     private void selectColorType(int i, boolean z) {
         int i2;
-        if (getParentActivity() == null || this.colorType == i || this.patternViewAnimation != null) {
+        if (getParentActivity() == null || this.colorType == i || this.patternViewAnimation != null || this.accent != null) {
             return;
         }
         if (z && i == 2 && (Theme.hasCustomWallpaper() || this.accent.backgroundOverrideColor == 4294967296L)) {

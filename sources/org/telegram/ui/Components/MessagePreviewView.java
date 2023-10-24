@@ -18,6 +18,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.style.CharacterStyle;
 import android.text.style.URLSpan;
+import android.util.LongSparseArray;
 import android.util.Property;
 import android.view.MotionEvent;
 import android.view.View;
@@ -264,10 +265,15 @@ public class MessagePreviewView extends FrameLayout {
 
         public MessageObject getReplyMessage() {
             MessageObject.GroupedMessages valueAt;
-            if (MessagePreviewView.this.messagePreviewParams.replyMessage.groupedMessagesMap.size() > 0 && (valueAt = MessagePreviewView.this.messagePreviewParams.replyMessage.groupedMessagesMap.valueAt(0)) != null) {
-                return valueAt.captionMessage;
+            MessagePreviewParams.Messages messages = MessagePreviewView.this.messagePreviewParams.replyMessage;
+            if (messages != null) {
+                LongSparseArray<MessageObject.GroupedMessages> longSparseArray = messages.groupedMessagesMap;
+                if (longSparseArray != null && longSparseArray.size() > 0 && (valueAt = MessagePreviewView.this.messagePreviewParams.replyMessage.groupedMessagesMap.valueAt(0)) != null) {
+                    return valueAt.captionMessage;
+                }
+                return MessagePreviewView.this.messagePreviewParams.replyMessage.messages.get(0);
             }
-            return MessagePreviewView.this.messagePreviewParams.replyMessage.messages.get(0);
+            return null;
         }
 
         public Page(android.content.Context r26, int r27) {
@@ -621,6 +627,9 @@ public class MessagePreviewView extends FrameLayout {
                 tLRPC$Message.invert_media = MessagePreviewView.this.messagePreviewParams.webpageTop;
             }
             updateMessages();
+            if (MessagePreviewView.this.messagePreviewParams.webpageTop) {
+                this.chatListView.smoothScrollToPosition(1);
+            }
         }
 
         public void showQuoteLengthError() {
@@ -1875,6 +1884,9 @@ public class MessagePreviewView extends FrameLayout {
             this.textDrawable.setTextColor(messagePreviewView.getThemedColor(Theme.key_actionBarDefaultSubmenuItem));
             this.textDrawable.setCallback(this);
             this.textDrawable.setEllipsizeByGradient(true ^ LocaleController.isRTL);
+            if (LocaleController.isRTL) {
+                this.textDrawable.setGravity(5);
+            }
             int dp = (int) (AndroidUtilities.dp(77.0f) + Math.max(this.textDrawable.getPaint().measureText(str), this.textDrawable.getPaint().measureText(str2)));
             this.minWidth = dp;
             this.textDrawable.setOverrideFullWidth(dp);

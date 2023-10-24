@@ -515,11 +515,6 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         final Theme.ResourcesProvider val$resourcesProvider;
 
         @Override
-        public boolean isClipboardAvailable() {
-            return BotWebViewContainer.Delegate.CC.$default$isClipboardAvailable(this);
-        }
-
-        @Override
         public void onWebAppReady() {
             BotWebViewContainer.Delegate.CC.$default$onWebAppReady(this);
         }
@@ -782,6 +777,11 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                     }
                 }).start();
             }
+        }
+
+        @Override
+        public boolean isClipboardAvailable() {
+            return MediaDataController.getInstance(BotWebViewSheet.this.currentAccount).botInAttachMenu(BotWebViewSheet.this.botId);
         }
     }
 

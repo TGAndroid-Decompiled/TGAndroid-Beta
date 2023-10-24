@@ -419,7 +419,7 @@ public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements
         this.oldItems = arrayList;
         arrayList.addAll(this.itemInternals);
         updateItemList();
-        final ArrayList<ItemInternal> arrayList2 = this.itemInternals;
+        final ArrayList<ItemInternal> arrayList2 = new ArrayList<>(this.itemInternals);
         this.itemInternals = this.oldItems;
         final DiffUtil.Callback callback = new DiffUtil.Callback() {
             @Override

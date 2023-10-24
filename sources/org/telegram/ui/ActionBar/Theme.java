@@ -25,6 +25,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -279,6 +280,8 @@ public class Theme {
     public static Drawable chat_msgStickerPinnedDrawable;
     public static Drawable chat_msgStickerRepliesDrawable;
     public static Drawable chat_msgStickerViewsDrawable;
+    public static TextPaint chat_msgTextCode2Paint;
+    public static TextPaint chat_msgTextCodePaint;
     public static TextPaint chat_msgTextPaint;
     public static TextPaint[] chat_msgTextPaintEmoji;
     public static TextPaint chat_msgTextPaintOneEmoji;
@@ -6477,6 +6480,12 @@ public class Theme {
                 chat_forwardNamePaint = new TextPaint(1);
                 chat_adminPaint = new TextPaint(1);
                 chat_timePaint = new TextPaint(1);
+                TextPaint textPaint5 = new TextPaint(1);
+                chat_msgTextCodePaint = textPaint5;
+                textPaint5.setTypeface(Typeface.MONOSPACE);
+                TextPaint textPaint6 = new TextPaint(1);
+                chat_msgTextCode2Paint = textPaint6;
+                textPaint6.setTypeface(Typeface.MONOSPACE);
                 chat_msgCodeBgPaint = new TextPaint(1);
             }
             int i = 0;
@@ -6503,6 +6512,8 @@ public class Theme {
                     chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f2));
                     chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(f));
                     chat_adminPaint.setTextSize(AndroidUtilities.dp(f2));
+                    chat_msgTextCodePaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 2));
+                    chat_msgTextCode2Paint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 4));
                 }
             }
         }

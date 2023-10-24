@@ -3,6 +3,8 @@ package org.telegram.ui.Components.Premium.boosts;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
@@ -20,15 +22,18 @@ import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
+import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumPreviewBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.GiftInfoBottomSheet;
 import org.telegram.ui.Components.Premium.boosts.adapters.GiftInfoAdapter;
 import org.telegram.ui.Components.RecyclerListView;
+import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.LaunchActivity;
 public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
     private GiftInfoAdapter adapter;
     private final TLRPC$TL_payments_checkedGiftCode giftCode;
     private final boolean isUnused;
+    private UndoView undoView;
 
     public static void show(final BaseFragment baseFragment, final String str, final Browser.Progress progress) {
         final AtomicBoolean atomicBoolean = new AtomicBoolean(false);
@@ -119,6 +124,13 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
+    public void onViewCreated(FrameLayout frameLayout) {
+        super.onViewCreated(frameLayout);
+        this.undoView = new UndoView(getContext(), getBaseFragment(), true, this.resourcesProvider);
+        ((ViewGroup) getWindow().getDecorView()).addView(this.undoView, LayoutHelper.createFrame(-1, -2.0f, 51, 10.0f, 42.0f, 10.0f, 8.0f));
+    }
+
+    @Override
     protected CharSequence getTitle() {
         return this.isUnused ? LocaleController.getString("BoostingGiftLink", R.string.BoostingGiftLink) : LocaleController.getString("BoostingUsedGiftLink", R.string.BoostingUsedGiftLink);
     }
@@ -160,6 +172,11 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
                 bundle.putInt("message_id", GiftInfoBottomSheet.this.giftCode.giveaway_msg_id);
                 GiftInfoBottomSheet.this.getBaseFragment().presentFragment(new ChatActivity(bundle));
             }
+        }
+
+        @Override
+        protected void onHiddenLinkClicked() {
+            GiftInfoBottomSheet.this.undoView.showWithAction(0L, 94, null, null);
         }
     }
 

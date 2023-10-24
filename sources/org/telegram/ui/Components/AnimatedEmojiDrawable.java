@@ -559,7 +559,6 @@ public class AnimatedEmojiDrawable extends Drawable {
                 this.imageReceiver.setVideoThumbIsSame(true);
                 boolean z2 = (SharedConfig.getDevicePerformanceClass() == 0 && this.cacheType == 5) || ((i = this.cacheType) == 2 && !liteModeKeyboard) || (i == 3 && !liteModeReactions);
                 if (this.cacheType == 13) {
-                    this.imageReceiver.setCrossfadeWithOldImage(true);
                     z2 = true;
                 }
                 String str2 = this.sizedp + "_" + this.sizedp;
@@ -1095,18 +1094,18 @@ public class AnimatedEmojiDrawable extends Drawable {
             return this.drawables[0];
         }
 
-        public void set(long j, boolean z) {
-            set(j, this.cacheType, z);
+        public boolean set(long j, boolean z) {
+            return set(j, this.cacheType, z);
         }
 
         public void resetAnimation() {
             this.changeProgress.set(1.0f, true);
         }
 
-        public void set(long j, int i, boolean z) {
+        public boolean set(long j, int i, boolean z) {
             Drawable[] drawableArr = this.drawables;
             if ((drawableArr[0] instanceof AnimatedEmojiDrawable) && ((AnimatedEmojiDrawable) drawableArr[0]).getDocumentId() == j) {
-                return;
+                return false;
             }
             if (z) {
                 this.changeProgress.set(0.0f, true);
@@ -1139,6 +1138,7 @@ public class AnimatedEmojiDrawable extends Drawable {
             this.colorFilterLastColor = 0;
             play();
             invalidate();
+            return true;
         }
 
         public void set(TLRPC$Document tLRPC$Document, boolean z) {

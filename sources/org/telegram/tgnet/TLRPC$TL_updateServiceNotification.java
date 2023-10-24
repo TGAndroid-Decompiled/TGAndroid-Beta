@@ -5,6 +5,7 @@ public class TLRPC$TL_updateServiceNotification extends TLRPC$Update {
     public ArrayList<TLRPC$MessageEntity> entities = new ArrayList<>();
     public int flags;
     public int inbox_date;
+    public boolean invert_media;
     public TLRPC$MessageMedia media;
     public String message;
     public boolean popup;
@@ -18,6 +19,7 @@ public class TLRPC$TL_updateServiceNotification extends TLRPC$Update {
         if ((readInt32 & 2) != 0) {
             this.inbox_date = abstractSerializedData.readInt32(z);
         }
+        this.invert_media = (this.flags & 4) != 0;
         this.type = abstractSerializedData.readString(z);
         this.message = abstractSerializedData.readString(z);
         this.media = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
@@ -43,7 +45,9 @@ public class TLRPC$TL_updateServiceNotification extends TLRPC$Update {
         abstractSerializedData.writeInt32(-337352679);
         int i = this.popup ? this.flags | 1 : this.flags & (-2);
         this.flags = i;
-        abstractSerializedData.writeInt32(i);
+        int i2 = this.invert_media ? i | 4 : i & (-5);
+        this.flags = i2;
+        abstractSerializedData.writeInt32(i2);
         if ((this.flags & 2) != 0) {
             abstractSerializedData.writeInt32(this.inbox_date);
         }
@@ -53,8 +57,8 @@ public class TLRPC$TL_updateServiceNotification extends TLRPC$Update {
         abstractSerializedData.writeInt32(481674261);
         int size = this.entities.size();
         abstractSerializedData.writeInt32(size);
-        for (int i2 = 0; i2 < size; i2++) {
-            this.entities.get(i2).serializeToStream(abstractSerializedData);
+        for (int i3 = 0; i3 < size; i3++) {
+            this.entities.get(i3).serializeToStream(abstractSerializedData);
         }
     }
 }

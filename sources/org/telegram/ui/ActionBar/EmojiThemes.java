@@ -226,7 +226,9 @@ public class EmojiThemes {
             }
             Theme.ThemeInfo themeInfo2 = new Theme.ThemeInfo(theme);
             themeAccent = themeInfo2.createNewAccent(tlTheme, i, true, settingsIndex);
-            themeInfo2.setCurrentAccentId(themeAccent.id);
+            if (themeAccent != null) {
+                themeInfo2.setCurrentAccentId(themeAccent.id);
+            }
             themeInfo = themeInfo2;
         } else {
             SparseArray<Theme.ThemeAccent> sparseArray = themeInfo.themeAccentsMap;

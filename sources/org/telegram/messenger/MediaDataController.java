@@ -9,6 +9,7 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.Spanned;
 import android.text.SpannedString;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
@@ -36,6 +37,7 @@ import org.telegram.SQLite.SQLiteCursor;
 import org.telegram.SQLite.SQLiteDatabase;
 import org.telegram.SQLite.SQLiteException;
 import org.telegram.SQLite.SQLitePreparedStatement;
+import org.telegram.messenger.CodeHighlighting;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationBadge;
@@ -58,6 +60,7 @@ import org.telegram.tgnet.TLRPC$EmojiStatus;
 import org.telegram.tgnet.TLRPC$InputPeer;
 import org.telegram.tgnet.TLRPC$InputReplyTo;
 import org.telegram.tgnet.TLRPC$InputStickerSet;
+import org.telegram.tgnet.TLRPC$InputUser;
 import org.telegram.tgnet.TLRPC$Message;
 import org.telegram.tgnet.TLRPC$MessageAction;
 import org.telegram.tgnet.TLRPC$MessageEntity;
@@ -136,6 +139,7 @@ import org.telegram.tgnet.TLRPC$TL_messageActionHistoryClear;
 import org.telegram.tgnet.TLRPC$TL_messageActionPaymentSent;
 import org.telegram.tgnet.TLRPC$TL_messageActionPinMessage;
 import org.telegram.tgnet.TLRPC$TL_messageEmpty;
+import org.telegram.tgnet.TLRPC$TL_messageEntityBlockquote;
 import org.telegram.tgnet.TLRPC$TL_messageEntityBold;
 import org.telegram.tgnet.TLRPC$TL_messageEntityCode;
 import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
@@ -219,10 +223,12 @@ import org.telegram.ui.ChatActivity;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.ChatThemeBottomSheet;
+import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.StickerSetBulletinLayout;
 import org.telegram.ui.Components.StickersArchiveAlert;
 import org.telegram.ui.Components.TextStyleSpan;
 import org.telegram.ui.Components.URLSpanReplacement;
+import org.telegram.ui.Components.URLSpanUserMention;
 public class MediaDataController extends BaseController {
     public static final String ATTACH_MENU_BOT_ANIMATED_ICON_KEY = "android_animated";
     public static final String ATTACH_MENU_BOT_COLOR_DARK_ICON = "dark_icon";
@@ -6652,8 +6658,283 @@ public class MediaDataController extends BaseController {
         return tLRPC$MessageEntity;
     }
 
-    public java.util.ArrayList<org.telegram.tgnet.TLRPC$MessageEntity> getEntities(java.lang.CharSequence[] r19, boolean r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.getEntities(java.lang.CharSequence[], boolean):java.util.ArrayList");
+    public ArrayList<TLRPC$MessageEntity> getEntities(CharSequence[] charSequenceArr, boolean z) {
+        int i;
+        int i2;
+        int i3;
+        ArrayList<TLRPC$MessageEntity> arrayList = null;
+        if (charSequenceArr != null && charSequenceArr[0] != null) {
+            int i4 = -1;
+            boolean z2 = false;
+            int i5 = 0;
+            loop0: while (true) {
+                i = -1;
+                while (true) {
+                    int indexOf = TextUtils.indexOf(charSequenceArr[0], !z2 ? "`" : "```", i5);
+                    if (indexOf == i4) {
+                        break loop0;
+                    } else if (i == i4) {
+                        z2 = charSequenceArr[0].length() - indexOf > 2 && charSequenceArr[0].charAt(indexOf + 1) == '`' && charSequenceArr[0].charAt(indexOf + 2) == '`';
+                        i = indexOf;
+                        i5 = indexOf + (z2 ? 3 : 1);
+                    } else {
+                        if (arrayList == null) {
+                            arrayList = new ArrayList<>();
+                        }
+                        for (int i6 = (z2 ? 3 : 1) + indexOf; i6 < charSequenceArr[0].length() && charSequenceArr[0].charAt(i6) == '`'; i6++) {
+                            indexOf++;
+                        }
+                        i2 = (z2 ? 3 : 1) + indexOf;
+                        if (z2) {
+                            char charAt = i > 0 ? charSequenceArr[0].charAt(i - 1) : (char) 0;
+                            int i7 = (charAt == ' ' || charAt == '\n') ? 1 : 0;
+                            int i8 = i + 3;
+                            int indexOf2 = TextUtils.indexOf(charSequenceArr[0], '\n', i8);
+                            String substring = (indexOf2 < 0 || indexOf2 - i8 <= 0) ? "" : charSequenceArr[0].toString().substring(i8, indexOf2);
+                            CharSequence substring2 = substring(charSequenceArr[0], 0, i - i7);
+                            int length = i8 + substring.length() + (!substring.isEmpty());
+                            if (length < 0 || length >= charSequenceArr[0].length()) {
+                                i5 = i2;
+                                i4 = -1;
+                            } else {
+                                CharSequence substring3 = substring(charSequenceArr[0], length, indexOf);
+                                int i9 = indexOf + 3;
+                                char charAt2 = i9 < charSequenceArr[0].length() ? charSequenceArr[0].charAt(i9) : (char) 0;
+                                CharSequence substring4 = substring(charSequenceArr[0], i9 + ((charAt2 == ' ' || charAt2 == '\n') ? 1 : 0), charSequenceArr[0].length());
+                                if (substring2.length() != 0) {
+                                    i3 = 1;
+                                    substring2 = AndroidUtilities.concat(substring2, "\n");
+                                } else {
+                                    i3 = 1;
+                                    i7 = 1;
+                                }
+                                if (substring4.length() > 0 && substring4.charAt(0) != '\n') {
+                                    CharSequence[] charSequenceArr2 = new CharSequence[2];
+                                    charSequenceArr2[0] = "\n";
+                                    charSequenceArr2[i3] = substring4;
+                                    substring4 = AndroidUtilities.concat(charSequenceArr2);
+                                }
+                                if (substring3.length() > 0 && substring3.charAt(substring3.length() - i3) == '\n') {
+                                    substring3 = substring(substring3, 0, substring3.length() - i3);
+                                }
+                                if (!TextUtils.isEmpty(substring3)) {
+                                    CharSequence[] charSequenceArr3 = new CharSequence[3];
+                                    charSequenceArr3[0] = substring2;
+                                    charSequenceArr3[i3] = substring3;
+                                    charSequenceArr3[2] = substring4;
+                                    charSequenceArr[0] = AndroidUtilities.concat(charSequenceArr3);
+                                    TLRPC$MessageEntity tLRPC$TL_messageEntityPre = new TLRPC$TL_messageEntityPre();
+                                    tLRPC$TL_messageEntityPre.offset = (i7 ^ 1) + i;
+                                    tLRPC$TL_messageEntityPre.length = (((indexOf - i) - 3) - (substring.length() + (!substring.isEmpty()))) + (i7 ^ 1);
+                                    tLRPC$TL_messageEntityPre.language = substring;
+                                    arrayList.add(tLRPC$TL_messageEntityPre);
+                                    i2 -= 6;
+                                }
+                            }
+                        } else {
+                            int i10 = i + 1;
+                            if (i10 != indexOf) {
+                                charSequenceArr[0] = AndroidUtilities.concat(substring(charSequenceArr[0], 0, i), substring(charSequenceArr[0], i10, indexOf), substring(charSequenceArr[0], indexOf + 1, charSequenceArr[0].length()));
+                                TLRPC$MessageEntity tLRPC$TL_messageEntityCode = new TLRPC$TL_messageEntityCode();
+                                tLRPC$TL_messageEntityCode.offset = i;
+                                tLRPC$TL_messageEntityCode.length = (indexOf - i) - 1;
+                                arrayList.add(tLRPC$TL_messageEntityCode);
+                                i2 -= 2;
+                            }
+                        }
+                    }
+                }
+                i5 = i2;
+                i4 = -1;
+                z2 = false;
+            }
+            if (i != i4 && z2) {
+                charSequenceArr[0] = AndroidUtilities.concat(substring(charSequenceArr[0], 0, i), substring(charSequenceArr[0], i + 2, charSequenceArr[0].length()));
+                if (arrayList == null) {
+                    arrayList = new ArrayList<>();
+                }
+                TLRPC$MessageEntity tLRPC$TL_messageEntityCode2 = new TLRPC$TL_messageEntityCode();
+                tLRPC$TL_messageEntityCode2.offset = i;
+                tLRPC$TL_messageEntityCode2.length = 1;
+                arrayList.add(tLRPC$TL_messageEntityCode2);
+            }
+            if (charSequenceArr[0] instanceof Spanned) {
+                Spanned spanned = (Spanned) charSequenceArr[0];
+                TextStyleSpan[] textStyleSpanArr = (TextStyleSpan[]) spanned.getSpans(0, charSequenceArr[0].length(), TextStyleSpan.class);
+                if (textStyleSpanArr != null && textStyleSpanArr.length > 0) {
+                    for (TextStyleSpan textStyleSpan : textStyleSpanArr) {
+                        int spanStart = spanned.getSpanStart(textStyleSpan);
+                        int spanEnd = spanned.getSpanEnd(textStyleSpan);
+                        if (!checkInclusion(spanStart, arrayList, false) && !checkInclusion(spanEnd, arrayList, true) && !checkIntersection(spanStart, spanEnd, arrayList)) {
+                            if (arrayList == null) {
+                                arrayList = new ArrayList<>();
+                            }
+                            addStyle(textStyleSpan.getStyleFlags(), spanStart, spanEnd, arrayList);
+                        }
+                    }
+                }
+                URLSpanUserMention[] uRLSpanUserMentionArr = (URLSpanUserMention[]) spanned.getSpans(0, charSequenceArr[0].length(), URLSpanUserMention.class);
+                if (uRLSpanUserMentionArr != null && uRLSpanUserMentionArr.length > 0) {
+                    if (arrayList == null) {
+                        arrayList = new ArrayList<>();
+                    }
+                    for (int i11 = 0; i11 < uRLSpanUserMentionArr.length; i11++) {
+                        TLRPC$TL_inputMessageEntityMentionName tLRPC$TL_inputMessageEntityMentionName = new TLRPC$TL_inputMessageEntityMentionName();
+                        TLRPC$InputUser inputUser = getMessagesController().getInputUser(Utilities.parseLong(uRLSpanUserMentionArr[i11].getURL()).longValue());
+                        tLRPC$TL_inputMessageEntityMentionName.user_id = inputUser;
+                        if (inputUser != null) {
+                            tLRPC$TL_inputMessageEntityMentionName.offset = spanned.getSpanStart(uRLSpanUserMentionArr[i11]);
+                            int min = Math.min(spanned.getSpanEnd(uRLSpanUserMentionArr[i11]), charSequenceArr[0].length());
+                            int i12 = tLRPC$TL_inputMessageEntityMentionName.offset;
+                            int i13 = min - i12;
+                            tLRPC$TL_inputMessageEntityMentionName.length = i13;
+                            if (charSequenceArr[0].charAt((i12 + i13) - 1) == ' ') {
+                                tLRPC$TL_inputMessageEntityMentionName.length--;
+                            }
+                            arrayList.add(tLRPC$TL_inputMessageEntityMentionName);
+                        }
+                    }
+                }
+                URLSpanReplacement[] uRLSpanReplacementArr = (URLSpanReplacement[]) spanned.getSpans(0, charSequenceArr[0].length(), URLSpanReplacement.class);
+                if (uRLSpanReplacementArr != null && uRLSpanReplacementArr.length > 0) {
+                    if (arrayList == null) {
+                        arrayList = new ArrayList<>();
+                    }
+                    for (int i14 = 0; i14 < uRLSpanReplacementArr.length; i14++) {
+                        TLRPC$MessageEntity tLRPC$TL_messageEntityTextUrl = new TLRPC$TL_messageEntityTextUrl();
+                        tLRPC$TL_messageEntityTextUrl.offset = spanned.getSpanStart(uRLSpanReplacementArr[i14]);
+                        tLRPC$TL_messageEntityTextUrl.length = Math.min(spanned.getSpanEnd(uRLSpanReplacementArr[i14]), charSequenceArr[0].length()) - tLRPC$TL_messageEntityTextUrl.offset;
+                        tLRPC$TL_messageEntityTextUrl.url = uRLSpanReplacementArr[i14].getURL();
+                        arrayList.add(tLRPC$TL_messageEntityTextUrl);
+                        TextStyleSpan.TextStyleRun textStyleRun = uRLSpanReplacementArr[i14].getTextStyleRun();
+                        if (textStyleRun != null) {
+                            int i15 = textStyleRun.flags;
+                            int i16 = tLRPC$TL_messageEntityTextUrl.offset;
+                            addStyle(i15, i16, tLRPC$TL_messageEntityTextUrl.length + i16, arrayList);
+                        }
+                    }
+                }
+                AnimatedEmojiSpan[] animatedEmojiSpanArr = (AnimatedEmojiSpan[]) spanned.getSpans(0, charSequenceArr[0].length(), AnimatedEmojiSpan.class);
+                if (animatedEmojiSpanArr != null && animatedEmojiSpanArr.length > 0) {
+                    if (arrayList == null) {
+                        arrayList = new ArrayList<>();
+                    }
+                    ArrayList<TLRPC$MessageEntity> arrayList2 = arrayList;
+                    for (AnimatedEmojiSpan animatedEmojiSpan : animatedEmojiSpanArr) {
+                        if (animatedEmojiSpan != null) {
+                            try {
+                                TLRPC$TL_messageEntityCustomEmoji tLRPC$TL_messageEntityCustomEmoji = new TLRPC$TL_messageEntityCustomEmoji();
+                                tLRPC$TL_messageEntityCustomEmoji.offset = spanned.getSpanStart(animatedEmojiSpan);
+                                tLRPC$TL_messageEntityCustomEmoji.length = Math.min(spanned.getSpanEnd(animatedEmojiSpan), charSequenceArr[0].length()) - tLRPC$TL_messageEntityCustomEmoji.offset;
+                                tLRPC$TL_messageEntityCustomEmoji.document_id = animatedEmojiSpan.getDocumentId();
+                                tLRPC$TL_messageEntityCustomEmoji.document = animatedEmojiSpan.document;
+                                arrayList2.add(tLRPC$TL_messageEntityCustomEmoji);
+                            } catch (Exception e) {
+                                FileLog.e(e);
+                            }
+                        }
+                    }
+                    arrayList = arrayList2;
+                }
+                CodeHighlighting.Span[] spanArr = (CodeHighlighting.Span[]) spanned.getSpans(0, charSequenceArr[0].length(), CodeHighlighting.Span.class);
+                if (spanArr != null && spanArr.length > 0) {
+                    if (arrayList == null) {
+                        arrayList = new ArrayList<>();
+                    }
+                    ArrayList<TLRPC$MessageEntity> arrayList3 = arrayList;
+                    for (CodeHighlighting.Span span : spanArr) {
+                        if (span != null) {
+                            try {
+                                TLRPC$MessageEntity tLRPC$TL_messageEntityPre2 = new TLRPC$TL_messageEntityPre();
+                                tLRPC$TL_messageEntityPre2.offset = spanned.getSpanStart(span);
+                                tLRPC$TL_messageEntityPre2.length = Math.min(spanned.getSpanEnd(span), charSequenceArr[0].length()) - tLRPC$TL_messageEntityPre2.offset;
+                                tLRPC$TL_messageEntityPre2.language = span.lng;
+                                arrayList3.add(tLRPC$TL_messageEntityPre2);
+                            } catch (Exception e2) {
+                                FileLog.e(e2);
+                            }
+                        }
+                    }
+                    arrayList = arrayList3;
+                }
+                QuoteSpan[] quoteSpanArr = (QuoteSpan[]) spanned.getSpans(0, charSequenceArr[0].length(), QuoteSpan.class);
+                if (quoteSpanArr != null && quoteSpanArr.length > 0) {
+                    if (arrayList == null) {
+                        arrayList = new ArrayList<>();
+                    }
+                    ArrayList<TLRPC$MessageEntity> arrayList4 = arrayList;
+                    for (QuoteSpan quoteSpan : quoteSpanArr) {
+                        if (quoteSpan != null) {
+                            try {
+                                TLRPC$MessageEntity tLRPC$TL_messageEntityBlockquote = new TLRPC$TL_messageEntityBlockquote();
+                                tLRPC$TL_messageEntityBlockquote.offset = spanned.getSpanStart(quoteSpan);
+                                tLRPC$TL_messageEntityBlockquote.length = Math.min(spanned.getSpanEnd(quoteSpan), charSequenceArr[0].length()) - tLRPC$TL_messageEntityBlockquote.offset;
+                                arrayList4.add(tLRPC$TL_messageEntityBlockquote);
+                            } catch (Exception e3) {
+                                FileLog.e(e3);
+                            }
+                        }
+                    }
+                    arrayList = arrayList4;
+                }
+                if (spanned instanceof Spannable) {
+                    AndroidUtilities.addLinks((Spannable) spanned, 1, false, false);
+                    URLSpan[] uRLSpanArr = (URLSpan[]) spanned.getSpans(0, charSequenceArr[0].length(), URLSpan.class);
+                    if (uRLSpanArr != null && uRLSpanArr.length > 0) {
+                        if (arrayList == null) {
+                            arrayList = new ArrayList<>();
+                        }
+                        for (int i17 = 0; i17 < uRLSpanArr.length; i17++) {
+                            if (!(uRLSpanArr[i17] instanceof URLSpanReplacement) && !(uRLSpanArr[i17] instanceof URLSpanUserMention)) {
+                                TLRPC$MessageEntity tLRPC$TL_messageEntityUrl = new TLRPC$TL_messageEntityUrl();
+                                tLRPC$TL_messageEntityUrl.offset = spanned.getSpanStart(uRLSpanArr[i17]);
+                                tLRPC$TL_messageEntityUrl.length = Math.min(spanned.getSpanEnd(uRLSpanArr[i17]), charSequenceArr[0].length()) - tLRPC$TL_messageEntityUrl.offset;
+                                tLRPC$TL_messageEntityUrl.url = uRLSpanArr[i17].getURL();
+                                arrayList.add(tLRPC$TL_messageEntityUrl);
+                            }
+                        }
+                    }
+                }
+            }
+            CharSequence charSequence = charSequenceArr[0];
+            if (arrayList == null) {
+                arrayList = new ArrayList<>();
+            }
+            CharSequence parsePattern = parsePattern(parsePattern(parsePattern(charSequence, BOLD_PATTERN, arrayList, new GenericProvider() {
+                @Override
+                public final Object provide(Object obj) {
+                    TLRPC$MessageEntity lambda$getEntities$170;
+                    lambda$getEntities$170 = MediaDataController.lambda$getEntities$170((Void) obj);
+                    return lambda$getEntities$170;
+                }
+            }), ITALIC_PATTERN, arrayList, new GenericProvider() {
+                @Override
+                public final Object provide(Object obj) {
+                    TLRPC$MessageEntity lambda$getEntities$171;
+                    lambda$getEntities$171 = MediaDataController.lambda$getEntities$171((Void) obj);
+                    return lambda$getEntities$171;
+                }
+            }), SPOILER_PATTERN, arrayList, new GenericProvider() {
+                @Override
+                public final Object provide(Object obj) {
+                    TLRPC$MessageEntity lambda$getEntities$172;
+                    lambda$getEntities$172 = MediaDataController.lambda$getEntities$172((Void) obj);
+                    return lambda$getEntities$172;
+                }
+            });
+            if (z) {
+                parsePattern = parsePattern(parsePattern, STRIKE_PATTERN, arrayList, new GenericProvider() {
+                    @Override
+                    public final Object provide(Object obj) {
+                        TLRPC$MessageEntity lambda$getEntities$173;
+                        lambda$getEntities$173 = MediaDataController.lambda$getEntities$173((Void) obj);
+                        return lambda$getEntities$173;
+                    }
+                });
+            }
+            charSequenceArr[0] = parsePattern;
+        }
+        return arrayList;
     }
 
     public static TLRPC$MessageEntity lambda$getEntities$170(Void r0) {

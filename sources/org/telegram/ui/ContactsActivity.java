@@ -1003,7 +1003,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ContactsActivity.this.lambda$onCustomTransitionAnimation$8(animatorSet, z, z2, view3);
+                ContactsActivity.this.lambda$onCustomTransitionAnimation$8(animatorSet, z2, z, view3);
             }
         }, 50L);
         return animatorSet;
@@ -1016,18 +1016,15 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
     }
 
     public void lambda$onCustomTransitionAnimation$8(AnimatorSet animatorSet, boolean z, boolean z2, final View view) {
+        if (this.floatingButton == null) {
+            return;
+        }
         this.animationIndex = getNotificationCenter().setAnimationInProgress(this.animationIndex, new int[]{NotificationCenter.diceStickersDidLoad}, false);
         animatorSet.start();
         if (z) {
-            if (z2) {
-                this.floatingButton.setAnimation(R.raw.write_contacts_fab_icon_camera, 56, 56);
-            } else {
-                this.floatingButton.setAnimation(R.raw.write_contacts_fab_icon, 52, 52);
-            }
-        } else if (z2) {
-            this.floatingButton.setAnimation(R.raw.write_contacts_fab_icon_reverse_camera, 56, 56);
+            this.floatingButton.setAnimation(z2 ? R.raw.write_contacts_fab_icon_camera : R.raw.write_contacts_fab_icon_reverse_camera, 56, 56);
         } else {
-            this.floatingButton.setAnimation(R.raw.write_contacts_fab_icon_reverse, 52, 52);
+            this.floatingButton.setAnimation(z2 ? R.raw.write_contacts_fab_icon : R.raw.write_contacts_fab_icon_reverse, 52, 52);
         }
         this.floatingButton.playAnimation();
         AnimatorSet animatorSet2 = this.bounceIconAnimator;
@@ -1038,7 +1035,7 @@ public class ContactsActivity extends BaseFragment implements NotificationCenter
         float duration = (float) this.floatingButton.getAnimatedDrawable().getDuration();
         long j = 0;
         int i = 4;
-        if (z) {
+        if (z2) {
             for (int i2 = 0; i2 < 6; i2++) {
                 AnimatorSet animatorSet3 = new AnimatorSet();
                 if (i2 == 0) {

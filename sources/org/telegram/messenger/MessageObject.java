@@ -1204,8 +1204,10 @@ public class MessageObject {
     }
 
     private void checkEmojiOnly(Integer num) {
+        TLRPC$Message tLRPC$Message;
+        ArrayList<TLRPC$MessageEntity> arrayList;
         TextPaint textPaint;
-        if (num != null && num.intValue() >= 1) {
+        if (num != null && num.intValue() >= 1 && (tLRPC$Message = this.messageOwner) != null && ((arrayList = tLRPC$Message.entities) == null || arrayList.size() <= 0)) {
             CharSequence charSequence = this.messageText;
             Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), Emoji.EmojiSpan.class);
             CharSequence charSequence2 = this.messageText;
@@ -2232,12 +2234,14 @@ public class MessageObject {
     }
 
     public void setType() {
+        TLRPC$Message tLRPC$Message;
+        ArrayList<TLRPC$MessageEntity> arrayList;
         int i;
         int i2 = this.type;
         this.type = 1000;
         this.isRoundVideoCached = 0;
-        TLRPC$Message tLRPC$Message = this.messageOwner;
-        if ((tLRPC$Message instanceof TLRPC$TL_message) || (tLRPC$Message instanceof TLRPC$TL_messageForwarded_old2)) {
+        TLRPC$Message tLRPC$Message2 = this.messageOwner;
+        if ((tLRPC$Message2 instanceof TLRPC$TL_message) || (tLRPC$Message2 instanceof TLRPC$TL_messageForwarded_old2)) {
             if (this.isRestrictedMessage) {
                 this.type = 0;
             } else if (this.emojiAnimatedSticker != null || this.emojiAnimatedStickerId != null) {
@@ -2246,7 +2250,7 @@ public class MessageObject {
                 } else {
                     this.type = 15;
                 }
-            } else if (isMediaEmpty(false) && !isDice() && this.emojiOnlyCount >= 1 && !this.hasUnwrappedEmoji) {
+            } else if (isMediaEmpty(false) && !isDice() && this.emojiOnlyCount >= 1 && !this.hasUnwrappedEmoji && (tLRPC$Message = this.messageOwner) != null && ((arrayList = tLRPC$Message.entities) == null || arrayList.size() == 0)) {
                 this.type = 19;
             } else if (isMediaEmpty()) {
                 this.type = 0;
@@ -2318,8 +2322,8 @@ public class MessageObject {
                     this.contentType = 1;
                 }
             }
-        } else if (tLRPC$Message instanceof TLRPC$TL_messageService) {
-            TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message.action;
+        } else if (tLRPC$Message2 instanceof TLRPC$TL_messageService) {
+            TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message2.action;
             if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSetSameChatWallPaper) {
                 this.contentType = 1;
                 this.type = 0;
@@ -2327,19 +2331,19 @@ public class MessageObject {
                 this.contentType = 1;
                 this.type = 22;
                 TLRPC$TL_messageActionSetChatWallPaper tLRPC$TL_messageActionSetChatWallPaper = (TLRPC$TL_messageActionSetChatWallPaper) tLRPC$MessageAction;
-                ArrayList<TLRPC$PhotoSize> arrayList = new ArrayList<>();
-                this.photoThumbs = arrayList;
+                ArrayList<TLRPC$PhotoSize> arrayList2 = new ArrayList<>();
+                this.photoThumbs = arrayList2;
                 TLRPC$Document tLRPC$Document = tLRPC$TL_messageActionSetChatWallPaper.wallpaper.document;
                 if (tLRPC$Document != null) {
-                    arrayList.addAll(tLRPC$Document.thumbs);
+                    arrayList2.addAll(tLRPC$Document.thumbs);
                     this.photoThumbsObject = tLRPC$TL_messageActionSetChatWallPaper.wallpaper.document;
                 }
             } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSuggestProfilePhoto) {
                 this.contentType = 1;
                 this.type = 21;
-                ArrayList<TLRPC$PhotoSize> arrayList2 = new ArrayList<>();
-                this.photoThumbs = arrayList2;
-                arrayList2.addAll(this.messageOwner.action.photo.sizes);
+                ArrayList<TLRPC$PhotoSize> arrayList3 = new ArrayList<>();
+                this.photoThumbs = arrayList3;
+                arrayList3.addAll(this.messageOwner.action.photo.sizes);
                 this.photoThumbsObject = this.messageOwner.action.photo;
             } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionLoginUnknownLocation) {
                 this.type = 0;
@@ -3322,7 +3326,7 @@ public class MessageObject {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.applyEntities():boolean");
     }
 
-    public void generateLayout(org.telegram.tgnet.TLRPC$User r38) {
+    public void generateLayout(org.telegram.tgnet.TLRPC$User r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.generateLayout(org.telegram.tgnet.TLRPC$User):void");
     }
 
