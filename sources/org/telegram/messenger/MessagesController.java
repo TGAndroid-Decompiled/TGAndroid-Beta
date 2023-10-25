@@ -468,6 +468,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public LongSparseIntArray blockePeers;
     public boolean blockedCountry;
     public boolean blockedEndReached;
+    public long boostsPerSentGift;
     private CacheByChatsController cacheByChatsController;
     private TLRPC$TL_exportedContactToken cachedContactToken;
     public int callConnectTimeout;
@@ -577,6 +578,7 @@ public class MessagesController extends BaseController implements NotificationCe
     public boolean giftAttachMenuIcon;
     public boolean giftTextFieldIcon;
     public long giveawayAddPeersMax;
+    public long giveawayBoostsPerPremium;
     public long giveawayCountriesMax;
     public boolean giveawayGiftsPurchaseAvailable;
     public long giveawayPeriodMax;
@@ -653,6 +655,7 @@ public class MessagesController extends BaseController implements NotificationCe
     private Utilities.Callback<Boolean> onLoadedRemoteFilters;
     public ConcurrentHashMap<Long, Integer> onlinePrivacy;
     private Runnable passwordCheckRunnable;
+    public PeerColors peerColors;
     public Set<String> pendingSuggestions;
     private LongSparseIntArray pendingUnreadCounter;
     public SparseArray<ImageUpdater> photoSuggestion;
@@ -1775,6 +1778,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.giveawayAddPeersMax = 10L;
         this.giveawayPeriodMax = 7L;
         this.giveawayCountriesMax = 10L;
+        this.giveawayBoostsPerPremium = 4L;
+        this.boostsPerSentGift = 3L;
         this.loadingPeerSettings = new LongSparseArray<>();
         this.createdDialogIds = new ArrayList<>();
         this.createdScheduledDialogIds = new ArrayList<>();
@@ -2024,6 +2029,8 @@ public class MessagesController extends BaseController implements NotificationCe
         this.storiesChangelogUserId = this.mainPreferences.getLong("stories_changelog_user_id", 777000L);
         this.giveawayAddPeersMax = this.mainPreferences.getLong("giveaway_add_peers_max", 10L);
         this.giveawayCountriesMax = this.mainPreferences.getLong("giveaway_countries_max", 10L);
+        this.giveawayBoostsPerPremium = this.mainPreferences.getLong("giveaway_boosts_per_premium", 4L);
+        this.boostsPerSentGift = this.mainPreferences.getLong("boosts_per_sent_gift", 3L);
         this.giveawayPeriodMax = this.mainPreferences.getLong("giveaway_period_max", 7L);
         this.stealthModePast = this.mainPreferences.getInt("stories_stealth_past_period", 300);
         this.stealthModeCooldown = this.mainPreferences.getInt("stories_stealth_cooldown_period", 3600);
@@ -2045,6 +2052,7 @@ public class MessagesController extends BaseController implements NotificationCe
         this.channelColorLevelMin = this.mainPreferences.getInt("channelColorLevelMin", 1);
         this.quoteLengthMax = this.mainPreferences.getInt("quoteLengthMax", 1024);
         this.giveawayGiftsPurchaseAvailable = this.mainPreferences.getBoolean("giveawayGiftsPurchaseAvailable", false);
+        this.peerColors = PeerColors.fromString(this.mainPreferences.getString("peerColors", ""));
         BuildVars.GOOGLE_AUTH_CLIENT_ID = this.mainPreferences.getString("googleAuthClientId", BuildVars.GOOGLE_AUTH_CLIENT_ID);
         if (this.mainPreferences.contains("dcDomainName2")) {
             this.dcDomainName = this.mainPreferences.getString("dcDomainName2", "apv3.stel.com");
@@ -2879,34 +2887,43 @@ public class MessagesController extends BaseController implements NotificationCe
     }
 
     private void applyAppConfig(TLRPC$TL_jsonObject tLRPC$TL_jsonObject) {
-        char c;
+        boolean z;
         TLRPC$TL_jsonObject tLRPC$TL_jsonObject2;
+        char c;
+        HashMap<String, DiceFrameSuccess> hashMap;
+        TLRPC$TL_jsonObject tLRPC$TL_jsonObject3;
         int i;
         int i2;
-        TLRPC$TL_jsonObject tLRPC$TL_jsonObject3;
         int i3;
+        HashMap<String, EmojiSound> hashMap2;
+        long parseLong;
         int i4;
-        boolean z;
-        boolean z2;
-        int i5;
         char c2;
         TLRPC$TL_jsonObject tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
         SharedPreferences.Editor edit = this.mainPreferences.edit();
         resetAppConfig();
         int size = tLRPC$TL_jsonObject4.value.size();
-        int i6 = 0;
-        boolean z3 = false;
+        int i5 = 0;
         TLRPC$TL_jsonObject tLRPC$TL_jsonObject5 = null;
+        TLRPC$TL_jsonObject tLRPC$TL_jsonObject6 = null;
+        TLRPC$TL_jsonArray tLRPC$TL_jsonArray = null;
+        boolean z2 = false;
+        TLRPC$TL_jsonObject tLRPC$TL_jsonObject7 = null;
+        boolean z3 = false;
         boolean z4 = false;
-        boolean z5 = false;
-        while (i6 < size) {
-            TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue = tLRPC$TL_jsonObject4.value.get(i6);
+        while (i5 < size) {
+            TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue = tLRPC$TL_jsonObject4.value.get(i5);
             String str = tLRPC$TL_jsonObjectValue.key;
             str.hashCode();
-            int i7 = size;
-            boolean z6 = z5;
+            int i6 = size;
+            boolean z5 = z2;
+            boolean z6 = z4;
+            boolean z7 = z3;
+            TLRPC$TL_jsonObject tLRPC$TL_jsonObject8 = tLRPC$TL_jsonObject7;
+            TLRPC$TL_jsonObject tLRPC$TL_jsonObject9 = tLRPC$TL_jsonObject5;
             switch (str.hashCode()) {
                 case -2144614625:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
                     if (str.equals("chatlists_joined_limit_premium")) {
                         c = 0;
                         break;
@@ -2914,6 +2931,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     c = 65535;
                     break;
                 case -2086426873:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
                     if (str.equals("dialog_filters_pinned_limit_premium")) {
                         c = 1;
                         break;
@@ -2921,6 +2939,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     c = 65535;
                     break;
                 case -2058877441:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
                     if (str.equals("channel_color_level_min")) {
                         c = 2;
                         break;
@@ -2928,6 +2947,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     c = 65535;
                     break;
                 case -2031587591:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
                     if (str.equals("telegram_antispam_user_id")) {
                         c = 3;
                         break;
@@ -2935,6 +2955,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     c = 65535;
                     break;
                 case -1921306872:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
                     if (str.equals("large_queue_max_active_operations_count")) {
                         c = 4;
                         break;
@@ -2942,6 +2963,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     c = 65535;
                     break;
                 case -1906216435:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
                     if (str.equals("upload_max_fileparts_default")) {
                         c = 5;
                         break;
@@ -2949,6 +2971,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     c = 65535;
                     break;
                 case -1905041797:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
                     if (str.equals("pinned_dialogs_count_max_default")) {
                         c = 6;
                         break;
@@ -2956,898 +2979,1335 @@ public class MessagesController extends BaseController implements NotificationCe
                     c = 65535;
                     break;
                 case -1899955653:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
                     if (str.equals("android_collect_device_stats")) {
                         c = 7;
                         break;
                     }
                     c = 65535;
                     break;
-                case -1730760944:
-                    if (str.equals("stories_sent_monthly_limit_default")) {
+                case -1761847571:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("peer_colors")) {
                         c = '\b';
                         break;
                     }
                     c = 65535;
                     break;
-                case -1688620344:
-                    if (str.equals("dialog_filters_tooltip")) {
+                case -1730760944:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_sent_monthly_limit_default")) {
                         c = '\t';
                         break;
                     }
                     c = 65535;
                     break;
-                case -1683918311:
-                    if (str.equals("qr_login_camera")) {
+                case -1688620344:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("dialog_filters_tooltip")) {
                         c = '\n';
                         break;
                     }
                     c = 65535;
                     break;
-                case -1557626216:
-                    if (str.equals("giveaway_add_peers_max")) {
+                case -1683918311:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("qr_login_camera")) {
                         c = 11;
                         break;
                     }
                     c = 65535;
                     break;
-                case -1547044498:
-                    if (str.equals("chatlist_update_period")) {
+                case -1557626216:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("giveaway_add_peers_max")) {
                         c = '\f';
                         break;
                     }
                     c = 65535;
                     break;
-                case -1391086521:
-                    if (str.equals("pending_suggestions")) {
+                case -1547044498:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("chatlist_update_period")) {
                         c = '\r';
                         break;
                     }
                     c = 65535;
                     break;
-                case -1385240692:
-                    if (str.equals("channels_public_limit_premium")) {
+                case -1391086521:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("pending_suggestions")) {
                         c = 14;
                         break;
                     }
                     c = 65535;
                     break;
-                case -1379354758:
-                    if (str.equals("story_expiring_limit_premium")) {
+                case -1385240692:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("channels_public_limit_premium")) {
                         c = 15;
                         break;
                     }
                     c = 65535;
                     break;
-                case -1287877531:
-                    if (str.equals("stickers_faved_limit_premium")) {
+                case -1379354758:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("story_expiring_limit_premium")) {
                         c = 16;
                         break;
                     }
                     c = 65535;
                     break;
-                case -1253023507:
-                    if (str.equals("stories_stealth_cooldown_period")) {
+                case -1287877531:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stickers_faved_limit_premium")) {
                         c = 17;
                         break;
                     }
                     c = 65535;
                     break;
-                case -1133154193:
-                    if (str.equals("lite_app_options")) {
+                case -1253023507:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_stealth_cooldown_period")) {
                         c = 18;
                         break;
                     }
                     c = 65535;
                     break;
-                case -1086302656:
-                    if (str.equals("lite_device_class")) {
+                case -1133154193:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("lite_app_options")) {
                         c = 19;
                         break;
                     }
                     c = 65535;
                     break;
-                case -1071072567:
-                    if (str.equals("premium_gift_text_field_icon")) {
+                case -1086302656:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("lite_device_class")) {
                         c = 20;
                         break;
                     }
                     c = 65535;
                     break;
-                case -1056002991:
-                    if (str.equals("chat_read_mark_expire_period")) {
+                case -1071072567:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("premium_gift_text_field_icon")) {
                         c = 21;
                         break;
                     }
                     c = 65535;
                     break;
-                case -1032177933:
-                    if (str.equals("emojies_send_dice")) {
+                case -1056002991:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("chat_read_mark_expire_period")) {
                         c = 22;
                         break;
                     }
                     c = 65535;
                     break;
-                case -980397720:
-                    if (str.equals("url_auth_domains")) {
+                case -1032177933:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("emojies_send_dice")) {
                         c = 23;
                         break;
                     }
                     c = 65535;
                     break;
-                case -947423642:
-                    if (str.equals("stories_stealth_past_period")) {
+                case -980397720:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("url_auth_domains")) {
                         c = 24;
                         break;
                     }
                     c = 65535;
                     break;
-                case -896467099:
-                    if (str.equals("saved_gifs_limit_default")) {
+                case -947423642:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_stealth_past_period")) {
                         c = 25;
                         break;
                     }
                     c = 65535;
                     break;
-                case -736509977:
-                    if (str.equals("story_caption_length_limit_default")) {
+                case -896467099:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("saved_gifs_limit_default")) {
                         c = 26;
                         break;
                     }
                     c = 65535;
                     break;
-                case -581904190:
-                    if (str.equals("dialog_filters_limit_default")) {
+                case -736509977:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("story_caption_length_limit_default")) {
                         c = 27;
                         break;
                     }
                     c = 65535;
                     break;
-                case -561040027:
-                    if (str.equals("premium_invoice_slug")) {
+                case -581904190:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("dialog_filters_limit_default")) {
                         c = 28;
                         break;
                     }
                     c = 65535;
                     break;
-                case -542518288:
-                    if (str.equals("stories_sent_weekly_limit_premium")) {
+                case -561040027:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("premium_invoice_slug")) {
                         c = 29;
                         break;
                     }
                     c = 65535;
                     break;
-                case -533076272:
-                    if (str.equals("stories_export_nopublic_link")) {
+                case -542518288:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_sent_weekly_limit_premium")) {
                         c = 30;
                         break;
                     }
                     c = 65535;
                     break;
-                case -515715076:
-                    if (str.equals("export_regex")) {
+                case -533076272:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_export_nopublic_link")) {
                         c = 31;
                         break;
                     }
                     c = 65535;
                     break;
-                case -507953835:
-                    if (str.equals("chatlist_invites_limit_premium")) {
+                case -527555676:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("dark_peer_colors")) {
                         c = ' ';
                         break;
                     }
                     c = 65535;
                     break;
-                case -488472170:
-                    if (str.equals("about_length_limit_default")) {
+                case -515715076:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("export_regex")) {
                         c = '!';
                         break;
                     }
                     c = 65535;
                     break;
-                case -473866179:
-                    if (str.equals("reactions_user_max_premium")) {
+                case -507953835:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("chatlist_invites_limit_premium")) {
                         c = '\"';
                         break;
                     }
                     c = 65535;
                     break;
-                case -416504589:
-                    if (str.equals("caption_length_limit_premium")) {
+                case -488472170:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("about_length_limit_default")) {
                         c = '#';
                         break;
                     }
                     c = 65535;
                     break;
-                case -404170231:
-                    if (str.equals("keep_alive_service")) {
+                case -473866179:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("reactions_user_max_premium")) {
                         c = '$';
                         break;
                     }
                     c = 65535;
                     break;
-                case -381432266:
-                    if (str.equals("premium_promo_order")) {
+                case -416504589:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("caption_length_limit_premium")) {
                         c = '%';
                         break;
                     }
                     c = 65535;
                     break;
-                case -377047005:
-                    if (str.equals("ringtone_size_max")) {
+                case -404170231:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("keep_alive_service")) {
                         c = '&';
                         break;
                     }
                     c = 65535;
                     break;
-                case -350971916:
-                    if (str.equals("dialog_filters_chats_limit_premium")) {
+                case -381432266:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("premium_promo_order")) {
                         c = '\'';
                         break;
                     }
                     c = 65535;
                     break;
-                case -281358583:
-                    if (str.equals("chatlists_joined_limit_default")) {
+                case -377047005:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("ringtone_size_max")) {
                         c = '(';
                         break;
                     }
                     c = 65535;
                     break;
-                case -256319580:
-                    if (str.equals("channels_limit_premium")) {
+                case -350971916:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("dialog_filters_chats_limit_premium")) {
                         c = ')';
                         break;
                     }
                     c = 65535;
                     break;
-                case -253815153:
-                    if (str.equals("background_connection")) {
+                case -281358583:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("chatlists_joined_limit_default")) {
                         c = '*';
                         break;
                     }
                     c = 65535;
                     break;
-                case -253729626:
-                    if (str.equals("giveaway_period_max")) {
+                case -256319580:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("channels_limit_premium")) {
                         c = '+';
                         break;
                     }
                     c = 65535;
                     break;
-                case -232883529:
-                    if (str.equals("emojies_send_dice_success")) {
+                case -253815153:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("background_connection")) {
                         c = ',';
                         break;
                     }
                     c = 65535;
                     break;
-                case -223170831:
-                    if (str.equals("dialog_filters_pinned_limit_default")) {
+                case -253729626:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("giveaway_period_max")) {
                         c = '-';
                         break;
                     }
                     c = 65535;
                     break;
-                case -191129361:
-                    if (str.equals("hidden_members_group_size_min")) {
+                case -232883529:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("emojies_send_dice_success")) {
                         c = '.';
                         break;
                     }
                     c = 65535;
                     break;
-                case -111779186:
-                    if (str.equals("autoarchive_setting_available")) {
+                case -223170831:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("dialog_filters_pinned_limit_default")) {
                         c = '/';
                         break;
                     }
                     c = 65535;
                     break;
-                case -76561797:
-                    if (str.equals("youtube_pip")) {
+                case -191129361:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("hidden_members_group_size_min")) {
                         c = '0';
                         break;
                     }
                     c = 65535;
                     break;
-                case -24016028:
-                    if (str.equals("emojies_animated_zoom")) {
+                case -111779186:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("autoarchive_setting_available")) {
                         c = '1';
                         break;
                     }
                     c = 65535;
                     break;
-                case -14783830:
-                    if (str.equals("telegram_antispam_group_size_min")) {
+                case -76561797:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("youtube_pip")) {
                         c = '2';
                         break;
                     }
                     c = 65535;
                     break;
-                case 81433671:
-                    if (str.equals("giveaway_gifts_purchase_available")) {
+                case -24016028:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("emojies_animated_zoom")) {
                         c = '3';
                         break;
                     }
                     c = 65535;
                     break;
-                case 169095108:
-                    if (str.equals("stickers_emoji_suggest_only_api")) {
+                case -14783830:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("telegram_antispam_group_size_min")) {
                         c = '4';
                         break;
                     }
                     c = 65535;
                     break;
-                case 222975416:
-                    if (str.equals("gif_search_emojies")) {
+                case 81433671:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("giveaway_gifts_purchase_available")) {
                         c = '5';
                         break;
                     }
                     c = 65535;
                     break;
-                case 227342346:
-                    if (str.equals("autologin_domains")) {
+                case 169095108:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stickers_emoji_suggest_only_api")) {
                         c = '6';
                         break;
                     }
                     c = 65535;
                     break;
-                case 246778895:
-                    if (str.equals("export_group_urls")) {
+                case 222975416:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("gif_search_emojies")) {
                         c = '7';
                         break;
                     }
                     c = 65535;
                     break;
-                case 280936278:
-                    if (str.equals("stories_posting")) {
+                case 227342346:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("autologin_domains")) {
                         c = '8';
                         break;
                     }
                     c = 65535;
                     break;
-                case 396402384:
-                    if (str.equals("getfile_experimental_params")) {
+                case 246778895:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("export_group_urls")) {
                         c = '9';
                         break;
                     }
                     c = 65535;
                     break;
-                case 428604605:
-                    if (str.equals("premium_playmarket_direct_currency_list")) {
+                case 280936278:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_posting")) {
                         c = ':';
                         break;
                     }
                     c = 65535;
                     break;
-                case 450843102:
-                    if (str.equals("android_check_reset_langpack")) {
+                case 396402384:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("getfile_experimental_params")) {
                         c = ';';
                         break;
                     }
                     c = 65535;
                     break;
-                case 478015350:
-                    if (str.equals("channels_public_limit_default")) {
+                case 428604605:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("premium_playmarket_direct_currency_list")) {
                         c = '<';
                         break;
                     }
                     c = 65535;
                     break;
-                case 483901284:
-                    if (str.equals("story_expiring_limit_default")) {
+                case 450843102:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("android_check_reset_langpack")) {
                         c = '=';
                         break;
                     }
                     c = 65535;
                     break;
-                case 517315989:
-                    if (str.equals("stories_stealth_future_period")) {
+                case 478015350:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("channels_public_limit_default")) {
                         c = '>';
                         break;
                     }
                     c = 65535;
                     break;
-                case 525494819:
-                    if (str.equals("upload_max_fileparts_premium")) {
+                case 483901284:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("story_expiring_limit_default")) {
                         c = '?';
                         break;
                     }
                     c = 65535;
                     break;
-                case 526669457:
-                    if (str.equals("pinned_dialogs_count_max_premium")) {
+                case 517315989:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_stealth_future_period")) {
                         c = '@';
                         break;
                     }
                     c = 65535;
                     break;
-                case 575378511:
-                    if (str.equals("stickers_faved_limit_default")) {
+                case 525494819:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("upload_max_fileparts_premium")) {
                         c = 'A';
                         break;
                     }
                     c = 65535;
                     break;
-                case 676199595:
-                    if (str.equals("groupcall_video_participants_max")) {
+                case 526669457:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("pinned_dialogs_count_max_premium")) {
                         c = 'B';
                         break;
                     }
                     c = 65535;
                     break;
-                case 684764449:
-                    if (str.equals("save_gifs_with_stickers")) {
+                case 575378511:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stickers_faved_limit_default")) {
                         c = 'C';
                         break;
                     }
                     c = 65535;
                     break;
-                case 700950310:
-                    if (str.equals("stories_sent_monthly_limit_premium")) {
+                case 670122854:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("giveaway_boosts_per_premium")) {
                         c = 'D';
                         break;
                     }
                     c = 65535;
                     break;
-                case 812427767:
-                    if (str.equals("login_google_oauth_client_id")) {
+                case 676199595:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("groupcall_video_participants_max")) {
                         c = 'E';
                         break;
                     }
                     c = 65535;
                     break;
-                case 878681646:
-                    if (str.equals("quote_length_max")) {
+                case 684764449:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("save_gifs_with_stickers")) {
                         c = 'F';
                         break;
                     }
                     c = 65535;
                     break;
-                case 917364150:
-                    if (str.equals("ringtone_duration_max")) {
+                case 700206086:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("boosts_per_sent_gift")) {
                         c = 'G';
                         break;
                     }
                     c = 65535;
                     break;
-                case 992898905:
-                    if (str.equals("inapp_update_check_delay")) {
+                case 700950310:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_sent_monthly_limit_premium")) {
                         c = 'H';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1021871313:
-                    if (str.equals("stories_venue_search_username")) {
+                case 812427767:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("login_google_oauth_client_id")) {
                         c = 'I';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1052355894:
-                    if (str.equals("premium_bot_username")) {
+                case 860149751:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("peer_colors_available")) {
                         c = 'J';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1085221270:
-                    if (str.equals("premium_purchase_blocked")) {
+                case 878681646:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("quote_length_max")) {
                         c = 'K';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1295838485:
-                    if (str.equals("authorization_autoconfirm_period")) {
+                case 917364150:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("ringtone_duration_max")) {
                         c = 'L';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1316035878:
-                    if (str.equals("premium_gift_attach_menu_icon")) {
+                case 992898905:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("inapp_update_check_delay")) {
                         c = 'M';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1320737754:
-                    if (str.equals("stories_sent_weekly_limit_default")) {
+                case 1021871313:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_venue_search_username")) {
                         c = 'N';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1322701672:
-                    if (str.equals("round_video_encoding")) {
+                case 1052355894:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("premium_bot_username")) {
                         c = 'O';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1355302207:
-                    if (str.equals("chatlist_invites_limit_default")) {
+                case 1085221270:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("premium_purchase_blocked")) {
                         c = 'P';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1389389863:
-                    if (str.equals("reactions_user_max_default")) {
+                case 1295838485:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("authorization_autoconfirm_period")) {
                         c = 'Q';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1446751453:
-                    if (str.equals("caption_length_limit_default")) {
+                case 1316035878:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("premium_gift_attach_menu_icon")) {
                         c = 'R';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1477031202:
-                    if (str.equals("upload_markup_video")) {
+                case 1320737754:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_sent_weekly_limit_default")) {
                         c = 'S';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1508636733:
-                    if (str.equals("chat_read_mark_size_threshold")) {
+                case 1322701672:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("round_video_encoding")) {
                         c = 'T';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1512284126:
-                    if (str.equals("dialog_filters_chats_limit_default")) {
+                case 1355302207:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("chatlist_invites_limit_default")) {
                         c = 'U';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1535244155:
-                    if (str.equals("saved_gifs_limit_premium")) {
+                case 1389389863:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("reactions_user_max_default")) {
                         c = 'V';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1554302509:
-                    if (str.equals("stories_entities")) {
+                case 1446751453:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("caption_length_limit_default")) {
                         c = 'W';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1564023449:
-                    if (str.equals("giveaway_countries_max")) {
+                case 1477031202:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("upload_markup_video")) {
                         c = 'X';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1586523512:
-                    if (str.equals("stories_changelog_user_id")) {
+                case 1508636733:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("chat_read_mark_size_threshold")) {
                         c = 'Y';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1597443023:
-                    if (str.equals("topics_pinned_limit")) {
+                case 1512284126:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("dialog_filters_chats_limit_default")) {
                         c = 'Z';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1606936462:
-                    if (str.equals("channels_limit_default")) {
+                case 1535244155:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("saved_gifs_limit_premium")) {
                         c = '[';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1667601876:
-                    if (str.equals("small_queue_max_active_operations_count")) {
+                case 1554302509:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_entities")) {
                         c = '\\';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1695201277:
-                    if (str.equals("story_caption_length_limit_premium")) {
+                case 1564023449:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("giveaway_countries_max")) {
                         c = ']';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1785205890:
-                    if (str.equals("reactions_in_chat_max")) {
+                case 1586523512:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("stories_changelog_user_id")) {
                         c = '^';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1849807064:
-                    if (str.equals("dialog_filters_limit_premium")) {
+                case 1597443023:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("topics_pinned_limit")) {
                         c = '_';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1850325103:
-                    if (str.equals("emojies_sounds")) {
+                case 1606936462:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("channels_limit_default")) {
                         c = '`';
                         break;
                     }
                     c = 65535;
                     break;
-                case 1943239084:
-                    if (str.equals("about_length_limit_premium")) {
+                case 1667601876:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("small_queue_max_active_operations_count")) {
                         c = 'a';
                         break;
                     }
                     c = 65535;
                     break;
-                case 2074702027:
-                    if (str.equals("export_private_urls")) {
+                case 1695201277:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("story_caption_length_limit_premium")) {
                         c = 'b';
                         break;
                     }
                     c = 65535;
                     break;
-                case 2130452052:
-                    if (str.equals("forum_upgrade_participants_min")) {
+                case 1785205890:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("reactions_in_chat_max")) {
                         c = 'c';
                         break;
                     }
                     c = 65535;
                     break;
-                case 2136829446:
-                    if (str.equals("dialog_filters_enabled")) {
+                case 1849807064:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("dialog_filters_limit_premium")) {
                         c = 'd';
                         break;
                     }
                     c = 65535;
                     break;
+                case 1850325103:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("emojies_sounds")) {
+                        c = 'e';
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                case 1943239084:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("about_length_limit_premium")) {
+                        c = 'f';
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                case 2074702027:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("export_private_urls")) {
+                        c = 'g';
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                case 2130452052:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("forum_upgrade_participants_min")) {
+                        c = 'h';
+                        break;
+                    }
+                    c = 65535;
+                    break;
+                case 2136829446:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                    if (str.equals("dialog_filters_enabled")) {
+                        c = 'i';
+                        break;
+                    }
+                    c = 65535;
+                    break;
                 default:
+                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
                     c = 65535;
                     break;
             }
-            boolean z7 = z4;
+            TLRPC$TL_jsonArray tLRPC$TL_jsonArray2 = tLRPC$TL_jsonArray;
             switch (c) {
                 case 0:
                     TLRPC$JSONValue tLRPC$JSONValue = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue instanceof TLRPC$TL_jsonNumber) {
                         double d = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue).value;
                         if (d != this.chatlistJoinedLimitPremium) {
-                            int i8 = (int) d;
-                            this.chatlistJoinedLimitPremium = i8;
-                            edit.putInt("chatlistJoinedLimitPremium", i8);
-                            z3 = true;
+                            int i7 = (int) d;
+                            this.chatlistJoinedLimitPremium = i7;
+                            edit.putInt("chatlistJoinedLimitPremium", i7);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 1:
                     TLRPC$JSONValue tLRPC$JSONValue2 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue2 instanceof TLRPC$TL_jsonNumber) {
                         double d2 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue2).value;
                         if (d2 != this.dialogFiltersPinnedLimitPremium) {
-                            int i9 = (int) d2;
-                            this.dialogFiltersPinnedLimitPremium = i9;
-                            edit.putInt("dialogFiltersPinnedLimitPremium", i9);
-                            z3 = true;
+                            int i8 = (int) d2;
+                            this.dialogFiltersPinnedLimitPremium = i8;
+                            edit.putInt("dialogFiltersPinnedLimitPremium", i8);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 2:
                     TLRPC$JSONValue tLRPC$JSONValue3 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue3 instanceof TLRPC$TL_jsonNumber) {
                         double d3 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue3).value;
                         if (this.channelColorLevelMin != d3) {
-                            int i10 = (int) d3;
-                            this.channelColorLevelMin = i10;
-                            edit.putInt("channelColorLevelMin", i10);
-                            z3 = true;
+                            int i9 = (int) d3;
+                            this.channelColorLevelMin = i9;
+                            edit.putInt("channelColorLevelMin", i9);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 3:
                     TLRPC$JSONValue tLRPC$JSONValue4 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue4 instanceof TLRPC$TL_jsonString) {
                         try {
-                            long parseLong = Long.parseLong(((TLRPC$TL_jsonString) tLRPC$JSONValue4).value);
-                            if (parseLong != this.telegramAntispamUserId) {
-                                this.telegramAntispamUserId = parseLong;
-                                edit.putLong("telegramAntispamUserId", parseLong);
-                                z3 = true;
-                            }
+                            parseLong = Long.parseLong(((TLRPC$TL_jsonString) tLRPC$JSONValue4).value);
                         } catch (Exception e) {
                             FileLog.e(e);
                         }
+                        if (parseLong != this.telegramAntispamUserId) {
+                            this.telegramAntispamUserId = parseLong;
+                            edit.putLong("telegramAntispamUserId", parseLong);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 4:
                     TLRPC$JSONValue tLRPC$JSONValue5 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue5 instanceof TLRPC$TL_jsonNumber) {
-                        int i11 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue5).value;
-                        this.largeQueueMaxActiveOperations = i11;
-                        edit.putInt("largeQueueMaxActiveOperations", i11);
+                        int i10 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue5).value;
+                        this.largeQueueMaxActiveOperations = i10;
+                        edit.putInt("largeQueueMaxActiveOperations", i10);
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 5:
                     TLRPC$JSONValue tLRPC$JSONValue6 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue6 instanceof TLRPC$TL_jsonNumber) {
                         double d4 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue6).value;
                         if (d4 != this.uploadMaxFileParts) {
-                            int i12 = (int) d4;
-                            this.uploadMaxFileParts = i12;
-                            edit.putInt("uploadMaxFileParts", i12);
-                            z3 = true;
+                            int i11 = (int) d4;
+                            this.uploadMaxFileParts = i11;
+                            edit.putInt("uploadMaxFileParts", i11);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 6:
                     TLRPC$JSONValue tLRPC$JSONValue7 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue7 instanceof TLRPC$TL_jsonNumber) {
                         double d5 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue7).value;
                         if (d5 != this.maxPinnedDialogsCountDefault) {
-                            int i13 = (int) d5;
-                            this.maxPinnedDialogsCountDefault = i13;
-                            edit.putInt("maxPinnedDialogsCountDefault", i13);
-                            z3 = true;
+                            int i12 = (int) d5;
+                            this.maxPinnedDialogsCountDefault = i12;
+                            edit.putInt("maxPinnedDialogsCountDefault", i12);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 7:
                     TLRPC$JSONValue tLRPC$JSONValue8 = tLRPC$TL_jsonObjectValue.value;
-                    if ((tLRPC$JSONValue8 instanceof TLRPC$TL_jsonBool) && (z = ((TLRPC$TL_jsonBool) tLRPC$JSONValue8).value) != this.collectDeviceStats) {
-                        this.collectDeviceStats = z;
-                        z3 = true;
+                    if (tLRPC$JSONValue8 instanceof TLRPC$TL_jsonBool) {
+                        boolean z8 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue8).value;
+                        if (z8 != this.collectDeviceStats) {
+                            this.collectDeviceStats = z8;
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                    break;
+                    size = i6;
                 case '\b':
                     TLRPC$JSONValue tLRPC$JSONValue9 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue9 instanceof TLRPC$TL_jsonNumber) {
-                        double d6 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue9).value;
-                        if (d6 != this.storiesSentMonthlyLimitDefault) {
-                            int i14 = (int) d6;
-                            this.storiesSentMonthlyLimitDefault = i14;
-                            edit.putInt("storiesSentMonthlyLimitDefault", i14);
-                            z3 = true;
-                        }
+                    if (tLRPC$JSONValue9 instanceof TLRPC$TL_jsonObject) {
+                        tLRPC$TL_jsonObject5 = (TLRPC$TL_jsonObject) tLRPC$JSONValue9;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z2 = z5;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '\t':
                     TLRPC$JSONValue tLRPC$JSONValue10 = tLRPC$TL_jsonObjectValue.value;
-                    if ((tLRPC$JSONValue10 instanceof TLRPC$TL_jsonBool) && (z2 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue10).value) != this.showFiltersTooltip) {
-                        this.showFiltersTooltip = z2;
-                        edit.putBoolean("showFiltersTooltip", z2);
-                        getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.filterSettingsUpdated, new Object[0]);
-                        z3 = true;
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                    if (tLRPC$JSONValue10 instanceof TLRPC$TL_jsonNumber) {
+                        double d6 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue10).value;
+                        if (d6 != this.storiesSentMonthlyLimitDefault) {
+                            int i13 = (int) d6;
+                            this.storiesSentMonthlyLimitDefault = i13;
+                            edit.putInt("storiesSentMonthlyLimitDefault", i13);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                    break;
+                    size = i6;
                 case '\n':
                     TLRPC$JSONValue tLRPC$JSONValue11 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue11 instanceof TLRPC$TL_jsonBool) {
-                        boolean z8 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue11).value;
-                        if (z8 != this.qrLoginCamera) {
-                            this.qrLoginCamera = z8;
-                            edit.putBoolean("qrLoginCamera", z8);
-                            z3 = true;
+                        boolean z9 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue11).value;
+                        if (z9 != this.showFiltersTooltip) {
+                            this.showFiltersTooltip = z9;
+                            edit.putBoolean("showFiltersTooltip", z9);
+                            getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.filterSettingsUpdated, new Object[0]);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        } else {
+                            z2 = z5;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 11:
                     TLRPC$JSONValue tLRPC$JSONValue12 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue12 instanceof TLRPC$TL_jsonNumber) {
-                        long j = (long) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue12).value;
-                        if (j != this.giveawayAddPeersMax) {
-                            this.giveawayAddPeersMax = j;
-                            edit.putLong("giveaway_add_peers_max", j);
-                            z3 = true;
+                    if (tLRPC$JSONValue12 instanceof TLRPC$TL_jsonBool) {
+                        boolean z10 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue12).value;
+                        if (z10 != this.qrLoginCamera) {
+                            this.qrLoginCamera = z10;
+                            edit.putBoolean("qrLoginCamera", z10);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '\f':
                     TLRPC$JSONValue tLRPC$JSONValue13 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue13 instanceof TLRPC$TL_jsonNumber) {
-                        double d7 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue13).value;
-                        if (d7 != this.chatlistUpdatePeriod) {
-                            int i15 = (int) d7;
-                            this.chatlistUpdatePeriod = i15;
-                            edit.putInt("chatlistUpdatePeriod", i15);
-                            z3 = true;
+                        long j = (long) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue13).value;
+                        if (j != this.giveawayAddPeersMax) {
+                            this.giveawayAddPeersMax = j;
+                            edit.putLong("giveaway_add_peers_max", j);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '\r':
-                    HashSet hashSet = new HashSet();
                     TLRPC$JSONValue tLRPC$JSONValue14 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue14 instanceof TLRPC$TL_jsonArray) {
-                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray = (TLRPC$TL_jsonArray) tLRPC$JSONValue14;
-                        int size2 = tLRPC$TL_jsonArray.value.size();
-                        for (int i16 = 0; i16 < size2; i16++) {
-                            TLRPC$JSONValue tLRPC$JSONValue15 = tLRPC$TL_jsonArray.value.get(i16);
-                            if (tLRPC$JSONValue15 instanceof TLRPC$TL_jsonString) {
-                                hashSet.add(((TLRPC$TL_jsonString) tLRPC$JSONValue15).value);
+                    if (tLRPC$JSONValue14 instanceof TLRPC$TL_jsonNumber) {
+                        double d7 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue14).value;
+                        if (d7 != this.chatlistUpdatePeriod) {
+                            int i14 = (int) d7;
+                            this.chatlistUpdatePeriod = i14;
+                            edit.putInt("chatlistUpdatePeriod", i14);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 14:
+                    HashSet hashSet = new HashSet();
+                    TLRPC$JSONValue tLRPC$JSONValue15 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue15 instanceof TLRPC$TL_jsonArray) {
+                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray3 = (TLRPC$TL_jsonArray) tLRPC$JSONValue15;
+                        int size2 = tLRPC$TL_jsonArray3.value.size();
+                        for (int i15 = 0; i15 < size2; i15++) {
+                            TLRPC$JSONValue tLRPC$JSONValue16 = tLRPC$TL_jsonArray3.value.get(i15);
+                            if (tLRPC$JSONValue16 instanceof TLRPC$TL_jsonString) {
+                                hashSet.add(((TLRPC$TL_jsonString) tLRPC$JSONValue16).value);
                             }
                         }
                     }
@@ -3855,882 +4315,1533 @@ public class MessagesController extends BaseController implements NotificationCe
                         this.pendingSuggestions = hashSet;
                         edit.putStringSet("pendingSuggestions", hashSet);
                         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.newSuggestionsAvailable, new Object[0]);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 14:
-                    TLRPC$JSONValue tLRPC$JSONValue16 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue16 instanceof TLRPC$TL_jsonNumber) {
-                        double d8 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue16).value;
-                        if (d8 != this.publicLinksLimitPremium) {
-                            int i17 = (int) d8;
-                            this.publicLinksLimitPremium = i17;
-                            edit.putInt("publicLinksLimitPremium", i17);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 15:
                     TLRPC$JSONValue tLRPC$JSONValue17 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue17 instanceof TLRPC$TL_jsonNumber) {
-                        double d9 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue17).value;
-                        if (d9 != this.storyExpiringLimitPremium) {
-                            int i18 = (int) d9;
-                            this.storyExpiringLimitPremium = i18;
-                            edit.putInt("storyExpiringLimitPremium", i18);
-                            z3 = true;
+                        double d8 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue17).value;
+                        if (d8 != this.publicLinksLimitPremium) {
+                            int i16 = (int) d8;
+                            this.publicLinksLimitPremium = i16;
+                            edit.putInt("publicLinksLimitPremium", i16);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 16:
                     TLRPC$JSONValue tLRPC$JSONValue18 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue18 instanceof TLRPC$TL_jsonNumber) {
-                        double d10 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue18).value;
-                        if (d10 != this.stickersFavedLimitPremium) {
-                            int i19 = (int) d10;
-                            this.stickersFavedLimitPremium = i19;
-                            edit.putInt("stickersFavedLimitPremium", i19);
-                            z3 = true;
+                        double d9 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue18).value;
+                        if (d9 != this.storyExpiringLimitPremium) {
+                            int i17 = (int) d9;
+                            this.storyExpiringLimitPremium = i17;
+                            edit.putInt("storyExpiringLimitPremium", i17);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 17:
                     TLRPC$JSONValue tLRPC$JSONValue19 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue19 instanceof TLRPC$TL_jsonNumber) {
-                        int i20 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue19).value;
-                        this.stealthModeCooldown = i20;
-                        edit.putInt("stories_stealth_cooldown_period", i20);
+                        double d10 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue19).value;
+                        if (d10 != this.stickersFavedLimitPremium) {
+                            int i18 = (int) d10;
+                            this.stickersFavedLimitPremium = i18;
+                            edit.putInt("stickersFavedLimitPremium", i18);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 18:
                     TLRPC$JSONValue tLRPC$JSONValue20 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue20 instanceof TLRPC$TL_jsonObject) {
-                        tLRPC$TL_jsonObject5 = (TLRPC$TL_jsonObject) tLRPC$JSONValue20;
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                    if (tLRPC$JSONValue20 instanceof TLRPC$TL_jsonNumber) {
+                        int i19 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue20).value;
+                        this.stealthModeCooldown = i19;
+                        edit.putInt("stories_stealth_cooldown_period", i19);
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 19:
                     TLRPC$JSONValue tLRPC$JSONValue21 = tLRPC$TL_jsonObjectValue.value;
-                    if ((tLRPC$JSONValue21 instanceof TLRPC$TL_jsonNumber) && (i5 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue21).value) > 0) {
-                        SharedConfig.overrideDevicePerformanceClass(i5 - 1);
+                    if (tLRPC$JSONValue21 instanceof TLRPC$TL_jsonObject) {
+                        tLRPC$TL_jsonObject7 = (TLRPC$TL_jsonObject) tLRPC$JSONValue21;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z2 = z5;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                    break;
+                    size = i6;
                 case 20:
                     TLRPC$JSONValue tLRPC$JSONValue22 = tLRPC$TL_jsonObjectValue.value;
-                    if ((tLRPC$JSONValue22 instanceof TLRPC$TL_jsonBool) && this.giftTextFieldIcon != ((TLRPC$TL_jsonBool) tLRPC$JSONValue22).value) {
-                        boolean z9 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue22).value;
-                        this.giftTextFieldIcon = z9;
-                        edit.putBoolean("giftTextFieldIcon", z9);
-                        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdatePremiumGiftFieldIcon, new Object[0]);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                    if ((tLRPC$JSONValue22 instanceof TLRPC$TL_jsonNumber) && (i4 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue22).value) > 0) {
+                        SharedConfig.overrideDevicePerformanceClass(i4 - 1);
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                     break;
                 case 21:
                     TLRPC$JSONValue tLRPC$JSONValue23 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue23 instanceof TLRPC$TL_jsonNumber) {
-                        double d11 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue23).value;
-                        if (d11 != this.chatReadMarkExpirePeriod) {
-                            int i21 = (int) d11;
-                            this.chatReadMarkExpirePeriod = i21;
-                            edit.putInt("chatReadMarkExpirePeriod", i21);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                    if ((tLRPC$JSONValue23 instanceof TLRPC$TL_jsonBool) && this.giftTextFieldIcon != ((TLRPC$TL_jsonBool) tLRPC$JSONValue23).value) {
+                        boolean z11 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue23).value;
+                        this.giftTextFieldIcon = z11;
+                        edit.putBoolean("giftTextFieldIcon", z11);
+                        NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.didUpdatePremiumGiftFieldIcon, new Object[0]);
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
+                    break;
                 case 22:
-                    HashSet<String> hashSet2 = new HashSet<>();
                     TLRPC$JSONValue tLRPC$JSONValue24 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue24 instanceof TLRPC$TL_jsonArray) {
-                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray2 = (TLRPC$TL_jsonArray) tLRPC$JSONValue24;
-                        int size3 = tLRPC$TL_jsonArray2.value.size();
-                        for (int i22 = 0; i22 < size3; i22++) {
-                            TLRPC$JSONValue tLRPC$JSONValue25 = tLRPC$TL_jsonArray2.value.get(i22);
-                            if (tLRPC$JSONValue25 instanceof TLRPC$TL_jsonString) {
-                                hashSet2.add(((TLRPC$TL_jsonString) tLRPC$JSONValue25).value.replace("️", ""));
+                    if (tLRPC$JSONValue24 instanceof TLRPC$TL_jsonNumber) {
+                        double d11 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue24).value;
+                        if (d11 != this.chatReadMarkExpirePeriod) {
+                            int i20 = (int) d11;
+                            this.chatReadMarkExpirePeriod = i20;
+                            edit.putInt("chatReadMarkExpirePeriod", i20);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 23:
+                    HashSet<String> hashSet2 = new HashSet<>();
+                    TLRPC$JSONValue tLRPC$JSONValue25 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue25 instanceof TLRPC$TL_jsonArray) {
+                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray4 = (TLRPC$TL_jsonArray) tLRPC$JSONValue25;
+                        int size3 = tLRPC$TL_jsonArray4.value.size();
+                        for (int i21 = 0; i21 < size3; i21++) {
+                            TLRPC$JSONValue tLRPC$JSONValue26 = tLRPC$TL_jsonArray4.value.get(i21);
+                            if (tLRPC$JSONValue26 instanceof TLRPC$TL_jsonString) {
+                                hashSet2.add(((TLRPC$TL_jsonString) tLRPC$JSONValue26).value.replace("️", ""));
                             }
                         }
                     }
                     if (!this.diceEmojies.equals(hashSet2)) {
                         this.diceEmojies = hashSet2;
                         edit.putStringSet("diceEmojies", hashSet2);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 23:
+                    size = i6;
+                case 24:
                     HashSet hashSet3 = new HashSet();
-                    TLRPC$JSONValue tLRPC$JSONValue26 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue26 instanceof TLRPC$TL_jsonArray) {
-                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray3 = (TLRPC$TL_jsonArray) tLRPC$JSONValue26;
-                        int size4 = tLRPC$TL_jsonArray3.value.size();
-                        for (int i23 = 0; i23 < size4; i23++) {
-                            TLRPC$JSONValue tLRPC$JSONValue27 = tLRPC$TL_jsonArray3.value.get(i23);
-                            if (tLRPC$JSONValue27 instanceof TLRPC$TL_jsonString) {
-                                hashSet3.add(((TLRPC$TL_jsonString) tLRPC$JSONValue27).value);
+                    TLRPC$JSONValue tLRPC$JSONValue27 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue27 instanceof TLRPC$TL_jsonArray) {
+                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray5 = (TLRPC$TL_jsonArray) tLRPC$JSONValue27;
+                        int size4 = tLRPC$TL_jsonArray5.value.size();
+                        for (int i22 = 0; i22 < size4; i22++) {
+                            TLRPC$JSONValue tLRPC$JSONValue28 = tLRPC$TL_jsonArray5.value.get(i22);
+                            if (tLRPC$JSONValue28 instanceof TLRPC$TL_jsonString) {
+                                hashSet3.add(((TLRPC$TL_jsonString) tLRPC$JSONValue28).value);
                             }
                         }
                     }
                     if (!this.authDomains.equals(hashSet3)) {
                         this.authDomains = hashSet3;
                         edit.putStringSet("authDomains", hashSet3);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 24:
-                    TLRPC$JSONValue tLRPC$JSONValue28 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue28 instanceof TLRPC$TL_jsonNumber) {
-                        int i24 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue28).value;
-                        this.stealthModePast = i24;
-                        edit.putInt("stories_stealth_past_period", i24);
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 25:
                     TLRPC$JSONValue tLRPC$JSONValue29 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue29 instanceof TLRPC$TL_jsonNumber) {
-                        double d12 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue29).value;
-                        if (d12 != this.savedGifsLimitDefault) {
-                            int i25 = (int) d12;
-                            this.savedGifsLimitDefault = i25;
-                            edit.putInt("savedGifsLimitDefault", i25);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        int i23 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue29).value;
+                        this.stealthModePast = i23;
+                        edit.putInt("stories_stealth_past_period", i23);
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case MessageObject.TYPE_GIVEAWAY:
                     TLRPC$JSONValue tLRPC$JSONValue30 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue30 instanceof TLRPC$TL_jsonNumber) {
-                        double d13 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue30).value;
-                        if (d13 != this.storyCaptionLengthLimitDefault) {
-                            int i26 = (int) d13;
-                            this.storyCaptionLengthLimitDefault = i26;
-                            edit.putInt("storyCaptionLengthLimit", i26);
-                            z3 = true;
+                        double d12 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue30).value;
+                        if (d12 != this.savedGifsLimitDefault) {
+                            int i24 = (int) d12;
+                            this.savedGifsLimitDefault = i24;
+                            edit.putInt("savedGifsLimitDefault", i24);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 27:
                     TLRPC$JSONValue tLRPC$JSONValue31 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue31 instanceof TLRPC$TL_jsonNumber) {
-                        double d14 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue31).value;
-                        if (d14 != this.dialogFiltersLimitDefault) {
-                            int i27 = (int) d14;
-                            this.dialogFiltersLimitDefault = i27;
-                            edit.putInt("dialogFiltersLimitDefault", i27);
-                            z3 = true;
+                        double d13 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue31).value;
+                        if (d13 != this.storyCaptionLengthLimitDefault) {
+                            int i25 = (int) d13;
+                            this.storyCaptionLengthLimitDefault = i25;
+                            edit.putInt("storyCaptionLengthLimit", i25);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 28:
                     TLRPC$JSONValue tLRPC$JSONValue32 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue32 instanceof TLRPC$TL_jsonString) {
-                        String str2 = ((TLRPC$TL_jsonString) tLRPC$JSONValue32).value;
+                    if (tLRPC$JSONValue32 instanceof TLRPC$TL_jsonNumber) {
+                        double d14 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue32).value;
+                        if (d14 != this.dialogFiltersLimitDefault) {
+                            int i26 = (int) d14;
+                            this.dialogFiltersLimitDefault = i26;
+                            edit.putInt("dialogFiltersLimitDefault", i26);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 29:
+                    TLRPC$JSONValue tLRPC$JSONValue33 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue33 instanceof TLRPC$TL_jsonString) {
+                        String str2 = ((TLRPC$TL_jsonString) tLRPC$JSONValue33).value;
                         if (!str2.equals(this.premiumInvoiceSlug)) {
                             this.premiumInvoiceSlug = str2;
                             edit.putString("premiumInvoiceSlug", str2);
-                            z3 = true;
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 29:
-                    TLRPC$JSONValue tLRPC$JSONValue33 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue33 instanceof TLRPC$TL_jsonNumber) {
-                        double d15 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue33).value;
-                        if (d15 != this.storiesSentWeeklyLimitPremium) {
-                            int i28 = (int) d15;
-                            this.storiesSentWeeklyLimitPremium = i28;
-                            edit.putInt("storiesSentWeeklyLimitPremium", i28);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 30:
                     TLRPC$JSONValue tLRPC$JSONValue34 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue34 instanceof TLRPC$TL_jsonBool) {
-                        boolean z10 = this.storiesExportNopublicLink;
-                        boolean z11 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue34).value;
-                        if (z10 != z11) {
-                            this.storiesExportNopublicLink = z11;
-                            edit.putBoolean("storiesExportNopublicLink", z11);
-                            z3 = true;
+                    if (tLRPC$JSONValue34 instanceof TLRPC$TL_jsonNumber) {
+                        double d15 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue34).value;
+                        if (d15 != this.storiesSentWeeklyLimitPremium) {
+                            int i27 = (int) d15;
+                            this.storiesSentWeeklyLimitPremium = i27;
+                            edit.putInt("storiesSentWeeklyLimitPremium", i27);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 31:
-                    HashSet hashSet4 = new HashSet();
                     TLRPC$JSONValue tLRPC$JSONValue35 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue35 instanceof TLRPC$TL_jsonArray) {
-                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray4 = (TLRPC$TL_jsonArray) tLRPC$JSONValue35;
-                        int size5 = tLRPC$TL_jsonArray4.value.size();
-                        for (int i29 = 0; i29 < size5; i29++) {
-                            TLRPC$JSONValue tLRPC$JSONValue36 = tLRPC$TL_jsonArray4.value.get(i29);
-                            if (tLRPC$JSONValue36 instanceof TLRPC$TL_jsonString) {
-                                hashSet4.add(((TLRPC$TL_jsonString) tLRPC$JSONValue36).value);
+                    if (tLRPC$JSONValue35 instanceof TLRPC$TL_jsonBool) {
+                        boolean z12 = this.storiesExportNopublicLink;
+                        boolean z13 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue35).value;
+                        if (z12 != z13) {
+                            this.storiesExportNopublicLink = z13;
+                            edit.putBoolean("storiesExportNopublicLink", z13);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case ' ':
+                    TLRPC$JSONValue tLRPC$JSONValue36 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue36 instanceof TLRPC$TL_jsonObject) {
+                        tLRPC$TL_jsonObject6 = (TLRPC$TL_jsonObject) tLRPC$JSONValue36;
+                        z2 = z5;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case '!':
+                    HashSet hashSet4 = new HashSet();
+                    TLRPC$JSONValue tLRPC$JSONValue37 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue37 instanceof TLRPC$TL_jsonArray) {
+                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray6 = (TLRPC$TL_jsonArray) tLRPC$JSONValue37;
+                        int size5 = tLRPC$TL_jsonArray6.value.size();
+                        for (int i28 = 0; i28 < size5; i28++) {
+                            TLRPC$JSONValue tLRPC$JSONValue38 = tLRPC$TL_jsonArray6.value.get(i28);
+                            if (tLRPC$JSONValue38 instanceof TLRPC$TL_jsonString) {
+                                hashSet4.add(((TLRPC$TL_jsonString) tLRPC$JSONValue38).value);
                             }
                         }
                     }
                     if (!this.exportUri.equals(hashSet4)) {
                         this.exportUri = hashSet4;
                         edit.putStringSet("exportUri2", hashSet4);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case ' ':
-                    TLRPC$JSONValue tLRPC$JSONValue37 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue37 instanceof TLRPC$TL_jsonNumber) {
-                        double d16 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue37).value;
-                        if (d16 != this.chatlistInvitesLimitPremium) {
-                            int i30 = (int) d16;
-                            this.chatlistInvitesLimitPremium = i30;
-                            edit.putInt("chatlistInvitesLimitPremium", i30);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '!':
-                    TLRPC$JSONValue tLRPC$JSONValue38 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue38 instanceof TLRPC$TL_jsonNumber) {
-                        double d17 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue38).value;
-                        if (d17 != this.aboutLengthLimitDefault) {
-                            int i31 = (int) d17;
-                            this.aboutLengthLimitDefault = i31;
-                            edit.putInt("aboutLengthLimitDefault", i31);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '\"':
                     TLRPC$JSONValue tLRPC$JSONValue39 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue39 instanceof TLRPC$TL_jsonNumber) {
-                        double d18 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue39).value;
-                        if (d18 != this.reactionsUserMaxPremium) {
-                            int i32 = (int) d18;
-                            this.reactionsUserMaxPremium = i32;
-                            edit.putInt("reactionsUserMaxPremium", i32);
-                            z3 = true;
+                        double d16 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue39).value;
+                        if (d16 != this.chatlistInvitesLimitPremium) {
+                            int i29 = (int) d16;
+                            this.chatlistInvitesLimitPremium = i29;
+                            edit.putInt("chatlistInvitesLimitPremium", i29);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '#':
                     TLRPC$JSONValue tLRPC$JSONValue40 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue40 instanceof TLRPC$TL_jsonNumber) {
-                        double d19 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue40).value;
-                        if (d19 != this.captionLengthLimitPremium) {
-                            int i33 = (int) d19;
-                            this.captionLengthLimitPremium = i33;
-                            edit.putInt("captionLengthLimitPremium", i33);
-                            z3 = true;
+                        double d17 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue40).value;
+                        if (d17 != this.aboutLengthLimitDefault) {
+                            int i30 = (int) d17;
+                            this.aboutLengthLimitDefault = i30;
+                            edit.putInt("aboutLengthLimitDefault", i30);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '$':
                     TLRPC$JSONValue tLRPC$JSONValue41 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue41 instanceof TLRPC$TL_jsonBool) {
-                        boolean z12 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue41).value;
-                        if (z12 != this.keepAliveService) {
-                            this.keepAliveService = z12;
-                            edit.putBoolean("keepAliveService", z12);
-                            z3 = true;
-                            z4 = true;
-                            z5 = z6;
-                            i6++;
+                    if (tLRPC$JSONValue41 instanceof TLRPC$TL_jsonNumber) {
+                        double d18 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue41).value;
+                        if (d18 != this.reactionsUserMaxPremium) {
+                            int i31 = (int) d18;
+                            this.reactionsUserMaxPremium = i31;
+                            edit.putInt("reactionsUserMaxPremium", i31);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
                             tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                            size = i7;
+                            size = i6;
                         }
-                        z4 = z7;
-                        z5 = z6;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '%':
                     TLRPC$JSONValue tLRPC$JSONValue42 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue42 instanceof TLRPC$TL_jsonArray) {
-                        z3 = savePremiumFeaturesPreviewOrder(edit, ((TLRPC$TL_jsonArray) tLRPC$JSONValue42).value);
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                    if (tLRPC$JSONValue42 instanceof TLRPC$TL_jsonNumber) {
+                        double d19 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue42).value;
+                        if (d19 != this.captionLengthLimitPremium) {
+                            int i32 = (int) d19;
+                            this.captionLengthLimitPremium = i32;
+                            edit.putInt("captionLengthLimitPremium", i32);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '&':
                     TLRPC$JSONValue tLRPC$JSONValue43 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue43 instanceof TLRPC$TL_jsonNumber) {
-                        double d20 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue43).value;
-                        if (d20 != this.ringtoneSizeMax) {
-                            int i34 = (int) d20;
-                            this.ringtoneSizeMax = i34;
-                            edit.putInt("ringtoneSizeMax", i34);
+                    if (tLRPC$JSONValue43 instanceof TLRPC$TL_jsonBool) {
+                        boolean z14 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue43).value;
+                        if (z14 != this.keepAliveService) {
+                            this.keepAliveService = z14;
+                            edit.putBoolean("keepAliveService", z14);
+                            z2 = true;
                             z3 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '\'':
                     TLRPC$JSONValue tLRPC$JSONValue44 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue44 instanceof TLRPC$TL_jsonNumber) {
-                        double d21 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue44).value;
-                        if (d21 != this.dialogFiltersChatsLimitPremium) {
-                            int i35 = (int) d21;
-                            this.dialogFiltersChatsLimitPremium = i35;
-                            edit.putInt("dialogFiltersChatsLimitPremium", i35);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                    if (tLRPC$JSONValue44 instanceof TLRPC$TL_jsonArray) {
+                        z2 = savePremiumFeaturesPreviewOrder(edit, ((TLRPC$TL_jsonArray) tLRPC$JSONValue44).value);
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '(':
                     TLRPC$JSONValue tLRPC$JSONValue45 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue45 instanceof TLRPC$TL_jsonNumber) {
-                        double d22 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue45).value;
-                        if (d22 != this.chatlistJoinedLimitDefault) {
-                            int i36 = (int) d22;
-                            this.chatlistJoinedLimitDefault = i36;
-                            edit.putInt("chatlistJoinedLimitDefault", i36);
-                            z3 = true;
+                        double d20 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue45).value;
+                        if (d20 != this.ringtoneSizeMax) {
+                            int i33 = (int) d20;
+                            this.ringtoneSizeMax = i33;
+                            edit.putInt("ringtoneSizeMax", i33);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case ')':
                     TLRPC$JSONValue tLRPC$JSONValue46 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue46 instanceof TLRPC$TL_jsonNumber) {
-                        double d23 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue46).value;
-                        if (d23 != this.channelsLimitPremium) {
-                            int i37 = (int) d23;
-                            this.channelsLimitPremium = i37;
-                            edit.putInt("channelsLimitPremium", i37);
-                            z3 = true;
+                        double d21 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue46).value;
+                        if (d21 != this.dialogFiltersChatsLimitPremium) {
+                            int i34 = (int) d21;
+                            this.dialogFiltersChatsLimitPremium = i34;
+                            edit.putInt("dialogFiltersChatsLimitPremium", i34);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '*':
                     TLRPC$JSONValue tLRPC$JSONValue47 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue47 instanceof TLRPC$TL_jsonBool) {
-                        boolean z13 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue47).value;
-                        if (z13 != this.backgroundConnection) {
-                            this.backgroundConnection = z13;
-                            edit.putBoolean("backgroundConnection", z13);
-                            z3 = true;
-                            z4 = true;
-                            z5 = z6;
-                            i6++;
+                    if (tLRPC$JSONValue47 instanceof TLRPC$TL_jsonNumber) {
+                        double d22 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue47).value;
+                        if (d22 != this.chatlistJoinedLimitDefault) {
+                            int i35 = (int) d22;
+                            this.chatlistJoinedLimitDefault = i35;
+                            edit.putInt("chatlistJoinedLimitDefault", i35);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
                             tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                            size = i7;
+                            size = i6;
                         }
-                        z4 = z7;
-                        z5 = z6;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '+':
                     TLRPC$JSONValue tLRPC$JSONValue48 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue48 instanceof TLRPC$TL_jsonNumber) {
-                        long j2 = (long) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue48).value;
+                        double d23 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue48).value;
+                        if (d23 != this.channelsLimitPremium) {
+                            int i36 = (int) d23;
+                            this.channelsLimitPremium = i36;
+                            edit.putInt("channelsLimitPremium", i36);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case ',':
+                    TLRPC$JSONValue tLRPC$JSONValue49 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue49 instanceof TLRPC$TL_jsonBool) {
+                        boolean z15 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue49).value;
+                        if (z15 != this.backgroundConnection) {
+                            this.backgroundConnection = z15;
+                            edit.putBoolean("backgroundConnection", z15);
+                            z2 = true;
+                            z3 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case '-':
+                    TLRPC$JSONValue tLRPC$JSONValue50 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue50 instanceof TLRPC$TL_jsonNumber) {
+                        long j2 = (long) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue50).value;
                         if (j2 != this.giveawayPeriodMax) {
                             this.giveawayPeriodMax = j2;
                             edit.putLong("giveaway_period_max", j2);
-                            z3 = true;
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case ',':
+                    size = i6;
+                case '.':
                     try {
-                        HashMap<String, DiceFrameSuccess> hashMap = new HashMap<>();
-                        TLRPC$JSONValue tLRPC$JSONValue49 = tLRPC$TL_jsonObjectValue.value;
-                        if (tLRPC$JSONValue49 instanceof TLRPC$TL_jsonObject) {
-                            TLRPC$TL_jsonObject tLRPC$TL_jsonObject6 = (TLRPC$TL_jsonObject) tLRPC$JSONValue49;
-                            int size6 = tLRPC$TL_jsonObject6.value.size();
-                            int i38 = 0;
-                            while (i38 < size6) {
-                                TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue2 = tLRPC$TL_jsonObject6.value.get(i38);
-                                TLRPC$JSONValue tLRPC$JSONValue50 = tLRPC$TL_jsonObjectValue2.value;
-                                if (tLRPC$JSONValue50 instanceof TLRPC$TL_jsonObject) {
-                                    TLRPC$TL_jsonObject tLRPC$TL_jsonObject7 = (TLRPC$TL_jsonObject) tLRPC$JSONValue50;
-                                    int size7 = tLRPC$TL_jsonObject7.value.size();
-                                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                        hashMap = new HashMap<>();
+                        TLRPC$JSONValue tLRPC$JSONValue51 = tLRPC$TL_jsonObjectValue.value;
+                        if (tLRPC$JSONValue51 instanceof TLRPC$TL_jsonObject) {
+                            TLRPC$TL_jsonObject tLRPC$TL_jsonObject10 = (TLRPC$TL_jsonObject) tLRPC$JSONValue51;
+                            int size6 = tLRPC$TL_jsonObject10.value.size();
+                            int i37 = 0;
+                            while (i37 < size6) {
+                                TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue2 = tLRPC$TL_jsonObject10.value.get(i37);
+                                TLRPC$JSONValue tLRPC$JSONValue52 = tLRPC$TL_jsonObjectValue2.value;
+                                if (tLRPC$JSONValue52 instanceof TLRPC$TL_jsonObject) {
+                                    TLRPC$TL_jsonObject tLRPC$TL_jsonObject11 = (TLRPC$TL_jsonObject) tLRPC$JSONValue52;
+                                    int size7 = tLRPC$TL_jsonObject11.value.size();
+                                    int i38 = 0;
                                     int i39 = ConnectionsManager.DEFAULT_DATACENTER_ID;
                                     int i40 = ConnectionsManager.DEFAULT_DATACENTER_ID;
-                                    int i41 = 0;
-                                    while (i41 < size7) {
-                                        int i42 = size6;
-                                        TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue3 = tLRPC$TL_jsonObject7.value.get(i41);
-                                        TLRPC$TL_jsonObject tLRPC$TL_jsonObject8 = tLRPC$TL_jsonObject7;
+                                    while (i38 < size7) {
+                                        TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue3 = tLRPC$TL_jsonObject11.value.get(i38);
+                                        TLRPC$TL_jsonObject tLRPC$TL_jsonObject12 = tLRPC$TL_jsonObject10;
                                         if (tLRPC$TL_jsonObjectValue3.value instanceof TLRPC$TL_jsonNumber) {
-                                            i2 = size7;
+                                            i2 = size6;
                                             if ("value".equals(tLRPC$TL_jsonObjectValue3.key)) {
-                                                i39 = (int) ((TLRPC$TL_jsonNumber) tLRPC$TL_jsonObjectValue3.value).value;
-                                            } else if ("frame_start".equals(tLRPC$TL_jsonObjectValue3.key)) {
+                                                i3 = size7;
                                                 i40 = (int) ((TLRPC$TL_jsonNumber) tLRPC$TL_jsonObjectValue3.value).value;
+                                            } else {
+                                                i3 = size7;
+                                                if ("frame_start".equals(tLRPC$TL_jsonObjectValue3.key)) {
+                                                    i39 = (int) ((TLRPC$TL_jsonNumber) tLRPC$TL_jsonObjectValue3.value).value;
+                                                }
                                             }
                                         } else {
-                                            i2 = size7;
+                                            i2 = size6;
+                                            i3 = size7;
                                         }
-                                        i41++;
-                                        size6 = i42;
-                                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
-                                        size7 = i2;
+                                        i38++;
+                                        size7 = i3;
+                                        tLRPC$TL_jsonObject10 = tLRPC$TL_jsonObject12;
+                                        size6 = i2;
                                     }
+                                    tLRPC$TL_jsonObject3 = tLRPC$TL_jsonObject10;
                                     i = size6;
-                                    if (i40 != Integer.MAX_VALUE && i39 != Integer.MAX_VALUE) {
-                                        hashMap.put(tLRPC$TL_jsonObjectValue2.key.replace("️", ""), new DiceFrameSuccess(i40, i39));
+                                    if (i39 != Integer.MAX_VALUE && i40 != Integer.MAX_VALUE) {
+                                        hashMap.put(tLRPC$TL_jsonObjectValue2.key.replace("️", ""), new DiceFrameSuccess(i39, i40));
                                     }
                                 } else {
-                                    tLRPC$TL_jsonObject2 = tLRPC$TL_jsonObject6;
+                                    tLRPC$TL_jsonObject3 = tLRPC$TL_jsonObject10;
                                     i = size6;
                                 }
-                                i38++;
-                                tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                                i37++;
+                                tLRPC$TL_jsonObject10 = tLRPC$TL_jsonObject3;
                                 size6 = i;
                             }
                         }
-                        if (!this.diceSuccess.equals(hashMap)) {
-                            this.diceSuccess = hashMap;
-                            SerializedData serializedData = new SerializedData();
-                            serializedData.writeInt32(this.diceSuccess.size());
-                            for (Map.Entry<String, DiceFrameSuccess> entry : this.diceSuccess.entrySet()) {
-                                serializedData.writeString(entry.getKey());
-                                DiceFrameSuccess value = entry.getValue();
-                                serializedData.writeInt32(value.frame);
-                                serializedData.writeInt32(value.num);
-                            }
-                            edit.putString("diceSuccess", Base64.encodeToString(serializedData.toByteArray(), 0));
-                            serializedData.cleanup();
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
                     } catch (Exception e2) {
                         FileLog.e(e2);
                         break;
                     }
-                    i6++;
+                    if (!this.diceSuccess.equals(hashMap)) {
+                        this.diceSuccess = hashMap;
+                        SerializedData serializedData = new SerializedData();
+                        serializedData.writeInt32(this.diceSuccess.size());
+                        for (Map.Entry<String, DiceFrameSuccess> entry : this.diceSuccess.entrySet()) {
+                            serializedData.writeString(entry.getKey());
+                            DiceFrameSuccess value = entry.getValue();
+                            serializedData.writeInt32(value.frame);
+                            serializedData.writeInt32(value.num);
+                        }
+                        edit.putString("diceSuccess", Base64.encodeToString(serializedData.toByteArray(), 0));
+                        serializedData.cleanup();
+                        z2 = true;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    z2 = z5;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                     break;
-                case '-':
-                    TLRPC$JSONValue tLRPC$JSONValue51 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue51 instanceof TLRPC$TL_jsonNumber) {
-                        double d24 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue51).value;
-                        if (d24 != this.dialogFiltersPinnedLimitDefault) {
-                            int i43 = (int) d24;
-                            this.dialogFiltersPinnedLimitDefault = i43;
-                            edit.putInt("dialogFiltersPinnedLimitDefault", i43);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '.':
-                    TLRPC$JSONValue tLRPC$JSONValue52 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue52 instanceof TLRPC$TL_jsonNumber) {
-                        double d25 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue52).value;
-                        if (d25 != this.hiddenMembersGroupSizeMin) {
-                            int i44 = (int) d25;
-                            this.hiddenMembersGroupSizeMin = i44;
-                            edit.putInt("hiddenMembersGroupSizeMin", i44);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
                 case '/':
                     TLRPC$JSONValue tLRPC$JSONValue53 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue53 instanceof TLRPC$TL_jsonBool) {
-                        boolean z14 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue53).value;
-                        if (z14 != this.autoarchiveAvailable) {
-                            this.autoarchiveAvailable = z14;
-                            edit.putBoolean("autoarchiveAvailable", z14);
-                            z3 = true;
+                    if (tLRPC$JSONValue53 instanceof TLRPC$TL_jsonNumber) {
+                        double d24 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue53).value;
+                        if (d24 != this.dialogFiltersPinnedLimitDefault) {
+                            int i41 = (int) d24;
+                            this.dialogFiltersPinnedLimitDefault = i41;
+                            edit.putInt("dialogFiltersPinnedLimitDefault", i41);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '0':
                     TLRPC$JSONValue tLRPC$JSONValue54 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue54 instanceof TLRPC$TL_jsonString) {
-                        TLRPC$TL_jsonString tLRPC$TL_jsonString = (TLRPC$TL_jsonString) tLRPC$JSONValue54;
+                    if (tLRPC$JSONValue54 instanceof TLRPC$TL_jsonNumber) {
+                        double d25 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue54).value;
+                        if (d25 != this.hiddenMembersGroupSizeMin) {
+                            int i42 = (int) d25;
+                            this.hiddenMembersGroupSizeMin = i42;
+                            edit.putInt("hiddenMembersGroupSizeMin", i42);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case '1':
+                    TLRPC$JSONValue tLRPC$JSONValue55 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue55 instanceof TLRPC$TL_jsonBool) {
+                        boolean z16 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue55).value;
+                        if (z16 != this.autoarchiveAvailable) {
+                            this.autoarchiveAvailable = z16;
+                            edit.putBoolean("autoarchiveAvailable", z16);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case '2':
+                    TLRPC$JSONValue tLRPC$JSONValue56 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue56 instanceof TLRPC$TL_jsonString) {
+                        TLRPC$TL_jsonString tLRPC$TL_jsonString = (TLRPC$TL_jsonString) tLRPC$JSONValue56;
                         if (!tLRPC$TL_jsonString.value.equals(this.youtubePipType)) {
                             String str3 = tLRPC$TL_jsonString.value;
                             this.youtubePipType = str3;
                             edit.putString("youtubePipType", str3);
-                            z3 = true;
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '1':
-                    TLRPC$JSONValue tLRPC$JSONValue55 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue55 instanceof TLRPC$TL_jsonNumber) {
-                        double d26 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue55).value;
+                    size = i6;
+                case '3':
+                    TLRPC$JSONValue tLRPC$JSONValue57 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue57 instanceof TLRPC$TL_jsonNumber) {
+                        double d26 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue57).value;
                         if (this.animatedEmojisZoom != d26) {
                             float f = (float) d26;
                             this.animatedEmojisZoom = f;
                             edit.putFloat("animatedEmojisZoom", f);
-                            z3 = true;
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '2':
-                    TLRPC$JSONValue tLRPC$JSONValue56 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue56 instanceof TLRPC$TL_jsonNumber) {
-                        double d27 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue56).value;
-                        if (d27 != this.telegramAntispamGroupSizeMin) {
-                            int i45 = (int) d27;
-                            this.telegramAntispamGroupSizeMin = i45;
-                            edit.putInt("telegramAntispamGroupSizeMin", i45);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '3':
-                    TLRPC$JSONValue tLRPC$JSONValue57 = tLRPC$TL_jsonObjectValue.value;
-                    if ((tLRPC$JSONValue57 instanceof TLRPC$TL_jsonBool) && this.giveawayGiftsPurchaseAvailable != ((TLRPC$TL_jsonBool) tLRPC$JSONValue57).value) {
-                        boolean z15 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue57).value;
-                        this.giveawayGiftsPurchaseAvailable = z15;
-                        edit.putBoolean("giveawayGiftsPurchaseAvailable", z15);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                    break;
+                    size = i6;
                 case '4':
                     TLRPC$JSONValue tLRPC$JSONValue58 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue58 instanceof TLRPC$TL_jsonBool) {
-                        boolean z16 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue58).value;
-                        if (z16 != this.suggestStickersApiOnly) {
-                            this.suggestStickersApiOnly = z16;
-                            edit.putBoolean("suggestStickersApiOnly", z16);
-                            z3 = true;
+                    if (tLRPC$JSONValue58 instanceof TLRPC$TL_jsonNumber) {
+                        double d27 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue58).value;
+                        if (d27 != this.telegramAntispamGroupSizeMin) {
+                            int i43 = (int) d27;
+                            this.telegramAntispamGroupSizeMin = i43;
+                            edit.putInt("telegramAntispamGroupSizeMin", i43);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '5':
-                    ArrayList<String> arrayList = new ArrayList<>();
                     TLRPC$JSONValue tLRPC$JSONValue59 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue59 instanceof TLRPC$TL_jsonArray) {
-                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray5 = (TLRPC$TL_jsonArray) tLRPC$JSONValue59;
-                        int size8 = tLRPC$TL_jsonArray5.value.size();
-                        for (int i46 = 0; i46 < size8; i46++) {
-                            TLRPC$JSONValue tLRPC$JSONValue60 = tLRPC$TL_jsonArray5.value.get(i46);
-                            if (tLRPC$JSONValue60 instanceof TLRPC$TL_jsonString) {
-                                arrayList.add(((TLRPC$TL_jsonString) tLRPC$JSONValue60).value.replace("️", ""));
+                    if ((tLRPC$JSONValue59 instanceof TLRPC$TL_jsonBool) && this.giveawayGiftsPurchaseAvailable != ((TLRPC$TL_jsonBool) tLRPC$JSONValue59).value) {
+                        boolean z17 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue59).value;
+                        this.giveawayGiftsPurchaseAvailable = z17;
+                        edit.putBoolean("giveawayGiftsPurchaseAvailable", z17);
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                    break;
+                case '6':
+                    TLRPC$JSONValue tLRPC$JSONValue60 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue60 instanceof TLRPC$TL_jsonBool) {
+                        boolean z18 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue60).value;
+                        if (z18 != this.suggestStickersApiOnly) {
+                            this.suggestStickersApiOnly = z18;
+                            edit.putBoolean("suggestStickersApiOnly", z18);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case '7':
+                    ArrayList<String> arrayList = new ArrayList<>();
+                    TLRPC$JSONValue tLRPC$JSONValue61 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue61 instanceof TLRPC$TL_jsonArray) {
+                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray7 = (TLRPC$TL_jsonArray) tLRPC$JSONValue61;
+                        int size8 = tLRPC$TL_jsonArray7.value.size();
+                        for (int i44 = 0; i44 < size8; i44++) {
+                            TLRPC$JSONValue tLRPC$JSONValue62 = tLRPC$TL_jsonArray7.value.get(i44);
+                            if (tLRPC$JSONValue62 instanceof TLRPC$TL_jsonString) {
+                                arrayList.add(((TLRPC$TL_jsonString) tLRPC$JSONValue62).value.replace("️", ""));
                             }
                         }
                     }
@@ -4739,130 +5850,183 @@ public class MessagesController extends BaseController implements NotificationCe
                         SerializedData serializedData2 = new SerializedData();
                         serializedData2.writeInt32(this.gifSearchEmojies.size());
                         int size9 = this.gifSearchEmojies.size();
-                        for (int i47 = 0; i47 < size9; i47++) {
-                            serializedData2.writeString(this.gifSearchEmojies.get(i47));
+                        for (int i45 = 0; i45 < size9; i45++) {
+                            serializedData2.writeString(this.gifSearchEmojies.get(i45));
                         }
                         edit.putString("gifSearchEmojies", Base64.encodeToString(serializedData2.toByteArray(), 0));
                         serializedData2.cleanup();
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '6':
+                    size = i6;
+                case '8':
                     HashSet hashSet5 = new HashSet();
-                    TLRPC$JSONValue tLRPC$JSONValue61 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue61 instanceof TLRPC$TL_jsonArray) {
-                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray6 = (TLRPC$TL_jsonArray) tLRPC$JSONValue61;
-                        int size10 = tLRPC$TL_jsonArray6.value.size();
-                        for (int i48 = 0; i48 < size10; i48++) {
-                            TLRPC$JSONValue tLRPC$JSONValue62 = tLRPC$TL_jsonArray6.value.get(i48);
-                            if (tLRPC$JSONValue62 instanceof TLRPC$TL_jsonString) {
-                                hashSet5.add(((TLRPC$TL_jsonString) tLRPC$JSONValue62).value);
+                    TLRPC$JSONValue tLRPC$JSONValue63 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue63 instanceof TLRPC$TL_jsonArray) {
+                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray8 = (TLRPC$TL_jsonArray) tLRPC$JSONValue63;
+                        int size10 = tLRPC$TL_jsonArray8.value.size();
+                        for (int i46 = 0; i46 < size10; i46++) {
+                            TLRPC$JSONValue tLRPC$JSONValue64 = tLRPC$TL_jsonArray8.value.get(i46);
+                            if (tLRPC$JSONValue64 instanceof TLRPC$TL_jsonString) {
+                                hashSet5.add(((TLRPC$TL_jsonString) tLRPC$JSONValue64).value);
                             }
                         }
                     }
                     if (!this.autologinDomains.equals(hashSet5)) {
                         this.autologinDomains = hashSet5;
                         edit.putStringSet("autologinDomains", hashSet5);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '7':
+                    size = i6;
+                case '9':
                     HashSet hashSet6 = new HashSet();
-                    TLRPC$JSONValue tLRPC$JSONValue63 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue63 instanceof TLRPC$TL_jsonArray) {
-                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray7 = (TLRPC$TL_jsonArray) tLRPC$JSONValue63;
-                        int size11 = tLRPC$TL_jsonArray7.value.size();
-                        for (int i49 = 0; i49 < size11; i49++) {
-                            TLRPC$JSONValue tLRPC$JSONValue64 = tLRPC$TL_jsonArray7.value.get(i49);
-                            if (tLRPC$JSONValue64 instanceof TLRPC$TL_jsonString) {
-                                hashSet6.add(((TLRPC$TL_jsonString) tLRPC$JSONValue64).value);
+                    TLRPC$JSONValue tLRPC$JSONValue65 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue65 instanceof TLRPC$TL_jsonArray) {
+                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray9 = (TLRPC$TL_jsonArray) tLRPC$JSONValue65;
+                        int size11 = tLRPC$TL_jsonArray9.value.size();
+                        for (int i47 = 0; i47 < size11; i47++) {
+                            TLRPC$JSONValue tLRPC$JSONValue66 = tLRPC$TL_jsonArray9.value.get(i47);
+                            if (tLRPC$JSONValue66 instanceof TLRPC$TL_jsonString) {
+                                hashSet6.add(((TLRPC$TL_jsonString) tLRPC$JSONValue66).value);
                             }
                         }
                     }
                     if (!this.exportGroupUri.equals(hashSet6)) {
                         this.exportGroupUri = hashSet6;
                         edit.putStringSet("exportGroupUri", hashSet6);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '8':
-                    TLRPC$JSONValue tLRPC$JSONValue65 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue65 instanceof TLRPC$TL_jsonString) {
-                        TLRPC$TL_jsonString tLRPC$TL_jsonString2 = (TLRPC$TL_jsonString) tLRPC$JSONValue65;
-                        if (!TextUtils.equals(tLRPC$TL_jsonString2.value, this.storiesPosting)) {
+                    size = i6;
+                case ':':
+                    TLRPC$JSONValue tLRPC$JSONValue67 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue67 instanceof TLRPC$TL_jsonString) {
+                        TLRPC$TL_jsonString tLRPC$TL_jsonString2 = (TLRPC$TL_jsonString) tLRPC$JSONValue67;
+                        if (TextUtils.equals(tLRPC$TL_jsonString2.value, this.storiesPosting)) {
+                            z2 = z5;
+                            z4 = z6;
+                        } else {
                             String str4 = tLRPC$TL_jsonString2.value;
                             this.storiesPosting = str4;
                             edit.putString("storiesPosting", str4);
-                            z3 = true;
-                            z5 = true;
-                            z4 = z7;
-                            i6++;
+                            z2 = true;
+                            z4 = true;
+                        }
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case ';':
+                    TLRPC$JSONValue tLRPC$JSONValue68 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue68 instanceof TLRPC$TL_jsonBool) {
+                        boolean z19 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue68).value;
+                        if (z19 != this.getfileExperimentalParams) {
+                            this.getfileExperimentalParams = z19;
+                            edit.putBoolean("getfileExperimentalParams", z19);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
                             tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                            size = i7;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '9':
-                    TLRPC$JSONValue tLRPC$JSONValue66 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue66 instanceof TLRPC$TL_jsonBool) {
-                        boolean z17 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue66).value;
-                        if (z17 != this.getfileExperimentalParams) {
-                            this.getfileExperimentalParams = z17;
-                            edit.putBoolean("getfileExperimentalParams", z17);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case ':':
-                    TLRPC$JSONValue tLRPC$JSONValue67 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue67 instanceof TLRPC$TL_jsonArray) {
+                    size = i6;
+                case '<':
+                    TLRPC$JSONValue tLRPC$JSONValue69 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue69 instanceof TLRPC$TL_jsonArray) {
                         HashSet hashSet7 = new HashSet();
-                        Iterator<TLRPC$JSONValue> it = ((TLRPC$TL_jsonArray) tLRPC$JSONValue67).value.iterator();
+                        Iterator<TLRPC$JSONValue> it = ((TLRPC$TL_jsonArray) tLRPC$JSONValue69).value.iterator();
                         while (it.hasNext()) {
                             TLRPC$JSONValue next = it.next();
                             if (next instanceof TLRPC$TL_jsonString) {
@@ -4874,442 +6038,901 @@ public class MessagesController extends BaseController implements NotificationCe
                             this.directPaymentsCurrency.addAll(hashSet7);
                             edit.putStringSet("directPaymentsCurrency", hashSet7);
                             NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.billingProductDetailsUpdated, new Object[0]);
-                            z3 = true;
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                     break;
-                case ';':
-                    TLRPC$JSONValue tLRPC$JSONValue68 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue68 instanceof TLRPC$TL_jsonNumber) {
-                        double d28 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue68).value;
-                        if (d28 != this.checkResetLangpack) {
-                            int i50 = (int) d28;
-                            this.checkResetLangpack = i50;
-                            edit.putInt("checkResetLangpack", i50);
-                            LocaleController.getInstance().checkPatchLangpack(this.currentAccount);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '<':
-                    TLRPC$JSONValue tLRPC$JSONValue69 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue69 instanceof TLRPC$TL_jsonNumber) {
-                        double d29 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue69).value;
-                        if (d29 != this.publicLinksLimitDefault) {
-                            int i51 = (int) d29;
-                            this.publicLinksLimitDefault = i51;
-                            edit.putInt("publicLinksLimit", i51);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
                 case '=':
                     TLRPC$JSONValue tLRPC$JSONValue70 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue70 instanceof TLRPC$TL_jsonNumber) {
-                        double d30 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue70).value;
-                        if (d30 != this.storyExpiringLimitDefault) {
-                            int i52 = (int) d30;
-                            this.storyExpiringLimitDefault = i52;
-                            edit.putInt("storyExpiringLimitDefault", i52);
-                            z3 = true;
+                        double d28 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue70).value;
+                        if (d28 != this.checkResetLangpack) {
+                            int i48 = (int) d28;
+                            this.checkResetLangpack = i48;
+                            edit.putInt("checkResetLangpack", i48);
+                            LocaleController.getInstance().checkPatchLangpack(this.currentAccount);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '>':
                     TLRPC$JSONValue tLRPC$JSONValue71 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue71 instanceof TLRPC$TL_jsonNumber) {
-                        int i53 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue71).value;
-                        this.stealthModeFuture = i53;
-                        edit.putInt("stories_stealth_future_period", i53);
+                        double d29 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue71).value;
+                        if (d29 != this.publicLinksLimitDefault) {
+                            int i49 = (int) d29;
+                            this.publicLinksLimitDefault = i49;
+                            edit.putInt("publicLinksLimit", i49);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '?':
                     TLRPC$JSONValue tLRPC$JSONValue72 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue72 instanceof TLRPC$TL_jsonNumber) {
-                        double d31 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue72).value;
-                        if (d31 != this.uploadMaxFilePartsPremium) {
-                            int i54 = (int) d31;
-                            this.uploadMaxFilePartsPremium = i54;
-                            edit.putInt("uploadMaxFilePartsPremium", i54);
-                            z3 = true;
+                        double d30 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue72).value;
+                        if (d30 != this.storyExpiringLimitDefault) {
+                            int i50 = (int) d30;
+                            this.storyExpiringLimitDefault = i50;
+                            edit.putInt("storyExpiringLimitDefault", i50);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '@':
                     TLRPC$JSONValue tLRPC$JSONValue73 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue73 instanceof TLRPC$TL_jsonNumber) {
-                        double d32 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue73).value;
-                        if (d32 != this.maxPinnedDialogsCountPremium) {
-                            int i55 = (int) d32;
-                            this.maxPinnedDialogsCountPremium = i55;
-                            edit.putInt("maxPinnedDialogsCountPremium", i55);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        int i51 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue73).value;
+                        this.stealthModeFuture = i51;
+                        edit.putInt("stories_stealth_future_period", i51);
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case VoIPService.CALL_MIN_LAYER:
                     TLRPC$JSONValue tLRPC$JSONValue74 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue74 instanceof TLRPC$TL_jsonNumber) {
-                        double d33 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue74).value;
-                        if (d33 != this.stickersFavedLimitDefault) {
-                            int i56 = (int) d33;
-                            this.stickersFavedLimitDefault = i56;
-                            edit.putInt("stickersFavedLimitDefault", i56);
-                            z3 = true;
+                        double d31 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue74).value;
+                        if (d31 != this.uploadMaxFilePartsPremium) {
+                            int i52 = (int) d31;
+                            this.uploadMaxFilePartsPremium = i52;
+                            edit.putInt("uploadMaxFilePartsPremium", i52);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 'B':
                     TLRPC$JSONValue tLRPC$JSONValue75 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue75 instanceof TLRPC$TL_jsonNumber) {
-                        double d34 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue75).value;
-                        if (d34 != this.groupCallVideoMaxParticipants) {
-                            int i57 = (int) d34;
-                            this.groupCallVideoMaxParticipants = i57;
-                            edit.putInt("groipCallVideoMaxParticipants", i57);
-                            z3 = true;
+                        double d32 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue75).value;
+                        if (d32 != this.maxPinnedDialogsCountPremium) {
+                            int i53 = (int) d32;
+                            this.maxPinnedDialogsCountPremium = i53;
+                            edit.putInt("maxPinnedDialogsCountPremium", i53);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 'C':
                     TLRPC$JSONValue tLRPC$JSONValue76 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue76 instanceof TLRPC$TL_jsonBool) {
-                        boolean z18 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue76).value;
-                        if (z18 != this.saveGifsWithStickers) {
-                            this.saveGifsWithStickers = z18;
-                            edit.putBoolean("saveGifsWithStickers", z18);
-                            z3 = true;
+                    if (tLRPC$JSONValue76 instanceof TLRPC$TL_jsonNumber) {
+                        double d33 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue76).value;
+                        if (d33 != this.stickersFavedLimitDefault) {
+                            int i54 = (int) d33;
+                            this.stickersFavedLimitDefault = i54;
+                            edit.putInt("stickersFavedLimitDefault", i54);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 'D':
                     TLRPC$JSONValue tLRPC$JSONValue77 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue77 instanceof TLRPC$TL_jsonNumber) {
-                        double d35 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue77).value;
-                        if (d35 != this.storiesSentMonthlyLimitPremium) {
-                            int i58 = (int) d35;
-                            this.storiesSentMonthlyLimitPremium = i58;
-                            edit.putInt("storiesSentMonthlyLimitPremium", i58);
-                            z3 = true;
+                        long j3 = (long) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue77).value;
+                        if (j3 != this.giveawayBoostsPerPremium) {
+                            this.giveawayBoostsPerPremium = j3;
+                            edit.putLong("giveaway_boosts_per_premium", j3);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 'E':
                     TLRPC$JSONValue tLRPC$JSONValue78 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue78 instanceof TLRPC$TL_jsonString) {
-                        String str5 = ((TLRPC$TL_jsonString) tLRPC$JSONValue78).value;
-                        if (!Objects.equals(BuildVars.GOOGLE_AUTH_CLIENT_ID, str5)) {
-                            BuildVars.GOOGLE_AUTH_CLIENT_ID = str5;
-                            edit.putString("googleAuthClientId", str5);
-                            z3 = true;
+                    if (tLRPC$JSONValue78 instanceof TLRPC$TL_jsonNumber) {
+                        double d34 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue78).value;
+                        if (d34 != this.groupCallVideoMaxParticipants) {
+                            int i55 = (int) d34;
+                            this.groupCallVideoMaxParticipants = i55;
+                            edit.putInt("groipCallVideoMaxParticipants", i55);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 'F':
                     TLRPC$JSONValue tLRPC$JSONValue79 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue79 instanceof TLRPC$TL_jsonNumber) {
-                        double d36 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue79).value;
-                        if (this.quoteLengthMax != d36) {
-                            int i59 = (int) d36;
-                            this.quoteLengthMax = i59;
-                            edit.putInt("quoteLengthMax", i59);
-                            z3 = true;
+                    if (tLRPC$JSONValue79 instanceof TLRPC$TL_jsonBool) {
+                        boolean z20 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue79).value;
+                        if (z20 != this.saveGifsWithStickers) {
+                            this.saveGifsWithStickers = z20;
+                            edit.putBoolean("saveGifsWithStickers", z20);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 'G':
                     TLRPC$JSONValue tLRPC$JSONValue80 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue80 instanceof TLRPC$TL_jsonNumber) {
-                        double d37 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue80).value;
-                        if (d37 != this.ringtoneDurationMax) {
-                            int i60 = (int) d37;
-                            this.ringtoneDurationMax = i60;
-                            edit.putInt("ringtoneDurationMax", i60);
-                            z3 = true;
+                        long j4 = (long) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue80).value;
+                        if (j4 != this.boostsPerSentGift) {
+                            this.boostsPerSentGift = j4;
+                            edit.putLong("boosts_per_sent_gift", j4);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 'H':
                     TLRPC$JSONValue tLRPC$JSONValue81 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue81 instanceof TLRPC$TL_jsonNumber) {
-                        double d38 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue81).value;
-                        if (d38 != this.updateCheckDelay) {
-                            int i61 = (int) d38;
-                            this.updateCheckDelay = i61;
-                            edit.putInt("updateCheckDelay", i61);
-                            z3 = true;
+                        double d35 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue81).value;
+                        if (d35 != this.storiesSentMonthlyLimitPremium) {
+                            int i56 = (int) d35;
+                            this.storiesSentMonthlyLimitPremium = i56;
+                            edit.putInt("storiesSentMonthlyLimitPremium", i56);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                    } else {
-                        if (tLRPC$JSONValue81 instanceof TLRPC$TL_jsonString) {
-                            int intValue = Utilities.parseInt((CharSequence) ((TLRPC$TL_jsonString) tLRPC$JSONValue81).value).intValue();
-                            if (intValue != this.updateCheckDelay) {
-                                this.updateCheckDelay = intValue;
-                                edit.putInt("updateCheckDelay", intValue);
-                                z3 = true;
-                            }
-                            z5 = z6;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 'I':
                     TLRPC$JSONValue tLRPC$JSONValue82 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue82 instanceof TLRPC$TL_jsonString) {
-                        TLRPC$TL_jsonString tLRPC$TL_jsonString3 = (TLRPC$TL_jsonString) tLRPC$JSONValue82;
+                        String str5 = ((TLRPC$TL_jsonString) tLRPC$JSONValue82).value;
+                        if (!Objects.equals(BuildVars.GOOGLE_AUTH_CLIENT_ID, str5)) {
+                            BuildVars.GOOGLE_AUTH_CLIENT_ID = str5;
+                            edit.putString("googleAuthClientId", str5);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 'J':
+                    TLRPC$JSONValue tLRPC$JSONValue83 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue83 instanceof TLRPC$TL_jsonArray) {
+                        tLRPC$TL_jsonArray = (TLRPC$TL_jsonArray) tLRPC$JSONValue83;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z2 = z5;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 'K':
+                    TLRPC$JSONValue tLRPC$JSONValue84 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue84 instanceof TLRPC$TL_jsonNumber) {
+                        double d36 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue84).value;
+                        if (this.quoteLengthMax != d36) {
+                            int i57 = (int) d36;
+                            this.quoteLengthMax = i57;
+                            edit.putInt("quoteLengthMax", i57);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 'L':
+                    TLRPC$JSONValue tLRPC$JSONValue85 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue85 instanceof TLRPC$TL_jsonNumber) {
+                        double d37 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue85).value;
+                        if (d37 != this.ringtoneDurationMax) {
+                            int i58 = (int) d37;
+                            this.ringtoneDurationMax = i58;
+                            edit.putInt("ringtoneDurationMax", i58);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 'M':
+                    TLRPC$JSONValue tLRPC$JSONValue86 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue86 instanceof TLRPC$TL_jsonNumber) {
+                        double d38 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue86).value;
+                        if (d38 != this.updateCheckDelay) {
+                            int i59 = (int) d38;
+                            this.updateCheckDelay = i59;
+                            edit.putInt("updateCheckDelay", i59);
+                            z2 = true;
+                        }
+                        z2 = z5;
+                    } else {
+                        if (tLRPC$JSONValue86 instanceof TLRPC$TL_jsonString) {
+                            int intValue = Utilities.parseInt((CharSequence) ((TLRPC$TL_jsonString) tLRPC$JSONValue86).value).intValue();
+                            if (intValue != this.updateCheckDelay) {
+                                this.updateCheckDelay = intValue;
+                                edit.putInt("updateCheckDelay", intValue);
+                                z2 = true;
+                            }
+                            z2 = z5;
+                        }
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z2 = z5;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 'N':
+                    TLRPC$JSONValue tLRPC$JSONValue87 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue87 instanceof TLRPC$TL_jsonString) {
+                        TLRPC$TL_jsonString tLRPC$TL_jsonString3 = (TLRPC$TL_jsonString) tLRPC$JSONValue87;
                         if (!TextUtils.equals(this.storyVenueSearchBot, tLRPC$TL_jsonString3.value)) {
                             String str6 = tLRPC$TL_jsonString3.value;
                             this.storyVenueSearchBot = str6;
                             edit.putString("storyVenueSearchBot", str6);
-                            z3 = true;
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'J':
-                    TLRPC$JSONValue tLRPC$JSONValue83 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue83 instanceof TLRPC$TL_jsonString) {
-                        String str7 = ((TLRPC$TL_jsonString) tLRPC$JSONValue83).value;
+                    size = i6;
+                case 'O':
+                    TLRPC$JSONValue tLRPC$JSONValue88 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue88 instanceof TLRPC$TL_jsonString) {
+                        String str7 = ((TLRPC$TL_jsonString) tLRPC$JSONValue88).value;
                         if (!str7.equals(this.premiumBotUsername)) {
                             this.premiumBotUsername = str7;
                             edit.putString("premiumBotUsername", str7);
-                            z3 = true;
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'K':
-                    TLRPC$JSONValue tLRPC$JSONValue84 = tLRPC$TL_jsonObjectValue.value;
-                    if ((tLRPC$JSONValue84 instanceof TLRPC$TL_jsonBool) && this.premiumLocked != ((TLRPC$TL_jsonBool) tLRPC$JSONValue84).value) {
-                        boolean z19 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue84).value;
-                        this.premiumLocked = z19;
-                        edit.putBoolean("premiumLocked", z19);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
+                    size = i6;
+                case DialogPhotos.STEP:
+                    TLRPC$JSONValue tLRPC$JSONValue89 = tLRPC$TL_jsonObjectValue.value;
+                    if ((tLRPC$JSONValue89 instanceof TLRPC$TL_jsonBool) && this.premiumLocked != ((TLRPC$TL_jsonBool) tLRPC$JSONValue89).value) {
+                        boolean z21 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue89).value;
+                        this.premiumLocked = z21;
+                        edit.putBoolean("premiumLocked", z21);
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                     break;
-                case 'L':
-                    TLRPC$JSONValue tLRPC$JSONValue85 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue85 instanceof TLRPC$TL_jsonNumber) {
-                        double d39 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue85).value;
+                case 'Q':
+                    TLRPC$JSONValue tLRPC$JSONValue90 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue90 instanceof TLRPC$TL_jsonNumber) {
+                        double d39 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue90).value;
                         if (this.authorizationAutoconfirmPeriod != d39) {
-                            int i62 = (int) d39;
-                            this.authorizationAutoconfirmPeriod = i62;
-                            edit.putInt("authorizationAutoconfirmPeriod", i62);
-                            z3 = true;
+                            int i60 = (int) d39;
+                            this.authorizationAutoconfirmPeriod = i60;
+                            edit.putInt("authorizationAutoconfirmPeriod", i60);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'M':
-                    TLRPC$JSONValue tLRPC$JSONValue86 = tLRPC$TL_jsonObjectValue.value;
-                    if ((tLRPC$JSONValue86 instanceof TLRPC$TL_jsonBool) && this.giftAttachMenuIcon != ((TLRPC$TL_jsonBool) tLRPC$JSONValue86).value) {
-                        boolean z20 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue86).value;
-                        this.giftAttachMenuIcon = z20;
-                        edit.putBoolean("giftAttachMenuIcon", z20);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
+                    size = i6;
+                case 'R':
+                    TLRPC$JSONValue tLRPC$JSONValue91 = tLRPC$TL_jsonObjectValue.value;
+                    if ((tLRPC$JSONValue91 instanceof TLRPC$TL_jsonBool) && this.giftAttachMenuIcon != ((TLRPC$TL_jsonBool) tLRPC$JSONValue91).value) {
+                        boolean z22 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue91).value;
+                        this.giftAttachMenuIcon = z22;
+                        edit.putBoolean("giftAttachMenuIcon", z22);
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                     break;
-                case 'N':
-                    TLRPC$JSONValue tLRPC$JSONValue87 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue87 instanceof TLRPC$TL_jsonNumber) {
-                        double d40 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue87).value;
+                case 'S':
+                    TLRPC$JSONValue tLRPC$JSONValue92 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue92 instanceof TLRPC$TL_jsonNumber) {
+                        double d40 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue92).value;
                         if (d40 != this.storiesSentWeeklyLimitDefault) {
-                            int i63 = (int) d40;
-                            this.storiesSentWeeklyLimitDefault = i63;
-                            edit.putInt("storiesSentWeeklyLimitDefault", i63);
-                            z3 = true;
+                            int i61 = (int) d40;
+                            this.storiesSentWeeklyLimitDefault = i61;
+                            edit.putInt("storiesSentWeeklyLimitDefault", i61);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'O':
-                    TLRPC$JSONValue tLRPC$JSONValue88 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue88 instanceof TLRPC$TL_jsonObject) {
-                        TLRPC$TL_jsonObject tLRPC$TL_jsonObject9 = (TLRPC$TL_jsonObject) tLRPC$JSONValue88;
-                        int size12 = tLRPC$TL_jsonObject9.value.size();
-                        for (int i64 = 0; i64 < size12; i64++) {
-                            TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue4 = tLRPC$TL_jsonObject9.value.get(i64);
+                    size = i6;
+                case 'T':
+                    TLRPC$JSONValue tLRPC$JSONValue93 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue93 instanceof TLRPC$TL_jsonObject) {
+                        TLRPC$TL_jsonObject tLRPC$TL_jsonObject13 = (TLRPC$TL_jsonObject) tLRPC$JSONValue93;
+                        int size12 = tLRPC$TL_jsonObject13.value.size();
+                        z2 = z5;
+                        for (int i62 = 0; i62 < size12; i62++) {
+                            TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue4 = tLRPC$TL_jsonObject13.value.get(i62);
                             String str8 = tLRPC$TL_jsonObjectValue4.key;
                             str8.hashCode();
                             switch (str8.hashCode()) {
@@ -5340,14 +6963,14 @@ public class MessagesController extends BaseController implements NotificationCe
                             }
                             switch (c2) {
                                 case 0:
-                                    TLRPC$JSONValue tLRPC$JSONValue89 = tLRPC$TL_jsonObjectValue4.value;
-                                    if (tLRPC$JSONValue89 instanceof TLRPC$TL_jsonNumber) {
-                                        double d41 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue89).value;
+                                    TLRPC$JSONValue tLRPC$JSONValue94 = tLRPC$TL_jsonObjectValue4.value;
+                                    if (tLRPC$JSONValue94 instanceof TLRPC$TL_jsonNumber) {
+                                        double d41 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue94).value;
                                         if (d41 != this.roundVideoSize) {
-                                            int i65 = (int) d41;
-                                            this.roundVideoSize = i65;
-                                            edit.putInt("roundVideoSize", i65);
-                                            z3 = true;
+                                            int i63 = (int) d41;
+                                            this.roundVideoSize = i63;
+                                            edit.putInt("roundVideoSize", i63);
+                                            z2 = true;
                                             break;
                                         } else {
                                             break;
@@ -5356,14 +6979,14 @@ public class MessagesController extends BaseController implements NotificationCe
                                         break;
                                     }
                                 case 1:
-                                    TLRPC$JSONValue tLRPC$JSONValue90 = tLRPC$TL_jsonObjectValue4.value;
-                                    if (tLRPC$JSONValue90 instanceof TLRPC$TL_jsonNumber) {
-                                        double d42 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue90).value;
+                                    TLRPC$JSONValue tLRPC$JSONValue95 = tLRPC$TL_jsonObjectValue4.value;
+                                    if (tLRPC$JSONValue95 instanceof TLRPC$TL_jsonNumber) {
+                                        double d42 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue95).value;
                                         if (d42 != this.roundAudioBitrate) {
-                                            int i66 = (int) d42;
-                                            this.roundAudioBitrate = i66;
-                                            edit.putInt("roundAudioBitrate", i66);
-                                            z3 = true;
+                                            int i64 = (int) d42;
+                                            this.roundAudioBitrate = i64;
+                                            edit.putInt("roundAudioBitrate", i64);
+                                            z2 = true;
                                             break;
                                         } else {
                                             break;
@@ -5372,14 +6995,14 @@ public class MessagesController extends BaseController implements NotificationCe
                                         break;
                                     }
                                 case 2:
-                                    TLRPC$JSONValue tLRPC$JSONValue91 = tLRPC$TL_jsonObjectValue4.value;
-                                    if (tLRPC$JSONValue91 instanceof TLRPC$TL_jsonNumber) {
-                                        double d43 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue91).value;
+                                    TLRPC$JSONValue tLRPC$JSONValue96 = tLRPC$TL_jsonObjectValue4.value;
+                                    if (tLRPC$JSONValue96 instanceof TLRPC$TL_jsonNumber) {
+                                        double d43 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue96).value;
                                         if (d43 != this.roundVideoBitrate) {
-                                            int i67 = (int) d43;
-                                            this.roundVideoBitrate = i67;
-                                            edit.putInt("roundVideoBitrate", i67);
-                                            z3 = true;
+                                            int i65 = (int) d43;
+                                            this.roundVideoBitrate = i65;
+                                            edit.putInt("roundVideoBitrate", i65);
+                                            z2 = true;
                                             break;
                                         } else {
                                             break;
@@ -5389,521 +7012,875 @@ public class MessagesController extends BaseController implements NotificationCe
                                     }
                             }
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                     break;
-                case DialogPhotos.STEP:
-                    TLRPC$JSONValue tLRPC$JSONValue92 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue92 instanceof TLRPC$TL_jsonNumber) {
-                        double d44 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue92).value;
-                        if (d44 != this.chatlistInvitesLimitDefault) {
-                            int i68 = (int) d44;
-                            this.chatlistInvitesLimitDefault = i68;
-                            edit.putInt("chatlistInvitesLimitDefault", i68);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'Q':
-                    TLRPC$JSONValue tLRPC$JSONValue93 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue93 instanceof TLRPC$TL_jsonNumber) {
-                        double d45 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue93).value;
-                        if (d45 != this.reactionsUserMaxDefault) {
-                            int i69 = (int) d45;
-                            this.reactionsUserMaxDefault = i69;
-                            edit.putInt("reactionsUserMaxDefault", i69);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'R':
-                    TLRPC$JSONValue tLRPC$JSONValue94 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue94 instanceof TLRPC$TL_jsonNumber) {
-                        double d46 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue94).value;
-                        if (d46 != this.captionLengthLimitDefault) {
-                            int i70 = (int) d46;
-                            this.captionLengthLimitDefault = i70;
-                            edit.putInt("captionLengthLimitDefault", i70);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'S':
-                    TLRPC$JSONValue tLRPC$JSONValue95 = tLRPC$TL_jsonObjectValue.value;
-                    if ((tLRPC$JSONValue95 instanceof TLRPC$TL_jsonBool) && this.uploadMarkupVideo != ((TLRPC$TL_jsonBool) tLRPC$JSONValue95).value) {
-                        boolean z21 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue95).value;
-                        this.uploadMarkupVideo = z21;
-                        edit.putBoolean("uploadMarkupVideo", z21);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                    break;
-                case 'T':
-                    TLRPC$JSONValue tLRPC$JSONValue96 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue96 instanceof TLRPC$TL_jsonNumber) {
-                        double d47 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue96).value;
-                        if (d47 != this.chatReadMarkSizeThreshold) {
-                            int i71 = (int) d47;
-                            this.chatReadMarkSizeThreshold = i71;
-                            edit.putInt("chatReadMarkSizeThreshold", i71);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
                 case 'U':
                     TLRPC$JSONValue tLRPC$JSONValue97 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue97 instanceof TLRPC$TL_jsonNumber) {
-                        double d48 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue97).value;
-                        if (d48 != this.dialogFiltersChatsLimitDefault) {
-                            int i72 = (int) d48;
-                            this.dialogFiltersChatsLimitDefault = i72;
-                            edit.putInt("dialogFiltersChatsLimitDefault", i72);
-                            z3 = true;
+                        double d44 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue97).value;
+                        if (d44 != this.chatlistInvitesLimitDefault) {
+                            int i66 = (int) d44;
+                            this.chatlistInvitesLimitDefault = i66;
+                            edit.putInt("chatlistInvitesLimitDefault", i66);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 'V':
                     TLRPC$JSONValue tLRPC$JSONValue98 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue98 instanceof TLRPC$TL_jsonNumber) {
-                        double d49 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue98).value;
-                        if (d49 != this.savedGifsLimitPremium) {
-                            int i73 = (int) d49;
-                            this.savedGifsLimitPremium = i73;
-                            edit.putInt("savedGifsLimitPremium", i73);
-                            z3 = true;
+                        double d45 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue98).value;
+                        if (d45 != this.reactionsUserMaxDefault) {
+                            int i67 = (int) d45;
+                            this.reactionsUserMaxDefault = i67;
+                            edit.putInt("reactionsUserMaxDefault", i67);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case 'W':
                     TLRPC$JSONValue tLRPC$JSONValue99 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue99 instanceof TLRPC$TL_jsonString) {
-                        TLRPC$TL_jsonString tLRPC$TL_jsonString4 = (TLRPC$TL_jsonString) tLRPC$JSONValue99;
+                    if (tLRPC$JSONValue99 instanceof TLRPC$TL_jsonNumber) {
+                        double d46 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue99).value;
+                        if (d46 != this.captionLengthLimitDefault) {
+                            int i68 = (int) d46;
+                            this.captionLengthLimitDefault = i68;
+                            edit.putInt("captionLengthLimitDefault", i68);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 'X':
+                    TLRPC$JSONValue tLRPC$JSONValue100 = tLRPC$TL_jsonObjectValue.value;
+                    if ((tLRPC$JSONValue100 instanceof TLRPC$TL_jsonBool) && this.uploadMarkupVideo != ((TLRPC$TL_jsonBool) tLRPC$JSONValue100).value) {
+                        boolean z23 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue100).value;
+                        this.uploadMarkupVideo = z23;
+                        edit.putBoolean("uploadMarkupVideo", z23);
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                    break;
+                case 'Y':
+                    TLRPC$JSONValue tLRPC$JSONValue101 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue101 instanceof TLRPC$TL_jsonNumber) {
+                        double d47 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue101).value;
+                        if (d47 != this.chatReadMarkSizeThreshold) {
+                            int i69 = (int) d47;
+                            this.chatReadMarkSizeThreshold = i69;
+                            edit.putInt("chatReadMarkSizeThreshold", i69);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 'Z':
+                    TLRPC$JSONValue tLRPC$JSONValue102 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue102 instanceof TLRPC$TL_jsonNumber) {
+                        double d48 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue102).value;
+                        if (d48 != this.dialogFiltersChatsLimitDefault) {
+                            int i70 = (int) d48;
+                            this.dialogFiltersChatsLimitDefault = i70;
+                            edit.putInt("dialogFiltersChatsLimitDefault", i70);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case '[':
+                    TLRPC$JSONValue tLRPC$JSONValue103 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue103 instanceof TLRPC$TL_jsonNumber) {
+                        double d49 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue103).value;
+                        if (d49 != this.savedGifsLimitPremium) {
+                            int i71 = (int) d49;
+                            this.savedGifsLimitPremium = i71;
+                            edit.putInt("savedGifsLimitPremium", i71);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case '\\':
+                    TLRPC$JSONValue tLRPC$JSONValue104 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue104 instanceof TLRPC$TL_jsonString) {
+                        TLRPC$TL_jsonString tLRPC$TL_jsonString4 = (TLRPC$TL_jsonString) tLRPC$JSONValue104;
                         if (!TextUtils.equals(tLRPC$TL_jsonString4.value, this.storiesEntities)) {
                             String str9 = tLRPC$TL_jsonString4.value;
                             this.storiesEntities = str9;
                             edit.putString("storiesEntities", str9);
-                            z3 = true;
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'X':
-                    TLRPC$JSONValue tLRPC$JSONValue100 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue100 instanceof TLRPC$TL_jsonNumber) {
-                        long j3 = (long) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue100).value;
-                        if (j3 != this.giveawayCountriesMax) {
-                            this.giveawayCountriesMax = j3;
-                            edit.putLong("giveaway_countries_max", j3);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'Y':
-                    TLRPC$JSONValue tLRPC$JSONValue101 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue101 instanceof TLRPC$TL_jsonNumber) {
-                        long j4 = (long) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue101).value;
-                        this.storiesChangelogUserId = j4;
-                        edit.putLong("stories_changelog_user_id", j4);
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'Z':
-                    TLRPC$JSONValue tLRPC$JSONValue102 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue102 instanceof TLRPC$TL_jsonNumber) {
-                        double d50 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue102).value;
-                        if (d50 != this.topicsPinnedLimit) {
-                            int i74 = (int) d50;
-                            this.topicsPinnedLimit = i74;
-                            edit.putInt("topicsPinnedLimit", i74);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '[':
-                    TLRPC$JSONValue tLRPC$JSONValue103 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue103 instanceof TLRPC$TL_jsonNumber) {
-                        double d51 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue103).value;
-                        if (d51 != this.channelsLimitDefault) {
-                            int i75 = (int) d51;
-                            this.channelsLimitDefault = i75;
-                            edit.putInt("channelsLimitDefault", i75);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case '\\':
-                    TLRPC$JSONValue tLRPC$JSONValue104 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue104 instanceof TLRPC$TL_jsonNumber) {
-                        int i76 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue104).value;
-                        this.smallQueueMaxActiveOperations = i76;
-                        edit.putInt("smallQueueMaxActiveOperations", i76);
-                    }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case ']':
                     TLRPC$JSONValue tLRPC$JSONValue105 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue105 instanceof TLRPC$TL_jsonNumber) {
-                        double d52 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue105).value;
-                        if (d52 != this.storyCaptionLengthLimitPremium) {
-                            int i77 = (int) d52;
-                            this.storyCaptionLengthLimitPremium = i77;
-                            edit.putInt("storyCaptionLengthLimitPremium", i77);
-                            z3 = true;
+                        long j5 = (long) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue105).value;
+                        if (j5 != this.giveawayCountriesMax) {
+                            this.giveawayCountriesMax = j5;
+                            edit.putLong("giveaway_countries_max", j5);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '^':
                     TLRPC$JSONValue tLRPC$JSONValue106 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue106 instanceof TLRPC$TL_jsonNumber) {
-                        double d53 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue106).value;
-                        if (d53 != this.reactionsInChatMax) {
-                            int i78 = (int) d53;
-                            this.reactionsInChatMax = i78;
-                            edit.putInt("reactionsInChatMax", i78);
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
-                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        long j6 = (long) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue106).value;
+                        this.storiesChangelogUserId = j6;
+                        edit.putLong("stories_changelog_user_id", j6);
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '_':
                     TLRPC$JSONValue tLRPC$JSONValue107 = tLRPC$TL_jsonObjectValue.value;
                     if (tLRPC$JSONValue107 instanceof TLRPC$TL_jsonNumber) {
-                        double d54 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue107).value;
-                        if (d54 != this.dialogFiltersLimitPremium) {
-                            int i79 = (int) d54;
-                            this.dialogFiltersLimitPremium = i79;
-                            edit.putInt("dialogFiltersLimitPremium", i79);
-                            z3 = true;
+                        double d50 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue107).value;
+                        if (d50 != this.topicsPinnedLimit) {
+                            int i72 = (int) d50;
+                            this.topicsPinnedLimit = i72;
+                            edit.putInt("topicsPinnedLimit", i72);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 case '`':
+                    TLRPC$JSONValue tLRPC$JSONValue108 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue108 instanceof TLRPC$TL_jsonNumber) {
+                        double d51 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue108).value;
+                        if (d51 != this.channelsLimitDefault) {
+                            int i73 = (int) d51;
+                            this.channelsLimitDefault = i73;
+                            edit.putInt("channelsLimitDefault", i73);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 'a':
+                    TLRPC$JSONValue tLRPC$JSONValue109 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue109 instanceof TLRPC$TL_jsonNumber) {
+                        int i74 = (int) ((TLRPC$TL_jsonNumber) tLRPC$JSONValue109).value;
+                        this.smallQueueMaxActiveOperations = i74;
+                        edit.putInt("smallQueueMaxActiveOperations", i74);
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 'b':
+                    TLRPC$JSONValue tLRPC$JSONValue110 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue110 instanceof TLRPC$TL_jsonNumber) {
+                        double d52 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue110).value;
+                        if (d52 != this.storyCaptionLengthLimitPremium) {
+                            int i75 = (int) d52;
+                            this.storyCaptionLengthLimitPremium = i75;
+                            edit.putInt("storyCaptionLengthLimitPremium", i75);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 'c':
+                    TLRPC$JSONValue tLRPC$JSONValue111 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue111 instanceof TLRPC$TL_jsonNumber) {
+                        double d53 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue111).value;
+                        if (d53 != this.reactionsInChatMax) {
+                            int i76 = (int) d53;
+                            this.reactionsInChatMax = i76;
+                            edit.putInt("reactionsInChatMax", i76);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case FileLoader.MEDIA_DIR_IMAGE_PUBLIC:
+                    TLRPC$JSONValue tLRPC$JSONValue112 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue112 instanceof TLRPC$TL_jsonNumber) {
+                        double d54 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue112).value;
+                        if (d54 != this.dialogFiltersLimitPremium) {
+                            int i77 = (int) d54;
+                            this.dialogFiltersLimitPremium = i77;
+                            edit.putInt("dialogFiltersLimitPremium", i77);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case FileLoader.MEDIA_DIR_VIDEO_PUBLIC:
                     try {
-                        HashMap<String, EmojiSound> hashMap2 = new HashMap<>();
-                        TLRPC$JSONValue tLRPC$JSONValue108 = tLRPC$TL_jsonObjectValue.value;
-                        if (tLRPC$JSONValue108 instanceof TLRPC$TL_jsonObject) {
-                            TLRPC$TL_jsonObject tLRPC$TL_jsonObject10 = (TLRPC$TL_jsonObject) tLRPC$JSONValue108;
-                            int size13 = tLRPC$TL_jsonObject10.value.size();
-                            int i80 = 0;
-                            while (i80 < size13) {
-                                TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue5 = tLRPC$TL_jsonObject10.value.get(i80);
-                                TLRPC$JSONValue tLRPC$JSONValue109 = tLRPC$TL_jsonObjectValue5.value;
-                                if (tLRPC$JSONValue109 instanceof TLRPC$TL_jsonObject) {
-                                    TLRPC$TL_jsonObject tLRPC$TL_jsonObject11 = (TLRPC$TL_jsonObject) tLRPC$JSONValue109;
-                                    int size14 = tLRPC$TL_jsonObject11.value.size();
-                                    int i81 = 0;
-                                    long j5 = 0;
-                                    long j6 = 0;
+                        hashMap2 = new HashMap<>();
+                        TLRPC$JSONValue tLRPC$JSONValue113 = tLRPC$TL_jsonObjectValue.value;
+                        if (tLRPC$JSONValue113 instanceof TLRPC$TL_jsonObject) {
+                            TLRPC$TL_jsonObject tLRPC$TL_jsonObject14 = (TLRPC$TL_jsonObject) tLRPC$JSONValue113;
+                            int size13 = tLRPC$TL_jsonObject14.value.size();
+                            for (int i78 = 0; i78 < size13; i78++) {
+                                TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue5 = tLRPC$TL_jsonObject14.value.get(i78);
+                                TLRPC$JSONValue tLRPC$JSONValue114 = tLRPC$TL_jsonObjectValue5.value;
+                                if (tLRPC$JSONValue114 instanceof TLRPC$TL_jsonObject) {
+                                    TLRPC$TL_jsonObject tLRPC$TL_jsonObject15 = (TLRPC$TL_jsonObject) tLRPC$JSONValue114;
+                                    int size14 = tLRPC$TL_jsonObject15.value.size();
+                                    long j7 = 0;
+                                    long j8 = 0;
                                     String str10 = null;
-                                    while (i81 < size14) {
-                                        TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue6 = tLRPC$TL_jsonObject11.value.get(i81);
-                                        TLRPC$TL_jsonObject tLRPC$TL_jsonObject12 = tLRPC$TL_jsonObject10;
+                                    for (int i79 = 0; i79 < size14; i79++) {
+                                        TLRPC$TL_jsonObjectValue tLRPC$TL_jsonObjectValue6 = tLRPC$TL_jsonObject15.value.get(i79);
                                         if (tLRPC$TL_jsonObjectValue6.value instanceof TLRPC$TL_jsonString) {
-                                            i4 = size13;
                                             if ("id".equals(tLRPC$TL_jsonObjectValue6.key)) {
-                                                j5 = Utilities.parseLong(((TLRPC$TL_jsonString) tLRPC$TL_jsonObjectValue6.value).value).longValue();
+                                                j7 = Utilities.parseLong(((TLRPC$TL_jsonString) tLRPC$TL_jsonObjectValue6.value).value).longValue();
                                             } else if ("access_hash".equals(tLRPC$TL_jsonObjectValue6.key)) {
-                                                j6 = Utilities.parseLong(((TLRPC$TL_jsonString) tLRPC$TL_jsonObjectValue6.value).value).longValue();
+                                                j8 = Utilities.parseLong(((TLRPC$TL_jsonString) tLRPC$TL_jsonObjectValue6.value).value).longValue();
                                             } else if ("file_reference_base64".equals(tLRPC$TL_jsonObjectValue6.key)) {
                                                 str10 = ((TLRPC$TL_jsonString) tLRPC$TL_jsonObjectValue6.value).value;
                                             }
-                                        } else {
-                                            i4 = size13;
                                         }
-                                        i81++;
-                                        tLRPC$TL_jsonObject10 = tLRPC$TL_jsonObject12;
-                                        size13 = i4;
                                     }
-                                    tLRPC$TL_jsonObject3 = tLRPC$TL_jsonObject10;
-                                    i3 = size13;
-                                    if (j5 != 0 && j6 != 0 && str10 != null) {
-                                        hashMap2.put(tLRPC$TL_jsonObjectValue5.key.replace("️", ""), new EmojiSound(j5, j6, str10));
+                                    if (j7 != 0 && j8 != 0 && str10 != null) {
+                                        hashMap2.put(tLRPC$TL_jsonObjectValue5.key.replace("️", ""), new EmojiSound(j7, j8, str10));
                                     }
-                                } else {
-                                    tLRPC$TL_jsonObject3 = tLRPC$TL_jsonObject10;
-                                    i3 = size13;
                                 }
-                                i80++;
-                                tLRPC$TL_jsonObject10 = tLRPC$TL_jsonObject3;
-                                size13 = i3;
                             }
                         }
-                        if (!this.emojiSounds.equals(hashMap2)) {
-                            this.emojiSounds = hashMap2;
-                            SerializedData serializedData3 = new SerializedData();
-                            serializedData3.writeInt32(this.emojiSounds.size());
-                            for (Map.Entry<String, EmojiSound> entry2 : this.emojiSounds.entrySet()) {
-                                serializedData3.writeString(entry2.getKey());
-                                EmojiSound value2 = entry2.getValue();
-                                serializedData3.writeInt64(value2.id);
-                                serializedData3.writeInt64(value2.accessHash);
-                                serializedData3.writeByteArray(value2.fileReference);
-                            }
-                            edit.putString("emojiSounds", Base64.encodeToString(serializedData3.toByteArray(), 0));
-                            serializedData3.cleanup();
-                            z3 = true;
-                        }
-                        z5 = z6;
-                        z4 = z7;
                     } catch (Exception e3) {
                         FileLog.e(e3);
                         break;
                     }
-                    i6++;
-                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                    break;
-                case 'a':
-                    TLRPC$JSONValue tLRPC$JSONValue110 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue110 instanceof TLRPC$TL_jsonNumber) {
-                        double d55 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue110).value;
-                        if (d55 != this.aboutLengthLimitPremium) {
-                            int i82 = (int) d55;
-                            this.aboutLengthLimitPremium = i82;
-                            edit.putInt("aboutLengthLimitPremium", i82);
-                            z3 = true;
+                    if (!this.emojiSounds.equals(hashMap2)) {
+                        this.emojiSounds = hashMap2;
+                        SerializedData serializedData3 = new SerializedData();
+                        serializedData3.writeInt32(this.emojiSounds.size());
+                        for (Map.Entry<String, EmojiSound> entry2 : this.emojiSounds.entrySet()) {
+                            serializedData3.writeString(entry2.getKey());
+                            EmojiSound value2 = entry2.getValue();
+                            serializedData3.writeInt64(value2.id);
+                            serializedData3.writeInt64(value2.accessHash);
+                            serializedData3.writeByteArray(value2.fileReference);
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        edit.putString("emojiSounds", Base64.encodeToString(serializedData3.toByteArray(), 0));
+                        serializedData3.cleanup();
+                        z2 = true;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    z2 = z5;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'b':
+                    size = i6;
+                    break;
+                case 'f':
+                    TLRPC$JSONValue tLRPC$JSONValue115 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue115 instanceof TLRPC$TL_jsonNumber) {
+                        double d55 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue115).value;
+                        if (d55 != this.aboutLengthLimitPremium) {
+                            int i80 = (int) d55;
+                            this.aboutLengthLimitPremium = i80;
+                            edit.putInt("aboutLengthLimitPremium", i80);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
+                        }
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
+                        tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                        size = i6;
+                    }
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
+                    tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                    size = i6;
+                case 'g':
                     HashSet hashSet8 = new HashSet();
-                    TLRPC$JSONValue tLRPC$JSONValue111 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue111 instanceof TLRPC$TL_jsonArray) {
-                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray8 = (TLRPC$TL_jsonArray) tLRPC$JSONValue111;
-                        int size15 = tLRPC$TL_jsonArray8.value.size();
-                        for (int i83 = 0; i83 < size15; i83++) {
-                            TLRPC$JSONValue tLRPC$JSONValue112 = tLRPC$TL_jsonArray8.value.get(i83);
-                            if (tLRPC$JSONValue112 instanceof TLRPC$TL_jsonString) {
-                                hashSet8.add(((TLRPC$TL_jsonString) tLRPC$JSONValue112).value);
+                    TLRPC$JSONValue tLRPC$JSONValue116 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue116 instanceof TLRPC$TL_jsonArray) {
+                        TLRPC$TL_jsonArray tLRPC$TL_jsonArray10 = (TLRPC$TL_jsonArray) tLRPC$JSONValue116;
+                        int size15 = tLRPC$TL_jsonArray10.value.size();
+                        for (int i81 = 0; i81 < size15; i81++) {
+                            TLRPC$JSONValue tLRPC$JSONValue117 = tLRPC$TL_jsonArray10.value.get(i81);
+                            if (tLRPC$JSONValue117 instanceof TLRPC$TL_jsonString) {
+                                hashSet8.add(((TLRPC$TL_jsonString) tLRPC$JSONValue117).value);
                             }
                         }
                     }
                     if (!this.exportPrivateUri.equals(hashSet8)) {
                         this.exportPrivateUri = hashSet8;
                         edit.putStringSet("exportPrivateUri", hashSet8);
-                        z5 = z6;
-                        z4 = z7;
-                        z3 = true;
-                        i6++;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        z2 = true;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case 'c':
-                    TLRPC$JSONValue tLRPC$JSONValue113 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue113 instanceof TLRPC$TL_jsonNumber) {
-                        double d56 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue113).value;
+                    size = i6;
+                case 'h':
+                    TLRPC$JSONValue tLRPC$JSONValue118 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue118 instanceof TLRPC$TL_jsonNumber) {
+                        double d56 = ((TLRPC$TL_jsonNumber) tLRPC$JSONValue118).value;
                         if (d56 != this.forumUpgradeParticipantsMin) {
-                            int i84 = (int) d56;
-                            this.forumUpgradeParticipantsMin = i84;
-                            edit.putInt("forumUpgradeParticipantsMin", i84);
-                            z3 = true;
+                            int i82 = (int) d56;
+                            this.forumUpgradeParticipantsMin = i82;
+                            edit.putInt("forumUpgradeParticipantsMin", i82);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
-                case FileLoader.MEDIA_DIR_IMAGE_PUBLIC:
-                    TLRPC$JSONValue tLRPC$JSONValue114 = tLRPC$TL_jsonObjectValue.value;
-                    if (tLRPC$JSONValue114 instanceof TLRPC$TL_jsonBool) {
-                        boolean z22 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue114).value;
-                        if (z22 != this.filtersEnabled) {
-                            this.filtersEnabled = z22;
-                            edit.putBoolean("filtersEnabled", z22);
-                            z3 = true;
+                    size = i6;
+                case 'i':
+                    TLRPC$JSONValue tLRPC$JSONValue119 = tLRPC$TL_jsonObjectValue.value;
+                    if (tLRPC$JSONValue119 instanceof TLRPC$TL_jsonBool) {
+                        boolean z24 = ((TLRPC$TL_jsonBool) tLRPC$JSONValue119).value;
+                        if (z24 != this.filtersEnabled) {
+                            this.filtersEnabled = z24;
+                            edit.putBoolean("filtersEnabled", z24);
+                            z2 = true;
+                            tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                            z4 = z6;
+                            z3 = z7;
+                            tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                            tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                            tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                            i5++;
+                            tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
+                            size = i6;
                         }
-                        z5 = z6;
-                        z4 = z7;
-                        i6++;
+                        z2 = z5;
+                        tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                        z4 = z6;
+                        z3 = z7;
+                        tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                        tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                        tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                        i5++;
                         tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                        size = i7;
+                        size = i6;
                     }
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
                 default:
-                    z5 = z6;
-                    z4 = z7;
-                    i6++;
+                    tLRPC$TL_jsonObject6 = tLRPC$TL_jsonObject2;
+                    z2 = z5;
+                    z4 = z6;
+                    z3 = z7;
+                    tLRPC$TL_jsonObject7 = tLRPC$TL_jsonObject8;
+                    tLRPC$TL_jsonObject5 = tLRPC$TL_jsonObject9;
+                    tLRPC$TL_jsonArray = tLRPC$TL_jsonArray2;
+                    i5++;
                     tLRPC$TL_jsonObject4 = tLRPC$TL_jsonObject;
-                    size = i7;
+                    size = i6;
             }
         }
-        boolean z23 = z4;
-        boolean z24 = z5;
-        if (z3) {
+        boolean z25 = z2;
+        TLRPC$TL_jsonObject tLRPC$TL_jsonObject16 = tLRPC$TL_jsonObject7;
+        boolean z26 = z3;
+        boolean z27 = z4;
+        PeerColors fromJSON = PeerColors.fromJSON(tLRPC$TL_jsonObject5, tLRPC$TL_jsonObject6, tLRPC$TL_jsonArray);
+        PeerColors peerColors = this.peerColors;
+        if (peerColors == null || !TextUtils.equals(peerColors.toString(), fromJSON.toString())) {
+            this.peerColors = fromJSON;
+            edit.putString("peerColors", fromJSON.toString());
+            z = true;
+        } else {
+            z = z25;
+        }
+        if (z) {
             edit.apply();
         }
-        if (tLRPC$TL_jsonObject5 != null) {
-            LiteMode.updatePresets(tLRPC$TL_jsonObject5);
+        if (tLRPC$TL_jsonObject16 != null) {
+            LiteMode.updatePresets(tLRPC$TL_jsonObject16);
         }
-        if (z23) {
+        if (z26) {
             ApplicationLoader.startPushService();
             ConnectionsManager connectionsManager = getConnectionsManager();
             connectionsManager.setPushConnectionEnabled(connectionsManager.isPushConnectionEnabled());
         }
-        if (z24) {
+        if (z27) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {
@@ -5916,6 +7893,212 @@ public class MessagesController extends BaseController implements NotificationCe
 
     public void lambda$applyAppConfig$29() {
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesEnabledUpdate, new Object[0]);
+    }
+
+    public static class PeerColors {
+        public final ArrayList<PeerColor> colors = new ArrayList<>();
+        private final LongSparseArray<PeerColor> colorsById = new LongSparseArray<>();
+
+        private PeerColors() {
+        }
+
+        public PeerColor getColor(int i) {
+            return this.colorsById.get(i);
+        }
+
+        public String toString() {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < this.colors.size(); i++) {
+                PeerColor peerColor = this.colors.get(i);
+                if (i > 0) {
+                    sb.append(";");
+                }
+                peerColor.appendString(sb);
+            }
+            return sb.toString();
+        }
+
+        public static PeerColors fromString(String str) {
+            if (str == null) {
+                return null;
+            }
+            PeerColors peerColors = new PeerColors();
+            for (String str2 : str.split(";")) {
+                PeerColor fromString = PeerColor.fromString(str2);
+                if (fromString != null) {
+                    peerColors.colors.add(fromString);
+                    peerColors.colorsById.put(fromString.id, fromString);
+                }
+            }
+            return peerColors;
+        }
+
+        private static int color(String str) {
+            return MessagesController$PeerColors$$ExternalSyntheticBackport0.m("ff" + str, 16);
+        }
+
+        public static PeerColors fromJSON(TLRPC$TL_jsonObject tLRPC$TL_jsonObject, TLRPC$TL_jsonObject tLRPC$TL_jsonObject2, TLRPC$TL_jsonArray tLRPC$TL_jsonArray) {
+            PeerColor peerColor;
+            long j;
+            PeerColor peerColor2;
+            try {
+                PeerColors peerColors = new PeerColors();
+                if (tLRPC$TL_jsonObject != null) {
+                    Iterator<TLRPC$TL_jsonObjectValue> it = tLRPC$TL_jsonObject.value.iterator();
+                    while (it.hasNext()) {
+                        TLRPC$TL_jsonObjectValue next = it.next();
+                        int intValue = Utilities.parseInt((CharSequence) next.key).intValue();
+                        TLRPC$JSONValue tLRPC$JSONValue = next.value;
+                        if (tLRPC$JSONValue instanceof TLRPC$TL_jsonArray) {
+                            ArrayList<TLRPC$JSONValue> arrayList = ((TLRPC$TL_jsonArray) tLRPC$JSONValue).value;
+                            if (!arrayList.isEmpty()) {
+                                PeerColor peerColor3 = new PeerColor();
+                                try {
+                                    peerColor3.id = intValue;
+                                    peerColor3.color1 = peerColor3.darkColor1 = color(((TLRPC$TL_jsonString) arrayList.get(0)).value);
+                                    peerColor3.color2 = peerColor3.darkColor2 = arrayList.size() > 1 ? color(((TLRPC$TL_jsonString) arrayList.get(1)).value) : peerColor3.color1;
+                                    peerColor3.color3 = peerColor3.darkColor3 = arrayList.size() > 2 ? color(((TLRPC$TL_jsonString) arrayList.get(2)).value) : peerColor3.color1;
+                                    if (peerColor3.id >= 7) {
+                                        peerColors.colorsById.put(intValue, peerColor3);
+                                    }
+                                } catch (Exception e) {
+                                    FileLog.e(e);
+                                }
+                            }
+                        }
+                    }
+                }
+                if (tLRPC$TL_jsonObject2 != null) {
+                    Iterator<TLRPC$TL_jsonObjectValue> it2 = tLRPC$TL_jsonObject2.value.iterator();
+                    while (it2.hasNext()) {
+                        TLRPC$TL_jsonObjectValue next2 = it2.next();
+                        int intValue2 = Utilities.parseInt((CharSequence) next2.key).intValue();
+                        TLRPC$JSONValue tLRPC$JSONValue2 = next2.value;
+                        if (tLRPC$JSONValue2 instanceof TLRPC$TL_jsonArray) {
+                            ArrayList<TLRPC$JSONValue> arrayList2 = ((TLRPC$TL_jsonArray) tLRPC$JSONValue2).value;
+                            if (!arrayList2.isEmpty() && (peerColor2 = peerColors.colorsById.get(intValue2)) != null) {
+                                try {
+                                    peerColor2.id = intValue2;
+                                    peerColor2.darkColor1 = color(((TLRPC$TL_jsonString) arrayList2.get(0)).value);
+                                    peerColor2.darkColor2 = arrayList2.size() > 1 ? color(((TLRPC$TL_jsonString) arrayList2.get(1)).value) : peerColor2.darkColor1;
+                                    peerColor2.darkColor3 = arrayList2.size() > 2 ? color(((TLRPC$TL_jsonString) arrayList2.get(2)).value) : peerColor2.darkColor1;
+                                    peerColors.colorsById.put(j, peerColor2);
+                                } catch (Exception e2) {
+                                    FileLog.e(e2);
+                                }
+                            }
+                        }
+                    }
+                }
+                peerColors.colors.clear();
+                if (tLRPC$TL_jsonArray != null) {
+                    Iterator<TLRPC$JSONValue> it3 = tLRPC$TL_jsonArray.value.iterator();
+                    while (it3.hasNext()) {
+                        TLRPC$JSONValue next3 = it3.next();
+                        if ((next3 instanceof TLRPC$TL_jsonNumber) && (peerColor = peerColors.colorsById.get((int) ((TLRPC$TL_jsonNumber) next3).value)) != null) {
+                            peerColors.colors.add(peerColor);
+                        }
+                    }
+                }
+                return peerColors;
+            } catch (Exception e3) {
+                FileLog.e(e3);
+                return null;
+            }
+        }
+    }
+
+    public static class PeerColor {
+        private int color1;
+        private int color2;
+        private int color3;
+        private int darkColor1;
+        private int darkColor2;
+        private int darkColor3;
+        public int id;
+
+        public int getColor1() {
+            return Theme.isCurrentThemeDark() ? this.darkColor1 : this.color1;
+        }
+
+        public int getColor2() {
+            return Theme.isCurrentThemeDark() ? this.darkColor2 : this.color2;
+        }
+
+        public int getColor3() {
+            return Theme.isCurrentThemeDark() ? this.darkColor3 : this.color3;
+        }
+
+        public boolean hasColor2() {
+            return getColor2() != getColor1();
+        }
+
+        public boolean hasColor3() {
+            return getColor3() != getColor1();
+        }
+
+        public void appendString(StringBuilder sb) {
+            sb.append("#");
+            sb.append(this.id);
+            sb.append("{");
+            sb.append(this.color1);
+            if (this.color2 != this.color1) {
+                sb.append(",");
+                sb.append(this.color2);
+                if (this.color3 != this.color1) {
+                    sb.append(",");
+                    sb.append(this.color3);
+                }
+            }
+            if (this.darkColor1 != this.color1 || this.darkColor2 != this.color2 || this.darkColor3 != this.color3) {
+                sb.append("@");
+                sb.append(this.darkColor1);
+                if (this.darkColor2 != this.darkColor1) {
+                    sb.append(",");
+                    sb.append(this.darkColor2);
+                    if (this.darkColor3 != this.darkColor1) {
+                        sb.append(",");
+                        sb.append(this.darkColor3);
+                    }
+                }
+            }
+            sb.append("}");
+        }
+
+        public static PeerColor fromString(String str) {
+            int indexOf;
+            if (str == null || str.isEmpty() || str.charAt(0) != '#' || (indexOf = str.indexOf(123)) < 0) {
+                return null;
+            }
+            try {
+                PeerColor peerColor = new PeerColor();
+                peerColor.id = Utilities.parseInt((CharSequence) str.substring(1, indexOf)).intValue();
+                String[] split = str.substring(indexOf + 1, str.length() - 1).split("@");
+                String[] split2 = split[0].split(",");
+                int intValue = Utilities.parseInt((CharSequence) split2[0]).intValue();
+                peerColor.color1 = intValue;
+                if (split2.length >= 2) {
+                    intValue = Utilities.parseInt((CharSequence) split2[1]).intValue();
+                }
+                peerColor.color2 = intValue;
+                int intValue2 = split2.length >= 3 ? Utilities.parseInt((CharSequence) split2[2]).intValue() : peerColor.color1;
+                peerColor.color3 = intValue2;
+                if (split.length >= 2) {
+                    String[] split3 = split[1].split(",");
+                    peerColor.darkColor1 = Utilities.parseInt((CharSequence) split3[0]).intValue();
+                    peerColor.darkColor2 = split3.length >= 2 ? Utilities.parseInt((CharSequence) split3[1]).intValue() : peerColor.color1;
+                    peerColor.darkColor3 = split3.length >= 3 ? Utilities.parseInt((CharSequence) split3[2]).intValue() : peerColor.color1;
+                } else {
+                    peerColor.darkColor1 = peerColor.color1;
+                    peerColor.darkColor2 = peerColor.color2;
+                    peerColor.darkColor3 = intValue2;
+                }
+                return peerColor;
+            } catch (Exception e) {
+                FileLog.e(e);
+                return null;
+            }
+        }
     }
 
     private void resetAppConfig() {

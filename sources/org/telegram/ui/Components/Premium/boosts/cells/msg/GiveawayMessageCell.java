@@ -36,6 +36,7 @@ import org.telegram.tgnet.TLRPC$TL_messageMediaGiveaway;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.ChatMessageCell;
 import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.Premium.boosts.BoostDialogs;
 import org.telegram.ui.Components.StaticLayoutEx;
 public class GiveawayMessageCell {
     private static final Map<Integer, String> monthsToEmoticon;
@@ -48,6 +49,7 @@ public class GiveawayMessageCell {
     private final RectF chatRect;
     private final TextPaint chatTextPaint;
     private final Paint clipRectPaint;
+    private final Rect containerRect;
     private final RectF countRect;
     private final Paint counterBgPaint;
     private String counterStr;
@@ -55,9 +57,11 @@ public class GiveawayMessageCell {
     private final TextPaint counterTextPaint;
     private int countriesHeight;
     private StaticLayout countriesLayout;
+    private final TextPaint countriesTextPaint;
     private int diffTextWidth;
     private final ImageReceiver giftReceiver;
     private boolean isButtonPressed;
+    private boolean isContainerPressed;
     private MessageObject messageObject;
     private final ChatMessageCell parentView;
     private int pressedPos;
@@ -65,6 +69,7 @@ public class GiveawayMessageCell {
     private final Paint saveLayerPaint;
     private int selectorColor;
     private Drawable selectorDrawable;
+    private final TextPaint textPaint;
     private int topHeight;
     private StaticLayout topLayout;
     private final CharSequence[] chatTitles = new CharSequence[10];
@@ -89,6 +94,10 @@ public class GiveawayMessageCell {
         this.counterTextPaint = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
         this.chatTextPaint = textPaint2;
+        TextPaint textPaint3 = new TextPaint(1);
+        this.textPaint = textPaint3;
+        TextPaint textPaint4 = new TextPaint(1);
+        this.countriesTextPaint = textPaint4;
         this.counterBgPaint = new Paint(1);
         this.chatBgPaint = new Paint(1);
         this.saveLayerPaint = new Paint();
@@ -97,9 +106,11 @@ public class GiveawayMessageCell {
         this.countRect = new RectF();
         this.chatRect = new RectF();
         this.counterTextBounds = new Rect();
+        this.containerRect = new Rect();
         this.pressedState = new int[]{16842910, 16842919};
         this.pressedPos = -1;
         this.isButtonPressed = false;
+        this.isContainerPressed = false;
         this.parentView = chatMessageCell;
         ImageReceiver imageReceiver = new ImageReceiver(chatMessageCell);
         this.giftReceiver = imageReceiver;
@@ -107,10 +118,12 @@ public class GiveawayMessageCell {
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
         textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         textPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
-        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textPaint2.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint2.setTextSize(AndroidUtilities.dp(13.0f));
+        textPaint4.setTextSize(AndroidUtilities.dp(13.0f));
+        textPaint3.setTextSize(AndroidUtilities.dp(14.0f));
     }
 
     public boolean checkMotionEvent(MotionEvent motionEvent) {
@@ -122,18 +135,20 @@ public class GiveawayMessageCell {
                 int i = 0;
                 while (true) {
                     Rect[] rectArr = this.clickRect;
-                    if (i >= rectArr.length) {
-                        break;
-                    } else if (rectArr[i].contains(x, y)) {
-                        this.pressedPos = i;
-                        if (Build.VERSION.SDK_INT >= 21) {
-                            this.selectorDrawable.setHotspot(x, y);
+                    if (i < rectArr.length) {
+                        if (rectArr[i].contains(x, y)) {
+                            this.pressedPos = i;
+                            if (Build.VERSION.SDK_INT >= 21) {
+                                this.selectorDrawable.setHotspot(x, y);
+                            }
+                            this.isButtonPressed = true;
+                            setButtonPressed(true);
+                            return true;
                         }
-                        this.isButtonPressed = true;
-                        setButtonPressed(true);
-                        return true;
-                    } else {
                         i++;
+                    } else if (this.containerRect.contains(x, y)) {
+                        this.isContainerPressed = true;
+                        return true;
                     }
                 }
             } else if (motionEvent.getAction() == 1) {
@@ -145,8 +160,13 @@ public class GiveawayMessageCell {
                     setButtonPressed(false);
                     this.isButtonPressed = false;
                 }
-            } else if (motionEvent.getAction() != 2) {
-                motionEvent.getAction();
+                if (this.isContainerPressed) {
+                    this.isContainerPressed = false;
+                    BoostDialogs.showBulletinAbout(this.messageObject);
+                }
+            } else if (motionEvent.getAction() != 2 && motionEvent.getAction() == 3) {
+                this.isButtonPressed = false;
+                this.isContainerPressed = false;
             }
         }
         return false;
@@ -195,7 +215,7 @@ public class GiveawayMessageCell {
             createImages();
             setGiftImage(messageObject);
             TLRPC$TL_messageMediaGiveaway tLRPC$TL_messageMediaGiveaway = (TLRPC$TL_messageMediaGiveaway) messageObject.messageOwner.media;
-            int dp2 = AndroidUtilities.dp(160.0f);
+            int dp2 = AndroidUtilities.dp(148.0f);
             if (AndroidUtilities.isTablet()) {
                 dp = AndroidUtilities.getMinTabletSide() - AndroidUtilities.dp(80.0f);
             } else {
@@ -209,6 +229,7 @@ public class GiveawayMessageCell {
             SpannableStringBuilder replaceTags2 = AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveawayMsgInfo", R.string.BoostingGiveawayMsgInfo, Integer.valueOf(tLRPC$TL_messageMediaGiveaway.quantity), LocaleController.formatPluralString("BoldMonths", tLRPC$TL_messageMediaGiveaway.months, new Object[0])));
             spannableStringBuilder.append((CharSequence) replaceTags2);
             spannableStringBuilder.append((CharSequence) "\n\n");
+            spannableStringBuilder.setSpan(new RelativeSizeSpan(0.5f), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             SpannableStringBuilder replaceTags3 = AndroidUtilities.replaceTags(LocaleController.getString("BoostingGiveawayMsgParticipants", R.string.BoostingGiveawayMsgParticipants));
             spannableStringBuilder.append((CharSequence) replaceTags3);
             spannableStringBuilder.setSpan(new RelativeSizeSpan(1.05f), replaceTags.length() + replaceTags2.length() + 2, replaceTags.length() + replaceTags2.length() + 3 + replaceTags3.length(), 33);
@@ -228,8 +249,8 @@ public class GiveawayMessageCell {
             spannableStringBuilder2.append((CharSequence) LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, format, format2));
             int i3 = dp;
             int i4 = dp;
-            this.topLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, Theme.chat_msgTextPaint, i3, Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(1.0f), false, TextUtils.TruncateAt.END, i4, 10);
-            this.bottomLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, Theme.chat_msgTextPaint, i3, Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(1.0f), false, TextUtils.TruncateAt.END, i4, 10);
+            this.topLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder, this.textPaint, i3, Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(2.0f), false, TextUtils.TruncateAt.END, i4, 10);
+            this.bottomLayout = StaticLayoutEx.createStaticLayout(spannableStringBuilder2, this.textPaint, i3, Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(2.0f), false, TextUtils.TruncateAt.END, i4, 10);
             int i5 = 0;
             for (int i6 = 0; i6 < this.topLayout.getLineCount(); i6++) {
                 i5 = (int) Math.max(i5, Math.ceil(this.topLayout.getLineWidth(i6)));
@@ -252,7 +273,7 @@ public class GiveawayMessageCell {
                     arrayList.add(spannableStringBuilder3);
                 }
                 if (!arrayList.isEmpty()) {
-                    this.countriesLayout = StaticLayoutEx.createStaticLayout(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveAwayFromCountries", R.string.BoostingGiveAwayFromCountries, TextUtils.join(", ", arrayList))), Theme.chat_msgTextPaint, i5, Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(1.0f), false, TextUtils.TruncateAt.END, i5, 10);
+                    this.countriesLayout = StaticLayoutEx.createStaticLayout(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveAwayFromCountries", R.string.BoostingGiveAwayFromCountries, TextUtils.join(", ", arrayList))), this.countriesTextPaint, i5, Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(2.0f), false, TextUtils.TruncateAt.END, i5, 10);
                 }
             }
             int max = Math.max(i2, Math.min(i5 + AndroidUtilities.dp(38.0f), dp));
@@ -266,7 +287,7 @@ public class GiveawayMessageCell {
             StaticLayout staticLayout2 = this.bottomLayout;
             this.bottomHeight = staticLayout2.getLineBottom(staticLayout2.getLineCount() - 1);
             StaticLayout staticLayout3 = this.countriesLayout;
-            int lineBottom = staticLayout3 != null ? staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1) : 0;
+            int lineBottom = staticLayout3 != null ? staticLayout3.getLineBottom(staticLayout3.getLineCount() - 1) + AndroidUtilities.dp(12.0f) : 0;
             this.countriesHeight = lineBottom;
             int i8 = this.measuredHeight + this.topHeight;
             this.measuredHeight = i8;
@@ -274,22 +295,29 @@ public class GiveawayMessageCell {
             this.measuredHeight = i9;
             int i10 = i9 + this.bottomHeight;
             this.measuredHeight = i10;
-            this.measuredHeight = i10 + AndroidUtilities.dp(132.0f);
+            this.measuredHeight = i10 + AndroidUtilities.dp(128.0f);
             this.measuredWidth = max;
             String str = "x" + tLRPC$TL_messageMediaGiveaway.quantity;
             this.counterStr = str;
             this.counterTextPaint.getTextBounds(str, 0, str.length(), this.counterTextBounds);
             Arrays.fill(this.avatarVisible, false);
             this.measuredHeight += AndroidUtilities.dp(30.0f);
+            ArrayList arrayList2 = new ArrayList(tLRPC$TL_messageMediaGiveaway.channels.size());
+            Iterator<Long> it2 = tLRPC$TL_messageMediaGiveaway.channels.iterator();
+            while (it2.hasNext()) {
+                Long next2 = it2.next();
+                if (MessagesController.getInstance(UserConfig.selectedAccount).getChat(next2) != null) {
+                    arrayList2.add(next2);
+                }
+            }
             int i11 = 0;
             float f4 = 0.0f;
-            while (i11 < tLRPC$TL_messageMediaGiveaway.channels.size()) {
-                long longValue = tLRPC$TL_messageMediaGiveaway.channels.get(i11).longValue();
+            while (i11 < arrayList2.size()) {
+                long longValue = ((Long) arrayList2.get(i11)).longValue();
                 TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(longValue));
                 if (chat != null) {
                     this.avatarVisible[i11] = z;
-                    float f5 = 0.8f * f;
-                    this.chatTitles[i11] = TextUtils.ellipsize(Emoji.replaceEmoji(chat.title, this.chatTextPaint.getFontMetricsInt(), AndroidUtilities.dp(14.0f), false), this.chatTextPaint, f5, TextUtils.TruncateAt.END);
+                    this.chatTitles[i11] = TextUtils.ellipsize(Emoji.replaceEmoji((CharSequence) chat.title, this.chatTextPaint.getFontMetricsInt(), AndroidUtilities.dp(14.0f), false), this.chatTextPaint, 0.8f * f, TextUtils.TruncateAt.END);
                     float[] fArr = this.chatTitleWidths;
                     TextPaint textPaint = this.chatTextPaint;
                     CharSequence[] charSequenceArr = this.chatTitles;
@@ -298,7 +326,7 @@ public class GiveawayMessageCell {
                     f4 += dp3;
                     if (i11 > 0) {
                         boolean[] zArr = this.needNewRow;
-                        zArr[i11] = f4 > f5;
+                        zArr[i11] = f4 > 0.9f * f;
                         if (zArr[i11]) {
                             this.measuredHeight += AndroidUtilities.dp(30.0f);
                             f4 = dp3;
@@ -319,7 +347,6 @@ public class GiveawayMessageCell {
                 i11++;
                 z = true;
             }
-            this.measuredHeight += AndroidUtilities.dp(6.0f);
         }
     }
 
@@ -340,6 +367,8 @@ public class GiveawayMessageCell {
             this.selectorColor = color2;
             Theme.setSelectorDrawableColor(drawable, color2, true);
         }
+        this.textPaint.setColor(Theme.chat_msgTextPaint.getColor());
+        this.countriesTextPaint.setColor(Theme.chat_msgTextPaint.getColor());
         if (this.messageObject.isOutOwner()) {
             TextPaint textPaint = this.chatTextPaint;
             int i3 = Theme.key_chat_outPreviewInstantText;
@@ -357,49 +386,48 @@ public class GiveawayMessageCell {
         canvas.save();
         int dp = i2 - AndroidUtilities.dp(4.0f);
         canvas.translate(dp, i);
+        this.containerRect.set(dp, i, getMeasuredWidth() + dp, getMeasuredHeight() + i);
         canvas.saveLayer(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.saveLayerPaint, 31);
         this.giftReceiver.draw(canvas);
-        float f = 2.0f;
         float measuredWidth = getMeasuredWidth() / 2.0f;
-        float dp2 = AndroidUtilities.dp(110.0f);
-        int width = this.counterTextBounds.width() + AndroidUtilities.dp(18.0f);
+        float dp2 = AndroidUtilities.dp(106.0f);
+        int width = this.counterTextBounds.width() + AndroidUtilities.dp(12.0f);
         int height = this.counterTextBounds.height() + AndroidUtilities.dp(10.0f);
-        this.countRect.set(measuredWidth - ((AndroidUtilities.dp(2.0f) + width) / 2.0f), dp2 - ((AndroidUtilities.dp(2.0f) + height) / 2.0f), ((AndroidUtilities.dp(2.0f) + width) / 2.0f) + measuredWidth, ((height + AndroidUtilities.dp(2.0f)) / 2.0f) + dp2);
+        this.countRect.set(measuredWidth - ((AndroidUtilities.dp(2.0f) + width) / 2.0f), dp2 - ((AndroidUtilities.dp(2.0f) + height) / 2.0f), ((width + AndroidUtilities.dp(2.0f)) / 2.0f) + measuredWidth, ((height + AndroidUtilities.dp(2.0f)) / 2.0f) + dp2);
         canvas.drawRoundRect(this.countRect, AndroidUtilities.dp(11.0f), AndroidUtilities.dp(11.0f), this.clipRectPaint);
-        float f2 = width / 2.0f;
-        float f3 = height / 2.0f;
-        this.countRect.set(measuredWidth - f2, dp2 - f3, f2 + measuredWidth, dp2 + f3);
+        float f = width / 2.0f;
+        float f2 = height / 2.0f;
+        this.countRect.set(measuredWidth - f, dp2 - f2, f + measuredWidth, dp2 + f2);
         canvas.drawRoundRect(this.countRect, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.counterBgPaint);
         canvas.drawText(this.counterStr, this.countRect.centerX(), this.countRect.centerY() + AndroidUtilities.dp(4.0f), this.counterTextPaint);
         canvas.restore();
-        canvas.translate(0.0f, AndroidUtilities.dp(132.0f));
+        canvas.translate(0.0f, AndroidUtilities.dp(128.0f));
         canvas.save();
         canvas.translate(this.diffTextWidth / 2.0f, 0.0f);
         this.topLayout.draw(canvas);
         canvas.restore();
         canvas.translate(0.0f, this.topHeight + AndroidUtilities.dp(6.0f));
         int i5 = 0;
-        int dp3 = AndroidUtilities.dp(132.0f) + i + this.topHeight + AndroidUtilities.dp(6.0f);
+        int dp3 = AndroidUtilities.dp(128.0f) + i + this.topHeight + AndroidUtilities.dp(6.0f);
         while (true) {
             boolean[] zArr2 = this.avatarVisible;
             if (i5 >= zArr2.length) {
                 break;
-            }
-            if (zArr2[i5]) {
+            } else if (zArr2[i5]) {
                 canvas.save();
                 int i6 = i5;
-                float f4 = 0.0f;
+                float f3 = 0.0f;
                 do {
-                    f4 += this.chatTitleWidths[i6] + AndroidUtilities.dp(42.0f);
+                    f3 += this.chatTitleWidths[i6] + AndroidUtilities.dp(42.0f);
                     i6++;
                     zArr = this.avatarVisible;
                     if (i6 >= zArr.length || this.needNewRow[i6]) {
                         break;
                     }
                 } while (zArr[i6]);
-                float f5 = measuredWidth - (f4 / f);
-                canvas.translate(f5, 0.0f);
-                int i7 = ((int) f5) + dp;
+                float f4 = measuredWidth - (f3 / 2.0f);
+                canvas.translate(f4, 0.0f);
+                int i7 = ((int) f4) + dp;
                 int i8 = i5;
                 while (true) {
                     this.avatarImageReceivers[i8].draw(canvas);
@@ -408,10 +436,10 @@ public class GiveawayMessageCell {
                     canvas.drawText(charSequenceArr[i8], 0, charSequenceArr[i8].length(), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(16.0f), this.chatTextPaint);
                     this.chatRect.set(0.0f, 0.0f, this.chatTitleWidths[i8] + AndroidUtilities.dp(42.0f), AndroidUtilities.dp(24.0f));
                     canvas.drawRoundRect(this.chatRect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.chatBgPaint);
-                    float f6 = i9;
-                    this.clickRect[i8].set(i9, dp3, (int) (this.chatRect.width() + f6), AndroidUtilities.dp(24.0f) + dp3);
+                    float f5 = i9;
+                    this.clickRect[i8].set(i9, dp3, (int) (this.chatRect.width() + f5), AndroidUtilities.dp(24.0f) + dp3);
                     canvas.translate(this.chatRect.width() + AndroidUtilities.dp(6.0f), 0.0f);
-                    i7 = (int) (f6 + this.chatRect.width() + AndroidUtilities.dp(6.0f));
+                    i7 = (int) (f5 + this.chatRect.width() + AndroidUtilities.dp(6.0f));
                     i5 = i8 + 1;
                     boolean[] zArr3 = this.avatarVisible;
                     if (i5 >= zArr3.length || this.needNewRow[i5] || !zArr3[i5]) {
@@ -425,11 +453,10 @@ public class GiveawayMessageCell {
             } else {
                 i5++;
             }
-            f = 2.0f;
         }
         if (this.countriesLayout != null) {
             canvas.save();
-            canvas.translate((this.measuredWidth - this.countriesLayout.getWidth()) / 2.0f, 0.0f);
+            canvas.translate((this.measuredWidth - this.countriesLayout.getWidth()) / 2.0f, AndroidUtilities.dp(4.0f));
             this.countriesLayout.draw(canvas);
             canvas.restore();
             canvas.translate(0.0f, this.countriesHeight);

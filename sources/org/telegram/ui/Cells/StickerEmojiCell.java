@@ -159,7 +159,7 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
             }
             if (str != null) {
                 TextView textView = this.emojiTextView;
-                textView.setText(Emoji.replaceEmoji(str, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
+                textView.setText(Emoji.replaceEmoji((CharSequence) str, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
                 this.emojiTextView.setVisibility(0);
             } else {
                 this.emojiTextView.setVisibility(i);
@@ -201,7 +201,7 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
                 }
                 if (str != null) {
                     TextView textView2 = this.emojiTextView;
-                    textView2.setText(Emoji.replaceEmoji(str, textView2.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
+                    textView2.setText(Emoji.replaceEmoji((CharSequence) str, textView2.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
                     this.emojiTextView.setVisibility(0);
                 } else if (z) {
                     int i2 = 0;
@@ -214,7 +214,7 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
                             String str3 = tLRPC$DocumentAttribute.alt;
                             if (str3 != null && str3.length() > 0) {
                                 TextView textView3 = this.emojiTextView;
-                                textView3.setText(Emoji.replaceEmoji(tLRPC$DocumentAttribute.alt, textView3.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
+                                textView3.setText(Emoji.replaceEmoji((CharSequence) tLRPC$DocumentAttribute.alt, textView3.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
                                 z3 = true;
                             }
                         } else {
@@ -223,7 +223,7 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
                     }
                     z3 = false;
                     if (!z3) {
-                        this.emojiTextView.setText(Emoji.replaceEmoji(MediaDataController.getInstance(this.currentAccount).getEmojiForSticker(this.sticker.id), this.emojiTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
+                        this.emojiTextView.setText(Emoji.replaceEmoji((CharSequence) MediaDataController.getInstance(this.currentAccount).getEmojiForSticker(this.sticker.id), this.emojiTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
                     }
                     this.emojiTextView.setVisibility(0);
                 } else {
@@ -322,7 +322,7 @@ public class StickerEmojiCell extends FrameLayout implements NotificationCenter.
                     String str = tLRPC$DocumentAttribute.alt;
                     if (str != null && str.length() > 0) {
                         TextView textView = this.emojiTextView;
-                        textView.setText(Emoji.replaceEmoji(tLRPC$DocumentAttribute.alt, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
+                        textView.setText(Emoji.replaceEmoji((CharSequence) tLRPC$DocumentAttribute.alt, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(16.0f), false));
                         string = tLRPC$DocumentAttribute.alt + " " + string;
                     }
                 } else {

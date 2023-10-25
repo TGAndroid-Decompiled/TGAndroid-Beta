@@ -5019,7 +5019,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.commentTextView.getText());
             spannableStringBuilder.replace(i, i2 + i, charSequence);
             if (z) {
-                Emoji.replaceEmoji(spannableStringBuilder, this.commentTextView.getEditText().getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
+                Emoji.replaceEmoji((CharSequence) spannableStringBuilder, this.commentTextView.getEditText().getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
             }
             this.commentTextView.setText(spannableStringBuilder);
             this.commentTextView.setSelection(i + charSequence.length());

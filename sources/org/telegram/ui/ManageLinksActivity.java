@@ -1152,7 +1152,7 @@ public class ManageLinksActivity extends BaseFragment {
             }
             if (!TextUtils.isEmpty(tLRPC$TL_chatInviteExported.title)) {
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tLRPC$TL_chatInviteExported.title);
-                Emoji.replaceEmoji(spannableStringBuilder, this.titleView.getPaint().getFontMetricsInt(), (int) this.titleView.getPaint().getTextSize(), false);
+                Emoji.replaceEmoji((CharSequence) spannableStringBuilder, this.titleView.getPaint().getFontMetricsInt(), (int) this.titleView.getPaint().getTextSize(), false);
                 this.titleView.setText(spannableStringBuilder);
             } else if (tLRPC$TL_chatInviteExported.link.startsWith("https://t.me/+")) {
                 this.titleView.setText(tLRPC$TL_chatInviteExported.link.substring(14));

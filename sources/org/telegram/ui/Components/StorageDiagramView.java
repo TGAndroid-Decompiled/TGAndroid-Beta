@@ -84,7 +84,7 @@ public class StorageDiagramView extends View implements NotificationCenter.Notif
         }
         String dialogPhotoTitle = DialogObject.setDialogPhotoTitle(this.avatarImageReceiver, this.avatarDrawable, MessagesController.getInstance(UserConfig.selectedAccount).getUserOrChat(j));
         this.dialogText = dialogPhotoTitle;
-        this.dialogText = Emoji.replaceEmoji(dialogPhotoTitle, null, AndroidUtilities.dp(6.0f), false);
+        this.dialogText = Emoji.replaceEmoji((CharSequence) dialogPhotoTitle, (Paint.FontMetricsInt) null, AndroidUtilities.dp(6.0f), false);
     }
 
     @Override

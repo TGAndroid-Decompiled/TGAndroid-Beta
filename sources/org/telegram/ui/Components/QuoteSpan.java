@@ -36,6 +36,7 @@ public class QuoteSpan implements LeadingMarginSpan {
     private final Path linePath;
     private final float[] linePathRadii;
     private final Drawable quoteDrawable;
+    public boolean rtl;
     public boolean singleLine;
     public int start;
     public final QuoteStyleSpan styleSpan;
@@ -247,6 +248,7 @@ public class QuoteSpan implements LeadingMarginSpan {
 
         public Block(Layout layout, Spanned spanned, QuoteSpan quoteSpan) {
             int i;
+            int i2;
             this.span = quoteSpan;
             quoteSpan.start = spanned.getSpanStart(quoteSpan);
             quoteSpan.end = spanned.getSpanEnd(quoteSpan);
@@ -264,23 +266,30 @@ public class QuoteSpan implements LeadingMarginSpan {
                 }
                 this.top = lineTop + AndroidUtilities.dp(3 - i);
                 int lineBottom = layout.getLineBottom(lineForOffset2);
-                if (!quoteSpan.singleLine) {
-                    r2 = (quoteSpan.last ? 2 : 0) + 3;
+                if (quoteSpan.singleLine) {
+                    i2 = 0;
+                } else {
+                    i2 = (quoteSpan.last ? 2 : 0) + 3;
                 }
-                this.bottom = lineBottom - AndroidUtilities.dp(2 - r2);
+                this.bottom = lineBottom - AndroidUtilities.dp(2 - i2);
             } else {
                 this.top = layout.getLineTop(lineForOffset) + AndroidUtilities.dp(3 - (quoteSpan.singleLine ? 1 : 2));
                 this.bottom = layout.getLineBottom(lineForOffset2) - AndroidUtilities.dp(2 - (quoteSpan.singleLine ? 1 : 2));
             }
+            quoteSpan.rtl = false;
             float f = 0.0f;
             while (lineForOffset <= lineForOffset2) {
                 f = Math.max(f, layout.getLineRight(lineForOffset));
+                if (layout.getLineLeft(lineForOffset) > 0.0f) {
+                    quoteSpan.rtl = true;
+                }
                 lineForOffset++;
             }
             this.width = (int) Math.ceil(f);
         }
 
         public void draw(Canvas canvas, float f, int i, int i2, float f2) {
+            QuoteSpan quoteSpan;
             this.span.setColor(i2);
             int dp = this.span.edit ? i : this.width + AndroidUtilities.dp(32.0f);
             double d = i;
@@ -331,13 +340,15 @@ public class QuoteSpan implements LeadingMarginSpan {
             this.span.linePath.rewind();
             this.span.linePath.addRoundRect(rectF, this.span.linePathRadii, Path.Direction.CW);
             canvas.drawPath(this.span.linePath, this.span.linePaint);
-            int intrinsicHeight = (int) (((this.top + this.bottom) - this.span.quoteDrawable.getIntrinsicHeight()) / 2.0f);
-            if (intrinsicHeight > this.top + AndroidUtilities.dp(8.0f)) {
-                intrinsicHeight = this.top + AndroidUtilities.dp(4.0f);
+            if (!this.span.rtl) {
+                int intrinsicHeight = (int) (((this.top + this.bottom) - quoteSpan.quoteDrawable.getIntrinsicHeight()) / 2.0f);
+                if (intrinsicHeight > this.top + AndroidUtilities.dp(8.0f)) {
+                    intrinsicHeight = this.top + AndroidUtilities.dp(4.0f);
+                }
+                this.span.quoteDrawable.setBounds((dp - this.span.quoteDrawable.getIntrinsicWidth()) - AndroidUtilities.dp(4.0f), intrinsicHeight, dp - AndroidUtilities.dp(4.0f), this.span.quoteDrawable.getIntrinsicHeight() + intrinsicHeight);
+                this.span.quoteDrawable.setAlpha((int) (255.0f * f2));
+                this.span.quoteDrawable.draw(canvas);
             }
-            this.span.quoteDrawable.setBounds((dp - this.span.quoteDrawable.getIntrinsicWidth()) - AndroidUtilities.dp(4.0f), intrinsicHeight, dp - AndroidUtilities.dp(4.0f), this.span.quoteDrawable.getIntrinsicHeight() + intrinsicHeight);
-            this.span.quoteDrawable.setAlpha((int) (255.0f * f2));
-            this.span.quoteDrawable.draw(canvas);
             canvas.restore();
         }
     }

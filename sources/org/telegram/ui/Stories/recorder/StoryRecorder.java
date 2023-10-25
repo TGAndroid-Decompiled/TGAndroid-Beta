@@ -191,6 +191,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     private int insetRight;
     private int insetTop;
     private boolean isBackgroundVisible;
+    private boolean isDark;
     private boolean isShown;
     private Parcelable lastGalleryScrollPosition;
     private MediaController.AlbumEntry lastGallerySelectedAlbum;
@@ -1057,6 +1058,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
                 StoryRecorder.this.recordControl.rotateFlip(180.0f);
                 StoryRecorder storyRecorder = StoryRecorder.this;
                 storyRecorder.saveCameraFace(storyRecorder.cameraView.isFrontface());
+                if (StoryRecorder.this.useDisplayFlashlight()) {
+                    StoryRecorder.this.flashViews.flashIn(null);
+                    return true;
+                }
+                StoryRecorder.this.flashViews.flashOut();
                 return true;
             }
 
@@ -2680,8 +2686,6 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
     }
 
     public class AnonymousClass11 implements RecordControl.Delegate {
-        private boolean isDark;
-
         AnonymousClass11() {
             StoryRecorder.this = r1;
         }
@@ -2708,11 +2712,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             storyRecorder.outputFile = StoryEntry.makeCacheFile(storyRecorder.currentAccount, false);
             StoryRecorder.this.takingPhoto = true;
             StoryRecorder.this.checkFrontfaceFlashModes();
-            this.isDark = false;
+            StoryRecorder.this.isDark = false;
             if (StoryRecorder.this.cameraView.isFrontface() && StoryRecorder.this.frontfaceFlashMode == 1) {
-                checkIsDark();
+                StoryRecorder.this.checkIsDark();
             }
-            if (useDisplayFlashlight()) {
+            if (StoryRecorder.this.useDisplayFlashlight()) {
                 StoryRecorder.this.flashViews.flash(new Utilities.Callback() {
                     @Override
                     public final void run(Object obj) {
@@ -2724,41 +2728,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             }
         }
 
-        private void checkIsDark() {
-            Bitmap bitmap = StoryRecorder.this.cameraView.getTextureView().getBitmap();
-            int width = bitmap.getWidth() / 12;
-            int height = bitmap.getHeight() / 12;
-            float f = 0.0f;
-            for (int i = 0; i < 10; i++) {
-                int i2 = 0;
-                while (i2 < 10) {
-                    i2++;
-                    f += AndroidUtilities.computePerceivedBrightness(bitmap.getPixel((i + 1) * width, i2 * height));
-                }
-            }
-            bitmap.recycle();
-            this.isDark = f / 100.0f < 0.22f;
-        }
-
-        private boolean useDisplayFlashlight() {
-            if (StoryRecorder.this.cameraView != null && StoryRecorder.this.cameraView.isFrontface()) {
-                if (StoryRecorder.this.frontfaceFlashMode == 2) {
-                    return true;
-                }
-                if (StoryRecorder.this.frontfaceFlashMode == 1 && this.isDark) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public void takePicture(final org.telegram.messenger.Utilities.Callback<java.lang.Runnable> r7) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Stories.recorder.StoryRecorder.AnonymousClass11.takePicture(org.telegram.messenger.Utilities$Callback):void");
         }
 
         public void lambda$takePicture$1(Utilities.Callback callback, Integer num) {
             int i;
-            if (useDisplayFlashlight()) {
+            if (StoryRecorder.this.useDisplayFlashlight()) {
                 try {
                     StoryRecorder.this.windowView.performHapticFeedback(3, 1);
                 } catch (Exception unused) {
@@ -2834,11 +2810,11 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             StoryRecorder storyRecorder = StoryRecorder.this;
             storyRecorder.outputFile = StoryEntry.makeCacheFile(storyRecorder.currentAccount, true);
             StoryRecorder.this.checkFrontfaceFlashModes();
-            this.isDark = false;
+            StoryRecorder.this.isDark = false;
             if (StoryRecorder.this.cameraView.isFrontface() && StoryRecorder.this.frontfaceFlashMode == 1) {
-                checkIsDark();
+                StoryRecorder.this.checkIsDark();
             }
-            if (useDisplayFlashlight()) {
+            if (StoryRecorder.this.useDisplayFlashlight()) {
                 StoryRecorder.this.flashViews.flashIn(new Runnable() {
                     @Override
                     public final void run() {
@@ -2876,7 +2852,7 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             if (StoryRecorder.this.recordControl != null) {
                 StoryRecorder.this.recordControl.stopRecordingLoading(true);
             }
-            if (useDisplayFlashlight()) {
+            if (StoryRecorder.this.useDisplayFlashlight()) {
                 StoryRecorder.this.flashViews.flashOut();
             }
             if (StoryRecorder.this.outputFile == null || StoryRecorder.this.cameraView == null) {
@@ -2998,10 +2974,13 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             if (StoryRecorder.this.savedDualHint != null) {
                 StoryRecorder.this.savedDualHint.hide();
             }
+            if (StoryRecorder.this.useDisplayFlashlight() && StoryRecorder.this.frontfaceFlashModes != null && !StoryRecorder.this.frontfaceFlashModes.isEmpty()) {
+                ApplicationLoader.applicationContext.getSharedPreferences("camera", 0).edit().putString("flashMode", (String) StoryRecorder.this.frontfaceFlashModes.get(StoryRecorder.this.frontfaceFlashMode)).commit();
+            }
             StoryRecorder.this.cameraView.switchCamera();
             StoryRecorder storyRecorder = StoryRecorder.this;
             storyRecorder.saveCameraFace(storyRecorder.cameraView.isFrontface());
-            if (useDisplayFlashlight()) {
+            if (StoryRecorder.this.useDisplayFlashlight()) {
                 StoryRecorder.this.flashViews.flashIn(null);
             } else {
                 StoryRecorder.this.flashViews.flashOut();
@@ -3157,6 +3136,45 @@ public class StoryRecorder implements NotificationCenter.NotificationCenterDeleg
             f2 = AndroidUtilities.dp(16.0f);
         }
         photoVideoSwitcherView3.setTranslationY(f2);
+    }
+
+    public void checkIsDark() {
+        DualCameraView dualCameraView = this.cameraView;
+        if (dualCameraView == null || dualCameraView.getTextureView() == null) {
+            this.isDark = false;
+            return;
+        }
+        Bitmap bitmap = this.cameraView.getTextureView().getBitmap();
+        if (bitmap == null) {
+            this.isDark = false;
+            return;
+        }
+        float f = 0.0f;
+        int width = bitmap.getWidth() / 12;
+        int height = bitmap.getHeight() / 12;
+        for (int i = 0; i < 10; i++) {
+            int i2 = 0;
+            while (i2 < 10) {
+                i2++;
+                f += AndroidUtilities.computePerceivedBrightness(bitmap.getPixel((i + 1) * width, i2 * height));
+            }
+        }
+        bitmap.recycle();
+        this.isDark = f / 100.0f < 0.22f;
+    }
+
+    public boolean useDisplayFlashlight() {
+        DualCameraView dualCameraView;
+        if ((this.takingPhoto || this.takingVideo) && (dualCameraView = this.cameraView) != null && dualCameraView.isFrontface()) {
+            int i = this.frontfaceFlashMode;
+            if (i == 2) {
+                return true;
+            }
+            if (i == 1 && this.isDark) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public void showVideoTimer(final boolean z, boolean z2) {

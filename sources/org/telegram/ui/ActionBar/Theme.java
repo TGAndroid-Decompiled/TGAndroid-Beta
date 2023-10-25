@@ -2995,25 +2995,6 @@ public class Theme {
         return Color.HSVToColor(Color.alpha(i), tempHsv);
     }
 
-    public static int adaptHSV(int i, float f, float f2) {
-        float[] tempHsv = getTempHsv(5);
-        Color.colorToHSV(i, tempHsv);
-        tempHsv[1] = MathUtils.clamp(tempHsv[1] + f, 0.0f, 1.0f);
-        tempHsv[2] = MathUtils.clamp(tempHsv[2] + f2, 0.0f, 1.0f);
-        return Color.HSVToColor(Color.alpha(i), tempHsv);
-    }
-
-    public static int percentSV(int i, int i2, float f, float f2) {
-        float[] tempHsv = getTempHsv(5);
-        Color.colorToHSV(i2, tempHsv);
-        float f3 = tempHsv[1];
-        float f4 = tempHsv[2];
-        Color.colorToHSV(i, tempHsv);
-        tempHsv[1] = MathUtils.clamp(AndroidUtilities.lerp(tempHsv[1], f3, f), 0.0f, 1.0f);
-        tempHsv[2] = MathUtils.clamp(AndroidUtilities.lerp(tempHsv[2], f4, f2), 0.0f, 1.0f);
-        return Color.HSVToColor(AndroidUtilities.lerp(Color.alpha(i), Color.alpha(i2), 0.85f), tempHsv);
-    }
-
     public static int multAlpha(int i, float f) {
         return f == 1.0f ? i : ColorUtils.setAlphaComponent(i, MathUtils.clamp((int) (Color.alpha(i) * f), 0, 255));
     }
@@ -6768,8 +6749,8 @@ public class Theme {
             chat_attachButtonDrawables[4] = new RLottieDrawable(R.raw.attach_location, "attach_location", AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
             chat_attachButtonDrawables[5] = new RLottieDrawable(R.raw.attach_poll, "attach_poll", AndroidUtilities.dp(26.0f), AndroidUtilities.dp(26.0f));
             chat_attachEmptyDrawable = resources.getDrawable(R.drawable.nophotos3);
-            chat_shareIconDrawable = resources.getDrawable(R.drawable.share_arrow).mutate();
-            chat_replyIconDrawable = resources.getDrawable(R.drawable.fast_reply);
+            chat_shareIconDrawable = resources.getDrawable(R.drawable.filled_share).mutate();
+            chat_replyIconDrawable = resources.getDrawable(R.drawable.filled_reply);
             chat_goIconDrawable = resources.getDrawable(R.drawable.message_arrow);
             int dp = AndroidUtilities.dp(2.0f);
             RectF rectF = new RectF();

@@ -277,75 +277,87 @@ public class PushListenerController {
                     break;
                 }
                 break;
+            case 731873318:
+                if (str.equals("CHAT_REACT_GIVEAWAY")) {
+                    c = 20;
+                    break;
+                }
+                break;
+            case 932558943:
+                if (str.equals("REACT_GIVEAWAY")) {
+                    c = 21;
+                    break;
+                }
+                break;
             case 1149769750:
                 if (str.equals("CHAT_REACT_GEOLIVE")) {
-                    c = 20;
+                    c = 22;
                     break;
                 }
                 break;
             case 1606362326:
                 if (str.equals("REACT_AUDIO")) {
-                    c = 21;
+                    c = 23;
                     break;
                 }
                 break;
             case 1619838770:
                 if (str.equals("REACT_PHOTO")) {
-                    c = 22;
+                    c = 24;
                     break;
                 }
                 break;
             case 1621899918:
                 if (str.equals("REACT_ROUND")) {
-                    c = 23;
+                    c = 25;
                     break;
                 }
                 break;
             case 1625398651:
                 if (str.equals("REACT_VIDEO")) {
-                    c = 24;
+                    c = 26;
                     break;
                 }
                 break;
             case 1664242232:
                 if (str.equals("REACT_DOC")) {
-                    c = 25;
+                    c = 27;
                     break;
                 }
                 break;
             case 1664244817:
                 if (str.equals("REACT_GEO")) {
-                    c = 26;
+                    c = 28;
                     break;
                 }
                 break;
             case 1664244932:
                 if (str.equals("REACT_GIF")) {
-                    c = 27;
+                    c = 29;
                     break;
                 }
                 break;
             case 1683218969:
                 if (str.equals("CHAT_REACT_GAME")) {
-                    c = 28;
+                    c = 30;
                     break;
                 }
                 break;
             case 1683500518:
                 if (str.equals("CHAT_REACT_POLL")) {
-                    c = 29;
+                    c = 31;
                     break;
                 }
                 break;
             case 1683535996:
                 if (str.equals("CHAT_REACT_QUIZ")) {
-                    c = 30;
+                    c = ' ';
                     break;
                 }
                 break;
             case 1683610452:
                 if (str.equals("CHAT_REACT_TEXT")) {
-                    c = 31;
+                    c = '!';
                     break;
                 }
                 break;
@@ -392,28 +404,32 @@ public class PushListenerController {
             case 19:
                 return LocaleController.formatString("PushChatReactVideo", R.string.PushChatReactVideo, objArr);
             case 20:
-                return LocaleController.formatString("PushChatReactGeoLive", R.string.PushChatReactGeoLive, objArr);
+                return LocaleController.formatString("NotificationChatReactGiveaway", R.string.NotificationChatReactGiveaway, objArr);
             case 21:
-                return LocaleController.formatString("PushReactAudio", R.string.PushReactAudio, objArr);
+                return LocaleController.formatString("NotificationReactGiveaway", R.string.NotificationReactGiveaway, objArr);
             case 22:
-                return LocaleController.formatString("PushReactPhoto", R.string.PushReactPhoto, objArr);
+                return LocaleController.formatString("PushChatReactGeoLive", R.string.PushChatReactGeoLive, objArr);
             case 23:
-                return LocaleController.formatString("PushReactRound", R.string.PushReactRound, objArr);
+                return LocaleController.formatString("PushReactAudio", R.string.PushReactAudio, objArr);
             case 24:
-                return LocaleController.formatString("PushReactVideo", R.string.PushReactVideo, objArr);
+                return LocaleController.formatString("PushReactPhoto", R.string.PushReactPhoto, objArr);
             case 25:
-                return LocaleController.formatString("PushReactDoc", R.string.PushReactDoc, objArr);
+                return LocaleController.formatString("PushReactRound", R.string.PushReactRound, objArr);
             case MessageObject.TYPE_GIVEAWAY:
-                return LocaleController.formatString("PushReactGeo", R.string.PushReactGeo, objArr);
+                return LocaleController.formatString("PushReactVideo", R.string.PushReactVideo, objArr);
             case 27:
-                return LocaleController.formatString("PushReactGif", R.string.PushReactGif, objArr);
+                return LocaleController.formatString("PushReactDoc", R.string.PushReactDoc, objArr);
             case 28:
-                return LocaleController.formatString("PushChatReactGame", R.string.PushChatReactGame, objArr);
+                return LocaleController.formatString("PushReactGeo", R.string.PushReactGeo, objArr);
             case 29:
-                return LocaleController.formatString("PushChatReactPoll", R.string.PushChatReactPoll, objArr);
+                return LocaleController.formatString("PushReactGif", R.string.PushReactGif, objArr);
             case 30:
-                return LocaleController.formatString("PushChatReactQuiz", R.string.PushChatReactQuiz, objArr);
+                return LocaleController.formatString("PushChatReactGame", R.string.PushChatReactGame, objArr);
             case 31:
+                return LocaleController.formatString("PushChatReactPoll", R.string.PushChatReactPoll, objArr);
+            case ' ':
+                return LocaleController.formatString("PushChatReactQuiz", R.string.PushChatReactQuiz, objArr);
+            case '!':
                 return LocaleController.formatString("PushChatReactText", R.string.PushChatReactText, objArr);
             default:
                 return null;

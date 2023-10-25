@@ -903,7 +903,7 @@ public class ViewPagerFixed extends FrameLayout {
                 if (!TextUtils.equals(this.currentTab.title, this.currentText)) {
                     String str2 = this.currentTab.title;
                     this.currentText = str2;
-                    StaticLayout staticLayout = new StaticLayout(Emoji.replaceEmoji(str2, TabsView.this.textPaint.getFontMetricsInt(), AndroidUtilities.dp(15.0f), false), TabsView.this.textPaint, AndroidUtilities.dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                    StaticLayout staticLayout = new StaticLayout(Emoji.replaceEmoji((CharSequence) str2, TabsView.this.textPaint.getFontMetricsInt(), AndroidUtilities.dp(15.0f), false), TabsView.this.textPaint, AndroidUtilities.dp(400.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                     this.textLayout = staticLayout;
                     this.textHeight = staticLayout.getHeight();
                     this.textOffsetX = (int) (-this.textLayout.getLineLeft(0));

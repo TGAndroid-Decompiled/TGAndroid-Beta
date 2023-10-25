@@ -820,13 +820,6 @@ public class AnimatedEmojiDrawable extends Drawable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.AnimatedEmojiDrawable.isDefaultStatusEmoji():boolean");
     }
 
-    public static boolean isDefaultStatusEmoji(Drawable drawable) {
-        if (drawable instanceof AnimatedEmojiDrawable) {
-            return isDefaultStatusEmoji((AnimatedEmojiDrawable) drawable);
-        }
-        return false;
-    }
-
     public static boolean isDefaultStatusEmoji(AnimatedEmojiDrawable animatedEmojiDrawable) {
         return animatedEmojiDrawable != null && animatedEmojiDrawable.isDefaultStatusEmoji();
     }

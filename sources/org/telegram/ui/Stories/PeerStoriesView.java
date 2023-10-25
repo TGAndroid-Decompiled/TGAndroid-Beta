@@ -4340,7 +4340,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                     TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities = peerStoriesView2.currentStory.storyItem.translatedText;
                     String str = tLRPC$TL_textWithEntities.text;
                     this.caption = str;
-                    CharSequence replaceEmoji2 = Emoji.replaceEmoji(str, peerStoriesView2.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
+                    CharSequence replaceEmoji2 = Emoji.replaceEmoji((CharSequence) str, peerStoriesView2.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
                     this.caption = replaceEmoji2;
                     if (replaceEmoji2 == null || tLRPC$TL_textWithEntities.entities == null) {
                         return;
@@ -4358,7 +4358,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
                 PeerStoriesView peerStoriesView3 = PeerStoriesView.this;
                 String str2 = peerStoriesView3.currentStory.storyItem.caption;
                 this.caption = str2;
-                CharSequence replaceEmoji3 = Emoji.replaceEmoji(str2, peerStoriesView3.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
+                CharSequence replaceEmoji3 = Emoji.replaceEmoji((CharSequence) str2, peerStoriesView3.storyCaptionView.captionTextview.getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
                 this.caption = replaceEmoji3;
                 if (replaceEmoji3 == null || PeerStoriesView.this.currentStory.storyItem.entities == null) {
                     return;

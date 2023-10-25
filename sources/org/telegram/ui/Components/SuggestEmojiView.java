@@ -735,7 +735,7 @@ public class SuggestEmojiView extends FrameLayout implements NotificationCenter.
                 return null;
             }
         }
-        return Emoji.replaceEmoji(str, fontMetricsInt, AndroidUtilities.dp(20.0f), true);
+        return Emoji.replaceEmoji((CharSequence) str, fontMetricsInt, AndroidUtilities.dp(20.0f), true);
     }
 
     private void onClick(String str) {

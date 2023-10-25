@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DispatchQueue;
@@ -764,7 +765,14 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
         if (tLObject instanceof TLRPC$messages_Chats) {
             TLRPC$messages_Chats tLRPC$messages_Chats = (TLRPC$messages_Chats) tLObject;
             getMessagesController().putChats(tLRPC$messages_Chats.chats, false);
-            this.chats = tLRPC$messages_Chats.chats;
+            ArrayList<TLRPC$Chat> arrayList = tLRPC$messages_Chats.chats;
+            this.chats = arrayList;
+            Iterator<TLRPC$Chat> it = arrayList.iterator();
+            while (it.hasNext()) {
+                if (ChatObject.isForum(it.next())) {
+                    it.remove();
+                }
+            }
         }
         this.loadingChats = false;
         this.chatsLoaded = true;

@@ -561,7 +561,7 @@ public class AvatarDrawable extends Drawable {
             if (this.invalidateTextLayout) {
                 this.invalidateTextLayout = false;
                 if (this.stringBuilder.length() > 0) {
-                    CharSequence replaceEmoji = Emoji.replaceEmoji(this.stringBuilder.toString().toUpperCase(), this.namePaint.getFontMetricsInt(), AndroidUtilities.dp(16.0f), true);
+                    CharSequence replaceEmoji = Emoji.replaceEmoji((CharSequence) this.stringBuilder.toString().toUpperCase(), this.namePaint.getFontMetricsInt(), AndroidUtilities.dp(16.0f), true);
                     StaticLayout staticLayout = this.textLayout;
                     if (staticLayout == null || !TextUtils.equals(replaceEmoji, staticLayout.getText())) {
                         try {

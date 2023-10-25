@@ -390,7 +390,7 @@ public class ChannelBoostLayout extends FrameLayout {
         if (this.boostsStatus != null) {
             this.items.add(new ItemInternal(this, 4, false));
             this.items.add(new ItemInternal(this, 1, LocaleController.getString("StatisticOverview", R.string.StatisticOverview)));
-            this.items.add(new ItemInternal(this, 0, true));
+            this.items.add(new ItemInternal(this, 0, false));
             this.items.add(new ItemInternal(this, 2, false));
             if (this.boostsStatus.prepaid_giveaways.size() > 0) {
                 this.items.add(new ItemInternal(this, 12, LocaleController.getString("BoostingPreparedGiveaways", R.string.BoostingPreparedGiveaways)));

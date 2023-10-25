@@ -131,6 +131,11 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     @Override
+    public void onDismissAnimationStart() {
+        this.undoView.animate().alpha(0.0f).setDuration(150L).start();
+    }
+
+    @Override
     protected CharSequence getTitle() {
         return this.isUnused ? LocaleController.getString("BoostingGiftLink", R.string.BoostingGiftLink) : LocaleController.getString("BoostingUsedGiftLink", R.string.BoostingUsedGiftLink);
     }

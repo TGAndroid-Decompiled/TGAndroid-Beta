@@ -1321,12 +1321,17 @@ public class StoriesController {
         }
     }
 
-    public void deleteStories(ArrayList<TL_stories$StoryItem> arrayList) {
+    public void deleteStories(long j, ArrayList<TL_stories$StoryItem> arrayList) {
         if (arrayList == null) {
             return;
         }
         TL_stories$TL_stories_deleteStories tL_stories$TL_stories_deleteStories = new TL_stories$TL_stories_deleteStories();
-        TL_stories$PeerStories tL_stories$PeerStories = this.allStoriesMap.get(getSelfUserId());
+        TLRPC$InputPeer inputPeer = MessagesController.getInstance(this.currentAccount).getInputPeer(j);
+        tL_stories$TL_stories_deleteStories.peer = inputPeer;
+        if (inputPeer == null) {
+            return;
+        }
+        TL_stories$PeerStories tL_stories$PeerStories = this.allStoriesMap.get(j);
         for (int i = 0; i < arrayList.size(); i++) {
             TL_stories$StoryItem tL_stories$StoryItem = arrayList.get(i);
             if (!(tL_stories$StoryItem instanceof TL_stories$TL_storyItemDeleted)) {
@@ -1338,7 +1343,7 @@ public class StoriesController {
                         } else if (tL_stories$PeerStories.stories.get(i2).id == tL_stories$StoryItem.id) {
                             tL_stories$PeerStories.stories.remove(i2);
                             if (tL_stories$PeerStories.stories.isEmpty()) {
-                                this.allStoriesMap.remove(getSelfUserId());
+                                this.allStoriesMap.remove(j);
                             }
                         } else {
                             i2++;
@@ -1354,8 +1359,8 @@ public class StoriesController {
                 StoriesController.this.lambda$deleteStories$14(tLObject, tLRPC$TL_error);
             }
         });
-        updateDeletedStoriesInLists(getSelfUserId(), arrayList);
-        this.storiesStorage.deleteStories(getSelfUserId(), tL_stories$TL_stories_deleteStories.id);
+        updateDeletedStoriesInLists(j, arrayList);
+        this.storiesStorage.deleteStories(j, tL_stories$TL_stories_deleteStories.id);
         NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
     }
 
@@ -2409,13 +2414,17 @@ public class StoriesController {
                 final long j = this.dialogId;
                 if (this.canceled) {
                     TL_stories$TL_stories_deleteStories tL_stories$TL_stories_deleteStories = new TL_stories$TL_stories_deleteStories();
-                    tL_stories$TL_stories_deleteStories.id.add(Integer.valueOf(i));
-                    ConnectionsManager.getInstance(StoriesController.this.currentAccount).sendRequest(tL_stories$TL_stories_deleteStories, new RequestDelegate() {
-                        @Override
-                        public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
-                            StoriesController.UploadingStory.this.lambda$sendUploadedRequest$3(tLObject2, tLRPC$TL_error2);
-                        }
-                    });
+                    TLRPC$InputPeer inputPeer = MessagesController.getInstance(StoriesController.this.currentAccount).getInputPeer(this.dialogId);
+                    tL_stories$TL_stories_deleteStories.peer = inputPeer;
+                    if (inputPeer != null) {
+                        tL_stories$TL_stories_deleteStories.id.add(Integer.valueOf(i));
+                        ConnectionsManager.getInstance(StoriesController.this.currentAccount).sendRequest(tL_stories$TL_stories_deleteStories, new RequestDelegate() {
+                            @Override
+                            public final void run(TLObject tLObject2, TLRPC$TL_error tLRPC$TL_error2) {
+                                StoriesController.UploadingStory.this.lambda$sendUploadedRequest$3(tLObject2, tLRPC$TL_error2);
+                            }
+                        });
+                    }
                 } else {
                     if ((i == 0 || this.edit) && tL_stories$StoryItem != null) {
                         final TL_stories$TL_updateStory tL_stories$TL_updateStory = new TL_stories$TL_updateStory();

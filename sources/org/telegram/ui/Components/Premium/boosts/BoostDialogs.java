@@ -43,6 +43,7 @@ import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.BottomSheet;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AlertsCreator;
+import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.NumberPicker;
@@ -70,8 +71,14 @@ public class BoostDialogs {
     public static void lambda$showAboutEnd$18(DialogInterface dialogInterface, int i) {
     }
 
+    public static void lambda$showBulletinAbout$27(TLRPC$TL_error tLRPC$TL_error) {
+    }
+
     public static boolean lambda$showDatePicker$3(View view, MotionEvent motionEvent) {
         return true;
+    }
+
+    public static void lambda$showMoreBoostsNeeded$28(DialogInterface dialogInterface, int i) {
     }
 
     public static void lambda$showPrivateChannelAlert$20(DialogInterface dialogInterface, int i) {
@@ -681,5 +688,80 @@ public class BoostDialogs {
             return;
         }
         progress.end();
+    }
+
+    public static void showBulletinAbout(final MessageObject messageObject) {
+        if (messageObject == null) {
+            return;
+        }
+        BoostRepository.getGiveawayInfo(messageObject, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                BoostDialogs.lambda$showBulletinAbout$26(MessageObject.this, (TLRPC$payments_GiveawayInfo) obj);
+            }
+        }, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                BoostDialogs.lambda$showBulletinAbout$27((TLRPC$TL_error) obj);
+            }
+        });
+    }
+
+    public static void lambda$showBulletinAbout$26(MessageObject messageObject, final TLRPC$payments_GiveawayInfo tLRPC$payments_GiveawayInfo) {
+        final TLRPC$TL_messageMediaGiveaway tLRPC$TL_messageMediaGiveaway = (TLRPC$TL_messageMediaGiveaway) messageObject.messageOwner.media;
+        final long fromChatId = messageObject.getFromChatId();
+        final long j = 1000 * messageObject.messageOwner.date;
+        final BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment == null) {
+            return;
+        }
+        Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(lastFragment.getParentActivity(), lastFragment.getResourceProvider());
+        if (tLRPC$payments_GiveawayInfo instanceof TLRPC$TL_payments_giveawayInfoResults) {
+            lottieLayout.setAnimation(R.raw.chats_infotip, 36, 36, new String[0]);
+            lottieLayout.textView.setText(LocaleController.getString("BoostingGiveawayShortStatusEnded", R.string.BoostingGiveawayShortStatusEnded));
+        } else if (tLRPC$payments_GiveawayInfo instanceof TLRPC$TL_payments_giveawayInfo) {
+            if (((TLRPC$TL_payments_giveawayInfo) tLRPC$payments_GiveawayInfo).participating) {
+                lottieLayout.setAnimation(R.raw.forward, 36, 36, new String[0]);
+                lottieLayout.textView.setText(LocaleController.getString("BoostingGiveawayShortStatusParticipating", R.string.BoostingGiveawayShortStatusParticipating));
+            } else {
+                lottieLayout.setAnimation(R.raw.chats_infotip, 36, 36, new String[0]);
+                lottieLayout.textView.setText(LocaleController.getString("BoostingGiveawayShortStatusNotParticipating", R.string.BoostingGiveawayShortStatusNotParticipating));
+            }
+        }
+        lottieLayout.textView.setSingleLine(false);
+        lottieLayout.textView.setMaxLines(2);
+        lottieLayout.setButton(new Bulletin.UndoButton(lastFragment.getParentActivity(), true, lastFragment.getResourceProvider()).setText(LocaleController.getString("LearnMore", R.string.LearnMore)).setUndoAction(new Runnable() {
+            @Override
+            public final void run() {
+                BoostDialogs.lambda$showBulletinAbout$25(TLRPC$payments_GiveawayInfo.this, fromChatId, j, tLRPC$TL_messageMediaGiveaway, lastFragment);
+            }
+        }));
+        Bulletin.make(lastFragment, lottieLayout, 2750).show();
+    }
+
+    public static void lambda$showBulletinAbout$25(TLRPC$payments_GiveawayInfo tLRPC$payments_GiveawayInfo, long j, long j2, TLRPC$TL_messageMediaGiveaway tLRPC$TL_messageMediaGiveaway, BaseFragment baseFragment) {
+        if (tLRPC$payments_GiveawayInfo instanceof TLRPC$TL_payments_giveawayInfo) {
+            showAbout(j, j2, (TLRPC$TL_payments_giveawayInfo) tLRPC$payments_GiveawayInfo, tLRPC$TL_messageMediaGiveaway, baseFragment.getParentActivity(), baseFragment.getResourceProvider());
+        } else if (tLRPC$payments_GiveawayInfo instanceof TLRPC$TL_payments_giveawayInfoResults) {
+            showAboutEnd(j, j2, (TLRPC$TL_payments_giveawayInfoResults) tLRPC$payments_GiveawayInfo, tLRPC$TL_messageMediaGiveaway, baseFragment.getParentActivity(), baseFragment.getResourceProvider());
+        }
+    }
+
+    public static void showMoreBoostsNeeded(long j) {
+        TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-j));
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment == null) {
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), lastFragment.getResourceProvider());
+        builder.setTitle(LocaleController.getString("BoostingMoreBoostsNeeded", R.string.BoostingMoreBoostsNeeded));
+        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGetMoreBoostByGifting", R.string.BoostingGetMoreBoostByGifting, chat.title)));
+        builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                BoostDialogs.lambda$showMoreBoostsNeeded$28(dialogInterface, i);
+            }
+        });
+        builder.show();
     }
 }

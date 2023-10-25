@@ -1,10 +1,13 @@
 package org.telegram.ui.Components.Premium.boosts;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
@@ -50,6 +54,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     private final SelectorBtnCell buttonContainer;
     private final TLRPC$Chat currentChat;
     private final List<TL_stories$TL_myBoost> selectedBoosts;
+    private CountDownTimer timer;
     private TopCell topCell;
     private UndoView undoView;
 
@@ -139,13 +144,15 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         }
         this.actionButton.setLoading(true);
         final ArrayList arrayList = new ArrayList();
+        final HashSet hashSet = new HashSet();
         for (TL_stories$TL_myBoost tL_stories$TL_myBoost : this.selectedBoosts) {
             arrayList.add(Integer.valueOf(tL_stories$TL_myBoost.slot));
+            hashSet.add(Long.valueOf(DialogObject.getPeerDialogId(tL_stories$TL_myBoost.peer)));
         }
         BoostRepository.applyBoost(tLRPC$Chat.id, arrayList, new Utilities.Callback() {
             @Override
             public final void run(Object obj) {
-                ReassignBoostBottomSheet.this.lambda$new$0(arrayList, (TL_stories$TL_premium_myBoosts) obj);
+                ReassignBoostBottomSheet.this.lambda$new$0(arrayList, hashSet, (TL_stories$TL_premium_myBoosts) obj);
             }
         }, new Utilities.Callback() {
             @Override
@@ -155,9 +162,9 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         });
     }
 
-    public void lambda$new$0(List list, TL_stories$TL_premium_myBoosts tL_stories$TL_premium_myBoosts) {
+    public void lambda$new$0(List list, HashSet hashSet, TL_stories$TL_premium_myBoosts tL_stories$TL_premium_myBoosts) {
         dismiss();
-        NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostedChannelByUser, tL_stories$TL_premium_myBoosts, Integer.valueOf(list.size()));
+        NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostedChannelByUser, tL_stories$TL_premium_myBoosts, Integer.valueOf(list.size()), Integer.valueOf(hashSet.size()));
     }
 
     public void lambda$new$1(TLRPC$TL_error tLRPC$TL_error) {
@@ -181,6 +188,63 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             updateActionButton(true);
             this.topCell.showBoosts(this.selectedBoosts, tLRPC$Chat);
         }
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.timer = new CountDownTimer(Long.MAX_VALUE, 1000L) {
+            @Override
+            public void onFinish() {
+            }
+
+            @Override
+            public void onTick(long j) {
+                int i;
+                ArrayList arrayList = new ArrayList(ReassignBoostBottomSheet.this.allUsedBoosts.size());
+                Iterator it = ReassignBoostBottomSheet.this.allUsedBoosts.iterator();
+                while (true) {
+                    if (!it.hasNext()) {
+                        break;
+                    }
+                    TL_stories$TL_myBoost tL_stories$TL_myBoost = (TL_stories$TL_myBoost) it.next();
+                    if (tL_stories$TL_myBoost.cooldown_until_date > 0) {
+                        arrayList.add(tL_stories$TL_myBoost);
+                    }
+                    if (tL_stories$TL_myBoost.cooldown_until_date * 1000 < System.currentTimeMillis()) {
+                        tL_stories$TL_myBoost.cooldown_until_date = 0;
+                    }
+                }
+                if (arrayList.isEmpty()) {
+                    return;
+                }
+                for (i = 0; i < ((BottomSheetWithRecyclerListView) ReassignBoostBottomSheet.this).recyclerListView.getChildCount(); i++) {
+                    View childAt = ((BottomSheetWithRecyclerListView) ReassignBoostBottomSheet.this).recyclerListView.getChildAt(i);
+                    if (childAt instanceof SelectorUserCell) {
+                        SelectorUserCell selectorUserCell = (SelectorUserCell) childAt;
+                        if (arrayList.contains(selectorUserCell.getBoost())) {
+                            selectorUserCell.updateTimer();
+                        }
+                    }
+                }
+            }
+        };
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.timer.cancel();
+    }
+
+    @Override
+    public void onDismissAnimationStart() {
+        this.undoView.animate().alpha(0.0f).setDuration(150L).start();
+    }
+
+    @Override
+    public void onOpenAnimationEnd() {
+        this.timer.start();
     }
 
     private void updateActionButton(boolean z) {
@@ -269,46 +333,36 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     public static class TopCell extends LinearLayout {
+        private final List<TLRPC$Chat> addedChats;
         private final ArrowView arrowView;
         private final FrameLayout avatarsContainer;
-        private final BoostIconView boostIconView;
+        private final FrameLayout avatarsWrapper;
         private final TextView description;
-        private final AvatarHolderView fromAvatar1;
-        private final AvatarHolderView fromAvatar2;
-        private final AvatarHolderView fromAvatar3;
         private final AvatarHolderView toAvatar;
 
         public TopCell(Context context) {
             super(context);
+            this.addedChats = new ArrayList();
             setOrientation(1);
             FrameLayout frameLayout = new FrameLayout(getContext());
             this.avatarsContainer = frameLayout;
             frameLayout.setClipChildren(false);
-            AvatarHolderView avatarHolderView = new AvatarHolderView(context);
-            this.fromAvatar1 = avatarHolderView;
-            AvatarHolderView avatarHolderView2 = new AvatarHolderView(context);
-            this.fromAvatar2 = avatarHolderView2;
-            AvatarHolderView avatarHolderView3 = new AvatarHolderView(context);
-            this.fromAvatar3 = avatarHolderView3;
-            frameLayout.addView(avatarHolderView3, LayoutHelper.createFrame(60, 60, 17));
-            frameLayout.addView(avatarHolderView2, LayoutHelper.createFrame(60, 60, 17));
-            frameLayout.addView(avatarHolderView, LayoutHelper.createFrame(60, 60, 17));
-            BoostIconView boostIconView = new BoostIconView(context);
-            this.boostIconView = boostIconView;
-            frameLayout.addView(boostIconView, LayoutHelper.createFrame(28, 28, 17));
+            FrameLayout frameLayout2 = new FrameLayout(getContext());
+            this.avatarsWrapper = frameLayout2;
+            frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 70.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
             ArrowView arrowView = new ArrowView(context);
             this.arrowView = arrowView;
             frameLayout.addView(arrowView, LayoutHelper.createFrame(24, 24, 17));
-            AvatarHolderView avatarHolderView4 = new AvatarHolderView(context);
-            this.toAvatar = avatarHolderView4;
-            frameLayout.addView(avatarHolderView4, LayoutHelper.createFrame(60, 60, 17));
-            addView(frameLayout, LayoutHelper.createLinear(-1, -2, 0.0f, 20.0f, 0.0f, 0.0f));
+            AvatarHolderView avatarHolderView = new AvatarHolderView(context);
+            this.toAvatar = avatarHolderView;
+            frameLayout.addView(avatarHolderView, LayoutHelper.createFrame(70, 70, 17));
+            addView(frameLayout, LayoutHelper.createLinear(-1, -2, 0.0f, 15.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView.setText(LocaleController.getString("BoostingReassignBoost", R.string.BoostingReassignBoost));
             textView.setTextSize(1, 20.0f);
             textView.setTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteBlackText));
-            addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 20, 0, 7));
+            addView(textView, LayoutHelper.createLinear(-2, -2, 1, 0, 15, 0, 7));
             TextView textView2 = new TextView(context);
             this.description = textView2;
             textView2.setTextSize(1, 14.0f);
@@ -321,8 +375,9 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         public void setData(TLRPC$Chat tLRPC$Chat) {
             TextView textView = this.description;
             int i = R.string.BoostingReassignBoostText;
-            Object[] objArr = new Object[1];
+            Object[] objArr = new Object[2];
             objArr[0] = tLRPC$Chat == null ? "" : tLRPC$Chat.title;
+            objArr[1] = Integer.valueOf(BoostRepository.boostsPerSentGift());
             textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReassignBoostText", i, objArr)));
         }
 
@@ -335,43 +390,95 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         }
 
         public void showChats(List<TLRPC$Chat> list, TLRPC$Chat tLRPC$Chat) {
-            int size = list.size();
-            if (size == 0) {
-                this.fromAvatar1.animate().translationX(0.0f).start();
-                this.fromAvatar2.animate().translationX(0.0f).start();
-                this.fromAvatar3.animate().translationX(0.0f).start();
-                this.boostIconView.animate().translationX(0.0f).translationY(AndroidUtilities.dp(17.0f)).start();
-                this.toAvatar.animate().translationX(0.0f).start();
-                this.avatarsContainer.animate().translationX(0.0f).start();
-            } else if (size == 1) {
-                this.fromAvatar1.setChat(list.get(0));
-                this.fromAvatar1.animate().translationX(-AndroidUtilities.dp(48.0f)).start();
-                this.fromAvatar2.animate().translationX(-AndroidUtilities.dp(48.0f)).start();
-                this.fromAvatar3.animate().translationX(-AndroidUtilities.dp(48.0f)).start();
-                this.boostIconView.animate().translationX(-AndroidUtilities.dp(26.0f)).translationY(AndroidUtilities.dp(17.0f)).start();
-                this.toAvatar.animate().translationX(AndroidUtilities.dp(48.0f)).start();
-                this.avatarsContainer.animate().translationX(0.0f).start();
-            } else if (size == 2) {
-                this.fromAvatar1.setChat(list.get(0));
-                this.fromAvatar2.setChat(list.get(1));
-                this.fromAvatar1.animate().translationX(-AndroidUtilities.dp(48.0f)).start();
-                this.fromAvatar2.animate().translationX(-AndroidUtilities.dp(70.0f)).start();
-                this.fromAvatar3.animate().translationX(-AndroidUtilities.dp(70.0f)).start();
-                this.boostIconView.animate().translationX(-AndroidUtilities.dp(26.0f)).translationY(AndroidUtilities.dp(17.0f)).start();
-                this.toAvatar.animate().translationX(AndroidUtilities.dp(48.0f)).start();
-                this.avatarsContainer.animate().translationX(AndroidUtilities.dp(11.0f)).start();
-            } else {
-                this.fromAvatar1.setChat(list.get(0));
-                this.fromAvatar2.setChat(list.get(1));
-                this.fromAvatar3.setChat(list.get(2));
-                this.fromAvatar1.animate().translationX(-AndroidUtilities.dp(48.0f)).start();
-                this.fromAvatar2.animate().translationX(-AndroidUtilities.dp(70.0f)).start();
-                this.fromAvatar3.animate().translationX(-AndroidUtilities.dp(92.0f)).start();
-                this.boostIconView.animate().translationX(-AndroidUtilities.dp(26.0f)).translationY(AndroidUtilities.dp(17.0f)).start();
-                this.toAvatar.animate().translationX(AndroidUtilities.dp(48.0f)).start();
-                this.avatarsContainer.animate().translationX(AndroidUtilities.dp(22.0f)).start();
+            float f;
+            ArrayList<TLRPC$Chat> arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            for (TLRPC$Chat tLRPC$Chat2 : list) {
+                if (!this.addedChats.contains(tLRPC$Chat2)) {
+                    arrayList2.add(tLRPC$Chat2);
+                }
+            }
+            for (TLRPC$Chat tLRPC$Chat3 : this.addedChats) {
+                if (!list.contains(tLRPC$Chat3)) {
+                    arrayList.add(tLRPC$Chat3);
+                }
+            }
+            Iterator it = arrayList2.iterator();
+            while (true) {
+                f = 0.1f;
+                if (!it.hasNext()) {
+                    break;
+                }
+                AvatarHolderView avatarHolderView = new AvatarHolderView(getContext());
+                avatarHolderView.setChat((TLRPC$Chat) it.next());
+                int childCount = this.avatarsWrapper.getChildCount();
+                this.avatarsWrapper.addView(avatarHolderView, 0, LayoutHelper.createFrame(70, 70, 17));
+                avatarHolderView.setTranslationX((-childCount) * 60);
+                avatarHolderView.setAlpha(0.0f);
+                avatarHolderView.setScaleX(0.1f);
+                avatarHolderView.setScaleY(0.1f);
+                avatarHolderView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
+                if (childCount == 0) {
+                    avatarHolderView.boostIconView.setScaleY(1.0f);
+                    avatarHolderView.boostIconView.setScaleX(1.0f);
+                    avatarHolderView.boostIconView.setAlpha(1.0f);
+                }
+            }
+            for (TLRPC$Chat tLRPC$Chat4 : arrayList) {
+                final AvatarHolderView avatarHolderView2 = null;
+                ArrayList<AvatarHolderView> arrayList3 = new ArrayList();
+                int i = 0;
+                while (true) {
+                    if (i >= this.avatarsWrapper.getChildCount()) {
+                        break;
+                    }
+                    AvatarHolderView avatarHolderView3 = (AvatarHolderView) this.avatarsWrapper.getChildAt(i);
+                    if (avatarHolderView3.chat == tLRPC$Chat4) {
+                        avatarHolderView2 = avatarHolderView3;
+                        break;
+                    }
+                    i++;
+                }
+                for (int i2 = 0; i2 < this.avatarsWrapper.getChildCount(); i2++) {
+                    arrayList3.add((AvatarHolderView) this.avatarsWrapper.getChildAt(i2));
+                }
+                if (avatarHolderView2 != null) {
+                    avatarHolderView2.animate().alpha(0.0f).translationXBy(60.0f).scaleX(f).scaleY(f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animator) {
+                            TopCell.this.avatarsWrapper.removeView(avatarHolderView2);
+                        }
+                    }).start();
+                    int i3 = 0;
+                    for (AvatarHolderView avatarHolderView4 : arrayList3) {
+                        int size = arrayList3.size() - 1;
+                        if (avatarHolderView4 != avatarHolderView2) {
+                            int i4 = i3 + 1;
+                            avatarHolderView4.animate().translationX((-(size - i4)) * 60).setDuration(300L).start();
+                            i3 = i4;
+                        }
+                    }
+                    if (arrayList3.get(arrayList3.size() - 1) == avatarHolderView2 && arrayList3.size() > 1) {
+                        ((AvatarHolderView) arrayList3.get(arrayList3.size() - 2)).boostIconView.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
+                    }
+                }
+                f = 0.1f;
             }
             this.toAvatar.setChat(tLRPC$Chat);
+            this.addedChats.removeAll(arrayList);
+            this.addedChats.addAll(arrayList2);
+            if (this.addedChats.isEmpty() || this.addedChats.size() == 1) {
+                this.avatarsContainer.animate().translationX(0.0f).start();
+            } else {
+                this.avatarsContainer.animate().translationX(AndroidUtilities.dp(11.0f) * (this.addedChats.size() - 1)).start();
+            }
+            if (this.addedChats.isEmpty()) {
+                this.avatarsWrapper.animate().translationX(0.0f).setDuration(150L).start();
+                this.toAvatar.animate().translationX(0.0f).setDuration(150L).start();
+                return;
+            }
+            this.avatarsWrapper.animate().translationX(-AndroidUtilities.dp(48.0f)).setDuration(150L).start();
+            this.toAvatar.animate().translationX(AndroidUtilities.dp(48.0f)).setDuration(150L).start();
         }
     }
 
@@ -387,6 +494,8 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
 
     public static class AvatarHolderView extends FrameLayout {
         private final Paint bgPaint;
+        private final BoostIconView boostIconView;
+        public TLRPC$Chat chat;
         private final BackupImageView imageView;
 
         public AvatarHolderView(Context context) {
@@ -396,11 +505,18 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             BackupImageView backupImageView = new BackupImageView(getContext());
             this.imageView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(30.0f));
-            addView(backupImageView);
+            BoostIconView boostIconView = new BoostIconView(context);
+            this.boostIconView = boostIconView;
+            boostIconView.setAlpha(0.0f);
+            boostIconView.setScaleX(0.1f);
+            boostIconView.setScaleY(0.1f);
+            addView(backupImageView, LayoutHelper.createFrame(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
+            addView(boostIconView, LayoutHelper.createFrame(28, 28.0f, 85, 0.0f, 0.0f, 0.0f, 3.0f));
             paint.setColor(Theme.getColor(Theme.key_dialogBackground));
         }
 
         public void setChat(TLRPC$Chat tLRPC$Chat) {
+            this.chat = tLRPC$Chat;
             AvatarDrawable avatarDrawable = new AvatarDrawable();
             avatarDrawable.setInfo(tLRPC$Chat);
             this.imageView.setForUserOrChat(tLRPC$Chat, avatarDrawable);
@@ -408,7 +524,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(3.0f), this.bgPaint);
+            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(3.0f), this.bgPaint);
             super.dispatchDraw(canvas);
         }
     }

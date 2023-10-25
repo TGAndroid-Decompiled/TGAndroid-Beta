@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -24,6 +25,7 @@ import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
@@ -31,10 +33,12 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
 import org.telegram.tgnet.TLRPC$ChatFull;
+import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$InputChannel;
 import org.telegram.tgnet.TLRPC$TL_account_updateColor;
 import org.telegram.tgnet.TLRPC$TL_channels_updateColor;
@@ -133,6 +137,9 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
         });
         getMediaDataController().loadReplyIcons();
+        if (MessagesController.getInstance(this.currentAccount).peerColors == null && BuildVars.DEBUG_PRIVATE_VERSION) {
+            MessagesController.getInstance(this.currentAccount).loadAppConfig(true);
+        }
         return super.onFragmentCreate();
     }
 
@@ -238,7 +245,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 themePreviewMessagesCell.fragment = PeerColorActivity.this;
                 setReplyIconCell = themePreviewMessagesCell;
             } else if (i == 1) {
-                final PeerColorPicker peerColorPicker = PeerColorActivity.this.peerColorPicker = new PeerColorPicker(this.val$context, PeerColorActivity.this.getResourceProvider());
+                final PeerColorPicker peerColorPicker = PeerColorActivity.this.peerColorPicker = new PeerColorPicker(this.val$context, ((BaseFragment) PeerColorActivity.this).currentAccount, PeerColorActivity.this.getResourceProvider());
                 peerColorPicker.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, PeerColorActivity.this.getResourceProvider()));
                 peerColorPicker.setSelected(PeerColorActivity.this.selectedColor);
                 peerColorPicker.layoutManager.scrollToPositionWithOffset(peerColorPicker.selectedPosition, AndroidUtilities.displaySize.x / 2);
@@ -269,7 +276,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
 
         public void lambda$onCreateViewHolder$0(PeerColorPicker peerColorPicker, View view, int i) {
-            PeerColorActivity.this.selectedColor = peerColorPicker.toColor(i);
+            PeerColorActivity.this.selectedColor = peerColorPicker.toColorId(i);
             peerColorPicker.setSelectedPosition(i);
             if (view.getLeft() - peerColorPicker.getPaddingLeft() < AndroidUtilities.dp(24.0f)) {
                 peerColorPicker.smoothScrollBy(i == 0 ? Math.max(-(view.getLeft() - peerColorPicker.getPaddingLeft()), -AndroidUtilities.dp(64.0f)) : -AndroidUtilities.dp(64.0f), 0);
@@ -529,7 +536,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 if (cells[i] != null && (messageObject = cells[i].getMessageObject()) != null) {
                     PeerColorPicker peerColorPicker = this.peerColorPicker;
                     if (peerColorPicker != null) {
-                        messageObject.overrideLinkColor = peerColorPicker.getColor();
+                        messageObject.overrideLinkColor = peerColorPicker.getColorId();
                     }
                     messageObject.overrideLinkEmoji = this.selectedEmoji;
                     cells[i].setAvatar(messageObject);
@@ -582,15 +589,26 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         protected void dispatchDraw(Canvas canvas) {
             super.dispatchDraw(canvas);
             updateImageBounds();
-            AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = this.imageDrawable;
-            PeerColorActivity peerColorActivity = PeerColorActivity.this;
-            swapAnimatedEmojiDrawable.setColor(Integer.valueOf(peerColorActivity.getThemedColor(AvatarDrawable.getNameColorKey1For(peerColorActivity.selectedColor))));
+            this.imageDrawable.setColor(Integer.valueOf(getColor()));
             Text text = this.offText;
             if (text != null) {
                 text.draw(canvas, (getMeasuredWidth() - this.offText.getWidth()) - AndroidUtilities.dp(19.0f), getMeasuredHeight() / 2.0f, PeerColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlueText4), 1.0f);
             } else {
                 this.imageDrawable.draw(canvas);
             }
+        }
+
+        public int getColor() {
+            MessagesController.PeerColor color;
+            if (PeerColorActivity.this.selectedColor >= 7) {
+                MessagesController.PeerColors peerColors = MessagesController.getInstance(((BaseFragment) PeerColorActivity.this).currentAccount).peerColors;
+                if (peerColors != null && (color = peerColors.getColor(PeerColorActivity.this.selectedColor)) != null) {
+                    return color.getColor1();
+                }
+                return PeerColorActivity.this.getThemedColor(AvatarDrawable.getNameColorKey1For(0));
+            }
+            PeerColorActivity peerColorActivity = PeerColorActivity.this;
+            return peerColorActivity.getThemedColor(AvatarDrawable.getNameColorKey1For(peerColorActivity.selectedColor));
         }
 
         @Override
@@ -611,8 +629,64 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public void showSelectStatusDialog(final org.telegram.ui.PeerColorActivity.SetReplyIconCell r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PeerColorActivity.showSelectStatusDialog(org.telegram.ui.PeerColorActivity$SetReplyIconCell):void");
+    public void showSelectStatusDialog(final SetReplyIconCell setReplyIconCell) {
+        int i;
+        int i2;
+        if (this.selectAnimatedEmojiDialog != null || setReplyIconCell == null) {
+            return;
+        }
+        final SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[] selectAnimatedEmojiDialogWindowArr = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow[1];
+        int min = (int) Math.min(AndroidUtilities.dp(330.0f), AndroidUtilities.displaySize.y * 0.75f);
+        int min2 = (int) Math.min(AndroidUtilities.dp(324.0f), AndroidUtilities.displaySize.x * 0.95f);
+        AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable swapAnimatedEmojiDrawable = setReplyIconCell.imageDrawable;
+        if (setReplyIconCell.imageDrawable != null) {
+            setReplyIconCell.imageDrawable.play();
+            setReplyIconCell.updateImageBounds();
+            Rect rect = AndroidUtilities.rectTmp2;
+            rect.set(setReplyIconCell.imageDrawable.getBounds());
+            int dp = ((-rect.centerY()) + AndroidUtilities.dp(12.0f)) - min;
+            i = rect.centerX() - (AndroidUtilities.displaySize.x - min2);
+            i2 = dp;
+        } else {
+            i = 0;
+            i2 = 0;
+        }
+        int i3 = i2;
+        SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(this, getContext(), true, Integer.valueOf(i), 5, true, getResourceProvider(), 24, setReplyIconCell.getColor()) {
+            @Override
+            protected float getScrimDrawableTranslationY() {
+                return 0.0f;
+            }
+
+            @Override
+            protected void onEmojiSelected(View view, Long l, TLRPC$Document tLRPC$Document, Integer num) {
+                PeerColorActivity.this.selectedEmoji = l == null ? 0L : l.longValue();
+                SetReplyIconCell setReplyIconCell2 = setReplyIconCell;
+                if (setReplyIconCell2 != null) {
+                    setReplyIconCell2.update(true);
+                }
+                PeerColorActivity.this.updateMessages();
+                if (selectAnimatedEmojiDialogWindowArr[0] != null) {
+                    PeerColorActivity.this.selectAnimatedEmojiDialog = null;
+                    selectAnimatedEmojiDialogWindowArr[0].dismiss();
+                }
+            }
+        };
+        long j = this.selectedEmoji;
+        selectAnimatedEmojiDialog.setSelected(j == 0 ? null : Long.valueOf(j));
+        selectAnimatedEmojiDialog.setSaveState(3);
+        selectAnimatedEmojiDialog.setScrimDrawable(swapAnimatedEmojiDrawable, setReplyIconCell);
+        SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, -2, -2) {
+            @Override
+            public void dismiss() {
+                super.dismiss();
+                PeerColorActivity.this.selectAnimatedEmojiDialog = null;
+            }
+        };
+        this.selectAnimatedEmojiDialog = selectAnimatedEmojiDialogWindow;
+        selectAnimatedEmojiDialogWindowArr[0] = selectAnimatedEmojiDialogWindow;
+        selectAnimatedEmojiDialogWindowArr[0].showAsDropDown(setReplyIconCell, 0, i3, 53);
+        selectAnimatedEmojiDialogWindowArr[0].dimBehind();
     }
 
     private void updateRows() {
@@ -672,6 +746,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     public static class PeerColorPicker extends RecyclerListView {
         private static final int[] order = {5, 3, 1, 0, 2, 4, 6};
         public final RecyclerView.Adapter adapter;
+        private final int currentAccount;
         public final LinearLayoutManager layoutManager;
         private final Theme.ResourcesProvider resourcesProvider;
         private int selectedPosition;
@@ -690,8 +765,9 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             return 0;
         }
 
-        public PeerColorPicker(final Context context, final Theme.ResourcesProvider resourcesProvider) {
+        public PeerColorPicker(final Context context, final int i, final Theme.ResourcesProvider resourcesProvider) {
             super(context);
+            this.currentAccount = i;
             this.resourcesProvider = resourcesProvider;
             setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
             setClipToPadding(false);
@@ -702,34 +778,34 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
 
                 @Override
-                public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+                public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
                     return new RecyclerListView.Holder(new ColorCell(context));
                 }
 
                 @Override
-                public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+                public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
                     ColorCell colorCell = (ColorCell) viewHolder.itemView;
                     colorCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
-                    colorCell.setSelected(i == PeerColorPicker.this.selectedPosition, false);
-                    if (i >= 0) {
+                    colorCell.setSelected(i2 == PeerColorPicker.this.selectedPosition, false);
+                    if (i2 >= 0) {
                         int[] iArr = Theme.keys_avatar_nameInMessage;
-                        if (i < iArr.length) {
-                            colorCell.set(Theme.getColor(iArr[PeerColorPicker.order[i]], resourcesProvider));
+                        if (i2 < iArr.length) {
+                            colorCell.set(Theme.getColor(iArr[PeerColorPicker.order[i2]], resourcesProvider));
                             return;
                         }
                     }
-                    int length = i - Theme.keys_avatar_nameInMessage.length;
-                    if (length >= 0) {
-                        int[] iArr2 = Theme.keys_avatar_composite_nameInMessage;
-                        if (length < iArr2.length) {
-                            colorCell.set(Theme.getColor(iArr2[PeerColorPicker.order[length]]), Theme.getColor(Theme.keys_avatar_composite_nameInMessage2[PeerColorPicker.order[length]]));
-                        }
+                    int length = i2 - Theme.keys_avatar_nameInMessage.length;
+                    MessagesController.PeerColors peerColors = MessagesController.getInstance(i).peerColors;
+                    if (peerColors == null || length < 0 || length >= peerColors.colors.size()) {
+                        return;
                     }
+                    colorCell.set(peerColors.colors.get(length));
                 }
 
                 @Override
                 public int getItemCount() {
-                    return Theme.keys_avatar_nameInMessage.length + Theme.keys_avatar_composite_nameInMessage.length;
+                    MessagesController.PeerColors peerColors = MessagesController.getInstance(i).peerColors;
+                    return (peerColors == null ? 0 : peerColors.colors.size()) + 7;
                 }
             };
             this.adapter = adapter;
@@ -760,8 +836,8 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             ((ColorCell) view).setSelected(getChildAdapterPosition(view) == this.selectedPosition, true);
         }
 
-        public int getColor() {
-            return toColor(this.selectedPosition);
+        public int getColorId() {
+            return toColorId(this.selectedPosition);
         }
 
         public int toPosition(int i) {
@@ -778,32 +854,28 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                     }
                 }
             }
-            int length = i - Theme.keys_avatar_nameInMessage.length;
-            if (length >= 0 && length < Theme.keys_avatar_composite_nameInMessage.length) {
-                int i3 = 0;
-                while (true) {
-                    int[] iArr2 = order;
-                    if (i3 >= iArr2.length) {
-                        break;
-                    } else if (iArr2[i3] == length) {
-                        return Theme.keys_avatar_nameInMessage.length + i3;
-                    } else {
-                        i3++;
-                    }
+            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).peerColors;
+            if (peerColors == null) {
+                return 0;
+            }
+            for (int i3 = 0; i3 < peerColors.colors.size(); i3++) {
+                if (peerColors.colors.get(i3).id == i) {
+                    return i3 + 7;
                 }
             }
             return 0;
         }
 
-        public int toColor(int i) {
-            if (i >= 0 && i < Theme.keys_avatar_nameInMessage.length) {
+        public int toColorId(int i) {
+            if (i >= 0 && i < 7) {
                 return order[i];
             }
-            int length = i - Theme.keys_avatar_nameInMessage.length;
-            if (length < 0 || length >= Theme.keys_avatar_composite_nameInMessage.length) {
+            int i2 = i - 7;
+            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).peerColors;
+            if (peerColors == null || i2 < 0 || i2 >= peerColors.colors.size()) {
                 return 0;
             }
-            return Theme.keys_avatar_nameInMessage.length + order[length];
+            return peerColors.colors.get(i2).id;
         }
 
         public static class ColorCell extends View {
@@ -812,8 +884,10 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             private final Path circlePath;
             private final Path color2Path;
             private boolean hasColor2;
+            private boolean hasColor3;
             private final Paint paint1;
             private final Paint paint2;
+            private final Paint paint3;
             private boolean selected;
             private final AnimatedFloat selectedT;
 
@@ -823,6 +897,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 this.backgroundPaint = paint;
                 this.paint1 = new Paint(1);
                 this.paint2 = new Paint(1);
+                this.paint3 = new Paint(1);
                 this.circlePath = new Path();
                 this.color2Path = new Path();
                 this.bounce = new ButtonBounce(this);
@@ -836,14 +911,17 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
 
             public void set(int i) {
+                this.hasColor3 = false;
                 this.hasColor2 = false;
                 this.paint1.setColor(i);
             }
 
-            public void set(int i, int i2) {
-                this.hasColor2 = true;
-                this.paint1.setColor(i);
-                this.paint2.setColor(i2);
+            public void set(MessagesController.PeerColor peerColor) {
+                this.paint1.setColor(peerColor.getColor1());
+                this.paint2.setColor(peerColor.getColor2());
+                this.paint3.setColor(peerColor.getColor3());
+                this.hasColor2 = peerColor.hasColor2();
+                this.hasColor3 = peerColor.hasColor3();
             }
 
             public void setSelected(boolean z, boolean z2) {
@@ -878,6 +956,14 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                     canvas.drawPath(this.color2Path, this.paint2);
                 }
                 canvas.restore();
+                if (this.hasColor3) {
+                    canvas.save();
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set((getMeasuredWidth() - AndroidUtilities.dp(12.4f)) / 2.0f, (getMeasuredHeight() - AndroidUtilities.dp(12.4f)) / 2.0f, (getMeasuredWidth() + AndroidUtilities.dp(12.4f)) / 2.0f, (getMeasuredHeight() + AndroidUtilities.dp(12.4f)) / 2.0f);
+                    canvas.rotate(45.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.paint3);
+                    canvas.restore();
+                }
                 float f = this.selectedT.set(this.selected);
                 if (f > 0.0f) {
                     this.backgroundPaint.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
@@ -907,6 +993,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         public ChangeNameColorCell(boolean z, Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             this.userTextBackgroundPaint = new Paint(1);
+            this.userTextColorKey = -1;
             this.isChannel = z;
             this.resourcesProvider = resourcesProvider;
             Drawable mutate = context.getResources().getDrawable(R.drawable.msg_palette).mutate();
@@ -917,30 +1004,47 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
 
         public void updateColors() {
+            int i;
             this.drawable.setColorFilter(new PorterDuffColorFilter(Theme.getColor(this.isChannel ? Theme.key_windowBackgroundWhiteGrayIcon : Theme.key_windowBackgroundWhiteBlueText4, this.resourcesProvider), PorterDuff.Mode.SRC_IN));
             this.buttonText.setColor(Theme.getColor(this.isChannel ? Theme.key_windowBackgroundWhiteBlackText : Theme.key_windowBackgroundWhiteBlueText4, this.resourcesProvider));
-            if (this.userText == null || this.userTextBackgroundPaint == null) {
+            if (this.userText == null || this.userTextBackgroundPaint == null || (i = this.userTextColorKey) == -1) {
                 return;
             }
-            int color = Theme.getColor(this.userTextColorKey, this.resourcesProvider);
+            int color = Theme.getColor(i, this.resourcesProvider);
             this.userText.setColor(color);
             this.userTextBackgroundPaint.setColor(Theme.multAlpha(color, 0.1f));
         }
 
         public void set(TLRPC$Chat tLRPC$Chat, boolean z) {
+            int color;
             if (tLRPC$Chat == null) {
                 return;
             }
+            this.needDivider = z;
             this.userText = new Text(Emoji.replaceEmoji(tLRPC$Chat.title, Theme.chat_msgTextPaint.getFontMetricsInt(), false), 13, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            int nameColorKey2For = Theme.isCurrentThemeDark() ? AvatarDrawable.getNameColorKey2For(tLRPC$Chat) : AvatarDrawable.getNameColorKey1For(tLRPC$Chat);
-            this.userTextColorKey = nameColorKey2For;
-            int color = Theme.getColor(nameColorKey2For, this.resourcesProvider);
+            int i = (tLRPC$Chat.flags2 & 64) != 0 ? tLRPC$Chat.color : (int) (tLRPC$Chat.id % 7);
+            if (i < 7) {
+                int i2 = Theme.keys_avatar_nameInMessage[i];
+                this.userTextColorKey = i2;
+                color = Theme.getColor(i2, this.resourcesProvider);
+            } else {
+                MessagesController.PeerColors peerColors = MessagesController.getInstance(UserConfig.selectedAccount).peerColors;
+                MessagesController.PeerColor color2 = peerColors == null ? null : peerColors.getColor(i);
+                if (color2 != null) {
+                    this.userTextColorKey = -1;
+                    color = (!Theme.isCurrentThemeDark() || color2.id >= 14) ? color2.getColor1() : color2.getColor2();
+                } else {
+                    int i3 = Theme.keys_avatar_nameInMessage[0];
+                    this.userTextColorKey = i3;
+                    color = Theme.getColor(i3, this.resourcesProvider);
+                }
+            }
             this.userText.setColor(color);
             this.userTextBackgroundPaint.setColor(Theme.multAlpha(color, 0.1f));
-            this.needDivider = z;
         }
 
         public void set(TLRPC$User tLRPC$User) {
+            int color;
             if (tLRPC$User == null) {
                 return;
             }
@@ -951,9 +1055,23 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 trim = trim.substring(0, indexOf);
             }
             this.userText = new Text(Emoji.replaceEmoji(trim, Theme.chat_msgTextPaint.getFontMetricsInt(), false), 13, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-            int nameColorKey2For = Theme.isCurrentThemeDark() ? AvatarDrawable.getNameColorKey2For(tLRPC$User) : AvatarDrawable.getNameColorKey1For(tLRPC$User);
-            this.userTextColorKey = nameColorKey2For;
-            int color = Theme.getColor(nameColorKey2For, this.resourcesProvider);
+            int i = (tLRPC$User.flags2 & 128) != 0 ? tLRPC$User.color : (int) (tLRPC$User.id % 7);
+            if (i < 7) {
+                int i2 = Theme.keys_avatar_nameInMessage[i];
+                this.userTextColorKey = i2;
+                color = Theme.getColor(i2, this.resourcesProvider);
+            } else {
+                MessagesController.PeerColors peerColors = MessagesController.getInstance(UserConfig.selectedAccount).peerColors;
+                MessagesController.PeerColor color2 = peerColors == null ? null : peerColors.getColor(i);
+                if (color2 != null) {
+                    this.userTextColorKey = -1;
+                    color = (!Theme.isCurrentThemeDark() || color2.id >= 14) ? color2.getColor1() : color2.getColor2();
+                } else {
+                    int i3 = Theme.keys_avatar_nameInMessage[0];
+                    this.userTextColorKey = i3;
+                    color = Theme.getColor(i3, this.resourcesProvider);
+                }
+            }
             this.userText.setColor(color);
             this.userTextBackgroundPaint.setColor(Theme.multAlpha(color, 0.1f));
         }

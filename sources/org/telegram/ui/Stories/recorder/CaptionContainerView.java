@@ -301,7 +301,7 @@ public class CaptionContainerView extends FrameLayout {
             }
         };
         this.editText = editTextEmoji;
-        editTextEmoji.getEditText().setShadowLayer(AndroidUtilities.dp(10.0f), 0.0f, 0.0f, 0);
+        editTextEmoji.getEditText().wrapCanvasToFixClipping = true;
         editTextEmoji.setFocusable(true);
         editTextEmoji.setFocusableInTouchMode(true);
         editTextEmoji.getEditText().hintLayoutYFix = true;
@@ -314,7 +314,7 @@ public class CaptionContainerView extends FrameLayout {
         editTextEmoji.getEditText().setSupportRtlHint(true);
         this.captionBlur = new BlurringShader.StoryBlurDrawer(blurManager, editTextEmoji.getEditText(), customBlur() ? 1 : 2);
         editTextEmoji.getEditText().setHintColor(-2130706433);
-        editTextEmoji.getEditText().setHintText(LocaleController.getString("AddCaption", R.string.AddCaption), false);
+        editTextEmoji.getEditText().setHintText(LocaleController.getString(R.string.AddCaption), false);
         paint3.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
         editTextEmoji.getEditText().setTranslationX(AndroidUtilities.dp(-22.0f));
         editTextEmoji.getEmojiButton().setAlpha(0.0f);
@@ -582,7 +582,7 @@ public class CaptionContainerView extends FrameLayout {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.editText.getText());
             spannableStringBuilder.replace(i, i2 + i, charSequence);
             if (z) {
-                Emoji.replaceEmoji(spannableStringBuilder, this.editText.getEditText().getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
+                Emoji.replaceEmoji((CharSequence) spannableStringBuilder, this.editText.getEditText().getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false);
             }
             this.editText.setText(spannableStringBuilder);
             this.editText.setSelection(i + charSequence.length());

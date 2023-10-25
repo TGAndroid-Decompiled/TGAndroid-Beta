@@ -224,7 +224,7 @@ public class TableCell extends FrameLayout {
         final TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$TL_payments_checkedGiftCode.from_id)));
         if (chat != null) {
             TextView textView2 = this.fromTextView;
-            textView2.setText(Emoji.replaceEmoji(chat.title, textView2.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+            textView2.setText(Emoji.replaceEmoji((CharSequence) chat.title, textView2.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
             this.fromImageView.setForUserOrChat(chat, new AvatarDrawable(chat));
             this.fromFrameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -234,7 +234,7 @@ public class TableCell extends FrameLayout {
             });
         } else {
             final TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$TL_payments_checkedGiftCode.from_id.user_id));
-            this.fromTextView.setText(Emoji.replaceEmoji(UserObject.getFirstName(user), this.fromTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+            this.fromTextView.setText(Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user), this.fromTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
             this.fromImageView.setForUserOrChat(user, new AvatarDrawable(user));
             this.fromFrameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -253,7 +253,7 @@ public class TableCell extends FrameLayout {
         } else {
             final TLRPC$User user2 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$TL_payments_checkedGiftCode.to_id));
             if (user2 != null) {
-                this.toTextView.setText(Emoji.replaceEmoji(UserObject.getFirstName(user2), this.fromTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+                this.toTextView.setText(Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user2), this.fromTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
                 this.toImageView.setForUserOrChat(user2, new AvatarDrawable(user2));
                 this.toFrameLayout.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -217,6 +217,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
             }
         });
         this.baseFragment.presentFragment(dialogsActivity);
+        dismiss();
     }
 
     public boolean lambda$onBindViewHolder$0(String str, DialogsActivity dialogsActivity, ArrayList arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {

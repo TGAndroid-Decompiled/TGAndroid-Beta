@@ -8,6 +8,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.tl.TL_stories$TL_prepaidGiveaway;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Cells.UserCell;
+import org.telegram.ui.Components.Premium.boosts.BoostRepository;
 @SuppressLint({"ViewConstructor"})
 public class GiveawayCell extends UserCell {
     private CounterDrawable counterDrawable;
@@ -44,7 +45,7 @@ public class GiveawayCell extends UserCell {
         } else {
             this.avatarDrawable.setColor(-6631068, -11945404);
         }
-        this.counterDrawable.setText(String.valueOf(tL_stories$TL_prepaidGiveaway.quantity * 4));
+        this.counterDrawable.setText(String.valueOf(tL_stories$TL_prepaidGiveaway.quantity * BoostRepository.giveawayBoostsPerPremium()));
         this.nameTextView.setRightDrawable(this.counterDrawable);
     }
 }

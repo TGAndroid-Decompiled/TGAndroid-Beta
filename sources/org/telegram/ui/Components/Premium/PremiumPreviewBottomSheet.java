@@ -524,7 +524,7 @@ public class PremiumPreviewBottomSheet extends BottomSheetWithRecyclerListView i
                 if (PremiumPreviewBottomSheet.this.titleViewContainer == null) {
                     PremiumPreviewBottomSheet.this.titleViewContainer = new FrameLayout(context);
                     PremiumPreviewBottomSheet.this.titleViewContainer.setClipChildren(false);
-                    final PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(ColorUtils.setAlphaComponent(PremiumPreviewBottomSheet.this.getThemedColor(Theme.key_windowBackgroundWhiteLinkText), 178), PorterDuff.Mode.MULTIPLY);
+                    final PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(PremiumPreviewBottomSheet.this.getThemedColor(Theme.key_windowBackgroundWhiteBlueIcon), PorterDuff.Mode.SRC_IN);
                     PremiumPreviewBottomSheet.this.titleView = new LinkSpanDrawable.LinksTextView[2];
                     int i3 = 0;
                     while (i3 < 2) {

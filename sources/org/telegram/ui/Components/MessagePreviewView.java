@@ -627,8 +627,14 @@ public class MessagePreviewView extends FrameLayout {
                 tLRPC$Message.invert_media = MessagePreviewView.this.messagePreviewParams.webpageTop;
             }
             updateMessages();
-            if (MessagePreviewView.this.messagePreviewParams.webpageTop) {
-                this.chatListView.smoothScrollToPosition(1);
+            if (this.chatListView.computeVerticalScrollRange() > this.chatListView.computeVerticalScrollExtent()) {
+                if (MessagePreviewView.this.messagePreviewParams.webpageTop) {
+                    RecyclerListView recyclerListView = this.chatListView;
+                    recyclerListView.smoothScrollBy(0, -recyclerListView.computeVerticalScrollOffset(), CubicBezierInterpolator.DEFAULT);
+                    return;
+                }
+                RecyclerListView recyclerListView2 = this.chatListView;
+                recyclerListView2.smoothScrollBy(0, recyclerListView2.computeVerticalScrollRange() - (this.chatListView.computeVerticalScrollOffset() + this.chatListView.computeVerticalScrollExtent()), CubicBezierInterpolator.DEFAULT);
             }
         }
 

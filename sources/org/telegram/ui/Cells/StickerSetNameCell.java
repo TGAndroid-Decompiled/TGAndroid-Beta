@@ -166,7 +166,7 @@ public class StickerSetNameCell extends FrameLayout {
         } catch (Exception unused) {
         }
         TextView textView = this.textView;
-        textView.setText(Emoji.replaceEmoji(spannableStringBuilder, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false));
+        textView.setText(Emoji.replaceEmoji((CharSequence) spannableStringBuilder, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(14.0f), false));
     }
 
     public void setOnIconClickListener(View.OnClickListener onClickListener) {

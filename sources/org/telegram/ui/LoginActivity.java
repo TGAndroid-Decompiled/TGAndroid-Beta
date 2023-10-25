@@ -2513,7 +2513,7 @@ public class LoginActivity extends BaseFragment implements NotificationCenter.No
                 }, languageFlag.length(), languageFlag.length() + 1, 0);
             }
             spannableStringBuilder.append((CharSequence) country.name);
-            setCountryButtonText(Emoji.replaceEmoji(spannableStringBuilder, this.countryButton.getCurrentView().getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false));
+            setCountryButtonText(Emoji.replaceEmoji((CharSequence) spannableStringBuilder, this.countryButton.getCurrentView().getPaint().getFontMetricsInt(), AndroidUtilities.dp(20.0f), false));
             this.countryCodeForHint = str;
             this.wasCountryHintIndex = -1;
             invalidateCountryHint();

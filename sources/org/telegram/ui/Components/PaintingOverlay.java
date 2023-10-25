@@ -208,7 +208,7 @@ public class PaintingOverlay extends FrameLayout {
                 editTextOutline.setPadding(AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f));
                 editTextOutline.setTextSize(0, mediaEntity.fontSize);
                 editTextOutline.setTypeface(mediaEntity.textTypeface.getTypeface());
-                SpannableString spannableString = new SpannableString(Emoji.replaceEmoji(mediaEntity.text, editTextOutline.getPaint().getFontMetricsInt(), (int) (editTextOutline.getTextSize() * 0.8f), false));
+                SpannableString spannableString = new SpannableString(Emoji.replaceEmoji((CharSequence) mediaEntity.text, editTextOutline.getPaint().getFontMetricsInt(), (int) (editTextOutline.getTextSize() * 0.8f), false));
                 Iterator<VideoEditedInfo.EmojiEntity> it = mediaEntity.entities.iterator();
                 while (it.hasNext()) {
                     VideoEditedInfo.EmojiEntity next = it.next();

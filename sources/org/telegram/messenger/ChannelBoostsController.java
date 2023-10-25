@@ -151,7 +151,7 @@ public class ChannelBoostsController {
                 while (it3.hasNext()) {
                     TL_stories$TL_myBoost next2 = it3.next();
                     TLRPC$Peer tLRPC$Peer = next2.peer;
-                    if (tLRPC$Peer != null && next2.cooldown_until_date == 0 && DialogObject.getPeerDialogId(tLRPC$Peer) != (-this.currentChat.id)) {
+                    if (tLRPC$Peer != null && DialogObject.getPeerDialogId(tLRPC$Peer) != (-this.currentChat.id)) {
                         arrayList.add(next2);
                     }
                 }
@@ -175,9 +175,6 @@ public class ChannelBoostsController {
                 this.canApply = true;
             }
             if (this.isMaxLvl) {
-                this.canApply = false;
-            }
-            if (this.boostedNow) {
                 this.canApply = false;
             }
         }

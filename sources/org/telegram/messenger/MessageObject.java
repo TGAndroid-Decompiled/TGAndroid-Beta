@@ -1055,7 +1055,7 @@ public class MessageObject {
                 textPaint = Theme.chat_msgTextPaint;
             }
             int[] iArr = allowsBigEmoji() ? new int[1] : null;
-            CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, iArr);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), false, iArr);
             this.messageText = replaceEmoji;
             Spannable replaceAnimatedEmoji = replaceAnimatedEmoji(replaceEmoji, textPaint.getFontMetricsInt());
             this.messageText = replaceAnimatedEmoji;
@@ -1204,10 +1204,8 @@ public class MessageObject {
     }
 
     private void checkEmojiOnly(Integer num) {
-        TLRPC$Message tLRPC$Message;
-        ArrayList<TLRPC$MessageEntity> arrayList;
         TextPaint textPaint;
-        if (num != null && num.intValue() >= 1 && (tLRPC$Message = this.messageOwner) != null && ((arrayList = tLRPC$Message.entities) == null || arrayList.size() <= 0)) {
+        if (num != null && num.intValue() >= 1 && this.messageOwner != null && !hasNonEmojiEntities()) {
             CharSequence charSequence = this.messageText;
             Emoji.EmojiSpan[] emojiSpanArr = (Emoji.EmojiSpan[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), Emoji.EmojiSpan.class);
             CharSequence charSequence2 = this.messageText;
@@ -1472,7 +1470,7 @@ public class MessageObject {
             textPaint = Theme.chat_msgTextPaint;
         }
         int[] iArr = allowsBigEmoji() ? new int[1] : null;
-        CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, iArr);
+        CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), false, iArr);
         this.messageText = replaceEmoji;
         Spannable replaceAnimatedEmoji = replaceAnimatedEmoji(replaceEmoji, arrayList, textPaint.getFontMetricsInt());
         this.messageText = replaceAnimatedEmoji;
@@ -2147,7 +2145,7 @@ public class MessageObject {
                     if (str == null) {
                         str = "";
                     }
-                    replaceEmoji = Emoji.replaceEmoji(str, Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.dp(15.0f), false);
+                    replaceEmoji = Emoji.replaceEmoji((CharSequence) str, Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.dp(15.0f), false);
                 }
                 StaticLayout staticLayout = new StaticLayout(replaceEmoji, Theme.chat_msgBotButtonPaint, AndroidUtilities.dp(2000.0f), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 if (staticLayout.getLineCount() > 0) {
@@ -2233,15 +2231,25 @@ public class MessageObject {
         return tLRPC$MessageMedia != null && (tLRPC$MessageMedia.extended_media instanceof TLRPC$TL_messageExtendedMediaPreview);
     }
 
+    private boolean hasNonEmojiEntities() {
+        TLRPC$Message tLRPC$Message = this.messageOwner;
+        if (tLRPC$Message != null && tLRPC$Message.entities != null) {
+            for (int i = 0; i < this.messageOwner.entities.size(); i++) {
+                if (!(this.messageOwner.entities.get(i) instanceof TLRPC$TL_messageEntityCustomEmoji)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public void setType() {
-        TLRPC$Message tLRPC$Message;
-        ArrayList<TLRPC$MessageEntity> arrayList;
         int i;
         int i2 = this.type;
         this.type = 1000;
         this.isRoundVideoCached = 0;
-        TLRPC$Message tLRPC$Message2 = this.messageOwner;
-        if ((tLRPC$Message2 instanceof TLRPC$TL_message) || (tLRPC$Message2 instanceof TLRPC$TL_messageForwarded_old2)) {
+        TLRPC$Message tLRPC$Message = this.messageOwner;
+        if ((tLRPC$Message instanceof TLRPC$TL_message) || (tLRPC$Message instanceof TLRPC$TL_messageForwarded_old2)) {
             if (this.isRestrictedMessage) {
                 this.type = 0;
             } else if (this.emojiAnimatedSticker != null || this.emojiAnimatedStickerId != null) {
@@ -2250,7 +2258,7 @@ public class MessageObject {
                 } else {
                     this.type = 15;
                 }
-            } else if (isMediaEmpty(false) && !isDice() && this.emojiOnlyCount >= 1 && !this.hasUnwrappedEmoji && (tLRPC$Message = this.messageOwner) != null && ((arrayList = tLRPC$Message.entities) == null || arrayList.size() == 0)) {
+            } else if (isMediaEmpty(false) && !isDice() && this.emojiOnlyCount >= 1 && !this.hasUnwrappedEmoji && this.messageOwner != null && !hasNonEmojiEntities()) {
                 this.type = 19;
             } else if (isMediaEmpty()) {
                 this.type = 0;
@@ -2322,8 +2330,8 @@ public class MessageObject {
                     this.contentType = 1;
                 }
             }
-        } else if (tLRPC$Message2 instanceof TLRPC$TL_messageService) {
-            TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message2.action;
+        } else if (tLRPC$Message instanceof TLRPC$TL_messageService) {
+            TLRPC$MessageAction tLRPC$MessageAction = tLRPC$Message.action;
             if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSetSameChatWallPaper) {
                 this.contentType = 1;
                 this.type = 0;
@@ -2331,19 +2339,19 @@ public class MessageObject {
                 this.contentType = 1;
                 this.type = 22;
                 TLRPC$TL_messageActionSetChatWallPaper tLRPC$TL_messageActionSetChatWallPaper = (TLRPC$TL_messageActionSetChatWallPaper) tLRPC$MessageAction;
-                ArrayList<TLRPC$PhotoSize> arrayList2 = new ArrayList<>();
-                this.photoThumbs = arrayList2;
+                ArrayList<TLRPC$PhotoSize> arrayList = new ArrayList<>();
+                this.photoThumbs = arrayList;
                 TLRPC$Document tLRPC$Document = tLRPC$TL_messageActionSetChatWallPaper.wallpaper.document;
                 if (tLRPC$Document != null) {
-                    arrayList2.addAll(tLRPC$Document.thumbs);
+                    arrayList.addAll(tLRPC$Document.thumbs);
                     this.photoThumbsObject = tLRPC$TL_messageActionSetChatWallPaper.wallpaper.document;
                 }
             } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionSuggestProfilePhoto) {
                 this.contentType = 1;
                 this.type = 21;
-                ArrayList<TLRPC$PhotoSize> arrayList3 = new ArrayList<>();
-                this.photoThumbs = arrayList3;
-                arrayList3.addAll(this.messageOwner.action.photo.sizes);
+                ArrayList<TLRPC$PhotoSize> arrayList2 = new ArrayList<>();
+                this.photoThumbs = arrayList2;
+                arrayList2.addAll(this.messageOwner.action.photo.sizes);
                 this.photoThumbsObject = this.messageOwner.action.photo;
             } else if (tLRPC$MessageAction instanceof TLRPC$TL_messageActionLoginUnknownLocation) {
                 this.type = 0;
@@ -2403,7 +2411,7 @@ public class MessageObject {
                     textPaint = Theme.chat_msgTextPaint;
                 }
                 int[] iArr = allowsBigEmoji() ? new int[1] : null;
-                CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false, iArr);
+                CharSequence replaceEmoji = Emoji.replaceEmoji(this.messageText, textPaint.getFontMetricsInt(), false, iArr);
                 this.messageText = replaceEmoji;
                 Spannable replaceAnimatedEmoji = replaceAnimatedEmoji(replaceEmoji, textPaint.getFontMetricsInt());
                 this.messageText = replaceAnimatedEmoji;
@@ -2951,7 +2959,7 @@ public class MessageObject {
             return spannableString;
         }
         String str2 = this.messageOwner.voiceTranscription;
-        return !TextUtils.isEmpty(str2) ? Emoji.replaceEmoji(str2, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false) : str2;
+        return !TextUtils.isEmpty(str2) ? Emoji.replaceEmoji((CharSequence) str2, Theme.chat_msgTextPaint.getFontMetricsInt(), AndroidUtilities.dp(20.0f), false) : str2;
     }
 
     public float measureVoiceTranscriptionHeight() {
@@ -3199,7 +3207,7 @@ public class MessageObject {
 
     public boolean needDrawShareButton() {
         int i;
-        if (this.hasCode || this.preview || this.scheduled || this.eventId != 0) {
+        if (isSponsored() || this.hasCode || this.preview || this.scheduled || this.eventId != 0) {
             return false;
         }
         TLRPC$Message tLRPC$Message = this.messageOwner;
@@ -3326,7 +3334,7 @@ public class MessageObject {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.applyEntities():boolean");
     }
 
-    public void generateLayout(org.telegram.tgnet.TLRPC$User r37) {
+    public void generateLayout(org.telegram.tgnet.TLRPC$User r38) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.generateLayout(org.telegram.tgnet.TLRPC$User):void");
     }
 
@@ -3345,7 +3353,7 @@ public class MessageObject {
         public int textWidth;
         public float textXOffset;
 
-        public TextLayoutBlocks(org.telegram.messenger.MessageObject r29, java.lang.CharSequence r30, android.text.TextPaint r31, int r32) {
+        public TextLayoutBlocks(org.telegram.messenger.MessageObject r35, java.lang.CharSequence r36, android.text.TextPaint r37, int r38) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.TextLayoutBlocks.<init>(org.telegram.messenger.MessageObject, java.lang.CharSequence, android.text.TextPaint, int):void");
         }
     }
@@ -5841,8 +5849,10 @@ public class MessageObject {
         MessageObject messageObject = this.replyMessageObject;
         if (messageObject != null) {
             if (DialogObject.isChatDialog(messageObject.getSenderId())) {
-                charSequence = peerNameWithIcon(this.currentAccount, this.replyMessageObject.getSenderId());
-            } else {
+                if (charSequence == null) {
+                    charSequence = peerNameWithIcon(this.currentAccount, this.replyMessageObject.getSenderId());
+                }
+            } else if (charSequence2 == null) {
                 charSequence2 = peerNameWithIcon(this.currentAccount, this.replyMessageObject.getSenderId());
             }
         }

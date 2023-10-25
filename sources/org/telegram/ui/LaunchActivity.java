@@ -2112,10 +2112,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     private int runCommentRequest(int i, Runnable runnable, Integer num, Integer num2, Integer num3, TLRPC$Chat tLRPC$Chat) {
-        return runCommentRequest(i, runnable, num, num2, num3, tLRPC$Chat, null, null);
+        return runCommentRequest(i, runnable, num, num2, num3, tLRPC$Chat, null, null, 0);
     }
 
-    private int runCommentRequest(final int i, final Runnable runnable, final Integer num, final Integer num2, final Integer num3, final TLRPC$Chat tLRPC$Chat, final Runnable runnable2, final String str) {
+    private int runCommentRequest(final int i, final Runnable runnable, final Integer num, final Integer num2, final Integer num3, final TLRPC$Chat tLRPC$Chat, final Runnable runnable2, final String str, final int i2) {
         if (tLRPC$Chat == null) {
             return 0;
         }
@@ -2125,48 +2125,48 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         return ConnectionsManager.getInstance(i).sendRequest(tLRPC$TL_messages_getDiscussionMessage, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LaunchActivity.this.lambda$runCommentRequest$29(i, tLRPC$Chat, num3, num2, num, runnable2, str, tLRPC$TL_messages_getDiscussionMessage, runnable, tLObject, tLRPC$TL_error);
+                LaunchActivity.this.lambda$runCommentRequest$29(i, tLRPC$Chat, num3, num2, num, runnable2, str, i2, tLRPC$TL_messages_getDiscussionMessage, runnable, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$runCommentRequest$29(final int i, final TLRPC$Chat tLRPC$Chat, final Integer num, final Integer num2, final Integer num3, final Runnable runnable, final String str, final TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final Runnable runnable2, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$runCommentRequest$29(final int i, final TLRPC$Chat tLRPC$Chat, final Integer num, final Integer num2, final Integer num3, final Runnable runnable, final String str, final int i2, final TLRPC$TL_messages_getDiscussionMessage tLRPC$TL_messages_getDiscussionMessage, final Runnable runnable2, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$runCommentRequest$28(tLObject, i, tLRPC$Chat, num, num2, num3, runnable, str, tLRPC$TL_messages_getDiscussionMessage, runnable2);
+                LaunchActivity.this.lambda$runCommentRequest$28(tLObject, i, tLRPC$Chat, num, num2, num3, runnable, str, i2, tLRPC$TL_messages_getDiscussionMessage, runnable2);
             }
         });
     }
 
-    public void lambda$runCommentRequest$28(org.telegram.tgnet.TLObject r13, int r14, org.telegram.tgnet.TLRPC$Chat r15, java.lang.Integer r16, java.lang.Integer r17, java.lang.Integer r18, java.lang.Runnable r19, java.lang.String r20, org.telegram.tgnet.TLRPC$TL_messages_getDiscussionMessage r21, java.lang.Runnable r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runCommentRequest$28(org.telegram.tgnet.TLObject, int, org.telegram.tgnet.TLRPC$Chat, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Runnable, java.lang.String, org.telegram.tgnet.TLRPC$TL_messages_getDiscussionMessage, java.lang.Runnable):void");
+    public void lambda$runCommentRequest$28(org.telegram.tgnet.TLObject r13, int r14, org.telegram.tgnet.TLRPC$Chat r15, java.lang.Integer r16, java.lang.Integer r17, java.lang.Integer r18, java.lang.Runnable r19, java.lang.String r20, int r21, org.telegram.tgnet.TLRPC$TL_messages_getDiscussionMessage r22, java.lang.Runnable r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.lambda$runCommentRequest$28(org.telegram.tgnet.TLObject, int, org.telegram.tgnet.TLRPC$Chat, java.lang.Integer, java.lang.Integer, java.lang.Integer, java.lang.Runnable, java.lang.String, int, org.telegram.tgnet.TLRPC$TL_messages_getDiscussionMessage, java.lang.Runnable):void");
     }
 
-    private void openTopicRequest(final int r14, final int r15, final org.telegram.tgnet.TLRPC$Chat r16, final int r17, org.telegram.tgnet.TLRPC$TL_forumTopic r18, final java.lang.Runnable r19, final java.lang.String r20, final java.util.ArrayList<org.telegram.messenger.MessageObject> r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.openTopicRequest(int, int, org.telegram.tgnet.TLRPC$Chat, int, org.telegram.tgnet.TLRPC$TL_forumTopic, java.lang.Runnable, java.lang.String, java.util.ArrayList):void");
+    private void openTopicRequest(final int r15, final int r16, final org.telegram.tgnet.TLRPC$Chat r17, final int r18, org.telegram.tgnet.TLRPC$TL_forumTopic r19, final java.lang.Runnable r20, final java.lang.String r21, final int r22, final java.util.ArrayList<org.telegram.messenger.MessageObject> r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.LaunchActivity.openTopicRequest(int, int, org.telegram.tgnet.TLRPC$Chat, int, org.telegram.tgnet.TLRPC$TL_forumTopic, java.lang.Runnable, java.lang.String, int, java.util.ArrayList):void");
     }
 
-    public void lambda$openTopicRequest$31(final int i, final TLRPC$Chat tLRPC$Chat, final int i2, final int i3, final Runnable runnable, final String str, final ArrayList arrayList, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openTopicRequest$31(final int i, final TLRPC$Chat tLRPC$Chat, final int i2, final int i3, final Runnable runnable, final String str, final int i4, final ArrayList arrayList, final TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$openTopicRequest$30(tLRPC$TL_error, tLObject, i, tLRPC$Chat, i2, i3, runnable, str, arrayList);
+                LaunchActivity.this.lambda$openTopicRequest$30(tLRPC$TL_error, tLObject, i, tLRPC$Chat, i2, i3, runnable, str, i4, arrayList);
             }
         });
     }
 
-    public void lambda$openTopicRequest$30(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int i, TLRPC$Chat tLRPC$Chat, int i2, int i3, Runnable runnable, String str, ArrayList arrayList) {
+    public void lambda$openTopicRequest$30(TLRPC$TL_error tLRPC$TL_error, TLObject tLObject, int i, TLRPC$Chat tLRPC$Chat, int i2, int i3, Runnable runnable, String str, int i4, ArrayList arrayList) {
         if (tLRPC$TL_error == null) {
             TLRPC$TL_messages_forumTopics tLRPC$TL_messages_forumTopics = (TLRPC$TL_messages_forumTopics) tLObject;
             SparseArray<TLRPC$Message> sparseArray = new SparseArray<>();
-            for (int i4 = 0; i4 < tLRPC$TL_messages_forumTopics.messages.size(); i4++) {
-                sparseArray.put(tLRPC$TL_messages_forumTopics.messages.get(i4).id, tLRPC$TL_messages_forumTopics.messages.get(i4));
+            for (int i5 = 0; i5 < tLRPC$TL_messages_forumTopics.messages.size(); i5++) {
+                sparseArray.put(tLRPC$TL_messages_forumTopics.messages.get(i5).id, tLRPC$TL_messages_forumTopics.messages.get(i5));
             }
             MessagesController.getInstance(i).putUsers(tLRPC$TL_messages_forumTopics.users, false);
             MessagesController.getInstance(i).putChats(tLRPC$TL_messages_forumTopics.chats, false);
             MessagesController.getInstance(i).getTopicsController().processTopics(tLRPC$Chat.id, tLRPC$TL_messages_forumTopics.topics, sparseArray, false, 2, -1);
-            openTopicRequest(i, i2, tLRPC$Chat, i3, MessagesController.getInstance(i).getTopicsController().findTopic(tLRPC$Chat.id, i2), runnable, str, arrayList);
+            openTopicRequest(i, i2, tLRPC$Chat, i3, MessagesController.getInstance(i).getTopicsController().findTopic(tLRPC$Chat.id, i2), runnable, str, i4, arrayList);
         }
     }
 
@@ -2350,7 +2350,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void openMessage(final long j, final int i, final String str, final Browser.Progress progress) {
+    public void openMessage(final long j, final int i, final String str, final Browser.Progress progress, int i2) {
         BaseFragment baseFragment;
         TLRPC$Chat chat;
         if (j < 0 && (chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j))) != null && ChatObject.isForum(chat)) {
@@ -2362,7 +2362,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 public final void run() {
                     LaunchActivity.lambda$openMessage$35(Browser.Progress.this);
                 }
-            });
+            }, i2);
             return;
         }
         if (progress != null) {
@@ -2375,12 +2375,12 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             long j2 = -j;
             TLRPC$Chat chat2 = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(j2));
             if (chat2 != null && chat2.forum) {
-                openForumFromLink(j, Integer.valueOf(i), new Runnable() {
+                openForumFromLink(j, Integer.valueOf(i), str, new Runnable() {
                     @Override
                     public final void run() {
                         LaunchActivity.lambda$openMessage$36(Browser.Progress.this);
                     }
-                });
+                }, i2);
                 return;
             }
             bundle.putLong("chat_id", j2);
@@ -3811,10 +3811,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     private void openForumFromLink(long j, Integer num, Runnable runnable) {
-        openForumFromLink(j, num, null, runnable);
+        openForumFromLink(j, num, null, runnable, 0);
     }
 
-    private void openForumFromLink(final long j, final Integer num, final String str, final Runnable runnable) {
+    private void openForumFromLink(final long j, final Integer num, final String str, final Runnable runnable, final int i) {
         if (num == null) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", -j);
@@ -3831,34 +3831,34 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_getMessages, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LaunchActivity.this.lambda$openForumFromLink$109(num, j, runnable, str, tLObject, tLRPC$TL_error);
+                LaunchActivity.this.lambda$openForumFromLink$109(num, j, runnable, str, i, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$openForumFromLink$109(final Integer num, final long j, final Runnable runnable, final String str, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openForumFromLink$109(final Integer num, final long j, final Runnable runnable, final String str, final int i, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$openForumFromLink$108(tLObject, num, j, runnable, str);
+                LaunchActivity.this.lambda$openForumFromLink$108(tLObject, num, j, runnable, str, i);
             }
         });
     }
 
-    public void lambda$openForumFromLink$108(TLObject tLObject, Integer num, long j, Runnable runnable, String str) {
+    public void lambda$openForumFromLink$108(TLObject tLObject, Integer num, long j, Runnable runnable, String str, int i) {
         TLRPC$Message tLRPC$Message;
         if (tLObject instanceof TLRPC$messages_Messages) {
             ArrayList<TLRPC$Message> arrayList = ((TLRPC$messages_Messages) tLObject).messages;
-            for (int i = 0; i < arrayList.size(); i++) {
-                if (arrayList.get(i) != null && arrayList.get(i).id == num.intValue()) {
-                    tLRPC$Message = arrayList.get(i);
+            for (int i2 = 0; i2 < arrayList.size(); i2++) {
+                if (arrayList.get(i2) != null && arrayList.get(i2).id == num.intValue()) {
+                    tLRPC$Message = arrayList.get(i2);
                     break;
                 }
             }
         }
         tLRPC$Message = null;
         if (tLRPC$Message != null) {
-            runCommentRequest(this.currentAccount, null, Integer.valueOf(tLRPC$Message.id), null, Integer.valueOf(MessageObject.getTopicId(tLRPC$Message, MessagesController.getInstance(this.currentAccount).isForum(tLRPC$Message))), MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)), runnable, str);
+            runCommentRequest(this.currentAccount, null, Integer.valueOf(tLRPC$Message.id), null, Integer.valueOf(MessageObject.getTopicId(tLRPC$Message, MessagesController.getInstance(this.currentAccount).isForum(tLRPC$Message))), MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j)), runnable, str, i);
             return;
         }
         Bundle bundle = new Bundle();

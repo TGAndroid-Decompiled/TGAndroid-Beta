@@ -7,7 +7,7 @@ public class TLRPC$TL_draftMessage extends TLRPC$DraftMessage {
         this.no_webpage = (readInt32 & 2) != 0;
         this.invert_media = (readInt32 & 64) != 0;
         if ((readInt32 & 16) != 0) {
-            this.reply_to = TLRPC$MessageReplyHeader.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.reply_to = TLRPC$InputReplyTo.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         this.message = abstractSerializedData.readString(z);
         if ((this.flags & 8) != 0) {
@@ -28,14 +28,14 @@ public class TLRPC$TL_draftMessage extends TLRPC$DraftMessage {
             }
         }
         if ((this.flags & 32) != 0) {
-            this.media = TLRPC$MessageMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
+            this.media = TLRPC$InputMedia.TLdeserialize(abstractSerializedData, abstractSerializedData.readInt32(z), z);
         }
         this.date = abstractSerializedData.readInt32(z);
     }
 
     @Override
     public void serializeToStream(AbstractSerializedData abstractSerializedData) {
-        abstractSerializedData.writeInt32(-620277848);
+        abstractSerializedData.writeInt32(1070397423);
         int i = this.no_webpage ? this.flags | 2 : this.flags & (-3);
         this.flags = i;
         int i2 = this.invert_media ? i | 64 : i & (-65);

@@ -95,6 +95,14 @@ public class BoostRepository {
         return MessagesController.getInstance(UserConfig.selectedAccount).giveawayCountriesMax;
     }
 
+    public static int giveawayBoostsPerPremium() {
+        return (int) MessagesController.getInstance(UserConfig.selectedAccount).giveawayBoostsPerPremium;
+    }
+
+    public static int boostsPerSentGift() {
+        return (int) MessagesController.getInstance(UserConfig.selectedAccount).boostsPerSentGift;
+    }
+
     public static ArrayList<TLRPC$InputPeer> getMyChannels(long j) {
         ArrayList<TLRPC$InputPeer> arrayList = new ArrayList<>(MessagesController.getInstance(UserConfig.selectedAccount).getStoriesController().sendAs);
         int i = 0;
@@ -583,14 +591,16 @@ public class BoostRepository {
             final ArrayList arrayList = new ArrayList();
             for (int i = 0; i < tLRPC$TL_help_countriesList.countries.size(); i++) {
                 TLRPC$TL_help_country tLRPC$TL_help_country = tLRPC$TL_help_countriesList.countries.get(i);
-                String upperCase = tLRPC$TL_help_country.default_name.substring(0, 1).toUpperCase();
-                List list = (List) hashMap.get(upperCase);
-                if (list == null) {
-                    list = new ArrayList();
-                    hashMap.put(upperCase, list);
-                    arrayList.add(upperCase);
+                if (!tLRPC$TL_help_country.iso2.equalsIgnoreCase("FT")) {
+                    String upperCase = tLRPC$TL_help_country.default_name.substring(0, 1).toUpperCase();
+                    List list = (List) hashMap.get(upperCase);
+                    if (list == null) {
+                        list = new ArrayList();
+                        hashMap.put(upperCase, list);
+                        arrayList.add(upperCase);
+                    }
+                    list.add(tLRPC$TL_help_country);
                 }
-                list.add(tLRPC$TL_help_country);
             }
             if (Build.VERSION.SDK_INT >= 24) {
                 Collator collator = Collator.getInstance(LocaleController.getInstance().getCurrentLocale() != null ? LocaleController.getInstance().getCurrentLocale() : Locale.getDefault());

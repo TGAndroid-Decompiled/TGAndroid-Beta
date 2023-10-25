@@ -127,8 +127,9 @@ public class SelectorUserCell extends BaseCell {
         this.titleTextView.setText(this.chat.title);
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
         setSubtitle(LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.getInstance().formatterBoostExpired.format(new Date(tL_stories$TL_myBoost.expires * 1000))));
-        if (tL_stories$TL_myBoost.cooldown_until_date > 0) {
-            setSubtitle(LocaleController.formatString("BoostingAvailableIn", R.string.BoostingAvailableIn, LocaleController.getInstance().formatterDay.format(new Date((tL_stories$TL_myBoost.cooldown_until_date * 1000) - 6000))));
+        int i = tL_stories$TL_myBoost.cooldown_until_date;
+        if (i > 0) {
+            setSubtitle(LocaleController.formatString("BoostingAvailableIn", R.string.BoostingAvailableIn, buildCountDownTime((i * 1000) - System.currentTimeMillis())));
             this.titleTextView.setAlpha(0.65f);
             this.subtitleTextView.setAlpha(0.65f);
             setCheckboxAlpha(0.3f, false);
@@ -137,5 +138,42 @@ public class SelectorUserCell extends BaseCell {
         this.titleTextView.setAlpha(1.0f);
         this.subtitleTextView.setAlpha(1.0f);
         setCheckboxAlpha(1.0f, false);
+    }
+
+    public void updateTimer() {
+        int i = this.boost.cooldown_until_date;
+        if (i > 0) {
+            setSubtitle(LocaleController.formatString("BoostingAvailableIn", R.string.BoostingAvailableIn, buildCountDownTime((i * 1000) - System.currentTimeMillis())));
+            this.titleTextView.setAlpha(0.65f);
+            this.subtitleTextView.setAlpha(0.65f);
+            setCheckboxAlpha(0.3f, false);
+            return;
+        }
+        setSubtitle(LocaleController.formatString("BoostExpireOn", R.string.BoostExpireOn, LocaleController.getInstance().formatterBoostExpired.format(new Date(this.boost.expires * 1000))));
+        if (this.titleTextView.getAlpha() < 1.0f) {
+            this.titleTextView.animate().alpha(1.0f).start();
+            this.subtitleTextView.animate().alpha(1.0f).start();
+            setCheckboxAlpha(1.0f, true);
+            return;
+        }
+        this.titleTextView.setAlpha(1.0f);
+        this.subtitleTextView.setAlpha(1.0f);
+        setCheckboxAlpha(1.0f, false);
+    }
+
+    private String buildCountDownTime(long j) {
+        long j2 = j / 3600000;
+        long j3 = j % 3600000;
+        long j4 = j3 / 60000;
+        long j5 = (j3 % 60000) / 1000;
+        StringBuilder sb = new StringBuilder();
+        if (j2 > 0) {
+            sb.append(String.format("%02d", Long.valueOf(j2)));
+            sb.append(":");
+        }
+        sb.append(String.format("%02d", Long.valueOf(j4)));
+        sb.append(":");
+        sb.append(String.format("%02d", Long.valueOf(j5)));
+        return sb.toString();
     }
 }
