@@ -50,6 +50,7 @@ import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Cells.TextCell;
 import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Charts.view_data.ChartHeaderView;
+import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.CombinedDrawable;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.LinkActionView;
@@ -300,7 +301,7 @@ public class ChannelBoostLayout extends FrameLayout {
                     this.remTotalGifts = ChannelBoostLayout.this.totalGifts;
                     ChannelBoostLayout.this.boostsTabs.removeTabs();
                     ChannelBoostLayout.this.boostsTabs.addTextTab(0, LocaleController.formatPluralString("BoostingBoostsCount", ChannelBoostLayout.this.totalBoosts, new Object[0]));
-                    if (MessagesController.getInstance(ChannelBoostLayout.this.currentAccount).giveawayGiftsPurchaseAvailable) {
+                    if (MessagesController.getInstance(ChannelBoostLayout.this.currentAccount).giveawayGiftsPurchaseAvailable && ChannelBoostLayout.this.totalGifts > 0) {
                         ChannelBoostLayout.this.boostsTabs.addTextTab(1, LocaleController.formatPluralString("BoostingGiftsCount", ChannelBoostLayout.this.totalGifts, new Object[0]));
                     }
                     ChannelBoostLayout.this.boostsTabs.setInitialTabId(ChannelBoostLayout.this.selectedTab);
@@ -369,8 +370,18 @@ public class ChannelBoostLayout extends FrameLayout {
                     tLRPC$TL_payments_checkedGiftCode.boost = boost;
                 }
                 new GiftInfoBottomSheet(baseFragment, false, true, tLRPC$TL_payments_checkedGiftCode, boost.used_gift_slug).show();
-            } else if (!z && !boost.giveaway) {
-                baseFragment.presentFragment(ProfileActivity.of(giftedUserCell.getDialogId()));
+            } else {
+                boolean z2 = boost.giveaway;
+                if (z2 && boost.user_id == -1) {
+                    Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(baseFragment.getParentActivity(), baseFragment.getResourceProvider());
+                    lottieLayout.setAnimation(R.raw.chats_infotip, 36, 36, new String[0]);
+                    lottieLayout.textView.setText(LocaleController.getString("BoostingRecipientWillBeSelected", R.string.BoostingRecipientWillBeSelected));
+                    lottieLayout.textView.setSingleLine(false);
+                    lottieLayout.textView.setMaxLines(2);
+                    Bulletin.make(baseFragment, lottieLayout, 2750).show();
+                } else if (!z && !z2) {
+                    baseFragment.presentFragment(ProfileActivity.of(giftedUserCell.getDialogId()));
+                }
             }
         }
         if (view instanceof TextCell) {

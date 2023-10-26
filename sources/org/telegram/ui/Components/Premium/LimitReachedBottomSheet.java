@@ -358,13 +358,13 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         }
         ChannelBoostsController.CanApplyBoost canApplyBoost = this.canApplyBoost;
         if (canApplyBoost.empty) {
-            if (UserConfig.getInstance(this.currentAccount).isPremium()) {
+            if (UserConfig.getInstance(this.currentAccount).isPremium() && MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable) {
                 BoostDialogs.showMoreBoostsNeeded(this.dialogId);
                 return;
             }
-            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            AlertDialog.Builder builder = new AlertDialog.Builder(context, this.resourcesProvider);
             builder.setTitle(LocaleController.getString("PremiumNeeded", R.string.PremiumNeeded));
-            builder.setSubtitle(AndroidUtilities.replaceTags(LocaleController.getString("PremiumNeededForBoosting", R.string.PremiumNeededForBoosting)));
+            builder.setMessage(AndroidUtilities.replaceTags(LocaleController.getString("PremiumNeededForBoosting", R.string.PremiumNeededForBoosting)));
             builder.setPositiveButton(LocaleController.getString("CheckPhoneNumberYes", R.string.CheckPhoneNumberYes), new DialogInterface.OnClickListener() {
                 @Override
                 public final void onClick(DialogInterface dialogInterface, int i2) {
@@ -482,7 +482,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
     }
 
     public void lambda$onViewCreated$3(DialogInterface dialogInterface, int i) {
-        this.parentFragment.showDialog(new PremiumFeatureBottomSheet(this.parentFragment, 14, false));
+        this.parentFragment.showDialog(new PremiumPreviewBottomSheet(getBaseFragment(), this.currentAccount, null, this.resourcesProvider));
         dismiss();
         dialogInterface.dismiss();
     }
@@ -507,7 +507,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                         }
                     });
                 }
-            } else if (canApplyBoost.alreadyActive) {
+            } else if (canApplyBoost.alreadyActive && MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable) {
                 BoostDialogs.showMoreBoostsNeeded(this.dialogId);
             } else {
                 dismiss();
@@ -675,6 +675,11 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                     string = LocaleController.getString("BoostChannel", R.string.BoostChannel);
                 }
                 animatedTextView.setText(string);
+                ChannelBoostsController.CanApplyBoost canApplyBoost2 = this.canApplyBoost;
+                if (canApplyBoost2 == null || !canApplyBoost2.isMaxLvl) {
+                    return;
+                }
+                this.premiumButtonView.buttonTextView.setText(LocaleController.getString("OK", R.string.OK));
                 return;
             }
             this.premiumButtonView.buttonTextView.setText(LocaleController.getString("BoostChannel", R.string.BoostChannel));
@@ -748,44 +753,50 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
 
     private void updateButton() {
         int i = this.type;
-        if (i == 19) {
-            ChannelBoostsController.CanApplyBoost canApplyBoost = this.canApplyBoost;
-            boolean z = canApplyBoost.canApply;
-            if ((z || canApplyBoost.empty) && !canApplyBoost.boostedNow && !canApplyBoost.alreadyActive) {
-                this.premiumButtonView.clearOverlayText();
-            } else if (z) {
-                if (MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable) {
-                    this.premiumButtonView.setOverlayText(LocaleController.getString("BoostingBoostAgain", R.string.BoostingBoostAgain), true, true);
+        if (i != 19) {
+            if (i == 11) {
+                this.premiumButtonView.checkCounterView();
+                if (!this.canSendLink) {
+                    this.premiumButtonView.setOverlayText(LocaleController.getString("Close", R.string.Close), true, true);
+                } else if (this.selectedChats.size() > 0) {
+                    this.premiumButtonView.setOverlayText(LocaleController.getString("SendInviteLink", R.string.SendInviteLink), true, true);
                 } else {
-                    this.premiumButtonView.setOverlayText(LocaleController.getString("BoostChannel", R.string.BoostChannel), true, true);
+                    this.premiumButtonView.setOverlayText(LocaleController.getString("ActionSkip", R.string.ActionSkip), true, true);
                 }
-            } else if (canApplyBoost.isMaxLvl) {
-                this.premiumButtonView.setOverlayText(LocaleController.getString("OK", R.string.OK), true, true);
-            } else {
-                this.premiumButtonView.setOverlayText(LocaleController.getString("BoostingBoostAgain", R.string.BoostingBoostAgain), true, true);
-            }
-        } else if (i == 11) {
-            this.premiumButtonView.checkCounterView();
-            if (!this.canSendLink) {
-                this.premiumButtonView.setOverlayText(LocaleController.getString("Close", R.string.Close), true, true);
+                this.premiumButtonView.counterView.setCount(this.selectedChats.size(), true);
+                this.premiumButtonView.invalidate();
+                return;
             } else if (this.selectedChats.size() > 0) {
-                this.premiumButtonView.setOverlayText(LocaleController.getString("SendInviteLink", R.string.SendInviteLink), true, true);
+                String str = null;
+                int i2 = this.type;
+                if (i2 == 2) {
+                    str = LocaleController.formatPluralString("RevokeLinks", this.selectedChats.size(), new Object[0]);
+                } else if (i2 == 5) {
+                    str = LocaleController.formatPluralString("LeaveCommunities", this.selectedChats.size(), new Object[0]);
+                }
+                this.premiumButtonView.setOverlayText(str, true, true);
+                return;
             } else {
-                this.premiumButtonView.setOverlayText(LocaleController.getString("ActionSkip", R.string.ActionSkip), true, true);
+                this.premiumButtonView.clearOverlayText();
+                return;
             }
-            this.premiumButtonView.counterView.setCount(this.selectedChats.size(), true);
-            this.premiumButtonView.invalidate();
-        } else if (this.selectedChats.size() > 0) {
-            String str = null;
-            int i2 = this.type;
-            if (i2 == 2) {
-                str = LocaleController.formatPluralString("RevokeLinks", this.selectedChats.size(), new Object[0]);
-            } else if (i2 == 5) {
-                str = LocaleController.formatPluralString("LeaveCommunities", this.selectedChats.size(), new Object[0]);
-            }
-            this.premiumButtonView.setOverlayText(str, true, true);
-        } else {
+        }
+        ChannelBoostsController.CanApplyBoost canApplyBoost = this.canApplyBoost;
+        boolean z = canApplyBoost.canApply;
+        if ((z || canApplyBoost.empty) && !canApplyBoost.boostedNow && !canApplyBoost.alreadyActive) {
             this.premiumButtonView.clearOverlayText();
+        } else if (z) {
+            if (MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable) {
+                this.premiumButtonView.setOverlayText(LocaleController.getString("BoostingBoostAgain", R.string.BoostingBoostAgain), true, true);
+            } else {
+                this.premiumButtonView.setOverlayText(LocaleController.getString("BoostChannel", R.string.BoostChannel), true, true);
+            }
+        } else if (canApplyBoost.isMaxLvl) {
+            this.premiumButtonView.setOverlayText(LocaleController.getString("OK", R.string.OK), true, true);
+        } else if (MessagesController.getInstance(this.currentAccount).giveawayGiftsPurchaseAvailable) {
+            this.premiumButtonView.setOverlayText(LocaleController.getString("BoostingBoostAgain", R.string.BoostingBoostAgain), true, true);
+        } else {
+            this.premiumButtonView.setOverlayText(LocaleController.getString("OK", R.string.OK), true, true);
         }
     }
 

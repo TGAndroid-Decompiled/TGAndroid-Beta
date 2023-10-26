@@ -277,6 +277,7 @@ public class MessageObject {
     public int emojiOnlyCount;
     public long eventId;
     public long extendedMediaLastCheckTime;
+    public boolean flickerLoading;
     public boolean forceAvatar;
     public boolean forceExpired;
     public boolean forcePlayEffect;

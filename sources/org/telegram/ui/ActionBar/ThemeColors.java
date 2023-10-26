@@ -339,6 +339,7 @@ public class ThemeColors {
         iArr[Theme.key_chat_stickerViaBotNameText] = -1;
         iArr[Theme.key_chat_inReplyLine] = -10903592;
         iArr[Theme.key_chat_outReplyLine] = -9520791;
+        iArr[Theme.key_chat_outReplyLine2] = -12539616;
         iArr[Theme.key_chat_stickerReplyLine] = -1;
         iArr[Theme.key_chat_inReplyNameText] = -12940081;
         iArr[Theme.key_chat_outReplyNameText] = -11162801;
@@ -1099,6 +1100,7 @@ public class ThemeColors {
         sparseArray.put(Theme.key_chat_stickerViaBotNameText, "chat_stickerViaBotNameText");
         sparseArray.put(Theme.key_chat_inReplyLine, "chat_inReplyLine");
         sparseArray.put(Theme.key_chat_outReplyLine, "chat_outReplyLine");
+        sparseArray.put(Theme.key_chat_outReplyLine2, "chat_outReplyLine2");
         sparseArray.put(Theme.key_chat_stickerReplyLine, "chat_stickerReplyLine");
         sparseArray.put(Theme.key_chat_inReplyNameText, "chat_inReplyNameText");
         sparseArray.put(Theme.key_chat_outReplyNameText, "chat_outReplyNameText");

@@ -43,7 +43,15 @@ public class CodeHighlighting {
             this.smallerSize = z;
             this.lng = str;
             this.code = str2;
-            this.decrementSize = str2.length() > 50 ? 4.0f : 2.5f;
+            if (str2 == null) {
+                this.decrementSize = 2.0f;
+            } else if (str2.length() > 120) {
+                this.decrementSize = 5.0f;
+            } else if (str2.length() > 50) {
+                this.decrementSize = 3.0f;
+            } else {
+                this.decrementSize = 2.0f;
+            }
             this.currentType = i;
             this.style = textStyleRun;
         }
@@ -51,7 +59,7 @@ public class CodeHighlighting {
         @Override
         public void updateMeasureState(TextPaint textPaint) {
             if (this.smallerSize) {
-                textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 4));
+                textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - this.decrementSize));
             }
             textPaint.setFlags(textPaint.getFlags() | 128);
             TextStyleSpan.TextStyleRun textStyleRun = this.style;
@@ -276,22 +284,24 @@ public class CodeHighlighting {
         }
         for (int i4 = 0; i4 < stringTokenArr.length && i < i2; i4++) {
             StringToken stringToken = stringTokenArr[i4];
-            if (stringToken.string != null) {
-                int i5 = stringToken.group;
-                if (i3 != -1) {
-                    i5 = i3;
+            if (stringToken != null) {
+                if (stringToken.string != null) {
+                    int i5 = stringToken.group;
+                    if (i3 != -1) {
+                        i5 = i3;
+                    }
+                    if (i5 == -1) {
+                        length = stringToken.length();
+                        i += length;
+                    } else {
+                        arrayList.add(new CachedToSpan(i5, i, stringToken.length() + i));
+                    }
+                } else if (stringToken.inside != null) {
+                    colorize(spannable, i, i + stringToken.length(), stringToken.inside.toArray(), stringToken.group, arrayList);
                 }
-                if (i5 == -1) {
-                    length = stringToken.length();
-                    i += length;
-                } else {
-                    arrayList.add(new CachedToSpan(i5, i, stringToken.length() + i));
-                }
-            } else if (stringToken.inside != null) {
-                colorize(spannable, i, i + stringToken.length(), stringToken.inside.toArray(), stringToken.group, arrayList);
+                length = stringToken.length();
+                i += length;
             }
-            length = stringToken.length();
-            i += length;
         }
     }
 

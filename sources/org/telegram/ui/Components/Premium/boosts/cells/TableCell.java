@@ -8,7 +8,9 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.os.Build;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewOutlineProvider;
@@ -34,6 +36,7 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.LayoutHelper;
+import org.telegram.ui.Components.LinkSpanDrawable;
 @SuppressLint({"ViewConstructor"})
 public class TableCell extends FrameLayout {
     private final TextView dateNameTextView;
@@ -198,18 +201,20 @@ public class TableCell extends FrameLayout {
     }
 
     public void setData(final TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode, final Utilities.Callback<TLObject> callback) {
-        String string;
         Date date = new Date(tLRPC$TL_payments_checkedGiftCode.date * 1000);
         this.dateTextView.setText(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().formatterYear.format(date), LocaleController.getInstance().formatterDay.format(date)));
         this.reasonTextView.setTextColor(Theme.getColor(tLRPC$TL_payments_checkedGiftCode.via_giveaway ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
-        TextView textView = this.reasonTextView;
         if (tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
-            string = LocaleController.getString("BoostingGiveaway", R.string.BoostingGiveaway);
-        } else {
-            string = LocaleController.getString("BoostingYouWereSelected", R.string.BoostingYouWereSelected);
-        }
-        textView.setText(string);
-        if (tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            spannableStringBuilder.append((CharSequence) "**");
+            spannableStringBuilder.append((CharSequence) LocaleController.getString("BoostingGiveaway", R.string.BoostingGiveaway));
+            spannableStringBuilder.append((CharSequence) "**");
+            this.reasonTextView.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+                @Override
+                public final void run() {
+                    Utilities.Callback.this.run(tLRPC$TL_payments_checkedGiftCode);
+                }
+            }, this.resourcesProvider));
             this.reasonTextView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public final void onClick(View view) {
@@ -217,14 +222,25 @@ public class TableCell extends FrameLayout {
                 }
             });
         } else {
+            this.reasonTextView.setText(LocaleController.getString("BoostingYouWereSelected", R.string.BoostingYouWereSelected));
             this.reasonTextView.setOnClickListener(null);
         }
         int i = tLRPC$TL_payments_checkedGiftCode.months;
         this.giftTextView.setText(LocaleController.formatString("BoostingTelegramPremiumFor", R.string.BoostingTelegramPremiumFor, i == 12 ? LocaleController.formatPluralString("Years", 1, new Object[0]) : LocaleController.formatPluralString("Months", i, new Object[0])));
         final TLRPC$Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tLRPC$TL_payments_checkedGiftCode.from_id)));
         if (chat != null) {
-            TextView textView2 = this.fromTextView;
-            textView2.setText(Emoji.replaceEmoji((CharSequence) chat.title, textView2.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
+            spannableStringBuilder2.append((CharSequence) "**");
+            spannableStringBuilder2.append((CharSequence) chat.title);
+            spannableStringBuilder2.append((CharSequence) "**");
+            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(spannableStringBuilder2.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+                @Override
+                public final void run() {
+                    Utilities.Callback.this.run(chat);
+                }
+            }, this.resourcesProvider);
+            TextView textView = this.fromTextView;
+            textView.setText(Emoji.replaceEmoji((CharSequence) replaceSingleTag, textView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
             this.fromImageView.setForUserOrChat(chat, new AvatarDrawable(chat));
             this.fromFrameLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -244,8 +260,17 @@ public class TableCell extends FrameLayout {
             });
         }
         if (tLRPC$TL_payments_checkedGiftCode.to_id == -1 && tLRPC$TL_payments_checkedGiftCode.via_giveaway) {
-            this.reasonTextView.setText("Incomplete Giveaway");
-            this.toTextView.setText("No recipient");
+            SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder();
+            spannableStringBuilder3.append((CharSequence) "**");
+            spannableStringBuilder3.append((CharSequence) LocaleController.getString("BoostingIncompleteGiveaway", R.string.BoostingIncompleteGiveaway));
+            spannableStringBuilder3.append((CharSequence) "**");
+            this.reasonTextView.setText(AndroidUtilities.replaceSingleTag(spannableStringBuilder3.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+                @Override
+                public final void run() {
+                    Utilities.Callback.this.run(tLRPC$TL_payments_checkedGiftCode);
+                }
+            }, this.resourcesProvider));
+            this.toTextView.setText(LocaleController.getString("BoostingNoRecipient", R.string.BoostingNoRecipient));
             this.toTextView.setTextColor(Theme.getColor(Theme.key_dialogTextBlack, this.resourcesProvider));
             ((ViewGroup.MarginLayoutParams) this.toTextView.getLayoutParams()).leftMargin = 0;
             ((ViewGroup.MarginLayoutParams) this.toTextView.getLayoutParams()).rightMargin = 0;
@@ -253,7 +278,18 @@ public class TableCell extends FrameLayout {
         } else {
             final TLRPC$User user2 = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(tLRPC$TL_payments_checkedGiftCode.to_id));
             if (user2 != null) {
-                this.toTextView.setText(Emoji.replaceEmoji((CharSequence) UserObject.getFirstName(user2), this.fromTextView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
+                SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
+                spannableStringBuilder4.append((CharSequence) "**");
+                spannableStringBuilder4.append((CharSequence) UserObject.getFirstName(user2));
+                spannableStringBuilder4.append((CharSequence) "**");
+                SpannableStringBuilder replaceSingleTag2 = AndroidUtilities.replaceSingleTag(spannableStringBuilder4.toString(), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+                    @Override
+                    public final void run() {
+                        Utilities.Callback.this.run(user2);
+                    }
+                }, this.resourcesProvider);
+                TextView textView2 = this.toTextView;
+                textView2.setText(Emoji.replaceEmoji((CharSequence) replaceSingleTag2, textView2.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
                 this.toImageView.setForUserOrChat(user2, new AvatarDrawable(user2));
                 this.toFrameLayout.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -273,7 +309,14 @@ public class TableCell extends FrameLayout {
     }
 
     private TextView createTextView(String str, boolean z) {
-        TextView textView = new TextView(getContext());
+        TextView textView;
+        if (z) {
+            textView = new LinkSpanDrawable.LinksTextView(getContext(), this.resourcesProvider);
+            textView.setMovementMethod(LinkMovementMethod.getInstance());
+            textView.setLinkTextColor(Theme.getColor(Theme.key_windowBackgroundWhiteLinkText, this.resourcesProvider));
+        } else {
+            textView = new TextView(getContext());
+        }
         textView.setTextColor(Theme.getColor(z ? Theme.key_dialogTextBlue : Theme.key_dialogTextBlack, this.resourcesProvider));
         textView.setTextSize(1, 14.0f);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);

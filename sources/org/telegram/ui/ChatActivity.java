@@ -6362,7 +6362,10 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 chatActivityEnterView.setWebPage(null, false);
             }
             ChatActivity chatActivity2 = ChatActivity.this;
-            chatActivity2.messagePreviewParams.updateLink(((BaseFragment) chatActivity2).currentAccount, null, null, ChatActivity.this.replyingMessageObject != ChatActivity.this.threadMessageObject ? ChatActivity.this.replyingMessageObject : null, ChatActivity.this.replyingQuote, ChatActivity.this.editingMessageObject);
+            MessagePreviewParams messagePreviewParams = chatActivity2.messagePreviewParams;
+            if (messagePreviewParams != null) {
+                messagePreviewParams.updateLink(((BaseFragment) chatActivity2).currentAccount, null, null, ChatActivity.this.replyingMessageObject != ChatActivity.this.threadMessageObject ? ChatActivity.this.replyingMessageObject : null, ChatActivity.this.replyingQuote, ChatActivity.this.editingMessageObject);
+            }
             ChatActivity.this.fallbackFieldPanel();
         }
 
@@ -19059,7 +19062,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                             ChatActivity.this.progressDialogAtMessageId = this.val$cell.getMessageObject().getId();
                             ChatActivity.this.progressDialogAtMessageType = 4;
                             ChatActivity.this.progressDialogLinkSpan = null;
-                            this.val$cell.getMessageObject().settingAvatar = true;
+                            this.val$cell.getMessageObject().flickerLoading = true;
                             this.val$cell.invalidate();
                         }
 
@@ -19079,7 +19082,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
                         public void lambda$end$0(ChatActionCell chatActionCell) {
                             ChatActivity.this.resetProgressDialogLoading();
-                            chatActionCell.getMessageObject().settingAvatar = false;
+                            chatActionCell.getMessageObject().flickerLoading = false;
                             chatActionCell.invalidate();
                         }
                     }

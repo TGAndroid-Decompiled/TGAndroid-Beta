@@ -361,11 +361,11 @@ public class GiveawayMessageCell {
             this.selectorColor = color;
             this.selectorDrawable = Theme.createRadSelectorDrawable(color, 12, 12);
         }
-        int color2 = Theme.getColor(Theme.key_listSelector, resourcesProvider);
-        if (this.selectorColor != color2) {
+        int multAlpha = Theme.multAlpha(this.chatTextPaint.getColor(), Theme.isCurrentThemeDark() ? 0.12f : 0.1f);
+        if (this.selectorColor != multAlpha) {
             Drawable drawable = this.selectorDrawable;
-            this.selectorColor = color2;
-            Theme.setSelectorDrawableColor(drawable, color2, true);
+            this.selectorColor = multAlpha;
+            Theme.setSelectorDrawableColor(drawable, multAlpha, true);
         }
         this.textPaint.setColor(Theme.chat_msgTextPaint.getColor());
         this.countriesTextPaint.setColor(Theme.chat_msgTextPaint.getColor());

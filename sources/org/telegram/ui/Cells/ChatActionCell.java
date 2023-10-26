@@ -43,7 +43,6 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.MessageObject;
@@ -81,8 +80,10 @@ import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ChatBackgroundDrawable;
 import org.telegram.ui.Components.AnimatedEmojiSpan;
 import org.telegram.ui.Components.AvatarDrawable;
+import org.telegram.ui.Components.ButtonBounce;
 import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.ImageUpdater;
+import org.telegram.ui.Components.LoadingDrawable;
 import org.telegram.ui.Components.Premium.StarParticlesView;
 import org.telegram.ui.Components.RLottieDrawable;
 import org.telegram.ui.Components.RadialProgress2;
@@ -105,8 +106,9 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private int backgroundButtonTop;
     private int backgroundHeight;
     private Path backgroundPath;
+    private RectF backgroundRect;
     private int backgroundRectHeight;
-    private RectF backroundRect;
+    private ButtonBounce bounce;
     private boolean canDrawInParent;
     private int currentAccount;
     private MessageObject currentMessageObject;
@@ -138,6 +140,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     private float lastTouchY;
     private ArrayList<Integer> lineHeights;
     private ArrayList<Integer> lineWidths;
+    private LoadingDrawable loadingDrawable;
     private int overrideBackground;
     private Paint overrideBackgroundPaint;
     private int overrideText;
@@ -340,6 +343,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
 
     public ChatActionCell(Context context, boolean z, Theme.ResourcesProvider resourcesProvider) {
         super(context);
+        this.bounce = new ButtonBounce(this);
         this.currentAccount = UserConfig.selectedAccount;
         this.avatarStoryParams = new StoriesUtilities.AvatarStoryParams(false);
         this.giftButtonRect = new RectF();
@@ -380,7 +384,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
         this.giftSubtitlePaint.setTextSize(TypedValue.applyDimension(1, 15.0f, getResources().getDisplayMetrics()));
         View view = new View(context);
         this.rippleView = view;
-        view.setBackground(Theme.createSelectorDrawable(Theme.getColor(Theme.key_listSelector), 7, AndroidUtilities.dp(16.0f)));
+        view.setBackground(Theme.createSelectorDrawable(Theme.multAlpha(-1, 0.07f), 7, AndroidUtilities.dp(16.0f)));
         this.rippleView.setVisibility(8);
         addView(this.rippleView);
         StarParticlesView.Drawable drawable = new StarParticlesView.Drawable(10);
@@ -640,10 +644,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                                 i5++;
                             }
                         }
-                        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document.thumbs, Theme.key_emptyListPlaceholder, 0.2f);
-                        if (svgThumb != null) {
-                            svgThumb.overrideWidthAndHeight(LiteMode.FLAG_CALLS_ANIMATIONS, LiteMode.FLAG_CALLS_ANIMATIONS);
-                        }
+                        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(tLRPC$Document, Theme.key_windowBackgroundGray, 0.3f);
                         this.imageReceiver.setAutoRepeat(0);
                         this.imageReceiver.setImage(ImageLocation.getForDocument(tLRPC$Document), String.format(Locale.US, "%d_%d_nr_messageId=%d", 160, 160, Integer.valueOf(messageObject.stableId)), svgThumb, "tgs", stickerSetByName, 1);
                     } else {
@@ -1123,7 +1124,7 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r28) {
+    public void onDraw(android.graphics.Canvas r30) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatActionCell.onDraw(android.graphics.Canvas):void");
     }
 
@@ -1355,13 +1356,13 @@ public class ChatActionCell extends BaseCell implements DownloadController.FileD
                 int i30 = this.giftRectSize;
                 rectF.set(width, dp7, i30 + width, i30 + dp7 + this.giftPremiumAdditionalHeight);
             }
-            if (this.backroundRect == null) {
-                this.backroundRect = new RectF();
+            if (this.backgroundRect == null) {
+                this.backgroundRect = new RectF();
             }
-            this.backroundRect.set(AndroidUtilities.rectTmp);
-            canvas.drawRoundRect(this.backroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint2);
+            this.backgroundRect.set(AndroidUtilities.rectTmp);
+            canvas.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), paint2);
             if (hasGradientService()) {
-                canvas.drawRoundRect(this.backroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.chat_actionBackgroundGradientDarkenPaint);
+                canvas.drawRoundRect(this.backgroundRect, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Theme.chat_actionBackgroundGradientDarkenPaint);
             }
         }
         if (i29 >= 0) {

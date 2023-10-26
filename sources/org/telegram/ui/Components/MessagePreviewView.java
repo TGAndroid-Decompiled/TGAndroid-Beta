@@ -252,6 +252,14 @@ public class MessagePreviewView extends FrameLayout {
             }
         }
 
+        public boolean isReplyMessageCell(ChatMessageCell chatMessageCell) {
+            MessageObject replyMessage;
+            if (chatMessageCell == null || chatMessageCell.getMessageObject() == null || (replyMessage = getReplyMessage()) == null) {
+                return false;
+            }
+            return chatMessageCell.getMessageObject() == replyMessage || (chatMessageCell.getMessageObject().getId() == replyMessage.getId() && chatMessageCell.getMessageObject().getDialogId() == replyMessage.getDialogId());
+        }
+
         public ChatMessageCell getReplyMessageCell() {
             MessageObject replyMessage = getReplyMessage();
             for (int i = 0; i < this.chatListView.getChildCount(); i++) {
@@ -1360,7 +1368,7 @@ public class MessagePreviewView extends FrameLayout {
                     chatMessageCell.setDrawSelectionBackground(validGroupedMessage == null);
                     chatMessageCell.setChecked(true, validGroupedMessage == null, false);
                     Page page2 = Page.this;
-                    if (MessagePreviewView.this.messagePreviewParams.quote == null || page2.textSelectionHelper.isInSelectionMode()) {
+                    if (MessagePreviewView.this.messagePreviewParams.quote == null || !page2.isReplyMessageCell(chatMessageCell) || Page.this.textSelectionHelper.isInSelectionMode()) {
                         return;
                     }
                     Page page3 = Page.this;

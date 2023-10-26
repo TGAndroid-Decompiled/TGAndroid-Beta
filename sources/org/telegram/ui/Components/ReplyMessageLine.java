@@ -127,7 +127,12 @@ public class ReplyMessageLine {
         int i2 = this.color2;
         int i3 = this.color1;
         this.hasColor2 = i2 != i3;
-        this.hasColor3 = color32 != i3;
+        boolean z = color32 != i3;
+        this.hasColor3 = z;
+        if (z) {
+            this.color3 = i2;
+            this.color2 = color32;
+        }
     }
 
     public int check(MessageObject messageObject, TLRPC$User tLRPC$User, TLRPC$Chat tLRPC$Chat, Theme.ResourcesProvider resourcesProvider, boolean z) {
@@ -240,14 +245,14 @@ public class ReplyMessageLine {
             this.backgroundColor = 0;
             this.nameColor = Theme.getColor(Theme.key_chat_stickerReplyNameText, resourcesProvider);
         } else if (messageObject.isOutOwner()) {
-            int color4 = Theme.getColor(Theme.key_chat_outReplyLine, resourcesProvider);
+            int color4 = Theme.getColor((this.hasColor2 || this.hasColor3) ? Theme.key_chat_outReplyLine2 : Theme.key_chat_outReplyLine, resourcesProvider);
             this.color3 = color4;
             this.color2 = color4;
             this.color1 = color4;
             if (this.hasColor3) {
                 this.reversedOut = true;
                 this.color1 = Theme.multAlpha(color4, 0.2f);
-                this.color2 = Theme.multAlpha(this.color2, 0.6f);
+                this.color2 = Theme.multAlpha(this.color2, 0.5f);
             } else if (this.hasColor2) {
                 this.reversedOut = true;
                 this.color1 = Theme.multAlpha(color4, 0.35f);

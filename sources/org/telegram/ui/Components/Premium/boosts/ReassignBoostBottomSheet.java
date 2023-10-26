@@ -41,6 +41,7 @@ import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
+import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
@@ -105,6 +106,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                 this.rect.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 PremiumGradient.getInstance().updateMainGradientMatrix(0, 0, getMeasuredWidth(), getMeasuredHeight(), (-getMeasuredWidth()) * 0.1f * this.progress, 0.0f);
                 canvas.drawRoundRect(this.rect, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), PremiumGradient.getInstance().getMainGradientPaint());
+                invalidate();
                 super.onDraw(canvas);
             }
         };
@@ -346,7 +348,6 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             setOrientation(1);
             FrameLayout frameLayout = new FrameLayout(getContext());
             this.avatarsContainer = frameLayout;
-            frameLayout.setClipChildren(false);
             FrameLayout frameLayout2 = new FrameLayout(getContext());
             this.avatarsWrapper = frameLayout2;
             frameLayout.addView(frameLayout2, LayoutHelper.createFrame(-1, 70.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -355,8 +356,9 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             frameLayout.addView(arrowView, LayoutHelper.createFrame(24, 24, 17));
             AvatarHolderView avatarHolderView = new AvatarHolderView(context);
             this.toAvatar = avatarHolderView;
+            avatarHolderView.setLayerType(2, null);
             frameLayout.addView(avatarHolderView, LayoutHelper.createFrame(70, 70, 17));
-            addView(frameLayout, LayoutHelper.createLinear(-1, -2, 0.0f, 15.0f, 0.0f, 0.0f));
+            addView(frameLayout, LayoutHelper.createLinear(-1, 70, 0.0f, 15.0f, 0.0f, 0.0f));
             TextView textView = new TextView(context);
             textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             textView.setText(LocaleController.getString("BoostingReassignBoost", R.string.BoostingReassignBoost));
@@ -391,8 +393,11 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
 
         public void showChats(List<TLRPC$Chat> list, TLRPC$Chat tLRPC$Chat) {
             float f;
+            float f2;
+            final AvatarHolderView avatarHolderView;
             ArrayList<TLRPC$Chat> arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
+            CubicBezierInterpolator cubicBezierInterpolator = CubicBezierInterpolator.DEFAULT;
             for (TLRPC$Chat tLRPC$Chat2 : list) {
                 if (!this.addedChats.contains(tLRPC$Chat2)) {
                     arrayList2.add(tLRPC$Chat2);
@@ -403,82 +408,100 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                     arrayList.add(tLRPC$Chat3);
                 }
             }
+            ArrayList<AvatarHolderView> arrayList3 = new ArrayList();
+            for (int i = 0; i < this.avatarsWrapper.getChildCount(); i++) {
+                AvatarHolderView avatarHolderView2 = (AvatarHolderView) this.avatarsWrapper.getChildAt(i);
+                if (avatarHolderView2.getTag() == null) {
+                    arrayList3.add(avatarHolderView2);
+                }
+            }
             Iterator it = arrayList2.iterator();
             while (true) {
-                f = 0.1f;
+                f = 0.0f;
+                f2 = 0.1f;
                 if (!it.hasNext()) {
                     break;
                 }
-                AvatarHolderView avatarHolderView = new AvatarHolderView(getContext());
-                avatarHolderView.setChat((TLRPC$Chat) it.next());
-                int childCount = this.avatarsWrapper.getChildCount();
-                this.avatarsWrapper.addView(avatarHolderView, 0, LayoutHelper.createFrame(70, 70, 17));
-                avatarHolderView.setTranslationX((-childCount) * 60);
-                avatarHolderView.setAlpha(0.0f);
-                avatarHolderView.setScaleX(0.1f);
-                avatarHolderView.setScaleY(0.1f);
-                avatarHolderView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(150L).start();
-                if (childCount == 0) {
-                    avatarHolderView.boostIconView.setScaleY(1.0f);
-                    avatarHolderView.boostIconView.setScaleX(1.0f);
-                    avatarHolderView.boostIconView.setAlpha(1.0f);
+                AvatarHolderView avatarHolderView3 = new AvatarHolderView(getContext());
+                avatarHolderView3.setLayerType(2, null);
+                avatarHolderView3.setChat((TLRPC$Chat) it.next());
+                int size = arrayList3.size();
+                this.avatarsWrapper.addView(avatarHolderView3, 0, LayoutHelper.createFrame(70, 70, 17));
+                avatarHolderView3.setTranslationX((-size) * 70);
+                avatarHolderView3.setAlpha(0.0f);
+                avatarHolderView3.setScaleX(0.1f);
+                avatarHolderView3.setScaleY(0.1f);
+                avatarHolderView3.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setInterpolator(cubicBezierInterpolator).setDuration(200).start();
+                if (size == 0) {
+                    avatarHolderView3.boostIconView.setScaleY(1.0f);
+                    avatarHolderView3.boostIconView.setScaleX(1.0f);
+                    avatarHolderView3.boostIconView.setAlpha(1.0f);
                 }
             }
             for (TLRPC$Chat tLRPC$Chat4 : arrayList) {
-                final AvatarHolderView avatarHolderView2 = null;
-                ArrayList<AvatarHolderView> arrayList3 = new ArrayList();
-                int i = 0;
+                Iterator it2 = arrayList3.iterator();
                 while (true) {
-                    if (i >= this.avatarsWrapper.getChildCount()) {
+                    if (!it2.hasNext()) {
+                        avatarHolderView = null;
                         break;
                     }
-                    AvatarHolderView avatarHolderView3 = (AvatarHolderView) this.avatarsWrapper.getChildAt(i);
-                    if (avatarHolderView3.chat == tLRPC$Chat4) {
-                        avatarHolderView2 = avatarHolderView3;
+                    avatarHolderView = (AvatarHolderView) it2.next();
+                    if (avatarHolderView.chat == tLRPC$Chat4) {
                         break;
                     }
-                    i++;
                 }
-                for (int i2 = 0; i2 < this.avatarsWrapper.getChildCount(); i2++) {
-                    arrayList3.add((AvatarHolderView) this.avatarsWrapper.getChildAt(i2));
-                }
-                if (avatarHolderView2 != null) {
-                    avatarHolderView2.animate().alpha(0.0f).translationXBy(60.0f).scaleX(f).scaleY(f).setDuration(150L).setListener(new AnimatorListenerAdapter() {
+                if (avatarHolderView != null) {
+                    avatarHolderView.setTag("REMOVED");
+                    long j = 200;
+                    avatarHolderView.animate().alpha(f).translationXBy(70.0f).scaleX(f2).scaleY(f2).setInterpolator(cubicBezierInterpolator).setDuration(j).setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animator) {
-                            TopCell.this.avatarsWrapper.removeView(avatarHolderView2);
+                            avatarHolderView.setLayerType(0, null);
+                            TopCell.this.avatarsWrapper.removeView(avatarHolderView);
                         }
                     }).start();
-                    int i3 = 0;
+                    int i2 = 0;
                     for (AvatarHolderView avatarHolderView4 : arrayList3) {
-                        int size = arrayList3.size() - 1;
-                        if (avatarHolderView4 != avatarHolderView2) {
-                            int i4 = i3 + 1;
-                            avatarHolderView4.animate().translationX((-(size - i4)) * 60).setDuration(300L).start();
-                            i3 = i4;
+                        int size2 = arrayList3.size() - 1;
+                        if (avatarHolderView4 != avatarHolderView) {
+                            i2++;
+                            avatarHolderView4.animate().translationX((-(size2 - i2)) * 70).setInterpolator(cubicBezierInterpolator).setDuration(j).start();
                         }
                     }
-                    if (arrayList3.get(arrayList3.size() - 1) == avatarHolderView2 && arrayList3.size() > 1) {
-                        ((AvatarHolderView) arrayList3.get(arrayList3.size() - 2)).boostIconView.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(150L).start();
+                    if (arrayList3.get(arrayList3.size() - 1) == avatarHolderView && arrayList3.size() > 1) {
+                        ((AvatarHolderView) arrayList3.get(arrayList3.size() - 2)).boostIconView.setScaleY(0.1f);
+                        ((AvatarHolderView) arrayList3.get(arrayList3.size() - 2)).boostIconView.setScaleX(0.1f);
+                        ((AvatarHolderView) arrayList3.get(arrayList3.size() - 2)).boostIconView.animate().alpha(1.0f).scaleY(1.0f).scaleX(1.0f).setDuration(j).setInterpolator(cubicBezierInterpolator).start();
+                        f = 0.0f;
+                        f2 = 0.1f;
                     }
                 }
-                f = 0.1f;
+                f = 0.0f;
+                f2 = 0.1f;
             }
-            this.toAvatar.setChat(tLRPC$Chat);
+            AvatarHolderView avatarHolderView5 = this.toAvatar;
+            if (avatarHolderView5.chat == null) {
+                avatarHolderView5.setChat(tLRPC$Chat);
+            }
             this.addedChats.removeAll(arrayList);
             this.addedChats.addAll(arrayList2);
+            this.avatarsContainer.animate().cancel();
             if (this.addedChats.isEmpty() || this.addedChats.size() == 1) {
-                this.avatarsContainer.animate().translationX(0.0f).start();
+                this.avatarsContainer.animate().setInterpolator(cubicBezierInterpolator).translationX(0.0f).setDuration(200).start();
             } else {
-                this.avatarsContainer.animate().translationX(AndroidUtilities.dp(11.0f) * (this.addedChats.size() - 1)).start();
+                this.avatarsContainer.animate().setInterpolator(cubicBezierInterpolator).translationX(AndroidUtilities.dp(11.0f) * (this.addedChats.size() - 1)).setDuration(200).start();
             }
+            this.toAvatar.animate().cancel();
+            this.avatarsWrapper.animate().cancel();
             if (this.addedChats.isEmpty()) {
-                this.avatarsWrapper.animate().translationX(0.0f).setDuration(150L).start();
-                this.toAvatar.animate().translationX(0.0f).setDuration(150L).start();
+                long j2 = 200;
+                this.avatarsWrapper.animate().setInterpolator(cubicBezierInterpolator).translationX(0.0f).setDuration(j2).start();
+                this.toAvatar.animate().setInterpolator(cubicBezierInterpolator).translationX(0.0f).setDuration(j2).start();
                 return;
             }
-            this.avatarsWrapper.animate().translationX(-AndroidUtilities.dp(48.0f)).setDuration(150L).start();
-            this.toAvatar.animate().translationX(AndroidUtilities.dp(48.0f)).setDuration(150L).start();
+            long j3 = 200;
+            this.avatarsWrapper.animate().setInterpolator(cubicBezierInterpolator).translationX(-AndroidUtilities.dp(48.0f)).setDuration(j3).start();
+            this.toAvatar.animate().setInterpolator(cubicBezierInterpolator).translationX(AndroidUtilities.dp(48.0f)).setDuration(j3).start();
         }
     }
 
@@ -496,20 +519,20 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         private final Paint bgPaint;
         private final BoostIconView boostIconView;
         public TLRPC$Chat chat;
+        AvatarDrawable fromAvatarDrawable;
         private final BackupImageView imageView;
 
         public AvatarHolderView(Context context) {
             super(context);
             Paint paint = new Paint(1);
             this.bgPaint = paint;
+            this.fromAvatarDrawable = new AvatarDrawable();
             BackupImageView backupImageView = new BackupImageView(getContext());
             this.imageView = backupImageView;
             backupImageView.setRoundRadius(AndroidUtilities.dp(30.0f));
             BoostIconView boostIconView = new BoostIconView(context);
             this.boostIconView = boostIconView;
             boostIconView.setAlpha(0.0f);
-            boostIconView.setScaleX(0.1f);
-            boostIconView.setScaleY(0.1f);
             addView(backupImageView, LayoutHelper.createFrame(-1, -1.0f, 0, 5.0f, 5.0f, 5.0f, 5.0f));
             addView(boostIconView, LayoutHelper.createFrame(28, 28.0f, 85, 0.0f, 0.0f, 0.0f, 3.0f));
             paint.setColor(Theme.getColor(Theme.key_dialogBackground));
@@ -517,14 +540,13 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
 
         public void setChat(TLRPC$Chat tLRPC$Chat) {
             this.chat = tLRPC$Chat;
-            AvatarDrawable avatarDrawable = new AvatarDrawable();
-            avatarDrawable.setInfo(tLRPC$Chat);
-            this.imageView.setForUserOrChat(tLRPC$Chat, avatarDrawable);
+            this.fromAvatarDrawable.setInfo(tLRPC$Chat);
+            this.imageView.setForUserOrChat(tLRPC$Chat, this.fromAvatarDrawable);
         }
 
         @Override
         protected void dispatchDraw(Canvas canvas) {
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(3.0f), this.bgPaint);
+            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(2.0f), this.bgPaint);
             super.dispatchDraw(canvas);
         }
     }

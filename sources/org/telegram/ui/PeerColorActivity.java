@@ -999,7 +999,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             Drawable mutate = context.getResources().getDrawable(R.drawable.msg_palette).mutate();
             this.drawable = mutate;
             mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider), PorterDuff.Mode.SRC_IN));
-            this.buttonText = new Text(LocaleController.getString(R.string.ChangeNameColor), 16);
+            this.buttonText = new Text(LocaleController.getString(z ? R.string.ChangeChannelNameColor : R.string.ChangeUserNameColor), 16);
             updateColors();
         }
 

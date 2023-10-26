@@ -281,6 +281,7 @@ public class Theme {
     public static Drawable chat_msgStickerRepliesDrawable;
     public static Drawable chat_msgStickerViewsDrawable;
     public static TextPaint chat_msgTextCode2Paint;
+    public static TextPaint chat_msgTextCode3Paint;
     public static TextPaint chat_msgTextCodePaint;
     public static TextPaint chat_msgTextPaint;
     public static TextPaint[] chat_msgTextPaintEmoji;
@@ -697,6 +698,7 @@ public class Theme {
     public static final int key_chat_outReactionButtonText;
     public static final int key_chat_outReactionButtonTextSelected;
     public static final int key_chat_outReplyLine;
+    public static final int key_chat_outReplyLine2;
     public static final int key_chat_outReplyMediaMessageSelectedText;
     public static final int key_chat_outReplyMediaMessageText;
     public static final int key_chat_outReplyMessageText;
@@ -2669,6 +2671,7 @@ public class Theme {
                     sparseIntArray2.put(Theme.key_chat_outForwardedNameText, i4);
                     sparseIntArray2.put(Theme.key_chat_outViaBotNameText, i4);
                     sparseIntArray2.put(Theme.key_chat_outReplyLine, i4);
+                    sparseIntArray2.put(Theme.key_chat_outReplyLine2, i4);
                     sparseIntArray2.put(Theme.key_chat_outReplyNameText, i4);
                     sparseIntArray2.put(Theme.key_chat_outPreviewLine, i4);
                     sparseIntArray2.put(Theme.key_chat_outSiteNameText, i4);
@@ -6467,6 +6470,9 @@ public class Theme {
                 TextPaint textPaint6 = new TextPaint(1);
                 chat_msgTextCode2Paint = textPaint6;
                 textPaint6.setTypeface(Typeface.MONOSPACE);
+                TextPaint textPaint7 = new TextPaint(1);
+                chat_msgTextCode3Paint = textPaint7;
+                textPaint7.setTypeface(Typeface.MONOSPACE);
                 chat_msgCodeBgPaint = new TextPaint(1);
             }
             int i = 0;
@@ -6493,8 +6499,9 @@ public class Theme {
                     chat_topicTextPaint.setTextSize(AndroidUtilities.dp(f2));
                     chat_forwardNamePaint.setTextSize(AndroidUtilities.dp(f));
                     chat_adminPaint.setTextSize(AndroidUtilities.dp(f2));
-                    chat_msgTextCodePaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 2));
-                    chat_msgTextCode2Paint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - 4));
+                    chat_msgTextCodePaint.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 1), SharedConfig.fontSize - 2)));
+                    chat_msgTextCode2Paint.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 2), SharedConfig.fontSize - 3)));
+                    chat_msgTextCode3Paint.setTextSize(AndroidUtilities.dp(Math.max(Math.min(10, SharedConfig.fontSize - 2), SharedConfig.fontSize - 5)));
                 }
             }
         }

@@ -6516,13 +6516,16 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             Theme.chat_msgGameTextPaint.setColor(getThemedColor(i));
             Theme.chat_msgTextCodePaint.setColor(getThemedColor(i));
             Theme.chat_msgTextCode2Paint.setColor(getThemedColor(i));
+            Theme.chat_msgTextCode3Paint.setColor(getThemedColor(i));
             TextPaint textPaint2 = Theme.chat_msgGameTextPaint;
             TextPaint textPaint3 = Theme.chat_replyTextPaint;
             TextPaint textPaint4 = Theme.chat_quoteTextPaint;
             TextPaint textPaint5 = Theme.chat_msgTextPaint;
             TextPaint textPaint6 = Theme.chat_msgTextCodePaint;
             TextPaint textPaint7 = Theme.chat_msgTextCode2Paint;
+            TextPaint textPaint8 = Theme.chat_msgTextCode3Paint;
             int themedColor = getThemedColor(Theme.key_chat_messageLinkOut);
+            textPaint8.linkColor = themedColor;
             textPaint7.linkColor = themedColor;
             textPaint6.linkColor = themedColor;
             textPaint5.linkColor = themedColor;
@@ -6531,25 +6534,28 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             textPaint2.linkColor = themedColor;
             return;
         }
-        TextPaint textPaint8 = Theme.chat_msgTextPaint;
+        TextPaint textPaint9 = Theme.chat_msgTextPaint;
         int i2 = Theme.key_chat_messageTextIn;
-        textPaint8.setColor(getThemedColor(i2));
+        textPaint9.setColor(getThemedColor(i2));
         Theme.chat_msgGameTextPaint.setColor(getThemedColor(i2));
         Theme.chat_msgTextCodePaint.setColor(getThemedColor(i2));
         Theme.chat_msgTextCode2Paint.setColor(getThemedColor(i2));
-        TextPaint textPaint9 = Theme.chat_msgGameTextPaint;
-        TextPaint textPaint10 = Theme.chat_replyTextPaint;
-        TextPaint textPaint11 = Theme.chat_quoteTextPaint;
-        TextPaint textPaint12 = Theme.chat_msgTextPaint;
-        TextPaint textPaint13 = Theme.chat_msgTextCodePaint;
-        TextPaint textPaint14 = Theme.chat_msgTextCode2Paint;
+        Theme.chat_msgTextCode3Paint.setColor(getThemedColor(i2));
+        TextPaint textPaint10 = Theme.chat_msgGameTextPaint;
+        TextPaint textPaint11 = Theme.chat_replyTextPaint;
+        TextPaint textPaint12 = Theme.chat_quoteTextPaint;
+        TextPaint textPaint13 = Theme.chat_msgTextPaint;
+        TextPaint textPaint14 = Theme.chat_msgTextCodePaint;
+        TextPaint textPaint15 = Theme.chat_msgTextCode2Paint;
+        TextPaint textPaint16 = Theme.chat_msgTextCode3Paint;
         int themedColor2 = getThemedColor(Theme.key_chat_messageLinkIn);
+        textPaint16.linkColor = themedColor2;
+        textPaint15.linkColor = themedColor2;
         textPaint14.linkColor = themedColor2;
         textPaint13.linkColor = themedColor2;
         textPaint12.linkColor = themedColor2;
         textPaint11.linkColor = themedColor2;
         textPaint10.linkColor = themedColor2;
-        textPaint9.linkColor = themedColor2;
     }
 
     @Override

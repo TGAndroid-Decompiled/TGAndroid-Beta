@@ -66,7 +66,7 @@ public class QuoteHighlight extends Path {
                 this.currentOffsetX = -f;
                 this.currentOffsetY = textLayoutBlock.textYOffset + textLayoutBlock.padTop;
                 this.minX = textLayoutBlock.quote ? AndroidUtilities.dp(10.0f) : 0.0f;
-                z = z || textLayoutBlock.isRtl();
+                z = z || AndroidUtilities.isRTL(textLayoutBlock.textLayout.getText());
                 if (z) {
                     textLayoutBlock.textLayout.getSelectionPath(max, min, this);
                 } else {
@@ -154,14 +154,6 @@ public class QuoteHighlight extends Path {
         if (f >= f3) {
             return;
         }
-        Rect rect = this.lastRect;
-        if (rect != null && Math.abs(rect.top - f2) < 1.0f) {
-            Rect rect2 = this.lastRect;
-            rect2.left = Math.min(rect2.left, f);
-            Rect rect3 = this.lastRect;
-            rect3.right = Math.min(rect3.right, f3);
-            return;
-        }
         float max = Math.max(this.minX, f);
         float max2 = Math.max(this.minX, f3);
         float f5 = this.currentOffsetX;
@@ -169,18 +161,18 @@ public class QuoteHighlight extends Path {
         float f7 = this.currentOffsetY;
         float f8 = f2 + f7;
         float f9 = max2 + f5;
-        Rect rect4 = new Rect();
-        rect4.left = f6 - AndroidUtilities.dp(3.0f);
-        rect4.right = f9 + AndroidUtilities.dp(3.0f);
-        rect4.top = f8;
-        rect4.bottom = f4 + f7;
-        Rect rect5 = this.lastRect;
-        if (rect5 != null) {
-            float f10 = rect5.bottom;
-            rect5.nextBottom = (f10 + f8) / 2.0f;
-            rect4.prevTop = (f10 + f8) / 2.0f;
+        Rect rect = new Rect();
+        rect.left = f6 - AndroidUtilities.dp(3.0f);
+        rect.right = f9 + AndroidUtilities.dp(3.0f);
+        rect.top = f8;
+        rect.bottom = f4 + f7;
+        Rect rect2 = this.lastRect;
+        if (rect2 != null) {
+            float f10 = rect2.bottom;
+            rect2.nextBottom = (f10 + f8) / 2.0f;
+            rect.prevTop = (f10 + f8) / 2.0f;
         }
-        this.rectangles.add(rect4);
-        this.lastRect = rect4;
+        this.rectangles.add(rect);
+        this.lastRect = rect;
     }
 }
