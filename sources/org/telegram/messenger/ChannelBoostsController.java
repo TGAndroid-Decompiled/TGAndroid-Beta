@@ -162,7 +162,7 @@ public class ChannelBoostsController {
                     this.canApply = true;
                 } else if (arrayList.size() > 1) {
                     this.needSelector = true;
-                    if (!MessagesController.getInstance(UserConfig.selectedAccount).giveawayGiftsPurchaseAvailable) {
+                    if (!BoostRepository.isMultiBoostsAvailable()) {
                         TL_stories$TL_myBoost tL_stories$TL_myBoost2 = (TL_stories$TL_myBoost) arrayList.get(0);
                         this.replaceDialogId = DialogObject.getPeerDialogId(tL_stories$TL_myBoost2.peer);
                         this.slot = tL_stories$TL_myBoost2.slot;

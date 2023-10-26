@@ -2,6 +2,7 @@ package org.telegram.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
@@ -46,6 +47,7 @@ import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$User;
 import org.telegram.tgnet.tl.TL_stories$TL_premium_boostsStatus;
 import org.telegram.ui.ActionBar.ActionBar;
+import org.telegram.ui.ActionBar.AlertDialog;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.ActionBar.ThemeDescription;
@@ -152,7 +154,11 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             @Override
             public void onItemClick(int i) {
                 if (i == -1) {
-                    PeerColorActivity.this.finishFragment();
+                    if (!PeerColorActivity.this.isChannel && PeerColorActivity.this.hasUnsavedChanged() && PeerColorActivity.this.getUserConfig().isPremium()) {
+                        PeerColorActivity.this.showUnsavedAlert();
+                    } else {
+                        PeerColorActivity.this.finishFragment();
+                    }
                 }
             }
         });
@@ -210,7 +216,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         this.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public final void onClick(View view) {
-                PeerColorActivity.this.lambda$createView$2(view);
+                PeerColorActivity.this.lambda$createView$1(view);
             }
         });
         this.buttonContainer.addView(this.button, LayoutHelper.createFrame(-1, 48.0f));
@@ -337,57 +343,33 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public void lambda$createView$2(View view) {
-        if (this.button.isLoading()) {
-            return;
-        }
-        if (this.isChannel) {
-            this.button.setLoading(true);
-            showBoostLimit(false);
-        } else if (!getUserConfig().isPremium()) {
-            Bulletin createSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.UserColorApplyPremium), new Runnable() {
-                @Override
-                public final void run() {
-                    PeerColorActivity.this.lambda$createView$1();
-                }
-            }));
-            createSimpleBulletin.getLayout().setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(8.0f));
-            createSimpleBulletin.show();
-            BotWebViewVibrationEffect.APP_ERROR.vibrate();
-        } else {
-            apply();
-            finishFragment();
-        }
-    }
-
-    public void lambda$createView$1() {
-        presentFragment(new PremiumPreviewFragment("color"));
+    public void lambda$createView$1(View view) {
+        buttonClick();
     }
 
     private void showBoostLimit(final boolean z) {
         getMessagesController().getBoostsController().getBoostsStats(this.dialogId, new Consumer() {
             @Override
             public final void accept(Object obj) {
-                PeerColorActivity.this.lambda$showBoostLimit$6(z, (TL_stories$TL_premium_boostsStatus) obj);
+                PeerColorActivity.this.lambda$showBoostLimit$5(z, (TL_stories$TL_premium_boostsStatus) obj);
             }
         });
     }
 
-    public void lambda$showBoostLimit$6(boolean z, final TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
+    public void lambda$showBoostLimit$5(boolean z, final TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
         if (z || tL_stories$TL_premium_boostsStatus.level < getMessagesController().channelColorLevelMin) {
             getMessagesController().getBoostsController().userCanBoostChannel(this.dialogId, tL_stories$TL_premium_boostsStatus, new Consumer() {
                 @Override
                 public final void accept(Object obj) {
-                    PeerColorActivity.this.lambda$showBoostLimit$5(tL_stories$TL_premium_boostsStatus, (ChannelBoostsController.CanApplyBoost) obj);
+                    PeerColorActivity.this.lambda$showBoostLimit$4(tL_stories$TL_premium_boostsStatus, (ChannelBoostsController.CanApplyBoost) obj);
                 }
             });
-            return;
+        } else {
+            apply();
         }
-        this.button.setLoading(false);
-        apply();
     }
 
-    public void lambda$showBoostLimit$5(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+    public void lambda$showBoostLimit$4(TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus, ChannelBoostsController.CanApplyBoost canApplyBoost) {
         if (getContext() == null) {
             return;
         }
@@ -398,19 +380,19 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         limitReachedBottomSheet.showStatisticButtonInLink(new Runnable() {
             @Override
             public final void run() {
-                PeerColorActivity.this.lambda$showBoostLimit$3();
+                PeerColorActivity.this.lambda$showBoostLimit$2();
             }
         });
         showDialog(limitReachedBottomSheet);
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PeerColorActivity.this.lambda$showBoostLimit$4();
+                PeerColorActivity.this.lambda$showBoostLimit$3();
             }
         }, 300L);
     }
 
-    public void lambda$showBoostLimit$3() {
+    public void lambda$showBoostLimit$2() {
         TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
         Bundle bundle = new Bundle();
         bundle.putLong("chat_id", -this.dialogId);
@@ -423,7 +405,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         presentFragment(new StatisticActivity(bundle));
     }
 
-    public void lambda$showBoostLimit$4() {
+    public void lambda$showBoostLimit$3() {
         this.button.setLoading(false);
     }
 
@@ -431,6 +413,99 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     public void onBecomeFullyHidden() {
         super.onBecomeFullyHidden();
         apply();
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        if (!this.isChannel && hasUnsavedChanged() && getUserConfig().isPremium()) {
+            showUnsavedAlert();
+            return false;
+        }
+        return super.onBackPressed();
+    }
+
+    public boolean hasUnsavedChanged() {
+        if (this.isChannel) {
+            TLRPC$Chat chat = getMessagesController().getChat(Long.valueOf(-this.dialogId));
+            if (chat == null) {
+                return false;
+            }
+            if (this.selectedColor == chat.color) {
+                if (this.selectedEmoji == ((chat.flags2 & 64) != 0 ? chat.background_emoji_id : 0L)) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        TLRPC$User currentUser = getUserConfig().getCurrentUser();
+        if (this.selectedColor == currentUser.color) {
+            if (this.selectedEmoji == ((currentUser.flags2 & 64) != 0 ? currentUser.background_emoji_id : 0L)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isSwipeBackEnabled(MotionEvent motionEvent) {
+        if (!this.isChannel && hasUnsavedChanged() && getUserConfig().isPremium()) {
+            return false;
+        }
+        return super.isSwipeBackEnabled(motionEvent);
+    }
+
+    public void showUnsavedAlert() {
+        if (getVisibleDialog() != null) {
+            return;
+        }
+        AlertDialog create = new AlertDialog.Builder(getContext(), getResourceProvider()).setTitle(LocaleController.getString(this.isChannel ? R.string.ChannelColorUnsaved : R.string.UserColorUnsaved)).setMessage(LocaleController.getString(this.isChannel ? R.string.ChannelColorUnsavedMessage : R.string.UserColorUnsavedMessage)).setNegativeButton(LocaleController.getString(R.string.Dismiss), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                PeerColorActivity.this.lambda$showUnsavedAlert$6(dialogInterface, i);
+            }
+        }).setPositiveButton(LocaleController.getString(R.string.ApplyTheme), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                PeerColorActivity.this.lambda$showUnsavedAlert$7(dialogInterface, i);
+            }
+        }).create();
+        showDialog(create);
+        ((TextView) create.getButton(-2)).setTextColor(getThemedColor(Theme.key_text_RedBold));
+    }
+
+    public void lambda$showUnsavedAlert$6(DialogInterface dialogInterface, int i) {
+        finishFragment();
+    }
+
+    public void lambda$showUnsavedAlert$7(DialogInterface dialogInterface, int i) {
+        buttonClick();
+    }
+
+    private void buttonClick() {
+        if (this.button.isLoading()) {
+            return;
+        }
+        if (this.isChannel) {
+            this.button.setLoading(true);
+            showBoostLimit(false);
+        } else if (!getUserConfig().isPremium()) {
+            Bulletin createSimpleBulletin = BulletinFactory.of(this).createSimpleBulletin(R.raw.star_premium_2, AndroidUtilities.premiumText(LocaleController.getString(R.string.UserColorApplyPremium), new Runnable() {
+                @Override
+                public final void run() {
+                    PeerColorActivity.this.lambda$buttonClick$8();
+                }
+            }));
+            createSimpleBulletin.getLayout().setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(8.0f));
+            createSimpleBulletin.show();
+            BotWebViewVibrationEffect.APP_ERROR.vibrate();
+        } else {
+            apply();
+            finishFragment();
+        }
+    }
+
+    public void lambda$buttonClick$8() {
+        presentFragment(new PremiumPreviewFragment("color"));
     }
 
     private void apply() {
@@ -469,12 +544,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                     chat.flags2 = i & (-33);
                     chat.background_emoji_id = 0L;
                 }
+                this.button.setLoading(true);
                 getMessagesController().putChat(chat, false);
                 getUserConfig().saveConfig(true);
                 getConnectionsManager().sendRequest(tLRPC$TL_channels_updateColor, new RequestDelegate() {
                     @Override
                     public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        PeerColorActivity.this.lambda$apply$8(tLObject, tLRPC$TL_error);
+                        PeerColorActivity.this.lambda$apply$10(tLObject, tLRPC$TL_error);
                     }
                 });
             } else {
@@ -509,16 +585,16 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         }
     }
 
-    public void lambda$apply$8(TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$apply$10(TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                PeerColorActivity.this.lambda$apply$7(tLRPC$TL_error);
+                PeerColorActivity.this.lambda$apply$9(tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$apply$7(TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$apply$9(TLRPC$TL_error tLRPC$TL_error) {
         this.applying = false;
         if (tLRPC$TL_error != null && "BOOSTS_REQUIRED".equals(tLRPC$TL_error.text)) {
             showBoostLimit(true);
@@ -564,7 +640,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             this.textView = textView;
             textView.setTextSize(1, 16.0f);
             this.textView.setTextColor(PeerColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhiteBlackText));
-            this.textView.setText(LocaleController.getString(R.string.UserReplyIcon));
+            this.textView.setText(LocaleController.getString(PeerColorActivity.this.isChannel ? R.string.ChannelReplyIcon : R.string.UserReplyIcon));
             addView(this.textView, LayoutHelper.createFrame(-1, -2.0f, 23, 20.0f, 0.0f, 48.0f, 0.0f));
             this.imageDrawable = new AnimatedEmojiDrawable.SwapAnimatedEmojiDrawable(this, false, AndroidUtilities.dp(24.0f), 13);
         }
@@ -577,7 +653,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
             this.imageDrawable.set((Drawable) null, z);
             if (this.offText == null) {
-                this.offText = new Text(LocaleController.getString(R.string.UserReplyIconOff), 16);
+                this.offText = new Text(LocaleController.getString(PeerColorActivity.this.isChannel ? R.string.ChannelReplyIconOff : R.string.UserReplyIconOff), 16);
             }
         }
 

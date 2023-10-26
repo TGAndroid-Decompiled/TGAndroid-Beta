@@ -331,6 +331,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
     private boolean isNextButton;
     private boolean isPremiumHintUpgrade;
     public boolean isQuote;
+    public boolean isReplyTo;
     boolean isSlideBackTransition;
     private int lastMeasuredTopPadding;
     private int maximumVelocity;
@@ -2066,6 +2067,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             this.cantSendToChannels = this.arguments.getBoolean("cantSendToChannels", false);
             this.initialDialogsType = this.arguments.getInt("dialogsType", 0);
             this.isQuote = this.arguments.getBoolean("quote", false);
+            this.isReplyTo = this.arguments.getBoolean("reply_to", false);
             this.selectAlertString = this.arguments.getString("selectAlertString");
             this.selectAlertStringGroup = this.arguments.getString("selectAlertStringGroup");
             this.addToGroupAlertString = this.arguments.getString("addToGroupAlertString");

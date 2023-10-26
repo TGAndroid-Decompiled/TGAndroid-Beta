@@ -161,7 +161,7 @@ public class BoostDialogs {
     public static void lambda$showGiftLinkForwardedBulletin$2(CharSequence charSequence) {
         BulletinFactory global = BulletinFactory.global();
         if (global != null) {
-            global.createSimpleBulletin(R.raw.forward, charSequence).show();
+            global.createSimpleBulletinWithIconSize(R.raw.forward, charSequence, 30).show();
         }
     }
 
@@ -717,14 +717,14 @@ public class BoostDialogs {
         }
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(lastFragment.getParentActivity(), lastFragment.getResourceProvider());
         if (tLRPC$payments_GiveawayInfo instanceof TLRPC$TL_payments_giveawayInfoResults) {
-            lottieLayout.setAnimation(R.raw.chats_infotip, 36, 36, new String[0]);
+            lottieLayout.setAnimation(R.raw.chats_infotip, 30, 30, new String[0]);
             lottieLayout.textView.setText(LocaleController.getString("BoostingGiveawayShortStatusEnded", R.string.BoostingGiveawayShortStatusEnded));
         } else if (tLRPC$payments_GiveawayInfo instanceof TLRPC$TL_payments_giveawayInfo) {
             if (((TLRPC$TL_payments_giveawayInfo) tLRPC$payments_GiveawayInfo).participating) {
-                lottieLayout.setAnimation(R.raw.forward, 36, 36, new String[0]);
+                lottieLayout.setAnimation(R.raw.forward, 30, 30, new String[0]);
                 lottieLayout.textView.setText(LocaleController.getString("BoostingGiveawayShortStatusParticipating", R.string.BoostingGiveawayShortStatusParticipating));
             } else {
-                lottieLayout.setAnimation(R.raw.chats_infotip, 36, 36, new String[0]);
+                lottieLayout.setAnimation(R.raw.chats_infotip, 30, 30, new String[0]);
                 lottieLayout.textView.setText(LocaleController.getString("BoostingGiveawayShortStatusNotParticipating", R.string.BoostingGiveawayShortStatusNotParticipating));
             }
         }

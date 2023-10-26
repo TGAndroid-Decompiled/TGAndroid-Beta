@@ -6397,17 +6397,19 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void onFullDismiss() {
+        protected void onFullDismiss(boolean z) {
             MessagePreviewParams messagePreviewParams = ChatActivity.this.messagePreviewParams;
             if (messagePreviewParams != null) {
                 messagePreviewParams.attach(null);
             }
-            AndroidUtilities.runOnUIThread(new Runnable() {
-                @Override
-                public final void run() {
-                    ChatActivity.AnonymousClass52.this.lambda$onFullDismiss$0();
-                }
-            }, 15L);
+            if (z) {
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        ChatActivity.AnonymousClass52.this.lambda$onFullDismiss$0();
+                    }
+                }, 15L);
+            }
         }
 
         public void lambda$onFullDismiss$0() {
@@ -6483,48 +6485,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        protected void selectAnotherChat(boolean z) {
-            int i;
-            boolean z2;
-            dismiss(false);
-            ChatActivity chatActivity = ChatActivity.this;
-            if (chatActivity.messagePreviewParams != null) {
-                if (!z) {
-                    chatActivity.ignoreDraft = true;
-                }
-                MessagePreviewParams.Messages messages = ChatActivity.this.messagePreviewParams.forwardMessages;
-                if (messages != null) {
-                    int size = messages.messages.size();
-                    i = 0;
-                    z2 = false;
-                    for (int i2 = 0; i2 < size; i2++) {
-                        MessageObject messageObject = ChatActivity.this.messagePreviewParams.forwardMessages.messages.get(i2);
-                        if (messageObject.isPoll()) {
-                            if (i != 2) {
-                                i = messageObject.isPublicPoll() ? 2 : 1;
-                            }
-                        } else if (messageObject.isInvoice()) {
-                            z2 = true;
-                        }
-                        ChatActivity.this.selectedMessagesIds[0].put(messageObject.getId(), messageObject);
-                    }
-                } else {
-                    i = 0;
-                    z2 = false;
-                }
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("onlySelect", true);
-                bundle.putInt("dialogsType", 3);
-                bundle.putBoolean("quote", !z);
-                bundle.putInt("hasPoll", i);
-                bundle.putBoolean("hasInvoice", z2);
-                MessagePreviewParams.Messages messages2 = ChatActivity.this.messagePreviewParams.forwardMessages;
-                bundle.putInt("messagesCount", messages2 != null ? messages2.messages.size() : 0);
-                bundle.putBoolean("canSelectTopics", true);
-                DialogsActivity dialogsActivity = new DialogsActivity(bundle);
-                dialogsActivity.setDelegate(ChatActivity.this);
-                ChatActivity.this.presentFragment(dialogsActivity);
-            }
+        protected void selectAnotherChat(boolean r10) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.AnonymousClass52.selectAnotherChat(boolean):void");
         }
     }
 
@@ -14114,8 +14076,8 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (this.keyboardWasVisible) {
             ChatActivityEnterView chatActivityEnterView = this.chatActivityEnterView;
             if (chatActivityEnterView != null) {
-                chatActivityEnterView.freezeEmojiView(false);
-                this.chatActivityEnterView.openKeyboard();
+                chatActivityEnterView.openKeyboardInternal();
+                this.chatActivityEnterView.freezeEmojiView(false);
             }
             this.keyboardWasVisible = false;
         }
@@ -17219,10 +17181,9 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     @Override
     public boolean didSelectDialogs(DialogsActivity dialogsActivity, ArrayList<MessagesStorage.TopicKey> arrayList, CharSequence charSequence, boolean z, TopicsFragment topicsFragment) {
         ChatActivityEnterView chatActivityEnterView;
-        MessageObject messageObject;
         ChatActivityEnterView chatActivityEnterView2;
-        MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
-        if ((messagePreviewParams == null || (dialogsActivity.isQuote && messagePreviewParams.replyMessage == null)) && this.forwardingMessage == null && this.selectedMessagesIds[0].size() == 0 && this.selectedMessagesIds[1].size() == 0) {
+        MessageObject messageObject;
+        if (((this.messagePreviewParams == null && (!dialogsActivity.isQuote || this.replyingMessageObject == null)) || (dialogsActivity.isQuote && this.replyingMessageObject == null)) && this.forwardingMessage == null && this.selectedMessagesIds[0].size() == 0 && this.selectedMessagesIds[1].size() == 0) {
             return false;
         }
         ArrayList<MessageObject> arrayList2 = new ArrayList<>();
@@ -17370,11 +17331,6 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                         }
                     }
                 }
-                if (this.keyboardWasVisible && (chatActivityEnterView2 = this.chatActivityEnterView) != null) {
-                    chatActivityEnterView2.freezeEmojiView(false);
-                    this.chatActivityEnterView.openKeyboard();
-                    this.keyboardWasVisible = false;
-                }
                 moveScrollToLastMessage(false);
                 if (dialogsActivity.isQuote && (messageObject = this.replyingMessageObject) != null) {
                     showFieldPanelForReplyQuote(messageObject, this.replyingQuote);
@@ -17386,6 +17342,11 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     updatePinnedMessageView(true);
                 }
                 updateVisibleRows();
+                if (this.keyboardWasVisible && (chatActivityEnterView2 = this.chatActivityEnterView) != null) {
+                    chatActivityEnterView2.openKeyboardInternal();
+                    this.chatActivityEnterView.freezeEmojiView(false);
+                    this.keyboardWasVisible = false;
+                }
             }
         }
         return true;
@@ -20649,7 +20610,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
 
         @Override
-        public void didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell r14, int r15) {
+        public void didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell r17, int r18) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.ChatMessageCellDelegate.didPressReplyMessage(org.telegram.ui.Cells.ChatMessageCell, int):void");
         }
 

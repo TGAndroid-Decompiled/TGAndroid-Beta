@@ -337,14 +337,16 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
             tLRPC$TL_inputReplyToMessage.flags |= 2;
             tLRPC$TL_inputReplyToMessage.reply_to_peer_id = MessagesController.getInstance(this.currentAccount).getInputPeer(tLRPC$TL_messageReplyHeader.reply_to_peer_id);
         }
-        int i2 = tLRPC$TL_messageReplyHeader.flags;
-        if ((i2 & 64) != 0) {
-            tLRPC$TL_inputReplyToMessage.flags |= 4;
-            tLRPC$TL_inputReplyToMessage.quote_text = tLRPC$TL_messageReplyHeader.quote_text;
-        }
-        if ((i2 & 128) != 0) {
-            tLRPC$TL_inputReplyToMessage.flags |= 8;
-            tLRPC$TL_inputReplyToMessage.quote_entities = tLRPC$TL_messageReplyHeader.quote_entities;
+        if (tLRPC$TL_messageReplyHeader.quote) {
+            int i2 = tLRPC$TL_messageReplyHeader.flags;
+            if ((i2 & 64) != 0) {
+                tLRPC$TL_inputReplyToMessage.flags |= 4;
+                tLRPC$TL_inputReplyToMessage.quote_text = tLRPC$TL_messageReplyHeader.quote_text;
+            }
+            if ((i2 & 128) != 0) {
+                tLRPC$TL_inputReplyToMessage.flags |= 8;
+                tLRPC$TL_inputReplyToMessage.quote_entities = tLRPC$TL_messageReplyHeader.quote_entities;
+            }
         }
         return tLRPC$TL_inputReplyToMessage;
     }

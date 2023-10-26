@@ -12,8 +12,6 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedTextView;
 import org.telegram.ui.Components.CubicBezierInterpolator;
@@ -75,7 +73,7 @@ public class BoostCounterView extends View {
     }
 
     public void setCount(int i, boolean z) {
-        if (!MessagesController.getInstance(UserConfig.selectedAccount).giveawayGiftsPurchaseAvailable) {
+        if (!BoostRepository.isMultiBoostsAvailable()) {
             i = 0;
         }
         if (i > 0) {

@@ -8,6 +8,7 @@ public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
         this.flags = readInt32;
         this.reply_to_scheduled = (readInt32 & 4) != 0;
         this.forum_topic = (readInt32 & 8) != 0;
+        this.quote = (readInt32 & LiteMode.FLAG_CALLS_ANIMATIONS) != 0;
         if ((readInt32 & 16) != 0) {
             this.reply_to_msg_id = abstractSerializedData.readInt32(z);
         }
@@ -52,7 +53,9 @@ public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
         this.flags = i;
         int i2 = this.forum_topic ? i | 8 : i & (-9);
         this.flags = i2;
-        abstractSerializedData.writeInt32(i2);
+        int i3 = this.quote ? i2 | LiteMode.FLAG_CALLS_ANIMATIONS : i2 & (-513);
+        this.flags = i3;
+        abstractSerializedData.writeInt32(i3);
         if ((this.flags & 16) != 0) {
             abstractSerializedData.writeInt32(this.reply_to_msg_id);
         }
@@ -75,8 +78,8 @@ public class TLRPC$TL_messageReplyHeader extends TLRPC$MessageReplyHeader {
             abstractSerializedData.writeInt32(481674261);
             int size = this.quote_entities.size();
             abstractSerializedData.writeInt32(size);
-            for (int i3 = 0; i3 < size; i3++) {
-                this.quote_entities.get(i3).serializeToStream(abstractSerializedData);
+            for (int i4 = 0; i4 < size; i4++) {
+                this.quote_entities.get(i4).serializeToStream(abstractSerializedData);
             }
         }
     }

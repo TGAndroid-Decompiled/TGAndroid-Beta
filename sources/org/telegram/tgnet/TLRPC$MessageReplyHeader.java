@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public abstract class TLRPC$MessageReplyHeader extends TLObject {
     public int flags;
     public boolean forum_topic;
+    public boolean quote;
     public ArrayList<TLRPC$MessageEntity> quote_entities = new ArrayList<>();
     public String quote_text;
     public TLRPC$MessageFwdHeader reply_from;

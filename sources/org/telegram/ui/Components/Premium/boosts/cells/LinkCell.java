@@ -85,6 +85,9 @@ public class LinkCell extends FrameLayout {
         TextStyleSpan.TextStyleRun textStyleRun = new TextStyleSpan.TextStyleRun();
         textStyleRun.flags |= LiteMode.FLAG_CHAT_BLUR;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("t.me/giftcode/" + this.slug);
+        if (this.slug == null) {
+            spannableStringBuilder.append((CharSequence) "1234567891011123654897566536223");
+        }
         spannableStringBuilder.setSpan(new TextStyleSpan(textStyleRun), 0, spannableStringBuilder.length(), 33);
         this.linkView.setText(spannableStringBuilder);
         this.linkContainer.setOnClickListener(new View.OnClickListener() {

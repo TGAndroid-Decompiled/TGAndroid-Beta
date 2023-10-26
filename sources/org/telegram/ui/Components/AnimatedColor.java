@@ -37,6 +37,10 @@ public class AnimatedColor {
         this.firstSet = true;
     }
 
+    public int get() {
+        return this.value;
+    }
+
     public int set(int i) {
         return set(i, false);
     }

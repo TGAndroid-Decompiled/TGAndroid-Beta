@@ -3440,7 +3440,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    public void lambda$runLinkRequest$92(final Bundle bundle, final Long l, int[] iArr, final Runnable runnable, final boolean z, final Integer num, final Integer num2, final BaseFragment baseFragment, final int i) {
+    public void lambda$runLinkRequest$92(final Bundle bundle, final Long l, int[] iArr, final Runnable runnable, final boolean z, final Browser.Progress progress, final Integer num, final Integer num2, final BaseFragment baseFragment, final int i) {
         if (getActionBarLayout().presentFragment(new ChatActivity(bundle))) {
             return;
         }
@@ -3451,21 +3451,21 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         iArr[0] = ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_channels_getChannels, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                LaunchActivity.this.lambda$runLinkRequest$91(runnable, z, l, num, num2, baseFragment, i, bundle, tLObject, tLRPC$TL_error);
+                LaunchActivity.this.lambda$runLinkRequest$91(runnable, z, l, progress, num, num2, baseFragment, i, bundle, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$runLinkRequest$91(final Runnable runnable, final boolean z, final Long l, final Integer num, final Integer num2, final BaseFragment baseFragment, final int i, final Bundle bundle, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$runLinkRequest$91(final Runnable runnable, final boolean z, final Long l, final Browser.Progress progress, final Integer num, final Integer num2, final BaseFragment baseFragment, final int i, final Bundle bundle, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                LaunchActivity.this.lambda$runLinkRequest$90(runnable, tLObject, z, l, num, num2, baseFragment, i, bundle);
+                LaunchActivity.this.lambda$runLinkRequest$90(runnable, tLObject, z, l, progress, num, num2, baseFragment, i, bundle);
             }
         });
     }
 
-    public void lambda$runLinkRequest$90(Runnable runnable, TLObject tLObject, boolean z, Long l, Integer num, Integer num2, BaseFragment baseFragment, int i, Bundle bundle) {
+    public void lambda$runLinkRequest$90(Runnable runnable, TLObject tLObject, boolean z, Long l, Browser.Progress progress, Integer num, Integer num2, BaseFragment baseFragment, int i, Bundle bundle) {
         try {
             runnable.run();
         } catch (Exception e) {
@@ -3478,7 +3478,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 MessagesController.getInstance(this.currentAccount).putChats(tLRPC$TL_messages_chats.chats, false);
                 TLRPC$Chat tLRPC$Chat = tLRPC$TL_messages_chats.chats.get(0);
                 if (tLRPC$Chat != null && z && ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat)) {
-                    processBoostDialog(Long.valueOf(-l.longValue()), null);
+                    processBoostDialog(Long.valueOf(-l.longValue()), null, progress);
                 } else if (tLRPC$Chat != null && tLRPC$Chat.forum) {
                     if (num != null) {
                         openForumFromLink(-l.longValue(), num2, null);
@@ -3588,30 +3588,39 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
     }
 
-    private void processBoostDialog(final Long l, final Runnable runnable) {
+    private void processBoostDialog(final Long l, final Runnable runnable, final Browser.Progress progress) {
         final ChannelBoostsController boostsController = MessagesController.getInstance(this.currentAccount).getBoostsController();
+        if (progress != null) {
+            progress.init();
+        }
         boostsController.getBoostsStats(l.longValue(), new com.google.android.exoplayer2.util.Consumer() {
             @Override
             public final void accept(Object obj) {
-                LaunchActivity.this.lambda$processBoostDialog$100(runnable, boostsController, l, (TL_stories$TL_premium_boostsStatus) obj);
+                LaunchActivity.this.lambda$processBoostDialog$100(progress, runnable, boostsController, l, (TL_stories$TL_premium_boostsStatus) obj);
             }
         });
     }
 
-    public void lambda$processBoostDialog$100(final Runnable runnable, ChannelBoostsController channelBoostsController, final Long l, final TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
+    public void lambda$processBoostDialog$100(final Browser.Progress progress, final Runnable runnable, ChannelBoostsController channelBoostsController, final Long l, final TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus) {
         if (tL_stories$TL_premium_boostsStatus == null) {
+            if (progress != null) {
+                progress.end();
+            }
             runnable.run();
-        } else {
-            channelBoostsController.userCanBoostChannel(l.longValue(), tL_stories$TL_premium_boostsStatus, new com.google.android.exoplayer2.util.Consumer() {
-                @Override
-                public final void accept(Object obj) {
-                    LaunchActivity.this.lambda$processBoostDialog$99(l, tL_stories$TL_premium_boostsStatus, runnable, (ChannelBoostsController.CanApplyBoost) obj);
-                }
-            });
+            return;
         }
+        channelBoostsController.userCanBoostChannel(l.longValue(), tL_stories$TL_premium_boostsStatus, new com.google.android.exoplayer2.util.Consumer() {
+            @Override
+            public final void accept(Object obj) {
+                LaunchActivity.this.lambda$processBoostDialog$99(progress, l, tL_stories$TL_premium_boostsStatus, runnable, (ChannelBoostsController.CanApplyBoost) obj);
+            }
+        });
     }
 
-    public void lambda$processBoostDialog$99(Long l, TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus, Runnable runnable, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+    public void lambda$processBoostDialog$99(Browser.Progress progress, Long l, TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus, Runnable runnable, ChannelBoostsController.CanApplyBoost canApplyBoost) {
+        if (progress != null) {
+            progress.end();
+        }
         BaseFragment lastFragment = getLastFragment();
         if (lastFragment == null) {
             return;

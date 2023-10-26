@@ -204,8 +204,12 @@ public final class BulletinFactory {
     }
 
     public Bulletin createSimpleBulletin(int i, CharSequence charSequence) {
+        return createSimpleBulletinWithIconSize(i, charSequence, 36);
+    }
+
+    public Bulletin createSimpleBulletinWithIconSize(int i, CharSequence charSequence, int i2) {
         Bulletin.LottieLayout lottieLayout = new Bulletin.LottieLayout(getContext(), this.resourcesProvider);
-        lottieLayout.setAnimation(i, 36, 36, new String[0]);
+        lottieLayout.setAnimation(i, i2, i2, new String[0]);
         lottieLayout.textView.setText(charSequence);
         lottieLayout.textView.setSingleLine(false);
         lottieLayout.textView.setMaxLines(2);

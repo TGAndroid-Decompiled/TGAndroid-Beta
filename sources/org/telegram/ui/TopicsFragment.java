@@ -206,6 +206,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
     OnTopicSelectedListener onTopicSelectedListener;
     private boolean openedForForward;
     private boolean openedForQuote;
+    private boolean openedForReply;
     private boolean opnendForSelect;
     private ActionBarMenuItem other;
     ActionBarMenuItem otherItem;
@@ -322,6 +323,7 @@ public class TopicsFragment extends BaseFragment implements NotificationCenter.N
         this.opnendForSelect = this.arguments.getBoolean("for_select", false);
         this.openedForForward = this.arguments.getBoolean("forward_to", false);
         this.openedForQuote = this.arguments.getBoolean("quote", false);
+        this.openedForReply = this.arguments.getBoolean("reply_to", false);
         this.topicsController = getMessagesController().getTopicsController();
         SharedPreferences preferences = getUserConfig().getPreferences();
         this.canShowProgress = !preferences.getBoolean("topics_end_reached_" + j, false);

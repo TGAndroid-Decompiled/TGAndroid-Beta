@@ -81,14 +81,14 @@ public class MessagePreviewParams {
         private int type;
 
         public Messages(MessagePreviewParams messagePreviewParams, Boolean bool, int i, MessageObject messageObject) {
-            this(bool, i, MessagePreviewParams.singletonArrayList(messageObject), messageObject.getDialogId());
+            this(bool, i, MessagePreviewParams.singletonArrayList(messageObject), messageObject.getDialogId(), null);
         }
 
         public Messages(MessagePreviewParams messagePreviewParams, Boolean bool, int i, MessageObject messageObject, long j) {
-            this(bool, i, MessagePreviewParams.singletonArrayList(messageObject), j);
+            this(bool, i, MessagePreviewParams.singletonArrayList(messageObject), j, null);
         }
 
-        public Messages(Boolean bool, int i, ArrayList<MessageObject> arrayList, long j) {
+        public Messages(Boolean bool, int i, ArrayList<MessageObject> arrayList, long j, SparseBooleanArray sparseBooleanArray) {
             this.groupedMessagesMap = new LongSparseArray<>();
             this.previewMessages = new ArrayList<>();
             this.selectedIds = new SparseBooleanArray();
@@ -97,9 +97,14 @@ public class MessagePreviewParams {
             this.type = i;
             this.dialogId = j;
             this.messages = arrayList;
-            for (int i2 = 0; i2 < arrayList.size(); i2++) {
-                MessageObject messageObject = arrayList.get(i2);
-                if (i == 0) {
+            if (sparseBooleanArray != null) {
+                this.selectedIds = sparseBooleanArray;
+            }
+            int i2 = 0;
+            int i3 = 0;
+            while (i3 < arrayList.size()) {
+                MessageObject messageObject = arrayList.get(i3);
+                if (i == 0 && sparseBooleanArray == null) {
                     this.selectedIds.put(messageObject.getId(), true);
                 }
                 MessageObject previewMessage = MessagePreviewParams.this.toPreviewMessage(messageObject, bool, i);
@@ -125,7 +130,7 @@ public class MessagePreviewParams {
                     }
                     groupedMessages.messages.add(previewMessage);
                 }
-                this.previewMessages.add(0, previewMessage);
+                this.previewMessages.add(i2, previewMessage);
                 if (messageObject.isPoll()) {
                     TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) messageObject.messageOwner.media;
                     PreviewMediaPoll previewMediaPoll = new PreviewMediaPoll();
@@ -133,14 +138,14 @@ public class MessagePreviewParams {
                     previewMediaPoll.provider = tLRPC$TL_messageMediaPoll.provider;
                     TLRPC$TL_pollResults tLRPC$TL_pollResults = new TLRPC$TL_pollResults();
                     previewMediaPoll.results = tLRPC$TL_pollResults;
-                    int i3 = tLRPC$TL_messageMediaPoll.results.total_voters;
-                    tLRPC$TL_pollResults.total_voters = i3;
-                    previewMediaPoll.totalVotersCached = i3;
+                    int i4 = tLRPC$TL_messageMediaPoll.results.total_voters;
+                    tLRPC$TL_pollResults.total_voters = i4;
+                    previewMediaPoll.totalVotersCached = i4;
                     previewMessage.messageOwner.media = previewMediaPoll;
                     if (messageObject.canUnvote()) {
                         int size = tLRPC$TL_messageMediaPoll.results.results.size();
-                        for (int i4 = 0; i4 < size; i4++) {
-                            TLRPC$TL_pollAnswerVoters tLRPC$TL_pollAnswerVoters = tLRPC$TL_messageMediaPoll.results.results.get(i4);
+                        for (int i5 = 0; i5 < size; i5++) {
+                            TLRPC$TL_pollAnswerVoters tLRPC$TL_pollAnswerVoters = tLRPC$TL_messageMediaPoll.results.results.get(i5);
                             if (tLRPC$TL_pollAnswerVoters.chosen) {
                                 TLRPC$TL_pollAnswerVoters tLRPC$TL_pollAnswerVoters2 = new TLRPC$TL_pollAnswerVoters();
                                 tLRPC$TL_pollAnswerVoters2.chosen = tLRPC$TL_pollAnswerVoters.chosen;
@@ -156,17 +161,19 @@ public class MessagePreviewParams {
                         }
                     }
                 }
+                i3++;
+                i2 = 0;
             }
-            for (int i5 = 0; i5 < this.groupedMessagesMap.size(); i5++) {
-                this.groupedMessagesMap.valueAt(i5).calculate();
+            for (int i6 = 0; i6 < this.groupedMessagesMap.size(); i6++) {
+                this.groupedMessagesMap.valueAt(i6).calculate();
             }
             LongSparseArray<MessageObject.GroupedMessages> longSparseArray = this.groupedMessagesMap;
             if (longSparseArray != null && longSparseArray.size() > 0) {
                 this.hasText = this.groupedMessagesMap.valueAt(0).findCaptionMessageObject() != null;
             } else if (arrayList.size() == 1) {
                 MessageObject messageObject2 = arrayList.get(0);
-                int i6 = messageObject2.type;
-                if (i6 == 0 || i6 == 19) {
+                int i7 = messageObject2.type;
+                if (i7 == 0 || i7 == 19) {
                     this.hasText = !TextUtils.isEmpty(messageObject2.messageText);
                 } else {
                     this.hasText = !TextUtils.isEmpty(messageObject2.caption);
@@ -207,7 +214,7 @@ public class MessagePreviewParams {
                     }
                 }
                 if (z) {
-                    return new Messages(this.out, this.type, this.messages, this.dialogId);
+                    return new Messages(this.out, this.type, this.messages, this.dialogId, null);
                 }
             }
             return null;
@@ -220,17 +227,29 @@ public class MessagePreviewParams {
     }
 
     public void updateReply(MessageObject messageObject, MessageObject.GroupedMessages groupedMessages, long j, ChatActivity.ReplyQuote replyQuote) {
-        if (messageObject != null || replyQuote != null) {
+        ChatActivity.ReplyQuote replyQuote2;
+        int i;
+        MessageObject messageObject2 = messageObject;
+        if (messageObject2 == null || (i = messageObject2.type) == 10 || i == 11 || i == 22 || i == 21) {
+            messageObject2 = null;
+            replyQuote2 = null;
+        } else {
+            replyQuote2 = replyQuote;
+        }
+        if (messageObject2 != null || replyQuote2 != null) {
             if (groupedMessages != null) {
-                this.replyMessage = new Messages((Boolean) null, 1, groupedMessages.messages, j);
+                this.replyMessage = new Messages(null, 1, groupedMessages.messages, j, null);
             } else {
-                this.replyMessage = new Messages(this, (Boolean) null, 1, messageObject != null ? messageObject : replyQuote.message, j);
+                if (messageObject2 == null) {
+                    messageObject2 = replyQuote2.message;
+                }
+                this.replyMessage = new Messages(this, null, 1, messageObject2, j);
             }
             if (!this.replyMessage.messages.isEmpty()) {
-                this.quote = replyQuote;
-                if (replyQuote != null) {
-                    this.quoteStart = replyQuote.start;
-                    this.quoteEnd = replyQuote.end;
+                this.quote = replyQuote2;
+                if (replyQuote2 != null) {
+                    this.quoteStart = replyQuote2.start;
+                    this.quoteEnd = replyQuote2.end;
                     return;
                 }
                 return;
@@ -438,9 +457,11 @@ public class MessagePreviewParams {
                     arrayList2.add(tLRPC$MessageFwdHeader.from_name);
                 }
             }
-            Messages messages = new Messages(Boolean.TRUE, 0, arrayList, j);
-            this.forwardMessages = messages;
-            if (messages.messages.isEmpty()) {
+            Boolean bool = Boolean.TRUE;
+            Messages messages = this.forwardMessages;
+            Messages messages2 = new Messages(bool, 0, arrayList, j, messages != null ? messages.selectedIds : null);
+            this.forwardMessages = messages2;
+            if (messages2.messages.isEmpty()) {
                 this.forwardMessages = null;
             }
             ArrayList arrayList3 = new ArrayList();

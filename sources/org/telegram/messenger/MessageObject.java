@@ -3590,15 +3590,7 @@ public class MessageObject {
     }
 
     public boolean isFromChannel() {
-        TLRPC$Peer tLRPC$Peer = this.messageOwner.peer_id;
-        TLRPC$Chat tLRPC$Chat = null;
-        if (tLRPC$Peer != null) {
-            long j = tLRPC$Peer.channel_id;
-            if (j != 0) {
-                tLRPC$Chat = getChat(null, null, j);
-            }
-        }
-        return (this.messageOwner.from_id instanceof TLRPC$TL_peerChannel) && ChatObject.isChannelAndNotMegaGroup(tLRPC$Chat);
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.isFromChannel():boolean");
     }
 
     public boolean isFromGroup() {

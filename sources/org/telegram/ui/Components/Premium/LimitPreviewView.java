@@ -47,6 +47,7 @@ public class LimitPreviewView extends LinearLayout {
     int gradientYOffset;
     int icon;
     boolean inc;
+    public boolean invalidationEnabled;
     private boolean isBoostsStyle;
     public boolean isStatistic;
     CounterView limitIcon;
@@ -73,6 +74,7 @@ public class LimitPreviewView extends LinearLayout {
     public LimitPreviewView(Context context, int i, int i2, int i3, float f, final Theme.ResourcesProvider resourcesProvider) {
         super(context);
         this.animationCanPlay = true;
+        this.invalidationEnabled = true;
         this.resourcesProvider = resourcesProvider;
         this.percent = MathUtils.clamp(f, 0.1f, 0.9f);
         this.icon = i;
@@ -172,7 +174,8 @@ public class LimitPreviewView extends LinearLayout {
                 }
                 canvas.drawRoundRect(AndroidUtilities.rectTmp, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), mainGradientPaint);
                 canvas.restore();
-                if (LimitPreviewView.this.staticGradient == null) {
+                LimitPreviewView limitPreviewView2 = LimitPreviewView.this;
+                if (limitPreviewView2.staticGradient == null && limitPreviewView2.invalidationEnabled) {
                     invalidate();
                 }
                 super.dispatchDraw(canvas);
@@ -571,7 +574,9 @@ public class LimitPreviewView extends LinearLayout {
                 PremiumGradient.getInstance().getMainGradientPaint().setPathEffect(this.pathEffect);
                 canvas.drawPath(this.path, PremiumGradient.getInstance().getMainGradientPaint());
                 PremiumGradient.getInstance().getMainGradientPaint().setPathEffect(null);
-                invalidate();
+                if (LimitPreviewView.this.invalidationEnabled) {
+                    invalidate();
+                }
             }
             float measuredWidth = (getMeasuredWidth() - this.textLayout.getWidth()) / 2.0f;
             float height = (measuredHeight - this.textLayout.getHeight()) / 2.0f;

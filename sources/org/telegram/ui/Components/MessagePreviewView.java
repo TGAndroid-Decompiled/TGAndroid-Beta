@@ -80,7 +80,6 @@ public class MessagePreviewView extends FrameLayout {
     private final ResourcesDelegate resourcesProvider;
     boolean returnSendersNames;
     TLRPC$Peer sendAsPeer;
-    ChatMessageSharedResources sharedResources;
     final boolean showOutdatedQuote;
     boolean showing;
     TabsView tabsView;
@@ -98,7 +97,7 @@ public class MessagePreviewView extends FrameLayout {
     protected void onDismiss(boolean z) {
     }
 
-    protected void onFullDismiss() {
+    protected void onFullDismiss(boolean z) {
     }
 
     protected void onQuoteSelectedPart() {
@@ -159,6 +158,7 @@ public class MessagePreviewView extends FrameLayout {
         private AnimatorSet quoteSwitcher;
         android.graphics.Rect rect;
         ActionBarMenuSubItem replyAnotherChatButton;
+        ChatMessageSharedResources sharedResources;
         TextSelectionHelper.ChatListTextSelectionHelper textSelectionHelper;
         View textSelectionOverlay;
         boolean toQuote;
@@ -1003,8 +1003,8 @@ public class MessagePreviewView extends FrameLayout {
             @Override
             public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
                 Context context = viewGroup.getContext();
-                MessagePreviewView messagePreviewView = MessagePreviewView.this;
-                ChatMessageCell chatMessageCell = new ChatMessageCell(context, false, messagePreviewView.sharedResources, messagePreviewView.resourcesProvider) {
+                Page page = Page.this;
+                ChatMessageCell chatMessageCell = new ChatMessageCell(context, false, page.sharedResources, MessagePreviewView.this.resourcesProvider) {
                     @Override
                     public void invalidate() {
                         super.invalidate();
@@ -1279,22 +1279,22 @@ public class MessagePreviewView extends FrameLayout {
 
                     @Override
                     public boolean canPerformActions() {
-                        Page page = Page.this;
-                        return page.currentTab == 2 && !MessagePreviewView.this.messagePreviewParams.singleLink;
+                        Page page2 = Page.this;
+                        return page2.currentTab == 2 && !MessagePreviewView.this.messagePreviewParams.singleLink;
                     }
 
                     @Override
                     public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z) {
-                        Page page = Page.this;
-                        if (page.currentTab != 2 || MessagePreviewView.this.messagePreviewParams.currentLink == characterStyle || chatMessageCell2.getMessageObject() == null || !(characterStyle instanceof URLSpan)) {
+                        Page page2 = Page.this;
+                        if (page2.currentTab != 2 || MessagePreviewView.this.messagePreviewParams.currentLink == characterStyle || chatMessageCell2.getMessageObject() == null || !(characterStyle instanceof URLSpan)) {
                             return;
                         }
                         String url = ((URLSpan) characterStyle).getURL();
-                        MessagePreviewView messagePreviewView2 = MessagePreviewView.this;
-                        MessagePreviewParams messagePreviewParams = messagePreviewView2.messagePreviewParams;
+                        MessagePreviewView messagePreviewView = MessagePreviewView.this;
+                        MessagePreviewParams messagePreviewParams = messagePreviewView.messagePreviewParams;
                         messagePreviewParams.currentLink = characterStyle;
                         messagePreviewParams.webpage = null;
-                        ChatActivity chatActivity = messagePreviewView2.chatActivity;
+                        ChatActivity chatActivity = messagePreviewView.chatActivity;
                         if (chatActivity != null && url != null) {
                             chatActivity.searchLinks(url, true);
                         }
@@ -1303,8 +1303,8 @@ public class MessagePreviewView extends FrameLayout {
 
                     @Override
                     public CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell2) {
-                        Page page = Page.this;
-                        if (page.currentTab == 2) {
+                        Page page2 = Page.this;
+                        if (page2.currentTab == 2) {
                             MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
                             if (messagePreviewParams.singleLink) {
                                 return null;
@@ -1316,8 +1316,8 @@ public class MessagePreviewView extends FrameLayout {
 
                     @Override
                     public boolean isProgressLoading(ChatMessageCell chatMessageCell2, int i2) {
-                        Page page = Page.this;
-                        if (page.currentTab == 2 && i2 == 1) {
+                        Page page2 = Page.this;
+                        if (page2.currentTab == 2 && i2 == 1) {
                             MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
                             if (messagePreviewParams.singleLink) {
                                 return false;
@@ -1347,6 +1347,274 @@ public class MessagePreviewView extends FrameLayout {
                 }
                 MessagePreviewParams.Messages messages2 = Page.this.messages;
                 chatMessageCell.setMessageObject(Page.this.messages.previewMessages.get(i), messages2.groupedMessagesMap.get(messages2.previewMessages.get(i).getGroupId()), true, true);
+                if (Page.this.currentTab == 1) {
+                    chatMessageCell.setDelegate(new ChatMessageCell.ChatMessageCellDelegate(this) {
+                        @Override
+                        public boolean canDrawOutboundsContent() {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canDrawOutboundsContent(this);
+                        }
+
+                        @Override
+                        public boolean canPerformActions() {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$canPerformActions(this);
+                        }
+
+                        @Override
+                        public void didLongPress(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPress(this, chatMessageCell2, f, f2);
+                        }
+
+                        @Override
+                        public void didLongPressBotButton(ChatMessageCell chatMessageCell2, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressBotButton(this, chatMessageCell2, tLRPC$KeyboardButton);
+                        }
+
+                        @Override
+                        public boolean didLongPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i2, float f, float f2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i2, f, f2);
+                        }
+
+                        @Override
+                        public boolean didLongPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC$User tLRPC$User, float f, float f2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didLongPressUserAvatar(this, chatMessageCell2, tLRPC$User, f, f2);
+                        }
+
+                        @Override
+                        public boolean didPressAnimatedEmoji(ChatMessageCell chatMessageCell2, AnimatedEmojiSpan animatedEmojiSpan) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressAnimatedEmoji(this, chatMessageCell2, animatedEmojiSpan);
+                        }
+
+                        @Override
+                        public void didPressBotButton(ChatMessageCell chatMessageCell2, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressBotButton(this, chatMessageCell2, tLRPC$KeyboardButton);
+                        }
+
+                        @Override
+                        public void didPressCancelSendButton(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCancelSendButton(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressChannelAvatar(ChatMessageCell chatMessageCell2, TLRPC$Chat tLRPC$Chat, int i2, float f, float f2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressChannelAvatar(this, chatMessageCell2, tLRPC$Chat, i2, f, f2);
+                        }
+
+                        @Override
+                        public void didPressCommentButton(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressCommentButton(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressExtendedMediaPreview(ChatMessageCell chatMessageCell2, TLRPC$KeyboardButton tLRPC$KeyboardButton) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressExtendedMediaPreview(this, chatMessageCell2, tLRPC$KeyboardButton);
+                        }
+
+                        @Override
+                        public void didPressGiveawayChatButton(ChatMessageCell chatMessageCell2, int i2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressGiveawayChatButton(this, chatMessageCell2, i2);
+                        }
+
+                        @Override
+                        public void didPressHiddenForward(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHiddenForward(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressHint(ChatMessageCell chatMessageCell2, int i2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressHint(this, chatMessageCell2, i2);
+                        }
+
+                        @Override
+                        public void didPressImage(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressImage(this, chatMessageCell2, f, f2);
+                        }
+
+                        @Override
+                        public void didPressInstantButton(ChatMessageCell chatMessageCell2, int i2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressInstantButton(this, chatMessageCell2, i2);
+                        }
+
+                        @Override
+                        public void didPressOther(ChatMessageCell chatMessageCell2, float f, float f2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressOther(this, chatMessageCell2, f, f2);
+                        }
+
+                        @Override
+                        public void didPressReaction(ChatMessageCell chatMessageCell2, TLRPC$ReactionCount tLRPC$ReactionCount, boolean z) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReaction(this, chatMessageCell2, tLRPC$ReactionCount, z);
+                        }
+
+                        @Override
+                        public void didPressReplyMessage(ChatMessageCell chatMessageCell2, int i2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressReplyMessage(this, chatMessageCell2, i2);
+                        }
+
+                        @Override
+                        public void didPressSideButton(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSideButton(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressSponsoredClose() {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressSponsoredClose(this);
+                        }
+
+                        @Override
+                        public void didPressTime(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTime(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressTopicButton(ChatMessageCell chatMessageCell2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressTopicButton(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public void didPressUrl(ChatMessageCell chatMessageCell2, CharacterStyle characterStyle, boolean z) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUrl(this, chatMessageCell2, characterStyle, z);
+                        }
+
+                        @Override
+                        public void didPressUserAvatar(ChatMessageCell chatMessageCell2, TLRPC$User tLRPC$User, float f, float f2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressUserAvatar(this, chatMessageCell2, tLRPC$User, f, f2);
+                        }
+
+                        @Override
+                        public void didPressViaBot(ChatMessageCell chatMessageCell2, String str) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressViaBot(this, chatMessageCell2, str);
+                        }
+
+                        @Override
+                        public void didPressViaBotNotInline(ChatMessageCell chatMessageCell2, long j) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressViaBotNotInline(this, chatMessageCell2, j);
+                        }
+
+                        @Override
+                        public void didPressVoteButtons(ChatMessageCell chatMessageCell2, ArrayList arrayList, int i2, int i3, int i4) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didPressVoteButtons(this, chatMessageCell2, arrayList, i2, i3, i4);
+                        }
+
+                        @Override
+                        public void didPressWebPage(ChatMessageCell chatMessageCell2, TLRPC$WebPage tLRPC$WebPage, String str, boolean z) {
+                            Browser.openUrl(chatMessageCell2.getContext(), str);
+                        }
+
+                        @Override
+                        public void didStartVideoStream(MessageObject messageObject) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$didStartVideoStream(this, messageObject);
+                        }
+
+                        @Override
+                        public String getAdminRank(long j) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getAdminRank(this, j);
+                        }
+
+                        @Override
+                        public PinchToZoomHelper getPinchToZoomHelper() {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getPinchToZoomHelper(this);
+                        }
+
+                        @Override
+                        public String getProgressLoadingBotButtonUrl(ChatMessageCell chatMessageCell2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getProgressLoadingBotButtonUrl(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public CharacterStyle getProgressLoadingLink(ChatMessageCell chatMessageCell2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getProgressLoadingLink(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public TextSelectionHelper.ChatListTextSelectionHelper getTextSelectionHelper() {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$getTextSelectionHelper(this);
+                        }
+
+                        @Override
+                        public boolean hasSelectedMessages() {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$hasSelectedMessages(this);
+                        }
+
+                        @Override
+                        public void invalidateBlur() {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$invalidateBlur(this);
+                        }
+
+                        @Override
+                        public boolean isLandscape() {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isLandscape(this);
+                        }
+
+                        @Override
+                        public boolean isProgressLoading(ChatMessageCell chatMessageCell2, int i2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isProgressLoading(this, chatMessageCell2, i2);
+                        }
+
+                        @Override
+                        public boolean isReplyOrSelf() {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$isReplyOrSelf(this);
+                        }
+
+                        @Override
+                        public boolean keyboardIsOpened() {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$keyboardIsOpened(this);
+                        }
+
+                        @Override
+                        public void needOpenWebView(MessageObject messageObject, String str, String str2, String str3, String str4, int i2, int i3) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$needOpenWebView(this, messageObject, str, str2, str3, str4, i2, i3);
+                        }
+
+                        @Override
+                        public boolean needPlayMessage(MessageObject messageObject, boolean z) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$needPlayMessage(this, messageObject, z);
+                        }
+
+                        @Override
+                        public void needReloadPolls() {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$needReloadPolls(this);
+                        }
+
+                        @Override
+                        public void needShowPremiumBulletin(int i2) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$needShowPremiumBulletin(this, i2);
+                        }
+
+                        @Override
+                        public boolean onAccessibilityAction(int i2, Bundle bundle) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$onAccessibilityAction(this, i2, bundle);
+                        }
+
+                        @Override
+                        public void onDiceFinished() {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$onDiceFinished(this);
+                        }
+
+                        @Override
+                        public void setShouldNotRepeatSticker(MessageObject messageObject) {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$setShouldNotRepeatSticker(this, messageObject);
+                        }
+
+                        @Override
+                        public boolean shouldDrawThreadProgress(ChatMessageCell chatMessageCell2) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldDrawThreadProgress(this, chatMessageCell2);
+                        }
+
+                        @Override
+                        public boolean shouldRepeatSticker(MessageObject messageObject) {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldRepeatSticker(this, messageObject);
+                        }
+
+                        @Override
+                        public boolean shouldShowTopicButton() {
+                            return ChatMessageCell.ChatMessageCellDelegate.CC.$default$shouldShowTopicButton(this);
+                        }
+
+                        @Override
+                        public void videoTimerReached() {
+                            ChatMessageCell.ChatMessageCellDelegate.CC.$default$videoTimerReached(this);
+                        }
+                    });
+                }
                 if (Page.this.messages.previewMessages.size() > 1) {
                     chatMessageCell.setCheckBoxVisible(Page.this.currentTab == 1, false);
                     boolean z = id == Page.this.messages.previewMessages.get(i).getId();
@@ -1358,12 +1626,13 @@ public class MessagePreviewView extends FrameLayout {
 
             @Override
             public void onViewAttachedToWindow(RecyclerView.ViewHolder viewHolder) {
+                int i;
                 Page page = Page.this;
-                if (page.messages == null) {
+                if (page.messages == null || (i = page.currentTab) == 1) {
                     return;
                 }
                 ChatMessageCell chatMessageCell = (ChatMessageCell) viewHolder.itemView;
-                if (page.currentTab == 0) {
+                if (i == 0) {
                     MessageObject.GroupedMessages validGroupedMessage = page.getValidGroupedMessage(chatMessageCell.getMessageObject());
                     chatMessageCell.setDrawSelectionBackground(validGroupedMessage == null);
                     chatMessageCell.setChecked(true, validGroupedMessage == null, false);
@@ -1419,7 +1688,6 @@ public class MessagePreviewView extends FrameLayout {
         this.drawingGroups = new ArrayList<>(10);
         this.showOutdatedQuote = z;
         this.chatActivity = chatActivity;
-        this.sharedResources = new ChatMessageSharedResources(context);
         this.currentAccount = i;
         this.currentUser = tLRPC$User;
         this.currentChat = tLRPC$Chat;
@@ -1548,7 +1816,7 @@ public class MessagePreviewView extends FrameLayout {
         return true;
     }
 
-    public void dismiss(boolean z) {
+    public void dismiss(final boolean z) {
         if (this.showing) {
             int i = 0;
             this.showing = false;
@@ -1558,7 +1826,7 @@ public class MessagePreviewView extends FrameLayout {
                     if (MessagePreviewView.this.getParent() != null) {
                         ((ViewGroup) MessagePreviewView.this.getParent()).removeView(MessagePreviewView.this);
                     }
-                    MessagePreviewView.this.onFullDismiss();
+                    MessagePreviewView.this.onFullDismiss(z);
                 }
             });
             while (true) {
