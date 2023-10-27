@@ -2700,6 +2700,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             }
             getDelegate().getTextSelectionHelper().updateTextPosition(i2 + AndroidUtilities.dp(10.0f) + this.descriptionX, this.descriptionY);
         } else if (textSelectionType == TextSelectionHelper.ChatListTextSelectionHelper.TYPE_CAPTION) {
+            updateCaptionLayout();
             getDelegate().getTextSelectionHelper().updateTextPosition((int) this.captionX, (int) this.captionY);
         } else {
             getDelegate().getTextSelectionHelper().updateTextPosition(this.textX, this.textY);

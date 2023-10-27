@@ -534,7 +534,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                         }
                     });
                 }
-            } else if (canApplyBoost.alreadyActive && BoostRepository.isMultiBoostsAvailable()) {
+            } else if (canApplyBoost.alreadyActive && BoostRepository.isMultiBoostsAvailable() && !this.canApplyBoost.isMaxLvl) {
                 BoostDialogs.showMoreBoostsNeeded(this.dialogId);
             } else {
                 dismiss();

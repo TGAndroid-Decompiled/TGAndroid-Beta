@@ -5809,8 +5809,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     tLRPC$MessageMedia2.webpage = this.parentFragment.messagePreviewParams.webpage;
                 } else {
                     messageObject2.editingMessageSearchWebPage = false;
-                    messageObject2.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
-                    this.editingMessageObject.messageOwner.media.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                    int i = messageObject2.type;
+                    if (i == 0 || i == 19) {
+                        messageObject2.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
+                        this.editingMessageObject.messageOwner.media.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                    }
                 }
                 TLRPC$Message tLRPC$Message = this.editingMessageObject.messageOwner;
                 MessagePreviewParams messagePreviewParams2 = this.parentFragment.messagePreviewParams;

@@ -5740,6 +5740,7 @@ public class MessageObject {
             userSpan = new SpannableStringBuilder("u");
             ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_reply_user);
             coloredImageSpan.spaceScaleX = 0.9f;
+            coloredImageSpan.translate(0.0f, AndroidUtilities.dp(1.0f));
             ((SpannableStringBuilder) userSpan).setSpan(coloredImageSpan, 0, 1, 33);
         }
         return userSpan;
@@ -5847,7 +5848,7 @@ public class MessageObject {
                             charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer2, true);
                         }
                     } else if (!TextUtils.isEmpty(tLRPC$MessageFwdHeader.from_name)) {
-                        append = new SpannableStringBuilder(userSpan).append((CharSequence) " ").append((CharSequence) this.messageOwner.reply_to.reply_from.from_name);
+                        append = new SpannableStringBuilder(userSpan()).append((CharSequence) " ").append((CharSequence) this.messageOwner.reply_to.reply_from.from_name);
                     }
                     charSequence2 = append;
                     charSequence = null;

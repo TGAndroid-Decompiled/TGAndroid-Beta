@@ -10000,7 +10000,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         showFieldPanel(z, null, messageObject, null, null, true, 0, null, false, true);
     }
 
-    public void showFieldPanel(boolean r33, org.telegram.messenger.MessageObject r34, org.telegram.messenger.MessageObject r35, java.util.ArrayList<org.telegram.messenger.MessageObject> r36, org.telegram.tgnet.TLRPC$WebPage r37, boolean r38, int r39, org.telegram.ui.ChatActivity.ReplyQuote r40, boolean r41, boolean r42) {
+    public void showFieldPanel(boolean r25, org.telegram.messenger.MessageObject r26, org.telegram.messenger.MessageObject r27, java.util.ArrayList<org.telegram.messenger.MessageObject> r28, org.telegram.tgnet.TLRPC$WebPage r29, boolean r30, int r31, org.telegram.ui.ChatActivity.ReplyQuote r32, boolean r33, boolean r34) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.showFieldPanel(boolean, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, java.util.ArrayList, org.telegram.tgnet.TLRPC$WebPage, boolean, int, org.telegram.ui.ChatActivity$ReplyQuote, boolean, boolean):void");
     }
 
