@@ -1181,7 +1181,7 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", this.val$botId);
                 if (BotWebViewSheet.this.parentActivity instanceof LaunchActivity) {
-                    ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$81(new ChatActivity(bundle));
+                    ((LaunchActivity) BotWebViewSheet.this.parentActivity).lambda$runLinkRequest$83(new ChatActivity(bundle));
                 }
                 BotWebViewSheet.this.dismiss();
             } else if (i == R.id.menu_reload_page) {

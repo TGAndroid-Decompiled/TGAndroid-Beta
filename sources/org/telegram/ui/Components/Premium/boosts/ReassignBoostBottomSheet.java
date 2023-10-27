@@ -41,13 +41,14 @@ import org.telegram.ui.Cells.ShadowSectionCell;
 import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.BackupImageView;
 import org.telegram.ui.Components.BottomSheetWithRecyclerListView;
+import org.telegram.ui.Components.Bulletin;
+import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.CubicBezierInterpolator;
 import org.telegram.ui.Components.LayoutHelper;
 import org.telegram.ui.Components.Premium.PremiumGradient;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorBtnCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     private final ButtonWithCounterView actionButton;
@@ -57,7 +58,6 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     private final List<TL_stories$TL_myBoost> selectedBoosts;
     private CountDownTimer timer;
     private TopCell topCell;
-    private UndoView undoView;
 
     public static ReassignBoostBottomSheet show(BaseFragment baseFragment, TL_stories$TL_premium_myBoosts tL_stories$TL_premium_myBoosts, TLRPC$Chat tLRPC$Chat) {
         ReassignBoostBottomSheet reassignBoostBottomSheet = new ReassignBoostBottomSheet(baseFragment, tL_stories$TL_premium_myBoosts, tLRPC$Chat);
@@ -134,12 +134,45 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
                 ReassignBoostBottomSheet.this.lambda$new$3(tLRPC$Chat, view, i3);
             }
         });
-        UndoView undoView = new UndoView(getContext(), getBaseFragment(), true, this.resourcesProvider);
-        this.undoView = undoView;
-        this.container.addView(undoView, LayoutHelper.createFrame(-1, -2.0f, 51, 10.0f, 42.0f, 10.0f, 8.0f));
         fixNavigationBar();
         updateTitle();
         updateActionButton(false);
+        Bulletin.addDelegate(this.container, new Bulletin.Delegate(this) {
+            @Override
+            public boolean allowLayoutChanges() {
+                return Bulletin.Delegate.CC.$default$allowLayoutChanges(this);
+            }
+
+            @Override
+            public boolean clipWithGradient(int i3) {
+                return Bulletin.Delegate.CC.$default$clipWithGradient(this, i3);
+            }
+
+            @Override
+            public int getBottomOffset(int i3) {
+                return Bulletin.Delegate.CC.$default$getBottomOffset(this, i3);
+            }
+
+            @Override
+            public void onBottomOffsetChange(float f) {
+                Bulletin.Delegate.CC.$default$onBottomOffsetChange(this, f);
+            }
+
+            @Override
+            public void onHide(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onHide(this, bulletin);
+            }
+
+            @Override
+            public void onShow(Bulletin bulletin) {
+                Bulletin.Delegate.CC.$default$onShow(this, bulletin);
+            }
+
+            @Override
+            public int getTopOffset(int i3) {
+                return AndroidUtilities.statusBarHeight;
+            }
+        });
     }
 
     public void lambda$new$2(TLRPC$Chat tLRPC$Chat, View view) {
@@ -180,7 +213,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         if (view instanceof SelectorUserCell) {
             SelectorUserCell selectorUserCell = (SelectorUserCell) view;
             if (selectorUserCell.getBoost().cooldown_until_date > 0) {
-                this.undoView.showWithAction(0L, 93, null, null);
+                BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, AndroidUtilities.replaceTags(LocaleController.formatString("BoostingWaitWarning", R.string.BoostingWaitWarning, Integer.valueOf(BoostRepository.boostsPerSentGift()))), 5).show(true);
                 return;
             }
             if (this.selectedBoosts.contains(selectorUserCell.getBoost())) {
@@ -239,11 +272,6 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.timer.cancel();
-    }
-
-    @Override
-    public void onDismissAnimationStart() {
-        this.undoView.animate().alpha(0.0f).setDuration(150L).start();
     }
 
     @Override

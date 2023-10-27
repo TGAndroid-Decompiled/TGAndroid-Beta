@@ -240,6 +240,7 @@ public class MessageObject {
     public static Pattern instagramUrlPattern;
     private static Pattern loginCodePattern;
     public static Pattern urlPattern;
+    private static CharSequence userSpan;
     public static Pattern videoTimeUrlPattern;
     public boolean animateComments;
     public int animatedEmojiCount;
@@ -5734,6 +5735,16 @@ public class MessageObject {
         return i == 18 || i == 25;
     }
 
+    public static CharSequence userSpan() {
+        if (userSpan == null) {
+            userSpan = new SpannableStringBuilder("u");
+            ColoredImageSpan coloredImageSpan = new ColoredImageSpan(R.drawable.mini_reply_user);
+            coloredImageSpan.spaceScaleX = 0.9f;
+            ((SpannableStringBuilder) userSpan).setSpan(coloredImageSpan, 0, 1, 33);
+        }
+        return userSpan;
+    }
+
     public static CharSequence groupSpan() {
         if (groupSpan == null) {
             groupSpan = new SpannableStringBuilder(ImageLoader.AUTOPLAY_FILTER);
@@ -5755,10 +5766,20 @@ public class MessageObject {
     }
 
     public static CharSequence peerNameWithIcon(int i, TLRPC$Peer tLRPC$Peer) {
+        return peerNameWithIcon(i, tLRPC$Peer, false);
+    }
+
+    public static CharSequence peerNameWithIcon(int i, TLRPC$Peer tLRPC$Peer, boolean z) {
         TLRPC$Chat chat;
         if (tLRPC$Peer instanceof TLRPC$TL_peerUser) {
             TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(tLRPC$Peer.user_id));
-            return user != null ? UserObject.getUserName(user) : "";
+            if (user != null) {
+                if (z) {
+                    return new SpannableStringBuilder(userSpan()).append((CharSequence) " ").append((CharSequence) UserObject.getUserName(user));
+                }
+                return UserObject.getUserName(user);
+            }
+            return "";
         } else if (tLRPC$Peer instanceof TLRPC$TL_peerChat) {
             TLRPC$Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(tLRPC$Peer.chat_id));
             if (chat2 != null) {
@@ -5773,6 +5794,10 @@ public class MessageObject {
     }
 
     public static CharSequence peerNameWithIcon(int i, long j) {
+        return peerNameWithIcon(i, j, false);
+    }
+
+    public static CharSequence peerNameWithIcon(int i, long j, boolean z) {
         if (j >= 0) {
             TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
             return user != null ? UserObject.getUserName(user) : "";
@@ -5786,7 +5811,7 @@ public class MessageObject {
 
     public CharSequence getReplyQuoteNameWithIcon() {
         CharSequence charSequence;
-        CharSequence spannableStringBuilder;
+        CharSequence append;
         TLRPC$Message tLRPC$Message = this.messageOwner;
         if (tLRPC$Message == null) {
             return "";
@@ -5797,8 +5822,8 @@ public class MessageObject {
             if (DialogObject.isChatDialog(getDialogId())) {
                 charSequence = peerNameWithIcon(this.currentAccount, getDialogId());
             } else {
-                spannableStringBuilder = peerNameWithIcon(this.currentAccount, getDialogId());
-                charSequence2 = spannableStringBuilder;
+                append = peerNameWithIcon(this.currentAccount, getDialogId());
+                charSequence2 = append;
                 charSequence = null;
             }
         } else {
@@ -5807,24 +5832,24 @@ public class MessageObject {
                 TLRPC$Peer tLRPC$Peer = tLRPC$MessageFwdHeader.from_id;
                 if (tLRPC$Peer != null) {
                     if (tLRPC$Peer instanceof TLRPC$TL_peerUser) {
-                        spannableStringBuilder = peerNameWithIcon(this.currentAccount, tLRPC$Peer);
-                        charSequence2 = spannableStringBuilder;
+                        append = peerNameWithIcon(this.currentAccount, tLRPC$Peer, true);
+                        charSequence2 = append;
                         charSequence = null;
                     } else {
-                        charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer);
+                        charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer, true);
                     }
                 } else {
                     TLRPC$Peer tLRPC$Peer2 = tLRPC$MessageFwdHeader.saved_from_peer;
                     if (tLRPC$Peer2 != null) {
                         if (tLRPC$Peer2 instanceof TLRPC$TL_peerUser) {
-                            spannableStringBuilder = peerNameWithIcon(this.currentAccount, tLRPC$Peer2);
+                            append = peerNameWithIcon(this.currentAccount, tLRPC$Peer2, true);
                         } else {
-                            charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer2);
+                            charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer2, true);
                         }
                     } else if (!TextUtils.isEmpty(tLRPC$MessageFwdHeader.from_name)) {
-                        spannableStringBuilder = new SpannableStringBuilder(this.messageOwner.reply_to.reply_from.from_name);
+                        append = new SpannableStringBuilder(userSpan).append((CharSequence) " ").append((CharSequence) this.messageOwner.reply_to.reply_from.from_name);
                     }
-                    charSequence2 = spannableStringBuilder;
+                    charSequence2 = append;
                     charSequence = null;
                 }
             }
@@ -5834,7 +5859,7 @@ public class MessageObject {
         if (tLRPC$Peer3 != null && DialogObject.getPeerDialogId(tLRPC$Peer3) != getDialogId()) {
             TLRPC$Peer tLRPC$Peer4 = this.messageOwner.reply_to.reply_to_peer_id;
             if (tLRPC$Peer4 instanceof TLRPC$TL_peerUser) {
-                charSequence2 = peerNameWithIcon(this.currentAccount, tLRPC$Peer4);
+                charSequence2 = peerNameWithIcon(this.currentAccount, tLRPC$Peer4, true);
             } else {
                 charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer4);
             }

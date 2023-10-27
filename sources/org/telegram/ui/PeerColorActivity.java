@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -72,6 +73,7 @@ import org.telegram.ui.SelectAnimatedEmojiDialog;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 public class PeerColorActivity extends BaseFragment implements NotificationCenter.NotificationCenterDelegate {
     private boolean applying;
+    private BaseFragment bulletinFragment;
     private ButtonWithCounterView button;
     private FrameLayout buttonContainer;
     private CharSequence buttonLocked;
@@ -97,6 +99,11 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     public PeerColorActivity(long j) {
         this.dialogId = j;
         this.isChannel = j != 0;
+    }
+
+    public PeerColorActivity setOnApplied(BaseFragment baseFragment) {
+        this.bulletinFragment = baseFragment;
+        return this;
     }
 
     @Override
@@ -410,12 +417,6 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     }
 
     @Override
-    public void onBecomeFullyHidden() {
-        super.onBecomeFullyHidden();
-        apply();
-    }
-
-    @Override
     public boolean onBackPressed() {
         if (!this.isChannel && hasUnsavedChanged() && getUserConfig().isPremium()) {
             showUnsavedAlert();
@@ -501,11 +502,12 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         } else {
             apply();
             finishFragment();
+            showBulletin();
         }
     }
 
     public void lambda$buttonClick$8() {
-        presentFragment(new PremiumPreviewFragment("color"));
+        presentFragment(new PremiumPreviewFragment("name_color"));
     }
 
     private void apply() {
@@ -598,8 +600,17 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         this.applying = false;
         if (tLRPC$TL_error != null && "BOOSTS_REQUIRED".equals(tLRPC$TL_error.text)) {
             showBoostLimit(true);
-        } else {
-            finishFragment();
+            return;
+        }
+        finishFragment();
+        showBulletin();
+    }
+
+    private void showBulletin() {
+        BaseFragment baseFragment = this.bulletinFragment;
+        if (baseFragment != null) {
+            BulletinFactory.of(baseFragment).createSimpleBulletin(PeerColorDrawable.from(this.currentAccount, this.selectedColor), LocaleController.getString(this.isChannel ? R.string.ChannelColorApplied : R.string.UserColorApplied)).show();
+            this.bulletinFragment = null;
         }
     }
 
@@ -993,8 +1004,13 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
 
             public void set(MessagesController.PeerColor peerColor) {
-                this.paint1.setColor(peerColor.getColor1());
-                this.paint2.setColor(peerColor.getColor2());
+                if (Theme.isCurrentThemeDark() && peerColor.hasColor2() && !peerColor.hasColor3()) {
+                    this.paint1.setColor(peerColor.getColor2());
+                    this.paint2.setColor(peerColor.getColor1());
+                } else {
+                    this.paint1.setColor(peerColor.getColor1());
+                    this.paint2.setColor(peerColor.getColor2());
+                }
                 this.paint3.setColor(peerColor.getColor3());
                 this.hasColor2 = peerColor.hasColor2();
                 this.hasColor3 = peerColor.hasColor3();
@@ -1108,7 +1124,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 MessagesController.PeerColor color2 = peerColors == null ? null : peerColors.getColor(i);
                 if (color2 != null) {
                     this.userTextColorKey = -1;
-                    color = (!Theme.isCurrentThemeDark() || color2.id >= 14) ? color2.getColor1() : color2.getColor2();
+                    color = color2.getColor1();
                 } else {
                     int i3 = Theme.keys_avatar_nameInMessage[0];
                     this.userTextColorKey = i3;
@@ -1141,7 +1157,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 MessagesController.PeerColor color2 = peerColors == null ? null : peerColors.getColor(i);
                 if (color2 != null) {
                     this.userTextColorKey = -1;
-                    color = (!Theme.isCurrentThemeDark() || color2.id >= 14) ? color2.getColor1() : color2.getColor2();
+                    color = color2.getColor1();
                 } else {
                     int i3 = Theme.keys_avatar_nameInMessage[0];
                     this.userTextColorKey = i3;
@@ -1182,6 +1198,98 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
                 canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(64.0f) : 0), getMeasuredHeight() - 1, paint);
             }
+        }
+    }
+
+    public static class PeerColorDrawable extends Drawable {
+        private final Path clipCirclePath;
+        private final Paint color1Paint;
+        private final Paint color2Paint;
+        private final Path color2Path;
+        private final Paint color3Paint;
+        private final int diameter;
+        private final boolean hasColor3;
+        private final int radius;
+
+        @Override
+        public int getOpacity() {
+            return -2;
+        }
+
+        @Override
+        public void setAlpha(int i) {
+        }
+
+        @Override
+        public void setColorFilter(ColorFilter colorFilter) {
+        }
+
+        public static PeerColorDrawable from(int i, int i2) {
+            if (i2 < 7) {
+                return new PeerColorDrawable(Theme.getColor(Theme.keys_avatar_nameInMessage[i2]), Theme.getColor(Theme.keys_avatar_nameInMessage[i2]), Theme.getColor(Theme.keys_avatar_nameInMessage[i2]));
+            }
+            MessagesController.PeerColors peerColors = MessagesController.getInstance(i).peerColors;
+            return from(peerColors == null ? null : peerColors.getColor(i2));
+        }
+
+        public static PeerColorDrawable from(MessagesController.PeerColor peerColor) {
+            if (peerColor == null) {
+                return new PeerColorDrawable(0, 0, 0);
+            }
+            return new PeerColorDrawable(peerColor.getColor1(), peerColor.getColor2(), peerColor.getColor3());
+        }
+
+        public PeerColorDrawable(int i, int i2, int i3) {
+            int dp = AndroidUtilities.dp(21.333f);
+            this.diameter = dp;
+            int i4 = dp / 2;
+            this.radius = i4;
+            Paint paint = new Paint(1);
+            this.color1Paint = paint;
+            Paint paint2 = new Paint(1);
+            this.color2Paint = paint2;
+            Paint paint3 = new Paint(1);
+            this.color3Paint = paint3;
+            Path path = new Path();
+            this.color2Path = path;
+            Path path2 = new Path();
+            this.clipCirclePath = path2;
+            this.hasColor3 = i3 != i;
+            paint.setColor(i);
+            paint2.setColor(i2);
+            paint3.setColor(i3);
+            path2.addCircle(i4, i4, i4, Path.Direction.CW);
+            path.moveTo(dp, 0.0f);
+            path.lineTo(dp, dp);
+            path.lineTo(0.0f, dp);
+            path.close();
+        }
+
+        @Override
+        public void draw(Canvas canvas) {
+            canvas.save();
+            canvas.translate(getBounds().centerX() - this.radius, getBounds().centerY() - this.radius);
+            canvas.clipPath(this.clipCirclePath);
+            canvas.drawPaint(this.color1Paint);
+            canvas.drawPath(this.color2Path, this.color2Paint);
+            if (this.hasColor3) {
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(this.radius - AndroidUtilities.dp(3.66f), this.radius - AndroidUtilities.dp(3.66f), this.radius + AndroidUtilities.dp(3.66f), this.radius + AndroidUtilities.dp(3.66f));
+                int i = this.radius;
+                canvas.rotate(45.0f, i, i);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.color3Paint);
+            }
+            canvas.restore();
+        }
+
+        @Override
+        public int getIntrinsicHeight() {
+            return this.diameter;
+        }
+
+        @Override
+        public int getIntrinsicWidth() {
+            return this.diameter;
         }
     }
 }

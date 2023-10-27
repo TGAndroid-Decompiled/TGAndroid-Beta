@@ -575,6 +575,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             }
         };
         this.limitPreviewView = limitPreviewView;
+        limitPreviewView.wasHaptic = true;
         this.headerView.addView(limitPreviewView, indexOfChild, LayoutHelper.createLinear(-1, -2, 0.0f, 0, 0, 0, 0, 0));
         this.limitPreviewView.setBoosts(this.boostsStatus, false);
     }
@@ -633,15 +634,14 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         transitionSet.setOrdering(0);
         TransitionManager.beginDelayedTransition(this.headerView, transitionSet);
         TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus = this.boostsStatus;
-        int i2 = tL_stories$TL_premium_boostsStatus.boosts;
-        LimitPreviewView limitPreviewView = this.limitPreviewView;
-        int i3 = tL_stories$TL_premium_boostsStatus.next_level_boosts;
-        int i4 = tL_stories$TL_premium_boostsStatus.level;
-        limitPreviewView.increaseCurrentValue(i2 + i, (i2 + 1) - (i3 * i4), i3 - (i4 * i3));
+        int i2 = tL_stories$TL_premium_boostsStatus.current_level_boosts;
+        int i3 = tL_stories$TL_premium_boostsStatus.boosts + i;
+        tL_stories$TL_premium_boostsStatus.boosts = i3;
+        this.limitPreviewView.increaseCurrentValue(i3, i3 - i2, tL_stories$TL_premium_boostsStatus.next_level_boosts - i2);
         TL_stories$TL_premium_boostsStatus tL_stories$TL_premium_boostsStatus2 = this.boostsStatus;
-        int i5 = tL_stories$TL_premium_boostsStatus2.boosts + i;
-        tL_stories$TL_premium_boostsStatus2.boosts = i5;
-        if (tL_stories$TL_premium_boostsStatus2.next_level_boosts <= i5) {
+        int i4 = tL_stories$TL_premium_boostsStatus2.next_level_boosts;
+        int i5 = tL_stories$TL_premium_boostsStatus2.boosts;
+        if (i4 <= i5) {
             tL_stories$TL_premium_boostsStatus2.level++;
             tL_stories$TL_premium_boostsStatus2.current_level_boosts = i5;
         }

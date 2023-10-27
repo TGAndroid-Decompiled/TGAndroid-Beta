@@ -1,6 +1,7 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
@@ -18,7 +19,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -114,6 +117,28 @@ public class AvatarDrawable extends Drawable {
         this.drawAvatarBackground = z;
     }
 
+    public static int getPeerColorIndex(int i) {
+        float[] tempHsv = Theme.getTempHsv(5);
+        Color.colorToHSV(i, tempHsv);
+        int i2 = (int) tempHsv[0];
+        if (i2 >= 345 || i2 < 29) {
+            return 0;
+        }
+        if (i2 < 67) {
+            return 1;
+        }
+        if (i2 < 140) {
+            return 3;
+        }
+        if (i2 < 199) {
+            return 4;
+        }
+        if (i2 < 234) {
+            return 5;
+        }
+        return i2 < 301 ? 2 : 6;
+    }
+
     public static int getColorIndex(long j) {
         return (j < 0 || j >= ((long) Theme.keys_avatar_background.length)) ? (int) Math.abs(j % Theme.keys_avatar_background.length) : (int) j;
     }
@@ -142,50 +167,6 @@ public class AvatarDrawable extends Drawable {
         return LocaleController.getString(new int[]{R.string.ColorRed, R.string.ColorOrange, R.string.ColorViolet, R.string.ColorGreen, R.string.ColorCyan, R.string.ColorBlue, R.string.ColorPink}[i % 7]);
     }
 
-    public static int getNameColorNameForId(long j) {
-        return Theme.keys_avatar_nameInMessage[getColorIndex(j)];
-    }
-
-    public static int getNameColorKey1For(TLRPC$User tLRPC$User) {
-        if (tLRPC$User == null) {
-            return Theme.keys_avatar_nameInMessage[0];
-        }
-        if ((tLRPC$User.flags2 & 128) != 0) {
-            return getNameColorKey1For(tLRPC$User.color);
-        }
-        return getNameColorNameForId(tLRPC$User.id);
-    }
-
-    public static int getNameColorKey2For(TLRPC$User tLRPC$User) {
-        if (tLRPC$User == null) {
-            return Theme.keys_avatar_nameInMessage[0];
-        }
-        if ((tLRPC$User.flags2 & 128) != 0) {
-            return getNameColorKey2For(tLRPC$User.color);
-        }
-        return getNameColorNameForId(tLRPC$User.id);
-    }
-
-    public static int getNameColorKey1For(TLRPC$Chat tLRPC$Chat) {
-        if (tLRPC$Chat == null) {
-            return Theme.keys_avatar_nameInMessage[0];
-        }
-        if ((tLRPC$Chat.flags2 & 64) != 0) {
-            return getNameColorKey1For(tLRPC$Chat.color);
-        }
-        return getNameColorNameForId(tLRPC$Chat.id);
-    }
-
-    public static int getNameColorKey2For(TLRPC$Chat tLRPC$Chat) {
-        if (tLRPC$Chat == null) {
-            return Theme.keys_avatar_nameInMessage[0];
-        }
-        if ((tLRPC$Chat.flags2 & 64) != 0) {
-            return getNameColorKey2For(tLRPC$Chat.color);
-        }
-        return getNameColorNameForId(tLRPC$Chat.id);
-    }
-
     public static int getNameColorKey1For(int i) {
         int length = i % (Theme.keys_avatar_nameInMessage.length + Theme.keys_avatar_composite_nameInMessage.length);
         if (length >= 0) {
@@ -197,24 +178,6 @@ public class AvatarDrawable extends Drawable {
         int length2 = length - Theme.keys_avatar_nameInMessage.length;
         if (length2 >= 0) {
             int[] iArr2 = Theme.keys_avatar_composite_nameInMessage;
-            if (length2 < iArr2.length) {
-                return iArr2[length2];
-            }
-        }
-        return Theme.keys_avatar_nameInMessage[0];
-    }
-
-    public static int getNameColorKey2For(int i) {
-        int length = i % (Theme.keys_avatar_nameInMessage.length + Theme.keys_avatar_composite_nameInMessage2.length);
-        if (length >= 0) {
-            int[] iArr = Theme.keys_avatar_nameInMessage;
-            if (length < iArr.length) {
-                return iArr[length];
-            }
-        }
-        int length2 = length - Theme.keys_avatar_nameInMessage.length;
-        if (length2 >= 0) {
-            int[] iArr2 = Theme.keys_avatar_composite_nameInMessage2;
             if (length2 < iArr2.length) {
                 return iArr2[length2];
             }
@@ -373,11 +336,24 @@ public class AvatarDrawable extends Drawable {
     }
 
     public void setInfo(long j, String str, String str2, String str3, Integer num) {
+        MessagesController.PeerColors peerColors;
         this.hasGradient = true;
         this.invalidateTextLayout = true;
         if (num != null) {
-            this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(num.intValue())]);
-            this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(num.intValue())]);
+            if (num.intValue() >= 14) {
+                MessagesController messagesController = MessagesController.getInstance(UserConfig.selectedAccount);
+                if (messagesController != null && (peerColors = messagesController.peerColors) != null && peerColors.getColor(num.intValue()) != null) {
+                    int color1 = messagesController.peerColors.getColor(num.intValue()).getColor1();
+                    this.color = getThemedColor(Theme.keys_avatar_background[getPeerColorIndex(color1)]);
+                    this.color2 = getThemedColor(Theme.keys_avatar_background2[getPeerColorIndex(color1)]);
+                } else {
+                    this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(num.intValue())]);
+                    this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(num.intValue())]);
+                }
+            } else {
+                this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(num.intValue())]);
+                this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(num.intValue())]);
+            }
         } else {
             this.color = getThemedColor(Theme.keys_avatar_background[getColorIndex(j)]);
             this.color2 = getThemedColor(Theme.keys_avatar_background2[getColorIndex(j)]);

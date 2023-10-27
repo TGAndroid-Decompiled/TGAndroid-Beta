@@ -7478,9 +7478,12 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         float dp;
         int extraTextX;
         float f4;
-        int nameColorKey2For;
-        TLRPC$ChatInvite tLRPC$ChatInvite;
         int themedColor;
+        long j;
+        int i;
+        TLRPC$User tLRPC$User;
+        TLRPC$ChatInvite tLRPC$ChatInvite;
+        TLRPC$Chat tLRPC$Chat;
         TLRPC$ChatInvite tLRPC$ChatInvite2;
         float dp2;
         float dp3;
@@ -7520,18 +7523,55 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
                     MessageObject messageObject = this.currentMessageObject;
                     if (messageObject.overrideLinkColor >= 0 || ((messageObject.isFromUser() && this.currentUser != null) || ((this.currentMessageObject.isFromChannel() && this.currentChat != null) || ((this.currentMessageObject.isSponsored() && (this.currentMessageObject.sponsoredChatInvite instanceof TLRPC$TL_chatInvite)) || (this.currentMessageObject.isSponsored() && (tLRPC$ChatInvite2 = this.currentMessageObject.sponsoredChatInvite) != null && tLRPC$ChatInvite2.chat != null))))) {
                         MessageObject messageObject2 = this.currentMessageObject;
-                        if (messageObject2.overrideLinkColor >= 0) {
-                            nameColorKey2For = Theme.isCurrentThemeDark() ? AvatarDrawable.getNameColorKey2For(this.currentMessageObject.overrideLinkColor) : AvatarDrawable.getNameColorKey1For(this.currentMessageObject.overrideLinkColor);
-                        } else if (messageObject2.isSponsored() && (this.currentMessageObject.sponsoredChatInvite instanceof TLRPC$TL_chatInvite)) {
-                            nameColorKey2For = Theme.isCurrentThemeDark() ? AvatarDrawable.getNameColorKey2For(this.currentMessageObject.sponsoredChatInvite.color) : AvatarDrawable.getNameColorKey1For(this.currentMessageObject.sponsoredChatInvite.color);
-                        } else if (this.currentMessageObject.isSponsored() && (tLRPC$ChatInvite = this.currentMessageObject.sponsoredChatInvite) != null && tLRPC$ChatInvite.chat != null) {
-                            nameColorKey2For = Theme.isCurrentThemeDark() ? AvatarDrawable.getNameColorKey2For(this.currentMessageObject.sponsoredChatInvite.chat) : AvatarDrawable.getNameColorKey1For(this.currentMessageObject.sponsoredChatInvite.chat);
-                        } else if (this.currentMessageObject.isFromUser() && this.currentUser != null) {
-                            nameColorKey2For = Theme.isCurrentThemeDark() ? AvatarDrawable.getNameColorKey2For(this.currentUser) : AvatarDrawable.getNameColorKey1For(this.currentUser);
-                        } else {
-                            nameColorKey2For = Theme.isCurrentThemeDark() ? AvatarDrawable.getNameColorKey2For(this.currentChat) : AvatarDrawable.getNameColorKey1For(this.currentChat);
+                        int i2 = messageObject2.overrideLinkColor;
+                        if (i2 < 0) {
+                            if (messageObject2.isSponsored()) {
+                                TLRPC$ChatInvite tLRPC$ChatInvite3 = this.currentMessageObject.sponsoredChatInvite;
+                                if (tLRPC$ChatInvite3 instanceof TLRPC$TL_chatInvite) {
+                                    i2 = tLRPC$ChatInvite3.color;
+                                }
+                            }
+                            if (this.currentMessageObject.isSponsored() && (tLRPC$ChatInvite = this.currentMessageObject.sponsoredChatInvite) != null && (tLRPC$Chat = tLRPC$ChatInvite.chat) != null) {
+                                if ((tLRPC$Chat.flags2 & 64) != 0) {
+                                    i = tLRPC$Chat.color;
+                                    i2 = i;
+                                } else {
+                                    j = tLRPC$Chat.id % 7;
+                                    i = (int) j;
+                                    i2 = i;
+                                }
+                            } else if (this.currentMessageObject.isFromUser() && (tLRPC$User = this.currentUser) != null) {
+                                if ((tLRPC$User.flags2 & 128) != 0) {
+                                    i = tLRPC$User.color;
+                                    i2 = i;
+                                } else {
+                                    j = tLRPC$User.id % 7;
+                                    i = (int) j;
+                                    i2 = i;
+                                }
+                            } else {
+                                TLRPC$Chat tLRPC$Chat2 = this.currentChat;
+                                if ((tLRPC$Chat2.flags2 & 64) != 0) {
+                                    i = tLRPC$Chat2.color;
+                                    i2 = i;
+                                } else {
+                                    j = tLRPC$Chat2.id % 7;
+                                    i = (int) j;
+                                    i2 = i;
+                                }
+                            }
                         }
-                        themedColor = getThemedColor(nameColorKey2For);
+                        if (i2 < 7) {
+                            themedColor = getThemedColor(Theme.keys_avatar_nameInMessage[i2]);
+                        } else {
+                            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).peerColors;
+                            MessagesController.PeerColor color = peerColors != null ? peerColors.getColor(i2) : null;
+                            if (color != null) {
+                                themedColor = color.getColor1();
+                            } else {
+                                themedColor = getThemedColor(Theme.key_chat_inForwardedNameText);
+                            }
+                        }
                     } else {
                         themedColor = getThemedColor(Theme.key_chat_inForwardedNameText);
                     }
@@ -7914,7 +7954,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return !TextUtils.equals(this.lastPostAuthor, this.currentMessageObject.messageOwner.post_author);
     }
 
-    public void drawNamesLayout(android.graphics.Canvas r42, float r43) {
+    public void drawNamesLayout(android.graphics.Canvas r41, float r42) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawNamesLayout(android.graphics.Canvas, float):void");
     }
 

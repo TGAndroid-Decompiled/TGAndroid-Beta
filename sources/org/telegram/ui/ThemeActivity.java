@@ -1156,7 +1156,7 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
         } else if (i == this.backgroundRow) {
             presentFragment(new WallpapersListActivity(0));
         } else if (i == this.changeUserColor) {
-            presentFragment(new PeerColorActivity(0L));
+            presentFragment(new PeerColorActivity(0L).setOnApplied(this));
         } else if (i == this.sendByEnterRow) {
             SharedPreferences globalMainSettings2 = MessagesController.getGlobalMainSettings();
             boolean z2 = globalMainSettings2.getBoolean("send_by_enter", false);
@@ -2220,7 +2220,15 @@ public class ThemeActivity extends BaseFragment implements NotificationCenter.No
                     defaultThemesPreviewCell = new SwipeGestureSettingsView(this.mContext, ((BaseFragment) ThemeActivity.this).currentAccount);
                     break;
                 case 16:
-                    ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(this.mContext, ((BaseFragment) ThemeActivity.this).parentLayout, 0);
+                    ThemePreviewMessagesCell themePreviewMessagesCell = new ThemePreviewMessagesCell(this, this.mContext, ((BaseFragment) ThemeActivity.this).parentLayout, 0) {
+                        @Override
+                        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+                            if (getParent() != null && getParent().getParent() != null) {
+                                getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+                            }
+                            return super.onInterceptTouchEvent(motionEvent);
+                        }
+                    };
                     defaultThemesPreviewCell = themePreviewMessagesCell;
                     if (Build.VERSION.SDK_INT >= 19) {
                         themePreviewMessagesCell.setImportantForAccessibility(4);

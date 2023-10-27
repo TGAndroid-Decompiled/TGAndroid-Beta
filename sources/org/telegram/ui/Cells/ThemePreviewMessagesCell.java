@@ -52,7 +52,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
     }
 
     @android.annotation.SuppressLint({"ClickableViewAccessibility"})
-    public ThemePreviewMessagesCell(android.content.Context r24, org.telegram.ui.ActionBar.INavigationLayout r25, final int r26, long r27) {
+    public ThemePreviewMessagesCell(android.content.Context r24, org.telegram.ui.ActionBar.INavigationLayout r25, int r26, long r27) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ThemePreviewMessagesCell.<init>(android.content.Context, org.telegram.ui.ActionBar.INavigationLayout, int, long):void");
     }
 
@@ -147,6 +147,11 @@ public class ThemePreviewMessagesCell extends LinearLayout {
         this.shadowDrawable.draw(canvas);
     }
 
+    public boolean allowLoadingOnTouch() {
+        int i = this.type;
+        return i == 3 || i == 0;
+    }
+
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
@@ -164,8 +169,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        int i = this.type;
-        if (i == 2 || i == 3) {
+        if (this.type == 2 || allowLoadingOnTouch()) {
             return super.onInterceptTouchEvent(motionEvent);
         }
         return false;
@@ -173,8 +177,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        int i = this.type;
-        if (i == 2 || i == 3) {
+        if (this.type == 2 || allowLoadingOnTouch()) {
             return super.dispatchTouchEvent(motionEvent);
         }
         return false;
@@ -182,8 +185,7 @@ public class ThemePreviewMessagesCell extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        int i = this.type;
-        if (i == 2 || i == 3) {
+        if (this.type == 2 || allowLoadingOnTouch()) {
             return super.onTouchEvent(motionEvent);
         }
         return false;

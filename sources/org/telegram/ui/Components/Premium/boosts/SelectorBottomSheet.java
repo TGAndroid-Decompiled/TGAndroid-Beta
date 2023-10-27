@@ -52,7 +52,6 @@ import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorHeaderCe
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorSearchCell;
 import org.telegram.ui.Components.Premium.boosts.cells.selector.SelectorUserCell;
 import org.telegram.ui.Components.RecyclerListView;
-import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Stories.recorder.ButtonWithCounterView;
 public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     private final ButtonWithCounterView actionButton;
@@ -79,13 +78,20 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     private final AnimatedFloat statusBarT;
     private int top;
     private int type;
-    private final UndoView undoView;
     private final ArrayList<TLRPC$InputPeer> users;
 
     public interface SelectedObjectsListener {
+
+        public final class CC {
+            public static void $default$onShowToast(SelectedObjectsListener selectedObjectsListener, String str) {
+            }
+        }
+
         void onChatsSelected(List<TLRPC$Chat> list);
 
         void onCountrySelected(List<TLRPC$TL_help_country> list);
+
+        void onShowToast(String str);
 
         void onUsersSelected(List<TLRPC$User> list);
     }
@@ -221,9 +227,6 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
                 }
             }
         });
-        UndoView undoView = new UndoView(getContext(), getBaseFragment(), true, this.resourcesProvider);
-        this.undoView = undoView;
-        this.containerView.addView(undoView, LayoutHelper.createFrame(-1, -2.0f, 51, 10.0f, 42.0f, 10.0f, 8.0f));
         updateList(false, true);
         loadData(1, true, null);
         loadData(3, true, null);
@@ -568,8 +571,19 @@ public class SelectorBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     private void showMaximumUsersToast() {
+        String string;
         int i = this.type;
-        this.undoView.showWithAction(0L, i != 1 ? i != 2 ? i != 3 ? 0 : 92 : 90 : 91, null, null);
+        if (i == 1) {
+            string = LocaleController.getString("BoostingSelectUpToWarningUsers", R.string.BoostingSelectUpToWarningUsers);
+        } else if (i == 2) {
+            string = LocaleController.formatString("BoostingSelectUpToWarningChannels", R.string.BoostingSelectUpToWarningChannels, Long.valueOf(BoostRepository.giveawayAddPeersMax()));
+        } else {
+            string = i != 3 ? "" : LocaleController.formatString("BoostingSelectUpToWarningCountries", R.string.BoostingSelectUpToWarningCountries, Long.valueOf(BoostRepository.giveawayCountriesMax()));
+        }
+        SelectedObjectsListener selectedObjectsListener = this.selectedObjectsListener;
+        if (selectedObjectsListener != null) {
+            selectedObjectsListener.onShowToast(string);
+        }
     }
 
     private void updateList(boolean z, boolean z2) {

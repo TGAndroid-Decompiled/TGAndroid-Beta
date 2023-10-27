@@ -4464,7 +4464,11 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
         }
 
         public String createLink() {
-            if (PeerStoriesView.this.dialogId > 0) {
+            PeerStoriesView peerStoriesView = PeerStoriesView.this;
+            if (peerStoriesView.currentStory.storyItem == null) {
+                return null;
+            }
+            if (peerStoriesView.dialogId > 0) {
                 TLRPC$User user = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getUser(Long.valueOf(PeerStoriesView.this.dialogId));
                 if (UserObject.getPublicUsername(user) == null) {
                     return null;

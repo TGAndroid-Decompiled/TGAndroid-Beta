@@ -570,7 +570,7 @@ public class ChatEditActivity extends BaseFragment implements ImageUpdater.Image
     }
 
     public void lambda$createView$14(View view) {
-        presentFragment(new PeerColorActivity(-this.currentChat.id));
+        presentFragment(new PeerColorActivity(-this.currentChat.id).setOnApplied(this));
     }
 
     public void lambda$createView$16(Context context, View view) {

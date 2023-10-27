@@ -4430,7 +4430,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             if (i4 >= 2 || BuildVars.DEBUG_PRIVATE_VERSION) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProfileActivity.this.getParentActivity(), ProfileActivity.this.resourcesProvider);
                 builder.setTitle(LocaleController.getString("DebugMenu", R.string.DebugMenu));
-                CharSequence[] charSequenceArr = new CharSequence[26];
+                CharSequence[] charSequenceArr = new CharSequence[27];
                 charSequenceArr[0] = LocaleController.getString("DebugMenuImportContacts", R.string.DebugMenuImportContacts);
                 charSequenceArr[1] = LocaleController.getString("DebugMenuReloadContacts", R.string.DebugMenuReloadContacts);
                 charSequenceArr[2] = LocaleController.getString("DebugMenuResetContacts", R.string.DebugMenuResetContacts);
@@ -4488,6 +4488,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 charSequenceArr[23] = BuildVars.DEBUG_VERSION ? SharedConfig.useSurfaceInStories ? "back to TextureView in stories" : "use SurfaceView in stories" : null;
                 charSequenceArr[24] = BuildVars.DEBUG_PRIVATE_VERSION ? SharedConfig.photoViewerBlur ? "do not blur in photoviewer" : "blur in photoviewer" : null;
                 charSequenceArr[25] = !SharedConfig.payByInvoice ? "Enable Invoice Payment" : "Disable Invoice Payment";
+                charSequenceArr[26] = BuildVars.DEBUG_PRIVATE_VERSION ? "Update Attach Bots" : null;
                 final Context context = this.val$context;
                 builder.setItems(charSequenceArr, new DialogInterface.OnClickListener() {
                     @Override
@@ -4643,6 +4644,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     SharedConfig.togglePhotoViewerBlur();
                 } else if (i == 25) {
                     SharedConfig.togglePaymentByInvoice();
+                } else if (i == 26) {
+                    ProfileActivity.this.getMediaDataController().loadAttachMenuBots(false, true);
                 }
             } else {
                 int i3 = ConnectionsManager.CPU_COUNT;
@@ -4837,7 +4840,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             }
 
             @Override
-            protected void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+            public void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -6221,7 +6224,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
         }
 
         @Override
-        protected void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
+        public void onSend(final LongSparseArray<TLRPC$Dialog> longSparseArray, final int i, TLRPC$TL_forumTopic tLRPC$TL_forumTopic) {
             AndroidUtilities.runOnUIThread(new Runnable() {
                 @Override
                 public final void run() {

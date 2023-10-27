@@ -44,9 +44,10 @@ public class ReplyMessageLine {
     private boolean lastHasColor3;
     private float lastHeight;
     private long lastLoadingTTime;
-    private float lineTranslationT;
     private boolean loading;
+    public final AnimatedFloat loadingStateT;
     private float loadingT;
+    private float loadingTranslationT;
     private int nameColor;
     public final AnimatedColor nameColorAnimated;
     private final View parentView;
@@ -89,6 +90,7 @@ public class ReplyMessageLine {
         this.color2Alpha = new AnimatedFloat(view, 0L, 400L, cubicBezierInterpolator);
         this.color3Alpha = new AnimatedFloat(view, 0L, 400L, cubicBezierInterpolator);
         this.emojiLoadedT = new AnimatedFloat(view, 0L, 440L, cubicBezierInterpolator);
+        this.loadingStateT = new AnimatedFloat(view, 0L, 320L, cubicBezierInterpolator);
     }
 
     public int getColor() {
@@ -195,8 +197,8 @@ public class ReplyMessageLine {
                 }
             }
             resolveColor(messageObject, i2, resourcesProvider);
-            this.backgroundColor = Theme.multAlpha(this.color1, Theme.isCurrentThemeDark() ? 0.12f : 0.1f);
-            this.nameColor = (!Theme.isCurrentThemeDark() || i2 >= 14) ? this.color1 : this.color2;
+            this.backgroundColor = Theme.multAlpha(this.color1, 0.1f);
+            this.nameColor = this.color1;
         } else if (z && (messageObject.overrideLinkColor >= 0 || ((tLRPC$Message = messageObject.messageOwner) != null && messageObject.replyMessageObject != null && (tLRPC$MessageReplyHeader = tLRPC$Message.reply_to) != null && (((tLRPC$MessageFwdHeader = tLRPC$MessageReplyHeader.reply_from) == null || TextUtils.isEmpty(tLRPC$MessageFwdHeader.from_name)) && (tLRPC$Message2 = (messageObject2 = messageObject.replyMessageObject).messageOwner) != null && tLRPC$Message2.from_id != null && (messageObject2.isFromUser() || messageObject.replyMessageObject.isFromChannel()))))) {
             int i3 = messageObject.overrideLinkColor;
             if (i3 < 0) {
@@ -224,8 +226,8 @@ public class ReplyMessageLine {
                 }
             }
             resolveColor(messageObject.replyMessageObject, i3, resourcesProvider);
-            this.backgroundColor = Theme.multAlpha(this.color1, Theme.isCurrentThemeDark() ? 0.12f : 0.1f);
-            this.nameColor = (!Theme.isCurrentThemeDark() || i3 >= 14) ? this.color1 : this.color2;
+            this.backgroundColor = Theme.multAlpha(this.color1, 0.1f);
+            this.nameColor = this.color1;
         } else {
             this.hasColor2 = false;
             this.hasColor3 = false;
@@ -233,7 +235,7 @@ public class ReplyMessageLine {
             this.color3 = color3;
             this.color2 = color3;
             this.color1 = color3;
-            this.backgroundColor = Theme.multAlpha(color3, Theme.isCurrentThemeDark() ? 0.12f : 0.1f);
+            this.backgroundColor = Theme.multAlpha(color3, 0.1f);
             this.nameColor = Theme.getColor(Theme.key_chat_inReplyNameText, resourcesProvider);
         }
         if (messageObject.shouldDrawWithoutBackground()) {
@@ -309,8 +311,9 @@ public class ReplyMessageLine {
 
     private void incrementLoadingT() {
         long currentTimeMillis = System.currentTimeMillis();
-        this.loadingT += (float) Math.min(30L, currentTimeMillis - this.lastLoadingTTime);
-        this.lineTranslationT += (float) Math.min(30L, currentTimeMillis - this.lastLoadingTTime);
+        float f = this.loadingStateT.set(this.loading);
+        this.loadingT += ((float) Math.min(30L, currentTimeMillis - this.lastLoadingTTime)) * f;
+        this.loadingTranslationT += ((float) Math.min(30L, currentTimeMillis - this.lastLoadingTTime)) * f;
         this.lastLoadingTTime = currentTimeMillis;
     }
 
@@ -336,7 +339,8 @@ public class ReplyMessageLine {
         this.color1Paint.setColor(Theme.multAlpha(this.color1Animated.set(this.color1), f));
         this.color2Paint.setColor(Theme.multAlpha(this.color2Animated.set(this.color2), f));
         this.color3Paint.setColor(Theme.multAlpha(this.color3Animated.set(this.color3), f));
-        if (!this.loading || this.hasColor2) {
+        float f5 = this.loadingStateT.set(this.loading);
+        if (f5 <= 0.0f || this.hasColor2) {
             z = false;
         } else {
             canvas.save();
@@ -347,7 +351,7 @@ public class ReplyMessageLine {
             canvas.clipPath(this.lineClipPath);
             incrementLoadingT();
             float pow = ((float) Math.pow((this.loadingT / 240.0f) / 4.0f, 0.8500000238418579d)) * 4.0f;
-            this.rectF.set(rectF.left, rectF.top + (rectF.height() * (1.0f - CubicBezierInterpolator.EASE_IN.getInterpolation(MathUtils.clamp(((Math.max(pow, 0.5f) + 1.5f) % 3.5f) * 0.5f, 0.0f, 1.0f)))), rectF.left + AndroidUtilities.dp(6.0f), rectF.top + (rectF.height() * (1.0f - CubicBezierInterpolator.EASE_OUT.getInterpolation(MathUtils.clamp((((pow + 1.5f) % 3.5f) - 1.5f) * 0.5f, 0.0f, 1.0f)))));
+            this.rectF.set(rectF.left, rectF.top + (rectF.height() * AndroidUtilities.lerp(0.0f, 1.0f - CubicBezierInterpolator.EASE_IN.getInterpolation(MathUtils.clamp(((Math.max(pow, 0.5f) + 1.5f) % 3.5f) * 0.5f, 0.0f, 1.0f)), f5)), rectF.left + AndroidUtilities.dp(6.0f), rectF.top + (rectF.height() * AndroidUtilities.lerp(1.0f, 1.0f - CubicBezierInterpolator.EASE_OUT.getInterpolation(MathUtils.clamp((((pow + 1.5f) % 3.5f) - 1.5f) * 0.5f, 0.0f, 1.0f)), f5)));
             this.lineClipPath.rewind();
             this.lineClipPath.addRoundRect(this.rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), Path.Direction.CW);
             canvas.clipPath(this.lineClipPath);
@@ -355,14 +359,12 @@ public class ReplyMessageLine {
             this.parentView.invalidate();
         }
         canvas.drawPaint(this.color1Paint);
-        float f5 = this.color2Alpha.set(this.hasColor2);
-        if (f5 > 0.0f) {
+        float f6 = this.color2Alpha.set(this.hasColor2);
+        if (f6 > 0.0f) {
             canvas.save();
             canvas.translate(rectF.left, rectF.top);
-            if (this.loading) {
-                incrementLoadingT();
-            }
-            float f6 = this.color3Alpha.set(this.hasColor3);
+            incrementLoadingT();
+            float f7 = this.color3Alpha.set(this.hasColor3);
             if (this.hasColor3) {
                 height = rectF.height();
                 m = ReplyMessageLine$$ExternalSyntheticBackport0.m((int) rectF.height(), AndroidUtilities.dp(18.99f));
@@ -370,14 +372,14 @@ public class ReplyMessageLine {
                 height = rectF.height();
                 m = ReplyMessageLine$$ExternalSyntheticBackport0.m((int) rectF.height(), AndroidUtilities.dp(12.66f));
             }
-            canvas.translate(0.0f, -((((this.lineTranslationT + (this.reversedOut ? 100 : 0)) / 1000.0f) * AndroidUtilities.dp(30.0f)) % (height - m)));
+            canvas.translate(0.0f, -((((this.loadingTranslationT + (this.reversedOut ? 100 : 0)) / 1000.0f) * AndroidUtilities.dp(30.0f)) % (height - m)));
             checkColorPathes(rectF.height() * 2.0f);
             int alpha2 = this.color2Paint.getAlpha();
-            this.color2Paint.setAlpha((int) (alpha2 * f5));
+            this.color2Paint.setAlpha((int) (alpha2 * f6));
             canvas.drawPath(this.color2Path, this.color2Paint);
             this.color2Paint.setAlpha(alpha2);
             int alpha3 = this.color3Paint.getAlpha();
-            this.color3Paint.setAlpha((int) (alpha3 * f6));
+            this.color3Paint.setAlpha((int) (alpha3 * f7));
             canvas.drawPath(this.color3Path, this.color3Paint);
             this.color3Paint.setAlpha(alpha3);
             canvas.restore();

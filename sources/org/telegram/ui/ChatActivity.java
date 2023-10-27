@@ -14229,7 +14229,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         if (tLObject instanceof TLRPC$TL_attachMenuBotsBot) {
             TLRPC$TL_attachMenuBotsBot tLRPC$TL_attachMenuBotsBot = (TLRPC$TL_attachMenuBotsBot) tLObject;
             MessagesController.getInstance(this.currentAccount).putUsers(tLRPC$TL_attachMenuBotsBot.users, false);
-            TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = tLRPC$TL_attachMenuBotsBot.bot;
+            final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = tLRPC$TL_attachMenuBotsBot.bot;
             if (!MediaDataController.canShowAttachMenuBot(tLRPC$TL_attachMenuBot, getCurrentUser() != null ? getCurrentUser() : getCurrentChat())) {
                 TLRPC$User tLRPC$User2 = this.currentUser;
                 if (tLRPC$User2 != null && tLRPC$User2.bot && tLRPC$User.id == tLRPC$TL_attachMenuBot.bot_id) {
@@ -14256,7 +14256,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 WebAppDisclaimerAlert.show(getContext(), new com.google.android.exoplayer2.util.Consumer() {
                     @Override
                     public final void accept(Object obj) {
-                        ChatActivity.this.lambda$openAttachBotLayout$162(tLRPC$User, (Boolean) obj);
+                        ChatActivity.this.lambda$openAttachBotLayout$162(tLRPC$User, tLRPC$TL_attachMenuBot, (Boolean) obj);
                     }
                 }, null);
             } else {
@@ -14268,7 +14268,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 AlertDialog.Builder negativeButton = new AlertDialog.Builder(getParentActivity()).setTopView(attachBotIntroTopView).setMessage(AndroidUtilities.replaceTags(LocaleController.formatString("BotRequestAttachPermission", R.string.BotRequestAttachPermission, UserObject.getUserName(tLRPC$User)))).setPositiveButton(LocaleController.getString(R.string.BotAddToMenu), new DialogInterface.OnClickListener() {
                     @Override
                     public final void onClick(DialogInterface dialogInterface, int i) {
-                        ChatActivity.this.lambda$openAttachBotLayout$165(tLRPC$User, atomicBoolean, dialogInterface, i);
+                        ChatActivity.this.lambda$openAttachBotLayout$165(tLRPC$User, atomicBoolean, tLRPC$TL_attachMenuBot, dialogInterface, i);
                     }
                 }).setNegativeButton(LocaleController.getString(R.string.Cancel), null);
                 if (tLRPC$TL_attachMenuBot.request_write_access) {
@@ -14293,7 +14293,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         }
     }
 
-    public void lambda$openAttachBotLayout$162(final TLRPC$User tLRPC$User, Boolean bool) {
+    public void lambda$openAttachBotLayout$162(final TLRPC$User tLRPC$User, final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, Boolean bool) {
         TLRPC$TL_messages_toggleBotInAttachMenu tLRPC$TL_messages_toggleBotInAttachMenu = new TLRPC$TL_messages_toggleBotInAttachMenu();
         tLRPC$TL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tLRPC$User.id);
         tLRPC$TL_messages_toggleBotInAttachMenu.enabled = true;
@@ -14301,28 +14301,30 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_toggleBotInAttachMenu, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$openAttachBotLayout$161(tLRPC$User, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$openAttachBotLayout$161(tLRPC$TL_attachMenuBot, tLRPC$User, tLObject, tLRPC$TL_error);
             }
         }, 66);
     }
 
-    public void lambda$openAttachBotLayout$161(final TLRPC$User tLRPC$User, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openAttachBotLayout$161(final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, final TLRPC$User tLRPC$User, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$openAttachBotLayout$160(tLRPC$TL_error, tLRPC$User);
+                ChatActivity.this.lambda$openAttachBotLayout$160(tLRPC$TL_attachMenuBot, tLRPC$TL_error, tLRPC$User);
             }
         });
     }
 
-    public void lambda$openAttachBotLayout$160(TLRPC$TL_error tLRPC$TL_error, TLRPC$User tLRPC$User) {
+    public void lambda$openAttachBotLayout$160(TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, TLRPC$TL_error tLRPC$TL_error, TLRPC$User tLRPC$User) {
+        tLRPC$TL_attachMenuBot.side_menu_disclaimer_needed = false;
+        tLRPC$TL_attachMenuBot.inactive = false;
         if (tLRPC$TL_error == null) {
             MediaDataController.getInstance(this.currentAccount).loadAttachMenuBots(false, true);
             openAttachBotLayout(tLRPC$User.id, this.attachMenuBotStartCommand, false);
         }
     }
 
-    public void lambda$openAttachBotLayout$165(final TLRPC$User tLRPC$User, AtomicBoolean atomicBoolean, DialogInterface dialogInterface, int i) {
+    public void lambda$openAttachBotLayout$165(final TLRPC$User tLRPC$User, AtomicBoolean atomicBoolean, final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, DialogInterface dialogInterface, int i) {
         TLRPC$TL_messages_toggleBotInAttachMenu tLRPC$TL_messages_toggleBotInAttachMenu = new TLRPC$TL_messages_toggleBotInAttachMenu();
         tLRPC$TL_messages_toggleBotInAttachMenu.bot = MessagesController.getInstance(this.currentAccount).getInputUser(tLRPC$User.id);
         tLRPC$TL_messages_toggleBotInAttachMenu.enabled = true;
@@ -14330,22 +14332,24 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         ConnectionsManager.getInstance(this.currentAccount).sendRequest(tLRPC$TL_messages_toggleBotInAttachMenu, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatActivity.this.lambda$openAttachBotLayout$164(tLRPC$User, tLObject, tLRPC$TL_error);
+                ChatActivity.this.lambda$openAttachBotLayout$164(tLRPC$TL_attachMenuBot, tLRPC$User, tLObject, tLRPC$TL_error);
             }
         }, 66);
     }
 
-    public void lambda$openAttachBotLayout$164(final TLRPC$User tLRPC$User, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$openAttachBotLayout$164(final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, final TLRPC$User tLRPC$User, TLObject tLObject, final TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                ChatActivity.this.lambda$openAttachBotLayout$163(tLRPC$TL_error, tLRPC$User);
+                ChatActivity.this.lambda$openAttachBotLayout$163(tLRPC$TL_error, tLRPC$TL_attachMenuBot, tLRPC$User);
             }
         });
     }
 
-    public void lambda$openAttachBotLayout$163(TLRPC$TL_error tLRPC$TL_error, TLRPC$User tLRPC$User) {
+    public void lambda$openAttachBotLayout$163(TLRPC$TL_error tLRPC$TL_error, TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot, TLRPC$User tLRPC$User) {
         if (tLRPC$TL_error == null) {
+            tLRPC$TL_attachMenuBot.side_menu_disclaimer_needed = false;
+            tLRPC$TL_attachMenuBot.inactive = false;
             MediaDataController.getInstance(this.currentAccount).loadAttachMenuBots(false, true);
             openAttachBotLayout(tLRPC$User.id, this.attachMenuBotStartCommand, false);
         }
@@ -20576,7 +20580,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return;
             }
             ChatActivity chatActivity = ChatActivity.this;
-            AlertsCreator.showOpenUrlAlert(chatActivity, str, true, true, true, false, chatActivity.progressDialogCurrent, ChatActivity.this.themeDelegate);
+            AlertsCreator.showOpenUrlAlert(chatActivity, str, true, true, true, !z, chatActivity.progressDialogCurrent, ChatActivity.this.themeDelegate);
         }
 
         class AnonymousClass5 extends Browser.Progress {
@@ -20743,47 +20747,42 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 ChatActivity chatActivity = ChatActivity.this;
                 TLRPC$MessageMedia tLRPC$MessageMedia3 = messageObject.messageOwner.media;
                 chatActivity.openVCard(user, tLRPC$MessageMedia3.phone_number, tLRPC$MessageMedia3.vcard, tLRPC$MessageMedia3.first_name, tLRPC$MessageMedia3.last_name);
-            } else {
-                if (messageObject.isSponsored()) {
-                    ChatActivity.this.logSponsoredClicked(messageObject);
-                    Bundle bundle = new Bundle();
-                    if (messageObject.sponsoredWebPage != null) {
-                        Browser.openUrl(ChatActivity.this.getContext(), messageObject.sponsoredWebPage.url, true, false);
-                        return;
-                    } else if (messageObject.sponsoredChatInvite != null) {
-                        ChatActivity chatActivity2 = ChatActivity.this;
-                        Context context = ChatActivity.this.getContext();
-                        TLRPC$ChatInvite tLRPC$ChatInvite = messageObject.sponsoredChatInvite;
-                        String str = messageObject.sponsoredChatInviteHash;
-                        ChatActivity chatActivity3 = ChatActivity.this;
-                        chatActivity2.showDialog(new JoinGroupAlert(context, tLRPC$ChatInvite, str, chatActivity3, chatActivity3.themeDelegate));
-                        return;
-                    } else {
-                        long peerId = MessageObject.getPeerId(messageObject.messageOwner.from_id);
-                        if (peerId == ChatActivity.this.getDialogId() && (i2 = messageObject.sponsoredChannelPost) != 0) {
-                            ChatActivity.this.scrollToMessageId(i2, 0, true, 0, false, 0);
-                            return;
-                        }
-                        if (peerId < 0) {
-                            bundle.putLong("chat_id", -peerId);
-                        } else {
-                            bundle.putLong("user_id", peerId);
-                        }
-                        int i3 = messageObject.sponsoredChannelPost;
-                        if (i3 != 0) {
-                            bundle.putInt("message_id", i3);
-                        }
-                        String str2 = messageObject.botStartParam;
-                        if (str2 != null) {
-                            bundle.putString("inline_query", str2);
-                        }
-                        if (ChatActivity.this.getMessagesController().checkCanOpenChat(bundle, ChatActivity.this)) {
-                            ChatActivity.this.presentFragment(new ChatActivity(bundle));
-                            return;
-                        }
+            } else if (messageObject.isSponsored()) {
+                ChatActivity.this.logSponsoredClicked(messageObject);
+                Bundle bundle = new Bundle();
+                if (messageObject.sponsoredWebPage != null) {
+                    Browser.openUrl(ChatActivity.this.getContext(), messageObject.sponsoredWebPage.url, true, false);
+                } else if (messageObject.sponsoredChatInvite != null) {
+                    ChatActivity chatActivity2 = ChatActivity.this;
+                    Context context = ChatActivity.this.getContext();
+                    TLRPC$ChatInvite tLRPC$ChatInvite = messageObject.sponsoredChatInvite;
+                    String str = messageObject.sponsoredChatInviteHash;
+                    ChatActivity chatActivity3 = ChatActivity.this;
+                    chatActivity2.showDialog(new JoinGroupAlert(context, tLRPC$ChatInvite, str, chatActivity3, chatActivity3.themeDelegate));
+                } else {
+                    long peerId = MessageObject.getPeerId(messageObject.messageOwner.from_id);
+                    if (peerId == ChatActivity.this.getDialogId() && (i2 = messageObject.sponsoredChannelPost) != 0) {
+                        ChatActivity.this.scrollToMessageId(i2, 0, true, 0, false, 0);
                         return;
                     }
+                    if (peerId < 0) {
+                        bundle.putLong("chat_id", -peerId);
+                    } else {
+                        bundle.putLong("user_id", peerId);
+                    }
+                    int i3 = messageObject.sponsoredChannelPost;
+                    if (i3 != 0) {
+                        bundle.putInt("message_id", i3);
+                    }
+                    String str2 = messageObject.botStartParam;
+                    if (str2 != null) {
+                        bundle.putString("inline_query", str2);
+                    }
+                    if (ChatActivity.this.getMessagesController().checkCanOpenChat(bundle, ChatActivity.this)) {
+                        ChatActivity.this.presentFragment(new ChatActivity(bundle));
+                    }
                 }
+            } else {
                 TLRPC$WebPage storyMentionWebpage = messageObject.getStoryMentionWebpage();
                 if (storyMentionWebpage == null && (tLRPC$Message = messageObject.messageOwner) != null && (tLRPC$MessageMedia = tLRPC$Message.media) != null) {
                     storyMentionWebpage = tLRPC$MessageMedia.webpage;
@@ -20809,7 +20808,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                     ChatActivity.this.progressDialogCurrent.cancel(true);
                 }
                 ChatActivity.this.progressDialogCurrent = chatMessageCell.getMessageObject() != null ? new AnonymousClass8(chatMessageCell) : null;
-                Browser.openUrl(ChatActivity.this.getParentActivity(), Uri.parse(storyMentionWebpage.url), true, true, ChatActivity.this.progressDialogCurrent);
+                Browser.openUrl(ChatActivity.this.getParentActivity(), Uri.parse(storyMentionWebpage.url), true, true, (MessageObject.getMedia(messageObject.messageOwner) == null || MessageObject.getMedia(messageObject.messageOwner).safe) ? false : true, ChatActivity.this.progressDialogCurrent);
             }
         }
 

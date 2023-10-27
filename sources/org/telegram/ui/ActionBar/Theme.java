@@ -1264,7 +1264,7 @@ public class Theme {
         return i | (-16777216);
     }
 
-    static long access$3100() {
+    static long access$3000() {
         return getAutoNightSwitchThemeDelay();
     }
 

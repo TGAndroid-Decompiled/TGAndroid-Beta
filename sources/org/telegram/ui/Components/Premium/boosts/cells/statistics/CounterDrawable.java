@@ -40,7 +40,7 @@ public class CounterDrawable extends Drawable {
         this.bgRoundRect = new RectF();
         textPaint.setColor(-1);
         textPaint.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
-        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
         textPaint2.setColor(-6915073);
         this.icon = ContextCompat.getDrawable(context, R.drawable.mini_boost_badge);
     }
@@ -60,7 +60,7 @@ public class CounterDrawable extends Drawable {
         this.icon.draw(canvas);
         String str = this.text;
         if (str != null) {
-            canvas.drawText(str, AndroidUtilities.dp(17.0f) + bounds.left, bounds.top + AndroidUtilities.dp(14.0f), this.textPaint);
+            canvas.drawText(str, AndroidUtilities.dp(16.5f) + bounds.left, bounds.top + AndroidUtilities.dp(13.0f), this.textPaint);
         }
     }
 

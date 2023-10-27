@@ -165,6 +165,9 @@ public class GiveawayMessageCell {
                     BoostDialogs.showBulletinAbout(this.messageObject);
                 }
             } else if (motionEvent.getAction() != 2 && motionEvent.getAction() == 3) {
+                if (this.isButtonPressed) {
+                    setButtonPressed(false);
+                }
                 this.isButtonPressed = false;
                 this.isContainerPressed = false;
             }
