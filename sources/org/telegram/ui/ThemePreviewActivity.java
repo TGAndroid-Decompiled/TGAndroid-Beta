@@ -1248,7 +1248,7 @@ public class ThemePreviewActivity extends BaseFragment implements DownloadContro
 
     private void selectColorType(int i, boolean z) {
         int i2;
-        if (getParentActivity() == null || this.colorType == i || this.patternViewAnimation != null || this.accent != null) {
+        if (getParentActivity() == null || this.colorType == i || this.patternViewAnimation != null || this.accent == null) {
             return;
         }
         if (z && i == 2 && (Theme.hasCustomWallpaper() || this.accent.backgroundOverrideColor == 4294967296L)) {

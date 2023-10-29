@@ -759,6 +759,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
             }
         };
+        selectAnimatedEmojiDialog.useAccentForPlus = true;
         long j = this.selectedEmoji;
         selectAnimatedEmojiDialog.setSelected(j == 0 ? null : Long.valueOf(j));
         selectAnimatedEmojiDialog.setSaveState(3);

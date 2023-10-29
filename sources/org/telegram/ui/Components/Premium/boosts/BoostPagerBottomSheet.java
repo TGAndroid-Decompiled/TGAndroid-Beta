@@ -70,6 +70,7 @@ public class BoostPagerBottomSheet extends BottomSheet {
             private boolean isScrolling;
             private final Path path = new Path();
             private final Paint backgroundPaint = new Paint(1);
+            private final boolean isTablet = AndroidUtilities.isTablet();
 
             @Override
             protected void onLayout(boolean z3, int i, int i2, int i3, int i4) {
@@ -145,6 +146,9 @@ public class BoostPagerBottomSheet extends BottomSheet {
                     super.dispatchDraw(canvas);
                     canvas.restore();
                     return;
+                }
+                if (this.isTablet) {
+                    canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
                 }
                 super.dispatchDraw(canvas);
             }

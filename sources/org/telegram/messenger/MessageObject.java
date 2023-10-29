@@ -3303,9 +3303,12 @@ public class MessageObject {
                 dp -= AndroidUtilities.dp(52.0f);
             }
             if (needDrawShareButton() && !isOutOwner()) {
-                dp -= AndroidUtilities.dp(10.0f);
+                dp -= AndroidUtilities.dp(20.0f);
             }
-            i = getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGame ? dp - AndroidUtilities.dp(10.0f) : dp;
+            i = dp;
+            if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGame) {
+                i -= AndroidUtilities.dp(10.0f);
+            }
         }
         int i2 = this.emojiOnlyCount;
         if (i2 >= 1) {
@@ -5828,24 +5831,26 @@ public class MessageObject {
                 charSequence = null;
             }
         } else {
-            TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = tLRPC$MessageReplyHeader.reply_from;
-            if (tLRPC$MessageFwdHeader != null) {
-                TLRPC$Peer tLRPC$Peer = tLRPC$MessageFwdHeader.from_id;
-                if (tLRPC$Peer != null) {
-                    if (tLRPC$Peer instanceof TLRPC$TL_peerUser) {
-                        append = peerNameWithIcon(this.currentAccount, tLRPC$Peer, true);
+            if (tLRPC$MessageReplyHeader.reply_from != null) {
+                TLRPC$Peer tLRPC$Peer = tLRPC$MessageReplyHeader.reply_to_peer_id;
+                boolean z = tLRPC$Peer == null || DialogObject.getPeerDialogId(tLRPC$Peer) != getDialogId();
+                TLRPC$MessageFwdHeader tLRPC$MessageFwdHeader = this.messageOwner.reply_to.reply_from;
+                TLRPC$Peer tLRPC$Peer2 = tLRPC$MessageFwdHeader.from_id;
+                if (tLRPC$Peer2 != null) {
+                    if (tLRPC$Peer2 instanceof TLRPC$TL_peerUser) {
+                        append = peerNameWithIcon(this.currentAccount, tLRPC$Peer2, z);
                         charSequence2 = append;
                         charSequence = null;
                     } else {
-                        charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer, true);
+                        charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer2, z);
                     }
                 } else {
-                    TLRPC$Peer tLRPC$Peer2 = tLRPC$MessageFwdHeader.saved_from_peer;
-                    if (tLRPC$Peer2 != null) {
-                        if (tLRPC$Peer2 instanceof TLRPC$TL_peerUser) {
-                            append = peerNameWithIcon(this.currentAccount, tLRPC$Peer2, true);
+                    TLRPC$Peer tLRPC$Peer3 = tLRPC$MessageFwdHeader.saved_from_peer;
+                    if (tLRPC$Peer3 != null) {
+                        if (tLRPC$Peer3 instanceof TLRPC$TL_peerUser) {
+                            append = peerNameWithIcon(this.currentAccount, tLRPC$Peer3, z);
                         } else {
-                            charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer2, true);
+                            charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer3, z);
                         }
                     } else if (!TextUtils.isEmpty(tLRPC$MessageFwdHeader.from_name)) {
                         append = new SpannableStringBuilder(userSpan()).append((CharSequence) " ").append((CharSequence) this.messageOwner.reply_to.reply_from.from_name);
@@ -5856,13 +5861,13 @@ public class MessageObject {
             }
             charSequence = null;
         }
-        TLRPC$Peer tLRPC$Peer3 = this.messageOwner.reply_to.reply_to_peer_id;
-        if (tLRPC$Peer3 != null && DialogObject.getPeerDialogId(tLRPC$Peer3) != getDialogId()) {
-            TLRPC$Peer tLRPC$Peer4 = this.messageOwner.reply_to.reply_to_peer_id;
-            if (tLRPC$Peer4 instanceof TLRPC$TL_peerUser) {
-                charSequence2 = peerNameWithIcon(this.currentAccount, tLRPC$Peer4, true);
+        TLRPC$Peer tLRPC$Peer4 = this.messageOwner.reply_to.reply_to_peer_id;
+        if (tLRPC$Peer4 != null && DialogObject.getPeerDialogId(tLRPC$Peer4) != getDialogId()) {
+            TLRPC$Peer tLRPC$Peer5 = this.messageOwner.reply_to.reply_to_peer_id;
+            if (tLRPC$Peer5 instanceof TLRPC$TL_peerUser) {
+                charSequence2 = peerNameWithIcon(this.currentAccount, tLRPC$Peer5, true);
             } else {
-                charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer4);
+                charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer5);
             }
         }
         MessageObject messageObject = this.replyMessageObject;

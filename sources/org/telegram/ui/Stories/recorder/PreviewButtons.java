@@ -53,16 +53,16 @@ public class PreviewButtons extends FrameLayout {
         this.shadowView = view;
         view.setBackground(new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{1711276032, 0}));
         addView(this.shadowView, LayoutHelper.createFrame(-1, -1, 119));
-        addButton(0, R.drawable.media_draw, LocaleController.getString("AccDescrPaint", R.string.AccDescrPaint));
-        addButton(2, R.drawable.msg_photo_sticker, LocaleController.getString("AccDescrStickers", R.string.AccDescrStickers));
-        addButton(1, R.drawable.msg_photo_text2, LocaleController.getString("AccDescrPlaceText", R.string.AccDescrPlaceText));
-        addButton(3, R.drawable.msg_photo_settings, LocaleController.getString("AccDescrPhotoAdjust", R.string.AccDescrPhotoAdjust));
+        addButton(0, R.drawable.media_draw, LocaleController.getString(R.string.AccDescrPaint));
+        addButton(2, R.drawable.msg_photo_sticker, LocaleController.getString(R.string.AccDescrStickers));
+        addButton(1, R.drawable.msg_photo_text2, LocaleController.getString(R.string.AccDescrPlaceText));
+        addButton(3, R.drawable.msg_photo_settings, LocaleController.getString(R.string.AccDescrPhotoAdjust));
         int i = R.string.Send;
         String string = LocaleController.getString("Send", i);
         this.shareText = string;
         ShareButtonView shareButtonView = new ShareButtonView(context, string);
         this.shareButton = shareButtonView;
-        shareButtonView.setContentDescription(LocaleController.getString("Send", i));
+        shareButtonView.setContentDescription(LocaleController.getString(i));
         addView(this.shareButton, LayoutHelper.createFrame(-2, -2.0f));
         updateAppearT();
     }

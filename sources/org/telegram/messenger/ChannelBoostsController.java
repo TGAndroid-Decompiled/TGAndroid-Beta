@@ -155,12 +155,12 @@ public class ChannelBoostsController {
                         arrayList.add(next2);
                     }
                 }
-                if (arrayList.size() == 1) {
+                if (arrayList.size() == 1 && ((TL_stories$TL_myBoost) arrayList.get(0)).cooldown_until_date == 0) {
                     TL_stories$TL_myBoost tL_stories$TL_myBoost = (TL_stories$TL_myBoost) arrayList.get(0);
                     this.replaceDialogId = DialogObject.getPeerDialogId(tL_stories$TL_myBoost.peer);
                     this.slot = tL_stories$TL_myBoost.slot;
                     this.canApply = true;
-                } else if (arrayList.size() > 1) {
+                } else if (arrayList.size() >= 1) {
                     this.needSelector = true;
                     if (!BoostRepository.isMultiBoostsAvailable()) {
                         TL_stories$TL_myBoost tL_stories$TL_myBoost2 = (TL_stories$TL_myBoost) arrayList.get(0);

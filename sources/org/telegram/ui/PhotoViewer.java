@@ -10927,7 +10927,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 if (imageLocation == null) {
                     return null;
                 }
-                if (imageLocation2 != null && imageLocation2 != imageLocation) {
+                if (imageLocation2 != imageLocation) {
                     return imageLocation2.location.volume_id + "_" + imageLocation2.location.local_id + ".mp4";
                 }
                 return imageLocation.location.volume_id + "_" + imageLocation.location.local_id + ".jpg";

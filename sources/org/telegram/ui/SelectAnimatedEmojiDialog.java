@@ -253,6 +253,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
     private int type;
     private final Runnable updateRows;
     private final Runnable updateRowsDelayed;
+    public boolean useAccentForPlus;
     private static final List<String> emptyViewEmojis = Arrays.asList("😖", "😫", "\u1fae0", "😨", "❓");
     private static boolean[] preloaded = new boolean[4];
     private static boolean isFirstOpen = true;
@@ -1744,10 +1745,11 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 }
                 textView = imageViewEmoji;
             } else if (i == 4) {
-                textView = new EmojiPackExpand(SelectAnimatedEmojiDialog.this.getContext(), null);
-            } else if (i == 5) {
                 SelectAnimatedEmojiDialog selectAnimatedEmojiDialog3 = SelectAnimatedEmojiDialog.this;
-                textView = new EmojiPackButton(selectAnimatedEmojiDialog3, selectAnimatedEmojiDialog3.getContext());
+                textView = new EmojiPackExpand(selectAnimatedEmojiDialog3, selectAnimatedEmojiDialog3.getContext(), null);
+            } else if (i == 5) {
+                SelectAnimatedEmojiDialog selectAnimatedEmojiDialog4 = SelectAnimatedEmojiDialog.this;
+                textView = new EmojiPackButton(selectAnimatedEmojiDialog4, selectAnimatedEmojiDialog4.getContext());
             } else if (i == 6) {
                 TextView textView2 = new TextView(this, SelectAnimatedEmojiDialog.this.getContext()) {
                     @Override
@@ -1773,8 +1775,8 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                 fixedHeightEmptyCell.setTag("searchbox");
                 textView = fixedHeightEmptyCell;
             } else {
-                SelectAnimatedEmojiDialog selectAnimatedEmojiDialog4 = SelectAnimatedEmojiDialog.this;
-                textView = new ImageViewEmoji(selectAnimatedEmojiDialog4.getContext());
+                SelectAnimatedEmojiDialog selectAnimatedEmojiDialog5 = SelectAnimatedEmojiDialog.this;
+                textView = new ImageViewEmoji(selectAnimatedEmojiDialog5.getContext());
             }
             if (SelectAnimatedEmojiDialog.this.enterAnimationInProgress()) {
                 textView.setScaleX(0.0f);
@@ -2135,16 +2137,16 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         }
     }
 
-    public static class EmojiPackExpand extends FrameLayout {
+    public class EmojiPackExpand extends FrameLayout {
         public TextView textView;
 
-        public EmojiPackExpand(Context context, Theme.ResourcesProvider resourcesProvider) {
+        public EmojiPackExpand(SelectAnimatedEmojiDialog selectAnimatedEmojiDialog, Context context, Theme.ResourcesProvider resourcesProvider) {
             super(context);
             TextView textView = new TextView(context);
             this.textView = textView;
             textView.setTextSize(1, 12.0f);
             this.textView.setTextColor(-1);
-            this.textView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(11.0f), ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_chat_emojiPanelStickerSetName, resourcesProvider), 99)));
+            this.textView.setBackground(Theme.createRoundRectDrawable(AndroidUtilities.dp(11.0f), selectAnimatedEmojiDialog.useAccentForPlus ? Theme.blendOver(selectAnimatedEmojiDialog.accentColor, Theme.multAlpha(Theme.getColor(Theme.key_windowBackgroundWhite), 0.4f)) : ColorUtils.setAlphaComponent(Theme.getColor(Theme.key_chat_emojiPanelStickerSetName, resourcesProvider), 99)));
             this.textView.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
             this.textView.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(1.66f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
             addView(this.textView, LayoutHelper.createFrame(-2, -2, 17));

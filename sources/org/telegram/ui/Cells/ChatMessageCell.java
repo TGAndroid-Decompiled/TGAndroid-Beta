@@ -7797,8 +7797,8 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             int dp6 = (int) (this.sideStartX + AndroidUtilities.dp(16.0f));
             int dp7 = (int) (this.sideStartY + AndroidUtilities.dp(16.0f));
             Drawable themedDrawable2 = getThemedDrawable("drawableShareIcon");
-            int intrinsicWidth = (int) ((themedDrawable2.getIntrinsicWidth() / 2) * 0.95f);
-            int intrinsicHeight = (int) ((themedDrawable2.getIntrinsicHeight() / 2) * 0.95f);
+            int intrinsicWidth = themedDrawable2.getIntrinsicWidth() / 2;
+            int intrinsicHeight = themedDrawable2.getIntrinsicHeight() / 2;
             themedDrawable2.setBounds(dp6 - intrinsicWidth, dp7 - intrinsicHeight, dp6 + intrinsicWidth, dp7 + intrinsicHeight);
             BaseCell.setDrawableBounds(themedDrawable2, this.sideStartX + AndroidUtilities.dp(4.0f), this.sideStartY + AndroidUtilities.dp(4.0f));
             themedDrawable2.draw(canvas);
