@@ -4145,12 +4145,13 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
         };
         this.messageEditText = chatActivityEditTextCaption;
-        if (Build.VERSION.SDK_INT >= 28) {
+        int i = Build.VERSION.SDK_INT;
+        if (i >= 28) {
             chatActivityEditTextCaption.setFallbackLineSpacing(false);
         }
         EditTextCaption editTextCaption = this.messageEditText;
         boolean z = true;
-        editTextCaption.wrapCanvasToFixClipping = true;
+        editTextCaption.wrapCanvasToFixClipping = i > 20;
         editTextCaption.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override
             public final void onSpansChanged() {
@@ -4166,12 +4167,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         ChatActivity chatActivity2 = this.parentFragment;
         TLRPC$EncryptedChat currentEncryptedChat = chatActivity2 != null ? chatActivity2.getCurrentEncryptedChat() : null;
         this.messageEditText.setAllowTextEntitiesIntersection(supportsSendingNewEntities());
-        int i = 268435456;
+        int i2 = 268435456;
         if (isKeyboardSupportIncognitoMode() && currentEncryptedChat != null) {
-            i = 285212672;
+            i2 = 285212672;
         }
         this.messageEditText.setIncludeFontPadding(false);
-        this.messageEditText.setImeOptions(i);
+        this.messageEditText.setImeOptions(i2);
         EditTextCaption editTextCaption2 = this.messageEditText;
         int inputType = editTextCaption2.getInputType() | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM | 131072;
         this.commonInputType = inputType;
@@ -4187,9 +4188,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.messageEditText.setLinkTextColor(getThemedColor(Theme.key_chat_messageLinkOut));
         this.messageEditText.setHighlightColor(getThemedColor(Theme.key_chat_inTextSelectionHighlight));
         EditTextCaption editTextCaption3 = this.messageEditText;
-        int i2 = Theme.key_chat_messagePanelHint;
-        editTextCaption3.setHintColor(getThemedColor(i2));
-        this.messageEditText.setHintTextColor(getThemedColor(i2));
+        int i3 = Theme.key_chat_messagePanelHint;
+        editTextCaption3.setHintColor(getThemedColor(i3));
+        this.messageEditText.setHintTextColor(getThemedColor(i3));
         this.messageEditText.setCursorColor(getThemedColor(Theme.key_chat_messagePanelCursor));
         this.messageEditText.setHandlesColor(getThemedColor(Theme.key_chat_TextSelectionCursor));
         this.messageEditTextContainer.addView(this.messageEditText, 1, LayoutHelper.createFrame(-1, -2.0f, 80, 52.0f, 0.0f, this.isChat ? 50.0f : 2.0f, 1.5f));
@@ -4201,8 +4202,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
 
             @Override
-            public boolean onKey(View view, int i3, KeyEvent keyEvent) {
-                if (i3 == 4 && !ChatActivityEnterView.this.keyboardVisible && ChatActivityEnterView.this.isPopupShowing() && keyEvent.getAction() == 1) {
+            public boolean onKey(View view, int i4, KeyEvent keyEvent) {
+                if (i4 == 4 && !ChatActivityEnterView.this.keyboardVisible && ChatActivityEnterView.this.isPopupShowing() && keyEvent.getAction() == 1) {
                     if (!ContentPreviewViewer.hasInstance() || !ContentPreviewViewer.getInstance().isVisible()) {
                         if (ChatActivityEnterView.this.currentPopupContentType != 1 || ChatActivityEnterView.this.botButtonsMessageObject == null) {
                             if (keyEvent.getAction() == 1) {
@@ -4234,10 +4235,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     }
                     ContentPreviewViewer.getInstance().closeWithMenu();
                     return true;
-                } else if (i3 == 66 && ((this.ctrlPressed || ChatActivityEnterView.this.sendByEnter) && keyEvent.getAction() == 0 && ChatActivityEnterView.this.editingMessageObject == null)) {
+                } else if (i4 == 66 && ((this.ctrlPressed || ChatActivityEnterView.this.sendByEnter) && keyEvent.getAction() == 0 && ChatActivityEnterView.this.editingMessageObject == null)) {
                     ChatActivityEnterView.this.sendMessage();
                     return true;
-                } else if (i3 == 113 || i3 == 114) {
+                } else if (i4 == 113 || i4 == 114) {
                     this.ctrlPressed = keyEvent.getAction() == 0;
                     return true;
                 } else {
@@ -4253,11 +4254,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
 
             @Override
-            public boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-                if (i3 == 4) {
+            public boolean onEditorAction(TextView textView, int i4, KeyEvent keyEvent) {
+                if (i4 == 4) {
                     ChatActivityEnterView.this.sendMessage();
                     return true;
-                } else if (keyEvent == null || i3 != 0) {
+                } else if (keyEvent == null || i4 != 0) {
                     return false;
                 } else {
                     if ((this.ctrlPressed || ChatActivityEnterView.this.sendByEnter) && keyEvent.getAction() == 0 && ChatActivityEnterView.this.editingMessageObject == null) {
@@ -7841,12 +7842,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                         boolean z = tLRPC$KeyboardButton2 instanceof TLRPC$TL_keyboardButtonSimpleWebView;
                         MessageObject messageObject3 = messageObject;
                         botWebViewSheet.requestWebView(i, j3, j4, str, str2, z ? 1 : 0, messageObject3 != null ? messageObject3.messageOwner.id : 0, false);
-                        BaseFragment lastFragment = LaunchActivity.getLastFragment();
-                        if (lastFragment != null) {
-                            lastFragment.showDialog(botWebViewSheet);
-                        } else {
-                            botWebViewSheet.show();
-                        }
+                        botWebViewSheet.show();
                     }
                 };
                 if (SharedPrefsHelper.isWebViewConfirmShown(this.currentAccount, j)) {

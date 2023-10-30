@@ -41,6 +41,7 @@ public class MessagePreviewParams {
     public boolean hideCaption;
     public boolean hideForwardSendersName;
     public boolean isSecret;
+    public boolean isVideo;
     public TLRPC$WebPage linkMedia;
     public Messages linkMessage;
     public boolean multipleUsers;
@@ -50,7 +51,6 @@ public class MessagePreviewParams {
     public int quoteEnd;
     public int quoteStart;
     public Messages replyMessage;
-    public boolean secret;
     public boolean singleLink;
     public TLRPC$WebPage webpage;
     public boolean webpagePhoto;
@@ -222,7 +222,7 @@ public class MessagePreviewParams {
     }
 
     public MessagePreviewParams(boolean z, boolean z2) {
-        this.secret = z;
+        this.isSecret = z;
         this.noforwards = z || z2;
     }
 
@@ -230,7 +230,7 @@ public class MessagePreviewParams {
         ChatActivity.ReplyQuote replyQuote2;
         int i;
         MessageObject messageObject2 = messageObject;
-        if (messageObject2 == null || (i = messageObject2.type) == 10 || i == 11 || i == 22 || i == 21) {
+        if (this.isSecret || messageObject2 == null || (i = messageObject2.type) == 10 || i == 11 || i == 22 || i == 21) {
             messageObject2 = null;
             replyQuote2 = null;
         } else {
@@ -272,6 +272,7 @@ public class MessagePreviewParams {
         TLRPC$Message tLRPC$Message2;
         boolean z = false;
         this.hasMedia = false;
+        this.isVideo = false;
         this.singleLink = true;
         boolean z2 = this.webpage != tLRPC$WebPage;
         this.webpage = tLRPC$WebPage;
@@ -310,6 +311,7 @@ public class MessagePreviewParams {
                 tLRPC$TL_messageMediaWebPage.force_large_media = !z4;
                 tLRPC$TL_messageMediaWebPage.force_small_media = z4;
                 this.hasMedia = tLRPC$WebPage.photo != null;
+                this.isVideo = MessageObject.isVideoDocument(tLRPC$WebPage.document);
             } else {
                 this.hasMedia = false;
             }

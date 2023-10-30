@@ -164,14 +164,14 @@ public class HeaderCell extends FrameLayout {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         try {
             String string = LocaleController.getString("BoostingLinkAllowsToUser", R.string.BoostingLinkAllowsToUser);
-            String substring = string.substring(0, string.indexOf("**%1s**") + 7);
-            String substring2 = string.substring(string.indexOf("**%1s**") + 7);
+            String substring = string.substring(0, string.indexOf("**%1$s**") + 8);
+            String substring2 = string.substring(string.indexOf("**%1$s**") + 8);
             final TLRPC$User user = MessagesController.getInstance(UserConfig.selectedAccount).getUser(Long.valueOf(j));
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             spannableStringBuilder2.append((CharSequence) "**");
             spannableStringBuilder2.append(Emoji.replaceEmoji((CharSequence) UserObject.getUserName(user), this.subtitleView.getPaint().getFontMetricsInt(), AndroidUtilities.dp(12.0f), false));
             spannableStringBuilder2.append((CharSequence) "**");
-            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(substring.toString().replace("**%1s**", spannableStringBuilder2), Theme.key_chat_messageLinkIn, 0, new Runnable() {
+            SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(substring.toString().replace("**%1$s**", spannableStringBuilder2), Theme.key_chat_messageLinkIn, 0, new Runnable() {
                 @Override
                 public final void run() {
                     Utilities.Callback.this.run(user);

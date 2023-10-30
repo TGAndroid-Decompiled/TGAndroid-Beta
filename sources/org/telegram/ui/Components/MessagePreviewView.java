@@ -140,6 +140,7 @@ public class MessagePreviewView extends FrameLayout {
         private int buttonsHeight;
         ToggleButton changePositionBtn;
         ToggleButton changeSizeBtn;
+        FrameLayout changeSizeBtnContainer;
         GridLayoutManagerFixed chatLayoutManager;
         RecyclerListView chatListView;
         SizeNotifierFrameLayout chatPreviewContainer;
@@ -168,6 +169,7 @@ public class MessagePreviewView extends FrameLayout {
         boolean toQuote;
         boolean updateAfterAnimations;
         private boolean updateScroll;
+        ToggleButton videoChangeSizeBtn;
         float yOffset;
 
         public void switchToQuote(final boolean z, boolean z2) {
@@ -615,6 +617,7 @@ public class MessagePreviewView extends FrameLayout {
                 boolean z = !messagePreviewParams.webpageSmall;
                 messagePreviewParams.webpageSmall = z;
                 this.changeSizeBtn.setState(z, true);
+                this.videoChangeSizeBtn.setState(MessagePreviewView.this.messagePreviewParams.webpageSmall, true);
                 if (this.messages.messages.size() > 0 && (tLRPC$Message2 = this.messages.messages.get(0).messageOwner) != null && (tLRPC$MessageMedia2 = tLRPC$Message2.media) != null) {
                     boolean z2 = MessagePreviewView.this.messagePreviewParams.webpageSmall;
                     tLRPC$MessageMedia2.force_small_media = z2;
@@ -1308,7 +1311,13 @@ public class MessagePreviewView extends FrameLayout {
                     @Override
                     public boolean canPerformActions() {
                         Page page2 = Page.this;
-                        return page2.currentTab == 2 && !MessagePreviewView.this.messagePreviewParams.singleLink;
+                        if (page2.currentTab == 2) {
+                            MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+                            if (!messagePreviewParams.singleLink && !messagePreviewParams.isSecret) {
+                                return true;
+                            }
+                        }
+                        return false;
                     }
 
                     @Override
@@ -1665,13 +1674,14 @@ public class MessagePreviewView extends FrameLayout {
                     chatMessageCell.setDrawSelectionBackground(validGroupedMessage == null);
                     chatMessageCell.setChecked(true, validGroupedMessage == null, false);
                     Page page2 = Page.this;
-                    if (MessagePreviewView.this.messagePreviewParams.quote == null || !page2.isReplyMessageCell(chatMessageCell) || Page.this.textSelectionHelper.isInSelectionMode()) {
+                    MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
+                    if (messagePreviewParams.isSecret || messagePreviewParams.quote == null || !page2.isReplyMessageCell(chatMessageCell) || Page.this.textSelectionHelper.isInSelectionMode()) {
                         return;
                     }
                     Page page3 = Page.this;
                     TextSelectionHelper.ChatListTextSelectionHelper chatListTextSelectionHelper = page3.textSelectionHelper;
-                    MessagePreviewParams messagePreviewParams = MessagePreviewView.this.messagePreviewParams;
-                    chatListTextSelectionHelper.select(chatMessageCell, messagePreviewParams.quoteStart, messagePreviewParams.quoteEnd);
+                    MessagePreviewParams messagePreviewParams2 = MessagePreviewView.this.messagePreviewParams;
+                    chatListTextSelectionHelper.select(chatMessageCell, messagePreviewParams2.quoteStart, messagePreviewParams2.quoteEnd);
                     if (Page.this.firstAttach) {
                         Page page4 = Page.this;
                         page4.scrollToOffset = offset(chatMessageCell, MessagePreviewView.this.messagePreviewParams.quoteStart);
@@ -2143,11 +2153,14 @@ public class MessagePreviewView extends FrameLayout {
             }
             if (viewArr[i] != null && ((Page) viewArr[i]).currentTab == 2) {
                 Page page = (Page) viewArr[i];
-                ToggleButton toggleButton = page.changeSizeBtn;
+                FrameLayout frameLayout = page.changeSizeBtnContainer;
                 MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
-                toggleButton.setVisibility((!messagePreviewParams.singleLink || messagePreviewParams.hasMedia) ? 0 : 8);
-                page.changeSizeBtn.animate().alpha(this.messagePreviewParams.hasMedia ? 1.0f : 0.5f).start();
+                frameLayout.setVisibility((!messagePreviewParams.singleLink || messagePreviewParams.hasMedia) ? 0 : 8);
+                page.changeSizeBtn.setVisibility(this.messagePreviewParams.isVideo ? 4 : 0);
+                page.videoChangeSizeBtn.setVisibility(this.messagePreviewParams.isVideo ? 0 : 4);
+                page.changeSizeBtnContainer.animate().alpha(this.messagePreviewParams.hasMedia ? 1.0f : 0.5f).start();
                 page.changeSizeBtn.setState(this.messagePreviewParams.webpageSmall, true);
+                page.videoChangeSizeBtn.setState(this.messagePreviewParams.webpageSmall, true);
                 page.changePositionBtn.setState(!this.messagePreviewParams.webpageTop, true);
                 page.updateMessages();
             }
@@ -2174,7 +2187,7 @@ public class MessagePreviewView extends FrameLayout {
                 }
                 page.updateMessages();
                 if (page.currentTab == 0) {
-                    if (this.showOutdatedQuote) {
+                    if (this.showOutdatedQuote && !this.messagePreviewParams.isSecret) {
                         MessageObject replyMessage = page.getReplyMessage();
                         if (replyMessage != null) {
                             MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
@@ -2287,6 +2300,14 @@ public class MessagePreviewView extends FrameLayout {
                 min = Math.min(View.MeasureSpec.getSize(i), this.minWidth);
             }
             super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, mode), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+        }
+
+        @Override
+        public boolean onTouchEvent(MotionEvent motionEvent) {
+            if (getVisibility() != 0 || getAlpha() < 0.5f) {
+                return false;
+            }
+            return super.onTouchEvent(motionEvent);
         }
     }
 

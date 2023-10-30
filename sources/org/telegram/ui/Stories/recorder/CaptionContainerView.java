@@ -19,6 +19,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
@@ -301,7 +302,7 @@ public class CaptionContainerView extends FrameLayout {
             }
         };
         this.editText = editTextEmoji;
-        editTextEmoji.getEditText().wrapCanvasToFixClipping = true;
+        editTextEmoji.getEditText().wrapCanvasToFixClipping = Build.VERSION.SDK_INT > 20;
         editTextEmoji.setFocusable(true);
         editTextEmoji.setFocusableInTouchMode(true);
         editTextEmoji.getEditText().hintLayoutYFix = true;

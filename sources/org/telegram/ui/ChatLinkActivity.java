@@ -401,6 +401,10 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 Bundle bundle2 = new Bundle();
                 bundle2.putLongArray("result", new long[]{getUserConfig().getClientUserId()});
                 bundle2.putInt("chatType", 4);
+                TLRPC$Chat tLRPC$Chat2 = this.currentChat;
+                if (tLRPC$Chat2 != null) {
+                    bundle2.putString("title", LocaleController.formatString("GroupCreateDiscussionDefaultName", R.string.GroupCreateDiscussionDefaultName, tLRPC$Chat2.title));
+                }
                 GroupCreateFinalActivity groupCreateFinalActivity = new GroupCreateFinalActivity(bundle2);
                 groupCreateFinalActivity.setDelegate(new GroupCreateFinalActivity.GroupCreateFinalActivityDelegate() {
                     @Override
@@ -420,14 +424,14 @@ public class ChatLinkActivity extends BaseFragment implements NotificationCenter
                 presentFragment(groupCreateFinalActivity);
             } else if (this.chats.isEmpty()) {
             } else {
-                TLRPC$Chat tLRPC$Chat2 = this.chats.get(0);
+                TLRPC$Chat tLRPC$Chat3 = this.chats.get(0);
                 AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity());
                 if (this.isChannel) {
                     string = LocaleController.getString("DiscussionUnlinkGroup", R.string.DiscussionUnlinkGroup);
-                    formatString = LocaleController.formatString("DiscussionUnlinkChannelAlert", R.string.DiscussionUnlinkChannelAlert, tLRPC$Chat2.title);
+                    formatString = LocaleController.formatString("DiscussionUnlinkChannelAlert", R.string.DiscussionUnlinkChannelAlert, tLRPC$Chat3.title);
                 } else {
                     string = LocaleController.getString("DiscussionUnlink", R.string.DiscussionUnlinkChannel);
-                    formatString = LocaleController.formatString("DiscussionUnlinkGroupAlert", R.string.DiscussionUnlinkGroupAlert, tLRPC$Chat2.title);
+                    formatString = LocaleController.formatString("DiscussionUnlinkGroupAlert", R.string.DiscussionUnlinkGroupAlert, tLRPC$Chat3.title);
                 }
                 builder.setTitle(string);
                 builder.setMessage(AndroidUtilities.replaceTags(formatString));

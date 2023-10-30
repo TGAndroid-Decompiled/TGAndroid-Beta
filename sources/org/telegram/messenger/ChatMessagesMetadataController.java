@@ -163,19 +163,18 @@ public class ChatMessagesMetadataController {
         for (int i = 0; i < arrayList.size(); i++) {
             tLRPC$TL_messages_getMessagesReactions.id.add(Integer.valueOf(arrayList.get(i).getId()));
         }
-        final int[] iArr = {this.chatActivity.getConnectionsManager().sendRequest(tLRPC$TL_messages_getMessagesReactions, new RequestDelegate() {
+        this.reactionsRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tLRPC$TL_messages_getMessagesReactions, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatMessagesMetadataController.this.lambda$loadReactionsForMessages$4(iArr, tLObject, tLRPC$TL_error);
+                ChatMessagesMetadataController.this.lambda$loadReactionsForMessages$3(tLObject, tLRPC$TL_error);
             }
-        })};
-        this.reactionsRequests.add(Integer.valueOf(iArr[0]));
-        while (this.reactionsRequests.size() > 4) {
+        })));
+        if (this.reactionsRequests.size() > 5) {
             this.chatActivity.getConnectionsManager().cancelRequest(this.reactionsRequests.remove(0).intValue(), false);
         }
     }
 
-    public void lambda$loadReactionsForMessages$4(final int[] iArr, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadReactionsForMessages$3(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             TLRPC$Updates tLRPC$Updates = (TLRPC$Updates) tLObject;
             for (int i = 0; i < tLRPC$Updates.updates.size(); i++) {
@@ -185,16 +184,6 @@ public class ChatMessagesMetadataController {
             }
             this.chatActivity.getMessagesController().processUpdates(tLRPC$Updates, false);
         }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChatMessagesMetadataController.this.lambda$loadReactionsForMessages$3(iArr);
-            }
-        });
-    }
-
-    public void lambda$loadReactionsForMessages$3(int[] iArr) {
-        this.reactionsRequests.remove(Integer.valueOf(iArr[0]));
     }
 
     public void loadExtendedMediaForMessages(long j, ArrayList<MessageObject> arrayList) {
@@ -206,32 +195,21 @@ public class ChatMessagesMetadataController {
         for (int i = 0; i < arrayList.size(); i++) {
             tLRPC$TL_messages_getExtendedMedia.id.add(Integer.valueOf(arrayList.get(i).getId()));
         }
-        final int[] iArr = {this.chatActivity.getConnectionsManager().sendRequest(tLRPC$TL_messages_getExtendedMedia, new RequestDelegate() {
+        this.extendedMediaRequests.add(Integer.valueOf(this.chatActivity.getConnectionsManager().sendRequest(tLRPC$TL_messages_getExtendedMedia, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                ChatMessagesMetadataController.this.lambda$loadExtendedMediaForMessages$6(iArr, tLObject, tLRPC$TL_error);
+                ChatMessagesMetadataController.this.lambda$loadExtendedMediaForMessages$4(tLObject, tLRPC$TL_error);
             }
-        })};
-        this.extendedMediaRequests.add(Integer.valueOf(iArr[0]));
-        while (this.extendedMediaRequests.size() > 10) {
+        })));
+        if (this.extendedMediaRequests.size() > 10) {
             this.chatActivity.getConnectionsManager().cancelRequest(this.extendedMediaRequests.remove(0).intValue(), false);
         }
     }
 
-    public void lambda$loadExtendedMediaForMessages$6(final int[] iArr, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$loadExtendedMediaForMessages$4(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         if (tLRPC$TL_error == null) {
             this.chatActivity.getMessagesController().processUpdates((TLRPC$Updates) tLObject, false);
         }
-        AndroidUtilities.runOnUIThread(new Runnable() {
-            @Override
-            public final void run() {
-                ChatMessagesMetadataController.this.lambda$loadExtendedMediaForMessages$5(iArr);
-            }
-        });
-    }
-
-    public void lambda$loadExtendedMediaForMessages$5(int[] iArr) {
-        this.extendedMediaRequests.remove(Integer.valueOf(iArr[0]));
     }
 
     public void onFragmentDestroy() {

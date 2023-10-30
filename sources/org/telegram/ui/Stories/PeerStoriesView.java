@@ -2792,7 +2792,7 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             updatePosition();
             ChatActivityEnterView chatActivityEnterView3 = this.chatActivityEnterView;
             if (chatActivityEnterView3 != null) {
-                chatActivityEnterView3.setVisibility(0);
+                chatActivityEnterView3.setVisibility(UserObject.isService(this.dialogId) ? 8 : 0);
                 this.chatActivityEnterView.getEditField().setText(this.storyViewer.getDraft(this.dialogId, this.currentStory.storyItem));
                 this.chatActivityEnterView.setDialogId(this.dialogId, this.currentAccount);
                 TLRPC$UserFull userFull = MessagesController.getInstance(this.currentAccount).getUserFull(this.dialogId);

@@ -101,6 +101,7 @@ import org.telegram.tgnet.TLRPC$ChatInvite;
 import org.telegram.tgnet.TLRPC$ChatPhoto;
 import org.telegram.tgnet.TLRPC$Document;
 import org.telegram.tgnet.TLRPC$DocumentAttribute;
+import org.telegram.tgnet.TLRPC$EncryptedChat;
 import org.telegram.tgnet.TLRPC$FileLocation;
 import org.telegram.tgnet.TLRPC$KeyboardButton;
 import org.telegram.tgnet.TLRPC$Message;
@@ -408,6 +409,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
     private boolean hasNewLineForTime;
     private boolean hasOldCaptionPreview;
     private boolean hasPsaHint;
+    public boolean hasReplyQuote;
     private int highlightCaptionToSetEnd;
     private int highlightCaptionToSetStart;
     private LinkPath highlightPath;
@@ -3441,7 +3443,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
         int canDownloadMedia = DownloadController.getInstance(this.currentAccount).canDownloadMedia(messageObject.messageOwner);
         TLRPC$Document document = messageObject.getDocument();
-        if (MessageObject.isStickerDocument(document) || MessageObject.isAnimatedStickerDocument(document, true) || MessageObject.isGifDocument(document) || MessageObject.isRoundVideoDocument(document)) {
+        if ((MessageObject.isStickerDocument(document) || MessageObject.isAnimatedStickerDocument(document, true) || MessageObject.isGifDocument(document) || MessageObject.isRoundVideoDocument(document)) || this.isSmallImage) {
             return;
         }
         TLRPC$PhotoSize closestPhotoSizeWithSize = document == null ? FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, AndroidUtilities.getPhotoSize()) : null;
@@ -6370,7 +6372,16 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             tLRPC$TL_user.first_name = tLRPC$MessageFwdHeader.from_name;
         } else {
             long fromChatId = this.currentMessageObject.getFromChatId();
-            if (DialogObject.isUserDialog(fromChatId) && !this.currentMessageObject.messageOwner.post) {
+            if (DialogObject.isEncryptedDialog(this.currentMessageObject.getDialogId())) {
+                if (this.currentMessageObject.isOutOwner()) {
+                    this.currentUser = UserConfig.getInstance(this.currentAccount).getCurrentUser();
+                    return;
+                }
+                TLRPC$EncryptedChat encryptedChat = messagesController.getEncryptedChat(Integer.valueOf(DialogObject.getEncryptedChatId(this.currentMessageObject.getDialogId())));
+                if (encryptedChat != null) {
+                    this.currentUser = messagesController.getUser(Long.valueOf(encryptedChat.participant_id));
+                }
+            } else if (DialogObject.isUserDialog(fromChatId) && !this.currentMessageObject.messageOwner.post) {
                 this.currentUser = messagesController.getUser(Long.valueOf(fromChatId));
             } else if (DialogObject.isChatDialog(fromChatId)) {
                 this.currentChat = messagesController.getChat(Long.valueOf(-fromChatId));
@@ -6383,7 +6394,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         }
     }
 
-    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r50) {
+    private void setMessageObjectInternal(org.telegram.messenger.MessageObject r49) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.setMessageObjectInternal(org.telegram.messenger.MessageObject):void");
     }
 
@@ -7955,7 +7966,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return !TextUtils.equals(this.lastPostAuthor, this.currentMessageObject.messageOwner.post_author);
     }
 
-    public void drawNamesLayout(android.graphics.Canvas r41, float r42) {
+    public void drawNamesLayout(android.graphics.Canvas r42, float r43) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawNamesLayout(android.graphics.Canvas, float):void");
     }
 

@@ -395,9 +395,10 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
         int i3 = 0;
         if (i == NotificationCenter.boostByChannelCreated) {
             TLRPC$Chat tLRPC$Chat = (TLRPC$Chat) objArr[0];
-            if (((Boolean) objArr[1]).booleanValue()) {
-                List<BaseFragment> fragmentStack = getParentLayout().getFragmentStack();
-                BaseFragment baseFragment = fragmentStack.size() >= 2 ? fragmentStack.get(fragmentStack.size() - 2) : null;
+            boolean booleanValue = ((Boolean) objArr[1]).booleanValue();
+            List<BaseFragment> fragmentStack = getParentLayout().getFragmentStack();
+            BaseFragment baseFragment = fragmentStack.size() >= 2 ? fragmentStack.get(fragmentStack.size() - 2) : null;
+            if (booleanValue) {
                 BaseFragment baseFragment2 = fragmentStack.size() >= 3 ? fragmentStack.get(fragmentStack.size() - 3) : null;
                 if (baseFragment instanceof ProfileActivity) {
                     getParentLayout().removeFragmentFromStack(baseFragment);
@@ -409,7 +410,10 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
                 }
                 return;
             }
-            BoostDialogs.showBulletin(this, tLRPC$Chat, false);
+            finishFragment();
+            if (baseFragment instanceof ProfileActivity) {
+                BoostDialogs.showBulletin(baseFragment, tLRPC$Chat, false);
+            }
         } else if (i == NotificationCenter.messagesDidLoad) {
             if (((Integer) objArr[10]).intValue() == this.classGuid) {
                 ArrayList arrayList = (ArrayList) objArr[2];

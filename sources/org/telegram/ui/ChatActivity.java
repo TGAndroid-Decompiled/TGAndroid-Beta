@@ -5217,19 +5217,23 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return;
             }
             scrollToMessageId(this.editingMessageObject.getId(), 0, true, 0, true, 0);
-            return;
-        }
-        MessagePreviewParams messagePreviewParams = this.messagePreviewParams;
-        if (messagePreviewParams != null) {
-            if (i == 2) {
-                ReplyQuote replyQuote = messagePreviewParams.quote;
+        } else if (this.messagePreviewParams != null) {
+            if (i != 2) {
+                if (i == 3) {
+                    SharedConfig.forwardingOptionsHintHintShowed();
+                    openForwardingPreview(1);
+                } else if (i == 4) {
+                    openForwardingPreview(2);
+                }
+            } else if (DialogObject.isEncryptedDialog(this.dialog_id)) {
+                MessageObject messageObject2 = this.replyingMessageObject;
+                if (messageObject2 != null) {
+                    scrollToMessageId(messageObject2.getId(), 0, true, 0, true, 0);
+                }
+            } else {
+                ReplyQuote replyQuote = this.messagePreviewParams.quote;
                 SharedConfig.replyingOptionsHintHintShowed();
                 openForwardingPreview(0);
-            } else if (i == 3) {
-                SharedConfig.forwardingOptionsHintHintShowed();
-                openForwardingPreview(1);
-            } else if (i == 4) {
-                openForwardingPreview(2);
             }
         }
     }
@@ -15841,7 +15845,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
     }
 
     @android.annotation.SuppressLint({"ClickableViewAccessibility"})
-    public boolean createMenu(final android.view.View r58, boolean r59, boolean r60, float r61, float r62, boolean r63) {
+    public boolean createMenu(final android.view.View r57, boolean r58, boolean r59, float r60, float r61, boolean r62) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ChatActivity.createMenu(android.view.View, boolean, boolean, float, float, boolean):boolean");
     }
 
@@ -18968,7 +18972,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 }
                 ChatMessageCell chatMessageCell2 = (ChatMessageCell) chatMessageCell;
                 chatMessageCell2.setResourcesProvider(ChatActivity.this.themeDelegate);
-                chatMessageCell2.shouldCheckVisibleOnScreen = true;
+                chatMessageCell2.shouldCheckVisibleOnScreen = false;
                 chatMessageCell2.setDelegate(new ChatMessageCellDelegate());
                 if (ChatActivity.this.currentEncryptedChat == null) {
                     chatMessageCell2.setAllowAssistant(true);

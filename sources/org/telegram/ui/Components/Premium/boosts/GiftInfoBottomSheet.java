@@ -79,6 +79,10 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         progress.end();
     }
 
+    public static void show(BaseFragment baseFragment, String str) {
+        show(baseFragment, str, null);
+    }
+
     public static boolean handleIntent(Intent intent, Browser.Progress progress) {
         String scheme;
         String path;
@@ -192,7 +196,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public void onObjectClicked(TLObject tLObject) {
+        protected void onObjectClicked(TLObject tLObject) {
             dismiss();
             if (tLObject instanceof TLRPC$Chat) {
                 GiftInfoBottomSheet.this.getBaseFragment().presentFragment(ChatActivity.of(-((TLRPC$Chat) tLObject).id));
@@ -207,7 +211,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         }
 
         @Override
-        public void onHiddenLinkClicked() {
+        protected void onHiddenLinkClicked() {
             BulletinFactory.of(((BottomSheet) GiftInfoBottomSheet.this).container, ((BottomSheet) GiftInfoBottomSheet.this).resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString("BoostingOnlyRecipientCode", R.string.BoostingOnlyRecipientCode)).show(true);
         }
     }

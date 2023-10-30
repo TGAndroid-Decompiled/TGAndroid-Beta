@@ -5770,7 +5770,7 @@ public class MessageObject {
     }
 
     public static CharSequence peerNameWithIcon(int i, TLRPC$Peer tLRPC$Peer) {
-        return peerNameWithIcon(i, tLRPC$Peer, false);
+        return peerNameWithIcon(i, tLRPC$Peer, !(tLRPC$Peer instanceof TLRPC$TL_peerUser));
     }
 
     public static CharSequence peerNameWithIcon(int i, TLRPC$Peer tLRPC$Peer, boolean z) {
@@ -5787,13 +5787,19 @@ public class MessageObject {
         } else if (tLRPC$Peer instanceof TLRPC$TL_peerChat) {
             TLRPC$Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(tLRPC$Peer.chat_id));
             if (chat2 != null) {
-                return new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat2) ? channelSpan() : groupSpan()).append((CharSequence) " ").append((CharSequence) chat2.title);
+                if (z) {
+                    return new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat2) ? channelSpan() : groupSpan()).append((CharSequence) " ").append((CharSequence) chat2.title);
+                }
+                return chat2.title;
             }
             return "";
         } else if (!(tLRPC$Peer instanceof TLRPC$TL_peerChannel) || (chat = MessagesController.getInstance(i).getChat(Long.valueOf(tLRPC$Peer.channel_id))) == null) {
             return "";
         } else {
-            return new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat) ? channelSpan() : groupSpan()).append((CharSequence) " ").append((CharSequence) chat.title);
+            if (z) {
+                return new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat) ? channelSpan() : groupSpan()).append((CharSequence) " ").append((CharSequence) chat.title);
+            }
+            return chat.title;
         }
     }
 
@@ -5815,7 +5821,7 @@ public class MessageObject {
 
     public CharSequence getReplyQuoteNameWithIcon() {
         CharSequence charSequence;
-        CharSequence append;
+        CharSequence spannableStringBuilder;
         TLRPC$Message tLRPC$Message = this.messageOwner;
         if (tLRPC$Message == null) {
             return "";
@@ -5826,8 +5832,8 @@ public class MessageObject {
             if (DialogObject.isChatDialog(getDialogId())) {
                 charSequence = peerNameWithIcon(this.currentAccount, getDialogId());
             } else {
-                append = peerNameWithIcon(this.currentAccount, getDialogId());
-                charSequence2 = append;
+                spannableStringBuilder = peerNameWithIcon(this.currentAccount, getDialogId());
+                charSequence2 = spannableStringBuilder;
                 charSequence = null;
             }
         } else {
@@ -5838,8 +5844,8 @@ public class MessageObject {
                 TLRPC$Peer tLRPC$Peer2 = tLRPC$MessageFwdHeader.from_id;
                 if (tLRPC$Peer2 != null) {
                     if (tLRPC$Peer2 instanceof TLRPC$TL_peerUser) {
-                        append = peerNameWithIcon(this.currentAccount, tLRPC$Peer2, z);
-                        charSequence2 = append;
+                        spannableStringBuilder = peerNameWithIcon(this.currentAccount, tLRPC$Peer2, z);
+                        charSequence2 = spannableStringBuilder;
                         charSequence = null;
                     } else {
                         charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer2, z);
@@ -5848,14 +5854,18 @@ public class MessageObject {
                     TLRPC$Peer tLRPC$Peer3 = tLRPC$MessageFwdHeader.saved_from_peer;
                     if (tLRPC$Peer3 != null) {
                         if (tLRPC$Peer3 instanceof TLRPC$TL_peerUser) {
-                            append = peerNameWithIcon(this.currentAccount, tLRPC$Peer3, z);
+                            spannableStringBuilder = peerNameWithIcon(this.currentAccount, tLRPC$Peer3, z);
                         } else {
                             charSequence = peerNameWithIcon(this.currentAccount, tLRPC$Peer3, z);
                         }
                     } else if (!TextUtils.isEmpty(tLRPC$MessageFwdHeader.from_name)) {
-                        append = new SpannableStringBuilder(userSpan()).append((CharSequence) " ").append((CharSequence) this.messageOwner.reply_to.reply_from.from_name);
+                        if (z) {
+                            spannableStringBuilder = new SpannableStringBuilder(userSpan()).append((CharSequence) " ").append((CharSequence) this.messageOwner.reply_to.reply_from.from_name);
+                        } else {
+                            spannableStringBuilder = new SpannableStringBuilder(this.messageOwner.reply_to.reply_from.from_name);
+                        }
                     }
-                    charSequence2 = append;
+                    charSequence2 = spannableStringBuilder;
                     charSequence = null;
                 }
             }

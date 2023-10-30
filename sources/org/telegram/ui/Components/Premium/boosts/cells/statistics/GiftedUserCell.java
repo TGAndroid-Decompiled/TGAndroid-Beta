@@ -58,27 +58,38 @@ public class GiftedUserCell extends UserCell {
         addView(frameLayout, LayoutHelper.createFrame(-2, -2.0f, (z ? 3 : 5) | 48, z ? 9 : 0, 9.0f, z ? 0 : 9, 0.0f));
     }
 
+    private void setAvatarColorByMonths(int i) {
+        if (i == 12) {
+            this.avatarDrawable.setColor(-31392, -2796986);
+        } else if (i == 6) {
+            this.avatarDrawable.setColor(-10703110, -12481584);
+        } else {
+            this.avatarDrawable.setColor(-6631068, -11945404);
+        }
+    }
+
     public void setStatus(TL_stories$TL_boost tL_stories$TL_boost) {
         this.boost = tL_stories$TL_boost;
         if (tL_stories$TL_boost.gift || tL_stories$TL_boost.giveaway) {
             this.badgeLayout.setVisibility(0);
+            int i = ((tL_stories$TL_boost.expires - tL_stories$TL_boost.date) / 30) / 86400;
             if (tL_stories$TL_boost.unclaimed) {
                 this.nameTextView.setText(LocaleController.getString("BoostingUnclaimed", R.string.BoostingUnclaimed));
                 this.avatarDrawable.setAvatarType(18);
-                this.avatarDrawable.setColor(-6631068, -11945404);
+                setAvatarColorByMonths(i);
                 this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
                 this.nameTextView.setRightDrawable((Drawable) null);
             } else if (tL_stories$TL_boost.user_id == -1) {
                 this.nameTextView.setText(LocaleController.getString("BoostingToBeDistributed", R.string.BoostingToBeDistributed));
                 this.avatarDrawable.setAvatarType(19);
-                this.avatarDrawable.setColor(-10703110, -12481584);
+                setAvatarColorByMonths(i);
                 this.avatarImageView.setForUserOrChat(null, this.avatarDrawable);
                 this.nameTextView.setRightDrawable((Drawable) null);
             }
             String format = LocaleController.getInstance().formatterScheduleDay.format(new Date(tL_stories$TL_boost.date * 1000));
             String format2 = LocaleController.getInstance().formatterDay.format(new Date(tL_stories$TL_boost.date * 1000));
             SimpleTextView simpleTextView = this.statusTextView;
-            simpleTextView.setText((((tL_stories$TL_boost.expires - tL_stories$TL_boost.date) / 30) / 86400) + "m • " + LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, format, format2));
+            simpleTextView.setText(LocaleController.formatString("BoostingShortMonths", R.string.BoostingShortMonths, Integer.valueOf(i)) + " • " + LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, format, format2));
             if (tL_stories$TL_boost.gift) {
                 if (this.giftDrawable == null) {
                     Drawable drawable = getResources().getDrawable(R.drawable.mini_gift);
@@ -106,9 +117,9 @@ public class GiftedUserCell extends UserCell {
         } else {
             this.badgeLayout.setVisibility(8);
         }
-        int i = tL_stories$TL_boost.multiplier;
-        if (i > 0) {
-            this.counterDrawable.setText(String.valueOf(i));
+        int i2 = tL_stories$TL_boost.multiplier;
+        if (i2 > 0) {
+            this.counterDrawable.setText(String.valueOf(i2));
             this.nameTextView.setRightDrawable(this.counterDrawable);
         } else {
             this.nameTextView.setRightDrawable((Drawable) null);

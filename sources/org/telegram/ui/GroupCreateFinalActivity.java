@@ -485,14 +485,16 @@ public class GroupCreateFinalActivity extends BaseFragment implements Notificati
         String str2 = this.nameToSet;
         if (str2 != null) {
             this.editText.setText(str2);
+            EditTextEmoji editTextEmoji3 = this.editText;
+            editTextEmoji3.setSelection(editTextEmoji3.getText().length());
             this.nameToSet = null;
         }
         setDefaultGroupName();
         this.editText.setFilters(new InputFilter[]{new InputFilter.LengthFilter(100)});
         FrameLayout frameLayout6 = this.editTextContainer;
-        EditTextEmoji editTextEmoji3 = this.editText;
+        EditTextEmoji editTextEmoji4 = this.editText;
         boolean z5 = LocaleController.isRTL;
-        frameLayout6.addView(editTextEmoji3, LayoutHelper.createFrame(-1, -2.0f, 16, z5 ? 5.0f : 96.0f, 0.0f, z5 ? 96.0f : 5.0f, 0.0f));
+        frameLayout6.addView(editTextEmoji4, LayoutHelper.createFrame(-1, -2.0f, 16, z5 ? 5.0f : 96.0f, 0.0f, z5 ? 96.0f : 5.0f, 0.0f));
         RecyclerListView recyclerListView = new RecyclerListView(context);
         this.listView = recyclerListView;
         this.linearLayoutManager = new FillLastLinearLayoutManager(context, 1, recyclerListView);

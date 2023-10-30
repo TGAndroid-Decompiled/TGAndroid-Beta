@@ -2878,7 +2878,7 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
                     if (!imageViewEmoji.notDraw) {
                         if (imageViewEmoji.empty) {
                             Drawable premiumStar = SelectAnimatedEmojiDialog.this.getPremiumStar();
-                            float f = SelectAnimatedEmojiDialog.this.type == 5 ? 1.15f : 1.0f;
+                            float f = SelectAnimatedEmojiDialog.this.type == 5 ? 1.3f : 1.0f;
                             if (imageViewEmoji.pressedProgress != 0.0f || imageViewEmoji.selected) {
                                 f *= ((1.0f - (imageViewEmoji.selected ? 0.7f : imageViewEmoji.pressedProgress)) * 0.2f) + 0.8f;
                             }

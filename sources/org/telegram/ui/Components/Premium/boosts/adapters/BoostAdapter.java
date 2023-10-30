@@ -62,6 +62,7 @@ public class BoostAdapter extends AdapterWithDiffUtils {
                 ((ChatCell) childAt).setCounter(i);
             }
         }
+        notifyItemChanged(8);
         notifyItemChanged(this.items.size() - 1);
         notifyItemChanged(this.items.size() - 2);
         notifyItemChanged(this.items.size() - 3);

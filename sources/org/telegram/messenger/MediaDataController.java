@@ -327,7 +327,7 @@ public class MediaDataController extends BaseController {
     private boolean loadingRecentGifs;
     boolean loadingRecentReactions;
     private boolean[] loadingRecentStickers;
-    private final HashSet<TLRPC$InputStickerSet> loadingStickerSets;
+    private final HashMap<TLRPC$InputStickerSet, ArrayList<Utilities.Callback2<Boolean, TLRPC$TL_messages_stickerSet>>> loadingStickerSets;
     private boolean[] loadingStickers;
     private int menuBotsUpdateDate;
     private long menuBotsUpdateHash;
@@ -487,7 +487,7 @@ public class MediaDataController extends BaseController {
         this.emojiStatusesFetchDate = new Long[2];
         this.emojiStatusesFromCacheFetched = new boolean[2];
         this.emojiStatusesFetching = new boolean[2];
-        this.loadingStickerSets = new HashSet<>();
+        this.loadingStickerSets = new HashMap<>();
         this.messagesSearchCount = new int[]{0, 0};
         this.messagesSearchEndReached = new boolean[]{false, false};
         this.searchResultMessages = new ArrayList<>();
@@ -1865,37 +1865,53 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    private void fetchStickerSetInternal(final TLRPC$InputStickerSet tLRPC$InputStickerSet, final Utilities.Callback2<Boolean, TLRPC$TL_messages_stickerSet> callback2) {
-        if (callback2 == null || this.loadingStickerSets.contains(tLRPC$InputStickerSet)) {
+    private void fetchStickerSetInternal(final TLRPC$InputStickerSet tLRPC$InputStickerSet, Utilities.Callback2<Boolean, TLRPC$TL_messages_stickerSet> callback2) {
+        if (callback2 == null) {
             return;
         }
-        this.loadingStickerSets.add(tLRPC$InputStickerSet);
+        ArrayList<Utilities.Callback2<Boolean, TLRPC$TL_messages_stickerSet>> arrayList = this.loadingStickerSets.get(tLRPC$InputStickerSet);
+        if (arrayList != null && arrayList.size() > 0) {
+            arrayList.add(callback2);
+            return;
+        }
+        if (arrayList == null) {
+            HashMap<TLRPC$InputStickerSet, ArrayList<Utilities.Callback2<Boolean, TLRPC$TL_messages_stickerSet>>> hashMap = this.loadingStickerSets;
+            ArrayList<Utilities.Callback2<Boolean, TLRPC$TL_messages_stickerSet>> arrayList2 = new ArrayList<>();
+            hashMap.put(tLRPC$InputStickerSet, arrayList2);
+            arrayList = arrayList2;
+        }
+        arrayList.add(callback2);
         TLRPC$TL_messages_getStickerSet tLRPC$TL_messages_getStickerSet = new TLRPC$TL_messages_getStickerSet();
         tLRPC$TL_messages_getStickerSet.stickerset = tLRPC$InputStickerSet;
         getConnectionsManager().sendRequest(tLRPC$TL_messages_getStickerSet, new RequestDelegate() {
             @Override
             public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                MediaDataController.this.lambda$fetchStickerSetInternal$36(tLRPC$InputStickerSet, callback2, tLObject, tLRPC$TL_error);
+                MediaDataController.this.lambda$fetchStickerSetInternal$36(tLRPC$InputStickerSet, tLObject, tLRPC$TL_error);
             }
         });
     }
 
-    public void lambda$fetchStickerSetInternal$36(final TLRPC$InputStickerSet tLRPC$InputStickerSet, final Utilities.Callback2 callback2, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
+    public void lambda$fetchStickerSetInternal$36(final TLRPC$InputStickerSet tLRPC$InputStickerSet, final TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
         AndroidUtilities.runOnUIThread(new Runnable() {
             @Override
             public final void run() {
-                MediaDataController.this.lambda$fetchStickerSetInternal$35(tLRPC$InputStickerSet, tLObject, callback2);
+                MediaDataController.this.lambda$fetchStickerSetInternal$35(tLRPC$InputStickerSet, tLObject);
             }
         });
     }
 
-    public void lambda$fetchStickerSetInternal$35(TLRPC$InputStickerSet tLRPC$InputStickerSet, TLObject tLObject, Utilities.Callback2 callback2) {
-        this.loadingStickerSets.remove(tLRPC$InputStickerSet);
-        if (tLObject != null) {
-            callback2.run(Boolean.TRUE, (TLRPC$TL_messages_stickerSet) tLObject);
-        } else {
-            callback2.run(Boolean.FALSE, null);
+    public void lambda$fetchStickerSetInternal$35(TLRPC$InputStickerSet tLRPC$InputStickerSet, TLObject tLObject) {
+        ArrayList<Utilities.Callback2<Boolean, TLRPC$TL_messages_stickerSet>> arrayList = this.loadingStickerSets.get(tLRPC$InputStickerSet);
+        if (arrayList != null) {
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (tLObject != null) {
+                    arrayList.get(i).run(Boolean.TRUE, (TLRPC$TL_messages_stickerSet) tLObject);
+                } else {
+                    arrayList.get(i).run(Boolean.FALSE, null);
+                }
+            }
         }
+        this.loadingStickerSets.remove(tLRPC$InputStickerSet);
     }
 
     private void loadGroupStickerSet(final TLRPC$StickerSet tLRPC$StickerSet, boolean z) {

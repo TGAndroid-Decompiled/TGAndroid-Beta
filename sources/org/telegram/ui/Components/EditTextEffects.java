@@ -7,7 +7,6 @@ import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Region;
-import android.os.Build;
 import android.os.Looper;
 import android.text.Editable;
 import android.text.Layout;
@@ -101,7 +100,6 @@ public class EditTextEffects extends EditText {
             }
         };
         this.rect = new android.graphics.Rect();
-        this.wrapCanvasToFixClipping = Build.VERSION.SDK_INT < 29;
         if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
             this.clickDetector = new SpoilersClickDetector(this, this.spoilers, new SpoilersClickDetector.OnSpoilerClickedListener() {
                 @Override
