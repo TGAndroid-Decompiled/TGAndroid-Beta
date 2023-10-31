@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LiteMode;
@@ -41,6 +42,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.tgnet.TLRPC$BotInlineResult;
 import org.telegram.tgnet.TLRPC$TL_document;
 import org.telegram.ui.ActionBar.AdjustPanLayoutHelper;
@@ -302,7 +304,7 @@ public class CaptionContainerView extends FrameLayout {
             }
         };
         this.editText = editTextEmoji;
-        editTextEmoji.getEditText().wrapCanvasToFixClipping = Build.VERSION.SDK_INT > 20;
+        editTextEmoji.getEditText().wrapCanvasToFixClipping = (Build.VERSION.SDK_INT <= 20 || BuildVars.isHuaweiStoreApp() || XiaomiUtilities.isMIUI()) ? false : true;
         editTextEmoji.setFocusable(true);
         editTextEmoji.setFocusableInTouchMode(true);
         editTextEmoji.getEditText().hintLayoutYFix = true;

@@ -953,7 +953,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                     textView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public final void onClick(View view) {
-                            LimitReachedBottomSheet.AnonymousClass5.this.lambda$onCreateViewHolder$1(view);
+                            LimitReachedBottomSheet.AnonymousClass5.this.lambda$onCreateViewHolder$2(view);
                         }
                     });
                     if (LimitReachedBottomSheet.this.statisticClickRunnable != null) {
@@ -966,7 +966,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                         imageView.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public final void onClick(View view) {
-                                LimitReachedBottomSheet.AnonymousClass5.this.lambda$onCreateViewHolder$2(view);
+                                LimitReachedBottomSheet.AnonymousClass5.this.lambda$onCreateViewHolder$3(view);
                             }
                         });
                     }
@@ -978,7 +978,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                     LinearLayout linearLayout2 = new LinearLayout(context);
                     linearLayout2.setOrientation(1);
                     LoginOrView loginOrView = new LoginOrView(context);
-                    LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
+                    final LinkSpanDrawable.LinksTextView linksTextView = new LinkSpanDrawable.LinksTextView(context);
                     SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.getString(R.string.BoostingStoriesByGifting));
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(R.string.BoostingStoriesByGiftingLink));
                     spannableStringBuilder.setSpan(new ClickableSpan() {
@@ -1014,6 +1014,12 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
                             LimitReachedBottomSheet.AnonymousClass5.this.lambda$onCreateViewHolder$0(view);
                         }
                     });
+                    loginOrView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public final void onClick(View view) {
+                            linksTextView.performClick();
+                        }
+                    });
                     linearLayout2.addView(LimitReachedBottomSheet.this.actionBtn, LayoutHelper.createLinear(-1, 48, 12.0f, 12.0f, 12.0f, 8.0f));
                     linearLayout2.addView(loginOrView, LayoutHelper.createLinear(-1, 48, 0.0f, 0.0f, 0.0f, 0.0f));
                     linearLayout2.addView(linksTextView, LayoutHelper.createLinear(-1, -2, 12.0f, 0.0f, 12.0f, 4.0f));
@@ -1031,11 +1037,11 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
             BoostPagerBottomSheet.show(LimitReachedBottomSheet.this.getBaseFragment(), LimitReachedBottomSheet.this.dialogId, ((BottomSheet) LimitReachedBottomSheet.this).resourcesProvider);
         }
 
-        public void lambda$onCreateViewHolder$1(View view) {
+        public void lambda$onCreateViewHolder$2(View view) {
             AndroidUtilities.addToClipboard(LimitReachedBottomSheet.this.getBoostLink());
         }
 
-        public void lambda$onCreateViewHolder$2(View view) {
+        public void lambda$onCreateViewHolder$3(View view) {
             LimitReachedBottomSheet.this.statisticClickRunnable.run();
             LimitReachedBottomSheet.this.dismiss();
         }

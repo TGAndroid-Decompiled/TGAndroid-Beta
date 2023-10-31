@@ -7966,7 +7966,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         return !TextUtils.equals(this.lastPostAuthor, this.currentMessageObject.messageOwner.post_author);
     }
 
-    public void drawNamesLayout(android.graphics.Canvas r43, float r44) {
+    public void drawNamesLayout(android.graphics.Canvas r41, float r42) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.ChatMessageCell.drawNamesLayout(android.graphics.Canvas, float):void");
     }
 
@@ -10327,7 +10327,6 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
         private boolean animateReplies;
         private StaticLayout animateRepliesLayout;
         private StaticLayout animateReplyTextLayout;
-        public float animateReplyTextOffset;
         public boolean animateRoundVideoDotY;
         private boolean animateShouldDrawMenuDrawable;
         private boolean animateShouldDrawTimeOnMedia;

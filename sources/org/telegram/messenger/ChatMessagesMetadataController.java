@@ -170,7 +170,7 @@ public class ChatMessagesMetadataController {
             }
         })));
         if (this.reactionsRequests.size() > 5) {
-            this.chatActivity.getConnectionsManager().cancelRequest(this.reactionsRequests.remove(0).intValue(), false);
+            this.chatActivity.getConnectionsManager().cancelRequest(this.reactionsRequests.remove(0).intValue(), true);
         }
     }
 

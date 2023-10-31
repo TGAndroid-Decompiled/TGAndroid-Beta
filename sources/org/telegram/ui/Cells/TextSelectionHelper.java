@@ -1674,7 +1674,8 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
 
         public void drawCaption(MessageObject messageObject, MessageObject.TextLayoutBlock textLayoutBlock, Canvas canvas) {
-            if (this.isDescription) {
+            Cell cell;
+            if (messageObject == null || this.isDescription || (cell = this.selectedView) == null || ((ChatMessageCell) cell).getMessageObject() == null || ((ChatMessageCell) this.selectedView).getMessageObject().getId() != messageObject.getId()) {
                 return;
             }
             int i = this.selectionStart;

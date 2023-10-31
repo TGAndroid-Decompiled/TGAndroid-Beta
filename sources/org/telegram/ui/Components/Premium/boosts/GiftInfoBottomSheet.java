@@ -32,6 +32,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
     private GiftInfoAdapter adapter;
     private final TLRPC$TL_payments_checkedGiftCode giftCode;
     private final boolean isUnused;
+    private String slug;
 
     public static void show(final BaseFragment baseFragment, final String str, final Browser.Progress progress) {
         final AtomicBoolean atomicBoolean = new AtomicBoolean(false);
@@ -118,6 +119,7 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
         super(baseFragment, z, z2);
         this.isUnused = tLRPC$TL_payments_checkedGiftCode.used_date == 0;
         this.giftCode = tLRPC$TL_payments_checkedGiftCode;
+        this.slug = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(true);
         fixNavigationBar();
@@ -212,7 +214,13 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
 
         @Override
         protected void onHiddenLinkClicked() {
-            BulletinFactory.of(((BottomSheet) GiftInfoBottomSheet.this).container, ((BottomSheet) GiftInfoBottomSheet.this).resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, LocaleController.getString("BoostingOnlyRecipientCode", R.string.BoostingOnlyRecipientCode)).show(true);
+            String string;
+            if ((GiftInfoBottomSheet.this.slug == null || GiftInfoBottomSheet.this.slug.isEmpty()) && GiftInfoBottomSheet.this.giftCode.to_id == -1) {
+                string = LocaleController.getString("BoostingOnlyGiveawayCreatorSeeLink", R.string.BoostingOnlyGiveawayCreatorSeeLink);
+            } else {
+                string = LocaleController.getString("BoostingOnlyRecipientCode", R.string.BoostingOnlyRecipientCode);
+            }
+            BulletinFactory.of(((BottomSheet) GiftInfoBottomSheet.this).container, ((BottomSheet) GiftInfoBottomSheet.this).resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, string).show(true);
         }
     }
 

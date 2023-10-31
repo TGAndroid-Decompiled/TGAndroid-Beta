@@ -2889,7 +2889,7 @@ public class SendMessagesHelper extends BaseController implements NotificationCe
         }
     }
 
-    public void sendMessage(org.telegram.messenger.SendMessagesHelper.SendMessageParams r81) {
+    public void sendMessage(org.telegram.messenger.SendMessagesHelper.SendMessageParams r79) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.SendMessagesHelper.sendMessage(org.telegram.messenger.SendMessagesHelper$SendMessageParams):void");
     }
 

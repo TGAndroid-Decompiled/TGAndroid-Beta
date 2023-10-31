@@ -73,11 +73,13 @@ import org.telegram.tgnet.TLRPC$TL_inputMessageEntityMentionName;
 import org.telegram.tgnet.TLRPC$TL_message;
 import org.telegram.tgnet.TLRPC$TL_messageActionChatAddUser;
 import org.telegram.tgnet.TLRPC$TL_messageActionGeoProximityReached;
+import org.telegram.tgnet.TLRPC$TL_messageActionGiftCode;
 import org.telegram.tgnet.TLRPC$TL_messageActionTopicCreate;
 import org.telegram.tgnet.TLRPC$TL_messageActionTopicEdit;
 import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_messageEntityMentionName;
 import org.telegram.tgnet.TLRPC$TL_messageMediaDocument;
+import org.telegram.tgnet.TLRPC$TL_messageMediaGiveaway;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPhoto;
 import org.telegram.tgnet.TLRPC$TL_messageMediaPoll;
 import org.telegram.tgnet.TLRPC$TL_messageMediaUnsupported;
@@ -7160,8 +7162,12 @@ public class MessagesStorage extends BaseController {
                 arrayList2.add(Long.valueOf(tLRPC$Message.action.chat_id));
             }
             TLRPC$MessageAction tLRPC$MessageAction2 = tLRPC$Message.action;
-            if (tLRPC$MessageAction2 instanceof TLRPC$TL_messageActionGeoProximityReached) {
-                TLRPC$TL_messageActionGeoProximityReached tLRPC$TL_messageActionGeoProximityReached = (TLRPC$TL_messageActionGeoProximityReached) tLRPC$MessageAction2;
+            if (tLRPC$MessageAction2 instanceof TLRPC$TL_messageActionGiftCode) {
+                addLoadPeerInfo(((TLRPC$TL_messageActionGiftCode) tLRPC$MessageAction2).boost_peer, arrayList, arrayList2);
+            }
+            TLRPC$MessageAction tLRPC$MessageAction3 = tLRPC$Message.action;
+            if (tLRPC$MessageAction3 instanceof TLRPC$TL_messageActionGeoProximityReached) {
+                TLRPC$TL_messageActionGeoProximityReached tLRPC$TL_messageActionGeoProximityReached = (TLRPC$TL_messageActionGeoProximityReached) tLRPC$MessageAction3;
                 addLoadPeerInfo(tLRPC$TL_messageActionGeoProximityReached.from_id, arrayList, arrayList2);
                 addLoadPeerInfo(tLRPC$TL_messageActionGeoProximityReached.to_id, arrayList, arrayList2);
             }
@@ -7193,8 +7199,18 @@ public class MessagesStorage extends BaseController {
                 arrayList.add(Long.valueOf(tLRPC$Message.media.user_id));
             }
             TLRPC$MessageMedia tLRPC$MessageMedia2 = tLRPC$Message.media;
-            if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaPoll) {
-                TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia2;
+            if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaGiveaway) {
+                Iterator<Long> it = ((TLRPC$TL_messageMediaGiveaway) tLRPC$MessageMedia2).channels.iterator();
+                while (it.hasNext()) {
+                    Long next = it.next();
+                    if (!arrayList2.contains(next)) {
+                        arrayList2.add(next);
+                    }
+                }
+            }
+            TLRPC$MessageMedia tLRPC$MessageMedia3 = tLRPC$Message.media;
+            if (tLRPC$MessageMedia3 instanceof TLRPC$TL_messageMediaPoll) {
+                TLRPC$TL_messageMediaPoll tLRPC$TL_messageMediaPoll = (TLRPC$TL_messageMediaPoll) tLRPC$MessageMedia3;
                 if (!tLRPC$TL_messageMediaPoll.results.recent_voters.isEmpty()) {
                     for (int i3 = 0; i3 < tLRPC$TL_messageMediaPoll.results.recent_voters.size(); i3++) {
                         addLoadPeerInfo(tLRPC$TL_messageMediaPoll.results.recent_voters.get(i3), arrayList, arrayList2);

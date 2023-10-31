@@ -276,7 +276,7 @@ public class GiveawayMessageCell {
                     arrayList.add(spannableStringBuilder3);
                 }
                 if (!arrayList.isEmpty()) {
-                    this.countriesLayout = StaticLayoutEx.createStaticLayout(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveAwayFromCountries", R.string.BoostingGiveAwayFromCountries, TextUtils.join(", ", arrayList))), this.countriesTextPaint, i5, Layout.Alignment.ALIGN_CENTER, 1.0f, AndroidUtilities.dp(2.0f), false, TextUtils.TruncateAt.END, i5, 10);
+                    this.countriesLayout = StaticLayoutEx.createStaticLayout(Emoji.replaceEmoji(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingGiveAwayFromCountries", R.string.BoostingGiveAwayFromCountries, TextUtils.join(", ", arrayList))), this.countriesTextPaint.getFontMetricsInt(), false), this.countriesTextPaint, i5, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false, TextUtils.TruncateAt.END, i5, 10);
                 }
             }
             int max = Math.max(i2, Math.min(i5 + AndroidUtilities.dp(38.0f), dp));

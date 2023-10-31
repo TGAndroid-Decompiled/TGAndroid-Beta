@@ -621,7 +621,18 @@ public class EditTextCaption extends EditTextBoldCursor {
                         }
                     }
                     int max = Math.max(0, getSelectionStart());
-                    setText(getText().replace(max, Math.min(getText().length(), getSelectionEnd()), fromHTML));
+                    int min = Math.min(getText().length(), getSelectionEnd());
+                    QuoteSpan.QuoteStyleSpan[] quoteStyleSpanArr = (QuoteSpan.QuoteStyleSpan[]) getText().getSpans(max, min, QuoteSpan.QuoteStyleSpan.class);
+                    if (quoteStyleSpanArr != null && quoteStyleSpanArr.length > 0) {
+                        QuoteSpan.QuoteStyleSpan[] quoteStyleSpanArr2 = (QuoteSpan.QuoteStyleSpan[]) fromHTML.getSpans(0, fromHTML.length(), QuoteSpan.QuoteStyleSpan.class);
+                        for (int i2 = 0; i2 < quoteStyleSpanArr2.length; i2++) {
+                            fromHTML.removeSpan(quoteStyleSpanArr2[i2]);
+                            fromHTML.removeSpan(quoteStyleSpanArr2[i2].span);
+                        }
+                    } else {
+                        QuoteSpan.normalizeQuotes(fromHTML);
+                    }
+                    setText(getText().replace(max, min, fromHTML));
                     setSelection(fromHTML.length() + max, max + fromHTML.length());
                     return true;
                 } catch (Exception e) {
@@ -635,14 +646,14 @@ public class EditTextCaption extends EditTextBoldCursor {
                     return true;
                 } else if (i == 16908320) {
                     int max2 = Math.max(0, getSelectionStart());
-                    int min = Math.min(getText().length(), getSelectionEnd());
-                    AndroidUtilities.addToClipboard(getText().subSequence(max2, min));
+                    int min2 = Math.min(getText().length(), getSelectionEnd());
+                    AndroidUtilities.addToClipboard(getText().subSequence(max2, min2));
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     if (max2 != 0) {
                         spannableStringBuilder.append(getText().subSequence(0, max2));
                     }
-                    if (min != getText().length()) {
-                        spannableStringBuilder.append(getText().subSequence(min, getText().length()));
+                    if (min2 != getText().length()) {
+                        spannableStringBuilder.append(getText().subSequence(min2, getText().length()));
                     }
                     setText(spannableStringBuilder);
                     setSelection(max2, max2);

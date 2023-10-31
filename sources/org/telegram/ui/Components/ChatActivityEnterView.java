@@ -119,6 +119,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.messenger.XiaomiUtilities;
 import org.telegram.messenger.browser.Browser;
 import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.ConnectionsManager;
@@ -4149,10 +4150,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (i >= 28) {
             chatActivityEditTextCaption.setFallbackLineSpacing(false);
         }
-        EditTextCaption editTextCaption = this.messageEditText;
         boolean z = true;
-        editTextCaption.wrapCanvasToFixClipping = i > 20;
-        editTextCaption.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
+        this.messageEditText.wrapCanvasToFixClipping = (i <= 20 || BuildVars.isHuaweiStoreApp() || XiaomiUtilities.isMIUI()) ? false : true;
+        this.messageEditText.setDelegate(new EditTextCaption.EditTextCaptionDelegate() {
             @Override
             public final void onSpansChanged() {
                 ChatActivityEnterView.this.lambda$createMessageEditText$30();
@@ -4173,10 +4173,10 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
         this.messageEditText.setIncludeFontPadding(false);
         this.messageEditText.setImeOptions(i2);
-        EditTextCaption editTextCaption2 = this.messageEditText;
-        int inputType = editTextCaption2.getInputType() | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM | 131072;
+        EditTextCaption editTextCaption = this.messageEditText;
+        int inputType = editTextCaption.getInputType() | LiteMode.FLAG_ANIMATED_EMOJI_KEYBOARD_NOT_PREMIUM | 131072;
         this.commonInputType = inputType;
-        editTextCaption2.setInputType(inputType);
+        editTextCaption.setInputType(inputType);
         updateFieldHint(false);
         this.messageEditText.setSingleLine(false);
         this.messageEditText.setMaxLines(6);
@@ -4187,9 +4187,9 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         this.messageEditText.setTextColor(getThemedColor(Theme.key_chat_messagePanelText));
         this.messageEditText.setLinkTextColor(getThemedColor(Theme.key_chat_messageLinkOut));
         this.messageEditText.setHighlightColor(getThemedColor(Theme.key_chat_inTextSelectionHighlight));
-        EditTextCaption editTextCaption3 = this.messageEditText;
+        EditTextCaption editTextCaption2 = this.messageEditText;
         int i3 = Theme.key_chat_messagePanelHint;
-        editTextCaption3.setHintColor(getThemedColor(i3));
+        editTextCaption2.setHintColor(getThemedColor(i3));
         this.messageEditText.setHintTextColor(getThemedColor(i3));
         this.messageEditText.setCursorColor(getThemedColor(Theme.key_chat_messagePanelCursor));
         this.messageEditText.setHandlesColor(getThemedColor(Theme.key_chat_TextSelectionCursor));
@@ -5719,7 +5719,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         if (baseFragment != null) {
             new PremiumFeatureBottomSheet(baseFragment, 11, false).show();
         } else if (baseFragment.getContext() instanceof LaunchActivity) {
-            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$86(new PremiumPreviewFragment(null));
+            ((LaunchActivity) baseFragment.getContext()).lambda$runLinkRequest$87(new PremiumPreviewFragment(null));
         }
     }
 

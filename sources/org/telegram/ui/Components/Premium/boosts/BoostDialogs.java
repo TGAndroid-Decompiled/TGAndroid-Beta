@@ -400,9 +400,19 @@ public class BoostDialogs {
                 Calendar calendar = Calendar.getInstance();
                 calendar.setTimeInMillis(System.currentTimeMillis());
                 int i5 = calendar.get(11);
-                int i6 = calendar.get(12);
-                numberPicker.setMinValue(i5);
-                numberPicker2.setMinValue(Math.min((i6 / 5) + 1, 11));
+                int i6 = (calendar.get(12) / 5) + 1;
+                if (i6 > 11) {
+                    if (i5 == 23) {
+                        numberPicker4.setMinValue(numberPicker4.getMinValue() + 1);
+                        numberPicker.setMinValue(0);
+                    } else {
+                        numberPicker.setMinValue(i5 + 1);
+                    }
+                    numberPicker2.setMinValue(0);
+                } else {
+                    numberPicker.setMinValue(i5);
+                    numberPicker2.setMinValue(i6);
+                }
             } else if (numberPicker4.getValue() == numberPicker4.getMaxValue()) {
                 numberPicker.setMaxValue(i);
                 numberPicker2.setMaxValue(Math.min(i2 / 5, 11));
@@ -417,8 +427,14 @@ public class BoostDialogs {
             if (numberPicker4.getValue() == numberPicker4.getMinValue()) {
                 Calendar calendar2 = Calendar.getInstance();
                 calendar2.setTimeInMillis(System.currentTimeMillis());
-                numberPicker2.setMinValue(Math.min((calendar2.get(12) / 5) + 1, 11));
-                return;
+                int i7 = (calendar2.get(12) / 5) + 1;
+                if (i7 > 11) {
+                    numberPicker2.setMinValue(0);
+                    return;
+                } else {
+                    numberPicker2.setMinValue(i7);
+                    return;
+                }
             }
             numberPicker2.setMinValue(0);
             numberPicker2.setMaxValue(11);
