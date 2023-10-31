@@ -5802,8 +5802,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             if (chatActivity != null && (messagePreviewParams = chatActivity.messagePreviewParams) != null) {
                 if (chatActivity.foundWebPage instanceof TLRPC$TL_webPagePending) {
                     messageObject2.editingMessageSearchWebPage = false;
-                    messageObject2.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
-                    this.editingMessageObject.messageOwner.media.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                    int i = messageObject2.type;
+                    if (i == 0 || i == 19) {
+                        messageObject2.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
+                        this.editingMessageObject.messageOwner.media.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                    }
                 } else if (messagePreviewParams.webpage != null) {
                     messageObject2.editingMessageSearchWebPage = false;
                     messageObject2.messageOwner.media = new TLRPC$TL_messageMediaWebPage();
@@ -5812,8 +5815,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                     tLRPC$MessageMedia2.webpage = this.parentFragment.messagePreviewParams.webpage;
                 } else {
                     messageObject2.editingMessageSearchWebPage = false;
-                    int i = messageObject2.type;
-                    if (i == 0 || i == 19) {
+                    int i2 = messageObject2.type;
+                    if (i2 == 0 || i2 == 19) {
                         messageObject2.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
                         this.editingMessageObject.messageOwner.media.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
                     }
@@ -5831,8 +5834,11 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 }
             } else {
                 messageObject2.editingMessageSearchWebPage = false;
-                messageObject2.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
-                this.editingMessageObject.messageOwner.media.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                int i3 = messageObject2.type;
+                if (i3 == 0 || i3 == 19) {
+                    messageObject2.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
+                    this.editingMessageObject.messageOwner.media.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                }
             }
             SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(this.currentAccount);
             MessageObject messageObject3 = this.editingMessageObject;

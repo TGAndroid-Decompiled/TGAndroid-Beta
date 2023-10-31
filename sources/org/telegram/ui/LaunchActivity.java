@@ -399,6 +399,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         AndroidUtilities.fillStatusBarHeight(this, false);
         this.actionBarLayout = INavigationLayout.CC.newLayout(this);
         FrameLayout frameLayout = new FrameLayout(this) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             protected void dispatchDraw(Canvas canvas) {
                 super.dispatchDraw(canvas);
@@ -419,6 +423,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         this.frameLayout.addView(this.drawerLayoutContainer, LayoutHelper.createFrame(-1, -1.0f));
         if (i2 >= 21) {
             View view = new View(this) {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 protected void onDraw(Canvas canvas) {
                     if (LaunchActivity.this.themeSwitchSunDrawable != null) {
@@ -444,7 +452,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
 
             @Override
-            protected void onStop() {
+            public void onStop() {
                 super.onStop();
                 setVisibility(8);
             }
@@ -454,6 +462,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         setupActionBarLayout();
         this.sideMenuContainer = new FrameLayout(this);
         RecyclerListView recyclerListView = new RecyclerListView(this) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public boolean drawChild(Canvas canvas, View view2, long j) {
                 int i3;
@@ -525,6 +537,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int i4) {
+            }
+
+            {
+                LaunchActivity.this = this;
             }
 
             @Override
@@ -788,6 +804,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         if (i5 >= 31) {
             getWindow().getDecorView().addOnAttachStateChangeListener(new View.OnAttachStateChangeListener() {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void onViewAttachedToWindow(View view2) {
                     LaunchActivity.this.getWindowManager().addCrossWindowBlurEnabledListener(C$r8$wrapper$java$util$function$Consumer$WRP.convert(LaunchActivity.this.blurListener));
@@ -812,10 +832,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
         AnonymousClass3(Context context) {
             super(context);
+            LaunchActivity.this = r1;
         }
 
         @Override
-        protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+        public void onLayout(boolean z, int i, int i2, int i3, int i4) {
             super.onLayout(z, i, i2, i3, i4);
             setDrawerPosition(getDrawerPosition());
             boolean z2 = i4 - i2 > i3 - i;
@@ -1043,6 +1064,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 itemTouchHelper.startDrag(this.sideMenu.getChildViewHolder(view));
             } else {
                 DialogsActivity dialogsActivity = new DialogsActivity(null) {
+                    {
+                        LaunchActivity.this = this;
+                    }
+
                     @Override
                     public void onTransitionAnimationEnd(boolean z, boolean z2) {
                         super.onTransitionAnimationEnd(z, z2);
@@ -1153,6 +1178,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
                 private boolean inLayout;
 
                 {
+                    LaunchActivity.this = this;
                     new Path();
                 }
 
@@ -1364,6 +1390,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         }
         View view2 = view;
         SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(lastFragment, this, true, Integer.valueOf(i), 0, null) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void onSettings() {
                 DrawerLayoutContainer drawerLayoutContainer = LaunchActivity.this.drawerLayoutContainer;
@@ -1436,6 +1466,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         selectAnimatedEmojiDialog.setSaveState(2);
         selectAnimatedEmojiDialog.setScrimDrawable(swapAnimatedEmojiDrawable, view2);
         SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialogWindow = new SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow(selectAnimatedEmojiDialog, -2, -2) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void dismiss() {
                 super.dismiss();
@@ -1738,6 +1772,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     private void showUpdateActivity(int i, TLRPC$TL_help_appUpdate tLRPC$TL_help_appUpdate, boolean z) {
         if (this.blockingUpdateView == null) {
             BlockingUpdateView blockingUpdateView = new BlockingUpdateView(this) {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void setVisibility(int i2) {
                     super.setVisibility(i2);
@@ -1773,6 +1811,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
 
     public class AnonymousClass15 implements TermsOfServiceView.TermsOfServiceViewDelegate {
         AnonymousClass15() {
+            LaunchActivity.this = r1;
         }
 
         @Override
@@ -2094,6 +2133,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             bundle.putString("selectAlertStringGroup", LocaleController.getString("SendMessagesToGroupText", R.string.SendMessagesToGroupText));
         }
         DialogsActivity dialogsActivity = new DialogsActivity(bundle) {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public boolean shouldShowNextButton(DialogsActivity dialogsActivity2, ArrayList<Long> arrayList2, CharSequence charSequence, boolean z2) {
                 if (LaunchActivity.this.exportingChatUri != null) {
@@ -2675,7 +2718,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (tLObject instanceof TLRPC$TL_attachMenuBotsBot) {
             final TLRPC$TL_attachMenuBot tLRPC$TL_attachMenuBot = ((TLRPC$TL_attachMenuBotsBot) tLObject).bot;
             final boolean z4 = tLRPC$TL_attachMenuBot != null && (tLRPC$TL_attachMenuBot.show_in_side_menu || tLRPC$TL_attachMenuBot.show_in_attach_menu);
-            if (tLRPC$TL_attachMenuBot.inactive && z4) {
+            if ((tLRPC$TL_attachMenuBot.inactive || tLRPC$TL_attachMenuBot.side_menu_disclaimer_needed) && z4) {
                 WebAppDisclaimerAlert.show(this, new com.google.android.exoplayer2.util.Consumer() {
                     @Override
                     public final void accept(Object obj) {
@@ -3046,6 +3089,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         final Integer val$messageId;
 
         AnonymousClass18(Runnable runnable, String str, BaseFragment baseFragment, long j, Integer num, Bundle bundle) {
+            LaunchActivity.this = r1;
             this.val$dismissLoading = runnable;
             this.val$livestream = str;
             this.val$lastFragment = baseFragment;
@@ -5401,6 +5445,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         if (SharedConfig.passcodeHash.length() != 0) {
             SharedConfig.lastPauseTime = (int) (SystemClock.elapsedRealtime() / 1000);
             Runnable runnable = new Runnable() {
+                {
+                    LaunchActivity.this = this;
+                }
+
                 @Override
                 public void run() {
                     if (LaunchActivity.this.lockRunnable == this) {
@@ -6084,6 +6132,10 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
             }
         });
         this.navBarAnimator.addListener(new AnimatorListenerAdapter() {
+            {
+                LaunchActivity.this = this;
+            }
+
             @Override
             public void onAnimationEnd(Animator animator) {
                 LaunchActivity.this.setNavigationBarColor(i, false);

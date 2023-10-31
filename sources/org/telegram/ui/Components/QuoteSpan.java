@@ -251,7 +251,11 @@ public class QuoteSpan implements LeadingMarginSpan {
             int i2;
             this.span = quoteSpan;
             quoteSpan.start = spanned.getSpanStart(quoteSpan);
-            quoteSpan.end = spanned.getSpanEnd(quoteSpan);
+            int spanEnd = spanned.getSpanEnd(quoteSpan);
+            quoteSpan.end = spanEnd;
+            if (spanEnd - 1 >= 0 && spanEnd < spanned.length() && spanned.charAt(quoteSpan.end) != '\n' && spanned.charAt(quoteSpan.end - 1) == '\n') {
+                quoteSpan.end--;
+            }
             int lineForOffset = layout.getLineForOffset(quoteSpan.start);
             int lineForOffset2 = layout.getLineForOffset(quoteSpan.end);
             quoteSpan.singleLine = lineForOffset2 - lineForOffset < 1;
