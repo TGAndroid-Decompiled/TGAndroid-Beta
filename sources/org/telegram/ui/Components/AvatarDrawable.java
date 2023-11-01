@@ -167,24 +167,6 @@ public class AvatarDrawable extends Drawable {
         return LocaleController.getString(new int[]{R.string.ColorRed, R.string.ColorOrange, R.string.ColorViolet, R.string.ColorGreen, R.string.ColorCyan, R.string.ColorBlue, R.string.ColorPink}[i % 7]);
     }
 
-    public static int getNameColorKey1For(int i) {
-        int length = i % (Theme.keys_avatar_nameInMessage.length + Theme.keys_avatar_composite_nameInMessage.length);
-        if (length >= 0) {
-            int[] iArr = Theme.keys_avatar_nameInMessage;
-            if (length < iArr.length) {
-                return iArr[length];
-            }
-        }
-        int length2 = length - Theme.keys_avatar_nameInMessage.length;
-        if (length2 >= 0) {
-            int[] iArr2 = Theme.keys_avatar_composite_nameInMessage;
-            if (length2 < iArr2.length) {
-                return iArr2[length2];
-            }
-        }
-        return Theme.keys_avatar_nameInMessage[0];
-    }
-
     public void setInfo(TLRPC$User tLRPC$User) {
         if (tLRPC$User != null) {
             setInfo(tLRPC$User.id, tLRPC$User.first_name, tLRPC$User.last_name, null, (tLRPC$User.flags2 & 128) != 0 ? Integer.valueOf(tLRPC$User.color) : null);

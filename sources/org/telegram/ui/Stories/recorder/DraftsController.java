@@ -618,7 +618,11 @@ public class DraftsController {
             storyEntry.gradientTopColor = this.gradientTopColor;
             storyEntry.gradientBottomColor = this.gradientBottomColor;
             if (this.caption != null) {
-                CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(this.caption), Theme.chat_msgTextPaint.getFontMetricsInt(), true);
+                SpannableString spannableString = new SpannableString(this.caption);
+                if (Theme.chat_msgTextPaint == null) {
+                    Theme.createCommonMessageResources();
+                }
+                CharSequence replaceEmoji = Emoji.replaceEmoji(spannableString, Theme.chat_msgTextPaint.getFontMetricsInt(), true);
                 MessageObject.addEntitiesToText(replaceEmoji, this.captionEntities, true, false, true, false);
                 storyEntry.caption = replaceEmoji;
             } else {

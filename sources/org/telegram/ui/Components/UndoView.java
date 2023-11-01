@@ -45,6 +45,7 @@ import org.telegram.tgnet.TLRPC$TL_payments_paymentReceipt;
 import org.telegram.ui.ActionBar.BaseFragment;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.PaymentFormActivity;
+@Deprecated
 public class UndoView extends FrameLayout {
     public static int ACTION_RINGTONE_ADDED = 83;
     private float additionalTranslationY;

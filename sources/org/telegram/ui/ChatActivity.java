@@ -2876,7 +2876,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
                 return;
             }
             int min = Math.min(i2, chatActivity.getMessagesController().quoteLengthMax + i);
-            if (messageObject.getGroupId() != 0 && (group = this.chatActivity.getGroup(messageObject.getGroupId())) != null) {
+            if (messageObject.getGroupId() != 0 && (group = this.chatActivity.getGroup(messageObject.getGroupId())) != null && !group.isDocuments) {
                 messageObject = group.captionMessage;
             }
             if (messageObject == null) {
@@ -6425,10 +6425,15 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
         @Override
         protected void onQuoteSelectedPart() {
-            if (ChatActivity.this.replyingQuote == null) {
+            if (ChatActivity.this.replyingQuote != null && ChatActivity.this.replyingQuote.message != null) {
                 ChatActivity chatActivity = ChatActivity.this;
-                chatActivity.replyingQuote = chatActivity.messagePreviewParams.quote;
+                ReplyQuote replyQuote = chatActivity.messagePreviewParams.quote;
+                if (replyQuote == null || replyQuote.message == null || chatActivity.replyingQuote.message.getId() == ChatActivity.this.messagePreviewParams.quote.message.getId()) {
+                    return;
+                }
             }
+            ChatActivity chatActivity2 = ChatActivity.this;
+            chatActivity2.replyingQuote = chatActivity2.messagePreviewParams.quote;
         }
 
         @Override

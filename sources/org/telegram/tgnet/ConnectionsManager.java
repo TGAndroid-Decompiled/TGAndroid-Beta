@@ -465,7 +465,7 @@ public class ConnectionsManager extends BaseController {
                 tLObject2.networkType = i6;
             }
             if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("java received " + tLObject2 + " error = " + tLRPC$TL_error);
+                FileLog.d("java received " + tLObject2 + " error = " + tLRPC$TL_error + " messageId = " + j4);
             }
             FileLog.dumpResponseAndRequest(tLObject, tLObject2, tLRPC$TL_error, j4, j, i4);
             final TLObject tLObject3 = tLObject2;

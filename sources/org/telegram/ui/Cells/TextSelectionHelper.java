@@ -230,6 +230,10 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         return false;
     }
 
+    public Cell getSelectedCell() {
+        return this.selectedView;
+    }
+
     public TextSelectionHelper() {
         new PathWithSavedBottom();
         this.selectionPaint = new Paint(1);

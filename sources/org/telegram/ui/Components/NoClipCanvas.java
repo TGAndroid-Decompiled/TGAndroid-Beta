@@ -1,18 +1,56 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
+import android.graphics.BlendMode;
 import android.graphics.Canvas;
+import android.graphics.DrawFilter;
 import android.graphics.Matrix;
+import android.graphics.NinePatch;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Picture;
+import android.graphics.PorterDuff;
 import android.graphics.RectF;
+import android.graphics.Region;
+import android.graphics.RenderNode;
 import android.graphics.fonts.Font;
 import android.graphics.text.MeasuredText;
+import android.os.Build;
 public class NoClipCanvas extends Canvas {
     public Canvas canvas;
 
     @Override
     public boolean clipRect(float f, float f2, float f3, float f4) {
+        return false;
+    }
+
+    @Override
+    public boolean clipRect(float f, float f2, float f3, float f4, Region.Op op) {
+        return false;
+    }
+
+    @Override
+    public boolean clipRect(int i, int i2, int i3, int i4) {
+        return false;
+    }
+
+    @Override
+    public boolean clipRect(android.graphics.Rect rect) {
+        return false;
+    }
+
+    @Override
+    public boolean clipRect(android.graphics.Rect rect, Region.Op op) {
+        return false;
+    }
+
+    @Override
+    public boolean clipRect(RectF rectF) {
+        return false;
+    }
+
+    @Override
+    public boolean clipRect(RectF rectF, Region.Op op) {
         return false;
     }
 
@@ -79,6 +117,16 @@ public class NoClipCanvas extends Canvas {
     @Override
     public void drawText(CharSequence charSequence, int i, int i2, float f, float f2, Paint paint) {
         this.canvas.drawText(charSequence, i, i2, f, f2, paint);
+    }
+
+    @Override
+    public void drawLines(float[] fArr, int i, int i2, Paint paint) {
+        this.canvas.drawLines(fArr, i, i2, paint);
+    }
+
+    @Override
+    public void drawLines(float[] fArr, Paint paint) {
+        this.canvas.drawLines(fArr, paint);
     }
 
     @Override
@@ -224,6 +272,164 @@ public class NoClipCanvas extends Canvas {
     @Override
     public int getHeight() {
         return this.canvas.getHeight();
+    }
+
+    @Override
+    public void drawColor(long j, BlendMode blendMode) {
+        this.canvas.drawColor(j, blendMode);
+    }
+
+    @Override
+    public void drawOval(RectF rectF, Paint paint) {
+        this.canvas.drawOval(rectF, paint);
+    }
+
+    @Override
+    public void drawColor(int i, BlendMode blendMode) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.canvas.drawColor(i, blendMode);
+        }
+    }
+
+    @Override
+    public void drawPatch(NinePatch ninePatch, RectF rectF, Paint paint) {
+        if (Build.VERSION.SDK_INT >= 31) {
+            this.canvas.drawPatch(ninePatch, rectF, paint);
+        }
+    }
+
+    @Override
+    public void drawPosText(String str, float[] fArr, Paint paint) {
+        this.canvas.drawPosText(str, fArr, paint);
+    }
+
+    @Override
+    public void drawPosText(char[] cArr, int i, int i2, float[] fArr, Paint paint) {
+        this.canvas.drawPosText(cArr, i, i2, fArr, paint);
+    }
+
+    @Override
+    public void drawColor(int i) {
+        this.canvas.drawColor(i);
+    }
+
+    @Override
+    public void drawDoubleRoundRect(RectF rectF, float[] fArr, RectF rectF2, float[] fArr2, Paint paint) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.canvas.drawDoubleRoundRect(rectF, fArr, rectF2, fArr2, paint);
+        }
+    }
+
+    @Override
+    public void drawPicture(Picture picture, RectF rectF) {
+        this.canvas.drawPicture(picture, rectF);
+    }
+
+    @Override
+    public void drawARGB(int i, int i2, int i3, int i4) {
+        this.canvas.drawARGB(i, i2, i3, i4);
+    }
+
+    @Override
+    public void drawArc(float f, float f2, float f3, float f4, float f5, float f6, boolean z, Paint paint) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            this.canvas.drawArc(f, f2, f3, f4, f5, f6, z, paint);
+        }
+    }
+
+    @Override
+    public void drawPatch(NinePatch ninePatch, android.graphics.Rect rect, Paint paint) {
+        if (Build.VERSION.SDK_INT >= 31) {
+            this.canvas.drawPatch(ninePatch, rect, paint);
+        }
+    }
+
+    @Override
+    public void drawColor(int i, PorterDuff.Mode mode) {
+        this.canvas.drawColor(i, mode);
+    }
+
+    @Override
+    public void drawRGB(int i, int i2, int i3) {
+        this.canvas.drawRGB(i, i2, i3);
+    }
+
+    @Override
+    public void drawPoints(float[] fArr, int i, int i2, Paint paint) {
+        this.canvas.drawPoints(fArr, i, i2, paint);
+    }
+
+    @Override
+    public void drawPoints(float[] fArr, Paint paint) {
+        this.canvas.drawPoints(fArr, paint);
+    }
+
+    @Override
+    public void drawRenderNode(RenderNode renderNode) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.canvas.drawRenderNode(renderNode);
+        }
+    }
+
+    @Override
+    public void drawOval(float f, float f2, float f3, float f4, Paint paint) {
+        if (Build.VERSION.SDK_INT >= 21) {
+            this.canvas.drawOval(f, f2, f3, f4, paint);
+        }
+    }
+
+    @Override
+    public void drawDoubleRoundRect(RectF rectF, float f, float f2, RectF rectF2, float f3, float f4, Paint paint) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.canvas.drawDoubleRoundRect(rectF, f, f2, rectF2, f3, f4, paint);
+        }
+    }
+
+    @Override
+    public void drawPicture(Picture picture) {
+        this.canvas.drawPicture(picture);
+    }
+
+    @Override
+    public void drawPicture(Picture picture, android.graphics.Rect rect) {
+        this.canvas.drawPicture(picture, rect);
+    }
+
+    @Override
+    public void drawColor(long j) {
+        if (Build.VERSION.SDK_INT >= 29) {
+            this.canvas.drawColor(j);
+        }
+    }
+
+    @Override
+    public void drawPaint(Paint paint) {
+        this.canvas.drawPaint(paint);
+    }
+
+    @Override
+    public void drawPoint(float f, float f2, Paint paint) {
+        this.canvas.drawPoint(f, f2, paint);
+    }
+
+    @Override
+    public DrawFilter getDrawFilter() {
+        return this.canvas.getDrawFilter();
+    }
+
+    @Override
+    public void setDrawFilter(DrawFilter drawFilter) {
+        this.canvas.setDrawFilter(drawFilter);
+    }
+
+    @Override
+    public int getDensity() {
+        return this.canvas.getDensity();
+    }
+
+    @Override
+    public void setDensity(int i) {
+        this.canvas.setDensity(i);
     }
 
     @Override

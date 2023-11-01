@@ -57,7 +57,6 @@ import org.telegram.ui.Cells.TextInfoPrivacyCell;
 import org.telegram.ui.Cells.ThemePreviewMessagesCell;
 import org.telegram.ui.Components.AnimatedEmojiDrawable;
 import org.telegram.ui.Components.AnimatedFloat;
-import org.telegram.ui.Components.AvatarDrawable;
 import org.telegram.ui.Components.Bulletin;
 import org.telegram.ui.Components.BulletinFactory;
 import org.telegram.ui.Components.ButtonBounce;
@@ -692,10 +691,10 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 if (peerColors != null && (color = peerColors.getColor(PeerColorActivity.this.selectedColor)) != null) {
                     return color.getColor1();
                 }
-                return PeerColorActivity.this.getThemedColor(AvatarDrawable.getNameColorKey1For(0));
+                return PeerColorActivity.this.getThemedColor(Theme.keys_avatar_nameInMessage[0]);
             }
             PeerColorActivity peerColorActivity = PeerColorActivity.this;
-            return peerColorActivity.getThemedColor(AvatarDrawable.getNameColorKey1For(peerColorActivity.selectedColor));
+            return peerColorActivity.getThemedColor(Theme.keys_avatar_nameInMessage[peerColorActivity.selectedColor]);
         }
 
         @Override
