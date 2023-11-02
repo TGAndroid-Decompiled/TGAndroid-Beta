@@ -13814,7 +13814,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
             boolean[] zArr = this.drawPressedDrawable;
             if (!zArr[0] && !zArr[1]) {
                 float x = motionEvent.getX();
-                int min = Math.min((int) MessagesStorage.LAST_DB_VERSION, this.containerView.getMeasuredWidth() / 8);
+                int min = Math.min(135, this.containerView.getMeasuredWidth() / 8);
                 if (x < min) {
                     if (this.leftImage.hasImageSet()) {
                         this.drawPressedDrawable[0] = true;
@@ -13839,7 +13839,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 return true;
             }
             float x = motionEvent.getX();
-            int min = Math.min((int) MessagesStorage.LAST_DB_VERSION, this.containerView.getMeasuredWidth() / 8);
+            int min = Math.min(135, this.containerView.getMeasuredWidth() / 8);
             if ((x < min || x > this.containerView.getMeasuredWidth() - min) && (messageObject = this.currentMessageObject) != null) {
                 return (messageObject.isVideo() || ((photoViewerWebView = this.photoViewerWebView) != null && photoViewerWebView.isControllable())) && SystemClock.elapsedRealtime() - this.lastPhotoSetTime >= 500 && canDoubleTapSeekVideo(motionEvent);
             }
@@ -13925,7 +13925,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         float x = motionEvent.getX();
         float y = motionEvent.getY();
         if (this.checkImageView.getVisibility() != 0 && SharedConfig.nextMediaTap && y > ActionBar.getCurrentActionBarHeight() + AndroidUtilities.statusBarHeight + AndroidUtilities.dp(40.0f)) {
-            int min = Math.min((int) MessagesStorage.LAST_DB_VERSION, this.containerView.getMeasuredWidth() / 8);
+            int min = Math.min(135, this.containerView.getMeasuredWidth() / 8);
             if (x < min) {
                 if (this.leftImage.hasImageSet()) {
                     switchToNextIndex(-1, true);

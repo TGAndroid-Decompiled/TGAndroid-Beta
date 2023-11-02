@@ -1615,6 +1615,10 @@ public class ChatAttachAlertPhotoLayout extends ChatAttachAlert.AttachAlertLayou
             if (MessageObject.isAnimatedStickerDocument(findDocument, true) || MessageObject.isVideoStickerDocument(findDocument)) {
                 mediaEntity.subType = (byte) (mediaEntity.subType | (MessageObject.isAnimatedStickerDocument(findDocument, true) ? (byte) 1 : (byte) 4));
             }
+            if (MessageObject.isTextColorEmoji(findDocument)) {
+                mediaEntity.color = -1;
+                mediaEntity.subType = (byte) (mediaEntity.subType | 8);
+            }
             photoEntry.editedInfo.mediaEntities = new ArrayList<>();
             photoEntry.editedInfo.mediaEntities.add(mediaEntity);
         } else {

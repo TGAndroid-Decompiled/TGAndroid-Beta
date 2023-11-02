@@ -676,7 +676,7 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
             this.scrollContainer.addView(this.messageTextView, LayoutHelper.createLinear(-2, -2, (this.topAnimationIsNew ? 1 : LocaleController.isRTL ? 5 : 3) | 48, 24, 0, 24, (this.customView == null && this.items == null) ? 0 : this.customViewOffset));
             View view2 = this.bottomView;
             if (view2 != null) {
-                this.scrollContainer.addView(view2, LayoutHelper.createLinear(-1, -2, 24.0f, -16.0f, 24.0f, 0.0f));
+                this.scrollContainer.addView(view2, LayoutHelper.createLinear(-1, -2, 24.0f, -24.0f, 24.0f, 0.0f));
             }
         }
         if (!TextUtils.isEmpty(this.message)) {
@@ -822,7 +822,12 @@ public class AlertDialog extends Dialog implements Drawable.Callback, Notificati
                     }
                 };
             }
-            this.buttonsLayout.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+            if (this.bottomView != null) {
+                this.buttonsLayout.setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(4.0f));
+                this.buttonsLayout.setTranslationY(-AndroidUtilities.dp(6.0f));
+            } else {
+                this.buttonsLayout.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
+            }
             anonymousClass1.addView(this.buttonsLayout, LayoutHelper.createLinear(-1, 52));
             if (this.topAnimationIsNew) {
                 this.buttonsLayout.setTranslationY(-AndroidUtilities.dp(8.0f));

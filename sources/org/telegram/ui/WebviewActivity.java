@@ -223,6 +223,9 @@ public class WebviewActivity extends BaseFragment {
         if (i2 >= 19) {
             this.webView.setLayerType(2, null);
         }
+        if (i2 >= 17) {
+            this.webView.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        }
         if (i2 >= 21) {
             this.webView.getSettings().setMixedContentMode(0);
             CookieManager.getInstance().setAcceptThirdPartyCookies(this.webView, true);

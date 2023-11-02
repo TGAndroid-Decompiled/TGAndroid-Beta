@@ -6,6 +6,7 @@ import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
@@ -404,7 +405,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         this.chooseEmojiHint.setTextSize(1, 14.0f);
         this.chooseEmojiHint.setGravity(17);
         this.linearLayout.addView(this.chooseEmojiHint, LayoutHelper.createLinear(-1, -2, 0, 21, 18, 21, 10));
-        SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(this, getContext(), false, null, 4, null) {
+        SelectAnimatedEmojiDialog selectAnimatedEmojiDialog = new SelectAnimatedEmojiDialog(this, getContext(), false, null, 4, true, null, 16, Theme.isCurrentThemeDark() ? -1 : getThemedColor(Theme.key_windowBackgroundWhiteBlueIcon)) {
             private boolean firstLayout = true;
 
             @Override
@@ -715,6 +716,7 @@ public class AvatarConstructorFragment extends BaseFragment {
         BackgroundGradient backgroundGradient;
         BackupImageView backupImageView;
         float changeBackgroundProgress;
+        private ColorFilter colorFilter;
         private float cx;
         private float cy;
         public TLRPC$Document document;
@@ -731,6 +733,7 @@ public class AvatarConstructorFragment extends BaseFragment {
             this.gradientTools = new GradientTools();
             this.outGradientTools = new GradientTools();
             this.changeBackgroundProgress = 1.0f;
+            this.colorFilter = new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN);
             this.expandProgress = new AnimatedFloat(this, 200L, CubicBezierInterpolator.EASE_OUT);
             this.overrideExpandProgress = -1.0f;
             BackupImageView backupImageView = new BackupImageView(context, AvatarConstructorFragment.this) {
@@ -845,6 +848,7 @@ public class AvatarConstructorFragment extends BaseFragment {
                 float f10 = this.cx;
                 float f11 = this.cy;
                 animatedEmojiDrawable2.setBounds((int) (f10 - lerp2), (int) (f11 - lerp2), (int) (f10 + lerp2), (int) (f11 + lerp2));
+                this.backupImageView.animatedEmojiDrawable.setColorFilter(this.colorFilter);
                 this.backupImageView.animatedEmojiDrawable.draw(canvas);
                 return;
             }
@@ -898,7 +902,10 @@ public class AvatarConstructorFragment extends BaseFragment {
         public ImageReceiver getImageReceiver() {
             ImageReceiver imageReceiver = this.backupImageView.getImageReceiver();
             AnimatedEmojiDrawable animatedEmojiDrawable = this.backupImageView.animatedEmojiDrawable;
-            return animatedEmojiDrawable != null ? animatedEmojiDrawable.getImageReceiver() : imageReceiver;
+            if (animatedEmojiDrawable != null && (imageReceiver = animatedEmojiDrawable.getImageReceiver()) != null) {
+                imageReceiver.setColorFilter(this.colorFilter);
+            }
+            return imageReceiver;
         }
 
         public boolean hasAnimation() {

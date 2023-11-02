@@ -4,6 +4,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
@@ -158,7 +159,7 @@ public class GroupCallStatusIcon {
             if (j != 0 && j2 <= 5000) {
                 AndroidUtilities.runOnUIThread(this.checkRaiseRunnable, 5000 - j2);
             }
-            customEndFrame = this.micDrawable.setCustomEndFrame(136);
+            customEndFrame = this.micDrawable.setCustomEndFrame(MessagesStorage.LAST_DB_VERSION);
         } else {
             this.iconView.setAnimation(this.micDrawable);
             this.micDrawable.setOnFinishCallback(null, 0);
@@ -175,7 +176,7 @@ public class GroupCallStatusIcon {
         } else if (customEndFrame) {
             if (z6) {
                 this.micDrawable.setCurrentFrame(99);
-                this.micDrawable.setCustomEndFrame(136);
+                this.micDrawable.setCustomEndFrame(MessagesStorage.LAST_DB_VERSION);
             } else if (z5 && this.lastRaisedHand && !z6) {
                 this.micDrawable.setCurrentFrame(0);
                 this.micDrawable.setCustomEndFrame(36);

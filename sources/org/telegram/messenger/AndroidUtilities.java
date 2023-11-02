@@ -216,6 +216,7 @@ public class AndroidUtilities {
     private static SimpleDateFormat generatingVideoPathFormat;
     private static boolean hasCallPermissions;
     public static boolean incorrectDisplaySizeFix;
+    private static Boolean isHonor;
     public static boolean isInMultiwindow;
     public static int leftBaseline;
     private static Pattern linksPattern;
@@ -1108,10 +1109,10 @@ public class AndroidUtilities {
         rgbToHsv[1] = Math.min(1.0d, rgbToHsv[1] + 0.05d + ((1.0d - rgbToHsv[1]) * 0.1d));
         int[] hsvToRgb = hsvToRgb(rgbToHsv[0], rgbToHsv[1], Math.max(0.0d, rgbToHsv[2] * 0.65d));
         iArr[0] = Color.argb(102, hsvToRgb[0], hsvToRgb[1], hsvToRgb[2]);
-        iArr[1] = Color.argb(136, hsvToRgb[0], hsvToRgb[1], hsvToRgb[2]);
+        iArr[1] = Color.argb((int) MessagesStorage.LAST_DB_VERSION, hsvToRgb[0], hsvToRgb[1], hsvToRgb[2]);
         int[] hsvToRgb2 = hsvToRgb(rgbToHsv[0], rgbToHsv[1], Math.max(0.0d, rgbToHsv[2] * 0.72d));
         iArr[2] = Color.argb(102, hsvToRgb2[0], hsvToRgb2[1], hsvToRgb2[2]);
-        iArr[3] = Color.argb(136, hsvToRgb2[0], hsvToRgb2[1], hsvToRgb2[2]);
+        iArr[3] = Color.argb((int) MessagesStorage.LAST_DB_VERSION, hsvToRgb2[0], hsvToRgb2[1], hsvToRgb2[2]);
         return iArr;
     }
 
@@ -4956,5 +4957,24 @@ public class AndroidUtilities {
             return;
         }
         context.setTheme((Theme.isCurrentThemeDark() && z) ? R.style.Theme_TMessages_Dark : R.style.Theme_TMessages);
+    }
+
+    public static boolean isHonor() {
+        boolean z;
+        if (isHonor == null) {
+            try {
+                String lowerCase = Build.BRAND.toLowerCase();
+                if (!lowerCase.contains("huawei") && !lowerCase.contains("honor")) {
+                    z = false;
+                    isHonor = Boolean.valueOf(z);
+                }
+                z = true;
+                isHonor = Boolean.valueOf(z);
+            } catch (Exception e) {
+                FileLog.e(e);
+                isHonor = Boolean.FALSE;
+            }
+        }
+        return isHonor.booleanValue();
     }
 }

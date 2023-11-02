@@ -57,7 +57,6 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
@@ -867,7 +866,7 @@ public class VoIPFragment implements VoIPService.StateListener, NotificationCent
         this.statusLayout.setClipChildren(false);
         this.statusLayout.setClipToPadding(false);
         this.statusLayout.setPadding(0, 0, 0, AndroidUtilities.dp(15.0f));
-        frameLayout.addView(this.callingUserPhotoViewMini, LayoutHelper.createFrame(MessagesStorage.LAST_DB_VERSION, 135.0f, 1, 0.0f, 68.0f, 0.0f, 0.0f));
+        frameLayout.addView(this.callingUserPhotoViewMini, LayoutHelper.createFrame(135, 135.0f, 1, 0.0f, 68.0f, 0.0f, 0.0f));
         frameLayout.addView(this.statusLayout, LayoutHelper.createFrame(-1, -2.0f, 0, 0.0f, 68.0f, 0.0f, 0.0f));
         frameLayout.addView(this.emojiLayout, LayoutHelper.createFrame(-2, -2.0f, 1, 0.0f, 17.0f, 0.0f, 0.0f));
         frameLayout.addView(this.emojiRationalTextView, LayoutHelper.createFrame(-1, -2.0f, 17, 24.0f, 32.0f, 24.0f, 0.0f));

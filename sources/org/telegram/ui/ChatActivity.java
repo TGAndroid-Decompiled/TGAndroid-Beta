@@ -2865,7 +2865,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         protected boolean canShowQuote() {
             Cell cell;
             ChatActivity chatActivity = this.chatActivity;
-            return (chatActivity == null || chatActivity.getCurrentEncryptedChat() != null || this.chatActivity.textSelectionHelper.isDescription || (cell = this.selectedView) == 0 || ((ChatMessageCell) cell).getMessageObject() == null || ((ChatMessageCell) this.selectedView).getMessageObject().type == 23 || ((ChatMessageCell) this.selectedView).getMessageObject().isVoiceTranscriptionOpen() || ((ChatMessageCell) this.selectedView).getMessageObject().isInvoice() || this.chatActivity.getMessagesController().getTranslateController().isTranslatingDialog(this.chatActivity.dialog_id)) ? false : true;
+            return (chatActivity == null || chatActivity.getCurrentEncryptedChat() != null || this.chatActivity.textSelectionHelper.isDescription || (cell = this.selectedView) == 0 || ((ChatMessageCell) cell).getMessageObject() == null || ((ChatMessageCell) this.selectedView).getMessageObject().type == 23 || ((ChatMessageCell) this.selectedView).getMessageObject().isVoiceTranscriptionOpen() || ((ChatMessageCell) this.selectedView).getMessageObject().isInvoice() || this.chatActivity.getMessagesController().getTranslateController().isTranslatingDialog(this.chatActivity.dialog_id) || UserObject.isService(this.chatActivity.dialog_id)) ? false : true;
         }
 
         @Override
@@ -9372,7 +9372,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
 
     @Override
     public boolean dismissDialogOnPause(Dialog dialog) {
-        return (dialog == this.chatAttachAlert || dialog == this.chatThemeBottomSheet || !super.dismissDialogOnPause(dialog)) ? false : true;
+        return (dialog == this.chatAttachAlert || dialog == this.chatThemeBottomSheet || (dialog instanceof BotWebViewSheet) || !super.dismissDialogOnPause(dialog)) ? false : true;
     }
 
     private void cancelSearchLinks() {
