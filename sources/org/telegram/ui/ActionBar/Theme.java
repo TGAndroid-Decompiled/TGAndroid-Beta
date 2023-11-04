@@ -232,7 +232,6 @@ public class Theme {
     public static Drawable chat_msgCallDownRedDrawable;
     public static Drawable chat_msgCallUpGreenDrawable;
     public static MsgClockDrawable chat_msgClockDrawable;
-    public static TextPaint chat_msgCodeBgPaint;
     public static Drawable chat_msgErrorDrawable;
     public static Paint chat_msgErrorPaint;
     public static TextPaint chat_msgGameTextPaint;
@@ -2811,10 +2810,10 @@ public class Theme {
                 if (sparseIntArray2.get(i38) != 0) {
                     Color.colorToHSV(averageColor(sparseIntArray2, i38, Theme.key_chat_outBubbleGradient2, Theme.key_chat_outBubbleGradient3), this.tempHSV);
                     float[] fArr = this.tempHSV;
-                    fArr[1] = Utilities.clamp(fArr[1] + 0.3f, 1.0f, 0.0f);
+                    fArr[1] = Utilities.clamp(fArr[1] + 0.1f, 1.0f, 0.0f);
                     float[] fArr2 = this.tempHSV;
-                    fArr2[2] = Utilities.clamp(fArr2[2] - 0.4f, 1.0f, 0.0f);
-                    sparseIntArray2.put(Theme.key_chat_outCodeBackground, Color.HSVToColor(112, this.tempHSV));
+                    fArr2[2] = Utilities.clamp(fArr2[2] - 0.8f, 1.0f, 0.0f);
+                    sparseIntArray2.put(Theme.key_chat_outCodeBackground, Color.HSVToColor(64, this.tempHSV));
                     return !z;
                 }
             }
@@ -2884,19 +2883,22 @@ public class Theme {
         private int codeBackground(int i, boolean z) {
             int i2;
             Color.colorToHSV(i, this.tempHSV);
-            float[] fArr = this.tempHSV;
-            if (fArr[1] <= 0.0f || fArr[2] >= 1.0f || fArr[2] <= 0.0f) {
-                fArr[2] = Math.max(0.0f, Math.min(1.0f, fArr[2] + (z ? 0.3f : -0.2f)));
+            if (z) {
+                i2 = 64;
+                float[] fArr = this.tempHSV;
+                fArr[1] = Utilities.clamp(fArr[1] - 0.08f, 1.0f, 0.0f);
+                this.tempHSV[2] = 0.03f;
             } else {
-                fArr[1] = Math.max(0.0f, Math.min(1.0f, fArr[1] + (z ? -0.3f : 0.28f)));
                 float[] fArr2 = this.tempHSV;
-                fArr2[2] = Math.max(0.0f, Math.min(1.0f, fArr2[2] + (z ? 0.1f : -0.1f)));
-                if (z) {
-                    i2 = 96;
-                    return Color.HSVToColor(i2, this.tempHSV);
+                if (fArr2[1] <= 0.0f || fArr2[2] >= 1.0f || fArr2[2] <= 0.0f) {
+                    fArr2[2] = Math.max(0.0f, Math.min(1.0f, fArr2[2] - 0.2f));
+                } else {
+                    fArr2[1] = Math.max(0.0f, Math.min(1.0f, fArr2[1] + 0.28f));
+                    float[] fArr3 = this.tempHSV;
+                    fArr3[2] = Math.max(0.0f, Math.min(1.0f, fArr3[2] - 0.1f));
                 }
+                i2 = 32;
             }
-            i2 = 32;
             return Color.HSVToColor(i2, this.tempHSV);
         }
 
@@ -6457,7 +6459,7 @@ public class Theme {
                 TextPaint textPaint7 = new TextPaint(1);
                 chat_msgTextCode3Paint = textPaint7;
                 textPaint7.setTypeface(Typeface.MONOSPACE);
-                chat_msgCodeBgPaint = new TextPaint(1);
+                new TextPaint(1);
             }
             int i = 0;
             float[] fArr = {0.68f, 0.46f, 0.34f, 0.28f, 0.22f, 0.19f};

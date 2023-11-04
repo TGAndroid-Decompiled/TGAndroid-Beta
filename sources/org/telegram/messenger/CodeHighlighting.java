@@ -6,7 +6,6 @@ import android.text.SpannableString;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.text.style.CharacterStyle;
-import android.text.style.MetricAffectingSpan;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
@@ -31,7 +30,14 @@ public class CodeHighlighting {
     private static HashMap<String, TokenPattern[]> compiledPatterns;
     private static final HashMap<String, Highlighting> processedHighlighting = new HashMap<>();
 
-    public static class Span extends MetricAffectingSpan {
+    public static int getTextSizeDecrement(int i) {
+        if (i > 120) {
+            return 5;
+        }
+        return i > 50 ? 3 : 2;
+    }
+
+    public static class Span extends CharacterStyle {
         public final String code;
         public final int currentType;
         public final float decrementSize;
@@ -43,31 +49,9 @@ public class CodeHighlighting {
             this.smallerSize = z;
             this.lng = str;
             this.code = str2;
-            if (str2 == null) {
-                this.decrementSize = 2.0f;
-            } else if (str2.length() > 120) {
-                this.decrementSize = 5.0f;
-            } else if (str2.length() > 50) {
-                this.decrementSize = 3.0f;
-            } else {
-                this.decrementSize = 2.0f;
-            }
+            this.decrementSize = CodeHighlighting.getTextSizeDecrement(str2 == null ? 0 : str2.length());
             this.currentType = i;
             this.style = textStyleRun;
-        }
-
-        @Override
-        public void updateMeasureState(TextPaint textPaint) {
-            if (this.smallerSize) {
-                textPaint.setTextSize(AndroidUtilities.dp(SharedConfig.fontSize - this.decrementSize));
-            }
-            textPaint.setFlags(textPaint.getFlags() | 128);
-            TextStyleSpan.TextStyleRun textStyleRun = this.style;
-            if (textStyleRun != null) {
-                textStyleRun.applyStyle(textPaint);
-            } else {
-                textPaint.setTypeface(Typeface.MONOSPACE);
-            }
         }
 
         @Override

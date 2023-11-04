@@ -1,7 +1,11 @@
 package org.telegram.messenger;
 
+import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -17,6 +21,7 @@ import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.util.Base64;
 import androidx.collection.LongSparseArray;
+import androidx.core.graphics.ColorUtils;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.StringReader;
@@ -194,6 +199,7 @@ import org.telegram.ui.Components.Forum.ForumUtilities;
 import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.Reactions.ReactionsLayoutInBubble;
 import org.telegram.ui.Components.Reactions.ReactionsUtils;
+import org.telegram.ui.Components.Text;
 import org.telegram.ui.Components.TranscribeButton;
 import org.telegram.ui.Components.URLSpanNoUnderlineBold;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
@@ -294,6 +300,7 @@ public class MessageObject {
     public boolean hasQuote;
     public boolean hasQuoteAtBottom;
     public boolean hasRtl;
+    public boolean hasSingleCode;
     public boolean hasSingleQuote;
     private boolean hasUnwrappedEmoji;
     public boolean hasWideCode;
@@ -769,10 +776,20 @@ public class MessageObject {
         public int charactersEnd;
         public int charactersOffset;
         public boolean code;
+        public Drawable copyIcon;
+        public int copyIconColor;
+        public Drawable copySelector;
+        public int copySelectorColor;
+        public Paint copySeparator;
+        public Text copyText;
         public byte directionFlags;
         public boolean first;
+        public boolean hasCodeCopyButton;
         public int height;
         public int heightByOffset;
+        public String language;
+        public int languageHeight;
+        public Text languageLayout;
         public boolean last;
         public float maxRight;
         public int padBottom;
@@ -782,6 +799,447 @@ public class MessageObject {
         public float textYOffset;
         public AtomicReference<Layout> spoilersPatchedTextLayout = new AtomicReference<>();
         public List<SpoilerEffect> spoilers = new ArrayList();
+
+        public void layoutCode(String str, int i) {
+            boolean z = i >= 75;
+            this.hasCodeCopyButton = z;
+            if (z) {
+                this.copyText = new Text(LocaleController.getString(R.string.CopyCode).toUpperCase(), SharedConfig.fontSize - 3, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+                Drawable mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.msg_copy).mutate();
+                this.copyIcon = mutate;
+                mutate.setColorFilter(new PorterDuffColorFilter(this.copyIconColor, PorterDuff.Mode.SRC_IN));
+                this.copySelector = Theme.createRadSelectorDrawable(this.copySelectorColor, 0, 0, Math.min(5, SharedConfig.bubbleRadius), 0);
+                this.copySeparator = new Paint(1);
+            }
+            if (TextUtils.isEmpty(str)) {
+                this.language = null;
+                this.languageLayout = null;
+                return;
+            }
+            this.language = str;
+            Text text = new Text(capitalizeLanguage(str), (SharedConfig.fontSize - 1) - (CodeHighlighting.getTextSizeDecrement(i) / 2), AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
+            this.languageLayout = text;
+            this.languageHeight = ((int) (text.getTextSize() * 1.714f)) + AndroidUtilities.dp(4.0f);
+        }
+
+        public void drawCopyCodeButton(Canvas canvas, RectF rectF, int i, int i2, float f) {
+            if (this.hasCodeCopyButton) {
+                int multAlpha = Theme.multAlpha(i, 0.1f);
+                if (this.copySelectorColor != multAlpha) {
+                    Drawable drawable = this.copySelector;
+                    this.copySelectorColor = multAlpha;
+                    Theme.setSelectorDrawableColor(drawable, multAlpha, true);
+                }
+                this.copySelector.setBounds(((int) rectF.left) + AndroidUtilities.dp(3.0f), (int) (rectF.bottom - AndroidUtilities.dp(38.0f)), (int) rectF.right, (int) rectF.bottom);
+                int i3 = (int) (255.0f * f);
+                this.copySelector.setAlpha(i3);
+                this.copySelector.draw(canvas);
+                this.copySeparator.setColor(ColorUtils.setAlphaComponent(i2, 38));
+                canvas.drawRect(AndroidUtilities.dp(10.0f) + rectF.left, (rectF.bottom - AndroidUtilities.dp(38.0f)) - AndroidUtilities.getShadowHeight(), rectF.right - AndroidUtilities.dp(6.66f), rectF.bottom - AndroidUtilities.dp(38.0f), this.copySeparator);
+                float min = Math.min(rectF.width() - AndroidUtilities.dp(12.0f), (this.copyIcon.getIntrinsicWidth() * 0.8f) + AndroidUtilities.dp(5.0f) + this.copyText.getCurrentWidth());
+                float centerX = rectF.centerX() - (min / 2.0f);
+                float dp = rectF.bottom - (AndroidUtilities.dp(38.0f) / 2.0f);
+                if (this.copyIconColor != i) {
+                    Drawable drawable2 = this.copyIcon;
+                    this.copyIconColor = i;
+                    drawable2.setColorFilter(new PorterDuffColorFilter(i, PorterDuff.Mode.SRC_IN));
+                }
+                this.copyIcon.setAlpha(i3);
+                Drawable drawable3 = this.copyIcon;
+                drawable3.setBounds((int) centerX, (int) (dp - ((drawable3.getIntrinsicHeight() * 0.8f) / 2.0f)), (int) ((this.copyIcon.getIntrinsicWidth() * 0.8f) + centerX), (int) (((this.copyIcon.getIntrinsicHeight() * 0.8f) / 2.0f) + dp));
+                this.copyIcon.draw(canvas);
+                this.copyText.ellipsize(((int) (min - ((this.copyIcon.getIntrinsicWidth() * 0.8f) + AndroidUtilities.dp(5.0f)))) + AndroidUtilities.dp(12.0f)).draw(canvas, centerX + (this.copyIcon.getIntrinsicWidth() * 0.8f) + AndroidUtilities.dp(5.0f), dp, i, f);
+            }
+        }
+
+        private static String capitalizeLanguage(String str) {
+            if (str == null) {
+                return null;
+            }
+            String replaceAll = str.toLowerCase().replaceAll("\\W", "");
+            replaceAll.hashCode();
+            char c = 65535;
+            switch (replaceAll.hashCode()) {
+                case -1886433663:
+                    if (replaceAll.equals("actionscript")) {
+                        c = 0;
+                        break;
+                    }
+                    break;
+                case -1408289185:
+                    if (replaceAll.equals("aspnet")) {
+                        c = 1;
+                        break;
+                    }
+                    break;
+                case -1351281305:
+                    if (replaceAll.equals("csharp")) {
+                        c = 2;
+                        break;
+                    }
+                    break;
+                case -1326485984:
+                    if (replaceAll.equals("docker")) {
+                        c = 3;
+                        break;
+                    }
+                    break;
+                case -1317317732:
+                    if (replaceAll.equals("dockerfile")) {
+                        c = 4;
+                        break;
+                    }
+                    break;
+                case -1125574399:
+                    if (replaceAll.equals("kotlin")) {
+                        c = 5;
+                        break;
+                    }
+                    break;
+                case -995396628:
+                    if (replaceAll.equals("pascal")) {
+                        c = 6;
+                        break;
+                    }
+                    break;
+                case -973197092:
+                    if (replaceAll.equals("python")) {
+                        c = 7;
+                        break;
+                    }
+                    break;
+                case -746790872:
+                    if (replaceAll.equals("arduino")) {
+                        c = '\b';
+                        break;
+                    }
+                    break;
+                case -522285947:
+                    if (replaceAll.equals("typescript")) {
+                        c = '\t';
+                        break;
+                    }
+                    break;
+                case 99:
+                    if (replaceAll.equals("c")) {
+                        c = '\n';
+                        break;
+                    }
+                    break;
+                case 114:
+                    if (replaceAll.equals("r")) {
+                        c = 11;
+                        break;
+                    }
+                    break;
+                case 3184:
+                    if (replaceAll.equals("cs")) {
+                        c = '\f';
+                        break;
+                    }
+                    break;
+                case 3401:
+                    if (replaceAll.equals("js")) {
+                        c = '\r';
+                        break;
+                    }
+                    break;
+                case 3479:
+                    if (replaceAll.equals("md")) {
+                        c = 14;
+                        break;
+                    }
+                    break;
+                case 3593:
+                    if (replaceAll.equals("py")) {
+                        c = 15;
+                        break;
+                    }
+                    break;
+                case 3632:
+                    if (replaceAll.equals("rb")) {
+                        c = 16;
+                        break;
+                    }
+                    break;
+                case 3711:
+                    if (replaceAll.equals("ts")) {
+                        c = 17;
+                        break;
+                    }
+                    break;
+                case 96891:
+                    if (replaceAll.equals("asm")) {
+                        c = 18;
+                        break;
+                    }
+                    break;
+                case 98723:
+                    if (replaceAll.equals("cpp")) {
+                        c = 19;
+                        break;
+                    }
+                    break;
+                case 98819:
+                    if (replaceAll.equals("css")) {
+                        c = 20;
+                        break;
+                    }
+                    break;
+                case 98822:
+                    if (replaceAll.equals("csv")) {
+                        c = 21;
+                        break;
+                    }
+                    break;
+                case 104420:
+                    if (replaceAll.equals("ini")) {
+                        c = 22;
+                        break;
+                    }
+                    break;
+                case 105551:
+                    if (replaceAll.equals("jsx")) {
+                        c = 23;
+                        break;
+                    }
+                    break;
+                case 107512:
+                    if (replaceAll.equals("lua")) {
+                        c = 24;
+                        break;
+                    }
+                    break;
+                case 110968:
+                    if (replaceAll.equals("php")) {
+                        c = 25;
+                        break;
+                    }
+                    break;
+                case 115161:
+                    if (replaceAll.equals("tsx")) {
+                        c = 26;
+                        break;
+                    }
+                    break;
+                case 118807:
+                    if (replaceAll.equals("xml")) {
+                        c = 27;
+                        break;
+                    }
+                    break;
+                case 119768:
+                    if (replaceAll.equals("yml")) {
+                        c = 28;
+                        break;
+                    }
+                    break;
+                case 3075967:
+                    if (replaceAll.equals("dart")) {
+                        c = 29;
+                        break;
+                    }
+                    break;
+                case 3175934:
+                    if (replaceAll.equals("glsl")) {
+                        c = 30;
+                        break;
+                    }
+                    break;
+                case 3205725:
+                    if (replaceAll.equals("hlsl")) {
+                        c = 31;
+                        break;
+                    }
+                    break;
+                case 3213227:
+                    if (replaceAll.equals("html")) {
+                        c = ' ';
+                        break;
+                    }
+                    break;
+                case 3213448:
+                    if (replaceAll.equals("http")) {
+                        c = '!';
+                        break;
+                    }
+                    break;
+                case 3254818:
+                    if (replaceAll.equals("java")) {
+                        c = '\"';
+                        break;
+                    }
+                    break;
+                case 3271912:
+                    if (replaceAll.equals("json")) {
+                        c = '#';
+                        break;
+                    }
+                    break;
+                case 3318169:
+                    if (replaceAll.equals("less")) {
+                        c = '$';
+                        break;
+                    }
+                    break;
+                case 3373901:
+                    if (replaceAll.equals("nasm")) {
+                        c = '%';
+                        break;
+                    }
+                    break;
+                case 3404364:
+                    if (replaceAll.equals("objc")) {
+                        c = '&';
+                        break;
+                    }
+                    break;
+                case 3511770:
+                    if (replaceAll.equals("ruby")) {
+                        c = '\'';
+                        break;
+                    }
+                    break;
+                case 3512292:
+                    if (replaceAll.equals("rust")) {
+                        c = '(';
+                        break;
+                    }
+                    break;
+                case 3524784:
+                    if (replaceAll.equals("scss")) {
+                        c = ')';
+                        break;
+                    }
+                    break;
+                case 3642020:
+                    if (replaceAll.equals("wasm")) {
+                        c = '*';
+                        break;
+                    }
+                    break;
+                case 3701415:
+                    if (replaceAll.equals("yaml")) {
+                        c = '+';
+                        break;
+                    }
+                    break;
+                case 94833107:
+                    if (replaceAll.equals("cobol")) {
+                        c = ',';
+                        break;
+                    }
+                    break;
+                case 101429325:
+                    if (replaceAll.equals("json5")) {
+                        c = '-';
+                        break;
+                    }
+                    break;
+                case 109854227:
+                    if (replaceAll.equals("swift")) {
+                        c = '.';
+                        break;
+                    }
+                    break;
+                case 188995949:
+                    if (replaceAll.equals("javascript")) {
+                        c = '/';
+                        break;
+                    }
+                    break;
+                case 213985633:
+                    if (replaceAll.equals("autohotkey")) {
+                        c = '0';
+                        break;
+                    }
+                    break;
+                case 246938863:
+                    if (replaceAll.equals("markdown")) {
+                        c = '1';
+                        break;
+                    }
+                    break;
+                case 1067478602:
+                    if (replaceAll.equals("objectivec")) {
+                        c = '2';
+                        break;
+                    }
+                    break;
+            }
+            switch (c) {
+                case 0:
+                    return "ActionScript";
+                case 1:
+                    return "ASP.NET";
+                case 2:
+                case '\f':
+                    return "C#";
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case '\b':
+                case '\n':
+                case 24:
+                case 29:
+                case '\"':
+                case '(':
+                case '.':
+                    return capitalizeFirst(str);
+                case 7:
+                case 15:
+                    return "Python";
+                case '\t':
+                case 17:
+                    return "TypeScript";
+                case 11:
+                case 18:
+                case 20:
+                case 21:
+                case 22:
+                case 23:
+                case 25:
+                case MessageObject.TYPE_GIVEAWAY:
+                case 27:
+                case 28:
+                case 30:
+                case 31:
+                case ' ':
+                case '!':
+                case '#':
+                case '$':
+                case '%':
+                case ')':
+                case '*':
+                case '+':
+                case ',':
+                case '-':
+                    return str.toUpperCase();
+                case '\r':
+                case '/':
+                    return "JavaScript";
+                case 14:
+                case '1':
+                    return "Markdown";
+                case 16:
+                case '\'':
+                    return "Ruby";
+                case 19:
+                    return "C++";
+                case '&':
+                case '2':
+                    return "Objective-C";
+                case '0':
+                    return "AutoHotKey";
+                default:
+                    return str;
+            }
+        }
+
+        private static String capitalizeFirst(String str) {
+            return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
+        }
 
         public boolean isRtl() {
             byte b = this.directionFlags;
@@ -3279,7 +3737,7 @@ public class MessageObject {
         this.generatedWithDensity = AndroidUtilities.density;
         int i = 0;
         if (this.hasCode) {
-            i = this.generatedWithMinSize - AndroidUtilities.dp(45.0f);
+            i = this.generatedWithMinSize - AndroidUtilities.dp(60.0f);
             if (needDrawAvatarInternal() && !isOutOwner() && !this.messageOwner.isThreadMessage) {
                 i -= AndroidUtilities.dp(52.0f);
             }
@@ -3303,12 +3761,9 @@ public class MessageObject {
                 dp -= AndroidUtilities.dp(52.0f);
             }
             if (needDrawShareButton() && !isOutOwner()) {
-                dp -= AndroidUtilities.dp(20.0f);
+                dp -= AndroidUtilities.dp(10.0f);
             }
-            i = dp;
-            if (getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGame) {
-                i -= AndroidUtilities.dp(10.0f);
-            }
+            i = getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaGame ? dp - AndroidUtilities.dp(10.0f) : dp;
         }
         int i2 = this.emojiOnlyCount;
         if (i2 >= 1) {
@@ -3339,7 +3794,7 @@ public class MessageObject {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.applyEntities():boolean");
     }
 
-    public void generateLayout(org.telegram.tgnet.TLRPC$User r38) {
+    public void generateLayout(org.telegram.tgnet.TLRPC$User r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.generateLayout(org.telegram.tgnet.TLRPC$User):void");
     }
 
@@ -3350,6 +3805,7 @@ public class MessageObject {
         public boolean hasQuote;
         public boolean hasQuoteAtBottom;
         public boolean hasRtl;
+        public boolean hasSingleCode;
         public boolean hasSingleQuote;
         public int lastLineWidth;
         public final CharSequence text;
@@ -3358,7 +3814,7 @@ public class MessageObject {
         public int textWidth;
         public float textXOffset;
 
-        public TextLayoutBlocks(org.telegram.messenger.MessageObject r35, java.lang.CharSequence r36, android.text.TextPaint r37, int r38) {
+        public TextLayoutBlocks(org.telegram.messenger.MessageObject r37, java.lang.CharSequence r38, android.text.TextPaint r39, int r40) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.TextLayoutBlocks.<init>(org.telegram.messenger.MessageObject, java.lang.CharSequence, android.text.TextPaint, int):void");
         }
     }

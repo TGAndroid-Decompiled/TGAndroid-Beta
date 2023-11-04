@@ -6864,6 +6864,10 @@ public class MediaDataController extends BaseController {
                                     substring3 = substring(substring3, 0, substring3.length() - i3);
                                 }
                                 if (!TextUtils.isEmpty(substring3)) {
+                                    if (substring3.length() > i3 && substring3.charAt(0) == '\n') {
+                                        substring3 = substring3.subSequence(i3, substring3.length());
+                                        indexOf--;
+                                    }
                                     CharSequence[] charSequenceArr3 = new CharSequence[3];
                                     charSequenceArr3[0] = substring2;
                                     charSequenceArr3[i3] = substring3;
@@ -6872,7 +6876,7 @@ public class MediaDataController extends BaseController {
                                     TLRPC$MessageEntity tLRPC$TL_messageEntityPre = new TLRPC$TL_messageEntityPre();
                                     tLRPC$TL_messageEntityPre.offset = (i7 ^ 1) + i;
                                     tLRPC$TL_messageEntityPre.length = (((indexOf - i) - 3) - (substring.length() + (!substring.isEmpty()))) + (i7 ^ 1);
-                                    tLRPC$TL_messageEntityPre.language = substring;
+                                    tLRPC$TL_messageEntityPre.language = (TextUtils.isEmpty(substring) || substring.trim().length() == 0) ? "" : "";
                                     arrayList.add(tLRPC$TL_messageEntityPre);
                                     i2 -= 6;
                                 }

@@ -609,6 +609,10 @@ public class BoostRepository {
             final ArrayList arrayList = new ArrayList();
             for (int i = 0; i < tLRPC$TL_help_countriesList.countries.size(); i++) {
                 TLRPC$TL_help_country tLRPC$TL_help_country = tLRPC$TL_help_countriesList.countries.get(i);
+                String str = tLRPC$TL_help_country.name;
+                if (str != null) {
+                    tLRPC$TL_help_country.default_name = str;
+                }
                 if (!tLRPC$TL_help_country.iso2.equalsIgnoreCase("FT")) {
                     String upperCase = tLRPC$TL_help_country.default_name.substring(0, 1).toUpperCase();
                     List list = (List) hashMap.get(upperCase);

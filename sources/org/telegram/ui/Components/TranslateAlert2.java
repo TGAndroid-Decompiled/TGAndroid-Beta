@@ -51,6 +51,7 @@ import org.telegram.tgnet.TLRPC$MessageEntity;
 import org.telegram.tgnet.TLRPC$TL_error;
 import org.telegram.tgnet.TLRPC$TL_messageEntityCustomEmoji;
 import org.telegram.tgnet.TLRPC$TL_messageEntityMention;
+import org.telegram.tgnet.TLRPC$TL_messageEntityPre;
 import org.telegram.tgnet.TLRPC$TL_messageEntityTextUrl;
 import org.telegram.tgnet.TLRPC$TL_messageEntityUrl;
 import org.telegram.tgnet.TLRPC$TL_messages_translateResult;
@@ -338,26 +339,31 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
     public static TLRPC$TL_textWithEntities preprocess(TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities, TLRPC$TL_textWithEntities tLRPC$TL_textWithEntities2) {
         Emoji.EmojiSpanRange emojiSpanRange;
         boolean z;
+        ArrayList<TLRPC$MessageEntity> arrayList;
         if (tLRPC$TL_textWithEntities2 == null || tLRPC$TL_textWithEntities2.text == null) {
             return null;
         }
         for (int i = 0; i < tLRPC$TL_textWithEntities2.entities.size(); i++) {
             TLRPC$MessageEntity tLRPC$MessageEntity = tLRPC$TL_textWithEntities2.entities.get(i);
-            if ((tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityTextUrl) && tLRPC$MessageEntity.url != null) {
-                String str = tLRPC$TL_textWithEntities2.text;
-                int i2 = tLRPC$MessageEntity.offset;
-                String substring = str.substring(i2, tLRPC$MessageEntity.length + i2);
-                if (TextUtils.equals(substring, tLRPC$MessageEntity.url)) {
-                    TLRPC$TL_messageEntityUrl tLRPC$TL_messageEntityUrl = new TLRPC$TL_messageEntityUrl();
-                    tLRPC$TL_messageEntityUrl.offset = tLRPC$MessageEntity.offset;
-                    tLRPC$TL_messageEntityUrl.length = tLRPC$MessageEntity.length;
-                    tLRPC$TL_textWithEntities2.entities.set(i, tLRPC$TL_messageEntityUrl);
-                } else if (tLRPC$MessageEntity.url.startsWith("https://t.me/") && substring.startsWith("@") && TextUtils.equals(substring.substring(1), tLRPC$MessageEntity.url.substring(13))) {
-                    TLRPC$TL_messageEntityMention tLRPC$TL_messageEntityMention = new TLRPC$TL_messageEntityMention();
-                    tLRPC$TL_messageEntityMention.offset = tLRPC$MessageEntity.offset;
-                    tLRPC$TL_messageEntityMention.length = tLRPC$MessageEntity.length;
-                    tLRPC$TL_textWithEntities2.entities.set(i, tLRPC$TL_messageEntityMention);
+            if (tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityTextUrl) {
+                if (tLRPC$MessageEntity.url != null) {
+                    String str = tLRPC$TL_textWithEntities2.text;
+                    int i2 = tLRPC$MessageEntity.offset;
+                    String substring = str.substring(i2, tLRPC$MessageEntity.length + i2);
+                    if (TextUtils.equals(substring, tLRPC$MessageEntity.url)) {
+                        TLRPC$TL_messageEntityUrl tLRPC$TL_messageEntityUrl = new TLRPC$TL_messageEntityUrl();
+                        tLRPC$TL_messageEntityUrl.offset = tLRPC$MessageEntity.offset;
+                        tLRPC$TL_messageEntityUrl.length = tLRPC$MessageEntity.length;
+                        tLRPC$TL_textWithEntities2.entities.set(i, tLRPC$TL_messageEntityUrl);
+                    } else if (tLRPC$MessageEntity.url.startsWith("https://t.me/") && substring.startsWith("@") && TextUtils.equals(substring.substring(1), tLRPC$MessageEntity.url.substring(13))) {
+                        TLRPC$TL_messageEntityMention tLRPC$TL_messageEntityMention = new TLRPC$TL_messageEntityMention();
+                        tLRPC$TL_messageEntityMention.offset = tLRPC$MessageEntity.offset;
+                        tLRPC$TL_messageEntityMention.length = tLRPC$MessageEntity.length;
+                        tLRPC$TL_textWithEntities2.entities.set(i, tLRPC$TL_messageEntityMention);
+                    }
                 }
+            } else if ((tLRPC$MessageEntity instanceof TLRPC$TL_messageEntityPre) && tLRPC$TL_textWithEntities != null && (arrayList = tLRPC$TL_textWithEntities.entities) != null && i < arrayList.size() && (tLRPC$TL_textWithEntities.entities.get(i) instanceof TLRPC$TL_messageEntityPre)) {
+                tLRPC$MessageEntity.language = tLRPC$TL_textWithEntities.entities.get(i).language;
             }
         }
         if (tLRPC$TL_textWithEntities != null && tLRPC$TL_textWithEntities.text != null && !tLRPC$TL_textWithEntities.entities.isEmpty()) {
@@ -370,16 +376,16 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                     int i4 = tLRPC$MessageEntity2.offset;
                     String substring2 = str2.substring(i4, tLRPC$MessageEntity2.length + i4);
                     if (!TextUtils.isEmpty(substring2)) {
-                        ArrayList<Emoji.EmojiSpanRange> arrayList = groupEmojiRanges.get(substring2);
-                        ArrayList<Emoji.EmojiSpanRange> arrayList2 = groupEmojiRanges2.get(substring2);
-                        if (arrayList != null && arrayList2 != null) {
+                        ArrayList<Emoji.EmojiSpanRange> arrayList2 = groupEmojiRanges.get(substring2);
+                        ArrayList<Emoji.EmojiSpanRange> arrayList3 = groupEmojiRanges2.get(substring2);
+                        if (arrayList2 != null && arrayList3 != null) {
                             int i5 = -1;
                             int i6 = 0;
                             while (true) {
-                                if (i6 >= arrayList.size()) {
+                                if (i6 >= arrayList2.size()) {
                                     break;
                                 }
-                                Emoji.EmojiSpanRange emojiSpanRange2 = arrayList.get(i6);
+                                Emoji.EmojiSpanRange emojiSpanRange2 = arrayList2.get(i6);
                                 int i7 = emojiSpanRange2.start;
                                 int i8 = tLRPC$MessageEntity2.offset;
                                 if (i7 == i8 && emojiSpanRange2.end == i8 + tLRPC$MessageEntity2.length) {
@@ -388,7 +394,7 @@ public class TranslateAlert2 extends BottomSheet implements NotificationCenter.N
                                 }
                                 i6++;
                             }
-                            if (i5 >= 0 && i5 < arrayList2.size() && (emojiSpanRange = arrayList2.get(i5)) != null) {
+                            if (i5 >= 0 && i5 < arrayList3.size() && (emojiSpanRange = arrayList3.get(i5)) != null) {
                                 int i9 = 0;
                                 while (true) {
                                     if (i9 >= tLRPC$TL_textWithEntities2.entities.size()) {

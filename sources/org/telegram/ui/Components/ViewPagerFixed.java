@@ -152,13 +152,17 @@ public class ViewPagerFixed extends FrameLayout {
         if (viewArr[0] == null || viewArr[0].getVisibility() != 0) {
             f = 0.0f;
         } else {
-            f = (this.currentPosition * Utilities.clamp(1.0f - Math.abs(this.viewPages[0].getTranslationX() / AndroidUtilities.displaySize.x), 1.0f, 0.0f)) + 0.0f;
+            f = (this.currentPosition * Utilities.clamp(1.0f - Math.abs(this.viewPages[0].getTranslationX() / getAvailableTranslationX()), 1.0f, 0.0f)) + 0.0f;
         }
         View[] viewArr2 = this.viewPages;
         if (viewArr2[1] == null || viewArr2[1].getVisibility() != 0) {
             return f;
         }
-        return f + (this.nextPosition * Utilities.clamp(1.0f - Math.abs(this.viewPages[1].getTranslationX() / AndroidUtilities.displaySize.x), 1.0f, 0.0f));
+        return f + (this.nextPosition * Utilities.clamp(1.0f - Math.abs(this.viewPages[1].getTranslationX() / getAvailableTranslationX()), 1.0f, 0.0f));
+    }
+
+    public float getAvailableTranslationX() {
+        return AndroidUtilities.displaySize.x;
     }
 
     public ViewPagerFixed(Context context) {

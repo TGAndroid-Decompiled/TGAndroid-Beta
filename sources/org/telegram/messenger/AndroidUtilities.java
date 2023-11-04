@@ -551,6 +551,36 @@ public class AndroidUtilities {
         return spannableStringBuilder;
     }
 
+    public static SpannableStringBuilder replaceSingleLink(String str, final int i) {
+        int i2;
+        int i3;
+        int indexOf = str.indexOf("**");
+        int indexOf2 = str.indexOf("**", indexOf + 1);
+        String replace = str.replace("**", "");
+        if (indexOf < 0 || indexOf2 < 0 || (i3 = indexOf2 - indexOf) <= 2) {
+            indexOf = -1;
+            i2 = 0;
+        } else {
+            i2 = i3 - 2;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(replace);
+        if (indexOf >= 0) {
+            spannableStringBuilder.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(View view) {
+                }
+
+                @Override
+                public void updateDrawState(TextPaint textPaint) {
+                    super.updateDrawState(textPaint);
+                    textPaint.setUnderlineText(false);
+                    textPaint.setColor(i);
+                }
+            }, indexOf, i2 + indexOf, 0);
+        }
+        return spannableStringBuilder;
+    }
+
     public static void recycleBitmaps(List<Bitmap> list) {
         if (Build.VERSION.SDK_INT <= 23 || list == null || list.isEmpty()) {
             return;

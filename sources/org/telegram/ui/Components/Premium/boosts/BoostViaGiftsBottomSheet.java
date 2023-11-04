@@ -179,6 +179,7 @@ public class BoostViaGiftsBottomSheet extends BottomSheetWithRecyclerListView im
                 actionListener2.onSelectCountries(this.selectedCountries);
             }
             this.selectedParticipantsType = selectedType2;
+            updateRows(false, false);
         } else if (view instanceof DurationCell) {
             this.selectedMonths = ((TLRPC$TL_premiumGiftCodeOption) ((DurationCell) view).getGifCode()).months;
             updateRows(false, false);

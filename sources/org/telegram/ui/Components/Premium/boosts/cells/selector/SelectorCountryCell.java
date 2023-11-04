@@ -73,25 +73,14 @@ public class SelectorCountryCell extends BaseCell {
     private CharSequence getCountryNameWithFlag(TLRPC$TL_help_country tLRPC$TL_help_country) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         String languageFlag = LocaleController.getLanguageFlag(tLRPC$TL_help_country.iso2);
-        if (!LocaleController.isRTL) {
-            if (languageFlag != null) {
-                spannableStringBuilder.append((CharSequence) languageFlag).append((CharSequence) " ");
-                spannableStringBuilder.setSpan(new SpaceDrawable(16), languageFlag.length(), languageFlag.length() + 1, 0);
-            } else {
-                spannableStringBuilder.append((CharSequence) " ");
-                spannableStringBuilder.setSpan(new SpaceDrawable(34), 0, 1, 0);
-            }
-            spannableStringBuilder.append((CharSequence) tLRPC$TL_help_country.default_name);
+        if (languageFlag != null) {
+            spannableStringBuilder.append((CharSequence) languageFlag).append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new SpaceDrawable(16), languageFlag.length(), languageFlag.length() + 1, 0);
         } else {
-            spannableStringBuilder.append((CharSequence) tLRPC$TL_help_country.default_name);
-            if (languageFlag != null) {
-                spannableStringBuilder.append((CharSequence) " ").append((CharSequence) languageFlag);
-                spannableStringBuilder.setSpan(new SpaceDrawable(16), tLRPC$TL_help_country.default_name.length(), tLRPC$TL_help_country.default_name.length() + 1, 0);
-            } else {
-                spannableStringBuilder.append((CharSequence) " ");
-                spannableStringBuilder.setSpan(new SpaceDrawable(34), tLRPC$TL_help_country.default_name.length(), tLRPC$TL_help_country.default_name.length() + 1, 0);
-            }
+            spannableStringBuilder.append((CharSequence) " ");
+            spannableStringBuilder.setSpan(new SpaceDrawable(34), 0, 1, 0);
         }
+        spannableStringBuilder.append((CharSequence) tLRPC$TL_help_country.default_name);
         return spannableStringBuilder;
     }
 

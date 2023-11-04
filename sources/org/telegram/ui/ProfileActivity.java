@@ -309,6 +309,7 @@ import org.telegram.ui.Components.TypefaceSpan;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.VectorAvatarThumbDrawable;
 import org.telegram.ui.Components.voip.VoIPHelper;
+import org.telegram.ui.ContactAddActivity;
 import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.GroupCreateActivity;
 import org.telegram.ui.PhotoViewer;
@@ -583,7 +584,6 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     private final ArrayList<TLRPC$ChatParticipant> visibleChatParticipants;
     private final ArrayList<Integer> visibleSortedUsers;
     private boolean waitCanSendStoryRequest;
-    private boolean wentToAddContacts;
     private Paint whitePaint;
     private RLottieImageView writeButton;
     private AnimatorSet writeButtonAnimation;
@@ -2954,9 +2954,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", user2.id);
                 bundle.putBoolean("addContact", true);
-                ProfileActivity profileActivity3 = ProfileActivity.this;
-                profileActivity3.presentFragment(new ContactAddActivity(bundle, profileActivity3.resourcesProvider));
-                ProfileActivity.this.wentToAddContacts = true;
+                ProfileActivity.this.openAddToContact(user2, bundle);
             } else if (i == 3) {
                 Bundle bundle2 = new Bundle();
                 bundle2.putBoolean("onlySelect", true);
@@ -2969,9 +2967,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             } else if (i == 4) {
                 Bundle bundle3 = new Bundle();
                 bundle3.putLong("user_id", ProfileActivity.this.userId);
-                ProfileActivity profileActivity4 = ProfileActivity.this;
-                profileActivity4.presentFragment(new ContactAddActivity(bundle3, profileActivity4.resourcesProvider));
-                ProfileActivity.this.wentToAddContacts = true;
+                ProfileActivity profileActivity3 = ProfileActivity.this;
+                profileActivity3.presentFragment(new ContactAddActivity(bundle3, profileActivity3.resourcesProvider));
             } else if (i == 5) {
                 final TLRPC$User user3 = ProfileActivity.this.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId));
                 if (user3 == null || ProfileActivity.this.getParentActivity() == null) {
@@ -3136,12 +3133,12 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                     if (ProfileActivity.this.getMessagesController().getGroupCall(ProfileActivity.this.chatId, false) != null) {
                         TLRPC$Chat tLRPC$Chat = ProfileActivity.this.currentChat;
                         Activity parentActivity = ProfileActivity.this.getParentActivity();
-                        ProfileActivity profileActivity5 = ProfileActivity.this;
-                        VoIPHelper.startCall(tLRPC$Chat, null, null, false, parentActivity, profileActivity5, profileActivity5.getAccountInstance());
+                        ProfileActivity profileActivity4 = ProfileActivity.this;
+                        VoIPHelper.startCall(tLRPC$Chat, null, null, false, parentActivity, profileActivity4, profileActivity4.getAccountInstance());
                         return;
                     }
-                    ProfileActivity profileActivity6 = ProfileActivity.this;
-                    VoIPHelper.showGroupCallAlert(profileActivity6, profileActivity6.currentChat, null, false, ProfileActivity.this.getAccountInstance());
+                    ProfileActivity profileActivity5 = ProfileActivity.this;
+                    VoIPHelper.showGroupCallAlert(profileActivity5, profileActivity5.currentChat, null, false, ProfileActivity.this.getAccountInstance());
                 }
             } else if (i == 17) {
                 Bundle bundle6 = new Bundle();
@@ -3165,9 +3162,9 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             } else if (i == 22) {
                 ProfileActivity.this.openDiscussion();
             } else if (i == 38) {
+                ProfileActivity profileActivity6 = ProfileActivity.this;
                 ProfileActivity profileActivity7 = ProfileActivity.this;
-                ProfileActivity profileActivity8 = ProfileActivity.this;
-                profileActivity7.showDialog(new GiftPremiumBottomSheet(profileActivity8, profileActivity8.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId))));
+                profileActivity6.showDialog(new GiftPremiumBottomSheet(profileActivity7, profileActivity7.getMessagesController().getUser(Long.valueOf(ProfileActivity.this.userId))));
             } else if (i == 39) {
                 Bundle bundle8 = new Bundle();
                 bundle8.putInt("type", 2);
@@ -3212,8 +3209,8 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
                 }
                 ProfileActivity.this.getParentActivity().requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 4);
             } else if (i == 30) {
-                ProfileActivity profileActivity9 = ProfileActivity.this;
-                profileActivity9.presentFragment(new ChangeNameActivity(profileActivity9.resourcesProvider));
+                ProfileActivity profileActivity8 = ProfileActivity.this;
+                profileActivity8.presentFragment(new ChangeNameActivity(profileActivity8.resourcesProvider));
             } else if (i == 31) {
                 ProfileActivity.this.presentFragment(new LogoutActivity());
             } else if (i == 33) {
@@ -4057,8 +4054,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             bundle.putString("phone", this.vcardPhone);
             bundle.putString("first_name_card", this.vcardFirstName);
             bundle.putString("last_name_card", this.vcardLastName);
-            presentFragment(new ContactAddActivity(bundle, this.resourcesProvider));
-            this.wentToAddContacts = true;
+            openAddToContact(user, bundle);
         } else if (i == this.reportReactionRow) {
             AlertDialog.Builder builder = new AlertDialog.Builder(getParentActivity(), this.resourcesProvider);
             builder.setTitle(LocaleController.getString("ReportReaction", R.string.ReportReaction));
@@ -11825,10 +11821,56 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
             this.writeButton.setBackground(combinedDrawable);
         } catch (Exception unused) {
         }
-        if (this.wentToAddContacts) {
-            updateListAnimated(false);
-            this.wentToAddContacts = false;
+    }
+
+    @SuppressLint({"NotifyDataSetChanged"})
+    public void openAddToContact(final TLRPC$User tLRPC$User, Bundle bundle) {
+        ContactAddActivity contactAddActivity = new ContactAddActivity(bundle, this.resourcesProvider);
+        contactAddActivity.setDelegate(new ContactAddActivity.ContactAddActivityDelegate() {
+            @Override
+            public final void didAddToContacts() {
+                ProfileActivity.this.lambda$openAddToContact$63(tLRPC$User);
+            }
+        });
+        presentFragment(contactAddActivity);
+    }
+
+    public void lambda$openAddToContact$63(TLRPC$User tLRPC$User) {
+        if (this.addToContactsRow >= 0) {
+            if (this.sharedMediaRow == -1) {
+                updateRowsIds();
+                this.listAdapter.notifyDataSetChanged();
+            } else {
+                updateListAnimated(false);
+            }
         }
+        if (this.sharedMediaRow == -1) {
+            if (this.isInLandscapeMode || AndroidUtilities.isTablet()) {
+                this.listView.setPadding(0, AndroidUtilities.dp(88.0f), 0, 0);
+                this.expandAnimator.cancel();
+                float[] fArr = this.expandAnimatorValues;
+                fArr[0] = 1.0f;
+                fArr[1] = 0.0f;
+                setAvatarExpandProgress(1.0f);
+                this.extraHeight = AndroidUtilities.dp(88.0f);
+            } else {
+                int currentActionBarHeight = ActionBar.getCurrentActionBarHeight() + (this.actionBar.getOccupyStatusBar() ? AndroidUtilities.statusBarHeight : 0);
+                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(this.listView.getMeasuredWidth(), 1073741824);
+                int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(this.listView.getMeasuredHeight(), 0);
+                int i = 0;
+                for (int i2 = 0; i2 < this.listAdapter.getItemCount(); i2++) {
+                    ListAdapter listAdapter = this.listAdapter;
+                    RecyclerView.ViewHolder createViewHolder = listAdapter.createViewHolder(null, listAdapter.getItemViewType(i2));
+                    this.listAdapter.onBindViewHolder(createViewHolder, i2);
+                    createViewHolder.itemView.measure(makeMeasureSpec, makeMeasureSpec2);
+                    i += createViewHolder.itemView.getMeasuredHeight();
+                }
+                int max = Math.max(0, this.fragmentView.getMeasuredHeight() - ((i + AndroidUtilities.dp(88.0f)) + currentActionBarHeight));
+                RecyclerListView recyclerListView = this.listView;
+                recyclerListView.setPadding(0, recyclerListView.getPaddingTop(), 0, max);
+            }
+        }
+        this.undoView.showWithAction(this.dialogId, 8, tLRPC$User);
     }
 
     public class DiffCallback extends DiffUtil.Callback {

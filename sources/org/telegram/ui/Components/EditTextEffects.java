@@ -24,6 +24,7 @@ import org.telegram.ui.Components.QuoteSpan;
 import org.telegram.ui.Components.spoilers.SpoilerEffect;
 import org.telegram.ui.Components.spoilers.SpoilersClickDetector;
 public class EditTextEffects extends EditText {
+    private static Boolean allowHackingTextCanvasCache;
     private ColorFilter animatedEmojiColorFilter;
     private AnimatedEmojiSpan.EmojiGroupedSpans animatedEmojiDrawables;
     private SpoilersClickDetector clickDetector;
@@ -101,7 +102,7 @@ public class EditTextEffects extends EditText {
             }
         };
         this.rect = new android.graphics.Rect();
-        this.wrapCanvasToFixClipping = Build.VERSION.SDK_INT > 20;
+        this.wrapCanvasToFixClipping = allowHackingTextCanvas();
         if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
             this.clickDetector = new SpoilersClickDetector(this, this.spoilers, new SpoilersClickDetector.OnSpoilerClickedListener() {
                 @Override
@@ -285,6 +286,22 @@ public class EditTextEffects extends EditText {
 
     public float getOffsetY() {
         return this.offsetY;
+    }
+
+    public static boolean allowHackingTextCanvas() {
+        boolean z;
+        if (allowHackingTextCanvasCache == null) {
+            if (Build.VERSION.SDK_INT > 20) {
+                String str = Build.MODEL;
+                if (!str.equalsIgnoreCase("NTH-NX9") && !str.equalsIgnoreCase("NTN-LX1") && !str.equalsIgnoreCase("NTN-L22") && !str.equalsIgnoreCase("NTN-LX2") && !str.equalsIgnoreCase("NTN-LX3")) {
+                    z = true;
+                    allowHackingTextCanvasCache = Boolean.valueOf(z);
+                }
+            }
+            z = false;
+            allowHackingTextCanvasCache = Boolean.valueOf(z);
+        }
+        return allowHackingTextCanvasCache.booleanValue();
     }
 
     @Override

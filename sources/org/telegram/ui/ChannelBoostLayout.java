@@ -290,7 +290,7 @@ public class ChannelBoostLayout extends FrameLayout {
                 } else if (viewHolder.getItemViewType() == 11) {
                     TL_stories$TL_prepaidGiveaway tL_stories$TL_prepaidGiveaway = ((ItemInternal) ChannelBoostLayout.this.items.get(i)).prepaidGiveaway;
                     GiveawayCell giveawayCell = (GiveawayCell) viewHolder.itemView;
-                    giveawayCell.setData(tL_stories$TL_prepaidGiveaway, LocaleController.formatString("TelegramPremiumCount", R.string.TelegramPremiumCount, Integer.valueOf(tL_stories$TL_prepaidGiveaway.quantity)), LocaleController.formatString("SubscriptionsCount", R.string.SubscriptionsCount, LocaleController.formatPluralString("GiftMonths", tL_stories$TL_prepaidGiveaway.months, new Object[0])), 0, !itemInternal.isLast);
+                    giveawayCell.setData(tL_stories$TL_prepaidGiveaway, LocaleController.formatPluralString("BoostingTelegramPremiumCountPlural", tL_stories$TL_prepaidGiveaway.quantity, new Object[0]), LocaleController.formatPluralString("BoostingSubscriptionsCountPlural", tL_stories$TL_prepaidGiveaway.quantity, LocaleController.formatPluralString("PrepaidGiveawayMonths", tL_stories$TL_prepaidGiveaway.months, new Object[0])), 0, !itemInternal.isLast);
                     giveawayCell.setImage(tL_stories$TL_prepaidGiveaway);
                     giveawayCell.setAvatarPadding(5);
                 } else if (viewHolder.getItemViewType() == 13) {

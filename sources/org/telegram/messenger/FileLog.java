@@ -157,7 +157,7 @@ public class FileLog {
             HashSet<String> hashSet2 = new HashSet<>();
             excludeRequests = hashSet2;
             hashSet2.add("TL_upload_getFile");
-            excludeRequests.add("TL_upload_a");
+            excludeRequests.add("TL_upload_getWebFile");
             ExclusionStrategy exclusionStrategy = new ExclusionStrategy() {
                 @Override
                 public boolean shouldSkipField(FieldAttributes fieldAttributes) {

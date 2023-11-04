@@ -628,7 +628,7 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             }
         });
         this.avatarContainer.setTitleColors(Theme.getColor(i), Theme.getColor(i2));
-        this.actionBar.setItemsColor(Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2), false);
+        this.actionBar.setItemsColor(Theme.getColor(i), false);
         this.actionBar.setItemsBackgroundColor(Theme.getColor(Theme.key_actionBarActionModeDefaultSelector), false);
         this.actionBar.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
         if (this.initialLoading) {

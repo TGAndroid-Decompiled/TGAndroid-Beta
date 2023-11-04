@@ -42,6 +42,10 @@ public class Text {
         this.left = this.layout.getLineCount() > 0 ? this.layout.getLineLeft(0) : 0.0f;
     }
 
+    public float getTextSize() {
+        return this.paint.getTextSize();
+    }
+
     public void setColor(int i) {
         this.paint.setColor(i);
     }
@@ -110,5 +114,9 @@ public class Text {
     public float getWidth() {
         int i = this.ellipsizeWidth;
         return i >= 0 ? Math.min(i, this.width) : this.width;
+    }
+
+    public float getCurrentWidth() {
+        return this.width;
     }
 }

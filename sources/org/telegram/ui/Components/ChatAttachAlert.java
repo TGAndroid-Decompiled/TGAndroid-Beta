@@ -1802,7 +1802,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.containerView.addView(this.writeButtonContainer, LayoutHelper.createFrame(60, 60.0f, 85, 0.0f, 0.0f, 6.0f, 10.0f));
         this.writeButton = new ImageView(context);
         int dp2 = AndroidUtilities.dp(56.0f);
-        int i7 = Theme.key_dialogFloatingButton;
+        int i7 = Theme.key_chat_attachCheckBoxBackground;
         int themedColor = getThemedColor(i7);
         int i8 = Build.VERSION.SDK_INT;
         this.writeButtonDrawable = Theme.createSimpleSelectorCircleDrawable(dp2, themedColor, getThemedColor(i8 >= 21 ? Theme.key_dialogFloatingButtonPressed : i7));
@@ -1868,7 +1868,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
                 int i11 = max / 2;
                 ChatAttachAlert.this.rect.set(measuredWidth - i11, 0.0f, i11 + measuredWidth, getMeasuredHeight());
                 canvas.drawRoundRect(ChatAttachAlert.this.rect, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), ChatAttachAlert.this.paint);
-                ChatAttachAlert.this.paint.setColor(ChatAttachAlert.this.getThemedColor(Theme.key_dialogRoundCheckBox));
+                ChatAttachAlert.this.paint.setColor(ChatAttachAlert.this.getThemedColor(Theme.key_chat_attachCheckBoxBackground));
                 ChatAttachAlert.this.rect.set(i9 + AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), i10 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
                 canvas.drawRoundRect(ChatAttachAlert.this.rect, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), ChatAttachAlert.this.paint);
                 canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.dp(16.2f), ChatAttachAlert.this.textPaint);
@@ -4261,7 +4261,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
         }
         Drawable drawable = this.writeButtonDrawable;
-        int i4 = Theme.key_dialogFloatingButton;
+        int i4 = Theme.key_chat_attachCheckBoxBackground;
         Theme.setSelectorDrawableColor(drawable, getThemedColor(i4), false);
         Drawable drawable2 = this.writeButtonDrawable;
         if (Build.VERSION.SDK_INT >= 21) {

@@ -36,6 +36,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC$Chat;
@@ -76,6 +77,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     private ButtonWithCounterView button;
     private FrameLayout buttonContainer;
     private CharSequence buttonLocked;
+    int buttonRow;
     private CharSequence buttonUnlocked;
     int colorPickerRow;
     private FrameLayout contentView;
@@ -87,7 +89,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
     private RecyclerView.Adapter listAdapter;
     private RecyclerListView listView;
     private ThemePreviewMessagesCell messagesCellPreview;
-    private PeerColorPicker peerColorPicker;
+    private PeerColorGrid peerColorPicker;
     int previewRow;
     int rowCount;
     private SelectAnimatedEmojiDialog.SelectAnimatedEmojiDialogWindow selectAnimatedEmojiDialog;
@@ -192,14 +194,26 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             }
         }
         FrameLayout frameLayout = new FrameLayout(context);
-        RecyclerListView recyclerListView = new RecyclerListView(context);
+        RecyclerListView recyclerListView = new RecyclerListView(context) {
+            @Override
+            public void onMeasure(int i3, int i4) {
+                super.onMeasure(i3, i4);
+                PeerColorActivity.this.updateButtonY();
+            }
+
+            @Override
+            public void onLayout(boolean z, int i3, int i4, int i5, int i6) {
+                super.onLayout(z, i3, i4, i5, i6);
+                PeerColorActivity.this.updateButtonY();
+            }
+        };
         this.listView = recyclerListView;
         ((DefaultItemAnimator) recyclerListView.getItemAnimator()).setSupportsChangeAnimations(false);
         this.listView.setLayoutManager(new LinearLayoutManager(context));
         RecyclerListView recyclerListView2 = this.listView;
-        AnonymousClass3 anonymousClass3 = new AnonymousClass3(context);
-        this.listAdapter = anonymousClass3;
-        recyclerListView2.setAdapter(anonymousClass3);
+        AnonymousClass4 anonymousClass4 = new AnonymousClass4(context);
+        this.listAdapter = anonymousClass4;
+        recyclerListView2.setAdapter(anonymousClass4);
         this.listView.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
             @Override
             public final void onItemClick(View view, int i3) {
@@ -227,6 +241,12 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         });
         this.buttonContainer.addView(this.button, LayoutHelper.createFrame(-1, 48.0f));
         frameLayout.addView(this.buttonContainer, LayoutHelper.createFrame(-1, -2, 80));
+        this.listView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int i3, int i4) {
+                PeerColorActivity.this.updateButtonY();
+            }
+        });
         this.contentView = frameLayout;
         this.fragmentView = frameLayout;
         updateColors();
@@ -234,16 +254,16 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         return this.contentView;
     }
 
-    public class AnonymousClass3 extends RecyclerListView.SelectionAdapter {
+    public class AnonymousClass4 extends RecyclerListView.SelectionAdapter {
         final Context val$context;
 
-        AnonymousClass3(Context context) {
+        AnonymousClass4(Context context) {
             this.val$context = context;
         }
 
         @Override
         public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-            return viewHolder.getItemViewType() == 1 || viewHolder.getItemViewType() == 3;
+            return viewHolder.getItemViewType() == 3;
         }
 
         @Override
@@ -257,24 +277,21 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 themePreviewMessagesCell.fragment = PeerColorActivity.this;
                 setReplyIconCell = themePreviewMessagesCell;
             } else if (i == 1) {
-                final PeerColorPicker peerColorPicker = PeerColorActivity.this.peerColorPicker = new PeerColorPicker(this.val$context, ((BaseFragment) PeerColorActivity.this).currentAccount, PeerColorActivity.this.getResourceProvider());
-                peerColorPicker.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, PeerColorActivity.this.getResourceProvider()));
-                peerColorPicker.setSelected(PeerColorActivity.this.selectedColor);
-                peerColorPicker.layoutManager.scrollToPositionWithOffset(peerColorPicker.selectedPosition, AndroidUtilities.displaySize.x / 2);
-                peerColorPicker.setOnItemClickListener(new RecyclerListView.OnItemClickListener() {
+                final PeerColorGrid peerColorGrid = PeerColorActivity.this.peerColorPicker = new PeerColorGrid(this.val$context, ((BaseFragment) PeerColorActivity.this).currentAccount);
+                peerColorGrid.setBackgroundColor(PeerColorActivity.this.getThemedColor(Theme.key_windowBackgroundWhite));
+                peerColorGrid.setSelected(PeerColorActivity.this.selectedColor);
+                peerColorGrid.setOnColorClick(new Utilities.Callback() {
                     @Override
-                    public final void onItemClick(View view, int i2) {
-                        PeerColorActivity.AnonymousClass3.this.lambda$onCreateViewHolder$0(peerColorPicker, view, i2);
+                    public final void run(Object obj) {
+                        PeerColorActivity.AnonymousClass4.this.lambda$onCreateViewHolder$0(peerColorGrid, (Integer) obj);
                     }
                 });
-                setReplyIconCell = peerColorPicker;
+                setReplyIconCell = peerColorGrid;
             } else if (i == 3) {
                 SetReplyIconCell setReplyIconCell2 = PeerColorActivity.this.setReplyIconCell = new SetReplyIconCell(this.val$context);
                 setReplyIconCell2.update(false);
                 setReplyIconCell = setReplyIconCell2;
-            } else if (i != 4) {
-                setReplyIconCell = new TextInfoPrivacyCell(this.val$context);
-            } else {
+            } else if (i == 4) {
                 View view = new View(this, this.val$context) {
                     @Override
                     protected void onMeasure(int i2, int i3) {
@@ -283,18 +300,22 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 };
                 view.setBackground(Theme.getThemedDrawableByKey(this.val$context, R.drawable.greydivider_bottom, Theme.key_windowBackgroundGrayShadow));
                 setReplyIconCell = view;
+            } else if (i != 5) {
+                setReplyIconCell = new TextInfoPrivacyCell(this.val$context);
+            } else {
+                setReplyIconCell = new View(this, this.val$context) {
+                    @Override
+                    protected void onMeasure(int i2, int i3) {
+                        super.onMeasure(i2, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(76.0f), 1073741824));
+                    }
+                };
             }
             return new RecyclerListView.Holder(setReplyIconCell);
         }
 
-        public void lambda$onCreateViewHolder$0(PeerColorPicker peerColorPicker, View view, int i) {
-            PeerColorActivity.this.selectedColor = peerColorPicker.toColorId(i);
-            peerColorPicker.setSelectedPosition(i);
-            if (view.getLeft() - peerColorPicker.getPaddingLeft() < AndroidUtilities.dp(24.0f)) {
-                peerColorPicker.smoothScrollBy(i == 0 ? Math.max(-(view.getLeft() - peerColorPicker.getPaddingLeft()), -AndroidUtilities.dp(64.0f)) : -AndroidUtilities.dp(64.0f), 0);
-            } else if (view.getRight() - peerColorPicker.getPaddingLeft() > ((AndroidUtilities.displaySize.x - peerColorPicker.getPaddingLeft()) - peerColorPicker.getPaddingRight()) - AndroidUtilities.dp(24.0f)) {
-                peerColorPicker.smoothScrollBy(i == peerColorPicker.adapter.getItemCount() + (-1) ? Math.min((AndroidUtilities.displaySize.x - view.getRight()) - peerColorPicker.getPaddingRight(), AndroidUtilities.dp(64.0f)) : AndroidUtilities.dp(64.0f), 0);
-            }
+        public void lambda$onCreateViewHolder$0(PeerColorGrid peerColorGrid, Integer num) {
+            PeerColorActivity.this.selectedColor = num.intValue();
+            peerColorGrid.setSelected(num.intValue());
             PeerColorActivity.this.updateMessages();
             if (PeerColorActivity.this.setReplyIconCell != null) {
                 PeerColorActivity.this.setReplyIconCell.invalidate();
@@ -335,6 +356,9 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 if (i == peerColorActivity.iconRow) {
                     return 3;
                 }
+                if (i == peerColorActivity.buttonRow) {
+                    return 5;
+                }
                 if (i == getItemCount() - 1) {
                     return 4;
                 }
@@ -351,6 +375,29 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
 
     public void lambda$createView$1(View view) {
         buttonClick();
+    }
+
+    public void updateButtonY() {
+        if (this.buttonContainer == null) {
+            return;
+        }
+        int itemCount = this.listAdapter.getItemCount() - 1;
+        boolean z = false;
+        int i = 0;
+        for (int i2 = 0; i2 < this.listView.getChildCount(); i2++) {
+            View childAt = this.listView.getChildAt(i2);
+            int childAdapterPosition = this.listView.getChildAdapterPosition(childAt);
+            if (childAdapterPosition != -1 && childAdapterPosition <= itemCount) {
+                i = Math.max(i, childAt.getTop());
+                if (childAdapterPosition == itemCount) {
+                    z = true;
+                }
+            }
+        }
+        if (!z) {
+            i = this.listView.getMeasuredHeight();
+        }
+        this.buttonContainer.setTranslationY(Math.max(0, i - (this.listView.getMeasuredHeight() - AndroidUtilities.dp(76.0f))));
     }
 
     private void showBoostLimit(final boolean z) {
@@ -620,9 +667,9 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
             ChatMessageCell[] cells = themePreviewMessagesCell.getCells();
             for (int i = 0; i < cells.length; i++) {
                 if (cells[i] != null && (messageObject = cells[i].getMessageObject()) != null) {
-                    PeerColorPicker peerColorPicker = this.peerColorPicker;
-                    if (peerColorPicker != null) {
-                        messageObject.overrideLinkColor = peerColorPicker.getColorId();
+                    PeerColorGrid peerColorGrid = this.peerColorPicker;
+                    if (peerColorGrid != null) {
+                        messageObject.overrideLinkColor = peerColorGrid.getColorId();
                     }
                     messageObject.overrideLinkEmoji = this.selectedEmoji;
                     cells[i].setAvatar(messageObject);
@@ -786,12 +833,12 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         this.colorPickerRow = i;
         int i3 = i2 + 1;
         this.rowCount = i3;
-        this.infoRow = i2;
+        this.iconRow = i2;
         int i4 = i3 + 1;
         this.rowCount = i4;
-        this.iconRow = i3;
+        this.infoRow = i3;
         this.rowCount = i4 + 1;
-        this.info2Row = i4;
+        this.buttonRow = i4;
     }
 
     @Override
@@ -827,248 +874,6 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
         ButtonWithCounterView buttonWithCounterView;
         if (i2 == this.currentAccount && i == NotificationCenter.currentUserPremiumStatusChanged && (buttonWithCounterView = this.button) != null) {
             buttonWithCounterView.setText((this.isChannel || getUserConfig().isPremium()) ? this.buttonUnlocked : this.buttonLocked, true);
-        }
-    }
-
-    public static class PeerColorPicker extends RecyclerListView {
-        private static final int[] order = {5, 3, 1, 0, 2, 4, 6};
-        public final RecyclerView.Adapter adapter;
-        private final int currentAccount;
-        public final LinearLayoutManager layoutManager;
-        private final Theme.ResourcesProvider resourcesProvider;
-        private int selectedPosition;
-
-        @Override
-        public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-            if (getParent() != null && getParent().getParent() != null) {
-                getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1) || canScrollHorizontally(1));
-                getParent().requestDisallowInterceptTouchEvent(true);
-            }
-            return super.onInterceptTouchEvent(motionEvent);
-        }
-
-        @Override
-        public Integer getSelectorColor(int i) {
-            return 0;
-        }
-
-        public PeerColorPicker(final Context context, final int i, final Theme.ResourcesProvider resourcesProvider) {
-            super(context);
-            this.currentAccount = i;
-            this.resourcesProvider = resourcesProvider;
-            setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
-            setClipToPadding(false);
-            RecyclerView.Adapter adapter = new RecyclerListView.SelectionAdapter() {
-                @Override
-                public boolean isEnabled(RecyclerView.ViewHolder viewHolder) {
-                    return true;
-                }
-
-                @Override
-                public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i2) {
-                    return new RecyclerListView.Holder(new ColorCell(context));
-                }
-
-                @Override
-                public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i2) {
-                    ColorCell colorCell = (ColorCell) viewHolder.itemView;
-                    colorCell.setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
-                    colorCell.setSelected(i2 == PeerColorPicker.this.selectedPosition, false);
-                    if (i2 >= 0) {
-                        int[] iArr = Theme.keys_avatar_nameInMessage;
-                        if (i2 < iArr.length) {
-                            colorCell.set(Theme.getColor(iArr[PeerColorPicker.order[i2]], resourcesProvider));
-                            return;
-                        }
-                    }
-                    int length = i2 - Theme.keys_avatar_nameInMessage.length;
-                    MessagesController.PeerColors peerColors = MessagesController.getInstance(i).peerColors;
-                    if (peerColors == null || length < 0 || length >= peerColors.colors.size()) {
-                        return;
-                    }
-                    colorCell.set(peerColors.colors.get(length));
-                }
-
-                @Override
-                public int getItemCount() {
-                    MessagesController.PeerColors peerColors = MessagesController.getInstance(i).peerColors;
-                    return (peerColors == null ? 0 : peerColors.colors.size()) + 7;
-                }
-            };
-            this.adapter = adapter;
-            setAdapter(adapter);
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-            this.layoutManager = linearLayoutManager;
-            linearLayoutManager.setOrientation(0);
-            setLayoutManager(linearLayoutManager);
-        }
-
-        public void setSelected(int i) {
-            setSelectedPosition(toPosition(i));
-        }
-
-        public void setSelectedPosition(int i) {
-            if (i != this.selectedPosition) {
-                this.selectedPosition = i;
-                AndroidUtilities.forEachViews((RecyclerView) this, (Consumer<View>) new Consumer() {
-                    @Override
-                    public final void accept(Object obj) {
-                        PeerColorActivity.PeerColorPicker.this.lambda$setSelectedPosition$0((View) obj);
-                    }
-                });
-            }
-        }
-
-        public void lambda$setSelectedPosition$0(View view) {
-            ((ColorCell) view).setSelected(getChildAdapterPosition(view) == this.selectedPosition, true);
-        }
-
-        public int getColorId() {
-            return toColorId(this.selectedPosition);
-        }
-
-        public int toPosition(int i) {
-            if (i >= 0 && i < Theme.keys_avatar_nameInMessage.length) {
-                int i2 = 0;
-                while (true) {
-                    int[] iArr = order;
-                    if (i2 >= iArr.length) {
-                        break;
-                    } else if (iArr[i2] == i) {
-                        return i2;
-                    } else {
-                        i2++;
-                    }
-                }
-            }
-            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).peerColors;
-            if (peerColors == null) {
-                return 0;
-            }
-            for (int i3 = 0; i3 < peerColors.colors.size(); i3++) {
-                if (peerColors.colors.get(i3).id == i) {
-                    return i3 + 7;
-                }
-            }
-            return 0;
-        }
-
-        public int toColorId(int i) {
-            if (i >= 0 && i < 7) {
-                return order[i];
-            }
-            int i2 = i - 7;
-            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).peerColors;
-            if (peerColors == null || i2 < 0 || i2 >= peerColors.colors.size()) {
-                return 0;
-            }
-            return peerColors.colors.get(i2).id;
-        }
-
-        public static class ColorCell extends View {
-            private final Paint backgroundPaint;
-            private final ButtonBounce bounce;
-            private final Path circlePath;
-            private final Path color2Path;
-            private boolean hasColor2;
-            private boolean hasColor3;
-            private final Paint paint1;
-            private final Paint paint2;
-            private final Paint paint3;
-            private boolean selected;
-            private final AnimatedFloat selectedT;
-
-            public ColorCell(Context context) {
-                super(context);
-                Paint paint = new Paint(1);
-                this.backgroundPaint = paint;
-                this.paint1 = new Paint(1);
-                this.paint2 = new Paint(1);
-                this.paint3 = new Paint(1);
-                this.circlePath = new Path();
-                this.color2Path = new Path();
-                this.bounce = new ButtonBounce(this);
-                this.selectedT = new AnimatedFloat(this, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
-                paint.setStyle(Paint.Style.STROKE);
-            }
-
-            @Override
-            public void setBackgroundColor(int i) {
-                this.backgroundPaint.setColor(i);
-            }
-
-            public void set(int i) {
-                this.hasColor3 = false;
-                this.hasColor2 = false;
-                this.paint1.setColor(i);
-            }
-
-            public void set(MessagesController.PeerColor peerColor) {
-                if (Theme.isCurrentThemeDark() && peerColor.hasColor2() && !peerColor.hasColor3()) {
-                    this.paint1.setColor(peerColor.getColor2());
-                    this.paint2.setColor(peerColor.getColor1());
-                } else {
-                    this.paint1.setColor(peerColor.getColor1());
-                    this.paint2.setColor(peerColor.getColor2());
-                }
-                this.paint3.setColor(peerColor.getColor3());
-                this.hasColor2 = peerColor.hasColor2();
-                this.hasColor3 = peerColor.hasColor3();
-            }
-
-            public void setSelected(boolean z, boolean z2) {
-                this.selected = z;
-                if (!z2) {
-                    this.selectedT.set(z, true);
-                }
-                invalidate();
-            }
-
-            @Override
-            protected void onMeasure(int i, int i2) {
-                setMeasuredDimension(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-                this.circlePath.rewind();
-                this.circlePath.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(20.0f), Path.Direction.CW);
-                this.color2Path.rewind();
-                this.color2Path.moveTo(getMeasuredWidth(), 0.0f);
-                this.color2Path.lineTo(getMeasuredWidth(), getMeasuredHeight());
-                this.color2Path.lineTo(0.0f, getMeasuredHeight());
-                this.color2Path.close();
-            }
-
-            @Override
-            protected void dispatchDraw(Canvas canvas) {
-                canvas.save();
-                float scale = this.bounce.getScale(0.05f);
-                canvas.scale(scale, scale, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-                canvas.save();
-                canvas.clipPath(this.circlePath);
-                canvas.drawPaint(this.paint1);
-                if (this.hasColor2) {
-                    canvas.drawPath(this.color2Path, this.paint2);
-                }
-                canvas.restore();
-                if (this.hasColor3) {
-                    canvas.save();
-                    RectF rectF = AndroidUtilities.rectTmp;
-                    rectF.set((getMeasuredWidth() - AndroidUtilities.dp(12.4f)) / 2.0f, (getMeasuredHeight() - AndroidUtilities.dp(12.4f)) / 2.0f, (getMeasuredWidth() + AndroidUtilities.dp(12.4f)) / 2.0f, (getMeasuredHeight() + AndroidUtilities.dp(12.4f)) / 2.0f);
-                    canvas.rotate(45.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-                    canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.paint3);
-                    canvas.restore();
-                }
-                float f = this.selectedT.set(this.selected);
-                if (f > 0.0f) {
-                    this.backgroundPaint.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
-                    canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.lerp(AndroidUtilities.dp(20.0f) + (this.backgroundPaint.getStrokeWidth() * 0.5f), AndroidUtilities.dp(20.0f) - (this.backgroundPaint.getStrokeWidth() * 2.0f), f), this.backgroundPaint);
-                }
-                canvas.restore();
-            }
-
-            @Override
-            public void setPressed(boolean z) {
-                super.setPressed(z);
-                this.bounce.setPressed(z);
-            }
         }
     }
 
@@ -1198,6 +1003,232 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 }
                 canvas.drawLine(LocaleController.isRTL ? 0.0f : AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth() - (LocaleController.isRTL ? AndroidUtilities.dp(64.0f) : 0), getMeasuredHeight() - 1, paint);
             }
+        }
+    }
+
+    public static class PeerColorGrid extends View {
+        private ColorButton[] buttons;
+        private int currentAccount;
+        private Utilities.Callback<Integer> onColorClick;
+        private ColorButton pressedButton;
+        private int selectedColorId;
+
+        public class ColorButton {
+            private final Paint backgroundPaint;
+            private final ButtonBounce bounce;
+            private final RectF bounds;
+            private final Path circlePath;
+            public final RectF clickBounds;
+            private final Path color2Path;
+            private boolean hasColor2;
+            private boolean hasColor3;
+            public int id;
+            private final Paint paint1;
+            private final Paint paint2;
+            private final Paint paint3;
+            private boolean selected;
+            private final AnimatedFloat selectedT;
+
+            public ColorButton() {
+                Paint paint = new Paint(1);
+                this.backgroundPaint = paint;
+                this.paint1 = new Paint(1);
+                this.paint2 = new Paint(1);
+                this.paint3 = new Paint(1);
+                this.circlePath = new Path();
+                this.color2Path = new Path();
+                this.bounce = new ButtonBounce(PeerColorGrid.this);
+                this.selectedT = new AnimatedFloat(PeerColorGrid.this, 0L, 320L, CubicBezierInterpolator.EASE_OUT_QUINT);
+                this.bounds = new RectF();
+                this.clickBounds = new RectF();
+                paint.setStyle(Paint.Style.STROKE);
+            }
+
+            public void setBackgroundColor(int i) {
+                this.backgroundPaint.setColor(i);
+            }
+
+            public void set(int i) {
+                this.hasColor3 = false;
+                this.hasColor2 = false;
+                this.paint1.setColor(i);
+            }
+
+            public void set(MessagesController.PeerColor peerColor) {
+                if (peerColor == null) {
+                    return;
+                }
+                if (Theme.isCurrentThemeDark() && peerColor.hasColor2() && !peerColor.hasColor3()) {
+                    this.paint1.setColor(peerColor.getColor2());
+                    this.paint2.setColor(peerColor.getColor1());
+                } else {
+                    this.paint1.setColor(peerColor.getColor1());
+                    this.paint2.setColor(peerColor.getColor2());
+                }
+                this.paint3.setColor(peerColor.getColor3());
+                this.hasColor2 = peerColor.hasColor2();
+                this.hasColor3 = peerColor.hasColor3();
+            }
+
+            public void setSelected(boolean z, boolean z2) {
+                this.selected = z;
+                if (!z2) {
+                    this.selectedT.set(z, true);
+                }
+                PeerColorGrid.this.invalidate();
+            }
+
+            public void layout(int i, RectF rectF) {
+                this.id = i;
+                this.bounds.set(rectF);
+            }
+
+            public void layoutClickBounds(RectF rectF) {
+                this.clickBounds.set(rectF);
+            }
+
+            protected void draw(Canvas canvas) {
+                canvas.save();
+                float scale = this.bounce.getScale(0.05f);
+                canvas.scale(scale, scale, this.bounds.centerX(), this.bounds.centerY());
+                canvas.save();
+                this.circlePath.rewind();
+                this.circlePath.addCircle(this.bounds.centerX(), this.bounds.centerY(), Math.min(this.bounds.height() / 2.0f, this.bounds.width() / 2.0f), Path.Direction.CW);
+                canvas.clipPath(this.circlePath);
+                canvas.drawPaint(this.paint1);
+                if (this.hasColor2) {
+                    this.color2Path.rewind();
+                    Path path = this.color2Path;
+                    RectF rectF = this.bounds;
+                    path.moveTo(rectF.right, rectF.top);
+                    Path path2 = this.color2Path;
+                    RectF rectF2 = this.bounds;
+                    path2.lineTo(rectF2.right, rectF2.bottom);
+                    Path path3 = this.color2Path;
+                    RectF rectF3 = this.bounds;
+                    path3.lineTo(rectF3.left, rectF3.bottom);
+                    this.color2Path.close();
+                    canvas.drawPath(this.color2Path, this.paint2);
+                }
+                canvas.restore();
+                if (this.hasColor3) {
+                    canvas.save();
+                    RectF rectF4 = AndroidUtilities.rectTmp;
+                    float width = (this.bounds.width() * 0.315f) / 2.0f;
+                    rectF4.set(this.bounds.centerX() - width, this.bounds.centerY() - width, this.bounds.centerX() + width, this.bounds.centerY() + width);
+                    canvas.rotate(45.0f, this.bounds.centerX(), this.bounds.centerY());
+                    canvas.drawRoundRect(rectF4, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.paint3);
+                    canvas.restore();
+                }
+                float f = this.selectedT.set(this.selected);
+                if (f > 0.0f) {
+                    this.backgroundPaint.setStrokeWidth(AndroidUtilities.dpf2(2.0f));
+                    canvas.drawCircle(this.bounds.centerX(), this.bounds.centerY(), Math.min(this.bounds.height() / 2.0f, this.bounds.width() / 2.0f) + (this.backgroundPaint.getStrokeWidth() * AndroidUtilities.lerp(0.5f, -2.0f, f)), this.backgroundPaint);
+                }
+                canvas.restore();
+            }
+
+            public void setPressed(boolean z) {
+                this.bounce.setPressed(z);
+            }
+        }
+
+        public PeerColorGrid(Context context, int i) {
+            super(context);
+            this.selectedColorId = 0;
+            this.currentAccount = i;
+        }
+
+        @Override
+        protected void onMeasure(int i, int i2) {
+            int i3;
+            int size = View.MeasureSpec.getSize(i);
+            MessagesController.PeerColors peerColors = MessagesController.getInstance(this.currentAccount).peerColors;
+            int size2 = (peerColors == null ? 0 : peerColors.colors.size()) + 7;
+            float f = size;
+            float min = Math.min(AndroidUtilities.dp(54.0f), f / 9.31576f);
+            float f2 = 0.28947f * min;
+            float f3 = 0.31578946f * min;
+            setMeasuredDimension(size, (int) (((size2 / 7) * min) + ((i3 + 1) * f3)));
+            ColorButton[] colorButtonArr = this.buttons;
+            if (colorButtonArr == null || colorButtonArr.length != size2) {
+                this.buttons = new ColorButton[size2];
+                for (int i4 = 0; i4 < size2; i4++) {
+                    this.buttons[i4] = new ColorButton();
+                    this.buttons[i4].setBackgroundColor(Theme.getColor(Theme.key_windowBackgroundWhite));
+                    if (i4 < 7) {
+                        this.buttons[i4].set(Theme.getColor(Theme.keys_avatar_nameInMessage[i4]));
+                    } else if (peerColors != null) {
+                        this.buttons[i4].set(peerColors.getColor(i4));
+                    }
+                }
+            }
+            float f4 = ((f - ((7.0f * min) + (8.0f * f2))) / 2.0f) + f2;
+            if (this.buttons != null) {
+                float f5 = f4;
+                float f6 = f3;
+                int i5 = 0;
+                while (i5 < this.buttons.length) {
+                    RectF rectF = AndroidUtilities.rectTmp;
+                    rectF.set(f5, f6, f5 + min, f6 + min);
+                    this.buttons[i5].layout(i5, rectF);
+                    rectF.inset((-f2) / 2.0f, (-f3) / 2.0f);
+                    this.buttons[i5].layoutClickBounds(rectF);
+                    this.buttons[i5].setSelected(i5 == this.selectedColorId, false);
+                    if (i5 % 7 == 6) {
+                        f6 += min + f3;
+                        f5 = f4;
+                    } else {
+                        f5 += min + f2;
+                    }
+                    i5++;
+                }
+            }
+        }
+
+        @Override
+        protected void dispatchDraw(Canvas canvas) {
+            if (this.buttons != null) {
+                int i = 0;
+                while (true) {
+                    ColorButton[] colorButtonArr = this.buttons;
+                    if (i >= colorButtonArr.length) {
+                        break;
+                    }
+                    colorButtonArr[i].draw(canvas);
+                    i++;
+                }
+            }
+            canvas.drawRect(AndroidUtilities.dp(21.0f), getMeasuredHeight() - 1, getMeasuredWidth() - AndroidUtilities.dp(21.0f), getMeasuredHeight(), Theme.dividerPaint);
+        }
+
+        public void setSelected(int i) {
+            this.selectedColorId = i;
+            if (this.buttons == null) {
+                return;
+            }
+            int i2 = 0;
+            while (true) {
+                ColorButton[] colorButtonArr = this.buttons;
+                if (i2 >= colorButtonArr.length) {
+                    return;
+                }
+                colorButtonArr[i2].setSelected(i2 == i, true);
+                i2++;
+            }
+        }
+
+        public int getColorId() {
+            return this.selectedColorId;
+        }
+
+        public void setOnColorClick(Utilities.Callback<Integer> callback) {
+            this.onColorClick = callback;
+        }
+
+        @Override
+        public boolean dispatchTouchEvent(android.view.MotionEvent r7) {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.PeerColorActivity.PeerColorGrid.dispatchTouchEvent(android.view.MotionEvent):boolean");
         }
     }
 

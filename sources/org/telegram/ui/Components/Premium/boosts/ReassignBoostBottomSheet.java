@@ -224,7 +224,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
         if (view instanceof SelectorUserCell) {
             SelectorUserCell selectorUserCell = (SelectorUserCell) view;
             if (selectorUserCell.getBoost().cooldown_until_date > 0) {
-                BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, AndroidUtilities.replaceTags(LocaleController.formatString("BoostingWaitWarning", R.string.BoostingWaitWarning, Integer.valueOf(BoostRepository.boostsPerSentGift()))), 5).show(true);
+                BulletinFactory.of(this.container, this.resourcesProvider).createSimpleBulletin(R.raw.chats_infotip, AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingWaitWarningPlural", BoostRepository.boostsPerSentGift(), new Object[0])), 5).show(true);
                 return;
             }
             if (this.selectedBoosts.contains(selectorUserCell.getBoost())) {
@@ -417,11 +417,10 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
 
         public void setData(TLRPC$Chat tLRPC$Chat) {
             TextView textView = this.description;
-            int i = R.string.BoostingReassignBoostText;
-            Object[] objArr = new Object[2];
+            int boostsPerSentGift = BoostRepository.boostsPerSentGift();
+            Object[] objArr = new Object[1];
             objArr[0] = tLRPC$Chat == null ? "" : tLRPC$Chat.title;
-            objArr[1] = Integer.valueOf(BoostRepository.boostsPerSentGift());
-            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatString("BoostingReassignBoostText", i, objArr)));
+            textView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPlural", boostsPerSentGift, objArr)));
         }
 
         public void showBoosts(List<TL_stories$TL_myBoost> list, TLRPC$Chat tLRPC$Chat) {

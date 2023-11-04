@@ -24,7 +24,7 @@ public class BoostTypeSingleCell extends BoostTypeCell {
         this.subtitleTextView.setTextColor(Theme.getColor(Theme.key_dialogTextGray3, this.resourcesProvider));
         this.avatarDrawable.setAvatarType(16);
         this.titleTextView.setText(LocaleController.formatString("BoostingPreparedGiveawayOne", R.string.BoostingPreparedGiveawayOne, new Object[0]));
-        setSubtitle(LocaleController.formatString("BoostingPreparedGiveawaySubscriptions", R.string.BoostingPreparedGiveawaySubscriptions, Integer.valueOf(tL_stories$TL_prepaidGiveaway.quantity), LocaleController.formatPluralString("Months", tL_stories$TL_prepaidGiveaway.months, new Object[0])));
+        setSubtitle(LocaleController.formatPluralString("BoostingPreparedGiveawaySubscriptionsPlural", tL_stories$TL_prepaidGiveaway.quantity, LocaleController.formatPluralString("Months", tL_stories$TL_prepaidGiveaway.months, new Object[0])));
         int i = tL_stories$TL_prepaidGiveaway.months;
         if (i == 12) {
             this.avatarDrawable.setColor(-31392, -2796986);
