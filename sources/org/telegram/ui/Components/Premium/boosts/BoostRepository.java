@@ -31,6 +31,7 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.AbstractSerializedData;
 import org.telegram.tgnet.ConnectionsManager;
@@ -799,6 +800,7 @@ public class BoostRepository {
     }
 
     public static void lambda$loadChatParticipants$34(TLObject tLObject, MessagesController messagesController, Utilities.Callback callback) {
+        TLRPC$User user;
         if (tLObject instanceof TLRPC$TL_channels_channelParticipants) {
             TLRPC$TL_channels_channelParticipants tLRPC$TL_channels_channelParticipants = (TLRPC$TL_channels_channelParticipants) tLObject;
             messagesController.putUsers(tLRPC$TL_channels_channelParticipants.users, false);
@@ -807,7 +809,7 @@ public class BoostRepository {
             ArrayList arrayList = new ArrayList();
             for (int i = 0; i < tLRPC$TL_channels_channelParticipants.participants.size(); i++) {
                 TLRPC$Peer tLRPC$Peer = tLRPC$TL_channels_channelParticipants.participants.get(i).peer;
-                if (MessageObject.getPeerId(tLRPC$Peer) != clientUserId) {
+                if (MessageObject.getPeerId(tLRPC$Peer) != clientUserId && (user = messagesController.getUser(Long.valueOf(tLRPC$Peer.user_id))) != null && !UserObject.isDeleted(user) && !user.bot) {
                     arrayList.add(messagesController.getInputPeer(tLRPC$Peer));
                 }
             }

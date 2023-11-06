@@ -1112,7 +1112,7 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
             if (isPremium) {
                 i2 = z ? R.string.UpgradePremiumPerYear : R.string.UpgradePremiumPerMonth;
             } else {
-                formattedPricePerYear = subscriptionTier.getFormattedPricePerMonthRounded();
+                formattedPricePerYear = subscriptionTier.getFormattedPricePerMonth();
                 i2 = R.string.SubscribeToPremium;
             }
             return LocaleController.formatString(i2, formattedPricePerYear);
@@ -1876,13 +1876,6 @@ public class PremiumPreviewFragment extends BaseFragment implements Notification
                 return BillingController.getInstance().formatCurrency(getPricePerYear(), getCurrency());
             }
             return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerYear(), getCurrency(), 6);
-        }
-
-        public String getFormattedPricePerMonthRounded() {
-            if (BuildVars.useInvoiceBilling() || this.subscriptionOption.store_product == null) {
-                return BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), BillingController.getInstance().getCurrencyExp(getCurrency()), true);
-            }
-            return this.googlePlayProductDetails == null ? "" : BillingController.getInstance().formatCurrency(getPricePerMonth(), getCurrency(), 6, true);
         }
 
         public String getFormattedPricePerMonth() {

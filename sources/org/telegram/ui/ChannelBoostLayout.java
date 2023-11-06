@@ -366,6 +366,7 @@ public class ChannelBoostLayout extends FrameLayout {
                 tLRPC$TL_payments_checkedGiftCode.months = ((boost.expires - i2) / 30) / 86400;
                 if (boost.unclaimed) {
                     tLRPC$TL_payments_checkedGiftCode.to_id = -1L;
+                    tLRPC$TL_payments_checkedGiftCode.flags = -1;
                 } else {
                     tLRPC$TL_payments_checkedGiftCode.boost = boost;
                 }

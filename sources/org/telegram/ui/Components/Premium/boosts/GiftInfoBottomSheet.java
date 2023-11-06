@@ -35,6 +35,9 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
     private String slug;
 
     public static void show(final BaseFragment baseFragment, final String str, final Browser.Progress progress) {
+        if (baseFragment == null) {
+            return;
+        }
         final AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (progress != null) {
             progress.init();
@@ -59,15 +62,10 @@ public class GiftInfoBottomSheet extends BottomSheetWithRecyclerListView {
     }
 
     public static void lambda$show$1(AtomicBoolean atomicBoolean, BaseFragment baseFragment, String str, Browser.Progress progress, TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode) {
-        if (atomicBoolean.get()) {
+        if (atomicBoolean.get() || baseFragment.getParentActivity() == null) {
             return;
         }
-        GiftInfoBottomSheet giftInfoBottomSheet = new GiftInfoBottomSheet(baseFragment, false, true, tLRPC$TL_payments_checkedGiftCode, str);
-        if (baseFragment != null && baseFragment.getParentActivity() != null) {
-            baseFragment.showDialog(giftInfoBottomSheet);
-        } else {
-            giftInfoBottomSheet.show();
-        }
+        baseFragment.showDialog(new GiftInfoBottomSheet(baseFragment, false, true, tLRPC$TL_payments_checkedGiftCode, str));
         if (progress != null) {
             progress.end();
         }

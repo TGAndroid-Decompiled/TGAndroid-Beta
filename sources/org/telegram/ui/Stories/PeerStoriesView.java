@@ -2705,6 +2705,16 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             this.avatarDrawable.setInfo(chat);
             this.headerView.backupImageView.getImageReceiver().setForUserOrChat(chat, this.avatarDrawable);
             this.headerView.titleView.setText(chat.title);
+            if (chat.verified) {
+                Drawable mutate2 = ContextCompat.getDrawable(getContext(), R.drawable.verified_profile).mutate();
+                mutate2.setAlpha(255);
+                CombinedDrawable combinedDrawable2 = new CombinedDrawable(mutate2, null);
+                combinedDrawable2.setFullsize(true);
+                combinedDrawable2.setCustomSize(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+                this.headerView.titleView.setRightDrawable(combinedDrawable2);
+            } else {
+                this.headerView.titleView.setRightDrawable((Drawable) null);
+            }
         }
         if (this.isActive && (this.isSelf || this.isChannel)) {
             this.storiesController.pollViewsForSelfStories(this.dialogId, true);

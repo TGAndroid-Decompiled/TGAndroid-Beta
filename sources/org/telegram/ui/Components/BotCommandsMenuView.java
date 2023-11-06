@@ -249,7 +249,7 @@ public class BotCommandsMenuView extends View {
         public BotCommandView(Context context) {
             super(context);
             setOrientation(0);
-            setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), 0);
+            setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(8.0f));
             TextView textView = new TextView(this, context) {
                 @Override
                 public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
@@ -263,7 +263,7 @@ public class BotCommandsMenuView extends View {
             int i = Theme.key_windowBackgroundWhiteBlackText;
             textView2.setTextColor(Theme.getColor(i));
             this.description.setTag(Integer.valueOf(i));
-            this.description.setLines(1);
+            this.description.setMaxLines(2);
             this.description.setEllipsize(TextUtils.TruncateAt.END);
             addView(this.description, LayoutHelper.createLinear(-1, -2, 1.0f, 16, 0, 0, AndroidUtilities.dp(8.0f), 0));
             TextView textView3 = new TextView(context);
@@ -274,11 +274,6 @@ public class BotCommandsMenuView extends View {
             textView4.setTextColor(Theme.getColor(i2));
             this.command.setTag(Integer.valueOf(i2));
             addView(this.command, LayoutHelper.createLinear(-2, -2, 0.0f, 16));
-        }
-
-        @Override
-        protected void onMeasure(int i, int i2) {
-            super.onMeasure(i, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
         }
 
         public String getCommand() {

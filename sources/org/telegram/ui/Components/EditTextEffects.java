@@ -289,17 +289,9 @@ public class EditTextEffects extends EditText {
     }
 
     public static boolean allowHackingTextCanvas() {
-        boolean z;
+        String str;
         if (allowHackingTextCanvasCache == null) {
-            if (Build.VERSION.SDK_INT > 20) {
-                String str = Build.MODEL;
-                if (!str.equalsIgnoreCase("NTH-NX9") && !str.equalsIgnoreCase("NTN-LX1") && !str.equalsIgnoreCase("NTN-L22") && !str.equalsIgnoreCase("NTN-LX2") && !str.equalsIgnoreCase("NTN-LX3")) {
-                    z = true;
-                    allowHackingTextCanvasCache = Boolean.valueOf(z);
-                }
-            }
-            z = false;
-            allowHackingTextCanvasCache = Boolean.valueOf(z);
+            allowHackingTextCanvasCache = Boolean.valueOf(Build.VERSION.SDK_INT > 20 && ((str = Build.MANUFACTURER) == null || !(str.equalsIgnoreCase("HONOR") || str.equalsIgnoreCase("HUAWEI"))));
         }
         return allowHackingTextCanvasCache.booleanValue();
     }

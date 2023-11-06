@@ -2838,6 +2838,9 @@ public class AndroidUtilities {
     }
 
     public static void shakeViewSpring(final View view, float f, final Runnable runnable) {
+        if (view == null) {
+            return;
+        }
         int dp = dp(f);
         int i = R.id.spring_tag;
         if (view.getTag(i) != null) {

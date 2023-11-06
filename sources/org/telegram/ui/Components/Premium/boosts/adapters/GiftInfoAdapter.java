@@ -132,7 +132,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
         } else if (itemViewType == 1) {
             LinkCell linkCell = (LinkCell) viewHolder.itemView;
             linkCell.setSlug(this.slug);
-            if (this.giftCode.boost != null) {
+            if (this.giftCode.boost != null && this.slug == null) {
                 linkCell.hideSlug(new Runnable() {
                     @Override
                     public final void run() {
@@ -169,7 +169,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 }
             });
             TLRPC$TL_payments_checkedGiftCode tLRPC$TL_payments_checkedGiftCode2 = this.giftCode;
-            if (tLRPC$TL_payments_checkedGiftCode2.boost != null || tLRPC$TL_payments_checkedGiftCode2.to_id == -1) {
+            if (tLRPC$TL_payments_checkedGiftCode2.boost != null || tLRPC$TL_payments_checkedGiftCode2.flags == -1) {
                 actionBtnCell.setCloseStyle();
                 actionBtnCell.setOnClickListener(new View.OnClickListener() {
                     @Override

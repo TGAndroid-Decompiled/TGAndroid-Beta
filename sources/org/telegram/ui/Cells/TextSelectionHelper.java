@@ -594,11 +594,12 @@ public abstract class TextSelectionHelper<Cell extends SelectableView> {
         }
         int i2 = this.movingHandleStart ? this.selectionStart : this.selectionEnd;
         fillLayoutForOffset(i2, this.layoutBlock);
-        Layout layout = this.layoutBlock.layout;
+        LayoutBlock layoutBlock = this.layoutBlock;
+        Layout layout = layoutBlock.layout;
         if (layout == null) {
             return;
         }
-        int lineForOffset = layout.getLineForOffset(i2);
+        int lineForOffset = layout.getLineForOffset(Utilities.clamp(i2 - layoutBlock.charOffset, layout.getText().length(), 0));
         int lineBottom = layout.getLineBottom(lineForOffset) - layout.getLineTop(lineForOffset);
         int[] coordsInParent = getCoordsInParent();
         int lineTop = (int) (((((layout.getLineTop(lineForOffset) + this.textY) + coordsInParent[1]) - lineBottom) - AndroidUtilities.dp(8.0f)) + this.layoutBlock.yOffset);

@@ -72,10 +72,10 @@ public class GiveawayMessageCell {
     private final TextPaint textPaint;
     private int topHeight;
     private StaticLayout topLayout;
-    private final CharSequence[] chatTitles = new CharSequence[10];
-    private final float[] chatTitleWidths = new float[10];
-    private final boolean[] needNewRow = new boolean[10];
-    private final Rect[] clickRect = new Rect[10];
+    private CharSequence[] chatTitles = new CharSequence[10];
+    private float[] chatTitleWidths = new float[10];
+    private boolean[] needNewRow = new boolean[10];
+    private Rect[] clickRect = new Rect[10];
     private int measuredHeight = 0;
     private int measuredWidth = 0;
 
@@ -218,6 +218,7 @@ public class GiveawayMessageCell {
             createImages();
             setGiftImage(messageObject);
             TLRPC$TL_messageMediaGiveaway tLRPC$TL_messageMediaGiveaway = (TLRPC$TL_messageMediaGiveaway) messageObject.messageOwner.media;
+            checkArraysLimits(tLRPC$TL_messageMediaGiveaway.channels.size());
             int dp2 = AndroidUtilities.dp(148.0f);
             if (AndroidUtilities.isTablet()) {
                 dp = AndroidUtilities.getMinTabletSide() - AndroidUtilities.dp(80.0f);
@@ -229,7 +230,7 @@ public class GiveawayMessageCell {
             spannableStringBuilder.setSpan(new RelativeSizeSpan(1.05f), 0, replaceTags.length(), 33);
             spannableStringBuilder.append((CharSequence) "\n");
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-            spannableStringBuilder2.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGiveawayMsgInfoPlural1", tLRPC$TL_messageMediaGiveaway.quantity, new Object[0])));
+            spannableStringBuilder2.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("BoostingGiveawayMsgInfoPlural1", tLRPC$TL_messageMediaGiveaway.quantity)));
             spannableStringBuilder2.append((CharSequence) "\n");
             boolean z = true;
             spannableStringBuilder2.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingGiveawayMsgInfoPlural2", tLRPC$TL_messageMediaGiveaway.quantity, LocaleController.formatPluralString("BoldMonths", tLRPC$TL_messageMediaGiveaway.months, new Object[0]))));
@@ -276,7 +277,7 @@ public class GiveawayMessageCell {
                     String languageFlag = LocaleController.getLanguageFlag(next);
                     SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
                     if (languageFlag != null) {
-                        spannableStringBuilder4.append((CharSequence) languageFlag).append((CharSequence) " ");
+                        spannableStringBuilder4.append((CharSequence) languageFlag).append((CharSequence) " ");
                     }
                     spannableStringBuilder4.append((CharSequence) displayCountry);
                     arrayList.add(spannableStringBuilder4);
@@ -531,6 +532,28 @@ public class GiveawayMessageCell {
             this.avatarDrawables[i].setTextSize(AndroidUtilities.dp(18.0f));
             this.clickRect[i] = new Rect();
             i++;
+        }
+    }
+
+    private void checkArraysLimits(int i) {
+        ImageReceiver[] imageReceiverArr = this.avatarImageReceivers;
+        if (imageReceiverArr.length < i) {
+            int length = imageReceiverArr.length;
+            this.avatarImageReceivers = (ImageReceiver[]) Arrays.copyOf(imageReceiverArr, i);
+            this.avatarDrawables = (AvatarDrawable[]) Arrays.copyOf(this.avatarDrawables, i);
+            this.avatarVisible = Arrays.copyOf(this.avatarVisible, i);
+            this.chatTitles = (CharSequence[]) Arrays.copyOf(this.chatTitles, i);
+            this.chatTitleWidths = Arrays.copyOf(this.chatTitleWidths, i);
+            this.needNewRow = Arrays.copyOf(this.needNewRow, i);
+            this.clickRect = (Rect[]) Arrays.copyOf(this.clickRect, i);
+            for (int i2 = length - 1; i2 < i; i2++) {
+                this.avatarImageReceivers[i2] = new ImageReceiver(this.parentView);
+                this.avatarImageReceivers[i2].setAllowLoadingOnAttachedOnly(true);
+                this.avatarImageReceivers[i2].setRoundRadius(AndroidUtilities.dp(12.0f));
+                this.avatarDrawables[i2] = new AvatarDrawable();
+                this.avatarDrawables[i2].setTextSize(AndroidUtilities.dp(18.0f));
+                this.clickRect[i2] = new Rect();
+            }
         }
     }
 

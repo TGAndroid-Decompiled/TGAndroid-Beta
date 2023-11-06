@@ -7276,7 +7276,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             ChatActivityMemberRequestsDelegate chatActivityMemberRequestsDelegate = this.pendingRequestsDelegate;
             MessageObject messageObject = null;
             View view = chatActivityMemberRequestsDelegate != null ? chatActivityMemberRequestsDelegate.getView() : null;
-            float max4 = (view == null || view.getVisibility() != 0) ? 0.0f : Math.max(0.0f, view.getHeight() + this.pendingRequestsDelegate.getViewEnterOffset());
+            float max4 = (view == null || view.getVisibility() != 0) ? 0.0f : Math.max(0.0f, (view.getHeight() + this.pendingRequestsDelegate.getViewEnterOffset()) - AndroidUtilities.dp(4.0f));
             float f2 = this.chatListViewPaddingTop;
             float dp = AndroidUtilities.dp(4.0f) + this.contentPaddingTop + max2 + max3 + max4;
             this.chatListViewPaddingTop = dp;

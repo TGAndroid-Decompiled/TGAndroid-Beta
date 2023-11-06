@@ -986,7 +986,8 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
     public static JSONObject makeThemeParams(Theme.ResourcesProvider resourcesProvider) {
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("bg_color", Theme.getColor(Theme.key_dialogBackground, resourcesProvider));
+            int color = Theme.getColor(Theme.key_dialogBackground, resourcesProvider);
+            jSONObject.put("bg_color", color);
             jSONObject.put("section_bg_color", Theme.getColor(Theme.key_windowBackgroundWhite, resourcesProvider));
             jSONObject.put("secondary_bg_color", Theme.getColor(Theme.key_windowBackgroundGray, resourcesProvider));
             jSONObject.put("text_color", Theme.getColor(Theme.key_windowBackgroundWhiteBlackText, resourcesProvider));
@@ -995,10 +996,10 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
             jSONObject.put("button_color", Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
             jSONObject.put("button_text_color", Theme.getColor(Theme.key_featuredStickers_buttonText, resourcesProvider));
             jSONObject.put("header_bg_color", Theme.getColor(Theme.key_actionBarDefault, resourcesProvider));
-            jSONObject.put("accent_text_color", Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider));
-            jSONObject.put("section_header_text_color", Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider));
-            jSONObject.put("subtitle_text_color", Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider));
-            jSONObject.put("destructive_text_color", Theme.getColor(Theme.key_text_RedRegular, resourcesProvider));
+            jSONObject.put("accent_text_color", Theme.blendOver(color, Theme.getColor(Theme.key_windowBackgroundWhiteBlueText4, resourcesProvider)));
+            jSONObject.put("section_header_text_color", Theme.blendOver(color, Theme.getColor(Theme.key_windowBackgroundWhiteBlueHeader, resourcesProvider)));
+            jSONObject.put("subtitle_text_color", Theme.blendOver(color, Theme.getColor(Theme.key_windowBackgroundWhiteGrayText2, resourcesProvider)));
+            jSONObject.put("destructive_text_color", Theme.blendOver(color, Theme.getColor(Theme.key_text_RedRegular, resourcesProvider)));
             return jSONObject;
         } catch (Exception e) {
             FileLog.e(e);

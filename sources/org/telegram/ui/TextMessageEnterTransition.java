@@ -383,7 +383,7 @@ public class TextMessageEnterTransition implements MessageEnterTransitionContain
     }
 
     @Override
-    public void onDraw(android.graphics.Canvas r45) {
+    public void onDraw(android.graphics.Canvas r46) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.TextMessageEnterTransition.onDraw(android.graphics.Canvas):void");
     }
 

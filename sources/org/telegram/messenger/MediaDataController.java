@@ -7292,10 +7292,14 @@ public class MediaDataController extends BaseController {
                     TLRPC$Peer tLRPC$Peer = replyQuote.message.messageOwner.peer_id;
                     if (peer != null && !MessageObject.peersEqual(peer, tLRPC$Peer)) {
                         TLRPC$InputReplyTo tLRPC$InputReplyTo3 = tLRPC$DraftMessage.reply_to;
-                        tLRPC$InputReplyTo3.flags |= 1;
-                        tLRPC$InputReplyTo3.reply_to_peer_id = getMessagesController().getInputPeer(peer);
+                        tLRPC$InputReplyTo3.flags |= 2;
+                        tLRPC$InputReplyTo3.reply_to_peer_id = getMessagesController().getInputPeer(tLRPC$Peer);
                     }
                 }
+            } else if (j != MessageObject.getDialogId(tLRPC$Message2)) {
+                TLRPC$InputReplyTo tLRPC$InputReplyTo4 = tLRPC$DraftMessage.reply_to;
+                tLRPC$InputReplyTo4.flags |= 2;
+                tLRPC$InputReplyTo4.reply_to_peer_id = getMessagesController().getInputPeer(getMessagesController().getPeer(MessageObject.getDialogId(tLRPC$Message2)));
             }
         }
         if (arrayList != null && !arrayList.isEmpty()) {
@@ -7305,10 +7309,11 @@ public class MediaDataController extends BaseController {
         SparseArray<TLRPC$DraftMessage> sparseArray = this.drafts.get(j);
         TLRPC$DraftMessage tLRPC$DraftMessage2 = sparseArray == null ? null : sparseArray.get(i);
         if (!z2) {
-            if (tLRPC$DraftMessage2 != null && tLRPC$DraftMessage2.message.equals(tLRPC$DraftMessage.message) && replyToEquals(tLRPC$DraftMessage2.reply_to, tLRPC$DraftMessage.reply_to) && tLRPC$DraftMessage2.no_webpage == tLRPC$DraftMessage.no_webpage) {
-                return;
+            boolean z3 = true;
+            if (tLRPC$DraftMessage2 == null ? !TextUtils.isEmpty(tLRPC$DraftMessage.message) || ((tLRPC$InputReplyTo = tLRPC$DraftMessage.reply_to) != null && tLRPC$InputReplyTo.reply_to_msg_id != 0) : !tLRPC$DraftMessage2.message.equals(tLRPC$DraftMessage.message) || !replyToEquals(tLRPC$DraftMessage2.reply_to, tLRPC$DraftMessage.reply_to) || tLRPC$DraftMessage2.no_webpage != tLRPC$DraftMessage.no_webpage) {
+                z3 = false;
             }
-            if (tLRPC$DraftMessage2 == null && TextUtils.isEmpty(tLRPC$DraftMessage.message) && ((tLRPC$InputReplyTo = tLRPC$DraftMessage.reply_to) == null || tLRPC$InputReplyTo.reply_to_msg_id == 0)) {
+            if (z3) {
                 return;
             }
         }
@@ -7323,9 +7328,9 @@ public class MediaDataController extends BaseController {
                 }
                 tLRPC$TL_messages_saveDraft.message = tLRPC$DraftMessage.message;
                 tLRPC$TL_messages_saveDraft.no_webpage = tLRPC$DraftMessage.no_webpage;
-                TLRPC$InputReplyTo tLRPC$InputReplyTo4 = tLRPC$DraftMessage.reply_to;
-                tLRPC$TL_messages_saveDraft.reply_to = tLRPC$InputReplyTo4;
-                if (tLRPC$InputReplyTo4 != null) {
+                TLRPC$InputReplyTo tLRPC$InputReplyTo5 = tLRPC$DraftMessage.reply_to;
+                tLRPC$TL_messages_saveDraft.reply_to = tLRPC$InputReplyTo5;
+                if (tLRPC$InputReplyTo5 != null) {
                     tLRPC$TL_messages_saveDraft.flags |= 16;
                 }
                 if ((tLRPC$DraftMessage.flags & 8) != 0) {
@@ -7396,46 +7401,12 @@ public class MediaDataController extends BaseController {
         }
     }
 
-    public void saveDraft(final long r17, final int r19, org.telegram.tgnet.TLRPC$DraftMessage r20, org.telegram.tgnet.TLRPC$Message r21, boolean r22) {
+    public void saveDraft(final long r18, final int r20, org.telegram.tgnet.TLRPC$DraftMessage r21, org.telegram.tgnet.TLRPC$Message r22, boolean r23) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.saveDraft(long, int, org.telegram.tgnet.TLRPC$DraftMessage, org.telegram.tgnet.TLRPC$Message, boolean):void");
     }
 
-    public void lambda$saveDraft$179(int i, final long j, long j2, final int i2) {
-        NativeByteBuffer byteBufferValue;
-        TLRPC$Message tLRPC$Message = null;
-        try {
-            SQLiteCursor queryFinalized = getMessagesStorage().getDatabase().queryFinalized(String.format(Locale.US, "SELECT data FROM messages_v2 WHERE mid = %d and uid = %d", Integer.valueOf(i), Long.valueOf(j)), new Object[0]);
-            if (queryFinalized.next() && (byteBufferValue = queryFinalized.byteBufferValue(0)) != null) {
-                tLRPC$Message = TLRPC$Message.TLdeserialize(byteBufferValue, byteBufferValue.readInt32(false), false);
-                tLRPC$Message.readAttachPath(byteBufferValue, getUserConfig().clientUserId);
-                byteBufferValue.reuse();
-            }
-            queryFinalized.dispose();
-            if (tLRPC$Message != null) {
-                saveDraftReplyMessage(j, i2, tLRPC$Message);
-            } else if (j2 != 0) {
-                TLRPC$TL_channels_getMessages tLRPC$TL_channels_getMessages = new TLRPC$TL_channels_getMessages();
-                tLRPC$TL_channels_getMessages.channel = getMessagesController().getInputChannel(j2);
-                tLRPC$TL_channels_getMessages.id.add(Integer.valueOf(i));
-                getConnectionsManager().sendRequest(tLRPC$TL_channels_getMessages, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        MediaDataController.this.lambda$saveDraft$177(j, i2, tLObject, tLRPC$TL_error);
-                    }
-                });
-            } else {
-                TLRPC$TL_messages_getMessages tLRPC$TL_messages_getMessages = new TLRPC$TL_messages_getMessages();
-                tLRPC$TL_messages_getMessages.id.add(Integer.valueOf(i));
-                getConnectionsManager().sendRequest(tLRPC$TL_messages_getMessages, new RequestDelegate() {
-                    @Override
-                    public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                        MediaDataController.this.lambda$saveDraft$178(j, i2, tLObject, tLRPC$TL_error);
-                    }
-                });
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+    public void lambda$saveDraft$179(int r20, long r21, long r23, final long r25, final int r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MediaDataController.lambda$saveDraft$179(int, long, long, long, int):void");
     }
 
     public void lambda$saveDraft$177(long j, int i, TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
