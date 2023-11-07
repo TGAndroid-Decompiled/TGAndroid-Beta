@@ -719,7 +719,7 @@ public class ThemeColors {
         iArr[Theme.key_code_keyword] = -2075818;
         iArr[Theme.key_code_operator] = -11682817;
         iArr[Theme.key_code_constant] = -8422925;
-        iArr[Theme.key_code_string] = -9520791;
+        iArr[Theme.key_code_string] = -10369198;
         iArr[Theme.key_code_number] = -13467675;
         iArr[Theme.key_code_comment] = Integer.MIN_VALUE;
         iArr[Theme.key_code_function] = -881607;

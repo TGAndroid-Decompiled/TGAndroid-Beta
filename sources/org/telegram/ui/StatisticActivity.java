@@ -398,21 +398,26 @@ public class StatisticActivity extends BaseFragment implements NotificationCente
             boolean booleanValue = ((Boolean) objArr[1]).booleanValue();
             List<BaseFragment> fragmentStack = getParentLayout().getFragmentStack();
             BaseFragment baseFragment = fragmentStack.size() >= 2 ? fragmentStack.get(fragmentStack.size() - 2) : null;
+            if (baseFragment instanceof ChatEditActivity) {
+                getParentLayout().removeFragmentFromStack(baseFragment);
+            }
+            List<BaseFragment> fragmentStack2 = getParentLayout().getFragmentStack();
+            BaseFragment baseFragment2 = fragmentStack2.size() >= 2 ? fragmentStack2.get(fragmentStack2.size() - 2) : null;
             if (booleanValue) {
-                BaseFragment baseFragment2 = fragmentStack.size() >= 3 ? fragmentStack.get(fragmentStack.size() - 3) : null;
-                if (baseFragment instanceof ProfileActivity) {
-                    getParentLayout().removeFragmentFromStack(baseFragment);
+                BaseFragment baseFragment3 = fragmentStack2.size() >= 3 ? fragmentStack2.get(fragmentStack2.size() - 3) : null;
+                if (baseFragment2 instanceof ProfileActivity) {
+                    getParentLayout().removeFragmentFromStack(baseFragment2);
                 }
                 finishFragment();
-                if (baseFragment2 instanceof ChatActivity) {
-                    BoostDialogs.showBulletin(baseFragment2, tLRPC$Chat, true);
+                if (baseFragment3 instanceof ChatActivity) {
+                    BoostDialogs.showBulletin(baseFragment3, tLRPC$Chat, true);
                     return;
                 }
                 return;
             }
             finishFragment();
-            if (baseFragment instanceof ProfileActivity) {
-                BoostDialogs.showBulletin(baseFragment, tLRPC$Chat, false);
+            if (baseFragment2 instanceof ProfileActivity) {
+                BoostDialogs.showBulletin(baseFragment2, tLRPC$Chat, false);
             }
         } else if (i == NotificationCenter.messagesDidLoad) {
             if (((Integer) objArr[10]).intValue() == this.classGuid) {

@@ -656,6 +656,8 @@ public class MessagesController extends BaseController implements NotificationCe
     public ConcurrentHashMap<Long, Integer> onlinePrivacy;
     private Runnable passwordCheckRunnable;
     public PeerColors peerColors;
+    private final long peerDialogRequestTimeout;
+    private final LongSparseArray<Long> peerDialogsRequested;
     public Set<String> pendingSuggestions;
     private LongSparseIntArray pendingUnreadCounter;
     public SparseArray<ImageUpdater> photoSuggestion;
@@ -1891,6 +1893,8 @@ public class MessagesController extends BaseController implements NotificationCe
                 return lambda$new$12;
             }
         };
+        this.peerDialogsRequested = new LongSparseArray<>();
+        this.peerDialogRequestTimeout = 240000L;
         this.dialogPhotos = new LongSparseArray<>();
         this.DIALOGS_LOAD_TYPE_CACHE = 1;
         this.DIALOGS_LOAD_TYPE_CHANNEL = 2;
@@ -9713,7 +9717,12 @@ public class MessagesController extends BaseController implements NotificationCe
                 if (!(inputPeer instanceof TLRPC$TL_inputPeerChannel) || inputPeer.access_hash != 0) {
                     TLRPC$TL_inputDialogPeer tLRPC$TL_inputDialogPeer = new TLRPC$TL_inputDialogPeer();
                     tLRPC$TL_inputDialogPeer.peer = inputPeer;
-                    tLRPC$TL_messages_getPeerDialogs.peers.add(tLRPC$TL_inputDialogPeer);
+                    long peerDialogId = DialogObject.getPeerDialogId(inputPeer);
+                    Long l = this.peerDialogsRequested.get(peerDialogId);
+                    if (l == null || System.currentTimeMillis() - l.longValue() > 240000) {
+                        tLRPC$TL_messages_getPeerDialogs.peers.add(tLRPC$TL_inputDialogPeer);
+                        this.peerDialogsRequested.put(peerDialogId, Long.valueOf(System.currentTimeMillis()));
+                    }
                 }
             }
         } else {
@@ -9723,7 +9732,12 @@ public class MessagesController extends BaseController implements NotificationCe
             }
             TLRPC$TL_inputDialogPeer tLRPC$TL_inputDialogPeer2 = new TLRPC$TL_inputDialogPeer();
             tLRPC$TL_inputDialogPeer2.peer = inputPeer2;
-            tLRPC$TL_messages_getPeerDialogs.peers.add(tLRPC$TL_inputDialogPeer2);
+            long peerDialogId2 = DialogObject.getPeerDialogId(inputPeer2);
+            Long l2 = this.peerDialogsRequested.get(peerDialogId2);
+            if (l2 == null || System.currentTimeMillis() - l2.longValue() > 240000) {
+                tLRPC$TL_messages_getPeerDialogs.peers.add(tLRPC$TL_inputDialogPeer2);
+                this.peerDialogsRequested.put(peerDialogId2, Long.valueOf(System.currentTimeMillis()));
+            }
         }
         if (tLRPC$TL_messages_getPeerDialogs.peers.isEmpty()) {
             return;

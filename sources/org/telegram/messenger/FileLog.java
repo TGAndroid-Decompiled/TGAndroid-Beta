@@ -25,6 +25,7 @@ public class FileLog {
     public static boolean databaseIsMalformed = false;
     private static HashSet<String> excludeRequests = null;
     private static Gson gson = null;
+    private static boolean gsonDisabled = false;
     private static final String mtproto_tag = "MTProto";
     private static final String tag = "tmessages";
     private boolean initied;
@@ -111,12 +112,17 @@ public class FileLog {
             try {
                 checkGson();
                 getInstance().dateFormat.format(System.currentTimeMillis());
-                final String str = "receive message -> " + tLObject.getClass().getSimpleName() + " : " + gson.toJson(tLObject);
+                StringBuilder sb = new StringBuilder();
+                sb.append("receive message -> ");
+                sb.append(tLObject.getClass().getSimpleName());
+                sb.append(" : ");
+                sb.append(gsonDisabled ? tLObject : gson.toJson(tLObject));
+                final String sb2 = sb.toString();
                 final long currentTimeMillis = System.currentTimeMillis();
                 getInstance().logQueue.postRunnable(new Runnable() {
                     @Override
                     public final void run() {
-                        FileLog.lambda$dumpUnparsedMessage$1(currentTimeMillis, str, j);
+                        FileLog.lambda$dumpUnparsedMessage$1(currentTimeMillis, sb2, j);
                     }
                 });
             } catch (Throwable unused) {
@@ -137,6 +143,10 @@ public class FileLog {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static void disableGson(boolean z) {
+        gsonDisabled = z;
     }
 
     private static void checkGson() {

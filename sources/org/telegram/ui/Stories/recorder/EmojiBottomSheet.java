@@ -57,6 +57,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LiteMode;
@@ -1409,6 +1410,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
         this.containerView.addView(tabsView, LayoutHelper.createFrame(-1, -2, 87));
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.stickersDidLoad);
         NotificationCenter.getInstance(this.currentAccount).addObserver(this, NotificationCenter.groupStickersDidLoad);
+        FileLog.disableGson(true);
         MediaDataController.getInstance(this.currentAccount).checkStickers(5);
         MediaDataController.getInstance(this.currentAccount).checkFeaturedEmoji();
         MediaDataController.getInstance(this.currentAccount).checkStickers(0);
@@ -1463,6 +1465,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
         NotificationCenter.getInstance(this.currentAccount).removeObserver(this, NotificationCenter.groupStickersDidLoad);
         closeKeyboard();
         super.dismiss();
+        FileLog.disableGson(false);
     }
 
     public void setBlurDelegate(Utilities.Callback2<Bitmap, Float> callback2) {
@@ -1751,7 +1754,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 this.attached = true;
                 AnimatedEmojiDrawable animatedEmojiDrawable = this.drawable;
                 if (animatedEmojiDrawable != null) {
-                    animatedEmojiDrawable.addView(this.listView);
+                    animatedEmojiDrawable.addView(this);
                 }
                 ImageReceiver imageReceiver = this.imageReceiver;
                 if (imageReceiver != null) {
@@ -1765,7 +1768,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                 this.attached = false;
                 AnimatedEmojiDrawable animatedEmojiDrawable = this.drawable;
                 if (animatedEmojiDrawable != null) {
-                    animatedEmojiDrawable.removeView(this.listView);
+                    animatedEmojiDrawable.removeView(this);
                 }
                 ImageReceiver imageReceiver = this.imageReceiver;
                 if (imageReceiver != null) {

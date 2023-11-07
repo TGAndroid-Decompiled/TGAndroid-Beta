@@ -3755,7 +3755,9 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
                 DialogsActivity.this.notificationsLocker.unlock();
                 DialogsActivity.this.authHintCellAnimating = false;
                 DialogsActivity.this.authHintCellProgress = z ? 1.0f : 0.0f;
-                ((BaseFragment) DialogsActivity.this).fragmentView.requestLayout();
+                if (((BaseFragment) DialogsActivity.this).fragmentView != null) {
+                    ((BaseFragment) DialogsActivity.this).fragmentView.requestLayout();
+                }
                 DialogsActivity.this.viewPages[0].listView.requestLayout();
                 DialogsActivity.this.viewPages[0].listView.setTranslationY(0.0f);
                 if (z) {

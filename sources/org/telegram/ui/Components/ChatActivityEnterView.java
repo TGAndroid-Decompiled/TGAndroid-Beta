@@ -3592,6 +3592,8 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             return;
         }
         BotCommandsMenuContainer botCommandsMenuContainer = new BotCommandsMenuContainer(getContext()) {
+            boolean ignoreLayout = false;
+
             {
                 ChatActivityEnterView.this = this;
             }
@@ -3602,6 +3604,16 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 if (ChatActivityEnterView.this.botCommandsMenuButton != null) {
                     ChatActivityEnterView.this.botCommandsMenuButton.setOpened(false);
                 }
+            }
+
+            @Override
+            protected void onLayout(boolean z, int i, int i2, int i3, int i4) {
+                super.onLayout(z, i, i2, i3, i4);
+                if (this.ignoreLayout) {
+                    return;
+                }
+                this.ignoreLayout = true;
+                ChatActivityEnterView.this.updateBotCommandsMenuContainerTopPadding();
             }
         };
         this.botCommandsMenuContainer = botCommandsMenuContainer;
@@ -3675,15 +3687,26 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         }
     }
 
-    private void updateBotCommandsMenuContainerTopPadding() {
+    public void updateBotCommandsMenuContainerTopPadding() {
         int max;
         LinearLayoutManager linearLayoutManager;
         int findFirstVisibleItemPosition;
         View findViewByPosition;
-        if (this.botCommandsMenuContainer == null) {
+        BotCommandsMenuContainer botCommandsMenuContainer = this.botCommandsMenuContainer;
+        if (botCommandsMenuContainer == null) {
             return;
         }
-        if (this.botCommandsAdapter.getItemCount() > 4) {
+        int childCount = botCommandsMenuContainer.listView.getChildCount();
+        int i = 0;
+        for (int i2 = 0; i2 < childCount; i2++) {
+            View childAt = this.botCommandsMenuContainer.listView.getChildAt(i2);
+            if (i2 < 4) {
+                i += childAt.getMeasuredHeight();
+            }
+        }
+        if (i > 0) {
+            max = Math.max(0, ((this.sizeNotifierLayout.getMeasuredHeight() - i) - AndroidUtilities.dp(8.0f)) - AndroidUtilities.dp(childCount > 4 ? 12.0f : 0.0f));
+        } else if (this.botCommandsAdapter.getItemCount() > 4) {
             max = Math.max(0, this.sizeNotifierLayout.getMeasuredHeight() - AndroidUtilities.dp(162.8f));
         } else {
             max = Math.max(0, this.sizeNotifierLayout.getMeasuredHeight() - AndroidUtilities.dp((Math.max(1, Math.min(4, this.botCommandsAdapter.getItemCount())) * 36) + 8));

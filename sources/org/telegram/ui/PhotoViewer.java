@@ -107,6 +107,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScrollerEnd;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.analytics.AnalyticsListener;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import java.io.File;
@@ -7176,7 +7177,10 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                 FileLog.e(e);
             }
             if (this.usedSurfaceView) {
-                this.videoPlayer.player.setVideoTextureView(null);
+                ExoPlayer exoPlayer = this.videoPlayer.player;
+                if (exoPlayer != null) {
+                    exoPlayer.setVideoTextureView(null);
+                }
                 this.videoPlayer.setSurfaceView(this.videoSurfaceView);
                 this.videoSurfaceView.setVisibility(4);
                 this.waitingForFirstTextureUpload = 2;
