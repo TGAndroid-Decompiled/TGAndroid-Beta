@@ -55,7 +55,7 @@ public class PhotoEditToolCell extends FrameLayout {
         addView(this.nameTextView, LayoutHelper.createFrame(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
         TextView textView2 = new TextView(context);
         this.valueTextView = textView2;
-        textView2.setTextColor(getThemedColor(Theme.key_dialogFloatingButton));
+        textView2.setTextColor(getThemedColor(Theme.key_chat_editMediaButton));
         this.valueTextView.setTextSize(1, 12.0f);
         this.valueTextView.setGravity(5);
         this.valueTextView.setSingleLine(true);

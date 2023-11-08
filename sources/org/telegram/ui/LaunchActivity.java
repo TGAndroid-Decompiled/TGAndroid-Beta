@@ -1114,12 +1114,7 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
         int i = this.currentAccount;
         long j = tLRPC$TL_attachMenuBot.bot_id;
         botWebViewSheet.requestWebView(i, j, j, tLRPC$TL_attachMenuBot.short_name, null, 1, 0, false, null, null, false, str, null, 2);
-        BaseFragment lastFragment = getLastFragment();
-        if (lastFragment != null) {
-            lastFragment.showDialog(botWebViewSheet);
-        } else {
-            botWebViewSheet.show();
-        }
+        botWebViewSheet.show();
     }
 
     @Override
@@ -3657,19 +3652,11 @@ public class LaunchActivity extends BasePermissionsActivity implements INavigati
     }
 
     public void lambda$processWebAppBot$102(BaseFragment baseFragment, int i, TLRPC$User tLRPC$User, TLRPC$TL_messages_botApp tLRPC$TL_messages_botApp, AtomicBoolean atomicBoolean, String str, boolean z) {
-        BotWebViewSheet botWebViewSheet;
-        BotWebViewSheet botWebViewSheet2 = new BotWebViewSheet(this, baseFragment.getResourceProvider());
-        botWebViewSheet2.setParentActivity(this);
+        BotWebViewSheet botWebViewSheet = new BotWebViewSheet(this, baseFragment.getResourceProvider());
+        botWebViewSheet.setParentActivity(this);
         long j = tLRPC$User.id;
-        botWebViewSheet2.requestWebView(i, j, j, null, null, 3, 0, false, baseFragment, tLRPC$TL_messages_botApp.app, atomicBoolean.get(), str, tLRPC$User);
-        BaseFragment lastFragment = getLastFragment();
-        if (lastFragment != null) {
-            botWebViewSheet = botWebViewSheet2;
-            lastFragment.showDialog(botWebViewSheet);
-        } else {
-            botWebViewSheet = botWebViewSheet2;
-            botWebViewSheet.show();
-        }
+        botWebViewSheet.requestWebView(i, j, j, null, null, 3, 0, false, baseFragment, tLRPC$TL_messages_botApp.app, atomicBoolean.get(), str, tLRPC$User);
+        botWebViewSheet.show();
         if (tLRPC$TL_messages_botApp.inactive || z) {
             botWebViewSheet.showJustAddedBulletin();
         }

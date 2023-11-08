@@ -155,7 +155,7 @@ public class StickerSetNameCell extends FrameLayout {
     }
 
     private void updateTextSearchSpan() {
-        if (this.stickerSetName == null || this.stickerSetNameSearchLength == 0) {
+        if (this.stickerSetName == null || this.stickerSetNameSearchLength <= 0) {
             return;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(this.stickerSetName);

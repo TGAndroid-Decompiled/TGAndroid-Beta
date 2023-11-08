@@ -6334,7 +6334,7 @@ public class MessagesStorage extends BaseController {
         }
     }
 
-    public void lambda$putMessages$177(java.util.ArrayList<org.telegram.tgnet.TLRPC$Message> r52, boolean r53, boolean r54, int r55, boolean r56, boolean r57, int r58) {
+    public void lambda$putMessages$177(java.util.ArrayList<org.telegram.tgnet.TLRPC$Message> r54, boolean r55, boolean r56, int r57, boolean r58, boolean r59, int r60) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagesStorage.lambda$putMessages$177(java.util.ArrayList, boolean, boolean, int, boolean, boolean, int):void");
     }
 

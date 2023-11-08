@@ -8391,7 +8391,7 @@ public class ChatMessageCell extends BaseCell implements SeekBar.SeekBarDelegate
             return false;
         }
         for (int i = 0; i < arrayList.size(); i++) {
-            if (findProgressLoadingLink(loadingDrawableLocation, linkPath, arrayList.get(i).textLayout, arrayList.get(i).textYOffset, i)) {
+            if (findProgressLoadingLink(loadingDrawableLocation, linkPath, arrayList.get(i).textLayout, 0.0f, i)) {
                 return true;
             }
         }

@@ -69,7 +69,7 @@ import org.telegram.ui.DialogsActivity;
 import org.telegram.ui.Stories.StoriesController;
 import org.telegram.ui.Stories.StoriesListPlaceProvider;
 public class DialogsAdapter extends RecyclerListView.SelectionAdapter implements DialogCell.DialogCellDelegate {
-    private static final boolean ALLOW_UPDATE_IN_BACKGROUND = BuildVars.DEBUG_VERSION;
+    private static final boolean ALLOW_UPDATE_IN_BACKGROUND = BuildVars.DEBUG_PRIVATE_VERSION;
     private ArchiveHintCell archiveHintCell;
     private Drawable arrowDrawable;
     private boolean collapsedView;

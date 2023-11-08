@@ -1,10 +1,10 @@
 package org.telegram.messenger;
 
 import org.telegram.ui.Components.Bulletin;
-public final class MediaDataController$$ExternalSyntheticLambda155 implements Runnable {
+public final class MediaDataController$$ExternalSyntheticLambda156 implements Runnable {
     public final Bulletin.UndoButton f$0;
 
-    public MediaDataController$$ExternalSyntheticLambda155(Bulletin.UndoButton undoButton) {
+    public MediaDataController$$ExternalSyntheticLambda156(Bulletin.UndoButton undoButton) {
         this.f$0 = undoButton;
     }
 

@@ -326,7 +326,7 @@ public class CaptionContainerView extends FrameLayout {
         Drawable mutate = context.getResources().getDrawable(R.drawable.input_done).mutate();
         this.applyButtonCheck = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogFloatingIcon), PorterDuff.Mode.SRC_IN));
-        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(16.0f), Theme.getColor(Theme.key_dialogFloatingButton, resourcesProvider)), this.applyButtonCheck, 0, AndroidUtilities.dp(1.0f));
+        CombinedDrawable combinedDrawable = new CombinedDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(16.0f), Theme.getColor(Theme.key_chat_editMediaButton, resourcesProvider)), this.applyButtonCheck, 0, AndroidUtilities.dp(1.0f));
         this.applyButtonDrawable = combinedDrawable;
         combinedDrawable.setCustomSize(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
         this.applyButton.setImageDrawable(this.applyButtonDrawable);
@@ -1056,7 +1056,7 @@ public class CaptionContainerView extends FrameLayout {
     public void updateColors(Theme.ResourcesProvider resourcesProvider) {
         this.resourcesProvider = resourcesProvider;
         this.applyButtonCheck.setColorFilter(new PorterDuffColorFilter(Theme.getColor(Theme.key_dialogFloatingIcon), PorterDuff.Mode.SRC_IN));
-        this.applyButtonDrawable.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(16.0f), Theme.getColor(Theme.key_dialogFloatingButton, resourcesProvider)));
+        this.applyButtonDrawable.setBackgroundDrawable(Theme.createCircleDrawable(AndroidUtilities.dp(16.0f), Theme.getColor(Theme.key_chat_editMediaButton, resourcesProvider)));
     }
 
     @Override

@@ -224,7 +224,7 @@ public class PhotoCropView extends FrameLayout {
                 this.circlePaint.setAlpha((int) (this.flashAlpha * 255.0f));
                 canvas.drawCircle(actualRect.centerX(), actualRect.centerY(), actualRect.width() / 2.0f, this.circlePaint);
             }
-            this.circlePaint.setColor(getThemedColor(Theme.key_dialogFloatingButton));
+            this.circlePaint.setColor(getThemedColor(Theme.key_chat_editMediaButton));
             this.circlePaint.setAlpha(Math.min(255, (int) (this.thumbAnimationProgress * 255.0f * this.thumbImageVisibleProgress)));
             canvas.drawCircle(videoThumbX + i, measuredHeight + dp + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(3.0f), this.circlePaint);
         }

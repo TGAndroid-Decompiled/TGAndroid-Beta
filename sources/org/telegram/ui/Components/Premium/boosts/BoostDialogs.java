@@ -684,7 +684,7 @@ public class BoostDialogs {
         GiftInfoBottomSheet.show(lastFragment, tLRPC$TL_payments_giveawayInfoResults.gift_code_slug);
     }
 
-    public static void showPrivateChannelAlert(Context context, Theme.ResourcesProvider resourcesProvider, final Runnable runnable) {
+    public static void showPrivateChannelAlert(Context context, Theme.ResourcesProvider resourcesProvider, final Runnable runnable, final Runnable runnable2) {
         final AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         AlertDialog.Builder builder = new AlertDialog.Builder(context, resourcesProvider);
         builder.setTitle(LocaleController.getString("BoostingGiveawayPrivateChannel", R.string.BoostingGiveawayPrivateChannel));
@@ -692,7 +692,7 @@ public class BoostDialogs {
         builder.setPositiveButton(LocaleController.getString("Add", R.string.Add), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i) {
-                atomicBoolean.set(true);
+                BoostDialogs.lambda$showPrivateChannelAlert$19(atomicBoolean, runnable2, dialogInterface, i);
             }
         });
         builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
@@ -708,6 +708,11 @@ public class BoostDialogs {
             }
         });
         builder.show();
+    }
+
+    public static void lambda$showPrivateChannelAlert$19(AtomicBoolean atomicBoolean, Runnable runnable, DialogInterface dialogInterface, int i) {
+        atomicBoolean.set(true);
+        runnable.run();
     }
 
     public static void lambda$showPrivateChannelAlert$21(AtomicBoolean atomicBoolean, Runnable runnable, DialogInterface dialogInterface) {
@@ -873,6 +878,29 @@ public class BoostDialogs {
         builder.setPositiveButton(LocaleController.getString("OK", R.string.OK), new DialogInterface.OnClickListener() {
             @Override
             public final void onClick(DialogInterface dialogInterface, int i3) {
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    public static void showStartGiveawayDialog(final Runnable runnable) {
+        BaseFragment lastFragment = LaunchActivity.getLastFragment();
+        if (lastFragment == null) {
+            return;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(lastFragment.getContext(), lastFragment.getResourceProvider());
+        builder.setTitle(LocaleController.getString("BoostingStartGiveawayConfirmTitle", R.string.BoostingStartGiveawayConfirmTitle));
+        builder.setMessage(AndroidUtilities.replaceTags(LocaleController.getString("BoostingStartGiveawayConfirmText", R.string.BoostingStartGiveawayConfirmText)));
+        builder.setPositiveButton(LocaleController.getString("Start", R.string.Start), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
+                runnable.run();
+            }
+        });
+        builder.setNegativeButton(LocaleController.getString("Cancel", R.string.Cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public final void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
             }
         });

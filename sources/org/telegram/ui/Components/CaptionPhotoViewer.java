@@ -328,6 +328,6 @@ public class CaptionPhotoViewer extends CaptionContainerView {
     @Override
     public void updateColors(Theme.ResourcesProvider resourcesProvider) {
         super.updateColors(resourcesProvider);
-        this.timerDrawable.updateColors(-1, Theme.getColor(Theme.key_dialogFloatingButton, resourcesProvider));
+        this.timerDrawable.updateColors(-1, Theme.getColor(Theme.key_chat_editMediaButton, resourcesProvider));
     }
 }

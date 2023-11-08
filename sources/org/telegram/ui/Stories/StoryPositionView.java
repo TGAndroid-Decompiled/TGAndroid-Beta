@@ -41,7 +41,7 @@ public class StoryPositionView {
         }
         canvas.save();
         peerHeaderView.titleView.setRightPadding((int) this.textDrawable.getCurrentWidth());
-        canvas.translate((((AndroidUtilities.dp(4.0f) + peerHeaderView.getLeft()) + peerHeaderView.titleView.getLeft()) + peerHeaderView.titleView.getTextWidth()) - Utilities.clamp((peerHeaderView.titleView.getTextWidth() + currentWidth) - peerHeaderView.titleView.getWidth(), currentWidth, 0), ((peerHeaderView.getY() + peerHeaderView.titleView.getTop()) + (this.textDrawable.getHeight() / 2.0f)) - 1.0f);
+        canvas.translate(((((AndroidUtilities.dp(4.0f) + peerHeaderView.getLeft()) + peerHeaderView.titleView.getLeft()) + peerHeaderView.titleView.getTextWidth()) + peerHeaderView.titleView.getRightDrawableWidth()) - Utilities.clamp(((peerHeaderView.titleView.getTextWidth() + peerHeaderView.titleView.getRightDrawableWidth()) + currentWidth) - peerHeaderView.titleView.getWidth(), currentWidth, 0), ((peerHeaderView.getY() + peerHeaderView.titleView.getTop()) + (this.textDrawable.getHeight() / 2.0f)) - 1.0f);
         float dp = AndroidUtilities.dp(8.0f);
         float dp2 = AndroidUtilities.dp(2.0f);
         AndroidUtilities.rectTmp.set(-dp, -dp2, this.textDrawable.getCurrentWidth() + dp, this.textDrawable.getHeight() + dp2);

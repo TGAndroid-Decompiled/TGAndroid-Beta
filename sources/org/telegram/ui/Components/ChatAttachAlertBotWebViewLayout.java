@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextPaint;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -29,6 +30,7 @@ import java.util.Iterator;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
@@ -460,7 +462,14 @@ public class ChatAttachAlertBotWebViewLayout extends ChatAttachAlert.AttachAlert
 
     @Override
     void onShow(ChatAttachAlert.AttachAlertLayout attachAlertLayout) {
-        this.parentAlert.actionBar.setTitle(UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId))));
+        CharSequence userName = UserObject.getUserName(MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(this.botId)));
+        try {
+            TextPaint textPaint = new TextPaint();
+            textPaint.setTextSize(AndroidUtilities.dp(20.0f));
+            userName = Emoji.replaceEmoji(userName, textPaint.getFontMetricsInt(), false);
+        } catch (Exception unused) {
+        }
+        this.parentAlert.actionBar.setTitle(userName);
         this.swipeContainer.setSwipeOffsetY(0.0f);
         if (this.webViewContainer.getWebView() != null) {
             this.webViewContainer.getWebView().scrollTo(0, 0);

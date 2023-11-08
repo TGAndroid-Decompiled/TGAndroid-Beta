@@ -489,6 +489,14 @@ public class SimpleTextView extends View {
         return this.textWidth;
     }
 
+    public int getRightDrawableWidth() {
+        Drawable drawable = this.rightDrawable;
+        if (drawable == null) {
+            return 0;
+        }
+        return (int) (this.drawablePadding + (drawable.getIntrinsicWidth() * this.rightDrawableScale));
+    }
+
     public int getTextHeight() {
         return this.textHeight;
     }

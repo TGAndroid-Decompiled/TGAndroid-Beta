@@ -7934,7 +7934,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
         int i = this.currentAccount;
         TLRPC$User tLRPC$User = this.currentUser;
         botWebViewSheet.requestWebView(i, tLRPC$User != null ? tLRPC$User.id : this.currentChat.id, this.mentionContainer.getAdapter().getFoundContextBot().id, tLRPC$TL_inlineBotWebView.text, tLRPC$TL_inlineBotWebView.url, 1, 0, false, 1);
-        showDialog(botWebViewSheet);
+        botWebViewSheet.show();
     }
 
     public void lambda$processInlineBotWebView$92(Runnable runnable, Boolean bool) {
@@ -15472,7 +15472,7 @@ public class ChatActivity extends BaseFragment implements NotificationCenter.Not
             MessageObject messageObject3 = new MessageObject(this.currentAccount, tLRPC$Message, (AbstractMap<Long, TLRPC$User>) getMessagesController().getUsers(), false, false);
             this.replyingMessageObject = messageObject3;
             TLRPC$InputReplyTo tLRPC$InputReplyTo2 = tLRPC$DraftMessage.reply_to;
-            if (tLRPC$InputReplyTo2 != null && (tLRPC$InputReplyTo2.flags & 64) != 0) {
+            if (tLRPC$InputReplyTo2 != null && (tLRPC$InputReplyTo2.flags & 4) != 0) {
                 this.replyingQuote = ReplyQuote.from(messageObject3, tLRPC$InputReplyTo2.quote_text);
             }
             checkNewMessagesOnQuoteEdit(false);

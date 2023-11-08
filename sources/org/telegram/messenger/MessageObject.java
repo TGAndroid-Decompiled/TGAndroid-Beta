@@ -800,10 +800,10 @@ public class MessageObject {
         public AtomicReference<Layout> spoilersPatchedTextLayout = new AtomicReference<>();
         public List<SpoilerEffect> spoilers = new ArrayList();
 
-        public void layoutCode(String str, int i) {
-            boolean z = i >= 75;
-            this.hasCodeCopyButton = z;
-            if (z) {
+        public void layoutCode(String str, int i, boolean z) {
+            boolean z2 = i >= 75 && !z;
+            this.hasCodeCopyButton = z2;
+            if (z2) {
                 this.copyText = new Text(LocaleController.getString(R.string.CopyCode).toUpperCase(), SharedConfig.fontSize - 3, AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
                 Drawable mutate = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.msg_copy).mutate();
                 this.copyIcon = mutate;
@@ -3794,7 +3794,7 @@ public class MessageObject {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.applyEntities():boolean");
     }
 
-    public void generateLayout(org.telegram.tgnet.TLRPC$User r38) {
+    public void generateLayout(org.telegram.tgnet.TLRPC$User r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.generateLayout(org.telegram.tgnet.TLRPC$User):void");
     }
 
@@ -3814,7 +3814,7 @@ public class MessageObject {
         public int textWidth;
         public float textXOffset;
 
-        public TextLayoutBlocks(org.telegram.messenger.MessageObject r37, java.lang.CharSequence r38, android.text.TextPaint r39, int r40) {
+        public TextLayoutBlocks(org.telegram.messenger.MessageObject r39, java.lang.CharSequence r40, android.text.TextPaint r41, int r42) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessageObject.TextLayoutBlocks.<init>(org.telegram.messenger.MessageObject, java.lang.CharSequence, android.text.TextPaint, int):void");
         }
     }

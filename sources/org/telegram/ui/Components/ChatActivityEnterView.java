@@ -3394,12 +3394,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             int i = this.currentAccount;
             long j = this.dialog_id;
             botWebViewSheet.requestWebView(i, j, j, this.botMenuWebViewTitle, this.botMenuWebViewUrl, 2, 0, false);
-            BaseFragment lastFragment = LaunchActivity.getLastFragment();
-            if (lastFragment != null) {
-                lastFragment.showDialog(botWebViewSheet);
-            } else {
-                botWebViewSheet.show();
-            }
+            botWebViewSheet.show();
             BotCommandsMenuView botCommandsMenuView = this.botCommandsMenuButton;
             if (botCommandsMenuView != null) {
                 botCommandsMenuView.setOpened(false);
@@ -5819,50 +5814,65 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             messageObject2.editingMessageEntities = entities;
             messageObject2.editingMessageSearchWebPage = this.messageWebPageSearch;
             ChatActivity chatActivity = this.parentFragment;
-            if (chatActivity != null && (messagePreviewParams = chatActivity.messagePreviewParams) != null) {
-                if (chatActivity.foundWebPage instanceof TLRPC$TL_webPagePending) {
-                    messageObject2.editingMessageSearchWebPage = false;
-                    int i = messageObject2.type;
-                    if (i == 0 || i == 19) {
-                        messageObject2.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
-                        this.editingMessageObject.messageOwner.media.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
-                    }
-                } else if (messagePreviewParams.webpage != null) {
-                    messageObject2.editingMessageSearchWebPage = false;
-                    messageObject2.messageOwner.media = new TLRPC$TL_messageMediaWebPage();
-                    TLRPC$MessageMedia tLRPC$MessageMedia2 = this.editingMessageObject.messageOwner.media;
-                    tLRPC$MessageMedia2.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
-                    tLRPC$MessageMedia2.webpage = this.parentFragment.messagePreviewParams.webpage;
-                } else {
-                    messageObject2.editingMessageSearchWebPage = false;
-                    int i2 = messageObject2.type;
-                    if (i2 == 0 || i2 == 19) {
-                        messageObject2.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
-                        this.editingMessageObject.messageOwner.media.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
-                    }
-                }
-                TLRPC$Message tLRPC$Message = this.editingMessageObject.messageOwner;
-                MessagePreviewParams messagePreviewParams2 = this.parentFragment.messagePreviewParams;
-                tLRPC$Message.invert_media = messagePreviewParams2.webpageTop;
-                if (messagePreviewParams2.hasMedia) {
-                    TLRPC$MessageMedia tLRPC$MessageMedia3 = tLRPC$Message.media;
-                    if (tLRPC$MessageMedia3 instanceof TLRPC$TL_messageMediaWebPage) {
-                        boolean z = messagePreviewParams2.webpageSmall;
-                        tLRPC$MessageMedia3.force_small_media = z;
-                        tLRPC$MessageMedia3.force_large_media = true ^ z;
-                    }
-                }
+            if (chatActivity != null && chatActivity.getCurrentChat() != null && !ChatObject.canSendEmbed(this.parentFragment.getCurrentChat())) {
+                MessageObject messageObject3 = this.editingMessageObject;
+                messageObject3.editingMessageSearchWebPage = false;
+                TLRPC$Message tLRPC$Message = messageObject3.messageOwner;
+                tLRPC$Message.flags &= -513;
+                tLRPC$Message.media = null;
             } else {
-                messageObject2.editingMessageSearchWebPage = false;
-                int i3 = messageObject2.type;
-                if (i3 == 0 || i3 == 19) {
-                    messageObject2.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
-                    this.editingMessageObject.messageOwner.media.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                ChatActivity chatActivity2 = this.parentFragment;
+                if (chatActivity2 != null && (messagePreviewParams = chatActivity2.messagePreviewParams) != null) {
+                    if (chatActivity2.foundWebPage instanceof TLRPC$TL_webPagePending) {
+                        MessageObject messageObject4 = this.editingMessageObject;
+                        messageObject4.editingMessageSearchWebPage = false;
+                        int i = messageObject4.type;
+                        if (i == 0 || i == 19) {
+                            messageObject4.messageOwner.media = new TLRPC$TL_messageMediaEmpty();
+                            this.editingMessageObject.messageOwner.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                        }
+                    } else if (messagePreviewParams.webpage != null) {
+                        MessageObject messageObject5 = this.editingMessageObject;
+                        messageObject5.editingMessageSearchWebPage = false;
+                        TLRPC$Message tLRPC$Message2 = messageObject5.messageOwner;
+                        tLRPC$Message2.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                        tLRPC$Message2.media = new TLRPC$TL_messageMediaWebPage();
+                        this.editingMessageObject.messageOwner.media.webpage = this.parentFragment.messagePreviewParams.webpage;
+                    } else {
+                        MessageObject messageObject6 = this.editingMessageObject;
+                        messageObject6.editingMessageSearchWebPage = false;
+                        int i2 = messageObject6.type;
+                        if (i2 == 0 || i2 == 19) {
+                            TLRPC$Message tLRPC$Message3 = messageObject6.messageOwner;
+                            tLRPC$Message3.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                            tLRPC$Message3.media = new TLRPC$TL_messageMediaEmpty();
+                        }
+                    }
+                    TLRPC$Message tLRPC$Message4 = this.editingMessageObject.messageOwner;
+                    MessagePreviewParams messagePreviewParams2 = this.parentFragment.messagePreviewParams;
+                    tLRPC$Message4.invert_media = messagePreviewParams2.webpageTop;
+                    if (messagePreviewParams2.hasMedia) {
+                        TLRPC$MessageMedia tLRPC$MessageMedia2 = tLRPC$Message4.media;
+                        if (tLRPC$MessageMedia2 instanceof TLRPC$TL_messageMediaWebPage) {
+                            boolean z = messagePreviewParams2.webpageSmall;
+                            tLRPC$MessageMedia2.force_small_media = z;
+                            tLRPC$MessageMedia2.force_large_media = true ^ z;
+                        }
+                    }
+                } else {
+                    MessageObject messageObject7 = this.editingMessageObject;
+                    messageObject7.editingMessageSearchWebPage = false;
+                    int i3 = messageObject7.type;
+                    if (i3 == 0 || i3 == 19) {
+                        TLRPC$Message tLRPC$Message5 = messageObject7.messageOwner;
+                        tLRPC$Message5.flags |= LiteMode.FLAG_CALLS_ANIMATIONS;
+                        tLRPC$Message5.media = new TLRPC$TL_messageMediaEmpty();
+                    }
                 }
             }
             SendMessagesHelper sendMessagesHelper = SendMessagesHelper.getInstance(this.currentAccount);
-            MessageObject messageObject3 = this.editingMessageObject;
-            sendMessagesHelper.editMessage(messageObject3, null, null, null, null, null, false, messageObject3.hasMediaSpoilers(), null);
+            MessageObject messageObject8 = this.editingMessageObject;
+            sendMessagesHelper.editMessage(messageObject8, null, null, null, null, null, false, messageObject8.hasMediaSpoilers(), null);
         }
         setEditingMessageObject(null, false);
     }
@@ -5878,7 +5888,6 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
         int i4;
         int i5;
         MessageObject.SendAnimationData sendAnimationData;
-        ?? r9;
         MessagePreviewParams messagePreviewParams;
         MessagePreviewParams messagePreviewParams2;
         MessagePreviewParams messagePreviewParams3;
@@ -5889,6 +5898,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             chatActivity2.showQuoteMessageUpdate();
             return false;
         }
+        int i6 = 1;
         int[] iArr = new int[1];
         CharSequence charSequence2 = charSequence;
         Emoji.parseEmojis(charSequence2, iArr);
@@ -5897,7 +5907,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             charSequence2 = AndroidUtilities.getTrimmedString(charSequence);
         }
         boolean supportsSendingNewEntities = supportsSendingNewEntities();
-        int i6 = this.accountInstance.getMessagesController().maxMessageLength;
+        int i7 = this.accountInstance.getMessagesController().maxMessageLength;
         if (charSequence2.length() == 0) {
             return false;
         }
@@ -5906,29 +5916,29 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 this.delegate.prepareMessageSending();
             }
         }
-        int i7 = 0;
+        int i8 = 0;
         while (true) {
-            int i8 = i7 + i6;
-            if (charSequence2.length() > i8) {
-                int i9 = i8 - 1;
+            int i9 = i8 + i7;
+            if (charSequence2.length() > i9) {
+                int i10 = i9 - 1;
                 i3 = -1;
                 i4 = -1;
                 i5 = -1;
-                for (int i10 = 0; i9 > i7 && i10 < 300; i10++) {
-                    char charAt = charSequence2.charAt(i9);
-                    char charAt2 = i9 > 0 ? charSequence2.charAt(i9 - 1) : ' ';
+                for (int i11 = 0; i10 > i8 && i11 < 300; i11++) {
+                    char charAt = charSequence2.charAt(i10);
+                    char charAt2 = i10 > 0 ? charSequence2.charAt(i10 - 1) : ' ';
                     if (charAt == '\n' && charAt2 == '\n') {
-                        i2 = i9;
+                        i2 = i10;
                         break;
                     }
                     if (charAt == '\n') {
-                        i5 = i9;
+                        i5 = i10;
                     } else if (i3 < 0 && Character.isWhitespace(charAt) && charAt2 == '.') {
-                        i3 = i9;
+                        i3 = i10;
                     } else if (i4 < 0 && Character.isWhitespace(charAt)) {
-                        i4 = i9;
+                        i4 = i10;
                     }
-                    i9--;
+                    i10--;
                 }
                 i2 = -1;
             } else {
@@ -5937,7 +5947,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 i4 = -1;
                 i5 = -1;
             }
-            int min = Math.min(i8, charSequence2.length());
+            int min = Math.min(i9, charSequence2.length());
             if (i2 > 0) {
                 min = i2;
             } else if (i5 > 0) {
@@ -5947,11 +5957,12 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             } else if (i4 > 0) {
                 min = i4;
             }
-            CharSequence subSequence = charSequence2.subSequence(i7, min);
+            CharSequence subSequence = charSequence2.subSequence(i8, min);
             if (!z2) {
                 subSequence = AndroidUtilities.getTrimmedString(subSequence);
             }
-            CharSequence[] charSequenceArr = {subSequence};
+            CharSequence[] charSequenceArr = new CharSequence[i6];
+            charSequenceArr[0] = subSequence;
             ArrayList<TLRPC$MessageEntity> entities = MediaDataController.getInstance(this.currentAccount).getEntities(charSequenceArr, supportsSendingNewEntities);
             if (this.delegate.hasForwardingMessages()) {
                 sendAnimationData = null;
@@ -5964,7 +5975,7 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
                 if (editTextCaption != null) {
                     editTextCaption.getLocationInWindow(this.location);
                     sendAnimationData2.x = this.location[0] + AndroidUtilities.dp(11.0f);
-                    sendAnimationData2.y = this.location[1] + AndroidUtilities.dp(19.0f);
+                    sendAnimationData2.y = this.location[i6] + AndroidUtilities.dp(19.0f);
                 } else {
                     sendAnimationData2.x = AndroidUtilities.dp(59.0f);
                     sendAnimationData2.y = AndroidUtilities.displaySize.y - AndroidUtilities.dp(19.0f);
@@ -5975,15 +5986,15 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             applyStoryToSendMessageParams(of);
             ChatActivity chatActivity3 = this.parentFragment;
             of.invert_media = (chatActivity3 == null || (messagePreviewParams3 = chatActivity3.messagePreviewParams) == null || !messagePreviewParams3.webpageTop) ? false : true;
-            TLRPC$WebPage tLRPC$WebPage = this.messageWebPage;
-            if (tLRPC$WebPage instanceof TLRPC$TL_webPagePending) {
-                of.searchLinks = true;
-                r9 = 0;
+            if (chatActivity3 != null && chatActivity3.getCurrentChat() != null && !ChatObject.canSendEmbed(this.parentFragment.getCurrentChat())) {
+                of.searchLinks = false;
                 of.mediaWebPage = null;
             } else {
-                r9 = 0;
-                r9 = 0;
-                if (tLRPC$WebPage != null) {
+                TLRPC$WebPage tLRPC$WebPage = this.messageWebPage;
+                if (tLRPC$WebPage instanceof TLRPC$TL_webPagePending) {
+                    of.searchLinks = true;
+                    of.mediaWebPage = null;
+                } else if (tLRPC$WebPage != null) {
                     TLRPC$TL_messageMediaWebPage tLRPC$TL_messageMediaWebPage = new TLRPC$TL_messageMediaWebPage();
                     of.mediaWebPage = tLRPC$TL_messageMediaWebPage;
                     tLRPC$TL_messageMediaWebPage.webpage = this.messageWebPage;
@@ -5994,20 +6005,21 @@ public class ChatActivityEnterView extends BlurredFrameLayout implements Notific
             }
             ChatActivity chatActivity5 = this.parentFragment;
             if (chatActivity5 != null) {
-                chatActivity5.editingMessageObject = r9;
-                chatActivity5.foundWebPage = r9;
+                chatActivity5.editingMessageObject = null;
+                chatActivity5.foundWebPage = null;
                 MessagePreviewParams messagePreviewParams4 = chatActivity5.messagePreviewParams;
                 if (messagePreviewParams4 != null) {
                     messagePreviewParams4.updateLink(this.currentAccount, null, "", null, null, null);
                 }
-                setWebPage(r9, true);
+                setWebPage(null, true);
                 this.parentFragment.fallbackFieldPanel();
             }
             SendMessagesHelper.getInstance(this.currentAccount).sendMessage(of);
-            i7 = min + 1;
+            i8 = min + 1;
             if (min == charSequence2.length()) {
                 return true;
             }
+            i6 = 1;
         }
     }
 

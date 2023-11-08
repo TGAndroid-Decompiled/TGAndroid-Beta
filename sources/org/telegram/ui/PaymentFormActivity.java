@@ -1783,16 +1783,18 @@ public class PaymentFormActivity extends BaseFragment implements NotificationCen
 
     public void lambda$goToNextStep$40() {
         getMessagesController().newMessageCallback = null;
-        if (this.invoiceStatus != InvoiceStatus.PENDING || isFinishing()) {
-            return;
+        if (this.invoiceStatus == InvoiceStatus.PENDING && !isFinishing()) {
+            InvoiceStatus invoiceStatus = InvoiceStatus.FAILED;
+            this.invoiceStatus = invoiceStatus;
+            PaymentFormCallback paymentFormCallback = this.paymentFormCallback;
+            if (paymentFormCallback != null) {
+                paymentFormCallback.onInvoiceStatusChanged(invoiceStatus);
+            }
+            finishFragment();
+        } else if (this.invoiceStatus != InvoiceStatus.PAID || isFinishing()) {
+        } else {
+            finishFragment();
         }
-        InvoiceStatus invoiceStatus = InvoiceStatus.FAILED;
-        this.invoiceStatus = invoiceStatus;
-        PaymentFormCallback paymentFormCallback = this.paymentFormCallback;
-        if (paymentFormCallback != null) {
-            paymentFormCallback.onInvoiceStatusChanged(invoiceStatus);
-        }
-        finishFragment();
     }
 
     private boolean onCheckoutSuccess(INavigationLayout iNavigationLayout, Activity activity) {

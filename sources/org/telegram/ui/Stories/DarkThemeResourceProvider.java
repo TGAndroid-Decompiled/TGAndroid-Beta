@@ -125,7 +125,7 @@ public class DarkThemeResourceProvider implements Theme.ResourcesProvider {
         SparseIntArray sparseIntArray5 = this.sparseIntArray;
         int i5 = Theme.key_divider;
         sparseIntArray5.put(i5, -16777216);
-        this.sparseIntArray.put(Theme.key_dialogFloatingButton, -15033089);
+        this.sparseIntArray.put(Theme.key_chat_editMediaButton, -15033089);
         this.sparseIntArray.put(Theme.key_dialogFloatingIcon, -1);
         this.sparseIntArray.put(Theme.key_graySection, -14079703);
         this.sparseIntArray.put(Theme.key_graySectionText, -8158332);

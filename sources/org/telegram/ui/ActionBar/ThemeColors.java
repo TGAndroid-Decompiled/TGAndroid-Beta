@@ -39,7 +39,7 @@ public class ThemeColors {
         iArr[Theme.key_dialogButton] = -11955764;
         iArr[Theme.key_dialogButtonSelector] = 251658240;
         iArr[Theme.key_dialogScrollGlow] = -657673;
-        iArr[Theme.key_dialogRoundCheckBox] = -15033089;
+        iArr[Theme.key_dialogRoundCheckBox] = -11750155;
         iArr[Theme.key_dialogRoundCheckBoxCheck] = -1;
         iArr[Theme.key_dialogCameraIcon] = -1;
         iArr[Theme.key_dialog_inlineProgressBackground] = -151981323;
@@ -48,7 +48,7 @@ public class ThemeColors {
         iArr[Theme.key_dialogSearchHint] = -6774617;
         iArr[Theme.key_dialogSearchIcon] = -6182737;
         iArr[Theme.key_dialogSearchText] = -14540254;
-        iArr[Theme.key_dialogFloatingButton] = -15033089;
+        iArr[Theme.key_dialogFloatingButton] = -11750155;
         iArr[Theme.key_dialogFloatingButtonPressed] = 251658240;
         iArr[Theme.key_dialogFloatingIcon] = -1;
         iArr[Theme.key_dialogShadowLine] = 301989888;
@@ -233,7 +233,7 @@ public class ThemeColors {
         iArr[Theme.key_chats_archivePullDownBackground] = -3749428;
         iArr[Theme.key_chats_archivePullDownBackgroundActive] = -10049056;
         iArr[Theme.key_chat_attachCheckBoxCheck] = -1;
-        iArr[Theme.key_chat_attachCheckBoxBackground] = -12995849;
+        iArr[Theme.key_chat_attachCheckBoxBackground] = -11750155;
         iArr[Theme.key_chat_attachPhotoBackground] = 201326592;
         iArr[Theme.key_chat_attachActiveTab] = -13391883;
         iArr[Theme.key_chat_attachUnactiveTab] = -7169634;
@@ -591,6 +591,7 @@ public class ThemeColors {
         iArr[Theme.key_chat_outBubbleLocationPlaceholder] = 506491665;
         iArr[Theme.key_chat_inBubbleLocationPlaceholder] = 508584819;
         iArr[Theme.key_chat_BlurAlpha] = -16777216;
+        iArr[Theme.key_chat_editMediaButton] = -15033089;
         iArr[Theme.key_statisticChartSignature] = 2133140777;
         iArr[Theme.key_statisticChartSignatureAlpha] = 2133140777;
         iArr[Theme.key_statisticChartHintLine] = 437792059;
@@ -1250,6 +1251,7 @@ public class ThemeColors {
         sparseArray.put(Theme.key_chat_inBubbleLocationPlaceholder, "chat_inBubbleLocationPlaceholder");
         sparseArray.put(Theme.key_chat_outBubbleLocationPlaceholder, "chat_outBubbleLocationPlaceholder");
         sparseArray.put(Theme.key_chat_BlurAlpha, "chat_BlurAlpha");
+        sparseArray.put(Theme.key_chat_editMediaButton, "chat_editMediaButton");
         sparseArray.put(Theme.key_voipgroup_listSelector, "voipgroup_listSelector");
         sparseArray.put(Theme.key_voipgroup_inviteMembersBackground, "voipgroup_inviteMembersBackground");
         sparseArray.put(Theme.key_voipgroup_actionBar, "voipgroup_actionBar");

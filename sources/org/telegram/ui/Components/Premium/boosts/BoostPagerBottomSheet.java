@@ -223,9 +223,9 @@ public class BoostPagerBottomSheet extends BottomSheet {
         });
         selectorBottomSheet.setSelectedObjectsListener(new SelectorBottomSheet.SelectedObjectsListener() {
             @Override
-            public void onChatsSelected(List<TLRPC$Chat> list) {
+            public void onChatsSelected(List<TLRPC$Chat> list, boolean z3) {
                 BoostPagerBottomSheet.this.viewPager.scrollToPosition(0);
-                boostViaGiftsBottomSheet.onChatsSelected(list);
+                boostViaGiftsBottomSheet.onChatsSelected(list, !BoostPagerBottomSheet.this.isKeyboardVisible());
             }
 
             @Override

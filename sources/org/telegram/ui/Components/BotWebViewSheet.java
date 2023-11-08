@@ -15,6 +15,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
@@ -39,6 +40,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
+import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.GenericProvider;
 import org.telegram.messenger.LiteMode;
@@ -1028,7 +1030,14 @@ public class BotWebViewSheet extends Dialog implements NotificationCenter.Notifi
         this.replyToMsgId = i3;
         this.silent = z;
         this.buttonText = str;
-        this.actionBar.setTitle(UserObject.getUserName(MessagesController.getInstance(i).getUser(Long.valueOf(j2))));
+        CharSequence userName = UserObject.getUserName(MessagesController.getInstance(i).getUser(Long.valueOf(j2)));
+        try {
+            TextPaint textPaint = new TextPaint();
+            textPaint.setTextSize(AndroidUtilities.dp(20.0f));
+            userName = Emoji.replaceEmoji(userName, textPaint.getFontMetricsInt(), false);
+        } catch (Exception unused) {
+        }
+        this.actionBar.setTitle(userName);
         ActionBarMenu createMenu = this.actionBar.createMenu();
         createMenu.removeAllViews();
         Iterator<TLRPC$TL_attachMenuBot> it = MediaDataController.getInstance(i).getAttachMenuBots().bots.iterator();

@@ -1802,7 +1802,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
         this.containerView.addView(this.writeButtonContainer, LayoutHelper.createFrame(60, 60.0f, 85, 0.0f, 0.0f, 6.0f, 10.0f));
         this.writeButton = new ImageView(context);
         int dp2 = AndroidUtilities.dp(56.0f);
-        int i7 = Theme.key_chat_attachCheckBoxBackground;
+        int i7 = Theme.key_dialogFloatingButton;
         int themedColor = getThemedColor(i7);
         int i8 = Build.VERSION.SDK_INT;
         this.writeButtonDrawable = Theme.createSimpleSelectorCircleDrawable(dp2, themedColor, getThemedColor(i8 >= 21 ? Theme.key_dialogFloatingButtonPressed : i7));
@@ -4261,7 +4261,7 @@ public class ChatAttachAlert extends BottomSheet implements NotificationCenter.N
             }
         }
         Drawable drawable = this.writeButtonDrawable;
-        int i4 = Theme.key_chat_attachCheckBoxBackground;
+        int i4 = Theme.key_dialogFloatingButton;
         Theme.setSelectorDrawableColor(drawable, getThemedColor(i4), false);
         Drawable drawable2 = this.writeButtonDrawable;
         if (Build.VERSION.SDK_INT >= 21) {

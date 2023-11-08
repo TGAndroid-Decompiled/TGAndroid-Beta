@@ -494,6 +494,7 @@ public class Theme {
     public static final int key_chat_botKeyboardButtonBackgroundPressed;
     public static final int key_chat_botKeyboardButtonText;
     public static final int key_chat_botSwitchToInlineText;
+    public static final int key_chat_editMediaButton;
     public static final int key_chat_emojiBottomPanelIcon;
     public static final int key_chat_emojiPanelBackground;
     public static final int key_chat_emojiPanelBackspace;

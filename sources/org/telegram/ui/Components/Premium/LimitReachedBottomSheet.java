@@ -1183,7 +1183,7 @@ public class LimitReachedBottomSheet extends BottomSheetWithRecyclerListView imp
         LinearLayout titleLinearLayout;
 
         @android.annotation.SuppressLint({"SetTextI18n"})
-        public HeaderView(android.content.Context r33) {
+        public HeaderView(android.content.Context r32) {
             throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.Premium.LimitReachedBottomSheet.HeaderView.<init>(org.telegram.ui.Components.Premium.LimitReachedBottomSheet, android.content.Context):void");
         }
 

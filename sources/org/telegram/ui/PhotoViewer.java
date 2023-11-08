@@ -4347,7 +4347,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
         this.qualityPicker.setTranslationY(AndroidUtilities.dp(120.0f));
         this.qualityPicker.doneButton.setText(LocaleController.getString("Done", R.string.Done).toUpperCase());
         TextView textView = this.qualityPicker.doneButton;
-        int i8 = Theme.key_dialogFloatingButton;
+        int i8 = Theme.key_chat_editMediaButton;
         textView.setTextColor(getThemedColor(i8));
         this.containerView.addView(this.qualityPicker, LayoutHelper.createFrame(-1, 48, 83));
         this.qualityPicker.cancelButton.setOnClickListener(new View.OnClickListener() {
@@ -6966,7 +6966,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     return;
                 }
                 if (PhotoViewer.this.photoCropView.mirror()) {
-                    PhotoViewer.this.mirrorItem.setColorFilter(new PorterDuffColorFilter(PhotoViewer.this.getThemedColor(Theme.key_dialogFloatingButton), PorterDuff.Mode.MULTIPLY));
+                    PhotoViewer.this.mirrorItem.setColorFilter(new PorterDuffColorFilter(PhotoViewer.this.getThemedColor(Theme.key_chat_editMediaButton), PorterDuff.Mode.MULTIPLY));
                 } else {
                     PhotoViewer.this.mirrorItem.setColorFilter((ColorFilter) null);
                 }
@@ -7047,7 +7047,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                     PhotoViewer.this.photoCropView.wheelView.setRotated(false);
                     if (Math.abs(f) > 0.0f) {
                         if (PhotoViewer.this.photoCropView.rotate(f)) {
-                            PhotoViewer.this.rotateItem.setColorFilter(new PorterDuffColorFilter(PhotoViewer.this.getThemedColor(Theme.key_dialogFloatingButton), PorterDuff.Mode.MULTIPLY));
+                            PhotoViewer.this.rotateItem.setColorFilter(new PorterDuffColorFilter(PhotoViewer.this.getThemedColor(Theme.key_chat_editMediaButton), PorterDuff.Mode.MULTIPLY));
                         } else {
                             PhotoViewer.this.rotateItem.setColorFilter((ColorFilter) null);
                         }
@@ -7823,7 +7823,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
     }
 
     public void updateColors() {
-        int i = Theme.key_dialogFloatingButton;
+        int i = Theme.key_chat_editMediaButton;
         int themedColor = getThemedColor(i);
         ImageView imageView = this.pickerViewSendButton;
         if (imageView != null) {
@@ -9581,7 +9581,7 @@ public class PhotoViewer implements NotificationCenter.NotificationCenterDelegat
                         this.previousCropMirrored = this.cropTransform.isMirrored();
                         this.photoCropView.onAppear();
                         this.editorDoneLayout.doneButton.setText(LocaleController.getString("Crop", R.string.Crop));
-                        this.editorDoneLayout.doneButton.setTextColor(getThemedColor(Theme.key_dialogFloatingButton));
+                        this.editorDoneLayout.doneButton.setTextColor(getThemedColor(Theme.key_chat_editMediaButton));
                         this.changeModeAnimation = new AnimatorSet();
                         ArrayList arrayList2 = new ArrayList();
                         FrameLayout frameLayout = this.pickerView;

@@ -4520,7 +4520,14 @@ public class PeerStoriesView extends SizeNotifierFrameLayout implements Notifica
             }
             TL_stories$StoryItem tL_stories$StoryItem = this.storyItem;
             if (tL_stories$StoryItem != null) {
-                return !tL_stories$StoryItem.noforwards;
+                if (tL_stories$StoryItem.noforwards) {
+                    return false;
+                }
+                if (tL_stories$StoryItem.pinned) {
+                    TLRPC$Chat chat = MessagesController.getInstance(PeerStoriesView.this.currentAccount).getChat(Long.valueOf(-tL_stories$StoryItem.dialogId));
+                    return chat == null || !chat.noforwards;
+                }
+                return true;
             }
             return true;
         }

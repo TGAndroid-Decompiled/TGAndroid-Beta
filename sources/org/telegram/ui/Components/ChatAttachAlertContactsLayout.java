@@ -412,7 +412,7 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public int getCurrentItemTop() {
+    int getCurrentItemTop() {
         if (this.listView.getChildCount() <= 0) {
             return ConnectionsManager.DEFAULT_DATACENTER_ID;
         }
@@ -442,12 +442,12 @@ public class ChatAttachAlertContactsLayout extends ChatAttachAlert.AttachAlertLa
     }
 
     @Override
-    public int getListTopPadding() {
+    int getListTopPadding() {
         return this.listView.getPaddingTop();
     }
 
     @Override
-    public void onPreMeasure(int i, int i2) {
+    void onPreMeasure(int i, int i2) {
         int i3;
         if (this.parentAlert.sizeNotifierFrameLayout.measureKeyboardHeight() > AndroidUtilities.dp(20.0f)) {
             i3 = AndroidUtilities.dp(8.0f);

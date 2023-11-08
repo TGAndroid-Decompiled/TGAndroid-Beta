@@ -1470,17 +1470,20 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
 
     public void lambda$search$21(String str, ArrayList arrayList, Runnable runnable) {
         TLRPC$StickerSet tLRPC$StickerSet;
+        TLRPC$StickerSet tLRPC$StickerSet2;
         ArrayList<TLRPC$TL_messages_stickerSet> stickerSets = MediaDataController.getInstance(this.currentAccount).getStickerSets(5);
+        HashSet hashSet = new HashSet();
         String translitSafe = AndroidUtilities.translitSafe(str);
         String str2 = " " + translitSafe;
         if (stickerSets != null) {
             for (int i = 0; i < stickerSets.size(); i++) {
                 TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = stickerSets.get(i);
-                if (tLRPC$TL_messages_stickerSet != null && (tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set) != null && tLRPC$TL_messages_stickerSet.documents != null) {
-                    String translitSafe2 = AndroidUtilities.translitSafe(tLRPC$StickerSet.title);
+                if (tLRPC$TL_messages_stickerSet != null && (tLRPC$StickerSet2 = tLRPC$TL_messages_stickerSet.set) != null && tLRPC$StickerSet2.title != null && tLRPC$TL_messages_stickerSet.documents != null && !hashSet.contains(Long.valueOf(tLRPC$StickerSet2.id))) {
+                    String translitSafe2 = AndroidUtilities.translitSafe(tLRPC$TL_messages_stickerSet.set.title);
                     if (translitSafe2.startsWith(translitSafe) || translitSafe2.contains(str2)) {
                         arrayList.add(new SetTitleDocument(translitSafe2));
                         arrayList.addAll(tLRPC$TL_messages_stickerSet.documents);
+                        hashSet.add(Long.valueOf(tLRPC$TL_messages_stickerSet.set.id));
                     }
                 }
             }
@@ -1489,23 +1492,24 @@ public class SelectAnimatedEmojiDialog extends FrameLayout implements Notificati
         if (featuredEmojiSets != null) {
             for (int i2 = 0; i2 < featuredEmojiSets.size(); i2++) {
                 TLRPC$StickerSetCovered tLRPC$StickerSetCovered = featuredEmojiSets.get(i2);
-                if (tLRPC$StickerSetCovered != null && tLRPC$StickerSetCovered.set != null) {
-                    ArrayList<TLRPC$Document> arrayList2 = null;
-                    if (tLRPC$StickerSetCovered instanceof TLRPC$TL_stickerSetNoCovered) {
-                        TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSet(MediaDataController.getInputStickerSet(tLRPC$StickerSetCovered.set), Integer.valueOf(tLRPC$StickerSetCovered.set.hash), true);
-                        if (stickerSet != null) {
-                            arrayList2 = stickerSet.documents;
+                if (tLRPC$StickerSetCovered != null && (tLRPC$StickerSet = tLRPC$StickerSetCovered.set) != null && tLRPC$StickerSet.title != null && !hashSet.contains(Long.valueOf(tLRPC$StickerSet.id))) {
+                    String translitSafe3 = AndroidUtilities.translitSafe(tLRPC$StickerSetCovered.set.title);
+                    if (translitSafe3.startsWith(translitSafe) || translitSafe3.contains(str2)) {
+                        ArrayList<TLRPC$Document> arrayList2 = null;
+                        if (tLRPC$StickerSetCovered instanceof TLRPC$TL_stickerSetNoCovered) {
+                            TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(this.currentAccount).getStickerSet(MediaDataController.getInputStickerSet(tLRPC$StickerSetCovered.set), Integer.valueOf(tLRPC$StickerSetCovered.set.hash), true);
+                            if (stickerSet != null) {
+                                arrayList2 = stickerSet.documents;
+                            }
+                        } else if (tLRPC$StickerSetCovered instanceof TLRPC$TL_stickerSetFullCovered) {
+                            arrayList2 = ((TLRPC$TL_stickerSetFullCovered) tLRPC$StickerSetCovered).documents;
+                        } else {
+                            arrayList2 = tLRPC$StickerSetCovered.covers;
                         }
-                    } else if (tLRPC$StickerSetCovered instanceof TLRPC$TL_stickerSetFullCovered) {
-                        arrayList2 = ((TLRPC$TL_stickerSetFullCovered) tLRPC$StickerSetCovered).documents;
-                    } else {
-                        arrayList2 = tLRPC$StickerSetCovered.covers;
-                    }
-                    if (arrayList2 != null && arrayList2.size() != 0) {
-                        String translitSafe3 = AndroidUtilities.translitSafe(tLRPC$StickerSetCovered.set.title);
-                        if (translitSafe3.startsWith(translitSafe) || translitSafe3.contains(str2)) {
+                        if (arrayList2 != null && arrayList2.size() != 0) {
                             arrayList.add(new SetTitleDocument(tLRPC$StickerSetCovered.set.title));
                             arrayList.addAll(arrayList2);
+                            hashSet.add(Long.valueOf(tLRPC$StickerSetCovered.set.id));
                         }
                     }
                 }
