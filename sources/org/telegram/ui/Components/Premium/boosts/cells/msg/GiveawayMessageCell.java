@@ -24,6 +24,7 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
@@ -273,7 +274,7 @@ public class GiveawayMessageCell {
                 Iterator<String> it = tLRPC$TL_messageMediaGiveaway.countries_iso2.iterator();
                 while (it.hasNext()) {
                     String next = it.next();
-                    String displayCountry = new Locale("", next).getDisplayCountry(Locale.getDefault());
+                    String displayCountry = new Locale(BuildConfig.APP_CENTER_HASH, next).getDisplayCountry(Locale.getDefault());
                     String languageFlag = LocaleController.getLanguageFlag(next);
                     SpannableStringBuilder spannableStringBuilder4 = new SpannableStringBuilder();
                     if (languageFlag != null) {
@@ -350,10 +351,10 @@ public class GiveawayMessageCell {
                 } else {
                     this.chats[i11] = null;
                     this.avatarVisible[i11] = false;
-                    this.chatTitles[i11] = "";
+                    this.chatTitles[i11] = BuildConfig.APP_CENTER_HASH;
                     this.needNewRow[i11] = false;
                     this.chatTitleWidths[i11] = AndroidUtilities.dp(20.0f);
-                    this.avatarDrawables[i11].setInfo(longValue, "", "");
+                    this.avatarDrawables[i11].setInfo(longValue, BuildConfig.APP_CENTER_HASH, BuildConfig.APP_CENTER_HASH);
                 }
             }
         }

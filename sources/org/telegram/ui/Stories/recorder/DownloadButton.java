@@ -21,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
@@ -621,7 +622,7 @@ public class DownloadButton extends ImageView {
                 rLottieDrawable.setCallback(null);
                 this.lottieDrawable.recycle(true);
             }
-            RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i, "" + i, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
+            RLottieDrawable rLottieDrawable2 = new RLottieDrawable(i, BuildConfig.APP_CENTER_HASH + i, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
             this.lottieDrawable = rLottieDrawable2;
             rLottieDrawable2.setCallback(this);
             this.lottieDrawable.start();

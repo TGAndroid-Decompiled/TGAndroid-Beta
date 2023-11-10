@@ -18,7 +18,7 @@ public class SmsReceiver extends BroadcastReceiver {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("mainconfig", 0);
             String string = sharedPreferences.getString("sms_hash", null);
             if (!"com.google.android.gms.auth.api.phone.SMS_RETRIEVED".equals(intent.getAction())) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             } else if (!AndroidUtilities.isWaitingForSms()) {
                 return;
             } else {
@@ -29,7 +29,7 @@ public class SmsReceiver extends BroadcastReceiver {
             }
             Matcher matcher = Pattern.compile("[0-9\\-]+").matcher(str);
             if (matcher.find()) {
-                final String replace = matcher.group(0).replace("-", "");
+                final String replace = matcher.group(0).replace("-", BuildConfig.APP_CENTER_HASH);
                 if (replace.length() >= 3) {
                     if (string != null) {
                         SharedPreferences.Editor edit = sharedPreferences.edit();

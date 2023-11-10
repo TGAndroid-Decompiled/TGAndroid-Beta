@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
@@ -419,7 +420,7 @@ public class ReassignBoostBottomSheet extends BottomSheetWithRecyclerListView {
             TextView textView = this.description;
             int boostsPerSentGift = BoostRepository.boostsPerSentGift();
             Object[] objArr = new Object[1];
-            objArr[0] = tLRPC$Chat == null ? "" : tLRPC$Chat.title;
+            objArr[0] = tLRPC$Chat == null ? BuildConfig.APP_CENTER_HASH : tLRPC$Chat.title;
             textView.setText(AndroidUtilities.replaceTags(LocaleController.formatPluralString("BoostingReassignBoostTextPlural", boostsPerSentGift, objArr)));
         }
 

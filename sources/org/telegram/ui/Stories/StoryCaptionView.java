@@ -40,6 +40,7 @@ import java.util.Objects;
 import java.util.Stack;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
@@ -555,7 +556,7 @@ public class StoryCaptionView extends NestedScrollView {
                 ArrayList arrayList = new ArrayList();
                 this.spoilers = arrayList;
                 this.spoilersPool = new Stack<>();
-                this.text = "";
+                this.text = BuildConfig.APP_CENTER_HASH;
                 this.translateT = new AnimatedFloat(StoryCaptionView.this, 0L, 400L, CubicBezierInterpolator.EASE_OUT_QUINT);
                 this.loadingPath = new Path();
                 this.patchedLayout = new AtomicReference<>();
@@ -956,7 +957,7 @@ public class StoryCaptionView extends NestedScrollView {
 
         public void setText(CharSequence charSequence, boolean z, boolean z2) {
             if (charSequence == null) {
-                charSequence = "";
+                charSequence = BuildConfig.APP_CENTER_HASH;
             }
             if (TextUtils.equals(this.state[0].text, charSequence)) {
                 this.state[0].translating = z;

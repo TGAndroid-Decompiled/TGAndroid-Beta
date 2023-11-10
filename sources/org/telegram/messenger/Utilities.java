@@ -281,7 +281,7 @@ public class Utilities {
 
     public static String bytesToHex(byte[] bArr) {
         if (bArr == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         char[] cArr = new char[bArr.length * 2];
         for (int i = 0; i < bArr.length; i++) {

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
@@ -133,7 +134,7 @@ public class ImportingAlert extends BottomSheet implements NotificationCenter.No
         textView.setEllipsize(TextUtils.TruncateAt.END);
         frameLayout.addView(textView, LayoutHelper.createFrame(-2, -2.0f, 51, 17.0f, 20.0f, 17.0f, 0.0f));
         int i2 = R.raw.import_finish;
-        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, "" + i2, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), false, null);
+        RLottieDrawable rLottieDrawable = new RLottieDrawable(i2, BuildConfig.APP_CENTER_HASH + i2, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f), false, null);
         this.completedDrawable = rLottieDrawable;
         rLottieDrawable.setAllowDecodeSingleFrame(true);
         RLottieImageView rLottieImageView = new RLottieImageView(context);

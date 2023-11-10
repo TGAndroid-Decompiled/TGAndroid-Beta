@@ -17,6 +17,7 @@ import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.Theme;
 import org.telegram.ui.Components.AnimatedFloat;
@@ -101,7 +102,7 @@ public class ButtonWithCounterView extends FrameLayout {
         animatedTextDrawable2.setTextSize(AndroidUtilities.dp(12.0f));
         animatedTextDrawable2.setTypeface(AndroidUtilities.getTypeface(AndroidUtilities.TYPEFACE_ROBOTO_MEDIUM));
         animatedTextDrawable2.setTextColor(Theme.getColor(Theme.key_featuredStickers_addButton, resourcesProvider));
-        animatedTextDrawable2.setText("");
+        animatedTextDrawable2.setText(BuildConfig.APP_CENTER_HASH);
         animatedTextDrawable2.setGravity(1);
         setWillNotDraw(false);
     }
@@ -261,7 +262,7 @@ public class ButtonWithCounterView extends FrameLayout {
         this.lastCount = i;
         this.countAlpha = (i != 0 || this.showZero) ? 1.0f : 0.0f;
         AnimatedTextView.AnimatedTextDrawable animatedTextDrawable = this.countText;
-        animatedTextDrawable.setText("" + i, z);
+        animatedTextDrawable.setText(BuildConfig.APP_CENTER_HASH + i, z);
         invalidate();
     }
 

@@ -5,6 +5,7 @@ import android.media.audiofx.AudioEffect;
 import android.media.audiofx.NoiseSuppressor;
 import android.os.Build;
 import java.util.UUID;
+import org.telegram.messenger.BuildConfig;
 import org.webrtc.Logging;
 class WebRtcAudioEffects {
     private static final UUID AOSP_ACOUSTIC_ECHO_CANCELER = UUID.fromString("bb392ec0-8d4d-11e0-a896-0002a5d5c51b");
@@ -115,7 +116,7 @@ class WebRtcAudioEffects {
     }
 
     public void release() {
-        Logging.d(TAG, "release");
+        Logging.d(TAG, BuildConfig.BUILD_TYPE);
         AcousticEchoCanceler acousticEchoCanceler = this.aec;
         if (acousticEchoCanceler != null) {
             acousticEchoCanceler.release();

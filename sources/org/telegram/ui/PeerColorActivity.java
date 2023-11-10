@@ -27,6 +27,7 @@ import com.google.android.exoplayer2.util.Consumer;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChannelBoostsController;
 import org.telegram.messenger.Emoji;
@@ -946,7 +947,7 @@ public class PeerColorActivity extends BaseFragment implements NotificationCente
                 return;
             }
             String str = tLRPC$User.first_name;
-            String trim = str == null ? "" : str.trim();
+            String trim = str == null ? BuildConfig.APP_CENTER_HASH : str.trim();
             int indexOf = trim.indexOf(" ");
             if (indexOf > 0) {
                 trim = trim.substring(0, indexOf);

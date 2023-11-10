@@ -13,6 +13,7 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.Theme;
 public class SearchCounterView extends View {
@@ -80,7 +81,7 @@ public class SearchCounterView extends View {
             }
             if (!z2) {
                 if (str2 != null) {
-                    str2 = str2.replaceAll("\\*\\*", "");
+                    str2 = str2.replaceAll("\\*\\*", BuildConfig.APP_CENTER_HASH);
                 }
                 this.currentCount = i;
                 if (str2 == null) {
@@ -125,7 +126,7 @@ public class SearchCounterView extends View {
                     String str4 = this.currentString;
                     int indexOf = str2.indexOf("**");
                     if (indexOf >= 0) {
-                        str2 = str2.replaceAll("\\*\\*", "");
+                        str2 = str2.replaceAll("\\*\\*", BuildConfig.APP_CENTER_HASH);
                     } else {
                         indexOf = 0;
                     }

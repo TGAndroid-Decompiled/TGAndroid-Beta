@@ -856,7 +856,7 @@ public class MessageObject {
             if (str == null) {
                 return null;
             }
-            String replaceAll = str.toLowerCase().replaceAll("\\W", "");
+            String replaceAll = str.toLowerCase().replaceAll("\\W", BuildConfig.APP_CENTER_HASH);
             replaceAll.hashCode();
             char c = 65535;
             switch (replaceAll.hashCode()) {
@@ -1569,7 +1569,7 @@ public class MessageObject {
                                         this.emojiAnimatedStickerColor = "_c5";
                                         str = str.subSequence(0, indexOf);
                                     } else {
-                                        this.emojiAnimatedStickerColor = "";
+                                        this.emojiAnimatedStickerColor = BuildConfig.APP_CENTER_HASH;
                                     }
                                 }
                             }
@@ -1841,7 +1841,7 @@ public class MessageObject {
         if (tLObject == null) {
             str2 = null;
             j2 = 0;
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         } else {
             if (tLObject instanceof TLRPC$User) {
                 TLRPC$User tLRPC$User = (TLRPC$User) tLObject;
@@ -2006,7 +2006,7 @@ public class MessageObject {
         if (tLRPC$User == null) {
             tLRPC$User = MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(getDialogId()));
         }
-        String firstName = tLRPC$User != null ? UserObject.getFirstName(tLRPC$User) : "";
+        String firstName = tLRPC$User != null ? UserObject.getFirstName(tLRPC$User) : BuildConfig.APP_CENTER_HASH;
         try {
             LocaleController localeController = LocaleController.getInstance();
             TLRPC$MessageAction tLRPC$MessageAction = this.messageOwner.action;
@@ -2485,7 +2485,7 @@ public class MessageObject {
         } else {
             tLRPC$TL_message = null;
         }
-        tLRPC$TL_message.message = "";
+        tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
         tLRPC$TL_message.realId = getId();
         tLRPC$TL_message.id = Utilities.random.nextInt();
         TLRPC$Message tLRPC$Message = this.messageOwner;
@@ -2603,7 +2603,7 @@ public class MessageObject {
                 } else {
                     String str = tLRPC$KeyboardButton.text;
                     if (str == null) {
-                        str = "";
+                        str = BuildConfig.APP_CENTER_HASH;
                     }
                     replaceEmoji = Emoji.replaceEmoji((CharSequence) str, Theme.chat_msgBotButtonPaint.getFontMetricsInt(), AndroidUtilities.dp(15.0f), false);
                 }
@@ -2897,10 +2897,10 @@ public class MessageObject {
             return document.mime_type;
         }
         if (!(getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaInvoice)) {
-            return getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaPhoto ? "image/jpeg" : (!(getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaWebPage) || getMedia(this.messageOwner).webpage.photo == null) ? "" : "image/jpeg";
+            return getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaPhoto ? "image/jpeg" : (!(getMedia(this.messageOwner) instanceof TLRPC$TL_messageMediaWebPage) || getMedia(this.messageOwner).webpage.photo == null) ? BuildConfig.APP_CENTER_HASH : "image/jpeg";
         }
         TLRPC$WebDocument tLRPC$WebDocument = ((TLRPC$TL_messageMediaInvoice) getMedia(this.messageOwner)).webPhoto;
-        return tLRPC$WebDocument != null ? tLRPC$WebDocument.mime_type : "";
+        return tLRPC$WebDocument != null ? tLRPC$WebDocument.mime_type : BuildConfig.APP_CENTER_HASH;
     }
 
     public boolean canPreviewDocument() {
@@ -3224,7 +3224,7 @@ public class MessageObject {
 
     public CharSequence replaceWithLink(CharSequence charSequence, String str, ArrayList<Long> arrayList, AbstractMap<Long, TLRPC$User> abstractMap, LongSparseArray<TLRPC$User> longSparseArray) {
         if (TextUtils.indexOf(charSequence, str) >= 0) {
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("");
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(BuildConfig.APP_CENTER_HASH);
             for (int i = 0; i < arrayList.size(); i++) {
                 TLRPC$User tLRPC$User = null;
                 if (abstractMap != null) {
@@ -3242,7 +3242,7 @@ public class MessageObject {
                         spannableStringBuilder.append((CharSequence) ", ");
                     }
                     spannableStringBuilder.append((CharSequence) userName);
-                    spannableStringBuilder.setSpan(new URLSpanNoUnderlineBold("" + tLRPC$User.id), length, userName.length() + length, 33);
+                    spannableStringBuilder.setSpan(new URLSpanNoUnderlineBold(BuildConfig.APP_CENTER_HASH + tLRPC$User.id), length, userName.length() + length, 33);
                 }
             }
             return TextUtils.replace(charSequence, new String[]{str}, new CharSequence[]{spannableStringBuilder});
@@ -3262,10 +3262,10 @@ public class MessageObject {
             TLObject tLObject2 = null;
             if (tLObject instanceof TLRPC$User) {
                 charSequence2 = UserObject.getUserName((TLRPC$User) tLObject).replace('\n', ' ');
-                str2 = "" + tLRPC$User.id;
+                str2 = BuildConfig.APP_CENTER_HASH + tLRPC$User.id;
             } else if (tLObject instanceof TLRPC$Chat) {
                 charSequence2 = ((TLRPC$Chat) tLObject).title.replace('\n', ' ');
-                str2 = "" + (-tLRPC$Chat.id);
+                str2 = BuildConfig.APP_CENTER_HASH + (-tLRPC$Chat.id);
             } else if (tLObject instanceof TLRPC$TL_game) {
                 charSequence2 = ((TLRPC$TL_game) tLObject).title.replace('\n', ' ');
                 str2 = "game";
@@ -3281,14 +3281,14 @@ public class MessageObject {
                     tLRPC$TL_chatInviteExported = tLObject;
                 } else {
                     str2 = "0";
-                    charSequence2 = "";
+                    charSequence2 = BuildConfig.APP_CENTER_HASH;
                 }
                 String str4 = str3;
                 tLObject2 = tLRPC$TL_chatInviteExported;
                 str2 = str4;
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.replace(charSequence, new String[]{str}, new CharSequence[]{charSequence2}));
-            URLSpanNoUnderlineBold uRLSpanNoUnderlineBold = new URLSpanNoUnderlineBold("" + str2);
+            URLSpanNoUnderlineBold uRLSpanNoUnderlineBold = new URLSpanNoUnderlineBold(BuildConfig.APP_CENTER_HASH + str2);
             uRLSpanNoUnderlineBold.setObject(tLObject2);
             spannableStringBuilder.setSpan(uRLSpanNoUnderlineBold, indexOf, charSequence2.length() + indexOf, 33);
             return spannableStringBuilder;
@@ -3304,7 +3304,7 @@ public class MessageObject {
             substring = getDocument().mime_type;
         }
         if (substring == null) {
-            substring = "";
+            substring = BuildConfig.APP_CENTER_HASH;
         }
         return substring.toUpperCase();
     }
@@ -3319,10 +3319,10 @@ public class MessageObject {
             return FileLoader.getAttachFileName(getDocument(tLRPC$Message));
         }
         if (!(getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaPhoto)) {
-            return (!(getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaWebPage) || getMedia(tLRPC$Message).webpage == null) ? "" : FileLoader.getAttachFileName(getMedia(tLRPC$Message).webpage.document);
+            return (!(getMedia(tLRPC$Message) instanceof TLRPC$TL_messageMediaWebPage) || getMedia(tLRPC$Message).webpage == null) ? BuildConfig.APP_CENTER_HASH : FileLoader.getAttachFileName(getMedia(tLRPC$Message).webpage.document);
         }
         ArrayList<TLRPC$PhotoSize> arrayList = getMedia(tLRPC$Message).photo.sizes;
-        return (arrayList.size() <= 0 || (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize())) == null) ? "" : FileLoader.getAttachFileName(closestPhotoSizeWithSize);
+        return (arrayList.size() <= 0 || (closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(arrayList, AndroidUtilities.getPhotoSize())) == null) ? BuildConfig.APP_CENTER_HASH : FileLoader.getAttachFileName(closestPhotoSizeWithSize);
     }
 
     public int getMediaType() {
@@ -4681,7 +4681,7 @@ public class MessageObject {
             if ((tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeCustomEmoji) || (tLRPC$DocumentAttribute instanceof TLRPC$TL_documentAttributeSticker)) {
                 if (num != null) {
                     TLRPC$TL_messages_stickerSet stickerSet = MediaDataController.getInstance(num.intValue()).getStickerSet(tLRPC$DocumentAttribute.stickerset, true);
-                    StringBuilder sb = new StringBuilder("");
+                    StringBuilder sb = new StringBuilder(BuildConfig.APP_CENTER_HASH);
                     if (stickerSet != null && stickerSet.packs != null) {
                         for (int i2 = 0; i2 < stickerSet.packs.size(); i2++) {
                             TLRPC$TL_stickerPack tLRPC$TL_stickerPack = stickerSet.packs.get(i2);
@@ -4997,7 +4997,7 @@ public class MessageObject {
     public String getDiceEmoji() {
         if (isDice()) {
             TLRPC$TL_messageMediaDice tLRPC$TL_messageMediaDice = (TLRPC$TL_messageMediaDice) getMedia(this.messageOwner);
-            return TextUtils.isEmpty(tLRPC$TL_messageMediaDice.emoticon) ? "🎲" : tLRPC$TL_messageMediaDice.emoticon.replace("️", "");
+            return TextUtils.isEmpty(tLRPC$TL_messageMediaDice.emoticon) ? "🎲" : tLRPC$TL_messageMediaDice.emoticon.replace("️", BuildConfig.APP_CENTER_HASH);
         }
         return null;
     }
@@ -5279,7 +5279,7 @@ public class MessageObject {
                     sb.append("athumb://itunes.apple.com/search?term=");
                     sb.append(URLEncoder.encode(str + " - " + str2, "UTF-8"));
                     sb.append("&entity=song&limit=4");
-                    sb.append(z ? "&s=1" : "");
+                    sb.append(z ? "&s=1" : BuildConfig.APP_CENTER_HASH);
                     return sb.toString();
                 } catch (Exception unused) {
                     continue;
@@ -6249,7 +6249,7 @@ public class MessageObject {
                 }
                 return UserObject.getUserName(user);
             }
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         } else if (tLRPC$Peer instanceof TLRPC$TL_peerChat) {
             TLRPC$Chat chat2 = MessagesController.getInstance(i).getChat(Long.valueOf(tLRPC$Peer.chat_id));
             if (chat2 != null) {
@@ -6258,9 +6258,9 @@ public class MessageObject {
                 }
                 return chat2.title;
             }
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         } else if (!(tLRPC$Peer instanceof TLRPC$TL_peerChannel) || (chat = MessagesController.getInstance(i).getChat(Long.valueOf(tLRPC$Peer.channel_id))) == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         } else {
             if (z) {
                 return new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat) ? channelSpan() : groupSpan()).append((CharSequence) " ").append((CharSequence) chat.title);
@@ -6276,13 +6276,13 @@ public class MessageObject {
     public static CharSequence peerNameWithIcon(int i, long j, boolean z) {
         if (j >= 0) {
             TLRPC$User user = MessagesController.getInstance(i).getUser(Long.valueOf(j));
-            return user != null ? UserObject.getUserName(user) : "";
+            return user != null ? UserObject.getUserName(user) : BuildConfig.APP_CENTER_HASH;
         }
         TLRPC$Chat chat = MessagesController.getInstance(i).getChat(Long.valueOf(-j));
         if (chat != null) {
             return new SpannableStringBuilder(ChatObject.isChannelAndNotMegaGroup(chat) ? channelSpan() : groupSpan()).append((CharSequence) " ").append((CharSequence) chat.title);
         }
-        return "";
+        return BuildConfig.APP_CENTER_HASH;
     }
 
     public CharSequence getReplyQuoteNameWithIcon() {
@@ -6290,7 +6290,7 @@ public class MessageObject {
         CharSequence spannableStringBuilder;
         TLRPC$Message tLRPC$Message = this.messageOwner;
         if (tLRPC$Message == null) {
-            return "";
+            return BuildConfig.APP_CENTER_HASH;
         }
         TLRPC$MessageReplyHeader tLRPC$MessageReplyHeader = tLRPC$Message.reply_to;
         CharSequence charSequence2 = null;

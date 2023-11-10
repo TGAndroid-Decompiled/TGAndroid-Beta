@@ -7,6 +7,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.ui.Components.AnimatedTextView;
 public class SpeedIconDrawable extends Drawable {
     private final Drawable.Callback callback;
@@ -63,9 +64,9 @@ public class SpeedIconDrawable extends Drawable {
         float round = Math.round(f * 10.0f) / 10.0f;
         long j = round;
         if (round == ((float) j)) {
-            return "" + j;
+            return BuildConfig.APP_CENTER_HASH + j;
         }
-        return "" + round;
+        return BuildConfig.APP_CENTER_HASH + round;
     }
 
     public void setValue(float f, boolean z) {

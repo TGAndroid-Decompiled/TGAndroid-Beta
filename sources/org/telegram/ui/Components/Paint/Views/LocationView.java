@@ -9,6 +9,7 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.tgnet.TLRPC$GeoPoint;
 import org.telegram.tgnet.TLRPC$MessageMedia;
 import org.telegram.tgnet.TLRPC$TL_messageMediaGeo;
@@ -51,24 +52,33 @@ public class LocationView extends EntityView {
     }
 
     private static String deg(double d) {
-        double floor;
         double abs = Math.abs(d);
-        double floor2 = Math.floor((abs - Math.floor(abs)) * 60.0d);
+        double floor = Math.floor(abs);
         StringBuilder sb = new StringBuilder();
-        sb.append("" + ((int) floor) + "°");
-        sb.append(floor2 <= 0.0d ? "0" : "");
-        sb.append(floor2 < 10.0d ? "0" : "");
-        sb.append((int) floor2);
-        sb.append("'");
+        String str = BuildConfig.APP_CENTER_HASH;
+        sb.append(BuildConfig.APP_CENTER_HASH);
+        sb.append((int) floor);
+        sb.append("°");
         String sb2 = sb.toString();
-        double floor3 = Math.floor(Math.floor(floor2) * 60.0d);
+        double floor2 = Math.floor((abs - floor) * 60.0d);
         StringBuilder sb3 = new StringBuilder();
         sb3.append(sb2);
-        sb3.append(floor3 <= 0.0d ? "0" : "");
-        sb3.append(floor3 < 10.0d ? "0" : "");
-        sb3.append((int) floor3);
-        sb3.append("\"");
-        return sb3.toString();
+        sb3.append(floor2 <= 0.0d ? "0" : BuildConfig.APP_CENTER_HASH);
+        sb3.append(floor2 < 10.0d ? "0" : BuildConfig.APP_CENTER_HASH);
+        sb3.append((int) floor2);
+        sb3.append("'");
+        String sb4 = sb3.toString();
+        double floor3 = Math.floor(Math.floor(floor2) * 60.0d);
+        StringBuilder sb5 = new StringBuilder();
+        sb5.append(sb4);
+        sb5.append(floor3 <= 0.0d ? "0" : BuildConfig.APP_CENTER_HASH);
+        if (floor3 < 10.0d) {
+            str = "0";
+        }
+        sb5.append(str);
+        sb5.append((int) floor3);
+        sb5.append("\"");
+        return sb5.toString();
     }
 
     public static String geo(double d, double d2) {
@@ -109,7 +119,7 @@ public class LocationView extends EntityView {
             str2 = ((TLRPC$TL_messageMediaVenue) tLRPC$MessageMedia).emoji;
             str = upperCase;
         } else {
-            str = "";
+            str = BuildConfig.APP_CENTER_HASH;
         }
         this.marker.setCountryCodeEmoji(i, str2);
         this.marker.setText(str);

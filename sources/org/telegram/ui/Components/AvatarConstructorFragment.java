@@ -902,8 +902,10 @@ public class AvatarConstructorFragment extends BaseFragment {
         public ImageReceiver getImageReceiver() {
             ImageReceiver imageReceiver = this.backupImageView.getImageReceiver();
             AnimatedEmojiDrawable animatedEmojiDrawable = this.backupImageView.animatedEmojiDrawable;
-            if (animatedEmojiDrawable != null && (imageReceiver = animatedEmojiDrawable.getImageReceiver()) != null) {
-                imageReceiver.setColorFilter(this.colorFilter);
+            if (animatedEmojiDrawable != null) {
+                ImageReceiver imageReceiver2 = animatedEmojiDrawable.getImageReceiver();
+                this.backupImageView.animatedEmojiDrawable.setColorFilter(this.colorFilter);
+                return imageReceiver2;
             }
             return imageReceiver;
         }

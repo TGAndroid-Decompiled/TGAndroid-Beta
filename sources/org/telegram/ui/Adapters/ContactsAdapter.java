@@ -14,6 +14,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Objects;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.FileLog;
@@ -312,29 +313,29 @@ public class ContactsAdapter extends RecyclerListView.SectionsAdapter {
         LetterSectionCell letterSectionCell = (LetterSectionCell) view;
         boolean z = this.hasStories;
         if (z && i == 1) {
-            letterSectionCell.setLetter("");
+            letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
             return letterSectionCell;
         }
         if (z && i > 1) {
             i--;
         }
         if (this.sortType == 2 || this.disableSections || this.isEmpty) {
-            letterSectionCell.setLetter("");
+            letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
         } else if (this.onlyUsers == 0 || this.isAdmin) {
             if (i == 0) {
-                letterSectionCell.setLetter("");
+                letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
             } else {
                 int i2 = i - 1;
                 if (i2 < arrayList.size()) {
                     letterSectionCell.setLetter(arrayList.get(i2));
                 } else {
-                    letterSectionCell.setLetter("");
+                    letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
                 }
             }
         } else if (i < arrayList.size()) {
             letterSectionCell.setLetter(arrayList.get(i));
         } else {
-            letterSectionCell.setLetter("");
+            letterSectionCell.setLetter(BuildConfig.APP_CENTER_HASH);
         }
         return view;
     }

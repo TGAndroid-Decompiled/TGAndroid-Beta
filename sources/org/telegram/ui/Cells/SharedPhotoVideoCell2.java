@@ -26,6 +26,7 @@ import android.widget.FrameLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.math.MathUtils;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DownloadController;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
@@ -191,7 +192,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
                 this.videoText = null;
                 this.drawViews = false;
                 this.viewsAlpha.set(0.0f, true);
-                this.viewsText.setText("", false);
+                this.viewsText.setText(BuildConfig.APP_CENTER_HASH, false);
                 this.videoInfoLayot = null;
                 this.showVideoLayout = false;
                 this.gradientDrawableLoading = false;
@@ -219,7 +220,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             } else {
                 this.drawViews = false;
                 this.viewsAlpha.set(0.0f, true);
-                this.viewsText.setText("", false);
+                this.viewsText.setText(BuildConfig.APP_CENTER_HASH, false);
             }
             this.viewsAlpha.set(this.drawViews ? 1.0f : 0.0f, true);
             if (TextUtils.isEmpty(restrictionReason)) {
@@ -425,7 +426,7 @@ public class SharedPhotoVideoCell2 extends FrameLayout {
             return;
         }
         this.drawViews = false;
-        this.viewsText.setText("", false);
+        this.viewsText.setText(BuildConfig.APP_CENTER_HASH, false);
     }
 
     public void drawViews(Canvas canvas, RectF rectF, float f) {

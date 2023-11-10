@@ -52,6 +52,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import org.telegram.messenger.AccountInstance;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
@@ -938,7 +939,7 @@ public class AlertsCreator {
             }
         }
         if (z) {
-            createSimpleAlert(context, chat.title, LocaleController.getString("SlowmodeSendError", R.string.SlowmodeSendError)).show();
+            createSimpleAlert(context, chat.title, LocaleController.getString(R.string.SlowmodeSendError)).show();
             return true;
         }
         return false;
@@ -1047,7 +1048,7 @@ public class AlertsCreator {
         final CheckBoxCell[] checkBoxCellArr = {new CheckBoxCell(chatActivity.getParentActivity(), 1, resourcesProvider)};
         checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
         checkBoxCellArr[0].setTag(0);
-        checkBoxCellArr[0].setText(LocaleController.getString("DeleteReportSpam", R.string.DeleteReportSpam), "", true, false);
+        checkBoxCellArr[0].setText(LocaleController.getString("DeleteReportSpam", R.string.DeleteReportSpam), BuildConfig.APP_CENTER_HASH, true, false);
         checkBoxCellArr[0].setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
         linearLayout.addView(checkBoxCellArr[0], LayoutHelper.createLinear(-1, -2));
         checkBoxCellArr[0].setOnClickListener(new View.OnClickListener() {
@@ -1706,7 +1707,7 @@ public class AlertsCreator {
             checkBoxCellArr[0] = new CheckBoxCell(context, 1, baseFragment.getResourceProvider());
             checkBoxCellArr[0].allowMultiline();
             checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
-            checkBoxCellArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), "", true, false);
+            checkBoxCellArr[0].setText(AndroidUtilities.replaceTags(LocaleController.formatString("OpenUrlOption2", R.string.OpenUrlOption2, UserObject.getUserName(tLRPC$User))), BuildConfig.APP_CENTER_HASH, true, false);
             CheckBoxCell checkBoxCell = checkBoxCellArr[0];
             if (LocaleController.isRTL) {
                 f = 16.0f;
@@ -1881,9 +1882,9 @@ public class AlertsCreator {
             checkBoxCellArr[0] = new CheckBoxCell(parentActivity, 1, resourcesProvider);
             checkBoxCellArr[0].setBackgroundDrawable(Theme.getSelectorDrawable(false));
             if (tLRPC$Chat != null) {
-                checkBoxCellArr[0].setText(LocaleController.getString("DeleteMessagesOptionAlsoChat", R.string.DeleteMessagesOptionAlsoChat), "", false, false);
+                checkBoxCellArr[0].setText(LocaleController.getString("DeleteMessagesOptionAlsoChat", R.string.DeleteMessagesOptionAlsoChat), BuildConfig.APP_CENTER_HASH, false, false);
             } else {
-                checkBoxCellArr[0].setText(LocaleController.formatString("DeleteMessagesOptionAlso", R.string.DeleteMessagesOptionAlso, UserObject.getFirstName(tLRPC$User)), "", false, false);
+                checkBoxCellArr[0].setText(LocaleController.formatString("DeleteMessagesOptionAlso", R.string.DeleteMessagesOptionAlso, UserObject.getFirstName(tLRPC$User)), BuildConfig.APP_CENTER_HASH, false, false);
             }
             CheckBoxCell checkBoxCell = checkBoxCellArr[0];
             if (LocaleController.isRTL) {
@@ -2103,12 +2104,16 @@ public class AlertsCreator {
     }
 
     public static void lambda$createChangeBioAlert$39(long j, int i, EditText editText, DialogInterface dialogInterface, int i2) {
+        String str = BuildConfig.APP_CENTER_HASH;
         if (j > 0) {
             TLRPC$UserFull userFull = MessagesController.getInstance(i).getUserFull(UserConfig.getInstance(i).getClientUserId());
             String trim = editText.getText().toString().replace("\n", " ").replaceAll(" +", " ").trim();
             if (userFull != null) {
-                String str = userFull.about;
-                if ((str != null ? str : "").equals(trim)) {
+                String str2 = userFull.about;
+                if (str2 != null) {
+                    str = str2;
+                }
+                if (str.equals(trim)) {
                     AndroidUtilities.hideKeyboard(editText);
                     dialogInterface.dismiss();
                     return;
@@ -2131,8 +2136,11 @@ public class AlertsCreator {
             TLRPC$ChatFull chatFull = MessagesController.getInstance(i).getChatFull(j2);
             String obj = editText.getText().toString();
             if (chatFull != null) {
-                String str2 = chatFull.about;
-                if ((str2 != null ? str2 : "").equals(obj)) {
+                String str3 = chatFull.about;
+                if (str3 != null) {
+                    str = str3;
+                }
+                if (str.equals(obj)) {
                     AndroidUtilities.hideKeyboard(editText);
                     dialogInterface.dismiss();
                     return;
@@ -2278,10 +2286,10 @@ public class AlertsCreator {
             String str = user.first_name;
             String str2 = user.last_name;
             if (str == null) {
-                str = "";
+                str = BuildConfig.APP_CENTER_HASH;
             }
             if (str2 == null) {
-                str2 = "";
+                str2 = BuildConfig.APP_CENTER_HASH;
             }
             if (str.equals(obj) && str2.equals(obj2)) {
                 dialogInterface.dismiss();
@@ -2500,7 +2508,7 @@ public class AlertsCreator {
                 checkBoxCellArr[i3] = new CheckBoxCell(parentActivity, 1);
                 checkBoxCellArr[i3].setBackgroundDrawable(Theme.getSelectorDrawable(false));
                 if (i3 == 0) {
-                    checkBoxCellArr[i3].setText(LocaleController.getString("ReportSpamTitle", R.string.ReportSpamTitle), "", true, false);
+                    checkBoxCellArr[i3].setText(LocaleController.getString("ReportSpamTitle", R.string.ReportSpamTitle), BuildConfig.APP_CENTER_HASH, true, false);
                 } else {
                     CheckBoxCell checkBoxCell = checkBoxCellArr[i3];
                     if (i == 1) {
@@ -2510,7 +2518,7 @@ public class AlertsCreator {
                         i2 = R.string.DeleteTheseChatsBothSides;
                         str = "DeleteTheseChatsBothSides";
                     }
-                    checkBoxCell.setText(LocaleController.getString(str, i2), "", true, false);
+                    checkBoxCell.setText(LocaleController.getString(str, i2), BuildConfig.APP_CENTER_HASH, true, false);
                 }
                 checkBoxCellArr[i3].setPadding(LocaleController.isRTL ? AndroidUtilities.dp(16.0f) : AndroidUtilities.dp(8.0f), 0, LocaleController.isRTL ? AndroidUtilities.dp(8.0f) : AndroidUtilities.dp(16.0f), 0);
                 linearLayout.addView(checkBoxCellArr[i3], LayoutHelper.createLinear(-1, 48));
@@ -4203,7 +4211,7 @@ public class AlertsCreator {
     }
 
     public static String lambda$createCalendarPickerDialog$94(int i) {
-        return "" + i;
+        return BuildConfig.APP_CENTER_HASH + i;
     }
 
     public static void lambda$createCalendarPickerDialog$95(LinearLayout linearLayout, long j, NumberPicker numberPicker, NumberPicker numberPicker2, NumberPicker numberPicker3, NumberPicker numberPicker4, int i, int i2) {
@@ -4437,7 +4445,7 @@ public class AlertsCreator {
                 r8 = new TL_stories$TL_stories_report();
                 r8.id.add(Integer.valueOf(i2));
                 r8.peer = MessagesController.getInstance(UserConfig.selectedAccount).getInputPeer(j);
-                r8.message = "";
+                r8.message = BuildConfig.APP_CENTER_HASH;
                 if (i4 == 0) {
                     r8.reason = new TLRPC$TL_inputReportReasonSpam();
                 } else if (i4 == 6) {
@@ -4458,7 +4466,7 @@ public class AlertsCreator {
                     ?? tLRPC$TL_messages_report = new TLRPC$TL_messages_report();
                     tLRPC$TL_messages_report.peer = inputPeer;
                     tLRPC$TL_messages_report.id.add(Integer.valueOf(i));
-                    tLRPC$TL_messages_report.message = "";
+                    tLRPC$TL_messages_report.message = BuildConfig.APP_CENTER_HASH;
                     tLRPC$TL_account_reportPeer = tLRPC$TL_messages_report;
                     if (i4 == 0) {
                         tLRPC$TL_messages_report.reason = new TLRPC$TL_inputReportReasonSpam();
@@ -4482,7 +4490,7 @@ public class AlertsCreator {
                 } else {
                     TLRPC$TL_account_reportPeer tLRPC$TL_account_reportPeer2 = new TLRPC$TL_account_reportPeer();
                     tLRPC$TL_account_reportPeer2.peer = inputPeer;
-                    tLRPC$TL_account_reportPeer2.message = "";
+                    tLRPC$TL_account_reportPeer2.message = BuildConfig.APP_CENTER_HASH;
                     tLRPC$TL_account_reportPeer = tLRPC$TL_account_reportPeer2;
                     if (i4 == 0) {
                         tLRPC$TL_account_reportPeer2.reason = new TLRPC$TL_inputReportReasonSpam();
@@ -5726,7 +5734,7 @@ public class AlertsCreator {
             if (i == 19) {
                 return LocaleController.formatTTLString(86400);
             }
-            return i == 20 ? LocaleController.formatTTLString(604800) : "";
+            return i == 20 ? LocaleController.formatTTLString(604800) : BuildConfig.APP_CENTER_HASH;
         }
         return LocaleController.formatTTLString(i);
     }

@@ -54,6 +54,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.DocumentObject;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.FileLoader;
@@ -504,7 +505,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                         this.currentReqId = -1;
                     }
                     this.requesting = false;
-                    this.offset = "";
+                    this.offset = BuildConfig.APP_CENTER_HASH;
                 }
                 this.query = str;
                 AndroidUtilities.cancelRunOnUIThread(this.searchRunnable);
@@ -549,19 +550,23 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                     final TLRPC$TL_messages_getInlineBotResults tLRPC$TL_messages_getInlineBotResults = new TLRPC$TL_messages_getInlineBotResults();
                     tLRPC$TL_messages_getInlineBotResults.bot = MessagesController.getInstance(((BottomSheet) EmojiBottomSheet.this).currentAccount).getInputUser(this.bot);
                     String str = this.query;
+                    String str2 = BuildConfig.APP_CENTER_HASH;
                     if (str == null) {
-                        str = "";
+                        str = BuildConfig.APP_CENTER_HASH;
                     }
                     tLRPC$TL_messages_getInlineBotResults.query = str;
                     final boolean isEmpty = TextUtils.isEmpty(this.offset);
-                    String str2 = this.offset;
-                    tLRPC$TL_messages_getInlineBotResults.offset = str2 != null ? str2 : "";
+                    String str3 = this.offset;
+                    if (str3 != null) {
+                        str2 = str3;
+                    }
+                    tLRPC$TL_messages_getInlineBotResults.offset = str2;
                     tLRPC$TL_messages_getInlineBotResults.peer = new TLRPC$TL_inputPeerEmpty();
-                    final String str3 = "gif_search_" + tLRPC$TL_messages_getInlineBotResults.query + "_" + tLRPC$TL_messages_getInlineBotResults.offset;
-                    MessagesStorage.getInstance(((BottomSheet) EmojiBottomSheet.this).currentAccount).getBotCache(str3, new RequestDelegate() {
+                    final String str4 = "gif_search_" + tLRPC$TL_messages_getInlineBotResults.query + "_" + tLRPC$TL_messages_getInlineBotResults.offset;
+                    MessagesStorage.getInstance(((BottomSheet) EmojiBottomSheet.this).currentAccount).getBotCache(str4, new RequestDelegate() {
                         @Override
                         public final void run(TLObject tLObject, TLRPC$TL_error tLRPC$TL_error) {
-                            EmojiBottomSheet.GifPage.GifAdapter.this.lambda$request$5(isEmpty, tLRPC$TL_messages_getInlineBotResults, str3, tLObject, tLRPC$TL_error);
+                            EmojiBottomSheet.GifPage.GifAdapter.this.lambda$request$5(isEmpty, tLRPC$TL_messages_getInlineBotResults, str4, tLObject, tLRPC$TL_error);
                         }
                     });
                 }
@@ -993,7 +998,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
             } else {
                 SearchField searchField = this.searchField;
                 searchField.ignoreTextChange = true;
-                searchField.editText.setText("");
+                searchField.editText.setText(BuildConfig.APP_CENTER_HASH);
                 SearchField searchField2 = this.searchField;
                 searchField2.ignoreTextChange = false;
                 searchField2.categoriesListView.selectCategory(EmojiBottomSheet.this.categoryIndex);
@@ -1120,11 +1125,11 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                             }
                         }
                     }
-                    String translitSafe = AndroidUtilities.translitSafe((this.query + "").toLowerCase());
+                    String translitSafe = AndroidUtilities.translitSafe((this.query + BuildConfig.APP_CENTER_HASH).toLowerCase());
                     for (int i6 = 0; i6 < this.allStickerSets.size(); i6++) {
                         TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = this.allStickerSets.get(i6);
                         if (tLRPC$TL_messages_stickerSet != null && tLRPC$TL_messages_stickerSet.set != null) {
-                            String translitSafe2 = AndroidUtilities.translitSafe((tLRPC$TL_messages_stickerSet.set.title + "").toLowerCase());
+                            String translitSafe2 = AndroidUtilities.translitSafe((tLRPC$TL_messages_stickerSet.set.title + BuildConfig.APP_CENTER_HASH).toLowerCase());
                             if (!translitSafe2.startsWith(translitSafe)) {
                                 if (!translitSafe2.contains(" " + translitSafe)) {
                                 }
@@ -1197,7 +1202,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
                         return;
                     }
                     TLRPC$TL_messages_stickerSet tLRPC$TL_messages_stickerSet = this.stickerSets.get(i2);
-                    String str = (tLRPC$TL_messages_stickerSet == null || (tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set) == null) ? "" : tLRPC$StickerSet.title;
+                    String str = (tLRPC$TL_messages_stickerSet == null || (tLRPC$StickerSet = tLRPC$TL_messages_stickerSet.set) == null) ? BuildConfig.APP_CENTER_HASH : tLRPC$StickerSet.title;
                     StickerSetNameCell stickerSetNameCell = (StickerSetNameCell) viewHolder.itemView;
                     if (this.activeQuery == null) {
                         stickerSetNameCell.setText(str, 0);
@@ -2285,7 +2290,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
             };
             this.categoriesListView = stickerCategoriesListView;
             TextPaint paint = editTextBoldCursor.getPaint();
-            stickerCategoriesListView.setDontOccupyWidth(((int) paint.measureText(((Object) editTextBoldCursor.getHint()) + "")) + AndroidUtilities.dp(16.0f));
+            stickerCategoriesListView.setDontOccupyWidth(((int) paint.measureText(((Object) editTextBoldCursor.getHint()) + BuildConfig.APP_CENTER_HASH)) + AndroidUtilities.dp(16.0f));
             stickerCategoriesListView.setOnScrollIntoOccupiedWidth(new Utilities.Callback() {
                 @Override
                 public final void run(Object obj) {
@@ -2456,7 +2461,7 @@ public class EmojiBottomSheet extends BottomSheet implements NotificationCenter.
         }
 
         public void clear() {
-            this.editText.setText("");
+            this.editText.setText(BuildConfig.APP_CENTER_HASH);
             search(null, -1);
             this.categoriesListView.selectCategory((StickerCategoriesListView.EmojiCategory) null);
         }

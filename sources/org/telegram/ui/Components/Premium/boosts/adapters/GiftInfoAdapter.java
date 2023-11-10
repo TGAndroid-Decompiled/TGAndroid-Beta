@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Date;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
@@ -190,7 +191,7 @@ public abstract class GiftInfoAdapter extends RecyclerListView.SelectionAdapter 
                 if (str2 == null || str2.isEmpty()) {
                     textInfoCell.setText(LocaleController.getString("BoostingLinkNotActivated", R.string.BoostingLinkNotActivated));
                 } else {
-                    textInfoCell.setText("");
+                    textInfoCell.setText(BuildConfig.APP_CENTER_HASH);
                 }
             } else if (this.isUnused) {
                 if (tLRPC$TL_payments_checkedGiftCode3.to_id == -1) {

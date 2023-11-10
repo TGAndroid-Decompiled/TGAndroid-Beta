@@ -29,6 +29,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
@@ -1130,7 +1131,7 @@ public class PhotoFilterView extends FrameLayout implements FilterShaders.Filter
         private void updateBottomText() {
             PhotoFilterView photoFilterView = this.filterView;
             float enhanceValue = photoFilterView == null ? 0.0f : photoFilterView.getEnhanceValue();
-            StaticLayout staticLayout = new StaticLayout("" + Math.round(enhanceValue * 100.0f), this.bottomTextPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            StaticLayout staticLayout = new StaticLayout(BuildConfig.APP_CENTER_HASH + Math.round(enhanceValue * 100.0f), this.bottomTextPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
             this.bottomText = staticLayout;
             this.bottomTextWidth = staticLayout.getLineCount() > 0 ? this.bottomText.getLineWidth(0) : 0.0f;
             this.bottomTextLeft = this.bottomText.getLineCount() > 0 ? this.bottomText.getLineLeft(0) : 0.0f;

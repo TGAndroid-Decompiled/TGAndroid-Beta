@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.FileLog;
@@ -135,7 +136,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         if (photoEntry.isVideo || photoEntry.editedInfo != null) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.id = 0;
-            tLRPC$TL_message.message = "";
+            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
             tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
             tLRPC$TL_message.dialog_id = 0L;
@@ -566,7 +567,7 @@ public class ImageUpdater implements NotificationCenter.NotificationCenterDelega
         if (sendingMediaInfo.isVideo || sendingMediaInfo.videoEditedInfo != null) {
             TLRPC$TL_message tLRPC$TL_message = new TLRPC$TL_message();
             tLRPC$TL_message.id = 0;
-            tLRPC$TL_message.message = "";
+            tLRPC$TL_message.message = BuildConfig.APP_CENTER_HASH;
             tLRPC$TL_message.media = new TLRPC$TL_messageMediaEmpty();
             tLRPC$TL_message.action = new TLRPC$TL_messageActionEmpty();
             tLRPC$TL_message.dialog_id = 0L;

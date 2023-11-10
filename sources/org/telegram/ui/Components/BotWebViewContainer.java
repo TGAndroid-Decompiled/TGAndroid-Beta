@@ -48,6 +48,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
@@ -181,7 +182,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         this.flickerDrawable = cellFlickerDrawable;
         this.lastButtonColor = getColor(Theme.key_featuredStickers_addButton);
         this.lastButtonTextColor = getColor(Theme.key_featuredStickers_buttonText);
-        this.lastButtonText = "";
+        this.lastButtonText = BuildConfig.APP_CENTER_HASH;
         this.lastDialogType = -1;
         this.shownDialogsCount = 0;
         this.resourcesProvider = resourcesProvider;
@@ -192,11 +193,11 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         cellFlickerDrawable.setColors(i, 153, 204);
         BackupImageView backupImageView = new BackupImageView(context) {
             {
-                this.imageReceiver = new C00201(this);
+                this.imageReceiver = new C00171(this);
             }
 
-            public class C00201 extends ImageReceiver {
-                C00201(View view) {
+            public class C00171 extends ImageReceiver {
+                C00171(View view) {
                     super(view);
                 }
 
@@ -207,7 +208,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
                     duration.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                         @Override
                         public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                            BotWebViewContainer.AnonymousClass1.C00201.this.lambda$setImageBitmapByKey$0(valueAnimator);
+                            BotWebViewContainer.AnonymousClass1.C00171.this.lambda$setImageBitmapByKey$0(valueAnimator);
                         }
                     });
                     duration.start();
@@ -1362,7 +1363,7 @@ public abstract class BotWebViewContainer extends FrameLayout implements Notific
         if (str != null) {
             str2 = ": " + str;
         } else {
-            str2 = "";
+            str2 = BuildConfig.APP_CENTER_HASH;
         }
         sb.append(str2);
         error(sb.toString());

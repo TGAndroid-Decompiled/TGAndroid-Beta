@@ -53,6 +53,7 @@ import java.util.Map;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BuildConfig;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.DispatchQueue;
@@ -4742,11 +4743,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         @Override
         public String getLetter(int i) {
             if (SharedMediaLayout.this.sharedMediaData[this.currentType].fastScrollPeriods == null) {
-                return "";
+                return BuildConfig.APP_CENTER_HASH;
             }
             ArrayList<Period> arrayList = SharedMediaLayout.this.sharedMediaData[this.currentType].fastScrollPeriods;
             if (arrayList.isEmpty()) {
-                return "";
+                return BuildConfig.APP_CENTER_HASH;
             }
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 if (i <= arrayList.get(i2).startOffset) {
@@ -4841,7 +4842,7 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
             emptyStubView.emptyTextView.setText(LocaleController.getString("NoGroupsInCommon", R.string.NoGroupsInCommon));
         } else if (i == 7) {
             emptyStubView.emptyImageView.setImageDrawable(null);
-            emptyStubView.emptyTextView.setText("");
+            emptyStubView.emptyTextView.setText(BuildConfig.APP_CENTER_HASH);
         }
         return emptyStubView;
     }
@@ -4999,11 +5000,11 @@ public class SharedMediaLayout extends FrameLayout implements NotificationCenter
         @Override
         public String getLetter(int i) {
             if (SharedMediaLayout.this.sharedMediaData[0].fastScrollPeriods == null) {
-                return "";
+                return BuildConfig.APP_CENTER_HASH;
             }
             ArrayList<Period> arrayList = SharedMediaLayout.this.sharedMediaData[0].fastScrollPeriods;
             if (arrayList.isEmpty()) {
-                return "";
+                return BuildConfig.APP_CENTER_HASH;
             }
             for (int i2 = 0; i2 < arrayList.size(); i2++) {
                 if (i <= arrayList.get(i2).startOffset) {

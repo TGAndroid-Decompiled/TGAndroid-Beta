@@ -211,7 +211,7 @@ public class CodeHighlighting {
         try {
             String charSequence = spannable.subSequence(i, i2).toString();
             HashMap<String, TokenPattern[]> hashMap = compiledPatterns;
-            stringTokenArr[0] = tokenize(charSequence, hashMap == null ? null : hashMap.get(str)).toArray();
+            stringTokenArr[0] = tokenize(charSequence, hashMap == null ? null : hashMap.get(str), 0).toArray();
         } catch (Exception e) {
             FileLog.e(e);
         }
@@ -301,14 +301,14 @@ public class CodeHighlighting {
         }
     }
 
-    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr) {
-        return tokenize(str, tokenPatternArr, null);
+    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr, int i) {
+        return tokenize(str, tokenPatternArr, null, i);
     }
 
-    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr, TokenPattern tokenPattern) {
+    private static LinkedList tokenize(String str, TokenPattern[] tokenPatternArr, TokenPattern tokenPattern, int i) {
         LinkedList linkedList = new LinkedList();
         linkedList.addAfter(linkedList.head, new StringToken(str));
-        matchGrammar(str, linkedList, flatRest(tokenPatternArr), linkedList.head, 0, null, tokenPattern);
+        matchGrammar(str, linkedList, flatRest(tokenPatternArr), linkedList.head, 0, null, tokenPattern, i);
         return linkedList;
     }
 
@@ -334,8 +334,156 @@ public class CodeHighlighting {
         return arrayList != null ? (TokenPattern[]) arrayList.toArray(new TokenPattern[0]) : tokenPatternArr;
     }
 
-    private static void matchGrammar(java.lang.String r17, org.telegram.messenger.CodeHighlighting.LinkedList r18, org.telegram.messenger.CodeHighlighting.TokenPattern[] r19, org.telegram.messenger.CodeHighlighting.Node r20, int r21, org.telegram.messenger.CodeHighlighting.RematchOptions r22, org.telegram.messenger.CodeHighlighting.TokenPattern r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.CodeHighlighting.matchGrammar(java.lang.String, org.telegram.messenger.CodeHighlighting$LinkedList, org.telegram.messenger.CodeHighlighting$TokenPattern[], org.telegram.messenger.CodeHighlighting$Node, int, org.telegram.messenger.CodeHighlighting$RematchOptions, org.telegram.messenger.CodeHighlighting$TokenPattern):void");
+    private static void matchGrammar(String str, LinkedList linkedList, TokenPattern[] tokenPatternArr, Node node, int i, RematchOptions rematchOptions, TokenPattern tokenPattern, int i2) {
+        TokenPattern tokenPattern2;
+        int i3;
+        int i4;
+        Match matchPattern;
+        int i5;
+        StringToken stringToken;
+        int i6;
+        String str2 = str;
+        TokenPattern[] tokenPatternArr2 = tokenPatternArr;
+        if (tokenPatternArr2 == null || i2 > 20) {
+            return;
+        }
+        int length = tokenPatternArr2.length;
+        int i7 = 0;
+        while (i7 < length) {
+            TokenPattern tokenPattern3 = tokenPatternArr2[i7];
+            if (tokenPattern3 == tokenPattern) {
+                return;
+            }
+            if (rematchOptions != null && rematchOptions.cause == tokenPattern3) {
+                return;
+            }
+            Node node2 = node.next;
+            int i8 = i;
+            while (node2 != linkedList.tail) {
+                if (rematchOptions != null && i8 >= rematchOptions.reach) {
+                    return;
+                }
+                if (linkedList.length > str.length()) {
+                    FileLog.e("[CodeHighlighter] Something went terribly wrong, ABORT, ABORT!");
+                    return;
+                }
+                StringToken stringToken2 = node2.value;
+                String str3 = stringToken2.string;
+                if (str3 != null && !stringToken2.token) {
+                    if (tokenPattern3.greedy) {
+                        matchPattern = matchPattern(tokenPattern3, i8, str2);
+                        if (matchPattern != null && matchPattern.index < str.length()) {
+                            int i9 = matchPattern.index;
+                            int i10 = matchPattern.length + i9;
+                            int length2 = node2.value.length();
+                            while (true) {
+                                i8 += length2;
+                                if (i9 < i8) {
+                                    break;
+                                }
+                                node2 = node2.next;
+                                length2 = node2.value.length();
+                            }
+                            i8 -= node2.value.length();
+                            StringToken stringToken3 = node2.value;
+                            if (stringToken3.string == null || stringToken3.token) {
+                                tokenPattern2 = tokenPattern3;
+                                i3 = length;
+                                node2 = node2;
+                                i8 += node2.value.length();
+                                node2 = node2.next;
+                                str2 = str;
+                                tokenPattern3 = tokenPattern2;
+                                length = i3;
+                            } else {
+                                Node node3 = node2;
+                                int i11 = i8;
+                                int i12 = 1;
+                                while (node3 != linkedList.tail && (i11 < i10 || !node3.value.token)) {
+                                    i12++;
+                                    i11 += node3.value.length();
+                                    node3 = node3.next;
+                                }
+                                str3 = str2.substring(i8, i11);
+                                matchPattern.index -= i8;
+                                i5 = i12 - 1;
+                                node2 = node3;
+                                i4 = 0;
+                            }
+                        }
+                        i7++;
+                        str2 = str;
+                        tokenPatternArr2 = tokenPatternArr;
+                        length = length;
+                    } else {
+                        i4 = 0;
+                        matchPattern = matchPattern(tokenPattern3, 0, str3);
+                        i5 = matchPattern != null ? 1 : 1;
+                    }
+                    int i13 = matchPattern.index;
+                    String substring = str3.substring(i4, i13);
+                    String substring2 = str3.substring(i13 + matchPattern.length);
+                    int length3 = str3.length() + i8;
+                    if (rematchOptions != null && length3 > rematchOptions.reach) {
+                        rematchOptions.reach = length3;
+                    }
+                    Node node4 = node2.prev;
+                    if (substring.length() > 0) {
+                        node4 = linkedList.addAfter(node4, new StringToken(substring));
+                        i8 += substring.length();
+                    }
+                    int i14 = i8;
+                    linkedList.removeRange(node4, i5);
+                    TokenPattern[] tokenPatternArr3 = tokenPattern3.insideTokenPatterns;
+                    if (tokenPatternArr3 != null) {
+                        i3 = length;
+                        stringToken = new StringToken(tokenPattern3.group, tokenize(matchPattern.string, tokenPatternArr3, i2 + 1), matchPattern.length);
+                    } else {
+                        i3 = length;
+                        String str4 = tokenPattern3.insideLanguage;
+                        if (str4 != null) {
+                            stringToken = new StringToken(tokenPattern3.group, tokenize(matchPattern.string, compiledPatterns.get(str4), tokenPattern3, i2 + 1), matchPattern.length);
+                        } else {
+                            stringToken = new StringToken(tokenPattern3.group, matchPattern.string);
+                        }
+                    }
+                    Node addAfter = linkedList.addAfter(node4, stringToken);
+                    if (substring2.length() > 0) {
+                        linkedList.addAfter(addAfter, new StringToken(substring2));
+                    }
+                    if (i5 > 1) {
+                        RematchOptions rematchOptions2 = new RematchOptions();
+                        rematchOptions2.cause = tokenPattern3;
+                        rematchOptions2.reach = length3;
+                        tokenPattern2 = tokenPattern3;
+                        matchGrammar(str, linkedList, tokenPatternArr, addAfter.prev, i14, rematchOptions2, tokenPattern, i2 + 1);
+                        if (rematchOptions != null && (i6 = rematchOptions2.reach) > rematchOptions.reach) {
+                            rematchOptions.reach = i6;
+                        }
+                    } else {
+                        tokenPattern2 = tokenPattern3;
+                    }
+                    node2 = addAfter;
+                    i8 = i14;
+                    i8 += node2.value.length();
+                    node2 = node2.next;
+                    str2 = str;
+                    tokenPattern3 = tokenPattern2;
+                    length = i3;
+                }
+                tokenPattern2 = tokenPattern3;
+                i3 = length;
+                i8 += node2.value.length();
+                node2 = node2.next;
+                str2 = str;
+                tokenPattern3 = tokenPattern2;
+                length = i3;
+            }
+            i7++;
+            str2 = str;
+            tokenPatternArr2 = tokenPatternArr;
+            length = length;
+        }
     }
 
     private static Match matchPattern(TokenPattern tokenPattern, int i, String str) {
